@@ -1,0 +1,140 @@
+\documentclass{report}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\title{\Huge{NCKU 112.1}\\Sum of k-th Power}
+\author{\huge{Eric Liu}}
+\date{}
+\begin{document}
+
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+\chapter{Sum of 1,2,3th power}
+\section{k=1}
+\begin{theorem}
+  Given a natural number $m$, We have the identity 
+\begin{equation}
+1+\cdots +m=\frac{m^2+m}{2}
+\end{equation} 
+\end{theorem} 
+\begin{proof}
+Observe that given any natural number $n$
+\begin{align}
+  n^2-( n-1 ) ^2 &= n^2-( n^2-2n+1 ) \\ &= 2n-1
+\end{align} 
+Then we can deduce an identity
+\begin{align}
+  n&=\frac{1}{2}[ n^2-( n-1 ) ^2+1 ]  
+\end{align} 
+Then
+\begin{align}
+  \sum_{n=1}^{m} n &= \sum_{n=1}^{m}\frac{1}{2}[n^2-( n-1 ) ^2+1] \\&= \frac{1}{2}[\sum_{n=1}^{m} n^2-\sum_{n=1}^{m}(n-1)^2+\sum_{n=1}^{m}1] \\&=\frac{1}{2}[ \sum_{n=1}^{m} n^2- \sum_{n=1}^{m-1} n^2+m ] \\&= \frac{m^2+m}{2}
+\end{align} 
+\end{proof} 
+\section{k=2}%
+\label{sec:power to 2}
+\begin{theorem}
+  Given a natural number $m$, We have the identity 
+\begin{equation}
+ 1^2+\cdots +m^2= \frac{m^3}{3}+\frac{m^2}{2}+\frac{m}{6}
+\end{equation} 
+\end{theorem} 
+\begin{proof}
+Observe that given any natural number $n$
+\begin{align}
+  n^3-( n-1 ) ^3&=n^3-( n^3-3n^2+3n-1 ) \\&= 3n^2-3n+1
+\end{align} 
+Then we can deduce an identity
+\begin{equation}
+n^2=\frac{1}{3}[ n^3-( n-1 ) ^3+3n-1 ] 
+\end{equation} 
+Then 
+\begin{align}
+  \sum_{n=1}^{m} n^2&=\sum_{n=1}^{m}\frac{1}{3}[  n^3-( n-1 ) ^3+3n-1 ]\\&= \frac{m^3}{3}+\sum_{n=1}^{m} n-\frac{m}{3}               \\&=\frac{m^3}{3}+\frac{m^2}{2}+\frac{m}{6}
+\end{align} 
+\end{proof} 
+\section{k=3}%
+\begin{theorem}
+  Given a natural number $m$, We have the identity 
+\begin{equation}
+1^3+\cdots +m^3=\frac{m^4}{4}+ \frac{m^3}{2}+\frac{m^2}{4}
+\end{equation} 
+\end{theorem} 
+\begin{proof}
+Observe that given any natural number $n$
+\begin{align}
+  n^{4}-( n-1 ) ^{4}&= n^{4}- ( n^{4}-4n^3+6n^2-4n+1 )\\&=4n^3-6n^2+4n-1 
+\end{align} 
+Then we can deduce an identity
+\begin{equation}
+ n^3=\frac{1}{4} [ n^4-( n-1 ) ^4+6n^2-4n+1 ]
+\end{equation} 
+Then
+\begin{align}
+  \sum_{n=1}^{m} n^3&=\frac{m^4}{4}+\frac{3}{2}\sum_{n=1}^{m} n^2-\sum_{n=1}^{m} n+\frac{m}{4} 
+  \\&= \frac{m^4}{4}+\frac{3}{2}( \frac{m^3}{3}+\frac{m^2}{2}+\frac{m}{6} ) - (  \frac{m^2+m}{2}	) +\frac{m}{4}
+  \\&=\frac{m^4}{4}+ \frac{m^3}{2}+\frac{m^2}{4}
+\end{align} 
+\end{proof} 
+\chapter{Generalization}
+\section{Summary}
+So far, we have collected the following using the same method. It isn't difficult to show for all natural number $k$, the sum $\sum_{n=1}^{m} n^k$ can be expressed by a polynomial of $m$ of $k+1$ degree.
+\begin{align}
+  \sum_{n=1}^{m} n^0 &= m\\
+  \sum_{n=1}^{m} n^1 &= \frac{m^2}{2}+\frac{m}{2}\\
+  \sum_{n=1}^{m} n^2 &= \frac{m^3}{3}+\frac{m^2}{2}+\frac{m}{6}\\
+  \sum_{n=1}^{m} n^3 &= \frac{m^4}{4}+\frac{m^3}{2}+\frac{m^2}{4}
+\end{align} 
+Now, we use the same method to give an inductive formula of sum of $k$-th power. Notice that this formula is very inefficient if $k$ is large.
+\begin{theorem}
+  Given a natural number $m$, We have the identity 
+\begin{equation}
+\sum_{n=1}^{m} n^k = \frac{1}{k+1}[m^{k+1}+\sum_{i=0}^{k-1} \binom{k+1}{i}(-1)^{k-i+1}\sum_{n=1}^{m} n^i ]
+\end{equation}
+\end{theorem}
+\begin{proof}
+\begin{align}
+  n^{k+1}-(n-1)^{k+1}&= -\sum_{i=0}^{k} \binom{k+1}{i}n^i(-1)^{k+1-i}\\
+                     &=\sum_{i=0}^{k} \binom{k+1}{i}n^i(-1)^{k-i}\\
+                     &= \binom{k+1}{k}n^k(-1)^0+\sum_{i-0}^{k-1} \binom{k+1}{i}n^i(-1)^{k-i}\\
+                     &= (k+1)n^k+\sum_{i=0}^{k-1} \binom{k+1}{i}n^i(-1)^{k-i}\\
+  (k+1)n^k &= n^{k+1}-(n-1)^{k+1}+\sum_{i=0}^{k-1} \binom{k+1}{i}n^i(-1)^{k-i+1}\\
+  n^k &=\frac{1}{k+1}[n^{k+1}-(n-1)^{k+1}+\sum_{i=0}^{k-1} \binom{k+1}{i} n^i(-1)^{k-i+1}]\\
+  \sum_{n=1}^{m} n^k&=\frac{1}{k+1}[m^{k+1}+\sum_{n=1}^{m} \sum_{i=0}^{k-1} \binom{k+1}{i}n^i(-1)^{k-i+1}]\\
+                    &= \frac{1}{k+1}[m^{k+1}+\sum_{i=0}^{k-1} \binom{k+1}{i}(-1)^{k-i+1}\sum_{n=1}^{m} n^i]
+\end{align} 
+\end{proof}
+
+Now we show an intreseting property of the sum of $k$-th power.
+\begin{theorem}
+If $m,k$ are natural numbers, then $\sum_{n=1}^{m} n^k$ is a polynomial of $m$, where the sum of coefficient is $1$
+\end{theorem}
+\begin{proof}
+Let $f$ be a function that maps a polynomial of $m$ to the sum of coefficients of the polynomial.
+We prove our theorem by induction.\\
+
+We know that $\sum_{n=1}^{m}n^0=m$, which finish the proof for base case. Given a natural number $r$, assume that $\forall u\leq r\in \N, f(\sum_{n=1}^{m}n^u)=1$.\\
+
+Notice
+\begin{align}
+  0=(1-1)^{r+2} &= \sum_{i=0}^{r+2}\binom{r+2}{i}(1)^i(-1)^{r+2-i}\\
+                &= [\sum_{i=0}^{r}\binom{r+2}{i}(-1)^{r-i}]-(r+2)+1\\
+  r+1 &= \sum_{i=0}^{r}\binom{r+2}{i}(-1)^{r-i} 
+\end{align} 
+Notice that $f$ is a linear function. We use this fact to deduce
+\begin{align}
+  \sum_{n=1}^{m}n^{r+1} &= \frac{1}{r+2}[m^{r+2}+\sum_{i=0}^{r}\binom{r+2}{i}(-1)^{r-i}\sum_{n=1}^{m}n^i]\\
+  f(\sum_{n=1}^{m}n^{r+1}) &=f(\frac{1}{r+2}[m^{r+2}+\sum_{i=0}^{r}\binom{r+2}{i}(-1)^{r-i}\sum_{n=1}^{m}n^i])\\
+                           &= \frac{1}{r+2}[f(m^{r+2})+\sum_{i=0}^{r}\binom{r+2}{i}(-1)^{r-i}f(\sum_{n=1}^{m}n^i)]\\
+                           &= \frac{1}{r+2}(1+\sum_{i=0}^{r}\binom{r+2}{i}(-1)^{r-i})\\
+                           &= \frac{1}{r+2}(1+r+1)\\
+                           &= 1
+\end{align} 
+\end{proof}
+\end{document}
