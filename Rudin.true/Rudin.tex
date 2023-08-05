@@ -17,7 +17,7 @@
 \chapter{The Real and Complex Number System}
 \section{Introduction}
 \fbox{\begin{minipage}{39em}
-In this section, we will define the concept of ordered sets, and give a close look of the completeness property of real numbers, by showing the "uncompleteness" of rational numbers. First, we prove an elementary classic theorem of rational numbers.        
+In this section, we will define the concept of ordered sets, and give a close look of the completeness property of real numbers, by showing the "uncompleteness" of rational numbers. First, we prove an elementary and classic theorem of rational numbers.        
 \end{minipage}}
 \begin{theorem}
 There exists no rational $p$ such that $p^2=2$
@@ -27,7 +27,7 @@ There exists no rational $p$ such that $p^2=2$
 \end{proof}
 
 \fbox{\begin{minipage}{39em}
-For the sake of our discussion below, we will use $\Q^+$ instead of $\Q$ as our universal. Now, we are able to cut the "rational numbers line" in half at the point $\sqrt{2}$, and have two subdivision $A=\set{x\inq^+ : x^2<2},B=\set{x\inq^+:x^2>2}$ 
+For the sake of our discussion below, we will use $\Q^+$ instead of $\Q$ as our universal. Now, we divide the "rational numbers line" in half at the point $\sqrt{2}$, and have two subdivisions $A=\set{x\inq^+ : x^2<2},B=\set{x\inq^+:x^2>2}$ 
 \end{minipage}}
 
 \begin{axiom}
@@ -36,10 +36,11 @@ Let $S$ be an ordered set and $X$ be a subset of $S$. Axiomatically define
 \max X\in X\text{ and }\forall x\in X, x\leq \max X
 \end{equation}
 \begin{equation}
-\min X\in X \text{ and }\forall x\in X, \min X\leq X
+\min X\in X \text{ and }\forall x\in X, \min X\leq x 
 \end{equation}
 \end{axiom}
 \begin{theorem}
+  \label{Theorem 1.1.3}
   $\max A\text{ and }\min B$ both doesn't exist.
 \end{theorem}
 \begin{proof}
@@ -70,7 +71,7 @@ Define $a:=p+c$ where $c^2>2$, and we are finished.
 Now, we come back to define the concept of ordered set.
 \end{minipage}}
 \begin{definition}
-\textbf{(Ordered Set Axioms)}$S$ is an ordered set if there is a relation $\sim$ on it that satisfy 
+\textbf{(Ordered Set Axioms)} $S$ is an ordered set if there is a relation $\sim$ on it that satisfy 
 \begin{equation}
 \forall x\in S, x\not\sim x
 \end{equation}
@@ -83,7 +84,7 @@ Now, we come back to define the concept of ordered set.
 From now on, we write this relation as $<$ and if we write  $x>y$, we mean $y<x$.
 \end{definition}
 \fbox{\begin{minipage}{39em}
-To discuss the uncompleteness of rational numbers, which is an ordered set, we first define a few concepts brought by that of the ordered set.
+To discuss the uncompleteness of rational numbers, which is an ordered set, we first define a few concepts brought by concept of ordered set.
 \end{minipage}}
 \begin{definition}
 Let $S$ be an ordered set and $E\subseteq S$. $E$ is bounded above if 
@@ -99,35 +100,23 @@ In this case, we say $a$ is an upper bound of $E$ and $E$ is bounded above by $a
 Before we give the definition of supremum, aka least upper bound, we first prove a theorem about it.
 \end{minipage}}
 \begin{theorem}
-Let $S$ be an ordered set, $E\subseteq S$ and $A:=\set{x\in S: \forall y\in E, y\leq x}$. We have
-\begin{equation}
-x=\min A\iff \begin{cases}
-  x\in A \\
-  \text{ and }\\
-  m<x\implies \exists z\in E, m< z
-\end{cases}
-\end{equation}
+If $x$ is the smallest upper bound of a bounded above nonempty set  $E$, then any number smaller than  $x$ is not an upper bound of  $E$, and every upper bound of  $E$ is greater than or equal  to $x$.
 \end{theorem}
 
 \begin{proof}
-$(\longrightarrow)$\\
 
-Arbitrarily pick an $m$ such that $m<x$. \As{$\forall z\in E, m>z$}. We see $m\in A$, and because $x=\min A$, we see $x\leq m\tCaC$.\\
-
-$(\longleftarrow)$\\
-
-\As{$\exists n\in A, n<x$}. Then $\exists z\in E, n<z$, which implies $n\not\in A\tCaC$
+Let $A$ be the set of upper bounds of  $E$. Arbitrarily pick an $m$ such that $m<x$. \As{$\forall z\in E, m>z$}. We see $m\in A$, and because $x=\min A$, we see $x\leq m\tCaC$. \As{$\exists n\in A, n<x$}. Then $\exists z\in E, n<z$, which implies $n\not\in A\tCaC$
 \end{proof}
 \begin{definition}
-\textbf{(Definition of Supremum and Infimum)}We axiomatically define
+\textbf{(Definition of Supremum and Infimum)} Let $A,B$ respectively be the set of upper bounds of  $E$ and the set of lower bounds of  $E$. We define
 \begin{equation}
-x=\sup E\iff x=\min A
+\sup E:=\min A
 \end{equation}
-and say $x$ is the least upper bound of $E$. On the other hand, let  $B=\set{x\in S:\forall y\in E, x\leq y}$. We also axiomatically define
+and
 \begin{equation}
-x=\inf E\iff x=\max B
+\inf E:=\max B
 \end{equation}
-and say $x$ is the greatest lower bound of $E$.
+if they ever exist.
 \end{definition}
 \begin{theorem}
 Let $A$ be a subset of ordered set  $S$. If  $\max A$ exists, then $\max A=\sup A$. Similarly, if $\min A$ exists, then $\min A=\inf A$
@@ -136,7 +125,7 @@ Let $A$ be a subset of ordered set  $S$. If  $\max A$ exists, then $\max A=\sup 
 $\max A$ is an upper bound and $\min  A$ is an lower bound hold true by definition. Any number smaller than $\max A$ can not be an upper bound since $\max A\inA$. Similarly, and number greater than $\min A$ can not be an lower bound since $\min A\inA$  
 \end{proof}
 \fbox{\begin{minipage}{39em}
-Now, we look back to our subdivision $A=\set{x\inq^+: x^2<2},B=\set{x\inq^+: x^2>2}$. We first show that $B$ is exactly the set of all upper bounds of $A$.
+Now, we look back to our subdivisions $A=\set{x\inq^+: x^2<2},B=\set{x\inq^+: x^2>2}$. We first show that $B$ is exactly the set of all upper bounds of $A$.
 \end{minipage}}
 \begin{theorem}
 Given $A=\set{x\inq^+: x^2<2},B=\set{x\inq^+: x^2>2}$. We have
@@ -148,7 +137,7 @@ B=\set{x\inq^+ : \forall y\in A, y\leq x}
 Arbitrarily pick $x\in B$, and we see $\forall y\in A, y^2<2<x^2$. Then $\forall y\in A,y<x$. This implies $B\subseteq \set{x\inq^+:\forall y\in A, y\leq x}$. Let $x$ satisfy $\forall y\in A, y\leq x$. \As{$x^2<2$}. We immediately see $x=\max A$, but $\max A$ doesn't exist \CaC
 \end{proof}
 \fbox{\begin{minipage}{39em}
-By the definition of least upper bound and Theorem 1.1.2, we then can see that $\sup A$ does not exist. Now, we give this idea a name.
+    By \hyperref[Theorem 1.1.3]{Theorem 1.1.3}, we then can see that $\sup A$ does not exist. Now, we give this idea a name.
 \end{minipage}}
 \begin{definition}
   \textbf{(Definition of Completed Ordered Set)}
