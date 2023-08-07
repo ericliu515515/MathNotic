@@ -20,6 +20,7 @@
 In this section, we will define the concept of ordered sets, and give a close look of the completeness property of real numbers, by showing the "uncompleteness" of rational numbers. First, we prove an elementary and classic theorem of rational numbers.        
 \end{minipage}}
 \begin{theorem}
+\label{1.1.1}
 There exists no rational $p$ such that $p^2=2$
 \end{theorem}
 \begin{proof}
@@ -31,6 +32,7 @@ For the sake of our discussion below, we will use $\Q^+$ instead of $\Q$ as our 
 \end{minipage}}
 
 \begin{axiom}
+\label{1.1.2}
 Let $S$ be an ordered set and $X$ be a subset of $S$. Axiomatically define
 \begin{equation}
 \max X\in X\text{ and }\forall x\in X, x\leq \max X
@@ -40,7 +42,7 @@ Let $S$ be an ordered set and $X$ be a subset of $S$. Axiomatically define
 \end{equation}
 \end{axiom}
 \begin{theorem}
-  \label{Theorem 1.1.3}
+\label{1.1.3}
   $\max A\text{ and }\min B$ both doesn't exist.
 \end{theorem}
 \begin{proof}
@@ -71,6 +73,7 @@ Define $a:=p+c$ where $c^2>2$, and we are finished.
 Now, we come back to define the concept of ordered set.
 \end{minipage}}
 \begin{definition}
+\label{1.1.4}
 \textbf{(Ordered Set Axioms)} $S$ is an ordered set if there is a relation $\sim$ on it that satisfy 
 \begin{equation}
 \forall x\in S, x\not\sim x
@@ -87,6 +90,7 @@ From now on, we write this relation as $<$ and if we write  $x>y$, we mean $y<x$
 To discuss the uncompleteness of rational numbers, which is an ordered set, we first define a few concepts brought by concept of ordered set.
 \end{minipage}}
 \begin{definition}
+\label{1.1.5}
 Let $S$ be an ordered set and $E\subseteq S$. $E$ is bounded above if 
 \begin{equation}
 \exists a\in S, \forall b\in E, a\geq b 
@@ -100,6 +104,7 @@ In this case, we say $a$ is an upper bound of $E$ and $E$ is bounded above by $a
 Before we give the definition of supremum, aka least upper bound, we first prove a theorem about it.
 \end{minipage}}
 \begin{theorem}
+\label{1.1.6}
 If $x$ is the smallest upper bound of a bounded above nonempty set  $E$, then any number smaller than  $x$ is not an upper bound of  $E$, and every upper bound of  $E$ is greater than or equal  to $x$.
 \end{theorem}
 
@@ -108,9 +113,11 @@ If $x$ is the smallest upper bound of a bounded above nonempty set  $E$, then an
 Let $A$ be the set of upper bounds of  $E$. Arbitrarily pick an $m$ such that $m<x$. \As{$\forall z\in E, m>z$}. We see $m\in A$, and because $x=\min A$, we see $x\leq m\tCaC$. \As{$\exists n\in A, n<x$}. Then $\exists z\in E, n<z$, which implies $n\not\in A\tCaC$
 \end{proof}
 \begin{corollary}
+\label{1.1.7}
  Any number smaller than the greatest lower bound is a lower bound, and any number greater than the greatest lower bound is not a lower bound.
 \end{corollary}
 \begin{definition}
+\label{1.1.8}
 \textbf{(Definition of Supremum and Infimum)} Let $A,B$ respectively be the set of upper bounds of  $E$ and the set of lower bounds of  $E$. We define
 \begin{equation}
 \sup E:=\min A
@@ -122,6 +129,7 @@ and
 if they ever exist.
 \end{definition}
 \begin{theorem}
+\label{1.1.9}
 Let $A$ be a subset of ordered set  $S$. If  $\max A$ exists, then $\max A=\sup A$. Similarly, if $\min A$ exists, then $\min A=\inf A$
 \end{theorem}
 \begin{proof}
@@ -131,6 +139,7 @@ $\max A$ is an upper bound and $\min  A$ is an lower bound hold true by definiti
 Now, we look back to our subdivisions $A=\set{x\inq^+: x^2<2},B=\set{x\inq^+: x^2>2}$. We first show that $B$ is exactly the set of all upper bounds of $A$.
 \end{minipage}}
 \begin{theorem}
+\label{1.1.10}
 Given $A=\set{x\inq^+: x^2<2},B=\set{x\inq^+: x^2>2}$. We have
 \begin{equation}
 B=\set{x\inq^+ : \forall y\in A, y\leq x}
@@ -140,9 +149,10 @@ B=\set{x\inq^+ : \forall y\in A, y\leq x}
 Arbitrarily pick $x\in B$, and we see $\forall y\in A, y^2<2<x^2$. Then $\forall y\in A,y<x$. This implies $B\subseteq \set{x\inq^+:\forall y\in A, y\leq x}$. Let $x$ satisfy $\forall y\in A, y\leq x$. \As{$x^2<2$}. We immediately see $x=\max A$, but $\max A$ doesn't exist \CaC
 \end{proof}
 \fbox{\begin{minipage}{39em}
-    By \hyperref[Theorem 1.1.3]{Theorem 1.1.3}, we then can see that $\sup A$ does not exist. Now, we give this idea a name.
+    By \myref{Theorem}{1.1.3}, we then can see that $\sup A$ does not exist. Now, we give this idea a name.
 \end{minipage}}
 \begin{definition}
+\label{1.1.11}
   \textbf{(Definition of Completed Ordered Set)}
 An ordered set $S$ satisfy least-upper-bound property if
  \begin{equation}
@@ -154,6 +164,7 @@ Also, we say $S$ is completed.
 $\sup A$ does not exists indicate that $\Q$ as an ordered set doesn't satisfy the least-upper-bound property. Before we close this section, we reveal the face of the twin brother of the least-upper-bound property. In fact, it is more like property itself in the mirror, since they are equivalent.
 \end{minipage}}
 \begin{theorem}
+\label{1.1.12}
   \textbf{(LUB$\iff $GLB)} $S$ satisfy the least-upper-bound property if and only if  $S$ satisfy the greatest-lower-bound property.
 \end{theorem}
 \begin{proof}
@@ -164,6 +175,7 @@ $\sup A$ does not exists indicate that $\Q$ as an ordered set doesn't satisfy th
 In this section, we first give the definition of ordered fields, and prove basic result concerning positivity. Notice in this section that $x,y,z$ are all in  $\F$.
 \end{minipage}}
 \begin{axiom}
+\label{1.2.1}
 \textbf{(Ordered Field Axioms)} An ordered field $\F$ is a field that is not only a ordered set, but also satisfy the following axioms
 \begin{equation}
 y<z\implies x+y<x+z
@@ -173,14 +185,15 @@ x>0\text{ and }y>0\implies xy>0
 \end{equation}
 \end{axiom}
 \begin{theorem}
-  \label{1.2.2}
+\label{1.2.2}
 \textbf{(Negate reverse positivity)} $(x>0\iff -x<0)\text{ and }(x<0\iff -x>0)$
 \end{theorem}
 \begin{proof}
   Observe $x>0\implies x+(-x)>0+(-x)\implies -x<0$, and $x<0\implies x+(-x)<0+(-x)\implies -x>0$. Clearly, $x=0\implies -x=0$. Then the Theorem follows.
 \end{proof}
+
 \begin{theorem}
-    \label{1.2.3}
+\label{1.2.3}
   
 \textbf{(Multiply a negative number reverse positivity)} Given $y<0$, we have
 \begin{equation}
@@ -192,6 +205,7 @@ Observe $x>0\implies x(-y)>0\implies -xy>0\implies xy<0$, and
 $x<0\implies (-x)(-y)>0\implies xy>0$. Clearly, $x=0\implies xy=0$. Then the Theorem follows. 
 \end{proof}
 \begin{theorem}
+\label{1.2.4}
 \textbf{(Multiply on both side)}  Given $y<z$, we have
 \begin{equation}
   (x>0\iff xy<xz)\text{ and }(x<0\iff xy>xz)
@@ -202,46 +216,35 @@ First observe $y<z\implies z-y>0$. Now observe $x>0\implies x(z-y)>0\implies xz-
 Observe  $x<0\implies x(z-y)<0\implies xz<xy$. Obviously $x=0\implies  xy=xz$. Then the Theorem follows.
 \end{proof}
 \begin{theorem}
+\label{1.2.5}
   \textbf{(Squares are nonnegative)} $x\neq 0\implies x^2>0$
 \end{theorem}
 \begin{proof}
-  If $x>0$, then $x^2>0$ follows from the axiom. If $x<0$, then $x^2<0$ follows from \hyperref[1.2.2]{Theorem 1.2.2}
+  If $x>0$, then $x^2>0$ follows from the axiom. If $x<0$, then $x^2>0$ follows from \myref{Theorem}{1.2.2}
 \end{proof}
+
 \begin{corollary}
+\label{1.2.6}
 $1>0$
 \end{corollary}
 
+\begin{theorem}
+\label{1.2.7}
+\textbf{(Inverse preserve positivity)} $(x>0\iff \frac{1}{x}>0)\text{ and }(x<0\iff \frac{1}{x}<0)$ 
+\end{theorem}
+\begin{proof}
+If $x>0$ but $\frac{1}{x}<0$, then $1<0$. The same logic applies to  $\frac{1}{x}>0\implies x>0$. Because $\frac{1}{0}$ does not exist, the theorem follows.
+\end{proof}
 \fbox{\begin{minipage}{39em}
-Notice that the definition of natural power is given arithmetically; that is, the definitions of $x^2:=(x)(x),x^3:=(x)(x)(x)$, etc, are of no dispute. However, if we were to define $x^{-2}:=x^{-1}x^{-1}$, we must realize $0^{-1}$ does not exist and realize we have not yet prove some common inequalities concerning integer powers before the following definition. These common inequality will be proven after the definition of negatives power and the proof of some properties of integer power inherited from those of natural power. Notice that those properties of natural power inherited by integer power can be proven inductively, and that the base $x$ can be any nonzero number.        
+If we were to define $x^{-2}:=x^{-1}x^{-1}$, we must realize $0^{-1}$ does not exist and realize we have not yet prove some common inequalities concerning integer powers. Notice that the following inequalities require base to be positive.  
 \end{minipage}}
+
 \begin{definition}
+\label{1.2.8}
 \textbf{(Definition of Inverse)} For all nonzero $x$ and naturals $p$, we define $x^{-p}:=(x^{-1})^p$, and define $x^0:=1$ 
 \end{definition}
-\begin{theorem}  
-  \label{1.2.8}
- \textbf{(Integer Power addition written in multiplication)} For all nonzero $x$ and integers $p,q$, we have 
- \begin{equation}
-x^{p+q}=x^px^{q}
-\end{equation}
-\end{theorem}
-\begin{proof}
-  If $p,q$ are both positive, this is arithmetically true. If $p,q$ are both negative, observe $x^px^q=(x^{-1})^{-p}(x^{-1})^{-q}=(x^{-1})^{-(p+q)}=x^{p+q}$, where the last equality hold true because $p+q<0$. If $p>0>q\text{ and }p+q>0$, observe $x^px^q=x^p(x^{-1})^{-q}=x^{p-(-q)}=x^{p+q}$. If $p>0>q\text{ and }p+q<0$, observe $x^px^q=x^p(x^{-1})^{-q}=(x^{-1})^{-(q+p)}=x^{p+q}$, where the last equality hold true because $p+q<0.$ 
-\end{proof}
 \begin{theorem}
-    \label{1.2.9}
-\textbf{(Integer Power multiplication written in power of power of base)} For all nonzero $x$ and integers $p,q$, we have
-\begin{equation}
-  x^{pq}=(x^p)^q=(x^q)^p
-\end{equation}
-\end{theorem}
-\begin{proof}
-  If $p,q$ are both positive or if any of $p,q$ are zero, the proof is trivial. If $p<0<q$, observe $(x^p)^q=((x^{-1})^{-p})^q=(x^{-1})^{-pq}=x^{pq}$, where the last equality hold true because $pq<0$, and observe $(x^q)^p=((x^q)^{-1})^{-p}=((x^{-1})^{q})^{-p}=(x^{-1})^{-qp}=x^{qp}$, where the second equality hold true can be proven inductively.    
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Now we prove the common inequalities concerning only positive base, unlike the above properties concerning all nonnegative base. 
-\end{minipage}}
-\begin{theorem}
-    \label{1.2.10}
+\label{1.2.9}
   
 \textbf{(Inequality when base is fixed)} Given a positive $a$ and two integer  $x,y$ where  $x<y$, we have
 \begin{equation}
@@ -253,10 +256,10 @@ Now we prove the common inequalities concerning only positive base, unlike the a
 \end{equation}
 \end{theorem}
 \begin{proof}
-By \hyperref[1.2.3]{Theorem 1.2.3}, observe $1<a\iff  1<a<a^2\iff   1<a<a^2<a^3\iff  \cdots  \iff  1<a<\cdots <a^{y-x}\iff  a^x<a^y$. If $a=1$, we know  $a^x=1=a^y$. Again by \hyperref[1.2.3]{Theorem 1.2.3}, observe $0<a<1\iff  a^2<a<1\iff  \cdots \iff  a^{y-x}<\cdots <1\iff  a^{y}<a^{x}$. 
+By \myref{Theorem}{1.2.4}, observe $1<a\iff  1<a<a^2\iff   1<a<a^2<a^3\iff  \cdots  \iff  1<a<\cdots <a^{y-x}\iff  a^x<a^y$. If $a=1$, we know  $a^x=1=a^y$. Again by \myref{Theorem}{1.2.4}, observe $0<a<1\iff  a^2<a<1\iff  \cdots \iff  a^{y-x}<\cdots <1\iff  a^{y}<a^{x}$. 
 \end{proof}
 \begin{theorem}
-    \label{1.2.11} 
+\label{1.2.10}
 \textbf{(Inequality when integer power is fixed)} Given $0<b<c$ and  $z\inz$, we have 
 \begin{equation}
 \begin{cases}
@@ -267,50 +270,69 @@ By \hyperref[1.2.3]{Theorem 1.2.3}, observe $1<a\iff  1<a<a^2\iff   1<a<a^2<a^3\
 \end{equation}
 \end{theorem}
 \begin{proof}
-Because $b,c$ are positive and  $b<c$, we can deduce $b^z<c^z\iff 1<(\frac{c}{b})^z \iff 0<z$ and deduce $b^z>c^z\iff 1>(\frac{c}{b})^z\iff z<0$. Then the Theorem follows.
+  If $z>0$, then by \myref{Theorem}{1.2.4}, observe $0<b<c\implies 0<b^2<bc<c^2\implies b^3<b^2c<bc^2<c^3\implies \cdots \implies b^z<c^z $. Obviously, $0=z\implies b^z=1=c^z$. If $z<0$, then $b^z=(\frac{1}{b})^{-z}$ and $c^z=(\frac{1}{c})^{-z}$ by definition. Observe $b<c\implies 1=\frac{1}{b}b<\frac{1}{b}c=\frac{c}{b}\implies \frac{1}{c}<\frac{1}{b}$. By the logic above, we deduce $c^z=(\frac{1}{c})^{-z}<(\frac{1}{b})^{-z}=b^z$. Then the Theorem follows. 
 \end{proof}
 \begin{theorem}
+\label{1.2.11}
 \textbf{(Positivity of integer power)} If $a>0$, then $\forall x\inz,a^x>0$. If  $a<0$, then  $a^x>0\iff 2|x$
 \end{theorem}
 \begin{proof}
-If $a>0$, then by axiom we know for all nonegative integer  $x$ that  $a^x>0$, and to see  $a^{-x}>0$, assume $a^{-x}$ is not positive, and see $a^xa^{-x}=1>0$ draw a contradiction. The latter result is a direct consequence of Theorem 1.2.4 and Theorem 1.2.2.  
+The former result is a direct consequence of \myref{Axiom}{1.2.1} and \myref{Theorem}{1.2.7}. The latter result is a direct consequence of \myref{Theorem}{1.2.3} and \myref{Theorem}{1.2.5}  
 \end{proof}
 \fbox{\begin{minipage}{39em}
-Notice that if the base is negative, the inequalities can all be deduced by the above theorems with a little effort, although the results are quite messy. 
+
+Notice that if the base is negative, the corresponding inequalities can all be deduced by the above theorems with a little effort, although the results are quite messy. \\
+
+Now we prove some arithmetic properties concerning nonzero base, unlike the above inequalities concerning only positive base. Notice that those properties of natural power inherited by integer power can be proven inductively, and that the base $x$ can be any nonzero number.        
 \end{minipage}}
-% \begin{theorem}
-% \textbf{(Natural powers on both side)} For all naturals $n$ and positives $x,y$, we have $x<y\iff 0<x^n<y^n$
-% \end{theorem}
-% \begin{proof}
-% Let $n$ be an arbitrary natural number. From left to right, first observe that by Theorem 1.2.3, we know $\forall p,q\inn,x^{p+1}y^q=x(x^py^q)<y(x^py^q)=x^py^{q+1}$. Then we can deduce $x^n=x^ny^0<x^{n-1}y^1<x^{n-2}y^2<\cdots <x^0y^n=y^n$. Following the axiom and $0<x$, we see $0<x^n$. From right to left, just notice if $y>x$ we can deduce $y^n>x^n$ with the method we just use.
-% \end{proof}
-% \begin{corollary}
-% Given $y<x<0$, if $n$ is an odd natural number, then $y^n<x^n<0$, and if $n$ is an even natural number, then $0<x^n<y^n$
-% \end{corollary}
-% \begin{proof}
-% Notice that $(-1)^2-1=(-1)(-1)+(-1)1=(-1)(-1+1)=(-1)0=0$, so $(-1)^2=1$. If $n$ is an even natural number, notice that $(-x)^n=(-1)^nx^n=((-1)^2)^{\frac{n}{2}}x^n=1^{\frac{n}{2}}x^n=x^n$ and that in the same way $y^n=(-y)^n$. By Theorem 1.2.2, we multiply the both side of inequality $y<x$ with $-1$, we have  $-x<-y$, and by Theorem 1.2.1, we have $0<-x<-y$. Then by Theorem 1.2.5, we have  $0<x^n=(-x)^n<(-y)^n=y^n$. If $n=1$, the proof is trivial. If $n$ is an odd natural number that is not $1$, then we know $0<x^{n-1}<y^{n-1}$. Thus, by Theorem 1.2.1 and Theorem 1.2.3,  we can deduce $0>x^n=x^{n-1}x>y^{n-1}x>y^{n-1}y=y^n$. 
-% \end{proof}
-% \begin{theorem}
-% $0<x<y\implies 0<\frac{1}{y}<\frac{1}{x}$
-% \end{theorem}
-% \begin{proof}
-% We first prove   \vi{$0<\frac{1}{x}$} and we should view $0<\frac{1}{y}$ as proved. \As{$\frac{1}{x}<0$}. Then $1=x(\frac{1}{x})<0\tCaC\vdone$.  Now we prove  \blue{$\frac{1}{y}<\frac{1}{x}$}.Observe $x<y\implies y-x>0$, and observe $0<x<y\implies xy>0\implies \frac{1}{xy}>0$; thus, $\frac{1}{x}-\frac{1}{y}=(y-x)\frac{1}{xy}>0$, which implies $\frac{1}{x}>\frac{1}{y}\bdone$
-% \end{proof}
+\begin{theorem}  
+\label{1.2.12}
+ \textbf{(Integer Power addition written in multiplication)} For all nonzero $x$ and integers $p,q$, we have 
+ \begin{equation}
+x^{p+q}=x^px^{q}
+\end{equation}
+\end{theorem}
+\begin{proof}
+  If $p,q$ are both positive, the Theorem is proven by induction. If $p,q$ are both negative, observe $x^px^q=(x^{-1})^{-p}(x^{-1})^{-q}=(x^{-1})^{-(p+q)}=x^{p+q}$, where the last equality hold true because $p+q<0$. If $p>0>q\text{ and }p+q>0$, observe $x^px^q=x^p(x^{-1})^{-q}=x^{p-(-q)}=x^{p+q}$. If $p>0>q\text{ and }p+q<0$, observe $x^px^q=x^p(x^{-1})^{-q}=(x^{-1})^{-(q+p)}=x^{p+q}$, where the last equality hold true because $p+q<0.$ 
+\end{proof}
+\begin{theorem}
+\label{1.2.13}
+\textbf{(Integer Power multiplication written in power of power of base)} For all nonzero $x$ and integers $p,q$, we have
+\begin{equation}
+  x^{pq}=(x^p)^q=(x^q)^p
+\end{equation}
+\end{theorem}
+\begin{proof}
+  If $p,q$ are both positive or if any of $p,q$ are zero, the proof is trivial. If $p<0<q$, observe $(x^p)^q=((x^{-1})^{-p})^q=(x^{-1})^{-pq}=x^{pq}$, where the last equality hold true because $pq<0$, and observe $(x^q)^p=((x^q)^{-1})^{-p}=((x^{-1})^{q})^{-p}=(x^{-1})^{-qp}=x^{qp}$, where the second equality hold true can be proven by induction.    
+\end{proof}
+\begin{theorem}
+\label{1.2.14}
+\textbf{(Multiplication of two number raised to the same integer power)} For all nonzero $x,y$ and integer  $p$, we have
+ \begin{equation}
+x^py^p=(xy)^p
+\end{equation}
+\end{theorem}
+\begin{proof}
+If $p\geq 0$, the proof is trivial. If $p<0$, then $x^py^p=(x^{-1})^{-p}(y^{-1})^{-p}=(x^{-1}y^{-1})^{-p}=((xy)^{-1})^{-p}=(xy)^p$.
+\end{proof}
+
 \section{Real Numbers Field}
 \fbox{\begin{minipage}{39em}
 Although the title of this section is "Real Numbers Field", here, we will not construct the real numbers field, nor use any common property of real numbers. In fact, we will not even use the symbol $\R$ in this section, since we are merely proving theorems about an ordered field with least-upper-bound property. We don't know if there exists any ordered field with least-upper-property. Let's say there does; yet, we don't know if such structure is unique. Let's say it is unique; yet, we don't know if that structure have relation with $\R$. Here, we will use the symbol $\F$ to denote an ordered field with least-upper-bound property. One should realize that we can use algorithm to define a subset containing $1\inF$ that is isomorphic to $\N$, and thereby we abuse the notation to denote that subset $\N$. A subfield of $\F$ isomorphic to $\Q$ can also be defined after we define $\Z$, so we also thereby abuse the notation to denote that subfield  $\Q$.         
 \end{minipage}}
 \begin{theorem}
+\label{1.3.1}
 $\N$ is unbounded above.
 \end{theorem}
 \begin{proof}
  \As{$\N$ is bounded above}. Because $1>0$, we know $\sup \N -1<\sup \N$. Then $\sup \N -1$ is not an upper bound of $\N$. Arbitrarily pick any $m \inn$ greater than $\sup \N -1$. We see $m>\sup \N-1\implies m+1>\sup \N$, where $m+1\inn\tCaC$
 \end{proof}
 \begin{corollary}
+\label{1.3.2}
 Both $\Z\text{ and }\Q$ are unbounded both above and below.
 \end{corollary}
 \begin{corollary}
-    \label{1.3.3}
+\label{1.3.3}
   
 \textbf{(Divided by $1$)} Given any $x\inF$, there exists $n\inz$ such that $n\leq x<n+1$
 \end{corollary}
@@ -322,12 +344,14 @@ If $x<0$, let $S=\set{n\inn:n\geq -x}$. Again, $S=\varnothing$ implies $\N$ is b
 If $x=0$, then we let $n=0$. 
 \end{proof}
 \begin{theorem}
+\label{1.3.4}
 \textbf{(Archimedean Property)} Given $x,y\inF\text{ and }0<x$, there exists $n\inn$ such that $nx>y$ 
 \end{theorem}
 \begin{proof}
  Because $\N$ is unbounded above, we know  $\frac{y}{x}$ can not be an upper bound of $\N$, so we know  $\exists n\inn,n>\frac{y}{x} $. Then because $x>0$, we can deduce $nx>y$.
 \end{proof}
 \begin{theorem}
+\label{1.3.5}
 \textbf{($\Q$ is dense in $\F$)} Given $x,y\inF\text{ and }x<y$, we know there exists $p \inq$ such that $x<p<y$
 \end{theorem}
 \begin{proof}
@@ -344,7 +368,7 @@ We see that the set $\set{r\inq:r<y}$ have supremum $y$, since $y\inq$. Then $x<
 We know $m<ny<m+1$. $ny<m+1$ tell us $nx<ny-1<m$, so $nx<m<ny\bdone$ 
 \end{proof}
 \begin{theorem}
-    \label{1.3.6} 
+\label{1.3.6}
 \textbf{(Positive root of power uniquely exists)} For all natural $n$ and $y>0$, there exists a unique positive $x$ such that $x^n=y$
 \end{theorem}
 \begin{proof}
@@ -354,7 +378,7 @@ We have handled the uniqueness part of the proof. Denote $E:= \set{m \inF^+: m^n
 
 To show \vi{ $x=\sup \set{m \inF^+: m^n<y}$ exists}, we only have to show the set $\set{m \inF^+: m^n<y}$ is nonempty and bounded above. In other word, we wish to construct function $a\inF^+$ and $b$ of $y$ such that for all positive input $y>0$, we have $a^n<y$ and $(0<m^n<y\longrightarrow m<b)$. In the followings, the domain of $a$ and $b$ are only positives.\\
 
-First we construct $a$. By \hyperref[1.2.10]{Theorem 1.2.10}, we know if $a<\min \set{1,y}$ , then $a^n<a<y$, so we construct $a$ such that $0<a<\min \set{1,y}$. Notice that $a$ must be positive because we are constructing a number in $E$, where $E$ contain only positives. Express $a$ in the form  $a=\frac{p}{q}$ where $p,q$ are both function of $y$. In the process of  construction, We must be careful to make sure $a$ exists for all positive $y$.\\
+First we construct $a$. By \myref{Theorem}{1.2.9}, we know if $a<\min \set{1,y}$ , then $a^n<a<y$, so we construct $a$ such that $0<a<\min \set{1,y}$. Notice that $a$ must be positive because we are constructing a number in $E$, where $E$ contain only positives. Express $a$ in the form  $a=\frac{p}{q}$ where $p,q$ are both function of $y$. In the process of  construction, We must be careful to make sure $a$ exists for all positive $y$.\\
 
 To satisfy $0<a$, we need only guarantee $p,q$ are always of the same sign for all positive $y$. If such $p,q$ exists, we can change both sign of  $p,q$ when they are negative, and get two positive function. So, we can just require $p,q$ to be positive for all positive $y$.\\      
 
@@ -362,7 +386,7 @@ To satisfy $a<1$, observe $a<1\iff \frac{p}{q}<1\iff p<q$. The easiest construct
 
 To satisfy $a<y$, observe $a<y\iff \frac{p}{q}<y\iff p(y-1)+cy=qy-p>0$. The easiest construction is to let $p(y-1)+cy=y^2$, which is possible, if we let $p=y$ and $c=1$. In this case $p=y>0$ and $q=y+1>0$, and  $a=\frac{y}{y+1}$. We finished proving $E$ is nonempty. \textbf{(Notice $c=y^2,p=y^3,q=y^3+y^2,a=\frac{y^3}{y^3+y^2}$ also do the trick)}\\
 
-Now we construct $b$. By \hyperref[1.2.11]{Theorem 1.2.11}, we know if $0<b\text{ and }0<m^n<b^n$, then $m<b$, so we construct $b$ such that $y<b^n$ which lead to $0<m^n<y<b^n$ if  $m^n<y$. Because $y>0$, this is fairly easy. Simply let $b=y+1$, so we have $b>1\text{ and }b>y$; thus by \hyperref[1.2.10]{Theorem 1.2.10}, we have $b^n>b>y$, finishing proving $E$ is bounded above, where  $b=y+1$ is an upper bound. $\vdone$ \\
+Now we construct $b$. By \myref{Theorem}{1.2.10}, we know if $0<b\text{ and }0<m^n<b^n$, then $m<b$, so we construct $b$ such that $y<b^n$ which lead to $0<m^n<y<b^n$ if  $m^n<y$. Because $y>0$, this is fairly easy. Simply let $b=y+1$, so we have $b>1\text{ and }b>y$; thus by \myref{Theorem}{1.2.9}, we have $b^n>b>y$, finishing proving $E$ is bounded above, where  $b=y+1$ is an upper bound. $\vdone$ \\
 
 To show \blue{$x^n=y$}, we show $x^n\geq y$ and $x^n\leq y$. We will assume that $x^n<y$ or $x^n>y$, but before we do such, let's see what property from which can we possibly draw contradiction. Notice that because we just prove the existence of the supremum of $E$, we haven't use the fact that $x=\sup E$ in anywhere of our proof. We know
 \begin{equation}
@@ -402,15 +426,17 @@ If you want a proof with less of my commentary, here you go.
   Observe $\min \set{1,\frac{y}{2}}\in E$ and $\max \set{1,y}$ is an upper bound of $E$, so $\sup E$ exists.  Denote $x:=\sup E$. \As{$x^n>y$}. Observe $x-k\text{ is an upper bound of $E$ }\iff m^n<y\longrightarrow m<x-k\iff m\geq x-k\longrightarrow m^n\geq y$. We know $(x-k)^n\geq y\iff x^n-(x-k)^n\leq x^n-y$, and know $x^n-(x-k)^n\leq knx^{n-1}$. If we let $0<k\leq \frac{x^n-y}{nx^{n-1}}$, then $x-k$ is an upper bound of  $E\tCaC.$ \As{$x^n<y$}. Observe $x+h\inE\iff (x+h)^n-x^n<y-x^n$. We know that $(x+h)^n-x^n<hn(x+h)^{n-1}$ and that if $h<1$, we have  $hn(x+h)^{n-1}<hn(x+1)^{n-1}$. So we let  $h=\min \set{1,\frac{y-x^n}{n(x+1)^{n-1}}}$, and we can see $x+h\inE\tCaC$. 
 \end{proof}
 \begin{definition}
+\label{1.3.7}
 The number $x$ in \hyperref[1.3.6]{Theorem 1.3.6} is written  $x=\sqrt[n]{y}$ or $x=y^{\frac{1}{n}}$.
 \end{definition}
 \fbox{\begin{minipage}{39em}
-The above theorem is by far the trickiest we have seen. Often the theorem is proven only in special case $\sqrt{2}$ as a classical example in the first class of analysis. Here, we prove a general result. The following theorem is to make sure the definition of rational power make sense. Like in the last section that after we define integer power we prove some properties inherited from those of natural power, we here prove some properties inherited from those of integer power. And of course, the common inequalities of rational power, also inherited from those of integer power, will be proven after those properties.   \\ 
+The above theorem is by far the trickiest we have seen. Often the theorem is proven only in special case $\sqrt{2}$ as a classical example in the first class of analysis. Here, we prove a general result. The following theorem is to make sure the definition of rational power make sense . In last section we prove some inequalities concerning integer power. Here, we prove those inequalities are inherited by rational power. Of course, the arithmetic properties of rational power, also inherited from those of integer power, will be proven after these inequalities.   \\ 
 
 
 About the coverage of definition, notice that we didn't and won't define $y^{\frac{1}{n}}$ when $y$ is negative. Also, notice that for all nonzero rational $s$, we can define $0^s=0$. 
 \end{minipage}}
 \begin{theorem}
+\label{1.3.8}
 Given $m,p\inz\text{ and }n,q\inn\text{ and }a>0\text{ and }\frac{m}{n}=\frac{p}{q}$, we have 
 \begin{equation}
 (a^m)^{\frac{1}{n}}=(a^p)^{\frac{1}{q}}
@@ -430,11 +456,53 @@ Observe
 \end{align}
 \end{proof}
 \begin{definition}
+\label{1.3.9}
 \textbf{(Definition of Rational Powers)} Given a rational $r=\frac{p}{q}$, where $q\inn$. For all $a$, we define $a^r=(a^p)^{\frac{1}{q}}$
 \end{definition}
 \begin{theorem}
-    \label{1.3.10}
- \textbf{(Rational Power addition written in multiplication, inherited form \hyperref[1.2.8]{Theorem 1.2.8} and \hyperref[1.2.9]{Theorem 1.2.9})} Given $r,s\inq\text{ and }a>0$, we have
+\label{1.3.10}
+\textbf{(Inequality when base is fixed)} Given a positive $a$ and two rational  $x,y$ where  $x<y$, we have
+ \begin{equation}
+\begin{cases}
+  a^x<a^y\iff a>1\\
+  a^x=a^y\iff a=1\\
+  a^x>a^y\iff 0<a<1
+\end{cases}
+\end{equation}
+\end{theorem}
+\begin{proof}
+  Express $x,y$ in the form $x=\frac{q}{p},y=\frac{n}{m}$ where $q,n\inz\text{ and }m,p\inn$. Notice $x<y\implies \frac{q}{p}<\frac{n}{m}\implies mq<np$. Observe
+  \begin{align}
+    a^x<a^y &\implies a^{\frac{q}{p}}<a^{\frac{n}{m}}\\
+  &\implies a^q=(a^{\frac{q}{p}})^p<(a^{\frac{n}{m}})^p\rap{by \myref{Theorem}{1.2.10}}\\
+  &\implies a^{mq}=(a^q)^m<((a^{\frac{n}{m}})^p)^m=((a^{\frac{n}{m}})^m)^p=(a^n)^p=a^{np}\\
+  &\implies a>1\rap{by \myref{Theorem}{1.2.9}} 
+  \end{align}
+  Notice that the above implication still hold true if $<$ is replaced by $>$ and $>$ is replaced by  $<$, and notice that the above implication still hold true if $<$ and  $>$ are all replaced by $=$, so we in fact have three implications. The Theorem follows from the three implication.
+   
+\end{proof}
+\begin{theorem}
+\label{1.3.11}
+\textbf{(Inequality when rational power is fixed)} Given $0<b<c$ and  $z\inq$, we have
+\begin{equation}
+\begin{cases}
+  b^z<c^z \iff 0<z\\
+  b^z=c^z \iff 0=z\\
+  b^z>c^z\iff 0>z
+\end{cases}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Express $z=\frac{q}{p}$, where $q$ is an integer and $p$ is a natural. Notice $q\text{ and }z$ are of the same sign. Observe by \myref{Theorem}{1.2.10}, we have $b^{\frac{q}{p}}<c^{\frac{q}{p}}\implies b^q=(b^{\frac{q}{p}})^p<(c^{\frac{q}{p}})^p=c^q\implies 0<q$.\\
+
+  Notice that the above implication still hold true if $<$ is replaced by $>$ and $>$ is replaced by  $<$, and notice that the above implication still hold true if $<$ and  $>$ are all replaced by $=$, so we in fact have three implications. The Theorem follows from the three implication.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Now we prove the arithmetic properties of rational power concerning only positive base. Notice there is no definition of a negative raised to the power of a rational. \red{From Here}
+\end{minipage}}
+\begin{theorem}
+\label{1.3.12}
+ \textbf{(Rational Power addition written in multiplication, inherited form \myref{Theorem}{1.2.12} and \myref{Theorem}{1.2.13})} Given $r,s\inq\text{ and }a>0$, we have
 \begin{equation}
 a^{r+s}=a^ra^s
 \end{equation}
@@ -451,13 +519,13 @@ And observe
   &= (a^{\frac{p}{q}})^{nq}(a^{\frac{m}{n}})^{nq}\rap{because $nq\inn$}\\
   &=((a^{\frac{p}{q}})^q)^n((a^{\frac{m}{n}})^n)^q\\
 &=(a^p)^n(a^m)^q\\
-&= a^{np+mq}=(a^{r+s})^{nq}\rap{by \hyperref[1.2.8]{Theorem 1.2.8} \text{ and } \hyperref[1.2.9]{Theorem 1.2.9}} 
+&= a^{np+mq}=(a^{r+s})^{nq}\rap{\myref{Theorem}{1.2.12}\text{ and }\myref{Theorem}{1.2.13}} 
 \end{align}
 Because the rational power of a positive must also be positive, we can deduce $a^ra^s=a^{r+s}$ by \hyperref[1.3.6]{Theorem 1.3.6}
 \end{proof}
 \begin{theorem}
-  \label{1.3.11}
-\textbf{(Rational Power of Rational Power written in power multiplication, inherited from \hyperref[1.2.9]{Theorem 1.2.9})} Given $r,s\inq\text{ and }a>0$, we have
+\label{1.3.13}
+\textbf{(Rational Power of Rational Power written in power multiplication, inherited from \myref{Theorem}{1.2.13})} Given $r,s\inq\text{ and }a>0$, we have
 \begin{equation}
   (a^r)^s=a^{rs}
 \end{equation}
@@ -472,43 +540,15 @@ And observe
 \begin{align}
   ((a^r)^s)^{nq}&=(((a^{\frac{p}{q}})^{\frac{m}{n}})^n)^q\\
   &=((a^{\frac{p}{q}})^m)^q\\
-  &=(a^{\frac{p}{q}})^{mq}\rap{by \hyperref[1.2.9]{Theorem 1.2.9}}\\
-  &=((a^{\frac{p}{q}})^q)^m \rap{by \hyperref[1.2.9]{Theorem 1.2.9}}\\
-  &=(a^p)^m=a^{mp}=(a^{rs})^{nq} \rap{by \hyperref[1.2.9]{Theorem 1.2.9}} 
+ &=(a^{\frac{p}{q}})^{mq}\rap{\myref{Theorem}{1.2.13}}\\
+  &=((a^{\frac{p}{q}})^q)^m \rap{\myref{Theorem}{1.2.13}}\\
+  &=(a^p)^m=a^{mp}=(a^{rs})^{nq} \rap{\myref{Theorem}{1.2.13}} 
 \end{align}
 \end{proof}
 \begin{corollary}
+\label{1.3.14}
 $a^{\frac{q}{p}}=(a^{\frac{1}{p}})^q$
 \end{corollary}
-\fbox{\begin{minipage}{39em}
-Now comes the inequalities about rational power concerning only positive base. Notice there is no definition of a negative raised to the power of a rational.
-\end{minipage}}
-\begin{theorem}
-\textbf{(Inequality when base is fixed)} Given a positive $a$ and two rational  $x,y$ where  $x<y$, we have
- \begin{equation}
-\begin{cases}
-  a^x<a^y\iff a>1\\
-  a^x=a^y\iff a=1\\
-  a^x>a^y\iff 0<a<1
-\end{cases}
-\end{equation}
-\end{theorem}
-\begin{proof}
-  Express $y-x=\frac{q}{p}$ where $p$ is an natural and $q$ is an integer. Observe $a^x<a^y\implies 1<a^{\frac{q}{p}}\implies 1<a^q\implies 1<a$, where the second and third implication are given by \hyperref[1.2.10]{Theorem 1.2.10}. Observe $a^x=a^y\implies a^{\frac{q}{p}}=1\implies a=1^{\frac{p}{q}}=1$. Observe $a^x>a^y\implies 1>a^{\frac{q}{p}}\implies 1>a^q\implies 1>a$, where the second and third implication are given by \hyperref[1.2.10]{Theorem 1.2.10}. Then Theorem 1.3.13 follows.  
-\end{proof}
-\begin{theorem}
-\textbf{(Inequality when rational power is fixed)} Given $0<b<c$ and  $z\inq$, we have
-\begin{equation}
-\begin{cases}
-  b^z<c^z \iff 0<z\\
-  b^z=c^z \iff 0=z\\
-  b^z>c^z\iff 0>z
-\end{cases}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Express $z=\frac{q}{p}$, where $q$ is an integer and $p$ is a natural. Notice $q\text{ and }z$ are of the same sign, and notice by \hyperref[1.2.10]{Theorem 1.2.10} we can deduce $0<b<c\implies 1<\frac{c}{b}\implies 1<(\frac{c}{b})^{\frac{1}{p}}$. If $q>0$, then by \hyperref[1.2.10]{Theorem 1.2.10}, we can deduce $1<(\frac{c}{b})^{\frac{1}{p}}\implies 1<(\frac{c}{b})^{\frac{q}{p}}\implies 1<(\frac{c}{b})^z\implies b^z<c^z$. If $q=0$, it is clear  $b^z=1=c^z$. If $q<0$, then by \hyperref[1.2.10]{Theorem 1.2.10}, we can deduce $ 1<(\frac{c}{b})^{\frac{1}{p}}\implies 1=((\frac{c}{b})^{\frac{1}{p}})^0 >((\frac{c}{b})^{\frac{1}{p}})^q=(\frac{c}{b})^{\frac{q}{p}}\implies 1>(\frac{c}{b})^z\implies b^z>c^z$. 
-\end{proof}
 \section{Irrational Power}
 \fbox{\begin{minipage}{39em}
     After the rational power, we now try to define irrational power. In most of the textbooks, irrational power as a rigorous definition often come after the definition of Euler number, but here, we define the irrational power with a technique not so advanced and to be fair quite cumbersome compared to the approaches in most textbooks.\\
@@ -516,19 +556,21 @@ Express $z=\frac{q}{p}$, where $q$ is an integer and $p$ is a natural. Notice $q
     The definition will be split into two parallel part, each definition have a lemma beforehand to guarantee the definition exists. The properties inherited from those of rational power will be proven as soon as it can be proven, and the common inequalities will be proven last. Notice that we still don't define $y^{\frac{1}{n}}$ when $y$ is negative.
 \end{minipage}}
 \begin{lemma}
-    \label{1.4.1}
+\label{1.4.1}
 Given $b>1$, for $x\inF$, define  $B(x):=\set{b^t:t\inq,t\leq x}$. Then $\forall x\inF, \sup B(x)$ exists.
 \end{lemma}
 \begin{proof}
 For all $x$,  we know $B(x)$ is nonempty, since if not, $\Q$ is bounded below. Because $\Q$ is nonbounded above, we can pick a rational  $y$ greater than $x$, and observe that $t\leq x\implies t\leq y$. Then because $b>1$, we deduce  $\forall b^t\inB(x),b^t\leq b^y $; thus $b^y$ is an upper bound of  $B(x)$.      
 \end{proof}
 \begin{definition}
+\label{1.4.2}
   \textbf{(The First Half of Irrational Power Definition)} For all $b,x\inF$ where $b>1$, we define $b^x:=\sup B(x)$, where $B$ is the function in \hyperref[1.4.1]{Lemma 1.4.1}. 
 \end{definition}
 \fbox{\begin{minipage}{39em}
 The above definition is in fact not very appropriate, since we have already define $b^x$ where  $x\inq$. We don't know if the above definition is consistent with our old definition. The next theorem is to show it is.  
 \end{minipage}}
 \begin{theorem}
+\label{1.4.3}
   \textbf{(Consistency of power definitions)} If $b>1\text{ and }r\inq$, then $b^r=\sup B(r)$
 \end{theorem}
 \begin{proof}
@@ -538,7 +580,7 @@ Because $1<b$, we know  $b^r=\max  B(r)$, then $\sup  B(r)=\max  B(r)=b^r$
 Now, we are going to prove that the definition of real power do inherit the properties of rational power (i.e. \hyperref[1.3.10]{Theorem 1.3.10} and \hyperref[1.3.11]{Theorem 1.3.11}), but before that, we will prove a general result about supremum.    
 \end{minipage}}
 \begin{lemma}
-    \label{1.4.4}
+\label{1.4.4}
 Let $A,B$ and be two bounded above subset of  $\F$, containing only nonnegative numbers. Define $AB:=\set{ab:a\inA,b\inB}$. We have    
 \begin{equation}
 \sup AB=\sup A \sup B
@@ -550,6 +592,7 @@ Because $A,B$ contain only nonnegative numbers, we know $a\leq \sup A$ and $b\le
 \As{there is an upper bound $x$ of $AB$ smaller than $\sup A \sup B$}. Express $x$ in the form  $x=\sup A \frac{x}{\sup A}$. Because $x<\sup A \sup B$, we know $\frac{x}{\sup A}<\sup B$, which implies there is a number  $b\inB$ greater than $\frac{x}{\sup A}$. Observe $b>\frac{x}{\sup A}\implies \frac{x}{b}<\sup A$, which implies that there is a number $a\in A$ greater than  $\frac{x}{b}$. Observe  $\frac{x}{b}<a\implies x<ab \tCaC\vdone$  
 \end{proof}
 \begin{theorem}
+\label{1.4.5}
 \textbf{(Power addition written in multiplication, inherited from Theorem 1.3.6 and Theorem 1.3.7)} Given $r,s\inF$ and $b>1$, we have
 \begin{equation}
   b^{r+s}=b^rb^s
@@ -564,15 +607,18 @@ By \hyperref[1.4.4]{Lemma 1.4.4}, our proof is finished.
 Before we prove $(b^r)^s=b^{rs}$ if $b>1$, we must finish the definition of the reals power, since $b^r$ may be less than $1$. Notice that the function $A$ below, is identical to $B$ above.
 \end{minipage}}
 \begin{lemma}
+\label{1.4.6}
   Given $0<a<1$, for all $x\inF$, define $A(x):=\set{a^t:t\inq,t\leq x}$. Then $\forall x\inF, \inf A(x)$ exists.
 \end{lemma}
 \begin{proof}
 For all $x$,  we know $A(x)$ is nonempty, since if not, $\Q$ is bounded below. Because $\Q$ is nonbounded above, we can pick a rational  $y$ greater than $x$, and observe that $t\leq x\implies t\leq y$. Then because $0<a<1$, we deduce  $\forall a^t\inA(x),a^t\geq a^y $; thus $a^y$ is an lower bound of  $A(x)$.      
 \end{proof}
 \begin{definition}
+\label{1.4.7}
 \textbf{(The Second Half of Real Power Definition)} For all $a,x\inF$ where $0<a<1$, we define  $a^x:=\inf  A(x)$, where $A$ is the function in Lemma above.
 \end{definition}
 \begin{theorem}
+\label{1.4.8}
 \textbf{(Consistency of power definitions)} If $0<a<1$ and  $r\inq$, then $a^r=\inf A(r)$
 \end{theorem}
 \begin{proof}
@@ -591,6 +637,7 @@ Because $A,B$ contain only nonnegative numbers, we know $a\geq \inf  A$ and $b\g
 If $\inf A=0$, we know $\inf AB=0$, since if not, we can arbitrarily pick nonzero $b\inB$ and see for all $a\inA$, we have $a>(\inf AB)b>0$. \As{there is an lower bound $x$ of $AB$ greater than $\inf  A \inf  B$}. Express $x$ in the form  $x=\inf  A \frac{x}{\inf  A}$. Because $x>\inf  A \inf  B$, we know $\frac{x}{\inf  A}>\inf  B$, which implies there is a number  $b\inB$ less than $\frac{x}{\inf  A}$. Observe $b<\frac{x}{\inf  A}\implies \frac{x}{b}>\inf  A$, which implies that there is a number $a\in A$ less than  $\frac{x}{b}$. Observe  $\frac{x}{b}>a\implies x>ab \tCaC\vdone$  
 \end{proof}
 \begin{theorem}
+\label{1.4.10}
 \textbf{(Power addition written in multiplication, inherited from \hyperref[1.3.10]{Theorem 1.3.10} and \hyperref[1.3.11]{Theorem 1.3.11})} Given $r,s\inF$ and $0<a<1$, we have
 \begin{equation}
   a^{r+s}=a^ra^s
@@ -602,20 +649,28 @@ We prove \vi{$A(r+s)=\set{xy:x\inA(r)\text{ and }y\inA(s)}$}. Denote the set on 
 By \hyperref[1.4.9]{Lemma 1.4.9}, our proof is finished.
 \end{proof}
 \begin{theorem}
+\label{1.4.11}
 \textbf{(Power of Power written in power multiplication, inherited from \hyperref[1.3.11]{Theorem 1.3.11})} Given $r,s\inF\text{ and }a>0$, we have
 \begin{equation}
   (a^r)^s=a^{rs}
 \end{equation}
 \end{theorem}
 \begin{proof}
-We split the proof in four main cases: $\begin{cases}
-  1) & a>1\text{ and }a^r>1 \\
-  2) & a>1 \text{ and }a^r<1\\
-  3) & a<1\text{ and }a^r>1\\
-  4)& a<1\text{ and }a^r<1
+We split the proof in eight main cases: $\begin{cases}
+  1) & a>1\text{ and }r>0\text{ and }s>0 \\
+  2) & a>1 \text{ and }r<0\text{ and }s>0\\
+  3) & a<1\text{ and }r>0\text{ and }s>0\\
+  4)& a<1\text{ and }r<0\text{ and }s>0
 \end{cases}$\\
 
-The boundary cases where $a=1\text{ or }a^r=1$ is easy to handle, which we do after the main cases. 
+The boundary cases where $a=1\text{ or }a^r=1$ is easy to handle, which we do after the main cases.\\
+
+\vi{Case 1: $a>1\text{ and }r>0\text{ and }s>0$}\\
+
+Denote $x:= a^r=\sup \set{a^t:t\inq,t\leq r}$, and denote $E:=\set{x^u:u\inq,u\leq s}$. We seek to prove $a^{rs}=\sup E$. \As{there exists $x^u\inE$  greater than $a^{rs}$}. Observe that $a^{rs}<x^u\implies \begin{cases}
+  a^r<a^{r \frac{s}{u}}<x & \text{ if $s>0$ }\\
+
+\end{cases}$
 \end{proof}
 \section{Logarithm} 
 \section{Exercises}
