@@ -287,7 +287,7 @@ Now we prove some arithmetic properties concerning nonzero base, unlike the abov
 \end{minipage}}
 \begin{theorem}  
 \label{1.2.12}
- \textbf{(Integer Power addition written in multiplication)} For all nonzero $x$ and integers $p,q$, we have 
+ \textbf{(Arithmetic property of integer power)} For all nonzero $x$ and integers $p,q$, we have 
  \begin{equation}
 x^{p+q}=x^px^{q}
 \end{equation}
@@ -297,7 +297,7 @@ x^{p+q}=x^px^{q}
 \end{proof}
 \begin{theorem}
 \label{1.2.13}
-\textbf{(Integer Power multiplication written in power of power of base)} For all nonzero $x$ and integers $p,q$, we have
+\textbf{(Arithmetic property of integer power)} For all nonzero $x$ and integers $p,q$, we have
 \begin{equation}
   x^{pq}=(x^p)^q=(x^q)^p
 \end{equation}
@@ -307,7 +307,7 @@ x^{p+q}=x^px^{q}
 \end{proof}
 \begin{theorem}
 \label{1.2.14}
-\textbf{(Multiplication of two number raised to the same integer power)} For all nonzero $x,y$ and integer  $p$, we have
+\textbf{(Arithmetic property of integer power)} For all nonzero $x,y$ and integer  $p$, we have
  \begin{equation}
 x^py^p=(xy)^p
 \end{equation}
@@ -502,7 +502,7 @@ Now we prove the arithmetic properties of rational power concerning only positiv
 \end{minipage}}
 \begin{theorem}
 \label{1.3.12}
- \textbf{(Rational Power addition written in multiplication, inherited form \myref{Theorem}{1.2.12} and \myref{Theorem}{1.2.13})} Given $r,s\inq\text{ and }a>0$, we have
+ \textbf{(Arithmetic property of rational power)} Given $r,s\inq\text{ and }a>0$, we have
 \begin{equation}
 a^{r+s}=a^ra^s
 \end{equation}
@@ -513,19 +513,19 @@ Express $r,s$ in the form $r=\frac{p}{q},s=\frac{m}{n}$ where $q,n\inn\text{ and
   (a^{r+s})^{nq}&=(a^{\frac{np+mq}{nq}})^{nq}\\
   &=a^{np+mq} 
 \end{align}
-And observe
+Then observe
 \begin{align}
   (a^ra^s)^{nq}&= (a^{\frac{p}{q}}a^{\frac{m}{n}})^{nq} \\
-  &= (a^{\frac{p}{q}})^{nq}(a^{\frac{m}{n}})^{nq}\rap{because $nq\inn$}\\
+  &= (a^{\frac{p}{q}})^{nq}(a^{\frac{m}{n}})^{nq}\rap{by \myref{Theorem}{1.2.14}}\\
   &=((a^{\frac{p}{q}})^q)^n((a^{\frac{m}{n}})^n)^q\\
 &=(a^p)^n(a^m)^q\\
 &= a^{np+mq}=(a^{r+s})^{nq}\rap{\myref{Theorem}{1.2.12}\text{ and }\myref{Theorem}{1.2.13}} 
 \end{align}
-Because the rational power of a positive must also be positive, we can deduce $a^ra^s=a^{r+s}$ by \hyperref[1.3.6]{Theorem 1.3.6}
+Then by \myref{Theorem}{1.3.6}, we can deduce $a^ra^s=a^{r+s}$ 
 \end{proof}
 \begin{theorem}
 \label{1.3.13}
-\textbf{(Rational Power of Rational Power written in power multiplication, inherited from \myref{Theorem}{1.2.13})} Given $r,s\inq\text{ and }a>0$, we have
+\textbf{(Arithmetic property of rational power)} Given $r,s\inq\text{ and }a>0$, we have
 \begin{equation}
   (a^r)^s=a^{rs}
 \end{equation}
@@ -536,121 +536,184 @@ Express $r,s$ in the form $r=\frac{p}{q},s=\frac{m}{n}$ where $q,n\inn\text{ and
   (a^{rs})^{nq}&=(a^{\frac{mp}{nq}})^{nq}\\
   &= a^{mp}
 \end{align}
-And observe
+Then observe
 \begin{align}
   ((a^r)^s)^{nq}&=(((a^{\frac{p}{q}})^{\frac{m}{n}})^n)^q\\
   &=((a^{\frac{p}{q}})^m)^q\\
- &=(a^{\frac{p}{q}})^{mq}\rap{\myref{Theorem}{1.2.13}}\\
-  &=((a^{\frac{p}{q}})^q)^m \rap{\myref{Theorem}{1.2.13}}\\
-  &=(a^p)^m=a^{mp}=(a^{rs})^{nq} \rap{\myref{Theorem}{1.2.13}} 
+ &=(a^{\frac{p}{q}})^{mq}\\
+  &=((a^{\frac{p}{q}})^q)^m \\
+  &=(a^p)^m=a^{mp}=(a^{rs})^{nq}  
 \end{align}
 \end{proof}
 \begin{corollary}
 \label{1.3.14}
 $a^{\frac{q}{p}}=(a^{\frac{1}{p}})^q$
 \end{corollary}
+\begin{theorem}
+\label{1.3.15}
+\textbf{(Arithmetic property of rational power)} Given $r\inq$ and $a,b>0$, we have
+ \begin{equation}
+a^rb^r=(ab)^r
+\end{equation}
+\end{theorem}
+\begin{proof}
+Express $r$ in the form  $r=\frac{q}{p}$, and observe $(a^rb^r)^p=(a^r)^p(b^r)^p=(a^{\frac{q}{p}})^p(b^{\frac{q}{p}})^p=a^qb^q=(ab)^q=((ab)^r)^p$. 
+\end{proof}
 \section{Irrational Power}
 \fbox{\begin{minipage}{39em}
-    After the rational power, we now try to define irrational power. In most of the textbooks, irrational power as a rigorous definition often come after the definition of Euler number, but here, we define the irrational power with a technique not so advanced and to be fair quite cumbersome compared to the approaches in most textbooks.\\
-
-    The definition will be split into two parallel part, each definition have a lemma beforehand to guarantee the definition exists. The properties inherited from those of rational power will be proven as soon as it can be proven, and the common inequalities will be proven last. Notice that we still don't define $y^{\frac{1}{n}}$ when $y$ is negative.
+    After the rational power, we now try to define irrational power. In most of the textbooks, irrational power as a rigorous definition often come after the definition of Euler number, but here, we define the irrational power with a technique not so advanced and to be fair quite cumbersome compared to the approaches in most textbooks. Of course, the common inequalities and arithmetic properties of irrational power will be presented, although their order of presentation is different to how we present in the section before. 
 \end{minipage}}
 \begin{lemma}
 \label{1.4.1}
-Given $b>1$, for $x\inF$, define  $B(x):=\set{b^t:t\inq,t\leq x}$. Then $\forall x\inF, \sup B(x)$ exists.
+For $b,x\inF$, define  $B(x):=\set{b^t:t\inq,t\leq x}$. Then for all $x\inF$, $b>1$ implies  $\sup B(x)$ exists, and $0<b\leq 1$ implies $\inf B(x)$ exists.
 \end{lemma}
 \begin{proof}
-For all $x$,  we know $B(x)$ is nonempty, since if not, $\Q$ is bounded below. Because $\Q$ is nonbounded above, we can pick a rational  $y$ greater than $x$, and observe that $t\leq x\implies t\leq y$. Then because $b>1$, we deduce  $\forall b^t\inB(x),b^t\leq b^y $; thus $b^y$ is an upper bound of  $B(x)$.      
+  For all $x$,  we know $B(x)$ is nonempty, since if not, $\Q$ is bounded below. Because $\Q$ is nonbounded above, we can pick a rational  $y$ greater than $x$. If $b>1$, we deduce  $\forall b^t\inB(x),b^t\leq b^y $; thus $b^y$ is an upper bound of  $B(x)$. If $0<b<1$, we deduce $\forall b^t\in B(x),b^y\leq b^t$; thus $b^y$ is an lower bound of $B(x)$. If $b=1$, just notice  $B(x)=\set{1}$.     
 \end{proof}
 \begin{definition}
 \label{1.4.2}
-  \textbf{(The First Half of Irrational Power Definition)} For all $b,x\inF$ where $b>1$, we define $b^x:=\sup B(x)$, where $B$ is the function in \hyperref[1.4.1]{Lemma 1.4.1}. 
+\textbf{(Irrational Power Definition)} For all $b,x\inF$, define $B(x)$ as in \myref{Lemma}{1.4.1}, and for all $x\inF$, if $b>1$, define $b^x:=\sup B(x)$, and if $0<b\leq 1$, define $b^x:=\inf B(x)$ 
 \end{definition}
 \fbox{\begin{minipage}{39em}
 The above definition is in fact not very appropriate, since we have already define $b^x$ where  $x\inq$. We don't know if the above definition is consistent with our old definition. The next theorem is to show it is.  
 \end{minipage}}
 \begin{theorem}
 \label{1.4.3}
-  \textbf{(Consistency of power definitions)} If $b>1\text{ and }r\inq$, then $b^r=\sup B(r)$
+  \textbf{(Consistency of power definitions)} Given $r\inq$, if $b>1$, then  $b^r=\sup B(r)$, and if $b<1$, then  $b^r=\inf B(r)$
 \end{theorem}
 \begin{proof}
-Because $1<b$, we know  $b^r=\max  B(r)$, then $\sup  B(r)=\max  B(r)=b^r$   
+If $b>1$, deduce  $b^r=\max  B(r)=\sup B(r)$. If $b<1$, deduce $b^r=\min B(r)=\inf B(r)$.  
 \end{proof}
 \fbox{\begin{minipage}{39em}
-Now, we are going to prove that the definition of real power do inherit the properties of rational power (i.e. \hyperref[1.3.10]{Theorem 1.3.10} and \hyperref[1.3.11]{Theorem 1.3.11}), but before that, we will prove a general result about supremum.    
+Now, we are going to prove one common inequalities. The other will be proven after some work. 
 \end{minipage}}
-\begin{lemma}
+
+
+\begin{theorem}
 \label{1.4.4}
-Let $A,B$ and be two bounded above subset of  $\F$, containing only nonnegative numbers. Define $AB:=\set{ab:a\inA,b\inB}$. We have    
-\begin{equation}
-\sup AB=\sup A \sup B
+\textbf{(Inequality when base is fixed)} Given a positive $b$ and $x<y$, we have
+ \begin{equation}
+\begin{cases}
+  b^x<b^y\iff b>1\\
+  b^x=b^y\iff b=1\\
+  b^x>b^y\iff 0<b<1
+\end{cases}
 \end{equation}
-\end{lemma}
+\end{theorem}
 \begin{proof}
-Because $A,B$ contain only nonnegative numbers, we know $a\leq \sup A$ and $b\leq \sup B$ implies $ab\leq \sup A \sup B$, so $\sup A \sup B$ is an upper bound of $AB$. Now we show \vi{$\sup A \sup B$ is the \textit{least} upper bound of $AB$}.\\
+  By \myref{Theorem}{1.3.5}, we can pick a rational $q$ such that  $x<q<y$. We have $b^q\in B(y)$. We now consider three possible situations.\\
 
-\As{there is an upper bound $x$ of $AB$ smaller than $\sup A \sup B$}. Express $x$ in the form  $x=\sup A \frac{x}{\sup A}$. Because $x<\sup A \sup B$, we know $\frac{x}{\sup A}<\sup B$, which implies there is a number  $b\inB$ greater than $\frac{x}{\sup A}$. Observe $b>\frac{x}{\sup A}\implies \frac{x}{b}<\sup A$, which implies that there is a number $a\in A$ greater than  $\frac{x}{b}$. Observe  $\frac{x}{b}<a\implies x<ab \tCaC\vdone$  
+
+
+  If $b>1$, then $b^q\leq \sup B(y)$. Because $\forall b^t\inB(x), t\leq x<q$, we can  deduce $\forall b^t\in B(x), b^t<b^q$; that is, $b^q$ is an upper bound of $B(x)$. Notice that there exists rational between $x<q$, so  $b^q$ can not be the least upper bound of  $B(x)$.  Then we can deduce $\sup B(x)< b^q\leq \sup B(y)$.\\
+
+  If $b=1$, then  $b^x=1=b^y$.\\
+
+  If  $b<1$, then $\inf B(y)\leq b^q$. Because $\forall b^t\in B(x), t\leq x<q$, we can deduce $\forall b^t\in B(x), b^t>b^q$ ; that is, $b^q$ is an lower bound of  $B(x)$. Notice that there exists rational between $x<q$, so  $b^q$ can not be the greatest lower bound of  $B(x)$. Then we can deduce $\inf B(y)\leq b^q< \inf B(x)$.\\
+
+  The Theorem follows from the three implications of the three situation. 
 \end{proof}
-\begin{theorem}
+
+\begin{lemma}
 \label{1.4.5}
-\textbf{(Power addition written in multiplication, inherited from Theorem 1.3.6 and Theorem 1.3.7)} Given $r,s\inF$ and $b>1$, we have
+Let $S,U$ and be two bounded above subset of  $\F$, containing only nonnegative numbers. Define $SU:=\set{su:s\inS,u\inU}$. We have    
 \begin{equation}
-  b^{r+s}=b^rb^s
+\sup SU=\sup S \sup U 
 \end{equation}
-\end{theorem}
+and have 
+\begin{equation}
+\inf SU=\inf S\inf U
+\end{equation}
+where the infimum part hold true even if $S,U$ are not bounded above 
+\end{lemma}
 \begin{proof}
-We prove \vi{$B(r+s)=\set{xy:x\inB(r)\text{ and }y\inB(s)}$}. Denote the set on right side $E$. Observe that $xy\in E \implies \exists q\leq r\inq,x=b^q\text{ and }\exists m\leq s\inq,y=b^m\implies xy=b^{q+m}\leq b^{r+s}\implies xy\in B(r+s)$. Then we know $E\subseteq B(r+s)$. Given $b^d\in B(r+s)$, we know $d\leq r+s$, so if we express $b^d=b^rb^{d-r}$, we are sure $b^{d-r}\in B(s)$ and $b^r\in B(r)$, which implies $b^d\in E$. Then we can deduce $B(r+s)\subseteq E$.$\vdone$\\
+Because $S,U$ contain only nonnegative numbers, we know $s\leq \sup S$ and $u\leq \sup U$ implies $su\leq \sup S \sup U$, so $\sup S \sup U$ is an upper bound of $SU$. Now we show \vi{$\sup S \sup U$ is the \textit{least} upper bound of $SU$}.\\
 
-By \hyperref[1.4.4]{Lemma 1.4.4}, our proof is finished.
+\As{there is an upper bound $x$ of $AB$ smaller than $\sup A \sup B$}. Express $x$ in the form  $x=\sup S \frac{x}{\sup S}$. Because $x<\sup S \sup U $, we know $\frac{x}{\sup S}<\sup U$, which implies there is a number  $u\inU$ greater than $\frac{x}{\sup S}$. Observe $u>\frac{x}{\sup S}\implies \frac{x}{u}<\sup S$, which implies that there is a number $s\in S$ greater than  $\frac{x}{u}$. Observe  $\frac{x}{u}<s\implies x<su \tCaC\vdone$\\ 
+
+Clearly, we know $s\geq \inf  S$ and $u\geq \inf  U$ implies $su\geq \inf  S \inf  U$, so $\inf  S \inf  U$ is an lower bound of $SU$. Now we show \blue{$\sup S \sup U$ is the \textit{greatest} lower bound of $SU$}.\\
+
+\As{there is an lower bound $x$ of $AB$ greater than $\sup A \sup B$}. Express $x$ in the form  $x=\inf  S \frac{x}{\inf  S}$. Because $x>\inf  S \inf  U $, we know $\frac{x}{\inf  S}>\inf  U$, which implies there is a number  $u\inU$ less than $\frac{x}{\inf  S}$. Observe $u<\frac{x}{\inf  S}\implies \frac{x}{u}>\inf  S$, which implies that there is a number $s\in S$ less than  $\frac{x}{u}$. Observe  $\frac{x}{u}>s\implies x>su \tCaC\bdone$  
 \end{proof}
-\fbox{\begin{minipage}{39em}
-Before we prove $(b^r)^s=b^{rs}$ if $b>1$, we must finish the definition of the reals power, since $b^r$ may be less than $1$. Notice that the function $A$ below, is identical to $B$ above.
-\end{minipage}}
-\begin{lemma}
+
+\begin{theorem}
 \label{1.4.6}
-  Given $0<a<1$, for all $x\inF$, define $A(x):=\set{a^t:t\inq,t\leq x}$. Then $\forall x\inF, \inf A(x)$ exists.
-\end{lemma}
-\begin{proof}
-For all $x$,  we know $A(x)$ is nonempty, since if not, $\Q$ is bounded below. Because $\Q$ is nonbounded above, we can pick a rational  $y$ greater than $x$, and observe that $t\leq x\implies t\leq y$. Then because $0<a<1$, we deduce  $\forall a^t\inA(x),a^t\geq a^y $; thus $a^y$ is an lower bound of  $A(x)$.      
-\end{proof}
-\begin{definition}
-\label{1.4.7}
-\textbf{(The Second Half of Real Power Definition)} For all $a,x\inF$ where $0<a<1$, we define  $a^x:=\inf  A(x)$, where $A$ is the function in Lemma above.
-\end{definition}
-\begin{theorem}
-\label{1.4.8}
-\textbf{(Consistency of power definitions)} If $0<a<1$ and  $r\inq$, then $a^r=\inf A(r)$
-\end{theorem}
-\begin{proof}
-Because $0<a<1$, we know  $a^r=\min A(r)$, then $\inf A(r)=\min A(r)=a^r$   
-\end{proof}
-\begin{lemma}
-\label{1.4.9}
-Let $A,B$ and be two bounded below subset of  $\F$, containing only nonnegative numbers. Define $AB:=\set{ab:a\inA,b\inB}$. We have    
-\begin{equation}
-\inf  AB=\inf  A \inf  B
-\end{equation}
-\end{lemma}
-\begin{proof}
-Because $A,B$ contain only nonnegative numbers, we know $a\geq \inf  A$ and $b\geq \inf  B$ implies $ab\geq \inf  A \inf  B$, so $\inf  A \inf  B$ is an lower bound of $AB$. Now we show \vi{$\inf  A \inf  B$ is the \textit{greatest} lower bound of $AB$}.\\
-
-If $\inf A=0$, we know $\inf AB=0$, since if not, we can arbitrarily pick nonzero $b\inB$ and see for all $a\inA$, we have $a>(\inf AB)b>0$. \As{there is an lower bound $x$ of $AB$ greater than $\inf  A \inf  B$}. Express $x$ in the form  $x=\inf  A \frac{x}{\inf  A}$. Because $x>\inf  A \inf  B$, we know $\frac{x}{\inf  A}>\inf  B$, which implies there is a number  $b\inB$ less than $\frac{x}{\inf  A}$. Observe $b<\frac{x}{\inf  A}\implies \frac{x}{b}>\inf  A$, which implies that there is a number $a\in A$ less than  $\frac{x}{b}$. Observe  $\frac{x}{b}>a\implies x>ab \tCaC\vdone$  
-\end{proof}
-\begin{theorem}
-\label{1.4.10}
-\textbf{(Power addition written in multiplication, inherited from \hyperref[1.3.10]{Theorem 1.3.10} and \hyperref[1.3.11]{Theorem 1.3.11})} Given $r,s\inF$ and $0<a<1$, we have
+\textbf{(Arithmetic property)} Given $r,s\inF$ and $0<a$, we have
 \begin{equation}
   a^{r+s}=a^ra^s
 \end{equation}
 \end{theorem}
-\begin{proof}
-We prove \vi{$A(r+s)=\set{xy:x\inA(r)\text{ and }y\inA(s)}$}. Denote the set on right side $E$. Observe that $xy\in E \implies \exists q\leq r\inq\text{ and }m\leq s\inq, x=a^q\text{ and }y=a^m\implies xy=a^{q+m}\geq a^{r+s}\implies xy\in A(r+s)$. Then we know $E\subseteq A(r+s)$. Given $a^d\in A(r+s)$, we know $d\leq r+s$, so if we express $a^d=a^ra^{d-r}$, we are sure $a^{d-r}\in A(s)$ and $a^r\in A(r)$, which implies $a^d\in E$. Then we can deduce $A(r+s)\in E$.$\vdone$\\
 
-By \hyperref[1.4.9]{Lemma 1.4.9}, our proof is finished.
+\begin{proof}  
+We prove \vi{$A(r+s)=\set{xy:x\inA(r)\text{ and }y\inA(s)}$}. Denote the set on right side $E$. Observe that $xy\in E \implies \exists q\leq r\inq,x=a^q\text{ and }\exists m\leq s\inq,y=a^m\implies xy=a^{q+m} \text{ where $q+m\leq r+s$}\implies xy\in A(r+s)$. Then we know $E\subseteq A(r+s)$. Given $a^d\in A(r+s)$, we know $d\leq r+s$, so if we express $a^d=a^ra^{d-r}$, we are sure $a^{d-r}\in A(s)$ and $a^r\in A(r)$, which implies $a^d\in E$. Then we can deduce $A(r+s)\subseteq E$.$\vdone$\\
+
+By \myref{Lemma}{1.4.5}, our proof is finished.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Now, we introduce an idea to aid our proof of inequality.
+\end{minipage}}
+\begin{definition}
+\label{1.4.7}
+\textbf{(Definition of order homomorphism)} Let $S$ be an subset of  $\F$, the function  $\phi :S \rightarrow  \F $ is an \textit{order homomorphism}, if for all $a,b\in S$, we have 
+\begin{equation}
+  a<b\implies \phi (a)<\phi (b)
+\end{equation}
+Two subset $U,V$ are said to be  \textit{order isomorphic}, if there exists an bijective order homomorphism from one to another.
+\end{definition}
+\begin{lemma}
+\label{1.4.8}
+Let $S,U$ be two order isomorphic bounded above subset of  $\F$, containing only nonnegative numbers, where $\phi :S\rightarrow U$ is an order isomorphism. Let $US_\phi = \set{s\phi (s):s\in S}$. We have
+\begin{equation}
+\sup S \sup U= \sup US_\phi 
+\end{equation}
+and have
+\begin{equation}
+\inf S\inf U=\inf US_\phi 
+\end{equation}
+where the infimum part hold true even if $S,U$ are not bounded above.
+\end{lemma}
+\begin{proof}
+For all $s\phi (s)$ in $US_\phi $, we know $0\leq s\leq \sup S$ and $0\leq \phi (s)\leq \sup U$, so we can deduce $s\phi (s)\leq \sup S\sup U$. We have proven that $\sup S\sup U$ is an upper bound of $US_\phi $. We now prove it is the least. \As{there exists an upper bound $x$ of $US_\phi $ smaller than $\sup S\sup U$}. Because $\frac{x}{\sup U}<\sup S$, we know there exists $s\inS$ such that $x<(\sup U)s$. Then because $\frac{x}{s}<\sup U$, we know there exists $\phi (s')\in U$ such that $x<s\phi (s')$. If $s<s'$, then we see  $x<s\phi (s')<s'\phi (s')\in US_\phi $. If $s>s'$, then we see  $x<s\phi (s')<s\phi (s)$. If $s=s'$, then we see $x<s\phi (s')=s\phi (s)\tCaC$\\
+
+
+For all $s\phi (s)$ in $US_\phi $, we know $s\geq \inf  S$ and $ \phi (s)\geq \inf  U$, so we can deduce $s\phi (s)\geq \inf  S\inf  U$. We have proven that $\inf  S\inf  U$ is an lower bound of $US_\phi $. We now prove it is the greatest. \As{there exists an lower bound $x$ of $US_\phi $ greater than $\inf  S\inf  U$}. Because $\frac{x}{\inf  U}>\inf  S$, we know there exists $s\inS$ such that $x>(\inf  U)s$. Then because $\frac{x}{s}>\inf  U$, we know there exists $\phi (s')\in U$ such that $x>s\phi (s')$. If $s<s'$, then we see  $x>s\phi (s')>s\phi (s)\in US_\phi $. If $s>s'$, then we see  $x>s\phi (s')>s'\phi (s')$. If $s=s'$, then we see $x>s\phi (s')=s\phi (s)\tCaC$      
+\end{proof}
+
+\begin{theorem}
+\label{1.4.9}
+\textbf{(Arithmetic property)} Given $b,c>0$ and  $z\inF$, we have
+\begin{equation}
+b^zc^z=(bc)^z
+\end{equation}
+\end{theorem}
+\begin{proof}
+ From now, we will use $C(z)$ to denote $\set{c^u: u\inq, u\leq z}$. Define $\phi :B(z)\rightarrow C(z)$ as $b^t\mapsto c^t$. Observe that if $b,c$ are both greater than $1$, then  $b^t<b^m\implies t<m\implies c^t<c^m$, and that if $b,c$ are both less than $1$, then  $b^t<b^m\implies t>m\implies c^t<c^m$. So If $b,c$ are both greater than $1$ or both less than $1$,  then $\phi$ is an order isomorphism. Notice that $\set{(bc)^u:u\inq, u\leq z}=\set{b^t \phi(b^t):t\inq, t\leq z}=C(z)B(z)_\phi$. Then by \myref{Lemma}{1.4.8}, our proof is finished. We now show \vi{$(b^{-1})^zb^z=1$}.\\
+
+WOLG, let $b<1$. Denote $H:=\set{b^t:t\inq,t\leq z},E:=\set{b^{-t}:t\inq,t\leq z}$, so $b^z=\inf H\text{ and }(b^{-1})^z=\sup E$. \As{$(\sup E)(\inf H)>1$}. Notice $\sup E>\frac{1}{\inf H}$ implies that there exists $t\leq z$ such that $b^{-t}>\frac{1}{\inf H}$, which leads to $\inf H>b^t\tCaC$. \As{$(\sup E)(\inf H)<1$}. Notice $\inf H<\frac{1}{\sup E}$ implies that there exists $t\leq z$ such that $b^{-t}<\frac{1}{\sup E}$, which leads to $\sup E<b^t\tCaC\vdone$\\     
+
+ If $b<1<c$ and $bc>1$, observe that $(bc)^z(b^{-1})^z=c^z\implies (bc)^z=(bc)^z(b^{-1})^zb^z=b^zc^z$. If $b<1<c$ and  $bc<1$, observe that $(bc)^z(c^{-1})^z=b^z\implies (bc)^z=(bc)^z(c^{-1})^zc^z=b^zc^z $  
 \end{proof}
 \begin{theorem}
+\label{1.4.10}
+\textbf{(Inequality when power is fixed)} Given $0<b<c$ and  $z\inF$, we have
+\begin{equation}
+\begin{cases}
+  b^z<c^z \iff 0<z\\
+  b^z=c^z \iff 0=z\\
+  b^z>c^z\iff 0>z
+\end{cases}
+\end{equation}
+\end{theorem}
+\begin{proof}
+By \myref{Theorem}{1.4.4}, $z>0\implies (\frac{c}{b})^z>(\frac{c}{b})^0=1\implies c^z>b^z$, and $z=0\implies b^z=1=c^z$, and $z<0\implies (\frac{c}{b})^z<(\frac{c}{b})^0=1$ 
+\end{proof}
+
+\fbox{\begin{minipage}{39em}
+Before we prove $(b^r)^s=b^{rs}$ if $b>1$, we must finish the definition of the reals power, since $b^r$ may be less than $1$. Notice that the function $A$ below, is identical to $B$ above.
+\end{minipage}}
+\begin{theorem}
 \label{1.4.11}
-\textbf{(Power of Power written in power multiplication, inherited from \hyperref[1.3.11]{Theorem 1.3.11})} Given $r,s\inF\text{ and }a>0$, we have
+\textbf{(Arithmetic property)} Given $r,s\inF\text{ and }a>0$, we have
 \begin{equation}
   (a^r)^s=a^{rs}
 \end{equation}
