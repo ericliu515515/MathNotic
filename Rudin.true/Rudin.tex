@@ -711,29 +711,34 @@ By \myref{Theorem}{1.4.4}, $z>0\implies (\frac{c}{b})^z>(\frac{c}{b})^0=1\implie
 \fbox{\begin{minipage}{39em}
 Before we prove $(b^r)^s=b^{rs}$ if $b>1$, we must finish the definition of the reals power, since $b^r$ may be less than $1$. Notice that the function $A$ below, is identical to $B$ above.
 \end{minipage}}
-\begin{theorem}
+\begin{lemma}
 \label{1.4.11}
+Given $0<x<rs$ and $0<r$ and  $0<s$, there exist rational $u<s$ and rational $t<r$ such that   $x<tu<rs$.  
+\end{lemma}
+\begin{proof}
+  $0<x<rs \implies \frac{x}{s}<r$. Then there exists rational $t$ such that  $\frac{x}{s}<t<r$, which implies $\frac{x}{t}<s$. Then there exists rational $u$ such that $\frac{x}{t}<u<s$. Then $x<tu<rs$.
+\end{proof}
+\begin{theorem}
+\label{1.4.12}
 \textbf{(Arithmetic property)} Given $r,s\inF\text{ and }a>0$, we have
 \begin{equation}
   (a^r)^s=a^{rs}
 \end{equation}
 \end{theorem}
 \begin{proof}
-We split the proof in eight main cases: $\begin{cases}
-  1) & a>1\text{ and }r>0\text{ and }s>0 \\
-  2) & a>1 \text{ and }r<0\text{ and }s>0\\
-  3) & a<1\text{ and }r>0\text{ and }s>0\\
-  4)& a<1\text{ and }r<0\text{ and }s>0
-\end{cases}$\\
+  The proof is very very long. We first denote three important sets: $T:=\set{a^t:t\inq,t\leq r},U:=\set{(a^r)^u:u\inq,u\leq s},X:=\set{a^x:x\inq,x\leq rs}$. So, we have $a^r=(\sup \text{ or }\inf )T$, $(a^r)^s=(\sup \text{ or }\inf )U$ and $a^{rs}=(\sup \text{ or }\inf )X$.\\
 
-The boundary cases where $a=1\text{ or }a^r=1$ is easy to handle, which we do after the main cases.\\
+  Now, we split the proof into sixteen cases: $a$ may be smaller or greater than $1$; $r,rs$ may be positive or negative; $rs$ is rational or irrational. \\
 
-\vi{Case 1: $a>1\text{ and }r>0\text{ and }s>0$}\\
+  We first do all 8 cases of $rs\not\inq$.\\
 
-Denote $x:= a^r=\sup \set{a^t:t\inq,t\leq r}$, and denote $E:=\set{x^u:u\inq,u\leq s}$. We seek to prove $a^{rs}=\sup E$. \As{there exists $x^u\inE$  greater than $a^{rs}$}. Observe that $a^{rs}<x^u\implies \begin{cases}
-  a^r<a^{r \frac{s}{u}}<x & \text{ if $s>0$ }\\
+  The easiest case first:  \vi{$a>1\text{ and }r>0\text{ and }rs>0\text{ and }rs\not\inq$}.\\
 
-\end{cases}$
+  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then there exists rational $x<rs$ such that for all rational $0<u\leq s$, we have $a^x>(a^r)^u=(\sup T)^u$,  which is equivalent to $a^{\frac{x}{u}}>\sup T$. Then, we can deduce that for all $0<t\leq r$, we have $a^x>a^{tu}$. By \myref{Lemma}{1.4.11}, we know there exists $tu$ greater than  $x\tCaC$. \As{$a^{rs}<(a^r)^s$}; that is, $\sup U>\sup X$. Then there exists rational $u\leq s$ such that for all rational $x< rs$, we have $(\sup T)^u=(a^r)^u> a^x$, which is equivalent to $\sup T> a^{\frac{x}{u}}$. Then there exists $t$ such that for all $x<rs$, we have $a^{tu}>a^x$. There exists rational between $rs$ and  $tu\tCaC \vdone$  \\
+
+  The second case: \blue{$a>1\text{ and }r>0\text{ and }s<0\text{ and }rs\not\inq$}.\\
+
+  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then there exists rational $x<rs<0$ such that for all rational $u\leq s<0$, we have $a^x>(a^r)^u=(\sup T)^u$, which is equivalent to $a^{\frac{x}{u}}<\sup T$. Then, we can deduce that for all $t\leq r$, we have $a^{\frac{x}{u}}<a^t$. Pick any negative $t$ then see  $\tCaC$. \As{$a^{rs}<(a^r)^s$}    
 \end{proof}
 \section{Logarithm} 
 \section{Exercises}
