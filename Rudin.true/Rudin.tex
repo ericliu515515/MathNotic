@@ -738,7 +738,27 @@ Given $0<x<rs$ and $0<r$ and  $0<s$, there exist rational $u<s$ and rational $t<
 
   The second case: \blue{$a>1\text{ and }r>0\text{ and }s<0\text{ and }rs\not\inq$}.\\
 
-  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then there exists rational $x<rs<0$ such that for all rational $u\leq s<0$, we have $a^x>(a^r)^u=(\sup T)^u$, which is equivalent to $a^{\frac{x}{u}}<\sup T$. Then, we can deduce that for all $t\leq r$, we have $a^{\frac{x}{u}}<a^t$. Pick any negative $t$ then see  $\tCaC$. \As{$a^{rs}<(a^r)^s$}    
+  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then there exists rational $x<rs<0$ such that for all rational $u\leq s<0$, we have $a^x>(a^r)^u=(\sup T)^u$, which is equivalent to $a^{\frac{x}{u}}<\sup T$. Then, we can deduce that for all $t\leq r$, we have $a^{\frac{x}{u}}<a^t$. Pick any negative $t$ then see  $\tCaC$. \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\sup U$. Then there exists $u\leq s<0$ such that for all rational $x<rs$, we have  $a^x<(a^r)^u$, which is equivalent to $a^{\frac{x}{u}}>a^r=\sup T$. Then, we can deduce for all rational $t\leq r$, we have $a^x<a^{tu}$, which is equivalent to $x<tu$.\\
+
+To sum up, we have deduced $\exists u\leq s<0,\forall x<rs,\forall t\leq r,x<tu$. Notice that for all $u\leq s<0$, we have $r(\frac{s}{u})<r$. So we can pick rational $t$ such that $r(\frac{s}{u})<t<r$. Then we have  $rs>tu$. Then we can pick an rational $x$ such that  $rs>x>tu\tCaC\bdone$,\\
+
+The third case: \vi{$a>1\text{ and }r<0\text{ and }s>0\text{ and }rs\not\inq$}\\
+
+We first prove \teal{$(a^r)^s=(a^s)^r$}. Observe 
+\begin{gather}
+  (a^r)^s=(a^s)^r\\
+  \liff \inf \set{(a^r)^u:u\leq s}=\sup \set{(a^s)^t:t\leq r}\\
+  \liff \forall u\leq s,\forall t\leq r<0, (a^r)^u>(a^s)^t\\
+  \liff  \forall 0<u\leq s,\forall t\leq r<0, \sup \set{a^{t'}:t'\leq r}=a^r>(a^s)^{\frac{t}{u}}\\
+  \text{ and }\forall u<0,\forall t\leq r<0, \sup \set{a^{t'}:t'\leq r}=a^r<(a^s)^{\frac{t}{u}}\\ 
+  \rap{Notice that when $u=0$, (1.79) can be verifed, $(a^r)^u=1>(a^s)^t$}\\
+  \liff \forall 0<u\leq s,\forall t\leq r<0, \exists t'\leq r<0, a^{\frac{t'u}{t}}<a^s=\sup \set{a^{u'}:u'\leq s}\\
+  \liff \forall 0<u\leq s,\forall t\leq r<0,\exists t'\leq r<0,\exists u'\leq s, a^{t'u}>a^{tu'}
+\end{gather}
+The above can be verified. 
+\begin{gather}
+\liff  
+\end{gather}
 \end{proof}
 \section{Logarithm} 
 \section{Exercises}
