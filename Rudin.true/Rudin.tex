@@ -709,11 +709,51 @@ By \myref{Theorem}{1.4.4}, $z>0\implies (\frac{c}{b})^z>(\frac{c}{b})^0=1\implie
 \end{proof}
 
 \fbox{\begin{minipage}{39em}
-Before we prove $(b^r)^s=b^{rs}$ if $b>1$, we must finish the definition of the reals power, since $b^r$ may be less than $1$. Notice that the function $A$ below, is identical to $B$ above.
+Before the last arithmetic property, we first prove the existence of logarithm, which play an important role in the proof of last arithmetic property.
 \end{minipage}}
+\begin{theorem}
+\textbf{(Existence of logarithm)} For all positive  $b,y$ where $b\neq 1$, there exists an unique  $x\inF $ such that $b^x=y$  
+\end{theorem}
+\begin{proof}
+The uniqueness part have been handled by \myref{Theorem}{1.4.4}. Now we split the proof into two cases: \vi{$b>1$} and \blue{$b<1$}\\
+
+Case 1: \vi{$b>1$}\\
+
+Define $A:=\set{w:b^w<y}$ and $x=\sup A$.\\
+
+We first prove the identity \teal{for all positive integer $m$ and  $c>1$, we have $c-1\geq (c^{\frac{1}{m}}-1)m$}\\
+
+Let $d=c^{\frac{1}{m}}$, so we have $c-1=d^m-1=(d-1)(d^{m-1}+d^{m-1}+\cdots +1)\geq (d-1)m=(c^{\frac{1}{m}}-1)m\tdone$\\
+
+
+\As{$b^x>y$}. Let $t=\frac{b^x}{y}$ and $\frac{b-1}{t-1}<n=m$ and $b=c$ to use the identity, so we have  $b-1\geq n(b^{\frac{1}{n}}-1)$. Then we have $\frac{b-1}{n}\geq b^{\frac{1}{n}}-1$. Notice that $b^x>y\implies t-1>0$, so because $n>\frac{b-1}{t-1}$, we then have $t-1>\frac{b-1}{n}\geq b^{\frac{1}{n}}-1$, which implies $t> b^{\frac{1}{n}}$.\\
+
+ Observe $b^{x-\frac{1}{n}}=\frac{b^x}{b^{\frac{1}{n}}}>\frac{b^x}{t}=y$. Then $x-\frac{1}{n}$ is an upper bound of $A\tCaC$.\\
+
+
+\As{$b^x<y$}. Let $t=\frac{y}{b^x}$ and let $\frac{b-1}{t-1}<n=m$ and $b=c$ to use the identity, so we have  $b-1\geq n(b^{\frac{1}{n}}-1)$. Then we have $\frac{b-1}{n}\geq b^{\frac{1}{n}}-1$. Notice that $b^x<y\implies t-1>0$, so because $n>\frac{b-1}{t-1}$, we then have $t-1>\frac{b-1}{n}\geq b^{\frac{1}{n}}-1$, which implies $t>b^{\frac{1}{n}}$.\\
+
+Observe $b^{x+\frac{1}{n}}=b^xb^{\frac{1}{n}}<b^xt=y$. Then $x+\frac{1}{n}\inA\tCaC\vdone$\\
+
+Case 2: \blue{$b<1$}\\
+
+Define $B:=\set{w:b^w<y}$ and $x:=\inf B$.\\
+
+We first prove the identity \teal{for all positive integer $m$ and $0<c<1$, we have  $c-1\leq (c^{\frac{1}{m}}-1)m$}\\
+
+Let $d=c^{\frac{1}{m}}$, so we have $c-1=d^m-1=(d-1)(d^{m-1}+d^{m-2}+\cdots +1)\leq (d-1)m=(c^{\frac{1}{m}}-1)m\tdone$.\\
+
+\As{$b^x>y$}. Let $t=\frac{y}{b^x}$ and $\frac{b-1}{t-1}<n=m\text{ and }b=c$ to use the identity, so we have $b-1\leq (b^{\frac{1}{n}}-1)n$. Then we have $\frac{b-1}{n}\leq b^{\frac{1}{n}}-1$. Notice that $b^x>y\implies t-1<0$, so because $n>\frac{b-1}{t-1}$, we then have $t-1<\frac{b-1}{n}\leq b^{\frac{1}{n}}-1$, which implies $t<b^{\frac{1}{n}}$.\\
+
+Observe $b^{x+\frac{1}{n}}=b^xb^{\frac{1}{n}}>b^xt=y$. Then $x+\frac{1}{n}$ is an lower bound of $B\tCaC$.\\
+
+\As{$b^x<y$}. Let $t=\frac{b^x}{y}\text{ and }\frac{b-1}{t-1}<n=m\text{ and }b=c$ to use the identity, so we have $b-1\leq (b^{\frac{1}{n}}-1)n$. Then we have $\frac{b-1}{n}\leq b^{\frac{1}{n}}-1$. Notice that $b^x<y\implies t-1<0$, so because $n>\frac{b-1}{t-1}$, we then have $t-1<\frac{b-1}{n}\leq b^{\frac{1}{n}}-1$, which implies $t<b^{\frac{1}{n}}$.\\
+
+Observe $b^{x-\frac{1}{n}}=\frac{b^x}{b^{\frac{1}{n}}}<\frac{b^x}{t}=y$. Then $x-\frac{1}{n}\inB\tCaC\bdone$
+\end{proof}
 \begin{lemma}
 \label{1.4.11}
-Given $0<x<rs$ and $0<r$ and  $0<s$, there exist rational $u<s$ and rational $t<r$ such that   $x<tu<rs$.  
+Given $0<x<rs$ and $0<r$ and  $0<s$, there exist positive rational $u<s$ and positive rational $t<r$ such that   $x<tu<rs$. 
 \end{lemma}
 \begin{proof}
   $0<x<rs \implies \frac{x}{s}<r$. Then there exists rational $t$ such that  $\frac{x}{s}<t<r$, which implies $\frac{x}{t}<s$. Then there exists rational $u$ such that $\frac{x}{t}<u<s$. Then $x<tu<rs$.
@@ -726,41 +766,59 @@ Given $0<x<rs$ and $0<r$ and  $0<s$, there exist rational $u<s$ and rational $t<
 \end{equation}
 \end{theorem}
 \begin{proof}
-  The proof is very very long. We first denote three important sets: $T:=\set{a^t:t\inq,t\leq r},U:=\set{(a^r)^u:u\inq,u\leq s},X:=\set{a^x:x\inq,x\leq rs}$. So, we have $a^r=(\sup \text{ or }\inf )T$, $(a^r)^s=(\sup \text{ or }\inf )U$ and $a^{rs}=(\sup \text{ or }\inf )X$.\\
+  The proof is very very long. We first denote three important sets:
+\begin{equation}
+T:=\set{a^t:t\inq,t\leq r}
+\end{equation}
+\begin{equation}
+U:=\set{(a^r)^u:u\inq,u\leq s}
+\end{equation}
+\begin{equation}
+X:=\set{a^x:x\inq,x\leq rs}
+\end{equation}
+
+  So, we have 
+\begin{equation}
+a^r=(\sup \text{ or }\inf )T
+\end{equation}
+\begin{equation}
+(a^r)^s=(\sup \text{ or }\inf )U
+\end{equation}
+\begin{equation}
+a^{rs}=(\sup \text{ or }\inf )X
+\end{equation}
+Notice that from now, when variables $t,u,x$ and their variants $t',u',x'$ are mentioned, they are rational and respectively less than or equal to $r,s,rs$. \\
+
+
 
   Now, we split the proof into sixteen cases: $a$ may be smaller or greater than $1$; $r,rs$ may be positive or negative; $rs$ is rational or irrational. \\
 
-  We first do all 8 cases of $rs\not\inq$.\\
 
-  The easiest case first:  \vi{$a>1\text{ and }r>0\text{ and }rs>0\text{ and }rs\not\inq$}.\\
 
-  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then there exists rational $x<rs$ such that for all rational $0<u\leq s$, we have $a^x>(a^r)^u=(\sup T)^u$,  which is equivalent to $a^{\frac{x}{u}}>\sup T$. Then, we can deduce that for all $0<t\leq r$, we have $a^x>a^{tu}$. By \myref{Lemma}{1.4.11}, we know there exists $tu$ greater than  $x\tCaC$. \As{$a^{rs}<(a^r)^s$}; that is, $\sup U>\sup X$. Then there exists rational $u\leq s$ such that for all rational $x< rs$, we have $(\sup T)^u=(a^r)^u> a^x$, which is equivalent to $\sup T> a^{\frac{x}{u}}$. Then there exists $t$ such that for all $x<rs$, we have $a^{tu}>a^x$. There exists rational between $rs$ and  $tu\tCaC \vdone$  \\
+  We first do all 8 cases of $rs\not\inq$. Notice that $rs\not\inq\implies x<rs$.\\  
+
+
+  The easiest case first:  \vi{$a>1\text{ and }r>0\text{ and }s>0\text{ and }rs\not\inq$}.\\
+
+  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then $\exists x,\forall u,a^x>(a^r)^u=(\sup T)^u$.  Let $u>0$, so we have $\forall t, a^{\frac{x}{u}}>a^t$. By \myref{Lemma}{1.4.11} \CaC. \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\sup U$. Then $\exists u,\forall x,(\sup T)^u=(a^r)^u>a^x$. Because $a^r>1$, we know $u>0$, since $u<0\implies (a^r)^u<1$. Then we have  $\exists u,\forall x,\sup T>a^{\frac{x}{u}}$, so we have $\exists u,\forall x,\exists t,a^t>a^{\frac{x}{u}}$. But we see that for all $u$, we can let  $x>ru$, so $a^{\frac{x}{u}}>a^r.\tCaC\vdone$   \\
+
+
 
   The second case: \blue{$a>1\text{ and }r>0\text{ and }s<0\text{ and }rs\not\inq$}.\\
 
-  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then there exists rational $x<rs<0$ such that for all rational $u\leq s<0$, we have $a^x>(a^r)^u=(\sup T)^u$, which is equivalent to $a^{\frac{x}{u}}<\sup T$. Then, we can deduce that for all $t\leq r$, we have $a^{\frac{x}{u}}<a^t$. Pick any negative $t$ then see  $\tCaC$. \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\sup U$. Then there exists $u\leq s<0$ such that for all rational $x<rs$, we have  $a^x<(a^r)^u$, which is equivalent to $a^{\frac{x}{u}}>a^r=\sup T$. Then, we can deduce for all rational $t\leq r$, we have $a^x<a^{tu}$, which is equivalent to $x<tu$.\\
+  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then $\exists x,\forall u, a^x>(a^r)^u=(\sup T)^u$. Because $u\leq s<0$, we have $\exists x,\forall u,a^{\frac{x}{u}}<\sup T$. Then, we have $\exists x,\forall u,\exists t,a^{\frac{x}{u}}<a^t$. Express $x=rm$, and let $0>s>u>m$, so we have  $\frac{x}{u}=\frac{rm}{u}>r\tCaC$. \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\sup U$. Then $\exists u,\forall x,a^x<(a^r)^u=(\sup T)^u$. Because $u\leq s<0$, we have $\exists u,\forall x, a^{\frac{x}{u}}>\sup T$. Then, we have $\exists u,\forall x,\forall t, a^{\frac{x}{u}}>a^t$. If $s\not\inq$, then we notice that because $u<s<0$, we have $r(\frac{s}{u})<r$. Pick $t$ such that $r(\frac{s}{u})<t<r$, so we have $rs>tu$. Then pick $x$ such that $0>rs>x>tu$, and observe $a^{\frac{x}{u}}<a^t\tCaC$. If $s\inq$, then it is possible to happen $u=s$. Then $a^{\frac{x}{u}}=a^{\frac{x}{s}}>a^{\frac{rs}{s}}=a^r\geq a^t\tCaC\bdone$  \\
 
-To sum up, we have deduced $\exists u\leq s<0,\forall x<rs,\forall t\leq r,x<tu$. Notice that for all $u\leq s<0$, we have $r(\frac{s}{u})<r$. So we can pick rational $t$ such that $r(\frac{s}{u})<t<r$. Then we have  $rs>tu$. Then we can pick an rational $x$ such that  $rs>x>tu\tCaC\bdone$,\\
+
+
+  \\
+
+
+
 
 The third case: \vi{$a>1\text{ and }r<0\text{ and }s>0\text{ and }rs\not\inq$}\\
 
-We first prove \teal{$(a^r)^s=(a^s)^r$}. Observe 
-\begin{gather}
-  (a^r)^s=(a^s)^r\\
-  \liff \inf \set{(a^r)^u:u\leq s}=\sup \set{(a^s)^t:t\leq r}\\
-  \liff \forall u\leq s,\forall t\leq r<0, (a^r)^u>(a^s)^t\\
-  \liff  \forall 0<u\leq s,\forall t\leq r<0, \sup \set{a^{t'}:t'\leq r}=a^r>(a^s)^{\frac{t}{u}}\\
-  \text{ and }\forall u<0,\forall t\leq r<0, \sup \set{a^{t'}:t'\leq r}=a^r<(a^s)^{\frac{t}{u}}\\ 
-  \rap{Notice that when $u=0$, (1.79) can be verifed, $(a^r)^u=1>(a^s)^t$}\\
-  \liff \forall 0<u\leq s,\forall t\leq r<0, \exists t'\leq r<0, a^{\frac{t'u}{t}}<a^s=\sup \set{a^{u'}:u'\leq s}\\
-  \liff \forall 0<u\leq s,\forall t\leq r<0,\exists t'\leq r<0,\exists u'\leq s, a^{t'u}>a^{tu'}
-\end{gather}
-The above can be verified. 
-\begin{gather}
-\liff  
-\end{gather}
+\As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\inf  U$. Then $\exists x,\exists u,a^x>(a^r)^u=(\sup T)^u $. Notice that $u\leq 0\implies (a^r)^u\geq 1>a^x$, so $u$ must be positive. Then we have $\exists x,\exists u,a^{\frac{x}{u}}>\sup T$. Then, we have $\exists x,\exists u,\forall t,a^{\frac{x}{u}}>a^t$. Notice that $\frac{x}{u}<\frac{rs}{u}<r$, so there  exists $t$ such that  $a^{\frac{x}{u}}<a^t\tCaC.$ \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\inf U$.  
 \end{proof}
-\section{Logarithm} 
 \section{Exercises}
 \begin{question}{}{}
 Given a nonzero rational $r$, prove that $r+x$ and $rx$ are irrational. 
