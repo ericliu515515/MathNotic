@@ -805,7 +805,7 @@ Notice that from now, when variables $t,u,x$ and their variants $t',u',x'$ are m
 
   The easiest case first:  \vi{$a>1\text{ and }r>0\text{ and }s>0\text{ and }rs\not\inq$}.\\
 
-  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then $\exists x,\forall u,a^x>(a^r)^u=(\sup T)^u$.  Let $u>0$, so we have $\forall t, a^{\frac{x}{u}}>a^t$. By \myref{Lemma}{1.4.11} \CaC. \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\sup U$. Then $\exists u,\forall x,(\sup T)^u=(a^r)^u>a^x$. Because $a^r>1$, we know $u>0$, since $u<0\implies (a^r)^u<1$. Then we have  $\exists u,\forall x,\sup T>a^{\frac{x}{u}}$, so we have $\exists u,\forall x,\exists t,a^t>a^{\frac{x}{u}}$. But we see that for all $u$, we can let  $x>ru$, so $a^{\frac{x}{u}}>a^r.\tCaC\vdone$   \\
+  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then $\exists x,\forall u,a^x>(a^r)^u=(\sup T)^u$.  Let $u>0$, so we have $\forall t, a^{\frac{x}{u}}>a^t$. By \myref{Lemma}{1.4.13} \CaC. \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\sup U$. Then $\exists u,\forall x,(\sup T)^u=(a^r)^u>a^x$. Because $a^r>1$, we know $u>0$, since $u<0\implies (a^r)^u<1$. Then we have  $\exists u,\forall x,\sup T>a^{\frac{x}{u}}$, so we have $\exists u,\forall x,\exists t,a^t>a^{\frac{x}{u}}$. But we see that for all $u$, we can let  $x>ru$, so $a^{\frac{x}{u}}>a^r.\tCaC\vdone$   \\
 
 
 
@@ -841,9 +841,151 @@ If $r,s$ are both rational, the proof reference to \myref{Theorem}{1.3.13}. Noti
 Notice that outside of the sixteen cases above, if $a=1\text{ or }s=0\text{ or }s=0$, the proof is trivial.
 
 \end{proof}
+\section{Euclidean Space}
+\fbox{\begin{minipage}{39em}
+In this section, we will use the notion of vector space to define Euclidean space, so we will first prove a simple and fundamental theorem about vector space. 
+\end{minipage}}
+\begin{theorem}
+\label{1.5.1}
+Let $V$ be a vector space over arbitrary filed $\F$ and of dimension $n$. We have that  $V$ is isomorphic to  $\F^n$  
+\end{theorem}
+\begin{proof}
+For people who don't know, $\F^n$ in most textbooks is defined as a vector space consisting of $n$-tuples, and $n$-tuples can be defined as follows for any natural $n$.\\
+
+ \begin{gather}
+   (c,d):=\set{\set{c},\set{c,d}}\\
+   (b,c,d):=(b,(c,d))=\set{\set{b},\set{b,(c,d)}}=\set{\set{b},\set{b,\set{\set{c},\set{c,d}}}}\\
+   (a,b,c,d):=(a,(b,c,d))=\cdots 
+\end{gather}
+
+
+  Let $\set{v_1,\dots,v_n}$ be a basis for $V$, and define $\phi: \set{v_1,\dots ,v_n} \rightarrow \F^n$ by $c_1v_1+\cdots+c_nv_n\mapsto (c_1,\dots,c_n)$. Notice that $\phi$ can verified to be linear and bijective by using the theorem that every vector in $V$ can be uniquely expressed as a linear combination of  $v_1,\dots ,v_n$.  
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Notice that the existence and uniqueness of real numbers field will be handled in Section 1.7,1.8,1.9, and from now on, let's just pretend that there exists an unique completed ordered field, which we call Real Numbers Field and denote $\R$.\\
+
+
+In this section, we will introduce Cauchy-Schwarz inequality and the idea of norm and inner product.\\
+
+When we use the word \textit{norm}, or the word \textir{norm function}, we mean a function that maps vectors in a complex or real vector space to non-negative real numbers.\\
+
+Because we haven't define complex numbers, the following definition should be interpreted as a "preview".   
+\end{minipage}}
+\begin{definition}
+\label{1.5.2}
+\textbf{(Definition of absolute value)} Let $x\inR$. We define the absolute value $\abso{x}$ of $x$ by
+\begin{equation}
+\abso{x}:=\begin{cases}
+  x & \text{ if $x>0$ }\\
+  -x& \text{ if $x\leq 0$  }
+\end{cases} 
+\end{equation}
+\end{definition}
+\begin{theorem}
+$\forall x\inr,\abso{x}^2=x^2$
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{definition}
+\label{1.5.3}
+\textbf{(Definition of $L_p$ norm, or, $p$-norm)} Let $p\geq 1\inR$, and let $\vecta{x}\inr^n$
+\begin{equation}
+\norm{\vecta{x}}_p:=(\sum_{i=1}^{n}\abso{x_i}^p)^{\frac{1}{p}} 
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{1.5.4}
+\textbf{(Definition of Euclidean $n$-space)}
+When we use the word \textit{Euclidean $n$-Space}, we mean $\R^n$ as a vector space equipped with a function $\gen{\cdot,\cdot}:\R^n\times\R^n\rightarrow \R$ called inner product defined by
+\begin{equation}
+\gen{\vecta{x},\vecta{y}}:=\sum_{i=1}^{n}x_iy_i
+\end{equation}
+and equipped with $2$-norm
+\begin{equation}
+\norm{\vecta{x}}:=\norm{\vecta{x}}_2=(\sum_{i=1}^{n}\abso{x_i}^2)^{\frac{1}{2}} 
+\end{equation}
+
+$2$-norm is also called Euclidean Norm or  $L_2$ norm. Notice that we also use the notation $\vecta{x}\cdot\vecta{y}$ in place of $\gen{\vecta{x},\vecta{y}}$, and when $n=1$, we can use \myref{Definition}{1.5.2} to verify $\norm{\vecta{x}}=\sqrt{\abso{x_1}^2} =\abso{x_1}$, so in Euclidean space, no matter of how many dimension, we also use the notation $\abso{\vecta{x}}$ in place of $\norm{\vecta{x}}$. Lastly, we can use \myref{Definition}{1.5.2}, to verify $\norm{\vecta{x}}=\gen{\vecta{x},\vecta{x}}$ in Euclidean Space. 
+\end{definition}
+\fbox{\begin{minipage}{39em}
+From now, we will just use $\R^n$ to denote Euclidean  $n$-space. 
+\end{minipage}}
+\begin{theorem}
+\label{1.5.5}
+\textbf{(Special Case of Schwarz inequality)}  Let  $\vecta{x},\vecta{y}\inR^n$. We have  
+ \begin{equation}
+\abso{\vecta{x}}\abso{\vecta{y}}\geq \abso{\vecta{x}\cdot \vecta{y}}
+\end{equation}
+The equality hold only if $\exists \ld\inr, \vecta{x}=\ld\vecta{y}$
+\end{theorem}
+\begin{proof}
+Let $f(t)=\sum_{i=1}^{n}(x_it-y_i)^2$, so we have
+\begin{align}
+f(t)&=\sum (x_it-y_i)^2\\
+&=\sum x_i^2t^2-2x_iy_it+y_i^2 \\
+&=t^2\sum x_i^2 -2t\sum x_iy_i+\sum y_i^2\\
+&=\abso{\vecta{x}}^2t^2-2(\vecta{x}\cdot\vecta{y})t+\abso{\vecta{y}}^2
+\end{align}
+$f(t)$ is nonnegative quadratic since $f(t)$ is a sum of squares. Then $D(f)\leq 0$; that is $4(\vecta{x}\cdot\vecta{y})^2-4\abso{\vecta{x}}^2\abso{\vecta{y}}^2\leq 0$, which implies $(\vecta{x}\cdot\vecta{y})^2\leq \abso{\vecta{x}}^2\abso{\vecta{y}}^2$, and further implies $\abso{\vecta{x}\cdot \vecta{y}}\leq \abso{\vecta{x}}\abso{\vecta{y}}$     \\
+
+If $\abso{\vecta{x}}\abso{\vecta{y}}=\abso{\vecta{x}\cdot\vecta{y}}$, Then $D(f)=0$, that is, there exists a unique $t'\inr$ such that $f(t')=0$ 
+\end{proof}
+\section{Complex Numbers}
+
+\begin{definition}
+\label{1.6.1}
+\textbf{(Definition of absolute value)} Let $x\inC$.\\
+\begin{equation}
+\abso{a+bi}=\sqrt{a^2+b^2} 
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{1.6.2}
+\textbf{(Definition of inner product)} Let $V$ be a vector space over $\F$ where  $\F$ is either  $\R$ or  $\C$. An inner product $\gen{\cdot,\cdot}:V\times V\rightarrow \F $ is a function that satisfy 
+\begin{equation}
+\forall \vecta{x,y}\inF,\gen{\vecta{x},\vecta{y}}=\overline{\gen{\vecta{y},\vecta{x}}} \text{ ( Conjugate symmetry) }
+\end{equation}
+\begin{equation}
+\forall \vecta{x,y,z}\inV, \forall a,b\inF, \gen{a\vecta{x}+b\vecta{y},\vecta{z}}=a\gen{\vecta{x},\vecta{z}}+b\gen{\vecta{y},\vecta{z}} \text{ ( Linearity in first argument) } 
+\end{equation}
+\begin{equation}
+\forall \vecta{x}\inV, \gen{\vecta{x},\vecta{x}}>0  
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{1.6.3}
+\textbf{(Definition of norm function)} Let $V$ be a vector space over  $\F\subseteq\C$. A norm, or norm function, $p:V\rightarrow \R$ is a function that satisfy 
+\begin{equation}
+  \forall \vecta{x,y}\inV, p(\vecta{x}+\vecta{y})\geq p(\vecta{x})+p(\vecta{y})  \text{( Subadditivity/Triangle inequality)}
+\end{equation}
+\begin{equation}
+\forall \vecta{x}\inV,\forall \ld\inF, p(\ld\vecta{x})=\abso{\ld}p(\vecta{x})\text{ ( Absolute homogenity) }
+\end{equation}
+\begin{equation}
+\forall \vecta{x}\inV, p(\vecta{x})=0\implies \vecta{x}=\vecta{0} \text{ ( Positive definiteness) }
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{1.6.4}
+\textbf{(Cauchy-Schwarz inequality)} Let $V$ be a complex inner product space, and let  $\vecta{v,w}\inV$. We have  
+ \begin{equation}
+\norm{\vecta{v}} \norm{\vecta{w}}\geq \abso{\gen{\vecta{v},\vecta{w}}}
+\end{equation}
+and the equality hold when $\vecta{v}=\ld\vecta{w}$
+\end{theorem}
+\begin{definition}
+\label{1.6.5}
+\textbf{(Definition of $p$-norm)} Let $p\geq 1\inR$, and let $\vecta{x}=(x_1,\dots ,x_n)$, where $x_1,\dots ,x_n$ can be real or complex.\\
+\begin{equation}
+\norm{\vecta{x}}_p:=(\sum_{i=1}^{n}\abso{x_i}^p)^{\frac{1}{p}} 
+\end{equation}
+\section{Existence of Real Numbers - Dedekind Cut*}
+\section{Existence of Real Numbers - Decimal*}
+\section{Uniqueness of Real Numbers*}
 \section{Exercises}
 \begin{question}{}{}
-Given a nonzero rational $r$, prove that $r+x$ and $rx$ are irrational. 
+Given a nonzero rational $r$ and an irrational $x$, prove that $r+x$ and $rx$ are irrational. 
 \end{question}
 \begin{question}{}{}
 Prove that no rational $r$ satisfy  $r^2=12$
