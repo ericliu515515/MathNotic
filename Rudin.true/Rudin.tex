@@ -865,11 +865,7 @@ For people who don't know, $\F^n$ in most textbooks is defined as a vector space
 Notice that the existence and uniqueness of real numbers field will be handled in Section 1.7,1.8,1.9, and from now on, let's just pretend that there exists an unique completed ordered field, which we call Real Numbers Field and denote $\R$.\\
 
 
-In this section, we will introduce Cauchy-Schwarz inequality and the idea of norm and inner product.\\
-
-When we use the word \textit{norm}, or the word \textir{norm function}, we mean a function that maps vectors in a complex or real vector space to non-negative real numbers.\\
-
-Because we haven't define complex numbers, the following definition should be interpreted as a "preview".   
+In this section, we will introduce the definition of Euclidean space and Cauchy-Schwarz inequality in Euclidean space. 
 \end{minipage}}
 \begin{definition}
 \label{1.5.2}
@@ -882,22 +878,23 @@ Because we haven't define complex numbers, the following definition should be in
 \end{equation}
 \end{definition}
 \begin{theorem}
-$\forall x\inr,\abso{x}^2=x^2$
+\label{1.5.3}
+$\forall x\inr,\abso{x}=\sqrt{x^2} $
 \end{theorem}
 \begin{proof}
-
+If $x>0$, then  $\abso{x}>0\text{ and }\abso{x}^2=x^2$. If $x\leq 0$, then $\abso{x}\geq 0\text{ and }\abso{x}^2=(-x)^2=x^2$. 
 \end{proof}
 \begin{definition}
-\label{1.5.3}
+\label{1.5.4}
 \textbf{(Definition of $L_p$ norm, or, $p$-norm)} Let $p\geq 1\inR$, and let $\vecta{x}\inr^n$
 \begin{equation}
 \norm{\vecta{x}}_p:=(\sum_{i=1}^{n}\abso{x_i}^p)^{\frac{1}{p}} 
 \end{equation}
 \end{definition}
 \begin{definition}
-\label{1.5.4}
+\label{1.5.5}
 \textbf{(Definition of Euclidean $n$-space)}
-When we use the word \textit{Euclidean $n$-Space}, we mean $\R^n$ as a vector space equipped with a function $\gen{\cdot,\cdot}:\R^n\times\R^n\rightarrow \R$ called inner product defined by
+When we use the word \textit{Euclidean $n$-Space}, we mean $\R^n$ as a vector space equipped with a function $\gen{\cdot,\cdot}:\R^n\times\R^n\rightarrow \R$ called \textin{Euclidean inner product} defined by
 \begin{equation}
 \gen{\vecta{x},\vecta{y}}:=\sum_{i=1}^{n}x_iy_i
 \end{equation}
@@ -906,13 +903,17 @@ and equipped with $2$-norm
 \norm{\vecta{x}}:=\norm{\vecta{x}}_2=(\sum_{i=1}^{n}\abso{x_i}^2)^{\frac{1}{2}} 
 \end{equation}
 
-$2$-norm is also called Euclidean Norm or  $L_2$ norm. Notice that we also use the notation $\vecta{x}\cdot\vecta{y}$ in place of $\gen{\vecta{x},\vecta{y}}$, and when $n=1$, we can use \myref{Definition}{1.5.2} to verify $\norm{\vecta{x}}=\sqrt{\abso{x_1}^2} =\abso{x_1}$, so in Euclidean space, no matter of how many dimension, we also use the notation $\abso{\vecta{x}}$ in place of $\norm{\vecta{x}}$. Lastly, we can use \myref{Definition}{1.5.2}, to verify $\norm{\vecta{x}}=\gen{\vecta{x},\vecta{x}}$ in Euclidean Space. 
+$2$-norm is also called \textit{Euclidean norm}  or  $L_2$ norm. Most time we use the notation $\vecta{x}\cdot\vecta{y}$ in place of $\gen{\vecta{x},\vecta{y}}$  and the notation $\abso{\vecta{x}}$ in place of $\norm{\vecta{x}}$, for abbreviation. Notice that by \myref{Theorem}{1.5.3}, when $\vecta{x}=(x_1)\inr^1$, we have $\abso{\vecta{x}}=\abso{x_1}$, so we don't have to worry about the compatibility of abbreviation.  Lastly, we can use \myref{Theorem}{1.5.3}, to verify $\abso{\vecta{x}}=(\vecta{x}\cdot\vecta{x})^{\frac{1}{2}}$ in Euclidean Space. 
 \end{definition}
 \fbox{\begin{minipage}{39em}
-From now, we will just use $\R^n$ to denote Euclidean  $n$-space. 
+Although the common usage of notation $\R^n$ only refer to the set without any structure, but from now, we will use $\R^n$ to denote Euclidean  $n$-space.\\
+
+Notice that Euclidean 3-space is a great tool to describe the physical world, and the idea of Euclidean norm and Euclidean inner product captures the essence of length and angle really well as we will explain in later section and chapter.\\
+
+Lastly, we close this section with a proof of Cauchy-Schwarz inequality in Euclidean space, and leave some important properties of Euclidean norm and Euclidean inner product to next section.  
 \end{minipage}}
 \begin{theorem}
-\label{1.5.5}
+\label{1.5.6}
 \textbf{(Special Case of Schwarz inequality)}  Let  $\vecta{x},\vecta{y}\inR^n$. We have  
  \begin{equation}
 \abso{\vecta{x}}\abso{\vecta{y}}\geq \abso{\vecta{x}\cdot \vecta{y}}
@@ -927,37 +928,60 @@ f(t)&=\sum (x_it-y_i)^2\\
 &=t^2\sum x_i^2 -2t\sum x_iy_i+\sum y_i^2\\
 &=\abso{\vecta{x}}^2t^2-2(\vecta{x}\cdot\vecta{y})t+\abso{\vecta{y}}^2
 \end{align}
-$f(t)$ is nonnegative quadratic since $f(t)$ is a sum of squares. Then $D(f)\leq 0$; that is $4(\vecta{x}\cdot\vecta{y})^2-4\abso{\vecta{x}}^2\abso{\vecta{y}}^2\leq 0$, which implies $(\vecta{x}\cdot\vecta{y})^2\leq \abso{\vecta{x}}^2\abso{\vecta{y}}^2$, and further implies $\abso{\vecta{x}\cdot \vecta{y}}\leq \abso{\vecta{x}}\abso{\vecta{y}}$     \\
+$f(t)$ is an nonnegative quadratic polynomial of $t$, since $f(t)$ is a sum of squares. Then $D(f)\leq 0$; that is $4(\vecta{x}\cdot\vecta{y})^2-4\abso{\vecta{x}}^2\abso{\vecta{y}}^2\leq 0$, which implies $(\vecta{x}\cdot\vecta{y})^2\leq \abso{\vecta{x}}^2\abso{\vecta{y}}^2$, and further implies $\abso{\vecta{x}\cdot \vecta{y}}\leq \abso{\vecta{x}}\abso{\vecta{y}}$     \\
 
-If $\abso{\vecta{x}}\abso{\vecta{y}}=\abso{\vecta{x}\cdot\vecta{y}}$, Then $D(f)=0$, that is, there exists a unique $t'\inr$ such that $f(t')=0$ 
+If $\abso{\vecta{x}}\abso{\vecta{y}}=\abso{\vecta{x}\cdot\vecta{y}}$, Then $D(f)=0$, that is, there exists a unique $t'\inr$ such that $f(t')=0$. Then we see $0=f(t')=\sum (x_it'-y_i)^2$, which implies $\forall i, y_i=x_it'$
 \end{proof}
+\renewcommand{\inC}{\in\C}
 \section{Complex Numbers}
-
-\begin{definition}
+\begin{theorem}
 \label{1.6.1}
-\textbf{(Definition of absolute value)} Let $x\inC$.\\
+If we define vector multiplication in $\R^2$  as
+ \begin{equation}
+ \vecta{xy}=(x_1y_1-x_2y_2,x_1y_2+x_2y_1)
+\end{equation}\\
+, then $\R^2$ become a field.
+\end{theorem}
+\begin{proof}
+The whole proof is long and tedious, here we only present some that are worth mentioning.\\
 \begin{equation}
-\abso{a+bi}=\sqrt{a^2+b^2} 
+\vecta{y}\vecta{x}=(y_1x_1-y_2x_2,y_1x_2+y_2x_1)=(x_1y_1-x_2y_2,x_1y_2+x_2y_1)=\vecta{x}\vecta{y}
 \end{equation}
-\end{definition}
+\begin{align}
+  (\vecta{x}\vecta{y})\vecta{z}&=(x_1y_1-x_2y_2,x_1y_2+x_2y_1)(z_1,z_2)\\
+  &=(x_1y_1z_1-x_2y_2z_1-x_1y_2z_2-x_2y_1z_2,x_1y_1z_2-x_2y_2z_2+x_1y_2z_1+x_2y_1z_1)\\
+  &=(x_1(y_1z_1-y_2z_2)-x_2(y_2z_1+y_1z_2),x_1(y_1z_2+y_2z_2)+x_2(y_1z_1-y_2z_2))\\
+  &=(x_1,x_2)(y_1z_1-y_2z_2,y_1z_2+y_2z_1)=\vecta{x}(\vecta{y}\vecta{z})
+\end{align}
+\begin{equation}
+  (1,0)\vecta{x}=(1,0)(x_1,x_2)=(x_1,x_2)\text{ and }\vecta{x}(1,0)=(x_1,x_2)(1,0)=(x_1,x_2)
+\end{equation}
+\begin{align}
+\vecta{x}(\frac{x_1}{x_1^2+x_2^2},\frac{-x_2}{x_1^2+x_2^2})&=(\frac{x_1^2+x_2^2}{x_1^2+x_2^2},\frac{-x_1x_2+x_1x_2}{x_1^2+x_2^2})\\
+&=(1,0)
+\end{align}
+\begin{align}
+\vecta{x}(\vecta{y}+\vecta{z})&=(x_1,x_2)(y_1+z_1,y_2+z_2)\\
+&=(x_1y_1+x_1z_1-x_2y_2-x_2z_2,x_2y_1+x_2z_1+x_1y_2+x_1z_2)\\
+&=(x_1y_1-x_2y_2,x_1y_2+x_2y_1)+(x_1z_1-x_2z_2,x_2z_1+x_1z_2)\\
+&=\vecta{xy}+\vecta{xz}
+\end{align}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+The fact that the field in \myref{Theorem}{1.6.1} is isomorphic to the customary  $\C$ can be easily verified by checking $(a,b)\mapsto a+bi$ is field isomorphism. We now define $\C$ in this way. Notice that this definition is an abuse of notation, since in this way, $\R\not\in\C$. The motivation behind this definition is to emphasize the geometric nature of $\C$.      
+\end{minipage}}
 \begin{definition}
 \label{1.6.2}
-\textbf{(Definition of inner product)} Let $V$ be a vector space over $\F$ where  $\F$ is either  $\R$ or  $\C$. An inner product $\gen{\cdot,\cdot}:V\times V\rightarrow \F $ is a function that satisfy 
-\begin{equation}
-\forall \vecta{x,y}\inF,\gen{\vecta{x},\vecta{y}}=\overline{\gen{\vecta{y},\vecta{x}}} \text{ ( Conjugate symmetry) }
-\end{equation}
-\begin{equation}
-\forall \vecta{x,y,z}\inV, \forall a,b\inF, \gen{a\vecta{x}+b\vecta{y},\vecta{z}}=a\gen{\vecta{x},\vecta{z}}+b\gen{\vecta{y},\vecta{z}} \text{ ( Linearity in first argument) } 
-\end{equation}
-\begin{equation}
-\forall \vecta{x}\inV, \gen{\vecta{x},\vecta{x}}>0  
-\end{equation}
+\textbf{(Definition of Complex Numbers)} We define $\C$ as the field in  \myref{Theorem}{1.6.1}. We write $(a,b)$ as $a+bi$ and $(a,-b)$ as $a-bi$. We define $\text{Re}(a+bi):=a$ and $\text{Im}(a+bi):=b$. We say the real part of  $a+bi$ is  $a$ and the imaginary part of  $a+bi$ is  $b$. We define the absolute of value of complex number as its length when it is treated as a vector in complex plane, which in our definition is a Euclidean space. Precisely, we define $\abso{a+bi}:=a^2+b^2$, which is compatible with $\abso{(a,b)}$. Moreover, we define the conjugate as  $\overline{a+bi}=a-bi$. We abuse the notation so that $a+0i\inr\subseteq\C$. 
 \end{definition}
-\begin{definition}
+\fbox{\begin{minipage}{39em}
+In last section we define the Euclidean norm. Here, we give the axioms of norm function and verify that Euclidean norm satisfy all of them. Notice that the three axioms of norm function each describe a property of length in Euclidean space, which is so "obviously true" if we use a non-rigorous approach in geometry. 
+\end{minipage}}
+\begin{axiom}
 \label{1.6.3}
-\textbf{(Definition of norm function)} Let $V$ be a vector space over  $\F\subseteq\C$. A norm, or norm function, $p:V\rightarrow \R$ is a function that satisfy 
+\textbf{(Axioms of norm function)} Let $V$ be a vector space over  $\F\subseteq\C$. A norm, or norm function, $p:V\rightarrow \R$ is a function that satisfy 
 \begin{equation}
-  \forall \vecta{x,y}\inV, p(\vecta{x}+\vecta{y})\geq p(\vecta{x})+p(\vecta{y})  \text{( Subadditivity/Triangle inequality)}
+  \forall \vecta{x,y}\inV, p(\vecta{x}+\vecta{y})\leq p(\vecta{x})+p(\vecta{y})  \text{( Triangle inequality)}
 \end{equation}
 \begin{equation}
 \forall \vecta{x}\inV,\forall \ld\inF, p(\ld\vecta{x})=\abso{\ld}p(\vecta{x})\text{ ( Absolute homogenity) }
@@ -965,9 +989,30 @@ If $\abso{\vecta{x}}\abso{\vecta{y}}=\abso{\vecta{x}\cdot\vecta{y}}$, Then $D(f)
 \begin{equation}
 \forall \vecta{x}\inV, p(\vecta{x})=0\implies \vecta{x}=\vecta{0} \text{ ( Positive definiteness) }
 \end{equation}
-\end{definition}
+\end{axiom}
 \begin{theorem}
 \label{1.6.4}
+Euclidean norm satisfy the three axioms.
+\end{theorem}
+\begin{proof}
+We started from the last sentence of \myref{Definition}{1.5.5}, for which we have $\abso{\vecta{x}+\vecta{y}}=((\vecta{x}+\vecta{y})\cdot(\vecta{x}+\vecta{y}))^{\frac{1}{2}}$ 
+\end{proof}
+\begin{axiom}
+\label{1.6.5}
+\textbf{(Axioms of inner product)} Let $V$ be a vector space over $\F$, where $\F$ is either $\R$ or $\C$. An inner product $\gen{\cdot,\cdot}:V\times V\rightarrow \F $ is a function that satisfy the following three axioms: 
+\begin{equation}
+\forall \vecta{x,y}\inF,\gen{\vecta{x},\vecta{y}}=\overline{\gen{\vecta{y},\vecta{x}}}\text{ ( Conjugate Symmetry)}
+\end{equation}
+\begin{equation}
+\forall \vecta{x,y,z}\inV, \forall a,b\inF, \gen{a\vecta{x}+b\vecta{y},\vecta{z}}=a\gen{\vecta{x},\vecta{z}}+b\gen{\vecta{y},\vecta{z}} \text{ ( Linearity in first argument)} 
+\end{equation}
+\begin{equation}
+\forall \vecta{x}\inV, \gen{\vecta{x},\vecta{x}}\geq 0 \text{ ( Positive Semi-definitness) }  
+\end{equation}
+Notice that to satisfy the third axiom, we first have to guarantee that $\forall \vecta{x}\inV,\gen{\vecta{x},\vecta{x}}\inr$. This is implied by the first axiom, since $\gen{\vecta{x},\vecta{x}}=\overline{\gen{\vecta{x},\vecta{x}}}$ 
+\end{axiom}
+\begin{theorem}
+\label{1.6.6}
 \textbf{(Cauchy-Schwarz inequality)} Let $V$ be a complex inner product space, and let  $\vecta{v,w}\inV$. We have  
  \begin{equation}
 \norm{\vecta{v}} \norm{\vecta{w}}\geq \abso{\gen{\vecta{v},\vecta{w}}}
@@ -975,7 +1020,7 @@ If $\abso{\vecta{x}}\abso{\vecta{y}}=\abso{\vecta{x}\cdot\vecta{y}}$, Then $D(f)
 and the equality hold when $\vecta{v}=\ld\vecta{w}$
 \end{theorem}
 \begin{definition}
-\label{1.6.5}
+\label{1.6.7}
 \textbf{(Definition of $p$-norm)} Let $p\geq 1\inR$, and let $\vecta{x}=(x_1,\dots ,x_n)$, where $x_1,\dots ,x_n$ can be real or complex.\\
 \begin{equation}
 \norm{\vecta{x}}_p:=(\sum_{i=1}^{n}\abso{x_i}^p)^{\frac{1}{p}} 

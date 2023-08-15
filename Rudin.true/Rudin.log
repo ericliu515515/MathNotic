@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  14 AUG 2023 18:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  15 AUG 2023 18:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -965,7 +965,22 @@ l.108 {ex}
 (/usr/local/texlive/2023/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2021/07/05 v2.14 TOC entries
 \ttl@leftsep=\dimen321
-)) (./macros.tex) (./letterfonts.tex) (./Rudin.aux)
+)) (./macros.tex
+
+./macros.tex:25: LaTeX Error: Command \inC already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.25 \newcommand{\inC}{\in\C}
+                             
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+) (./letterfonts.tex) (./Rudin.aux)
 \openout1 = `Rudin.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -1701,55 +1716,57 @@ Underfull \hbox (badness 10000) in paragraph at lines 853--854
  []
 
 [22]
-Underfull \hbox (badness 10000) in paragraph at lines 873--873
+Underfull \hbox (badness 10000) in paragraph at lines 869--869
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 873--873
-
- []
-
-./Rudin.tex:873: Undefined control sequence.
-<argument> ...\textit {norm}, or the word \textir 
-                                                  {norm function}, we mean a...
-l.873 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 873--873
-
- []
-
-[23]
-Underfull \hbox (badness 10000) in paragraph at lines 929--931
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 938--939
-
- []
-
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 979--980
-
- []
-
-[25] [26]
-
-./Rudin.tex:1002: LaTeX Error: \begin{definition} on input line 977 ended by \end{document}.
+./Rudin.tex:897: LaTeX Error: Command \textin unavailable in encoding T1.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.1002 \end{document}
+l.897 ...n\times\R^n\rightarrow \R$ called \textin
+                                                  {Euclidean inner product} ...
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+[23]
+Underfull \hbox (badness 10000) in paragraph at lines 914--914
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 914--914
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 930--932
+
+ []
+
+[24]
+Underfull \hbox (badness 10000) in paragraph at lines 946--947
+
+ []
+
+[25]
+Underfull \hbox (badness 10000) in paragraph at lines 1024--1025
+
+ []
+
+[26] [27]
+
+./Rudin.tex:1047: LaTeX Error: \begin{definition} on input line 1022 ended by \end{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1047 \end{document}
                      
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
@@ -1763,21 +1780,21 @@ LaTeX Font Warning: Size substitutions with differences
  )
 (\end occurred inside a group at level 1)
 
-### semi simple group (level 1) entered at line 977 (\begingroup)
+### semi simple group (level 1) entered at line 1022 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 35411 strings out of 476025
- 716500 string characters out of 5790017
+ 35430 strings out of 476025
+ 716757 string characters out of 5790017
  1873388 words of memory out of 5000000
- 55000 multiletter control sequences out of 15000+600000
+ 55004 multiletter control sequences out of 15000+600000
  539415 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  103i,14n,99p,980b,1520s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc3583.pfb>
-Output written on Rudin.pdf (28 pages, 404790 bytes).
+Output written on Rudin.pdf (29 pages, 409546 bytes).
 PDF statistics:
- 664 PDF objects out of 1000 (max. 8388607)
- 497 compressed objects within 5 object streams
- 214 named destinations out of 1000 (max. 500000)
+ 692 PDF objects out of 1000 (max. 8388607)
+ 523 compressed objects within 6 object streams
+ 229 named destinations out of 1000 (max. 500000)
  253 words of extra memory for PDF output out of 10000 (max. 10000000)
 
