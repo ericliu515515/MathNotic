@@ -972,14 +972,61 @@ The fact that the field in \myref{Theorem}{1.6.1} is isomorphic to the customary
 \end{minipage}}
 \begin{definition}
 \label{1.6.2}
-\textbf{(Definition of Complex Numbers)} We define $\C$ as the field in  \myref{Theorem}{1.6.1}. We write $(a,b)$ as $a+bi$ and $(a,-b)$ as $a-bi$. We define $\text{Re}(a+bi):=a$ and $\text{Im}(a+bi):=b$. We say the real part of  $a+bi$ is  $a$ and the imaginary part of  $a+bi$ is  $b$. We define the absolute of value of complex number as its length when it is treated as a vector in complex plane, which in our definition is a Euclidean space. Precisely, we define $\abso{a+bi}:=a^2+b^2$, which is compatible with $\abso{(a,b)}$. Moreover, we define the conjugate as  $\overline{a+bi}=a-bi$. We abuse the notation so that $a+0i\inr\subseteq\C$. 
+\textbf{(Definition of Complex Numbers)} We define $\C$ as the field in  \myref{Theorem}{1.6.1}. We write $(a,b)$ as $a+bi$ and $(a,-b)$ as $a-bi$. We define $\text{Re}(a+bi):=a$ and $\text{Im}(a+bi):=b$. We say the real part of  $a+bi$ is  $a$ and the imaginary part of  $a+bi$ is  $b$. We define the absolute of value of complex number as its length when it is treated as a vector in complex plane, which in our definition is a Euclidean space. Precisely, we define $\abso{a+bi}:=(a^2+b^2)^{\frac{1}{2}}=\abso{(a,b)}$. Moreover, we define the conjugate as  $\overline{a+bi}=a-bi$. We abuse the notation so that $a+0i\inr\subseteq\C$. 
 \end{definition}
+\begin{theorem}
+\label{1.6.3}
+Let $z,w\inC$. We have
+\begin{equation}
+\overline{(\overline{z})}=z
+\end{equation}
+\begin{equation}
+\overline{z+w}=\overline{z}+\overline{w} 
+\end{equation}
+\begin{equation}
+\overline{zw}=(\overline{z})(\overline{w})
+\end{equation}
+\begin{equation}
+  \overline{z^n}=(\overline{z})^n
+\end{equation}
+\begin{equation}
+z+\overline{z}=2\text{Re}(z)\text{ and }z-\overline{z}=2i\text{Im}(z)
+\end{equation}
+\begin{equation}
+\abso{\overline{z}}=\abso{z}
+\end{equation}
+\begin{equation}
+\abso{zw}=\abso{z}\abso{w}
+\end{equation}
+\begin{equation}
+\abso{z^n}=\abso{z}^n
+\end{equation}
+\end{theorem}
+\begin{proof}
+We prove only the following. Let $z=z_1+z_2i$ and $w=w_1+w_2i$. We have
+ \begin{align}
+   \overline{(\overline{z})(\overline{w})}&=\overline{(z_1-z_2i)(w_1-w_2i)}\\
+   &=\overline{z_1w_1-z_2w_2-(z_2w_1+z_1w_2)i}\\
+   &=z_1w_1-z_2w_2+(z_2w_1+z_1w_2)i\\
+   &=zw
+\end{align}
+\begin{equation}
+\abso{\overline{z}}=(z_1^2+(-z_2)^2)^{\frac{1}{2}}=(z_1^2+z_2^2)^{\frac{1}{2}}=\abso{z}
+\end{equation}
+\begin{align}
+\abso{zw}&=\abso{z_1w_1-z_2w_2+(z_2w_1+z_1w_2)i}\\
+&=[(z_1w_1-z_2w_2)^2+(z_2w_1+z_1w_2)^2]^{\frac{1}{2}}\\
+&=[(z_1w_1)^2+(z_2w_2)^2-2z_1z_2w_1w_2+(z_2w_1)^2+(z_1w_2)^2+2z_1z_2w_1w_2]^{\frac{1}{2}}\\
+&=[z_1^2w_1^2+z_2^2w_1^2+z_1^2w_2^2+z_2^2w_2^2]^{\frac{1}{2}}\\
+&=[(z_1^2+z_2^2)(w_1^2+w_2^2)]^{\frac{1}{2}}=(z_1^2+z_2^2)^{\frac{1}{2}}(w_1^2+w_2^2)^{\frac{1}{2}}=\abso{z}\abso{w}
+\end{align}
+\end{proof}
 \fbox{\begin{minipage}{39em}
-In last section we define the Euclidean norm. Here, we give the axioms of norm function and verify that Euclidean norm satisfy all of them. Notice that the three axioms of norm function each describe a property of length in Euclidean space, which is so "obviously true" if we use a non-rigorous approach in geometry. 
+In last section we define the Euclidean norm. Here, we give the axioms for norm function and verify that Euclidean norm satisfy all of them. Notice that the four axioms of norm function each describe a property of length in Euclidean space, which is so "obviously true" if we use a non-rigorous approach in geometry. 
 \end{minipage}}
 \begin{axiom}
-\label{1.6.3}
-\textbf{(Axioms of norm function)} Let $V$ be a vector space over  $\F\subseteq\C$. A norm, or norm function, $p:V\rightarrow \R$ is a function that satisfy 
+\label{1.6.4}
+\textbf{(Axioms for norm function)} Let $V$ be a vector space over  $\F\subseteq\C$. A norm, or norm function, $p:V\rightarrow \R$ is a function that satisfy 
 \begin{equation}
   \forall \vecta{x,y}\inV, p(\vecta{x}+\vecta{y})\leq p(\vecta{x})+p(\vecta{y})  \text{( Triangle inequality)}
 \end{equation}
@@ -987,44 +1034,229 @@ In last section we define the Euclidean norm. Here, we give the axioms of norm f
 \forall \vecta{x}\inV,\forall \ld\inF, p(\ld\vecta{x})=\abso{\ld}p(\vecta{x})\text{ ( Absolute homogenity) }
 \end{equation}
 \begin{equation}
+\forall \vecta{x}\inV,p(\vecta{x})\geq 0\text{( Nonnegativity)}
+\end{equation}
+\begin{equation}
 \forall \vecta{x}\inV, p(\vecta{x})=0\implies \vecta{x}=\vecta{0} \text{ ( Positive definiteness) }
 \end{equation}
+
 \end{axiom}
 \begin{theorem}
-\label{1.6.4}
-Euclidean norm satisfy the three axioms.
+\label{1.6.5}
+Euclidean norm satisfy the four axioms.
 \end{theorem}
 \begin{proof}
-We started from the last sentence of \myref{Definition}{1.5.5}, for which we have $\abso{\vecta{x}+\vecta{y}}=((\vecta{x}+\vecta{y})\cdot(\vecta{x}+\vecta{y}))^{\frac{1}{2}}$ 
-\end{proof}
-\begin{axiom}
-\label{1.6.5}
-\textbf{(Axioms of inner product)} Let $V$ be a vector space over $\F$, where $\F$ is either $\R$ or $\C$. An inner product $\gen{\cdot,\cdot}:V\times V\rightarrow \F $ is a function that satisfy the following three axioms: 
+We started from the last sentence of \myref{Definition}{1.5.5}, for which we have $\abso{\vecta{x}+\vecta{y}}=((\vecta{x}+\vecta{y})\cdot(\vecta{x}+\vecta{y}))^{\frac{1}{2}}$. Observe
+\begin{align}
+\abso{\vecta{x}+\vecta{y}}^2&=(\vecta{x}+\vecta{y})\cdot(\vecta{x}+\vecta{y})\\
+&=\vecta{x}\cdot(\vecta{x}+\vecta{y})+\vecta{y}\cdot(\vecta{x}+\vecta{y})\\
+&=\abso{\vecta{x}}^2+\abso{\vecta{y}}^2+2(\vecta{x}\cdot\vecta{y})
+\end{align}
+and observe
 \begin{equation}
-\forall \vecta{x,y}\inF,\gen{\vecta{x},\vecta{y}}=\overline{\gen{\vecta{y},\vecta{x}}}\text{ ( Conjugate Symmetry)}
+  (\abso{\vecta{x}}+\abso{\vecta{y}})^2=\abso{\vecta{x}}^2+\abso{\vecta{y}}^2+2\abso{\vecta{x}}\abso{\vecta{y}}
+\end{equation}
+by \myref{Theorem}{1.5.6}, we then have $\abso{\vecta{x}+\vecta{y}}^2\leq (\abso{\vecta{x}}+\abso{\vecta{y}})^2$. The triangle inequality follows.\\
+
+Observe
+\begin{align}
+\abso{\ld\vecta{x}}&=(\sum (\ld x_i)^2)^{\frac{1}{2}}\\
+&=(\ld ^2\sum x_i^2)^{\frac{1}{2}}\\
+&=\abso{\ld }(\sum x_i^2)^{\frac{1}{2}}\\
+&=\abso{\ld }\abso{\vecta{x}}
+\end{align}
+Notice that $\abso{\vecta{x}}=\sum x_i^2\geq 0$ and notice that $\abso{\vecta{x}}=0\implies \sum x_i^2=0\implies \forall i,x_i=0\implies \vecta{x}=\vecta{0}$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+In later chapters, we will introduce norms defined in different ways and spaces. For example, in Euclidean space we can define  $\norm{\vecta{x}}:=\max (\abso{x_1},\abso{x_2},\dots ,\abso{x_n})$. One can check this definition does satisfy four axioms. Also, notice that because  $\C$ is an Euclidean 2-space,  by \myref{Theorem}{1.6.5}, the four axioms of norm function also apply to the absolute of complex numbers.\\
+
+Next, we introduce the three axioms for inner product. 
+\end{minipage}}
+\begin{axiom}
+\label{1.6.6}
+\textbf{(Axioms for inner product)} Let $V$ be a vector space over $\F$, where $\F$ is either $\R$ or $\C$. An inner product $\gen{\cdot,\cdot}:V\times V\rightarrow \F $ is a function that satisfy the following three axioms: 
+\begin{equation}
+\forall \vecta{x,y}\inV,\gen{\vecta{x},\vecta{y}}=\overline{\gen{\vecta{y},\vecta{x}}}\text{ ( Conjugate Symmetry)}
 \end{equation}
 \begin{equation}
 \forall \vecta{x,y,z}\inV, \forall a,b\inF, \gen{a\vecta{x}+b\vecta{y},\vecta{z}}=a\gen{\vecta{x},\vecta{z}}+b\gen{\vecta{y},\vecta{z}} \text{ ( Linearity in first argument)} 
 \end{equation}
 \begin{equation}
-\forall \vecta{x}\inV, \gen{\vecta{x},\vecta{x}}\geq 0 \text{ ( Positive Semi-definitness) }  
+\vecta{x}\neq \vecta{0}\longrightarrow \gen{\vecta{x},\vecta{x}}>0 \text{ ( Positive Definitness) }  
 \end{equation}
 Notice that to satisfy the third axiom, we first have to guarantee that $\forall \vecta{x}\inV,\gen{\vecta{x},\vecta{x}}\inr$. This is implied by the first axiom, since $\gen{\vecta{x},\vecta{x}}=\overline{\gen{\vecta{x},\vecta{x}}}$ 
 \end{axiom}
 \begin{theorem}
-\label{1.6.6}
-\textbf{(Cauchy-Schwarz inequality)} Let $V$ be a complex inner product space, and let  $\vecta{v,w}\inV$. We have  
- \begin{equation}
-\norm{\vecta{v}} \norm{\vecta{w}}\geq \abso{\gen{\vecta{v},\vecta{w}}}
-\end{equation}
-and the equality hold when $\vecta{v}=\ld\vecta{w}$
-\end{theorem}
-\begin{definition}
 \label{1.6.7}
-\textbf{(Definition of $p$-norm)} Let $p\geq 1\inR$, and let $\vecta{x}=(x_1,\dots ,x_n)$, where $x_1,\dots ,x_n$ can be real or complex.\\
+Euclidean inner product satisfy the three axioms. 
+\end{theorem}
+\begin{proof}
+Let $\vecta{x},\vecta{y},\vecta{z}\inR^n$, and $a,b\inr$. Observe
 \begin{equation}
-\norm{\vecta{x}}_p:=(\sum_{i=1}^{n}\abso{x_i}^p)^{\frac{1}{p}} 
+\vecta{x}\cdot\vecta{y}=\sum x_iy_i=\sum y_ix_i=\vecta{y}\cdot\vecta{x}=\overline{\vecta{y}\cdot\vecta{x}}
 \end{equation}
+\begin{equation}
+  (a\vecta{x}+b\vecta{y})\cdot\vecta{z}=\sum (ax_i+by_i)z_i=a\sum x_iz_i + b\sum y_iz_i=a(\vecta{x}\cdot\vecta{z})+b(\vecta{y}\cdot\vecta{z})
+\end{equation}
+\begin{equation}
+\vecta{x}\cdot\vecta{x}=\sum x_i^2\geq 0
+\end{equation}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+    In 2 or 3 dimension, Euclidean inner product captures the essence of angle really well, as one may remember $\vecta{x}\cdot\vecta{y}=\abso{\vecta{x}}\abso{\vecta{y}}\cos\theta $. However, to rigorously explain why $\sum x_iy_i=\abso{\vecta{x}}\abso{\vecta{y}}\cos\theta $ is for now impossible, since we haven't define  $\cos$. Notice that one can define $\cos$ using Taylor series.\\
+
+Normally, one doesn't use the notation $\vecta{x}\cdot\vecta{y}$ in place of $\gen{\vecta{x},\vecta{y}}$, since these two notations have completely two different meaning in modern mathematics. The former is called dot product, defined only in Euclidean space and defined only by $\vecta{x}\cdot\vecta{y}:=\sum x_iy_i$. The latter is a wide notation of every function that satisfy the three axioms. Obviously the former is only an example of the latter, and we only use $\vecta{x}\cdot\vecta{y}$ in place of $\gen{\vecta{x},\vecta{y}}$, when the latter in context is equivalent to the former, e.g. Euclidean inner product.\\
+
+A quite meaningless example of an inner product is $\gen{\vecta{x},\vecta{y}}:=0$. A more complicated example of an inner product is for space of continuous complex valued function from real interval $[a,b]$ defined by $\gen{f,g}:=\int_a^b f(t)\overline{g(t)}dt$\\
+
+In last section, we "verified" that in Euclidean space, we have $\norm{\vecta{x}}=\gen{\vecta{x},\vecta{x}}^{\frac{1}{2}}$. Now, we prove that every inner product induce a norm, using Parallelogram Law. However, here we have to emphasize that \textit{even though every inner product space come with a norm, not any normed space come with an inner product}.
+\end{minipage}}
+\begin{definition}
+\label{1.6.8}
+\textbf{(Parallelogram Law)} We say a normed space $V$ satisfy Parallelogram Law if for all $\vecta{x},\vecta{y}\inV$, we have
+ \begin{equation}
+\norm{\vecta{x}+\vecta{y}}^2+\norm{\vecta{x}-\vecta{y}}^2=2(\norm{\vecta{x}}^2+\norm{\vecta{y}}^2)
+\end{equation}
+\end{definition}
+\begin{lemma}
+\label{1.6.9}
+\textbf{(Arising from inner product $\longrightarrow $ Satisfying Parallelogram Law)} For an inner product space, if we define $\norm{\vecta{x}}=\gen{\vecta{x},\vecta{x}}^{\frac{1}{2}}$, then we have 
+\end{lemma}
+\begin{proof}
+Notice that $\gen{\vecta{a},\vecta{b}+\vecta{c}}=\gen{\vecta{a},\vecta{b}}+\gen{\vecta{a},\vecta{c}}$ and observe 
+\begin{align}
+\norm{\vecta{x}+\vecta{y}}^2+\norm{\vecta{x}-\vecta{y}}^2&=\gen{\vecta{x}+\vecta{y},\vecta{x}+\vecta{y}}+\gen{\vecta{x}-\vecta{y},\vecta{x}-\vecta{y}}\\
+&=\gen{\vecta{x},\vecta{x}+\vecta{y}}+\gen{\vecta{y},\vecta{x}+\vecta{y}}+\gen{\vecta{x},\vecta{x}-\vecta{y}}-\gen{\vecta{y},\vecta{x}-\vecta{y}}\\
+&=2\gen{\vecta{x},\vecta{x}}+2\gen{\vecta{y},\vecta{y}}+\gen{\vecta{x},\vecta{y}}+\gen{\vecta{y},\vecta{x}}-\gen{\vecta{x},\vecta{y}}-\gen{\vecta{y},\vecta{x}}\\
+&=2\gen{\vecta{x},\vecta{x}}+2\gen{\vecta{y},\vecta{y}}=2(\norm{\vecta{x}}^2+\norm{\vecta{y}}^2)
+\end{align}
+\end{proof}
+\begin{theorem}
+\label{1.6.10}
+Every inner product give rise to a definition of norm $\norm{\vecta{x}}=\gen{\vecta{x},\vecta{x}}^{\frac{1}{2}}$
+\end{theorem}
+\begin{proof}
+Let $V$ be an inner product space and define  $\norm{\vecta{x}}:=\gen{\vecta{x},\vecta{x}}^{\frac{1}{2}}$. \As{there exists $\vecta{x},\vecta{y}$ such that $\norm{\vecta{x}+\vecta{y}}>\norm{\vecta{x}}+\norm{\vecta{y}}$}. Observe
+\begin{equation}
+\norm{\vecta{x}+\vecta{y}}^2>\norm{\vecta{x}}^2+\norm{\vecta{y}}^2+2\norm{\vecta{x}}\norm{\vecta{y}}
+\end{equation}
+Notice $\gen{-\vecta{a},-\vecta{a}}=-\gen{\vecta{a},-\vecta{a}}=\overline{-\gen{-\vecta{a},\vecta{a}}}=\overline{\gen{\vecta{a},\vecta{a}}}=\gen{\vecta{a},\vecta{a}}$ and observe
+\begin{align}
+  \norm{\vecta{x}-\vecta{y}}^2&>\norm{\vecta{x}}^2+\norm{-\vecta{y}}^2+2\norm{\vecta{x}}\norm{-\vecta{y}}\\
+  &= \norm{\vecta{x}}^2+\norm{\vecta{y}}^2+2\norm{\vecta{x}}\norm{\vecta{y}}
+\end{align}
+So we have
+\begin{equation}
+\norm{\vecta{x}+\vecta{y}}^2+\norm{\vecta{x}-\vecta{y}}^2>2(\norm{\vecta{x}}^2+\norm{\vecta{y}}^2)+4\norm{\vecta{x}}\norm{\vecta{y}}\geq 2(\norm{\vecta{x}}^2+\norm{\vecta{y}}^2)
+\end{equation}
+This \CaC to \myref{Lemma}{1.6.8}.\\
+
+Observe
+\begin{equation}
+\norm{\ld \vecta{x}}=(\gen{\ld \vecta{x},\ld \vecta{x}})^{\frac{1}{2}}=(\ld \overline{\ld }\gen{\vecta{x},\vecta{x}})^{\frac{1}{2}}=(\ld \overline{\ld })^{\frac{1}{2}}(\gen{\vecta{x},\vecta{x}})^{\frac{1}{2}}=\abso{\ld }\norm{\vecta{x}}
+\end{equation}
+Nonnegativity and Positive definiteness of norm function follows from Positive definiteness of inner product and $\gen{\vecta{0},\vecta{0}}=0$. 
+\end{proof}
+\fbox{\begin{minipage}{39em}
+For the last sentence of the last paragraph, we here state it in precision: Let $f(x,y)$ be an inner product, then the function $g(x)=\sqrt{f(x,x)}$ satisfy the norm axiom, but if let $l(x)$ be a norm function, it doesn't always exists a function  $h(x,y)$ such that $l(x)=\sqrt{h(x,x)}\text{ and }h$ satisfy the inner product axioms.\\
+
+An amazing fact is that for a normed space $V$ over $\R$ or  $\C$,  if $V$ satisfy Parallelogram Law, then we can define an inner product on  $V$ by  $\gen{\vecta{x},\vecta{y}}:=\begin{cases}
+  \frac{\norm{\vecta{x}+\vecta{y}}^2-\norm{\vecta{x}-\vecta{y}}^2}{4}& \text{ if over $\R$ }\\
+  \frac{\norm{\vecta{x}+\vecta{y}}^2-\norm{\vecta{x}-\vecta{y}}^2}{4}+i \frac{\norm{i\vecta{x}-\vecta{y}}^2-\norm{i\vecta{x}+\vecta{y}}^2}{4}& \text{ if over $\C$ }
+\end{cases}$ so that this inner product not only satisfy all the axioms for inner product, we also have $\norm{\vecta{x}}=(\gen{\vecta{x},\vecta{x}})^{\frac{1}{2}}$.\\
+
+So, in other word, a norm is induced by an inner product if and only if the norm satisfy the Parallelogram Law. Isn't this amazing? For the proof of only if part, we put it in complicated exercises.\\
+
+We close this section with a special case of Cauchy-Schwarz inequality and the most general Cauchy-Schwarz inequality.
+\end{minipage}}
+\begin{theorem}
+\label{1.6.11}
+\textbf{(Cauchy-Schwarz inequality in $\C^n$)} Let $\vecta{v}=(v_1,\dots ,v_n)\inC^n$ and $\vecta{w}=(w_1,\dots ,w_n)\inC^n$ 
+ \begin{equation}
+   \abso{\sum v_j\overline{w_j}}\leq (\sum \abso{v_j}^2)^{\frac{1}{2}}(\sum \abso{w_j}^2)^{\frac{1}{2}} 
+\end{equation}
+and the equality hold if and only if  $\exists \ld \inC,\vecta{w}=\ld\vecta{v}$\\
+
+Also, if we define inner product on $\C^n$ as $\gen{\vecta{v},\vecta{w}}:=\sum v_j\overline{w_j}$ and induce norm as $\norm{\vecta{v}}:=\gen{\vecta{v},\vecta{v}}^{\frac{1}{2}}$, the special case of Cauchy-Schwarz inequality in $\C^n$ can also be shortened to
+ \begin{equation}
+\abso{\gen{\vecta{v},\vecta{w}}}\leq (\norm{\vecta{v}})(\norm{\vecta{w}})
+\end{equation}
+\end{theorem}
+\begin{proof}
+Define $A:=\sum \abso{v_j}^2=\norm{\vecta{v}}^2,B:=\sum \abso{w_j}^2=\norm{\vecta{w}}^2,C:=\sum v_j\overline{w_j}=\gen{\vecta{v},\vecta{w}}$\\
+
+Notice that $B=0$ implies $\forall j,w_j=0$, then two sides of inequality are both $0$ and  $\ld=0$. We have proven the case of $B=0$, now we prove the case of  $B>0$. Keep in mind that $A,B\inR$ and observe
+\begin{align}
+\sum \abso{Bv_j-Cw_j}^2&=\sum (Bv_j-Cw_j)\overline{(Bv_j-Cw_j)}\\
+&=\sum (Bv_j-Cw_j)(B\overline{v_j}-\overline{C}\overline{w_j})\\
+&=\sum B^2\abso{v_j}^2-BC\overline{v_j}w_j-B\overline{C}v_j\overline{w_j}+C\overline{C}\abso{w_j}^2\\
+&=B^2A-BC\overline{C}-B\overline{C}C+C\overline{C}B\\
+&=B^2A-BC\overline{C}\\
+&=B(AB-\abso{C}^2) 
+\end{align}
+
+Because $B>0$, then we can deduce
+\begin{equation}
+\sum \abso{v_j}^2\sum \abso{w_j}^2 - \abso{\sum v_j\overline{w_j}}^2=AB-\abso{C}^2=\frac{1}{B}\sum \abso{Bv_j-Cw_j}^2\geq 0
+\end{equation}
+So we can deduce
+\begin{equation}
+\sum \abso{v_j}^2\sum \abso{w_j}^2\geq \abso{\sum v_j\overline{w_j}}^2
+\end{equation}
+Square both side then the Theorem follows.\\
+
+Notice that the equality hold true if and only if $\sum \abso{Bv_j-Cw_j}^2=0$, which is equivalent to $\forall j, w_j=\frac{B}{C}v_j$, and equivalent to $\vecta{w}=\frac{B}{C}\vecta{v}$, where $\ld =\frac{B}{C}=\frac{\norm{\vecta{w}}^2}{\gen{\vecta{v},\vecta{w}}}$
+\end{proof}
+\begin{theorem}
+\label{1.6.12}
+\textbf{(General Cauchy-Schwarz inequality)} For all inner product space $V$ where the norm is induced by the inner product, we have
+\begin{equation}
+\abso{\gen{\vecta{v},\vecta{w}}}\leq (\norm{\vecta{v}})(\norm{\vecta{w}})
+\end{equation}
+and the equality hold if and only if  $\vecta{w}=\ld \vecta{v}$
+\end{theorem}
+\begin{proof}
+Define $A:=\norm{\vecta{v}}^2,B:=\norm{\vecta{w}}^2,C:=\gen{\vecta{v},\vecta{w}}$\\
+
+Notice that $B=0$ implies $\vecta{w}=\vecta{0}$, which further implies $\gen{\vecta{v},\vecta{w}}=\overline{\gen{\vecta{0},\vecta{v}}}=\overline{\gen{\vecta{a}-\vecta{a},\vecta{v}}}=\overline{\gen{\vecta{a},\vecta{v}}-\gen{\vecta{a},\vecta{v}}}=0$, so two side of the inequality are both  $0$ and the equality hold true, where $\ld =0$. We have proven the case of $B=0$. Now we prove the case of $B>0$\\
+
+Keep in mind that $A,B\inR$ and observe
+\begin{align}
+\norm{B\vecta{v}-C\vecta{w}}^2&=\gen{B\vecta{v}-C\vecta{w},B\vecta{v}-C\vecta{w}}\\
+&=\gen{B\vecta{v},B\vecta{v}}-\gen{C\vecta{w},B\vecta{v}}-\gen{B\vecta{v},C\vecta{w}}+\gen{C\vecta{w},C\vecta{w}}\\
+&=B^2\gen{\vecta{v},\vecta{v}}-CB\gen{\vecta{w},\vecta{v}}-B\overline{C}\gen{\vecta{v},\vecta{w}}+C\overline{C}\gen{\vecta{w},\vecta{w}}\\
+&=B^2A-CB\overline{C}-B\overline{C}C+C\overline{C}B\\
+&=B(AB-\abso{C}^2)
+\end{align}
+Because $B>0$, we can deduce 
+ \begin{equation}
+\norm{\vecta{v}}^2\norm{\vecta{w}}^2-\abso{\gen{\vecta{v},\vecta{w}}}^2=AB-\abso{C}^2=\frac{\norm{B\vecta{v}-C\vecta{w}}^2}{B}\geq 0
+\end{equation}
+So we can deduce
+\begin{equation}
+\norm{\vecta{v}}^2\norm{\vecta{w}}^2\geq \abso{\gen{\vecta{v},\vecta{w}}}^2
+\end{equation}
+Square both side then the Theorem follows. 
+\end{proof}
+\begin{corollary}
+\label{1.6.13}
+\textbf{(Verification of Triangle Inequality)} Let $V$ be an inner product space where the norm is induced by the inner product, we have 
+ \begin{equation}
+   \norm{\vecta{v}+\vecta{w}}\leq\norm{\vecta{v}}+\norm{\vecta{w}}
+\end{equation}
+\end{corollary}
+\begin{proof}
+Observe
+\begin{align}
+\norm{\vecta{v}+\vecta{w}}^2&=\gen{\vecta{v}+\vecta{w},\vecta{v}+\vecta{w}}\\
+&=\norm{\vecta{v}}^2+\gen{\vecta{v},\vecta{w}}+\gen{\vecta{w},\vecta{v}}+\norm{\vecta{w}}^2\\
+&=\norm{\vecta{v}}^2+\norm{\vecta{w}}^2+\gen{\vecta{v},\vecta{w}}+\overline{\gen{\vecta{v},\vecta{w}}}\\
+&=\norm{\vecta{v}}^2+\norm{\vecta{w}}^2+2\text{Re}(\gen{\vecta{v},\vecta{w}})\\
+&\leq \norm{\vecta{v}}^2+\norm{\vecta{w}}^2+2\abso{\gen{\vecta{v},\vecta{w}}}\\
+&\leq \norm{\vecta{v}}^2+\norm{\vecta{w}}^2+2(\norm{\vecta{v}})(\norm{\vecta{w}})\\
+&=(\norm{\vecta{v}}+\norm{\vecta{w}})^2
+\end{align}
+\end{proof}
 \section{Existence of Real Numbers - Dedekind Cut*}
 \section{Existence of Real Numbers - Decimal*}
 \section{Uniqueness of Real Numbers*}
@@ -1044,4 +1276,65 @@ Let $A$ be a nonempty subset of real numbers which is bounded below.  Define $-A
 \inf A=-\sup (-A)
 \end{equation}
 \end{question}
+\begin{question}{}{}
+Prove that no ordered relation can be defined on $\C$ so that $\C$ become an ordered field.
+\end{question}
+\begin{question}{}{}
+Let $w=u+vi$ and  $a=(\frac{\abso{w}+u}{2})^{\frac{1}{2}}$ and $b=(\frac{\abso{w}-u}{2})^{\frac{1}{2}}$ \\
+
+Verify that if $v\geq 0$, then  $w=(a+bi)^2$, and that if $v<0$, then $w=(a-bi)^2$\\
+
+Prove that every complex number have at least $2$ square roots.
+\end{question}
+\begin{question}{}{}
+Let $z_1,\dots ,z_n\inC$. Prove that
+\begin{equation}
+\abso{\sum z_j}\leq \sum \abso{z_j}
+\end{equation}
+\end{question}
+\begin{question}{}{}
+Let $x,y\inC$. Prove that
+ \begin{equation}
+\abso{\abso{x}-\abso{y}}\leq \abso{x-y}
+\end{equation}
+\end{question}
+\begin{question}{}{}
+Let $z\inC\text{ and }\abso{z}=1$. Compute
+\begin{equation}
+\abso{1+z}^2+\abso{1-z}^2
+\end{equation}
+\end{question}
+\begin{question}{}{}
+Let $\vecta{x}\inR^k\text{ and }\vecta{x}\neq \vecta{0}$. When $k=1$,  prove that there does not exists $\vecta{y}\inR^k$, such that $\vecta{x}\cdot\vecta{y}$. When $k\leq 2$, prove that there exists infinitely amount of $\vecta{y}\inR^k$ such that $\vecta{x}\cdot\vecta{y}=0$ 
+
+\end{question}
+\begin{question}{}{}
+Let $k\geq 3, \vecta{x},\vecta{y}\inR^k,\abso{\vecta{x}-\vecta{y}}=d>0\text{ and }r>0$. Prove that if $2r<d$, then there exists no  $z\inR^k$ such that $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$. Prove that if $2r=d$, there exists exactly one $\vecta{z}\inR^k$ that satisfy $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$. Prove that if $2r>d$, then there are infinitely many $\vecta{z}\inR^k$ that satisfy $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$. Prove that if $k=2$ and  $2r>d$, then there exists exactly $2$ unique  $\vecta{z}\inR^k$ such that $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$. Prove that if $k=1$ and $2r>d$ then there exists no $\vecta{z}\inR^k$ that satisfy $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$
+\end{question}
+
+\section{Complicated Exercises}
+In \myref{Axiom}{1.2.1}, we present the two ordered field axioms:
+\begin{equation}
+y<z\longrightarrow x+y<x+z
+\end{equation}
+\begin{equation}
+x>0\text{ and }y>0\longrightarrow xy>0
+\end{equation}\\
+If we define the order for $\R$ completely in reverse, that is; for any $x,y$, where originally we  have  $x\leq y$, we now define $x\geq y$, then we can see the new order relation does not satisfy the second axiom, i.e. $x>0\text{ and }y>0\rightarrow xy>0$, by observing $-1>0\implies 1=(-1)^2<0$
+\begin{question}{
+  Uniquely Orderd}{}
+Prove that $\Q$ and $\R$ are uniquely ordered field; that is, any order relation defined on $\Q$ and  $\R$ must be exactly the same as how we usually define it to satisfy the two ordered field axioms. Notice that you have to first come up with a way to describe our usual ways for ordering $\Q\text{ and }\R$ in your proof and make sure that the description do let us tell weather $x\leq y$ or $y\leq x$ for all $x,y$.       
+\end{question}
+Next question refers to \myref{Definition}{1.6.8}
+\begin{question}{}{}
+  Give an example of a normed vector space $V$ such that for all inner product that can be defined on $V$, there exists  $\vecta{x}\inV$ such that $\norm{\vecta{x}}\neq \sqrt{\gen{\vecta{x},\vecta{x}}}$, and show that this normed space does not satisfy Parallelogram Law.\\
+
+Prove a norm is induced by some inner product if and only if the norm satisfy Parallelogram Law.
+\end{question}
+\begin{question}{}{}
+Let $\vecta{a},\vecta{b}\inR^n\text{ and }m \inR^+$. Find $\vecta{c}\inR^k\text{ and }r>0$ such that
+\begin{equation}
+\abso{\vecta{x}-\vecta{a}}=m\abso{\vecta{x}-\vecta{b}}\iff \abso{\vecta{x}-\vecta{c}}=r
+\end{equation}
+\end{question} 
 \end{document}
