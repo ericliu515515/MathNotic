@@ -1244,6 +1244,7 @@ Square both side then the Theorem follows.
  \begin{equation}
    \norm{\vecta{v}+\vecta{w}}\leq\norm{\vecta{v}}+\norm{\vecta{w}}
 \end{equation}
+where the equality hold true only when $\gen{\vecta{v},\vecta{w}}\geq 0$ and $\vecta{v},\vecta{w}$ are linearly dependent.
 \end{corollary}
 \begin{proof}
 Observe
@@ -1305,7 +1306,7 @@ Let $z\inC\text{ and }\abso{z}=1$. Compute
 \end{equation}
 \end{question}
 \begin{question}{}{}
-Let $\vecta{x}\inR^k\text{ and }\vecta{x}\neq \vecta{0}$. When $k=1$,  prove that there does not exists $\vecta{y}\inR^k$, such that $\vecta{x}\cdot\vecta{y}$. When $k\leq 2$, prove that there exists infinitely amount of $\vecta{y}\inR^k$ such that $\vecta{x}\cdot\vecta{y}=0$ 
+Let $\vecta{x}\inR^k\text{ and }\vecta{x}\neq \vecta{0}$. When $k=1$,  prove that there does not exists $\vecta{y}\inR^k$, such that $\vecta{x}\cdot\vecta{y}$. When $k\geq 2$, prove that there exists infinitely amount of $\vecta{y}\inR^k$ such that $\vecta{x}\cdot\vecta{y}=0$ 
 
 \end{question}
 \begin{question}{}{}
@@ -1323,7 +1324,7 @@ x>0\text{ and }y>0\longrightarrow xy>0
 If we define the order for $\R$ completely in reverse, that is; for any $x,y$, where originally we  have  $x\leq y$, we now define $x\geq y$, then we can see the new order relation does not satisfy the second axiom, i.e. $x>0\text{ and }y>0\rightarrow xy>0$, by observing $-1>0\implies 1=(-1)^2<0$
 \begin{question}{
   Uniquely Orderd}{}
-Prove that $\Q$ and $\R$ are uniquely ordered field; that is, any order relation defined on $\Q$ and  $\R$ must be exactly the same as how we usually define it to satisfy the two ordered field axioms. Notice that you have to first come up with a way to describe our usual ways for ordering $\Q\text{ and }\R$ in your proof and make sure that the description do let us tell weather $x\leq y$ or $y\leq x$ for all $x,y$.       
+Prove that $\Q$ and $\R$ are uniquely ordered field; that is, any order relation defined on $\Q$ and  $\R$ must be exactly the same as how we usually define it to satisfy the two ordered field axioms. Notice that you have to first come up with a way to describe our usual ways for ordering $\Q\text{ and }\R$ in your proof and make sure that the description do let us tell weather $x< y$ or $y< x$ for all $x,y$.       
 \end{question}
 Next question refers to \myref{Definition}{1.6.8}
 \begin{question}{}{}
@@ -1332,9 +1333,107 @@ Next question refers to \myref{Definition}{1.6.8}
 Prove a norm is induced by some inner product if and only if the norm satisfy Parallelogram Law.
 \end{question}
 \begin{question}{}{}
-Let $\vecta{a},\vecta{b}\inR^n\text{ and }m \inR^+$. Find $\vecta{c}\inR^k\text{ and }r>0$ such that
+Let $\vecta{a},\vecta{b}\inR^n\text{ and }m \inR^+$. Find $\vecta{c}\inR^n\text{ and }r>0$ such that
 \begin{equation}
 \abso{\vecta{x}-\vecta{a}}=m\abso{\vecta{x}-\vecta{b}}\iff \abso{\vecta{x}-\vecta{c}}=r
 \end{equation}
 \end{question} 
+\begin{question}{}{}
+State and prove the Pythagorean Law in Euclidean $n$-space, where  $n\geq 2$
+\end{question}
+\chapter{Basic Topology}
+\section{Cardinals}
+\fbox{\begin{minipage}{39em}
+In this section, I first have to assert that there are a lot of abuse of notation. For people who are not familiar with set theory, just note that if everything have to be "down to the bottom" rigorous, instead of writing integer $0,1,2,3$, we have to either use the notation $\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}},\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}}$, or explain the notation $0,1,2,3$ in detail unrelated to our topic. 
+\end{minipage}}
+\begin{definition}
+\textbf{(Definition of Cardinality)} 
+Two sets $A,B$ are said to \textit{have the same cardinality} or \textit{have the same cardinal number} if there exists a bijective function from $A$ to  $B$. If $A,B$ have the same cardinality, then we write
+\begin{equation}
+\abso{A}=\abso{B}  
+\end{equation}
+\end{definition}
+\begin{theorem}
+For all sets $A,B$, we have 
+\begin{equation}
+\abso{A}=\abso{A}\text{ ( Reflexive) }
+\end{equation}
+\begin{equation}
+\abso{A}=\abso{B} \implies   \abso{B}=\abso{A} \text{ ( Symmetric) }
+\end{equation}
+\begin{equation}
+\abso{A}=\abso{B}\text{ and }\abso{B}=\abso{C}\implies \abso{A}=\abso{C} \text{ ( Transitive) }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Please note that so far in our definition and notation, when we say $\abso{A}=\abso{B}$, we does not mean $\abso{A}=x=\abso{B}$ for some mathematical object $x$. When we say $\abso{A}=\abso{B}$, we merely mean that there exists a bijective function from $A$ to  $B$.\\
+
+Define $f:A\rightarrow   A$ by $x\mapsto x$, and we can use this function to prove the Reflexive part. For the rest two parts, use inverse and composition of functions.    
+\end{proof}
+\begin{definition}
+Given two sets $A,B$, if there exists an one-to-one function from  $A$ to  $B$, we write 
+ \begin{equation}
+\abso{A}\leq \abso{B}\text{ or write }\abso{B}\geq \abso{A}
+\end{equation}
+\end{definition}
+\begin{theorem}
+\textbf{(Schroder-Berstein Theorem)} Let $A,B$ be sets. We have 
+\begin{equation}
+\abso{A}\leq \abso{B}\text{ and }\abso{B}\leq \abso{A}\implies \abso{A}=\abso{B}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $f:A\rightarrow B$, $g:B\rightarrow A$ be two one-to-one function.\\
+
+Define $C_0:=A\setminus g(B) $, and for all nonnegative integer $k$, define 
+\begin{equation}
+C_{k+1}:=g(f(C_k))
+\end{equation}
+Also, Define
+\begin{equation}
+C:=\bigcup _{k=0}^{\infty} C_k
+\end{equation}
+Define
+\begin{equation}
+h(x):=\begin{cases}
+  f(x) & x\in C \\
+  g^{-1}(x) & x\inA\setminus C
+\end{cases}
+\end{equation}
+We first prove \vi{$h$ is defined every where on $A$}.\\
+
+Because $C_0\subseteq C$, we know that $A\setminus C \subseteq A\setminus C_0=A \setminus (A\setminus g(B))$. Then we can deduce
+\begin{gather}
+x\in A \setminus C \implies x\inA \setminus (A \setminus g(B))\\
+\liff x\inA\text{ and }x\not\inA \setminus g(B)\\
+\liff  x\inA\text{ and }(x\not\inA\text{ or }x\in g(B))\\
+\liff (x\inA\text{ and }x\not\in A)\text{ or }(x\inA\text{ and }x\in g(B))\\
+\liff x\inA\text{ and }x\in g(B)\\
+\liff x\in g(B) \vdone
+\end{gather}
+We now prove \blue{$h$ is one-to-one}.\\
+
+\As{there exists $x\neq y\inA$ such that $h(x)=h(y)$}. We know $x,y$ are not both in $C$, otherwise  $f$ is not one-to-one. We also know $x,y$ are not both in $A \setminus C$, otherwise $g$ is not a function. WOLG, let $x\in C\text{ and }y\inA \setminus C$, so we have $f(x)=g^{-1}(y)$. Then, we have $y=g(f(x))$. Because $x\in C$ , we know there exists a nonnegative integer $n$ such that $x\in C_n$. Then we see $y\in g(f(C_n))=C_{n+1}\tCaC\bdone$\\
+
+Lastly we prove  \vi{$h$ is onto}.\\
+
+We wish to prove $B=h(A)$, where 
+ \begin{equation}
+h(A)=f(C)\cup g^{-1}(A \setminus C)\text{ and }h(A)\subseteq B
+\end{equation}
+So we just prove
+\begin{equation}
+B\subseteq f(C)\cup g^{-1}(A \setminus C)
+\end{equation}
+Let $x\in B$. If all $x$ is in  $g^{-1}(A \setminus C)$, then the proof is over. If not, keep in mind that $g(x)\not\in C_0$, since $g(x)\in C_0=A \setminus g(B)$ implies $g(x)\not\in g(B)$ and observe 
+\begin{gather}
+x\not\in g^{-1}(A \setminus C)\\
+\liff g(x)\not\in A \setminus C\\
+\liff g(x)\in C \\
+\liff \exists n\inn, g(x)\in C_n\\
+\liff \exists n\inn, \exists u\in C_{n-1}, g(x)=g(f(u))\\
+\liff \exists n\inn,\exists u\in C_{n-1}, x=f(u)\\
+\liff x\in f(C) \vdone 
+\end{gather}
+\end{proof}
 \end{document}
