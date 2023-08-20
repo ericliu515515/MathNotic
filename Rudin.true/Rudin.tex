@@ -1344,17 +1344,19 @@ State and prove the Pythagorean Law in Euclidean $n$-space, where  $n\geq 2$
 \chapter{Basic Topology}
 \section{Cardinals}
 \fbox{\begin{minipage}{39em}
-In this section, I first have to assert that there are a lot of abuse of notation. For people who are not familiar with set theory, just note that if everything have to be "down to the bottom" rigorous, instead of writing integer $0,1,2,3$, we have to either use the notation $\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}},\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}}$, or explain the notation $0,1,2,3$ in detail unrelated to our topic. 
+In this section, I first have to assert that there are a lot of abuse of notation. For people who are not familiar with set theory, just note that if everything have to be "down to the bottom" rigorous, instead of writing integer $0,1,2,3$, we have to either use the notation $\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}},\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}}$, or explain the notation $0,1,2,3$ in detail unrelated to our topic.
 \end{minipage}}
 \begin{definition}
+\label{2.1.1}
 \textbf{(Definition of Cardinality)} 
-Two sets $A,B$ are said to \textit{have the same cardinality} or \textit{have the same cardinal number} if there exists a bijective function from $A$ to  $B$. If $A,B$ have the same cardinality, then we write
+Two sets $A,B$ are said to \textit{have the same cardinality} or \textit{have the same cardinal number} or \textit{of the same cardinality} if there exists a bijective function from $A$ to  $B$. If $A,B$ have the same cardinality, then we write
 \begin{equation}
 \abso{A}=\abso{B}  
 \end{equation}
 \end{definition}
 \begin{theorem}
-For all sets $A,B$, we have 
+\label{2.1.2}
+\textbf{(Basic Property of Cardinality)} For all sets $A,B$, we have 
 \begin{equation}
 \abso{A}=\abso{A}\text{ ( Reflexive) }
 \end{equation}
@@ -1370,16 +1372,33 @@ Please note that so far in our definition and notation, when we say $\abso{A}=\a
 
 Define $f:A\rightarrow   A$ by $x\mapsto x$, and we can use this function to prove the Reflexive part. For the rest two parts, use inverse and composition of functions.    
 \end{proof}
-\begin{definition}
+\fbox{\begin{minipage}{39em}
+Notice that the concept of cardinality is defined completely based on bijective function, which does not rely on the elements of sets.\\
+
+We now give a notation related to cardinality, and introduce Schroder-Berstein Theorem, which plays an important role in our proofs for properties of cardinality. 
+\end{minipage}}
+\begin{definition} \textbf{(Definition of Cardinality)} 
+\label{2.1.3}
 Given two sets $A,B$, if there exists an one-to-one function from  $A$ to  $B$, we write 
  \begin{equation}
 \abso{A}\leq \abso{B}\text{ or write }\abso{B}\geq \abso{A}
 \end{equation}
 \end{definition}
 \begin{theorem}
+\label{2.1.4}
+\textbf{(Basic Property of Cardinality)} Let $A,B$ be sets. We have
+\begin{equation}
+A \subseteq B\implies  \abso{A}\leq \abso{B}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Define $f:A\rightarrow B$ by $x\mapsto x$ and we are done.
+\end{proof}
+\begin{theorem}
+\label{2.1.5}
 \textbf{(Schroder-Berstein Theorem)} Let $A,B$ be sets. We have 
 \begin{equation}
-\abso{A}\leq \abso{B}\text{ and }\abso{B}\leq \abso{A}\implies \abso{A}=\abso{B}
+\abso{A}\leq \abso{B}\text{ and }\abso{B}\leq \abso{A}\iff  \abso{A}=\abso{B}
 \end{equation}
 \end{theorem}
 \begin{proof}
@@ -1435,5 +1454,88 @@ x\not\in g^{-1}(A \setminus C)\\
 \liff \exists n\inn,\exists u\in C_{n-1}, x=f(u)\\
 \liff x\in f(C) \vdone 
 \end{gather}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now give another notation related to cardinality.
+\end{minipage}}
+\begin{definition}
+\label{2.1.6}
+\textbf{(Definition of Cardinality)} Let  $A,B$ be sets. If $\abso{A}\geq \abso{B}$ and there does not exist a bijective function from  $A$ to $B$, which we denote $\abso{A}\neq \abso{B}$, then we write
+\begin{equation}
+\abso{A}>\abso{B}\text{ or write }\abso{B}<\abso{A}
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{2.1.7}
+\textbf{(Basic Property of Cardinality)} Let $A,B$ be two sets. We have
+\begin{equation}
+\abso{A}>\abso{B}\iff \text{ no function from $A$ to $B$ is one-to-one}
+\end{equation}
+\begin{equation}
+\abso{A}>\abso{B}\iff \text{ no function from $B$ to $A$ is onto }
+\end{equation}
+\end{theorem}
+\begin{proof}
+$(\longrightarrow)$\\
+
+
+$\abso{A}>\abso{B}$ implies that there exists an one-to-one function from $B$ to $A$. If there exists a one-to-one function from  $A$ to $B$, then by \myref{Schroder-Berstein Theorem}{2.1.5}, we have a contradiction. If there exists an onto function $g:B\rightarrow A$, then with $g^{-1}$ and \myref{Schroder-Berstein Theorem}{2.1.5}, we have a contradiction.\\
+
+$(\longleftarrow)$\\
+
+We prove \vi{the negate of $\abso{A}>\abso{B}$ is $\abso{A}\leq \abso{B}$}
+\end{proof}
+\begin{definition}
+\label{2.1.8}
+  \textbf{(Definition of finite and infinite)} For all nonnegative integer $n$, let
+\begin{equation}
+J_n=\set{m\inn, 0<m\leq n}
+\end{equation}
+Let $A$ be a set. If for some nonnegative integer $n$, we have $\abso{A}=\abso{J_n}$, then we say $A$ is \textit{finite}.  $A$ is  \textit{infinite} if $A$ is not finite.
+\end{definition}
+\begin{theorem}
+\label{2.1.9}
+\textbf{(Basic Property of Finite Set)} Let $A,B$ be two finite sets, and let  $\abso{A}=\abso{B}$. Let $f$ be a function from $A$ to $B$. We have
+ \begin{equation}
+f\text{ is one-to-one }\iff f\text{ is bijective }\iff f\text{ is onto }
+\end{equation}
+\end{theorem}
+  
+\begin{theorem}
+\label{2.1.10}
+  \textbf{(A coincidence ?)} If we define naturals by $0=\varnothing\text{ and }x+1=x \cup \set{x}$, then for all nonnegative integer $n$, we have $\abso{n}=J_n$
+\end{theorem}
+\begin{theorem}
+\label{2.1.11}
+\textbf{($\N$ is infinite)} $\N$ is infinite.
+\end{theorem}
+\begin{proof}
+  \As{$\N$ is finite}. Define $f:\N\rightarrow \N$ by $x\mapsto x+1$. $f$ is one-to-one implies that $f$ is onto, but $\forall x\inn,f(x)\neq 1\tCaC$ 
+\end{proof}
+\begin{theorem}
+\label{2.1.12}
+\textbf{($\N$ is the "smallest" infinite set)} Every infinite set $A$ have either same or greater cardinality than $\N$ 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+\begin{theorem}
+\label{2.1.13}
+\textbf{(Equivalent to AC)} Let $A,B$ be sets. We have
+\begin{equation}
+\abso{A}\leq \abso{B}\text{ or }\abso{A}\geq \abso{B}
+\end{equation}
+\end{theorem}
+\begin{proof}
+\end{proof}
+\begin{theorem}
+\label{2.1.13}
+\textbf{(Equivalent to AC)} Let $A,B$ be sets. We have
+\begin{equation}
+\abso{A}>\abso{B}\iff \abso{A}\not\leq \abso{B}
+\end{equation}
+\end{theorem}
+\begin{proof}
 \end{proof}
 \end{document}
