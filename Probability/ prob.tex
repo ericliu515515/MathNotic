@@ -4,7 +4,7 @@
 \input{macros}
 \input{letterfonts}
 
-\title{\Huge{NCKU 112.1}\\Rudin}
+\title{\Huge{NCKU 112.1}\\Note for Probability Theory}
 \author{\huge{Eric Liu}}
 \date{}
 \begin{document}
@@ -14,2197 +14,250 @@
 \pdfbookmark[section]{\contentsname}{toc}
 \tableofcontents
 \pagebreak
-\chapter{The Real and Complex Number System}
-\section{Introduction}
-\fbox{\begin{minipage}{39em}
-In this section, we will define the concept of ordered sets, and give a close look of the completeness property of real numbers, by showing the "uncompleteness" of rational numbers. First, we prove an elementary and classic theorem of rational numbers.        
-\end{minipage}}
-\begin{theorem}
+\chapter{$\sigma$-Algebra}
+\section{}
+\begin{definition}
 \label{1.1.1}
-There exists no rational $p$ such that $p^2=2$
-\end{theorem}
-\begin{proof}
-\As{there is, and we write $p$ in the form $p=\frac{a}{b}$, where $a,b\inz\text{ and one of $a,b$ is odd}$}. Observe that $p^2=2\implies a^2=2b^2\implies 2\text{ divides }a\implies 2\text{ divides }b\tCaC$
-\end{proof}
-
-\fbox{\begin{minipage}{39em}
-For the sake of our discussion below, we will use $\Q^+$ instead of $\Q$ as our universal. Now, we divide the "rational numbers line" in half at the point $\sqrt{2}$, and have two subdivisions $A=\set{x\inq^+ : x^2<2},B=\set{x\inq^+:x^2>2}$ 
-\end{minipage}}
-
-\begin{axiom}
+\textbf{(Definition of Measure Space)} A measure space is a triple $(\Omega,\mathcal{G},\mu)$ where
+\begin{equation}
+\Omega \text{ is a set }
+\end{equation}
+\begin{equation}
+\mathcal{G}\text{ is a $\sigma$-algebra over $\Omega$}
+\end{equation}
+\begin{equation}
+\mu\text{ is a measure on $(\Omega,\mathcal{G})$ }
+\end{equation}
+\end{definition}
+\begin{definition}
 \label{1.1.2}
-Let $S$ be an ordered set and $X$ be a subset of $S$. Axiomatically define
+\textbf{(Definition of $\sigma$-Algebra)} We say  $\mathcal{G}\subseteq\power{\Omega}$ is a $\sigma$-algebra if 
 \begin{equation}
-\max X\in X\text{ and }\forall x\in X, x\leq \max X
+\Omega \in\mathcal{G} 
 \end{equation}
 \begin{equation}
-\min X\in X \text{ and }\forall x\in X, \min X\leq x 
+X \in \mathcal{G}\implies \Omega \setminus X\in \mathcal{G} \text{ (Closed under complement) }
 \end{equation}
-\end{axiom}
+\begin{equation}
+\mathcal{A} \subseteq  \mathcal{G}\text{ and }\abso{\mathcal{A}}\leq \abso{\N}\implies \bigcup \mathcal{A}\in \mathcal{G}\text{ (Closed under countable union) }
+\end{equation}
+From now, we denote $\Omega\setminus X$ by $X^c$. We say $\mathcal{G}=\set{\varnothing,\Omega}$ is the trivial $\sigma$-algebra on $\Omega$. 
+\end{definition}
 \begin{theorem}
 \label{1.1.3}
-  $\max A\text{ and }\min B$ both doesn't exist.
+\textbf{(Basic Property of $\sigma$-Algebra)} Let $(\Omega,\mathcal{G})$ be a $\sigma$-algebra. Then we have
+\begin{equation}
+\varnothing \in \mathcal{G}
+\end{equation}
+\begin{equation}
+\mathcal{A}\subseteq \mathcal{G}\implies \bigcap \mathcal{A} \in \mathcal{G}
+\end{equation}
+\begin{equation}
+A,B\in \mathcal{G}\implies A\setminus B \in \mathcal{G}
+\end{equation}
 \end{theorem}
 \begin{proof}
-We wish to construct a function $q(p)$ on $\Q^+$ such that for all $p \inq^+$, we have $p^2<2\implies p^2<q^2<2$ and have $2<p^2\implies 2<q^2<p^2$. Notice $p<q\iff p^2<q^2$, so we can translate the wanted property of $q$ into
-\begin{align}
-  p^2<2 & \implies p<q \text{ and }q^2<2\\
-  p^2>2 & \implies q<p\text{ and }2<q^2
-\end{align}
-Let $a,b$ be two function of $p$ on $\Q^+$. To satisfy the above properties, we can let the below equation first be true and then solve for $a,b$.
-\begin{align}
-  q-p&=\frac{2-p^2}{a}\\
-  q^2-2 &= \frac{p^2-2}{b}
-\end{align}
-Now we solve for $a,b$
-\begin{gather}
-q-p=\frac{2-p^2}{a}\text{ and }q^2-2=\frac{p^2-2}{b}
-\implies q= \frac{2-p^2}{a}+p\text{ and }q^2=\frac{p^2-2}{b}+2\\
-\liff [\frac{2-p^2}{a}+p]^2=\frac{p^2-2}{b}+2\\
-\liff \frac{(2-p^2)^2}{a^2}+\frac{2p(2-p^2)}{a}+p^2=\frac{p^2-2}{b}+2\\
-\liff (p^2-2)^2(\frac{1}{a^2})+(p^2-2)(-\frac{2p}{a}+1-\frac{1}{b})=0\\
-\liff \frac{p^2-2}{a^2}-\frac{2p}{a}+1-\frac{1}{b}=0\text{ (because $p^2-2\neq 0$) }\\
-\liff \frac{p^2-2-2ap+a^2}{a^2}=\frac{1}{b}\\
-\liff b=\frac{a^2}{p^2-2-2ap+a^2}=\frac{a^2}{(p-a)^2-2}
-\end{gather}
-Define $a:=p+c$ where $c^2>2$, and we are finished.
+Observe $\varnothing=\Omega^c$, and observe $\bigcap \mathcal{A}=(\bigcup_{X \in \mathcal{A}}X^c)^c$, and observe $A\setminus B=A\cup B^c$
+\end{proof}
+\begin{theorem}
+\label{1.1.4}
+\textbf{(Intersection of $\sigma$-Algebras is a $\sigma$-Algebra)} Let $S$ be a set of $\sigma$-algebra over $\Omega$, then $\bigcap S$ is a $\sigma$-algebra. 
+\end{theorem}
+\begin{proof}
+  \red{missed}
 \end{proof}
 \fbox{\begin{minipage}{39em}
-Now, we come back to define the concept of ordered set.
-\end{minipage}}
-\begin{definition}
-\label{1.1.4}
-\textbf{(Totally Ordered Set Axioms)} $S$ is an totally ordered set, sometimes simply called  ordered set depend on the context, if there is a relation $\sim$ on it that satisfy 
-\begin{equation}
-\forall x\in S, x\sim x
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\sim y\text{ or }y\sim x
-\end{equation}
-\begin{equation}
-  \forall x,y,z\in S, x\sim y \text{ and }y\sim z\implies x\sim z
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\sim y\text{ and }y\sim x \implies x=y
-\end{equation}
-From now on, we write this relation as $\leq $ and if we write  $x\geq y$, we mean $y\leq x$.
-\end{definition}
-\fbox{\begin{minipage}{39em}
-To discuss the uncompleteness of rational numbers, which is an ordered set, we first define a few concepts brought by concept of ordered set.
+The following concerning measure
 \end{minipage}}
 \begin{definition}
 \label{1.1.5}
-Let $S$ be an ordered set and $E\subseteq S$. $E$ is bounded above if 
+  \textbf{(Definition of a Measure)} Let $\mathcal{G}$ be a $\sigma$-algebra over $\Omega$. Function $\mu:\mathcal{G}\rightarrow \R$ is called a measure if
 \begin{equation}
-\exists a\in S, \forall b\in E, a\geq b 
+\forall E\in \mathcal{G}, \mu(E)\geq 0\text{ (Nonnegative) }
+\end{equation}  
+\begin{equation}
+\mu(\varnothing)=0
 \end{equation}
-In this case, we say $a$ is an upper bound of $E$ and $E$ is bounded above by $a$. On the other hand, $E$ is bounded below by $c$ if
 \begin{equation}
-\forall b\in E, c\leq b
+F\subseteq \mathcal{G}\text{ and }\abso{F}\leq \abso{\N}\implies \mu(\bigcup  F)=\sum_{X\in F} \mu(X)\text{ (Countable additivity) }
 \end{equation}
 \end{definition}
 \fbox{\begin{minipage}{39em}
-Before we give the definition of supremum, aka least upper bound, we first prove a theorem about it.
+The following concern generating a $\sigma$-Algebra from a set of subsets of sample space.
 \end{minipage}}
 \begin{theorem}
 \label{1.1.6}
-If $x$ is the smallest upper bound of a bounded above nonempty set  $E$, then any number smaller than  $x$ is not an upper bound of  $E$, and every upper bound of  $E$ is greater than or equal  to $x$.
+\textbf{(Representation of $\sigma$-Algebra)} Let $M$ be a countable partition of $\Omega$. Then the set
+\begin{equation}
+\set{\bigcup N: N \in\power{M}}
+\end{equation}
+is a $\sigma$-algebra
 \end{theorem}
-
 \begin{proof}
-
-Let $A$ be the set of upper bounds of  $E$. Arbitrarily pick an $m$ such that $m<x$. \As{$\forall z\in E, m>z$}. We see $m\in A$, and because $x=\min A$, we see $x\leq m\tCaC$. \As{$\exists n\in A, n<x$}. Then $\exists z\in E, n<z$, which implies $n\not\in A\tCaC$
+  \red{missed}
 \end{proof}
-\begin{corollary}
+\begin{definition}
 \label{1.1.7}
- Any number smaller than the greatest lower bound is a lower bound, and any number greater than the greatest lower bound is not a lower bound.
-\end{corollary}
-\begin{definition}
+\textbf{(Definition of Generating $\sigma$-Algebra)} Let $\mathcal{F}\subseteq \power{\Omega}$. The $\sigma$-algebra generated by $\mathcal{F}$ is defined to be the smallest  $\sigma$-algebra that contain $\mathcal{F}$
+\end{definition}
+\begin{theorem}
 \label{1.1.8}
-\textbf{(Definition of Supremum and Infimum)} Let $A,B$ respectively be the set of upper bounds of  $E$ and the set of lower bounds of  $E$. We define
-\begin{equation}
-\sup E:=\min A
-\end{equation}
-and
-\begin{equation}
-\inf E:=\max B
-\end{equation}
-if they ever exist.
-\end{definition}
+\textbf{(Definition of Generating $\sigma$-Algebra)} Let $\mathcal{F}\subseteq \power{\Omega}$. The smallest $\sigma$-algebra containing $\mathcal{F}$ consists precisely of set taking countable operation of complement countable operation.
+\end{theorem}
+\begin{proof}
+  \red{need verified}
+\end{proof}
 \begin{theorem}
+\textbf{(Representation of $\sigma$-Algebra)} Let $M$ be a countable partition of  $\Omega$. Then the $\sigma$-algebra 
+\begin{equation}
+\set{\bigcup N: N\in\power{M}}
+\end{equation}
+is the $\sigma$-algebra generate by $M$
+\end{theorem}
+\begin{proof}
+  \red{need verified}
+\end{proof}
+\begin{theorem}
+\textbf{(Representation of $\sigma$-Algebra)} Let $M$ be a countable partition of  $\Omega$. Then the $\sigma$-algebra 
+\begin{equation}
+\set{\bigcup N: N \in \power{M}}
+\end{equation}
+contain no proper subset of element of $M$
+\end{theorem}
+\begin{proof}
+  \red{need verified}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+The following concern a class of measure space, called probability space.
+\end{minipage}}
+\begin{definition}
 \label{1.1.9}
-Let $A$ be a subset of ordered set  $S$. If  $\max A$ exists, then $\max A=\sup A$. Similarly, if $\min A$ exists, then $\min A=\inf A$
-\end{theorem}
-\begin{proof}
-$\max A$ is an upper bound and $\min  A$ is an lower bound hold true by definition. Any number smaller than $\max A$ can not be an upper bound since $\max A\inA$. Similarly, and number greater than $\min A$ can not be an lower bound since $\min A\inA$  
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Now, we look back to our subdivisions $A=\set{x\inq^+: x^2<2},B=\set{x\inq^+: x^2>2}$. We first show that $B$ is exactly the set of all upper bounds of $A$.
-\end{minipage}}
-\begin{theorem}
-\label{1.1.10}
-Given $A=\set{x\inq^+: x^2<2},B=\set{x\inq^+: x^2>2}$. We have
+\textbf{(Definition of Probability Space)} A probability space is a triple $(\Omega,\mathcal{\mathcal{G}},P)$ where 
 \begin{equation}
-B=\set{x\inq^+ : \forall y\in A, y\leq x}
+\Omega \text{ is a set called \textit{sample space} }
 \end{equation}
-\end{theorem}
-\begin{proof}
-Arbitrarily pick $x\in B$, and we see $\forall y\in A, y^2<2<x^2$. Then $\forall y\in A,y<x$. This implies $B\subseteq \set{x\inq^+:\forall y\in A, y\leq x}$. Let $x$ satisfy $\forall y\in A, y\leq x$. \As{$x^2<2$}. We immediately see $x=\max A$, but $\max A$ doesn't exist \CaC
-\end{proof}
-\fbox{\begin{minipage}{39em}
-    By \myref{Theorem}{1.1.3}, we then can see that $\sup A$ does not exist. Now, we give this idea a name.
-\end{minipage}}
-\begin{definition}
-\label{1.1.11}
-  \textbf{(Definition of Completed Ordered Set)}
-An ordered set $S$ satisfy least-upper-bound property if
- \begin{equation}
-E\subseteq S\text{ and }E\neq \varnothing\implies \sup E\text{ exists }
+\begin{equation}
+\mathcal{G} \text{ is a $\sigma$-algebra over $\Omega$ called event space}
 \end{equation}
-Also, we say $S$ is completed.
+\begin{equation}
+P:\Omega\rightarrow [0,1]\text{ is a measure called probability measure }
+\end{equation}
+where $\Omega$ is a set, called sample space, $\mathcal{G}$ is a $\sigma$-algebra over $\Omega$, called event space and $P:\Omega\rightarrow [0,1]$ is called probability measure. 
 \end{definition}
-\fbox{\begin{minipage}{39em}
-$\sup A$ does not exists indicate that $\Q$ as an ordered set doesn't satisfy the least-upper-bound property. Before we close this section, we reveal the face of the twin brother of the least-upper-bound property. In fact, it is more like property itself in the mirror, since they are equivalent.
-\end{minipage}}
-\begin{theorem}
-\label{1.1.12}
-  \textbf{(LUB$\iff $GLB)} $S$ satisfy the least-upper-bound property if and only if  $S$ satisfy the greatest-lower-bound property.
-\end{theorem}
-\begin{proof}
-  From left to right, consider a bounded below set $E$.  Let $L$ be the set of lower bounds of  $E$. We know $\sup L$ exists and every elements of $E$ is an upper bound of $L$, so $\sup L$ is an lower bound of $E$. Then $\sup L=\inf E$. The other direction use the same method. 
-\end{proof}
-\section{Ordered Fields}
-\fbox{\begin{minipage}{39em}
-In this section, we first give the definition of ordered fields, and prove basic result concerning positivity. Notice in this section that $x,y,z$ are all in  $\F$.
-\end{minipage}}
-\begin{axiom}
-\label{1.2.1}
-\textbf{(Ordered Field Axioms)} An ordered field $\F$ is a field that is not only a ordered set, but also satisfy the following axioms
-\begin{equation}
-y<z\implies x+y<x+z
-\end{equation}
-\begin{equation}
-x>0\text{ and }y>0\implies xy>0
-\end{equation}
-\end{axiom}
-\begin{theorem}
-\label{1.2.2}
-\textbf{(Negate reverse positivity)} $(x>0\iff -x<0)\text{ and }(x<0\iff -x>0)$
-\end{theorem}
-\begin{proof}
-  Observe $x>0\implies x+(-x)>0+(-x)\implies -x<0$, and $x<0\implies x+(-x)<0+(-x)\implies -x>0$. Clearly, $x=0\implies -x=0$. Then the Theorem follows.
-\end{proof}
-
-\begin{theorem}
-\label{1.2.3}
-  
-\textbf{(Multiply a negative number reverse positivity)} Given $y<0$, we have
-\begin{equation}
-  (x>0\iff xy<0)\text{ and }(x<0\iff xy>0)
-\end{equation}
-\end{theorem}
-\begin{proof}
-Observe $x>0\implies x(-y)>0\implies -xy>0\implies xy<0$, and 
-$x<0\implies (-x)(-y)>0\implies xy>0$. Clearly, $x=0\implies xy=0$. Then the Theorem follows. 
-\end{proof}
-\begin{theorem}
-\label{1.2.4}
-\textbf{(Multiply on both side)}  Given $y<z$, we have
-\begin{equation}
-  (x>0\iff xy<xz)\text{ and }(x<0\iff xy>xz)
-\end{equation}
-\end{theorem}
-\begin{proof}
-First observe $y<z\implies z-y>0$. Now observe $x>0\implies x(z-y)>0\implies xz-xy>0\implies xz>xy$. 
-Observe  $x<0\implies x(z-y)<0\implies xz<xy$. Obviously $x=0\implies  xy=xz$. Then the Theorem follows.
-\end{proof}
-\begin{theorem}
-\label{1.2.5}
-  \textbf{(Squares are nonnegative)} $x\neq 0\implies x^2>0$
-\end{theorem}
-\begin{proof}
-  If $x>0$, then $x^2>0$ follows from the axiom. If $x<0$, then $x^2>0$ follows from \myref{Theorem}{1.2.2}
-\end{proof}
-
-\begin{corollary}
-\label{1.2.6}
-$1>0$
-\end{corollary}
-
-\begin{theorem}
-\label{1.2.7}
-\textbf{(Inverse preserve positivity)} $(x>0\iff \frac{1}{x}>0)\text{ and }(x<0\iff \frac{1}{x}<0)$ 
-\end{theorem}
-\begin{proof}
-If $x>0$ but $\frac{1}{x}<0$, then $1<0$. The same logic applies to  $\frac{1}{x}>0\implies x>0$. Because $\frac{1}{0}$ does not exist, the theorem follows.
-\end{proof}
-\fbox{\begin{minipage}{39em}
-If we were to define $x^{-2}:=x^{-1}x^{-1}$, we must realize $0^{-1}$ does not exist and realize we have not yet prove some common inequalities concerning integer powers. Notice that the following inequalities require base to be positive.  
-\end{minipage}}
-
-\begin{definition}
-\label{1.2.8}
-\textbf{(Definition of Inverse)} For all nonzero $x$ and naturals $p$, we define $x^{-p}:=(x^{-1})^p$, and define $x^0:=1$ 
-\end{definition}
-\begin{theorem}
-\label{1.2.9}
-  
-\textbf{(Inequality when base is fixed)} Given a positive $a$ and two integer  $x,y$ where  $x<y$, we have
-\begin{equation}
-\begin{cases}
-  a^x<a^y\iff a>1\\
-  a^x=a^y \iff a=1 \\
-  a^x>a^y \iff 0<a<1  
-\end{cases}
-\end{equation}
-\end{theorem}
-\begin{proof}
-By \myref{Theorem}{1.2.4}, observe $1<a\iff  1<a<a^2\iff   1<a<a^2<a^3\iff  \cdots  \iff  1<a<\cdots <a^{y-x}\iff  a^x<a^y$. If $a=1$, we know  $a^x=1=a^y$. Again by \myref{Theorem}{1.2.4}, observe $0<a<1\iff  a^2<a<1\iff  \cdots \iff  a^{y-x}<\cdots <1\iff  a^{y}<a^{x}$. 
-\end{proof}
-\begin{theorem}
-\label{1.2.10}
-\textbf{(Inequality when integer power is fixed)} Given $0<b<c$ and  $z\inz$, we have 
-\begin{equation}
-\begin{cases}
-  b^z<c^z \iff 0<z\\
-  b^z=c^z \iff 0=z\\
-  b^z>c^z\iff 0>z
-\end{cases}
-\end{equation}
-\end{theorem}
-\begin{proof}
-  If $z>0$, then by \myref{Theorem}{1.2.4}, observe $0<b<c\implies 0<b^2<bc<c^2\implies b^3<b^2c<bc^2<c^3\implies \cdots \implies b^z<c^z $. Obviously, $0=z\implies b^z=1=c^z$. If $z<0$, then $b^z=(\frac{1}{b})^{-z}$ and $c^z=(\frac{1}{c})^{-z}$ by definition. Observe $b<c\implies 1=\frac{1}{b}b<\frac{1}{b}c=\frac{c}{b}\implies \frac{1}{c}<\frac{1}{b}$. By the logic above, we deduce $c^z=(\frac{1}{c})^{-z}<(\frac{1}{b})^{-z}=b^z$. Then the Theorem follows. 
-\end{proof}
-\begin{theorem}
-\label{1.2.11}
-\textbf{(Positivity of integer power)} If $a>0$, then $\forall x\inz,a^x>0$. If  $a<0$, then  $a^x>0\iff 2|x$
-\end{theorem}
-\begin{proof}
-The former result is a direct consequence of \myref{Axiom}{1.2.1} and \myref{Theorem}{1.2.7}. The latter result is a direct consequence of \myref{Theorem}{1.2.3} and \myref{Theorem}{1.2.5}  
-\end{proof}
-\fbox{\begin{minipage}{39em}
-
-Notice that if the base is negative, the corresponding inequalities can all be deduced by the above theorems with a little effort, although the results are quite messy. \\
-
-Now we prove some arithmetic properties concerning nonzero base, unlike the above inequalities concerning only positive base. Notice that those properties of natural power inherited by integer power can be proven inductively, and that the base $x$ can be any nonzero number.        
-\end{minipage}}
-\begin{theorem}  
-\label{1.2.12}
- \textbf{(Arithmetic property of integer power)} For all nonzero $x$ and integers $p,q$, we have 
- \begin{equation}
-x^{p+q}=x^px^{q}
-\end{equation}
-\end{theorem}
-\begin{proof}
-  If $p,q$ are both positive, the Theorem is proven by induction. If $p,q$ are both negative, observe $x^px^q=(x^{-1})^{-p}(x^{-1})^{-q}=(x^{-1})^{-(p+q)}=x^{p+q}$, where the last equality hold true because $p+q<0$. If $p>0>q\text{ and }p+q>0$, observe $x^px^q=x^p(x^{-1})^{-q}=x^{p-(-q)}=x^{p+q}$. If $p>0>q\text{ and }p+q<0$, observe $x^px^q=x^p(x^{-1})^{-q}=(x^{-1})^{-(q+p)}=x^{p+q}$, where the last equality hold true because $p+q<0.$ 
-\end{proof}
-\begin{theorem}
-\label{1.2.13}
-\textbf{(Arithmetic property of integer power)} For all nonzero $x$ and integers $p,q$, we have
-\begin{equation}
-  x^{pq}=(x^p)^q=(x^q)^p
-\end{equation}
-\end{theorem}
-\begin{proof}
-  If $p,q$ are both positive or if any of $p,q$ are zero, the proof is trivial. If $p<0<q$, observe $(x^p)^q=((x^{-1})^{-p})^q=(x^{-1})^{-pq}=x^{pq}$, where the last equality hold true because $pq<0$, and observe $(x^q)^p=((x^q)^{-1})^{-p}=((x^{-1})^{q})^{-p}=(x^{-1})^{-qp}=x^{qp}$, where the second equality hold true can be proven by induction.    
-\end{proof}
-\begin{theorem}
-\label{1.2.14}
-\textbf{(Arithmetic property of integer power)} For all nonzero $x,y$ and integer  $p$, we have
- \begin{equation}
-x^py^p=(xy)^p
-\end{equation}
-\end{theorem}
-\begin{proof}
-If $p\geq 0$, the proof is trivial. If $p<0$, then $x^py^p=(x^{-1})^{-p}(y^{-1})^{-p}=(x^{-1}y^{-1})^{-p}=((xy)^{-1})^{-p}=(xy)^p$.
-\end{proof}
-
-\section{Real Numbers Field}
-\fbox{\begin{minipage}{39em}
-Although the title of this section is "Real Numbers Field", here, we will not construct the real numbers field, nor use any common property of real numbers. In fact, we will not even use the symbol $\R$ in this section, since we are merely proving theorems about an ordered field with least-upper-bound property. We don't know if there exists any ordered field with least-upper-property. Let's say there does; yet, we don't know if such structure is unique. Let's say it is unique; yet, we don't know if that structure have relation with $\R$. Here, we will use the symbol $\F$ to denote an ordered field with least-upper-bound property. One should realize that we can use algorithm to define a subset containing $1\inF$ that is isomorphic to $\N$, and thereby we abuse the notation to denote that subset $\N$. A subfield of $\F$ isomorphic to $\Q$ can also be defined after we define $\Z$, so we also thereby abuse the notation to denote that subfield  $\Q$.         
-\end{minipage}}
-\begin{theorem}
-\label{1.3.1}
-$\N$ is unbounded above.
-\end{theorem}
-\begin{proof}
- \As{$\N$ is bounded above}. Because $1>0$, we know $\sup \N -1<\sup \N$. Then $\sup \N -1$ is not an upper bound of $\N$. Arbitrarily pick any $m \inn$ greater than $\sup \N -1$. We see $m>\sup \N-1\implies m+1>\sup \N$, where $m+1\inn\tCaC$
-\end{proof}
-\begin{corollary}
-\label{1.3.2}
-Both $\Z\text{ and }\Q$ are unbounded both above and below.
-\end{corollary}
-\begin{corollary}
-\label{1.3.3}
-  
-\textbf{(Divided by $1$)} Given any $x\inF$, there exists $n\inz$ such that $n\leq x<n+1$
-\end{corollary}
-\begin{proof}
-If $x>0$, let $S=\set{n\inn: n>x}$. Notice $S=\varnothing$ implies $\N$ is bounded above by $x$, so $S$ is nonempty. Then by well-ordering principle, we know $\min S$ exists. We now show \vi{$\min S-1\leq x<\min S$}. Observe that $\min S\in S\implies x<\min S$. \As{$\min S-1>x$}. We immediately see $\min S-1\in S\tCaC\vdone$.\\
-
-If $x<0$, let $S=\set{n\inn:n\geq -x}$. Again, $S=\varnothing$ implies $\N$ is bounded above by $-x$, so $S$ is nonempty. Then by well-ordering principle, we know $\min S$ exists. We now show \blue{$-\min S\leq x<-\min S+1$}. Observe that $\min S\inS\implies \min S\geq -x\implies x\geq -\min S$. \As{$-\min S+1\leq x$}. Then $\min S-1\geq -x>0$; thus $\min S-1\inS\tCaC\bdone$\\
-
-If $x=0$, then we let $n=0$. 
-\end{proof}
-\begin{theorem}
-\label{1.3.4}
-\textbf{(Archimedean Property)} Given $x,y\inF\text{ and }0<x$, there exists $n\inn$ such that $nx>y$ 
-\end{theorem}
-\begin{proof}
- Because $\N$ is unbounded above, we know  $\frac{y}{x}$ can not be an upper bound of $\N$, so we know  $\exists n\inn,n>\frac{y}{x} $. Then because $x>0$, we can deduce $nx>y$.
-\end{proof}
-\begin{theorem}
-\label{1.3.5}
-\textbf{($\Q$ is dense in $\F$)} Given $x,y\inF\text{ and }x<y$, we know there exists $p \inq$ such that $x<p<y$
-\end{theorem}
-\begin{proof}
-Every rational, positive or negative, can be expressed in the form $\frac{m}{n}$ for some integer $m$ and naturals $n$. We seek to find some integer $m$ and $n$ such that $x<\frac{m}{n}<y$. Notice that $x<\frac{m}{n}<y\iff nx<m<ny$. Because $m$ has to be an integer, we know for $nx<m<ny$ to hold true, we must first have $ny-nx>1$. Because $y-x>0$, by Archimedean Property, there exists $n\inn$ such that $ny-nx=n(y-x)>1$. By \hyperref[1.3.3]{Corollary 1.3.3}, we know there exists $m \inz$ such that $m\leq  ny<m+1$.\\
-
-Notice $m=ny$ if and only if $ y\inq$. So we can split the proof into two cases.\\
-
-\vi{Case 1: $y\inq$}\\
-
-We see that the set $\set{r\inq:r<y}$ have supremum $y$, since $y\inq$. Then $x<y$ tell us $x$ is not an upper bound of the set, then we can pick some rational $r$ in the set greater than $x$, so $x<r<y\vdone$.\\
-
-\blue{Case 2: $y\not\inq$}\\ 
-
-We know $m<ny<m+1$. $ny<m+1$ tell us $nx<ny-1<m$, so $nx<m<ny\bdone$ 
-\end{proof}
-\begin{theorem}
-\label{1.3.6}
-\textbf{(Positive root of power uniquely exists)} For all natural $n$ and $y>0$, there exists a unique positive $x$ such that $x^n=y$
-\end{theorem}
-\begin{proof}
-By \hyperref[1.2.10]{Theroem 1.2.10}, we know two different positive numbers $0<x<x'$ are different when raised to the power of $n$, being $0<x^n<(x')^{n}$, so if such positive power exists, it must be unique.\\
-
-We have handled the uniqueness part of the proof. Denote $E:= \set{m \inF^+: m^n<y}\text{ and }x:=\sup E$. Now we do the existence part by proving \vi{$x$ exists} and  \blue{$x^n=y$}.\\
-
-To show \vi{ $x=\sup \set{m \inF^+: m^n<y}$ exists}, we only have to show the set $\set{m \inF^+: m^n<y}$ is nonempty and bounded above. In other word, we wish to construct function $a\inF^+$ and $b$ of $y$ such that for all positive input $y>0$, we have $a^n<y$ and $(0<m^n<y\longrightarrow m<b)$. In the followings, the domain of $a$ and $b$ are only positives.\\
-
-First we construct $a$. By \myref{Theorem}{1.2.9}, we know if $a<\min \set{1,y}$ , then $a^n<a<y$, so we construct $a$ such that $0<a<\min \set{1,y}$. Notice that $a$ must be positive because we are constructing a number in $E$, where $E$ contain only positives. Express $a$ in the form  $a=\frac{p}{q}$ where $p,q$ are both function of $y$. In the process of  construction, We must be careful to make sure $a$ exists for all positive $y$.\\
-
-To satisfy $0<a$, we need only guarantee $p,q$ are always of the same sign for all positive $y$. If such $p,q$ exists, we can change both sign of  $p,q$ when they are negative, and get two positive function. So, we can just require $p,q$ to be positive for all positive $y$.\\      
-
-To satisfy $a<1$, observe $a<1\iff \frac{p}{q}<1\iff p<q$. The easiest construction is to let $q=p+c$ where $c$ is positive.\\
-
-To satisfy $a<y$, observe $a<y\iff \frac{p}{q}<y\iff p(y-1)+cy=qy-p>0$. The easiest construction is to let $p(y-1)+cy=y^2$, which is possible, if we let $p=y$ and $c=1$. In this case $p=y>0$ and $q=y+1>0$, and  $a=\frac{y}{y+1}$. We finished proving $E$ is nonempty. \textbf{(Notice $c=y^2,p=y^3,q=y^3+y^2,a=\frac{y^3}{y^3+y^2}$ also do the trick)}\\
-
-Now we construct $b$. By \myref{Theorem}{1.2.10}, we know if $0<b\text{ and }0<m^n<b^n$, then $m<b$, so we construct $b$ such that $y<b^n$ which lead to $0<m^n<y<b^n$ if  $m^n<y$. Because $y>0$, this is fairly easy. Simply let $b=y+1$, so we have $b>1\text{ and }b>y$; thus by \myref{Theorem}{1.2.9}, we have $b^n>b>y$, finishing proving $E$ is bounded above, where  $b=y+1$ is an upper bound. $\vdone$ \\
-
-To show \blue{$x^n=y$}, we show $x^n\geq y$ and $x^n\leq y$. We will assume that $x^n<y$ or $x^n>y$, but before we do such, let's see what property from which can we possibly draw contradiction. Notice that because we just prove the existence of the supremum of $E$, we haven't use the fact that $x=\sup E$ in anywhere of our proof. We know
-\begin{equation}
-x=\sup E\iff \forall d>0,
-\begin{cases}
-x+d\not\in E\text{ ($x$ is an upper bound) }\\
-\text{ and }\\
-x-d \text{ is not an upper bound of $E$ (the \emph{least} upper bound)}
-\end{cases}    
-\end{equation}
-So, you see, we wish to construct  a small and positive $h\text{ and }k$ such that if we assume $x^n<y\text{ or }x^n>y$ we can draw $x+h\in E$ or $x-k$ is an upper bound of $E$. \textbf{(We are going to assume $\sup E$ is smaller or greater than $\sqrt[n]{y}$)} \\
-
-Observe $x+h\inE\iff (x+h)^n<y\iff (x+h)^n-x^n<y-x^n$, and observe $x-k$ is an upper bound of $E\iff (m^n<y\longrightarrow m<x-k)\iff (m\geq x-k\longrightarrow m^n\geq y)\iff (m\geq x-k\longrightarrow x^n-m^n\leq x^n-y)$.\\
-
-Notice that the act of  subtracting  $x^n$ at the both side of the inequality play an important role in our proof: not only does the act allow us to use the identity $a^n-b^n=(a-b)(a^{n-1}+a^{n-2}b+\cdots +b^{n-1})$, and the act also tell us between $x+h \in E\text{ and }x-k$ is an upper bound of $E$, which contradiction statement should we draw from $x^n>y$. If $y-x^n<0$, then  $y-x^n<0<(x+h)^n-x^n$, so we can not possibly draw $x+h\inE$ from $x^n>y$. \textbf{(If $\sup E>\sqrt[y]{n}$, then it is too big, we can find a smaller upper bound of $E$)}\\
-
-\As{$x^n>y$}. We wish to construct positive $k$ such that \teal{$m\geq x-k \longrightarrow x^n-m^n\leq x^n-y$}, so we can draw the contradiction $x-k$ is an upper bound of $E$. \\ 
-
-Notice that $m\geq x-k\implies x^n-m^n\leq x^n-(x-k)^n$, so if $x^n-(x-k)^n\leq x^n-y$, our proof at this part is finished. Now our job is to single out the $k$ in the inequality to give an condition such that $x^n-(x-k)^n\leq x^n-y$ hold if the condition hold. It is easy to see that computing the polynomial of $k$ on left hand side of inequality and to prove such positive $k$ exists for all $n$ is almost impossible. Thus, we take a possible but actually non-existing risk in our next step of the proof. Use the $a^n-b^n$ identity and that $x-k<x$ to deduce
-\begin{equation}
-x^n-(x-k)^n=k(x^{n-1}+x^{n-2}(x-k)+\cdots +(x-k)^{n-1})\leq knx^{n-1}
-\end{equation}
-So, if we have $knx^{n-1}\leq x^n-y$, which is equivalent to $k\leq \frac{x^n-y}{nx^{n-1}}$, our proof is partially finished. Notice that $x^n-y>0\text{ and }nx^{n-1}>0$, so $\frac{x^n-y}{nx^{n-1}}>0$; thus the positive $k$ exists.  $\tdone\tCaC$\textbf{(The reason I use the word "possible risk" is that if we use an identity that show us $x^n-(x-k)^n$ smaller than a quantity greater than $x^n-y$, the proof can not be done.)} \\
-
-\As{$x^n<y$}. We wish to construct positive $h$ such that \teal{$(x+h)^n-x^n<y-x^n$}, so we can draw the contradiction $x+h\in E$.\\
-
-Again, we use the same identity to deduce
- \begin{equation}
-   (x+h)^n-x^n=h((x+h)^{n-1}+(x+h)^{n-2}x+\cdots +x^{n-1})<hn(x+h)^{n-1}
-\end{equation}
-To single out the $h$ in the  $hn(x+h)^{n-1}$, notice that we can take the risk to add the constraint $h<1$ at the end of our construction to have $(x+h)^n-x^n<hn(x+h)^{n-1}<hn(x+1)^{n-1}$. Then, if we have $hn(x+1)^{n-1}<y-x^n$, which is equivalent to $h<\frac{y-x^n}{n(x+1)^{n-1}} $, our proof is finished. To sum up, any $h$ satisfy  $h<\min \set{1,\frac{y-x^n}{n(x+1)^{n-1}}}$ does the trick, and such $h$ exists, since  $0<\min \set{y-x^n,n(x+1)^{n-1}}$. $\tdone\tCaC\bdone$   
-\end{proof}
-\fbox{\begin{minipage}{39em}
-If you want a proof with less of my commentary, here you go.
-\end{minipage}}
-\begin{proof}
-  Observe $\min \set{1,\frac{y}{2}}\in E$ and $\max \set{1,y}$ is an upper bound of $E$, so $\sup E$ exists.  Denote $x:=\sup E$. \As{$x^n>y$}. Observe $x-k\text{ is an upper bound of $E$ }\iff m^n<y\longrightarrow m<x-k\iff m\geq x-k\longrightarrow m^n\geq y$. We know $(x-k)^n\geq y\iff x^n-(x-k)^n\leq x^n-y$, and know $x^n-(x-k)^n\leq knx^{n-1}$. If we let $0<k\leq \frac{x^n-y}{nx^{n-1}}$, then $x-k$ is an upper bound of  $E\tCaC.$ \As{$x^n<y$}. Observe $x+h\inE\iff (x+h)^n-x^n<y-x^n$. We know that $(x+h)^n-x^n<hn(x+h)^{n-1}$ and that if $h<1$, we have  $hn(x+h)^{n-1}<hn(x+1)^{n-1}$. So we let  $h=\min \set{1,\frac{y-x^n}{n(x+1)^{n-1}}}$, and we can see $x+h\inE\tCaC$. 
-\end{proof}
-\begin{definition}
-\label{1.3.7}
-The number $x$ in \hyperref[1.3.6]{Theorem 1.3.6} is written  $x=\sqrt[n]{y}$ or $x=y^{\frac{1}{n}}$.
-\end{definition}
-\fbox{\begin{minipage}{39em}
-The above theorem is by far the trickiest we have seen. Often the theorem is proven only in special case $\sqrt{2}$ as a classical example in the first class of analysis. Here, we prove a general result. The following theorem is to make sure the definition of rational power make sense . In last section we prove some inequalities concerning integer power. Here, we prove those inequalities are inherited by rational power. Of course, the arithmetic properties of rational power, also inherited from those of integer power, will be proven after these inequalities.   \\ 
-
-
-About the coverage of definition, notice that we didn't and won't define $y^{\frac{1}{n}}$ when $y$ is negative. Also, notice that for all nonzero rational $s$, we can define $0^s=0$. 
-\end{minipage}}
-\begin{theorem}
-\label{1.3.8}
-Given $m,p\inz\text{ and }n,q\inn\text{ and }a>0\text{ and }\frac{m}{n}=\frac{p}{q}$, we have 
-\begin{equation}
-(a^m)^{\frac{1}{n}}=(a^p)^{\frac{1}{q}}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Observe
-\begin{align}
-  x&= (a^m)^{\frac{1}{n}}\\
-  \liff x^n&=a^m\\
-  \liff (x^n)^q&=(a^m)^q\\
-\liff x^{nq}&= a^{mq}=a^{np} \rap{because $n,m,q\inz$}\\
-  \liff (x^q)^n&=(a^p)^n \rap{again, because $n,p,q\inz$}\\
-  \liff x^q&=a^p\rap{by \hyperref[1.3.6]{Theorem 1.3.6}}\\
-  \liff x&=(a^p)^{\frac{1}{q}}\rap{by \hyperref[1.3.6]{Theroem 1.3.6}}\\
-  \liff (a^m)^{\frac{1}{n}}&=x=(a^p)^{\frac{1}{q}} 
-\end{align}
-\end{proof}
-\begin{definition}
-\label{1.3.9}
-\textbf{(Definition of Rational Powers)} Given a rational $r=\frac{p}{q}$, where $q\inn$. For all $a$, we define $a^r=(a^p)^{\frac{1}{q}}$
-\end{definition}
-\begin{theorem}
-\label{1.3.10}
-\textbf{(Inequality when base is fixed)} Given a positive $a$ and two rational  $x,y$ where  $x<y$, we have
- \begin{equation}
-\begin{cases}
-  a^x<a^y\iff a>1\\
-  a^x=a^y\iff a=1\\
-  a^x>a^y\iff 0<a<1
-\end{cases}
-\end{equation}
-\end{theorem}
-\begin{proof}
-  Express $x,y$ in the form $x=\frac{q}{p},y=\frac{n}{m}$ where $q,n\inz\text{ and }m,p\inn$. Notice $x<y\implies \frac{q}{p}<\frac{n}{m}\implies mq<np$. Observe
-  \begin{align}
-    a^x<a^y &\implies a^{\frac{q}{p}}<a^{\frac{n}{m}}\\
-  &\implies a^q=(a^{\frac{q}{p}})^p<(a^{\frac{n}{m}})^p\rap{by \myref{Theorem}{1.2.10}}\\
-  &\implies a^{mq}=(a^q)^m<((a^{\frac{n}{m}})^p)^m=((a^{\frac{n}{m}})^m)^p=(a^n)^p=a^{np}\\
-  &\implies a>1\rap{by \myref{Theorem}{1.2.9}} 
-  \end{align}
-  Notice that the above implication still hold true if $<$ is replaced by $>$ and $>$ is replaced by  $<$, and notice that the above implication still hold true if $<$ and  $>$ are all replaced by $=$, so we in fact have three implications. The Theorem follows from the three implication.
-   
-\end{proof}
-\begin{theorem}
-\label{1.3.11}
-\textbf{(Inequality when rational power is fixed)} Given $0<b<c$ and  $z\inq$, we have
-\begin{equation}
-\begin{cases}
-  b^z<c^z \iff 0<z\\
-  b^z=c^z \iff 0=z\\
-  b^z>c^z\iff 0>z
-\end{cases}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Express $z=\frac{q}{p}$, where $q$ is an integer and $p$ is a natural. Notice $q\text{ and }z$ are of the same sign. Observe by \myref{Theorem}{1.2.10}, we have $b^{\frac{q}{p}}<c^{\frac{q}{p}}\implies b^q=(b^{\frac{q}{p}})^p<(c^{\frac{q}{p}})^p=c^q\implies 0<q$.\\
-
-  Notice that the above implication still hold true if $<$ is replaced by $>$ and $>$ is replaced by  $<$, and notice that the above implication still hold true if $<$ and  $>$ are all replaced by $=$, so we in fact have three implications. The Theorem follows from the three implication.
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Now we prove the arithmetic properties of rational power concerning only positive base. Notice there is no definition of a negative raised to the power of a rational. \red{From Here}
-\end{minipage}}
-\begin{theorem}
-\label{1.3.12}
- \textbf{(Arithmetic property of rational power)} Given $r,s\inq\text{ and }a>0$, we have
-\begin{equation}
-a^{r+s}=a^ra^s
-\end{equation}
-\end{theorem}
-\begin{proof}
-Express $r,s$ in the form $r=\frac{p}{q},s=\frac{m}{n}$ where $q,n\inn\text{ and }p,m \inz$. Observe
-\begin{align}
-  (a^{r+s})^{nq}&=(a^{\frac{np+mq}{nq}})^{nq}\\
-  &=a^{np+mq} 
-\end{align}
-Then observe
-\begin{align}
-  (a^ra^s)^{nq}&= (a^{\frac{p}{q}}a^{\frac{m}{n}})^{nq} \\
-  &= (a^{\frac{p}{q}})^{nq}(a^{\frac{m}{n}})^{nq}\rap{by \myref{Theorem}{1.2.14}}\\
-  &=((a^{\frac{p}{q}})^q)^n((a^{\frac{m}{n}})^n)^q\\
-&=(a^p)^n(a^m)^q\\
-&= a^{np+mq}=(a^{r+s})^{nq}\rap{\myref{Theorem}{1.2.12}\text{ and }\myref{Theorem}{1.2.13}} 
-\end{align}
-Then by \myref{Theorem}{1.3.6}, we can deduce $a^ra^s=a^{r+s}$ 
-\end{proof}
-\begin{theorem}
-\label{1.3.13}
-\textbf{(Arithmetic property of rational power)} Given $r,s\inq\text{ and }a>0$, we have
-\begin{equation}
-  (a^r)^s=a^{rs}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Express $r,s$ in the form $r=\frac{p}{q},s=\frac{m}{n}$ where $q,n\inn\text{ and }p,m \inz$. Observe
-\begin{align}
-  (a^{rs})^{nq}&=(a^{\frac{mp}{nq}})^{nq}\\
-  &= a^{mp}
-\end{align}
-Then observe
-\begin{align}
-  ((a^r)^s)^{nq}&=(((a^{\frac{p}{q}})^{\frac{m}{n}})^n)^q\\
-  &=((a^{\frac{p}{q}})^m)^q\\
- &=(a^{\frac{p}{q}})^{mq}\\
-  &=((a^{\frac{p}{q}})^q)^m \\
-  &=(a^p)^m=a^{mp}=(a^{rs})^{nq}  
-\end{align}
-\end{proof}
-\begin{corollary}
-\label{1.3.14}
-$a^{\frac{q}{p}}=(a^{\frac{1}{p}})^q$
-\end{corollary}
-\begin{theorem}
-\label{1.3.15}
-\textbf{(Arithmetic property of rational power)} Given $r\inq$ and $a,b>0$, we have
- \begin{equation}
-a^rb^r=(ab)^r
-\end{equation}
-\end{theorem}
-\begin{proof}
-Express $r$ in the form  $r=\frac{q}{p}$, and observe $(a^rb^r)^p=(a^r)^p(b^r)^p=(a^{\frac{q}{p}})^p(b^{\frac{q}{p}})^p=a^qb^q=(ab)^q=((ab)^r)^p$. 
-\end{proof}
-\section{Irrational Power}
-\fbox{\begin{minipage}{39em}
-    After the rational power, we now try to define irrational power. In most of the textbooks, irrational power as a rigorous definition often come after the definition of Euler number, but here, we define the irrational power with a technique not so advanced and to be fair quite cumbersome compared to the approaches in most textbooks. Of course, the common inequalities and arithmetic properties of irrational power will be presented, although their order of presentation is different to how we present in the section before. 
-\end{minipage}}
-\begin{lemma}
-\label{1.4.1}
-For $b,x\inF$, define  $B(x):=\set{b^t:t\inq,t\leq x}$. Then for all $x\inF$, $b>1$ implies  $\sup B(x)$ exists, and $0<b\leq 1$ implies $\inf B(x)$ exists.
-\end{lemma}
-\begin{proof}
-  For all $x$,  we know $B(x)$ is nonempty, since if not, $\Q$ is bounded below. Because $\Q$ is nonbounded above, we can pick a rational  $y$ greater than $x$. If $b>1$, we deduce  $\forall b^t\inB(x),b^t\leq b^y $; thus $b^y$ is an upper bound of  $B(x)$. If $0<b<1$, we deduce $\forall b^t\in B(x),b^y\leq b^t$; thus $b^y$ is an lower bound of $B(x)$. If $b=1$, just notice  $B(x)=\set{1}$.     
-\end{proof}
-\begin{definition}
-\label{1.4.2}
-\textbf{(Irrational Power Definition)} For all $b,x\inF$, define $B(x)$ as in \myref{Lemma}{1.4.1}, and for all $x\inF$, if $b>1$, define $b^x:=\sup B(x)$, and if $0<b\leq 1$, define $b^x:=\inf B(x)$ 
-\end{definition}
-\fbox{\begin{minipage}{39em}
-The above definition is in fact not very appropriate, since we have already define $b^x$ where  $x\inq$. We don't know if the above definition is consistent with our old definition. The next theorem is to show it is.  
-\end{minipage}}
-\begin{theorem}
-\label{1.4.3}
-  \textbf{(Consistency of power definitions)} Given $r\inq$, if $b>1$, then  $b^r=\sup B(r)$, and if $b<1$, then  $b^r=\inf B(r)$
-\end{theorem}
-\begin{proof}
-If $b>1$, deduce  $b^r=\max  B(r)=\sup B(r)$. If $b<1$, deduce $b^r=\min B(r)=\inf B(r)$.  
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Now, we are going to prove one common inequalities. The other will be proven after some work. 
-\end{minipage}}
-
-
-\begin{theorem}
-\label{1.4.4}
-\textbf{(Inequality when base is fixed)} Given a positive $b$ and $x<y$, we have
- \begin{equation}
-\begin{cases}
-  b^x<b^y\iff b>1\\
-  b^x=b^y\iff b=1\\
-  b^x>b^y\iff 0<b<1
-\end{cases}
-\end{equation}
-\end{theorem}
-\begin{proof}
-  By \myref{Theorem}{1.3.5}, we can pick a rational $q$ such that  $x<q<y$. We have $b^q\in B(y)$. We now consider three possible situations.\\
-
-
-
-  If $b>1$, then $b^q\leq \sup B(y)$. Because $\forall b^t\inB(x), t\leq x<q$, we can  deduce $\forall b^t\in B(x), b^t<b^q$; that is, $b^q$ is an upper bound of $B(x)$. Notice that there exists rational between $x<q$, so  $b^q$ can not be the least upper bound of  $B(x)$.  Then we can deduce $\sup B(x)< b^q\leq \sup B(y)$.\\
-
-  If $b=1$, then  $b^x=1=b^y$.\\
-
-  If  $b<1$, then $\inf B(y)\leq b^q$. Because $\forall b^t\in B(x), t\leq x<q$, we can deduce $\forall b^t\in B(x), b^t>b^q$ ; that is, $b^q$ is an lower bound of  $B(x)$. Notice that there exists rational between $x<q$, so  $b^q$ can not be the greatest lower bound of  $B(x)$. Then we can deduce $\inf B(y)\leq b^q< \inf B(x)$.\\
-
-  The Theorem follows from the three implications of the three situation. 
-\end{proof}
-
-\begin{lemma}
-\label{1.4.5}
-Let $S,U$ and be two bounded above subset of  $\F$, containing only nonnegative numbers. Define $SU:=\set{su:s\inS,u\inU}$. We have    
-\begin{equation}
-\sup SU=\sup S \sup U 
-\end{equation}
-and have 
-\begin{equation}
-\inf SU=\inf S\inf U
-\end{equation}
-where the infimum part hold true even if $S,U$ are not bounded above 
-\end{lemma}
-\begin{proof}
-Because $S,U$ contain only nonnegative numbers, we know $s\leq \sup S$ and $u\leq \sup U$ implies $su\leq \sup S \sup U$, so $\sup S \sup U$ is an upper bound of $SU$. Now we show \vi{$\sup S \sup U$ is the \textit{least} upper bound of $SU$}.\\
-
-\As{there is an upper bound $x$ of $AB$ smaller than $\sup A \sup B$}. Express $x$ in the form  $x=\sup S \frac{x}{\sup S}$. Because $x<\sup S \sup U $, we know $\frac{x}{\sup S}<\sup U$, which implies there is a number  $u\inU$ greater than $\frac{x}{\sup S}$. Observe $u>\frac{x}{\sup S}\implies \frac{x}{u}<\sup S$, which implies that there is a number $s\in S$ greater than  $\frac{x}{u}$. Observe  $\frac{x}{u}<s\implies x<su \tCaC\vdone$\\ 
-
-Clearly, we know $s\geq \inf  S$ and $u\geq \inf  U$ implies $su\geq \inf  S \inf  U$, so $\inf  S \inf  U$ is an lower bound of $SU$. Now we show \blue{$\sup S \sup U$ is the \textit{greatest} lower bound of $SU$}.\\
-
-\As{there is an lower bound $x$ of $AB$ greater than $\sup A \sup B$}. Express $x$ in the form  $x=\inf  S \frac{x}{\inf  S}$. Because $x>\inf  S \inf  U $, we know $\frac{x}{\inf  S}>\inf  U$, which implies there is a number  $u\inU$ less than $\frac{x}{\inf  S}$. Observe $u<\frac{x}{\inf  S}\implies \frac{x}{u}>\inf  S$, which implies that there is a number $s\in S$ less than  $\frac{x}{u}$. Observe  $\frac{x}{u}>s\implies x>su \tCaC\bdone$  
-\end{proof}
-
-\begin{theorem}
-\label{1.4.6}
-\textbf{(Arithmetic property)} Given $r,s\inF$ and $0<a$, we have
-\begin{equation}
-  a^{r+s}=a^ra^s
-\end{equation}
-\end{theorem}
-
-\begin{proof}  
-We prove \vi{$A(r+s)=\set{xy:x\inA(r)\text{ and }y\inA(s)}$}. Denote the set on right side $E$. Observe that $xy\in E \implies \exists q\leq r\inq,x=a^q\text{ and }\exists m\leq s\inq,y=a^m\implies xy=a^{q+m} \text{ where $q+m\leq r+s$}\implies xy\in A(r+s)$. Then we know $E\subseteq A(r+s)$. Given $a^d\in A(r+s)$, we know $d\leq r+s$, so if we express $a^d=a^ra^{d-r}$, we are sure $a^{d-r}\in A(s)$ and $a^r\in A(r)$, which implies $a^d\in E$. Then we can deduce $A(r+s)\subseteq E$.$\vdone$\\
-
-By \myref{Lemma}{1.4.5}, our proof is finished.
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Now, we introduce an idea to aid our proof of inequality.
-\end{minipage}}
-\begin{definition}
-\label{1.4.7}
-\textbf{(Definition of order homomorphism)} Let $S$ be an subset of  $\F$, the function  $\phi :S \rightarrow  \F $ is an \textit{order homomorphism}, if for all $a,b\in S$, we have 
-\begin{equation}
-  a<b\implies \phi (a)<\phi (b)
-\end{equation}
-Two subset $U,V$ are said to be  \textit{order isomorphic}, if there exists an bijective order homomorphism from one to another.
-\end{definition}
-\begin{lemma}
-\label{1.4.8}
-Let $S,U$ be two order isomorphic bounded above subset of  $\F$, containing only nonnegative numbers, where $\phi :S\rightarrow U$ is an order isomorphism. Let $US_\phi = \set{s\phi (s):s\in S}$. We have
-\begin{equation}
-\sup S \sup U= \sup US_\phi 
-\end{equation}
-and have
-\begin{equation}
-\inf S\inf U=\inf US_\phi 
-\end{equation}
-where the infimum part hold true even if $S,U$ are not bounded above.
-\end{lemma}
-\begin{proof}
-For all $s\phi (s)$ in $US_\phi $, we know $0\leq s\leq \sup S$ and $0\leq \phi (s)\leq \sup U$, so we can deduce $s\phi (s)\leq \sup S\sup U$. We have proven that $\sup S\sup U$ is an upper bound of $US_\phi $. We now prove it is the least. \As{there exists an upper bound $x$ of $US_\phi $ smaller than $\sup S\sup U$}. Because $\frac{x}{\sup U}<\sup S$, we know there exists $s\inS$ such that $x<(\sup U)s$. Then because $\frac{x}{s}<\sup U$, we know there exists $\phi (s')\in U$ such that $x<s\phi (s')$. If $s<s'$, then we see  $x<s\phi (s')<s'\phi (s')\in US_\phi $. If $s>s'$, then we see  $x<s\phi (s')<s\phi (s)$. If $s=s'$, then we see $x<s\phi (s')=s\phi (s)\tCaC$\\
-
-
-For all $s\phi (s)$ in $US_\phi $, we know $s\geq \inf  S$ and $ \phi (s)\geq \inf  U$, so we can deduce $s\phi (s)\geq \inf  S\inf  U$. We have proven that $\inf  S\inf  U$ is an lower bound of $US_\phi $. We now prove it is the greatest. \As{there exists an lower bound $x$ of $US_\phi $ greater than $\inf  S\inf  U$}. Because $\frac{x}{\inf  U}>\inf  S$, we know there exists $s\inS$ such that $x>(\inf  U)s$. Then because $\frac{x}{s}>\inf  U$, we know there exists $\phi (s')\in U$ such that $x>s\phi (s')$. If $s<s'$, then we see  $x>s\phi (s')>s\phi (s)\in US_\phi $. If $s>s'$, then we see  $x>s\phi (s')>s'\phi (s')$. If $s=s'$, then we see $x>s\phi (s')=s\phi (s)\tCaC$      
-\end{proof}
-
-\begin{theorem}
-\label{1.4.9}
-\textbf{(Arithmetic property)} Given $b,c>0$ and  $z\inF$, we have
-\begin{equation}
-b^zc^z=(bc)^z
-\end{equation}
-\end{theorem}
-\begin{proof}
- From now, we will use $C(z)$ to denote $\set{c^u: u\inq, u\leq z}$. Define $\phi :B(z)\rightarrow C(z)$ as $b^t\mapsto c^t$. Observe that if $b,c$ are both greater than $1$, then  $b^t<b^m\implies t<m\implies c^t<c^m$, and that if $b,c$ are both less than $1$, then  $b^t<b^m\implies t>m\implies c^t<c^m$. So If $b,c$ are both greater than $1$ or both less than $1$,  then $\phi$ is an order isomorphism. Notice that $\set{(bc)^u:u\inq, u\leq z}=\set{b^t \phi(b^t):t\inq, t\leq z}=C(z)B(z)_\phi$. Then by \myref{Lemma}{1.4.8}, our proof is finished. We now show \vi{$(b^{-1})^zb^z=1$}.\\
-
-WOLG, let $b<1$. Denote $H:=\set{b^t:t\inq,t\leq z},E:=\set{b^{-t}:t\inq,t\leq z}$, so $b^z=\inf H\text{ and }(b^{-1})^z=\sup E$. \As{$(\sup E)(\inf H)>1$}. Notice $\sup E>\frac{1}{\inf H}$ implies that there exists $t\leq z$ such that $b^{-t}>\frac{1}{\inf H}$, which leads to $\inf H>b^t\tCaC$. \As{$(\sup E)(\inf H)<1$}. Notice $\inf H<\frac{1}{\sup E}$ implies that there exists $t\leq z$ such that $b^{-t}<\frac{1}{\sup E}$, which leads to $\sup E<b^t\tCaC\vdone$\\     
-
- If $b<1<c$ and $bc>1$, observe that $(bc)^z(b^{-1})^z=c^z\implies (bc)^z=(bc)^z(b^{-1})^zb^z=b^zc^z$. If $b<1<c$ and  $bc<1$, observe that $(bc)^z(c^{-1})^z=b^z\implies (bc)^z=(bc)^z(c^{-1})^zc^z=b^zc^z $  
-\end{proof}
-\begin{theorem}
-\label{1.4.10}
-\textbf{(Inequality when power is fixed)} Given $0<b<c$ and  $z\inF$, we have
-\begin{equation}
-\begin{cases}
-  b^z<c^z \iff 0<z\\
-  b^z=c^z \iff 0=z\\
-  b^z>c^z\iff 0>z
-\end{cases}
-\end{equation}
-\end{theorem}
-\begin{proof}
-By \myref{Theorem}{1.4.4}, $z>0\implies (\frac{c}{b})^z>(\frac{c}{b})^0=1\implies c^z>b^z$, and $z=0\implies b^z=1=c^z$, and $z<0\implies (\frac{c}{b})^z<(\frac{c}{b})^0=1$ 
-\end{proof}
 
 \fbox{\begin{minipage}{39em}
-Before the last arithmetic property, we first prove the existence of logarithm, which play an important role in the proof of last arithmetic property.
-\end{minipage}}
-\begin{theorem}
-\label{1.4.11}
-\textbf{(Existence of logarithm)} For all positive  $b,y$ where $b\neq 1$, there exists an unique  $x\inF $ such that $b^x=y$  
-\end{theorem}
-\begin{proof}
-The uniqueness part have been handled by \myref{Theorem}{1.4.4}. Now we split the proof into two cases: \vi{$b>1$} and \blue{$b<1$}\\
-
-Case 1: \vi{$b>1$}\\
-
-Define $A:=\set{w:b^w<y}$ and $x=\sup A$.\\
-
-We first prove the identity \teal{for all positive integer $m$ and  $c>1$, we have $c-1\geq (c^{\frac{1}{m}}-1)m$}\\
-
-Let $d=c^{\frac{1}{m}}$, so we have $c-1=d^m-1=(d-1)(d^{m-1}+d^{m-1}+\cdots +1)\geq (d-1)m=(c^{\frac{1}{m}}-1)m\tdone$\\
-
-
-\As{$b^x>y$}. Let $t=\frac{b^x}{y}$ and $\frac{b-1}{t-1}<n=m$ and $b=c$ to use the identity, so we have  $b-1\geq n(b^{\frac{1}{n}}-1)$. Then we have $\frac{b-1}{n}\geq b^{\frac{1}{n}}-1$. Notice that $b^x>y\implies t-1>0$, so because $n>\frac{b-1}{t-1}$, we then have $t-1>\frac{b-1}{n}\geq b^{\frac{1}{n}}-1$, which implies $t> b^{\frac{1}{n}}$.\\
-
- Observe $b^{x-\frac{1}{n}}=\frac{b^x}{b^{\frac{1}{n}}}>\frac{b^x}{t}=y$. Then $x-\frac{1}{n}$ is an upper bound of $A\tCaC$.\\
-
-
-\As{$b^x<y$}. Let $t=\frac{y}{b^x}$ and let $\frac{b-1}{t-1}<n=m$ and $b=c$ to use the identity, so we have  $b-1\geq n(b^{\frac{1}{n}}-1)$. Then we have $\frac{b-1}{n}\geq b^{\frac{1}{n}}-1$. Notice that $b^x<y\implies t-1>0$, so because $n>\frac{b-1}{t-1}$, we then have $t-1>\frac{b-1}{n}\geq b^{\frac{1}{n}}-1$, which implies $t>b^{\frac{1}{n}}$.\\
-
-Observe $b^{x+\frac{1}{n}}=b^xb^{\frac{1}{n}}<b^xt=y$. Then $x+\frac{1}{n}\inA\tCaC\vdone$\\
-
-Case 2: \blue{$b<1$}\\
-
-Define $B:=\set{w:b^w<y}$ and $x:=\inf B$.\\
-
-We first prove the identity \teal{for all positive integer $m$ and $0<c<1$, we have  $c-1\leq (c^{\frac{1}{m}}-1)m$}\\
-
-Let $d=c^{\frac{1}{m}}$, so we have $c-1=d^m-1=(d-1)(d^{m-1}+d^{m-2}+\cdots +1)\leq (d-1)m=(c^{\frac{1}{m}}-1)m\tdone$.\\
-
-\As{$b^x>y$}. Let $t=\frac{y}{b^x}$ and $\frac{b-1}{t-1}<n=m\text{ and }b=c$ to use the identity, so we have $b-1\leq (b^{\frac{1}{n}}-1)n$. Then we have $\frac{b-1}{n}\leq b^{\frac{1}{n}}-1$. Notice that $b^x>y\implies t-1<0$, so because $n>\frac{b-1}{t-1}$, we then have $t-1<\frac{b-1}{n}\leq b^{\frac{1}{n}}-1$, which implies $t<b^{\frac{1}{n}}$.\\
-
-Observe $b^{x+\frac{1}{n}}=b^xb^{\frac{1}{n}}>b^xt=y$. Then $x+\frac{1}{n}$ is an lower bound of $B\tCaC$.\\
-
-\As{$b^x<y$}. Let $t=\frac{b^x}{y}\text{ and }\frac{b-1}{t-1}<n=m\text{ and }b=c$ to use the identity, so we have $b-1\leq (b^{\frac{1}{n}}-1)n$. Then we have $\frac{b-1}{n}\leq b^{\frac{1}{n}}-1$. Notice that $b^x<y\implies t-1<0$, so because $n>\frac{b-1}{t-1}$, we then have $t-1<\frac{b-1}{n}\leq b^{\frac{1}{n}}-1$, which implies $t<b^{\frac{1}{n}}$.\\
-
-Observe $b^{x-\frac{1}{n}}=\frac{b^x}{b^{\frac{1}{n}}}<\frac{b^x}{t}=y$. Then $x-\frac{1}{n}\inB\tCaC\bdone$
-\end{proof}
-\begin{definition}
-\label{1.4.12}
-\textbf{(Definition of logarithm)} Define $\log_b y:=x$, where $x,b,y$ are in \myref{Theorem}{1.4.11}.
-\end{definition}
-\begin{lemma}
-\label{1.4.13}
-Given $0<x<rs$ and $0<r$ and  $0<s$, there exist positive rational $u<s$ and positive rational $t<r$ such that   $x<tu<rs$. 
-\end{lemma}
-\begin{proof}
-  $0<x<rs \implies \frac{x}{s}<r$. Then there exists rational $t$ such that  $\frac{x}{s}<t<r$, which implies $\frac{x}{t}<s$. Then there exists rational $u$ such that $\frac{x}{t}<u<s$. Then $x<tu<rs$.
-\end{proof}
-\begin{theorem}
-\label{1.4.14}
-\textbf{(Arithmetic property)} Given $r,s\inF\text{ and }a>0$, we have
-\begin{equation}
-  (a^r)^s=a^{rs}
-\end{equation}
-\end{theorem}
-\begin{proof}
-  The proof is very very long. We first denote three important sets:
-\begin{equation}
-T:=\set{a^t:t\inq,t\leq r}
-\end{equation}
-\begin{equation}
-U:=\set{(a^r)^u:u\inq,u\leq s}
-\end{equation}
-\begin{equation}
-X:=\set{a^x:x\inq,x\leq rs}
-\end{equation}
-
-  So, we have 
-\begin{equation}
-a^r=(\sup \text{ or }\inf )T
-\end{equation}
-\begin{equation}
-(a^r)^s=(\sup \text{ or }\inf )U
-\end{equation}
-\begin{equation}
-a^{rs}=(\sup \text{ or }\inf )X
-\end{equation}
-Notice that from now, when variables $t,u,x$ and their variants $t',u',x'$ are mentioned, they are rational and respectively less than or equal to $r,s,rs$. \\
-
-
-
-  Now, we split the proof into sixteen cases: $a$ may be smaller or greater than $1$; $r,rs$ may be positive or negative; $rs$ is rational or irrational. \\
-
-
-
-  We first do all 8 cases of $rs\not\inq$. Notice that $rs\not\inq\implies x<rs$.\\  
-
-
-  The easiest case first:  \vi{$a>1\text{ and }r>0\text{ and }s>0\text{ and }rs\not\inq$}.\\
-
-  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then $\exists x,\forall u,a^x>(a^r)^u=(\sup T)^u$.  Let $u>0$, so we have $\forall t, a^{\frac{x}{u}}>a^t$. By \myref{Lemma}{1.4.13} \CaC. \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\sup U$. Then $\exists u,\forall x,(\sup T)^u=(a^r)^u>a^x$. Because $a^r>1$, we know $u>0$, since $u<0\implies (a^r)^u<1$. Then we have  $\exists u,\forall x,\sup T>a^{\frac{x}{u}}$, so we have $\exists u,\forall x,\exists t,a^t>a^{\frac{x}{u}}$. But we see that for all $u$, we can let  $x>ru$, so $a^{\frac{x}{u}}>a^r.\tCaC\vdone$   \\
-
-
-
-  The second case: \blue{$a>1\text{ and }r>0\text{ and }s<0\text{ and }rs\not\inq$}.\\
-
-  \As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\sup U$. Then $\exists x,\forall u, a^x>(a^r)^u=(\sup T)^u$. Because $u\leq s<0$, we have $\exists x,\forall u,a^{\frac{x}{u}}<\sup T$. Then, we have $\exists x,\forall u,\exists t,a^{\frac{x}{u}}<a^t$. Express $x=rm$, and let $0>s>u>m$, so we have  $\frac{x}{u}=\frac{rm}{u}>r\tCaC$. \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\sup U$. Then $\exists u,\forall x,a^x<(a^r)^u=(\sup T)^u$. Because $u\leq s<0$, we have $\exists u,\forall x, a^{\frac{x}{u}}>\sup T$. Then, we have $\exists u,\forall x,\forall t, a^{\frac{x}{u}}>a^t$. If $s\not\inq$, then we notice that because $u<s<0$, we have $r(\frac{s}{u})<r$. Pick $t$ such that $r(\frac{s}{u})<t<r$, so we have $rs>tu$. Then pick $x$ such that $0>rs>x>tu$, and observe $a^{\frac{x}{u}}<a^t\tCaC$. If $s\inq$, then it is possible to happen $u=s$. Then $a^{\frac{x}{u}}=a^{\frac{x}{s}}>a^{\frac{rs}{s}}=a^r\geq a^t\tCaC\bdone$  \\
-
-
-
-  \\
-
-
-
-
-The third case: \vi{$a>1\text{ and }r<0\text{ and }s>0\text{ and }rs\not\inq$}\\
-
-\As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\inf  U$. Then $\exists x,\exists u,a^x>(a^r)^u=(\sup T)^u $. Notice that $u\leq 0\implies (a^r)^u\geq 1>a^x$, so $u$ must be positive. Then we have $\exists x,\exists u,a^{\frac{x}{u}}>\sup T$. Then, we have $\exists x,\exists u,\forall t,a^{\frac{x}{u}}>a^t$. Notice that $\frac{x}{u}<\frac{rs}{u}<r$, so there  exists $t$ such that  $a^{\frac{x}{u}}<a^t\tCaC.$ \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\inf U$. Let $\sup X<m<\inf U$, and let $n=\log_a m$, so $a^{rs}<a^n<\inf  U$. Pick a rational $k$ so that  $a^{rs}<a^k<a^n<\inf U$. Then we know for all positive $u$, we have $a^{\frac{k}{u}}<a^r=\sup T$. This give us $\forall u>0,\exists t,a^k<a^{tu}$. Because $rs<k$, we know  $s>\frac{k}{r}$. Let $s>u'>\frac{k}{r}$. Then we see $\forall t,u't<u'r<k\tCaC\vdone$\\
-
-The forth case: \blue{$a>1\text{ and }r<0\text{ and }s<0\text{ and }rs\not\inq$}\\
-
-\As{$a^{rs}>(a^r)^s$}; that is, $\sup X>\inf U$. Then $\exists x,\exists u,a^x>(a^r)^u$. Because $u\leq s<0$, we have $\exists x,\exists u, a^{\frac{x}{u}}<a^r=\sup T$. Then $\exists x,\exists u,\exists t, a^x>a^{tu}$. Observe $tu\geq ru\geq rs>x\tCaC$. \As{$a^{rs}<(a^r)^s$}; that is, $\sup X<\inf U$. Let $\sup X<m<\inf U$, and let $n=\log_a m$, so $a^{rs}<a^n<\inf  U$. Pick a rational $k$ so that  $a^{rs}<a^k<a^n<\inf U$. Then, $\forall u, a^{\frac{k}{u}}>a^r=\sup T$. This implies $\forall u,\forall t,a^k<a^{tu}$. Because $rs<k$, we know  $s>\frac{k}{r}$. Let $s>u'>\frac{k}{r}$. Then $u'r<k$, which implies $r>\frac{k}{u'}$. Let $r>t'>\frac{k}{u'}$. Then we see $t'u'<k\tCaC\bdone$\\
-
-The next four cases where $a<1$ use the same logic, and  reference to \myref{Theorem}{1.4.9}.\\
-
-The forth to eighth cases:  \vi{$a<1\text{ and }rs\not\inq$}\\
-
-By the above four cases, we know $((\frac{1}{a})^r)^s=(\frac{1}{a})^{rs}$. Observe $a^{rs}(\frac{1}{a})^{rs}=1^{rs}=1$, and observe $(a^r)^s((\frac{1}{a})^r)^s=(a^r(\frac{1}{a})^r)^s=((1)^r)^s=1\vdone$.\\
-
-The final eight cases:  \blue{$rs\inq$}\\
-
-If $r,s$ are both rational, the proof reference to \myref{Theorem}{1.3.13}. Notice that if only one of $r,s$ is rational, then  $rs$ is irrational, so we can assume  $r,s$ are both irrational. Observe by the eight cases above, $(a^{rs})^{\frac{1}{s}}=a^r$, so by \myref{Definition}{1.3.9}, $(a^r)^s=((a^{rs})^{\frac{1}{s}})^s=a^{rs}\bdone$\\
-
-Notice that outside of the sixteen cases above, if $a=1\text{ or }s=0\text{ or }s=0$, the proof is trivial.
-
-\end{proof}
-\section{Euclidean Space}
-\fbox{\begin{minipage}{39em}
-In this section, we will use the notion of vector space to define Euclidean space, so we will first prove a simple and fundamental theorem about vector space. 
-\end{minipage}}
-\begin{theorem}
-\label{1.5.1}
-Let $V$ be a vector space over arbitrary filed $\F$ and of dimension $n$. We have that  $V$ is isomorphic to  $\F^n$  
-\end{theorem}
-\begin{proof}
-For people who don't know, $\F^n$ in most textbooks is defined as a vector space consisting of $n$-tuples, and $n$-tuples can be defined as follows for any natural $n$.\\
-
- \begin{gather}
-   (c,d):=\set{\set{c},\set{c,d}}\\
-   (b,c,d):=(b,(c,d))=\set{\set{b},\set{b,(c,d)}}=\set{\set{b},\set{b,\set{\set{c},\set{c,d}}}}\\
-   (a,b,c,d):=(a,(b,c,d))=\cdots 
-\end{gather}
-
-
-  Let $\set{v_1,\dots,v_n}$ be a basis for $V$, and define $\phi: \set{v_1,\dots ,v_n} \rightarrow \F^n$ by $c_1v_1+\cdots+c_nv_n\mapsto (c_1,\dots,c_n)$. Notice that $\phi$ can verified to be linear and bijective by using the theorem that every vector in $V$ can be uniquely expressed as a linear combination of  $v_1,\dots ,v_n$.  
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Notice that the existence and uniqueness of real numbers field will be handled in Section 1.7,1.8,1.9, and from now on, let's just pretend that there exists an unique completed ordered field, which we call Real Numbers Field and denote $\R$.\\
-
-
-In this section, we will introduce the definition of Euclidean space and Cauchy-Schwarz inequality in Euclidean space. 
-\end{minipage}}
-\begin{definition}
-\label{1.5.2}
-\textbf{(Definition of absolute value)} Let $x\inR$. We define the absolute value $\abso{x}$ of $x$ by
-\begin{equation}
-\abso{x}:=\begin{cases}
-  x & \text{ if $x>0$ }\\
-  -x& \text{ if $x\leq 0$  }
-\end{cases} 
-\end{equation}
-\end{definition}
-\begin{theorem}
-\label{1.5.3}
-$\forall x\inr,\abso{x}=\sqrt{x^2} $
-\end{theorem}
-\begin{proof}
-If $x>0$, then  $\abso{x}>0\text{ and }\abso{x}^2=x^2$. If $x\leq 0$, then $\abso{x}\geq 0\text{ and }\abso{x}^2=(-x)^2=x^2$. 
-\end{proof}
-\begin{definition}
-\label{1.5.4}
-\textbf{(Definition of $L_p$ norm, or, $p$-norm)} Let $p\geq 1\inR$, and let $\vecta{x}\inr^n$
-\begin{equation}
-\norm{\vecta{x}}_p:=(\sum_{i=1}^{n}\abso{x_i}^p)^{\frac{1}{p}} 
-\end{equation}
-\end{definition}
-\begin{definition}
-\label{1.5.5}
-\textbf{(Definition of Euclidean $n$-space)}
-When we use the word \textit{Euclidean $n$-Space}, we mean $\R^n$ as a vector space equipped with a function $\gen{\cdot,\cdot}:\R^n\times\R^n\rightarrow \R$ called \textin{Euclidean inner product} defined by
-\begin{equation}
-\gen{\vecta{x},\vecta{y}}:=\sum_{i=1}^{n}x_iy_i
-\end{equation}
-and equipped with $2$-norm
-\begin{equation}
-\norm{\vecta{x}}:=\norm{\vecta{x}}_2=(\sum_{i=1}^{n}\abso{x_i}^2)^{\frac{1}{2}} 
-\end{equation}
-
-$2$-norm is also called \textit{Euclidean norm}  or  $L_2$ norm. Most time we use the notation $\vecta{x}\cdot\vecta{y}$ in place of $\gen{\vecta{x},\vecta{y}}$  and the notation $\abso{\vecta{x}}$ in place of $\norm{\vecta{x}}$, for abbreviation. Notice that by \myref{Theorem}{1.5.3}, when $\vecta{x}=(x_1)\inr^1$, we have $\abso{\vecta{x}}=\abso{x_1}$, so we don't have to worry about the compatibility of abbreviation.  Lastly, we can use \myref{Theorem}{1.5.3}, to verify $\abso{\vecta{x}}=(\vecta{x}\cdot\vecta{x})^{\frac{1}{2}}$ in Euclidean Space. 
-\end{definition}
-\fbox{\begin{minipage}{39em}
-Although the common usage of notation $\R^n$ only refer to the set without any structure, but from now, we will use $\R^n$ to denote Euclidean  $n$-space.\\
-
-Notice that Euclidean 3-space is a great tool to describe the physical world, and the idea of Euclidean norm and Euclidean inner product captures the essence of length and angle really well as we will explain in later section and chapter.\\
-
-Lastly, we close this section with a proof of Cauchy-Schwarz inequality in Euclidean space, and leave some important properties of Euclidean norm and Euclidean inner product to next section.  
-\end{minipage}}
-\begin{theorem}
-\label{1.5.6}
-\textbf{(Special Case of Schwarz inequality)}  Let  $\vecta{x},\vecta{y}\inR^n$. We have  
- \begin{equation}
-\abso{\vecta{x}}\abso{\vecta{y}}\geq \abso{\vecta{x}\cdot \vecta{y}}
-\end{equation}
-The equality hold only if $\exists \ld\inr, \vecta{x}=\ld\vecta{y}$
-\end{theorem}
-\begin{proof}
-Let $f(t)=\sum_{i=1}^{n}(x_it-y_i)^2$, so we have
-\begin{align}
-f(t)&=\sum (x_it-y_i)^2\\
-&=\sum x_i^2t^2-2x_iy_it+y_i^2 \\
-&=t^2\sum x_i^2 -2t\sum x_iy_i+\sum y_i^2\\
-&=\abso{\vecta{x}}^2t^2-2(\vecta{x}\cdot\vecta{y})t+\abso{\vecta{y}}^2
-\end{align}
-$f(t)$ is an nonnegative quadratic polynomial of $t$, since $f(t)$ is a sum of squares. Then $D(f)\leq 0$; that is $4(\vecta{x}\cdot\vecta{y})^2-4\abso{\vecta{x}}^2\abso{\vecta{y}}^2\leq 0$, which implies $(\vecta{x}\cdot\vecta{y})^2\leq \abso{\vecta{x}}^2\abso{\vecta{y}}^2$, and further implies $\abso{\vecta{x}\cdot \vecta{y}}\leq \abso{\vecta{x}}\abso{\vecta{y}}$     \\
-
-If $\abso{\vecta{x}}\abso{\vecta{y}}=\abso{\vecta{x}\cdot\vecta{y}}$, Then $D(f)=0$, that is, there exists a unique $t'\inr$ such that $f(t')=0$. Then we see $0=f(t')=\sum (x_it'-y_i)^2$, which implies $\forall i, y_i=x_it'$
-\end{proof}
-\renewcommand{\inC}{\in\C}
-\section{Complex Numbers}
-\begin{theorem}
-\label{1.6.1}
-If we define vector multiplication in $\R^2$  as
- \begin{equation}
- \vecta{xy}=(x_1y_1-x_2y_2,x_1y_2+x_2y_1)
-\end{equation}\\
-, then $\R^2$ become a field.
-\end{theorem}
-\begin{proof}
-The whole proof is long and tedious, here we only present some that are worth mentioning.\\
-\begin{equation}
-\vecta{y}\vecta{x}=(y_1x_1-y_2x_2,y_1x_2+y_2x_1)=(x_1y_1-x_2y_2,x_1y_2+x_2y_1)=\vecta{x}\vecta{y}
-\end{equation}
-\begin{align}
-  (\vecta{x}\vecta{y})\vecta{z}&=(x_1y_1-x_2y_2,x_1y_2+x_2y_1)(z_1,z_2)\\
-  &=(x_1y_1z_1-x_2y_2z_1-x_1y_2z_2-x_2y_1z_2,x_1y_1z_2-x_2y_2z_2+x_1y_2z_1+x_2y_1z_1)\\
-  &=(x_1(y_1z_1-y_2z_2)-x_2(y_2z_1+y_1z_2),x_1(y_1z_2+y_2z_2)+x_2(y_1z_1-y_2z_2))\\
-  &=(x_1,x_2)(y_1z_1-y_2z_2,y_1z_2+y_2z_1)=\vecta{x}(\vecta{y}\vecta{z})
-\end{align}
-\begin{equation}
-  (1,0)\vecta{x}=(1,0)(x_1,x_2)=(x_1,x_2)\text{ and }\vecta{x}(1,0)=(x_1,x_2)(1,0)=(x_1,x_2)
-\end{equation}
-\begin{align}
-\vecta{x}(\frac{x_1}{x_1^2+x_2^2},\frac{-x_2}{x_1^2+x_2^2})&=(\frac{x_1^2+x_2^2}{x_1^2+x_2^2},\frac{-x_1x_2+x_1x_2}{x_1^2+x_2^2})\\
-&=(1,0)
-\end{align}
-\begin{align}
-\vecta{x}(\vecta{y}+\vecta{z})&=(x_1,x_2)(y_1+z_1,y_2+z_2)\\
-&=(x_1y_1+x_1z_1-x_2y_2-x_2z_2,x_2y_1+x_2z_1+x_1y_2+x_1z_2)\\
-&=(x_1y_1-x_2y_2,x_1y_2+x_2y_1)+(x_1z_1-x_2z_2,x_2z_1+x_1z_2)\\
-&=\vecta{xy}+\vecta{xz}
-\end{align}
-\end{proof}
-\fbox{\begin{minipage}{39em}
-The fact that the field in \myref{Theorem}{1.6.1} is isomorphic to the customary  $\C$ can be easily verified by checking $(a,b)\mapsto a+bi$ is field isomorphism. We now define $\C$ in this way. Notice that this definition is an abuse of notation, since in this way, $\R\not\in\C$. The motivation behind this definition is to emphasize the geometric nature of $\C$.      
-\end{minipage}}
-\begin{definition}
-\label{1.6.2}
-\textbf{(Definition of Complex Numbers)} We define $\C$ as the field in  \myref{Theorem}{1.6.1}. We write $(a,b)$ as $a+bi$ and $(a,-b)$ as $a-bi$. We define $\text{Re}(a+bi):=a$ and $\text{Im}(a+bi):=b$. We say the real part of  $a+bi$ is  $a$ and the imaginary part of  $a+bi$ is  $b$. We define the absolute of value of complex number as its length when it is treated as a vector in complex plane, which in our definition is a Euclidean space. Precisely, we define $\abso{a+bi}:=(a^2+b^2)^{\frac{1}{2}}=\abso{(a,b)}$. Moreover, we define the conjugate as  $\overline{a+bi}=a-bi$. We abuse the notation so that $a+0i\inr\subseteq\C$. 
-\end{definition}
-\begin{theorem}
-\label{1.6.3}
-Let $z,w\inC$. We have
-\begin{equation}
-\overline{(\overline{z})}=z
-\end{equation}
-\begin{equation}
-\overline{z+w}=\overline{z}+\overline{w} 
-\end{equation}
-\begin{equation}
-\overline{zw}=(\overline{z})(\overline{w})
-\end{equation}
-\begin{equation}
-  \overline{z^n}=(\overline{z})^n
-\end{equation}
-\begin{equation}
-z+\overline{z}=2\text{Re}(z)\text{ and }z-\overline{z}=2i\text{Im}(z)
-\end{equation}
-\begin{equation}
-\abso{\overline{z}}=\abso{z}
-\end{equation}
-\begin{equation}
-\abso{zw}=\abso{z}\abso{w}
-\end{equation}
-\begin{equation}
-\abso{z^n}=\abso{z}^n
-\end{equation}
-\end{theorem}
-\begin{proof}
-We prove only the following. Let $z=z_1+z_2i$ and $w=w_1+w_2i$. We have
- \begin{align}
-   \overline{(\overline{z})(\overline{w})}&=\overline{(z_1-z_2i)(w_1-w_2i)}\\
-   &=\overline{z_1w_1-z_2w_2-(z_2w_1+z_1w_2)i}\\
-   &=z_1w_1-z_2w_2+(z_2w_1+z_1w_2)i\\
-   &=zw
-\end{align}
-\begin{equation}
-\abso{\overline{z}}=(z_1^2+(-z_2)^2)^{\frac{1}{2}}=(z_1^2+z_2^2)^{\frac{1}{2}}=\abso{z}
-\end{equation}
-\begin{align}
-\abso{zw}&=\abso{z_1w_1-z_2w_2+(z_2w_1+z_1w_2)i}\\
-&=[(z_1w_1-z_2w_2)^2+(z_2w_1+z_1w_2)^2]^{\frac{1}{2}}\\
-&=[(z_1w_1)^2+(z_2w_2)^2-2z_1z_2w_1w_2+(z_2w_1)^2+(z_1w_2)^2+2z_1z_2w_1w_2]^{\frac{1}{2}}\\
-&=[z_1^2w_1^2+z_2^2w_1^2+z_1^2w_2^2+z_2^2w_2^2]^{\frac{1}{2}}\\
-&=[(z_1^2+z_2^2)(w_1^2+w_2^2)]^{\frac{1}{2}}=(z_1^2+z_2^2)^{\frac{1}{2}}(w_1^2+w_2^2)^{\frac{1}{2}}=\abso{z}\abso{w}
-\end{align}
-\end{proof}
-\fbox{\begin{minipage}{39em}
-In last section we define the Euclidean norm. Here, we give the axioms for norm function and verify that Euclidean norm satisfy all of them. Notice that the four axioms of norm function each describe a property of length in Euclidean space, which is so "obviously true" if we use a non-rigorous approach in geometry. 
-\end{minipage}}
-\begin{axiom}
-\label{1.6.4}
-\textbf{(Axioms for norm function)} Let $V$ be a vector space over  $\F\subseteq\C$. A norm, or norm function, $p:V\rightarrow \R$ is a function that satisfy 
-\begin{equation}
-  \forall \vecta{x,y}\inV, p(\vecta{x}+\vecta{y})\leq p(\vecta{x})+p(\vecta{y})  \text{( Triangle inequality)}
-\end{equation}
-\begin{equation}
-\forall \vecta{x}\inV,\forall \ld\inF, p(\ld\vecta{x})=\abso{\ld}p(\vecta{x})\text{ ( Absolute homogenity) }
-\end{equation}
-\begin{equation}
-\forall \vecta{x}\inV,p(\vecta{x})\geq 0\text{( Nonnegativity)}
-\end{equation}
-\begin{equation}
-\forall \vecta{x}\inV, p(\vecta{x})=0\implies \vecta{x}=\vecta{0} \text{ ( Positive definiteness) }
-\end{equation}
-
-\end{axiom}
-\begin{theorem}
-\label{1.6.5}
-Euclidean norm satisfy the four axioms.
-\end{theorem}
-\begin{proof}
-We started from the last sentence of \myref{Definition}{1.5.5}, for which we have $\abso{\vecta{x}+\vecta{y}}=((\vecta{x}+\vecta{y})\cdot(\vecta{x}+\vecta{y}))^{\frac{1}{2}}$. Observe
-\begin{align}
-\abso{\vecta{x}+\vecta{y}}^2&=(\vecta{x}+\vecta{y})\cdot(\vecta{x}+\vecta{y})\\
-&=\vecta{x}\cdot(\vecta{x}+\vecta{y})+\vecta{y}\cdot(\vecta{x}+\vecta{y})\\
-&=\abso{\vecta{x}}^2+\abso{\vecta{y}}^2+2(\vecta{x}\cdot\vecta{y})
-\end{align}
-and observe
-\begin{equation}
-  (\abso{\vecta{x}}+\abso{\vecta{y}})^2=\abso{\vecta{x}}^2+\abso{\vecta{y}}^2+2\abso{\vecta{x}}\abso{\vecta{y}}
-\end{equation}
-by \myref{Theorem}{1.5.6}, we then have $\abso{\vecta{x}+\vecta{y}}^2\leq (\abso{\vecta{x}}+\abso{\vecta{y}})^2$. The triangle inequality follows.\\
-
-Observe
-\begin{align}
-\abso{\ld\vecta{x}}&=(\sum (\ld x_i)^2)^{\frac{1}{2}}\\
-&=(\ld ^2\sum x_i^2)^{\frac{1}{2}}\\
-&=\abso{\ld }(\sum x_i^2)^{\frac{1}{2}}\\
-&=\abso{\ld }\abso{\vecta{x}}
-\end{align}
-Notice that $\abso{\vecta{x}}=\sum x_i^2\geq 0$ and notice that $\abso{\vecta{x}}=0\implies \sum x_i^2=0\implies \forall i,x_i=0\implies \vecta{x}=\vecta{0}$
-\end{proof}
-\fbox{\begin{minipage}{39em}
-In later chapters, we will introduce norms defined in different ways and spaces. For example, in Euclidean space we can define  $\norm{\vecta{x}}:=\max (\abso{x_1},\abso{x_2},\dots ,\abso{x_n})$. One can check this definition does satisfy four axioms. Also, notice that because  $\C$ is an Euclidean 2-space,  by \myref{Theorem}{1.6.5}, the four axioms of norm function also apply to the absolute of complex numbers.\\
-
-Next, we introduce the three axioms for inner product. 
-\end{minipage}}
-\begin{axiom}
-\label{1.6.6}
-\textbf{(Axioms for inner product)} Let $V$ be a vector space over $\F$, where $\F$ is either $\R$ or $\C$. An inner product $\gen{\cdot,\cdot}:V\times V\rightarrow \F $ is a function that satisfy the following three axioms: 
-\begin{equation}
-\forall \vecta{x,y}\inV,\gen{\vecta{x},\vecta{y}}=\overline{\gen{\vecta{y},\vecta{x}}}\text{ ( Conjugate Symmetry)}
-\end{equation}
-\begin{equation}
-\forall \vecta{x,y,z}\inV, \forall a,b\inF, \gen{a\vecta{x}+b\vecta{y},\vecta{z}}=a\gen{\vecta{x},\vecta{z}}+b\gen{\vecta{y},\vecta{z}} \text{ ( Linearity in first argument)} 
-\end{equation}
-\begin{equation}
-\vecta{x}\neq \vecta{0}\longrightarrow \gen{\vecta{x},\vecta{x}}>0 \text{ ( Positive Definitness) }  
-\end{equation}
-Notice that to satisfy the third axiom, we first have to guarantee that $\forall \vecta{x}\inV,\gen{\vecta{x},\vecta{x}}\inr$. This is implied by the first axiom, since $\gen{\vecta{x},\vecta{x}}=\overline{\gen{\vecta{x},\vecta{x}}}$ 
-\end{axiom}
-\begin{theorem}
-\label{1.6.7}
-Euclidean inner product satisfy the three axioms. 
-\end{theorem}
-\begin{proof}
-Let $\vecta{x},\vecta{y},\vecta{z}\inR^n$, and $a,b\inr$. Observe
-\begin{equation}
-\vecta{x}\cdot\vecta{y}=\sum x_iy_i=\sum y_ix_i=\vecta{y}\cdot\vecta{x}=\overline{\vecta{y}\cdot\vecta{x}}
-\end{equation}
-\begin{equation}
-  (a\vecta{x}+b\vecta{y})\cdot\vecta{z}=\sum (ax_i+by_i)z_i=a\sum x_iz_i + b\sum y_iz_i=a(\vecta{x}\cdot\vecta{z})+b(\vecta{y}\cdot\vecta{z})
-\end{equation}
-\begin{equation}
-\vecta{x}\cdot\vecta{x}=\sum x_i^2\geq 0
-\end{equation}
-\end{proof}
-\fbox{\begin{minipage}{39em}
-    In 2 or 3 dimension, Euclidean inner product captures the essence of angle really well, as one may remember $\vecta{x}\cdot\vecta{y}=\abso{\vecta{x}}\abso{\vecta{y}}\cos\theta $. However, to rigorously explain why $\sum x_iy_i=\abso{\vecta{x}}\abso{\vecta{y}}\cos\theta $ is for now impossible, since we haven't define  $\cos$. Notice that one can define $\cos$ using Taylor series.\\
-
-Normally, one doesn't use the notation $\vecta{x}\cdot\vecta{y}$ in place of $\gen{\vecta{x},\vecta{y}}$, since these two notations have completely two different meaning in modern mathematics. The former is called dot product, defined only in Euclidean space and defined only by $\vecta{x}\cdot\vecta{y}:=\sum x_iy_i$. The latter is a wide notation of every function that satisfy the three axioms. Obviously the former is only an example of the latter, and we only use $\vecta{x}\cdot\vecta{y}$ in place of $\gen{\vecta{x},\vecta{y}}$, when the latter in context is equivalent to the former, e.g. Euclidean inner product.\\
-
-A quite meaningless example of an inner product is $\gen{\vecta{x},\vecta{y}}:=0$. A more complicated example of an inner product is for space of continuous complex valued function from real interval $[a,b]$ defined by $\gen{f,g}:=\int_a^b f(t)\overline{g(t)}dt$\\
-
-In last section, we "verified" that in Euclidean space, we have $\norm{\vecta{x}}=\gen{\vecta{x},\vecta{x}}^{\frac{1}{2}}$. Now, we prove that every inner product induce a norm, using Parallelogram Law. However, here we have to emphasize that \textit{even though every inner product space come with a norm, not any normed space come with an inner product}.
-\end{minipage}}
-\begin{definition}
-\label{1.6.8}
-\textbf{(Parallelogram Law)} We say a normed space $V$ satisfy Parallelogram Law if for all $\vecta{x},\vecta{y}\inV$, we have
- \begin{equation}
-\norm{\vecta{x}+\vecta{y}}^2+\norm{\vecta{x}-\vecta{y}}^2=2(\norm{\vecta{x}}^2+\norm{\vecta{y}}^2)
-\end{equation}
-\end{definition}
-\begin{lemma}
-\label{1.6.9}
-\textbf{(Arising from inner product $\longrightarrow $ Satisfying Parallelogram Law)} For an inner product space, if we define $\norm{\vecta{x}}=\gen{\vecta{x},\vecta{x}}^{\frac{1}{2}}$, then we have 
-\end{lemma}
-\begin{proof}
-Notice that $\gen{\vecta{a},\vecta{b}+\vecta{c}}=\gen{\vecta{a},\vecta{b}}+\gen{\vecta{a},\vecta{c}}$ and observe 
-\begin{align}
-\norm{\vecta{x}+\vecta{y}}^2+\norm{\vecta{x}-\vecta{y}}^2&=\gen{\vecta{x}+\vecta{y},\vecta{x}+\vecta{y}}+\gen{\vecta{x}-\vecta{y},\vecta{x}-\vecta{y}}\\
-&=\gen{\vecta{x},\vecta{x}+\vecta{y}}+\gen{\vecta{y},\vecta{x}+\vecta{y}}+\gen{\vecta{x},\vecta{x}-\vecta{y}}-\gen{\vecta{y},\vecta{x}-\vecta{y}}\\
-&=2\gen{\vecta{x},\vecta{x}}+2\gen{\vecta{y},\vecta{y}}+\gen{\vecta{x},\vecta{y}}+\gen{\vecta{y},\vecta{x}}-\gen{\vecta{x},\vecta{y}}-\gen{\vecta{y},\vecta{x}}\\
-&=2\gen{\vecta{x},\vecta{x}}+2\gen{\vecta{y},\vecta{y}}=2(\norm{\vecta{x}}^2+\norm{\vecta{y}}^2)
-\end{align}
-\end{proof}
-\begin{theorem}
-\label{1.6.10}
-Every inner product give rise to a definition of norm $\norm{\vecta{x}}=\gen{\vecta{x},\vecta{x}}^{\frac{1}{2}}$
-\end{theorem}
-\begin{proof}
-Let $V$ be an inner product space and define  $\norm{\vecta{x}}:=\gen{\vecta{x},\vecta{x}}^{\frac{1}{2}}$. \As{there exists $\vecta{x},\vecta{y}$ such that $\norm{\vecta{x}+\vecta{y}}>\norm{\vecta{x}}+\norm{\vecta{y}}$}. Observe
-\begin{equation}
-\norm{\vecta{x}+\vecta{y}}^2>\norm{\vecta{x}}^2+\norm{\vecta{y}}^2+2\norm{\vecta{x}}\norm{\vecta{y}}
-\end{equation}
-Notice $\gen{-\vecta{a},-\vecta{a}}=-\gen{\vecta{a},-\vecta{a}}=\overline{-\gen{-\vecta{a},\vecta{a}}}=\overline{\gen{\vecta{a},\vecta{a}}}=\gen{\vecta{a},\vecta{a}}$ and observe
-\begin{align}
-  \norm{\vecta{x}-\vecta{y}}^2&>\norm{\vecta{x}}^2+\norm{-\vecta{y}}^2+2\norm{\vecta{x}}\norm{-\vecta{y}}\\
-  &= \norm{\vecta{x}}^2+\norm{\vecta{y}}^2+2\norm{\vecta{x}}\norm{\vecta{y}}
-\end{align}
-So we have
-\begin{equation}
-\norm{\vecta{x}+\vecta{y}}^2+\norm{\vecta{x}-\vecta{y}}^2>2(\norm{\vecta{x}}^2+\norm{\vecta{y}}^2)+4\norm{\vecta{x}}\norm{\vecta{y}}\geq 2(\norm{\vecta{x}}^2+\norm{\vecta{y}}^2)
-\end{equation}
-This \CaC to \myref{Lemma}{1.6.8}.\\
-
-Observe
-\begin{equation}
-\norm{\ld \vecta{x}}=(\gen{\ld \vecta{x},\ld \vecta{x}})^{\frac{1}{2}}=(\ld \overline{\ld }\gen{\vecta{x},\vecta{x}})^{\frac{1}{2}}=(\ld \overline{\ld })^{\frac{1}{2}}(\gen{\vecta{x},\vecta{x}})^{\frac{1}{2}}=\abso{\ld }\norm{\vecta{x}}
-\end{equation}
-Nonnegativity and Positive definiteness of norm function follows from Positive definiteness of inner product and $\gen{\vecta{0},\vecta{0}}=0$. 
-\end{proof}
-\fbox{\begin{minipage}{39em}
-For the last sentence of the last paragraph, we here state it in precision: Let $f(x,y)$ be an inner product, then the function $g(x)=\sqrt{f(x,x)}$ satisfy the norm axiom, but if let $l(x)$ be a norm function, it doesn't always exists a function  $h(x,y)$ such that $l(x)=\sqrt{h(x,x)}\text{ and }h$ satisfy the inner product axioms.\\
-
-An amazing fact is that for a normed space $V$ over $\R$ or  $\C$,  if $V$ satisfy Parallelogram Law, then we can define an inner product on  $V$ by  $\gen{\vecta{x},\vecta{y}}:=\begin{cases}
-  \frac{\norm{\vecta{x}+\vecta{y}}^2-\norm{\vecta{x}-\vecta{y}}^2}{4}& \text{ if over $\R$ }\\
-  \frac{\norm{\vecta{x}+\vecta{y}}^2-\norm{\vecta{x}-\vecta{y}}^2}{4}+i \frac{\norm{i\vecta{x}-\vecta{y}}^2-\norm{i\vecta{x}+\vecta{y}}^2}{4}& \text{ if over $\C$ }
-\end{cases}$ so that this inner product not only satisfy all the axioms for inner product, we also have $\norm{\vecta{x}}=(\gen{\vecta{x},\vecta{x}})^{\frac{1}{2}}$.\\
-
-So, in other word, a norm is induced by an inner product if and only if the norm satisfy the Parallelogram Law. Isn't this amazing? For the proof of only if part, we put it in complicated exercises.\\
-
-We close this section with a special case of Cauchy-Schwarz inequality and the most general Cauchy-Schwarz inequality.
-\end{minipage}}
-\begin{theorem}
-\label{1.6.11}
-\textbf{(Cauchy-Schwarz inequality in $\C^n$)} Let $\vecta{v}=(v_1,\dots ,v_n)\inC^n$ and $\vecta{w}=(w_1,\dots ,w_n)\inC^n$ 
- \begin{equation}
-   \abso{\sum v_j\overline{w_j}}\leq (\sum \abso{v_j}^2)^{\frac{1}{2}}(\sum \abso{w_j}^2)^{\frac{1}{2}} 
-\end{equation}
-and the equality hold if and only if  $\exists \ld \inC,\vecta{w}=\ld\vecta{v}$\\
-
-Also, if we define inner product on $\C^n$ as $\gen{\vecta{v},\vecta{w}}:=\sum v_j\overline{w_j}$ and induce norm as $\norm{\vecta{v}}:=\gen{\vecta{v},\vecta{v}}^{\frac{1}{2}}$, the special case of Cauchy-Schwarz inequality in $\C^n$ can also be shortened to
- \begin{equation}
-\abso{\gen{\vecta{v},\vecta{w}}}\leq (\norm{\vecta{v}})(\norm{\vecta{w}})
-\end{equation}
-\end{theorem}
-\begin{proof}
-Define $A:=\sum \abso{v_j}^2=\norm{\vecta{v}}^2,B:=\sum \abso{w_j}^2=\norm{\vecta{w}}^2,C:=\sum v_j\overline{w_j}=\gen{\vecta{v},\vecta{w}}$\\
-
-Notice that $B=0$ implies $\forall j,w_j=0$, then two sides of inequality are both $0$ and  $\ld=0$. We have proven the case of $B=0$, now we prove the case of  $B>0$. Keep in mind that $A,B\inR$ and observe
-\begin{align}
-\sum \abso{Bv_j-Cw_j}^2&=\sum (Bv_j-Cw_j)\overline{(Bv_j-Cw_j)}\\
-&=\sum (Bv_j-Cw_j)(B\overline{v_j}-\overline{C}\overline{w_j})\\
-&=\sum B^2\abso{v_j}^2-BC\overline{v_j}w_j-B\overline{C}v_j\overline{w_j}+C\overline{C}\abso{w_j}^2\\
-&=B^2A-BC\overline{C}-B\overline{C}C+C\overline{C}B\\
-&=B^2A-BC\overline{C}\\
-&=B(AB-\abso{C}^2) 
-\end{align}
-
-Because $B>0$, then we can deduce
-\begin{equation}
-\sum \abso{v_j}^2\sum \abso{w_j}^2 - \abso{\sum v_j\overline{w_j}}^2=AB-\abso{C}^2=\frac{1}{B}\sum \abso{Bv_j-Cw_j}^2\geq 0
-\end{equation}
-So we can deduce
-\begin{equation}
-\sum \abso{v_j}^2\sum \abso{w_j}^2\geq \abso{\sum v_j\overline{w_j}}^2
-\end{equation}
-Square both side then the Theorem follows.\\
-
-Notice that the equality hold true if and only if $\sum \abso{Bv_j-Cw_j}^2=0$, which is equivalent to $\forall j, w_j=\frac{B}{C}v_j$, and equivalent to $\vecta{w}=\frac{B}{C}\vecta{v}$, where $\ld =\frac{B}{C}=\frac{\norm{\vecta{w}}^2}{\gen{\vecta{v},\vecta{w}}}$
-\end{proof}
-\begin{theorem}
-\label{1.6.12}
-\textbf{(General Cauchy-Schwarz inequality)} For all inner product space $V$ where the norm is induced by the inner product, we have
-\begin{equation}
-\abso{\gen{\vecta{v},\vecta{w}}}\leq (\norm{\vecta{v}})(\norm{\vecta{w}})
-\end{equation}
-and the equality hold if and only if  $\vecta{w}=\ld \vecta{v}$
-\end{theorem}
-\begin{proof}
-Define $A:=\norm{\vecta{v}}^2,B:=\norm{\vecta{w}}^2,C:=\gen{\vecta{v},\vecta{w}}$\\
-
-Notice that $B=0$ implies $\vecta{w}=\vecta{0}$, which further implies $\gen{\vecta{v},\vecta{w}}=\overline{\gen{\vecta{0},\vecta{v}}}=\overline{\gen{\vecta{a}-\vecta{a},\vecta{v}}}=\overline{\gen{\vecta{a},\vecta{v}}-\gen{\vecta{a},\vecta{v}}}=0$, so two side of the inequality are both  $0$ and the equality hold true, where $\ld =0$. We have proven the case of $B=0$. Now we prove the case of $B>0$\\
-
-Keep in mind that $A,B\inR$ and observe
-\begin{align}
-\norm{B\vecta{v}-C\vecta{w}}^2&=\gen{B\vecta{v}-C\vecta{w},B\vecta{v}-C\vecta{w}}\\
-&=\gen{B\vecta{v},B\vecta{v}}-\gen{C\vecta{w},B\vecta{v}}-\gen{B\vecta{v},C\vecta{w}}+\gen{C\vecta{w},C\vecta{w}}\\
-&=B^2\gen{\vecta{v},\vecta{v}}-CB\gen{\vecta{w},\vecta{v}}-B\overline{C}\gen{\vecta{v},\vecta{w}}+C\overline{C}\gen{\vecta{w},\vecta{w}}\\
-&=B^2A-CB\overline{C}-B\overline{C}C+C\overline{C}B\\
-&=B(AB-\abso{C}^2)
-\end{align}
-Because $B>0$, we can deduce 
- \begin{equation}
-\norm{\vecta{v}}^2\norm{\vecta{w}}^2-\abso{\gen{\vecta{v},\vecta{w}}}^2=AB-\abso{C}^2=\frac{\norm{B\vecta{v}-C\vecta{w}}^2}{B}\geq 0
-\end{equation}
-So we can deduce
-\begin{equation}
-\norm{\vecta{v}}^2\norm{\vecta{w}}^2\geq \abso{\gen{\vecta{v},\vecta{w}}}^2
-\end{equation}
-Square both side then the Theorem follows. 
-\end{proof}
-\begin{corollary}
-\label{1.6.13}
-\textbf{(Verification of Triangle Inequality)} Let $V$ be an inner product space where the norm is induced by the inner product, we have 
- \begin{equation}
-   \norm{\vecta{v}+\vecta{w}}\leq\norm{\vecta{v}}+\norm{\vecta{w}}
-\end{equation}
-where the equality hold true only when $\gen{\vecta{v},\vecta{w}}\geq 0$ and $\vecta{v},\vecta{w}$ are linearly dependent.
-\end{corollary}
-\begin{proof}
-Observe
-\begin{align}
-\norm{\vecta{v}+\vecta{w}}^2&=\gen{\vecta{v}+\vecta{w},\vecta{v}+\vecta{w}}\\
-&=\norm{\vecta{v}}^2+\gen{\vecta{v},\vecta{w}}+\gen{\vecta{w},\vecta{v}}+\norm{\vecta{w}}^2\\
-&=\norm{\vecta{v}}^2+\norm{\vecta{w}}^2+\gen{\vecta{v},\vecta{w}}+\overline{\gen{\vecta{v},\vecta{w}}}\\
-&=\norm{\vecta{v}}^2+\norm{\vecta{w}}^2+2\text{Re}(\gen{\vecta{v},\vecta{w}})\\
-&\leq \norm{\vecta{v}}^2+\norm{\vecta{w}}^2+2\abso{\gen{\vecta{v},\vecta{w}}}\\
-&\leq \norm{\vecta{v}}^2+\norm{\vecta{w}}^2+2(\norm{\vecta{v}})(\norm{\vecta{w}})\\
-&=(\norm{\vecta{v}}+\norm{\vecta{w}})^2
-\end{align}
-\end{proof}
-\section{Existence of Real Numbers - Dedekind Cut*}
-\section{Existence of Real Numbers - Decimal*}
-\section{Uniqueness of Real Numbers*}
-\section{Exercises}
-\begin{question}{}{}
-Given a nonzero rational $r$ and an irrational $x$, prove that $r+x$ and $rx$ are irrational. 
-\end{question}
-\begin{question}{}{}
-Prove that no rational $r$ satisfy  $r^2=12$
-\end{question}
-\begin{question}{}{}
-Let $E$ be a nonempty subset of an ordered set; suppose $\alpha$ is a lower bound and $\beta$ is an upper bound of $E$. Prove $\alpha<\beta$ 
-\end{question}
-\begin{question}{}{}
-Let $A$ be a nonempty subset of real numbers which is bounded below.  Define $-A:=\set{-x: x\inA}$. Prove that
-\begin{equation}
-\inf A=-\sup (-A)
-\end{equation}
-\end{question}
-\begin{question}{}{}
-Prove that no ordered relation can be defined on $\C$ so that $\C$ become an ordered field.
-\end{question}
-\begin{question}{}{}
-Let $w=u+vi$ and  $a=(\frac{\abso{w}+u}{2})^{\frac{1}{2}}$ and $b=(\frac{\abso{w}-u}{2})^{\frac{1}{2}}$ \\
-
-Verify that if $v\geq 0$, then  $w=(a+bi)^2$, and that if $v<0$, then $w=(a-bi)^2$\\
-
-Prove that every complex number have at least $2$ square roots.
-\end{question}
-\begin{question}{}{}
-Let $z_1,\dots ,z_n\inC$. Prove that
-\begin{equation}
-\abso{\sum z_j}\leq \sum \abso{z_j}
-\end{equation}
-\end{question}
-\begin{question}{}{}
-Let $x,y\inC$. Prove that
- \begin{equation}
-\abso{\abso{x}-\abso{y}}\leq \abso{x-y}
-\end{equation}
-\end{question}
-\begin{question}{}{}
-Let $z\inC\text{ and }\abso{z}=1$. Compute
-\begin{equation}
-\abso{1+z}^2+\abso{1-z}^2
-\end{equation}
-\end{question}
-\begin{question}{}{}
-Let $\vecta{x}\inR^k\text{ and }\vecta{x}\neq \vecta{0}$. When $k=1$,  prove that there does not exists $\vecta{y}\inR^k$, such that $\vecta{x}\cdot\vecta{y}$. When $k\geq 2$, prove that there exists infinitely amount of $\vecta{y}\inR^k$ such that $\vecta{x}\cdot\vecta{y}=0$ 
-
-\end{question}
-\begin{question}{}{}
-Let $k\geq 3, \vecta{x},\vecta{y}\inR^k,\abso{\vecta{x}-\vecta{y}}=d>0\text{ and }r>0$. Prove that if $2r<d$, then there exists no  $z\inR^k$ such that $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$. Prove that if $2r=d$, there exists exactly one $\vecta{z}\inR^k$ that satisfy $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$. Prove that if $2r>d$, then there are infinitely many $\vecta{z}\inR^k$ that satisfy $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$. Prove that if $k=2$ and  $2r>d$, then there exists exactly $2$ unique  $\vecta{z}\inR^k$ such that $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$. Prove that if $k=1$ and $2r>d$ then there exists no $\vecta{z}\inR^k$ that satisfy $\abso{\vecta{z}-\vecta{x}}=\abso{\vecta{z}-\vecta{y}}=r$
-\end{question}
-
-\section{Complicated Exercises}
-In \myref{Axiom}{1.2.1}, we present the two ordered field axioms:
-\begin{equation}
-y<z\longrightarrow x+y<x+z
-\end{equation}
-\begin{equation}
-x>0\text{ and }y>0\longrightarrow xy>0
-\end{equation}\\
-If we define the order for $\R$ completely in reverse, that is; for any $x,y$, where originally we  have  $x\leq y$, we now define $x\geq y$, then we can see the new order relation does not satisfy the second axiom, i.e. $x>0\text{ and }y>0\rightarrow xy>0$, by observing $-1>0\implies 1=(-1)^2<0$
-\begin{question}{
-  Uniquely Orderd}{}
-Prove that $\Q$ and $\R$ are uniquely ordered field; that is, any order relation defined on $\Q$ and  $\R$ must be exactly the same as how we usually define it to satisfy the two ordered field axioms. Notice that you have to first come up with a way to describe our usual ways for ordering $\Q\text{ and }\R$ in your proof and make sure that the description do let us tell weather $x< y$ or $y< x$ for all $x,y$.       
-\end{question}
-Next question refers to \myref{Definition}{1.6.8}
-\begin{question}{}{}
-  Give an example of a normed vector space $V$ such that for all inner product that can be defined on $V$, there exists  $\vecta{x}\inV$ such that $\norm{\vecta{x}}\neq \sqrt{\gen{\vecta{x},\vecta{x}}}$, and show that this normed space does not satisfy Parallelogram Law.\\
-
-Prove a norm is induced by some inner product if and only if the norm satisfy Parallelogram Law.
-\end{question}
-\begin{question}{}{}
-Let $\vecta{a},\vecta{b}\inR^n\text{ and }m \inR^+$. Find $\vecta{c}\inR^n\text{ and }r>0$ such that
-\begin{equation}
-\abso{\vecta{x}-\vecta{a}}=m\abso{\vecta{x}-\vecta{b}}\iff \abso{\vecta{x}-\vecta{c}}=r
-\end{equation}
-\end{question} 
-\begin{question}{}{}
-State and prove the Pythagorean Law in Euclidean $n$-space, where  $n\geq 2$
-\end{question}
-\chapter{Basic Topology}
-\section{ZF}
-\fbox{\begin{minipage}{39em}
-This section is written as a confirmation of knowledge. For a even more rigorous treatment, one can look for another note where the discussion of ZF is put after that of formal system and zeroth and first order logic.\\
-
-Notice that in our discussion, the domain of discourse are sets. Plain speaking, every variable should be interpreted as set. In this section, we never interpret symbol $x$ as a real number (we never use symbol $x$ to denote a real number), and we never interpret symbol $G$ as a group  (we never use symbol $G$ to denote a group). Whatever variable symbol we use, we interpret the symbol a set (we use the symbol to denote a set), albeit $x,G\text{ or }h$.\\
-
-However, if you wish, you can still interpret the symbol $x$ as a number or structure or any mathematical object or even cats, but I doubt there exists any interpretation that isn't set won't make people feel weird.\\   
-
-Notice that ZF is a first order logic theory. We must first declare the following 
-\end{minipage}}
-\begin{definition}
-\label{2.1.1}
-\textbf{(Atomic Formula)} In our discussion in this section, there are precisely two atomic formulas:
-\begin{equation}
-x\inA
-\end{equation}
-and
-\begin{equation}
-A=B
-\end{equation}
-\end{definition}
-\fbox{\begin{minipage}{39em}
-The above definition may be confusing if one has no basic knowledge for formal system. I here highly recommend the first two chapters of the excellent book \textit{Elementary Formal System } written by Smullyan, and one can understand what does the words "formula" and "axiom" mean. \\
-
-Now we start our discussion of ZF.
-\end{minipage}}
-\begin{axiom}\textbf{(Axiom of Extension)}
-\label{2.1.2}
-\begin{equation}
-\forall x(x\inA \longleftrightarrow x\inB)\longrightarrow A=B
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-TBH, I have no clue why this axiom is named axiom of extension. This axiom axiomatically define equality (between sets).\\
-
-The practice of putting the word \textit{between sets} in a  parenthesis in the above paragraph serve as a reminder that the domain of discourse of our discussion should be interpreted as the class of all sets.\\ 
-
-ZF in our discussion is a theory where the only two non-logical symbol is $\in\text{ and }=$. In our discussion, whenever the symbols $\subseteq,\cup ,\cap, \neq$ appear, one should immediately realize the sentence in which the symbols appear is an interpretation.\\
-
-In ZF, we never define $A \subseteq B$. We never define $A\neq B$. We never define $A \cup B$. We merely construction a formal sentence that one feel it make sense to  interpret as $A \subseteq B$ or the English sentence "$A$ is a subset of  $B$.". 
-\end{minipage}}
-\begin{definition}
-\label{2.1.3}
-\textbf{(Interpretation)} We can interpret the formal sentence $\forall x(x\in A\longrightarrow x\in B)$ as informal sentence $A \subseteq B$. If we ever say $A \subseteq B$, we mean $\forall x(x\in A\longrightarrow  x\in B)$
-\end{definition}
-\begin{definition}
-\label{2.1.4}
-\textbf{(Interpretation)} We can interpret the formal sentence $\exists x((x\in A \land \neg x\in B)\lor(x \in B \land \neg x \in A))$ as the sentence $A\neq B$.
-\end{definition}
-\begin{axiom}
-\label{2.1.5}
-\textbf{(Axiom of Subset)} Let $P$ be a predicate. The axiom states
-\begin{equation}
-\forall A\exists B\forall x(x\inB\longleftrightarrow x\inA\land P(x))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Because of axiom of subset, when we informally says $B=\set{x\inA: P(x)}$ in our argument, we know $B$ exists if  $P$ is a predicate. Notice that Russell's paradox rely on the construction of such set: $\set{y:P(y)}$ where predicate $P(x)$  is defined by $\neg x=x$. The axiom of subset only allow us to construct  "subset" (not set) filled with elements satisfying certain predicate.\\
-
-Also, the axiom of subset allow us to construct intersection of two sets. Consider the set $\set{x\inA:P(x)}$ where $P(x)$ is defined by $x\inB$.\\
-
-Notice that one at this point can trivially and formally deduce the existence of two sets that are ought to be interpreted as $A\cap B$ and $B\cap A$, and formulate a formal sentence that is ought to be interpreted as "$A\cap B$ is unique" and another formal sentence that is ought to be interpreted as "$A\cap B=B\cap A$", and deduce these two formal sentences.\\   
-
-One can also formulate and deduce the formal sentence of "intersection operation is associative" as an exercise.\\
-
-Now, before we introduce the next axiom, we first declare  that the symbol $\varnothing$ is in our alphabet.
-\end{minipage}}
-\begin{axiom}
-\label{2.1.6}
-\textbf{(Axiom of Existence of Empty Set)}
-\begin{equation}
-\exists \varnothing\forall y\neg (y\in \varnothing)
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-In some people's formation of ZF, the axiom of existence of empty set isn't necessary, since it is possible to construct the empty set with axiom of subset. If we already know that the universe is nonempty, we can arbitrarily pick a set $A$ and construct  $\set{x\inA:P(x)}$ where $P(x)$ is defined $\neg x=x$.\\
-
-At this point, one can try to formulate the formal sentence of "empty set is unique and is a subset of every set" and formally deduce such using axiom of extension.\\
-
-
-We now introduce an axiom to construct new set.
-\end{minipage}}
-\begin{axiom}
-\label{2.1.7}
-\textbf{(Axiom of Pairing)}
-\begin{equation}
-\forall x\forall y\exists A\forall v(v\inA\longleftrightarrow v=x \lor v=y)
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-    By axiom of pairing, one can deduce the formal sentence of "$\set{x,y}$ exists if $x,y$ exist".\\  
-
-    Notice that we can also deduce the formal sentence of "$\set{x}$ exists if $x$ exists".
-\end{minipage}}
-\begin{axiom}
-\label{2.1.8}
-\textbf{(Axiom of Union)}
-\begin{equation}
-\forall A\exists B \forall x(x\in B\longleftrightarrow \exists C(C\inA\land x\in C))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-By axiom of union, one can deduce the formal sentence of "$\bigcup X$ exists, if $X$ exist".\\
-
-Also, one can try to formulate and deduce the formal sentence of "For all set  $X$, we know  $\bigcup X$ is unique", that of "For all sets $x,y$, we know $x \cup y=y \cup x$" and that of "For all sets $x,y,z$, we know  $(x\cup y)\cup z=x\cup (y\cup z)$".\\    
-
-Now we introduce a new axiom to construct even more sets.
-\end{minipage}}
-\begin{axiom}
-\label{2.1.9}
-\textbf{(Axiom of Power Set)} 
-\begin{equation}
-\forall A\exists B\forall x(x\in B \longleftrightarrow \forall y(y\in x\longrightarrow y\in A))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-The axiom of power set can be interpreted as that every set has at least one power set (and it can be proved that there exists only one for every set and that if two set have the same power set then the two set are the same). Normally and informally, we denote the power set of $x$ as $\mathcal{P}(x)$\\  
-
-Now we introduce the standard way to "construct a model for natural numbers", that is, to "formally formulate sets that can be interpreted as natural numbers". The construction is straight forward: we interpret $\varnothing$ as $0$, and  while interpreting $x$ as a natural, interpret $x\cup \set{x}$ as $x+1$.\\
-
-This construction seems to satisfy Peano axioms, but a problem will emerge when one trying to verify: one can construct any natural number, for instance $3$, by constructing  $\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}}$, but one can not construct the set of all natural numbers, that is, informally writing, $\N=\set{0,1,2,3,\dots }=\set{\varnothing, \set{\varnothing},\set{\varnothing,\set{\varnothing}},\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}},\dots }$.\\
-
-The construction of the set $\N$, rely on the next axiom (while the construction of no element in $\N$ rely on the next axiom). In fact, the formulation of any infinite set rely on the next axiom. Without this axiom, we can not formulate any infinite set (after we construct the predicate $P(x)$ to be interpreted as "$P(x)$ is true if $x$ is infinite").
-\end{minipage}}
-\begin{axiom}
-\label{2.1.10}
-\textbf{(Axiom of Infinity)} 
-\begin{equation}
-\exists I(\varnothing \in I \land \forall y(y\in I\longrightarrow y\cup \set{y}\in I))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Notice that every set interpreted as a natural number can be proved to belong to the set $I$ in  \myref{Axiom}{2.1.10}. In other (informal) words, the set interpreted as $\N$ is a subset of $I$.\\
-
-Before we formulate such subset of  $I$, we first state the five Peano Axioms, outside of our formal system. One can and should read the following five axioms algebraically, not formally.  
-\end{minipage}}
-\begin{axiom}
-\label{2.1.11}
-\textbf{(Peano Axioms, outside of our formal system)} We say $\gen{U,S}$, where $S$ is a function, is a model of Peano axioms if    
-\begin{equation}
- 0\in U\text{ (First Peano axiom) }
-\end{equation}
-\begin{equation}
-a \in U \implies S(a)\in U\text{ (Second Peano axiom) }
-\end{equation}
-\begin{equation}
-\forall x \in U, S(x)\neq 0 \text{ (Third Peano axiom) }
-\end{equation}
-\begin{equation}
-S(a)=S(b)\implies a=b\text{ (Forth Peano axiom) }
-\end{equation}
-\begin{equation}
-0  \in X\text{ and } \forall u \in U, u\in X\longrightarrow S(u)\in X\implies U\subseteq X \text{ (Induction axiom) }
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Before reading the proof of the following theorem, notice that the set $\set{y\in\bigcup  x:\forall z(z\in x\longrightarrow y\in x)}$ is what we mean by $\bigcap  x$, and notice that the set $\set{a\in x: \neg a\in y}$ is what we mean by $x\setminus y$.\\
-
-One can try to completely formalize $\bigcap x\text{ and }x\setminus y$  
-\end{minipage}}
-\begin{theorem}
-\label{2.1.12}
-\textbf{(Existence of Model of Natural Numbers in ZF)}
-We first define five predicate resembling the five Peano axioms.
-\begin{equation}
-P_1(x):=\varnothing\in x
-\end{equation}
-\begin{equation}
-P_2(x):=\forall a(a\in x\longrightarrow a\cup \set{a}\in x)
-\end{equation}
-\begin{equation}
-P_3(x):=\forall a(a\in x\longrightarrow a\cup \set{a}\neq \varnothing)
-\end{equation}
-\begin{equation}
-P_4(x):=\forall a\forall b(a\in x \land b\in x \land a\cup \set{a}=b\cup \set{b}\longrightarrow a=b)
-\end{equation}
-\begin{equation}
-  P_5(x):=\forall a([\forall b(b\in a\longrightarrow b \in x)\land \varnothing\in a\land \forall b(b\in a\longrightarrow b\cup \set{b}\in a)]\longrightarrow x=a)
-\end{equation}
-Reminder: Notice that the notation $\cup $ is not in our formal language, I use the notation only for abbreviation.\\
-
-The theorem states:
-\begin{equation}
-\exists A(P_1(A)\land P_2(A)\land  P_3(A)\land  P_4(A)\land  P_5(A))
-\end{equation}
-\end{theorem}
-\begin{proof}
-  Let $I$ be the set in \myref{Axiom}{2.1.10}. Define $ \call:=\set{X\in\power{I}:\varnothing \in X \land \forall a(a \in X \longrightarrow a\cup \set{a}\in X)} $. From now on, we will call $a\cup \set{a}$ the successor $S(a)$ of $a$ in our proof.\\
-
-Then  $\call$ can be precisely described as the set that contain all subsets $X$ of  $I$ such that the set interpreted as  $0$ is in  $X$ and that the successor of each element in $X$ belong to  $X$.\\
-
-Let $Y=\bigcap \call$. We seek to show that 
-\begin{equation}
-\teal{P_1(Y)\land P_2(Y) \land P_3(Y) \land P_4(Y)\land P_5(Y)}
-\end{equation}
-\vi{$P_1(Y)$} and \blue{$P_2(Y)$} are trivial. $\vdone \bdone$\\
-
-\vi{$P_3(Y)$} is also trivial.$\vdone$\\
-
-
-We now prove $\blue{P_5(Y)}$\\
-
-Let $E \subseteq \bigcap  \call,\varnothing\in E\text{ and }\forall b(b\in E\longrightarrow b \cup \set{b}\in E)$. Notice that $E\subseteq \bigcap \call \implies \forall X\in \call ,E\subseteq X \subseteq I$, so $E\in \call $. Then $\bigcap \call \subseteq E \bdone$\\
-
-We now prove \vi{$P_4(Y)$}\\
-
-Before reading the following, one may want to bear in mind that $\forall x(x\in x\cup \set{x}\text{ and }x\subseteq x\cup \set{x})$ \\
-
-Define $S:=\set{n\in \bigcap \call:\forall m(m \in n \longrightarrow  m\subseteq n) }$. We see that $S\subseteq \bigcap \call $ and that $\set{\varnothing}\in S$, trivially, so by $P_5(Y)$, we only have to show $n \in S \longrightarrow n\cup \set{n}\in S$ to show $S=\bigcap  \call $. To show such, observe that if $n\in S\text{ and }m \in n \cup \set{n}$, then we know $m \in n\text{ or }m \in \set{n}$, which is equivalent to $m \in n \text{ or } m=n$, which implies $m\subseteq n$, since by the definition of $S$, both  $m \in n\text{ and }m=n$ implies $m\subseteq n$. Then we know $n\in S\text{ and }m \in n \cup \set{n}\longrightarrow  m\subseteq n \subseteq n\cup \set{n}$.\\
-
-The above prove that every element of element $n$ of  $\bigcap \call $ is a subset of $n$. \As{$m\neq n\in\bigcap \call $ but $m\cup \set{m}=n\cup \set{n}$}. Because $n\in n \cup  \set{n}=m\cup  \set{m}$ and $n\neq m$, we can deduce $n \in m$, which implies $n\subseteq m$. Using the same method we can also deduce $m \subseteq n\tCaC \vdone$    
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Notice that we didn't prove Peano axioms give a unique structure up to isomorphism. I personally haven't proved it yet, but I guess to prove such  isn't trivial and will require to show structure like $\set{0,1,2,\dots ;a,b}$ where $S(a)=b\text{ and }S(b)=a$ does not satisfy the induction axiom.\\
-
-Say, we have proved the uniqueness of model of Peano axiom. We still haven't show in the universe of ZF, our choice of model for natural number is unique. For all we know, maybe the construction $\varnothing, \set{\varnothing},\set{\set{\varnothing}},\set{\set{\set{\varnothing}}},\dots $ also works. (Hint: Let's say there are other construction for natural numbers, there are still  reasons we pick $\bigcap \call $ as our model, since later you will see $a<b\inn\iff  a\in b\text{ and }a\subset b$)\\
-
-So, it seems like \myref{Theorem}{2.1.12} is relatively weak. This is not the case however. The fact is that, we don't really require anything extra of \myref{Theorem}{2.1.12} to do further discussion.\\
-
-The core concept of Axiom is that we don't care about what a mathematical object is, \textit{we only care about what a mathematical object does}. One should \textit{never} view axiom as something that is apparently true and can not be proved. One should know: in most domains of mathematics,  individually, axioms are simply a convention between one mathematician to another. \textit{Axioms are properties we wish a object to have so that we can make knowledge that is truly important using the property of the object}.\\
-
-For instance, we never care about what are sets. We never care about what is $\N$. We never care about what is  $\R$. We only care about that  $\R$ is completed and we can do induction on $\N$. It doesn't matter if $\N$ contain a cat or Homer Simpson, as long as it satisfy Peano axiom and we can deduce all the Theorem.\\
-
-
-Notice the construction of natural number: $\varnothing, \set{\varnothing},\set{\varnothing,\set{\varnothing}},\dots $ can each be formally proved to belong to $\bigcap  \call $. We now introduce the last axiom.  
-\end{minipage}}
-\begin{axiom}
-\label{2.1.13}
-\textbf{(Axiom of Foundation)}
-\begin{equation}
-\forall X(X \neq \varnothing \longrightarrow \exists Y (Y\in X \land \forall z(z\in Y \longrightarrow \neg z\in X)))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-In English, the axiom of foundation states that every nonempty set $X$ has an element $Y$ such that  $X\cap Y=\varnothing$. This axiom is sometimes discarded by people who use ZFC for mathematics not so related to set theory, since in the construction of most mathematical object, this axiom is unnecessary. This is also the reason this axiom is introduced last in this section. But of course, this axiom have purpose. We now introduce some results.  
-\end{minipage}}
-\begin{theorem}
-\label{2.1.14}
-\textbf{(No set belong to itself)}
-\begin{equation}
-\forall x, \neg x\in x
-\end{equation}
-\end{theorem}
-\begin{proof}
-\As{$\exists x,x\in x$}. Observe that by the axiom of foundation we have $x\cap \set{x}=\varnothing$, but we also have $x\in x\text{ and }x\in \set{x}$, so $x\in x \cap  \set{x}\tCaC$
-\end{proof}
-\begin{theorem}
-\label{2.1.15}
-  \textbf{(No infinitely descending chain of sets)}
-  Informally, we can say that the following situation will never happen
-  \begin{equation}
-  \dots \in x_3 \in x_2 \in x_1
-  \end{equation}
-  Formally, we say
-  \begin{equation}
-  \neg \exists X(\forall  x(x\in X \longrightarrow \exists y(y \in X \land y \in x)))
-  \end{equation}
-  which reads "There does not exist a set $X$ such that for all $x\in X$ there exists a set  $y\in X$ belong to $x$"
-\end{theorem}
-\begin{proof}
-\As{there exists a set $X$ such that for all $x\in X$ there exists $y\in X \cap x$}, we immediately see that for all $x\in X$, the intersection $x\cap X$ is nonempty \CaC.
-\end{proof}
-\section{Ordinal}
-\fbox{\begin{minipage}{39em}
-In previous section, we employed a purely set-theoretic formal language to delve into Zermelo-Fraenkel Set Theory. While this methodology is undoubtedly elegant for discussing set theory, it becomes notably cumbersome in mathematical domains with limited connections to set theory. This is mainly because many of the tools we typically rely on (such as functions, groups, real numbers, relations, and more) become unavailable. To utilize them, we must first construct all the sets that are interpreted as these tools, leading to extensive and convoluted formulae.\\
-
-In this section, our goal isn't to rigorously prove everything using a formal language. Instead, we'll explain our proofs in sufficient detail so that, if desired, they can be formalized with minimal additional effort, albeit taking a bit more time.\\
-
-Please note that this section primarily serves as a foundational toolkit for the subsequent sections. We will introduce all the necessary tools, and that's the extent of it.\\
-
-In last section, we use a very philosophical and logical way to discuss. Here, we back to our usual algebraic and analytical way to discuss. We firs introduce axioms for ordered sets. 
-\end{minipage}}
-\begin{axiom}
-\label{2.2.1}
-\textbf{(Axiom for Poset)} Let $\leq $ be a relation on set $S$. We say $\gen{S,\leq }$ is partially ordered if   
-\begin{equation}
-\forall x\in S, x\leq  x \text{ (Reflexive) }
-\end{equation}
-\begin{equation}
-\forall x,y,z\in S, x\leq y\text{ and }y\leq z\implies x\leq z\text{ (Transitive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\leq y\text{ and }y\leq x\implies x=y \text{ (Antisymmetric) }
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Notice that poset dose not require every two element to be comparable (trichotomy). Totally ordered set require such. 
-\end{minipage}}
-\begin{axiom}
-\label{2.2.2}
-\textbf{(Axiom for Totally Ordered Set)} Let $\leq $ be a relation on set $S$. We say $\gen{S,\leq }$ is totally ordered (or linearly ordered) if 
- \begin{equation}
-\forall x\in S, x\leq x\text{ (Reflexive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\leq  y\text{ or }y\leq x \text{ (Connected) }
-\end{equation}
-\begin{equation}
-\forall x,y,z\in S, x\leq y\text{ and }y\leq z\implies x\leq z \text{ (Transitive) } 
-\end{equation}
-\begin{equation}
-\forall x,y\in S,x\leq y\text{ and }y\leq x\implies x=y\text{ (Antisymmetric) }
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-We now give the axioms for strictly ordered sets.  
-\end{minipage}}
-\begin{axiom}
-\label{2.2.3}
-\textbf{(Axiom for Strictly Totally and Partially Ordered Set)} Let $<$ be a relation on set $S$. We say  $\gen{S,<}$ is strictly totally ordered if 
-\begin{equation}
-\forall x\in S, x\not < x \text{ (Irreflexive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x<y \implies y\not<x \text{ (Asymmetric) }
-\end{equation}
-\begin{equation}
-\forall x,y,z\inS, x<y\text{ and }y<z\implies x<z \text{ (Transitive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\neq y \implies x<y\text{ or }y<x \text{ (Connected) }
-\end{equation}
-$\gen{S,<}$ is strictly partially ordered if satisfy irreflexive, asymmetric and transitive axiom. 
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Notice that if $S$ is totally ordered, then we can let $S$ be strictly totally ordered by defining  $a<b$ if  $a\leq b\text{ and }a\neq b$, and if $S$ is strictly totally ordered, we can let  $S$ be totally ordered by defining  $a\leq b$ if $a<b\text{ or }a=b$.\\
-
-
-Again, if $S$ is partially ordered, then we can let $S$ be strictly partially ordered by defining  $a<b$ if  $a\leq b\text{ and }a\neq b$, and if $S$ is strictly partially ordered, we can let  $S$ be partially ordered by defining  $a\leq b$ if $a<b\text{ or }a=b$.\\
-
-We now give definition of some basic notions.  
-\end{minipage}}
-\begin{definition}
-\label{2.2.4}
-\textbf{(Definition of Minimal and Maximal)} A maximal element $a$ of a subset $X$ of poset $Y$ or totally ordered set $Y$ is an element that no element $b\in X$ satisfy $a<b$. Minimal element is defined in similar fashion.
-\end{definition}
-\begin{definition}
-\label{2.2.5}
-\textbf{(Definition of Well Ordered Set)} A totally ordered set $S$ is said to be well ordered if every nonempty subset $X$ of  $S$ has a minimal element $x$. 
-\end{definition}
-\fbox{\begin{minipage}{39em}
-Notice that $\N$ is well ordered, but all  $\Z,\Q,\Q^+,\set{0}\cup \Q^+,\R$ is not well ordered.\\
-
-We now give the definition of ordinal, which is the core of this section.\\
-
-Notice that there are other ways to define ordinal, but Von Neumann ordinal is the most elegant that can be formalized by our system in section 2.1. 
-\end{minipage}}
-\begin{definition}
-\label{2.2.6}
-\textbf{(Definition of Von Neumann Ordinal)} A set $S$ is an ordinal if  $S$ is a strictly totally well ordered set with respect to  $\in$ and every element of $S$ is a subset  of $S$. Precisely,  we say a set $S$ is an ordinal  if satisfy the following:
-\begin{equation}
-\forall x\in S,x\not\in x\text{ (Irreflexive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\in y\implies y \not\in x \text{ (Asymmetric) }
-\end{equation}
-\begin{equation}
-\forall x,y,z\in S, x\in y \text{ and } y\in z \implies x\in z\text{ (Trnasitive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\neq y\implies x\in y\text{ or }y\in x \text{ (Connected) }
-\end{equation}
-\begin{equation}
-\forall V\subseteq S, \exists x\in V,\forall y\in V, x\in y \text{ (Well Order) }
-\end{equation}
-\begin{equation}
-\forall x\in S, x\subseteq S \text{ (Subset) }
-\end{equation}
-In other words, $S$ is an ordinal if  $\gen{S,\in}$ is strictly totally well ordered and every element of $S$ is a subset of  $S$. 
-\end{definition}
-\fbox{\begin{minipage}{39em}
-Von Neumann's definition of ordinal may seem simple and straight forward, but is in fact very strong. Here we prove properties of Von Neumann ordinal we intend to have by definition.\\
-
-Notice that in ZF, irreflexive and antisymetric is trivially satisfied by axiom of foundation. 
-\end{minipage}}
-\begin{theorem}
-\label{2.2.7}
-\textbf{(Every Element of Ordinal is an Ordinal)} If $S$ be an ordinal, then  $A \in S$ is an ordinal.
-\end{theorem}
-\begin{proof}
-Notice that if $A=\varnothing$, then the proof is all trivial, so we only have to consider $A\neq \varnothing$. Because $A \subseteq S$, so transitive,  connected and well ordered is trivially proved.\\
-
-
-
-
-We now prove \vi{$\forall x\in A, x \subseteq A$}.\\
-
-Let $x\in A$, if $x$ are all empty, the proof is trivial. Let $\alpha \in x$, so we have $\alpha \in x \in A$\\
-
-Because $A\in S$, we know $A \subseteq S$, so we know $x \in A \subseteq S$. Then we know $x \subseteq S$, so we know $\alpha \in x \subseteq S$. So we know $\alpha ,x,A$ all belong to $S$, then because $S$ is transitive, we conclude  $\alpha \in A\vdone $
-\end{proof}
-\begin{theorem}
-\label{2.2.8}
-\textbf{(Ordinal Successor)}
-If $a$ is an ordinal, then  $a\cup \set{a}$ is an ordinal.
-\end{theorem}
-\begin{proof}
-  Notice that $b\in a\cup \set{a}\implies b \in a\text{ or }b\in \set{a}\implies b\in a\text{ or }b=a$. If $b=a\text{ and }b\in a$, we see $a\in a$, so we know $b\in a\cup \set{a}\implies b\in a\text{ exclusively or }b=a$. \\
-
-The proofs for subset part and connected part are relatively simple. Let $x,y\in a \cup \set{a}$. If $x\in a$, then $x \subseteq a\subseteq a\cup \set{a}$. If $x=a$, then  $x=a\subseteq a\cup \set{a}$. Let $x\neq y$. If $x,y$ are both in  $a$, then the proof is finished. If, WOLG, $y=a$, then  $x \in a= y$.\\ 
-
-We now prove \vi{the transitive part}.\\
-
- Let $x,y,z\in a \cup  \set{a}$ and $x\in y\text{ and }y\in z$. By axiom of foundation, it is impossible more than one of $x,y,z$ equals to  $a$. If $x=a$, then we have $y \in a$, so we see $\cdots a=x\in y\in a\in y \in a $, which implies it is impossible $x=a$. Similarly, we can deduce $y\neq a$. So far, we have proven $x\in a\text{ and }y\in a$. If $z\in a$, then because $a$ is an ordinal, our proof if done. If $z=a$, we see  $x\in a=z\vdone$\\
-
-
-We now prove \blue{the well ordered part}.\\
-
-Let $V\subseteq a \cup \set{a}$. By axiom of foundation, we know $a$ and $\set{a}$ are disjoint, so if $a\not \in V$, then $V \subseteq a$, and by the definition of $a$, our proof is finished.  If $a \in V$, we see either $a$ is the only element of  $V$ or  there exist element other than $a$ in $V$. If the situation is former, then the proof is trivially finished. If the situation is latter, then we observe $V \setminus \set{a} \subseteq a$, so $V \setminus \set{a}$ has a minimal element $x$, and  $x\in a$ indicate $x$ is also the minimal element of  $V\bdone$ 
-\end{proof}
-\begin{theorem}
-\label{2.2.9}
-  \textbf{(Basic Property of Ordinals)} If $a,b$ are ordinals, we have
-   \begin{equation}
-  a \in b \iff a \subset b
-  \end{equation}
-\end{theorem}
-\begin{proof}
-From left to right is relatively simple. If $a\in b$, then we have $a \subseteq b$. By axiom of foundation, we know $a \in b \implies  a\neq  b$, so we have $a \subset b$.\\
-
-$(\longleftarrow)$\\
-
-Let $a \subset b$. We wish to prove $a=x:=\min b\setminus a$, so that $a=\min b\setminus a\in b$. We now prove \vi{$x \subseteq a$} and prove  \blue{$a \subseteq x$}.\\
-
-By definition of $x$, we have $\forall y\in b \setminus a, y\not\in x$. This tell us $b \setminus a$ and $x$ are disjoint. Because $x\subseteq b$, the fact that $b \setminus a$ and $x$ are disjoint tell us that $x \subseteq a\vdone$\\
-
-Let $z\in a$, we wish to prove $z \in x$. Notice that $z \in a \subset b$, so because  $b$ is an ordinal and  $x \in b$, we know either $z\in x\text{ or }z=x\text{ or }x \in z$. \As{$x=z$}. We have  $\min b\setminus a =x =z \in a\tCaC$. \As{$x\in z$}. Because $a$ is an ordinal and  $z\in a$, we have $\min  b \setminus a = x \in z \subseteq a\tCaC$. Now we have $z \in x$ as desired $\bdone$
-\end{proof}
-\begin{lemma}
-\label{2.2.10}
-If $A,B$ are ordinals, then  $A \cap B$ is an ordinal.
-\end{lemma}
-\begin{proof}
-Transitive and connected and well ordered of $A\cap B$ trivially inherit from that of $A$. Observe $x\in A \cap  B\implies x \in A\text{ and }x\in B\implies x\subseteq A\text{ and }x\subseteq B\implies x\subseteq A\cap B$, and we are finished.      
-\end{proof}
-\begin{theorem}
-\label{2.2.11}
-\textbf{(Trichotomy of Ordinals)} If $a,b$ are ordinals, we have
-\begin{equation}
-a \subset b \text{ or }a=b\text{ or }b \subset a
-\end{equation}
-\end{theorem}
-\begin{proof}
-
-\As{$a\not \subset b\text{ and }a\neq b\text{ and }b\not \subset a$}. We have $a\setminus b\neq \varnothing\text{ and }b\setminus a\neq \varnothing$, since, say, if $a\setminus b=\varnothing$, we have $a \subseteq b$.\\
-
-By  \myref{Lemma}{2.2.10}, we know $a\cap b$ is an ordinal. Because $a \setminus b\neq \varnothing$, we know $a \cap  b \subset a$, and then by \myref{Theorem}{2.2.9} we have $a \cap  b \in a$. Similarly, we have $a \cap b \in b$. Then we have $a\cap  b \in a \cap  b\tCaC$
-\end{proof}
-\begin{corollary}
-\label{2.2.12}
-\textbf{(Trichotomy of Ordinals)} If $a,b$ are ordinals, we have
- \begin{equation}
-a \in b\text{ or }a=b\text{ or }b\in a
-\end{equation}
-\end{corollary}
-\begin{corollary}
-\label{2.2.13}
-\textbf{(The Class of All Ordinal is Totally Ordered)} 
-The class of all ordinals is totally ordered by set-membership $\in$. 
-\end{corollary}
-\begin{proof}
-The irreflexive and assymmetric part is trivially satisfied by axiom of foundation. The transitive part is simple: $x\in y\text{ and }y\in z\implies x\in y\subseteq z$. The connected part is just proven by \myref{Corollary}{2.2.12}. 
-\end{proof}
-\begin{theorem}
-\label{2.2.14}
-\textbf{(The Class of All Ordinals is Well Ordered)} Every set of ordinals has a $\in$-minimal element.
-\end{theorem}
-\begin{proof}
-If not, then it contradicts to \myref{Theorem}{2.1.15}
-\end{proof}
-\begin{theorem}
-\label{2.2.15}
-\textbf{(Burali-Forti Paradox)}
-All ordinals do not form a set.\\
-
-Formally speaking,  define $P(S)$ are true if and only if $S$ is an ordinal. Then we have 
-\begin{equation}
-\neg \exists A\forall x(x \in A\longleftrightarrow P(x))
-\end{equation}
-\end{theorem}
-\begin{proof}
-\As{$\Omega$ is the set of all ordinals}. By \myref{Theorem}{2.2.14}, we see $\Omega$ satisfy at least irreflexive, asymmetric, trnasitive, connected and well ordering requirement of ordinal.\\
-
-Let $x \in \Omega$, and $y \in x$. By \myref{Theorem}{2.2.7}, we know $y \in \Omega$, so in fact we have $x \subseteq \Omega$, which prove $\Omega$ is an ordinal. Then we have $\Omega \in \Omega \tCaC$
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Whewww, we have proved a lot of intended properties of ordinal. Notice that although there does not exist a set consist precisely of all ordinals. We still can mention the class of all ordinal by $Ord$.\\
-
- Notice that $Ord$ is in fact an extension of  $\N$, and it goes like this
-  \begin{equation}
-  0,1,2,3,\dots ;\omega, \omega+1,\omega +2,\dots
-  \end{equation}
-\end{minipage}}
-\begin{theorem}
-\label{2.2.16}
-  \textbf{(All Naturals are Ordinals)} All element of  $\bigcap \call$ are ordinals. 
-\end{theorem}
-\begin{proof}
-We prove by induction, which is  the $P_5(\bigcap  \call )$ of \myref{Theorem}{2.1.12}.\\
-
-Notice that $\varnothing$ trivially satisfy all property of ordinals, which finish the proof for base step, and notice that by \myref{Theorem}{2.2.8}, the proof for induction step is also finished.  
-\end{proof}
-\begin{theorem}
-\label{2.2.17}
-\textbf{($\N$ as a set is an ordinal)} $\bigcap \call $ is an ordinal. 
-\end{theorem}
-\begin{proof}
-By \myref{Theorem}{2.2.16}, we have proved that $\cap \call $ is a strictly totally ordered set. Notice that every subset of a well ordered set is well order, so it only left to prove the \vi{subset part} of definition of ordinal.\\
-
-We prove by induction. Let $X:=\set{x \in \bigcap \call  : x \subseteq \bigcap \call }$. Base case: $\varnothing \in X$ is trivial. Let $a \in X$. Then we have $a\in \bigcap   \call$ and $a \subseteq \bigcap   \call $, so we have $a \cup \set{a} \subseteq \bigcap \call  \vdone$ 
-\end{proof}
-\begin{theorem}
-\label{2.2.18}
-\textbf{(Transfinite Induction)} 
-Let $X$ be a nonempty ordinal. For all $x \in X$, we define 
-\begin{equation}
-S_x:=\set{z \in X: z\in x }
-\end{equation}
-Let $Y\subseteq X$. If $Y$ satisfy the property:
-\begin{equation}
-\forall x\in X( S_x \subseteq Y \longrightarrow x \in Y )
-\end{equation}
-we have $Y=X$
-\end{theorem}
-\begin{proof}
-\As{$Y$ satisfy the property, but $Y\neq X$}. 
-We first show \vi{$Y$ is nonempty}.  Because $X$ is an ordinal, we can pick an element $r \in X$ such that $\forall u \in X, r\in u$, so we have $S_r=\varnothing \subseteq Y$. Then because $Y$ satisfy the property, we have  $r \in Y\vdone$\\
-
-Because $X$ is an ordinal, we know there exists  $x_0 \in X\setminus Y$ such that $\forall x\neq x_i\in X\setminus Y, x_0 \in x$.\\
-
-Let $a \neq  x_0 \in X$, we know either $a \in Y$ or $a \in X\setminus Y$, we now prove \blue{$a \in x_0 \implies a \in Y$}. \As{$a \not \in Y$}, we then have $a\in X\setminus Y$, so we have $x_0 \in a \tCaC \bdone$.\\
-
-The \blue{blue part} show that $S_{x_0} \subseteq Y$, so by the property of $Y$, we have  $x_0 \in Y$, but $x_0 \in X \setminus Y \tCaC$.
-
-\end{proof}
-\section{Axiom of Choice and its equivalents}
-
-\fbox{\begin{minipage}{39em}
-The axiom of choice in practice allow us to carry out constructions that require infinite sequence of choice, each of which depending on the preceding one, so that one does not know initially just what choice are to made in what order.\
-
-In this section, we let $P$ be a nonempty poset.
-\end{minipage}}
-\begin{definition}
-\label{2.3.1}
-\textbf{(Definition of Chain)} We say  $X\subseteq P$ is a chain if $X$ is totally ordered. 
-\end{definition}
-\begin{definition}
-\label{2.3.2}
-\textbf{(Definition of Well Ordered Set)} Let $X\subseteq P$. We say  $X$ is well ordered only if $X$ is totally ordered.
-\end{definition}
-\begin{definition}
-\label{2.3.3}
-\textbf{(Definition of Upper Bound)} Let $X\subseteq P$. We say $X$ is bounded above by  $t$ if
-\begin{equation}
-\forall x \in X, x\leq t
-\end{equation}
-\end{definition}
-\begin{definition}
-\label{2.3.4}
-\textbf{(Definition of Initial Segment)} Let $C$ be a chain of $P$. We say $T$ is an initial segment of $C$ if
-\begin{equation}
-T\subseteq C \text{ and }\forall  v\in T,\forall u\in C, u \leq v \implies  u \in T
-\end{equation}
-In this section, we denote the statement: $T$ is an initial segment of  $C$ by $T\subseteq' C$, and we denote $T\subseteq'C\text{ and }T\neq C$ by $T\subset' C$
-\end{definition}
-\begin{lemma}
-\label{2.3.5}
-An initial segment of a chain is also a chain
-\end{lemma}
-\begin{lemma}
-\label{2.3.6}
-Let  $S \subseteq P$ be well ordered and $t$ be an upper bound of  $S$. We have $S \cup \set{t}$ is also well ordered. 
-\end{lemma}
-\begin{proof}
-Let $V \subseteq S\cup \set{t}\text{ and }V\neq \varnothing$ . If $V\cap S$ is empty, then we know $V=\set{t}$ and the proof is trivially finished. If $V\cap S$ is nonempty, let $x= \min V\cap S$. We know $y\in V\implies y \in V \cap S\text{ or }y=t$. If $y \in V\cap S$, then $x\leq y$ by definition of $x$. If  $y=t$, then  $x\leq t=y$ by $x\in S\text{ and the definition of $t$}$  
-\end{proof}
-\begin{lemma}
-\label{2.3.7}
-If $\cc$ is a set of well ordered chains in $P$ where 
- \begin{equation}
-X,Y \in \cc \implies X\text{ is an initial segment of $Y$ or $Y$ is an initial segment of  $X$}
-\end{equation}
-then $\bigcup \cc$ is a well ordered chain 
-\end{lemma}
-\begin{proof}
-Notice that the definition of $\cc$ implies
-\begin{equation}
-X,Y \in \cc \implies  X \subseteq Y\text{ or }Y\subseteq X
-\end{equation}
-
-Let $a,b \in \bigcup \cc $, and let $a \in A \in \cc, b \in B\in\cc$. Observe $A \subseteq B$ or $B \subseteq A\implies a,b \in A\text{ or }a,b \in B$, because $A,B$ are chains, we deduce $a,b$ are  comparable.  All the other properties of totally ordered set inherit from $P$, so we have proven  $\bigcup \cc$ is a chain.\\
-
-We first prove \vi{$\gen{\cc,\subseteq'}$ is totally ordered.}\\
-
-Connected part and antisymmetric part are implied by the definition of $\cc$. One can verify the reflexive part trivially hold true. Let  $A\subseteq'B\subseteq'C\text{ and }a\in A, c \in C\text{ and }c\leq a$. Because $a \in B$ and $B \subseteq' C$, we can deduce $c \in B$ from $c \leq a$. Then we can deduce $c \in A$ from $c \in B\text{ and }A\subseteq' B$, finishing the proof for transitive part $\vdone$\\
-
-
-Let $V \subseteq \bigcup \cc$. We now prove \blue{$V$ contain a minimal element}.\\
-
-Arbitrarily pick $X\in \cc$ so that $V\cap X$ is nonempty. Because $V \cap X \subseteq X$ and $X$ is well ordered, we know $\min V \cap X$ exists. \As{$\exists v' \in V, v'< \min V \cap  X$}. We know $\min  V\cap  X\in X\in \gen{\cc,\subseteq'}$. Let $S=\set{Z \in \cc : v' \in Z}$. If $X \in S$, then $v'\in V \cap  X$ contradicting to $v' <\min V\cap  X$, so we know $X \not\in S$. Observe $v' \in Z\subseteq ' X \implies  v' \in X $ causing the same contradiction, so we know every element in $S$ is greater than  $X$ with respect to  $\subseteq '$. We know $S$ is non empty, since  $v' \in V \subseteq \bigcup \cc$. Then we can arbitrarily pick $Z\in S$. By definition of initial segment, we can deduce $v' \in X$ from $v'<\min V \cap  X\text{ and } Z\subseteq' X \tCaC\bdone$ 
-\end{proof}
-\begin{lemma}
-\label{2.3.8}
-The class of initial segments of a chain is totally ordered by $\subseteq' $
-\end{lemma}
-\begin{proof}
-Antisymmetric, reflexive and transitive parts are implied by definition of $\subseteq'$, as shown in the proof of  \myref{Lemma}{2.3.7}. Now we let $X$ be a chain and let  $A\subseteq' X\text{ and }B\subseteq' X$, and prove \vi{$A \subseteq' B\text{ or }B\subseteq' A$}\\
-
-\As{$A\not\subseteq B\text{ and }B\not\subseteq A$}. Arbitrarily pick $x \in A\setminus B\text{ and }y \in B\setminus A$. We know $x\neq y$, since $y\not\in A\setminus B$. WOLG, let $x<y$. Because $x\in A\subseteq X$, where $y\in B$ and $B\subseteq' X$, so we deduce $x \in B\tCaC$\\
-
-WOLG, let $A \subseteq B$. \As{$A\not\subseteq' B$}. Then there exists $a\in A,b\in B$ such that $b<a\text{ and }b\not\in A$. Yet, we see $A\subseteq' X,b\in X\text{ and }a \in A$, so we can deduce $b \in A\tCaC$ 
-\end{proof}
-\begin{lemma}
-\label{2.3.9}
-A class of chain $\cc$ is totally ordered by $\subseteq'$ if and only if  $\bigcup \cc$ is a chain.
-\end{lemma}
-\fbox{\begin{minipage}{39em}
-It may seem that \myref{Lemma}{2.3.7} is extremely powerful as it "seems" to suggest, the union of a well ordered by inclusion set of well ordered set is well ordered. But this is not the case as one can see that $\bigcup \set{\set{-1},\set{-1,-2},\set{-1,-2,-3},\dots}$ is not well ordered.\\
-
-We now prove from Axiom of Choice to Zorn's Lemma. 
-\end{minipage}}
-\begin{theorem}
-\label{2.3.10}
-\textbf{(Axiom of Choice Implies Zorn's Lemma)}
-If for every set $\mathcal{S}$ of set, there exists a function $f$ such that $\forall X \in \mathcal{S}, f(X)\in X $, then for every partially ordered set $P$, there exists a maximal element. 
-\end{theorem}
-\begin{proof}
-Arbitrarily pick $p \in P$. Let $f$ be a choice function from $\power{P}\setminus \set{\varnothing}$, and additionally let $f(\varnothing):=p$. Define 
-\begin{multline}
-\cc:=\set{C\subseteq P: C\text{ is well ordered},\min C=p,T\subset' C\longrightarrow f(T)=\min C\setminus T}
-\end{multline}
-We see $\set{p}\in \cc$, so $\cc$ is nonempty. We first prove \vi{$\gen{\cc,\subseteq'}$ is totally ordered}.\\
-
-Reflexive part, transitive part and antisymmetric part are implied by the definition of $\subseteq'$, as shown in the proof of \myref{Lemma}{2.3.7}. Let $A,B \in \cc$, and define
-\begin{equation}
-R:=\bigcup \set{T: T \subseteq' A\text{ and }T\subseteq' B}
-\end{equation}
-Let $x\in R\text{ and }y \in A$. Then we find $T$ such that $x \in T\subseteq' A$. Observe if $y<x$, then $y\in T \subseteq R$. This prove $R\subseteq' A$. Similarly, we can prove $R\subseteq' B$. Then by the definition of $R$, we know  $R$ is greatest common initial segment of  $A\text{ and }B$.\\
-
-\As{$R\subset' A\text{ and }R\subset' B$}. Then we see $f(R)=\min A\setminus R=\min B\setminus R$. Let $a\inA\text{ and }r'\in R\cup \set{f(R)}$. Observe
-\begin{equation}
-a<r' \implies \begin{cases}
-  a<f(R)=\min A\setminus R\\
-  a<r \in R\subseteq' A
-\end{cases}\implies \begin{cases}
-  a \not\in A\setminus R\\
-  a \in R
-\end{cases}\implies a\in R
-\end{equation}
-So we have $R\cup \set{f(R)}\subseteq' A$. Similarly we have $R\cup \set{f(R)}\subseteq' B$. Because $f(R)=\min A\setminus R\not\in R$, so we know $R\subset R\cup \set{f(R)}\tCaC$\\
-
-Because $R\subseteq' A\text{ and }R\subseteq' B$. WOLG, we can let $R=A$, and we see $A=R\subseteq' B\vdone$\\
-
-Let 
-\begin{equation}
-U:=\bigcup \cc
-\end{equation}
-By \myref{Lemma}{2.3.7}, we then know $U$ is a well ordered chain. We now prove \blue{$U\in \cc$}.\\
-
-Arbitrarily find $T\subset' U$, and arbitrarily pick $u \in U\setminus T$. By definition of $U$, we know there exists $A\in \cc$ such that $u \in A$.\\
-
-Let $u=a$ and arbitrarily pick $u'\in U$ such that $a<u'$ and let $u'\in B \in \cc$. We wish to prove \teal{$A\subseteq' U$}, so we suppose $u'<a$. By \vi{violet part}, we know $A\subseteq' B\text{ or }B\subseteq' A$. If the latter then the proof is trivial finished. If the former, observe $u'\in A$ by definition of $\subseteq' \tdone$.\\
-
-Because $T\subseteq' U\text{ and }A\subseteq' U$, by \myref{Lemma}{2.3.8}, we know either $A\subseteq' T\text{ or }T\subseteq' A$
-
-\end{proof}
-\section{Unfinished Notes for Cardinal}
-\fbox{\begin{minipage}{39em}
-In this section, I first have to assert that there are a lot of abuse of notation. For people who are not familiar with set theory, just note that if everything have to be "down to the bottom" rigorous, instead of writing integer $0,1,2,3$, we have to either use the notation $\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}},\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}}$, or explain the notation $0,1,2,3$ in detail unrelated to our topic.
-\end{minipage}}
-\begin{definition}
-\label{2.4.1}
-\textbf{(Definition of Cardinality)} 
-Two sets $A,B$ are said to \textit{have the same cardinality} or \textit{have the same cardinal number} or \textit{of the same cardinality} if there exists a bijective function from $A$ to  $B$. If $A,B$ have the same cardinality, then we write
-\begin{equation}
-\abso{A}=\abso{B}  
-\end{equation}
-\end{definition}
-\begin{theorem}
-\label{2.4.2}
-\textbf{(Basic Property of Cardinality)} For all sets $A,B$, we have 
-\begin{equation}
-\abso{A}=\abso{A}\text{ ( Reflexive) }
-\end{equation}
+A simple example of a $\sigma$-algebra is
 \begin{equation}
-\abso{A}=\abso{B} \implies   \abso{B}=\abso{A} \text{ ( Symmetric) }
+\Omega_2=\set{HH,HT,TH,TT},\mathcal{G}=\set{\varnothing,X,\set{HT,HH},\set{TH,TT}}
 \end{equation}
-\begin{equation}
-\abso{A}=\abso{B}\text{ and }\abso{B}=\abso{C}\implies \abso{A}=\abso{C} \text{ ( Transitive) }
-\end{equation}
-\end{theorem}
-\begin{proof}
-Please note that so far in our definition and notation, when we say $\abso{A}=\abso{B}$, we does not mean $\abso{A}=x=\abso{B}$ for some mathematical object $x$. When we say $\abso{A}=\abso{B}$, we merely mean that there exists a bijective function from $A$ to  $B$.\\
-
-Define $f:A\rightarrow   A$ by $x\mapsto x$, and we can use this function to prove the Reflexive part. For the rest two parts, use inverse and composition of functions.    
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Notice that at this point, the concept of cardinality is defined completely based on bijective function, which does not rely on the elements of sets.\\
 
-We now give a notation related to cardinality, and introduce Schroder-Berstein Theorem, which plays an important role in our proofs for properties of cardinality. 
-\end{minipage}}
-\begin{definition} \textbf{(Definition of Cardinality)} 
-\label{2.4.3}
-Given two sets $A,B$, if there exists an one-to-one function from  $A$ to  $B$, we write 
- \begin{equation}
-\abso{A}\leq \abso{B}\text{ or write }\abso{B}\geq \abso{A}
-\end{equation}
-\end{definition}
-\begin{theorem}
-\label{2.4.4}
-\textbf{(Basic Property of Cardinality)} Let $A,B$ be sets. We have
-\begin{equation}
-A \subseteq B\implies  \abso{A}\leq \abso{B}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Define $f:A\rightarrow B$ by $x\mapsto x$ and we are done.
-\end{proof}
-\begin{theorem}
-\label{2.4.5}
-\textbf{(Schroder-Berstein Theorem)} Let $A,B$ be sets. We have 
-\begin{equation}
-\abso{A}\leq \abso{B}\text{ and }\abso{B}\leq \abso{A}\iff  \abso{A}=\abso{B}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Let $f:A\rightarrow B$, $g:B\rightarrow A$ be two one-to-one function.\\
+Notice in this example, $\Omega$ is ought to be interpreted as tossing two coins and $\mathcal{G}$ is to observe the first coin is head or tail.\\
 
-Define $C_0:=A\setminus g(B) $, and for all nonnegative integer $k$, define 
-\begin{equation}
-C_{k+1}:=g(f(C_k))
-\end{equation}
-Also, Define
+To expand the first example, we have another simple example:
 \begin{equation}
-C:=\bigcup _{k=0}^{\infty} C_k
+\Omega_3=\set{HHH,HHT,HTH,HTT,THH,THT,TTH,TTT}
 \end{equation}
 Define
 \begin{equation}
-h(x):=\begin{cases}
-  f(x) & x\in C \\
-  g^{-1}(x) & x\inA\setminus C
-\end{cases}
+A_H:=\set{HHH,HHT,HTH,HTT}\text{ and }A_T:=\set{THH,THT,TTH,TTT}
 \end{equation}
-We first prove \vi{$h$ is defined every where on $A$}.\\
+which is the information of tossing head or tail on first try.\\
 
-Because $C_0\subseteq C$, we know that $A\setminus C \subseteq A\setminus C_0=A \setminus (A\setminus g(B))$. Then we can deduce
-\begin{gather}
-x\in A \setminus C \implies x\inA \setminus (A \setminus g(B))\\
-\liff x\inA\text{ and }x\not\inA \setminus g(B)\\
-\liff  x\inA\text{ and }(x\not\inA\text{ or }x\in g(B))\\
-\liff (x\inA\text{ and }x\not\in A)\text{ or }(x\inA\text{ and }x\in g(B))\\
-\liff x\inA\text{ and }x\in g(B)\\
-\liff x\in g(B) \vdone
-\end{gather}
-We now prove \blue{$h$ is one-to-one}.\\
-
-\As{there exists $x\neq y\inA$ such that $h(x)=h(y)$}. We know $x,y$ are not both in $C$, otherwise  $f$ is not one-to-one. We also know $x,y$ are not both in $A \setminus C$, otherwise $g$ is not a function. WOLG, let $x\in C\text{ and }y\inA \setminus C$, so we have $f(x)=g^{-1}(y)$. Then, we have $y=g(f(x))$. Because $x\in C$ , we know there exists a nonnegative integer $n$ such that $x\in C_n$. Then we see $y\in g(f(C_n))=C_{n+1}\tCaC\bdone$\\
-
-Lastly we prove  \vi{$h$ is onto}.\\
-
-We wish to prove $B=h(A)$, where 
- \begin{equation}
-h(A)=f(C)\cup g^{-1}(A \setminus C)\text{ and }h(A)\subseteq B
-\end{equation}
-So we just prove
+Notice $A_T=A_H^c$. Define
 \begin{equation}
-B\subseteq f(C)\cup g^{-1}(A \setminus C)
+A_{HH}:=\set{HHH,HHT}\text{ and }A_{HT}:=\set{HTH,HTT}
 \end{equation}
-Let $x\in B$. If all $x$ is in  $g^{-1}(A \setminus C)$, then the proof is over. If not, keep in mind that $g(x)\not\in C_0$, since $g(x)\in C_0=A \setminus g(B)$ implies $g(x)\not\in g(B)$ and observe 
-\begin{gather}
-x\not\in g^{-1}(A \setminus C)\\
-\liff g(x)\not\in A \setminus C\\
-\liff g(x)\in C \\
-\liff \exists n\inn, g(x)\in C_n\\
-\liff \exists n\inn, \exists u\in C_{n-1}, g(x)=g(f(u))\\
-\liff \exists n\inn,\exists u\in C_{n-1}, x=f(u)\\
-\liff x\in f(C) \vdone 
-\end{gather}
-\end{proof}
-\fbox{\begin{minipage}{39em}
-We now give another notation related to cardinality.
+\begin{equation}
+A_{TH}:=\set{THH,THT}\text{ and }A_{TT}:=\set{TTH,TTT}
+\end{equation}
+so we have
+\begin{equation}
+A_H=A_{HH}\cup A_{HT}\text{ and }A_T=A_{TH}\cup A_{TT}
+\end{equation}
+Then we can define 
+\begin{equation}
+\mathcal{G}:= \set{\bigcup N: N\in \power{M}}
+\end{equation}
+where  $M=\set{A_{HH},A_{HT},A_{TH},A_{TT}}$\\
+
+Notice we can define four $\sigma$-algebras by
+\begin{equation}
+\mathcal{F}_0=\set{\varnothing,\Omega},\mathcal{F}_1=\set{\varnothing,\Omega,A_T,A_H},\mathcal{F}_2=\mathcal{G},\mathcal{F}_3=\power{\Omega}
+\end{equation}
+then we have
+\begin{equation}
+\mathcal{F}_0\subset \mathcal{F}_1\subset \mathcal{F}_2 \subset \mathcal{F}_3
+\end{equation}
+
+The following concern Borel $\sigma$-algebra
 \end{minipage}}
 \begin{definition}
-\label{2.4.6}
-\textbf{(Definition of Cardinality)} Let  $A,B$ be sets. If $\abso{A}\geq \abso{B}$ and there does not exist a bijective function from  $A$ to $B$, which we denote $\abso{A}\neq \abso{B}$, then we write
-\begin{equation}
-\abso{A}>\abso{B}\text{ or write }\abso{B}<\abso{A}
-\end{equation}
-\end{definition}
-\begin{theorem}
-\label{2.4.7}
-\textbf{(Basic Property of Cardinality)} Let $A,B$ be two sets. We have
-\begin{equation}
-\abso{A}>\abso{B}\iff \text{ no function from $A$ to $B$ is one-to-one}
-\end{equation}
-\begin{equation}
-\abso{A}>\abso{B}\iff \text{ no function from $B$ to $A$ is onto }
-\end{equation}
-\end{theorem}
-\begin{proof}
-$(\longrightarrow)$\\
+\label{1.1.10}
+\textbf{(Definition of Borel-Algebra)} The Borel-Algebra on $\R$, which we denote  $\mathcal{B}(\R)$ is the $\sigma$-algebra generated by all open interval of $\R$.\\
 
-
-$\abso{A}>\abso{B}$ implies that there exists an one-to-one function from $B$ to $A$. If there exists a one-to-one function from  $A$ to $B$, then by \myref{Schroder-Berstein Theorem}{2.1.5}, we have a contradiction. If there exists an onto function $g:B\rightarrow A$, then with $g^{-1}$ and \myref{Schroder-Berstein Theorem}{2.1.5}, we have a contradiction.\\
-
-$(\longleftarrow)$\\
-
-We prove \vi{the negate of $\abso{A}>\abso{B}$ is $\abso{A}\leq \abso{B}$}
-\end{proof}
-\begin{definition}
-\label{2.4.8}
-  \textbf{(Definition of finite and infinite)} For all nonnegative integer $n$, let
-\begin{equation}
-J_n=\set{m\inn, 0<m\leq n}
-\end{equation}
-Let $A$ be a set. If for some nonnegative integer $n$, we have $\abso{A}=\abso{J_n}$, then we say $A$ is \textit{finite}.  $A$ is  \textit{infinite} if $A$ is not finite.
-\end{definition}
-\begin{theorem}
-\label{2.4.9}
-\textbf{(Basic Property of Finite Set)} Let $A,B$ be two finite sets, and let  $\abso{A}=\abso{B}$. Let $f$ be a function from $A$ to $B$. We have
+Some members of $\mathcal{B}(\R):$ 
  \begin{equation}
-f\text{ is one-to-one }\iff f\text{ is bijective }\iff f\text{ is onto }
+   (b,a),(a,\infty),\R
 \end{equation}
-\end{theorem}
-  
-\begin{theorem}
-\label{2.4.10}
-  \textbf{(A coincidence ?)} If we define naturals by $0=\varnothing\text{ and }x+1=x \cup \set{x}$, then for all nonnegative integer $n$, we have $\abso{n}=J_n$
-\end{theorem}
-\begin{theorem}
-\label{2.4.11}
-\textbf{($\N$ is infinite)} $\N$ is infinite.
-\end{theorem}
-\begin{proof}
-  \As{$\N$ is finite}. Define $f:\N\rightarrow \N$ by $x\mapsto x+1$. $f$ is one-to-one implies that $f$ is onto, but $\forall x\inn,f(x)\neq 1\tCaC$ 
-\end{proof}
-\begin{theorem}
-\label{2.4.12}
-\textbf{($\N$ is the "smallest" infinite set)} Every infinite set $A$ have either same or greater cardinality than $\N$ 
-\end{theorem}
-\begin{proof}
-
-\end{proof}
-
-\begin{theorem}
-\label{2.4.13}
-\textbf{(Equivalent to AC)} Let $A,B$ be sets. We have
 \begin{equation}
-\abso{A}\leq \abso{B}\text{ or }\abso{A}\geq \abso{B}
+  (b,a]=(b,\infty)\setminus (a,\infty)
 \end{equation}
-\end{theorem}
-\begin{proof}
-\end{proof}
-\begin{theorem}
-\label{2.4.14}
-\textbf{(Equivalent to AC)} Let $A,B$ be sets. We have
 \begin{equation}
-\abso{A}>\abso{B}\iff \abso{A}\not\leq \abso{B}
+[a,\infty)=\R\setminus (-\infty, a) 
 \end{equation}
+\begin{equation}
+[a,b]=[a,\infty)\setminus (b,\infty) 
+\end{equation}
+\begin{equation}
+\set{a}=\R \setminus (-\infty, a)\cup (a,\infty)
+\end{equation}
+\end{definition}
+\fbox{\begin{minipage}{39em}
+    Some members of $\mathcal{B}(\R)$ : $(b,a),(a,\infty),(b,a],(-\infty,a),[a,\infty),[a,b]$
+\end{minipage}}
+\begin{definition}
+\label{1.1.11}
+\textbf{(Definition of a Random Variable)} We say the function from $\Omega$ to $\R$ is a random variable.
+\end{definition}
+\fbox{\begin{minipage}{39em}
+We now define 3 random variable for example from the last example of $\sigma$-algebra.\\
+
+Let $S_0,u,d\inr^+$ and let $d<1<u$. We define three random variables $S_1,S_2,S_3$ on $\Omega_3$
+ \begin{equation}
+S_1(\omega)= \begin{cases}
+  uS_0& \text{ if $\omega \in A_H$ }\\
+  dS_0& \text{ if $\omega\inA_T$ }
+\end{cases}S_2(\omega)=\begin{cases}
+  u^2S_0& \text{ if $\omega\in A_{HH}$ }\\
+  udS_0& \text{ if $\omega\in A_{HT}\cup A_{TH}$ }\\
+  d^2S_0& \text{ if $\omega\in A_{TT}$ }
+\end{cases}
+\end{equation}
+\begin{equation}
+S_3(\omega)=\begin{cases}
+  u^3S_0& \text{ if $\omega\in \set{HHH}$ }\\
+  u^2dS_0& \text{ if $\omega\in \set{HHT,HTH,THH}$ }\\
+  ud^2S_0& \text{ if $\omega\in \set{HTT,THT,TTH}$ }\\
+  d^3S_0& \text{ if $\omega\in \set{TTT}$ }
+\end{cases}
+\end{equation}
+Often, we just use $S$ to denote  $S(\omega)$. 
+\end{minipage}}
+\begin{theorem}
+\textbf{(Construct  $\sigma$-Algebra with Random Variable)} Let $X$ be a random variable on  $\Omega$. We define
+\begin{equation}
+X^{-1}[B]=\set{\omega \in \Omega : X(\omega)\in B}
+\end{equation}
+and define the $\sigma$-algebra $\sigma(X)$ by
+\begin{equation}
+\sigma(X)=\set{X^{-1}[B]:B\in\mathcal{B}(\R)}
+\end{equation}
+We can verify $\sigma(X)$ is a $\sigma$-algebra.
 \end{theorem}
 \begin{proof}
+  \red{missed}
 \end{proof}
+\fbox{\begin{minipage}{39em}
+Notice $\sigma(S_1)=\mathcal{F}_1,\sigma(S_2)\neq \mathcal{F}_2,\sigma(S_3)\neq \mathcal{F}_3$
+\end{minipage}}
 \end{document}
