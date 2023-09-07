@@ -1969,10 +1969,12 @@ We now prove from Axiom of Choice to Zorn's Lemma.
 \begin{theorem}
 \label{2.3.10}
 \textbf{(Axiom of Choice Implies Zorn's Lemma)}
-If for every set $\mathcal{S}$ of set, there exists a function $f$ such that $\forall X \in \mathcal{S}, f(X)\in X $, then for every partially ordered set $P$, there exists a maximal element. 
+If for arbitrary set of nonempty set $Y$ and arbitrary function $g:X\rightarrow Y$, there exists a choice function $f:X\rightarrow \bigcup Y$ such that $f(x)\in g(x)$ , then for every partially ordered set $P$ such that every chain is bounded, there exists a maximal element. 
 \end{theorem}
 \begin{proof}
-Arbitrarily pick $p \in P$. Let $f$ be a choice function from $\power{P}\setminus \set{\varnothing}$, and additionally let $f(\varnothing):=p$. Define 
+Because the set of upper bound of chain is always nonempty, we can let $g$ be a function that map each chain $C$ in  $P$ to the set of upper bounds of $C$, and let $f$ be the choice function of  $g$, that is,  $f(x)\in g(x)$. Additionally, let $f(\varnothing):=p$.\\
+
+The above use the axiom of choice. We now define 
 \begin{multline}
 \cc:=\set{C\subseteq P: C\text{ is well ordered},\min C=p,T\subset' C\longrightarrow f(T)=\min C\setminus T}
 \end{multline}
@@ -1994,7 +1996,7 @@ a<r' \implies \begin{cases}
   a \in R
 \end{cases}\implies a\in R
 \end{equation}
-So we have $R\cup \set{f(R)}\subseteq' A$. Similarly we have $R\cup \set{f(R)}\subseteq' B$. Because $f(R)=\min A\setminus R\not\in R$, so we know $R\subset R\cup \set{f(R)}\tCaC$\\
+So we have $R\cup \set{f(R)}\subseteq' A$. Similarly we have $R\cup \set{f(R)}\subseteq' B$. Because $f(R)=\min A\setminus R\not\in R$, so we know $R\subset R\cup \set{f(R)}\subseteq R\text{ by definition of $R$ }\tCaC$\\
 
 Because $R\subseteq' A\text{ and }R\subseteq' B$. WOLG, we can let $R=A$, and we see $A=R\subseteq' B\vdone$\\
 
@@ -2002,15 +2004,56 @@ Let
 \begin{equation}
 U:=\bigcup \cc
 \end{equation}
-By \myref{Lemma}{2.3.7}, we then know $U$ is a well ordered chain. We now prove \blue{$U\in \cc$}.\\
+We now prove \blue{$U\in \cc$}.\\
 
-Arbitrarily find $T\subset' U$, and arbitrarily pick $u \in U\setminus T$. By definition of $U$, we know there exists $A\in \cc$ such that $u \in A$.\\
+Notice that by \myref{Lemma}{2.3.7}, we know $U$ is a well ordered chain. Because $x \in U \implies \exists D,x \in D \in \cc\implies p\leq x$, so $p$ is also the minimal element of  $U$. Then now we only have to prove \blue{$T\subset' U\longrightarrow  f(T)=\min U\setminus T$}. \\
 
-Let $u=a$ and arbitrarily pick $u'\in U$ such that $a<u'$ and let $u'\in B \in \cc$. We wish to prove \teal{$A\subseteq' U$}, so we suppose $u'<a$. By \vi{violet part}, we know $A\subseteq' B\text{ or }B\subseteq' A$. If the latter then the proof is trivial finished. If the former, observe $u'\in A$ by definition of $\subseteq' \tdone$.\\
+Arbitrarily find $T\subset' U$, and arbitrarily pick $s \in U\setminus T$. By definition of $U$, we know there exists $S\in \cc$ such that $s \in S$.\\
 
-Because $T\subseteq' U\text{ and }A\subseteq' U$, by \myref{Lemma}{2.3.8}, we know either $A\subseteq' T\text{ or }T\subseteq' A$
+We wish to prove \teal{$S\subseteq' U$}. Arbitrarily pick $v \in U$ less than $s$ and let $v \in V \in\cc$. By \vi{violet part}, we know $S\subseteq' V\text{ or }V\subseteq' S$. If $V\subseteq' S$, then we prove $v<s \implies v \in V\subseteq S$. If $S\subseteq ' V$, then $v<s \implies  v \in S$. Notice both of them mean $S \subseteq' U$, since $v$ is arbitrarily picked from  $U\tdone$.\\
 
+
+
+Because $T\subseteq' U\text{ and }S\subseteq' U$, by \myref{Lemma}{2.3.8}, we know either $S\subseteq' T\text{ or }T\subseteq' S$. Notice $s \in S\text{ and }s\in U\setminus T$, so we know $T\subset' S$. Then because $S \in \cc$, we know $f(T)=\min S\setminus T$. Notice that it can be trivially proved  $S\subseteq' U \implies S\setminus T \subseteq' U\setminus T$, so in fact we have $f(T)=\min S\setminus T=\min U\setminus T\bdone$\\
+
+\As{$U$ does not contain a maximal element of  $P$}. We now prove \vi{$U\cup \set{f(U)}\in \cc$}\\
+
+Notice that by \myref{Lemma}{2.3.6}, we know $U\cup \set{f(U)}$ is a well ordered chain, and because $f(U)$ is an upper bound of $U$, we know $p=\min U\cup \set{f(U)}$, so we only have to prove \vi{$T\subset' U\cup \set{f(U)}\longrightarrow f(T)= \min U\cup \set{f(U)}\setminus T} $}.\\
+
+Because $f(U)$ is an upper bound of $U$, we see  $f(U)=\max U\cup \set{f(U)}$, and because $U$ contain no maximal element, we know  $f(U)\not\in U$, that is, $U\subset U\cup \set{f(U)}$.\\
+
+Notice we have $f(U)\not\in T$, since $f(U)\in T\implies T=U\cup \set{f(U)}$. Then observe 
+\begin{gather}
+f(U)\not \in T\text{ and }T\subset' U \cup \set{f(U)}\\
+\implies T\subseteq' U\\
+\implies T=U\text{ or }T\subset' U\\
+\implies f(T)=f(U)=\min U\cup \set{f(U)}\setminus U=\min U\cup \set{f(U)}\setminus T\\
+\text{ or }f(T)=\min U\setminus T=\min U\cup \set{f(U)}\setminus T\vdone
+\end{gather}
+
+
+Then we see $U\cup \set{f(U)}\in \cc\implies U\cup \set{f(U)}\subseteq \bigcup \cc= U \tCaC$
 \end{proof}
+\fbox{\begin{minipage}{39em}
+We now prove a simple application of Zorn's Lemma, showcasing something intuitive that in fact rely on Zorn's Lemma.
+\end{minipage}}
+\begin{theorem}
+\textbf{(Zorn's Lemma Implies Every Vector Space Has a Basis)} Every vector space has a basis.
+\end{theorem}
+\begin{proof}
+  Let $V$ be a vector space and let  $\mathcal{X}$ be the set of all linearly independent set of  $V$.  Order  $\mathcal{X}$ by inclusion, we now prove \vi{every chain $\cc$ in $\mathcal{X}$ is bounded above by $\bigcup \cc$}.\\
+
+We first prove \teal{$\bigcup \cc$ is linearly independent}. Arbitrarily pick a finite subset $S$ of  $\bigcup \cc$, and for each vector $s_i \in S$, pick a linearly independent set $S_i \in \cc$ such that $s_i \in S_i$. Let $S_n$ be the maximal element of  $\set{S_i}$ by inclusion. Then we have $S\subseteq S_n$, so $S$ is linearly independent $\tdone$\\
+
+By definition, we have $C\in \cc\implies C \subseteq \bigcup \cc\vdone$.\\
+
+Then by Zorn's Lemma, we know there exist a maximal element $W$ of $\mathcal{X}$. We now prove \blue{$U$ spans  $V$}.\\
+
+\As{there exists $v\in V\setminus U$}. Then we see $U\subset U\cup \set{v}$ and see $U\cup \set{v}\in \mathcal{X}\tCaC$
+\end{proof}
+\begin{theorem}
+\textbf{(Zorn's Lemma Implies Axiom of Choice)} If for every partially ordered set $P$ such that every chain is bounded above, there exists a maximal element, then for each set of nonempty set  $Y$, there exists a function $f:Y\rightarrow \bigcup Y$ such that $f(X)\in X$ 
+\end{theorem}
 \section{Unfinished Notes for Cardinal}
 \fbox{\begin{minipage}{39em}
 In this section, I first have to assert that there are a lot of abuse of notation. For people who are not familiar with set theory, just note that if everything have to be "down to the bottom" rigorous, instead of writing integer $0,1,2,3$, we have to either use the notation $\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}},\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}}$, or explain the notation $0,1,2,3$ in detail unrelated to our topic.
@@ -2206,5 +2249,33 @@ f\text{ is one-to-one }\iff f\text{ is bijective }\iff f\text{ is onto }
 \end{equation}
 \end{theorem}
 \begin{proof}
+\end{proof}
+\section{Metric Space}
+\begin{definition}
+\textbf{(Definition of Metric Space)} We say $(X,d:X^2\rightarrow \R)$ is a metric space if for all $x,y,z \in X$, we have
+\begin{equation}
+d(x,y)\geq 0\text{ (Nonnegativity) }
+\end{equation}
+\begin{equation}
+x\neq y\longrightarrow d(x,y)=0\text{ (Positive Definitness) }
+\end{equation}
+\begin{equation}
+d(x,y)=d(y,x)\text{ (Commutative) }
+\end{equation}
+\begin{equation}
+d(x,z)\leq d(x,y)+d(y,z)\text{ (Triangle Inequality) }
+\end{equation}
+\end{definition}
+\begin{theorem}
+\textbf{(Examples of Metric Space)} 
+\begin{equation}
+  \R^n,d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}}
+\end{equation}
+\begin{equation}
+  \R^n,d(\vecta{x},\vecta{y})=\sum \abso{x_i-y_i}
+\end{equation}
+\end{theorem}
+\begin{proof}
+  The first example is an Euclidean space. We notice $\abso{\vecta{x}-\vecta{y}}=\sqrt{\sum (x_i-y_i)^2}\geq 0\text{ and }\abso{\vecta{x}-\vecta{y}}=0\implies \sqrt{\sum (x_i-y_i)^2}=0\implies \sum (x_i-y_i)^2=0\implies \forall i, x_i=y_i\implies \vecta{x}=\vecta{y} $. Notice $\abso{\vecta{x}-\vecta{y}}=\sqrt{\sum } $
 \end{proof}
 \end{document}
