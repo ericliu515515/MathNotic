@@ -1,5 +1,4 @@
 \documentclass{report}
-
 \input{preamble}
 \input{macros}
 \input{letterfonts}
@@ -1883,9 +1882,9 @@ The \blue{blue part} show that $S_{x_0} \subseteq Y$, so by the property of $Y$,
 \section{Axiom of Choice and its equivalents}
 
 \fbox{\begin{minipage}{39em}
-The axiom of choice in practice allow us to carry out constructions that require infinite sequence of choice, each of which depending on the preceding one, so that one does not know initially just what choice are to made in what order.\
+In this section, we aim to establish the equivalence between the Axiom of Choice and Zorn's Lemma. Additionally, we will explore and provide proofs for various applications of Zorn's Lemma. We'll begin by laying down foundational theorems in order theory, which will serve as our lemmas. Using these, we will demonstrate the progression from the Axiom of Choice to Zorn's Lemma. Interestingly, the reverse direction, proving from Zorn's Lemma to the Axiom of Choice, is considerably more straightforward and can be viewed as an "application" of Zorn's Lemma. Towards the end, we will delve into other notable applications of Zorn's Lemma.\\
 
-In this section, we let $P$ be a nonempty poset.
+Notice in this section, $P$ is a non-empty partially ordered set (poset).
 \end{minipage}}
 \begin{definition}
 \label{2.3.1}
@@ -1957,22 +1956,59 @@ Antisymmetric, reflexive and transitive parts are implied by definition of $\sub
 
 WOLG, let $A \subseteq B$. \As{$A\not\subseteq' B$}. Then there exists $a\in A,b\in B$ such that $b<a\text{ and }b\not\in A$. Yet, we see $A\subseteq' X,b\in X\text{ and }a \in A$, so we can deduce $b \in A\tCaC$ 
 \end{proof}
-\begin{lemma}
-\label{2.3.9}
-A class of chain $\cc$ is totally ordered by $\subseteq'$ if and only if  $\bigcup \cc$ is a chain.
-\end{lemma}
 \fbox{\begin{minipage}{39em}
-It may seem that \myref{Lemma}{2.3.7} is extremely powerful as it "seems" to suggest, the union of a well ordered by inclusion set of well ordered set is well ordered. But this is not the case as one can see that $\bigcup \set{\set{-1},\set{-1,-2},\set{-1,-2,-3},\dots}$ is not well ordered.\\
+While \myref{Lemma}{2.3.7} might appear to be a potent assertion, implying that the union of a totally ordered (by inclusion) set of well-ordered subsets is itself well-ordered, this is far from the truth. For instance, consider the union of the sets $\set{\set{-1},\set{-1,-2},\set{-1,-2,-3},\dots}$. This union is the set of negative integer, apparently not well-ordered, even though the set $\set{\set{-1},\set{-1,-2},\dots}$ is a set of well-ordered subsets of $\Z$ when ordered by inclusion. This counterexample is even more compelling than our original premise.\\
 
-We now prove from Axiom of Choice to Zorn's Lemma. 
+Next, we'll move on to demonstrating the link from the Axiom of Choice to Zorn's Lemma. But before delving into that, let's first formulate the concept of a function within the ZF set theory.
 \end{minipage}}
+\begin{definition}
+\label{2.3.9}
+\textbf{(Construction of Function)} In ZF, we interpret the set
+\begin{equation}
+\set{\set{a},\set{a,b}}
+\end{equation}
+as $(a,b)$ 
+and we interpret the set 
+\begin{equation}
+\set{(x,y):x\in X, y \in Y}
+\end{equation}
+as a function from $X$ to  $Y$. Carefully notice we can construct predicate $Q(f)$ as below to tell if a set should be interpreted as a function.
+\begin{equation}
+\forall A (A \in f \longrightarrow \forall x (\set{x} \in A\longrightarrow  \exists yH(A,x,y)\lor A=\set{\set{x}})\land  G(f,A,x))
+\end{equation}
+where predicate $H(A,x,y)$ is defined by
+\begin{equation}
+x\neq y\land \set{x,y}\in A\land \forall z(z \in A\longrightarrow z=\set{x}\lor z=\set{x,y} )
+\end{equation}
+and predicate $G(f,A,x)$ is defined by 
+\begin{equation}
+\forall B (B \in f\longrightarrow B=A\lor \set{x}\not\in B)
+\end{equation}
+Also, carefully notice we can construct predicate $Q_{f}(x,y)$
+\begin{equation}
+\exists A\in f(\set{x}\in A\land \set{x,y}\in A)
+\end{equation}
+which if hold true should be interpreted as $f(x)=y$
+\end{definition}
 \begin{theorem}
 \label{2.3.10}
 \textbf{(Axiom of Choice Implies Zorn's Lemma)}
-If for arbitrary set of nonempty set $Y$ and arbitrary function $g:X\rightarrow Y$, there exists a choice function $f:X\rightarrow \bigcup Y$ such that $f(x)\in g(x)$ , then for every partially ordered set $P$ such that every chain is bounded, there exists a maximal element. 
+If \begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+\textbf{AC:} For each set of nonempty sets  $Y$, there exists a function $f:Y\rightarrow \bigcup Y$ such that $f(X)\in X$ 
+\end{minipage}
+\end{center}
+Then
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+       \textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded, there exists a maximal element. 
+    \end{minipage}
+\end{center}
 \end{theorem}
 \begin{proof}
-Because the set of upper bound of chain is always nonempty, we can let $g$ be a function that map each chain $C$ in  $P$ to the set of upper bounds of $C$, and let $f$ be the choice function of  $g$, that is,  $f(x)\in g(x)$. Additionally, let $f(\varnothing):=p$.\\
+Because the set of upper bound of chain is always nonempty, we can let $g$ be a function that map each chain $C$ in  $P$ to the set of upper bounds of $C$, and let $h$ be a choice function on image of $g$. Then, we define $f=h\circ g$, so we have  $\forall x \in C, x\leq f(C)$.\\
 
 The above use the axiom of choice. We now define 
 \begin{multline}
@@ -2035,10 +2071,24 @@ f(U)\not \in T\text{ and }T\subset' U \cup \set{f(U)}\\
 Then we see $U\cup \set{f(U)}\in \cc\implies U\cup \set{f(U)}\subseteq \bigcup \cc= U \tCaC$
 \end{proof}
 \fbox{\begin{minipage}{39em}
-We now prove a simple application of Zorn's Lemma, showcasing something intuitive that in fact rely on Zorn's Lemma.
+We will first delve into a straightforward application of Zorn's Lemma. Following that, we'll demonstrate how Zorn's Lemma inherently suggests the Axiom of Choice.
 \end{minipage}}
 \begin{theorem}
-\textbf{(Zorn's Lemma Implies Every Vector Space Has a Basis)} Every vector space has a basis.
+\label{2.3.11}
+\textbf{(Zorn's Lemma Implies Every Vector Space Has a Basis)} If
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+       \textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded, there exists a maximal element. 
+    \end{minipage}
+\end{center}
+then 
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+        Every vector space has a basis.
+    \end{minipage}
+\end{center}
 \end{theorem}
 \begin{proof}
   Let $V$ be a vector space and let  $\mathcal{X}$ be the set of all linearly independent set of  $V$.  Order  $\mathcal{X}$ by inclusion, we now prove \vi{every chain $\cc$ in $\mathcal{X}$ is bounded above by $\bigcup \cc$}.\\
@@ -2049,68 +2099,146 @@ By definition, we have $C\in \cc\implies C \subseteq \bigcup \cc\vdone$.\\
 
 Then by Zorn's Lemma, we know there exist a maximal element $W$ of $\mathcal{X}$. We now prove \blue{$U$ spans  $V$}.\\
 
-\As{there exists $v\in V\setminus U$}. Then we see $U\subset U\cup \set{v}$ and see $U\cup \set{v}\in \mathcal{X}\tCaC$
+\As{there exists $v\in V\setminus \text{span}(U)$}. Then we see $U\subset U\cup \set{v}$ and see $U\cup \set{v}\in \mathcal{X}\tCaC\bdone$
 \end{proof}
-\begin{theorem}
-\textbf{(Zorn's Lemma Implies Axiom of Choice)} If for every partially ordered set $P$ such that every chain is bounded above, there exists a maximal element, then for each set of nonempty set  $Y$, there exists a function $f:Y\rightarrow \bigcup Y$ such that $f(X)\in X$ 
-\end{theorem}
-\section{Unfinished Notes for Cardinal}
 \fbox{\begin{minipage}{39em}
-In this section, I first have to assert that there are a lot of abuse of notation. For people who are not familiar with set theory, just note that if everything have to be "down to the bottom" rigorous, instead of writing integer $0,1,2,3$, we have to either use the notation $\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}},\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}}$, or explain the notation $0,1,2,3$ in detail unrelated to our topic.
+In direct application of  Zorn's Lemma, especially those involving chains ordered by inclusion, a common tactic is to use the union of a chain as an upper bound. Conceptually, this can be likened to computing the limit or supremum of a monotonically increasing sequence.\\
+
+We now prove that Zorn's Lemma also implies axiom of choice, so we know Zorn's Lemma is equivalent to axiom of choice.
+\end{minipage}}
+\begin{theorem}
+\label{2.3.12}
+\textbf{(Zorn's Lemma Implies Axiom of Choice)} If 
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+\textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded above, there exists a maximal element     
+    \end{minipage}
+\end{center}
+Then
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+        \textbf{AC:} For each set of nonempty set  $Y$, there exists a function $f:Y\rightarrow \bigcup Y$ such that $f(X)\in X$ 
+    \end{minipage}
+\end{center}
+\end{theorem}
+\begin{proof}
+Notice that we prove the theorem in the sense of ZF.\\
+
+  Let $P$ be the set of all function $f$ from subset of  $Y$ to  $\bigcup Y$ such that $f(X)\in X$. In $P$, we define
+\begin{equation}
+g\leq h\text{ if }g\subseteq h
+\end{equation}
+Let $\cc$ be a chain in $P$, we  now prove \vi{$\bigcup \cc$ is an upper bound of $\cc$}.\\
+
+Let $A \in \bigcup \cc$, so we know there exists $f \in \cc$, such that $A\in f$, then we know $A$ is indeed a set of the form  $\set{\set{x},\set{x,y}}$.\\
+
+Let $B=\set{\set{x},\set{x,y}}\in \bigcup \cc$. \As{$\exists z, \exists C\in \cc, C=\set{\set{x},\set{x,z}}\in \bigcup \cc$}. Arbitrarily find $B',C'$ such that  $B\in B' \in \cc$ and $C \in C'\in \cc$. Then WOLG, let $B'\subseteq C'$, so we see $B\in C'$ then we see $C'$ is not a function  \CaC. For now we have proven $\bigcup \cc \in P$, then the fact that $\bigcup \cc$ is an upper bound of $\cc$ trivially follows. $\vdone$ \\
+
+Let $f$ be a maximal element of  $P$. \As{Domain of  $f$ is a proper subset of  $Y$}. Then we can arbitrarily select an element $X\in Y\setminus Dom(f)$, and arbitrarily select an element $x\in X$, then define $f'=f\cup \set{\set{X},\set{X,x}}\tCaC$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+In the proof above, there are a couple of crucial observations to make:\\
+
+\textbf{Brevity of the Proof:} The proof is notably more concise than proving that the Axiom of Choice (AC) implies Zorn's Lemma. This conciseness is a reason why some might prefer to take Zorn's Lemma as an axiomatic starting point, even though it's just an equivalent formulation of AC.\\
+
+\textbf{Choice from a Set:} In the concluding section of the proof, we "select" an element from specific sets on two occasions. Beginners might assume that a choice function can only be defined if AC is assumed. However, this isn't the case for a finite collection of sets. One doesn't necessarily need the Axiom of Choice for this.\\
+
+The real potency of the Axiom of Choice lies in its ability to address \textit{situations that demand an infinite sequence of selections, where there's no predefined order or method to the selection process}.\\
+
+In our proof, when we "select" an element, it's from a singular set. Consequently, the domain of this choice function is of cardinality $1$. It's evident that the Axiom of Choice isn't necessary here.\\
+
+To delve into why the Axiom of Choice isn't required for finite situations, consider attempting a formal construction of a choice function for the set $\set{\set{1,2},\set{3,4},\set{5,6}}$.\\
+
+At this point, one may wonder, is it true that no construction of choice function on countable set of nonempty set require Axiom of Choice? This question in simple words want to ask: if a set $ X$ is countable, meaning I have already build a bijective function from $\N$ to $X$, meaning I can well order $X$, and to select an element from one nonempty set is doable as above explained, why can't I recursively do this and have a choice function on $X$? The answer is: To \textit{recursively} do such, what we should do is to construct a function $g$ that maps nonempty set to an element of itself, and recursively define the desired choice function by $f(x)=g(x)$, but one can see this fake "technique" is not only trivial, and more importantly, wrong, since without AC, we don't know if $g$ exists, let alone using $g$ to construct  $f$.
+\end{minipage}}
+\begin{theorem}
+\label{2.3.13}
+\textbf{(Zorn's Lemma Implies Well Ordering Theorem)}  
+If
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+        \textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded above, there exists a maximal element.
+    \end{minipage}
+\end{center}
+then
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+       \textbf{Well Ordering Principle:} Every set $X$ can be well ordered.
+    \end{minipage}
+\end{center}
+\end{theorem}
+\begin{proof}
+Define
+\begin{equation}
+P:=\set{(A_i,\leq_i): A_i\subseteq X\text{ and }A_i\text{ is well ordered by $\leq_i$ }}
+\end{equation}
+and we define a partial order $\leq $ for $P$ by
+\begin{equation}
+  (A_i,\leq_i)\leq (A_j,\leq _j)\text{ if }A_i\subseteq' A_j\text{ with respect to $\leq_j$ and }x_i\leq_i y_i\longrightarrow x_i\leq_j y_i 
+\end{equation}
+Let $\cc_d$ be a chain of $P$. Define order $\leq_d$ on $\bigcup \cc_d$ by
+\begin{equation}
+x\leq_d y\text{ if }\exists A_i\in\cc_d, x,y\in A_i\text{ and }x\leq_i y
+\end{equation}
+we first prove \vi{$\leq_d$ is well defined}, which is just to prove that $\leq_d$ is antisymmetric. Let $x\leq_d y\text{ and }y\leq _dx$, and let $x,y\in A_i\cup A_j$ such that $x\leq_i y\text{ and }y\leq _jx$. Because $\cc$ is a chain, WOLG, let $A_i\leq A_j$, we then have  $x\leq_j y\text{ and }y\leq _jx$, so $x=y\vdone$\\
+
+We now prove  \blue{$\leq_d$ is reflexive, connected and transitive}.\\
+
+For reflexive, notice $x\in \bigcup\cc_d$ implies $\exists A_i\in\cc_d, x \in A_i$, and the rest is trivial. For connected, for $x,y\in \bigcup \cc_d$, let $x\in A_i \in\cc_d\text{ and }y\inA_j\in\cc_d$. Because $\cc$ is a chain, WOLG, we can let $A_i\leq A_j$, and then we see $x,y\in A_j$, so because $A_j$ is totally ordered by $\leq_j$, we know $x,y$ is comparable by  $\leq_d$. For transitive, let $x\leq_d y\leq _d z$, and let $x,y\in A_i\in\cc_d\text{ and }x\leq _iy\text{ and }y,z\inA_j\in\cc_d\text{ and }y\leq _jz$. If $A_j\leq A_i$, we see $x\leq_i y\leq_i z$, then the proof is finished. If $A_i\leq A_j$, we see $x\leq_j y\leq_j z\bdone$.\\
+
+We now prove \vi{$\bigcup \cc_d\in P$}, which is just to prove $\bigcup \cc_d$ is well ordered by $\leq_d$.\\
+
+Let $V\subseteq \bigcup \cc_d$, and arbitrarily pick $A_i\in \cc_d$ such that $A_i\cap V$ is nonempty, because $A_i$ is well ordered by  $\leq _i$, we know there exists an minimal element $v'$ of $A_i\cap V$ with respect to $\leq _i$. Let $v \in V$, if $v\in A_i\cap V$, then by definition of $\leq _d$, we see $v'\leq_d v$. If $v\in V\setminus A_i$, then for each $A_j\in\cc$ containing $v$, we know $A_i\subset A_j$, and because $\cc$ is a chain, we know $A_i\leq A_j$. \As{$v\leq _j v'$}, because $v'\in A_i\subseteq' A_j$, we can deduce $v'\in A_i\tCaC$, so we have $v'<_j v$, which implies $v' <_d v$. We have proved $v'$ is the smallest element of $V\vdone$ \\
+
+We now prove  \blue{$\bigcup \cc_d$ is an upper bound of $\cc_d$ with respect to $\leq $}. Arbitrarily pick $x_i,y_i\in A_i\in \cc_d$,  we immediately see $x_i\leq _iy_i\implies x_i\leq _dy_i$, so we only have to prove $A_i\subseteq' \bigcup \cc_d$ with respect to $\leq _d$. \teal{Let $v_i\in A_i,v_j\in\bigcup \cc_d\text{ and }v_j\leq _dv_i$}. Arbitrarily pick $A_j$ containing  $v_j$ and  \As{$v_j\not\inA_i$}, so we have $A_i<A_j$. Because $v_j\leq_d v_i\text{ and }v_i,v_j\in A_j$, we know $v_j\leq _jv_i$. Then because $A_i\subseteq' A_j$ with respect to $\leq _j$, we have $v_j\in A_i\tCaC$. We have proved $v_j\in A_i$ by rejecting the red assumption. Notice the \teal{premise}. We have proved $A_i\subseteq' \bigcup \cc_d$ with respect to $\leq _d\bdone$\\
+
+Let $(A_k,\leq _k)$ be a maximal element of $P$.  \As{$A_k\subset X$}, we can arbitrarily pick $x\in X\setminus A_k$, and for all $a_k\in A_k$ define $a_k\leq_k x$. By \myref{Lemma}{2.3.6}, we see $(A_k\cup \set{x},\leq _k)$ is well ordered, so $(A_k\cup \set{x},\leq _k)\in P$. To prove $(A_k,\leq _k)<(A_k\cup \set{x},\leq _k)$ is trivial. \CaC
+\end{proof}
+\section{Cardinality and Cardinal}
+\fbox{\begin{minipage}{39em}
+In this section, we first present a definition and a theorem as a primer rather than the primary focus. This serves as a foundation to instill confidence in the reader regarding the use of set theory language.
 \end{minipage}}
 \begin{definition}
 \label{2.4.1}
-\textbf{(Definition of Cardinality)} 
-Two sets $A,B$ are said to \textit{have the same cardinality} or \textit{have the same cardinal number} or \textit{of the same cardinality} if there exists a bijective function from $A$ to  $B$. If $A,B$ have the same cardinality, then we write
+\textbf{(Formulation of Property of Function)}
+We use predicate $P(f)$ 
 \begin{equation}
-\abso{A}=\abso{B}  
+\forall A\forall B(A\in f\land B\in f\land \exists x(\set{x}\in A\land \set{x}\in B)\longrightarrow A=B)
+\end{equation}
+to tell if $f$ is injective, and we use predicate  $P(f,Y)$ 
+\begin{equation}
+\forall y\exists A\exists B((A=\set{\set{y}}\land A\in f)\lor (A\in f\land B\in A\land y  \in B\land \exists x(x\in B\land x\neq y) ))
 \end{equation}
 \end{definition}
 \begin{theorem}
 \label{2.4.2}
-\textbf{(Basic Property of Cardinality)} For all sets $A,B$, we have 
-\begin{equation}
-\abso{A}=\abso{A}\text{ ( Reflexive) }
-\end{equation}
-\begin{equation}
-\abso{A}=\abso{B} \implies   \abso{B}=\abso{A} \text{ ( Symmetric) }
-\end{equation}
-\begin{equation}
-\abso{A}=\abso{B}\text{ and }\abso{B}=\abso{C}\implies \abso{A}=\abso{C} \text{ ( Transitive) }
-\end{equation}
+\textbf{(Basic Property of Function)} There exists a one-to-one function from $A$ to  $B$ if and only if there exists an onto function from  $B$ to  $A$
 \end{theorem}
-\begin{proof}
-Please note that so far in our definition and notation, when we say $\abso{A}=\abso{B}$, we does not mean $\abso{A}=x=\abso{B}$ for some mathematical object $x$. When we say $\abso{A}=\abso{B}$, we merely mean that there exists a bijective function from $A$ to  $B$.\\
-
-Define $f:A\rightarrow   A$ by $x\mapsto x$, and we can use this function to prove the Reflexive part. For the rest two parts, use inverse and composition of functions.    
-\end{proof}
 \fbox{\begin{minipage}{39em}
-Notice that at this point, the concept of cardinality is defined completely based on bijective function, which does not rely on the elements of sets.\\
-
-We now give a notation related to cardinality, and introduce Schroder-Berstein Theorem, which plays an important role in our proofs for properties of cardinality. 
+While it's straightforward to "prove" the theorem, formalization of such proof offers a robust assurance of its correctness. I encourage you to attempt formalization. With that, let's delve into the topic of cardinality, and introduce a highly useful theorem.
 \end{minipage}}
-\begin{definition} \textbf{(Definition of Cardinality)} 
+\begin{definition}
 \label{2.4.3}
-Given two sets $A,B$, if there exists an one-to-one function from  $A$ to  $B$, we write 
- \begin{equation}
-\abso{A}\leq \abso{B}\text{ or write }\abso{B}\geq \abso{A}
+\textbf{(Definition of Cardinality)} 
+We write 
+\begin{equation}
+A\leq _c B\text{ or write }B\geq _cA
 \end{equation}
+If there exists a one-to-one function from $A$ to  $B$, or, equivalently, if there exists an  onto function from $B$ to  $A$. Also, we write 
+\begin{equation}
+A=_c B
+\end{equation}
+if there exists a bijective function from $A$ to  $B$  (one-to-one correspondence between $A,B$) 
 \end{definition}
 \begin{theorem}
 \label{2.4.4}
-\textbf{(Basic Property of Cardinality)} Let $A,B$ be sets. We have
-\begin{equation}
-A \subseteq B\implies  \abso{A}\leq \abso{B}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Define $f:A\rightarrow B$ by $x\mapsto x$ and we are done.
-\end{proof}
-\begin{theorem}
-\label{2.4.5}
 \textbf{(Schroder-Berstein Theorem)} Let $A,B$ be sets. We have 
 \begin{equation}
-\abso{A}\leq \abso{B}\text{ and }\abso{B}\leq \abso{A}\iff  \abso{A}=\abso{B}
+A\leq_c B\text{ and }B\leq _c A\iff  A=_c B
 \end{equation}
 \end{theorem}
 \begin{proof}
@@ -2168,96 +2296,367 @@ x\not\in g^{-1}(A \setminus C)\\
 \end{gather}
 \end{proof}
 \fbox{\begin{minipage}{39em}
-We now give another notation related to cardinality.
+Schroder-Berstein Theorem in simple word is just that the relation $\leq_c$ between sets is antisymmetric. One may intuitively think such "simple" consequence should be easy to prove but in fact isn't.\\ 
+
+That the relation $\leq _c$ is reflexive and transitive is trivial to prove. What being said, this does not implies $\leq _c$ is a "total order", since we haven't proved it is connected. 
+\end{minipage}}
+\begin{theorem}
+\label{2.4.5}
+\textbf{(Caridinality of All Set are Comparable if Given AC)} If given AC, for all sets $A,B$, we have 
+ \begin{equation}
+A\leq _c B\text{ or }B\leq _c A
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $P$ be the set of one-to-one function from subset of  $A$ to  $B$. We define order relation on  $P$ by 
+\begin{equation}
+f\leq g\text{ if }\forall x\in \text{Dom}(f), f(x)=g(x)\text{ and }\text{Dom}(f)\subseteq \text{Dom}(g)
+\end{equation}
+To prove this do define a order relation is trivial. By Zorn's Lemma, we can pick a maximal element of $f$. If Domain of  $f$ is not  $A$ and range of $f$ is not  $B$,  then we can define a larger function by arbitrarily picking  $x\in A\setminus \text{Dom}(f)$ and $y\in B\setminus \text{Im}(f)$ and defining  $f'(z)=\begin{cases}
+  f(z)& \text{ if  }x\in \text{Dom}(f)\\
+  y& \text{ if  }z=x
+\end{cases}$. It is trivial to prove $f<f'$. 
+\end{proof}
+\fbox{\begin{minipage}{39em}
+So far, we have proved $\leq _c$ is a total order on the class of all sets. Now, we give a necessary and sufficient condition of one set having strictly less cardinality than that of the other.
 \end{minipage}}
 \begin{definition}
 \label{2.4.6}
-\textbf{(Definition of Cardinality)} Let  $A,B$ be sets. If $\abso{A}\geq \abso{B}$ and there does not exist a bijective function from  $A$ to $B$, which we denote $\abso{A}\neq \abso{B}$, then we write
+\textbf{(Definition of Cardinality)} Let  $A,B$ be sets. If $A\geq _c B$ and there does not exist a one-to-one correspondence between $A$ and $B$, which we denote $A \neq _c B$, then we write
 \begin{equation}
-\abso{A}>\abso{B}\text{ or write }\abso{B}<\abso{A}
+A>_c B\text{ or write }B<_c A
 \end{equation}
 \end{definition}
 \begin{theorem}
 \label{2.4.7}
-\textbf{(Basic Property of Cardinality)} Let $A,B$ be two sets. We have
+\textbf{(Basic Property of Cardinality)} For all sets $A,B$, we have  
 \begin{equation}
-\abso{A}>\abso{B}\iff \text{ no function from $A$ to $B$ is one-to-one}
+A>_c B\iff \text{ no function from $A$ to $B$ is one-to-one}
 \end{equation}
 \begin{equation}
-\abso{A}>\abso{B}\iff \text{ no function from $B$ to $A$ is onto }
+A >_c B\iff \text{ no function from $B$ to $A$ is onto }
 \end{equation}
 \end{theorem}
 \begin{proof}
-$(\longrightarrow)$\\
-
-
-$\abso{A}>\abso{B}$ implies that there exists an one-to-one function from $B$ to $A$. If there exists a one-to-one function from  $A$ to $B$, then by \myref{Schroder-Berstein Theorem}{2.1.5}, we have a contradiction. If there exists an onto function $g:B\rightarrow A$, then with $g^{-1}$ and \myref{Schroder-Berstein Theorem}{2.1.5}, we have a contradiction.\\
-
-$(\longleftarrow)$\\
-
-We prove \vi{the negate of $\abso{A}>\abso{B}$ is $\abso{A}\leq \abso{B}$}
+The fact that an one-to-one function from $A$ to $B$ exists if and only if an onto function from $B$ to $A$ exists is proved in the beginning of the section, so we only have to prove the first iff and the proof is finished. From left to right, \As{there exists an one-to-one function from $A$ to $B$}. Because $A >_c B\implies A\geq _c B\implies $ there exists another one-to-one function from $B$ to $A$, so by Schroder-Berstein Theorem, we have $A =_c B\tCaC$. From right to left, \As{the negate of  $A >_c B$}. Notice the negate of $A>_c B$ is no function from  $B$ to $A$ is one-to-one or $A =_c B$. If $A =_c B$, then there exists a bijective, so an one-to-one function from $A$ to $B$. If no function from  $B$ to $A$ is one-to-one, and no function from $A$ to $B$ is one-to-one, then the cardinality of $A,B$ is incomparable \CaC  
 \end{proof}
+\fbox{\begin{minipage}{39em}
+
+Notice that we haven't define the cardinality in a "constructive" manner. We defined cardinality by defining relation between sets. We now define cardinal, not cardinality, in a constructive manner compatible to our old definition.
+\end{minipage}}
 \begin{definition}
 \label{2.4.8}
-  \textbf{(Definition of finite and infinite)} For all nonnegative integer $n$, let
-\begin{equation}
-J_n=\set{m\inn, 0<m\leq n}
+\textbf{(Von Neumann Cardinal Assignment)} We now assign each set $X$ to a cardinal
+ \begin{equation}
+\abso{X}=\min  \set{\sigma\in\text{ Ord }:\text{ and }\sigma =_c X}
 \end{equation}
-Let $A$ be a set. If for some nonnegative integer $n$, we have $\abso{A}=\abso{J_n}$, then we say $A$ is \textit{finite}.  $A$ is  \textit{infinite} if $A$ is not finite.
+And we say an ordinal is a cardinal if the ordinal if an caridnality of some sets. 
 \end{definition}
 \begin{theorem}
 \label{2.4.9}
-\textbf{(Basic Property of Finite Set)} Let $A,B$ be two finite sets, and let  $\abso{A}=\abso{B}$. Let $f$ be a function from $A$ to $B$. We have
- \begin{equation}
-f\text{ is one-to-one }\iff f\text{ is bijective }\iff f\text{ is onto }
-\end{equation}
+\textbf{(Every Set Can be Assigned to a Cardinal if Given AC, Needed to be formalized)} For arbitrary set $X$, there exists an ordinal of same cardinality. More precisely, every well order set (some set can not be well ordered without AC) can be assigned a cardinal.
 \end{theorem}
-  
+\begin{proof}
+By AC, we can well order $X$. Define function $f$ that map ordinal to  element in $X$ by
+ \begin{equation}
+f(0):=\min X\text{ and }f(\alpha ):=\min X\setminus \set{f(\beta ):\beta <\alpha }
+\end{equation}
+
+\As{$\forall \alpha \in\text{Ord }, f[\alpha ]\subset X$}. Then we know $\text{Ord$=$Dom}(f)$, and then we can formally construct a inverse function $f^{-1}$, and formally construct the set that is the image of $f^{-1}$, which we know is Ord. \CaC
+\end{proof}
 \begin{theorem}
 \label{2.4.10}
-  \textbf{(A coincidence ?)} If we define naturals by $0=\varnothing\text{ and }x+1=x \cup \set{x}$, then for all nonnegative integer $n$, we have $\abso{n}=J_n$
+\textbf{(Compatibility between Von Neumann Cardinal and Ordinal)} For all set $A,B$, we have
+ \begin{equation}
+A<_c B \implies  \abso{A}\in \abso{B}\text{ and } A=_c B\implies \abso{A}=\abso{B}\text{ and }n\in \bigcap  \call \implies \abso{n}=n
+\end{equation}
+where infimum is with respect to strict well order $\in$ on the class of ordinals. 
 \end{theorem}
-\begin{theorem}
+\begin{proof}
+\As{$\abso{B}\in \abso{A}$}. Notice that trivially we can prove the relation $=_c$ on the class of all sets is symmetric, so we have $A<_c B$, since if $A=_c B$, we should by definition have $\abso{B}=\abso{A}$. Notice $\abso{B}\in \abso{A}\implies \abso{B}\subset \abso{A}$, so we have an one-to-one function from $\abso{B}$ to $\abso{A}$ by mapping each element of $B$ to itself, then we have $\abso{B}\leq_c \abso{A}$, notice that by definition we have $B=_c \abso{B}\leq _c \abso{A}=_c A$. Then we can construct function by composition to show $B\leq _c A\tCaC$.\\
+
+
+
+
+We prove by induction. Base case is simple: notice $\varnothing=_c \varnothing$ implies $\varnothing \in \set{\sigma \in\text{Ord}:\sigma =_c \varnothing}$, so we have $\abso{\varnothing}=\varnothing$. For induction case, let $k\in \bigcap \call \text{ and }\abso{k}=k$, we wish to prove \vi{$k\cup \set{k}=\min \set{\sigma\in\text{Ord}:\sigma=_c k\cup \set{k}}$}. Trivial, we have $k\cup \set{k}\in \set{\sigma\in\text{Ord}:\sigma=_c k \cup \set{k}}$. We first prove \teal{$k$ is the greatest ordinal in  $k\cup \set{k}$}. Let $m \in k\cup \set{k}$. \As{$k \in m$}. Then by definition of ordinal we  have  $k\subseteq m$, and because $k \in m$, we then have $k\cup \set{k}\subseteq m$. On the other side, notice by definition of ordinal we have $m\subseteq k\cup \set{k}$, so in summary we have $m=k\cup \set{k}\tCaC\tdone$. So, we see if $k\cup \set{k}$ is not the smallest element of $\set{\sigma:\sigma=_c k\cup \set{k}}$, then $k$ belong to  $\set{\sigma:\sigma=_c k \cup \set{k}}$. We now prove $k\neq_c k\cup \set{k}$ by induction. Base case is trivial: $\varnothing\neq _c \set{\varnothing}$. We now prove $k\neq _c k \cup \set{k}\longrightarrow k\cup \set{k}\neq _c k\cup \set{k}\cup \set{k \cup \set{k}}$. \As{there exists a bijective function $f$ from $k \cup  \set{k}$ to $k\cup \set{k}\cup \set{k \cup \set{k}}$ }. Then we can define a bijective function $g(x):k\rightarrow k\cup \set{k}$ by $\begin{cases}f(k)& \text{ if  }x=f^{-1}(\set{k\cup \set{k}})\\
+  f(x)& \text{ if  }x\neq f^{-1}(\set{k\cup \set{k}})
+\end{cases}\tCaC\vdone$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+The theorem discussed above is fundamental to the theory of ordinals and cardinals. However, it is infrequently employed in the discussions of real analysis. This is because, using the elementary methods of set description, the sets under consideration often possess cardinalities equivalent to either $\mathbb{N}$, $\mathbb{R}$, or are finite.\\
+
+We now present the standard definition of \textit{infinite} in the language of set theory, a definition widely accepted in most analysis texts. Subsequently, we introduce the concept of \textit{Dedekind-infinite}. This definition harnesses our intuition: that shifting every term in an infinite sequence is permissible. It's important to note that the traditional definition of \textit{infinite} and that of \textit{Dedekind-infinite} are not always equivalent. However, if the Axiom of Choice (AC) holds true, then these definitions become equivalent. Since most people in the mathematical community accept AC, the two definitions are often treated as equivalent in practice.
+\end{minipage}}
+\begin{definition}
 \label{2.4.11}
-\textbf{($\N$ is infinite)} $\N$ is infinite.
-\end{theorem}
-\begin{proof}
-  \As{$\N$ is finite}. Define $f:\N\rightarrow \N$ by $x\mapsto x+1$. $f$ is one-to-one implies that $f$ is onto, but $\forall x\inn,f(x)\neq 1\tCaC$ 
-\end{proof}
-\begin{theorem}
+\textbf{(Definition of Infinite)} We say a set $A$ is finite if there exists an ordinal $\sigma$ in $\bigcap  \call $ such that $\abso{A}=\sigma$, and we say $A$ is infinite if $A$ is not finite. 
+\end{definition}
+\begin{definition}
 \label{2.4.12}
-\textbf{($\N$ is the "smallest" infinite set)} Every infinite set $A$ have either same or greater cardinality than $\N$ 
-\end{theorem}
-\begin{proof}
-
-\end{proof}
-
+  \textbf{(Definition of Dedekind Infinite)} Let $A$ be a set. We say $A$ is Dedekind-infinite if there exists a proper subset of $A$ that have the same cardinality as $A$, and we say $A$ is Dedekind-finite if $A$ is not Dedekind-infinite.
+\end{definition}
 \begin{theorem}
 \label{2.4.13}
-\textbf{(Equivalent to AC)} Let $A,B$ be sets. We have
-\begin{equation}
-\abso{A}\leq \abso{B}\text{ or }\abso{A}\geq \abso{B}
-\end{equation}
+\textbf{(Equivalence of Infinite and Dedekind Infinite under AC)} Under AC, a set $A$ is infinite if and only if  $A$ is Dedekind-infinite.
 \end{theorem}
 \begin{proof}
+We first prove \vi{$A$ is finite  $\implies A$ is Dedekind-finite} by induction. Base case is trivial, since $\varnothing$ doesn't even have  proper subsets. For induction case, let $k\in \bigcap \call $ be Dedekind-finite. \As{$\exists m\subset k\cup \set{k},m=_c k\cup \set{k}$}. If $m$ contain  $k$, then we have  $m\setminus \set{k}\subseteq k\text{ and }m\setminus \set{k}=_c k$, where we use the same technique in proof of \myref{Theorem}{2.4.10}. So we know $m\subseteq k$. Then we have $k\cup \set{k}=m\leq_k k\tCaC\vdone$.\\
+
+We now prove \teal{$A$ is infinite  $\implies A$ is Dedekind-infinite}. Define function 
+\begin{equation}
+f:\N\rightarrow \power{\power{A}}, n\mapsto \set{X:\power{A}:\abso{X}=n}
+\end{equation}
+We first prove \vi{for all naturals  $n$, we have  $f(n)$ is nonempty} by induction.\\
+
+$f(1)$ is nonempty since we can arbitrarily select an element and use axiom of pairing to construct a singleton subset. If $f(k)$ is nonempty, we can arbitrarily select an element $X$ from $f(k)$ and to see if $A=X$ then $A$ is finite, so we can arbitrarily select an element from $A\setminus X$ and attach to $X$ to show  $f(k+1)$ is nonempty.  $\vdone$\\
+
+We now \blue{construct a bijective from $A$ to a proper subset missing one element by constructing a countable subset $U$ of $A$ and map each element  in $U$ to its successor}.\\
+
+By AC, we know there exists a function $g(n)$ such that $\forall n\inn, g(n)\in f(n)$. Let $U=\bigcup g[\N]$. Define $h:U\rightarrow \N$ by mapping elements in $g(n)$ to elements in $\set{x \inn: \frac{(n-1)n}{2}<x\leq \frac{n(n+1)}{2}}$. $h$ is onto, since  $U=\bigcup g[\N]$, and because $\abso{g(n)}=n=\abso{x\inn:\frac{(n-1)n}{2}x\leq \frac{n(n+1)}{2}}$, we know $h$ is one-to-one. Now we define function $B:A\rightarrow A\setminus \set{h^{-1}(1)}$, where $y$ is the element in  $U$ that was mapped to  $1$ by
+\begin{equation}
+B(x)=\begin{cases}
+  x& \text{ if  }x\not\in U\\
+  h^{-1}(h(x)+1)& \text{ if  }x\inU\bdone\tdone
+\end{cases}
+\end{equation}
+\end{proof}
+\begin{corollary}
+\label{2.4.14}
+\textbf{($\N$ is the "smallest" infinite set)} Every infinite set have either same or greater cardinality than $\N$ 
+\end{corollary}
+\begin{proof}
+Consider the set $U$ in proof above.
+\end{proof}
+\begin{corollary}
+\label{2.4.15}
+\textbf{(Another Definition of Infinity)} A set is infinite if and only if it has cardinality equal to or greater than $\N$
+\end{corollary}
+\fbox{\begin{minipage}{39em}
+Now, we will demonstrate a few theorems specific to countable cardinalities. While these can be generalized to encompass all cardinalities using more advanced set theory tools, our final theorem will be applicable to all cardinalities without exception.
+\end{minipage}}
+\begin{definition}
+\label{2.4.16}
+\textbf{(Definition of Countable)} We say a set is countable if the set has cardinality less than or equal to $\N$
+\end{definition}
+\begin{theorem}
+\label{2.4.17}
+\textbf{(Finite Cartesian Product of Countable Set is Countable)} For all naturals $n$, we have $\abso{\N^n}=\abso{\N}$ 
+\end{theorem}
+\begin{proof}
+  Because we can map $p\mapsto (p,1,\dots ,1)$, we know $\abso{\N}\leq \abso{\N^n}$. Because we know $\abso{X_m:=\set{(p_1,\dots, p_n) \in \N^n :\sum p_i=m}}=H^n_{m-n}$, we can map each element in $X_m$ one-to-one into  $(\sum_{i=3}^{m-1} H^n_{i-n},\sum ^m_{i=3}H^n_{i-n}]$, so we know $\abso{\N^n}\leq \abso{\N}$
 \end{proof}
 \begin{theorem}
-\label{2.4.14}
-\textbf{(Equivalent to AC)} Let $A,B$ be sets. We have
+\label{2.4.18}
+\textbf{(Countable Union of Countable Set is Countable)} Let $S=\set{E_n:n\inn}$ be a countable set of countable sets. We have $\bigcup S$ is countable.  
+\end{theorem}
+\begin{proof}
+For each $n\inn$, because $E_n$ is countable, we can define  bijective $f_n:\N\rightarrow E_n$. Define $g:\N \rightarrow  \bigcup S$ by
 \begin{equation}
-\abso{A}>\abso{B}\iff \abso{A}\not\leq \abso{B}
+g(x)=f_{m-(h-2)}(h)\text{ where }m=\max \set{n\inn: \frac{(n+1)n}{2}< x}\text{ and }h=x-\frac{(m+1)m}{2}
+\end{equation}
+We now prove \vi{$g$ is onto}.\\
+
+Let $x\in \bigcup S$, we know $\exists p\inn, x\in E_p$, so we know $\exists p,q\inn, x=f_p(q)$. One can verify $g(q+\frac{(p+q-2)^2+(p+q-2)}{2})=f_p(q)=x$ where $m=p+q-2\text{ and }n=q\vdone$
+\end{proof}
+\begin{theorem}
+\label{2.4.19}
+\textbf{(Every Nonempty Set Has Cardinality Strictly Less than Its Power Set)} If $A$ is nonempty, then  $\abso{A}<\abso{\power{A}}$.
+\end{theorem}
+\begin{proof}
+Let $f$ be a function from $A$ to  $\power{A}$. Define $T=\set{a\in A:a\not\in f(a)}$. Observe $b \in T\implies b\not\in f(b)\implies T\neq f(b)$ and observe $b\not\in T\implies b\in f(b)\implies T\neq f(b)$, so $T\in \power{A}\setminus f[A]$.  
+\end{proof}
+\section{Different but Equivalent Ways to Define A Topology}
+\fbox{\begin{minipage}{39em}
+The section is dedicated to show case how we can define a topology in different angles. That being said, in practice the one being used is to define via open set.
+\end{minipage}}
+\begin{definition}
+\label{2.5.1}
+\textbf{(Definition of Topology, via Open Set)} Given a set $X$, which called a topological space, if we say a family $\mathfrak{O}$  of subsets of $X$ is a topology on $X$, then we mean
+\begin{gather}
+X, \varnothing \in \mathfrak{O}\\
+A,B\in\mathfrak{O}\implies A\cap B\in\mathfrak{O}\\
+\mathfrak{U}\subseteq \mathfrak{O}\implies \bigcup \mathfrak{U}\in \mathfrak{O}
+\end{gather}
+and if a subset of $X$ belong to  $\mathfrak{O}$, we say it is an open set, and if a subset of $X$ is an complement of an open set, we say it is an closed set.
+\end{definition}
+\fbox{\begin{minipage}{39em}
+The above is the standard way to define topology. We now show cases some property of closed sets. Notice that the corresponding properties of open set are axioms.
+\end{minipage}}
+\begin{theorem}
+\label{2.5.2}
+\textbf{(Property of Closed Sets)} Let $\mathfrak{F}$ be the family of precisely all closed sets in a topological space. We have
+\begin{gather}
+X,\varnothing \in \mathfrak{F}\\
+A,B\in\mathfrak{F}\implies A\cup  B\in\mathfrak{F}\\
+\mathfrak{B}\subseteq \mathfrak{F}\implies \bigcap \mathfrak{B}\in \mathfrak{F}
+\end{gather}
+\end{theorem}
+\begin{proof}
+  Observe $X=\varnothing^c\text{ and }\varnothing=X^c\in \mathfrak{F}$. Observe $A,B\in \mathfrak{F}\implies A^c,B^c \in \mathfrak{O}\implies A^c \cap B^c \in \mathfrak{O} \implies (A^c\cap  B^c)^c \in \mathfrak{F}\implies A \cup B \in \mathfrak{O}$. Observe $\mathfrak{B}\subseteq \mathfrak{F}\implies \set{F^c:F \in \mathfrak{B}}\subseteq \mathfrak{O}\implies \bigcup_{F\in \mathfrak{B}}F^c \in \mathfrak{O}\implies \bigcap \mathfrak{B}=\bigcap_{F \in \mathfrak{B}}F \in \mathfrak{F}$.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Now we give the notion of neighborhood in the tone of introducing a tool and prove the tool is in fact just definition of a topology in other form.   
+\end{minipage}}
+\begin{theorem}
+\label{2.5.3}
+\textbf{(Equivalent Ways to Define The Same Topology, Part 1)} Define $f$ on $\power{\power{X}}$ by  $f(\mathfrak{A})=\set{A^c:A\in \mathfrak{A}}$. Let $\mathfrak{O}$ be a topology on $X$. Then  $f(\mathfrak{O})$ are precisely the family of closed sets on $X$. Also, we have $f=f^{-1}$, by which, if given the family of all closed set, satisfying the properties list in \myref{Theorem}{2.5.2}, the topology is specified.
+\end{theorem}
+\begin{proof}
+Trivial. 
+\end{proof}
+\begin{definition}
+\label{2.5.4}
+\textbf{(Definition of Neighborhood Function)} We say a function $\mathcal{N}:X\rightarrow \power{\power{X}}$ is neighborhood function if 
+\begin{gather}
+\forall x \in X,\mathcal{N}(x)\neq \varnothing\text{ (Existence) }\\
+N \in \mathcal{N}(x)\implies x \in N\text{ (Around) }\\
+\exists N \in \mathcal{N}(x), N\subseteq M\implies M\in \mathcal{N}(x)\text{ (Super set) }\\
+N,M \in \mathcal{N}(x)\implies N \cap M\in \mathcal{N}(x)\text{ (Intersection) }\\
+\forall N\in \mathcal{N}(x),\exists M\in \mathcal{N}(x), M \subseteq N\text{ and }\forall y \in M, N \in \mathcal{N}(y)
+\end{gather}
+\end{definition}
+\begin{theorem}
+\label{2.5.5}
+\textbf{(Equivalent Ways to Define The Same Topology, Part 2)} There exists a one-to-one correspondence between the class of all topology on $X$ and the class of all function satisfying the neighborhood function definition.\\
+
+The correspondence can be written in the form of 
+\begin{equation} (g(\mathfrak{O}))(x)=\set{N\subseteq X: \exists O\in \mathfrak{O},x\in O\subseteq N}
+\end{equation}
+The inverse of $g$ will be proved to be
+ \begin{equation}
+g^{-1}(\mathcal{N})=\set{O:x \in O\longrightarrow  O\in \mathcal{N}(x)}
 \end{equation}
 \end{theorem}
 \begin{proof}
+  We first prove \vi{$g$ do map topology to neighborhood function}.\\
+
+Observe $X \in \mathfrak{O}\implies X\in (g(\mathfrak{O}))(x)$, so $g(\mathfrak{O})(x)$ is nonempty. By definition of $g$, every defined neighborhood around $x$ do contain  $x$. A super set of $N\in (g(\mathfrak{O}))(x)$ belong to $(g(\mathfrak{O}))(x)$, since an open set containing $x$ contained by  $N$ is also contained by the super set. Let $N,M \in (g(\mathfrak{O}))(x)$ and $x \in O_N \subseteq N, x\in O_M \subseteq M$. We have $x \in O_N\cap O_M\subseteq N\cap M$. For each neighborhood $N$ around $x$, the open set containing  $x$ contained by the neighborhood is also a neighborhood around  $x$, since it contain itself and it is an open set.  Then we see $N$ is a neighborhood around each point of the open set, since each point is contained by the open set contained by $N$ $\vdone$\\
+
+Before we prove $g^{-1}$ is the inverse of $g$, we first prove  \blue{$g^{-1}$ do map neighborhood function to topology}.\\
+
+
+To prove $\varnothing \in g^{-1}(\mathcal{N})$ is trivial, and because of the nonempty and super set properties of neighborhood function, $X$ is a neighborhood of all points, so  $X\in g^{-1}(\mathcal{N})$ is trivial. Given $A,B\in g^{-1}(\mathcal{N})$, for arbitrary point $x$ in $A\cap B$, we know by definition of $g^{-1}$,  $A$ is a neighborhood of  $x$ and so is  $B$. Then by definition of neighborhood function, we know $A\cap B\in \mathcal{N}(x)$, so because $x$ is arbitrary picked from $A\cap B$, by definition of $g^{-1}$,  we know $A\cap B\in g^{-1}(\mathcal{N})$. Let $\mathfrak{A}$ be a subset of $g^{-1}(\mathcal{N})$. If an arbitrary point $x$ belong to the union of $\mathfrak{A}$, then we know $x$ belong to an element $O$ of  $\mathfrak{A}$. By definition of $g^{-1}(\mathcal{N})$, we know $O$ is a neighborhood around  $x$, then by super set property of neighborhood, we see  $\bigcup \mathfrak{A}$ is also a neighborhood around $x$. Then because $x$ is arbitrary picked from $\bigcup \mathfrak{A}$, we see  $\bigcup \mathfrak{A}\in g^{-1}(\mathcal{N})$, by definition of $g^{-1}(\mathcal{N})\bdone$\\
+
+Lastly, we prove \vi{$g^{-1}$ is the inverse of $g$}.\\
+
+Arbitrarily pick $Z\in \mathfrak{O}$. Observe $x\in Z \implies \exists Z\in \mathfrak{O},x \in Z\subseteq Z\implies Z\in (g(\mathfrak{O}))(x)$. Then from $x\in Z\implies Z\in (g(\mathfrak{O}))(x)$, we can deduce $Z\in g^{-1}(g(\mathfrak{O}))$. Because $Z$ is arbitrarily picked from  $\mathfrak{O}$, we have $\mathfrak{O}\subseteq g^{-1}(g(\mathfrak{O}))$.\\
+
+Arbitrarily pick $Y \in g^{-1}(g(\mathfrak{O}))$. Define $\mathfrak{S}:=\set{O \in\mathfrak{O}: \exists y \in Y, z \in O \subseteq Y}$. Observe $(y\in \bigcup \mathfrak{S}\longrightarrow \exists O\in \mathfrak{S},y \in O \subseteq Y)\implies \bigcup \mathfrak{S}\subseteq Y$. Observe  by definition of $g^{-1}$, $y \in Y\implies Y \in (g(\mathfrak{O}))(y)\implies \exists O\in\mathfrak{O}, y \in O\subseteq Y$, where one can observe the last $O$ belong to  $\mathfrak{S}$, so we have $y\in \bigcup \mathfrak{S}$. In summary we have $Y= \bigcup \mathfrak{S}\in \mathfrak{O}$, by axioms of open sets. We have proved $\mathfrak{O}=g^{-1}(g(\mathfrak{O}))$.\\
+
+Arbitrarily pick $x$, now we wish to prove  $g(g^{-1}(\mathcal{N}))(x)=\mathcal{N}(x)$. Observe $Y \in g(g^{-1}(\mathcal{N}))(x)\implies \exists O \in g^{-1}(\mathcal{N}),x \in O \subseteq Y$, where by definition of $g^{-1}$, one can observe $O\in \mathcal{N}(x)$. Then by super set property, we know $Y \in \mathcal{N}(x)$. We have proved $\forall x, g(g^{-1}(\mathcal{N}))(x)\subseteq \mathcal{N}(x)$.\\
+
+Prove \red{$\mathcal{N}(x)\subseteq g(g^{-1}(\mathcal{N}))(x)$}
 \end{proof}
+\fbox{\begin{minipage}{39em}
+We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{2.5.5} into language without neighborhood function. 
+\end{minipage}}
+\begin{definition}
+\label{2.5.6}
+\textbf{(Definition of Neighborhood)} We say a set $E$ is a neighborhood around a point $x$, if  $E$ contains an  open set containing $x$.
+\end{definition}
+\begin{corollary}
+\label{2.5.7}
+\textbf{(Property of Neighborhood, Part 1)} For all points $x$, there exists a neighborhood around $x$. The super set of a neighborhood around  $x$ is a neighborhood around $x$. The intersection of two neighborhood around  $x$ is a neighborhood around $x$. For each neighborhood $N$ around $x$, there exists a smaller neighborhood $M$ around $x$ such that  $N$ is a neighborhood around all points in $N$.
+
+\end{corollary}
+\begin{theorem}
+\label{2.5.8}
+\textbf{(Property of Neighborhood, Part 2)} 
+A set $E$ is an open set if and only if $E$ is an neighborhood around all points in $E$.
+\end{theorem}
+\begin{proof}
+From left to right, consider for all points $x$ in  $E$, we know $E$ is an open set containing $x$ contained by  $E$. From right to left, we know every point $x$ in  $E$ is contained by an open set contained by $E$. By axiom, the union of such open sets is an open set and contained by $E$. Also, every point in $E$ belong to an open set contained by by $E$, so belong to the union. We have proved  $E$ is the union. 
+\end{proof}
+\section{Topological Space}
+\begin{definition}
+\label{2.6.1}
+\textbf{(Definition of Closure and Interior)} We define the closure $\overline{E}$ of $E$ to be smallest closed set containing $E$, and define  the interior $E^\circ$ of  $E$ to be the largest open set contained by  $E$. 
+\end{definition}
+\begin{theorem}
+\label{2.6.2}
+\textbf{(Basic Property of Closure and Interior)} We have
+\begin{equation}
+  \overline{E}=E\iff E\in\mathfrak{F}\text{ and }E^\circ=E\iff E\in\mathfrak{O}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Trivial. 
+\end{proof}
+\begin{corollary}
+\label{2.6.3}
+\textbf{(Basic Property of Closure and Interior)} We have
+\begin{equation} \overline{(\overline{E})}=\overline{E}\text{ and }(E^\circ)^\circ=E^\circ
+\end{equation}
+\end{corollary}
+\begin{theorem}
+\label{2.6.4}
+\textbf{(Basic Property of Closure and Interior)} We have 
+ \begin{equation}
+   \overline{E\cup F}=\overline{E}\cup \overline{F}\text{ and }(E\cap F)^\circ=E^\circ \cap F^\circ
+\end{equation}
+\end{theorem}
+\begin{proof}
+Observe $E\subseteq \overline{E}\subseteq \overline{E}\cup \overline{F}$. Similarly, we have $E\cup F\subseteq \overline{E}\cup \overline{F}$, so by definition of closure and closed set we have $\overline{E\cup F}\subseteq \overline{E}\cup \overline{F}$. Observe $E\subseteq E\cup F\subseteq \overline{E\cup F}$, so by definition of closure, we have $\overline{E}\subseteq \overline{E\cup F}$. Similarly, we have $\overline{E}\cup \overline{F}\subseteq \overline{E\cup F}$.\\
+
+Observe $E^\circ \cap F^\circ \subseteq E\cap F$. Then by definition of interior and open set, we have $ E^\circ \cap F^\circ\subseteq (E\cap F)^\circ$. Observe $(E\cap F)^\circ \subseteq E\cap F\subseteq E$, so by definition of interior, we have $(E\cap F)^\circ\subseteq E^\circ$. Similarly, we have $(E\cap F)^\circ\subseteq E^\circ \cup F^\circ$
+\end{proof}
+\begin{theorem}
+\label{2.6.5}
+\textbf{(Basic Property of Interior and Closure)} We have
+\begin{equation}
+S\subseteq T \implies S^\circ \subseteq T^\circ\text{ and }\overline{S}\subseteq \overline{T}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Trivial.
+\end{proof}
+\begin{definition}
+\label{2.6.6}
+\textbf{(Definition of Interior Point)} A point $p$ is an interior point of $E$ if $E$ is  a neighborhood of  $p$.
+\end{definition}
+\begin{theorem}
+\label{2.6.7}
+\textbf{(Basic Property of Interior)} We have
+\begin{equation}
+E^\circ = \set{p:E\in \mathcal{N}(p)}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Observe $E\in \mathcal{N}(p)\implies \exists O\in\mathfrak{O}, p\in O\subseteq E$, where $O\subseteq E^\circ$, so we have  $\set{p:E\in \mathcal{N}(p)}\subseteq E^\circ$.\\
+
+Arbitrarily pick $p'$ from $E^\circ$, we see $p' \in E^\circ \subseteq E$, so we have $p'\in \set{p:E\in \mathcal{N}(p)}$. Then we have $E^\circ \subseteq \set{p:E\in \mathcal{N}(p)}$ 
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now give some notion to let us talk about convergence.
+\end{minipage}}
+\begin{definition}
+\label{2.6.8}
+\textbf{(Definition of Limit and Isolated Point)} A point $p \in X$ is a limit point of a subset $E$ of $X$, if every open set containing $p$ contain at least a point not  $p$ in $E$. In symbol, that is
+\begin{equation}
+p \in O \in \mathfrak{O}\implies \set{p}\subset O\cap E)
+\end{equation}
+Notice that $p$ does not have to belong to $E$ so that  $p$ is a limit point of  $E$. 
+\end{definition}
+\begin{definition}
+\label{2.6.9}
+\textbf{(Definition of Perfect Set)} A subset $E$ of  $X$ is perfect if  $E$ is closed and every point of  $E$ is a limit point of  $E$.
+\end{definition}
+\begin{definition}
+\label{2.6.10}
+\textbf{(Definition of Dense Set)} A subset $E$ is dense in $X$ if every point of  $X$ is either a point or a limit point of  $E$. 
+\end{definition}
+\fbox{\begin{minipage}{39em}
+It is quite difficult to describe the last axiom of neighborhood function without using symbol: every neighborhood around a point contain a smaller neighborhood such that the big neighborhood is a neighborhood of every point in the smaller neighborhood.
+\end{minipage}}
 \section{Metric Space}
 \begin{definition}
+\label{2.7.1}
 \textbf{(Definition of Metric Space)} We say $(X,d:X^2\rightarrow \R)$ is a metric space if for all $x,y,z \in X$, we have
 \begin{equation}
-d(x,y)\geq 0\text{ (Nonnegativity) }
+d(x,x)=0 
 \end{equation}
 \begin{equation}
-x\neq y\longrightarrow d(x,y)=0\text{ (Positive Definitness) }
+x\neq y\longrightarrow d(x,y)>0\text{ (Positive Definitness) }
 \end{equation}
 \begin{equation}
 d(x,y)=d(y,x)\text{ (Commutative) }
@@ -2267,6 +2666,7 @@ d(x,z)\leq d(x,y)+d(y,z)\text{ (Triangle Inequality) }
 \end{equation}
 \end{definition}
 \begin{theorem}
+\label{2.7.2}
 \textbf{(Examples of Metric Space)} 
 \begin{equation}
   \R^n,d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}}
@@ -2276,6 +2676,213 @@ d(x,z)\leq d(x,y)+d(y,z)\text{ (Triangle Inequality) }
 \end{equation}
 \end{theorem}
 \begin{proof}
-  The first example is an Euclidean space. We notice $\abso{\vecta{x}-\vecta{y}}=\sqrt{\sum (x_i-y_i)^2}\geq 0\text{ and }\abso{\vecta{x}-\vecta{y}}=0\implies \sqrt{\sum (x_i-y_i)^2}=0\implies \sum (x_i-y_i)^2=0\implies \forall i, x_i=y_i\implies \vecta{x}=\vecta{y} $. Notice $\abso{\vecta{x}-\vecta{y}}=\sqrt{\sum } $
+  The first example is an Euclidean space. We notice $\abso{\vecta{x}-\vecta{x}}=0\text{ and }\abso{\vecta{x}-\vecta{y}}=0\implies \sqrt{\sum (x_i-y_i)^2}=0\implies \sum (x_i-y_i)^2=0\implies \forall i, x_i=y_i\implies \vecta{x}=\vecta{y} $. Notice $\abso{\vecta{x}-\vecta{y}}=\sqrt{\sum (x_i-y_i)^2}=\sqrt{\sum (y_i-x_i)^2}=\abso{\vecta{y}-\vecta{x}}$. By norm's axiom, we have $\abso{\vecta{x}-\vecta{z}}\leq \abso{\vecta{x}-\vecta{y}}+\abso{\vecta{y}-\vecta{z}}$.\\
+
+The second example is also an Euclidean space. Notice $\sum \abso{x_i-x_i}=0$. Notice $d(\vecta{x},\vecta{y})=0\implies \sum \abso{x_i-y_i}=0\implies \forall i,\abso{x_i-y_i}=0\implies \forall i,x_i=y_i\implies \vecta{x}=\vecta{y}$. Notice $d(x,y)=\sum \abso{x_i-y_i}=\sum \abso{y_i-x_i}=d(y,x)$ and notice for each  $i$, we have  $\abso{x_i-z_i}\leq \abso{x_i-y_i}+\abso{y_i-z_i}$, since the absolute value function is a norm, so we have $d(x,z)=\sum \abso{x_i-z_i}\leq \sum \abso{x_i-y_i}+\abso{y_i-z_i}=d(x,y)+d(y,z)$
 \end{proof}
+\begin{definition}
+\label{2.7.3}
+\textbf{(Definition of Open Ball)} Let $(X,d)$ be a metric space, we say the set
+\begin{equation}
+B_r(x)=\set{y \in X: d(x,y)<r}
+\end{equation}
+is the open ball of radius $r$ around  $x$
+\end{definition}
+\begin{theorem}
+\label{2.7.4}
+\textbf{(Basic Property of Open Ball)} If $r\leq h$, then  $B_r(x)\subseteq B_h(x)$.
+\end{theorem}
+\begin{proof}
+$d(x,y)<r\implies d(x,y)<r\leq h$
+\end{proof}
+\begin{theorem}
+\label{2.7.5}
+\textbf{(Every Metric Space Give Rise to a Topology)}
+For all metric space $X$, we can define a topology by defining neighborhoods function
+ \begin{equation}
+\mathcal{N}(x)=\set{N\in \power{X}:\exists r\inr^+, B_r(x)\subseteq N}
+\end{equation}
+\end{theorem}
+\begin{proof}
+  Because $\forall r,B_r(x)\subseteq X$, so $X\in \mathcal{N}(x)$, implying $\mathcal{N}(x)$ is nonempty. Observe $\forall N \in \mathcal{N}(x), x \in B_r(x) \subseteq N$, since $d(x,x)=0<r$. Superset part is trivial. Let $N,M \in\mathcal{N}(x)$ and let $B_{r_1}(x)\subseteq N\text{ and }B_{r_2}(x)\subseteq M$, we see $B_{\min \set{r_1,r_2}}\in N\cap M$.\\ 
+
+
+For each $N\in\mathcal{N}(x)$, we let $B_r(x)$ be an open ball contained by $N$. We now prove \vi{$B_{\frac{r}{2}}(x)$ is an neighborhood of $x$ such that for all $z \in B_{\frac{r}{2}}(x)$ we have $N\in \mathcal{N}(z)$}. Observe
+\begin{equation}
+B_{\frac{r}{2}}(x)\subseteq B_{\frac{r}{2}}(x)\implies B_{\frac{r}{2}}(x)\in \mathcal{N}(x)
+\end{equation}
+and observe 
+\begin{equation}
+z\in B_{\frac{r}{2}}(x)\implies d(x,z)<\frac{r}{2}
+\end{equation}
+and observe  
+\begin{equation}
+B_{\frac{r}{2}}(z)\subseteq N\implies N \in \mathcal{N}(z)
+\end{equation}
+and observe 
+\begin{equation}
+y\in B_{\frac{r}{2}}(z)\implies d(y,z)\leq \frac{r}{2}\implies d(x,y)<d(x,z)+d(z,y)<r\implies y\in B_r(x)\subseteq N\vdone
+\end{equation}
+\end{proof}
+\section{Exercises}
+\begin{question}{}{}
+Let $(X,d)$ be a metric space, and let $x_1,x_2,\dots,x_n \in X$. Prove
+\begin{equation}
+d(x_1,x_n)\leq \sum_{i=1}^{n-1}d(x_i,x_{i+1})
+\end{equation}
+\end{question}
+\begin{proof}
+Let $P(j)$ be the predicate 
+\begin{equation}
+d(x_1,x_j)\leq \sum_{i=1}^{j-1}d(x_i,x_{i+1})
+\end{equation}
+We prove $P(n)$ by induction on $j$.\\
+
+Base case: $j=2$. \\
+\begin{equation}
+d(x_1,x_2)\leq d(x_1,x_2)=\sum_{i=1}^{1}d(x_i,x_{i+1})
+\end{equation}\\
+By observing above equation, base case is done.\\
+
+Induction Case: $\forall k:k>2\text{ and }n\geq k,P(k)\longrightarrow P(k+1)$ \\
+
+By triangle inequality axiom of metric, we have $d(x_1,x_{k+1})\leq d(x_1,x_k)+d(x_k,x_{k+1})$\\
+
+By $P(k)$, we have $d(x_1,x_k)\leq \sum_{i=1}^{k-1}d(x_i,x_{i+1})$\\
+
+By above two equations, we have
+\begin{equation}
+d(x_1,x_{k+1})\leq d(x_1,x_k)+d(x_k,x_{k+1})\leq \sum_{i=1}^{k-1}d(x_i,x_{i+1})+d(x_k,x_{k+1})=\sum_{i=1}^k d(x_i,x_{i+1})
+\end{equation}
+which is $P(k+1)$.\\
+
+So we have deduced from $P(k)$ to $P(k+1)$, which handle the induction case, finishing the whole proof.\\
+\end{proof}
+\begin{question}{}{}
+Refer to Example 2.2(9). Show that $d(x,y)$ is finite for all $x,y \in l_1$ and that d defines a metric for $l_1$.
+\end{question}
+\begin{proof}
+We first prove the \vi{finite part}; more precisely, we prove for any two sequence $\set{x_i},\set{y_i}$ in $l_1$, the limit $\lim_{m\to\infty}\sum_{k=1}^m \abso{x_k-y_k}$ converge.\\
+
+Notice for all $k$, we know  $(\abso{x_k-y_k}),(\abso{x_k}+\abso{y_k})$ are nonnegative, so we know the series $\sum_{k=1}^m \abso{x_k-y_k}$ and the series $\sum_{k=1}^m \abso{x_k}+\abso{y_k}$ monotonically increase, then we only have to the former series is bounded above, then by Theorem of bounded above increasing sequence, the proof will be finished.\\
+
+We wish to prove $\lim_{n\to\infty}\sum_{k=1}^n $  the two inequality  
+\begin{equation}
+\forall m \inn, \sum_{k=1}^m \abso{x_k-y_k}\leq \sum_{k=1}^m \abso{x_k}+\abso{y_k}\leq   \lim_{n\to\infty}\sum_{k=1}^n \abso{x_k}+\sum _{k=1}^n\abso{y_k}
+\end{equation}
+The first inequality hold true by triangle inequality, and the second inequality hold true if we can show the limit of a monotonically increasing converge series is an upper bound of the series.\\
+
+\As{it is not an upper bound}; that is, there exists $s \inn$ such that $\sum_{k=1}^s \abso{x_k}+\abso{y_k}> \lim_{n\to\infty}\abso{x_k}+\abso{y_k}$. We denote $L=\sum_{k=1}^s \abso{x_k}+\abso{y_k}-\lim_{n\tof\infty}\sum_{n=1}^k\abso{x_k+y_k}$. Notice $L$ is a positive constant, since  $\sum_{k=1}^s \abso{x_k}+\abso{y_k}> \lim_{n\to\infty}\abso{x_k}+\abso{y_k}$\\
+
+Then because the series monotonically increase we have
+\begin{equation}
+\forall d>s\inn, \sum_{k=1}^d \abso{x_k}+\abso{y_k}\geq \sum_{k=1}^s \abso{x_k}+\abso{y_k}>\lim_{n\to\infty}\abso{x_k}+\abso{y_k}
+\end{equation}
+which implies
+\begin{equation}
+\forall d>s\inn, \sum_{k=1}^d \abso{x_k}+\abso{y_k}-(\lim_{n\to\infty}\sum_{k=1}^n \abso{x_k}+\abso{y_k})\geq L
+\end{equation}
+which further implies the series $\sum_{k=1}^d \abso{x_k}+\abso{y_k}$ does not converge to $\lim_{n\to\infty} \sum_{k=1}^n \abso{x_k}+\abso{y_k}\tCaC$.\\
+\end{proof}
+\chapter{Numerical Sequence and Series}
+\chapter{Vector Analysis}
+\section{Important Inequalities}
+\begin{definition}
+\label{4.1.1}
+\textbf{(Definition of $p$-norm)} On $\C^n$, we say the  $p$-norm is 
+\begin{equation}
+  \norm{\vecta{v}}_p:= (\sum \abso{v_i}^p)^{\frac{1}{p}}
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{4.1.2}
+\textbf{(Young's Inequality)} If $a,b\geq 0$ and $p,q>1$ and  $\frac{1}{p}+\frac{1}{q}=1$, then
+\begin{equation}
+ab\leq \frac{a^p}{p}+\frac{b^q}{q}
+\end{equation}
+\end{theorem}
+\begin{proof}
+\begin{align}
+  ab&=\exp(\ln a+ \ln b)\\
+    &=\exp[(\frac{1}{p}\ln a^p)+(\frac{1}{q}\ln b^q)]\\
+&\leq \frac{1}{p}\exp(\ln a^p)+\frac{1}{q}\exp(\ln b^q)\\
+&= \frac{a^p}{p}+\frac{b^q}{q}
+\end{align}
+The inequality above hold true because  $\exp$ is concave upward, and $\frac{1}{p}+\frac{1}{q}=1$. 
+\end{proof}
+\begin{theorem}
+\label{4.1.3}
+\textbf{(Definition of $p$-norm)} Recall in Chapter 1, we define absolute value on $\R$ and  $\C$. With that definition, we have: for all $0<p \in \R$, the definition
+\begin{equation}
+  \norm{\vecta{v}}_p:= (\sum \abso{v_i}^p)^{\frac{1}{p}}
+\end{equation}
+\textit{almost} form a norm.
+\end{theorem}
+\begin{proof}
+Observe 
+\begin{align}
+\norm{\ld \vecta{v}}_p&=(\sum \abso{\ld v_i}^p)^{\frac{1}{p}} \\
+&=[\sum (\abso{\ld }\abso{v_i})^p]^{\frac{1}{p}}\\
+&=[\sum (\abso{\ld })^p(\abso{v_i})^p]^{\frac{1}{p}}\\
+&=[(\abso{\ld })^p\sum (\abso{v_i})^p]^{\frac{1}{p}}\\
+&=[(\abso{\ld })^p]^{\frac{1}{p}}(\sum \abso{v_i}^p)^{\frac{1}{p}}\\
+&=\abso{\ld }(\norm{\vecta{v}}_p)
+\end{align}
+Nonnegative and positive definiteness is trivial. Triangle Inequality \textit{is left to proved}. 
+\end{proof}
+\begin{theorem}
+\label{4.1.4}
+\textbf{(Holder's Inequality in $\C^n$)} Let $\vecta{x},\vecta{y}\in \C^n,\frac{1}{p}+\frac{1}{q}=1$. Define $\vecta{xy}$ by $\vecta{xy}_i=\vecta{x}_i\vecta{y}_i$. We have
+\begin{equation}
+\norm{\vecta{xy}}_1\leq \norm{\vecta{x}}_p\norm{\vecta{y}}_q
+\end{equation}
+\end{theorem}
+\begin{proof}
+Normalize 
+\begin{equation}
+\hat{\vecta{x}}:= \frac{\vecta{x}}{\norm{\vecta{x}}_p}\text{ and }\hat{\vecta{y}}:=\frac{\vecta{y}}{\norm{\vecta{y}}_q}
+\end{equation}
+So we only wish to prove
+\begin{equation}
+\norm{\hat{\vecta{x}}\hat{\vecta{y}}}_1\leq 1 
+\end{equation}
+Notice because $(\sum \abso{\hat{x}_i}^p)^{\frac{1}{p}}=\norm{\hat{\vecta{x}}}_p=\norm{\frac{\vecta{x}}{\norm{\vecta{x}}_p}}_p=\frac{\norm{\vecta{x}}_p}{\norm{\vecta{x}}_p}=1$, and similarly vice versa for $\vecta{y}$, we have \begin{equation}
+\sum \abso{\hat{x}_i}^p=1=\sum \abso{\hat{y}_i}^q \end{equation} So by Young's inequality, we have \begin{equation} \norm{\hat{\vecta{x}}\hat{\vecta{y}}}_1= \sum \abso{\hat{x }_i\hat{y}_i}=\sum \abso{\hat{x}_i}\abso{\hat{y}_i}\leq \sum \frac{\abso{\hat{x}_i}^p}{p}+\frac{\abso{\hat{y}_i}^q}{q}=\frac{1}{p}+\frac{1}{q}=1
+\end{equation}
+\end{proof}
+\begin{corollary}
+\label{4.1.5}
+\textbf{(Minkowskis Inequality in $\C^n$ and $p>1$)} Let $\vecta{x},\vecta{y}\in\C^n$, and let $p\in \R^+\text{ and }p\neq 1$. We have triangle inequality for all supposed $p$-norm
+\begin{equation}
+p>1\implies  \norm{\vecta{x}+\vecta{y}}_p\leq \norm{\vecta{x}}_p+\norm{\vecta{y}}_p
+\end{equation}
+\end{corollary}
+\begin{proof}
+Let $q=\frac{p}{p-1}$, so we have
+\begin{equation}
+\frac{1}{p}+\frac{1}{q}=\frac{p}{p}=1
+\end{equation}
+Then we deduce 
+\begin{align}
+  \norm{\vecta{x}+\vecta{y}}_p^p&=\sum \abso{x_i+y_i}^p\\
+&= \sum \abso{(x_i+y_i)^{p}}\\
+                                &=\sum \abso{(x_i+y_i)(x_i+y_i)^{p-1}}\\
+                                &\leq \sum \abso{x_i(x_i+y_i)^{p-1}}+\abso{y_i(x_i+y_i)^{p-1}}\\
+                                &=\norm{\vecta{x}(\vecta{x}+\vecta{y})^{p-1}}_1 + \norm{\vecta{y}(\vecta{x}+\vecta{y})^{p-1}}_1\rap{\text{ Operation is component wise }}\\
+&\leq  \norm{\vecta{x}}_p\norm{(\vecta{x}+\vecta{y})^{p-1}}_q+\norm{\vecta{y}}_p\norm{(\vecta{x}+\vecta{y})^{p-1}}_q\rap{\text{ Holder's Inequality }}\\ 
+&= \norm{\vecta{x}}_p[\sum (\abso{(x_i+y_i)^{p-1}})^q]^{\frac{1}{q}}+\norm{\vecta{y}}_p[\sum (\abso{(x_i+y_i)^{p-1}})^q]^{\frac{1}{q}}\\
+&= \norm{\vecta{x}}_p[\sum (\abso{x_i+y_i}^{p-1})^q]^{\frac{1}{q}}+\norm{\vecta{y}}_p[\sum (\abso{x_i+y_i}^{p-1})^q]^{\frac{1}{q}}\\
+&= \norm{\vecta{x}}_p (\sum \abso{x_i+y_i}^p)^{\frac{1}{q}}+\norm{\vecta{y}}_p (\sum \abso{x_i+y_i}^p)^{\frac{1}{q}}\rap{\text{ because $q(p-1)&=p$ }}\\
+&= (\norm{\vecta{x}}_p+\norm{\vecta{y}}_p)\norm{\vecta{x}+\vecta{y}}_p^{\frac{p}{q}}
+\end{align} 
+So 
+\begin{equation}
+\norm{\vecta{x}+\vecta{y}}_p=\norm{\vecta{x}+\vecta{y}}_p^{p-\frac{p}{q}}\leq \norm{\vecta{x}}_p+\norm{\vecta{y}}_p
+\end{equation}
+\end{proof}
+
+
+
+
+
 \end{document}
