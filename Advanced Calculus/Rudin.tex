@@ -2467,7 +2467,7 @@ Let $f$ be a function from $A$ to  $\power{A}$. Define $T=\set{a\in A:a\not\in f
 \end{proof}
 \section{Different but Equivalent Ways to Define A Topology}
 \fbox{\begin{minipage}{39em}
-The section is dedicated to show case how we can define a topology in different angles. That being said, in practice the one being used is to define via open set.
+This section illustrates three methods to define a topology. However, in practice, the approach using open sets is predominantly employed.
 \end{minipage}}
 \begin{definition}
 \label{2.5.1}
@@ -2477,10 +2477,10 @@ X, \varnothing \in \mathfrak{O}\\
 A,B\in\mathfrak{O}\implies A\cap B\in\mathfrak{O}\\
 \mathfrak{U}\subseteq \mathfrak{O}\implies \bigcup \mathfrak{U}\in \mathfrak{O}
 \end{gather}
-and if a subset of $X$ belong to  $\mathfrak{O}$, we say it is an open set, and if a subset of $X$ is an complement of an open set, we say it is an closed set.
+If a subset of $X$ belong to  $\mathfrak{O}$, we say it is an open set, and if a subset of $X$ is an complement of an open set, we say it is an closed set.
 \end{definition}
 \fbox{\begin{minipage}{39em}
-The above is the standard way to define topology. We now show cases some property of closed sets. Notice that the corresponding properties of open set are axioms.
+The method above is the usual way to define a topology. Next, we'll look at some properties of closed sets. Keep in mind that the related properties for open sets are basic axioms
 \end{minipage}}
 \begin{theorem}
 \label{2.5.2}
@@ -2492,18 +2492,34 @@ A,B\in\mathfrak{F}\implies A\cup  B\in\mathfrak{F}\\
 \end{gather}
 \end{theorem}
 \begin{proof}
-  Observe $X=\varnothing^c\text{ and }\varnothing=X^c\in \mathfrak{F}$. Observe $A,B\in \mathfrak{F}\implies A^c,B^c \in \mathfrak{O}\implies A^c \cap B^c \in \mathfrak{O} \implies (A^c\cap  B^c)^c \in \mathfrak{F}\implies A \cup B \in \mathfrak{O}$. Observe $\mathfrak{B}\subseteq \mathfrak{F}\implies \set{F^c:F \in \mathfrak{B}}\subseteq \mathfrak{O}\implies \bigcup_{F\in \mathfrak{B}}F^c \in \mathfrak{O}\implies \bigcap \mathfrak{B}=\bigcap_{F \in \mathfrak{B}}F \in \mathfrak{F}$.
+\begin{equation}
+X=\varnothing^c\text{ and }\varnothing=X^c\in \mathfrak{F}
+\end{equation}
+\begin{equation}
+A,B\in \mathfrak{F}\implies A^c,B^c \in \mathfrak{O}\implies A^c \cap B^c=(A\cup B)^c \in \mathfrak{O} \implies A\cup  B \in \mathfrak{F}
+\end{equation}
+\begin{equation}
+\mathfrak{B}\subseteq \mathfrak{F}\implies \set{F^c:F \in \mathfrak{B}}\subseteq \mathfrak{O}\implies \bigcup_{F\in \mathfrak{B}}F^c \in \mathfrak{O}\implies \bigcap \mathfrak{B}= (\bigcup_{F \in\mathfrak{B}} F^c)^c \in \mathfrak{F}
+\end{equation}
 \end{proof}
-\fbox{\begin{minipage}{39em}
-Now we give the notion of neighborhood in the tone of introducing a tool and prove the tool is in fact just definition of a topology in other form.   
-\end{minipage}}
 \begin{theorem}
 \label{2.5.3}
-\textbf{(Equivalent Ways to Define The Same Topology, Part 1)} Define $f$ on $\power{\power{X}}$ by  $f(\mathfrak{A})=\set{A^c:A\in \mathfrak{A}}$. Let $\mathfrak{O}$ be a topology on $X$. Then  $f(\mathfrak{O})$ are precisely the family of closed sets on $X$. Also, we have $f=f^{-1}$, by which, if given the family of all closed set, satisfying the properties list in \myref{Theorem}{2.5.2}, the topology is specified.
+\textbf{(Equivalent Ways to Define The Same Topology, Part 1)} Define $f$ on $\power{\power{X}}$ by 
+\begin{equation}
+f(\mathfrak{A})=\set{A^c:A\in \mathfrak{A}}
+\end{equation}
+If $\mathfrak{O}$ is a topology on $X$, then  $f(\mathfrak{O})$ are the family of precisely all closed sets on $X$. Also, we have
+\begin{equation}
+f=f^{-1}
+\end{equation}
+This mean if we are given a family of closed sets, the family of closed sets given by the topology induced by our original family is our original family.   
 \end{theorem}
 \begin{proof}
 Trivial. 
 \end{proof}
+\fbox{\begin{minipage}{39em}
+Let's move on to the axioms for the neighborhood system. After covering that, we'll demonstrate that these axioms and those for open sets aren't just interconnected – they're essentially the same thing. Notice the proof below uses Zorn's Lemma. 
+\end{minipage}}
 \begin{definition}
 \label{2.5.4}
 \textbf{(Definition of Neighborhood Function)} We say a function $\mathcal{N}:X\rightarrow \power{\power{X}}$ is neighborhood function if 
@@ -2514,38 +2530,101 @@ N \in \mathcal{N}(x)\implies x \in N\text{ (Around) }\\
 N,M \in \mathcal{N}(x)\implies N \cap M\in \mathcal{N}(x)\text{ (Intersection) }\\
 \forall N\in \mathcal{N}(x),\exists M\in \mathcal{N}(x), M \subseteq N\text{ and }\forall y \in M, N \in \mathcal{N}(y)
 \end{gather}
+The last property reads: every neighborhood $N$ around arbitrary point $x$ contain a neighborhood $M$ around $x$ such that $N$ is a neighborhood of each points of $M$.
 \end{definition}
 \begin{theorem}
 \label{2.5.5}
-\textbf{(Equivalent Ways to Define The Same Topology, Part 2)} There exists a one-to-one correspondence between the class of all topology on $X$ and the class of all function satisfying the neighborhood function definition.\\
+\textbf{(Equivalent Ways to Define The Same Topology, Part 2)} There exists a one-to-one correspondence between the class of all topology on $X$ and the class of all neighborhood function on $X$.\\
 
 The correspondence can be written in the form of 
 \begin{equation} (g(\mathfrak{O}))(x)=\set{N\subseteq X: \exists O\in \mathfrak{O},x\in O\subseteq N}
 \end{equation}
 The inverse of $g$ will be proved to be
  \begin{equation}
-g^{-1}(\mathcal{N})=\set{O:x \in O\longrightarrow  O\in \mathcal{N}(x)}
+g^{-1}(\mathcal{N})=\set{O:\forall x \in O, O\in \mathcal{N}(x)}
 \end{equation}
 \end{theorem}
 \begin{proof}
   We first prove \vi{$g$ do map topology to neighborhood function}.\\
 
-Observe $X \in \mathfrak{O}\implies X\in (g(\mathfrak{O}))(x)$, so $g(\mathfrak{O})(x)$ is nonempty. By definition of $g$, every defined neighborhood around $x$ do contain  $x$. A super set of $N\in (g(\mathfrak{O}))(x)$ belong to $(g(\mathfrak{O}))(x)$, since an open set containing $x$ contained by  $N$ is also contained by the super set. Let $N,M \in (g(\mathfrak{O}))(x)$ and $x \in O_N \subseteq N, x\in O_M \subseteq M$. We have $x \in O_N\cap O_M\subseteq N\cap M$. For each neighborhood $N$ around $x$, the open set containing  $x$ contained by the neighborhood is also a neighborhood around  $x$, since it contain itself and it is an open set.  Then we see $N$ is a neighborhood around each point of the open set, since each point is contained by the open set contained by $N$ $\vdone$\\
+$g(\mathfrak{O})(x)$ is always nonempty because
+\begin{equation}
+X \in \mathfrak{O}\implies X\in (g(\mathfrak{O}))(x)
+\end{equation}
+By definition of $g$, every defined neighborhood around $x$ do contain  $x$. A super set of $N\in (g(\mathfrak{O}))(x)$ belong to $(g(\mathfrak{O}))(x)$, since an open set containing $x$ contained by  $N$ is also contained by the super set.\\
 
-Before we prove $g^{-1}$ is the inverse of $g$, we first prove  \blue{$g^{-1}$ do map neighborhood function to topology}.\\
+Let $N,M \in (g(\mathfrak{O}))(x)$ and $x \in O_N \subseteq N, x\in O_M \subseteq M$. We have 
+\begin{equation}
+x \in O_N\cap O_M\subseteq N\cap M
+\end{equation}
+For each neighborhood $N$ around $x$, the open set containing  $x$ contained by the neighborhood is also a neighborhood around  $x$, since it contain itself and it is an open set.  Then we see $N$ is a neighborhood around each point of the open set, since each point is contained by the open set contained by $N$ $\vdone$\\
+
+We now prove  \blue{$g^{-1}$ do map neighborhood function to topology}.\\
+
+Proving $\varnothing \in g^{-1}(\mathcal{N})$ is trivial. We have $X \in g^{-1}(\mathcal{N})$ because  $\mathcal{N}(x)$ is nonempty for all $x$ and  $X$ is a super set of any neighborhood.\\
 
 
-To prove $\varnothing \in g^{-1}(\mathcal{N})$ is trivial, and because of the nonempty and super set properties of neighborhood function, $X$ is a neighborhood of all points, so  $X\in g^{-1}(\mathcal{N})$ is trivial. Given $A,B\in g^{-1}(\mathcal{N})$, for arbitrary point $x$ in $A\cap B$, we know by definition of $g^{-1}$,  $A$ is a neighborhood of  $x$ and so is  $B$. Then by definition of neighborhood function, we know $A\cap B\in \mathcal{N}(x)$, so because $x$ is arbitrary picked from $A\cap B$, by definition of $g^{-1}$,  we know $A\cap B\in g^{-1}(\mathcal{N})$. Let $\mathfrak{A}$ be a subset of $g^{-1}(\mathcal{N})$. If an arbitrary point $x$ belong to the union of $\mathfrak{A}$, then we know $x$ belong to an element $O$ of  $\mathfrak{A}$. By definition of $g^{-1}(\mathcal{N})$, we know $O$ is a neighborhood around  $x$, then by super set property of neighborhood, we see  $\bigcup \mathfrak{A}$ is also a neighborhood around $x$. Then because $x$ is arbitrary picked from $\bigcup \mathfrak{A}$, we see  $\bigcup \mathfrak{A}\in g^{-1}(\mathcal{N})$, by definition of $g^{-1}(\mathcal{N})\bdone$\\
 
-Lastly, we prove \vi{$g^{-1}$ is the inverse of $g$}.\\
+Let $A,B\in g^{-1}(\mathcal{N})$. Arbitrarily pick $x$ in $A\cap B$, we know by definition of $g^{-1}$,  $A$ is a neighborhood of  $x$ and so is  $B$. Then by definition of neighborhood function, we know $A\cap B\in \mathcal{N}(x)$. Because $x$ is arbitrary picked from $A\cap B$,  we have proved $A\cap B\in g^{-1}(\mathcal{N})$.\\
 
-Arbitrarily pick $Z\in \mathfrak{O}$. Observe $x\in Z \implies \exists Z\in \mathfrak{O},x \in Z\subseteq Z\implies Z\in (g(\mathfrak{O}))(x)$. Then from $x\in Z\implies Z\in (g(\mathfrak{O}))(x)$, we can deduce $Z\in g^{-1}(g(\mathfrak{O}))$. Because $Z$ is arbitrarily picked from  $\mathfrak{O}$, we have $\mathfrak{O}\subseteq g^{-1}(g(\mathfrak{O}))$.\\
+Let $\mathfrak{A}\subseteq g^{-1}(\mathcal{N})$. We deduce
+\begin{equation}
+x \in \bigcup \mathfrak{A}\implies \exists O \in \mathfrak{A}, x \in O \in \mathfrak{A}\subseteq g^{-1}(\mathcal{N})\implies O \in \mathcal{N}(x)\implies O \subseteq \bigcup \mathfrak{A} \in \mathcal{N}(x)
+\end{equation}
+By definition of $g^{-1}(\mathcal{N})$, the above deduction shows $\bigcup \mathfrak{A}\in g^{-1}(\mathcal{N})\bdone$\\
 
-Arbitrarily pick $Y \in g^{-1}(g(\mathfrak{O}))$. Define $\mathfrak{S}:=\set{O \in\mathfrak{O}: \exists y \in Y, z \in O \subseteq Y}$. Observe $(y\in \bigcup \mathfrak{S}\longrightarrow \exists O\in \mathfrak{S},y \in O \subseteq Y)\implies \bigcup \mathfrak{S}\subseteq Y$. Observe  by definition of $g^{-1}$, $y \in Y\implies Y \in (g(\mathfrak{O}))(y)\implies \exists O\in\mathfrak{O}, y \in O\subseteq Y$, where one can observe the last $O$ belong to  $\mathfrak{S}$, so we have $y\in \bigcup \mathfrak{S}$. In summary we have $Y= \bigcup \mathfrak{S}\in \mathfrak{O}$, by axioms of open sets. We have proved $\mathfrak{O}=g^{-1}(g(\mathfrak{O}))$.\\
 
-Arbitrarily pick $x$, now we wish to prove  $g(g^{-1}(\mathcal{N}))(x)=\mathcal{N}(x)$. Observe $Y \in g(g^{-1}(\mathcal{N}))(x)\implies \exists O \in g^{-1}(\mathcal{N}),x \in O \subseteq Y$, where by definition of $g^{-1}$, one can observe $O\in \mathcal{N}(x)$. Then by super set property, we know $Y \in \mathcal{N}(x)$. We have proved $\forall x, g(g^{-1}(\mathcal{N}))(x)\subseteq \mathcal{N}(x)$.\\
+Lastly, we prove \teal{$g^{-1}$ is the inverse of $g$}. To prove such, we have to first prove \vi{$g^{-1}(g(\mathfrak{O}))=\mathfrak{O}$}. \\
 
-Prove \red{$\mathcal{N}(x)\subseteq g(g^{-1}(\mathcal{N}))(x)$}
+
+Arbitrarily pick $Z\in \mathfrak{O}$. Deduce 
+\begin{equation}
+x\in Z \implies \exists Z\in \mathfrak{O},x \in Z\subseteq Z\implies Z\in (g(\mathfrak{O}))(x)
+\end{equation}
+By definition of $g^{-1}$, our deduction give us $Z\in g^{-1}(g(\mathfrak{O}))$. Because $Z$ is arbitrarily picked from  $\mathfrak{O}$, we have $\mathfrak{O}\subseteq g^{-1}(g(\mathfrak{O}))$.\\
+
+Arbitrarily pick $Y \in g^{-1}(g(\mathfrak{O}))$. Define $\mathfrak{S}:=\set{O\in \mathfrak{O}: O \subseteq Y}$. By definition of $g^{-1}\text{ and }g$, we have
+\begin{equation}
+y \in Y\implies Y \in (g(\mathfrak{O}))(y)\implies \exists O\in\mathfrak{O}, y \in O\subseteq Y\implies y \in \bigcup \mathfrak{S}
+\end{equation}
+The last implication hold true because $O\in \mathfrak{S}$ by definition of $\mathfrak{S}$. We have proved $Y\subseteq \bigcup \mathfrak{S}$. Also, trivially by definition of  $\mathfrak{S}$, we have $\bigcup \mathfrak{S}\subseteq Y$. Then we have $Y=\bigcup \mathfrak{S} \in \mathfrak{O}$. Because $Y$ is arbitrarily picked from $g^{-1}(g(\mathfrak{O}))$, we have proved $g^{-1}(g(\mathfrak{O}))\subseteq \mathfrak{O}\vdone$\\
+
+We now prove \blue{$g(g^{-1}(\mathcal{N}))=\mathcal{N}$. More precisely, we want to prove $\forall x, g(g^{-1}(\mathcal{N}))(x)=\mathcal{N}(x)$}\\
+
+Let $x\in X$. Observe
+\begin{equation}
+Y \in g(g^{-1}(\mathcal{N}))(x)\implies \exists O \in g^{-1}(\mathcal{N}),x \in O \subseteq Y
+\end{equation}
+Bydefinition of $g^{-1}$, we see $O\in \mathcal{N}(x)$. Then by super set property, we know $Y \in \mathcal{N}(x)$. We have proved $ g(g^{-1}(\mathcal{N}))(x)\subseteq \mathcal{N}(x)$.\\
+
+Arbitrarily pick $N\in \mathcal{N}(x)$. Let 
+\begin{equation}
+U:=\set{y\in N: N \in \mathcal{N}(y)}
+\end{equation}
+Deduce
+\begin{gather}
+y \in U \implies N \in\mathcal{N}(y)\\
+\implies \exists M \in \mathcal{N}(y), M \subseteq N, \forall z \in M, N \in \mathcal{N}(z)\\
+\implies \forall z\in M, z\in N\text{ and }N\in\mathcal{N}(z)\\
+\implies \forall z\in M, z \in U\implies M \subseteq U\implies U\in \mathcal{N}(y)
+\end{gather}
+We have proved
+\begin{equation}
+\forall y\in U, U\in \mathcal{N}(y)
+\end{equation}
+which means
+\begin{equation}
+U\in g^{-1}(\mathcal{N})
+\end{equation}
+By definition of $U$, we know
+ \begin{equation}
+U\subseteq N
+\end{equation}
+The fact $N$ is chosen from $\mathcal{N}(x)$ let us know $x\in U\subseteq N$, so we can deduce 
+\begin{equation}
+N\in g(g^{-1}(\mathcal{N}))(x)
+\end{equation}
+Because $N$ is arbitrarily picked from $\mathcal{N}(x)$, we have $\mathcal{N}(x)\subseteq g(g^{-1}(\mathcal{N}))(x)\bdone\tdone$
 \end{proof}
 \fbox{\begin{minipage}{39em}
 We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{2.5.5} into language without neighborhood function. 
@@ -2556,25 +2635,38 @@ We now give the formal definition of neighborhood while a topology is given, and
 \end{definition}
 \begin{corollary}
 \label{2.5.7}
-\textbf{(Property of Neighborhood, Part 1)} For all points $x$, there exists a neighborhood around $x$. The super set of a neighborhood around  $x$ is a neighborhood around $x$. The intersection of two neighborhood around  $x$ is a neighborhood around $x$. For each neighborhood $N$ around $x$, there exists a smaller neighborhood $M$ around $x$ such that  $N$ is a neighborhood around all points in $N$.
-
+\textbf{(Property of Neighborhood, Part 1)} 
+\begin{enumerate}[label=(\alph*)]
+  \item For all points $x$, there exists a neighborhood around $x$.\\
+  \item The super set of a neighborhood around  $x$ is a neighborhood around $x$.\\
+  \item The intersection of two neighborhood around  $x$ is a neighborhood around $x$.\\
+  \item 
+For each neighborhood $N$ around $x$, there exists a smaller neighborhood $M$ around $x$ such that  $N$ is a neighborhood around all points in $N$.
+\end{enumerate}
 \end{corollary}
 \begin{theorem}
 \label{2.5.8}
 \textbf{(Property of Neighborhood, Part 2)} 
-A set $E$ is an open set if and only if $E$ is an neighborhood around all points in $E$.
+\begin{equation}
+  \text{ $E$ is open $\iff E$ is an neighborhood around all points in $E$}
+\end{equation}
 \end{theorem}
 \begin{proof}
-From left to right, consider for all points $x$ in  $E$, we know $E$ is an open set containing $x$ contained by  $E$. From right to left, we know every point $x$ in  $E$ is contained by an open set contained by $E$. By axiom, the union of such open sets is an open set and contained by $E$. Also, every point in $E$ belong to an open set contained by by $E$, so belong to the union. We have proved  $E$ is the union. 
+From left to right, it trivially follows from our definition of neighborhood.\\
+
+From right to left, we know every point $x$ in  $E$ is contained by an open set contained by $E$. By axiom, the union of such open sets is an open set and contained by $E$. Also, every point in $E$ belong to an open set contained by by $E$, so belong to the union. We have proved  $E$ is the union. 
 \end{proof}
 \section{Topological Space}
+\fbox{\begin{minipage}{39em}
+This section isn't an introduction to general topology, but a topological generalization of the next section as a comparison. 
+\end{minipage}}
 \begin{definition}
 \label{2.6.1}
-\textbf{(Definition of Closure and Interior)} We define the closure $\overline{E}$ of $E$ to be smallest closed set containing $E$, and define  the interior $E^\circ$ of  $E$ to be the largest open set contained by  $E$. 
+\textbf{(Definition of Closure and Interior Operator)} We define the closure $\overline{E}$ of $E$ to be smallest closed set containing $E$, and define  the interior $E^\circ$ of  $E$ to be the largest open set contained by  $E$. 
 \end{definition}
 \begin{theorem}
 \label{2.6.2}
-\textbf{(Basic Property of Closure and Interior)} We have
+\textbf{(Basic Property of Closure and Interior Operator)} We have
 \begin{equation}
   \overline{E}=E\iff E\in\mathfrak{F}\text{ and }E^\circ=E\iff E\in\mathfrak{O}
 \end{equation}
@@ -2584,25 +2676,34 @@ Trivial.
 \end{proof}
 \begin{corollary}
 \label{2.6.3}
-\textbf{(Basic Property of Closure and Interior)} We have
+\textbf{(Basic Property of Closure and Interior Operator)} We have
 \begin{equation} \overline{(\overline{E})}=\overline{E}\text{ and }(E^\circ)^\circ=E^\circ
 \end{equation}
 \end{corollary}
 \begin{theorem}
 \label{2.6.4}
-\textbf{(Basic Property of Closure and Interior)} We have 
+\textbf{(Basic Property of Closure and Interior Operator)} We have 
  \begin{equation}
    \overline{E\cup F}=\overline{E}\cup \overline{F}\text{ and }(E\cap F)^\circ=E^\circ \cap F^\circ
 \end{equation}
 \end{theorem}
 \begin{proof}
-Observe $E\subseteq \overline{E}\subseteq \overline{E}\cup \overline{F}$. Similarly, we have $E\cup F\subseteq \overline{E}\cup \overline{F}$, so by definition of closure and closed set we have $\overline{E\cup F}\subseteq \overline{E}\cup \overline{F}$. Observe $E\subseteq E\cup F\subseteq \overline{E\cup F}$, so by definition of closure, we have $\overline{E}\subseteq \overline{E\cup F}$. Similarly, we have $\overline{E}\cup \overline{F}\subseteq \overline{E\cup F}$.\\
-
-Observe $E^\circ \cap F^\circ \subseteq E\cap F$. Then by definition of interior and open set, we have $ E^\circ \cap F^\circ\subseteq (E\cap F)^\circ$. Observe $(E\cap F)^\circ \subseteq E\cap F\subseteq E$, so by definition of interior, we have $(E\cap F)^\circ\subseteq E^\circ$. Similarly, we have $(E\cap F)^\circ\subseteq E^\circ \cup F^\circ$
+\begin{equation}
+E\cup F \subseteq \overline{E}\cup \overline{F}\in \mathfrak{F}\implies \overline{E\cup F}\subseteq \overline{E}\cup \overline{F}
+\end{equation}
+\begin{equation}
+E,F\subseteq \overline{E\cup F}\in\mathfrak{F}\implies \overline{E},\overline{F}\subseteq \overline{E\cup F}\implies \overline{E}\cup \overline{F}\subseteq \overline{E\cup F}
+\end{equation}
+\begin{equation}
+E^\circ \cap F^\circ \subseteq E\cap F \implies E^\circ \cap F^\circ \subseteq (E\cap F)^\circ 
+\end{equation}
+\begin{equation}
+  (E\cap F)^\circ \subseteq E\cap F\subseteq E,F\implies (E\cap F)^\circ \subseteq E^\circ ,F^\circ \implies (E\cap F)^\circ \subseteq E^\circ \cap F^\circ 
+\end{equation}
 \end{proof}
 \begin{theorem}
 \label{2.6.5}
-\textbf{(Basic Property of Interior and Closure)} We have
+\textbf{(Basic Property of Interior and Closure Operator)} We have
 \begin{equation}
 S\subseteq T \implies S^\circ \subseteq T^\circ\text{ and }\overline{S}\subseteq \overline{T}
 \end{equation}
@@ -2611,7 +2712,9 @@ S\subseteq T \implies S^\circ \subseteq T^\circ\text{ and }\overline{S}\subseteq
 Trivial.
 \end{proof}
 \fbox{\begin{minipage}{39em}
-We now give some notion to let us talk about convergence.
+Above define the interior and closure by using the term greatest and smallest. If reader feel any ambiguity, just use $\bigcup \set{O\in \mathfrak{O}:O\subseteq E}$ and $\bigcap \set{F\in\mathfrak{F}:E\subseteq F}$.\\
+
+We now define interior point and limit point without using interior and closure. We will also prove the interior we define above as the greatest open set contained by $E$, can in return define interior points. Other than the last section, this is another show case of definitions in general topology that can be defined in multiple different yet equivalent ways. 
 \end{minipage}}
 \begin{definition}
 \label{2.6.6}
@@ -2622,15 +2725,11 @@ E\in \mathcal{N}(p)
 \end{definition}
 \begin{definition}
 \label{2.6.7}
-\textbf{(Definition of Limit and Isolated Point)} A point $p \in X$ is a limit point of a subset $E$ of $X$, if every open set containing $p$ contain at least a point not  $p$ in $E$. In symbol, that is
+\textbf{(Definition of Limit and Isolated Point)} A point $p \in X$ is a limit point of a subset $E$ of $X$, if 
 \begin{equation}
 \forall O\in \mathfrak{O}:p \in O, \exists u\neq p, u \in O\cap E
 \end{equation}
-Notice that $p$ does not have to belong to $E$ so that  $p$ is a limit point of  $E$. A point $p$ is an isolated point of $E$ if $p$ belongs to $E$, but  $p$ is not a limit point.
 \end{definition}
-\fbox{\begin{minipage}{39em}
-An example of limit point not in $E$
-\end{minipage}}
 \begin{theorem}
 \label{2.6.8}
 \textbf{(Interior Contain Exactly All Interior Points)} We have
@@ -2640,50 +2739,102 @@ E^\circ = \set{p:E\in \mathcal{N}(p)}
 which reads: the interior of $E$ is exactly the set of point around which $E$ is neighborhood
 \end{theorem}
 \begin{proof}
-Observe $E\in \mathcal{N}(p)\implies \exists O\in\mathfrak{O}, p\in O\subseteq E$, where $O\subseteq E^\circ$, so we have  $\set{p:E\in \mathcal{N}(p)}\subseteq E^\circ$.\\
+Arbitrarily pick $p$ from $\set{p: E \in \mathcal{N}(p)}$. By definition, we have 
+\begin{equation}
+\exists O\in \mathfrak{O}, p \in O \subseteq E\text{ where }O\subseteq E^\circ 
+\end{equation}
+Then we have $p \in E^\circ $. Because $p$ is arbitrarily picked from $\set{p:E \in \mathcal{N}(p)}$, we now have $\set{p:E \in\mathcal{N}(p)}\subseteq E^\circ $. Arbitrarily pick $p'$ from $E^\circ$. We deduce
+\begin{equation}
+p' \in E^\circ \subseteq E\implies E\in \mathcal{N}(p')\implies p' \in \set{p: E\in \mathcal{N}(p)}
+\end{equation}
 
-Arbitrarily pick $p'$ from $E^\circ$, we see $p' \in E^\circ \subseteq E$, so we have $p'\in \set{p:E\in \mathcal{N}(p)}$. Then we have $E^\circ \subseteq \set{p:E\in \mathcal{N}(p)}$ 
+Because $p'$ is arbitrarily picked from  $E^\circ $, we have $E^\circ \subseteq \set{p:E\in \mathcal{N}(p)}$ 
 \end{proof}
 \begin{theorem}
 \label{2.6.9}
-\textbf{(Closure Contain Exactly All Limit Points of $E$ and Points of $E$)} Let $S(E)$ be the limit point of $E$. We have
+\textbf{(Closure Contain Exactly All Limit Points of $E$ and Points in $E$)} Let $S(E)$ be the set of limit points of $E$. We have
 \begin{equation}
 \overline{E}= S(E)\cup  E
 \end{equation}
 \end{theorem}
 \begin{proof}
-Let $p$ be in the set on RHS and not in $E$. \As{$p\not\in \overline{E}$}. Then we have $p \in (\overline{E})^c \in \mathfrak{O}$, so we have $\exists u\neq p, u \in (\overline{E})^c \cap E=\varnothing \tCaC$. Let $p \in \overline{E}\setminus E$. \As{$\exists O\in\mathfrak{O},p \in O,O\cap E=\varnothing$}. Then we see $\overline{E}\subset O^c\in \mathfrak{F}$, since $p \in \overline{E}$ and $p \in O\implies p\not\in O^c\tCaC$
+Let $p \in S(E)$. \As{$p\not\in\overline{E}$}. Deduce
+\begin{equation}
+p \in (\overline{E})^c \in \mathfrak{O}\implies \exists u\neq p, u \in (\overline{E})^c \cap E= \varnothing \tCaC
+\end{equation}
+ Let $p \in \overline{E}\setminus E$. \As{$\exists O\in\mathfrak{O},p \in O,O\cap E=\varnothing$}. Deduce
+\begin{equation}
+O \cap E=\varnothing \implies E\subseteq O^c\in\mathfrak{F} \implies p\in \overline{E}\subseteq O^c \implies p \not \in O\tCaC
+\end{equation}
 \end{proof}
 \begin{corollary}
 \label{2.6.10}
+\textbf{(Every Point in Closure And Not in the Set is a Limit Point)}
 \begin{equation}
 \overline{E}\setminus E\subseteq S(E)
 \end{equation}
 \end{corollary}
+\fbox{\begin{minipage}{39em}
+Other than the above basic fact one must know in general topology. The following show case some properties of limit one may wish to know.
+\end{minipage}}
 \begin{lemma}
 \label{2.6.11}
-We have
+\textbf{(Point in Closure if and only if No Neighborhood is Disjoint)} We have
 \begin{equation}
 \overline{E}=\set{p: \forall M\in \mathcal{N}(p), M\cap E\neq \varnothing}
 \end{equation}
 \end{lemma}
 \begin{proof}
-If $p \in E$, then we can see $p \in M\cap E$. If $p \in \overline{E}\setminus E$, then $p\in S(E)$, so $\forall O:p\in O,O\cap E\neq \varnothing$. Then $M\in \mathcal{N}(p)\implies \exists O, p \in O \subseteq M\implies \varnothing \subset O\cap E\subseteq M\cap E$. We have proved $\overline{E}\subseteq \set{p: \forall M\in \mathcal{N}(p), M\cap E\neq \varnothing}$. We now prove the other side. Let $p\in 
-\set{p: \forall M\in \mathcal{N}(p), M\cap E\neq \varnothing}$. Either $p\in E$ or $p\not\in E$. If $p\in E$, then $p \in \overline{E}$. If $p\not\in E$, observe $p \in O\in \mathfrak{O}\implies p \in O \in \mathcal{N}(p)\implies O\cap E\neq \varnothing$. Because $p\not\in E$, we can deduce $p \in S(E)$ 
+We first prove \vi{$\overline{E}\subseteq \set{p:\forall M\in \mathcal{N}(p), M \cap E\neq \varnothing}$}. If $p \in E$, the proof is trivial, so we only consider when $p\in \overline{E}\setminus E$.\\
+
+Deduce
+\begin{equation}
+p\in \overline{E}\setminus E\implies p\in  S(E)\implies \forall O:p\in  O, O\cap E\neq \varnothing 
+\end{equation}
+Then we have
+\begin{equation}
+M \in \mathcal{N}(p) \implies \exists O, p \in O \subseteq M \implies \varnothing\neq  O\cap E \subseteq M \cap E\vdone
+\end{equation}
+We now prove \blue{$\set{p:\forall M\in \mathcal{N}(p),M\cap E\neq \varnothing}\subseteq \overline{E}$}. If $p\in  E$, the proof is trivial, so we only consider when $p\not\in E$.\\
+
+Deduce
+\begin{equation}
+\forall O\in \mathfrak{O}, p\in  O\implies O\in \mathcal{N}(p)\implies O\cap E\neq \varnothing
+\end{equation}
+Because $p\not\in E$, this tell us $O\cap E$ contain a point that isn't $p$, so we have proved  $p\in  S(E)\bdone$ 
+
+
 
 \end{proof}
 \begin{theorem}
 \label{2.6.12}
-\textbf{(Property of Limit Points)} Let $S(E)$ be the set of limit points of $E$, we have  
+\textbf{(Point is Limit Point if and only if In the Closure of Set Excluding The Point)} Let $S(E)$ be the set of limit points of $E$, we have  
 \begin{equation}
 S(E)=\set{p:p \in \overline{E\setminus \set{p}}}
 \end{equation}
 \end{theorem}
 \begin{proof}
-Let $p \in S(E)$. \As{$p\not\in \overline{E\setminus \set{p}}$}. We have $p \in (\overline{E\setminus \set{p}})^c\in \mathfrak{O}$, so we have $\exists u\neq p, u \in (\overline{E\setminus \set{p}})^c \cap E$. Observe $u\in E\implies u=p\text{ or }u \in E\setminus \set{p}\implies u\in E\setminus \set{p}\subseteq \overline{E\setminus \set{p}}\tCaC$. Let $p \in \overline{E\setminus \set{p}}$. We have $\forall M\in \mathcal{N}(p),M\cap E=M\cap (E\setminus \set{p})\neq \varnothing$. Then we have $\forall O: p \in O, O\cap E\neq \varnothing$, so we have $p\in S(E)$
+We first prove  \vi{$S(E)\subseteq \set{p: p\in \overline{E\setminus \set{p}}}$}. \As{$p\in S(E)\setminus \overline{E\setminus \set{p}}$}. Deduce
+\begin{equation}
+p\in (\overline{E\setminus \set{p}})^c \in \mathfrak{O}\implies \exists u\neq p: u\in (\overline{E\setminus \set{p}})^c \cap E
+\end{equation}
+Notice
+\begin{equation}
+u\in (\overline{E\setminus \set{p}})^c \cap E\implies u\in E\implies u\in E\setminus \set{p}\subseteq \overline{E\setminus \set{p}}\tCaC
+\end{equation}
+Now we prove \blue{$\set{p:p \in \overline{E\setminus \set{p}}}\subseteq S(E)$}. Deduce
+\begin{equation}
+p\in \overline{E\setminus \set{p}} \implies \forall M \in \mathcal{N}(p), M\cap (E\setminus \set{p}) \neq \varnothing
+\end{equation}
+Then because every open set is an neighborhood, we have
+\begin{equation}
+\forall O: p \in O, O\cap (E\setminus \set{p})\neq \varnothing
+\end{equation}
+This reads: for each open set containing $p$, there exists a point  $q$ belong to both $O$ and $E$ that isn't  $p$. This shows $p\in  S(E)\bdone$ 
+
 \end{proof}
 \fbox{\begin{minipage}{39em}
-It is quite difficult to describe the last axiom of neighborhood function without using symbol: every neighborhood around a point contain a smaller neighborhood such that the big neighborhood is a neighborhood of every point in the smaller neighborhood.
+    The next two definition will be further exploited in the upcoming sections.
 \end{minipage}}
 \begin{definition}
 \label{2.6.13}
@@ -2718,8 +2869,15 @@ d(\vecta{x},\vecta{y})=\norm{\vecta{x}-\vecta{y}}
 \end{equation}
 \end{theorem}
 \begin{proof}
-"Reflexive", positive definiteness are trivially given by axiom of norm. Observe $d(\vecta{x},\vecta{y})=\norm{\vecta{x}-\vecta{y}}=\norm{(-1)(\vecta{y}-\vecta{x})}=(\abso{-1})\norm{\vecta{y}-\vecta{x}}=d(\vecta{y},\vecta{x})$. Observe $d()$
+"Reflexive", positive definiteness are trivially given by axiom of norm. Observe $d(\vecta{x},\vecta{y})=\norm{\vecta{x}-\vecta{y}}=\norm{(-1)(\vecta{y}-\vecta{x})}=(\abso{-1})\norm{\vecta{y}-\vecta{x}}=d(\vecta{y},\vecta{x})$. Observe $d(\vecta{x},\vecta{z})=\norm{\vecta{x}-\vecta{z}}=\norm{\vecta{x}-\vecta{y}+\vecta{y}-\vecta{z}}\leq \norm{\vecta{x}-\vecta{y}}+\norm{\vecta{y}-\vecta{z}}=d(\vecta{x},\vecta{y})+d(\vecta{y},\vecta{z})$
 \end{proof}
+\fbox{\begin{minipage}{39em}
+In fact, there are other way to induce a metric space from a norm: $d(\vecta{x},\vecta{y})=\norm{\vecta{x}}+\norm{\vecta{y}}$. The two norm in definition don't even have to be the same. Although this do show that the class of metric space, the one being study the most is of course what we induce in \myref{Theorem}{2.7.2}.\\
+
+Notice that any subset of a metric space equipped with the original metric is also trivially a metric space.\\
+
+From now, if we mention a metric space without specification, we mean a norm-induced vector metric space.
+\end{minipage}}
 \begin{definition}
 \label{2.7.3}
 \textbf{(Definition of Open Ball)} Let $(X,d)$ be a metric space, we say the set
@@ -2732,38 +2890,577 @@ is the open ball of radius $r$ around  $x$
 \label{2.7.4}
 \textbf{(Basic Property of Open Ball)} If $r\leq h$, then  $B_r(x)\subseteq B_h(x)$.
 \end{theorem}
+\fbox{\begin{minipage}{39em}
+The above define what would be called an open ball. Give clear notice that although we use the word "open" ball, we have not proved the notion defined is open. In fact, we have not even defined what would be open.\\
+
+Notice in $\R^1$, the open ball  $B_r(x)$ is just the interval $(x-r,x+r)$, and the interval $(a,b)$ is the open ball $B_{\frac{b-a}{2}}(\frac{a+b}{2})$. Also notice $B_0(x)\neq (x,x)=\varnothing$.\\
+
+The following first define interior points, then define open set from definition of interior points.
+\end{minipage}}
+\begin{definition}
+\label{2.7.5}
+\textbf{(Definition of Interior Points and Open)} A point $p$ is an interior point of $E$ if 
+\begin{equation}
+\exists r\inr^+, B_r(x)\subseteq E
+\end{equation}
+The set  of interior points of  $E$ is called interior $E^{\circ }$ of $E$. Also, we say $E$ is open if 
+\begin{equation}
+E^\circ =E
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{2.7.6}
+\textbf{(Basic Property of Interior)} For all set $E$, we have  $E^\circ \subseteq E$
+\end{theorem}
+\fbox{\begin{minipage}{39em}
+Now, we prove an "open" ball is indeed open. The proof of such should of course be completely rigorous, but to come up with a proof rely more than rigor. Geometric intuition should help if possible, and such intuition need not be specific.\\
+
+Moreover, \myref{Theorem}{2.7.8} will prove that our definition of open do satisfy the axioms of open sets, which is in the scope of general topology. 
+\end{minipage}}
+\begin{theorem}
+\label{2.7.7}
+\textbf{(Open Ball is Open)} Open ball is open.
+\end{theorem}
 \begin{proof}
-$d(x,y)<r\implies d(x,y)<r\leq h$
+Consider  $B_r(x)$. Let $y\in B_r(x)$. Let $q=d(x,y)$. Arbitrarily pick $z\in B_{r-q}(y)$, we have
+\begin{equation}
+d(x,z)\leq d(x,y)+d(y,z)\leq q+r-q=r
+\end{equation}
+So we know $z \in B_r(y)$. Because $z$ is arbitrarily picked, we know $B_{r-q}(y)\subseteq B_r(x)$  
 \end{proof}
 \begin{theorem}
-\label{2.7.5}
-\textbf{(Every Metric Space Give Rise to a Topology)}
-For all metric space $X$, we can define a topology by defining neighborhoods function
+\label{2.7.8}
+\textbf{(Verification of Compatibility of Definitions of Open)} 
+Let $\mathfrak{O}$ be the family of open set, by our definition of open in metric space $X$, we have
  \begin{equation}
-\mathcal{N}(x)=\set{N\in \power{X}:\exists r\inr^+, B_r(x)\subseteq N}
+\varnothing , X \in \mathfrak{O}
+\end{equation}
+\begin{equation}
+A, B \in \mathfrak{O}\implies A\cap B\in \mathfrak{O}
+\end{equation}
+\begin{equation}
+\mathfrak{A}\subseteq \mathfrak{O}\implies \bigcup \mathfrak{A}\in\mathfrak{O}
 \end{equation}
 \end{theorem}
 \begin{proof}
-  Because $\forall r,B_r(x)\subseteq X$, so $X\in \mathcal{N}(x)$, implying $\mathcal{N}(x)$ is nonempty. Observe $\forall N \in \mathcal{N}(x), x \in B_r(x) \subseteq N$, since $d(x,x)=0<r$. Superset part is trivial. Let $N,M \in\mathcal{N}(x)$ and let $B_{r_1}(x)\subseteq N\text{ and }B_{r_2}(x)\subseteq M$, we see $B_{\min \set{r_1,r_2}}\in N\cap M$.\\ 
+Notice $\varnothing^\circ =\varnothing$. Observe
+\begin{equation}
+\forall x\in X, \forall r\inr^+, B_r(x)\subseteq X \implies X^\circ = X 
+\end{equation}
+Let $A,B\in \mathfrak{O}$. Arbitrarily pick $y \in A\cap B$. Because $y \in A\text{ and }y\in B$, we know 
+\begin{equation}
+\exists r_a\inr^+, B_{r_a}(y)\subseteq A\text{ and }
+\exists r_b\inr^+, B_{r_b}(y)\subseteq B
+\end{equation}
+Then, we have
+\begin{equation}
+B_{\min \set{r_a,r_b}}(y)\subseteq A\cap B
+\end{equation}
+Because $y$ is arbitrarily picked from  $A\cap B$, we see $A\cap B= (A\cap B)^\circ $.\\
 
+Let $\mathfrak{A}\subseteq \mathfrak{O}$. Arbitrarily pick $y\in \bigcup \mathfrak{A}$. Let $y \in A \in \bigcup \mathfrak{A}$, so we have
+\begin{equation}
+\exists r_a\inr^+, B_{r_a}(y)\subseteq A\subseteq \bigcup \mathfrak{A}
+\end{equation}
+Because $y$ is arbitrarily picked from $\bigcup \mathfrak{A}$, we see $\bigcup \mathfrak{A}=(\bigcup \mathfrak{A})$. 
+\end{proof}
+\fbox{\begin{minipage}{39em}
+In learning of mathematics, knowledge of examples is always important. Now, we showcase some open set in metric topology.
+\end{minipage}}
+\begin{theorem}
+\label{2.7.9}
+\textbf{(Examples of Open Sets)} The followings are all open sets
+\begin{gather}
+   (a,b)\text{ in }\R\\
+   (-\infty , a)\text{ in }\R\\
+   \set{0}\text{ where $\set{0}$ is a trivial metric space}\\
+   \set{(x,y)\inr^2: x^2+y^2\neq 1}\text{ ($\R^2$ minus a sphere) }\\
+   (a,b)\times (c,d)\text{ in }\R^2\\
+   \set{(x,y)\inr^2 : xy\neq 0}\text{ (*any set with finite missing point would do ) }\\
+   \R^2 \text{ in } \R^2
+\end{gather}
+\end{theorem}
+\begin{proof}
+$(a,b)$ is open ball $B_{\frac{b-a}{2}}$. We have 
+\begin{equation}
+x<a \implies B_{\frac{a-x}{2}}(x)\subseteq (-\infty, a)
+\end{equation}
+The trivial $\set{0}$ follows from axiom. Observe
+\begin{equation}
+\set{(x,y)\inr^2: x^2+y^2\neq 1}=\set{(x,y)\inr^2:x^2+y^2<1\text{ or }x^2+y^2>1}
+\end{equation}
+Verify for $B_{\abso{\abso{(x,y)}-1}}(x,y)$.\\
 
-For each $N\in\mathcal{N}(x)$, we let $B_r(x)$ be an open ball contained by $N$. We now prove \vi{$B_{\frac{r}{2}}(x)$ is an neighborhood of $x$ such that for all $z \in B_{\frac{r}{2}}(x)$ we have $N\in \mathcal{N}(z)$}. Observe
+For the rectangle, observe 
 \begin{equation}
-B_{\frac{r}{2}}(x)\subseteq B_{\frac{r}{2}}(x)\implies B_{\frac{r}{2}}(x)\in \mathcal{N}(x)
+a<x<b\text{ and }c<y<d\implies B_{\min \set{x-a,b-x,y-c,d-y}}(x,y)\subseteq (a,b)\times (c,d)
 \end{equation}
-and observe 
-\begin{equation}
-z\in B_{\frac{r}{2}}(x)\implies d(x,z)<\frac{r}{2}
+For $\set{(x,y)\inr^2:xy\neq 0}$, verify for $B_{\abso{(x,y)}}(x,y)$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Now we define limit points, then we define closed with the definition of limit points. Then we verify what we defined as closed are indeed closed, in scope of general topology. 
+\end{minipage}}
+\begin{definition}
+\label{2.7.10}
+\textbf{(Definition of Limit Points and Closed and Perfect)} A point $p$ is a limit point of $E$ if 
+ \begin{equation}
+\forall r\inr^+, \exists q\neq p, q\in B_r(p) \cap E
 \end{equation}
-and observe  
+The set of limit points of  $E$ is denoted $S(E)$. We say $E$ is closed if 
 \begin{equation}
-B_{\frac{r}{2}}(z)\subseteq N\implies N \in \mathcal{N}(z)
+S(E)\subseteq E
 \end{equation}
-and observe 
+and we say $E$ is perfect if 
 \begin{equation}
-y\in B_{\frac{r}{2}}(z)\implies d(y,z)\leq \frac{r}{2}\implies d(x,y)<d(x,z)+d(z,y)<r\implies y\in B_r(x)\subseteq N\vdone
+S(E)=E
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{2.7.11}
+\textbf{(Verification of Compatibility of Definition of Open and Closed)} 
+Let $\mathfrak{O},\mathfrak{F}$ respectively be the family of open sets and family of closed set under our metric definition. We have
+\begin{equation}
+E\in \mathfrak{O}\iff E^c\in\mathfrak{F}
+\end{equation}
+\end{theorem}
+\begin{proof}
+$(\longrightarrow)$\\
+
+\As{$E^c$ is not closed}. We have $S(E^c)\setminus E^c\neq \varnothing$. Let $p\in S(E^c)\setminus E^c$. We have
+\begin{equation}
+p\in  S(E^c)\implies \forall r\inr^+, \exists q\neq p, q\in B_{r}(p)\cap E^c
+\end{equation}
+ Notice $p\not\in E^c\implies p\in  E$. Because $E$ is open, we also know
+\begin{equation}
+\exists r_p\inr^+, B_{r_p}(p)\subseteq E
+\end{equation}
+Notice
+\begin{equation}
+B_{r_p}(p)\subseteq E\implies B_{r_p}(p)\cap E^c=\varnothing\tCaC
+\end{equation}
+$(\longleftarrow)$\\
+
+\As{$E\not\in O$}. By definition of open, we have
+\begin{equation}
+\exists p \in E, \forall r\inr^+, B_r(p)\setminus E\neq \varnothing
+\end{equation}
+Notice $B_r(p)\setminus E=B_r(p)\cap E^c\text{ and }p\not\in E^c$, so we in fact have
+\begin{equation}
+\forall r\inr^+,\exists q\neq p, q \in B_r(p)\cap E^c 
+\end{equation}
+Then we have $p\in  S(E^c)\setminus E^c\tCaC$
+\end{proof}
+\begin{corollary}
+\label{2.7.12}
+\textbf{(Axioms for Closed Sets)} Let $\mathfrak{F}$ be the family of closed sets under our metric definition. We have
+\begin{gather}
+X,\varnothing \in \mathfrak{F}\\
+A,B\in\mathfrak{F}\implies A\cup  B\in\mathfrak{F}\\
+\mathfrak{B}\subseteq \mathfrak{F}\implies \bigcap \mathfrak{B}\in \mathfrak{F}
+\end{gather}
+\end{corollary}
+\begin{theorem}
+\label{2.7.13}
+\textbf{(Property of Limit Points)} Let $p\in  E^c\text{ and }p\not\in S(E)$. We have 
+\begin{equation}
+\exists r\inr^+, B_r(p)\cap E=\varnothing
+\end{equation}
+\end{theorem}
+\begin{proof}
+\As{$\forall r\inr^+,B_r(p)\cap E\neq \varnothing$}. Let $q\in B_r(p)\cap E$. Because $p\not\in E\implies p\not\in B_r(p)\cap E$, we know $q\neq p$. Then this can be written $q\neq p \text{ and }a \in B_r(p)\cap E$, implying $p \in S(E)\tCaC$
+\end{proof}
+\begin{theorem}
+\label{2.7.14}
+\textbf{(Property of Limit Points)} Let $p \in S(E)$. We have
+\begin{equation}
+\forall O\in\mathfrak{O}:p\in  O, \exists q\neq p, q \in O \cap E
+\end{equation}
+\end{theorem}
+\begin{proof}
+By $p\in  S(E)$, we mean
+\begin{equation}
+\forall r\inr^+,\exists q\neq p,q\in B_r(p)\cap E
+\end{equation}
+Notice
+ \begin{equation}
+p\in O\implies \exists r\inr^+, B_r(p)\subseteq O
+\end{equation}
+Combining above, we have
+\begin{equation}
+\exists q\neq p,q\in B_r(p)\cap E\subseteq O\cap E
 \end{equation}
 \end{proof}
+\fbox{\begin{minipage}{39em}
+Again, we now give some examples of closed set. One can see that the proof for some sets are closed if following straight from the limit point definition is extremely long: One have to first find the set of limit points, by checking every points whether for all real number a property stand, and then check if the set of limit points is a subset of $E$. The optimal way is proving the complement is open, since proving something is open is more
+\end{minipage}}
+\begin{theorem}
+\label{2.7.15}
+\textbf{(Example of Closed Sets)} The following are all closed sets
+\begin{gather}
+[a,b]\\
+[0,1]\cap \Q \text{ is closed in $\Q$ but not in  $\R$ } \\
+[1,\infty) \\
+\text{ finite set in $\R^n$ } \\
+\Z  \text{ in $\R$ }\\
+\R^2 \text{ in  }\R^2
+\end{gather}
+\end{theorem}
+\begin{proof}
+  Observe
+\begin{gather}
+[a,b]^c=(-\infty, a)\cup (b,\infty)\in \mathfrak{O}\\
+([0,1]\cap \Q)^c \text{ in $\Q$ is }\set{x\inq: x<0\text{ or }1<x}
+\end{gather}
+Verify for $B_{\min \set{\abso{x-1},\abso{x}}}(x)$ to check $([0,1]\cap \Q)^c$ is open in $\Q$.\\
+
+Notice by \myref{Theorem}{1.3.5}, we can prove every point in $\R$ is an limit point of $[0,1]\cap \Q$ by selecting a rational number of smaller error than any desired real number.\\
+
+Observe
+\begin{equation}
+[1,\infty)^{c}=(-\infty,1)\in \mathfrak{O}
+\end{equation}
+Let $X$ be a finite set in $\R^n$, and let $y\in X^c$. We can verify $B_{\min \set{d(y,x):x\in X}}\subseteq X^c$ to show $X^c$ is open.\\
+
+Let $x\in \R\setminus \Z$, and let $a$ be the greatest integer smaller than  $x$. Verify for  $B_{x-a,a+1-x}(x)\subseteq \R\setminus \Z$.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Notice that $\R^2$ is both open and closed in $\R^2$, we call this kind of set clopen.\\
+
+    Now, we define closure. Give close attention to the difference of definitions of limit points in this and last section. They look slightly different, but they are equivalent, which can be proved by simple logic.\\
+
+
+Notice that interior corresponds to open set and closure corresponds to closed sets.\\
+
+Although in last section, we have proved that the smallest closed set is the closure in our definition, and the largest open subset is the interior in our definition. This fact need some logic to glue the two different definition of interior (limit) points together, but it isn't difficult to do such.\\
+
+In this section, we prove the same fact again, but in the scope of metric topology.
+\end{minipage}}
+\begin{definition}
+\label{2.7.16}
+\textbf{(Definition of Closure)} We define the closure $\overline{E}$ of $E$ to be
+\begin{equation}
+\overline{E}=S(E)\cup E
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{2.7.17}
+\textbf{(Property of Closure and Interior)} Let $E\subseteq F$. We have
+\begin{equation}
+E^\circ \subseteq F^\circ\text{ and }S(E)\subseteq S(F)\text{ and }\overline{E}\subseteq \overline{F}
+\end{equation}
+\end{theorem}
+\begin{proof}
+The first proof is trivial. Just use the same open ball to argue $p$ is an interior point of $E$ implies that $p$ is an interior point of $F$.\\
+
+Observe 
+\begin{equation}
+\forall r\inr^+,\exists q\neq p, q\in B_{r}(p)\cap E\subseteq B_{r}(p)\cap F
+\end{equation}
+This is the second proof. Observe
+\begin{equation}
+\overline{E}\subseteq E\cup S(E)\subseteq F\cup S(F)\subseteq \overline{F}
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{2.7.18}
+\textbf{(Property (definition) of Closure and Interior)} 
+\begin{gather}
+\text{ $\overline{E}$ is the smallest closed set containing $E$ }\\
+\text{ $E^\circ $ is the largest open subset of $E$ }
+\end{gather}
+\end{theorem}
+\begin{proof}
+  We first prove \vi{$\overline{E}$ is closed}.\\
+
+
+Let $p\in S(\overline{E})$. We wish to prove $p\in \overline{E}$. If $p\in  E$, the proof is trivial, so we only have to consider $p\not\in E$. Arbitrarily pick $r$ from $\R^+$. By $p\in  S(\overline{E})$, we have
+\begin{equation}
+\exists q\neq p, q\in B_r(p)\cap \overline{E}=(B_r(p)\cap E)\cup (B_r(p)\cap S(E))
+\end{equation}
+If $q \in B_r(p)\cap E$, our proof is finished, so we only have to consider when $q\in B_r(p)\cap S(E)$. By $q\in S(E)$, we have
+\begin{equation}
+\forall r'\inr^+, \exists q'\neq q, q'\in B_{r'}(q)\cap E
+\end{equation}
+Then we can pick $r'$ smaller than  $r-d(p,q)$, so we see 
+ \begin{equation}
+q'\in B_{r'}(q)\subseteq B_r(p)
+\end{equation}
+since
+\begin{equation}
+x\in B_{r'}(q)\implies d(x,q)<r'<r-d(p,q)\implies d(x,q)+d(p,q)<r\implies d(x,p)<r
+\end{equation}
+Notice $q'\in E$ implies $q'\neq p$. This finish the proof, since $q'$ is a point not $p$ in  $B_r(p)\cap E$, where $r$ is arbitrarily picked from $\R^+\vdone$\\
+
+Let closed $F$ contain $E$. We have 
+\begin{equation}
+S(E)\subseteq S(F)\subseteq F
+\end{equation}
+Now, we prove  \blue{$E^\circ $ is an open subset of $E$}\\
+
+Let $p\in  E^\circ $. We wish to show 
+\begin{equation}
+\exists r\inr^+, B_r(p)\subseteq E^\circ 
+\end{equation}
+In other word, we wish to find $r$ such that
+\begin{equation}
+d(q,p)<r\longrightarrow q\in E^\circ 
+\end{equation}
+where $q\in E^\circ $ can be written differently.  \begin{equation}
+d(q,p)<r\longrightarrow \exists r_1\inr^+, B_{r_1}(q)\subseteq E
+\end{equation}
+By definition, we know there exists $r_0$ such that
+ \begin{equation}
+B_{r_0}(p)\subseteq E
+\end{equation}
+Pick $r,r_1$ such that  $r+r_1<r_0$. We have
+ \begin{equation}
+x\in B_{r_1}(q)\implies d(x,q)<r_1\text{ and }d(p,q)<r\implies d(x,p)<r_1+r<r_0\implies x\in B_{r_0}(p)
+\end{equation}
+The above shows $B_{r_1}(q)\subseteq B_{r_0}(p)\subseteq E\bdone$\\
+
+Let $F$ be an open subset of  $E$, we see
+ \begin{equation}
+E^\circ \subseteq F^\circ \subseteq F
+\end{equation}
+\end{proof}
+\begin{corollary}
+\label{2.7.19}
+\textbf{(Property of Closure)}
+\begin{equation}
+\text{ $E$ is closed $\iff \overline{E}=E$ }
+\end{equation}
+\begin{equation}
+\text{ $E$ is open $\iff E^\circ =E$ }
+\end{equation}
+\end{corollary}
+\fbox{\begin{minipage}{39em}
+Lastly, we show some properties of open and closed concerning a set being finite. Notice that the theorem applies to ALL metric space, even the trivial finite metric space.
+\end{minipage}}
+\begin{theorem}
+\label{2.7.20}
+\textbf{(Open Ball of An Limit Point Contain Infinite Point of $E$)} We have
+ \begin{equation}
+p\in S(E)\implies \forall r\inr^+, \abso{B_r(p)\cap E}\geq \abso{\N}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $p \in S(E)$. \As{$\exists r\inr^+, B_r(p)\cap E=\set{q_1,\dots, q_n} $}. Select $k$ such that
+\begin{equation}
+d(p,q_k)= \min_{1\leq m\leq n}d(p,q_m)
+\end{equation}
+Notice we have $\forall q, d(p,q)<r$. Then we can deduce 
+\begin{equation}
+x \in B_{d(p,q_k)}(p)\cap E\implies x \in B_r(p)\cap E=\set{q_1,\dots, q_n}
+\end{equation}
+However by our choice of $k$, we have
+ \begin{equation}
+x\in B_{d(p,q_k)}(p)\cap E\implies \forall q,d(p,x)<d(p,q)\implies x\not \in B_r(p)\cap E\tCaC
+\end{equation}
+\end{proof}
+\begin{corollary}
+\label{2.7.21}
+\textbf{(Finite Points Set In Metric Topology has no Limit Points)} $\abso{E}<\abso{\N}\implies S(E)=\varnothing$
+\end{corollary}
+\begin{corollary}
+\label{2.7.22}
+\textbf{(Finite Points Set In Metric Topology is Always Clopen)} Any finite points set in a metric topological space is clopen. 
+\end{corollary}
+\begin{proof}
+For closed, there is a proof other than just using the above corollary. One can check out \myref{Theorem}{2.7.9}. For open, just verify for $B_{\min \set{d(x,y):y \in O}}(x)$. 
+\end{proof}
+\section{Compact}
+\fbox{\begin{minipage}{39em}
+In this section, we will introduce two ideas used in metric space, but not in general topology, although these two notions can be generalized to general topology.\\
+
+We first introduce bounded.
+\end{minipage}}
+\begin{definition}
+\label{2.8.1}
+\textbf{(Definition of Bounded)} We say a point set $E$ in metric topology is bounded if there exists $r\inr^+$ such that
+\begin{equation}
+\forall p,q\in E, d(p,q)<r
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{2.8.2}
+\textbf{(Definition of Open Cover)} We say a collection $\set{G_\alpha  }$ of an open sets is an open cover of $E$ if 
+\begin{equation}
+E\subseteq \bigcup \set{G_\alpha }
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{2.8.3}
+\textbf{(Definition of Compact)} We say a point set $E$ in metric topology is compact if every open cover $E$ contain a finite open subcover.
+\end{definition}
+\begin{theorem}
+\label{2.8.4}
+\textbf{(Compact Sets Are Closed)} Every compact set $K$ is closed.
+\end{theorem}
+\begin{proof}
+We prove  \vi{$K^c$ is open}. Let $p\in K^c$. Consider the collection
+\begin{equation}
+  \set{B_{\frac{d(q,p)}{2}}(q):q \in K}
+\end{equation}
+This collection is trivially an open cover of $K$. We then can select a finite sub-cover
+\begin{equation}
+W:=\set{B_{\frac{d(q_i,p)}{2}}(q_i)}
+\end{equation}
+Consider the ball 
+\begin{equation}
+B_{\min \set{\frac{d(q_i,p)}{2}}}(p)
+\end{equation}
+Notice that we can deduce
+\begin{equation}
+d(q_j,p)<d(q_j,k)+d(k,p)\implies d(k,p)>d(q_j,p)-d(q_j,k)
+\end{equation}
+Then observe
+\begin{gather}
+k\in K\subseteq W\implies \exists q_j, k\in B_{\frac{d(q_j,p)}{2}}(q_j)\implies d(q_j,k)<\frac{d(q_j,p)}{2}\\
+\implies d(k,p)>d(q_j,p)-\frac{d(q_j,p)}{2}=\frac{d(q_j,p)}{2}\implies k\not\in B_{\min \set{\frac{d(q_i,p)}{2}}}(p) \vdone
+\end{gather}
+\end{proof}
+\begin{theorem}
+\label{2.8.5}
+\textbf{(Closed Subsets of Compact Sets Are Compact)} Every closed subset of a compact set is compact.
+\end{theorem}
+\begin{proof}
+Let $K$ be compact and $F\subseteq K$ be closed. Arbitrarily pick an open cover $\set{G_\alpha }$ of $F$. We wish to prove there is a finite sub-cover of $F$. Notice that $F^c$ is open, so there are two possible cases:  $\begin{cases}
+  \vi{F^c\in \set{G_\alpha }}\\
+  \blue{F^c\not\in \set{G_\alpha }}
+\end{cases}$\\
+
+In the case  \vi{$F^c\in \set{G_\alpha }$}, Notice  $F\subseteq \bigcup \set{G_{\alpha }}$ by definition of open cover and notice $F^c\subseteq \bigcup \set{G_\alpha }$ by premise, so we can deduce
+\begin{equation}
+(F\cup F^c)\cap K=(F\cap K)\cup (F^c \cap K)=F \cup (F^c \cap K)\subseteq \bigcup \set{G_\alpha }
+\end{equation}
+This shows $\bigcup \set{G_\alpha }$ is a open cover of $K$. Then because  $K$ is compact, there exists a finite sub-cover $A$ of $K$, and we see
+\begin{equation}
+F\subseteq K \subseteq \bigcup A\vdone
+\end{equation}
+In the case $\blue{F^c\not\in \set{G_\alpha }}$, by the argument above, we know $\set{G_\alpha } \cup \set{F^c}$ is an open cover of $K$, and we know there is a finite sub-cover $N\subseteq\set{G_\alpha } \cup \set{F^c}$. In term, we can write
+\begin{equation}
+F\subseteq K \subseteq \bigcup N
+\end{equation}
+If $N$ doesn't contain $F^c$, we know $N\subseteq \set{G_\alpha }$. Then we see $N\subseteq \set{G_\alpha }$ is a finite sub-cover of $K$, partially finishing our proof.\\
+
+If $F^c \in N$, by simple logic, we see
+\begin{equation}
+F\subseteq (\bigcup N)\setminus F^c=\bigcup (N\setminus \set{F^c}) 
+\end{equation}
+So $N\setminus \set{F^c}$ is a finite sub-cover of $F\bdone$
+\end{proof}
+\begin{corollary}
+\label{2.8.6}
+Let $F$ be closed and  $K$ be compact. We have $F\cap K$ is compact.
+\end{corollary}
+\fbox{\begin{minipage}{39em}
+Above give the basic property that compact must be closed and a method to generate compact set by finding a closed subset of compact set.\\
+
+Now, we give an example that is the "prototype" of compact set. Give very close attention that the definition of $k$-cell is only in Euclidean normed induced metric space. This is because to prove it is compact require using norm.  
+\end{minipage}}
+\begin{definition}
+\label{2.8.7}
+\textbf{(Definition of k-cell)} In $(\R^k,d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$,  we say $I$ is a $k$-cell, when there exists  $k$ intervals  $\set{[a_1,b_1],\dots , [a_k,b_k]}$ such that
+ \begin{equation}
+   I=\set{(x_1,\dots , x_k)\in \R^k: \forall j, a_j\leq x_j\leq b_j }
+\end{equation}
+\end{definition}
+\begin{lemma}
+\label{2.8.8}
+Let $\set{I_i}$ be a sequence of $k$-cells such that
+ \begin{equation}
+\forall i, I_{i+1}\subseteq I_i
+\end{equation}
+We have
+\begin{equation}
+\bigcap \set{I_i}\neq \varnothing
+\end{equation}
+\end{lemma}
+\begin{proof}
+Let $I_i$ be 
+ \begin{equation}
+I_i=\set{(x_1,\dots , x_k)\in \R^n: \forall j, a_{i,j}\leq x_j\leq b_{i,j}}
+\end{equation}
+Observe
+\begin{equation}
+  (x_1,\dots , x_k)\in \bigcap \set{I_i}\iff \forall i \inn,\forall 1\leq j\leq k, a_{i,j}\leq x_j\leq b_{i,j}
+\end{equation}
+Notice that for all $j:1\leq j\leq k$, we have
+\begin{equation}
+\forall i<l\inn, a_i\leq a_l\leq b_l\text{ and }\forall i>l\inn, a_i\leq b_i\leq b_l
+\end{equation}
+So we know for all $j:1\leq j\leq k$, the set $\set{b_{i,j}:i\inn}$ is a set of upper bounds of   $\set{a_{i,j}:i\inn}$. Then we have
+\begin{equation}
+\sup \set{a_{i,j}:i\inn}\leq \inf \set{b_{i,j}:i\inn}
+\end{equation}
+Then for all $j$, we can pick $x_j$ such that
+ \begin{equation}
+\sup \set{a_{i,j}:i\inn}\leq x_j\leq \inf \set{b_{i,j}:i\inn}
+\end{equation}
+Then we see 
+\begin{equation}
+  (x_1,\dots ,x_k)\bigcap \set{I_i}
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{2.8.9}
+\textbf{(k-Cell is Compact)} Every k-cell $I$ is compact.
+\end{theorem}
+\begin{proof}
+Let $I$ be $[a_1,b_1]\times \cdots \times [a_k,b_k]$. Let
+\begin{equation}
+\delta=(\sum_{j=1}^k (b_j-a_j)^2)^{\frac{1}{2}}=\abso{\vecta{b}-\vecta{a}}
+\end{equation}
+So, we have
+\begin{equation}
+\vecta{x},\vecta{y}\in I\implies \abso{\vecta{x}-\vecta{y}}<\delta
+\end{equation}
+\As{$\set{G_\alpha }$ is an open cover of $I$ containing no finite sub-cover}. Let
+\begin{equation}
+\forall j, c_j=\frac{a_j+b_j}{2}
+\end{equation}
+The intervals $[a_j,c_j],[c_j,b_j]$ then determine $2^k$ k-cell $Q_i$ whose union is $I$. Notice that if every $Q_i$ is covered by some open finite sub-cover of $\set{G_\alpha }$, then the union of $2^k$ finite sub-cover that cover each $Q_i$ is a finite sub-cover of whole  $I$, so we know there exists  $Q_i$ such that is covered by no finite sub-cover  of $\set{G_\alpha }$. Denote that $Q_i$ by $I_1$.\\
+
+By the construction of $I_1$, we know for a fact $\set{G_\alpha }$ is an open cover of $I_1$ (it cover $I$) containing no finite sub-cover (by construction). Then we can construct $I_2$ from  $I_1$ the same way we construct $I_1$ from  $I$, and so on.\\
+ 
+Let $I=I_0$. We have 
+\begin{equation}
+\forall i\inn, I_i\subseteq I_{i-1}\text{ and $I_i$ is not covered by any finite subset of  $\set{G_\alpha }$ }
+\end{equation}
+We now prove \vi{$\vecta{x},\vecta{y}\in I_n\implies \abso{\vecta{x}-\vecta{y}}\leq 2^{-n}\delta$}\\
+
+Notice
+\begin{gather}
+\vecta{x},\vecta{y}\in I_n\implies \forall j, \abso{x_j-y_j}\leq 2^{-n}(b_j-a_j)\\
+\implies \sum_{j=1}^k (x_j-y_j)^2 \leq \sum_{j=1}^k (2^{-n}(b_j-a_j))^2=2^{-2n}\sum_{j=1}^k (b_j-a_j)^2\\
+\implies \abso{\vecta{x}-\vecta{y}}=(\sum_{j=1}^k (x_j-y_j)^2)^{\frac{1}{2}}\leq (2^{-2n}\sum _{j=1}^k (b_j-a_j)^2)^{\frac{1}{2}}=2^{-n}(\sum _{j=1}^k(b_j-a_j)^2)^{\frac{1}{2}}=2^{-n}\delta
+\end{gather}
+$\vdone$\\
+
+By \myref{Lemma}{2.8.8}, we can pick $\vecta{x}\in \bigcap \set{I_i}$. Because $\set{G_\alpha }$ is an open cover of $I$, we know there exists $G_\beta \in \set{G_\alpha }$ such that $\vecta{x}\in G_\beta $. Because $G_\beta $ is open, we know there exists $r\inr^+$ such that
+\begin{equation}
+B_r(\vecta{x})\subseteq G_\beta 
+\end{equation}
+Pick $n$ greater than $\log_2 \frac{\delta}{r}$, so we have
+ \begin{equation}
+2^n>\frac{\delta}{r}\text{ and }r>2^{-n}\delta
+\end{equation}
+Recall $\vecta{x}\in I_n$, and observe
+\begin{equation}
+\vecta{y}\in I_n\implies d(\vecta{x},\vecta{y})\leq 2^{-n}\delta<r
+\end{equation}
+By our observation, we have
+\begin{equation}
+I_n \subseteq B_r(\secta{x})\subseteq G_{\beta }
+\end{equation}
+\CaC to $I_n$ is not covered by any finite subset of $\set{G_\alpha }$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Next, we give an important theorem, where one part of the theorem hold true for all metric space while the other hold true only for Eculidean norm induced metric space.
+\end{minipage}}
+\begin{theorem}
+\textbf{(Heine-Borel Theorem, part 1)} Given \textir{any} metric space
+\end{theorem}
 \section{Exercises}
 \begin{question}{}{}
 Let $(X,d)$ be a metric space, and let $x_1,x_2,\dots,x_n \in X$. Prove
@@ -2922,13 +3619,14 @@ So
 \end{definition}
 \section{Definition of Differential-able on Euclidean Space} 
 \begin{definition}
+\label{4.2.1}
 \textbf{(Little-o Notation)} If we write $o(g(x))=f(x)$, we mean
 \begin{equation}
 \lim_{g(x)\to 0}\frac{f(x)}{g(x)}=0
 \end{equation}
 \end{definition}
 \begin{definition}
-\label{4.2.1}
+\label{4.2.2}
 \textbf{(Differentiable on $\R$)} We say a real-valued function $f(x)$ on $\R$ is differentiable on $a$ if 
 \begin{equation}
 \exists L\in \R, \lim_{x \to a}\frac{f(x)-f(a)}{x-a}=L
@@ -2936,7 +3634,7 @@ So
 Notice $L$ should be viewed as slope (not a number on real number line), or more abstract, a linear transformation from $\R^1$ to  $\R^1$. 
 \end{definition}
 \begin{definition}
-\label{4.2.2}
+\label{4.2.3}
 \textbf{(Differentiable on $2$-Euclidean Space)} We say a real-valued function $f(x,y)$ on $2$-Euclidean space is differentiable at $(a,b)$ if there exists a $1\times 2$ real matrix $\vecta{H}_{(a,b)}$ such that 
 \begin{equation}
  \lim_{(x,y)\to (a,b)}\frac{f(x,y)-f(a,b)-(\vecta{H}_{(a,b)}(x,y)-\vecta{H}_{(a,b)}(a,b))}{\norm{(x-a,y-b)}_2}=0
@@ -2953,7 +3651,7 @@ Drawing a function from \( \mathbb{R} \rightarrow \mathbb{R} \) is achieved in \
 This realization underscores the fact that the concept of "tangency" is fundamentally grounded in linear transformations. As we ascend into higher dimensions, our ability to visually represent tangents becomes constrained by our dimensional space. For instance, while we can theoretically define tangents in \( \mathbb{R}^4 \), their visual representation remains elusive, unlike the more tangible planes in \( \mathbb{R}^3 \).
 \end{minipage}}
 \begin{definition}
-\label{4.2.3}
+\label{4.2.4}
 \textbf{(A General Definition of Differentiable of Function from Normed $\R^n$ to  $\R^m$)} Let $\vecta{f}:\R^n\rightarrow \R^m$. We say $\vecta{f}$ is differentiable at $\vecta{a}$ if there exists a linear transformation $\vecta{H}:\R^n\rightarrow \R^m$ such that 
 \begin{equation}
 \lim_{\vecta{x}\to \vecta{a}}\frac{\norm{\vecta{f}(\vecta{x})-\vecta{f}(\vecta{a})-\vecta{H}(\vecta{x}-\vecta{a})}_{\R^m}}{\norm{\vecta{x}-\vecta{a}}_{\R^n}}=0
@@ -2972,7 +3670,7 @@ Notice that from now, if we use the norm notation $\norm{\cdot}$ without specifi
 \end{minipage}}\\
 
 \begin{definition}
-\label{4.2.4}
+\label{4.2.5}
 \textbf{(Jacobian Matrix)} For function $\vecta{f}$ from $\R^n$ to $\R^m$. The Jacobian $\vecta{J}_{\vecta{f}}(\vecta{a})$ of $\vecta{f}$ at $\vecta{a}$ is the matrix
  \begin{equation}
    \vecta{J}_{\vecta{f}}(\vecta{a})_{i,j}=\frac{\partial f_i}{\partial x_j}(\vecta{a})
@@ -2983,13 +3681,14 @@ If we write $\vecta{J}$, we mean a matrix-valued function
 \end{equation}
 \end{definition}
 \begin{theorem}
+\label{4.2.6}
 \textbf{(If Differentiable, Then Jacobian is a Differential)}
 \end{theorem}
 \begin{proof}
   \red{missed}
 \end{proof}
 \begin{theorem}
-\label{4.2.5}
+\label{4.2.7}
 \textbf{(Example of Differentiable Function)} 
 \begin{equation}
 f(x,y)=x^2+2y\text{ is differentiable every where}
@@ -3023,7 +3722,7 @@ For all $\epsilon $, we then can pick the $\delta$ above so we have
 This prove equation 4.40 approach to 0
 \end{proof}
 \begin{theorem}
-\label{4.2.6}
+\label{4.2.8}
 \textbf{(Example of Differentiable Function)} Let $\vecta{f}:\R^n\rightarrow \R^m$ 
 \begin{equation}
 \text{ If $\vecta{f}$ is linear, then $\vecta{f}$ is differentiable everywhere }
@@ -3036,7 +3735,7 @@ Let $\vecta{H}=\vecta{f}$, then we have
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{4.2.7}
+\label{4.2.9}
 \textbf{(Example of Jacobian Exists, But Non-Differentiable)} 
 \begin{equation}
 f(x,y)=\begin{cases}
@@ -3079,12 +3778,14 @@ MVT: Let $f:U\subseteq \R^n\rightarrow \R^m$. Suppose $f$ is differentaible on $
 \end{equation}
 \end{minipage}}
 \begin{theorem}
+\label{4.2.10}
 \textbf{(Chain Rule)}
 \end{theorem}
 \fbox{\begin{minipage}{39em}
 Given differentiable $\delta:\R \rightarrow \R^n, f:\R^n:\R$. By chain rule, we can observe $F(t):= f\circ \delta (t)$ satisfy $F'=(Df)\circ (D\delta)$, where $Df$ is a $1\times n$ matrix-valued function and $D\delta$ is a $n \times 1$ matrix-valued function.
 \end{minipage}}
 \begin{theorem}
+\label{4.2.11}
 \textbf{(Example of Chain Rule)} Let $f(u,v,w)=u^2v+wv^2$ and $\vecta{g}(x,y)=(xy,\sin x,e^x)$. Let $h=f\circ \vecta{g}$. We have
 \begin{equation}
 \frac{\partial h}{\partial x}=2xy^2\sin x+(x^2y^2+2e^x\sin x) \cos x+ e^x\sin^2 x
@@ -3100,10 +3801,137 @@ We have
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{4.2.12}
 \textbf{(Mean Value Theorem)} Let $\vecta{f}:U\subseteq \R^n\rightarrow \R^m$. Suppose $\vecta{f}$ is differentiable on $U$ and $\vecta{x},\vecta{y}\in U$. For all $i\in \set{1,\dots , n}$, there exists $0\leq c_i\leq 1$ such that 
 \begin{equation}
 f_i(\vecta{y})-f_i(\vecta{x})=(Df_i)(\vecta{x}+c_i(\vecta{y}-\vecta{x}))
 \end{equation}
+\end{theorem}
+\fbox{\begin{minipage}{39em}
+Directional Derivative.
+\end{minipage}}
+\begin{definition}
+\label{4.2.13}
+  \textbf{(Definition of Directional Derivative)} Let $f$ be real valued and defined on a neighborhood of $\vecta{x}_0 \inr^n$ and let $\vecta{v}\inr^n$ with $\norm{\vecta{v}}=1$ Then
+  \begin{equation}
+    (D_vf)(x_0)=\lim_{t\to 0}\frac{f(x_0+tv)}{t}
+  \end{equation}
+\red{I} should verify it also equals to
+\begin{equation}
+  (\frac{d}{dt}f(x_0+tv))(t_0)
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{4.2.14}
+\textbf{(Directional Derivative)} Let $U$ be open and $f:U\rightarrow \R^n$ be differentiable at $x_0$. We have
+ \begin{equation}
+D_vf(x_0)=\vecta{J}_f(x_0)(v)
+\end{equation}
+\end{theorem}
+\begin{proof}
+Outline: in the limit of differentiable equation, let $x=x_0+tv$ and see what happen when  $t \to 0$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Try to write in the form of gradient, and make a line between general theorem and actual computation. 
+\end{minipage}}
+\begin{theorem}
+\label{4.2.15}
+\textbf{(Example)} Let
+\begin{equation}
+f(x,y)=\begin{cases}
+  \frac{x^3}{x^2+y^2}& \text{ if  }(x,y)\neq 0\\
+  0 & \text{ if  }(x,y)=(0,0)
+\end{cases}
+\end{equation}
+We have $f(x,y)$ is non-differentiable at $v$
+\end{theorem}
+\begin{proof}
+Observe
+\begin{align}
+D_vf(0)&=\lim_{t \to 0}\frac{f(tv_1,tv_2)-f(0,0)}{t}\\
+&=\lim_{t\to0}\frac{v_1^3}{v_1^2+v_2^2}=v_1^3\neq Df(0)(v)
+\end{align}
+\end{proof}
+\begin{definition}
+\label{4.2.16}
+\textbf{(Definition of Gradient)} Let $f:U\subseteq \R^n \rightarrow \R$. The gradient of $f$ is defined as
+\begin{equation}
+  \nabla f=(\frac{\partial f}{\partial x_1},\dots ,\frac{\partial f}{\partial x_n})
+\end{equation}
+Notice that we can verify Gradient is Jacobian, and jacobian is always a derivative. 
+\end{definition}
+\begin{theorem}
+\label{4.2.17}
+\textbf{(Gradient)} Vector $\frac{\nabla f(x_0)}{\norm{\nabla f(x_0)}_{\R^n}}$ is normal to? 
+
+\end{theorem}
+\begin{theorem}
+\label{4.2.18}
+\textbf{(Example)} Let $S=\set{(x,y,z):x^2+y^2+z^2=3}$ Find the normal to $S$ at $(1,1,1)$
+\end{theorem}
+\begin{theorem}
+\label{4.2.19}
+\textbf{(TEST Example)} Let $S=\set{(x,y,z):x^2-y^2+xyz=1}$. Find the tangent plane of $S$ at $(1,0,1)$ 
+\end{theorem}
+\fbox{\begin{minipage}{39em}
+Integral.
+\end{minipage}}
+\begin{theorem}
+\label{4.2.20}
+\textbf{(Integral)} Let 
+ \begin{equation}
+\forall x \in S, g_1(x)\leq g_2(x)
+\end{equation}
+Let  
+\begin{equation}
+A=\set{(x,y)\in \R^n \times \R: \forall x \in S, g_1(x)\leq y\leq g_2(x)}
+\end{equation}
+Let $f:A \rightarrow \R$ be continuous, we have
+\begin{equation}
+\int_A f(x,y)d(x,y)=\int_S(\int_{g_1(y)}^{g_2(y)} f(x,y)dy)dx
+\end{equation}
+This enable us to calculate integral by iteration.  
+\end{theorem}
+\begin{theorem}
+\label{4.2.21}
+\textbf{(Example)} Let 
+\begin{equation}
+A=\set{(x,y)\inr^2 : 0\leq x\leq 1, x\leq y\leq 1}
+\end{equation}
+Let 
+\begin{equation}
+f(x,y)=xy
+\end{equation}
+Compute
+\begin{equation}
+\int_A f(x,y)dA=\int^1_0 \int^1_x xy dydx
+\end{equation}
+\end{theorem}
+\begin{theorem}
+\label{4.2.22}
+\textbf{(Example)} Let 
+\begin{equation}
+A=\set{(x,y)\inr^2 :0\leq x\leq 1, \sqrt{x} \leq y\leq 1}
+\end{equation}
+Find 
+\begin{equation}
+\int_A e^{y^3}dA
+\end{equation}
+\end{theorem}
+\begin{theorem}
+\label{4.2.23}
+\textbf{(Example)} Let 
+\begin{equation}
+A=\set{(x_1,x_2,x_3):x_1,x_2,x_3 \geq 0, x_1+x_2+x_3\leq 1}
+\end{equation}
+Let $S=[0,1]\times [0,1]\times [0,1]$. Compute
+\begin{equation}
+\int_A (x_1+x_2+x_3)^2 dx_1dx_2dx_3
+\end{equation}
+\end{theorem}
+\begin{theorem}
+\label{4.2.24}
+\textbf{(Example)} Compute $n$-dimensional ball volume.
 \end{theorem}
 \chapter{Advanced Calculus HW}
 \section{HW1}
@@ -3284,14 +4112,74 @@ Because $D\subseteq \R$, we must have $\sup \set{f(x): x\in D}\leq \sup \set{f(x
 \begin{equation}
 f(x')>\sup \set{f(x):x\in D}
 \end{equation}
-Let $\set{f(x_i)}_{i=1}^\infty$ be a sequence where $\forall i, x_i \in D$ and $j>i\implies \abso{x_j-x'}<\abso{x_i-x'}$ and $\lim_{i \to \infty}x_i=x'$. Such sequence exists because $D$ is dense in $\R$. We now show 
+We first \vi{construct a sequence $\set{x_i}_{i=1}^\infty$ in $D$ such that} 
 \begin{equation}
-\lim_{i\to\infty}f(x_i)=f(x')
+  \vi{\lim_{i\to \infty}x_i=x'\text{ which reads } \forall \epsilon, \exists N, n>N \longrightarrow \abso{x_n - x'}<\epsilon}
 \end{equation}
-Notice that $f$ is continuous meaning
+By Axiom of Choice and the fact that $D$ is dense in  $\R$, we can pick $x_i \in (x'- \frac{1}{i},x' +\frac{1}{i})$, so we have
+\begin{equation}
+\forall i, \abso{x_i-x'}<\frac{1}{i}
+\end{equation}
+For all $\epsilon $, we can pick a natural $N>\epsilon $, so we have 
+\begin{equation}
+n>N\implies \abso{x_n-x'}<\frac{1}{n}<\frac{1}{N}<\frac{1}{\epsilon }\vdone
+\end{equation}
+We now prove 
+\begin{equation}
+\blue{\lim_{i\to\infty}f(x_i)=f(x')\text{ which reads }\forall \epsilon , \exists N, n>N\longrightarrow  \abso{f(x_n)-f(x')}<\epsilon }
+\end{equation}
+Because $f$ is continuous, we have 
 \begin{equation}
   \forall \epsilon ,\exists \delta, \forall u\in \R, \abso{u-x'}<\delta\implies \abso{f(u)-f(x')}<\epsilon  
 \end{equation}
-So for all 
+Then for all $\epsilon $, we can first let $\delta$ satisfy $\abso{u-x}<\delta \implies \abso{f(u)-f(x')}<\epsilon $. Then by the \vi{violet fact} we can pick $N$ such that 
+\begin{equation}
+n>N\implies \abso{x_n - x'}< \delta \implies \abso{f(x_n)-f(x')}<\epsilon \bdone 
+\end{equation}
+Let $H=\sup \set{f(x): x\in D}$. Now we prove  
+\begin{equation}
+  \vi{\lim_{i \to \infty}f(x_i)\leq H}
+\end{equation}
+\As{$f(x')=\lim_{i \to \infty} f(x_i) >H $}. We know there exists $N$ such that 
+\begin{equation}
+n>N\longrightarrow \abso{f(x_n)-f(x')}<\abso{H - f(x') }=f(x')-H
+\end{equation}
+The last equality hold true due to the premise equation (5.2). Notice 
+\begin{equation}
+\abso{f(x_n)-f(x')}<f(x')-H\implies H-f(x')< f(x_n)-f(x')\implies f(x_n)>H
+\end{equation}
+so in fact we know there exists $N$ such that 
+\begin{equation}
+n>N \longrightarrow f(x_n)>H= \sup \set{f(x): x \in D}\tCaC\vdone
+\end{equation}
+Now, using all our proven facts, we have
+\begin{equation}
+\sup \set{f(x): x\in D}<f(x')=\lim_{i\to \infty }f(x_i)\leq H=\sup \set{f(x): x \in D}\tCaC
+\end{equation}
+where the first inequality follows from premise equation (5.2) 
+\end{proof}
+\begin{proof}
+Let $H=\sup \set{f(x): x \in D}$. We first prove
+\begin{equation}
+\vi{\forall i \in \N, \set{f(x): x \in D\text{ and }H-f(x)<\frac{1}{i}}\neq \varnothing}
+\end{equation}
+\As{there exists some $n\inn$ such that the set is empty}. We then have
+\begin{equation}
+\forall x\in D, H\geq f(x)+\frac{1}{n}
+\end{equation}
+So we have
+\begin{equation}
+\forall x\in D, H-\frac{1}{2n}\geq f(x)+\frac{1}{2n}>f(x)
+\end{equation}
+Then we see $H-\frac{1}{2n}$ is an upper bound of $\set{f(x): x \in D}$ smaller than $H\tCaC\vdone$\\
+
+By Axiom of Choice, we can construct a sequence $\set{x_i}_{i=1}^\infty$ by picking $x_i: f(x_i)\in \set{f(x):x \in D\text{ and }H-f(x)<\frac{1}{i}}$. Then we have
+\begin{equation}
+\forall \epsilon, n> [\frac{1}{\epsilon }]+1\implies n>\frac{1}{\epsilon }\implies \abso{f(x_n)-H}<\frac{1}{n}<\epsilon 
+\end{equation}
+This written in limit sign is 
+\begin{equation}
+\lim_{i\to \infty}f(x_i)=H=\sup \set{f(x): x\in D}=\sup \set{f(x):x \inr}
+\end{equation}
 \end{proof}
 \end{document}
