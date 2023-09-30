@@ -3238,7 +3238,7 @@ Lastly, we show some properties of open and closed concerning a set being finite
 \end{minipage}}
 \begin{theorem}
 \label{2.7.20}
-\textbf{(Open Ball of An Limit Point Contain Infinite Point of $E$)} We have
+\textbf{(ALL Open Ball of An Limit Point Contain Infinite Point of $E$)} We have
  \begin{equation}
 p\in S(E)\implies \forall r\inr^+, \abso{B_r(p)\cap E}\geq \abso{\N}
 \end{equation}
@@ -3268,6 +3268,10 @@ x\in B_{d(p,q_k)}(p)\cap E\implies \forall q,d(p,x)<d(p,q)\implies x\not \in B_r
 \begin{proof}
 For closed, there is a proof other than just using the above corollary. One can check out \myref{Theorem}{2.7.9}. For open, just verify for $B_{\min \set{d(x,y):y \in O}}(x)$. 
 \end{proof}
+\begin{theorem}
+\label{2.7.23}
+\textbf{(A point is limit point if and only if all open ball contain infinite point of $E$)}
+\end{theorem}
 \section{Compact}
 \fbox{\begin{minipage}{39em}
 In this section, we will introduce two ideas used in metric space, but not in general topology, although these two notions can be generalized to general topology.\\
@@ -3458,9 +3462,368 @@ I_n \subseteq B_r(\secta{x})\subseteq G_{\beta }
 \fbox{\begin{minipage}{39em}
 Next, we give an important theorem, where one part of the theorem hold true for all metric space while the other hold true only for Eculidean norm induced metric space.
 \end{minipage}}
+\begin{definition}
+\label{2.8.10}
+\textbf{(Definition of Base)} We say a sub-collection $\mathcal{O}$ of topology $\mathfrak{O}$ on $X$ is a base if
+\begin{equation}
+\forall x\in X, \forall O\in\mathfrak{O}:x\in O,\exists O'\in \mathcal{O}, x\in O'\subseteq O
+\end{equation}
+\end{definition}
 \begin{theorem}
-\textbf{(Heine-Borel Theorem, part 1)} Given \textir{any} metric space
+\label{2.8.11}
+\textbf{(Property of Base)} Let $\mathcal{O}$ be a base for topology $\mathfrak{O}$ on $X$. We have 
+\begin{equation}
+\forall O\in \mathfrak{O}, \exists \mathcal{U}\subseteq \mathcal{O}, O=\bigcup \mathcal{U}
+\end{equation}
 \end{theorem}
+\begin{proof}
+Arbitrarily pick an open set $O\in\mathfrak{O}$. We wish to find a sub-collection $\mathcal{U}$ of $\mathcal{O}$ such that $O=\bigcup \mathcal{U}$.\\
+
+Arbitrarily pick $x\in O$. Because $\mathcal{O}$ is a base, we know there exists $O_x\in \mathcal{O}$ such that $x\in O_x\subseteq O$. Collect such sets $O_x$ for each point $x\in X$. We see such collection satisfy our need. 
+\end{proof}
+\begin{definition}
+\label{2.8.12}
+\textbf{(Definition of Separable Metric Space)} We say a metric space $X$ is separable if it contains a countable dense subset. That is,
+\begin{equation}
+\exists E\subseteq X, \abso{E}\leq \abso{\N}\text{ and } X=\overline{E}
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{2.8.13}
+\textbf{(Separable Metric Space Contain a Countable Base)} Let $X$ be a separable metric space. There exists an countable base $\mathcal{O}$ of metric topology on $X$
+\end{theorem}
+\begin{proof}
+Let $E$ be a countable dense subset of $X$. We now prove
+\vi{
+ \begin{equation}
+\mathcal{O}:=\set{B_r(p):p\in E\text{ and }r\inq} 
+\end{equation}
+is a countable base}.\\
+
+Notice $\mathcal{O}=\bigcup \set{\set{B_r(p):r\inq}:p\in E}$ is a countable union of countable sets, so $\mathcal{O}$ is countable. We only have to prove $\mathcal{O}$ is a base.\\
+
+Arbitrarily pick $p\in  X$, and arbitrarily pick open $O$ such that $p \in O$. We wish to prove $O$ contain a smaller open set in $\mathcal{O}$ containing $p$.\\
+
+By definition of open, we know there exists $r\inr^+$ such that $p\in B_r(p)\subseteq O$. Because $E$ is dense, we have either $p\in E\text{ or }p\in  S(E)$. If $p\in  E$, then the proof is done by observing $B_r(p)\in \mathcal{O}$, so we know have to consider when $p\in E\setminus  S(E)$.\\
+
+If $p\in S(E)$, then by definition of limit points, we know there exists $r'\inr^+$ such that
+ \begin{equation}
+r'<\frac{r}{2}\text{ and }\exists q\in E, q\in B_{r'}(p)
+\end{equation}
+From above, we can intentionally deduce
+\begin{equation}
+d(q,p)<r'<\frac{r}{2}
+\end{equation}
+Because $\Q$ is dense in $\R$, we can select a rational  $n$ such that
+ \begin{equation}
+d(q,p)<n<\frac{r}{2}
+\end{equation}
+For all $y\in X$, we can deduce
+\begin{equation}
+ d(y,q)<n\implies  d(y,p)\leq d(y,q)+d(p,q)<n+r'<r
+\end{equation}
+So because $n\inq\text{ and }d(q,p)<n$, we have
+\begin{equation}
+p \in B_n(q)\subseteq B_r(p)\subseteq O\text{ and }B_n(q)\in\mathcal{O}\vdone
+\end{equation}
+\end{proof}
+
+\begin{theorem}
+\label{2.8.14}
+\textbf{(Heine-Borel Theorem, part 1)} Given \textit{any} metric space, we have
+\begin{gather}
+\text{ $K$ is compact  }\\
+\liff \text{ every infinite subset $E$ of $K$ has a limit point in $K$}
+\end{gather}
+\end{theorem}
+\begin{proof}
+$(\longrightarrow)$\\
+
+Let $E$ be an infinite subset of $K$.  \As{$K$ contain no limit points of $E$}. Recall the definition
+\begin{equation}
+q\in E'\iff \forall r\inr^+,\exists p\neq q, p\in  B_r(q)\cap E
+\end{equation}
+If $K$ contain no limit points of $E$, we know
+ \begin{equation}
+\forall q\in K, \exists r_q\inr^+, B_{r_q}(q)\cap E\subseteq \set{q}
+\end{equation}
+where the equality hold true when $q\in E$. Let $r_q$ be from above. Observe that
+\begin{equation}
+\set{B_{r_q}(q): q \in K}
+\end{equation}
+is an open cover of $K$, thus of  $E$, since $E\subseteq K$.\\
+
+For this open cover, we can see every finite sub-cover contain only finite amount of points of $E$, while  $E$ is infinite. If every finite sub-cover doesn't even cover a subset $E$ of $K$, it doesn't cover whole  $K\tCaC$ to $K$ is compact.\\
+
+$(\longleftarrow)$\\
+
+We first prove \vi{$K$ is  separable}. In a general scope, we say a metric space is separable if it contain a countable dense set. Notice that subsets of a metric space are trivially metric spaces. However, consider $K\subseteq X$. Some subsets of $K$ considered open in $K$ may be considered not open in $X$. For detail about embedded metric space, we will later discuss. Here, we need only to know \textit{if a point $p$ is a limit point of $E$ considered by $K$, then  $p$ is a limit point of  $E$ considered by $X$}. (try to verify it, not difficult)\\
+
+For this reason, to prove $K$ is separable, we only need to \vi{find a countable subset $Q\subseteq K$ such that  $\overline{Q}=K$ in scope of $K$ without any worry}.\\
+
+Let $\delta>0$ and let $a_{\delta, 1}\in K$. We now prove \teal{there exists a finite set  $A_\delta=\set{a_{\delta ,1},a_{\delta ,2}, \dots , a_{\delta, n}}$ such that $K\subseteq \bigcup \set{B_\delta (a_{\delta ,i}):a_{\delta ,i}\in A_{\delta}}$}.\\
+
+To prove such, we construct $A_\delta$ by adding element $a_{\delta,i}$ such that $\forall j<i, d(a_{\delta, j},a_{\delta ,i})\geq \delta$ to $\set{a_{\delta ,1}}$ until impossible. \As{such finite set $A_\delta$ can not be constructed using this method}. In other words, we assume our method of adding points can go on infinitely. Then if take union of all added result at each step, we gain an infinite set $A'=\set{a_{\delta,1},a_{\delta,2},\dots}$ such that
+\begin{equation}
+\forall a_{\delta,i},a_{\delta,j}\in A', d(a_{\delta, i},a_{\delta , j})\geq \delta
+\end{equation}
+Arbitrarily pick $p\in  K\setminus A'$, we wish to show there exists $r\inr^+$ such that
+\begin{equation}
+B_r(p)\cap A'\subseteq \set{p}
+\end{equation}
+If for all $a_{\delta,i}\in A'$, we have $d(a_{\delta ,i},p)\geq \frac{\delta}{2}$, then we can let $r<\frac{\delta}{2}$ and we are done, so we only have to consider when there exists $a_{\delta,i}$ such that $d(a_{\delta ,i},p)<\frac{\delta}{2}$. Let $r=d(a_{\delta ,i},p)$, we see 
+\begin{equation}
+a_{\delta ,i}\not\in B_r(p)
+\end{equation}
+and for all $j\neq i$, we deduce
+\begin{equation}
+\delta \leq  d(a_{\delta,i},a_{\delta,j})  \leq  d(a_{\delta,i},p)+d(p,a_{\delta,j}) <d(p,a_{\delta,j})+\frac{\delta}{2}
+\end{equation}
+and deduce
+\begin{equation}
+r=d(a_{\delta,i},p)<\frac{\delta}{2}=\delta-\frac{\delta}{2}<d(a_{\delta,j},p)
+\end{equation}
+So 
+\begin{equation}
+a_{\delta ,j}\not\in B_r(p)
+\end{equation}
+Then 
+\begin{equation}
+B_r(p)\cap A'=\varnothing
+\end{equation}
+In other words, we have proved if we arbitrarily pick  $p\in  K\setminus A'$, then $p$ is not a limit point of  $A'$. Notice that to show no point of $A'$ is limit point of $A'$, just observe when  $r=\delta$. In summary, no points in $K$  is a limit point of $A'$. Recall that $A'$ is infinite, then have  \CaC to the premise of whole theorem, every infinite subset of $K$ has a limit point in $K\tdone$\\
+
+Let $A_\delta$ be the finite set from $\teal{\text{teal part}}$. Consider the collection $A=\bigcup \set{A_1,A_{\frac{1}{2}},A_{\frac{1}{3}},\dots}$. Because $A$ is a countable union of finite sets, we know $A$ is itself countable. We now prove \olive{$A$ is dense} (if have doubt, see the first paragraph of the proof).\\
+
+To prove $\overline{A}=K$, we wish to prove $K\setminus A\subseteq S(A)$. Arbitrarily pick $p\in  K\setminus A$. We wish to show
+\begin{equation}
+\forall r\inr^+, \exists q\neq p, q\in B_r(p)\cap A
+\end{equation}
+Arbitrarily pick $r\inr^+$. Select $n\inn$ great enough (greater than $\frac{1}{r}$), so we have
+\begin{equation}
+r>\frac{1}{n}
+\end{equation}
+Notice by \teal{teal part}, we have
+\begin{equation}
+  K\subseteq \bigcup \set{B_{\frac{1}{n}}(a_{\frac{1}{n},i}):a_{\frac{1}{n},i}\in A_{\frac{1}{n}}}
+\end{equation}
+(above in English means that $K$ is cover by open balls of radius $\frac{1}{n}$, each centering $a_{\frac{1}{n},i}$)\\
+
+Now, because $p\in K$, we know there exists $a_{\frac{1}{n},i}$ such that
+\begin{equation}
+p\in B_{\frac{1}{n}}(a_{\frac{1}{n},i})
+\end{equation}
+which tell us 
+ \begin{equation}
+d(a_{\frac{1}{n},i},p)<\frac{1}{n}<r
+\end{equation}
+Recall $p$ is arbitrarily picked from $K\setminus A$. We then have
+\begin{equation}
+a_{\frac{1}{n},i}\neq p \text{ and }a_{\frac{1}{n},i}\in B_{\frac{1}{n}}(p)\cap A\subseteq B_r(p)\cap A\odone\vdone
+\end{equation}
+ Arbitrarily pick an open cover $\mathcal{G}$. We wish to prove \blue{$\mathcal{G}$ contain a finite sub-cover}.\\
+
+We first prove  \teal{$\mathcal{G}$ contain a countable sub-cover}.\\
+
+Now, by \myref{Theorem}{2.8.13}, we know $K$ has a countable base (In Theorem 2.8.13, we prove that if a metric space is separable, then it has a countable base by constructing the base with open ball. To see $K$ does have a countable base in the scope of $X$, just realize the base constructed with open balls applies to our situation).\\
+
+Let $\mathcal{O}$ be a countable base for $K$.\\
+
+For all $p\in K$, because $\mathcal{G}$ is an open cover, we know 
+\begin{equation}
+\exists G_p\in  \mathcal{G},p \in G_p
+\end{equation}
+Then because $G_p$ is open and $\mathcal{O}$ is a base, we know
+\begin{equation}
+\exists O_p\in  \mathcal{O}, p\in O_p\subseteq G_p
+\end{equation}
+Then from above relation, we can collect 
+\begin{equation}
+\mathcal{O}':=\set{O_p\in \mathcal{O}: p\in K,p\in O_p\subseteq G_p}\subseteq \mathcal{O}
+\end{equation}
+Then we can collect
+\begin{equation}
+\mathcal{G}':=\set{G_p\in  \mathcal{G}:p\in  K,p\in O_p\subseteq G_p}\subseteq \mathcal{G}
+\end{equation}
+Because $\mathcal{O}$ is countable and $\abso{\mathcal{G}'}\leq \abso{\mathcal{O}'}$. We know $\mathcal{G}'$ is countable and by its nature of construction, a cover. $\tdone$\\
+
+Now, well order $\mathcal{G'}$ as $\set{G_n:n\inn}$. Notice $\set{G_n:n\inn}$ is a sub-cover of an arbitrary cover $\mathcal{G}$. We only wish to prove \olive{$\set{G_n:n\inn}$ contain a finite sub-cover}.\\
+
+For all $n\inn$, define
+\begin{equation}
+F_n:=K\setminus \bigcup \set{G_j:j\leq n\inn}
+\end{equation}
+For all $k\inn$, by definition we have
+\begin{equation}
+x\in F_k\iff x\in K\text{ and }x\not\in \bigcup \set{G_j:j\leq k\inn}
+\end{equation}
+Let $l<k$. We have
+\begin{equation}
+\bigcup \set{G_j:j\leq l\inn}\subseteq \bigcup \set{G_j:j\leq k\inn}
+\end{equation}
+So we can deduce
+\begin{gather}
+x\in F_k \iff x\in K\text{ and }x\not\in \bigcup \set{G_j:j\leq k\inn}\\
+\implies x\in K\text{ and }x\not\in \bigcup \set{G_j:j\leq l\inn}\iff x\in F_l
+\end{gather}
+In other words, we have proved $l<k\inn \implies F_k\subseteq F_l$. That is 
+\begin{equation}
+\cdots\subseteq F_3 \subseteq F_2\subseteq F_1
+\end{equation}
+We now prove  \orange{$\bigcap \set{F_j:j\inn}=\varnothing$}.\\
+
+\As{$\bigcap \set{F_j:j\inn}\neq \varnothing$}. Then we can find $y$ such that
+\begin{equation}
+\forall n\inn, y\in F_n
+\end{equation}
+Notice that by definition
+\begin{equation}
+y\in F_n\implies y\not\in \bigcup \set{G_j:j\leq n\inn}\implies y\not\in G_n
+\end{equation}
+So we have
+\begin{equation}
+\forall n\inn, y\not\in G_n
+\end{equation}
+This \CaC to that $\set{G_n:n\inn}$ is a cover \ordone\\
+
+\As{$\set{G_n:n\inn}$ contain no finite sub-cover}. Then we know 
+\begin{equation}
+\forall n\inn, F_n\neq \varnothing
+\end{equation}
+Otherwise $\set{G_j:j\leq n\inn}$ is a finite sub-cover.\\
+
+Notice it is impossible that
+\begin{equation}
+\exists m \inn, \forall u>m \inn , F_u=F_m\neq \varnothing 
+\end{equation}
+Otherwise we can find $x\in F_m$ such that
+\begin{gather}
+\forall n\inn, n\geq m\text{ or }n<m\implies \forall n\inn, x\in F_m=F_n\text{ or }x\in F_m\subseteq F_n\\
+\implies\forall n\inn, x\in F_n\\
+\implies \forall n\inn, x\not\in G_n \text{(Notice $x\in G_n\implies x\not\in F_n$)}\\
+\implies x\not\in \bigcup \set{G_n:n\inn}
+\end{gather}
+where $\set{G_n:n\inn}$ is a cover.\\
+
+Then we know 
+\begin{equation}
+\forall n\inn, \exists m<n\inn, F_m\subset F_n
+\end{equation}
+So if we collect each point $x_j$ from each possible nonempty $F_j\setminus F_{j+1}$, we have an countable infinite set $\set{x_j}$. By the premise of the whole theorem, we know there exists a limit point $p$ of  $\set{x_j}$.\\
+
+Because $\set{G_n:n\inn}$ is an open cover, we know 
+\begin{equation}
+\exists m \inn, p\in G_m
+\end{equation}
+And because $G_m$ is open, we know 
+\begin{equation}
+\exists r\inr^+, B_r(p)\subseteq G_m
+\end{equation}
+Because $p$ is an limit point of $\set{x_j}$, by \myref{Theorem}{2.7.20}, we know $B_r(p)$ should contain infinite points of $\set{x_j}$.\\
+
+But we can see for all $n$ greater than $m$, we have
+\begin{equation}
+x_n\in F_n
+\end{equation}
+which implies
+\begin{equation}
+x_n\not \in \bigcup \set{G_j:j\leq n\inn}
+\end{equation}
+Then we have
+\begin{equation}
+\forall n>m \inn, x_n\not\in G_m
+\end{equation}
+Because $B_r(p)\subseteq G_m$, we then see
+\begin{equation}
+\forall n>m \inn, x_n\not\in B_r(p)
+\end{equation}
+More crucially, we see
+\begin{equation}
+B_r(p)\cap \set{x_j}\subseteq \set{x_l:l<m \inn}
+\end{equation}
+\CaC to \myref{Theorem}{2.7.20} $\odone \bdone$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+The above theorem can be generalized to topological space where limit point is changed to complete limit point, and the proof would require usage of idea of minimal cardinal.\\
+
+We now give another part of Heine-Borel Theorem, which is only in Euclidean metric and $\R^k$ 
+\end{minipage}}
+\begin{theorem}
+\textbf{(Heine-Borel Theorem, part 2)} In $(\R^k, d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$, we have
+\begin{gather}
+K\text{ is closed and bounded }\iff   K\text{ is compact }
+\end{gather}
+\end{theorem}
+\begin{proof}
+$(\longrightarrow)$\\
+
+We first prove \vi{each bounded set $E$ is contained by some $k$-cell}.\\
+
+Notice that if the "heights" set 
+\begin{equation}
+\set{x_j:\vecta{x}\in E}
+\end{equation}
+is not both bounded above and below, then for all distance $r\inr^+$, we can pick $\vecta{x},\vecta{y}$, such that $\abso{x_j-y_j}>r$. Then we can see 
+\begin{equation}
+\abso{\vecta{x}-\vecta{y}}>\abso{x_j-y_j}>r
+\end{equation}
+We have proved for all direction, the "height" is both bounded below and above.\\
+
+Then for each direction, we can pick an upper bound $b_j$ and lower bound $a_j$, so we have
+\begin{equation}
+E\subseteq [a_1,b_1]\times \cdots \times [a_k,b_k]\vdone
+\end{equation}
+We know k-cell is compact. Then because $K$ is closed and contained by some k-cell, we know $K$ is compact.\\
+
+$(\longleftarrow)$\\
+
+$K$ is compact implies $K$ is closed, so we only have to prove \blue{$K$ is bounded}.\\
+
+\As{$K$ is not bounded}. We now prove  \teal{$\forall \vecta{x}\in K,\exists \vecta{y}\in K, d(\vecta{y},\vecta{0})>d(\vecta{x},\vecta{0})+1$}.\\
+
+Let $r=d(\vecta{x},0)$. We know 
+\begin{equation}
+K\setminus B_{2r+1}(\vecta{x})
+\end{equation}
+must be nonempty, otherwise 
+\begin{equation}
+\forall \vecta{y},\vecta{z}\in K, d(\vecta{y},\vecta{z})\leq d(\vecta{x},\vecta{y})+d(\vecta{z},\vecta{z})<4r+2
+\end{equation}
+Then we can pick $\vecta{y}\in K \setminus B_{2r+1}(\vecta{x})$, and observe
+\begin{gather}
+2r+1< d(\vecta{x},\vecta{y})\leq d(\vecta{x},\vecta{0})+d(\vecta{y},\vecta{0})\leq d(\vecta{y},\vecta{0})+r\\
+\implies d(\vecta{y},\vecta{0})>r+1=d(\vecta{x},0)+1\tdone
+\end{gather} 
+By  \teal{teal part}, we can construct a sequence $\set{\vecta{x}_i:i\inn}$ such that 
+\begin{equation}
+\forall i\inn, d(\vecta{x}_{i+1},\vecta{0})>d(\vecta{x}_{i},\vecta{0})+1
+\end{equation}
+We now prove \olive{$\set{\vecta{x}_i:i \inn}$ has no limit point in $\R^k$}.\\
+
+\As{$\set{\vecta{x}_i:i\inn}$ has some limit points in $\R^k$}. Let $p$ be a limit point of $\set{\vecta{x}_i:i \inn}$. Arbitrarily pick $r\inr^+$. By \myref{Theorem}{2.7.20}, we know $B_r(p)$ should contain infinite points of $\set{\vecta{x}_i}$.\\
+
+Observe for all $\vecta{y}\inr^K$, we have
+\begin{equation}
+d(\vecta{y},p)<r\implies d(\vecta{0},\vecta{y})\leq d(\vecta{0},p)+d(p,\vecta{y})<d(\vecta{0},p)+r
+\end{equation}
+Let $a=d(\vecta{0},p)$. We have
+\begin{equation}
+B_r(p)\subseteq B_{a+r}(\vecta{0})
+\end{equation}
+But because 
+\begin{equation}
+i>j\implies d(\vecta{x}_i,\vecta{0})-d(\vecta{x}_j,\vecta{0})>1
+\end{equation}
+For all $n>1\inn$, we have
+\begin{equation}
+d(\vecta{x}_n,\vecta{0})>n-1
+\end{equation}
+Let $b$ be the minimal naturals greater than  $a+r$. We have
+\begin{equation}
+B_{a+r}(\vecta{0})\cap \set{\vecta{x}_i:i\inn}\subseteq \set{\vecta{x}_i:i\leq b\inn}\tCaC\odone
+\end{equation}
+By the first part of Heine-Borel Theorem, we know $\set{\vecta{x}_i:i\inn}$ has limit points in $K$. Notice that if a point in  $K$ is a limit point of $\set{\vecta{x}_i:\inn}$ in $K$, it is a limit point of $\set{\vecta{x}_i:i\inn}$ in $\R^k\tCaC$ to \olive{olive part}. $\bdone$ 
+\end{proof}
 \section{Exercises}
 \begin{question}{}{}
 Let $(X,d)$ be a metric space, and let $x_1,x_2,\dots,x_n \in X$. Prove
@@ -4035,7 +4398,9 @@ We now show  \blue{$\sup S_j$ is the least upper bound of $S$}.\\
 \As{there exists an upper bound of $S$ smaller than $\sup S_j$}. Denote that upper bound $y$. Because $y$ is smaller than $\sup S_j$, we know $y$ is not an upper bound of $S_j$, so we know there is a number  $z \in S_j$ greater than $y$. Observe that the fact $y$ is an upper bound of $S$ implies  $y$ is greater than or equal to $z \in S_j\subseteq S\tCaC\bdone$
 \end{proof}
 \begin{proof}
-We have $\sup S=\sup \set{B_i}$
+  We prove \vi{$\sup S=\sup \set{B_i}$}.\\
+
+  Notice $\sup S$ is an upper bound of $S_i$, so we have $\forall i, \sup S>\sup S_i=B_i$. This means $\sup S$ is an upper bound of $\set{B_i}$. We have proved $\sup S\geq \sup \set{B_i}$. \As{$\sup S>\sup \set{B_i}$}. Then because $\sup \set{B_i}$ is not an upper bound of $S$, we know there exists  $s \in S$ such that $s>\sup \set{B_i}$. But because $S=\bigcup \set{S_i}$, we know $\exists S_j,s \in S_j$, which give us $s\leq \sup S_j=B_j\leq \sup \set{B_i}\tCaC\vdone$
 \end{proof}
 \begin{question}{}{}
 Let \( A \) be a non-empty set of \( \mathbb{R} \) which is bounded below. Define the set \( -A \) by 
@@ -4076,9 +4441,8 @@ WOLG, let $\sup A\leq \sup B$. By definition $x \in A\cap B \implies  x \in A \i
 We show $\sup (A\cap B)= \min \set{\sup A,\sup B}$ is not always correct. Let $A=[0,2]$ and $B=[0,1]\cup [3,4]$. We have $\sup (A\cap B= [0,1])=1\neq \min{\set{\sup A=2,\sup B=4}}$
 \end{proof}
 \begin{proof}
-We prove $\sup (A\cup B)\geq \max \set{\sup A, \sup B}$.\\
+$\sup A\cup B$ is an upper bound of both $A$ and  $B$, so  $\sup A\cup B>\sup A\text{ and }\sup A\cup B>\sup B$
 
-WOLG, let $\sup A\geq \sup B$. \As{$\sup A>\sup (A\cup B)$}. Let $x$ be a number between  $\sup A\text{ and }\sup (A\cup B)$ ($x$ exists since it can be  $\frac{\sup A+\sup (A\cup B)}{2}$). Because $\sup A>x$, by definition, we know there exists $a' \in A$ such that $a'>x$. Notice that $x> \sup (A\cup B)$ implies $x$ is an upper bound of $A \cup B$, so we know $\forall a \in A\subseteq A\cup B, a\leq x\tCaC$
 \end{proof}
 \begin{proof}
 We prove $\sup (A\cup B)=\max \set{\sup A,\sup B}$. WOLG, let $\sup A\geq \sup B$. \As{$\sup B\leq \sup A<\sup (A\cup B)$}. Let $x$ be a number between  $\sup A\text{ and }\sup A\cup B(x\text{ exists since it can be $\frac{\sup A+\sup (A\cup B)}{2}$ })$. Because $x<\sup (A\cup B)$, we know $x$ is not an upper bound of  $A\cup B$. By definition, we know there exists $z\in A\cup B$ such that $x<z$. We know either $z \in A$ or $z \in B$, but we see $z \in A\implies z\leq \sup A<x$ and we see $z \in B\implies z\leq \sup B\leq \sup A<x\tCaC$
@@ -4181,5 +4545,188 @@ This written in limit sign is
 \begin{equation}
 \lim_{i\to \infty}f(x_i)=H=\sup \set{f(x): x\in D}=\sup \set{f(x):x \inr}
 \end{equation}
+\end{proof}
+\section{HW2}
+\begin{question}{}{}
+
+Let \(A \subseteq \mathbb{R}^n\) be an open set and \(B \subset \mathbb{R}^n\) be any set. Then the set 
+\[ A + B \equiv \{a + b : a \in A \text{ and } b \in B\} \]
+is open.
+\end{question}
+\begin{proof}
+Notice 
+\begin{equation}
+A+B= \bigcup \set{\set{a+b:a\in A}:b\in B}
+\end{equation}
+We only have to prove  \vi{for all $b\in B$, the set $A+b:=\set{a+b:a\in A}$ is open}.\\
+
+Fix $b$. Arbitrarily pick $a+b\in A+b$. Because $A$ is open, we know there exists $r\inr^+$ such that
+\begin{equation}
+B_r(a)\subseteq A
+\end{equation}
+Let
+\begin{equation}
+B_r(a)+b:=\set{x+b:x\in B_r(a)}
+\end{equation}
+We now prove 
+\begin{equation}
+\teal{B_r(a)+b=B_r(a+b)}
+\end{equation}
+Arbitrarily pick $x+b\in B_r(a)+b$. We have
+\begin{equation}
+\abso{(x+b)-(a+b)}=\abso{x-a}<r
+\end{equation}
+We have proved $B_r(a)+b\subseteq B_r(a+b)$. Arbitrarily pick $y\in B_r(a+b)$. Let $z=y-b$. We have
+\begin{equation}
+y=z+b\text{ and }\abso{z-a}=\abso{y-(a+b)}<r
+\end{equation}
+The latter tell us $z \in B_r(a)$, so we have
+\begin{equation}
+y=z+b \in B_r(a)+b
+\end{equation}
+Because $y$ is arbitrarily picked from $B_r(a+b)$, we have proved $B_r(a+b)\subseteq B_r(a)+b\tdone$\\
+
+Notice that  $r$ is selected to satisfy
+\begin{equation}
+B_r(a)\subseteq A
+\end{equation}
+and it is clear that
+\begin{equation}
+B_r(a)+b\subseteq A+b
+\end{equation}
+So we have
+\begin{equation}
+B_r(a+b)=B_r(a)+b\subseteq A+b
+\end{equation}
+Notice $a+b$ is arbitrarily picked from $A+b$. Our proof is done  $\vdone$
+\end{proof}
+
+\begin{question}{}{}
+Show that every open set in \( \mathbb{R} \) is the union of at most countable collection of disjoint open intervals.
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let \( A \subseteq B \subseteq \mathbb{R} \). Suppose that \( A \) is a dense subset of \( B \).
+
+1. Prove that \( B \subseteq \overline{A} \).
+
+2. If \( B \) is closed, determine whether \( B = \overline{A} \).
+\end{question}
+\begin{proof}
+$A$ is a dense subset of $B$ means that every point $b\in B\setminus A$ is a limit point of $A$ in the scope of $B$. Notice that $b$ is a limit point of  $A$ in the scope of $B$ also means $b$ is a limit point in the scope of $\R$. Then we have proved $B\setminus A\subseteq A'$. It follows
+\begin{equation}
+B=A \cup (B\setminus A)\subseteq A\cup A'=\overline{A}
+\end{equation}
+If $B$ is closed, we have
+ \begin{equation}
+\overline{A}\subseteq \overline{B}=B
+\end{equation}
+Then because $B\subseteq \overline{A}$, we have $B=\overline{A}$
+
+
+
+\end{proof}
+\textbf{Definition 0.1.} A metric space \( X \) is \textit{sequentially compact} if every sequence of points in \( X \) has a convergent sub-sequence converging to a point in \( X \).
+\begin{question}{}{}
+
+Let \( A \) and \( B \) be subsets of a metric space \( (M, d) \) and denote \( \text{cl}(A) = \overline{A} \). Show that
+
+1. \( \text{cl}(\text{cl}(A)) = \text{cl}(A) \).
+
+2. \( \text{cl}(A \cup B) = \text{cl}(A) \cup \text{cl}(B) \).
+
+3. \( \text{cl}(A \cap B) \subseteq \text{cl}(A) \cap \text{cl}(B) \). Find an example such that \( \text{cl}(A \cap B) \subsetneq \text{cl}(A) \cap \text{cl}(B) \).
+\end{question}
+\begin{proof}
+Notice that closure is the smallest closed set containing the set.\\
+
+Because $\overline{A}$ is a closed set, we know the smallest closed set containing $\overline{A}$ is $\overline{A}$ itself.\\
+
+Deduce
+\begin{equation}
+A\subseteq A\cup B\implies \overline{A}\subseteq \overline{A\cup B}
+\end{equation}
+and deduce
+\begin{equation}
+B\subseteq A\cup B\implies \overline{B}\subseteq \overline{A\cup B}
+\end{equation}
+so deduce
+\begin{equation}
+\overline{A}\cup \overline{B}\subseteq \overline{A\cup B}
+\end{equation}
+Notice that $\overline{A}\cup \overline{B}$ is a closed set containing both $A$ and  $B$, thus containing $A\cup B$, so because $\overline{A\cup B}$ by definition is the smallest closed set containing $A\cup B$, we have
+\begin{equation}
+\overline{A\cup B}\subseteq \overline{A}\cup \overline{B}
+\end{equation}
+\end{proof}
+\begin{question}{}{}
+
+Let \( K \) be a sequentially compact set in a metric space \( (M, d) \) and let \( F \subseteq K \) be closed. Prove that \( F \) is sequentially compact.
+\end{question}
+\begin{proof}
+
+\end{proof}
+\textbf{Definition 0.2.} The discrete metric \( d \) on a set \( X \) is defined by
+\[
+d(x,y) = 
+\begin{cases} 
+1 & \text{if } x \neq y, \\
+0 & \text{if } x = y,
+\end{cases}
+\]
+for any \( x, y \in X \). In this case \( (X,d) \) is called a discrete metric space.
+\begin{question}{}{}
+
+Let \( (M, d) \) be a metric space with discrete metric \( d \). Prove that every compact set in \( M \) is finite.
+\end{question}
+\begin{proof}
+\As{$M$ is infinite}. By   
+\end{proof}
+\begin{question}{}{}
+
+Let \( \{ x_n \}_{n=1}^{\infty} \subseteq \mathbb{R} \) be a convergent sequence with the limit \( x \). Prove that the set \( \{ x_n : n \in \mathbb{N} \} \cup \{ x \} \) is compact.
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+
+\begin{enumerate}
+    \item Let \( A \) and \( B \) be two subsets of a metric space \( (M,d) \). The distance between \( A \) and \( B \) is defined by
+    \[
+    d(A,B) \equiv \inf\{d(x,y) : x \in A, y \in B\}.
+    \]
+    \begin{enumerate}
+        \item Give an example of two disjoint, nonempty, closed sets \( A \) and \( B \) in \( \mathbb{R}^n \) for which \( d(A, B) = 0 \).
+        \item Let \( A, B \) be nonempty sets in \( \mathbb{R}^n \) with \( A \) closed and \( B \) compact. Show that there are points \( a \in A \) and \( b \in B \) such that \( d(a, b) = |a-b| \). Deduce that \( d(A, B) \) is positive if such \( A, B \) are disjoint.
+    \end{enumerate}
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}
+    \setcounter{enumi}{8}
+    \item Let \( (M, d) \) be a metric space.
+    \begin{enumerate}
+        \item Show that the union of a finite number of compact subsets of \( M \) is compact.
+        \item Show that the intersection of an arbitrary collection of compact subsets of \( M \) is compact.
+    \end{enumerate}
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}
+    \setcounter{enumi}{9}
+    \item A metric space \( (M,d) \) is said to be \textit{separable} if there is a countable subset \( A \) which is dense in \( M \). Show that every compact set is separable.
+\end{enumerate}
+\end{question}
+\begin{proof}
+
 \end{proof}
 \end{document}
