@@ -3749,6 +3749,7 @@ The above theorem can be generalized to topological space where limit point is c
 We now give another part of Heine-Borel Theorem, which is only in Euclidean metric and $\R^k$ 
 \end{minipage}}
 \begin{theorem}
+\label{2.8.15}
 \textbf{(Heine-Borel Theorem, part 2)} In $(\R^k, d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$, we have
 \begin{gather}
 K\text{ is closed and bounded }\iff   K\text{ is compact }
@@ -3998,60 +3999,71 @@ Notice $L$ should be viewed as slope (not a number on real number line), or more
 \end{definition}
 \begin{definition}
 \label{4.2.3}
-\textbf{(Differentiable on $2$-Euclidean Space)} We say a real-valued function $f(x,y)$ on $2$-Euclidean space is differentiable at $(a,b)$ if there exists a $1\times 2$ real matrix $\vecta{H}_{(a,b)}$ such that 
+\textbf{(A General Definition of Differentiable of Function from Normed $\R^n$ to $\R^m$)} Let $\vecta{f}:\R^n\rightarrow \R^m$. We say $\vecta{f}$ is differentiable at $\vecta{a}$ if there exists a linear transformation $\vecta{J}:\R^n\rightarrow \R^m$ such that
 \begin{equation}
- \lim_{(x,y)\to (a,b)}\frac{f(x,y)-f(a,b)-(\vecta{H}_{(a,b)}(x,y)-\vecta{H}_{(a,b)}(a,b))}{\norm{(x-a,y-b)}_2}=0
+\lim_{\vecta{h}\to \vecta{0}}\frac{\norm{\vecta{f}(\vecta{a+h})-\vecta{f}(\vecta{a})-\vecta{J}(\vecta{h})}_{\R^m}}{\norm{\vecta{h}}_{\R^n}}=0
 \end{equation}
+There is no restriction on which norm to use on $\R^n$ and $\R^m$, but the metric implicitly used in the limit symbol is induced by the norm in the denominator. That is
+\begin{equation}
+\forall \epsilon, \exists \delta, \forall \vecta{h},\norm{\vecta{h}}_{\R^n}<\delta \longrightarrow \frac{\norm{\vecta{f}(\vecta{a+h})-\vecta{f}(\vecta{a})-\vecta{J}(\vecta{h})}_{\R^m}}{\norm{\vecta{h}}_{\R^n}}<\epsilon
+\end{equation}
+We also say $\vecta{J}$ is a differential or a derivative of $\vecta{f}$ at $\vecta{a}$.
 \end{definition}
-\fbox{\begin{minipage}{39em}
-In lower dimensions, our understanding of tangency is typically represented by tangent lines and planes. For a function mapping from \( \mathbb{R} \rightarrow \mathbb{R} \), we can define a tangent line as \( T(x) = L(x-a) \). For a function mapping from \( \mathbb{R}^2 \rightarrow \mathbb{R} \), we can define a tangent plane as \( T(x,y) = \mathbf{H}_{(a,b)}(x-a,y-b) \). Notice that these tangential representations fundamentally hinge on linear transformations, embodied by the matrix $\begin{bmatrix}
-L
-\end{bmatrix}$
-and the transformation \( \mathbf{H}_{(a,b)} \).\\
 
-Drawing a function from \( \mathbb{R} \rightarrow \mathbb{R} \) is achieved in \( \mathbb{R}^2 \), and a function from \( \mathbb{R}^2 \rightarrow \mathbb{R} \) is depicted in \( \mathbb{R}^3 \). Thus, a function from \( \mathbb{R}^m \rightarrow \mathbb{R}^n \) would be visualized in \( \mathbb{R}^{m+n} \). One might consider representing a function directly in its co-domain as an alternative. However, this method is flawed. To see this, consider how we plot a \( \mathbb{R} \rightarrow \mathbb{R} \) function in \( \mathbb{R}^2 \): if we tried to represent the tangents of such a function directly on its co-domain (the y-axis), it would simply be a continuous set of all numbers, providing no clear information.\\
-
-This realization underscores the fact that the concept of "tangency" is fundamentally grounded in linear transformations. As we ascend into higher dimensions, our ability to visually represent tangents becomes constrained by our dimensional space. For instance, while we can theoretically define tangents in \( \mathbb{R}^4 \), their visual representation remains elusive, unlike the more tangible planes in \( \mathbb{R}^3 \).
-\end{minipage}}
 \begin{definition}
 \label{4.2.4}
-\textbf{(A General Definition of Differentiable of Function from Normed $\R^n$ to  $\R^m$)} Let $\vecta{f}:\R^n\rightarrow \R^m$. We say $\vecta{f}$ is differentiable at $\vecta{a}$ if there exists a linear transformation $\vecta{H}:\R^n\rightarrow \R^m$ such that 
+\textbf{(Tangent Plane)} Let $\vecta{f}:\R^n\rightarrow \R^m$ be differentiable at $\vecta{a}$. Let $\vecta{J}$ be a differential of $\vecta{f}$ at $\vecta{a}$. We say
 \begin{equation}
-\lim_{\vecta{x}\to \vecta{a}}\frac{\norm{\vecta{f}(\vecta{x})-\vecta{f}(\vecta{a})-\vecta{H}(\vecta{x}-\vecta{a})}_{\R^m}}{\norm{\vecta{x}-\vecta{a}}_{\R^n}}=0
+\set{(\vecta{x},\vecta{J}(\vecta{x}))\in\R^{n+m}:\vecta{x}\in\R^n}\text{ where $\vecta{J}(\vecta{a})=\vecta{f}(\vecta{a})$ }
 \end{equation}
-There is no restriction on which norm to use on $\R^n$ and $\R^m$, but the metric implicitly used in the limit symbol is induced by the norm in denominator. The above equation is written
- \begin{equation}
-\forall \epsilon, \exists \delta, \forall x,\norm{\vecta{x}-\vecta{a}}_{\R^n}<\delta \longrightarrow \frac{\norm{\vecta{f}(\vecta{x})-\vecta{f}(\vecta{a})-\vecta{H}(\vecta{x}-\vecta{a})}_{\R^m}}{\norm{\vecta{x}-\vecta{a}}_{\R^n}}<\epsilon 
-\end{equation}
-We also say $\vecta{H}$ is a differential or a derivative of $\vecta{f}$ at $\vecta{a}$
+is the tangent plane of $\vecta{f}$ at $\vecta{a}$.
 \end{definition}
-\fbox{\begin{minipage}{39em}
-The core concept of differentiable at a point $\vecta{a}$ is that for all desired error, we can linearly approximate (estimate) $\vecta{a}$, and the error we have will be much less than the difference of the input and $\vecta{a}$.\\
-
-
-Notice that from now, if we use the norm notation $\norm{\cdot}$ without specification or use the absolute value notation $\abso{\cdot}$, we mean $2$-norm.The $2$-norm is also called "length". 
-\end{minipage}}\\
-
 \begin{definition}
 \label{4.2.5}
-\textbf{(Jacobian Matrix)} For function $\vecta{f}$ from $\R^n$ to $\R^m$. The Jacobian $\vecta{J}_{\vecta{f}}(\vecta{a})$ of $\vecta{f}$ at $\vecta{a}$ is the matrix
- \begin{equation}
-   \vecta{J}_{\vecta{f}}(\vecta{a})_{i,j}=\frac{\partial f_i}{\partial x_j}(\vecta{a})
-\end{equation}
-If we write $\vecta{J}$, we mean a matrix-valued function 
+\textbf{(Definition of Gradient)}  Let $f:U\subseteq \R^n \rightarrow \R$. The gradient of $f$ is defined as
 \begin{equation}
-  (D\vecta{f})(\vecta{a}):=\vecta{J}(\vecta{a}):=\vecta{J}_{\vecta{f}}(\vecta{a})
+  \nabla f=(\frac{\partial f}{\partial x_1},\dots ,\frac{\partial f}{\partial x_n})
+\end{equation}
+Notice that we can verify Gradient is Jacobian, and jacobian is always a derivative. 
+\end{definition}
+
+\begin{definition}
+\label{4.2.6}
+\textbf{(Jacobian Matrix)} For function $\vecta{f}:\R^n\rightarrow \R^m$, The Jacobian matrix  $\vecta{J}_\vecta{f}$ is  
+\begin{equation}
+  \vecta{J}_\vecta{f}:=\begin{bmatrix}
+\nabla ^T f_{1}\\
+\vdots\\
+\nabla^T f_m
+    \end{bmatrix}=\begin{bmatrix}
+    \frac{\partial f_1}{\partial x_1}&\cdots & \frac{\partial f_1}{x_n}\\
+    \vdots & \ddots & \vdots\\
+    \frac{\partial f_m}{\partial x_1} & \cdots & \frac{\partial f_m}{\partial x_n}
+    \end{bmatrix}
+\end{equation}
+The notation is
+\begin{equation}
+  D(\vecta{f})=\vecta{J}=\vecta{J}_\vecta{f}=\nabla \vecta{f}=\frac{\partial (f_1,\dots, f_m)}{\partial  (x_1,\dots,x_n)}
 \end{equation}
 \end{definition}
-\begin{theorem}
-\label{4.2.6}
-\textbf{(If Differentiable, Then Jacobian is a Differential)}
-\end{theorem}
-\begin{proof}
-  \red{missed}
-\end{proof}
+
 \begin{theorem}
 \label{4.2.7}
+\textbf{(If Differentiable, Then Jacobian give a Differential)}
+Let $\vecta{f}:\R^n\rightarrow \R^m$ be differentiable at $\vecta{a}$. Define
+\begin{equation}
+ \vecta{J}:\R^n\rightarrow \R_m, \vecta{x}\mapsto \vecta{J}_f(\vecta{a})\cdot \vecta{x}
+\end{equation}
+
+We have
+
+\begin{equation}
+\lim_{\vecta{x}\to \vecta{a}}\frac{\norm{\vecta{f}(\vecta{x})-\vecta{f}(\vecta{a})-\vecta{J}(\vecta{x}-\vecta{a})}_{\R^m}}{\norm{\vecta{x}-\vecta{a}}_{\R^m}}=0
+\end{equation}
+\end{theorem}
+\section{Example Exercises for Differentiable}
+\begin{theorem}
+\label{4.3.1}
 \textbf{(Example of Differentiable Function)} 
 \begin{equation}
 f(x,y)=x^2+2y\text{ is differentiable every where}
@@ -4085,7 +4097,7 @@ For all $\epsilon $, we then can pick the $\delta$ above so we have
 This prove equation 4.40 approach to 0
 \end{proof}
 \begin{theorem}
-\label{4.2.8}
+\label{4.3.2}
 \textbf{(Example of Differentiable Function)} Let $\vecta{f}:\R^n\rightarrow \R^m$ 
 \begin{equation}
 \text{ If $\vecta{f}$ is linear, then $\vecta{f}$ is differentiable everywhere }
@@ -4098,7 +4110,7 @@ Let $\vecta{H}=\vecta{f}$, then we have
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{4.2.9}
+\label{4.3.3}
 \textbf{(Example of Jacobian Exists, But Non-Differentiable)} 
 \begin{equation}
 f(x,y)=\begin{cases}
@@ -4128,27 +4140,37 @@ Then we have
 \end{equation}
 which prove  equation 4.47 does not approach to 0.
 \end{proof}
-\fbox{\begin{minipage}{39em}
-Thm: If differentialbe, then $\vecta{H}_{\vecta{a}}=\vecta{J}(\vecta{a})$.\\
-
-Example: Let $\delta; (0,1)\rightarrow \R^n, f:\R^n \rightarrow \R$ be differentiable. Let $F(t)=f(\delta(t))$. Verify $F'(t)=(Df)(D\delta)$, where $Df$ is is a $1\times n $ matrix and $D\delta $ is a $n\times 1$ matrix.\\
-
-Example: Let $f(u,v,w)=u^2v+wv^2$ and $g(x,y)=(xy,\sin x, e^x)$. Let  $h=f\circ g$. Find $\frac{\partial  h}{\partial x}$.\\
-
-MVT: Let $f:U\subseteq \R^n\rightarrow \R^m$. Suppose $f$ is differentaible on $U$ and $x,y \in U$. Then $\exists c_1,\dots,c_m \in \R$ on the segment joining $x$ and $y$ such that
+\begin{theorem}
+\label{4.3.4}
+\textbf{(Chain Rule)} Let $f:\R^n\rightarrow \R^m$ and let $g:\R^k\rightarrow \R^n$. We have
 \begin{equation}
-\forall i, f_i(y)-f_i(x)=(Df_i)(c_i)(y-x)
+D_\vecta{a}(f\circ g)=D_{g(\vecta{a})}(f)\circ D_\vecta{a}(g)
 \end{equation}
-\end{minipage}}
-\begin{theorem}
-\label{4.2.10}
-\textbf{(Chain Rule)}
+Let $f:\R^n\rightarrow \R^1$, we can write 
+\begin{equation}
+h(\vecta{x}):=f\circ g(\vecta{x})=f(g_1(\vecta{x}),\dots, g_k(\vecta{x}))
+\end{equation}
+and we have
+\begin{equation}
+\frac{\partial h}{\partial x_i}=\sum_{1\leq j\leq n}\frac{\partial f}{\partial g_j}\frac{\partial g_j}{x_i}
+\end{equation}
 \end{theorem}
-\fbox{\begin{minipage}{39em}
-Given differentiable $\delta:\R \rightarrow \R^n, f:\R^n:\R$. By chain rule, we can observe $F(t):= f\circ \delta (t)$ satisfy $F'=(Df)\circ (D\delta)$, where $Df$ is a $1\times n$ matrix-valued function and $D\delta$ is a $n \times 1$ matrix-valued function.
-\end{minipage}}
 \begin{theorem}
-\label{4.2.11}
+\label{4.3.5}
+\textbf{(Example of Chain Rule)} Let $\delta:(0,1)\rightarrow \R^n$ and $f:\R^n\rightarrow \R$ be differentiable. Define
+\begin{equation}
+F(t):=f(\delta (t))
+\end{equation}
+We have
+\begin{equation}
+L_{F'(t)}=D_{\delta (t)}(f)\circ D_{t}(\delta)
+\end{equation}
+\end{theorem}
+\begin{proof}
+Notice that $D_t(F)=L_{F'(t)}$, and we are done.
+\end{proof}
+\begin{theorem}
+\label{4.3.6}
 \textbf{(Example of Chain Rule)} Let $f(u,v,w)=u^2v+wv^2$ and $\vecta{g}(x,y)=(xy,\sin x,e^x)$. Let $h=f\circ \vecta{g}$. We have
 \begin{equation}
 \frac{\partial h}{\partial x}=2xy^2\sin x+(x^2y^2+2e^x\sin x) \cos x+ e^x\sin^2 x
@@ -4164,41 +4186,32 @@ We have
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{4.2.12}
+\label{4.3.7}
 \textbf{(Mean Value Theorem)} Let $\vecta{f}:U\subseteq \R^n\rightarrow \R^m$. Suppose $\vecta{f}$ is differentiable on $U$ and $\vecta{x},\vecta{y}\in U$. For all $i\in \set{1,\dots , n}$, there exists $0\leq c_i\leq 1$ such that 
 \begin{equation}
 f_i(\vecta{y})-f_i(\vecta{x})=(Df_i)(\vecta{x}+c_i(\vecta{y}-\vecta{x}))
 \end{equation}
 \end{theorem}
-\fbox{\begin{minipage}{39em}
-Directional Derivative.
-\end{minipage}}
+\section{Directional Derivative}
 \begin{definition}
-\label{4.2.13}
-  \textbf{(Definition of Directional Derivative)} Let $f$ be real valued and defined on a neighborhood of $\vecta{x}_0 \inr^n$ and let $\vecta{v}\inr^n$ with $\norm{\vecta{v}}=1$ Then
+\label{4.4.1}
+  \textbf{(Definition of Directional Derivative)} Let $f$ be real valued and defined on a neighborhood of $\vecta{x}_0 \inr^n$ and let $\vecta{v}\inr^n$ with $\norm{\vecta{v}}=1$. We define 
   \begin{equation}
-    (D_vf)(x_0)=\lim_{t\to 0}\frac{f(x_0+tv)}{t}
+    (D_\vecta{v}f)(\vecta{x}_0):=\lim_{t\to 0}\frac{f(\vecta{x}_0+t\vecta{v})}{t}
   \end{equation}
-\red{I} should verify it also equals to
-\begin{equation}
-  (\frac{d}{dt}f(x_0+tv))(t_0)
-\end{equation}
 \end{definition}
 \begin{theorem}
-\label{4.2.14}
+\label{4.4.2}
 \textbf{(Directional Derivative)} Let $U$ be open and $f:U\rightarrow \R^n$ be differentiable at $x_0$. We have
  \begin{equation}
-D_vf(x_0)=\vecta{J}_f(x_0)(v)
+   (D_{\vecta{v}}f)(\vecta{x}_0)=\nabla f(\vecta{x}_0)\cdot \vecta{v}=\vecta{J}_f(\vecta{x}_0)\cdot \vecta{v}
 \end{equation}
 \end{theorem}
 \begin{proof}
 Outline: in the limit of differentiable equation, let $x=x_0+tv$ and see what happen when  $t \to 0$
 \end{proof}
-\fbox{\begin{minipage}{39em}
-Try to write in the form of gradient, and make a line between general theorem and actual computation. 
-\end{minipage}}
 \begin{theorem}
-\label{4.2.15}
+\label{4.4.3}
 \textbf{(Example)} Let
 \begin{equation}
 f(x,y)=\begin{cases}
@@ -4215,32 +4228,61 @@ D_vf(0)&=\lim_{t \to 0}\frac{f(tv_1,tv_2)-f(0,0)}{t}\\
 &=\lim_{t\to0}\frac{v_1^3}{v_1^2+v_2^2}=v_1^3\neq Df(0)(v)
 \end{align}
 \end{proof}
+\section{Gradient}
 \begin{definition}
-\label{4.2.16}
-\textbf{(Definition of Gradient)} Let $f:U\subseteq \R^n \rightarrow \R$. The gradient of $f$ is defined as
+\label{4.5.1}
+\textbf{(Level Set)} Let $f$ be a scalar function. A level set is a set of points
 \begin{equation}
-  \nabla f=(\frac{\partial f}{\partial x_1},\dots ,\frac{\partial f}{\partial x_n})
+L(c)=\set{\vecta{x}\inr^n: f(\vecta{x})=c}
 \end{equation}
-Notice that we can verify Gradient is Jacobian, and jacobian is always a derivative. 
 \end{definition}
 \begin{theorem}
-\label{4.2.17}
-\textbf{(Gradient)} Vector $\frac{\nabla f(x_0)}{\norm{\nabla f(x_0)}_{\R^n}}$ is normal to? 
-
+\label{4.5.2}
+\textbf{(Gradient and Tangent Plane)} Let $f$ be a scalar function. Vector $\nabla f(\vecta{p})$ is normal to the level set $L(f(\vecta{p}))$. 
 \end{theorem}
 \begin{theorem}
-\label{4.2.18}
-\textbf{(Example)} Let $S=\set{(x,y,z):x^2+y^2+z^2=3}$ Find the normal to $S$ at $(1,1,1)$
+\label{4.5.3}
+\textbf{(Example)} Let $S=\set{(x,y,z):x^2+y^2+z^2=3}$. Find a vector normal to $S$ at  $(1,1,1)$
 \end{theorem}
+\begin{proof}
+Define
+\begin{equation}
+f(x,y,z):=x^2+y^2+z^2 
+\end{equation}
+We have
+\begin{equation}
+S=L(f(1,1,1))
+\end{equation}
+Compute
+\begin{equation}
+\nabla f(1,1,1)=(4,4,4)
+\end{equation}
+\end{proof}
 \begin{theorem}
-\label{4.2.19}
+\label{4.5.4}
 \textbf{(TEST Example)} Let $S=\set{(x,y,z):x^2-y^2+xyz=1}$. Find the tangent plane of $S$ at $(1,0,1)$ 
 \end{theorem}
-\fbox{\begin{minipage}{39em}
-Integral.
-\end{minipage}}
+\begin{proof}
+Define
+\begin{equation}
+f(x,y,z)=x^2-y^2+xyz
+\end{equation}
+We have
+\begin{equation}
+S=L(f(1,0,1))
+\end{equation}
+Compute
+\begin{equation}
+\nabla f(1,0,1)=(2,1,0)
+\end{equation}
+The tangent plane is 
+\begin{equation}
+2x+y=2
+\end{equation}
+\end{proof}
+\section{Integral}
 \begin{theorem}
-\label{4.2.20}
+\label{4.6.1}
 \textbf{(Integral)} Let 
  \begin{equation}
 \forall x \in S, g_1(x)\leq g_2(x)
@@ -4256,22 +4298,26 @@ Let $f:A \rightarrow \R$ be continuous, we have
 This enable us to calculate integral by iteration.  
 \end{theorem}
 \begin{theorem}
-\label{4.2.21}
+\label{4.6.2}
 \textbf{(Example)} Let 
 \begin{equation}
 A=\set{(x,y)\inr^2 : 0\leq x\leq 1, x\leq y\leq 1}
 \end{equation}
-Let 
+Find
 \begin{equation}
-f(x,y)=xy
-\end{equation}
-Compute
-\begin{equation}
-\int_A f(x,y)dA=\int^1_0 \int^1_x xy dydx
+\int_A xydA
 \end{equation}
 \end{theorem}
+\begin{proof}
+Compute
+\begin{align}
+  \int_A xydA&=\int_0^1\int_0^y xy dxdy\\
+  &=\int_0^1 \frac{y^3}{2}dy\\
+  &=\frac{1}{8}
+\end{align}
+\end{proof}
 \begin{theorem}
-\label{4.2.22}
+\label{4.6.3}
 \textbf{(Example)} Let 
 \begin{equation}
 A=\set{(x,y)\inr^2 :0\leq x\leq 1, \sqrt{x} \leq y\leq 1}
@@ -4281,21 +4327,49 @@ Find
 \int_A e^{y^3}dA
 \end{equation}
 \end{theorem}
+\begin{proof}
+Compute
+\begin{align}
+  \int_A e^{y^3}dA&=\int^1_0\int^{y^2}_0 e^{y^3}dxdy\\
+&=\int_0^1 y^2e^{y^3}dy\\
+&=\frac{1}{3}(e-1)
+\end{align}
+\end{proof}
 \begin{theorem}
-\label{4.2.23}
+\label{4.6.4}
 \textbf{(Example)} Let 
 \begin{equation}
 A=\set{(x_1,x_2,x_3):x_1,x_2,x_3 \geq 0, x_1+x_2+x_3\leq 1}
 \end{equation}
-Let $S=[0,1]\times [0,1]\times [0,1]$. Compute
+Find
 \begin{equation}
 \int_A (x_1+x_2+x_3)^2 dx_1dx_2dx_3
 \end{equation}
 \end{theorem}
+\begin{proof}
+\begin{align}
+\int_S(x_1+x_2+x_3)^2dx_1dx_2dx_3&=\int_0^1 \int_0^{1-x_3}\int_0^{1-x_3-x_2}(x_1+x_2+x_3)^2dx_1dx_2dx_3\\
+&=\int_0^1\int_0^{1-x_3}\frac{1}{3}-\frac{(x_2+x_3)^3}{3}dx_2dx_3\\
+&=\int_0^1 \frac{x_3^4}{12}-\frac{x_3}{3}+\frac{1}{4}dx_3\\
+&=\frac{1}{10}
+\end{align}
+The answer is $\frac{4}{5}$
+\end{proof}
 \begin{theorem}
-\label{4.2.24}
-\textbf{(Example)} Compute $n$-dimensional ball volume.
+\label{4.6.5}
+\textbf{(Example)} Let $V(n)$ be the volume of unit $n$-ball. Compute $V(n)$
 \end{theorem}
+\begin{proof}
+We first write $V(n)$ as
+ \begin{equation}
+V(n)=\int_{-1}^1\int_{-\sqrt{1-x_1^2}}^{\sqrt{1-x_1^2}}\cdots \int^{\sqrt{1-x_1^2-\cdots -x_{n-1}^2} }_{-\sqrt{1-x_1^2-\cdots -x_{n-1}^2} }dx_ndx_{n-1}\cdots dx_1
+\end{equation}
+Then we can observe
+\begin{align}
+  V(n)&=V(n-1)\int_{-1}^1 (1-x_1^2)^{\frac{n-1}{2}}dx_1\\
+  &=V(n-1)\int_0^1 (1-u)^{n-1}\frac{u^{\frac{-1}{2}}}{2}du (\because u=x_1^2)
+\end{align}
+\end{proof}
 \chapter{Advanced Calculus HW}
 \section{HW1}
 \begin{question}{}{}
@@ -4605,7 +4679,78 @@ Notice $a+b$ is arbitrarily picked from $A+b$. Our proof is done  $\vdone$
 Show that every open set in \( \mathbb{R} \) is the union of at most countable collection of disjoint open intervals.
 \end{question}
 \begin{proof}
+Because $\Q$ is countable and dense in  $\R$, so in \myref{Theorem}{2.8.13}, we have proved the set
+\begin{equation}
+\mathcal{O}:=\set{B_r(p):p\inq\text{ and }r\inq^+}
+\end{equation}
+is a countable base. Notice that every open ball $B_r(p)$ can be expressed as $(p-r,p+r)$, so we know $\mathcal{O}$ is a countable collection of open interval.\\
 
+Let $A$ be an open set. We wish to prove \vi{$A$ can be expressed as union of a countable collection of disjoint open interval}.\\
+
+
+Because $\mathcal{O}$ is a base, for each $a\in A$, we can find $B_{r_a}(p_a)$, such that
+\begin{equation}
+a\in B_{r_a}(p_a)\subseteq A
+\end{equation}
+Collect all such open ball for each points in $A$ and call this collection  $\mathcal{O}'$.\\
+
+Define a relation $\sim$ on $\mathcal{O}'$ by 
+\begin{gather}
+  (a,b)\sim (c,d) \text{ if }\exists S\in \power{\mathcal{O}'}\text{ such that }\\
+  \bigcup S\text{ is an open interval and }(a,b)\subseteq\bigcup S\text{ and }(c,d)\subseteq \bigcup S
+\end{gather}
+We wish to prove \teal{$\sim$ is an equivalence relation}.\\
+
+To show $(a_1,b_1)\sim (a_1,b_1)$, use $S=\set{(a_1,b_1)}$. To show $(a_1,b_1)\sim (a_2,b_2)\implies (a_2,b_2)\sim (a_1,b_1)$, use the same $S$. It is left to prove
+\begin{equation}
+  (a_1,b_1)\sim (a_2,b_2)\text{ and }(a_2,b_2)\sim (a_3,b_3)\implies (a_1,b_1)\sim (a_3,b_3)
+\end{equation}
+
+Let $S_1\in \power{\mathcal{O}'}$ be from $(a_1,b_1)\sim (a_2,b_2)$, and let $S_2\in \power{\mathcal{O}'}$ be from $(a_2,b_2)\sim (a_3,b_3)$.\\
+
+Define 
+\begin{equation}
+S_3:=S_1\cup S_2 
+\end{equation}
+Because $(a_2,b_2)\subseteq \bigcup S_1\cap \bigcup S_2$, we know $\bigcup S_1\cap \bigcup S_2$ are not disjoint. Then because union of two intersecting open interval is again an open interval, we know $\bigcup S_3$ is an open interval.\\
+
+Deduce
+\begin{equation}
+  (a_1,b_1)\subseteq \bigcup S_1\subseteq \bigcup S_3
+\end{equation}
+and deduce
+\begin{equation}
+  (a_3,b_3)\subseteq \bigcup S_2\subseteq \bigcup S_3\tdone
+\end{equation}
+Let $E$ be the collection of union of each equivalent class of $\sim$ on $\mathcal{O}'$. Because $\mathcal{O}'$ is countable, we know $E$ is countable. Every element of $\mathcal{O}'$ is a subset of $A$ by definition, so we know  $\bigcup E=\bigcup \mathcal{O}'\subseteq A$. Every element of $A$ is in some  $O\in \mathcal{O}'$ by definition, so we have $A\subseteq \bigcup \mathcal{O}'=\bigcup E$. It is only left to prove \olive{each member in  $E$ is an open interval} and \brown{each two members of $E$ are disjoint}.\\
+
+We first prove \brown{disjoint}.\\
+
+Let $B,C\in E$ and let $B',C'$ be equivalent class that satisfy
+\begin{equation}
+B=\bigcup B'\text{ and }C=\bigcup C'
+\end{equation}
+\As{$B,C$ is not disjoint, say, $x\in B\cap C$}, we have
+\begin{equation}
+\exists (a,b)\in B', x\in (a,b)\subseteq B
+\end{equation}
+and have
+\begin{equation}
+\exists (c,d)\in C',x \in (c,d)\subseteq C
+\end{equation}
+We then can see $(a,b)$ and $(c,d)$ intersect, then we can use $S=\set{(a,b),(c,d)}$ to show $(a,b)\sim (c,d)\tCaC\bodone$.\\
+
+We now prove  \olive{open interval}.\\
+ 
+Let $B\in E$, and let $B'$ be equivalent class that satisfy  $B=\bigcup B'$. Because $B'$ contain only open sets, we know  $B$ is open. Then we know $\sup  B$ and $\inf B$ if exists, is not in $B$. We only have to prove every point in $(\inf B,\sup  B)$ is in $B$, where infimum and supremum can be negative or positive infinity. Notice that after we prove such, the proof is done, since $(\inf B,\sup B)\subseteq B$ is trivial.\\
+
+\As{$\exists x\in (\inf B,\sup B), x\not\in B$}. We have
+\begin{equation}
+\exists (y_1,z_1)\in B, (y_1,z_1)\subseteq (\inf B,x)\text{ and }\exists (y_2,z_2)\in B, (y_2,z_2)\subseteq (x,\sup B)
+\end{equation}
+Because $(y_1,z_1)\sim (y_2,z_2)$ there exists $S\in \mathcal{O}'$ such that $(y_1,z_2)\subseteq \bigcup S\text{ and }\bigcup S$ is an open interval. If $S$ contain any element  $(v,w)$ not in $B$, we can use  $S$ to show  $(v,w)\sim (y_2,z_2)$, causing a contradiction. We have proved $S$ is a subset of  $B'$.\\
+
+Now, Because $x\in \bigcup S$, we know there must exists some interval in $S\subseteq B'$ containing  $x$  \CaC to $x\not\in B\odone\vdone$
 \end{proof}
 \begin{question}{}{}
 Let \( A \subseteq B \subseteq \mathbb{R} \). Suppose that \( A \) is a dense subset of \( B \).
@@ -4660,6 +4805,18 @@ Notice that $\overline{A}\cup \overline{B}$ is a closed set containing both $A$ 
 \begin{equation}
 \overline{A\cup B}\subseteq \overline{A}\cup \overline{B}
 \end{equation}
+Notice that $\overline{A}$ and $\overline{B}$ are both closed set containing $A\cap B$. Then because $\overline{A\cap B}$ is the smallest closed set containing  $A\cap B$. We have
+\begin{equation}
+\overline{A\cap B}\subseteq \overline{A}\text{ and }\overline{A\cap B}\subseteq \overline{B}
+\end{equation}
+Then have
+\begin{equation}
+\overline{A\cap B}\subseteq \overline{A}\cap \overline{B}
+\end{equation}
+Let $A=(0,1)$ and $B=(1,2)$. We have
+\begin{equation}
+\overline{A\cap B}=\overline{\varnothing}=\varnothing\text{ and }\overline{A}\cap \overline{B}=[0,1]\cap [1,2]=\set{1}
+\end{equation}
 \end{proof}
 \begin{question}{}{}
 
@@ -4682,7 +4839,11 @@ for any \( x, y \in X \). In this case \( (X,d) \) is called a discrete metric s
 Let \( (M, d) \) be a metric space with discrete metric \( d \). Prove that every compact set in \( M \) is finite.
 \end{question}
 \begin{proof}
-\As{$M$ is infinite}. By   
+Notice we have
+\begin{equation}
+\forall p\in M, B_1(p)=\set{p}
+\end{equation}
+So we know no set in $M$ has a limit point. Let $K\subseteq M$ be compact. \As{$K$ is infinite}. Then by \myref{Theorem}{2.8.14}, we know $K$ has a limit point $\tCaC$  
 \end{proof}
 \begin{question}{}{}
 
@@ -4727,6 +4888,6 @@ Let \( \{ x_n \}_{n=1}^{\infty} \subseteq \mathbb{R} \) be a convergent sequence
 \end{enumerate}
 \end{question}
 \begin{proof}
-
+If a set $K$ is compact, then by \myref{Theorem}{2.8.14}, we know $K$ is limit point compact. In the proof for \myref{Theorem}{2.8.14}, we have proved the limit point compact $K$ is separable. 
 \end{proof}
 \end{document}
