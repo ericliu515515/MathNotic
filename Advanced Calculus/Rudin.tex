@@ -13,6 +13,1129 @@
 \pdfbookmark[section]{\contentsname}{toc}
 \tableofcontents
 \pagebreak
+\setcounter{chapter}{-1}
+\chapter{Basic Set Theory}
+\section{ZF}
+\fbox{\begin{minipage}{39em}
+This section is written as a confirmation of knowledge. For a even more rigorous treatment, one can look for another note where the discussion of ZF is put after that of formal system and zeroth and first order logic..\\
+
+Notice that in our discussion, the domain of discourse are sets. Plain speaking, every variable should be interpreted as set. In this section, we never interpret symbol $x$ as a real number (we never use symbol $x$ to denote a real number), and we never interpret symbol $G$ as a group  (we never use symbol $G$ to denote a group). Whatever variable symbol we use, we interpret the symbol a set (we use the symbol to denote a set), albeit $x,G\text{ or }h$.\\
+
+However, if you wish, you can still interpret the symbol $x$ as a number or structure or any mathematical object or even cats, but I doubt there exists any interpretation that isn't set won't make people feel weird.\\   
+
+Notice that ZF is a first order logic theory. We must first declare the following 
+\end{minipage}}
+\begin{definition}
+\label{0.1.1}
+\textbf{(Atomic Formula)} In our discussion in this section, there are precisely two atomic formulas:
+\begin{equation}
+x\inA
+\end{equation}
+and
+\begin{equation}
+A=B
+\end{equation}
+\end{definition}
+\fbox{\begin{minipage}{39em}
+The above definition may be confusing if one has no basic knowledge for formal system. I here highly recommend the first two chapters of the excellent book \textit{Elementary Formal System } written by Smullyan, and one can understand what does the words "formula" and "axiom" mean. \\
+
+Now we start our discussion of ZF.
+\end{minipage}}
+\begin{axiom}\textbf{(Axiom of Extension)}
+\label{0.1.2}
+\begin{equation}
+\forall x(x\inA \longleftrightarrow x\inB)\longrightarrow A=B
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+TBH, I have no clue why this axiom is named axiom of extension. This axiom axiomatically define equality (between sets).\\
+
+The practice of putting the word \textit{between sets} in a  parenthesis in the above paragraph serve as a reminder that the domain of discourse of our discussion should be interpreted as the class of all sets.\\ 
+
+ZF in our discussion is a theory where the only two non-logical symbol is $\in\text{ and }=$. In our discussion, whenever the symbols $\subseteq,\cup ,\cap, \neq$ appear, one should immediately realize the sentence in which the symbols appear is an interpretation.\\
+
+In ZF, we never define $A \subseteq B$. We never define $A\neq B$. We never define $A \cup B$. We merely construction a formal sentence that one feel it make sense to  interpret as $A \subseteq B$ or the English sentence "$A$ is a subset of  $B$.". 
+\end{minipage}}
+\begin{definition}
+\label{0.1.3}
+\textbf{(Interpretation)} We can interpret the formal sentence $\forall x(x\in A\longrightarrow x\in B)$ as informal sentence $A \subseteq B$. If we ever say $A \subseteq B$, we mean $\forall x(x\in A\longrightarrow  x\in B)$
+\end{definition}
+\begin{definition}
+\label{0.1.4}
+\textbf{(Interpretation)} We can interpret the formal sentence $\exists x((x\in A \land \neg x\in B)\lor(x \in B \land \neg x \in A))$ as the sentence $A\neq B$.
+\end{definition}
+\begin{axiom}
+\label{0.1.5}
+\textbf{(Axiom of Subset)} Let $P$ be a predicate. The axiom states
+\begin{equation}
+\forall A\exists B\forall x(x\inB\longleftrightarrow x\inA\land P(x))
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+Because of axiom of subset, when we informally says $B=\set{x\inA: P(x)}$ in our argument, we know $B$ exists if  $P$ is a predicate. Notice that Russell's paradox rely on the construction of such set: $\set{y:P(y)}$ where predicate $P(x)$  is defined by $\neg x=x$. The axiom of subset only allow us to construct  "subset" (not set) filled with elements satisfying certain predicate.\\
+
+Also, the axiom of subset allow us to construct intersection of two sets. Consider the set $\set{x\inA:P(x)}$ where $P(x)$ is defined by $x\inB$.\\
+
+Notice that one at this point can trivially and formally deduce the existence of two sets that are ought to be interpreted as $A\cap B$ and $B\cap A$, and formulate a formal sentence that is ought to be interpreted as "$A\cap B$ is unique" and another formal sentence that is ought to be interpreted as "$A\cap B=B\cap A$", and deduce these two formal sentences.\\   
+
+One can also formulate and deduce the formal sentence of "intersection operation is associative" as an exercise.\\
+
+Now, before we introduce the next axiom, we first declare  that the symbol $\varnothing$ is in our alphabet.
+\end{minipage}}
+\begin{axiom}
+\label{0.1.6}
+\textbf{(Axiom of Existence of Empty Set)}
+\begin{equation}
+\exists \varnothing\forall y\neg (y\in \varnothing)
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+In some people's formation of ZF, the axiom of existence of empty set isn't necessary, since it is possible to construct the empty set with axiom of subset. If we already know that the universe is nonempty, we can arbitrarily pick a set $A$ and construct  $\set{x\inA:P(x)}$ where $P(x)$ is defined $\neg x=x$.\\
+
+At this point, one can try to formulate the formal sentence of "empty set is unique and is a subset of every set" and formally deduce such using axiom of extension.\\
+
+
+We now introduce an axiom to construct new set.
+\end{minipage}}
+\begin{axiom}
+\label{0.1.7}
+\textbf{(Axiom of Pairing)}
+\begin{equation}
+\forall x\forall y\exists A\forall v(v\inA\longleftrightarrow v=x \lor v=y)
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+    By axiom of pairing, one can deduce the formal sentence of "$\set{x,y}$ exists if $x,y$ exist".\\  
+
+    Notice that we can also deduce the formal sentence of "$\set{x}$ exists if $x$ exists".
+\end{minipage}}
+\begin{axiom}
+\label{0.1.8}
+\textbf{(Axiom of Union)}
+\begin{equation}
+\forall A\exists B \forall x(x\in B\longleftrightarrow \exists C(C\inA\land x\in C))
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+By axiom of union, one can deduce the formal sentence of "$\bigcup X$ exists, if $X$ exist".\\
+
+Also, one can try to formulate and deduce the formal sentence of "For all set  $X$, we know  $\bigcup X$ is unique", that of "For all sets $x,y$, we know $x \cup y=y \cup x$" and that of "For all sets $x,y,z$, we know  $(x\cup y)\cup z=x\cup (y\cup z)$".\\    
+
+Now we introduce a new axiom to construct even more sets.
+\end{minipage}}
+\begin{axiom}
+\label{0.1.9}
+\textbf{(Axiom of Power Set)} 
+\begin{equation}
+\forall A\exists B\forall x(x\in B \longleftrightarrow \forall y(y\in x\longrightarrow y\in A))
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+The axiom of power set can be interpreted as that every set has at least one power set (and it can be proved that there exists only one for every set and that if two set have the same power set then the two set are the same). Normally and informally, we denote the power set of $x$ as $\mathcal{P}(x)$\\  
+
+Now we introduce the standard way to "construct a model for natural numbers", that is, to "formally formulate sets that can be interpreted as natural numbers". The construction is straight forward: we interpret $\varnothing$ as $0$, and  while interpreting $x$ as a natural, interpret $x\cup \set{x}$ as $x+1$.\\
+
+This construction seems to satisfy Peano axioms, but a problem will emerge when one trying to verify: one can construct any natural number, for instance $3$, by constructing  $\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}}$, but one can not construct the set of all natural numbers, that is, informally writing, $\N=\set{0,1,2,3,\dots }=\set{\varnothing, \set{\varnothing},\set{\varnothing,\set{\varnothing}},\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}},\dots }$.\\
+
+The construction of the set $\N$, rely on the next axiom (while the construction of no element in $\N$ rely on the next axiom). In fact, the formulation of any infinite set rely on the next axiom. Without this axiom, we can not formulate any infinite set (after we construct the predicate $P(x)$ to be interpreted as "$P(x)$ is true if $x$ is infinite").
+\end{minipage}}
+\begin{axiom}
+\label{0.1.10}
+\textbf{(Axiom of Infinity)} 
+\begin{equation}
+\exists I(\varnothing \in I \land \forall y(y\in I\longrightarrow y\cup \set{y}\in I))
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+Notice that every set interpreted as a natural number can be proved to belong to the set $I$ in  \myref{Axiom}{0.1.10}. In other (informal) words, the set interpreted as $\N$ is a subset of $I$.\\
+
+Before we formulate such subset of  $I$, we first state the five Peano Axioms, outside of our formal system. One can and should read the following five axioms algebraically, not formally.  
+\end{minipage}}
+\begin{axiom}
+\label{0.1.11}
+\textbf{(Peano Axioms, outside of our formal system)} We say $\gen{U,S}$, where $S$ is a function, is a model of Peano axioms if    
+\begin{equation}
+ 0\in U\text{ (First Peano axiom) }
+\end{equation}
+\begin{equation}
+a \in U \implies S(a)\in U\text{ (Second Peano axiom) }
+\end{equation}
+\begin{equation}
+\forall x \in U, S(x)\neq 0 \text{ (Third Peano axiom) }
+\end{equation}
+\begin{equation}
+S(a)=S(b)\implies a=b\text{ (Forth Peano axiom) }
+\end{equation}
+\begin{equation}
+0  \in X\text{ and } \forall u \in U, u\in X\longrightarrow S(u)\in X\implies U\subseteq X \text{ (Induction axiom) }
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+Before reading the proof of the following theorem, notice that the set $\set{y\in\bigcup  x:\forall z(z\in x\longrightarrow y\in x)}$ is what we mean by $\bigcap  x$, and notice that the set $\set{a\in x: \neg a\in y}$ is what we mean by $x\setminus y$.\\
+
+One can try to completely formalize $\bigcap x\text{ and }x\setminus y$  
+\end{minipage}}
+\begin{theorem}
+\label{0.1.12}
+\textbf{(Existence of Model of Natural Numbers in ZF)}
+We first define five predicate resembling the five Peano axioms.
+\begin{equation}
+P_1(x):=\varnothing\in x
+\end{equation}
+\begin{equation}
+P_2(x):=\forall a(a\in x\longrightarrow a\cup \set{a}\in x)
+\end{equation}
+\begin{equation}
+P_3(x):=\forall a(a\in x\longrightarrow a\cup \set{a}\neq \varnothing)
+\end{equation}
+\begin{equation}
+P_4(x):=\forall a\forall b(a\in x \land b\in x \land a\cup \set{a}=b\cup \set{b}\longrightarrow a=b)
+\end{equation}
+\begin{equation}
+  P_5(x):=\forall a([\forall b(b\in a\longrightarrow b \in x)\land \varnothing\in a\land \forall b(b\in a\longrightarrow b\cup \set{b}\in a)]\longrightarrow x=a)
+\end{equation}
+Reminder: Notice that the notation $\cup $ is not in our formal language, I use the notation only for abbreviation.\\
+
+The theorem states:
+\begin{equation}
+\exists A(P_1(A)\land P_2(A)\land  P_3(A)\land  P_4(A)\land  P_5(A))
+\end{equation}
+\end{theorem}
+\begin{proof}
+  Let $I$ be the set in \myref{Axiom}{0.1.10}. Define $ \call:=\set{X\in\power{I}:\varnothing \in X \land \forall a(a \in X \longrightarrow a\cup \set{a}\in X)} $. From now on, we will call $a\cup \set{a}$ the successor $S(a)$ of $a$ in our proof.\\
+
+Then  $\call$ can be precisely described as the set that contain all subsets $X$ of  $I$ such that the set interpreted as  $0$ is in  $X$ and that the successor of each element in $X$ belong to  $X$.\\
+
+Let $Y=\bigcap \call$. We seek to show that 
+\begin{equation}
+\teal{P_1(Y)\land P_2(Y) \land P_3(Y) \land P_4(Y)\land P_5(Y)}
+\end{equation}
+\vi{$P_1(Y)$} and \blue{$P_2(Y)$} are trivial. $\vdone \bdone$\\
+
+\vi{$P_3(Y)$} is also trivial.$\vdone$\\
+
+
+We now prove $\blue{P_5(Y)}$\\
+
+Let $E \subseteq \bigcap  \call,\varnothing\in E\text{ and }\forall b(b\in E\longrightarrow b \cup \set{b}\in E)$. Notice that $E\subseteq \bigcap \call \implies \forall X\in \call ,E\subseteq X \subseteq I$, so $E\in \call $. Then $\bigcap \call \subseteq E \bdone$\\
+
+We now prove \vi{$P_4(Y)$}\\
+
+Before reading the following, one may want to bear in mind that $\forall x(x\in x\cup \set{x}\text{ and }x\subseteq x\cup \set{x})$ \\
+
+Define $S:=\set{n\in \bigcap \call:\forall m(m \in n \longrightarrow  m\subseteq n) }$. We see that $S\subseteq \bigcap \call $ and that $\set{\varnothing}\in S$, trivially, so by $P_5(Y)$, we only have to show $n \in S \longrightarrow n\cup \set{n}\in S$ to show $S=\bigcap  \call $. To show such, observe that if $n\in S\text{ and }m \in n \cup \set{n}$, then we know $m \in n\text{ or }m \in \set{n}$, which is equivalent to $m \in n \text{ or } m=n$, which implies $m\subseteq n$, since by the definition of $S$, both  $m \in n\text{ and }m=n$ implies $m\subseteq n$. Then we know $n\in S\text{ and }m \in n \cup \set{n}\longrightarrow  m\subseteq n \subseteq n\cup \set{n}$.\\
+
+The above prove that every element of element $n$ of  $\bigcap \call $ is a subset of $n$. \As{$m\neq n\in\bigcap \call $ but $m\cup \set{m}=n\cup \set{n}$}. Because $n\in n \cup  \set{n}=m\cup  \set{m}$ and $n\neq m$, we can deduce $n \in m$, which implies $n\subseteq m$. Using the same method we can also deduce $m \subseteq n\tCaC \vdone$    
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Notice that we didn't prove Peano axioms give a unique structure up to isomorphism. I personally haven't proved it yet, but I guess to prove such  isn't trivial and will require to show structure like $\set{0,1,2,\dots ;a,b}$ where $S(a)=b\text{ and }S(b)=a$ does not satisfy the induction axiom.\\
+
+Say, we have proved the uniqueness of model of Peano axiom. We still haven't show in the universe of ZF, our choice of model for natural number is unique. For all we know, maybe the construction $\varnothing, \set{\varnothing},\set{\set{\varnothing}},\set{\set{\set{\varnothing}}},\dots $ also works. (Hint: Let's say there are other construction for natural numbers, there are still  reasons we pick $\bigcap \call $ as our model, since later you will see $a<b\inn\iff  a\in b\text{ and }a\subset b$)\\
+
+So, it seems like \myref{Theorem}{0.1.12} is relatively weak. This is not the case however. The fact is that, we don't really require anything extra of \myref{Theorem}{0.1.12} to do further discussion.\\
+
+The core concept of Axiom is that we don't care about what a mathematical object is, \textit{we only care about what a mathematical object does}. One should \textit{never} view axiom as something that is apparently true and can not be proved. One should know: in most domains of mathematics,  individually, axioms are simply a convention between one mathematician to another. \textit{Axioms are properties we wish a object to have so that we can make knowledge that is truly important using the property of the object}.\\
+
+For instance, we never care about what are sets. We never care about what is $\N$. We never care about what is  $\R$. We only care about that  $\R$ is completed and we can do induction on $\N$. It doesn't matter if $\N$ contain a cat or Homer Simpson, as long as it satisfy Peano axiom and we can deduce all the Theorem.\\
+
+
+Notice the construction of natural number: $\varnothing, \set{\varnothing},\set{\varnothing,\set{\varnothing}},\dots $ can each be formally proved to belong to $\bigcap  \call $. We now introduce the last axiom.  
+\end{minipage}}
+\begin{axiom}
+\label{0.1.13}
+\textbf{(Axiom of Foundation)}
+\begin{equation}
+\forall X(X \neq \varnothing \longrightarrow \exists Y (Y\in X \land \forall z(z\in Y \longrightarrow \neg z\in X)))
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+In English, the axiom of foundation states that every nonempty set $X$ has an element $Y$ such that  $X\cap Y=\varnothing$. This axiom is sometimes discarded by people who use ZFC for mathematics not so related to set theory, since in the construction of most mathematical object, this axiom is unnecessary. This is also the reason this axiom is introduced last in this section. But of course, this axiom have purpose. We now introduce some results.  
+\end{minipage}}
+\begin{theorem}
+\label{0.1.14}
+\textbf{(No set belong to itself)}
+\begin{equation}
+\forall x, \neg x\in x
+\end{equation}
+\end{theorem}
+\begin{proof}
+\As{$\exists x,x\in x$}. Observe that by the axiom of foundation we have $x\cap \set{x}=\varnothing$, but we also have $x\in x\text{ and }x\in \set{x}$, so $x\in x \cap  \set{x}\tCaC$
+\end{proof}
+\begin{theorem}
+\label{0.1.15}
+  \textbf{(No infinitely descending chain of sets)}
+  Informally, we can say that the following situation will never happen
+  \begin{equation}
+  \dots \in x_3 \in x_2 \in x_1
+  \end{equation}
+  Formally, we say
+  \begin{equation}
+  \neg \exists X(\forall  x(x\in X \longrightarrow \exists y(y \in X \land y \in x)))
+  \end{equation}
+  which reads "There does not exist a set $X$ such that for all $x\in X$ there exists a set  $y\in X$ belong to $x$"
+\end{theorem}
+\begin{proof}
+\As{there exists a set $X$ such that for all $x\in X$ there exists $y\in X \cap x$}, we immediately see that for all $x\in X$, the intersection $x\cap X$ is nonempty \CaC.
+\end{proof}
+\section{Ordinal}
+\fbox{\begin{minipage}{39em}
+In previous section, we employed a purely set-theoretic formal language to delve into Zermelo-Fraenkel Set Theory. While this methodology is undoubtedly elegant for discussing set theory, it becomes notably cumbersome in mathematical domains with limited connections to set theory. This is mainly because many of the tools we typically rely on (such as functions, groups, real numbers, relations, and more) become unavailable. To utilize them, we must first construct all the sets that are interpreted as these tools, leading to extensive and convoluted formulae.\\
+
+In this section, our goal isn't to rigorously prove everything using a formal language. Instead, we'll explain our proofs in sufficient detail so that, if desired, they can be formalized with minimal additional effort, albeit taking a bit more time.\\
+
+Please note that this section primarily serves as a foundational toolkit for the subsequent sections. We will introduce all the necessary tools, and that's the extent of it.\\
+
+In last section, we use a very philosophical and logical way to discuss. Here, we back to our usual algebraic and analytical way to discuss. We firs introduce axioms for ordered sets. 
+\end{minipage}}
+\begin{axiom}
+\label{0.2.1}
+\textbf{(Axiom for Poset)} Let $\leq $ be a relation on set $S$. We say $\gen{S,\leq }$ is partially ordered if   
+\begin{equation}
+\forall x\in S, x\leq  x \text{ (Reflexive) }
+\end{equation}
+\begin{equation}
+\forall x,y,z\in S, x\leq y\text{ and }y\leq z\implies x\leq z\text{ (Transitive) }
+\end{equation}
+\begin{equation}
+\forall x,y\in S, x\leq y\text{ and }y\leq x\implies x=y \text{ (Antisymmetric) }
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+Notice that poset dose not require every two element to be comparable (trichotomy). Totally ordered set require such. 
+\end{minipage}}
+\begin{axiom}
+\label{0.2.2}
+\textbf{(Axiom for Totally Ordered Set)} Let $\leq $ be a relation on set $S$. We say $\gen{S,\leq }$ is totally ordered (or linearly ordered) if 
+ \begin{equation}
+\forall x\in S, x\leq x\text{ (Reflexive) }
+\end{equation}
+\begin{equation}
+\forall x,y\in S, x\leq  y\text{ or }y\leq x \text{ (Connected) }
+\end{equation}
+\begin{equation}
+\forall x,y,z\in S, x\leq y\text{ and }y\leq z\implies x\leq z \text{ (Transitive) } 
+\end{equation}
+\begin{equation}
+\forall x,y\in S,x\leq y\text{ and }y\leq x\implies x=y\text{ (Antisymmetric) }
+\end{equation}
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+We now give the axioms for strictly ordered sets.  
+\end{minipage}}
+\begin{axiom}
+\label{0.2.3}
+\textbf{(Axiom for Strictly Totally and Partially Ordered Set)} Let $<$ be a relation on set $S$. We say  $\gen{S,<}$ is strictly totally ordered if 
+\begin{equation}
+\forall x\in S, x\not < x \text{ (Irreflexive) }
+\end{equation}
+\begin{equation}
+\forall x,y\in S, x<y \implies y\not<x \text{ (Asymmetric) }
+\end{equation}
+\begin{equation}
+\forall x,y,z\inS, x<y\text{ and }y<z\implies x<z \text{ (Transitive) }
+\end{equation}
+\begin{equation}
+\forall x,y\in S, x\neq y \implies x<y\text{ or }y<x \text{ (Connected) }
+\end{equation}
+$\gen{S,<}$ is strictly partially ordered if satisfy irreflexive, asymmetric and transitive axiom. 
+\end{axiom}
+\fbox{\begin{minipage}{39em}
+Notice that if $S$ is totally ordered, then we can let $S$ be strictly totally ordered by defining  $a<b$ if  $a\leq b\text{ and }a\neq b$, and if $S$ is strictly totally ordered, we can let  $S$ be totally ordered by defining  $a\leq b$ if $a<b\text{ or }a=b$.\\
+
+
+Again, if $S$ is partially ordered, then we can let $S$ be strictly partially ordered by defining  $a<b$ if  $a\leq b\text{ and }a\neq b$, and if $S$ is strictly partially ordered, we can let  $S$ be partially ordered by defining  $a\leq b$ if $a<b\text{ or }a=b$.\\
+
+We now give definition of some basic notions.  
+\end{minipage}}
+\begin{definition}
+\label{0.2.4}
+\textbf{(Definition of Minimal and Maximal)} A maximal element $a$ of a subset $X$ of poset $Y$ or totally ordered set $Y$ is an element that no element $b\in X$ satisfy $a<b$. Minimal element is defined in similar fashion.
+\end{definition}
+\begin{definition}
+\label{0.2.5}
+\textbf{(Definition of Well Ordered Set)} A totally ordered set $S$ is said to be well ordered if every nonempty subset $X$ of  $S$ has a minimal element $x$. 
+\end{definition}
+\fbox{\begin{minipage}{39em}
+Notice that $\N$ is well ordered, but all  $\Z,\Q,\Q^+,\set{0}\cup \Q^+,\R$ is not well ordered.\\
+
+We now give the definition of ordinal, which is the core of this section.\\
+
+Notice that there are other ways to define ordinal, but Von Neumann ordinal is the most elegant that can be formalized by our system in section 2.1. 
+\end{minipage}}
+\begin{definition}
+\label{0.2.6}
+\textbf{(Definition of Von Neumann Ordinal)} A set $S$ is an ordinal if  $S$ is a strictly totally well ordered set with respect to  $\in$ and every element of $S$ is a subset  of $S$. Precisely,  we say a set $S$ is an ordinal  if satisfy the following:
+\begin{equation}
+\forall x\in S,x\not\in x\text{ (Irreflexive) }
+\end{equation}
+\begin{equation}
+\forall x,y\in S, x\in y\implies y \not\in x \text{ (Asymmetric) }
+\end{equation}
+\begin{equation}
+\forall x,y,z\in S, x\in y \text{ and } y\in z \implies x\in z\text{ (Trnasitive) }
+\end{equation}
+\begin{equation}
+\forall x,y\in S, x\neq y\implies x\in y\text{ or }y\in x \text{ (Connected) }
+\end{equation}
+\begin{equation}
+\forall V\subseteq S, \exists x\in V,\forall y\in V, x\in y \text{ (Well Order) }
+\end{equation}
+\begin{equation}
+\forall x\in S, x\subseteq S \text{ (Subset) }
+\end{equation}
+In other words, $S$ is an ordinal if  $\gen{S,\in}$ is strictly totally well ordered and every element of $S$ is a subset of  $S$. 
+\end{definition}
+\fbox{\begin{minipage}{39em}
+Von Neumann's definition of ordinal may seem simple and straight forward, but is in fact very strong. Here we prove properties of Von Neumann ordinal we intend to have by definition.\\
+
+Notice that in ZF, irreflexive and antisymetric is trivially satisfied by axiom of foundation. 
+\end{minipage}}
+\begin{theorem}
+\label{0.2.7}
+\textbf{(Every Element of Ordinal is an Ordinal)} If $S$ be an ordinal, then  $A \in S$ is an ordinal.
+\end{theorem}
+\begin{proof}
+Notice that if $A=\varnothing$, then the proof is all trivial, so we only have to consider $A\neq \varnothing$. Because $A \subseteq S$, so transitive,  connected and well ordered is trivially proved.\\
+
+
+
+
+We now prove \vi{$\forall x\in A, x \subseteq A$}.\\
+
+Let $x\in A$, if $x$ are all empty, the proof is trivial. Let $\alpha \in x$, so we have $\alpha \in x \in A$\\
+
+Because $A\in S$, we know $A \subseteq S$, so we know $x \in A \subseteq S$. Then we know $x \subseteq S$, so we know $\alpha \in x \subseteq S$. So we know $\alpha ,x,A$ all belong to $S$, then because $S$ is transitive, we conclude  $\alpha \in A\vdone $
+\end{proof}
+\begin{theorem}
+\label{0.2.8}
+\textbf{(Ordinal Successor)}
+If $a$ is an ordinal, then  $a\cup \set{a}$ is an ordinal.
+\end{theorem}
+\begin{proof}
+  Notice that $b\in a\cup \set{a}\implies b \in a\text{ or }b\in \set{a}\implies b\in a\text{ or }b=a$. If $b=a\text{ and }b\in a$, we see $a\in a$, so we know $b\in a\cup \set{a}\implies b\in a\text{ exclusively or }b=a$. \\
+
+The proofs for subset part and connected part are relatively simple. Let $x,y\in a \cup \set{a}$. If $x\in a$, then $x \subseteq a\subseteq a\cup \set{a}$. If $x=a$, then  $x=a\subseteq a\cup \set{a}$. Let $x\neq y$. If $x,y$ are both in  $a$, then the proof is finished. If, WOLG, $y=a$, then  $x \in a= y$.\\ 
+
+We now prove \vi{the transitive part}.\\
+
+ Let $x,y,z\in a \cup  \set{a}$ and $x\in y\text{ and }y\in z$. By axiom of foundation, it is impossible more than one of $x,y,z$ equals to  $a$. If $x=a$, then we have $y \in a$, so we see $\cdots a=x\in y\in a\in y \in a $, which implies it is impossible $x=a$. Similarly, we can deduce $y\neq a$. So far, we have proven $x\in a\text{ and }y\in a$. If $z\in a$, then because $a$ is an ordinal, our proof if done. If $z=a$, we see  $x\in a=z\vdone$\\
+
+
+We now prove \blue{the well ordered part}.\\
+
+Let $V\subseteq a \cup \set{a}$. By axiom of foundation, we know $a$ and $\set{a}$ are disjoint, so if $a\not \in V$, then $V \subseteq a$, and by the definition of $a$, our proof is finished.  If $a \in V$, we see either $a$ is the only element of  $V$ or  there exist element other than $a$ in $V$. If the situation is former, then the proof is trivially finished. If the situation is latter, then we observe $V \setminus \set{a} \subseteq a$, so $V \setminus \set{a}$ has a minimal element $x$, and  $x\in a$ indicate $x$ is also the minimal element of  $V\bdone$ 
+\end{proof}
+\begin{theorem}
+\label{0.2.9}
+  \textbf{(Basic Property of Ordinals)} If $a,b$ are ordinals, we have
+   \begin{equation}
+  a \in b \iff a \subset b
+  \end{equation}
+\end{theorem}
+\begin{proof}
+From left to right is relatively simple. If $a\in b$, then we have $a \subseteq b$. By axiom of foundation, we know $a \in b \implies  a\neq  b$, so we have $a \subset b$.\\
+
+$(\longleftarrow)$\\
+
+Let $a \subset b$. We wish to prove $a=x:=\min b\setminus a$, so that $a=\min b\setminus a\in b$. We now prove \vi{$x \subseteq a$} and prove  \blue{$a \subseteq x$}.\\
+
+By definition of $x$, we have $\forall y\in b \setminus a, y\not\in x$. This tell us $b \setminus a$ and $x$ are disjoint. Because $x\subseteq b$, the fact that $b \setminus a$ and $x$ are disjoint tell us that $x \subseteq a\vdone$\\
+
+Let $z\in a$, we wish to prove $z \in x$. Notice that $z \in a \subset b$, so because  $b$ is an ordinal and  $x \in b$, we know either $z\in x\text{ or }z=x\text{ or }x \in z$. \As{$x=z$}. We have  $\min b\setminus a =x =z \in a\tCaC$. \As{$x\in z$}. Because $a$ is an ordinal and  $z\in a$, we have $\min  b \setminus a = x \in z \subseteq a\tCaC$. Now we have $z \in x$ as desired $\bdone$
+\end{proof}
+\begin{lemma}
+\label{0.2.10}
+If $A,B$ are ordinals, then  $A \cap B$ is an ordinal.
+\end{lemma}
+\begin{proof}
+Transitive and connected and well ordered of $A\cap B$ trivially inherit from that of $A$. Observe $x\in A \cap  B\implies x \in A\text{ and }x\in B\implies x\subseteq A\text{ and }x\subseteq B\implies x\subseteq A\cap B$, and we are finished.      
+\end{proof}
+\begin{theorem}
+\label{0.2.11}
+\textbf{(Trichotomy of Ordinals)} If $a,b$ are ordinals, we have
+\begin{equation}
+a \subset b \text{ or }a=b\text{ or }b \subset a
+\end{equation}
+\end{theorem}
+\begin{proof}
+
+\As{$a\not \subset b\text{ and }a\neq b\text{ and }b\not \subset a$}. We have $a\setminus b\neq \varnothing\text{ and }b\setminus a\neq \varnothing$, since, say, if $a\setminus b=\varnothing$, we have $a \subseteq b$.\\
+
+By  \myref{Lemma}{0.2.10}, we know $a\cap b$ is an ordinal. Because $a \setminus b\neq \varnothing$, we know $a \cap  b \subset a$, and then by \myref{Theorem}{0.2.9} we have $a \cap  b \in a$. Similarly, we have $a \cap b \in b$. Then we have $a\cap  b \in a \cap  b\tCaC$
+\end{proof}
+\begin{corollary}
+\label{0.2.12}
+\textbf{(Trichotomy of Ordinals)} If $a,b$ are ordinals, we have
+ \begin{equation}
+a \in b\text{ or }a=b\text{ or }b\in a
+\end{equation}
+\end{corollary}
+\begin{corollary}
+\label{0.2.13}
+\textbf{(The Class of All Ordinal is Totally Ordered)} 
+The class of all ordinals is totally ordered by set-membership $\in$. 
+\end{corollary}
+\begin{proof}
+The irreflexive and assymmetric part is trivially satisfied by axiom of foundation. The transitive part is simple: $x\in y\text{ and }y\in z\implies x\in y\subseteq z$. The connected part is just proven by \myref{Corollary}{0.2.12}. 
+\end{proof}
+\begin{theorem}
+\label{0.2.14}
+\textbf{(The Class of All Ordinals is Well Ordered)} Every set of ordinals has a $\in$-minimal element.
+\end{theorem}
+\begin{proof}
+If not, then it contradicts to \myref{Theorem}{0.1.15}
+\end{proof}
+\begin{theorem}
+\label{0.2.15}
+\textbf{(Burali-Forti Paradox)}
+All ordinals do not form a set.\\
+
+Formally speaking,  define $P(S)$ are true if and only if $S$ is an ordinal. Then we have 
+\begin{equation}
+\neg \exists A\forall x(x \in A\longleftrightarrow P(x))
+\end{equation}
+\end{theorem}
+\begin{proof}
+\As{$\Omega$ is the set of all ordinals}. By \myref{Theorem}{0.2.14}, we see $\Omega$ satisfy at least irreflexive, asymmetric, trnasitive, connected and well ordering requirement of ordinal.\\
+
+Let $x \in \Omega$, and $y \in x$. By \myref{Theorem}{0.2.7}, we know $y \in \Omega$, so in fact we have $x \subseteq \Omega$, which prove $\Omega$ is an ordinal. Then we have $\Omega \in \Omega \tCaC$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Whewww, we have proved a lot of intended properties of ordinal. Notice that although there does not exist a set consist precisely of all ordinals. We still can mention the class of all ordinal by $Ord$.\\
+
+ Notice that $Ord$ is in fact an extension of  $\N$, and it goes like this
+  \begin{equation}
+  0,1,2,3,\dots ;\omega, \omega+1,\omega +2,\dots
+  \end{equation}
+\end{minipage}}
+\begin{theorem}
+\label{0.2.16}
+  \textbf{(All Naturals are Ordinals)} All element of  $\bigcap \call$ are ordinals. 
+\end{theorem}
+\begin{proof}
+We prove by induction, which is  the $P_5(\bigcap  \call )$ of \myref{Theorem}{0.1.12}.\\
+
+Notice that $\varnothing$ trivially satisfy all property of ordinals, which finish the proof for base step, and notice that by \myref{Theorem}{0.2.8}, the proof for induction step is also finished.  
+\end{proof}
+\begin{theorem}
+\label{0.2.17}
+\textbf{($\N$ as a set is an ordinal)} $\bigcap \call $ is an ordinal. 
+\end{theorem}
+\begin{proof}
+By \myref{Theorem}{0.2.16}, we have proved that $\cap \call $ is a strictly totally ordered set. Notice that every subset of a well ordered set is well order, so it only left to prove the \vi{subset part} of definition of ordinal.\\
+
+We prove by induction. Let $X:=\set{x \in \bigcap \call  : x \subseteq \bigcap \call }$. Base case: $\varnothing \in X$ is trivial. Let $a \in X$. Then we have $a\in \bigcap   \call$ and $a \subseteq \bigcap   \call $, so we have $a \cup \set{a} \subseteq \bigcap \call  \vdone$ 
+\end{proof}
+\begin{theorem}
+\label{0.2.18}
+\textbf{(Transfinite Induction)} 
+Let $X$ be a nonempty ordinal. For all $x \in X$, we define 
+\begin{equation}
+S_x:=\set{z \in X: z\in x }
+\end{equation}
+Let $Y\subseteq X$. If $Y$ satisfy the property:
+\begin{equation}
+\forall x\in X( S_x \subseteq Y \longrightarrow x \in Y )
+\end{equation}
+we have $Y=X$
+\end{theorem}
+\begin{proof}
+\As{$Y$ satisfy the property, but $Y\neq X$}. 
+We first show \vi{$Y$ is nonempty}.  Because $X$ is an ordinal, we can pick an element $r \in X$ such that $\forall u \in X, r\in u$, so we have $S_r=\varnothing \subseteq Y$. Then because $Y$ satisfy the property, we have  $r \in Y\vdone$\\
+
+Because $X$ is an ordinal, we know there exists  $x_0 \in X\setminus Y$ such that $\forall x\neq x_i\in X\setminus Y, x_0 \in x$.\\
+
+Let $a \neq  x_0 \in X$, we know either $a \in Y$ or $a \in X\setminus Y$, we now prove \blue{$a \in x_0 \implies a \in Y$}. \As{$a \not \in Y$}, we then have $a\in X\setminus Y$, so we have $x_0 \in a \tCaC \bdone$.\\
+
+The \blue{blue part} show that $S_{x_0} \subseteq Y$, so by the property of $Y$, we have  $x_0 \in Y$, but $x_0 \in X \setminus Y \tCaC$.
+
+\end{proof}
+\section{Axiom of Choice and its equivalents}
+
+\fbox{\begin{minipage}{39em}
+In this section, we aim to establish the equivalence between the Axiom of Choice and Zorn's Lemma. Additionally, we will explore and provide proofs for various applications of Zorn's Lemma. We'll begin by laying down foundational theorems in order theory, which will serve as our lemmas. Using these, we will demonstrate the progression from the Axiom of Choice to Zorn's Lemma. Interestingly, the reverse direction, proving from Zorn's Lemma to the Axiom of Choice, is considerably more straightforward and can be viewed as an "application" of Zorn's Lemma. Towards the end, we will delve into other notable applications of Zorn's Lemma.\\
+
+Notice in this section, $P$ is a non-empty partially ordered set (poset).
+\end{minipage}}
+\begin{definition}
+\label{0.3.1}
+\textbf{(Definition of Chain)} We say  $X\subseteq P$ is a chain if $X$ is totally ordered. 
+\end{definition}
+\begin{definition}
+\label{0.3.2}
+\textbf{(Definition of Well Ordered Set)} Let $X\subseteq P$. We say  $X$ is well ordered only if $X$ is totally ordered.
+\end{definition}
+\begin{definition}
+\label{0.3.3}
+\textbf{(Definition of Upper Bound)} Let $X\subseteq P$. We say $X$ is bounded above by  $t$ if
+\begin{equation}
+\forall x \in X, x\leq t
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{0.3.4}
+\textbf{(Definition of Initial Segment)} Let $C$ be a chain of $P$. We say $T$ is an initial segment of $C$ if
+\begin{equation}
+T\subseteq C \text{ and }\forall  v\in T,\forall u\in C, u \leq v \implies  u \in T
+\end{equation}
+In this section, we denote the statement: $T$ is an initial segment of  $C$ by $T\subseteq' C$, and we denote $T\subseteq'C\text{ and }T\neq C$ by $T\subset' C$
+\end{definition}
+\begin{lemma}
+\label{0.3.5}
+An initial segment of a chain is also a chain
+\end{lemma}
+\begin{lemma}
+\label{0.3.6}
+Let  $S \subseteq P$ be well ordered and $t$ be an upper bound of  $S$. We have $S \cup \set{t}$ is also well ordered. 
+\end{lemma}
+\begin{proof}
+Let $V \subseteq S\cup \set{t}\text{ and }V\neq \varnothing$ . If $V\cap S$ is empty, then we know $V=\set{t}$ and the proof is trivially finished. If $V\cap S$ is nonempty, let $x= \min V\cap S$. We know $y\in V\implies y \in V \cap S\text{ or }y=t$. If $y \in V\cap S$, then $x\leq y$ by definition of $x$. If  $y=t$, then  $x\leq t=y$ by $x\in S\text{ and the definition of $t$}$  
+\end{proof}
+\begin{lemma}
+\label{0.3.7}
+If $\cc$ is a set of well ordered chains in $P$ where 
+ \begin{equation}
+X,Y \in \cc \implies X\text{ is an initial segment of $Y$ or $Y$ is an initial segment of  $X$}
+\end{equation}
+then $\bigcup \cc$ is a well ordered chain 
+\end{lemma}
+\begin{proof}
+Notice that the definition of $\cc$ implies
+\begin{equation}
+X,Y \in \cc \implies  X \subseteq Y\text{ or }Y\subseteq X
+\end{equation}
+
+Let $a,b \in \bigcup \cc $, and let $a \in A \in \cc, b \in B\in\cc$. Observe $A \subseteq B$ or $B \subseteq A\implies a,b \in A\text{ or }a,b \in B$, because $A,B$ are chains, we deduce $a,b$ are  comparable.  All the other properties of totally ordered set inherit from $P$, so we have proven  $\bigcup \cc$ is a chain.\\
+
+We first prove \vi{$\gen{\cc,\subseteq'}$ is totally ordered.}\\
+
+Connected part and antisymmetric part are implied by the definition of $\cc$. One can verify the reflexive part trivially hold true. Let  $A\subseteq'B\subseteq'C\text{ and }a\in A, c \in C\text{ and }c\leq a$. Because $a \in B$ and $B \subseteq' C$, we can deduce $c \in B$ from $c \leq a$. Then we can deduce $c \in A$ from $c \in B\text{ and }A\subseteq' B$, finishing the proof for transitive part $\vdone$\\
+
+
+Let $V \subseteq \bigcup \cc$. We now prove \blue{$V$ contain a minimal element}.\\
+
+Arbitrarily pick $X\in \cc$ so that $V\cap X$ is nonempty. Because $V \cap X \subseteq X$ and $X$ is well ordered, we know $\min V \cap X$ exists. \As{$\exists v' \in V, v'< \min V \cap  X$}. We know $\min  V\cap  X\in X\in \gen{\cc,\subseteq'}$. Let $S=\set{Z \in \cc : v' \in Z}$. If $X \in S$, then $v'\in V \cap  X$ contradicting to $v' <\min V\cap  X$, so we know $X \not\in S$. Observe $v' \in Z\subseteq ' X \implies  v' \in X $ causing the same contradiction, so we know every element in $S$ is greater than  $X$ with respect to  $\subseteq '$. We know $S$ is non empty, since  $v' \in V \subseteq \bigcup \cc$. Then we can arbitrarily pick $Z\in S$. By definition of initial segment, we can deduce $v' \in X$ from $v'<\min V \cap  X\text{ and } Z\subseteq' X \tCaC\bdone$ 
+\end{proof}
+\begin{lemma}
+\label{0.3.8}
+The class of initial segments of a chain is totally ordered by $\subseteq' $
+\end{lemma}
+\begin{proof}
+Antisymmetric, reflexive and transitive parts are implied by definition of $\subseteq'$, as shown in the proof of  \myref{Lemma}{0.3.7}. Now we let $X$ be a chain and let  $A\subseteq' X\text{ and }B\subseteq' X$, and prove \vi{$A \subseteq' B\text{ or }B\subseteq' A$}\\
+
+\As{$A\not\subseteq B\text{ and }B\not\subseteq A$}. Arbitrarily pick $x \in A\setminus B\text{ and }y \in B\setminus A$. We know $x\neq y$, since $y\not\in A\setminus B$. WOLG, let $x<y$. Because $x\in A\subseteq X$, where $y\in B$ and $B\subseteq' X$, so we deduce $x \in B\tCaC$\\
+
+WOLG, let $A \subseteq B$. \As{$A\not\subseteq' B$}. Then there exists $a\in A,b\in B$ such that $b<a\text{ and }b\not\in A$. Yet, we see $A\subseteq' X,b\in X\text{ and }a \in A$, so we can deduce $b \in A\tCaC$ 
+\end{proof}
+\fbox{\begin{minipage}{39em}
+While \myref{Lemma}{0.3.7} might appear to be a potent assertion, implying that the union of a totally ordered (by inclusion) set of well-ordered subsets is itself well-ordered, this is far from the truth. For instance, consider the union of the sets $\set{\set{-1},\set{-1,-2},\set{-1,-2,-3},\dots}$. This union is the set of negative integer, apparently not well-ordered, even though the set $\set{\set{-1},\set{-1,-2},\dots}$ is a set of well-ordered subsets of $\Z$ when ordered by inclusion. This counterexample is even more compelling than our original premise.\\
+
+Next, we'll move on to demonstrating the link from the Axiom of Choice to Zorn's Lemma. But before delving into that, let's first formulate the concept of a function within the ZF set theory.
+\end{minipage}}
+\begin{definition}
+\label{0.3.9}
+\textbf{(Construction of Function)} In ZF, we interpret the set
+\begin{equation}
+\set{\set{a},\set{a,b}}
+\end{equation}
+as $(a,b)$ 
+and we interpret the set 
+\begin{equation}
+\set{(x,y):x\in X, y \in Y}
+\end{equation}
+as a function from $X$ to  $Y$. Carefully notice we can construct predicate $Q(f)$ as below to tell if a set should be interpreted as a function.
+\begin{equation}
+\forall A (A \in f \longrightarrow \forall x (\set{x} \in A\longrightarrow  \exists yH(A,x,y)\lor A=\set{\set{x}})\land  G(f,A,x))
+\end{equation}
+where predicate $H(A,x,y)$ is defined by
+\begin{equation}
+x\neq y\land \set{x,y}\in A\land \forall z(z \in A\longrightarrow z=\set{x}\lor z=\set{x,y} )
+\end{equation}
+and predicate $G(f,A,x)$ is defined by 
+\begin{equation}
+\forall B (B \in f\longrightarrow B=A\lor \set{x}\not\in B)
+\end{equation}
+Also, carefully notice we can construct predicate $Q_{f}(x,y)$
+\begin{equation}
+\exists A\in f(\set{x}\in A\land \set{x,y}\in A)
+\end{equation}
+which if hold true should be interpreted as $f(x)=y$
+\end{definition}
+\begin{theorem}
+\label{0.3.10}
+\textbf{(Axiom of Choice Implies Zorn's Lemma)}
+If \begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+\textbf{AC:} For each set of nonempty sets  $Y$, there exists a function $f:Y\rightarrow \bigcup Y$ such that $f(X)\in X$ 
+\end{minipage}
+\end{center}
+Then
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+       \textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded, there exists a maximal element. 
+    \end{minipage}
+\end{center}
+\end{theorem}
+\begin{proof}
+Because the set of upper bound of chain is always nonempty, we can let $g$ be a function that map each chain $C$ in  $P$ to the set of upper bounds of $C$, and let $h$ be a choice function on image of $g$. Then, we define $f=h\circ g$, so we have  $\forall x \in C, x\leq f(C)$.\\
+
+The above use the axiom of choice. We now define 
+\begin{multline}
+\cc:=\set{C\subseteq P: C\text{ is well ordered},\min C=p,T\subset' C\longrightarrow f(T)=\min C\setminus T}
+\end{multline}
+We see $\set{p}\in \cc$, so $\cc$ is nonempty. We first prove \vi{$\gen{\cc,\subseteq'}$ is totally ordered}.\\
+
+Reflexive part, transitive part and antisymmetric part are implied by the definition of $\subseteq'$, as shown in the proof of \myref{Lemma}{0.3.7}. Let $A,B \in \cc$, and define
+\begin{equation}
+R:=\bigcup \set{T: T \subseteq' A\text{ and }T\subseteq' B}
+\end{equation}
+Let $x\in R\text{ and }y \in A$. Then we find $T$ such that $x \in T\subseteq' A$. Observe if $y<x$, then $y\in T \subseteq R$. This prove $R\subseteq' A$. Similarly, we can prove $R\subseteq' B$. Then by the definition of $R$, we know  $R$ is greatest common initial segment of  $A\text{ and }B$.\\
+
+\As{$R\subset' A\text{ and }R\subset' B$}. Then we see $f(R)=\min A\setminus R=\min B\setminus R$. Let $a\inA\text{ and }r'\in R\cup \set{f(R)}$. Observe
+\begin{equation}
+a<r' \implies \begin{cases}
+  a<f(R)=\min A\setminus R\\
+  a<r \in R\subseteq' A
+\end{cases}\implies \begin{cases}
+  a \not\in A\setminus R\\
+  a \in R
+\end{cases}\implies a\in R
+\end{equation}
+So we have $R\cup \set{f(R)}\subseteq' A$. Similarly we have $R\cup \set{f(R)}\subseteq' B$. Because $f(R)=\min A\setminus R\not\in R$, so we know $R\subset R\cup \set{f(R)}\subseteq R\text{ by definition of $R$ }\tCaC$\\
+
+Because $R\subseteq' A\text{ and }R\subseteq' B$. WOLG, we can let $R=A$, and we see $A=R\subseteq' B\vdone$\\
+
+Let 
+\begin{equation}
+U:=\bigcup \cc
+\end{equation}
+We now prove \blue{$U\in \cc$}.\\
+
+Notice that by \myref{Lemma}{0.3.7}, we know $U$ is a well ordered chain. Because $x \in U \implies \exists D,x \in D \in \cc\implies p\leq x$, so $p$ is also the minimal element of  $U$. Then now we only have to prove \blue{$T\subset' U\longrightarrow  f(T)=\min U\setminus T$}. \\
+
+Arbitrarily find $T\subset' U$, and arbitrarily pick $s \in U\setminus T$. By definition of $U$, we know there exists $S\in \cc$ such that $s \in S$.\\
+
+We wish to prove \teal{$S\subseteq' U$}. Arbitrarily pick $v \in U$ less than $s$ and let $v \in V \in\cc$. By \vi{violet part}, we know $S\subseteq' V\text{ or }V\subseteq' S$. If $V\subseteq' S$, then we prove $v<s \implies v \in V\subseteq S$. If $S\subseteq ' V$, then $v<s \implies  v \in S$. Notice both of them mean $S \subseteq' U$, since $v$ is arbitrarily picked from  $U\tdone$.\\
+
+
+
+Because $T\subseteq' U\text{ and }S\subseteq' U$, by \myref{Lemma}{0.3.8}, we know either $S\subseteq' T\text{ or }T\subseteq' S$. Notice $s \in S\text{ and }s\in U\setminus T$, so we know $T\subset' S$. Then because $S \in \cc$, we know $f(T)=\min S\setminus T$. Notice that it can be trivially proved  $S\subseteq' U \implies S\setminus T \subseteq' U\setminus T$, so in fact we have $f(T)=\min S\setminus T=\min U\setminus T\bdone$\\
+
+\As{$U$ does not contain a maximal element of  $P$}. We now prove \vi{$U\cup \set{f(U)}\in \cc$}\\
+
+Notice that by \myref{Lemma}{0.3.6}, we know $U\cup \set{f(U)}$ is a well ordered chain, and because $f(U)$ is an upper bound of $U$, we know $p=\min U\cup \set{f(U)}$, so we only have to prove \vi{$T\subset' U\cup \set{f(U)}\longrightarrow f(T)= \min U\cup \set{f(U)}\setminus T} $}.\\
+
+Because $f(U)$ is an upper bound of $U$, we see  $f(U)=\max U\cup \set{f(U)}$, and because $U$ contain no maximal element, we know  $f(U)\not\in U$, that is, $U\subset U\cup \set{f(U)}$.\\
+
+Notice we have $f(U)\not\in T$, since $f(U)\in T\implies T=U\cup \set{f(U)}$. Then observe 
+\begin{gather}
+f(U)\not \in T\text{ and }T\subset' U \cup \set{f(U)}\\
+\implies T\subseteq' U\\
+\implies T=U\text{ or }T\subset' U\\
+\implies f(T)=f(U)=\min U\cup \set{f(U)}\setminus U=\min U\cup \set{f(U)}\setminus T\\
+\text{ or }f(T)=\min U\setminus T=\min U\cup \set{f(U)}\setminus T\vdone
+\end{gather}
+
+
+Then we see $U\cup \set{f(U)}\in \cc\implies U\cup \set{f(U)}\subseteq \bigcup \cc= U \tCaC$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We will first delve into a straightforward application of Zorn's Lemma. Following that, we'll demonstrate how Zorn's Lemma inherently suggests the Axiom of Choice.
+\end{minipage}}
+\begin{theorem}
+\label{0.3.11}
+\textbf{(Zorn's Lemma Implies Every Vector Space Has a Basis)} If
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+       \textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded, there exists a maximal element. 
+    \end{minipage}
+\end{center}
+then 
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+        Every vector space has a basis.
+    \end{minipage}
+\end{center}
+\end{theorem}
+\begin{proof}
+  Let $V$ be a vector space and let  $\mathcal{X}$ be the set of all linearly independent set of  $V$.  Order  $\mathcal{X}$ by inclusion, we now prove \vi{every chain $\cc$ in $\mathcal{X}$ is bounded above by $\bigcup \cc$}.\\
+
+We first prove \teal{$\bigcup \cc$ is linearly independent}. Arbitrarily pick a finite subset $S$ of  $\bigcup \cc$, and for each vector $s_i \in S$, pick a linearly independent set $S_i \in \cc$ such that $s_i \in S_i$. Let $S_n$ be the maximal element of  $\set{S_i}$ by inclusion. Then we have $S\subseteq S_n$, so $S$ is linearly independent $\tdone$\\
+
+By definition, we have $C\in \cc\implies C \subseteq \bigcup \cc\vdone$.\\
+
+Then by Zorn's Lemma, we know there exist a maximal element $W$ of $\mathcal{X}$. We now prove \blue{$U$ spans  $V$}.\\
+
+\As{there exists $v\in V\setminus \text{span}(U)$}. Then we see $U\subset U\cup \set{v}$ and see $U\cup \set{v}\in \mathcal{X}\tCaC\bdone$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+In direct application of  Zorn's Lemma, especially those involving chains ordered by inclusion, a common tactic is to use the union of a chain as an upper bound. Conceptually, this can be likened to computing the limit or supremum of a monotonically increasing sequence.\\
+
+We now prove that Zorn's Lemma also implies axiom of choice, so we know Zorn's Lemma is equivalent to axiom of choice.
+\end{minipage}}
+\begin{theorem}
+\label{0.3.12}
+\textbf{(Zorn's Lemma Implies Axiom of Choice)} If 
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+\textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded above, there exists a maximal element     
+    \end{minipage}
+\end{center}
+Then
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+        \textbf{AC:} For each set of nonempty set  $Y$, there exists a function $f:Y\rightarrow \bigcup Y$ such that $f(X)\in X$ 
+    \end{minipage}
+\end{center}
+\end{theorem}
+\begin{proof}
+Notice that we prove the theorem in the sense of ZF.\\
+
+  Let $P$ be the set of all function $f$ from subset of  $Y$ to  $\bigcup Y$ such that $f(X)\in X$. In $P$, we define
+\begin{equation}
+g\leq h\text{ if }g\subseteq h
+\end{equation}
+Let $\cc$ be a chain in $P$, we  now prove \vi{$\bigcup \cc$ is an upper bound of $\cc$}.\\
+
+Let $A \in \bigcup \cc$, so we know there exists $f \in \cc$, such that $A\in f$, then we know $A$ is indeed a set of the form  $\set{\set{x},\set{x,y}}$.\\
+
+Let $B=\set{\set{x},\set{x,y}}\in \bigcup \cc$. \As{$\exists z, \exists C\in \cc, C=\set{\set{x},\set{x,z}}\in \bigcup \cc$}. Arbitrarily find $B',C'$ such that  $B\in B' \in \cc$ and $C \in C'\in \cc$. Then WOLG, let $B'\subseteq C'$, so we see $B\in C'$ then we see $C'$ is not a function  \CaC. For now we have proven $\bigcup \cc \in P$, then the fact that $\bigcup \cc$ is an upper bound of $\cc$ trivially follows. $\vdone$ \\
+
+Let $f$ be a maximal element of  $P$. \As{Domain of  $f$ is a proper subset of  $Y$}. Then we can arbitrarily select an element $X\in Y\setminus Dom(f)$, and arbitrarily select an element $x\in X$, then define $f'=f\cup \set{\set{X},\set{X,x}}\tCaC$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+In the proof above, there are a couple of crucial observations to make:\\
+
+\textbf{Brevity of the Proof:} The proof is notably more concise than proving that the Axiom of Choice (AC) implies Zorn's Lemma. This conciseness is a reason why some might prefer to take Zorn's Lemma as an axiomatic starting point, even though it's just an equivalent formulation of AC.\\
+
+\textbf{Choice from a Set:} In the concluding section of the proof, we "select" an element from specific sets on two occasions. Beginners might assume that a choice function can only be defined if AC is assumed. However, this isn't the case for a finite collection of sets. One doesn't necessarily need the Axiom of Choice for this.\\
+
+The real potency of the Axiom of Choice lies in its ability to address \textit{situations that demand an infinite sequence of selections, where there's no predefined order or method to the selection process}.\\
+
+In our proof, when we "select" an element, it's from a singular set. Consequently, the domain of this choice function is of cardinality $1$. It's evident that the Axiom of Choice isn't necessary here.\\
+
+To delve into why the Axiom of Choice isn't required for finite situations, consider attempting a formal construction of a choice function for the set $\set{\set{1,2},\set{3,4},\set{5,6}}$.\\
+
+At this point, one may wonder, is it true that no construction of choice function on countable set of nonempty set require Axiom of Choice? This question in simple words want to ask: if a set $ X$ is countable, meaning I have already build a bijective function from $\N$ to $X$, meaning I can well order $X$, and to select an element from one nonempty set is doable as above explained, why can't I recursively do this and have a choice function on $X$? The answer is: To \textit{recursively} do such, what we should do is to construct a function $g$ that maps nonempty set to an element of itself, and recursively define the desired choice function by $f(x)=g(x)$, but one can see this fake "technique" is not only trivial, and more importantly, wrong, since without AC, we don't know if $g$ exists, let alone using $g$ to construct  $f$.
+\end{minipage}}
+\begin{theorem}
+\label{0.3.13}
+\textbf{(Zorn's Lemma Implies Well Ordering Theorem)}  
+If
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+        \textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded above, there exists a maximal element.
+    \end{minipage}
+\end{center}
+then
+\begin{center}
+    \begin{minipage}{0.9\linewidth}  
+        \centering
+       \textbf{Well Ordering Principle:} Every set $X$ can be well ordered.
+    \end{minipage}
+\end{center}
+\end{theorem}
+\begin{proof}
+Define
+\begin{equation}
+P:=\set{(A_i,\leq_i): A_i\subseteq X\text{ and }A_i\text{ is well ordered by $\leq_i$ }}
+\end{equation}
+and we define a partial order $\leq $ for $P$ by
+\begin{equation}
+  (A_i,\leq_i)\leq (A_j,\leq _j)\text{ if }A_i\subseteq' A_j\text{ with respect to $\leq_j$ and }x_i\leq_i y_i\longrightarrow x_i\leq_j y_i 
+\end{equation}
+Let $\cc_d$ be a chain of $P$. Define order $\leq_d$ on $\bigcup \cc_d$ by
+\begin{equation}
+x\leq_d y\text{ if }\exists A_i\in\cc_d, x,y\in A_i\text{ and }x\leq_i y
+\end{equation}
+we first prove \vi{$\leq_d$ is well defined}, which is just to prove that $\leq_d$ is antisymmetric. Let $x\leq_d y\text{ and }y\leq _dx$, and let $x,y\in A_i\cup A_j$ such that $x\leq_i y\text{ and }y\leq _jx$. Because $\cc$ is a chain, WOLG, let $A_i\leq A_j$, we then have  $x\leq_j y\text{ and }y\leq _jx$, so $x=y\vdone$\\
+
+We now prove  \blue{$\leq_d$ is reflexive, connected and transitive}.\\
+
+For reflexive, notice $x\in \bigcup\cc_d$ implies $\exists A_i\in\cc_d, x \in A_i$, and the rest is trivial. For connected, for $x,y\in \bigcup \cc_d$, let $x\in A_i \in\cc_d\text{ and }y\inA_j\in\cc_d$. Because $\cc$ is a chain, WOLG, we can let $A_i\leq A_j$, and then we see $x,y\in A_j$, so because $A_j$ is totally ordered by $\leq_j$, we know $x,y$ is comparable by  $\leq_d$. For transitive, let $x\leq_d y\leq _d z$, and let $x,y\in A_i\in\cc_d\text{ and }x\leq _iy\text{ and }y,z\inA_j\in\cc_d\text{ and }y\leq _jz$. If $A_j\leq A_i$, we see $x\leq_i y\leq_i z$, then the proof is finished. If $A_i\leq A_j$, we see $x\leq_j y\leq_j z\bdone$.\\
+
+We now prove \vi{$\bigcup \cc_d\in P$}, which is just to prove $\bigcup \cc_d$ is well ordered by $\leq_d$.\\
+
+Let $V\subseteq \bigcup \cc_d$, and arbitrarily pick $A_i\in \cc_d$ such that $A_i\cap V$ is nonempty, because $A_i$ is well ordered by  $\leq _i$, we know there exists an minimal element $v'$ of $A_i\cap V$ with respect to $\leq _i$. Let $v \in V$, if $v\in A_i\cap V$, then by definition of $\leq _d$, we see $v'\leq_d v$. If $v\in V\setminus A_i$, then for each $A_j\in\cc$ containing $v$, we know $A_i\subset A_j$, and because $\cc$ is a chain, we know $A_i\leq A_j$. \As{$v\leq _j v'$}, because $v'\in A_i\subseteq' A_j$, we can deduce $v'\in A_i\tCaC$, so we have $v'<_j v$, which implies $v' <_d v$. We have proved $v'$ is the smallest element of $V\vdone$ \\
+
+We now prove  \blue{$\bigcup \cc_d$ is an upper bound of $\cc_d$ with respect to $\leq $}. Arbitrarily pick $x_i,y_i\in A_i\in \cc_d$,  we immediately see $x_i\leq _iy_i\implies x_i\leq _dy_i$, so we only have to prove $A_i\subseteq' \bigcup \cc_d$ with respect to $\leq _d$. \teal{Let $v_i\in A_i,v_j\in\bigcup \cc_d\text{ and }v_j\leq _dv_i$}. Arbitrarily pick $A_j$ containing  $v_j$ and  \As{$v_j\not\inA_i$}, so we have $A_i<A_j$. Because $v_j\leq_d v_i\text{ and }v_i,v_j\in A_j$, we know $v_j\leq _jv_i$. Then because $A_i\subseteq' A_j$ with respect to $\leq _j$, we have $v_j\in A_i\tCaC$. We have proved $v_j\in A_i$ by rejecting the red assumption. Notice the \teal{premise}. We have proved $A_i\subseteq' \bigcup \cc_d$ with respect to $\leq _d\bdone$\\
+
+Let $(A_k,\leq _k)$ be a maximal element of $P$.  \As{$A_k\subset X$}, we can arbitrarily pick $x\in X\setminus A_k$, and for all $a_k\in A_k$ define $a_k\leq_k x$. By \myref{Lemma}{0.3.6}, we see $(A_k\cup \set{x},\leq _k)$ is well ordered, so $(A_k\cup \set{x},\leq _k)\in P$. To prove $(A_k,\leq _k)<(A_k\cup \set{x},\leq _k)$ is trivial. \CaC
+\end{proof}
+\section{Cardinality and Cardinal}
+\fbox{\begin{minipage}{39em}
+In this section, we first present a definition and a theorem as a primer rather than the primary focus. This serves as a foundation to instill confidence in the reader regarding the use of set theory language.
+\end{minipage}}
+\begin{definition}
+\label{0.4.1}
+\textbf{(Formulation of Property of Function)}
+We use predicate $P(f)$ 
+\begin{equation}
+\forall A\forall B(A\in f\land B\in f\land \exists x(\set{x}\in A\land \set{x}\in B)\longrightarrow A=B)
+\end{equation}
+to tell if $f$ is injective, and we use predicate  $P(f,Y)$ 
+\begin{equation}
+\forall y\exists A\exists B((A=\set{\set{y}}\land A\in f)\lor (A\in f\land B\in A\land y  \in B\land \exists x(x\in B\land x\neq y) ))
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{0.4.2}
+\textbf{(Basic Property of Function)} There exists a one-to-one function from $A$ to  $B$ if and only if there exists an onto function from  $B$ to  $A$
+\end{theorem}
+\fbox{\begin{minipage}{39em}
+While it's straightforward to "prove" the theorem, formalization of such proof offers a robust assurance of its correctness. I encourage you to attempt formalization. With that, let's delve into the topic of cardinality, and introduce a highly useful theorem.
+\end{minipage}}
+\begin{definition}
+\label{0.4.3}
+\textbf{(Definition of Cardinality)} 
+We write 
+\begin{equation}
+A\leq _c B\text{ or write }B\geq _cA
+\end{equation}
+If there exists a one-to-one function from $A$ to  $B$, or, equivalently, if there exists an  onto function from $B$ to  $A$. Also, we write 
+\begin{equation}
+A=_c B
+\end{equation}
+if there exists a bijective function from $A$ to  $B$  (one-to-one correspondence between $A,B$) 
+\end{definition}
+\begin{theorem}
+\label{0.4.4}
+\textbf{(Schroder-Berstein Theorem)} Let $A,B$ be sets. We have 
+\begin{equation}
+A\leq_c B\text{ and }B\leq _c A\iff  A=_c B
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $f:A\rightarrow B$, $g:B\rightarrow A$ be two one-to-one function.\\
+
+Define $C_0:=A\setminus g(B) $, and for all nonnegative integer $k$, define 
+\begin{equation}
+C_{k+1}:=g(f(C_k))
+\end{equation}
+Also, Define
+\begin{equation}
+C:=\bigcup _{k=0}^{\infty} C_k
+\end{equation}
+Define
+\begin{equation}
+h(x):=\begin{cases}
+  f(x) & x\in C \\
+  g^{-1}(x) & x\inA\setminus C
+\end{cases}
+\end{equation}
+We first prove \vi{$h$ is defined every where on $A$}.\\
+
+Because $C_0\subseteq C$, we know that $A\setminus C \subseteq A\setminus C_0=A \setminus (A\setminus g(B))$. Then we can deduce
+\begin{gather}
+x\in A \setminus C \implies x\inA \setminus (A \setminus g(B))\\
+\liff x\inA\text{ and }x\not\inA \setminus g(B)\\
+\liff  x\inA\text{ and }(x\not\inA\text{ or }x\in g(B))\\
+\liff (x\inA\text{ and }x\not\in A)\text{ or }(x\inA\text{ and }x\in g(B))\\
+\liff x\inA\text{ and }x\in g(B)\\
+\liff x\in g(B) \vdone
+\end{gather}
+We now prove \blue{$h$ is one-to-one}.\\
+
+\As{there exists $x\neq y\inA$ such that $h(x)=h(y)$}. We know $x,y$ are not both in $C$, otherwise  $f$ is not one-to-one. We also know $x,y$ are not both in $A \setminus C$, otherwise $g$ is not a function. WOLG, let $x\in C\text{ and }y\inA \setminus C$, so we have $f(x)=g^{-1}(y)$. Then, we have $y=g(f(x))$. Because $x\in C$ , we know there exists a nonnegative integer $n$ such that $x\in C_n$. Then we see $y\in g(f(C_n))=C_{n+1}\tCaC\bdone$\\
+
+Lastly we prove  \vi{$h$ is onto}.\\
+
+We wish to prove $B=h(A)$, where 
+ \begin{equation}
+h(A)=f(C)\cup g^{-1}(A \setminus C)\text{ and }h(A)\subseteq B
+\end{equation}
+So we just prove
+\begin{equation}
+B\subseteq f(C)\cup g^{-1}(A \setminus C)
+\end{equation}
+Let $x\in B$. If all $x$ is in  $g^{-1}(A \setminus C)$, then the proof is over. If not, keep in mind that $g(x)\not\in C_0$, since $g(x)\in C_0=A \setminus g(B)$ implies $g(x)\not\in g(B)$ and observe 
+\begin{gather}
+x\not\in g^{-1}(A \setminus C)\\
+\liff g(x)\not\in A \setminus C\\
+\liff g(x)\in C \\
+\liff \exists n\inn, g(x)\in C_n\\
+\liff \exists n\inn, \exists u\in C_{n-1}, g(x)=g(f(u))\\
+\liff \exists n\inn,\exists u\in C_{n-1}, x=f(u)\\
+\liff x\in f(C) \vdone 
+\end{gather}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Schroder-Berstein Theorem in simple word is just that the relation $\leq_c$ between sets is antisymmetric. One may intuitively think such "simple" consequence should be easy to prove but in fact isn't.\\ 
+
+That the relation $\leq _c$ is reflexive and transitive is trivial to prove. What being said, this does not implies $\leq _c$ is a "total order", since we haven't proved it is connected. 
+\end{minipage}}
+\begin{theorem}
+\label{0.4.5}
+\textbf{(Caridinality of All Set are Comparable if Given AC)} If given AC, for all sets $A,B$, we have 
+ \begin{equation}
+A\leq _c B\text{ or }B\leq _c A
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $P$ be the set of one-to-one function from subset of  $A$ to  $B$. We define order relation on  $P$ by 
+\begin{equation}
+f\leq g\text{ if }\forall x\in \text{Dom}(f), f(x)=g(x)\text{ and }\text{Dom}(f)\subseteq \text{Dom}(g)
+\end{equation}
+To prove this do define a order relation is trivial. By Zorn's Lemma, we can pick a maximal element of $f$. If Domain of  $f$ is not  $A$ and range of $f$ is not  $B$,  then we can define a larger function by arbitrarily picking  $x\in A\setminus \text{Dom}(f)$ and $y\in B\setminus \text{Im}(f)$ and defining  $f'(z)=\begin{cases}
+  f(z)& \text{ if  }x\in \text{Dom}(f)\\
+  y& \text{ if  }z=x
+\end{cases}$. It is trivial to prove $f<f'$. 
+\end{proof}
+\fbox{\begin{minipage}{39em}
+So far, we have proved $\leq _c$ is a total order on the class of all sets. Now, we give a necessary and sufficient condition of one set having strictly less cardinality than that of the other.
+\end{minipage}}
+\begin{definition}
+\label{0.4.6}
+\textbf{(Definition of Cardinality)} Let  $A,B$ be sets. If $A\geq _c B$ and there does not exist a one-to-one correspondence between $A$ and $B$, which we denote $A \neq _c B$, then we write
+\begin{equation}
+A>_c B\text{ or write }B<_c A
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{0.4.7}
+\textbf{(Basic Property of Cardinality)} For all sets $A,B$, we have  
+\begin{equation}
+A>_c B\iff \text{ no function from $A$ to $B$ is one-to-one}
+\end{equation}
+\begin{equation}
+A >_c B\iff \text{ no function from $B$ to $A$ is onto }
+\end{equation}
+\end{theorem}
+\begin{proof}
+The fact that an one-to-one function from $A$ to $B$ exists if and only if an onto function from $B$ to $A$ exists is proved in the beginning of the section, so we only have to prove the first iff and the proof is finished. From left to right, \As{there exists an one-to-one function from $A$ to $B$}. Because $A >_c B\implies A\geq _c B\implies $ there exists another one-to-one function from $B$ to $A$, so by Schroder-Berstein Theorem, we have $A =_c B\tCaC$. From right to left, \As{the negate of  $A >_c B$}. Notice the negate of $A>_c B$ is no function from  $B$ to $A$ is one-to-one or $A =_c B$. If $A =_c B$, then there exists a bijective, so an one-to-one function from $A$ to $B$. If no function from  $B$ to $A$ is one-to-one, and no function from $A$ to $B$ is one-to-one, then the cardinality of $A,B$ is incomparable \CaC  
+\end{proof}
+\fbox{\begin{minipage}{39em}
+
+Notice that we haven't define the cardinality in a "constructive" manner. We defined cardinality by defining relation between sets. We now define cardinal, not cardinality, in a constructive manner compatible to our old definition.
+\end{minipage}}
+\begin{definition}
+\label{0.4.8}
+\textbf{(Von Neumann Cardinal Assignment)} We now assign each set $X$ to a cardinal
+ \begin{equation}
+\abso{X}=\min  \set{\sigma\in\text{ Ord }:\text{ and }\sigma =_c X}
+\end{equation}
+And we say an ordinal is a cardinal if the ordinal if an caridnality of some sets. 
+\end{definition}
+\begin{theorem}
+\label{0.4.9}
+\textbf{(Every Set Can be Assigned to a Cardinal if Given AC, Needed to be formalized)} For arbitrary set $X$, there exists an ordinal of same cardinality. More precisely, every well order set (some set can not be well ordered without AC) can be assigned a cardinal.
+\end{theorem}
+\begin{proof}
+By AC, we can well order $X$. Define function $f$ that map ordinal to  element in $X$ by
+ \begin{equation}
+f(0):=\min X\text{ and }f(\alpha ):=\min X\setminus \set{f(\beta ):\beta <\alpha }
+\end{equation}
+
+\As{$\forall \alpha \in\text{Ord }, f[\alpha ]\subset X$}. Then we know $\text{Ord$=$Dom}(f)$, and then we can formally construct a inverse function $f^{-1}$, and formally construct the set that is the image of $f^{-1}$, which we know is Ord. \CaC
+\end{proof}
+\begin{theorem}
+\label{0.4.10}
+\textbf{(Compatibility between Von Neumann Cardinal and Ordinal)} For all set $A,B$, we have
+ \begin{equation}
+A<_c B \implies  \abso{A}\in \abso{B}\text{ and } A=_c B\implies \abso{A}=\abso{B}\text{ and }n\in \bigcap  \call \implies \abso{n}=n
+\end{equation}
+where infimum is with respect to strict well order $\in$ on the class of ordinals. 
+\end{theorem}
+\begin{proof}
+\As{$\abso{B}\in \abso{A}$}. Notice that trivially we can prove the relation $=_c$ on the class of all sets is symmetric, so we have $A<_c B$, since if $A=_c B$, we should by definition have $\abso{B}=\abso{A}$. Notice $\abso{B}\in \abso{A}\implies \abso{B}\subset \abso{A}$, so we have an one-to-one function from $\abso{B}$ to $\abso{A}$ by mapping each element of $B$ to itself, then we have $\abso{B}\leq_c \abso{A}$, notice that by definition we have $B=_c \abso{B}\leq _c \abso{A}=_c A$. Then we can construct function by composition to show $B\leq _c A\tCaC$.\\
+
+
+
+
+We prove by induction. Base case is simple: notice $\varnothing=_c \varnothing$ implies $\varnothing \in \set{\sigma \in\text{Ord}:\sigma =_c \varnothing}$, so we have $\abso{\varnothing}=\varnothing$. For induction case, let $k\in \bigcap \call \text{ and }\abso{k}=k$, we wish to prove \vi{$k\cup \set{k}=\min \set{\sigma\in\text{Ord}:\sigma=_c k\cup \set{k}}$}. Trivial, we have $k\cup \set{k}\in \set{\sigma\in\text{Ord}:\sigma=_c k \cup \set{k}}$. We first prove \teal{$k$ is the greatest ordinal in  $k\cup \set{k}$}. Let $m \in k\cup \set{k}$. \As{$k \in m$}. Then by definition of ordinal we  have  $k\subseteq m$, and because $k \in m$, we then have $k\cup \set{k}\subseteq m$. On the other side, notice by definition of ordinal we have $m\subseteq k\cup \set{k}$, so in summary we have $m=k\cup \set{k}\tCaC\tdone$. So, we see if $k\cup \set{k}$ is not the smallest element of $\set{\sigma:\sigma=_c k\cup \set{k}}$, then $k$ belong to  $\set{\sigma:\sigma=_c k \cup \set{k}}$. We now prove $k\neq_c k\cup \set{k}$ by induction. Base case is trivial: $\varnothing\neq _c \set{\varnothing}$. We now prove $k\neq _c k \cup \set{k}\longrightarrow k\cup \set{k}\neq _c k\cup \set{k}\cup \set{k \cup \set{k}}$. \As{there exists a bijective function $f$ from $k \cup  \set{k}$ to $k\cup \set{k}\cup \set{k \cup \set{k}}$ }. Then we can define a bijective function $g(x):k\rightarrow k\cup \set{k}$ by $\begin{cases}f(k)& \text{ if  }x=f^{-1}(\set{k\cup \set{k}})\\
+  f(x)& \text{ if  }x\neq f^{-1}(\set{k\cup \set{k}})
+\end{cases}\tCaC\vdone$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+The theorem discussed above is fundamental to the theory of ordinals and cardinals. However, it is infrequently employed in the discussions of real analysis. This is because, using the elementary methods of set description, the sets under consideration often possess cardinalities equivalent to either $\mathbb{N}$, $\mathbb{R}$, or are finite.\\
+
+We now present the standard definition of \textit{infinite} in the language of set theory, a definition widely accepted in most analysis texts. Subsequently, we introduce the concept of \textit{Dedekind-infinite}. This definition harnesses our intuition: that shifting every term in an infinite sequence is permissible. It's important to note that the traditional definition of \textit{infinite} and that of \textit{Dedekind-infinite} are not always equivalent. However, if the Axiom of Choice (AC) holds true, then these definitions become equivalent. Since most people in the mathematical community accept AC, the two definitions are often treated as equivalent in practice.
+\end{minipage}}
+\begin{definition}
+\label{0.4.11}
+\textbf{(Definition of Infinite)} We say a set $A$ is finite if there exists an ordinal $\sigma$ in $\bigcap  \call $ such that $\abso{A}=\sigma$, and we say $A$ is infinite if $A$ is not finite. 
+\end{definition}
+\begin{definition}
+\label{0.4.12}
+  \textbf{(Definition of Dedekind Infinite)} Let $A$ be a set. We say $A$ is Dedekind-infinite if there exists a proper subset of $A$ that have the same cardinality as $A$, and we say $A$ is Dedekind-finite if $A$ is not Dedekind-infinite.
+\end{definition}
+\begin{theorem}
+\label{0.4.13}
+\textbf{(Equivalence of Infinite and Dedekind Infinite under AC)} Under AC, a set $A$ is infinite if and only if  $A$ is Dedekind-infinite.
+\end{theorem}
+\begin{proof}
+We first prove \vi{$A$ is finite  $\implies A$ is Dedekind-finite} by induction. Base case is trivial, since $\varnothing$ doesn't even have  proper subsets. For induction case, let $k\in \bigcap \call $ be Dedekind-finite. \As{$\exists m\subset k\cup \set{k},m=_c k\cup \set{k}$}. If $m$ contain  $k$, then we have  $m\setminus \set{k}\subseteq k\text{ and }m\setminus \set{k}=_c k$, where we use the same technique in proof of \myref{Theorem}{0.4.10}. So we know $m\subseteq k$. Then we have $k\cup \set{k}=m\leq_k k\tCaC\vdone$.\\
+
+We now prove \teal{$A$ is infinite  $\implies A$ is Dedekind-infinite}. Define function 
+\begin{equation}
+f:\N\rightarrow \power{\power{A}}, n\mapsto \set{X:\power{A}:\abso{X}=n}
+\end{equation}
+We first prove \vi{for all naturals  $n$, we have  $f(n)$ is nonempty} by induction.\\
+
+$f(1)$ is nonempty since we can arbitrarily select an element and use axiom of pairing to construct a singleton subset. If $f(k)$ is nonempty, we can arbitrarily select an element $X$ from $f(k)$ and to see if $A=X$ then $A$ is finite, so we can arbitrarily select an element from $A\setminus X$ and attach to $X$ to show  $f(k+1)$ is nonempty.  $\vdone$\\
+
+We now \blue{construct a bijective from $A$ to a proper subset missing one element by constructing a countable subset $U$ of $A$ and map each element  in $U$ to its successor}.\\
+
+By AC, we know there exists a function $g(n)$ such that $\forall n\inn, g(n)\in f(n)$. Let $U=\bigcup g[\N]$. Define $h:U\rightarrow \N$ by mapping elements in $g(n)$ to elements in $\set{x \inn: \frac{(n-1)n}{2}<x\leq \frac{n(n+1)}{2}}$. $h$ is onto, since  $U=\bigcup g[\N]$, and because $\abso{g(n)}=n=\abso{x\inn:\frac{(n-1)n}{2}x\leq \frac{n(n+1)}{2}}$, we know $h$ is one-to-one. Now we define function $B:A\rightarrow A\setminus \set{h^{-1}(1)}$, where $y$ is the element in  $U$ that was mapped to  $1$ by
+\begin{equation}
+B(x)=\begin{cases}
+  x& \text{ if  }x\not\in U\\
+  h^{-1}(h(x)+1)& \text{ if  }x\inU\bdone\tdone
+\end{cases}
+\end{equation}
+\end{proof}
+\begin{corollary}
+\label{0.4.14}
+\textbf{($\N$ is the "smallest" infinite set)} Every infinite set have either same or greater cardinality than $\N$ 
+\end{corollary}
+\begin{proof}
+Consider the set $U$ in proof above.
+\end{proof}
+\begin{corollary}
+\label{0.4.15}
+\textbf{(Another Definition of Infinity)} A set is infinite if and only if it has cardinality equal to or greater than $\N$
+\end{corollary}
+\fbox{\begin{minipage}{39em}
+Now, we will demonstrate a few theorems specific to countable cardinalities. While these can be generalized to encompass all cardinalities using more advanced set theory tools, our final theorem will be applicable to all cardinalities without exception.
+\end{minipage}}
+\begin{definition}
+\label{0.4.16}
+\textbf{(Definition of Countable)} We say a set is countable if the set has cardinality less than or equal to $\N$
+\end{definition}
+\begin{theorem}
+\label{0.4.17}
+\textbf{(Finite Cartesian Product of Countable Set is Countable)} For all naturals $n$, we have $\abso{\N^n}=\abso{\N}$ 
+\end{theorem}
+\begin{proof}
+  Because we can map $p\mapsto (p,1,\dots ,1)$, we know $\abso{\N}\leq \abso{\N^n}$. Because we know $\abso{X_m:=\set{(p_1,\dots, p_n) \in \N^n :\sum p_i=m}}=H^n_{m-n}$, we can map each element in $X_m$ one-to-one into  $(\sum_{i=3}^{m-1} H^n_{i-n},\sum ^m_{i=3}H^n_{i-n}]$, so we know $\abso{\N^n}\leq \abso{\N}$
+\end{proof}
+\begin{theorem}
+\label{0.4.18}
+\textbf{(Countable Union of Countable Set is Countable)} Let $S=\set{E_n:n\inn}$ be a countable set of countable sets. We have $\bigcup S$ is countable.  
+\end{theorem}
+\begin{proof}
+For each $n\inn$, because $E_n$ is countable, we can define  bijective $f_n:\N\rightarrow E_n$. Define $g:\N \rightarrow  \bigcup S$ by
+\begin{equation}
+g(x)=f_{m-(h-2)}(h)\text{ where }m=\max \set{n\inn: \frac{(n+1)n}{2}< x}\text{ and }h=x-\frac{(m+1)m}{2}
+\end{equation}
+We now prove \vi{$g$ is onto}.\\
+
+Let $x\in \bigcup S$, we know $\exists p\inn, x\in E_p$, so we know $\exists p,q\inn, x=f_p(q)$. One can verify $g(q+\frac{(p+q-2)^2+(p+q-2)}{2})=f_p(q)=x$ where $m=p+q-2\text{ and }n=q\vdone$
+\end{proof}
+\begin{theorem}
+\label{0.4.19}
+\textbf{(Every Nonempty Set Has Cardinality Strictly Less than Its Power Set)} If $A$ is nonempty, then  $\abso{A}<\abso{\power{A}}$.
+\end{theorem}
+\begin{proof}
+Let $f$ be a function from $A$ to  $\power{A}$. Define $T=\set{a\in A:a\not\in f(a)}$. Observe $b \in T\implies b\not\in f(b)\implies T\neq f(b)$ and observe $b\not\in T\implies b\in f(b)\implies T\neq f(b)$, so $T\in \power{A}\setminus f[A]$.  
+\end{proof}
 \chapter{The Real and Complex Number System}
 \section{Introduction}
 \fbox{\begin{minipage}{39em}
@@ -151,7 +1274,7 @@ B=\set{x\inq^+ : \forall y\in A, y\leq x}
 Arbitrarily pick $x\in B$, and we see $\forall y\in A, y^2<2<x^2$. Then $\forall y\in A,y<x$. This implies $B\subseteq \set{x\inq^+:\forall y\in A, y\leq x}$. Let $x$ satisfy $\forall y\in A, y\leq x$. \As{$x^2<2$}. We immediately see $x=\max A$, but $\max A$ doesn't exist \CaC
 \end{proof}
 \fbox{\begin{minipage}{39em}
-    By \myref{Theorem}{1.1.3}, we then can see that $\sup A$ does not exist. Now, we give this idea a name.
+    By \myref{Theorem}{0.1.3}, we then can see that $\sup A$ does not exist. Now, we give this idea a name.
 \end{minipage}}
 \begin{definition}
 \label{1.1.11}
@@ -258,7 +1381,7 @@ If we were to define $x^{-2}:=x^{-1}x^{-1}$, we must realize $0^{-1}$ does not e
 \end{equation}
 \end{theorem}
 \begin{proof}
-By \myref{Theorem}{1.2.4}, observe $1<a\iff  1<a<a^2\iff   1<a<a^2<a^3\iff  \cdots  \iff  1<a<\cdots <a^{y-x}\iff  a^x<a^y$. If $a=1$, we know  $a^x=1=a^y$. Again by \myref{Theorem}{1.2.4}, observe $0<a<1\iff  a^2<a<1\iff  \cdots \iff  a^{y-x}<\cdots <1\iff  a^{y}<a^{x}$. 
+By \myref{Theorem}{0.2.4}, observe $1<a\iff  1<a<a^2\iff   1<a<a^2<a^3\iff  \cdots  \iff  1<a<\cdots <a^{y-x}\iff  a^x<a^y$. If $a=1$, we know  $a^x=1=a^y$. Again by \myref{Theorem}{0.2.4}, observe $0<a<1\iff  a^2<a<1\iff  \cdots \iff  a^{y-x}<\cdots <1\iff  a^{y}<a^{x}$. 
 \end{proof}
 \begin{theorem}
 \label{1.2.10}
@@ -272,14 +1395,14 @@ By \myref{Theorem}{1.2.4}, observe $1<a\iff  1<a<a^2\iff   1<a<a^2<a^3\iff  \cdo
 \end{equation}
 \end{theorem}
 \begin{proof}
-  If $z>0$, then by \myref{Theorem}{1.2.4}, observe $0<b<c\implies 0<b^2<bc<c^2\implies b^3<b^2c<bc^2<c^3\implies \cdots \implies b^z<c^z $. Obviously, $0=z\implies b^z=1=c^z$. If $z<0$, then $b^z=(\frac{1}{b})^{-z}$ and $c^z=(\frac{1}{c})^{-z}$ by definition. Observe $b<c\implies 1=\frac{1}{b}b<\frac{1}{b}c=\frac{c}{b}\implies \frac{1}{c}<\frac{1}{b}$. By the logic above, we deduce $c^z=(\frac{1}{c})^{-z}<(\frac{1}{b})^{-z}=b^z$. Then the Theorem follows. 
+  If $z>0$, then by \myref{Theorem}{0.2.4}, observe $0<b<c\implies 0<b^2<bc<c^2\implies b^3<b^2c<bc^2<c^3\implies \cdots \implies b^z<c^z $. Obviously, $0=z\implies b^z=1=c^z$. If $z<0$, then $b^z=(\frac{1}{b})^{-z}$ and $c^z=(\frac{1}{c})^{-z}$ by definition. Observe $b<c\implies 1=\frac{1}{b}b<\frac{1}{b}c=\frac{c}{b}\implies \frac{1}{c}<\frac{1}{b}$. By the logic above, we deduce $c^z=(\frac{1}{c})^{-z}<(\frac{1}{b})^{-z}=b^z$. Then the Theorem follows. 
 \end{proof}
 \begin{theorem}
 \label{1.2.11}
 \textbf{(Positivity of integer power)} If $a>0$, then $\forall x\inz,a^x>0$. If  $a<0$, then  $a^x>0\iff 2|x$
 \end{theorem}
 \begin{proof}
-The former result is a direct consequence of \myref{Axiom}{1.2.1} and \myref{Theorem}{1.2.7}. The latter result is a direct consequence of \myref{Theorem}{1.2.3} and \myref{Theorem}{1.2.5}  
+The former result is a direct consequence of \myref{Axiom}{0.2.1} and \myref{Theorem}{0.2.7}. The latter result is a direct consequence of \myref{Theorem}{0.2.3} and \myref{Theorem}{0.2.5}  
 \end{proof}
 \fbox{\begin{minipage}{39em}
 
@@ -380,7 +1503,7 @@ We have handled the uniqueness part of the proof. Denote $E:= \set{m \inF^+: m^n
 
 To show \vi{ $x=\sup \set{m \inF^+: m^n<y}$ exists}, we only have to show the set $\set{m \inF^+: m^n<y}$ is nonempty and bounded above. In other word, we wish to construct function $a\inF^+$ and $b$ of $y$ such that for all positive input $y>0$, we have $a^n<y$ and $(0<m^n<y\longrightarrow m<b)$. In the followings, the domain of $a$ and $b$ are only positives.\\
 
-First we construct $a$. By \myref{Theorem}{1.2.9}, we know if $a<\min \set{1,y}$ , then $a^n<a<y$, so we construct $a$ such that $0<a<\min \set{1,y}$. Notice that $a$ must be positive because we are constructing a number in $E$, where $E$ contain only positives. Express $a$ in the form  $a=\frac{p}{q}$ where $p,q$ are both function of $y$. In the process of  construction, We must be careful to make sure $a$ exists for all positive $y$.\\
+First we construct $a$. By \myref{Theorem}{0.2.9}, we know if $a<\min \set{1,y}$ , then $a^n<a<y$, so we construct $a$ such that $0<a<\min \set{1,y}$. Notice that $a$ must be positive because we are constructing a number in $E$, where $E$ contain only positives. Express $a$ in the form  $a=\frac{p}{q}$ where $p,q$ are both function of $y$. In the process of  construction, We must be careful to make sure $a$ exists for all positive $y$.\\
 
 To satisfy $0<a$, we need only guarantee $p,q$ are always of the same sign for all positive $y$. If such $p,q$ exists, we can change both sign of  $p,q$ when they are negative, and get two positive function. So, we can just require $p,q$ to be positive for all positive $y$.\\      
 
@@ -388,7 +1511,7 @@ To satisfy $a<1$, observe $a<1\iff \frac{p}{q}<1\iff p<q$. The easiest construct
 
 To satisfy $a<y$, observe $a<y\iff \frac{p}{q}<y\iff p(y-1)+cy=qy-p>0$. The easiest construction is to let $p(y-1)+cy=y^2$, which is possible, if we let $p=y$ and $c=1$. In this case $p=y>0$ and $q=y+1>0$, and  $a=\frac{y}{y+1}$. We finished proving $E$ is nonempty. \textbf{(Notice $c=y^2,p=y^3,q=y^3+y^2,a=\frac{y^3}{y^3+y^2}$ also do the trick)}\\
 
-Now we construct $b$. By \myref{Theorem}{1.2.10}, we know if $0<b\text{ and }0<m^n<b^n$, then $m<b$, so we construct $b$ such that $y<b^n$ which lead to $0<m^n<y<b^n$ if  $m^n<y$. Because $y>0$, this is fairly easy. Simply let $b=y+1$, so we have $b>1\text{ and }b>y$; thus by \myref{Theorem}{1.2.9}, we have $b^n>b>y$, finishing proving $E$ is bounded above, where  $b=y+1$ is an upper bound. $\vdone$ \\
+Now we construct $b$. By \myref{Theorem}{0.2.10}, we know if $0<b\text{ and }0<m^n<b^n$, then $m<b$, so we construct $b$ such that $y<b^n$ which lead to $0<m^n<y<b^n$ if  $m^n<y$. Because $y>0$, this is fairly easy. Simply let $b=y+1$, so we have $b>1\text{ and }b>y$; thus by \myref{Theorem}{0.2.9}, we have $b^n>b>y$, finishing proving $E$ is bounded above, where  $b=y+1$ is an upper bound. $\vdone$ \\
 
 To show \blue{$x^n=y$}, we show $x^n\geq y$ and $x^n\leq y$. We will assume that $x^n<y$ or $x^n>y$, but before we do such, let's see what property from which can we possibly draw contradiction. Notice that because we just prove the existence of the supremum of $E$, we haven't use the fact that $x=\sup E$ in anywhere of our proof. We know
 \begin{equation}
@@ -476,9 +1599,9 @@ Observe
   Express $x,y$ in the form $x=\frac{q}{p},y=\frac{n}{m}$ where $q,n\inz\text{ and }m,p\inn$. Notice $x<y\implies \frac{q}{p}<\frac{n}{m}\implies mq<np$. Observe
   \begin{align}
     a^x<a^y &\implies a^{\frac{q}{p}}<a^{\frac{n}{m}}\\
-  &\implies a^q=(a^{\frac{q}{p}})^p<(a^{\frac{n}{m}})^p\rap{by \myref{Theorem}{1.2.10}}\\
+  &\implies a^q=(a^{\frac{q}{p}})^p<(a^{\frac{n}{m}})^p\rap{by \myref{Theorem}{0.2.10}}\\
   &\implies a^{mq}=(a^q)^m<((a^{\frac{n}{m}})^p)^m=((a^{\frac{n}{m}})^m)^p=(a^n)^p=a^{np}\\
-  &\implies a>1\rap{by \myref{Theorem}{1.2.9}} 
+  &\implies a>1\rap{by \myref{Theorem}{0.2.9}} 
   \end{align}
   Notice that the above implication still hold true if $<$ is replaced by $>$ and $>$ is replaced by  $<$, and notice that the above implication still hold true if $<$ and  $>$ are all replaced by $=$, so we in fact have three implications. The Theorem follows from the three implication.
    
@@ -495,7 +1618,7 @@ Observe
 \end{equation}
 \end{theorem}
 \begin{proof}
-Express $z=\frac{q}{p}$, where $q$ is an integer and $p$ is a natural. Notice $q\text{ and }z$ are of the same sign. Observe by \myref{Theorem}{1.2.10}, we have $b^{\frac{q}{p}}<c^{\frac{q}{p}}\implies b^q=(b^{\frac{q}{p}})^p<(c^{\frac{q}{p}})^p=c^q\implies 0<q$.\\
+Express $z=\frac{q}{p}$, where $q$ is an integer and $p$ is a natural. Notice $q\text{ and }z$ are of the same sign. Observe by \myref{Theorem}{0.2.10}, we have $b^{\frac{q}{p}}<c^{\frac{q}{p}}\implies b^q=(b^{\frac{q}{p}})^p<(c^{\frac{q}{p}})^p=c^q\implies 0<q$.\\
 
   Notice that the above implication still hold true if $<$ is replaced by $>$ and $>$ is replaced by  $<$, and notice that the above implication still hold true if $<$ and  $>$ are all replaced by $=$, so we in fact have three implications. The Theorem follows from the three implication.
 \end{proof}
@@ -518,12 +1641,12 @@ Express $r,s$ in the form $r=\frac{p}{q},s=\frac{m}{n}$ where $q,n\inn\text{ and
 Then observe
 \begin{align}
   (a^ra^s)^{nq}&= (a^{\frac{p}{q}}a^{\frac{m}{n}})^{nq} \\
-  &= (a^{\frac{p}{q}})^{nq}(a^{\frac{m}{n}})^{nq}\rap{by \myref{Theorem}{1.2.14}}\\
+  &= (a^{\frac{p}{q}})^{nq}(a^{\frac{m}{n}})^{nq}\rap{by \myref{Theorem}{0.2.14}}\\
   &=((a^{\frac{p}{q}})^q)^n((a^{\frac{m}{n}})^n)^q\\
 &=(a^p)^n(a^m)^q\\
-&= a^{np+mq}=(a^{r+s})^{nq}\rap{\myref{Theorem}{1.2.12}\text{ and }\myref{Theorem}{1.2.13}} 
+&= a^{np+mq}=(a^{r+s})^{nq}\rap{\myref{Theorem}{0.2.12}\text{ and }\myref{Theorem}{0.2.13}} 
 \end{align}
-Then by \myref{Theorem}{1.3.6}, we can deduce $a^ra^s=a^{r+s}$ 
+Then by \myref{Theorem}{0.3.6}, we can deduce $a^ra^s=a^{r+s}$ 
 \end{proof}
 \begin{theorem}
 \label{1.3.13}
@@ -603,7 +1726,7 @@ Now, we are going to prove one common inequalities. The other will be proven aft
 \end{equation}
 \end{theorem}
 \begin{proof}
-  By \myref{Theorem}{1.3.5}, we can pick a rational $q$ such that  $x<q<y$. We have $b^q\in B(y)$. We now consider three possible situations.\\
+  By \myref{Theorem}{0.3.5}, we can pick a rational $q$ such that  $x<q<y$. We have $b^q\in B(y)$. We now consider three possible situations.\\
 
 
 
@@ -838,7 +1961,7 @@ By the above four cases, we know $((\frac{1}{a})^r)^s=(\frac{1}{a})^{rs}$. Obser
 
 The final eight cases:  \blue{$rs\inq$}\\
 
-If $r,s$ are both rational, the proof reference to \myref{Theorem}{1.3.13}. Notice that if only one of $r,s$ is rational, then  $rs$ is irrational, so we can assume  $r,s$ are both irrational. Observe by the eight cases above, $(a^{rs})^{\frac{1}{s}}=a^r$, so by \myref{Definition}{1.3.9}, $(a^r)^s=((a^{rs})^{\frac{1}{s}})^s=a^{rs}\bdone$\\
+If $r,s$ are both rational, the proof reference to \myref{Theorem}{1.3.13}. Notice that if only one of $r,s$ is rational, then  $rs$ is irrational, so we can assume  $r,s$ are both irrational. Observe by the eight cases above, $(a^{rs})^{\frac{1}{s}}=a^r$, so by \myref{Definition}{0.3.9}, $(a^r)^s=((a^{rs})^{\frac{1}{s}})^s=a^{rs}\bdone$\\
 
 Notice that outside of the sixteen cases above, if $a=1\text{ or }s=0\text{ or }s=0$, the proof is trivial.
 
@@ -1316,7 +2439,7 @@ Let $k\geq 3, \vecta{x},\vecta{y}\inR^k,\abso{\vecta{x}-\vecta{y}}=d>0\text{ and
 \end{question}
 
 \section{Complicated Exercises}
-In \myref{Axiom}{1.2.1}, we present the two ordered field axioms:
+In \myref{Axiom}{0.2.1}, we present the two ordered field axioms:
 \begin{equation}
 y<z\longrightarrow x+y<x+z
 \end{equation}
@@ -1344,1133 +2467,12 @@ Let $\vecta{a},\vecta{b}\inR^n\text{ and }m \inR^+$. Find $\vecta{c}\inR^n\text{
 State and prove the Pythagorean Law in Euclidean $n$-space, where  $n\geq 2$
 \end{question}
 \chapter{Basic Topology}
-\section{ZF}
-\fbox{\begin{minipage}{39em}
-This section is written as a confirmation of knowledge. For a even more rigorous treatment, one can look for another note where the discussion of ZF is put after that of formal system and zeroth and first order logic.\\
-
-Notice that in our discussion, the domain of discourse are sets. Plain speaking, every variable should be interpreted as set. In this section, we never interpret symbol $x$ as a real number (we never use symbol $x$ to denote a real number), and we never interpret symbol $G$ as a group  (we never use symbol $G$ to denote a group). Whatever variable symbol we use, we interpret the symbol a set (we use the symbol to denote a set), albeit $x,G\text{ or }h$.\\
-
-However, if you wish, you can still interpret the symbol $x$ as a number or structure or any mathematical object or even cats, but I doubt there exists any interpretation that isn't set won't make people feel weird.\\   
-
-Notice that ZF is a first order logic theory. We must first declare the following 
-\end{minipage}}
-\begin{definition}
-\label{2.1.1}
-\textbf{(Atomic Formula)} In our discussion in this section, there are precisely two atomic formulas:
-\begin{equation}
-x\inA
-\end{equation}
-and
-\begin{equation}
-A=B
-\end{equation}
-\end{definition}
-\fbox{\begin{minipage}{39em}
-The above definition may be confusing if one has no basic knowledge for formal system. I here highly recommend the first two chapters of the excellent book \textit{Elementary Formal System } written by Smullyan, and one can understand what does the words "formula" and "axiom" mean. \\
-
-Now we start our discussion of ZF.
-\end{minipage}}
-\begin{axiom}\textbf{(Axiom of Extension)}
-\label{2.1.2}
-\begin{equation}
-\forall x(x\inA \longleftrightarrow x\inB)\longrightarrow A=B
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-TBH, I have no clue why this axiom is named axiom of extension. This axiom axiomatically define equality (between sets).\\
-
-The practice of putting the word \textit{between sets} in a  parenthesis in the above paragraph serve as a reminder that the domain of discourse of our discussion should be interpreted as the class of all sets.\\ 
-
-ZF in our discussion is a theory where the only two non-logical symbol is $\in\text{ and }=$. In our discussion, whenever the symbols $\subseteq,\cup ,\cap, \neq$ appear, one should immediately realize the sentence in which the symbols appear is an interpretation.\\
-
-In ZF, we never define $A \subseteq B$. We never define $A\neq B$. We never define $A \cup B$. We merely construction a formal sentence that one feel it make sense to  interpret as $A \subseteq B$ or the English sentence "$A$ is a subset of  $B$.". 
-\end{minipage}}
-\begin{definition}
-\label{2.1.3}
-\textbf{(Interpretation)} We can interpret the formal sentence $\forall x(x\in A\longrightarrow x\in B)$ as informal sentence $A \subseteq B$. If we ever say $A \subseteq B$, we mean $\forall x(x\in A\longrightarrow  x\in B)$
-\end{definition}
-\begin{definition}
-\label{2.1.4}
-\textbf{(Interpretation)} We can interpret the formal sentence $\exists x((x\in A \land \neg x\in B)\lor(x \in B \land \neg x \in A))$ as the sentence $A\neq B$.
-\end{definition}
-\begin{axiom}
-\label{2.1.5}
-\textbf{(Axiom of Subset)} Let $P$ be a predicate. The axiom states
-\begin{equation}
-\forall A\exists B\forall x(x\inB\longleftrightarrow x\inA\land P(x))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Because of axiom of subset, when we informally says $B=\set{x\inA: P(x)}$ in our argument, we know $B$ exists if  $P$ is a predicate. Notice that Russell's paradox rely on the construction of such set: $\set{y:P(y)}$ where predicate $P(x)$  is defined by $\neg x=x$. The axiom of subset only allow us to construct  "subset" (not set) filled with elements satisfying certain predicate.\\
-
-Also, the axiom of subset allow us to construct intersection of two sets. Consider the set $\set{x\inA:P(x)}$ where $P(x)$ is defined by $x\inB$.\\
-
-Notice that one at this point can trivially and formally deduce the existence of two sets that are ought to be interpreted as $A\cap B$ and $B\cap A$, and formulate a formal sentence that is ought to be interpreted as "$A\cap B$ is unique" and another formal sentence that is ought to be interpreted as "$A\cap B=B\cap A$", and deduce these two formal sentences.\\   
-
-One can also formulate and deduce the formal sentence of "intersection operation is associative" as an exercise.\\
-
-Now, before we introduce the next axiom, we first declare  that the symbol $\varnothing$ is in our alphabet.
-\end{minipage}}
-\begin{axiom}
-\label{2.1.6}
-\textbf{(Axiom of Existence of Empty Set)}
-\begin{equation}
-\exists \varnothing\forall y\neg (y\in \varnothing)
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-In some people's formation of ZF, the axiom of existence of empty set isn't necessary, since it is possible to construct the empty set with axiom of subset. If we already know that the universe is nonempty, we can arbitrarily pick a set $A$ and construct  $\set{x\inA:P(x)}$ where $P(x)$ is defined $\neg x=x$.\\
-
-At this point, one can try to formulate the formal sentence of "empty set is unique and is a subset of every set" and formally deduce such using axiom of extension.\\
-
-
-We now introduce an axiom to construct new set.
-\end{minipage}}
-\begin{axiom}
-\label{2.1.7}
-\textbf{(Axiom of Pairing)}
-\begin{equation}
-\forall x\forall y\exists A\forall v(v\inA\longleftrightarrow v=x \lor v=y)
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-    By axiom of pairing, one can deduce the formal sentence of "$\set{x,y}$ exists if $x,y$ exist".\\  
-
-    Notice that we can also deduce the formal sentence of "$\set{x}$ exists if $x$ exists".
-\end{minipage}}
-\begin{axiom}
-\label{2.1.8}
-\textbf{(Axiom of Union)}
-\begin{equation}
-\forall A\exists B \forall x(x\in B\longleftrightarrow \exists C(C\inA\land x\in C))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-By axiom of union, one can deduce the formal sentence of "$\bigcup X$ exists, if $X$ exist".\\
-
-Also, one can try to formulate and deduce the formal sentence of "For all set  $X$, we know  $\bigcup X$ is unique", that of "For all sets $x,y$, we know $x \cup y=y \cup x$" and that of "For all sets $x,y,z$, we know  $(x\cup y)\cup z=x\cup (y\cup z)$".\\    
-
-Now we introduce a new axiom to construct even more sets.
-\end{minipage}}
-\begin{axiom}
-\label{2.1.9}
-\textbf{(Axiom of Power Set)} 
-\begin{equation}
-\forall A\exists B\forall x(x\in B \longleftrightarrow \forall y(y\in x\longrightarrow y\in A))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-The axiom of power set can be interpreted as that every set has at least one power set (and it can be proved that there exists only one for every set and that if two set have the same power set then the two set are the same). Normally and informally, we denote the power set of $x$ as $\mathcal{P}(x)$\\  
-
-Now we introduce the standard way to "construct a model for natural numbers", that is, to "formally formulate sets that can be interpreted as natural numbers". The construction is straight forward: we interpret $\varnothing$ as $0$, and  while interpreting $x$ as a natural, interpret $x\cup \set{x}$ as $x+1$.\\
-
-This construction seems to satisfy Peano axioms, but a problem will emerge when one trying to verify: one can construct any natural number, for instance $3$, by constructing  $\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}}$, but one can not construct the set of all natural numbers, that is, informally writing, $\N=\set{0,1,2,3,\dots }=\set{\varnothing, \set{\varnothing},\set{\varnothing,\set{\varnothing}},\set{\varnothing,\set{\varnothing},\set{\varnothing,\set{\varnothing}}},\dots }$.\\
-
-The construction of the set $\N$, rely on the next axiom (while the construction of no element in $\N$ rely on the next axiom). In fact, the formulation of any infinite set rely on the next axiom. Without this axiom, we can not formulate any infinite set (after we construct the predicate $P(x)$ to be interpreted as "$P(x)$ is true if $x$ is infinite").
-\end{minipage}}
-\begin{axiom}
-\label{2.1.10}
-\textbf{(Axiom of Infinity)} 
-\begin{equation}
-\exists I(\varnothing \in I \land \forall y(y\in I\longrightarrow y\cup \set{y}\in I))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Notice that every set interpreted as a natural number can be proved to belong to the set $I$ in  \myref{Axiom}{2.1.10}. In other (informal) words, the set interpreted as $\N$ is a subset of $I$.\\
-
-Before we formulate such subset of  $I$, we first state the five Peano Axioms, outside of our formal system. One can and should read the following five axioms algebraically, not formally.  
-\end{minipage}}
-\begin{axiom}
-\label{2.1.11}
-\textbf{(Peano Axioms, outside of our formal system)} We say $\gen{U,S}$, where $S$ is a function, is a model of Peano axioms if    
-\begin{equation}
- 0\in U\text{ (First Peano axiom) }
-\end{equation}
-\begin{equation}
-a \in U \implies S(a)\in U\text{ (Second Peano axiom) }
-\end{equation}
-\begin{equation}
-\forall x \in U, S(x)\neq 0 \text{ (Third Peano axiom) }
-\end{equation}
-\begin{equation}
-S(a)=S(b)\implies a=b\text{ (Forth Peano axiom) }
-\end{equation}
-\begin{equation}
-0  \in X\text{ and } \forall u \in U, u\in X\longrightarrow S(u)\in X\implies U\subseteq X \text{ (Induction axiom) }
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Before reading the proof of the following theorem, notice that the set $\set{y\in\bigcup  x:\forall z(z\in x\longrightarrow y\in x)}$ is what we mean by $\bigcap  x$, and notice that the set $\set{a\in x: \neg a\in y}$ is what we mean by $x\setminus y$.\\
-
-One can try to completely formalize $\bigcap x\text{ and }x\setminus y$  
-\end{minipage}}
-\begin{theorem}
-\label{2.1.12}
-\textbf{(Existence of Model of Natural Numbers in ZF)}
-We first define five predicate resembling the five Peano axioms.
-\begin{equation}
-P_1(x):=\varnothing\in x
-\end{equation}
-\begin{equation}
-P_2(x):=\forall a(a\in x\longrightarrow a\cup \set{a}\in x)
-\end{equation}
-\begin{equation}
-P_3(x):=\forall a(a\in x\longrightarrow a\cup \set{a}\neq \varnothing)
-\end{equation}
-\begin{equation}
-P_4(x):=\forall a\forall b(a\in x \land b\in x \land a\cup \set{a}=b\cup \set{b}\longrightarrow a=b)
-\end{equation}
-\begin{equation}
-  P_5(x):=\forall a([\forall b(b\in a\longrightarrow b \in x)\land \varnothing\in a\land \forall b(b\in a\longrightarrow b\cup \set{b}\in a)]\longrightarrow x=a)
-\end{equation}
-Reminder: Notice that the notation $\cup $ is not in our formal language, I use the notation only for abbreviation.\\
-
-The theorem states:
-\begin{equation}
-\exists A(P_1(A)\land P_2(A)\land  P_3(A)\land  P_4(A)\land  P_5(A))
-\end{equation}
-\end{theorem}
-\begin{proof}
-  Let $I$ be the set in \myref{Axiom}{2.1.10}. Define $ \call:=\set{X\in\power{I}:\varnothing \in X \land \forall a(a \in X \longrightarrow a\cup \set{a}\in X)} $. From now on, we will call $a\cup \set{a}$ the successor $S(a)$ of $a$ in our proof.\\
-
-Then  $\call$ can be precisely described as the set that contain all subsets $X$ of  $I$ such that the set interpreted as  $0$ is in  $X$ and that the successor of each element in $X$ belong to  $X$.\\
-
-Let $Y=\bigcap \call$. We seek to show that 
-\begin{equation}
-\teal{P_1(Y)\land P_2(Y) \land P_3(Y) \land P_4(Y)\land P_5(Y)}
-\end{equation}
-\vi{$P_1(Y)$} and \blue{$P_2(Y)$} are trivial. $\vdone \bdone$\\
-
-\vi{$P_3(Y)$} is also trivial.$\vdone$\\
-
-
-We now prove $\blue{P_5(Y)}$\\
-
-Let $E \subseteq \bigcap  \call,\varnothing\in E\text{ and }\forall b(b\in E\longrightarrow b \cup \set{b}\in E)$. Notice that $E\subseteq \bigcap \call \implies \forall X\in \call ,E\subseteq X \subseteq I$, so $E\in \call $. Then $\bigcap \call \subseteq E \bdone$\\
-
-We now prove \vi{$P_4(Y)$}\\
-
-Before reading the following, one may want to bear in mind that $\forall x(x\in x\cup \set{x}\text{ and }x\subseteq x\cup \set{x})$ \\
-
-Define $S:=\set{n\in \bigcap \call:\forall m(m \in n \longrightarrow  m\subseteq n) }$. We see that $S\subseteq \bigcap \call $ and that $\set{\varnothing}\in S$, trivially, so by $P_5(Y)$, we only have to show $n \in S \longrightarrow n\cup \set{n}\in S$ to show $S=\bigcap  \call $. To show such, observe that if $n\in S\text{ and }m \in n \cup \set{n}$, then we know $m \in n\text{ or }m \in \set{n}$, which is equivalent to $m \in n \text{ or } m=n$, which implies $m\subseteq n$, since by the definition of $S$, both  $m \in n\text{ and }m=n$ implies $m\subseteq n$. Then we know $n\in S\text{ and }m \in n \cup \set{n}\longrightarrow  m\subseteq n \subseteq n\cup \set{n}$.\\
-
-The above prove that every element of element $n$ of  $\bigcap \call $ is a subset of $n$. \As{$m\neq n\in\bigcap \call $ but $m\cup \set{m}=n\cup \set{n}$}. Because $n\in n \cup  \set{n}=m\cup  \set{m}$ and $n\neq m$, we can deduce $n \in m$, which implies $n\subseteq m$. Using the same method we can also deduce $m \subseteq n\tCaC \vdone$    
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Notice that we didn't prove Peano axioms give a unique structure up to isomorphism. I personally haven't proved it yet, but I guess to prove such  isn't trivial and will require to show structure like $\set{0,1,2,\dots ;a,b}$ where $S(a)=b\text{ and }S(b)=a$ does not satisfy the induction axiom.\\
-
-Say, we have proved the uniqueness of model of Peano axiom. We still haven't show in the universe of ZF, our choice of model for natural number is unique. For all we know, maybe the construction $\varnothing, \set{\varnothing},\set{\set{\varnothing}},\set{\set{\set{\varnothing}}},\dots $ also works. (Hint: Let's say there are other construction for natural numbers, there are still  reasons we pick $\bigcap \call $ as our model, since later you will see $a<b\inn\iff  a\in b\text{ and }a\subset b$)\\
-
-So, it seems like \myref{Theorem}{2.1.12} is relatively weak. This is not the case however. The fact is that, we don't really require anything extra of \myref{Theorem}{2.1.12} to do further discussion.\\
-
-The core concept of Axiom is that we don't care about what a mathematical object is, \textit{we only care about what a mathematical object does}. One should \textit{never} view axiom as something that is apparently true and can not be proved. One should know: in most domains of mathematics,  individually, axioms are simply a convention between one mathematician to another. \textit{Axioms are properties we wish a object to have so that we can make knowledge that is truly important using the property of the object}.\\
-
-For instance, we never care about what are sets. We never care about what is $\N$. We never care about what is  $\R$. We only care about that  $\R$ is completed and we can do induction on $\N$. It doesn't matter if $\N$ contain a cat or Homer Simpson, as long as it satisfy Peano axiom and we can deduce all the Theorem.\\
-
-
-Notice the construction of natural number: $\varnothing, \set{\varnothing},\set{\varnothing,\set{\varnothing}},\dots $ can each be formally proved to belong to $\bigcap  \call $. We now introduce the last axiom.  
-\end{minipage}}
-\begin{axiom}
-\label{2.1.13}
-\textbf{(Axiom of Foundation)}
-\begin{equation}
-\forall X(X \neq \varnothing \longrightarrow \exists Y (Y\in X \land \forall z(z\in Y \longrightarrow \neg z\in X)))
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-In English, the axiom of foundation states that every nonempty set $X$ has an element $Y$ such that  $X\cap Y=\varnothing$. This axiom is sometimes discarded by people who use ZFC for mathematics not so related to set theory, since in the construction of most mathematical object, this axiom is unnecessary. This is also the reason this axiom is introduced last in this section. But of course, this axiom have purpose. We now introduce some results.  
-\end{minipage}}
-\begin{theorem}
-\label{2.1.14}
-\textbf{(No set belong to itself)}
-\begin{equation}
-\forall x, \neg x\in x
-\end{equation}
-\end{theorem}
-\begin{proof}
-\As{$\exists x,x\in x$}. Observe that by the axiom of foundation we have $x\cap \set{x}=\varnothing$, but we also have $x\in x\text{ and }x\in \set{x}$, so $x\in x \cap  \set{x}\tCaC$
-\end{proof}
-\begin{theorem}
-\label{2.1.15}
-  \textbf{(No infinitely descending chain of sets)}
-  Informally, we can say that the following situation will never happen
-  \begin{equation}
-  \dots \in x_3 \in x_2 \in x_1
-  \end{equation}
-  Formally, we say
-  \begin{equation}
-  \neg \exists X(\forall  x(x\in X \longrightarrow \exists y(y \in X \land y \in x)))
-  \end{equation}
-  which reads "There does not exist a set $X$ such that for all $x\in X$ there exists a set  $y\in X$ belong to $x$"
-\end{theorem}
-\begin{proof}
-\As{there exists a set $X$ such that for all $x\in X$ there exists $y\in X \cap x$}, we immediately see that for all $x\in X$, the intersection $x\cap X$ is nonempty \CaC.
-\end{proof}
-\section{Ordinal}
-\fbox{\begin{minipage}{39em}
-In previous section, we employed a purely set-theoretic formal language to delve into Zermelo-Fraenkel Set Theory. While this methodology is undoubtedly elegant for discussing set theory, it becomes notably cumbersome in mathematical domains with limited connections to set theory. This is mainly because many of the tools we typically rely on (such as functions, groups, real numbers, relations, and more) become unavailable. To utilize them, we must first construct all the sets that are interpreted as these tools, leading to extensive and convoluted formulae.\\
-
-In this section, our goal isn't to rigorously prove everything using a formal language. Instead, we'll explain our proofs in sufficient detail so that, if desired, they can be formalized with minimal additional effort, albeit taking a bit more time.\\
-
-Please note that this section primarily serves as a foundational toolkit for the subsequent sections. We will introduce all the necessary tools, and that's the extent of it.\\
-
-In last section, we use a very philosophical and logical way to discuss. Here, we back to our usual algebraic and analytical way to discuss. We firs introduce axioms for ordered sets. 
-\end{minipage}}
-\begin{axiom}
-\label{2.2.1}
-\textbf{(Axiom for Poset)} Let $\leq $ be a relation on set $S$. We say $\gen{S,\leq }$ is partially ordered if   
-\begin{equation}
-\forall x\in S, x\leq  x \text{ (Reflexive) }
-\end{equation}
-\begin{equation}
-\forall x,y,z\in S, x\leq y\text{ and }y\leq z\implies x\leq z\text{ (Transitive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\leq y\text{ and }y\leq x\implies x=y \text{ (Antisymmetric) }
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Notice that poset dose not require every two element to be comparable (trichotomy). Totally ordered set require such. 
-\end{minipage}}
-\begin{axiom}
-\label{2.2.2}
-\textbf{(Axiom for Totally Ordered Set)} Let $\leq $ be a relation on set $S$. We say $\gen{S,\leq }$ is totally ordered (or linearly ordered) if 
- \begin{equation}
-\forall x\in S, x\leq x\text{ (Reflexive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\leq  y\text{ or }y\leq x \text{ (Connected) }
-\end{equation}
-\begin{equation}
-\forall x,y,z\in S, x\leq y\text{ and }y\leq z\implies x\leq z \text{ (Transitive) } 
-\end{equation}
-\begin{equation}
-\forall x,y\in S,x\leq y\text{ and }y\leq x\implies x=y\text{ (Antisymmetric) }
-\end{equation}
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-We now give the axioms for strictly ordered sets.  
-\end{minipage}}
-\begin{axiom}
-\label{2.2.3}
-\textbf{(Axiom for Strictly Totally and Partially Ordered Set)} Let $<$ be a relation on set $S$. We say  $\gen{S,<}$ is strictly totally ordered if 
-\begin{equation}
-\forall x\in S, x\not < x \text{ (Irreflexive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x<y \implies y\not<x \text{ (Asymmetric) }
-\end{equation}
-\begin{equation}
-\forall x,y,z\inS, x<y\text{ and }y<z\implies x<z \text{ (Transitive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\neq y \implies x<y\text{ or }y<x \text{ (Connected) }
-\end{equation}
-$\gen{S,<}$ is strictly partially ordered if satisfy irreflexive, asymmetric and transitive axiom. 
-\end{axiom}
-\fbox{\begin{minipage}{39em}
-Notice that if $S$ is totally ordered, then we can let $S$ be strictly totally ordered by defining  $a<b$ if  $a\leq b\text{ and }a\neq b$, and if $S$ is strictly totally ordered, we can let  $S$ be totally ordered by defining  $a\leq b$ if $a<b\text{ or }a=b$.\\
-
-
-Again, if $S$ is partially ordered, then we can let $S$ be strictly partially ordered by defining  $a<b$ if  $a\leq b\text{ and }a\neq b$, and if $S$ is strictly partially ordered, we can let  $S$ be partially ordered by defining  $a\leq b$ if $a<b\text{ or }a=b$.\\
-
-We now give definition of some basic notions.  
-\end{minipage}}
-\begin{definition}
-\label{2.2.4}
-\textbf{(Definition of Minimal and Maximal)} A maximal element $a$ of a subset $X$ of poset $Y$ or totally ordered set $Y$ is an element that no element $b\in X$ satisfy $a<b$. Minimal element is defined in similar fashion.
-\end{definition}
-\begin{definition}
-\label{2.2.5}
-\textbf{(Definition of Well Ordered Set)} A totally ordered set $S$ is said to be well ordered if every nonempty subset $X$ of  $S$ has a minimal element $x$. 
-\end{definition}
-\fbox{\begin{minipage}{39em}
-Notice that $\N$ is well ordered, but all  $\Z,\Q,\Q^+,\set{0}\cup \Q^+,\R$ is not well ordered.\\
-
-We now give the definition of ordinal, which is the core of this section.\\
-
-Notice that there are other ways to define ordinal, but Von Neumann ordinal is the most elegant that can be formalized by our system in section 2.1. 
-\end{minipage}}
-\begin{definition}
-\label{2.2.6}
-\textbf{(Definition of Von Neumann Ordinal)} A set $S$ is an ordinal if  $S$ is a strictly totally well ordered set with respect to  $\in$ and every element of $S$ is a subset  of $S$. Precisely,  we say a set $S$ is an ordinal  if satisfy the following:
-\begin{equation}
-\forall x\in S,x\not\in x\text{ (Irreflexive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\in y\implies y \not\in x \text{ (Asymmetric) }
-\end{equation}
-\begin{equation}
-\forall x,y,z\in S, x\in y \text{ and } y\in z \implies x\in z\text{ (Trnasitive) }
-\end{equation}
-\begin{equation}
-\forall x,y\in S, x\neq y\implies x\in y\text{ or }y\in x \text{ (Connected) }
-\end{equation}
-\begin{equation}
-\forall V\subseteq S, \exists x\in V,\forall y\in V, x\in y \text{ (Well Order) }
-\end{equation}
-\begin{equation}
-\forall x\in S, x\subseteq S \text{ (Subset) }
-\end{equation}
-In other words, $S$ is an ordinal if  $\gen{S,\in}$ is strictly totally well ordered and every element of $S$ is a subset of  $S$. 
-\end{definition}
-\fbox{\begin{minipage}{39em}
-Von Neumann's definition of ordinal may seem simple and straight forward, but is in fact very strong. Here we prove properties of Von Neumann ordinal we intend to have by definition.\\
-
-Notice that in ZF, irreflexive and antisymetric is trivially satisfied by axiom of foundation. 
-\end{minipage}}
-\begin{theorem}
-\label{2.2.7}
-\textbf{(Every Element of Ordinal is an Ordinal)} If $S$ be an ordinal, then  $A \in S$ is an ordinal.
-\end{theorem}
-\begin{proof}
-Notice that if $A=\varnothing$, then the proof is all trivial, so we only have to consider $A\neq \varnothing$. Because $A \subseteq S$, so transitive,  connected and well ordered is trivially proved.\\
-
-
-
-
-We now prove \vi{$\forall x\in A, x \subseteq A$}.\\
-
-Let $x\in A$, if $x$ are all empty, the proof is trivial. Let $\alpha \in x$, so we have $\alpha \in x \in A$\\
-
-Because $A\in S$, we know $A \subseteq S$, so we know $x \in A \subseteq S$. Then we know $x \subseteq S$, so we know $\alpha \in x \subseteq S$. So we know $\alpha ,x,A$ all belong to $S$, then because $S$ is transitive, we conclude  $\alpha \in A\vdone $
-\end{proof}
-\begin{theorem}
-\label{2.2.8}
-\textbf{(Ordinal Successor)}
-If $a$ is an ordinal, then  $a\cup \set{a}$ is an ordinal.
-\end{theorem}
-\begin{proof}
-  Notice that $b\in a\cup \set{a}\implies b \in a\text{ or }b\in \set{a}\implies b\in a\text{ or }b=a$. If $b=a\text{ and }b\in a$, we see $a\in a$, so we know $b\in a\cup \set{a}\implies b\in a\text{ exclusively or }b=a$. \\
-
-The proofs for subset part and connected part are relatively simple. Let $x,y\in a \cup \set{a}$. If $x\in a$, then $x \subseteq a\subseteq a\cup \set{a}$. If $x=a$, then  $x=a\subseteq a\cup \set{a}$. Let $x\neq y$. If $x,y$ are both in  $a$, then the proof is finished. If, WOLG, $y=a$, then  $x \in a= y$.\\ 
-
-We now prove \vi{the transitive part}.\\
-
- Let $x,y,z\in a \cup  \set{a}$ and $x\in y\text{ and }y\in z$. By axiom of foundation, it is impossible more than one of $x,y,z$ equals to  $a$. If $x=a$, then we have $y \in a$, so we see $\cdots a=x\in y\in a\in y \in a $, which implies it is impossible $x=a$. Similarly, we can deduce $y\neq a$. So far, we have proven $x\in a\text{ and }y\in a$. If $z\in a$, then because $a$ is an ordinal, our proof if done. If $z=a$, we see  $x\in a=z\vdone$\\
-
-
-We now prove \blue{the well ordered part}.\\
-
-Let $V\subseteq a \cup \set{a}$. By axiom of foundation, we know $a$ and $\set{a}$ are disjoint, so if $a\not \in V$, then $V \subseteq a$, and by the definition of $a$, our proof is finished.  If $a \in V$, we see either $a$ is the only element of  $V$ or  there exist element other than $a$ in $V$. If the situation is former, then the proof is trivially finished. If the situation is latter, then we observe $V \setminus \set{a} \subseteq a$, so $V \setminus \set{a}$ has a minimal element $x$, and  $x\in a$ indicate $x$ is also the minimal element of  $V\bdone$ 
-\end{proof}
-\begin{theorem}
-\label{2.2.9}
-  \textbf{(Basic Property of Ordinals)} If $a,b$ are ordinals, we have
-   \begin{equation}
-  a \in b \iff a \subset b
-  \end{equation}
-\end{theorem}
-\begin{proof}
-From left to right is relatively simple. If $a\in b$, then we have $a \subseteq b$. By axiom of foundation, we know $a \in b \implies  a\neq  b$, so we have $a \subset b$.\\
-
-$(\longleftarrow)$\\
-
-Let $a \subset b$. We wish to prove $a=x:=\min b\setminus a$, so that $a=\min b\setminus a\in b$. We now prove \vi{$x \subseteq a$} and prove  \blue{$a \subseteq x$}.\\
-
-By definition of $x$, we have $\forall y\in b \setminus a, y\not\in x$. This tell us $b \setminus a$ and $x$ are disjoint. Because $x\subseteq b$, the fact that $b \setminus a$ and $x$ are disjoint tell us that $x \subseteq a\vdone$\\
-
-Let $z\in a$, we wish to prove $z \in x$. Notice that $z \in a \subset b$, so because  $b$ is an ordinal and  $x \in b$, we know either $z\in x\text{ or }z=x\text{ or }x \in z$. \As{$x=z$}. We have  $\min b\setminus a =x =z \in a\tCaC$. \As{$x\in z$}. Because $a$ is an ordinal and  $z\in a$, we have $\min  b \setminus a = x \in z \subseteq a\tCaC$. Now we have $z \in x$ as desired $\bdone$
-\end{proof}
-\begin{lemma}
-\label{2.2.10}
-If $A,B$ are ordinals, then  $A \cap B$ is an ordinal.
-\end{lemma}
-\begin{proof}
-Transitive and connected and well ordered of $A\cap B$ trivially inherit from that of $A$. Observe $x\in A \cap  B\implies x \in A\text{ and }x\in B\implies x\subseteq A\text{ and }x\subseteq B\implies x\subseteq A\cap B$, and we are finished.      
-\end{proof}
-\begin{theorem}
-\label{2.2.11}
-\textbf{(Trichotomy of Ordinals)} If $a,b$ are ordinals, we have
-\begin{equation}
-a \subset b \text{ or }a=b\text{ or }b \subset a
-\end{equation}
-\end{theorem}
-\begin{proof}
-
-\As{$a\not \subset b\text{ and }a\neq b\text{ and }b\not \subset a$}. We have $a\setminus b\neq \varnothing\text{ and }b\setminus a\neq \varnothing$, since, say, if $a\setminus b=\varnothing$, we have $a \subseteq b$.\\
-
-By  \myref{Lemma}{2.2.10}, we know $a\cap b$ is an ordinal. Because $a \setminus b\neq \varnothing$, we know $a \cap  b \subset a$, and then by \myref{Theorem}{2.2.9} we have $a \cap  b \in a$. Similarly, we have $a \cap b \in b$. Then we have $a\cap  b \in a \cap  b\tCaC$
-\end{proof}
-\begin{corollary}
-\label{2.2.12}
-\textbf{(Trichotomy of Ordinals)} If $a,b$ are ordinals, we have
- \begin{equation}
-a \in b\text{ or }a=b\text{ or }b\in a
-\end{equation}
-\end{corollary}
-\begin{corollary}
-\label{2.2.13}
-\textbf{(The Class of All Ordinal is Totally Ordered)} 
-The class of all ordinals is totally ordered by set-membership $\in$. 
-\end{corollary}
-\begin{proof}
-The irreflexive and assymmetric part is trivially satisfied by axiom of foundation. The transitive part is simple: $x\in y\text{ and }y\in z\implies x\in y\subseteq z$. The connected part is just proven by \myref{Corollary}{2.2.12}. 
-\end{proof}
-\begin{theorem}
-\label{2.2.14}
-\textbf{(The Class of All Ordinals is Well Ordered)} Every set of ordinals has a $\in$-minimal element.
-\end{theorem}
-\begin{proof}
-If not, then it contradicts to \myref{Theorem}{2.1.15}
-\end{proof}
-\begin{theorem}
-\label{2.2.15}
-\textbf{(Burali-Forti Paradox)}
-All ordinals do not form a set.\\
-
-Formally speaking,  define $P(S)$ are true if and only if $S$ is an ordinal. Then we have 
-\begin{equation}
-\neg \exists A\forall x(x \in A\longleftrightarrow P(x))
-\end{equation}
-\end{theorem}
-\begin{proof}
-\As{$\Omega$ is the set of all ordinals}. By \myref{Theorem}{2.2.14}, we see $\Omega$ satisfy at least irreflexive, asymmetric, trnasitive, connected and well ordering requirement of ordinal.\\
-
-Let $x \in \Omega$, and $y \in x$. By \myref{Theorem}{2.2.7}, we know $y \in \Omega$, so in fact we have $x \subseteq \Omega$, which prove $\Omega$ is an ordinal. Then we have $\Omega \in \Omega \tCaC$
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Whewww, we have proved a lot of intended properties of ordinal. Notice that although there does not exist a set consist precisely of all ordinals. We still can mention the class of all ordinal by $Ord$.\\
-
- Notice that $Ord$ is in fact an extension of  $\N$, and it goes like this
-  \begin{equation}
-  0,1,2,3,\dots ;\omega, \omega+1,\omega +2,\dots
-  \end{equation}
-\end{minipage}}
-\begin{theorem}
-\label{2.2.16}
-  \textbf{(All Naturals are Ordinals)} All element of  $\bigcap \call$ are ordinals. 
-\end{theorem}
-\begin{proof}
-We prove by induction, which is  the $P_5(\bigcap  \call )$ of \myref{Theorem}{2.1.12}.\\
-
-Notice that $\varnothing$ trivially satisfy all property of ordinals, which finish the proof for base step, and notice that by \myref{Theorem}{2.2.8}, the proof for induction step is also finished.  
-\end{proof}
-\begin{theorem}
-\label{2.2.17}
-\textbf{($\N$ as a set is an ordinal)} $\bigcap \call $ is an ordinal. 
-\end{theorem}
-\begin{proof}
-By \myref{Theorem}{2.2.16}, we have proved that $\cap \call $ is a strictly totally ordered set. Notice that every subset of a well ordered set is well order, so it only left to prove the \vi{subset part} of definition of ordinal.\\
-
-We prove by induction. Let $X:=\set{x \in \bigcap \call  : x \subseteq \bigcap \call }$. Base case: $\varnothing \in X$ is trivial. Let $a \in X$. Then we have $a\in \bigcap   \call$ and $a \subseteq \bigcap   \call $, so we have $a \cup \set{a} \subseteq \bigcap \call  \vdone$ 
-\end{proof}
-\begin{theorem}
-\label{2.2.18}
-\textbf{(Transfinite Induction)} 
-Let $X$ be a nonempty ordinal. For all $x \in X$, we define 
-\begin{equation}
-S_x:=\set{z \in X: z\in x }
-\end{equation}
-Let $Y\subseteq X$. If $Y$ satisfy the property:
-\begin{equation}
-\forall x\in X( S_x \subseteq Y \longrightarrow x \in Y )
-\end{equation}
-we have $Y=X$
-\end{theorem}
-\begin{proof}
-\As{$Y$ satisfy the property, but $Y\neq X$}. 
-We first show \vi{$Y$ is nonempty}.  Because $X$ is an ordinal, we can pick an element $r \in X$ such that $\forall u \in X, r\in u$, so we have $S_r=\varnothing \subseteq Y$. Then because $Y$ satisfy the property, we have  $r \in Y\vdone$\\
-
-Because $X$ is an ordinal, we know there exists  $x_0 \in X\setminus Y$ such that $\forall x\neq x_i\in X\setminus Y, x_0 \in x$.\\
-
-Let $a \neq  x_0 \in X$, we know either $a \in Y$ or $a \in X\setminus Y$, we now prove \blue{$a \in x_0 \implies a \in Y$}. \As{$a \not \in Y$}, we then have $a\in X\setminus Y$, so we have $x_0 \in a \tCaC \bdone$.\\
-
-The \blue{blue part} show that $S_{x_0} \subseteq Y$, so by the property of $Y$, we have  $x_0 \in Y$, but $x_0 \in X \setminus Y \tCaC$.
-
-\end{proof}
-\section{Axiom of Choice and its equivalents}
-
-\fbox{\begin{minipage}{39em}
-In this section, we aim to establish the equivalence between the Axiom of Choice and Zorn's Lemma. Additionally, we will explore and provide proofs for various applications of Zorn's Lemma. We'll begin by laying down foundational theorems in order theory, which will serve as our lemmas. Using these, we will demonstrate the progression from the Axiom of Choice to Zorn's Lemma. Interestingly, the reverse direction, proving from Zorn's Lemma to the Axiom of Choice, is considerably more straightforward and can be viewed as an "application" of Zorn's Lemma. Towards the end, we will delve into other notable applications of Zorn's Lemma.\\
-
-Notice in this section, $P$ is a non-empty partially ordered set (poset).
-\end{minipage}}
-\begin{definition}
-\label{2.3.1}
-\textbf{(Definition of Chain)} We say  $X\subseteq P$ is a chain if $X$ is totally ordered. 
-\end{definition}
-\begin{definition}
-\label{2.3.2}
-\textbf{(Definition of Well Ordered Set)} Let $X\subseteq P$. We say  $X$ is well ordered only if $X$ is totally ordered.
-\end{definition}
-\begin{definition}
-\label{2.3.3}
-\textbf{(Definition of Upper Bound)} Let $X\subseteq P$. We say $X$ is bounded above by  $t$ if
-\begin{equation}
-\forall x \in X, x\leq t
-\end{equation}
-\end{definition}
-\begin{definition}
-\label{2.3.4}
-\textbf{(Definition of Initial Segment)} Let $C$ be a chain of $P$. We say $T$ is an initial segment of $C$ if
-\begin{equation}
-T\subseteq C \text{ and }\forall  v\in T,\forall u\in C, u \leq v \implies  u \in T
-\end{equation}
-In this section, we denote the statement: $T$ is an initial segment of  $C$ by $T\subseteq' C$, and we denote $T\subseteq'C\text{ and }T\neq C$ by $T\subset' C$
-\end{definition}
-\begin{lemma}
-\label{2.3.5}
-An initial segment of a chain is also a chain
-\end{lemma}
-\begin{lemma}
-\label{2.3.6}
-Let  $S \subseteq P$ be well ordered and $t$ be an upper bound of  $S$. We have $S \cup \set{t}$ is also well ordered. 
-\end{lemma}
-\begin{proof}
-Let $V \subseteq S\cup \set{t}\text{ and }V\neq \varnothing$ . If $V\cap S$ is empty, then we know $V=\set{t}$ and the proof is trivially finished. If $V\cap S$ is nonempty, let $x= \min V\cap S$. We know $y\in V\implies y \in V \cap S\text{ or }y=t$. If $y \in V\cap S$, then $x\leq y$ by definition of $x$. If  $y=t$, then  $x\leq t=y$ by $x\in S\text{ and the definition of $t$}$  
-\end{proof}
-\begin{lemma}
-\label{2.3.7}
-If $\cc$ is a set of well ordered chains in $P$ where 
- \begin{equation}
-X,Y \in \cc \implies X\text{ is an initial segment of $Y$ or $Y$ is an initial segment of  $X$}
-\end{equation}
-then $\bigcup \cc$ is a well ordered chain 
-\end{lemma}
-\begin{proof}
-Notice that the definition of $\cc$ implies
-\begin{equation}
-X,Y \in \cc \implies  X \subseteq Y\text{ or }Y\subseteq X
-\end{equation}
-
-Let $a,b \in \bigcup \cc $, and let $a \in A \in \cc, b \in B\in\cc$. Observe $A \subseteq B$ or $B \subseteq A\implies a,b \in A\text{ or }a,b \in B$, because $A,B$ are chains, we deduce $a,b$ are  comparable.  All the other properties of totally ordered set inherit from $P$, so we have proven  $\bigcup \cc$ is a chain.\\
-
-We first prove \vi{$\gen{\cc,\subseteq'}$ is totally ordered.}\\
-
-Connected part and antisymmetric part are implied by the definition of $\cc$. One can verify the reflexive part trivially hold true. Let  $A\subseteq'B\subseteq'C\text{ and }a\in A, c \in C\text{ and }c\leq a$. Because $a \in B$ and $B \subseteq' C$, we can deduce $c \in B$ from $c \leq a$. Then we can deduce $c \in A$ from $c \in B\text{ and }A\subseteq' B$, finishing the proof for transitive part $\vdone$\\
-
-
-Let $V \subseteq \bigcup \cc$. We now prove \blue{$V$ contain a minimal element}.\\
-
-Arbitrarily pick $X\in \cc$ so that $V\cap X$ is nonempty. Because $V \cap X \subseteq X$ and $X$ is well ordered, we know $\min V \cap X$ exists. \As{$\exists v' \in V, v'< \min V \cap  X$}. We know $\min  V\cap  X\in X\in \gen{\cc,\subseteq'}$. Let $S=\set{Z \in \cc : v' \in Z}$. If $X \in S$, then $v'\in V \cap  X$ contradicting to $v' <\min V\cap  X$, so we know $X \not\in S$. Observe $v' \in Z\subseteq ' X \implies  v' \in X $ causing the same contradiction, so we know every element in $S$ is greater than  $X$ with respect to  $\subseteq '$. We know $S$ is non empty, since  $v' \in V \subseteq \bigcup \cc$. Then we can arbitrarily pick $Z\in S$. By definition of initial segment, we can deduce $v' \in X$ from $v'<\min V \cap  X\text{ and } Z\subseteq' X \tCaC\bdone$ 
-\end{proof}
-\begin{lemma}
-\label{2.3.8}
-The class of initial segments of a chain is totally ordered by $\subseteq' $
-\end{lemma}
-\begin{proof}
-Antisymmetric, reflexive and transitive parts are implied by definition of $\subseteq'$, as shown in the proof of  \myref{Lemma}{2.3.7}. Now we let $X$ be a chain and let  $A\subseteq' X\text{ and }B\subseteq' X$, and prove \vi{$A \subseteq' B\text{ or }B\subseteq' A$}\\
-
-\As{$A\not\subseteq B\text{ and }B\not\subseteq A$}. Arbitrarily pick $x \in A\setminus B\text{ and }y \in B\setminus A$. We know $x\neq y$, since $y\not\in A\setminus B$. WOLG, let $x<y$. Because $x\in A\subseteq X$, where $y\in B$ and $B\subseteq' X$, so we deduce $x \in B\tCaC$\\
-
-WOLG, let $A \subseteq B$. \As{$A\not\subseteq' B$}. Then there exists $a\in A,b\in B$ such that $b<a\text{ and }b\not\in A$. Yet, we see $A\subseteq' X,b\in X\text{ and }a \in A$, so we can deduce $b \in A\tCaC$ 
-\end{proof}
-\fbox{\begin{minipage}{39em}
-While \myref{Lemma}{2.3.7} might appear to be a potent assertion, implying that the union of a totally ordered (by inclusion) set of well-ordered subsets is itself well-ordered, this is far from the truth. For instance, consider the union of the sets $\set{\set{-1},\set{-1,-2},\set{-1,-2,-3},\dots}$. This union is the set of negative integer, apparently not well-ordered, even though the set $\set{\set{-1},\set{-1,-2},\dots}$ is a set of well-ordered subsets of $\Z$ when ordered by inclusion. This counterexample is even more compelling than our original premise.\\
-
-Next, we'll move on to demonstrating the link from the Axiom of Choice to Zorn's Lemma. But before delving into that, let's first formulate the concept of a function within the ZF set theory.
-\end{minipage}}
-\begin{definition}
-\label{2.3.9}
-\textbf{(Construction of Function)} In ZF, we interpret the set
-\begin{equation}
-\set{\set{a},\set{a,b}}
-\end{equation}
-as $(a,b)$ 
-and we interpret the set 
-\begin{equation}
-\set{(x,y):x\in X, y \in Y}
-\end{equation}
-as a function from $X$ to  $Y$. Carefully notice we can construct predicate $Q(f)$ as below to tell if a set should be interpreted as a function.
-\begin{equation}
-\forall A (A \in f \longrightarrow \forall x (\set{x} \in A\longrightarrow  \exists yH(A,x,y)\lor A=\set{\set{x}})\land  G(f,A,x))
-\end{equation}
-where predicate $H(A,x,y)$ is defined by
-\begin{equation}
-x\neq y\land \set{x,y}\in A\land \forall z(z \in A\longrightarrow z=\set{x}\lor z=\set{x,y} )
-\end{equation}
-and predicate $G(f,A,x)$ is defined by 
-\begin{equation}
-\forall B (B \in f\longrightarrow B=A\lor \set{x}\not\in B)
-\end{equation}
-Also, carefully notice we can construct predicate $Q_{f}(x,y)$
-\begin{equation}
-\exists A\in f(\set{x}\in A\land \set{x,y}\in A)
-\end{equation}
-which if hold true should be interpreted as $f(x)=y$
-\end{definition}
-\begin{theorem}
-\label{2.3.10}
-\textbf{(Axiom of Choice Implies Zorn's Lemma)}
-If \begin{center}
-    \begin{minipage}{0.9\linewidth}  
-        \centering
-\textbf{AC:} For each set of nonempty sets  $Y$, there exists a function $f:Y\rightarrow \bigcup Y$ such that $f(X)\in X$ 
-\end{minipage}
-\end{center}
-Then
-\begin{center}
-    \begin{minipage}{0.9\linewidth}  
-        \centering
-       \textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded, there exists a maximal element. 
-    \end{minipage}
-\end{center}
-\end{theorem}
-\begin{proof}
-Because the set of upper bound of chain is always nonempty, we can let $g$ be a function that map each chain $C$ in  $P$ to the set of upper bounds of $C$, and let $h$ be a choice function on image of $g$. Then, we define $f=h\circ g$, so we have  $\forall x \in C, x\leq f(C)$.\\
-
-The above use the axiom of choice. We now define 
-\begin{multline}
-\cc:=\set{C\subseteq P: C\text{ is well ordered},\min C=p,T\subset' C\longrightarrow f(T)=\min C\setminus T}
-\end{multline}
-We see $\set{p}\in \cc$, so $\cc$ is nonempty. We first prove \vi{$\gen{\cc,\subseteq'}$ is totally ordered}.\\
-
-Reflexive part, transitive part and antisymmetric part are implied by the definition of $\subseteq'$, as shown in the proof of \myref{Lemma}{2.3.7}. Let $A,B \in \cc$, and define
-\begin{equation}
-R:=\bigcup \set{T: T \subseteq' A\text{ and }T\subseteq' B}
-\end{equation}
-Let $x\in R\text{ and }y \in A$. Then we find $T$ such that $x \in T\subseteq' A$. Observe if $y<x$, then $y\in T \subseteq R$. This prove $R\subseteq' A$. Similarly, we can prove $R\subseteq' B$. Then by the definition of $R$, we know  $R$ is greatest common initial segment of  $A\text{ and }B$.\\
-
-\As{$R\subset' A\text{ and }R\subset' B$}. Then we see $f(R)=\min A\setminus R=\min B\setminus R$. Let $a\inA\text{ and }r'\in R\cup \set{f(R)}$. Observe
-\begin{equation}
-a<r' \implies \begin{cases}
-  a<f(R)=\min A\setminus R\\
-  a<r \in R\subseteq' A
-\end{cases}\implies \begin{cases}
-  a \not\in A\setminus R\\
-  a \in R
-\end{cases}\implies a\in R
-\end{equation}
-So we have $R\cup \set{f(R)}\subseteq' A$. Similarly we have $R\cup \set{f(R)}\subseteq' B$. Because $f(R)=\min A\setminus R\not\in R$, so we know $R\subset R\cup \set{f(R)}\subseteq R\text{ by definition of $R$ }\tCaC$\\
-
-Because $R\subseteq' A\text{ and }R\subseteq' B$. WOLG, we can let $R=A$, and we see $A=R\subseteq' B\vdone$\\
-
-Let 
-\begin{equation}
-U:=\bigcup \cc
-\end{equation}
-We now prove \blue{$U\in \cc$}.\\
-
-Notice that by \myref{Lemma}{2.3.7}, we know $U$ is a well ordered chain. Because $x \in U \implies \exists D,x \in D \in \cc\implies p\leq x$, so $p$ is also the minimal element of  $U$. Then now we only have to prove \blue{$T\subset' U\longrightarrow  f(T)=\min U\setminus T$}. \\
-
-Arbitrarily find $T\subset' U$, and arbitrarily pick $s \in U\setminus T$. By definition of $U$, we know there exists $S\in \cc$ such that $s \in S$.\\
-
-We wish to prove \teal{$S\subseteq' U$}. Arbitrarily pick $v \in U$ less than $s$ and let $v \in V \in\cc$. By \vi{violet part}, we know $S\subseteq' V\text{ or }V\subseteq' S$. If $V\subseteq' S$, then we prove $v<s \implies v \in V\subseteq S$. If $S\subseteq ' V$, then $v<s \implies  v \in S$. Notice both of them mean $S \subseteq' U$, since $v$ is arbitrarily picked from  $U\tdone$.\\
-
-
-
-Because $T\subseteq' U\text{ and }S\subseteq' U$, by \myref{Lemma}{2.3.8}, we know either $S\subseteq' T\text{ or }T\subseteq' S$. Notice $s \in S\text{ and }s\in U\setminus T$, so we know $T\subset' S$. Then because $S \in \cc$, we know $f(T)=\min S\setminus T$. Notice that it can be trivially proved  $S\subseteq' U \implies S\setminus T \subseteq' U\setminus T$, so in fact we have $f(T)=\min S\setminus T=\min U\setminus T\bdone$\\
-
-\As{$U$ does not contain a maximal element of  $P$}. We now prove \vi{$U\cup \set{f(U)}\in \cc$}\\
-
-Notice that by \myref{Lemma}{2.3.6}, we know $U\cup \set{f(U)}$ is a well ordered chain, and because $f(U)$ is an upper bound of $U$, we know $p=\min U\cup \set{f(U)}$, so we only have to prove \vi{$T\subset' U\cup \set{f(U)}\longrightarrow f(T)= \min U\cup \set{f(U)}\setminus T} $}.\\
-
-Because $f(U)$ is an upper bound of $U$, we see  $f(U)=\max U\cup \set{f(U)}$, and because $U$ contain no maximal element, we know  $f(U)\not\in U$, that is, $U\subset U\cup \set{f(U)}$.\\
-
-Notice we have $f(U)\not\in T$, since $f(U)\in T\implies T=U\cup \set{f(U)}$. Then observe 
-\begin{gather}
-f(U)\not \in T\text{ and }T\subset' U \cup \set{f(U)}\\
-\implies T\subseteq' U\\
-\implies T=U\text{ or }T\subset' U\\
-\implies f(T)=f(U)=\min U\cup \set{f(U)}\setminus U=\min U\cup \set{f(U)}\setminus T\\
-\text{ or }f(T)=\min U\setminus T=\min U\cup \set{f(U)}\setminus T\vdone
-\end{gather}
-
-
-Then we see $U\cup \set{f(U)}\in \cc\implies U\cup \set{f(U)}\subseteq \bigcup \cc= U \tCaC$
-\end{proof}
-\fbox{\begin{minipage}{39em}
-We will first delve into a straightforward application of Zorn's Lemma. Following that, we'll demonstrate how Zorn's Lemma inherently suggests the Axiom of Choice.
-\end{minipage}}
-\begin{theorem}
-\label{2.3.11}
-\textbf{(Zorn's Lemma Implies Every Vector Space Has a Basis)} If
-\begin{center}
-    \begin{minipage}{0.9\linewidth}  
-        \centering
-       \textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded, there exists a maximal element. 
-    \end{minipage}
-\end{center}
-then 
-\begin{center}
-    \begin{minipage}{0.9\linewidth}  
-        \centering
-        Every vector space has a basis.
-    \end{minipage}
-\end{center}
-\end{theorem}
-\begin{proof}
-  Let $V$ be a vector space and let  $\mathcal{X}$ be the set of all linearly independent set of  $V$.  Order  $\mathcal{X}$ by inclusion, we now prove \vi{every chain $\cc$ in $\mathcal{X}$ is bounded above by $\bigcup \cc$}.\\
-
-We first prove \teal{$\bigcup \cc$ is linearly independent}. Arbitrarily pick a finite subset $S$ of  $\bigcup \cc$, and for each vector $s_i \in S$, pick a linearly independent set $S_i \in \cc$ such that $s_i \in S_i$. Let $S_n$ be the maximal element of  $\set{S_i}$ by inclusion. Then we have $S\subseteq S_n$, so $S$ is linearly independent $\tdone$\\
-
-By definition, we have $C\in \cc\implies C \subseteq \bigcup \cc\vdone$.\\
-
-Then by Zorn's Lemma, we know there exist a maximal element $W$ of $\mathcal{X}$. We now prove \blue{$U$ spans  $V$}.\\
-
-\As{there exists $v\in V\setminus \text{span}(U)$}. Then we see $U\subset U\cup \set{v}$ and see $U\cup \set{v}\in \mathcal{X}\tCaC\bdone$
-\end{proof}
-\fbox{\begin{minipage}{39em}
-In direct application of  Zorn's Lemma, especially those involving chains ordered by inclusion, a common tactic is to use the union of a chain as an upper bound. Conceptually, this can be likened to computing the limit or supremum of a monotonically increasing sequence.\\
-
-We now prove that Zorn's Lemma also implies axiom of choice, so we know Zorn's Lemma is equivalent to axiom of choice.
-\end{minipage}}
-\begin{theorem}
-\label{2.3.12}
-\textbf{(Zorn's Lemma Implies Axiom of Choice)} If 
-\begin{center}
-    \begin{minipage}{0.9\linewidth}  
-        \centering
-\textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded above, there exists a maximal element     
-    \end{minipage}
-\end{center}
-Then
-\begin{center}
-    \begin{minipage}{0.9\linewidth}  
-        \centering
-        \textbf{AC:} For each set of nonempty set  $Y$, there exists a function $f:Y\rightarrow \bigcup Y$ such that $f(X)\in X$ 
-    \end{minipage}
-\end{center}
-\end{theorem}
-\begin{proof}
-Notice that we prove the theorem in the sense of ZF.\\
-
-  Let $P$ be the set of all function $f$ from subset of  $Y$ to  $\bigcup Y$ such that $f(X)\in X$. In $P$, we define
-\begin{equation}
-g\leq h\text{ if }g\subseteq h
-\end{equation}
-Let $\cc$ be a chain in $P$, we  now prove \vi{$\bigcup \cc$ is an upper bound of $\cc$}.\\
-
-Let $A \in \bigcup \cc$, so we know there exists $f \in \cc$, such that $A\in f$, then we know $A$ is indeed a set of the form  $\set{\set{x},\set{x,y}}$.\\
-
-Let $B=\set{\set{x},\set{x,y}}\in \bigcup \cc$. \As{$\exists z, \exists C\in \cc, C=\set{\set{x},\set{x,z}}\in \bigcup \cc$}. Arbitrarily find $B',C'$ such that  $B\in B' \in \cc$ and $C \in C'\in \cc$. Then WOLG, let $B'\subseteq C'$, so we see $B\in C'$ then we see $C'$ is not a function  \CaC. For now we have proven $\bigcup \cc \in P$, then the fact that $\bigcup \cc$ is an upper bound of $\cc$ trivially follows. $\vdone$ \\
-
-Let $f$ be a maximal element of  $P$. \As{Domain of  $f$ is a proper subset of  $Y$}. Then we can arbitrarily select an element $X\in Y\setminus Dom(f)$, and arbitrarily select an element $x\in X$, then define $f'=f\cup \set{\set{X},\set{X,x}}\tCaC$
-\end{proof}
-\fbox{\begin{minipage}{39em}
-In the proof above, there are a couple of crucial observations to make:\\
-
-\textbf{Brevity of the Proof:} The proof is notably more concise than proving that the Axiom of Choice (AC) implies Zorn's Lemma. This conciseness is a reason why some might prefer to take Zorn's Lemma as an axiomatic starting point, even though it's just an equivalent formulation of AC.\\
-
-\textbf{Choice from a Set:} In the concluding section of the proof, we "select" an element from specific sets on two occasions. Beginners might assume that a choice function can only be defined if AC is assumed. However, this isn't the case for a finite collection of sets. One doesn't necessarily need the Axiom of Choice for this.\\
-
-The real potency of the Axiom of Choice lies in its ability to address \textit{situations that demand an infinite sequence of selections, where there's no predefined order or method to the selection process}.\\
-
-In our proof, when we "select" an element, it's from a singular set. Consequently, the domain of this choice function is of cardinality $1$. It's evident that the Axiom of Choice isn't necessary here.\\
-
-To delve into why the Axiom of Choice isn't required for finite situations, consider attempting a formal construction of a choice function for the set $\set{\set{1,2},\set{3,4},\set{5,6}}$.\\
-
-At this point, one may wonder, is it true that no construction of choice function on countable set of nonempty set require Axiom of Choice? This question in simple words want to ask: if a set $ X$ is countable, meaning I have already build a bijective function from $\N$ to $X$, meaning I can well order $X$, and to select an element from one nonempty set is doable as above explained, why can't I recursively do this and have a choice function on $X$? The answer is: To \textit{recursively} do such, what we should do is to construct a function $g$ that maps nonempty set to an element of itself, and recursively define the desired choice function by $f(x)=g(x)$, but one can see this fake "technique" is not only trivial, and more importantly, wrong, since without AC, we don't know if $g$ exists, let alone using $g$ to construct  $f$.
-\end{minipage}}
-\begin{theorem}
-\label{2.3.13}
-\textbf{(Zorn's Lemma Implies Well Ordering Theorem)}  
-If
-\begin{center}
-    \begin{minipage}{0.9\linewidth}  
-        \centering
-        \textbf{Zorn's Lemma:} For every partially ordered set $P$ such that every chain is bounded above, there exists a maximal element.
-    \end{minipage}
-\end{center}
-then
-\begin{center}
-    \begin{minipage}{0.9\linewidth}  
-        \centering
-       \textbf{Well Ordering Principle:} Every set $X$ can be well ordered.
-    \end{minipage}
-\end{center}
-\end{theorem}
-\begin{proof}
-Define
-\begin{equation}
-P:=\set{(A_i,\leq_i): A_i\subseteq X\text{ and }A_i\text{ is well ordered by $\leq_i$ }}
-\end{equation}
-and we define a partial order $\leq $ for $P$ by
-\begin{equation}
-  (A_i,\leq_i)\leq (A_j,\leq _j)\text{ if }A_i\subseteq' A_j\text{ with respect to $\leq_j$ and }x_i\leq_i y_i\longrightarrow x_i\leq_j y_i 
-\end{equation}
-Let $\cc_d$ be a chain of $P$. Define order $\leq_d$ on $\bigcup \cc_d$ by
-\begin{equation}
-x\leq_d y\text{ if }\exists A_i\in\cc_d, x,y\in A_i\text{ and }x\leq_i y
-\end{equation}
-we first prove \vi{$\leq_d$ is well defined}, which is just to prove that $\leq_d$ is antisymmetric. Let $x\leq_d y\text{ and }y\leq _dx$, and let $x,y\in A_i\cup A_j$ such that $x\leq_i y\text{ and }y\leq _jx$. Because $\cc$ is a chain, WOLG, let $A_i\leq A_j$, we then have  $x\leq_j y\text{ and }y\leq _jx$, so $x=y\vdone$\\
-
-We now prove  \blue{$\leq_d$ is reflexive, connected and transitive}.\\
-
-For reflexive, notice $x\in \bigcup\cc_d$ implies $\exists A_i\in\cc_d, x \in A_i$, and the rest is trivial. For connected, for $x,y\in \bigcup \cc_d$, let $x\in A_i \in\cc_d\text{ and }y\inA_j\in\cc_d$. Because $\cc$ is a chain, WOLG, we can let $A_i\leq A_j$, and then we see $x,y\in A_j$, so because $A_j$ is totally ordered by $\leq_j$, we know $x,y$ is comparable by  $\leq_d$. For transitive, let $x\leq_d y\leq _d z$, and let $x,y\in A_i\in\cc_d\text{ and }x\leq _iy\text{ and }y,z\inA_j\in\cc_d\text{ and }y\leq _jz$. If $A_j\leq A_i$, we see $x\leq_i y\leq_i z$, then the proof is finished. If $A_i\leq A_j$, we see $x\leq_j y\leq_j z\bdone$.\\
-
-We now prove \vi{$\bigcup \cc_d\in P$}, which is just to prove $\bigcup \cc_d$ is well ordered by $\leq_d$.\\
-
-Let $V\subseteq \bigcup \cc_d$, and arbitrarily pick $A_i\in \cc_d$ such that $A_i\cap V$ is nonempty, because $A_i$ is well ordered by  $\leq _i$, we know there exists an minimal element $v'$ of $A_i\cap V$ with respect to $\leq _i$. Let $v \in V$, if $v\in A_i\cap V$, then by definition of $\leq _d$, we see $v'\leq_d v$. If $v\in V\setminus A_i$, then for each $A_j\in\cc$ containing $v$, we know $A_i\subset A_j$, and because $\cc$ is a chain, we know $A_i\leq A_j$. \As{$v\leq _j v'$}, because $v'\in A_i\subseteq' A_j$, we can deduce $v'\in A_i\tCaC$, so we have $v'<_j v$, which implies $v' <_d v$. We have proved $v'$ is the smallest element of $V\vdone$ \\
-
-We now prove  \blue{$\bigcup \cc_d$ is an upper bound of $\cc_d$ with respect to $\leq $}. Arbitrarily pick $x_i,y_i\in A_i\in \cc_d$,  we immediately see $x_i\leq _iy_i\implies x_i\leq _dy_i$, so we only have to prove $A_i\subseteq' \bigcup \cc_d$ with respect to $\leq _d$. \teal{Let $v_i\in A_i,v_j\in\bigcup \cc_d\text{ and }v_j\leq _dv_i$}. Arbitrarily pick $A_j$ containing  $v_j$ and  \As{$v_j\not\inA_i$}, so we have $A_i<A_j$. Because $v_j\leq_d v_i\text{ and }v_i,v_j\in A_j$, we know $v_j\leq _jv_i$. Then because $A_i\subseteq' A_j$ with respect to $\leq _j$, we have $v_j\in A_i\tCaC$. We have proved $v_j\in A_i$ by rejecting the red assumption. Notice the \teal{premise}. We have proved $A_i\subseteq' \bigcup \cc_d$ with respect to $\leq _d\bdone$\\
-
-Let $(A_k,\leq _k)$ be a maximal element of $P$.  \As{$A_k\subset X$}, we can arbitrarily pick $x\in X\setminus A_k$, and for all $a_k\in A_k$ define $a_k\leq_k x$. By \myref{Lemma}{2.3.6}, we see $(A_k\cup \set{x},\leq _k)$ is well ordered, so $(A_k\cup \set{x},\leq _k)\in P$. To prove $(A_k,\leq _k)<(A_k\cup \set{x},\leq _k)$ is trivial. \CaC
-\end{proof}
-\section{Cardinality and Cardinal}
-\fbox{\begin{minipage}{39em}
-In this section, we first present a definition and a theorem as a primer rather than the primary focus. This serves as a foundation to instill confidence in the reader regarding the use of set theory language.
-\end{minipage}}
-\begin{definition}
-\label{2.4.1}
-\textbf{(Formulation of Property of Function)}
-We use predicate $P(f)$ 
-\begin{equation}
-\forall A\forall B(A\in f\land B\in f\land \exists x(\set{x}\in A\land \set{x}\in B)\longrightarrow A=B)
-\end{equation}
-to tell if $f$ is injective, and we use predicate  $P(f,Y)$ 
-\begin{equation}
-\forall y\exists A\exists B((A=\set{\set{y}}\land A\in f)\lor (A\in f\land B\in A\land y  \in B\land \exists x(x\in B\land x\neq y) ))
-\end{equation}
-\end{definition}
-\begin{theorem}
-\label{2.4.2}
-\textbf{(Basic Property of Function)} There exists a one-to-one function from $A$ to  $B$ if and only if there exists an onto function from  $B$ to  $A$
-\end{theorem}
-\fbox{\begin{minipage}{39em}
-While it's straightforward to "prove" the theorem, formalization of such proof offers a robust assurance of its correctness. I encourage you to attempt formalization. With that, let's delve into the topic of cardinality, and introduce a highly useful theorem.
-\end{minipage}}
-\begin{definition}
-\label{2.4.3}
-\textbf{(Definition of Cardinality)} 
-We write 
-\begin{equation}
-A\leq _c B\text{ or write }B\geq _cA
-\end{equation}
-If there exists a one-to-one function from $A$ to  $B$, or, equivalently, if there exists an  onto function from $B$ to  $A$. Also, we write 
-\begin{equation}
-A=_c B
-\end{equation}
-if there exists a bijective function from $A$ to  $B$  (one-to-one correspondence between $A,B$) 
-\end{definition}
-\begin{theorem}
-\label{2.4.4}
-\textbf{(Schroder-Berstein Theorem)} Let $A,B$ be sets. We have 
-\begin{equation}
-A\leq_c B\text{ and }B\leq _c A\iff  A=_c B
-\end{equation}
-\end{theorem}
-\begin{proof}
-Let $f:A\rightarrow B$, $g:B\rightarrow A$ be two one-to-one function.\\
-
-Define $C_0:=A\setminus g(B) $, and for all nonnegative integer $k$, define 
-\begin{equation}
-C_{k+1}:=g(f(C_k))
-\end{equation}
-Also, Define
-\begin{equation}
-C:=\bigcup _{k=0}^{\infty} C_k
-\end{equation}
-Define
-\begin{equation}
-h(x):=\begin{cases}
-  f(x) & x\in C \\
-  g^{-1}(x) & x\inA\setminus C
-\end{cases}
-\end{equation}
-We first prove \vi{$h$ is defined every where on $A$}.\\
-
-Because $C_0\subseteq C$, we know that $A\setminus C \subseteq A\setminus C_0=A \setminus (A\setminus g(B))$. Then we can deduce
-\begin{gather}
-x\in A \setminus C \implies x\inA \setminus (A \setminus g(B))\\
-\liff x\inA\text{ and }x\not\inA \setminus g(B)\\
-\liff  x\inA\text{ and }(x\not\inA\text{ or }x\in g(B))\\
-\liff (x\inA\text{ and }x\not\in A)\text{ or }(x\inA\text{ and }x\in g(B))\\
-\liff x\inA\text{ and }x\in g(B)\\
-\liff x\in g(B) \vdone
-\end{gather}
-We now prove \blue{$h$ is one-to-one}.\\
-
-\As{there exists $x\neq y\inA$ such that $h(x)=h(y)$}. We know $x,y$ are not both in $C$, otherwise  $f$ is not one-to-one. We also know $x,y$ are not both in $A \setminus C$, otherwise $g$ is not a function. WOLG, let $x\in C\text{ and }y\inA \setminus C$, so we have $f(x)=g^{-1}(y)$. Then, we have $y=g(f(x))$. Because $x\in C$ , we know there exists a nonnegative integer $n$ such that $x\in C_n$. Then we see $y\in g(f(C_n))=C_{n+1}\tCaC\bdone$\\
-
-Lastly we prove  \vi{$h$ is onto}.\\
-
-We wish to prove $B=h(A)$, where 
- \begin{equation}
-h(A)=f(C)\cup g^{-1}(A \setminus C)\text{ and }h(A)\subseteq B
-\end{equation}
-So we just prove
-\begin{equation}
-B\subseteq f(C)\cup g^{-1}(A \setminus C)
-\end{equation}
-Let $x\in B$. If all $x$ is in  $g^{-1}(A \setminus C)$, then the proof is over. If not, keep in mind that $g(x)\not\in C_0$, since $g(x)\in C_0=A \setminus g(B)$ implies $g(x)\not\in g(B)$ and observe 
-\begin{gather}
-x\not\in g^{-1}(A \setminus C)\\
-\liff g(x)\not\in A \setminus C\\
-\liff g(x)\in C \\
-\liff \exists n\inn, g(x)\in C_n\\
-\liff \exists n\inn, \exists u\in C_{n-1}, g(x)=g(f(u))\\
-\liff \exists n\inn,\exists u\in C_{n-1}, x=f(u)\\
-\liff x\in f(C) \vdone 
-\end{gather}
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Schroder-Berstein Theorem in simple word is just that the relation $\leq_c$ between sets is antisymmetric. One may intuitively think such "simple" consequence should be easy to prove but in fact isn't.\\ 
-
-That the relation $\leq _c$ is reflexive and transitive is trivial to prove. What being said, this does not implies $\leq _c$ is a "total order", since we haven't proved it is connected. 
-\end{minipage}}
-\begin{theorem}
-\label{2.4.5}
-\textbf{(Caridinality of All Set are Comparable if Given AC)} If given AC, for all sets $A,B$, we have 
- \begin{equation}
-A\leq _c B\text{ or }B\leq _c A
-\end{equation}
-\end{theorem}
-\begin{proof}
-Let $P$ be the set of one-to-one function from subset of  $A$ to  $B$. We define order relation on  $P$ by 
-\begin{equation}
-f\leq g\text{ if }\forall x\in \text{Dom}(f), f(x)=g(x)\text{ and }\text{Dom}(f)\subseteq \text{Dom}(g)
-\end{equation}
-To prove this do define a order relation is trivial. By Zorn's Lemma, we can pick a maximal element of $f$. If Domain of  $f$ is not  $A$ and range of $f$ is not  $B$,  then we can define a larger function by arbitrarily picking  $x\in A\setminus \text{Dom}(f)$ and $y\in B\setminus \text{Im}(f)$ and defining  $f'(z)=\begin{cases}
-  f(z)& \text{ if  }x\in \text{Dom}(f)\\
-  y& \text{ if  }z=x
-\end{cases}$. It is trivial to prove $f<f'$. 
-\end{proof}
-\fbox{\begin{minipage}{39em}
-So far, we have proved $\leq _c$ is a total order on the class of all sets. Now, we give a necessary and sufficient condition of one set having strictly less cardinality than that of the other.
-\end{minipage}}
-\begin{definition}
-\label{2.4.6}
-\textbf{(Definition of Cardinality)} Let  $A,B$ be sets. If $A\geq _c B$ and there does not exist a one-to-one correspondence between $A$ and $B$, which we denote $A \neq _c B$, then we write
-\begin{equation}
-A>_c B\text{ or write }B<_c A
-\end{equation}
-\end{definition}
-\begin{theorem}
-\label{2.4.7}
-\textbf{(Basic Property of Cardinality)} For all sets $A,B$, we have  
-\begin{equation}
-A>_c B\iff \text{ no function from $A$ to $B$ is one-to-one}
-\end{equation}
-\begin{equation}
-A >_c B\iff \text{ no function from $B$ to $A$ is onto }
-\end{equation}
-\end{theorem}
-\begin{proof}
-The fact that an one-to-one function from $A$ to $B$ exists if and only if an onto function from $B$ to $A$ exists is proved in the beginning of the section, so we only have to prove the first iff and the proof is finished. From left to right, \As{there exists an one-to-one function from $A$ to $B$}. Because $A >_c B\implies A\geq _c B\implies $ there exists another one-to-one function from $B$ to $A$, so by Schroder-Berstein Theorem, we have $A =_c B\tCaC$. From right to left, \As{the negate of  $A >_c B$}. Notice the negate of $A>_c B$ is no function from  $B$ to $A$ is one-to-one or $A =_c B$. If $A =_c B$, then there exists a bijective, so an one-to-one function from $A$ to $B$. If no function from  $B$ to $A$ is one-to-one, and no function from $A$ to $B$ is one-to-one, then the cardinality of $A,B$ is incomparable \CaC  
-\end{proof}
-\fbox{\begin{minipage}{39em}
-
-Notice that we haven't define the cardinality in a "constructive" manner. We defined cardinality by defining relation between sets. We now define cardinal, not cardinality, in a constructive manner compatible to our old definition.
-\end{minipage}}
-\begin{definition}
-\label{2.4.8}
-\textbf{(Von Neumann Cardinal Assignment)} We now assign each set $X$ to a cardinal
- \begin{equation}
-\abso{X}=\min  \set{\sigma\in\text{ Ord }:\text{ and }\sigma =_c X}
-\end{equation}
-And we say an ordinal is a cardinal if the ordinal if an caridnality of some sets. 
-\end{definition}
-\begin{theorem}
-\label{2.4.9}
-\textbf{(Every Set Can be Assigned to a Cardinal if Given AC, Needed to be formalized)} For arbitrary set $X$, there exists an ordinal of same cardinality. More precisely, every well order set (some set can not be well ordered without AC) can be assigned a cardinal.
-\end{theorem}
-\begin{proof}
-By AC, we can well order $X$. Define function $f$ that map ordinal to  element in $X$ by
- \begin{equation}
-f(0):=\min X\text{ and }f(\alpha ):=\min X\setminus \set{f(\beta ):\beta <\alpha }
-\end{equation}
-
-\As{$\forall \alpha \in\text{Ord }, f[\alpha ]\subset X$}. Then we know $\text{Ord$=$Dom}(f)$, and then we can formally construct a inverse function $f^{-1}$, and formally construct the set that is the image of $f^{-1}$, which we know is Ord. \CaC
-\end{proof}
-\begin{theorem}
-\label{2.4.10}
-\textbf{(Compatibility between Von Neumann Cardinal and Ordinal)} For all set $A,B$, we have
- \begin{equation}
-A<_c B \implies  \abso{A}\in \abso{B}\text{ and } A=_c B\implies \abso{A}=\abso{B}\text{ and }n\in \bigcap  \call \implies \abso{n}=n
-\end{equation}
-where infimum is with respect to strict well order $\in$ on the class of ordinals. 
-\end{theorem}
-\begin{proof}
-\As{$\abso{B}\in \abso{A}$}. Notice that trivially we can prove the relation $=_c$ on the class of all sets is symmetric, so we have $A<_c B$, since if $A=_c B$, we should by definition have $\abso{B}=\abso{A}$. Notice $\abso{B}\in \abso{A}\implies \abso{B}\subset \abso{A}$, so we have an one-to-one function from $\abso{B}$ to $\abso{A}$ by mapping each element of $B$ to itself, then we have $\abso{B}\leq_c \abso{A}$, notice that by definition we have $B=_c \abso{B}\leq _c \abso{A}=_c A$. Then we can construct function by composition to show $B\leq _c A\tCaC$.\\
-
-
-
-
-We prove by induction. Base case is simple: notice $\varnothing=_c \varnothing$ implies $\varnothing \in \set{\sigma \in\text{Ord}:\sigma =_c \varnothing}$, so we have $\abso{\varnothing}=\varnothing$. For induction case, let $k\in \bigcap \call \text{ and }\abso{k}=k$, we wish to prove \vi{$k\cup \set{k}=\min \set{\sigma\in\text{Ord}:\sigma=_c k\cup \set{k}}$}. Trivial, we have $k\cup \set{k}\in \set{\sigma\in\text{Ord}:\sigma=_c k \cup \set{k}}$. We first prove \teal{$k$ is the greatest ordinal in  $k\cup \set{k}$}. Let $m \in k\cup \set{k}$. \As{$k \in m$}. Then by definition of ordinal we  have  $k\subseteq m$, and because $k \in m$, we then have $k\cup \set{k}\subseteq m$. On the other side, notice by definition of ordinal we have $m\subseteq k\cup \set{k}$, so in summary we have $m=k\cup \set{k}\tCaC\tdone$. So, we see if $k\cup \set{k}$ is not the smallest element of $\set{\sigma:\sigma=_c k\cup \set{k}}$, then $k$ belong to  $\set{\sigma:\sigma=_c k \cup \set{k}}$. We now prove $k\neq_c k\cup \set{k}$ by induction. Base case is trivial: $\varnothing\neq _c \set{\varnothing}$. We now prove $k\neq _c k \cup \set{k}\longrightarrow k\cup \set{k}\neq _c k\cup \set{k}\cup \set{k \cup \set{k}}$. \As{there exists a bijective function $f$ from $k \cup  \set{k}$ to $k\cup \set{k}\cup \set{k \cup \set{k}}$ }. Then we can define a bijective function $g(x):k\rightarrow k\cup \set{k}$ by $\begin{cases}f(k)& \text{ if  }x=f^{-1}(\set{k\cup \set{k}})\\
-  f(x)& \text{ if  }x\neq f^{-1}(\set{k\cup \set{k}})
-\end{cases}\tCaC\vdone$
-\end{proof}
-\fbox{\begin{minipage}{39em}
-The theorem discussed above is fundamental to the theory of ordinals and cardinals. However, it is infrequently employed in the discussions of real analysis. This is because, using the elementary methods of set description, the sets under consideration often possess cardinalities equivalent to either $\mathbb{N}$, $\mathbb{R}$, or are finite.\\
-
-We now present the standard definition of \textit{infinite} in the language of set theory, a definition widely accepted in most analysis texts. Subsequently, we introduce the concept of \textit{Dedekind-infinite}. This definition harnesses our intuition: that shifting every term in an infinite sequence is permissible. It's important to note that the traditional definition of \textit{infinite} and that of \textit{Dedekind-infinite} are not always equivalent. However, if the Axiom of Choice (AC) holds true, then these definitions become equivalent. Since most people in the mathematical community accept AC, the two definitions are often treated as equivalent in practice.
-\end{minipage}}
-\begin{definition}
-\label{2.4.11}
-\textbf{(Definition of Infinite)} We say a set $A$ is finite if there exists an ordinal $\sigma$ in $\bigcap  \call $ such that $\abso{A}=\sigma$, and we say $A$ is infinite if $A$ is not finite. 
-\end{definition}
-\begin{definition}
-\label{2.4.12}
-  \textbf{(Definition of Dedekind Infinite)} Let $A$ be a set. We say $A$ is Dedekind-infinite if there exists a proper subset of $A$ that have the same cardinality as $A$, and we say $A$ is Dedekind-finite if $A$ is not Dedekind-infinite.
-\end{definition}
-\begin{theorem}
-\label{2.4.13}
-\textbf{(Equivalence of Infinite and Dedekind Infinite under AC)} Under AC, a set $A$ is infinite if and only if  $A$ is Dedekind-infinite.
-\end{theorem}
-\begin{proof}
-We first prove \vi{$A$ is finite  $\implies A$ is Dedekind-finite} by induction. Base case is trivial, since $\varnothing$ doesn't even have  proper subsets. For induction case, let $k\in \bigcap \call $ be Dedekind-finite. \As{$\exists m\subset k\cup \set{k},m=_c k\cup \set{k}$}. If $m$ contain  $k$, then we have  $m\setminus \set{k}\subseteq k\text{ and }m\setminus \set{k}=_c k$, where we use the same technique in proof of \myref{Theorem}{2.4.10}. So we know $m\subseteq k$. Then we have $k\cup \set{k}=m\leq_k k\tCaC\vdone$.\\
-
-We now prove \teal{$A$ is infinite  $\implies A$ is Dedekind-infinite}. Define function 
-\begin{equation}
-f:\N\rightarrow \power{\power{A}}, n\mapsto \set{X:\power{A}:\abso{X}=n}
-\end{equation}
-We first prove \vi{for all naturals  $n$, we have  $f(n)$ is nonempty} by induction.\\
-
-$f(1)$ is nonempty since we can arbitrarily select an element and use axiom of pairing to construct a singleton subset. If $f(k)$ is nonempty, we can arbitrarily select an element $X$ from $f(k)$ and to see if $A=X$ then $A$ is finite, so we can arbitrarily select an element from $A\setminus X$ and attach to $X$ to show  $f(k+1)$ is nonempty.  $\vdone$\\
-
-We now \blue{construct a bijective from $A$ to a proper subset missing one element by constructing a countable subset $U$ of $A$ and map each element  in $U$ to its successor}.\\
-
-By AC, we know there exists a function $g(n)$ such that $\forall n\inn, g(n)\in f(n)$. Let $U=\bigcup g[\N]$. Define $h:U\rightarrow \N$ by mapping elements in $g(n)$ to elements in $\set{x \inn: \frac{(n-1)n}{2}<x\leq \frac{n(n+1)}{2}}$. $h$ is onto, since  $U=\bigcup g[\N]$, and because $\abso{g(n)}=n=\abso{x\inn:\frac{(n-1)n}{2}x\leq \frac{n(n+1)}{2}}$, we know $h$ is one-to-one. Now we define function $B:A\rightarrow A\setminus \set{h^{-1}(1)}$, where $y$ is the element in  $U$ that was mapped to  $1$ by
-\begin{equation}
-B(x)=\begin{cases}
-  x& \text{ if  }x\not\in U\\
-  h^{-1}(h(x)+1)& \text{ if  }x\inU\bdone\tdone
-\end{cases}
-\end{equation}
-\end{proof}
-\begin{corollary}
-\label{2.4.14}
-\textbf{($\N$ is the "smallest" infinite set)} Every infinite set have either same or greater cardinality than $\N$ 
-\end{corollary}
-\begin{proof}
-Consider the set $U$ in proof above.
-\end{proof}
-\begin{corollary}
-\label{2.4.15}
-\textbf{(Another Definition of Infinity)} A set is infinite if and only if it has cardinality equal to or greater than $\N$
-\end{corollary}
-\fbox{\begin{minipage}{39em}
-Now, we will demonstrate a few theorems specific to countable cardinalities. While these can be generalized to encompass all cardinalities using more advanced set theory tools, our final theorem will be applicable to all cardinalities without exception.
-\end{minipage}}
-\begin{definition}
-\label{2.4.16}
-\textbf{(Definition of Countable)} We say a set is countable if the set has cardinality less than or equal to $\N$
-\end{definition}
-\begin{theorem}
-\label{2.4.17}
-\textbf{(Finite Cartesian Product of Countable Set is Countable)} For all naturals $n$, we have $\abso{\N^n}=\abso{\N}$ 
-\end{theorem}
-\begin{proof}
-  Because we can map $p\mapsto (p,1,\dots ,1)$, we know $\abso{\N}\leq \abso{\N^n}$. Because we know $\abso{X_m:=\set{(p_1,\dots, p_n) \in \N^n :\sum p_i=m}}=H^n_{m-n}$, we can map each element in $X_m$ one-to-one into  $(\sum_{i=3}^{m-1} H^n_{i-n},\sum ^m_{i=3}H^n_{i-n}]$, so we know $\abso{\N^n}\leq \abso{\N}$
-\end{proof}
-\begin{theorem}
-\label{2.4.18}
-\textbf{(Countable Union of Countable Set is Countable)} Let $S=\set{E_n:n\inn}$ be a countable set of countable sets. We have $\bigcup S$ is countable.  
-\end{theorem}
-\begin{proof}
-For each $n\inn$, because $E_n$ is countable, we can define  bijective $f_n:\N\rightarrow E_n$. Define $g:\N \rightarrow  \bigcup S$ by
-\begin{equation}
-g(x)=f_{m-(h-2)}(h)\text{ where }m=\max \set{n\inn: \frac{(n+1)n}{2}< x}\text{ and }h=x-\frac{(m+1)m}{2}
-\end{equation}
-We now prove \vi{$g$ is onto}.\\
-
-Let $x\in \bigcup S$, we know $\exists p\inn, x\in E_p$, so we know $\exists p,q\inn, x=f_p(q)$. One can verify $g(q+\frac{(p+q-2)^2+(p+q-2)}{2})=f_p(q)=x$ where $m=p+q-2\text{ and }n=q\vdone$
-\end{proof}
-\begin{theorem}
-\label{2.4.19}
-\textbf{(Every Nonempty Set Has Cardinality Strictly Less than Its Power Set)} If $A$ is nonempty, then  $\abso{A}<\abso{\power{A}}$.
-\end{theorem}
-\begin{proof}
-Let $f$ be a function from $A$ to  $\power{A}$. Define $T=\set{a\in A:a\not\in f(a)}$. Observe $b \in T\implies b\not\in f(b)\implies T\neq f(b)$ and observe $b\not\in T\implies b\in f(b)\implies T\neq f(b)$, so $T\in \power{A}\setminus f[A]$.  
-\end{proof}
 \section{Different but Equivalent Ways to Define A Topology}
 \fbox{\begin{minipage}{39em}
 This section illustrates three methods to define a topology. However, in practice, the approach using open sets is predominantly employed.
 \end{minipage}}
 \begin{definition}
-\label{2.5.1}
+\label{2.1.1}
 \textbf{(Definition of Topology, via Open Set)} Given a set $X$, which called a topological space, if we say a family $\mathfrak{O}$  of subsets of $X$ is a topology on $X$, then we mean
 \begin{gather}
 X, \varnothing \in \mathfrak{O}\\
@@ -2483,7 +2485,7 @@ If a subset of $X$ belong to  $\mathfrak{O}$, we say it is an open set, and if a
 The method above is the usual way to define a topology. Next, we'll look at some properties of closed sets. Keep in mind that the related properties for open sets are basic axioms
 \end{minipage}}
 \begin{theorem}
-\label{2.5.2}
+\label{2.1.2}
 \textbf{(Property of Closed Sets)} Let $\mathfrak{F}$ be the family of precisely all closed sets in a topological space. We have
 \begin{gather}
 X,\varnothing \in \mathfrak{F}\\
@@ -2503,7 +2505,7 @@ A,B\in \mathfrak{F}\implies A^c,B^c \in \mathfrak{O}\implies A^c \cap B^c=(A\cup
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{2.5.3}
+\label{2.1.3}
 \textbf{(Equivalent Ways to Define The Same Topology, Part 1)} Define $f$ on $\power{\power{X}}$ by 
 \begin{equation}
 f(\mathfrak{A})=\set{A^c:A\in \mathfrak{A}}
@@ -2521,7 +2523,7 @@ Trivial.
 Let's move on to the axioms for the neighborhood system. After covering that, we'll demonstrate that these axioms and those for open sets aren't just interconnected – they're essentially the same thing. Notice the proof below uses Zorn's Lemma. 
 \end{minipage}}
 \begin{definition}
-\label{2.5.4}
+\label{2.1.4}
 \textbf{(Definition of Neighborhood Function)} We say a function $\mathcal{N}:X\rightarrow \power{\power{X}}$ is neighborhood function if 
 \begin{gather}
 \forall x \in X,\mathcal{N}(x)\neq \varnothing\text{ (Existence) }\\
@@ -2533,7 +2535,7 @@ N,M \in \mathcal{N}(x)\implies N \cap M\in \mathcal{N}(x)\text{ (Intersection) }
 The last property reads: every neighborhood $N$ around arbitrary point $x$ contain a neighborhood $M$ around $x$ such that $N$ is a neighborhood of each points of $M$.
 \end{definition}
 \begin{theorem}
-\label{2.5.5}
+\label{2.1.5}
 \textbf{(Equivalent Ways to Define The Same Topology, Part 2)} There exists a one-to-one correspondence between the class of all topology on $X$ and the class of all neighborhood function on $X$.\\
 
 The correspondence can be written in the form of 
@@ -2627,14 +2629,14 @@ N\in g(g^{-1}(\mathcal{N}))(x)
 Because $N$ is arbitrarily picked from $\mathcal{N}(x)$, we have $\mathcal{N}(x)\subseteq g(g^{-1}(\mathcal{N}))(x)\bdone\tdone$
 \end{proof}
 \fbox{\begin{minipage}{39em}
-We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{2.5.5} into language without neighborhood function. 
+We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{0.1.5} into language without neighborhood function. 
 \end{minipage}}
 \begin{definition}
-\label{2.5.6}
+\label{2.1.6}
 \textbf{(Definition of Neighborhood)} We say a set $E$ is a neighborhood around a point $x$, if  $E$ contains an  open set containing $x$.
 \end{definition}
 \begin{corollary}
-\label{2.5.7}
+\label{2.1.7}
 \textbf{(Property of Neighborhood, Part 1)} 
 \begin{enumerate}[label=(\alph*)]
   \item For all points $x$, there exists a neighborhood around $x$.\\
@@ -2645,7 +2647,7 @@ For each neighborhood $N$ around $x$, there exists a smaller neighborhood $M$ ar
 \end{enumerate}
 \end{corollary}
 \begin{theorem}
-\label{2.5.8}
+\label{2.1.8}
 \textbf{(Property of Neighborhood, Part 2)} 
 \begin{equation}
   \text{ $E$ is open $\iff E$ is an neighborhood around all points in $E$}
@@ -2656,87 +2658,71 @@ From left to right, it trivially follows from our definition of neighborhood.\\
 
 From right to left, we know every point $x$ in  $E$ is contained by an open set contained by $E$. By axiom, the union of such open sets is an open set and contained by $E$. Also, every point in $E$ belong to an open set contained by by $E$, so belong to the union. We have proved  $E$ is the union. 
 \end{proof}
-\section{Topological Space}
+\section{General Topology: Closure and Interior}
 \fbox{\begin{minipage}{39em}
-This section isn't an introduction to general topology, but a topological generalization of the next section as a comparison. 
+This section won't go into any detailed general topology. It merely work as a comparison of the next section. 
 \end{minipage}}
 \begin{definition}
-\label{2.6.1}
-\textbf{(Definition of Closure and Interior Operator)} We define the closure $\overline{E}$ of $E$ to be smallest closed set containing $E$, and define  the interior $E^\circ$ of  $E$ to be the largest open set contained by  $E$. 
+\label{2.2.1}
+\textbf{(Definition of Closure and Interior Operator)} We define the closure $\overline{E}$ of $E$ to be smallest closed set containing $E$
+\begin{equation}
+  \overline{E}:=\bigcap \set{F\in\mathfrak{F}:E\subseteq F}
+\end{equation}
+and define the interior $E^\circ$ of  $E$ to be the largest open set contained by  $E$ 
+\begin{equation}
+E^\circ :=\bigcup  \set{O\in\mathfrak{O}:O \subseteq E}
+\end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.6.2}
+\label{2.2.2}
 \textbf{(Basic Property of Closure and Interior Operator)} We have
-\begin{equation}
-  \overline{E}=E\iff E\in\mathfrak{F}\text{ and }E^\circ=E\iff E\in\mathfrak{O}
-\end{equation}
+\begin{gather}
+  \overline{E}=E\iff E\in\mathfrak{F}\text{ and }E^\circ=E\iff E\in\mathfrak{O}\\
+\overline{(\overline{E})}=\overline{E}\text{ and }(E^\circ)^\circ=E^\circ\\
+  S\subseteq T \implies S^\circ \subseteq T^\circ\text{ and }\overline{S}\subseteq \overline{T}
+\end{gather}
 \end{theorem}
-\begin{proof}
-Trivial. 
-\end{proof}
-\begin{corollary}
-\label{2.6.3}
-\textbf{(Basic Property of Closure and Interior Operator)} We have
-\begin{equation} \overline{(\overline{E})}=\overline{E}\text{ and }(E^\circ)^\circ=E^\circ
-\end{equation}
-\end{corollary}
 \begin{theorem}
-\label{2.6.4}
+\label{2.2.3}
 \textbf{(Basic Property of Closure and Interior Operator)} We have 
- \begin{equation}
+\begin{equation}
    \overline{E\cup F}=\overline{E}\cup \overline{F}\text{ and }(E\cap F)^\circ=E^\circ \cap F^\circ
 \end{equation}
 \end{theorem}
-\begin{proof}
-\begin{equation}
-E\cup F \subseteq \overline{E}\cup \overline{F}\in \mathfrak{F}\implies \overline{E\cup F}\subseteq \overline{E}\cup \overline{F}
-\end{equation}
-\begin{equation}
-E,F\subseteq \overline{E\cup F}\in\mathfrak{F}\implies \overline{E},\overline{F}\subseteq \overline{E\cup F}\implies \overline{E}\cup \overline{F}\subseteq \overline{E\cup F}
-\end{equation}
-\begin{equation}
-E^\circ \cap F^\circ \subseteq E\cap F \implies E^\circ \cap F^\circ \subseteq (E\cap F)^\circ 
-\end{equation}
-\begin{equation}
-  (E\cap F)^\circ \subseteq E\cap F\subseteq E,F\implies (E\cap F)^\circ \subseteq E^\circ ,F^\circ \implies (E\cap F)^\circ \subseteq E^\circ \cap F^\circ 
-\end{equation}
-\end{proof}
-\begin{theorem}
-\label{2.6.5}
-\textbf{(Basic Property of Interior and Closure Operator)} We have
-\begin{equation}
-S\subseteq T \implies S^\circ \subseteq T^\circ\text{ and }\overline{S}\subseteq \overline{T}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Trivial.
-\end{proof}
 \fbox{\begin{minipage}{39em}
-Above define the interior and closure by using the term greatest and smallest. If reader feel any ambiguity, just use $\bigcup \set{O\in \mathfrak{O}:O\subseteq E}$ and $\bigcap \set{F\in\mathfrak{F}:E\subseteq F}$.\\
+Now, we define interior point and limit point without referencing interior and closure. We'll also demonstrate that the interior, described as the largest open set within $E$, can in turn define interior points.\\ 
 
-We now define interior point and limit point without using interior and closure. We will also prove the interior we define above as the greatest open set contained by $E$, can in return define interior points. Other than the last section, this is another show case of definitions in general topology that can be defined in multiple different yet equivalent ways. 
+Aside from the last section, this is another example in general topology where definitions can be expressed in several ways, yet they remain equivalent.
 \end{minipage}}
 \begin{definition}
-\label{2.6.6}
+\label{2.2.4}
 \textbf{(Definition of Interior Point)} A point $p$ is an interior point of $E$ if
 \begin{equation}
 E\in \mathcal{N}(p)
 \end{equation}
 \end{definition}
 \begin{definition}
-\label{2.6.7}
+\label{2.2.5}
 \textbf{(Definition of Limit and Isolated Point)} A point $p \in X$ is a limit point of a subset $E$ of $X$, if 
 \begin{equation}
 \forall O\in \mathfrak{O}:p \in O, \exists u\neq p, u \in O\cap E
 \end{equation}
+or equivalently
+\begin{equation}
+\forall O\in\mathfrak{O}:p\in O, O\cap E\setminus \set{p}\neq \varnothing
+\end{equation}
+or equivalently
+\begin{equation}
+\forall N\in \mathcal{N}(p), N\cap E\setminus \set{p}\neq \varnothing
+\end{equation}
+We denote the set of limit point of $E$ by  $E'$. 
 \end{definition}
 \begin{theorem}
-\label{2.6.8}
+\label{2.2.6}
 \textbf{(Interior Contain Exactly All Interior Points)} We have
 \begin{equation}
 E^\circ = \set{p:E\in \mathcal{N}(p)}
 \end{equation}
-which reads: the interior of $E$ is exactly the set of point around which $E$ is neighborhood
 \end{theorem}
 \begin{proof}
 Arbitrarily pick $p$ from $\set{p: E \in \mathcal{N}(p)}$. By definition, we have 
@@ -2751,103 +2737,61 @@ p' \in E^\circ \subseteq E\implies E\in \mathcal{N}(p')\implies p' \in \set{p: E
 Because $p'$ is arbitrarily picked from  $E^\circ $, we have $E^\circ \subseteq \set{p:E\in \mathcal{N}(p)}$ 
 \end{proof}
 \begin{theorem}
-\label{2.6.9}
-\textbf{(Closure Contain Exactly All Limit Points of $E$ and Points in $E$)} Let $S(E)$ be the set of limit points of $E$. We have
+\label{2.2.7}
+\textbf{(Closure Contain Exactly All Limit Points of $E$ and Points in $E$)} We have
 \begin{equation}
-\overline{E}= S(E)\cup  E
+\overline{E}= E' \cup  E
 \end{equation}
 \end{theorem}
 \begin{proof}
-Let $p \in S(E)$. \As{$p\not\in\overline{E}$}. Deduce
-\begin{equation}
-p \in (\overline{E})^c \in \mathfrak{O}\implies \exists u\neq p, u \in (\overline{E})^c \cap E= \varnothing \tCaC
-\end{equation}
- Let $p \in \overline{E}\setminus E$. \As{$\exists O\in\mathfrak{O},p \in O,O\cap E=\varnothing$}. Deduce
-\begin{equation}
-O \cap E=\varnothing \implies E\subseteq O^c\in\mathfrak{F} \implies p\in \overline{E}\subseteq O^c \implies p \not \in O\tCaC
-\end{equation}
+  Arbitrarily pick $p\in (E'\cup E)^c$. Because $p$ is neither an limit point nor in  $E$, we know there exists an open set $O$ containing $p$ and disjoint with $E$. We know $O$ doesn't contain a limit point of $E$, otherwise  $O$ intersect with  $E$. We have constructed an open set containing  $p$ in  $(E'\cup E)^c$, so we have proved $(E'\cup E)^c$ is open. Then we know $E'\cup E$ is closed.\\
+
+  Let $F$ be a closed set containing  $E$. Arbitrarily pick  $p\in F^c$. Clearly $p$ is not in $E$,  and we can see $p$ is not a limit point of $E$, otherwise the open set  $F^c$ would have  intersect with $E$. We have proved  $F^c\subseteq (E'\cup E)^c$. In other words, we have proved $E'\cup E$ is the smallest closed set containing $E$. 
 \end{proof}
 \begin{corollary}
-\label{2.6.10}
+\label{2.2.8}
 \textbf{(Every Point in Closure And Not in the Set is a Limit Point)}
 \begin{equation}
-\overline{E}\setminus E\subseteq S(E)
+\overline{E}\setminus E\subseteq E'
 \end{equation}
 \end{corollary}
 \fbox{\begin{minipage}{39em}
-Other than the above basic fact one must know in general topology. The following show case some properties of limit one may wish to know.
+    Above illustrate two different but equivalent way to define closure and interior. One must be familiar with both of them.\\
+
+    We now give some useful facts that shall later be compared with.
 \end{minipage}}
-\begin{lemma}
-\label{2.6.11}
+\begin{theorem}
+\label{2.2.9}
 \textbf{(Point in Closure if and only if No Neighborhood is Disjoint)} We have
 \begin{equation}
 \overline{E}=\set{p: \forall M\in \mathcal{N}(p), M\cap E\neq \varnothing}
 \end{equation}
-\end{lemma}
+\end{theorem}
 \begin{proof}
-We first prove \vi{$\overline{E}\subseteq \set{p:\forall M\in \mathcal{N}(p), M \cap E\neq \varnothing}$}. If $p \in E$, the proof is trivial, so we only consider when $p\in \overline{E}\setminus E$.\\
-
-Deduce
-\begin{equation}
-p\in \overline{E}\setminus E\implies p\in  S(E)\implies \forall O:p\in  O, O\cap E\neq \varnothing 
-\end{equation}
-Then we have
-\begin{equation}
-M \in \mathcal{N}(p) \implies \exists O, p \in O \subseteq M \implies \varnothing\neq  O\cap E \subseteq M \cap E\vdone
-\end{equation}
-We now prove \blue{$\set{p:\forall M\in \mathcal{N}(p),M\cap E\neq \varnothing}\subseteq \overline{E}$}. If $p\in  E$, the proof is trivial, so we only consider when $p\not\in E$.\\
-
-Deduce
-\begin{equation}
-\forall O\in \mathfrak{O}, p\in  O\implies O\in \mathcal{N}(p)\implies O\cap E\neq \varnothing
-\end{equation}
-Because $p\not\in E$, this tell us $O\cap E$ contain a point that isn't $p$, so we have proved  $p\in  S(E)\bdone$ 
-
-
-
+  There are two possibilities for $p\in \overline{E}$
+  \begin{equation}
+  p\in E\text{ or }p\in E'
+  \end{equation}
+  There are two possibilities for point have no disjoint neighborhood
+  \begin{equation}
+  p\in E\text{ or }p\not\in E
+  \end{equation}
+  Notice each first possibilities are identical, and each second possibilities are equivalent.
 \end{proof}
 \begin{theorem}
-\label{2.6.12}
-\textbf{(Point is Limit Point if and only if In the Closure of Set Excluding The Point)} Let $S(E)$ be the set of limit points of $E$, we have  
+\label{2.2.10}
+\textbf{(Point is Limit Point if and only if In the Closure of Set Excluding The Point)} We have  
 \begin{equation}
-S(E)=\set{p:p \in \overline{E\setminus \set{p}}}
+E'=\set{p:p \in \overline{E\setminus \set{p}}}
 \end{equation}
 \end{theorem}
 \begin{proof}
-We first prove  \vi{$S(E)\subseteq \set{p: p\in \overline{E\setminus \set{p}}}$}. \As{$p\in S(E)\setminus \overline{E\setminus \set{p}}$}. Deduce
-\begin{equation}
-p\in (\overline{E\setminus \set{p}})^c \in \mathfrak{O}\implies \exists u\neq p: u\in (\overline{E\setminus \set{p}})^c \cap E
-\end{equation}
-Notice
-\begin{equation}
-u\in (\overline{E\setminus \set{p}})^c \cap E\implies u\in E\implies u\in E\setminus \set{p}\subseteq \overline{E\setminus \set{p}}\tCaC
-\end{equation}
-Now we prove \blue{$\set{p:p \in \overline{E\setminus \set{p}}}\subseteq S(E)$}. Deduce
-\begin{equation}
-p\in \overline{E\setminus \set{p}} \implies \forall M \in \mathcal{N}(p), M\cap (E\setminus \set{p}) \neq \varnothing
-\end{equation}
-Then because every open set is an neighborhood, we have
-\begin{equation}
-\forall O: p \in O, O\cap (E\setminus \set{p})\neq \varnothing
-\end{equation}
-This reads: for each open set containing $p$, there exists a point  $q$ belong to both $O$ and $E$ that isn't  $p$. This shows $p\in  S(E)\bdone$ 
-
+  Notice each limit point $p\in  E'$ is still a limit point of $E\setminus \set{p}$, and notice each limit point of  $E$ is a limit point of $E\cup \set{p}$.
 \end{proof}
-\fbox{\begin{minipage}{39em}
-    The next two definition will be further exploited in the upcoming sections.
-\end{minipage}}
+\section{Metric: Open}
 \begin{definition}
-\label{2.6.13}
-\textbf{(Definition of Perfect Set)} A subset $E$ of  $X$ is perfect if  $E$ is closed and every point of  $E$ is a limit point of  $E$.
-\end{definition}
-\begin{definition}
-\label{2.6.14}
-\textbf{(Definition of Dense Set)} A subset $E$ is dense in $X$ if $\overline{E}=X$ 
-\end{definition}
-\section{Metric Space}
-\begin{definition}
-\label{2.7.1}
-\textbf{(Definition of Metric Space)} We say $(X,d:X^2\rightarrow \R)$ is a metric space if for all $x,y,z \in X$, we have
+\label{2.3.1}
+\textbf{(Definition of Metric)} We say a real-valued function $d:X^2\rightarrow \R$ is a metric if
 \begin{equation}
 d(x,x)=0 
 \end{equation}
@@ -2862,24 +2806,19 @@ d(x,z)\leq d(x,y)+d(y,z)\text{ (Triangle Inequality) }
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.7.2}
-\textbf{(Norm Induced Metric Space)} Every norm induce a metric space by 
+\label{2.3.2}
+\textbf{(Norm Induced Metric)} Every norm induce a metric by 
 \begin{equation}
 d(\vecta{x},\vecta{y})=\norm{\vecta{x}-\vecta{y}}
 \end{equation}
 \end{theorem}
-\begin{proof}
-"Reflexive", positive definiteness are trivially given by axiom of norm. Observe $d(\vecta{x},\vecta{y})=\norm{\vecta{x}-\vecta{y}}=\norm{(-1)(\vecta{y}-\vecta{x})}=(\abso{-1})\norm{\vecta{y}-\vecta{x}}=d(\vecta{y},\vecta{x})$. Observe $d(\vecta{x},\vecta{z})=\norm{\vecta{x}-\vecta{z}}=\norm{\vecta{x}-\vecta{y}+\vecta{y}-\vecta{z}}\leq \norm{\vecta{x}-\vecta{y}}+\norm{\vecta{y}-\vecta{z}}=d(\vecta{x},\vecta{y})+d(\vecta{y},\vecta{z})$
-\end{proof}
 \fbox{\begin{minipage}{39em}
-In fact, there are other way to induce a metric space from a norm: $d(\vecta{x},\vecta{y})=\norm{\vecta{x}}+\norm{\vecta{y}}$. The two norm in definition don't even have to be the same. Although this do show that the class of metric space, the one being study the most is of course what we induce in \myref{Theorem}{2.7.2}.\\
+In fact, there are other way to induce a metric from norm: $d(\vecta{x},\vecta{y})=\norm{\vecta{x}}+\norm{\vecta{y}}$. The two norms don't even have to be the same. Although there are lots of type of metric, the one being study the most is of course what we induce in \myref{Theorem}{2.3.2}.\\
 
-Notice that any subset of a metric space equipped with the original metric is also trivially a metric space.\\
-
-From now, if we mention a metric space without specification, we mean a norm-induced vector metric space.
+Notice that any subset of a metric space equipped with the original metric is also trivially a metric space.
 \end{minipage}}
 \begin{definition}
-\label{2.7.3}
+\label{2.3.3}
 \textbf{(Definition of Open Ball)} Let $(X,d)$ be a metric space, we say the set
 \begin{equation}
 B_r(x)=\set{y \in X: d(x,y)<r}
@@ -2887,7 +2826,7 @@ B_r(x)=\set{y \in X: d(x,y)<r}
 is the open ball of radius $r$ around  $x$
 \end{definition}
 \begin{theorem}
-\label{2.7.4}
+\label{2.3.4}
 \textbf{(Basic Property of Open Ball)} If $r\leq h$, then  $B_r(x)\subseteq B_h(x)$.
 \end{theorem}
 \fbox{\begin{minipage}{39em}
@@ -2898,7 +2837,7 @@ Notice in $\R^1$, the open ball  $B_r(x)$ is just the interval $(x-r,x+r)$, and 
 The following first define interior points, then define open set from definition of interior points.
 \end{minipage}}
 \begin{definition}
-\label{2.7.5}
+\label{2.3.5}
 \textbf{(Definition of Interior Points and Open)} A point $p$ is an interior point of $E$ if 
 \begin{equation}
 \exists r\inr^+, B_r(x)\subseteq E
@@ -2909,27 +2848,23 @@ E^\circ =E
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.7.6}
+\label{2.3.6}
 \textbf{(Basic Property of Interior)} For all set $E$, we have  $E^\circ \subseteq E$
 \end{theorem}
 \fbox{\begin{minipage}{39em}
-Now, we prove an "open" ball is indeed open. The proof of such should of course be completely rigorous, but to come up with a proof rely more than rigor. Geometric intuition should help if possible, and such intuition need not be specific.\\
+Now, we prove an "open" ball is indeed open. The proof of such should of course be completely rigorous, but to come up with a proof rely more than rigor. One can and should try to use geometric intuition to form a proof, and try to rigorously formulate the proof to verify whether the idea also hold true in all metric spaces. \\
 
-Moreover, \myref{Theorem}{2.7.8} will prove that our definition of open do satisfy the axioms of open sets, which is in the scope of general topology. 
+Notice \myref{Theorem}{2.3.8} will prove that our definition of open do satisfy the axioms of open sets. In other words, every metric induce a topology. 
 \end{minipage}}
 \begin{theorem}
-\label{2.7.7}
+\label{2.3.7}
 \textbf{(Open Ball is Open)} Open ball is open.
 \end{theorem}
 \begin{proof}
-Consider  $B_r(x)$. Let $y\in B_r(x)$. Let $q=d(x,y)$. Arbitrarily pick $z\in B_{r-q}(y)$, we have
-\begin{equation}
-d(x,z)\leq d(x,y)+d(y,z)\leq q+r-q=r
-\end{equation}
-So we know $z \in B_r(y)$. Because $z$ is arbitrarily picked, we know $B_{r-q}(y)\subseteq B_r(x)$  
+  For each point $p\in B_r(x)$ with distance to the center $r'$, we can see the ball of radius  $r-r'$ centering $p$ is contained by $B_r(x)$.
 \end{proof}
 \begin{theorem}
-\label{2.7.8}
+\label{2.3.8}
 \textbf{(Verification of Compatibility of Definitions of Open)} 
 Let $\mathfrak{O}$ be the family of open set, by our definition of open in metric space $X$, we have
  \begin{equation}
@@ -2943,65 +2878,65 @@ A, B \in \mathfrak{O}\implies A\cap B\in \mathfrak{O}
 \end{equation}
 \end{theorem}
 \begin{proof}
-Notice $\varnothing^\circ =\varnothing$. Observe
-\begin{equation}
-\forall x\in X, \forall r\inr^+, B_r(x)\subseteq X \implies X^\circ = X 
-\end{equation}
-Let $A,B\in \mathfrak{O}$. Arbitrarily pick $y \in A\cap B$. Because $y \in A\text{ and }y\in B$, we know 
-\begin{equation}
-\exists r_a\inr^+, B_{r_a}(y)\subseteq A\text{ and }
-\exists r_b\inr^+, B_{r_b}(y)\subseteq B
-\end{equation}
-Then, we have
-\begin{equation}
-B_{\min \set{r_a,r_b}}(y)\subseteq A\cap B
-\end{equation}
-Because $y$ is arbitrarily picked from  $A\cap B$, we see $A\cap B= (A\cap B)^\circ $.\\
+Notice $\varnothing^\circ =\varnothing$. Every open ball centering any point is clearly contained by $X$.\\
 
-Let $\mathfrak{A}\subseteq \mathfrak{O}$. Arbitrarily pick $y\in \bigcup \mathfrak{A}$. Let $y \in A \in \bigcup \mathfrak{A}$, so we have
-\begin{equation}
-\exists r_a\inr^+, B_{r_a}(y)\subseteq A\subseteq \bigcup \mathfrak{A}
-\end{equation}
-Because $y$ is arbitrarily picked from $\bigcup \mathfrak{A}$, we see $\bigcup \mathfrak{A}=(\bigcup \mathfrak{A})$. 
+For any point in the intersection of two open sets, we by definition have two open balls where each of them is in $A$ or $B$. Pick the smaller one and we are done.\\
+
+For each point $p$ in an union of open sets, we know there exists an open set $O$ in the union containing $p$. By definition we have an open ball centering  $p$ contained by  $O$. This open ball is contained by the union.
 \end{proof}
 \fbox{\begin{minipage}{39em}
-In learning of mathematics, knowledge of examples is always important. Now, we showcase some open set in metric topology.
+Now, we present some example of open sets in different metric spaces. Give clear notice that some open set 
 \end{minipage}}
 \begin{theorem}
-\label{2.7.9}
-\textbf{(Examples of Open Sets)} The followings are all open sets
+\label{2.3.9}
+\textbf{(Examples of Open Sets in Euclidean Metric Space)} The followings are open if not specified to be not open
 \begin{gather}
-   (a,b)\text{ in }\R\\
    (-\infty , a)\text{ in }\R\\
-   \set{0}\text{ where $\set{0}$ is a trivial metric space}\\
-   \set{(x,y)\inr^2: x^2+y^2\neq 1}\text{ ($\R^2$ minus a sphere) }\\
+   (-\infty,a]\text{ is not open in }\R\\
+   (a,b)\text{ in }\R\\
+   (a,b)\times \set{c}\text{ is not open in  }\R^2\\
    (a,b)\times (c,d)\text{ in }\R^2\\
-   \set{(x,y)\inr^2 : xy\neq 0}\text{ (*any set with finite missing point would do ) }\\
-   \R^2 \text{ in } \R^2
+   \set{(x,y)\inr^2: x^2+y^2\neq 1}\text{ ($\R^2$ minus a sphere) }\\
+      \R^2 \text{ in } \R^2\\ 
+      \Q\text{ in }\Q\\
+      \Q\text{ is not open in }\R\\
+      (1,2)\cap \Q\text{ in }\Q\\
+      [1,2]\cap \Q\text{ is not open in }\Q\\
+      (1,2)\cap \Q\text{ is not open in }\R
 \end{gather}
 \end{theorem}
+\begin{theorem}
+\textbf{(Example: Discrete Metric)} Discrete metric is defined as
+\begin{equation}
+d(x,y)=\begin{cases}
+  1& \text{ if  }x\neq y\\
+  0& \text{ if  }x=y
+\end{cases}
+\end{equation}
+every set in discrete metric space is open.
+\end{theorem}
 \begin{proof}
-$(a,b)$ is open ball $B_{\frac{b-a}{2}}$. We have 
-\begin{equation}
-x<a \implies B_{\frac{a-x}{2}}(x)\subseteq (-\infty, a)
-\end{equation}
-The trivial $\set{0}$ follows from axiom. Observe
-\begin{equation}
-\set{(x,y)\inr^2: x^2+y^2\neq 1}=\set{(x,y)\inr^2:x^2+y^2<1\text{ or }x^2+y^2>1}
-\end{equation}
-Verify for $B_{\abso{\abso{(x,y)}-1}}(x,y)$.\\
-
-For the rectangle, observe 
-\begin{equation}
-a<x<b\text{ and }c<y<d\implies B_{\min \set{x-a,b-x,y-c,d-y}}(x,y)\subseteq (a,b)\times (c,d)
-\end{equation}
-For $\set{(x,y)\inr^2:xy\neq 0}$, verify for $B_{\abso{(x,y)}}(x,y)$
+Every ball is either the whole space or the center, depending on if the radius is greater than $1$. Pick any ball of radius smaller than or equal to  $1$ and we are done.
 \end{proof}
+\begin{theorem}
+\textbf{(General Sub-Metric Space)}
+An open set is still open in sub-metric space, and if a set is not open in sub-metric space, it is not open in the metric space.
+\end{theorem}
+\begin{proof}
+For open implies open in sub-metric, just pick the same open ball. If $E$ is not open in a sub-metric space, then $E$ contain a point $p$ such that every open ball centering $p$ is not contained in $E$. In the original metric space, ever open ball centering $p$ is then not contained in $E$ 
+\end{proof}
+\begin{theorem}
+\textbf{(General Sufficient Condition for Open)} If a set $E$ miss only finite amount of point in $X$, then  $E$ is open.
+\end{theorem}
+\begin{proof}
+Verify for  $B_{\min \set{d(p,y):y\in E^c}}(p)$
+\end{proof}
+\section{Metric Space: Closed and Limit Point}
 \fbox{\begin{minipage}{39em}
 Now we define limit points, then we define closed with the definition of limit points. Then we verify what we defined as closed are indeed closed, in scope of general topology. 
 \end{minipage}}
 \begin{definition}
-\label{2.7.10}
+\label{2.4.1}
 \textbf{(Definition of Limit Points and Closed and Perfect)} A point $p$ is a limit point of $E$ if 
  \begin{equation}
 \forall r\inr^+, \exists q\neq p, q\in B_r(p) \cap E
@@ -3016,7 +2951,7 @@ S(E)=E
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.7.11}
+\label{2.4.2}
 \textbf{(Verification of Compatibility of Definition of Open and Closed)} 
 Let $\mathfrak{O},\mathfrak{F}$ respectively be the family of open sets and family of closed set under our metric definition. We have
 \begin{equation}
@@ -3051,7 +2986,7 @@ Notice $B_r(p)\setminus E=B_r(p)\cap E^c\text{ and }p\not\in E^c$, so we in fact
 Then we have $p\in  S(E^c)\setminus E^c\tCaC$
 \end{proof}
 \begin{corollary}
-\label{2.7.12}
+\label{2.4.3}
 \textbf{(Axioms for Closed Sets)} Let $\mathfrak{F}$ be the family of closed sets under our metric definition. We have
 \begin{gather}
 X,\varnothing \in \mathfrak{F}\\
@@ -3060,7 +2995,7 @@ A,B\in\mathfrak{F}\implies A\cup  B\in\mathfrak{F}\\
 \end{gather}
 \end{corollary}
 \begin{theorem}
-\label{2.7.13}
+\label{2.4.4}
 \textbf{(Property of Limit Points)} Let $p\in  E^c\text{ and }p\not\in S(E)$. We have 
 \begin{equation}
 \exists r\inr^+, B_r(p)\cap E=\varnothing
@@ -3070,7 +3005,7 @@ A,B\in\mathfrak{F}\implies A\cup  B\in\mathfrak{F}\\
 \As{$\forall r\inr^+,B_r(p)\cap E\neq \varnothing$}. Let $q\in B_r(p)\cap E$. Because $p\not\in E\implies p\not\in B_r(p)\cap E$, we know $q\neq p$. Then this can be written $q\neq p \text{ and }a \in B_r(p)\cap E$, implying $p \in S(E)\tCaC$
 \end{proof}
 \begin{theorem}
-\label{2.7.14}
+\label{2.4.5}
 \textbf{(Property of Limit Points)} Let $p \in S(E)$. We have
 \begin{equation}
 \forall O\in\mathfrak{O}:p\in  O, \exists q\neq p, q \in O \cap E
@@ -3094,7 +3029,7 @@ Combining above, we have
 Again, we now give some examples of closed set. One can see that the proof for some sets are closed if following straight from the limit point definition is extremely long: One have to first find the set of limit points, by checking every points whether for all real number a property stand, and then check if the set of limit points is a subset of $E$. The optimal way is proving the complement is open, since proving something is open is more
 \end{minipage}}
 \begin{theorem}
-\label{2.7.15}
+\label{2.4.6}
 \textbf{(Example of Closed Sets)} The following are all closed sets
 \begin{gather}
 [a,b]\\
@@ -3113,7 +3048,7 @@ Again, we now give some examples of closed set. One can see that the proof for s
 \end{gather}
 Verify for $B_{\min \set{\abso{x-1},\abso{x}}}(x)$ to check $([0,1]\cap \Q)^c$ is open in $\Q$.\\
 
-Notice by \myref{Theorem}{1.3.5}, we can prove every point in $\R$ is an limit point of $[0,1]\cap \Q$ by selecting a rational number of smaller error than any desired real number.\\
+Notice by \myref{Theorem}{0.3.5}, we can prove every point in $\R$ is an limit point of $[0,1]\cap \Q$ by selecting a rational number of smaller error than any desired real number.\\
 
 Observe
 \begin{equation}
@@ -3136,14 +3071,14 @@ Although in last section, we have proved that the smallest closed set is the clo
 In this section, we prove the same fact again, but in the scope of metric topology.
 \end{minipage}}
 \begin{definition}
-\label{2.7.16}
+\label{2.4.7}
 \textbf{(Definition of Closure)} We define the closure $\overline{E}$ of $E$ to be
 \begin{equation}
 \overline{E}=S(E)\cup E
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.7.17}
+\label{2.4.8}
 \textbf{(Property of Closure and Interior)} Let $E\subseteq F$. We have
 \begin{equation}
 E^\circ \subseteq F^\circ\text{ and }S(E)\subseteq S(F)\text{ and }\overline{E}\subseteq \overline{F}
@@ -3162,7 +3097,7 @@ This is the second proof. Observe
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{2.7.18}
+\label{2.4.9}
 \textbf{(Property (definition) of Closure and Interior)} 
 \begin{gather}
 \text{ $\overline{E}$ is the smallest closed set containing $E$ }\\
@@ -3224,7 +3159,7 @@ E^\circ \subseteq F^\circ \subseteq F
 \end{equation}
 \end{proof}
 \begin{corollary}
-\label{2.7.19}
+\label{2.4.10}
 \textbf{(Property of Closure)}
 \begin{equation}
 \text{ $E$ is closed $\iff \overline{E}=E$ }
@@ -3237,7 +3172,7 @@ E^\circ \subseteq F^\circ \subseteq F
 Lastly, we show some properties of open and closed concerning a set being finite. Notice that the theorem applies to ALL metric space, even the trivial finite metric space.
 \end{minipage}}
 \begin{theorem}
-\label{2.7.20}
+\label{2.4.11}
 \textbf{(ALL Open Ball of An Limit Point Contain Infinite Point of $E$)} We have
  \begin{equation}
 p\in S(E)\implies \forall r\inr^+, \abso{B_r(p)\cap E}\geq \abso{\N}
@@ -3258,18 +3193,18 @@ x\in B_{d(p,q_k)}(p)\cap E\implies \forall q,d(p,x)<d(p,q)\implies x\not \in B_r
 \end{equation}
 \end{proof}
 \begin{corollary}
-\label{2.7.21}
+\label{2.4.12}
 \textbf{(Finite Points Set In Metric Topology has no Limit Points)} $\abso{E}<\abso{\N}\implies S(E)=\varnothing$
 \end{corollary}
 \begin{corollary}
-\label{2.7.22}
+\label{2.4.13}
 \textbf{(Finite Points Set In Metric Topology is Always Clopen)} Any finite points set in a metric topological space is clopen. 
 \end{corollary}
 \begin{proof}
-For closed, there is a proof other than just using the above corollary. One can check out \myref{Theorem}{2.7.9}. For open, just verify for $B_{\min \set{d(x,y):y \in O}}(x)$. 
+For closed, there is a proof other than just using the above corollary. One can check out \myref{Theorem}{2.3.9}. For open, just verify for $B_{\min \set{d(x,y):y \in O}}(x)$. 
 \end{proof}
 \begin{theorem}
-\label{2.7.23}
+\label{2.4.14}
 \textbf{(A point is limit point if and only if all open ball contain infinite point of $E$)}
 \end{theorem}
 \section{Compact}
@@ -3279,25 +3214,25 @@ In this section, we will introduce two ideas used in metric space, but not in ge
 We first introduce bounded.
 \end{minipage}}
 \begin{definition}
-\label{2.8.1}
+\label{2.5.1}
 \textbf{(Definition of Bounded)} We say a point set $E$ in metric topology is bounded if there exists $r\inr^+$ such that
 \begin{equation}
 \forall p,q\in E, d(p,q)<r
 \end{equation}
 \end{definition}
 \begin{definition}
-\label{2.8.2}
+\label{2.5.2}
 \textbf{(Definition of Open Cover)} We say a collection $\set{G_\alpha  }$ of an open sets is an open cover of $E$ if 
 \begin{equation}
 E\subseteq \bigcup \set{G_\alpha }
 \end{equation}
 \end{definition}
 \begin{definition}
-\label{2.8.3}
+\label{2.5.3}
 \textbf{(Definition of Compact)} We say a point set $E$ in metric topology is compact if every open cover $E$ contain a finite open subcover.
 \end{definition}
 \begin{theorem}
-\label{2.8.4}
+\label{2.5.4}
 \textbf{(Compact Sets Are Closed)} Every compact set $K$ is closed.
 \end{theorem}
 \begin{proof}
@@ -3324,7 +3259,7 @@ k\in K\subseteq W\implies \exists q_j, k\in B_{\frac{d(q_j,p)}{2}}(q_j)\implies 
 \end{gather}
 \end{proof}
 \begin{theorem}
-\label{2.8.5}
+\label{2.5.5}
 \textbf{(Closed Subsets of Compact Sets Are Compact)} Every closed subset of a compact set is compact.
 \end{theorem}
 \begin{proof}
@@ -3354,7 +3289,7 @@ F\subseteq (\bigcup N)\setminus F^c=\bigcup (N\setminus \set{F^c})
 So $N\setminus \set{F^c}$ is a finite sub-cover of $F\bdone$
 \end{proof}
 \begin{corollary}
-\label{2.8.6}
+\label{2.5.6}
 Let $F$ be closed and  $K$ be compact. We have $F\cap K$ is compact.
 \end{corollary}
 \fbox{\begin{minipage}{39em}
@@ -3363,14 +3298,14 @@ Above give the basic property that compact must be closed and a method to genera
 Now, we give an example that is the "prototype" of compact set. Give very close attention that the definition of $k$-cell is only in Euclidean normed induced metric space. This is because to prove it is compact require using norm.  
 \end{minipage}}
 \begin{definition}
-\label{2.8.7}
+\label{2.5.7}
 \textbf{(Definition of k-cell)} In $(\R^k,d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$,  we say $I$ is a $k$-cell, when there exists  $k$ intervals  $\set{[a_1,b_1],\dots , [a_k,b_k]}$ such that
  \begin{equation}
    I=\set{(x_1,\dots , x_k)\in \R^k: \forall j, a_j\leq x_j\leq b_j }
 \end{equation}
 \end{definition}
 \begin{lemma}
-\label{2.8.8}
+\label{2.5.8}
 Let $\set{I_i}$ be a sequence of $k$-cells such that
  \begin{equation}
 \forall i, I_{i+1}\subseteq I_i
@@ -3407,7 +3342,7 @@ Then we see
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{2.8.9}
+\label{2.5.9}
 \textbf{(k-Cell is Compact)} Every k-cell $I$ is compact.
 \end{theorem}
 \begin{proof}
@@ -3441,7 +3376,7 @@ Notice
 \end{gather}
 $\vdone$\\
 
-By \myref{Lemma}{2.8.8}, we can pick $\vecta{x}\in \bigcap \set{I_i}$. Because $\set{G_\alpha }$ is an open cover of $I$, we know there exists $G_\beta \in \set{G_\alpha }$ such that $\vecta{x}\in G_\beta $. Because $G_\beta $ is open, we know there exists $r\inr^+$ such that
+By \myref{Lemma}{2.5.8}, we can pick $\vecta{x}\in \bigcap \set{I_i}$. Because $\set{G_\alpha }$ is an open cover of $I$, we know there exists $G_\beta \in \set{G_\alpha }$ such that $\vecta{x}\in G_\beta $. Because $G_\beta $ is open, we know there exists $r\inr^+$ such that
 \begin{equation}
 B_r(\vecta{x})\subseteq G_\beta 
 \end{equation}
@@ -3463,14 +3398,14 @@ I_n \subseteq B_r(\secta{x})\subseteq G_{\beta }
 Next, we give an important theorem, where one part of the theorem hold true for all metric space while the other hold true only for Eculidean norm induced metric space.
 \end{minipage}}
 \begin{definition}
-\label{2.8.10}
+\label{2.5.10}
 \textbf{(Definition of Base)} We say a sub-collection $\mathcal{O}$ of topology $\mathfrak{O}$ on $X$ is a base if
 \begin{equation}
 \forall x\in X, \forall O\in\mathfrak{O}:x\in O,\exists O'\in \mathcal{O}, x\in O'\subseteq O
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.8.11}
+\label{2.5.11}
 \textbf{(Property of Base)} Let $\mathcal{O}$ be a base for topology $\mathfrak{O}$ on $X$. We have 
 \begin{equation}
 \forall O\in \mathfrak{O}, \exists \mathcal{U}\subseteq \mathcal{O}, O=\bigcup \mathcal{U}
@@ -3482,14 +3417,14 @@ Arbitrarily pick an open set $O\in\mathfrak{O}$. We wish to find a sub-collectio
 Arbitrarily pick $x\in O$. Because $\mathcal{O}$ is a base, we know there exists $O_x\in \mathcal{O}$ such that $x\in O_x\subseteq O$. Collect such sets $O_x$ for each point $x\in X$. We see such collection satisfy our need. 
 \end{proof}
 \begin{definition}
-\label{2.8.12}
+\label{2.5.12}
 \textbf{(Definition of Separable Metric Space)} We say a metric space $X$ is separable if it contains a countable dense subset. That is,
 \begin{equation}
 \exists E\subseteq X, \abso{E}\leq \abso{\N}\text{ and } X=\overline{E}
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.8.13}
+\label{2.5.13}
 \textbf{(Separable Metric Space Contain a Countable Base)} Let $X$ be a separable metric space. There exists an countable base $\mathcal{O}$ of metric topology on $X$
 \end{theorem}
 \begin{proof}
@@ -3529,7 +3464,7 @@ p \in B_n(q)\subseteq B_r(p)\subseteq O\text{ and }B_n(q)\in\mathcal{O}\vdone
 \end{proof}
 
 \begin{theorem}
-\label{2.8.14}
+\label{2.5.14}
 \textbf{(Heine-Borel Theorem, part 1)} Given \textit{any} metric space, we have
 \begin{gather}
 \text{ $K$ is compact  }\\
@@ -3625,7 +3560,7 @@ a_{\frac{1}{n},i}\neq p \text{ and }a_{\frac{1}{n},i}\in B_{\frac{1}{n}}(p)\cap 
 
 We first prove  \teal{$\mathcal{G}$ contain a countable sub-cover}.\\
 
-Now, by \myref{Theorem}{2.8.13}, we know $K$ has a countable base (In Theorem 2.8.13, we prove that if a metric space is separable, then it has a countable base by constructing the base with open ball. To see $K$ does have a countable base in the scope of $X$, just realize the base constructed with open balls applies to our situation).\\
+Now, by \myref{Theorem}{2.5.13}, we know $K$ has a countable base (In Theorem 2.8.13, we prove that if a metric space is separable, then it has a countable base by constructing the base with open ball. To see $K$ does have a countable base in the scope of $X$, just realize the base constructed with open balls applies to our situation).\\
 
 Let $\mathcal{O}$ be a countable base for $K$.\\
 
@@ -3719,7 +3654,7 @@ And because $G_m$ is open, we know
 \begin{equation}
 \exists r\inr^+, B_r(p)\subseteq G_m
 \end{equation}
-Because $p$ is an limit point of $\set{x_j}$, by \myref{Theorem}{2.7.20}, we know $B_r(p)$ should contain infinite points of $\set{x_j}$.\\
+Because $p$ is an limit point of $\set{x_j}$, by \myref{Theorem}{2.4.11}, we know $B_r(p)$ should contain infinite points of $\set{x_j}$.\\
 
 But we can see for all $n$ greater than $m$, we have
 \begin{equation}
@@ -3741,7 +3676,7 @@ More crucially, we see
 \begin{equation}
 B_r(p)\cap \set{x_j}\subseteq \set{x_l:l<m \inn}
 \end{equation}
-\CaC to \myref{Theorem}{2.7.20} $\odone \bdone$
+\CaC to \myref{Theorem}{2.4.11} $\odone \bdone$
 \end{proof}
 \fbox{\begin{minipage}{39em}
 The above theorem can be generalized to topological space where limit point is changed to complete limit point, and the proof would require usage of idea of minimal cardinal.\\
@@ -3749,7 +3684,7 @@ The above theorem can be generalized to topological space where limit point is c
 We now give another part of Heine-Borel Theorem, which is only in Euclidean metric and $\R^k$ 
 \end{minipage}}
 \begin{theorem}
-\label{2.8.15}
+\label{2.5.15}
 \textbf{(Heine-Borel Theorem, part 2)} In $(\R^k, d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$, we have
 \begin{gather}
 K\text{ is closed and bounded }\iff   K\text{ is compact }
@@ -3801,7 +3736,7 @@ By  \teal{teal part}, we can construct a sequence $\set{\vecta{x}_i:i\inn}$ such
 \end{equation}
 We now prove \olive{$\set{\vecta{x}_i:i \inn}$ has no limit point in $\R^k$}.\\
 
-\As{$\set{\vecta{x}_i:i\inn}$ has some limit points in $\R^k$}. Let $p$ be a limit point of $\set{\vecta{x}_i:i \inn}$. Arbitrarily pick $r\inr^+$. By \myref{Theorem}{2.7.20}, we know $B_r(p)$ should contain infinite points of $\set{\vecta{x}_i}$.\\
+\As{$\set{\vecta{x}_i:i\inn}$ has some limit points in $\R^k$}. Let $p$ be a limit point of $\set{\vecta{x}_i:i \inn}$. Arbitrarily pick $r\inr^+$. By \myref{Theorem}{2.4.11}, we know $B_r(p)$ should contain infinite points of $\set{\vecta{x}_i}$.\\
 
 Observe for all $\vecta{y}\inr^K$, we have
 \begin{equation}
@@ -4679,7 +4614,7 @@ Notice $a+b$ is arbitrarily picked from $A+b$. Our proof is done  $\vdone$
 Show that every open set in \( \mathbb{R} \) is the union of at most countable collection of disjoint open intervals.
 \end{question}
 \begin{proof}
-Because $\Q$ is countable and dense in  $\R$, so in \myref{Theorem}{2.8.13}, we have proved the set
+Because $\Q$ is countable and dense in  $\R$, so in \myref{Theorem}{2.5.13}, we have proved the set
 \begin{equation}
 \mathcal{O}:=\set{B_r(p):p\inq\text{ and }r\inq^+}
 \end{equation}
@@ -4843,7 +4778,7 @@ Notice we have
 \begin{equation}
 \forall p\in M, B_1(p)=\set{p}
 \end{equation}
-So we know no set in $M$ has a limit point. Let $K\subseteq M$ be compact. \As{$K$ is infinite}. Then by \myref{Theorem}{2.8.14}, we know $K$ has a limit point $\tCaC$  
+So we know no set in $M$ has a limit point. Let $K\subseteq M$ be compact. \As{$K$ is infinite}. Then by \myref{Theorem}{2.5.14}, we know $K$ has a limit point $\tCaC$  
 \end{proof}
 \begin{question}{}{}
 
@@ -4888,6 +4823,6 @@ Let \( \{ x_n \}_{n=1}^{\infty} \subseteq \mathbb{R} \) be a convergent sequence
 \end{enumerate}
 \end{question}
 \begin{proof}
-If a set $K$ is compact, then by \myref{Theorem}{2.8.14}, we know $K$ is limit point compact. In the proof for \myref{Theorem}{2.8.14}, we have proved the limit point compact $K$ is separable. 
+If a set $K$ is compact, then by \myref{Theorem}{2.5.14}, we know $K$ is limit point compact. In the proof for \myref{Theorem}{2.5.14}, we have proved the limit point compact $K$ is separable.
 \end{proof}
 \end{document}

@@ -467,6 +467,7 @@ If possible, normally we write
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{2.1.9}
 \textbf{(Variance)} We have
 \begin{equation}
 \var [\alpha_1 X_1]=\alpha _1^2\var [X_1]
@@ -483,7 +484,7 @@ If possible, normally we write
 We now introduce Bernoulli random variable.
 \end{minipage}}
 \begin{definition}
-\label{2.1.9}
+\label{2.1.10}
 \textbf{(Definition of Bernoulli Random Variable)} Let $A$ be an event and $P(A)=p$. We define
 \begin{equation}
 I_A(\omega)=\begin{cases}
@@ -493,7 +494,7 @@ I_A(\omega)=\begin{cases}
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.1.10}
+\label{2.1.11}
 \textbf{(Properties of Bernoulli Random Variable)} We have
 \begin{gather}
 P(I_A=1)=p \text{ and }P(I_A=0)=1-p\\ 
@@ -507,12 +508,14 @@ E[I_A]=p\\
 \end{equation}
 \end{proof}
 \begin{definition}
+\label{2.1.12}
 \textbf{(Definition of Binomial Random Variable)} We say the binomial random variable $B_{n,p}$ is the number of success in $n$ independent trials, each of which is a success with probability $p$. We have
 \begin{equation}
 P(B_{n,p}=x)=\binom{n}{x}p^x (1-p)^{n-x}
 \end{equation}
 \end{definition}
 \begin{theorem}
+\label{2.1.13}
 \textbf{(Properties of Binomial Random Variable)} We have
 \begin{equation}
 E[B_{n,p}]=np \text{ and }\var [B_{n,p}]= np(1-p)
@@ -528,12 +531,14 @@ That of variance is left unproved.
 Now we introduce the notion of Poisson random variable.
 \end{minipage}}
 \begin{definition}
+\label{2.1.14}
   \textbf{(Definition of Poisson Random Variable)} For $\ld >0$, we define Poisson random variable $X_{\ld }$ by
   \begin{equation}
   P(X_\ld =i)=\frac{\ld ^i}{i!}e^{-\ld }
   \end{equation}
 \end{definition}
 \begin{theorem}
+\label{2.1.15}
 \textbf{(Verification of Poisson Random Variable)} Let $X$ be a Poisson random variable with parameter $\ld $. We verify
 \begin{equation}
 \sum_{k=0}^\infty P(X=k)=1
@@ -545,6 +550,7 @@ Now we introduce the notion of Poisson random variable.
 \end{equation}
 \end{proof}
 \begin{theorem}
+\label{2.1.16}
 \textbf{(Expectation Value of Poisson Random Variable)} Let $X$ be a Poisson random variable with parameter $\ld $. We have
 \begin{equation}
 E[X]=\ld 
@@ -563,6 +569,7 @@ E[X]&=\sum_{k=0}^\infty kP(x=k)\\
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{2.1.17}
 \textbf{(Variance of Poisson Random Variable)} Let $X$ be a Poisson random variable with parameter $\ld $. We have
 \begin{equation}
 \var [X]=\ld 
@@ -591,6 +598,7 @@ So we have
 Now we introduce Poisson Approximation of Binomial Random Variable
 \end{minipage}}
 \begin{theorem}
+\label{2.1.18}
 \textbf{(Poisson Approximation of Binomial Random Variable)} Let $X$ be a binomial $B_{n,p}$ and let $\ld =np$. We have
 \begin{equation}
   \lim_{n\to\infty}P(X=k)=e^{-\ld }\frac{\ld ^k}{k!}
@@ -614,12 +622,14 @@ So we have
 Now we introduce the geometric random variable. 
 \end{minipage}}
 \begin{definition}
+\label{2.1.19}
 \textbf{(Definition of Geometric Random Variable)} A geometric random variable counts the number of trials required for the first success in independent trials with success probability $p$. Let  $X$ be a geometric random variable. We have
 \begin{equation}
 P(X=k)=(1-p)^{k-1}p
 \end{equation}
 \end{definition}
 \begin{theorem}
+\label{2.1.20}
 \textbf{(Verification of Geometric Random Variable)} Let $X$ be a geometric random variable with parameter $p$. We have
 \begin{equation}
 \sum_{k=1}^\infty P(X=k)=1
@@ -634,6 +644,7 @@ P(X=k)=(1-p)^{k-1}p
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{2.1.21}
 \textbf{(Expected Value of Geometric Random Variable)} Let $X$ be a geometric random variable with parameter $p$. We have
  \begin{equation}
 E[X]=\frac{1}{p}
@@ -651,6 +662,7 @@ E[X]=\frac{1}{p}
   \end{gather}
 \end{proof}
 \begin{theorem}
+\label{2.1.22}
 \textbf{(Variance of Geometric Random Variable)} Let $X$ be a geometric random variable with parameter $p$. We have
 \begin{equation}
 \var [X]=\frac{1-p}{p^2}
@@ -680,6 +692,7 @@ So in summary we have
 \end{equation}
 \end{proof}
 \begin{theorem}
+\label{2.1.23}
 \textbf{(Geometric Random Variable)} Let $X$ be a geometric random variable with parameter $p$. We have
 \begin{equation}
 P(X>n)=(1-p)^n
@@ -697,12 +710,14 @@ P(X>n)&=1-\sum_{k=1}^n P(X=k)\\
 \end{align}
 \end{proof}
 \begin{corollary}
+\label{2.1.24}
 We have
 \begin{equation}
   P(X>n+k\text{ while }X>n)=\frac{q^{n+k}}{q^{n}}=q^k
 \end{equation}
 \end{corollary}
 \begin{theorem}
+\label{2.1.25}
 \textbf{(Summary)} We have
 \begin{gather}
 \text{ A Bernoulli random variable $I$ is a building block}\\
