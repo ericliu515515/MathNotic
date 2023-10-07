@@ -3,7 +3,7 @@
 \input{macros}
 \input{letterfonts}
 
-\title{\Huge{NCKU 112.1}\\Rudin}
+\title{\Huge{NCKU 112.1}\\Introduction to Analysis}
 \author{\huge{Eric Liu}}
 \date{}
 \begin{document}
@@ -3492,6 +3492,7 @@ Notice there is a difference between compact space and compact set
 \end{equation}
 \end{definition}
 \begin{theorem}
+\label{2.8.2}
 \textbf{(Compact Subset is itself a Compact Space)} 
 \begin{equation}
 \text{ A compact subset regarded as a metric space is compact }
@@ -3505,10 +3506,10 @@ Let $K$ be a compact subset, and regard  $K$ as a metric space. Let $\set{G_\ld 
 Because $\set{G_\ld }$ is an open cover for $K$ with respect to  $K$, we know  $\set{G_i}$ is an open cover for $K$.  Then because $K$ is compact, there exists a finite sub-cover  $\set{G_j}$. Notice $\set{G_j\cap K}$ is a finite sub-cover for $K$ with respect to  $K$.
 \end{proof}
 \begin{theorem}
-\label{2.8.2}
-\textbf{(Compact Sets Are Closed)} Let $X$ be a metric space.
+\label{2.8.3}
+\textbf{(Compact Sets Are Closed)} Let $X$ be a metric space, and let $K\subseteq X$
 \begin{equation}
-\text{Every compact subset $K\subseteq X$ is closed.}
+K\text{ is compact }\implies K\text{ is closed }
 \end{equation}
 \end{theorem}
 \begin{proof}
@@ -3529,10 +3530,12 @@ Then we have
 d(p,q)+d(q,k_i)< r+\frac{d(k_i,p)}{2}\leq d(k_i,p)\tCaC\vdone
 \end{equation}
 \begin{definition}
+\label{2.8.4}
 \textbf{(Definition of Bounded)} Let $X$ be a metric space, we say $E\subseteq X$ is bounded if there exists an open ball $B_r(p)$ centering some $p$ in $E$, that contained $E$
 \end{definition}
 \begin{theorem}
-\textbf{(Compact Sets Are Bounded)} Let $X$ be a metric space and $K\subseteq X$. We have
+\label{2.8.5}
+\textbf{(Compact Sets are Bounded)} Let $X$ be a metric space and $K\subseteq X$. We have
 \begin{equation}
 K\text{ is compact }\implies K\text{ is bounded }
 \end{equation}
@@ -3544,238 +3547,138 @@ K\setminus B_n(q)\neq \varnothing
 \end{equation}
 Then we can construct a sequence $\set{x_n}_{n\inn}$ by arbitrarily picking $x_n$ from $K\setminus B_n(q)$ for each $n\inn$. Because  $K$ is compact implies $K$ is limit point compact, we know $\set{x_n}_{n\inn}$ has a limit point  $p$ in  $K$. Let $r=d(p,q)$, and let $m$ be the smallest natural greater than  $r$. Because $B_{m-r}(p)$ is contained by $B_m(q)$, we know $B_{m-r}(p)$ contain at most first $m$ points in  $\set{x_n}_{n=1}^\infty\tCaC$ to every open ball centering limit point contain infinite point.
 \end{proof}
-\fbox{\begin{minipage}{39em}
-
-\end{minipage}}
-
-\end{proof}
-\begin{theorem}
-\label{2.8.3}
-\textbf{(Closed Subsets of Compact Sets Are Compact)} 
-\begin{equation}
-\text{ Every closed subset of a compact set is compact subset. }
-\end{equation}
-\end{theorem}
-\begin{proof}
-Let $K$ be a compact set and $F\subseteq K$ be closed. Arbitrarily pick an open cover $\set{G_\alpha }$ of $F$. We wish to prove there is a finite sub-cover of $F$. Notice that $F^c$ is open, so there are two possible cases:  $\begin{cases}
-  \vi{F^c\in \set{G_\alpha }}\\
-  \blue{F^c\not\in \set{G_\alpha }}
-\end{cases}$\\
-
-In the case  \vi{$F^c\in \set{G_\alpha }$}, Notice  $F\subseteq \bigcup \set{G_{\alpha }}$ by definition of open cover and notice $F^c\subseteq \bigcup \set{G_\alpha }$ by premise, so we can deduce
-\begin{equation}
-(F\cup F^c)\cap K=(F\cap K)\cup (F^c \cap K)=F \cup (F^c \cap K)\subseteq \bigcup \set{G_\alpha }
-\end{equation}
-This shows $\bigcup \set{G_\alpha }$ is a open cover of $K$. Then because  $K$ is compact, there exists a finite sub-cover $A$ of $K$, and we see
-\begin{equation}
-F\subseteq K \subseteq \bigcup A\vdone
-\end{equation}
-In the case $\blue{F^c\not\in \set{G_\alpha }}$, by the argument above, we know $\set{G_\alpha } \cup \set{F^c}$ is an open cover of $K$, and we know there is a finite sub-cover $N\subseteq\set{G_\alpha } \cup \set{F^c}$. In term, we can write
-\begin{equation}
-F\subseteq K \subseteq \bigcup N
-\end{equation}
-If $N$ doesn't contain $F^c$, we know $N\subseteq \set{G_\alpha }$. Then we see $N\subseteq \set{G_\alpha }$ is a finite sub-cover of $K$, partially finishing our proof.\\
-
-If $F^c \in N$, by simple logic, we see
-\begin{equation}
-F\subseteq (\bigcup N)\setminus F^c=\bigcup (N\setminus \set{F^c}) 
-\end{equation}
-So $N\setminus \set{F^c}$ is a finite sub-cover of $F\bdone$
-\end{proof}
 \begin{corollary}
-\label{2.8.4}
-Let $F$ be closed and  $K$ be compact. We have $F\cap K$ is compact.
+\label{2.8.6}
+\textbf{(Compact Sets are Closed and Bounded)}
+\begin{equation}
+K\text{ is compact }\implies K\text{ is closed and bounded }
+\end{equation}
 \end{corollary}
 \fbox{\begin{minipage}{39em}
-Above give the basic property that compact must be closed and a method to generate compact set by finding a closed subset of compact set.\\
-
-Now, we give an example that is the "prototype" of compact set. Give very close attention that the definition of $k$-cell is only in Euclidean normed induced metric space. This is because to prove it is compact require using norm.  
+We close this section with a method to generate new compact sets.
 \end{minipage}}
-
-
-\section{Euclidean Metric}
+\end{proof}
 \begin{theorem}
-\label{2.9.1}
-\textbf{(Heine-Borel Theorem, part 2)} In $(\R^k, d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$, we have
-\begin{gather}
-K\text{ is closed and bounded }\iff   K\text{ is compact }
-\end{gather}
+\label{2.8.7}
+\textbf{(Closed Subsets of Compact Sets Are Compact)} 
+\begin{equation}
+\text{$K$ is compact and  $F\subseteq K$ is closed}\implies E\text{ is compact }
+\end{equation}
 \end{theorem}
 \begin{proof}
-$(\longrightarrow)$\\
-
-We first prove \vi{each bounded set $E$ is contained by some $k$-cell}.\\
-
-Notice that if the "heights" set 
-\begin{equation}
-\set{x_j:\vecta{x}\in E}
-\end{equation}
-is not both bounded above and below, then for all distance $r\inr^+$, we can pick $\vecta{x},\vecta{y}$, such that $\abso{x_j-y_j}>r$. Then we can see 
-\begin{equation}
-\abso{\vecta{x}-\vecta{y}}>\abso{x_j-y_j}>r
-\end{equation}
-We have proved for all direction, the "height" is both bounded below and above.\\
-
-Then for each direction, we can pick an upper bound $b_j$ and lower bound $a_j$, so we have
-\begin{equation}
-E\subseteq [a_1,b_1]\times \cdots \times [a_k,b_k]\vdone
-\end{equation}
-We know k-cell is compact. Then because $K$ is closed and contained by some k-cell, we know $K$ is compact.\\
-
-$(\longleftarrow)$\\
-
-$K$ is compact implies $K$ is closed, so we only have to prove \blue{$K$ is bounded}.\\
-
-\As{$K$ is not bounded}. We now prove  \teal{$\forall \vecta{x}\in K,\exists \vecta{y}\in K, d(\vecta{y},\vecta{0})>d(\vecta{x},\vecta{0})+1$}.\\
-
-Let $r=d(\vecta{x},0)$. We know 
-\begin{equation}
-K\setminus B_{2r+1}(\vecta{x})
-\end{equation}
-must be nonempty, otherwise 
-\begin{equation}
-\forall \vecta{y},\vecta{z}\in K, d(\vecta{y},\vecta{z})\leq d(\vecta{x},\vecta{y})+d(\vecta{z},\vecta{z})<4r+2
-\end{equation}
-Then we can pick $\vecta{y}\in K \setminus B_{2r+1}(\vecta{x})$, and observe
-\begin{gather}
-2r+1< d(\vecta{x},\vecta{y})\leq d(\vecta{x},\vecta{0})+d(\vecta{y},\vecta{0})\leq d(\vecta{y},\vecta{0})+r\\
-\implies d(\vecta{y},\vecta{0})>r+1=d(\vecta{x},0)+1\tdone
-\end{gather} 
-By  \teal{teal part}, we can construct a sequence $\set{\vecta{x}_i:i\inn}$ such that 
-\begin{equation}
-\forall i\inn, d(\vecta{x}_{i+1},\vecta{0})>d(\vecta{x}_{i},\vecta{0})+1
-\end{equation}
-We now prove \olive{$\set{\vecta{x}_i:i \inn}$ has no limit point in $\R^k$}.\\
-
-\As{$\set{\vecta{x}_i:i\inn}$ has some limit points in $\R^k$}. Let $p$ be a limit point of $\set{\vecta{x}_i:i \inn}$. Arbitrarily pick $r\inr^+$. By \myref{Theorem}{2.9.5}, we know $B_r(p)$ should contain infinite points of $\set{\vecta{x}_i}$.\\
-
-Observe for all $\vecta{y}\inr^K$, we have
-\begin{equation}
-d(\vecta{y},p)<r\implies d(\vecta{0},\vecta{y})\leq d(\vecta{0},p)+d(p,\vecta{y})<d(\vecta{0},p)+r
-\end{equation}
-Let $a=d(\vecta{0},p)$. We have
-\begin{equation}
-B_r(p)\subseteq B_{a+r}(\vecta{0})
-\end{equation}
-But because 
-\begin{equation}
-i>j\implies d(\vecta{x}_i,\vecta{0})-d(\vecta{x}_j,\vecta{0})>1
-\end{equation}
-For all $n>1\inn$, we have
-\begin{equation}
-d(\vecta{x}_n,\vecta{0})>n-1
-\end{equation}
-Let $b$ be the minimal naturals greater than  $a+r$. We have
-\begin{equation}
-B_{a+r}(\vecta{0})\cap \set{\vecta{x}_i:i\inn}\subseteq \set{\vecta{x}_i:i\leq b\inn}\tCaC\odone
-\end{equation}
-By the first part of Heine-Borel Theorem, we know $\set{\vecta{x}_i:i\inn}$ has limit points in $K$. Notice that if a point in  $K$ is a limit point of $\set{\vecta{x}_i:\inn}$ in $K$, it is a limit point of $\set{\vecta{x}_i:i\inn}$ in $\R^k\tCaC$ to \olive{olive part}. $\bdone$ 
+Arbitrarily pick an open cover $\mathcal{G}$ for $F$. We wish to prove there is a finite sub-cover for $F$. Because $F$ is closed, we know $F^c$ is open, so we know  $\mathcal{G}\cup \set{F^c}$ is also an open cover, and moreover, open cover for $X$ and $K$. Then because $K$ is compact, we know $\mathcal{G}\cup \set{F^c}$ has a finite sub-cover $\mathcal{G}'$ for $K$, and apparently, for $F$. If  $\mathcal{G}'\subseteq \mathcal{G}$, then we are done. If $F^c\subseteq \mathcal{G}'$, then we can see $\mathcal{G}'\setminus \set{F^c}$ is a finite sub-cover of $\mathcal{G}$ for $F$.
 \end{proof}
-
+\begin{corollary}
+\label{2.8.8}
+Let $F$ be closed and  $K$ be compact. We have $F\cap K$ is compact.
+\end{corollary}
+\begin{proof} 
+The fact that  $K$ is compact tell us $K$ is closed. Then we know $F\cap K$ is closed and is a subset to $K$
+\end{proof}
+\section{Euclidean Metric}
 \begin{definition}
-\label{2.9.2}
-\textbf{(Definition of Bounded)} We say a point set $E$ in metric topology is bounded if there exists $r\inr^+$ such that
-\begin{equation}
-\forall p,q\in E, d(p,q)<r
-\end{equation}
-\end{definition}
-\begin{definition}
-\label{2.9.3}
+\label{2.9.1}
 \textbf{(Definition of k-cell)} In $(\R^k,d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$,  we say $I$ is a $k$-cell, when there exists  $k$ intervals  $\set{[a_1,b_1],\dots , [a_k,b_k]}$ such that
  \begin{equation}
-   I=\set{(x_1,\dots , x_k)\in \R^k: \forall j, a_j\leq x_j\leq b_j }
+   I=\prod_{n=1}^k [a_n,b_n]
 \end{equation}
 \end{definition}
 \begin{lemma}
-\label{2.9.4}
-Let $\set{I_i}$ be a sequence of $k$-cells such that
- \begin{equation}
-\forall i, I_{i+1}\subseteq I_i
-\end{equation}
-We have
+\label{2.9.2}
+\textbf{(Shrinking k-cell Sequence Convergence)} Let $\set{I_n}_{n=1}^\infty$ be a sequence of  k-cell such that 
 \begin{equation}
-\bigcap \set{I_i}\neq \varnothing
+\forall n\inn, I_{n+1}\subseteq I_n
+\end{equation}
+Then we have
+\begin{equation}
+\bigcap \set{I_n}_{n=1}^\infty\neq \varnothing
 \end{equation}
 \end{lemma}
 \begin{proof}
-Let $I_i$ be 
- \begin{equation}
-I_i=\set{(x_1,\dots , x_k)\in \R^n: \forall j, a_{i,j}\leq x_j\leq b_{i,j}}
-\end{equation}
-Observe
+For each $n\inn$, denote the first component of $I_n$ by $[a_n,b_n]$. We know $\set{a_n}_{n=1}^\infty$ is an monotonically increasing sequence  and bounded above by every $b_n$. Notice that the supremum of a set $A$ is exactly the infimum of the set of upper bounds of $A$. Applying this fact into our situation, we know for each $n$, $\sup \set{a_n}_{n=1}^\infty$ is greater than or equal to $a_n$ and smaller than or equal to  $b_n$. Them we know $\sup \set{a_n}_{n=1}^\infty$ must be contained by every $[a_n,b_n]$. In other words,
 \begin{equation}
-  (x_1,\dots , x_k)\in \bigcap \set{I_i}\iff \forall i \inn,\forall 1\leq j\leq k, a_{i,j}\leq x_j\leq b_{i,j}
+\sup \set{a_k}_{k=1}^\infty\in \bigcap_{n=1}^\infty [a_n,b_n]
 \end{equation}
-Notice that for all $j:1\leq j\leq k$, we have
+Use the same argument in every other component to get a point in $\bigcap \set{I_n}_{n=1}^\infty$. 
+\end{proof}
+\begin{lemma}
+\label{2.9.3}
+\textbf{(Maximum Distance of Two Points In k-cell is the length of Diagonal Line)} Let $I=[a_1,b_1]\times\cdots\times[a_k,b_k]$. Let $\vecta{a}=(a_1,\dots, a_k)\text{ and }\vecta{b}=(b_1,\dots, b_k)$. The maximum distance of two points in k-cell are 
 \begin{equation}
-\forall i<l\inn, a_i\leq a_l\leq b_l\text{ and }\forall i>l\inn, a_i\leq b_i\leq b_l
+ \abso{\vecta{b}-\vecta{a}}= (\sum_{i=1}^k (b_i-a_i)^2)^\frac{1}{2}
 \end{equation}
-So we know for all $j:1\leq j\leq k$, the set $\set{b_{i,j}:i\inn}$ is a set of upper bounds of   $\set{a_{i,j}:i\inn}$. Then we have
+\end{lemma}
+\begin{proof}
+Let $\vecta{x},\vecta{y}\in I$. For each $n\inn$ smaller then or equal to $k$,  because $x_n,y_n\in [a_n,b_n]$, we have $\abso{x_n-y_n}\leq b_n-a_n$. Then we can deduce
 \begin{equation}
-\sup \set{a_{i,j}:i\inn}\leq \inf \set{b_{i,j}:i\inn}
-\end{equation}
-Then for all $j$, we can pick $x_j$ such that
- \begin{equation}
-\sup \set{a_{i,j}:i\inn}\leq x_j\leq \inf \set{b_{i,j}:i\inn}
-\end{equation}
-Then we see 
-\begin{equation}
-  (x_1,\dots ,x_k)\bigcap \set{I_i}
+\abso{\vecta{x}-\vecta{y}}=(\sum_{i=1}^k \abso{x_i-y_i}^2)^{\frac{1}{2}}\leq (\sum_{i=1} (b_i-a_i)^2)^{\frac{1}{2}}=\abso{\vecta{b}-\vecta{a}}
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{2.9.5}
-\textbf{(k-Cell is Compact)} Every k-cell $I$ is compact.
+\label{2.9.4}
+\textbf{(k-Cell is Compact)} 
+\begin{equation}
+\text{ Every k-cell $I$ is compact. }
+\end{equation}
 \end{theorem}
 \begin{proof}
-Let $I$ be $[a_1,b_1]\times \cdots \times [a_k,b_k]$. Let
+Let $I_0$ be $[a_1,b_1]\times \cdots \times [a_k,b_k]$. \As{$\set{G_\ld:\ld \in\Lambda }$ is an open cover for $I_0$ that has no finite sub-cover}. For each $n\inn: 1\leq n\leq k$, let 
+\begin{equation}
+c_n=\frac{a_n+b_n}{2}
+\end{equation}
+Now, we can break $I_0$ into  $2^k$ amount of  $k$-cell of same size, where the $n$-th component of each of them is either  $[a_n,c_n]$ or $[c_n,b_n]$. Notice that at least one of them can not be covered by finite amount of $G_\ld$, since if all of them can be covered by a finite subset of $\set{G_\ld}$ the union of finite sub-covers for each small k-cell is a finite sub-cover for $I_0$, where we have assumed such finite sub-cover does not exist.\\
+
+Denote the smaller k-cell that can not be covered by finite amount of $G_\ld$ by $I_1$. Notice that $\set{G_\ld:\ld\in\Lambda  }$ is an open cover for $I_1$, and there exists no finite sub-cover of $\set{G_\ld :\ld\in \Lambda }$ for $I_1$, just like  $I_0$.\\
+
+Let $I_1=[x_1,y_1]\times\cdots\times[x_k,y_k]$. For each $n\inn:1\leq n\leq k$, let
+\begin{equation}
+z_n=\frac{x_n+y_n}{2}
+\end{equation}
+Again, break  $I_1$ into  $2^k$ amount of k-cell of even smaller size using $z_n$. And, again, argue that one of the even smaller k-cell has can not be covered by a finite subset of $\set{G_\ld }$.\\
+
+Let $I_2$ be one of the even smaller k-cell that can not be covered by finite amount of  $G_\ld $, and use the same technique to construct a even even smaller k-cell $I_3$, which can not be covered by finite amount of $G_\ld $. This procedure can go on infinitely, so we have a sequence
+\begin{equation}
+\cdots \subseteq I_3 \subseteq I_2\subseteq I_1\subseteq I_0
+\end{equation}
+Denote this sequence $\set{I_n}_{n=1}^\infty$. By \myref{Lemma}{2.9.4}, we know 
+\begin{equation}
+\bigcap \set{I_n}_{n=0}^\infty \neq \varnothing
+\end{equation}
+Then, we can let
+\begin{equation}
+\vecta{x}\in \bigcap \set{I_n}_{n=0}^\infty
+\end{equation}
+Because for each non-negative integer $n$, 
+\begin{equation}
+\vecta{x}\in I_n\text{ and }\set{G_\ld :\ld \in\Lambda }\text{ is an open cover for $I_n$ }
+\end{equation}
+We know there exists $G_\ld $ that contain $\vecta{x}$. By definition of open, we know there exists an open ball $B_r(\vecta{x})$ small enough to be contained by $G_\ld $
+\begin{equation}
+\vecta{x}\in B_r(\vecta{x})\subseteq G_\ld 
+\end{equation}
+Now, we wish to pick a even smaller $I_m \in \set{I_n}_{n=0}^\infty$ contained by $B_r(\vecta{x})$, so we have
+\begin{equation}
+\vecta{x}\in I_m \subseteq B_r(\vecta{x})\subseteq G_\ld 
+\end{equation}
+to show $\set{G_\ld }$ is a cardinality-one sub-cover for $I_m$, which is impossible as we construct $\set{I_n}_{n=0}^\infty$ to satisfy that each of them can not be covered by finite subset of $\set{G_\ld :\ld \in \Lambda }$.\\
+
+Because of the way we break each k-cell to smaller k-cell is to cut the k-cell right in half, it is simple to use geometric intuition to see such small enough $I_m$ should exist.\\
+
+Let
 \begin{equation}
 \delta=(\sum_{j=1}^k (b_j-a_j)^2)^{\frac{1}{2}}=\abso{\vecta{b}-\vecta{a}}
 \end{equation}
-So, we have
-\begin{equation}
-\vecta{x},\vecta{y}\in I\implies \abso{\vecta{x}-\vecta{y}}<\delta
-\end{equation}
-\As{$\set{G_\alpha }$ is an open cover of $I$ containing no finite sub-cover}. Let
-\begin{equation}
-\forall j, c_j=\frac{a_j+b_j}{2}
-\end{equation}
-The intervals $[a_j,c_j],[c_j,b_j]$ then determine $2^k$ k-cell $Q_i$ whose union is $I$. Notice that if every $Q_i$ is covered by some open finite sub-cover of $\set{G_\alpha }$, then the union of $2^k$ finite sub-cover that cover each $Q_i$ is a finite sub-cover of whole  $I$, so we know there exists  $Q_i$ such that is covered by no finite sub-cover  of $\set{G_\alpha }$. Denote that $Q_i$ by $I_1$.\\
+We can use mathematical induction to rigorously prove that the length of diagonal line for each $I_n$ is exactly $2^{-n}\delta$.\\
 
-By the construction of $I_1$, we know for a fact $\set{G_\alpha }$ is an open cover of $I_1$ (it cover $I$) containing no finite sub-cover (by construction). Then we can construct $I_2$ from  $I_1$ the same way we construct $I_1$ from  $I$, and so on.\\
- 
-Let $I=I_0$. We have 
-\begin{equation}
-\forall i\inn, I_i\subseteq I_{i-1}\text{ and $I_i$ is not covered by any finite subset of  $\set{G_\alpha }$ }
-\end{equation}
-We now prove \vi{$\vecta{x},\vecta{y}\in I_n\implies \abso{\vecta{x}-\vecta{y}}\leq 2^{-n}\delta$}\\
-
-Notice
-\begin{gather}
-\vecta{x},\vecta{y}\in I_n\implies \forall j, \abso{x_j-y_j}\leq 2^{-n}(b_j-a_j)\\
-\implies \sum_{j=1}^k (x_j-y_j)^2 \leq \sum_{j=1}^k (2^{-n}(b_j-a_j))^2=2^{-2n}\sum_{j=1}^k (b_j-a_j)^2\\
-\implies \abso{\vecta{x}-\vecta{y}}=(\sum_{j=1}^k (x_j-y_j)^2)^{\frac{1}{2}}\leq (2^{-2n}\sum _{j=1}^k (b_j-a_j)^2)^{\frac{1}{2}}=2^{-n}(\sum _{j=1}^k(b_j-a_j)^2)^{\frac{1}{2}}=2^{-n}\delta
-\end{gather}
-$\vdone$\\
-
-By \myref{Lemma}{2.9.5}, we can pick $\vecta{x}\in \bigcap \set{I_i}$. Because $\set{G_\alpha }$ is an open cover of $I$, we know there exists $G_\beta \in \set{G_\alpha }$ such that $\vecta{x}\in G_\beta $. Because $G_\beta $ is open, we know there exists $r\inr^+$ such that
-\begin{equation}
-B_r(\vecta{x})\subseteq G_\beta 
-\end{equation}
-Pick $n$ greater than $\log_2 \frac{\delta}{r}$, so we have
- \begin{equation}
-2^n>\frac{\delta}{r}\text{ and }r>2^{-n}\delta
-\end{equation}
-Recall $\vecta{x}\in I_n$, and observe
-\begin{equation}
-\vecta{y}\in I_n\implies d(\vecta{x},\vecta{y})\leq 2^{-n}\delta<r
-\end{equation}
-By our observation, we have
-\begin{equation}
-I_n \subseteq B_r(\secta{x})\subseteq G_{\beta }
-\end{equation}
-\CaC to $I_n$ is not covered by any finite subset of $\set{G_\alpha }$
+Now, using \myref{Lemma}{2.9.3}, it is easy to verify when  $m>\log_2 \frac{\delta}{r}$, the k-cell $I_m$ is small enough to be contained by $B_r(\vecta{x})\tCaC$.
 \end{proof}
+\begin{corollary}
+\label{2.9.5}
+\textbf{(Heine-Borel Theorem)} In $(\R^k, d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$, we have
+\begin{equation}
+K\text{ is closed and bounded}\iff K\text{ is compact }
+\end{equation}
+\end{corollary}
 \chapter{Numerical Sequence and Series}
 \chapter{Vector Analysis}
 \section{Important Inequalities}
@@ -4570,7 +4473,7 @@ Notice $a+b$ is arbitrarily picked from $A+b$. Our proof is done  $\vdone$
 Show that every open set in \( \mathbb{R} \) is the union of at most countable collection of disjoint open intervals.
 \end{question}
 \begin{proof}
-Because $\Q$ is countable and dense in  $\R$, so in \myref{Theorem}{2.9.5}, we have proved the set
+Because $\Q$ is countable and dense in  $\R$, so in \myref{Theorem}{2.9.4}, we have proved the set
 \begin{equation}
 \mathcal{O}:=\set{B_r(p):p\inq\text{ and }r\inq^+}
 \end{equation}
@@ -4734,7 +4637,7 @@ Notice we have
 \begin{equation}
 \forall p\in M, B_1(p)=\set{p}
 \end{equation}
-So we know no set in $M$ has a limit point. Let $K\subseteq M$ be compact. \As{$K$ is infinite}. Then by \myref{Theorem}{2.9.5}, we know $K$ has a limit point $\tCaC$  
+So we know no set in $M$ has a limit point. Let $K\subseteq M$ be compact. \As{$K$ is infinite}. Then by \myref{Theorem}{2.9.4}, we know $K$ has a limit point $\tCaC$  
 \end{proof}
 \begin{question}{}{}
 
@@ -4779,6 +4682,6 @@ Let \( \{ x_n \}_{n=1}^{\infty} \subseteq \mathbb{R} \) be a convergent sequence
 \end{enumerate}
 \end{question}
 \begin{proof}
-If a set $K$ is compact, then by \myref{Theorem}{2.9.5}, we know $K$ is limit point compact. In the proof for \myref{Theorem}{2.9.5}, we have proved the limit point compact $K$ is separable.
+If a set $K$ is compact, then by \myref{Theorem}{2.9.4}, we know $K$ is limit point compact. In the proof for \myref{Theorem}{2.9.4}, we have proved the limit point compact $K$ is separable.
 \end{proof}
 \end{document}
