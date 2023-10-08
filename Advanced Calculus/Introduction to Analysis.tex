@@ -2466,7 +2466,7 @@ Let $\vecta{a},\vecta{b}\inR^n\text{ and }m \inR^+$. Find $\vecta{c}\inR^n\text{
 \begin{question}{}{}
 State and prove the Pythagorean Law in Euclidean $n$-space, where  $n\geq 2$
 \end{question}
-\chapter{Basic Topology}
+\chapter{Basic Topology, Part 1}
 \section{Different but Equivalent Ways to Define A Topology}
 \fbox{\begin{minipage}{39em}
 This section illustrates three methods to define a topology. However, in practice, the approach using open sets is predominantly employed.
@@ -2629,7 +2629,7 @@ N\in g(g^{-1}(\mathcal{N}))(x)
 Because $N$ is arbitrarily picked from $\mathcal{N}(x)$, we have $\mathcal{N}(x)\subseteq g(g^{-1}(\mathcal{N}))(x)\bdone\tdone$
 \end{proof}
 \fbox{\begin{minipage}{39em}
-We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{0.1.5} into language without neighborhood function. 
+We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{2.1.5} into language without neighborhood function. 
 \end{minipage}}
 \begin{definition}
 \label{2.1.6}
@@ -3293,7 +3293,7 @@ If $A$ is uncountable, then  $A$ contain a countable set  $B$. We know  $B$ has 
 \textbf{(Compact Implies Limit Point Compact)} If $X$ is compact, then $X$ is limit point compact.
 \end{corollary}
 \fbox{\begin{minipage}{39em}
-Lastly, we give a theorem involving separable and countably compact.
+Lastly, we give a theorem involving countable base.
 \end{minipage}}
 \begin{theorem}
 \label{2.6.13}
@@ -3679,7 +3679,100 @@ Now, using \myref{Lemma}{2.9.3}, it is easy to verify when  $m>\log_2 \frac{\del
 K\text{ is closed and bounded}\iff K\text{ is compact }
 \end{equation}
 \end{corollary}
+\begin{proof}
+  We have proved from right to left in \myref{Theorem}{2.8.3} and  \myref{Theorem}{2.8.5}. To prove from left to right, just observe $K$ is bounded implies that $K$ is contained by some k-cell. Then because closed subset of compact set is compact, we can deduce $K$ is compact.
+\end{proof}
+\chapter{Basic Topology, Part 2} 
 \chapter{Numerical Sequence and Series}
+\section{Convergence}
+\begin{definition}
+\label{3.1.1}
+\textbf{(Definition of Sequence of Point)} Let $X$ be a topological space. In our definition, sequence of points is a function from $\N$ to $X$. We denote a sequence by
+\begin{equation}
+\set{a_n}_{n\inn}\text{ or }\set{a_n}_{n=1}^\infty\text{ or }\set{a_n}
+\end{equation}
+For the third notation, only $\set{a_n}\text{ or }\set{a_i}$ stands for a sequence, others, like $\set{a_m}$, stand for singleton.
+\end{definition}
+\begin{definition}
+\label{3.1.2}
+\textbf{(Definition of Convergence in General Topology)} Let $\set{a_n}$ be a sequence of points in $X$. If we say $\set{a_n}$ converge to $a$ 
+\begin{equation}
+\lim_{n\to\infty} a_n=a
+\end{equation}
+We mean for each open neighborhood $U$ around  $a$, there exists great enough $N_U\inn$  such that for each $n\inn$ 
+\begin{equation}
+n\geq N_U\iff a_n\in U
+\end{equation}
+\end{definition}
+\begin{theorem}
+\textbf{(Equivalent Statements for Convergence)} Let $U$ be an arbitrary open neighborhood around  $a$. The following are equivalent 
+\begin{gather}
+\lim_{n\to\infty}a_n=a\\
+\exists N_U\inn, \forall n\inn, n\geq N_U\implies a_n\in U\\
+\exists N_U\inn, \set{a_n:n\geq N_U}\subseteq U\text{ and }\set{a_n:n<N_U}\subseteq U^c\\
+\end{gather}
+\end{theorem}
+\begin{proof}
+From the first one to the second are trivial. From the second one to the first, just pick the smallest $N_U$. The first one and the third one are equivalent, the only "difference" is that the third one is written with set. 
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Notice that in general topology, a sequence can converge to multiple point, the trivial topology of multiple points is an example.
+\end{minipage}}
+\begin{definition}
+\label{3.1.3}
+\textbf{(Definition of Convergence in Metric Space)} Let $X$ be a metric space. We say $\set{a_n}$ converge to $a$
+ \begin{equation}
+\lim_{n\to\infty}a_n=a
+\end{equation}
+If for each $\epsilon\inr^+$, there exists an great enough natural $N_\epsilon $ such that for each $n\inn$
+\begin{equation}
+ n\geq N_\epsilon \iff d(a_n,a)<\epsilon 
+\end{equation}
+\end{definition}
+\begin{theorem}
+\textbf{(Equivalent Statements for Convergence)} Let $\epsilon $ be an arbitrary real. The following are equivalent
+\begin{gather}
+\lim_{n\to\infty}a_n=a\\
+\exists N_\epsilon\inn, \forall n\inn, n\geq N_\epsilon \implies  d(a_n,a)<\epsilon \\
+\exists N_\epsilon\inn, \forall n\inn, n\geq N_\epsilon \implies a_n\in B_\epsilon (a)\\
+\exists N_\epsilon \inn, \set{a_n:n\geq N_\epsilon }\subseteq B_\epsilon (a)\text{ and }\set{a_n:n>N_\epsilon }\subseteq B_\epsilon (a)^c
+\end{gather}
+\end{theorem}
+\begin{proof}
+From the second to first, pick the smallest $N_\epsilon $
+\end{proof}
+\begin{theorem}
+\label{3.1.4}
+\textbf{(Compatibility of Definitions of Convergence)} Let $X$ be a metric space. A sequence  $\set{a_n}$ converge to $a$ if and only if for each open neighborhood  $U$ around $a$, there exists a great enough natural $N_U$ such that for each $n\inn$
+\begin{equation}
+n\geq N_U\iff a_n\in U 
+\end{equation}
+\end{theorem}
+\begin{proof}
+From right to left, just observe $B_\epsilon (a)$ is open. From left to right, let $B_\epsilon(a) $ be an open ball in $U$, we see 
+\begin{equation}
+N_\epsilon \in M:=\set{N\inn: \forall n\inn, n\geq N\implies a_n\in U}
+\end{equation}
+Then $N_U=\min M$.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Notice that in the proof above, we actually show that it is possible that it is impossible for $N_U$ and  $N_\epsilon $ to be equal.
+\end{minipage}}
+\begin{theorem}
+\label{3.1.5}
+\textbf{(In Metric Space, Sequence Converge to At Most One Point)} Let $\set{a_n}$ be a sequence in $(X,d)$. We have
+\begin{equation}
+\lim_{n\to\infty} a_n=a\text{ and }\lim_{n\to\infty} a_n=a'\implies a'=a
+\end{equation}
+\end{theorem}
+\begin{proof}
+\As{$a'\neq a$}. Let $r=\frac{d(a,a')}{2}$. We see there exists $N_r$ and $N'_r$ such that 
+\begin{equation}
+n\geq N_r\iff  a_n\in B_r(a)\text{ and }n\geq N'_r\iff  a_n\in B_r(a')
+\end{equation}
+Observe that $B_r(a)$ and $B_r(a')$ are disjoint and all $a_n$ such that  $n\geq \max \set{N_r,N'_r}$ is in both open balls.\CaC
+\end{proof}
+
 \chapter{Vector Analysis}
 \section{Important Inequalities}
 \begin{theorem}
@@ -4617,6 +4710,17 @@ Let $A=(0,1)$ and $B=(1,2)$. We have
 Let \( K \) be a sequentially compact set in a metric space \( (M, d) \) and let \( F \subseteq K \) be closed. Prove that \( F \) is sequentially compact.
 \end{question}
 \begin{proof}
+Let $\set{x_i}_{i=1}^\infty$ be a sequence in $F$
+\begin{equation}
+  \set{x_i}_{i=1}^\infty \subseteq F\subseteq K
+\end{equation}
+Because $K$ is sequentially compact, we know there exists a sub-sequence $\set{x_{n_i}}_{i=1}^\infty$ converge to some point $a$
+ \begin{equation}
+\lim_{i\to\infty}\set{x_{n_i}}=a
+\end{equation}
+We only have to prove  $a$ is in  $F$.\\
+
+\As{$a\not\in F$}. Because $F$ is closed, we know  $F^c$ is open. Then  $a\in F^c$ tell us there exists an open ball $B_r(a)$ contain no point in $F$, thus disjoint to  $\set{x_{n_i}}\tCaC$
 
 \end{proof}
 \textbf{Definition 0.2.} The discrete metric \( d \) on a set \( X \) is defined by
@@ -4637,14 +4741,18 @@ Notice we have
 \begin{equation}
 \forall p\in M, B_1(p)=\set{p}
 \end{equation}
-So we know no set in $M$ has a limit point. Let $K\subseteq M$ be compact. \As{$K$ is infinite}. Then by \myref{Theorem}{2.9.4}, we know $K$ has a limit point $\tCaC$  
+So we know no set in $M$ has a limit point. Let $K\subseteq M$ be compact. By \myref{Theorem}{2.7.5}, we know $K$ is limit point compact. \As{$K$ is infinite}. Then $K$ has a limit point  $\tCaC$.
 \end{proof}
 \begin{question}{}{}
 
 Let \( \{ x_n \}_{n=1}^{\infty} \subseteq \mathbb{R} \) be a convergent sequence with the limit \( x \). Prove that the set \( \{ x_n : n \in \mathbb{N} \} \cup \{ x \} \) is compact.
 \end{question}
 \begin{proof}
-
+Let 
+\begin{equation}
+E\subseteq \set{x_n:n\inn}\cup \set{x}
+\end{equation}
+If $E$ is infinite, we can regard  $E\setminus \set{x}$ as a sub-sequence of $\set{x_n}$. Then because $\set{x_n}_{n=1}^\infty$ converge to $x$, we know  $E\setminus \set{x}$ converge to $x$. Then we know $x$ is a limit point of $E\setminus \set{x}$ thus a limit point of $E$. We have proved every infinite subset of $\set{x_n:n\inn}\cup \set{x}$ has a limit point $x$ in $\set{x_n:n\inn}\cup \set{x}$. By \myref{Theorem}{2.7.5}, $\set{x_n:n\inn}\cup \set{x}$ is compact.
 \end{proof}
 \begin{question}{}{}
 
@@ -4660,6 +4768,176 @@ Let \( \{ x_n \}_{n=1}^{\infty} \subseteq \mathbb{R} \) be a convergent sequence
 \end{enumerate}
 \end{question}
 \begin{proof}
+Let $n=1$. Let 
+\begin{equation}
+A=\set{a_k=k-1+\sum_{i=1}^{k-1}2^{-i-1}:k\inn}
+\end{equation}
+Let
+\begin{equation}
+B=\set{b_k=k-\sum_{i=1}^{k-1}2^{-i-1}:u\inn}
+\end{equation}
+Notice the pattern
+\begin{align}
+  a_1&=0<\frac{1}{2}< 1=b_1\\
+  a_2&=1+\frac{1}{4}< 1+\frac{1}{2}< 2-\frac{1}{4}=b_2\\
+  a_3&=2+\frac{1}{4}+\frac{1}{8}< 2+\frac{1}{2}< 3-\frac{1}{4}-\frac{1}{8}=b_3\\
+  \vdots
+\end{align}
+and compute
+\begin{equation}
+b_k-a_k=2^{1-k}
+\end{equation}
+First observe for each non-negative integer $m$m the interval  $[m,m+1]$ contain exactly one point from $A$ and contain exactly one point from  $B$. To see  $A$ and  $B$ are disjoint, observe that because  $A,B$ contain only non-negative numbers, so every point is in $[m,m+1]$ for some non-negative integer $m$, and we know each interval only contain $a_{m+1}$ from $A$ and $b_{m+1}$ from $B$ where  $b_{m+1}-a_{m+1}=2^{-m}$.\\
+
+We now show $A,B$ are both closed. For negative  $-x\inr$, observe $B_{x}(-x)$ intersect with neither $A$ nor  $B$. We know $B_1(0)$ does not intersect with $B$ and  $0\in A$. For positive $x$ not in $A$, let $m=\lfloor x \rfloor$. We know point closest to $x$ is either $a_{m},a_{m+1}\text{ or }a_{m+2}$. Then we can let $r=\min \set{\abso{x-a_m},\abso{x-a_{m+1}},\abso{x-a_{m+2}}}$, and see $B_r(x)$ does not intersect with $A$.For positive $x$ not in $B$, let $m=\lfloor x \rfloor$. We know point closest to $x$ is either $b_{m},b_{m+1}\text{ or }b_{m+2}$. Then we can let $r=\min \set{\abso{x-b_m},\abso{x-b_{m+1}},\abso{x-b_{m+2}}}$, and see $B_r(x)$ does not intersect with $B$.\\
+
+Lastly, to prove $d(A,B)=0$ is to prove for each positive real $r$, there exists a pair of $a,b$ such that  $\abso{a-b}<r$. Observe
+ \begin{equation}
+b_k-a_k=2^{1-k}<r\iff 1-k<\log_2 r\iff k>1-\log_2 r
+\end{equation}
+And we are done, by picking great enough $k$.\\
+
+
+We first prove \vi{the triangle inequality}
+\begin{equation}
+  \vi{d(X,Z)\leq d(X,Y)+d(Y,Z)}
+\end{equation}
+
+\As{$d(X,Z)>d(X,Y)+d(Y,Z)$}. We have
+\begin{equation}
+d(X,Z)-d(X,Y)>d(Y,Z)=\inf \set{d(y,z):y\in Y,z\in Z}
+\end{equation}
+Then we know there exists $y'\in Y, z'\in Z$ such that $d(y',z')<d(X,Z)-d(X,Y)$. Then we have
+\begin{equation}
+\inf \set{d(x,y):x\in X,y\in Y}=d(X,Y)<d(X,Z)-d(y',z')
+\end{equation}
+Then we know there exists $x'\in X, y'' \in Y$ such that 
+\begin{equation}
+d(x',y'')<d(X,Z)-d(y',z')
+\end{equation}
+in other words
+\begin{equation}
+d(x',y'')+d(y',z')<d(X,Z)
+\end{equation}
+Notice that 
+\begin{equation}
+d(x',z')\leq \min \set{d(x',y'')+d(y'',z'),d(x',y')+d(y',z')}\leq d(x',y'')+d(y',z')\tCaC\vdone
+\end{equation}
+
+Now we do (b).\\
+
+Notice   
+\begin{equation}
+d(A,B)=\inf \bigcup \set{\set{d(a,b):a\in A}:b \in B}
+\end{equation}
+and notice
+\begin{equation}
+d(A,B)=\inf \set{\inf \set{d(a,b):a\inA}:b\in B}=\inf \set{d(A,\set{b}):b\in B}
+\end{equation}
+
+We first prove if $d(A,B)=0$, then $A$ and  $B$ intersect.\\
+
+If $B$ is finite, then  $0=d(A,B)=\min \set{d(A,\set{b}:b\in B)}$, so we know there exists $b\in B$ such that $0=d(A,\set{b})=\inf \set{d(a,b):a\in A}$. Then we can deduce every open ball $B_r(b)$ contain a point $a\in A$, since there exists $a$ such that  $d(a,b)<r$. We have proved $b$ is a limit point of $A$, then because  $A$ is closed, we know  $b\in A$.\\
+
+If $B$ is infinite, then  $0=\inf \set{d(A,\set{b}):b\in B}$. If there exists $b$ such that $d(A,\set{b})=0$, we can use the same argument above to finish the proof. We only have to consider when $\forall b\in B, d(A,\set{b})>0$. For each $n$, we then know there exists  $b_n$ such that  $d(A,\set{b_n})<\frac{1}{n}$.\\
+
+
+Construct an infinite sequence $\set{b_n}_{n\inn}$ by picking $b_n$ such that $d(A,\set{b_n})<\frac{1}{n}$. We can see our method for picking $b_n$ will give us an infinite sequence as every $b$  satisfy  $d(A,\set{b})>0$. By \myref{Theorem}{2.7.5}, we know $B$ is limit point compact, so we know $\set{b_n}_{n\inn}$ has a limit point in $B$.\\
+
+Denote the limit point for $\set{b_n}_{n\inn}$ as $p$. We now show $p\in A$. \As{$p\in A^c$}. Because $A$ is closed, we know there exists an open ball  $B_r(p)$ disjoint with $A$. Then we know $d(A,\set{p})\geq r$. \\
+
+
+
+Then from
+\begin{equation}
+  \forall b\in B, r\leq d(A,\set{p})\leq d(A,\set{b})+d(\set{b},\set{p})
+\end{equation}
+we have
+\begin{equation}
+  \forall b\in B [d(A,\set{b})< \frac{r}{2}\implies d(\set{b},\set{p})>\frac{r}{2}]
+\end{equation}
+Then we see if $n>\frac{2}{r}$, then $b_n$ is not contained by the open ball  $B_{\frac{r}{2}}(p)$. In other words, the open ball $B_{\frac{r}{2}}(p)$ that center a limit point $p$ contain at most $\lfloor \frac{2}{r}\rfloor$ amount of point in $\set{b_n}_{n\inn}$ \CaC.\\
+
+Lastly, we prove there exists $a\in A,b\in B$ such that $d(A,B)=d(a,b)$. If  $A$ and  $B$ are not disjoint, the fact $\exists a\in A,\exists b\in B, d(A,B)=\abso{a-b}$ is clear by picking $a=b$. We only have to consider when $A$ and $B$ are disjoint.\\
+
+Let $d(A,B)=u$. We know $u>0$, because of the result we have proved.\\
+
+We have 
+\begin{equation}
+  \inf \set{d(A,\set{b}):b\in B}=d(A,B)=u
+\end{equation}
+At this stage, we wish to prove \blue{$\exists b\in B$ such that $d(A,\set{b})=u$}. \As{there does not exist such $b$}\\
+
+We know, for each $n\inn$, there exists a point $b_n$ such that
+ \begin{equation}
+d(A,\set{b_n})<u+\frac{1}{n}
+\end{equation}
+Because $\forall b\in B, d(A,\set{b})>u$, we know if we collect one $b_n$ that satisfy $d(A,\set{b_n})<u+\frac{1}{n}$ for each $n\inn$, the sequence $\set{b_n}_{n\inn}$ is infinite.\\
+
+Then by \myref{Theorem}{2.7.5}, we know there exists a limit point $p\in B$ for $\set{b_n}_n\inn$.\\
+
+We know $d(A,\set{p})>u$ by our assumption.\\
+
+Let $m=d(A,\set{p})>u$. Then from
+\begin{equation}
+\forall b\in B,m=d(A,\set{p})<d(A,\set{b})+d(b,p)
+\end{equation}
+we have
+\begin{equation}
+\forall b\inB, d(A,\set{b})<u+\frac{1}{n}\implies d(b,p)>m-u-\frac{1}{n}
+\end{equation}
+Let $k$ be a natural such that  $u+\frac{1}{k}<m$. For each natural $t$ greater than  $k$, we have 
+\begin{equation}
+d(b_t,p)>m-u-\frac{1}{k}
+\end{equation}
+In other words, the open ball $B_{m-u-\frac{1}{k}}(p)$ centering a limit point contain at most $k$ amount of point in  $\set{b_n}_{n\inn}\tCaC\bdone$\\
+
+Let $b\in B$ satisfy $d(A,\set{b})=u$. At the final stage, we wish to prove \vi{$\exists a\in A, d(a,b)=u$}.\\
+
+\As{$\forall a\in A, d(a,b)>u$}. We know, for each $n\inn$, there exists a point $a_n$ such that 
+\begin{equation}
+d(a_n,b)<u+\frac{1}{n}
+\end{equation}
+Because $\forall a\in A, d(a,b)>u$, we know if we we collect one $a_n$ that satisfy  $d(a_n,b)<u+\frac{1}{n}$ for each $n\inn$, the sequence $\set{a_n}_{n\inn}$ is infinite.\\
+
+Notice that the sequence $\set{a_n}_{n\inn}$ is also bounded as one can check $B_{2(u+1)}(a_1)$ contain all $\set{a_n}_{n\inn}$, using $b$ as a "pivot".\\
+
+Then by \myref{Corollary}{2.9.5}, we know $\set{a_n}_{n\inn}$ is compact, then by \myref{Theorem}{2.7.5}, we know $\set{a_n}_{n\inn}$ has a limit point in itself.\\
+
+Let $a_k$ be a limit point of $\set{a_n}_{n\inn}$.\\
+
+Let $m=d(a_k,b)>u$. Observe that 
+\begin{equation}
+\forall a_n,m=d(a_k,b)<d(b,a_n)+d(a_n,a_k)
+\end{equation}
+give us
+\begin{equation}
+\forall a_n, d(a_n,b)<u+\frac{1}{n}\implies d(a_n,a_k)>m-u-\frac{1}{n}
+\end{equation}
+Let $s\inn$ be great enough so that  $m-u-\frac{1}{s}>0$. Then we see for each natural $w$ greater than  $s$, we have
+ \begin{equation}
+d(a_w,b)<u+\frac{1}{s}
+\end{equation}
+so we have
+\begin{equation}
+d(a_w,a_k)>m-u-\frac{1}{s}
+\end{equation}
+Then we see the open ball $B_{m-u-\frac{1}{s}}(a_k)$ contain at most $s$ amount of point in  $\set{a_n}_{n\inn}\tCaC\vdone$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \end{proof}
 \begin{question}{}{}
@@ -4673,7 +4951,9 @@ Let \( \{ x_n \}_{n=1}^{\infty} \subseteq \mathbb{R} \) be a convergent sequence
 \end{enumerate}
 \end{question}
 \begin{proof}
+  Let $\mathcal{K}=\set{K_1,\dots , K_n}$ be a finite collection of compact subset of $M$. We wish to show $\bigcup  \mathcal{K}$ is compact. Let $\mathcal{G}$ be an open cover for $\mathcal{K}$. For each $m \inn:1\leq m\leq n$, because $K_m\subseteq \bigcup \mathcal{K}$, we know $\mathcal{G}$ is also an open cover for $K_m$. Then, we can pick a finite sub-cover  $\mathcal{G}_m\subseteq \mathcal{G}$ for $K_m$. Collect all such finite sub-cover  $\mathcal{G}_1,\dots, \mathcal{G}_m$. The union $\bigcup \set{\mathcal{G}_1,\dots ,\mathcal{G}_m}$ is a finite open cover for $\bigcup \mathcal{K} $.\\
 
+Notice that a compact set must be closed, and arbitrary collection of closed sets are closed. Then, we know the intersection of an arbitrary collection of compact set must be a closed set and a subset of every compact set in the collection. Then because closed subset of compact set is compact, we know the intersection is compact.
 \end{proof}
 \begin{question}{}{}
 \begin{enumerate}
@@ -4682,6 +4962,8 @@ Let \( \{ x_n \}_{n=1}^{\infty} \subseteq \mathbb{R} \) be a convergent sequence
 \end{enumerate}
 \end{question}
 \begin{proof}
-If a set $K$ is compact, then by \myref{Theorem}{2.9.4}, we know $K$ is limit point compact. In the proof for \myref{Theorem}{2.9.4}, we have proved the limit point compact $K$ is separable.
+See the proof in \myref{Theorem}{2.7.5}, there is a summary where you can find the numbering of rigorous proof for each step. Some proof for corollary is omitted because they are immediate consequences of theorem before.\\
+
+Because I use a program written by artificial intelligence to update my reference in latex code whenever I edit my latex code, some reference may be directed to a wrong theorem, but all the tools are there in Chapter 2. 
 \end{proof}
 \end{document}
