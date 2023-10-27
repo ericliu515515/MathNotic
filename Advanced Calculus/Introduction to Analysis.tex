@@ -1134,8 +1134,123 @@ Let $x\in \bigcup S$, we know $\exists p\inn, x\in E_p$, so we know $\exists p,q
 \textbf{(Every Nonempty Set Has Cardinality Strictly Less than Its Power Set)} If $A$ is nonempty, then  $\abso{A}<\abso{\power{A}}$.
 \end{theorem}
 \begin{proof}
-Let $f$ be a function from $A$ to  $\power{A}$. Define $T=\set{a\in A:a\not\in f(a)}$. Observe $b \in T\implies b\not\in f(b)\implies T\neq f(b)$ and observe $b\not\in T\implies b\in f(b)\implies T\neq f(b)$, so $T\in \power{A}\setminus f[A]$.  
+  Let $f$ be a function from $A$ to  $\power{A}$. Define $T=\set{a\in A:a\not\in f(a)}$. Observe $b \in T\implies b\not\in f(b)\implies T\neq f(b)$ and observe $b\not\in T\implies b\in f(b)\implies T\neq f(b)$, so $T\in \power{A}\setminus f[A]$.  
 \end{proof}
+\section{Ordinal Arithmetic}
+\section{Cardinal Arithmetic}
+\section{Set Theoretic Limit}
+\begin{definition}
+\label{0.7.1}
+\textbf{(Partial Order on Set)} For sets $A,B$, we say
+ \begin{equation}
+A\leq B
+\end{equation}
+if
+\begin{equation}
+A\subseteq B
+\end{equation}
+The class of sets form a partial order.
+\end{definition}
+\begin{theorem}
+\label{0.7.2}
+\textbf{(Upper and Lower Bound)} Let $\sigma$ be a collection of sets
+\begin{equation}
+\sigma=\set{A_i:i\in I}
+\end{equation}
+The collection of lower bounds of $\sigma$ is exactly
+\begin{equation}
+\power{\bigcap \sigma}
+\end{equation}
+and 
+\begin{equation}
+A\text{ is an upper bound of $\sigma$ }\iff \bigcup \sigma \subseteq A
+\end{equation}
+\end{theorem}
+\begin{definition}
+\label{0.7.3}
+\textbf{(Infimum and Supremum For Set)} For collection $\sigma$ of sets, we have
+\begin{equation}
+\inf \sigma= \bigcap \sigma\text{ and }\sup \sigma=\bigcup \sigma
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{0.7.4}
+\textbf{(Algebraic Interpretation of Notation for Infimum and Supremum)} 
+\begin{gather}
+\inf\sigma\text{ is the greatest set smaller than all sets in }\sigma\\
+\sup \sigma\text{ is the smallest set greater than all sets in }\sigma
+\end{gather}
+\end{theorem}
+\fbox{\begin{minipage}{39em}
+Above introduce set-theoretic infimum and supremum
+\end{minipage}}
+\begin{definition}
+\label{0.7.5}
+\textbf{(Lim-Sup for Sets)} Let $\set{A_n}$ be a sequence of sets. We define
+\begin{equation}
+\liminf_{n\to\infty} A_n:=\bigcup_{n\geq 1}\bigcap_{j\geq n}A_j\text{ and }\limsup_{n\to\infty} A_n:=\bigcap_{n\geq 1}\bigcup _{j\geq n}A_j
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{0.7.6}
+\textbf{(Meaning Behind Lim-Sup)} We have
+\begin{gather}
+x\in \liminf_{n\to\infty} A_n\iff \exists  n,\forall  j\geq n, x\in A_j\\
+x\in \limsup_{n\to\infty} A_n\iff \forall n,\exists j\geq n, x\in A_j
+\end{gather}
+\end{theorem}
+\begin{theorem}
+\label{0.7.7}
+\textbf{(Meaning Behind Lim-Sup)}
+\begin{gather}
+\liminf_{n\to\infty} A_n=\bigcup_{n\geq 1}\inf \set{A_j}_{j=n}^\infty=\sup \set{\inf \set{A_j}_{j=n}^\infty}_{n=1}^\infty\\
+\limsup_{n\to\infty} A_n=\bigcap_{n\geq 1}\sup \set{A_j}_{j=n}^\infty=\inf \set{\sup \set{A_j}_{j=n}^\infty}_{n=1}^\infty
+\end{gather}
+\end{theorem}
+\begin{corollary}
+\label{0.7.8}
+\textbf{(Verification of \myref{Theorem}{0.7.6})} We have
+\begin{gather}
+x\in \liminf_{n\to\infty} A_n\iff \exists  n,\forall  j\geq n, x\in A_j\\
+x\in \limsup_{n\to\infty} A_n\iff \forall n,\exists j\geq n, x\in A_j
+\end{gather}
+And
+\begin{gather}
+X\subseteq \liminf_{n\to\infty} A_n\iff \exists n,\forall j\geq n,X\subseteq A_j\\
+\end{gather}
+\end{corollary}
+\begin{proof}
+Suppose
+\begin{equation}
+x\in \liminf_{n\to\infty} A_n=\sup \set{\inf \set{A_j}_{j=n}^\infty}_{n=1}^\infty
+\end{equation}
+By definition of supremum, we know $x\in \inf \set{A_j}_{j=n}^\infty$ for some $n$, then the theorem follows.\\
+
+Suppose 
+\begin{equation}
+x\in \limsup_{n\to\infty} A_n=\inf \set{\sup \set{A_j}_{j=n}^\infty}_{n=1}^\infty
+\end{equation}
+By definition of infimum, we know $x \in \sup \set{A_j}_{j=n}^\infty$ for all $n$, then the theorem follows.
+\end{proof}
+\begin{corollary}
+\label{0.7.9}
+\textbf{(Manipulation of Lim-Sup)}
+\begin{equation}
+\inf \set{A_n}\subseteq \liminf_{n\to\infty} A_n\subseteq \limsup_{n\to\infty} A_n\subseteq \sup \set{A_n}
+\end{equation}
+\end{corollary}
+\begin{proof}
+The first and the third inequality is easy to see. One can verify them using a notation that is more intuitive in this case 
+\begin{gather}
+\inf \set{A_n}\in \set{\inf \set{A_j:j\geq n}:n\geq 1}\implies \inf \set{A_n}\subseteq \sup \set{\inf \set{A_j:j\geq n}:n\geq 1}\\
+\sup \set{A_n}\in \set{\sup \set{A_j:j\geq n}:n\geq 1}\implies \sup \set{A_n}\subseteq \inf \set{\sup \set{A_j:j\geq n}:n\geq 1}
+\end{gather}
+For the second inequality, we can use \myref{Theorem}{0.7.6}. Let $x\in \liminf_{n\to\infty} A_n$. We know there exists a threshold $m$ such that  $x$ in  $A_j$ for every  $j\geq m$. Then for each $n$, we can pick a number $j$ greater than  $\max \set{m,n}$, and observe $x\in A_j$.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Discuss when the sequence is monotonic
+\end{minipage}}
+
 \chapter{The Real and Complex Number System}
 \section{Introduction}
 \fbox{\begin{minipage}{39em}
@@ -2466,7 +2581,7 @@ Let $\vecta{a},\vecta{b}\inR^n\text{ and }m \inR^+$. Find $\vecta{c}\inR^n\text{
 \begin{question}{}{}
 State and prove the Pythagorean Law in Euclidean $n$-space, where  $n\geq 2$
 \end{question}
-\chapter{Basic Topology, Part 1}
+\chapter{Basic Topology} 
 \section{Different but Equivalent Ways to Define A Topology}
 \fbox{\begin{minipage}{39em}
 This section illustrates three methods to define a topology. However, in practice, the approach using open sets is predominantly employed.
@@ -2629,7 +2744,7 @@ N\in g(g^{-1}(\mathcal{N}))(x)
 Because $N$ is arbitrarily picked from $\mathcal{N}(x)$, we have $\mathcal{N}(x)\subseteq g(g^{-1}(\mathcal{N}))(x)\bdone\tdone$
 \end{proof}
 \fbox{\begin{minipage}{39em}
-We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{2.1.5} into language without neighborhood function. 
+We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{3.12.5} into language without neighborhood function. 
 \end{minipage}}
 \begin{definition}
 \label{2.1.6}
@@ -2658,7 +2773,7 @@ From left to right, it trivially follows from our definition of neighborhood.\\
 
 From right to left, we know every point $x$ in  $E$ is contained by an open set contained by $E$. By axiom, the union of such open sets is an open set and contained by $E$. Also, every point in $E$ belong to an open set contained by by $E$, so belong to the union. We have proved  $E$ is the union. 
 \end{proof}
-\section{General Topology: Closure and Interior Operator}
+\section{Closure and Interior Operator}
 \fbox{\begin{minipage}{39em}
 This section won't go into any detailed general topology. It merely work as a comparison for the next section. 
 \end{minipage}}
@@ -2788,9 +2903,153 @@ E'=\set{p:p \in \overline{E\setminus \set{p}}}
 \begin{proof}
   Notice each limit point $p\in  E'$ is still a limit point of $E\setminus \set{p}$, and notice each limit point of  $E$ is a limit point of $E\cup \set{p}$.
 \end{proof}
-\section{Metric Space: Open}
+\section{Three Non-Equivalent Compactness and Separable}
+\fbox{\begin{minipage}{39em}
+In this section, we will first give two equivalent definition of base and prove they are equivalent.
+\end{minipage}}
 \begin{definition}
 \label{2.3.1}
+\textbf{(Definition of Base)} We say a sub-collection $\mathcal{O}$ of topology $\tau$ on $X$ is a base if every open neighborhood $O$ around $x$ contain an open set $U$ in $\mathcal{O}$ containing $U$. That is
+\begin{equation}
+\forall x\in X, \forall O\in\tau:x\in O,\exists U\in \mathcal{O}, x\in U\subseteq O
+\end{equation}
+We call open sets in a base basic open sets.
+\end{definition}
+\begin{theorem}
+\label{2.3.2}
+\textbf{(Equivalent Definition of Base)} A sub-collection of topology $\tau$ is a base if and only if every open set can be expressed as a union of a set of basic open sets. That is, the necessary and sufficient condition for $\mathcal{O}$ to be a base is 
+\begin{equation}
+\forall O\in \tau, \exists \mathcal{U}\subseteq \mathcal{O}, O=\bigcup \mathcal{U}
+\end{equation}
+\end{theorem}
+\begin{proof}
+  From left to right, for each point $x\in O$, we know there exists $U_x\in \mathcal{O}$ such that $x\in U_x\subseteq O$. Collect $U_x$ for each $x\in O$ as $\mathcal{U}$, and we are partially done.\\
+
+  From right to left, let $O$ be an open neighborhood around $x$. If there exists no $U\in \mathcal{O}$ such that $x\in U\subseteq O$, then every union of sub-collection $\mathcal{U}\subseteq\mathcal{O}$ that contain $x$ contain some points not in  $O$, which is impossible.  
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Then, we will define separable, and give a sufficient condition of separable.
+\end{minipage}}
+\begin{definition}
+\label{2.3.3}
+\textbf{(Definition of Separable)} We say $X$ is separable if 
+\begin{equation}
+  X\text{ has a countable dense subset }
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{2.3.4}
+\textbf{(Base and Dense Set)} 
+\begin{equation}
+\text{ A set intersecting with all basic open set is dense }
+\end{equation}
+\end{theorem}
+\begin{proof}
+For each point $p$ not in $A$ and for each open neighborhood $N_p$ around $p$, there exists an basic open set  $O_p$ contained by $N_p$. The fact  $O_p$ intersect $A$ implies  $N_p$ intersect with  $A$. We have proved every point  $p$ not in $A $ is a limit point of $A$.
+\end{proof}
+\begin{corollary}
+\label{2.3.5}
+\textbf{(Countable Base Implies Separable)} 
+\begin{equation}
+X\text{ has a countable base }\implies X\text{ is separable }
+\end{equation}
+\end{corollary}
+\begin{proof}
+Let $\mathcal{O}$ be a countable base for $X$. For each $O\in \mathcal{O}$, we can collect a point $x_O\in O$, and have $A:=\set{x_O:O\in \mathcal{O}}$. Because $\mathcal{O}$ is countable, we know $A$ is countable, and by  \myref{Theorem}{3.12.4}, we know $A$ is dense.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+The above let us draw a Venn diagram, where existence of countable base is a small circle in the big circle separable.\\
+
+Now, we give definition of three different compactness.
+\end{minipage}}
+\begin{definition}
+\label{2.3.6}
+\textbf{(Definition of Open Cover)} We say a collection $\set{G_\alpha  }$ of open sets is an open cover of $E$ if 
+\begin{equation}
+E\subseteq \bigcup \set{G_\alpha }
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{2.3.7}
+\textbf{(Definition of Compact Space)} We say a topological space $X$ is compact if  
+\begin{equation}
+\text{every open cover for $X$ has a finite open sub-cover}
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{2.3.8}
+\textbf{(Definition of Countably Compact Space)} We say a topological space $X$ is countably compact if 
+\begin{equation}
+\text{every countable open cover for $X$ has a finite open sub-cover}
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{2.3.9}
+\textbf{(Definition of Limit Point Compact Space)} We say a topological space $X$ is limit point compact if 
+\begin{equation}
+\text{every infinite subset of $X$ has a limit point}
+\end{equation}
+\end{definition}
+\fbox{\begin{minipage}{39em}
+It is clear that compact implies countably compact, as every countable cover in compact space has a finite sub-cover. We now explore the relation of the three compactness.
+\end{minipage}}
+\begin{theorem}
+\label{2.3.10}
+\textbf{(Compact Implies Countably Compact)} 
+\begin{equation}
+ X\text{ is compact }\implies X\text{ is countably compact }
+\end{equation}
+\end{theorem}
+\begin{theorem}
+\label{2.3.11}
+\textbf{(Countably Compact Implies Limit Point Compact)} 
+\begin{equation}
+X\text{ is countably compact }\implies X\text{ is limit point compact }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Arbitrarily pick an infinite $A$. We know  $A$ is either countable or uncountable. We first prove  \vi{if $A$ is countably infinite, then $A$ has a limit point}.\\
+
+\As{$A$ has no limit point}. For each $a\in A$, because $a$ is not a limit point of $A$, we know there exists an open neighborhood  $O_a$ around $a$ such that  $O_a\cap A=\set{a}$. Notice that $A$ has no limit point let us deduce
+\begin{equation}
+A'=\varnothing \implies \overline{A}=A\implies A^c\text{ is open }
+\end{equation}
+For each $a\in A$, collect one $O_a$ into the collection $\mathcal{O}=\set{O_a:a\inA}$.\\
+
+Then, because $A$ is countable, we see $\mathcal{O}\cup \set{A^c}$ is an countable cover for $X$, and every finite open sub-cover contain only finite amount of point of $A$ when  $A$ is infinite. \CaC $\vdone$\\
+
+If $A$ is uncountable, then  $A$ contain a countable set  $B$. We know  $B$ has a limit point  $p$, and we know  $p$ is also a limit point for $A$.
+\end{proof}
+\begin{corollary}
+\label{2.3.12}
+\textbf{(Compact Implies Limit Point Compact)} If $X$ is compact, then $X$ is limit point compact.
+\end{corollary}
+\fbox{\begin{minipage}{39em}
+Lastly, we give a theorem involving countable base.
+\end{minipage}}
+\begin{theorem}
+\label{2.3.13}
+\textbf{(Existence of Countable Base Implies Existence of Countable Sub-Cover)} 
+\begin{equation}
+X\text{ has a countable base }\implies\text{every open cover for $X$ has a countable sub-cover}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $\mathcal{O}$ be a countable base for $X$ and let $\mathcal{G}$ be an open cover of $X$. We wish to find an countable open sub-cover of $\mathcal{G}$.\\
+
+Because $\mathcal{O}$ is a base, for each $G\in \mathcal{G}$, there exists basic open set $O\in \mathcal{O}$ contained by $G$. Then because  $\mathcal{G}$ is an open cover, for each $p\in X$, there exists $G_p,O_p$ such that
+\begin{equation}
+p\in O_p\subseteq G_p
+\end{equation}
+Collect all $G_p$ from above so we have a sub-cover $\mathcal{G}'$. Because $\mathcal{O}$ is countable, we know $\mathcal{G}'$ is also countable.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Now, if we want to draw a conclusion for this section by drawing a Venn diagram, we should first draw compact inside countably compact inside limit point compact. 
+\end{minipage}}
+\chapter{Important Notions in Metric Space}
+\section{Sequence}
+\begin{definition}
+\label{3.1.1}
 \textbf{(Definition of Metric)} We say a real-valued function $d:X^2\rightarrow \R$ is a metric if
 \begin{equation}
 d(x,x)=0 
@@ -2805,20 +3064,766 @@ d(x,y)=d(y,x)\text{ (Commutative) }
 d(x,z)\leq d(x,y)+d(y,z)\text{ (Triangle Inequality) }
 \end{equation}
 \end{definition}
-\begin{theorem}
-\label{2.3.2}
-\textbf{(Norm Induced Metric)} Every norm induce a metric by 
-\begin{equation}
-d(\vecta{x},\vecta{y})=\norm{\vecta{x}-\vecta{y}}
-\end{equation}
-\end{theorem}
+\begin{definition}
+\label{3.1.2}
+\textbf{(Definition of Sequence)} In this chapter, by a sequence in $X$, we mean a function from  $\N$ to  $X$
+\end{definition}
 \fbox{\begin{minipage}{39em}
-In fact, there are other way to induce a metric from norm: $d(\vecta{x},\vecta{y})=\norm{\vecta{x}}+\norm{\vecta{y}}$. The two norms don't even have to be the same. Although there are lots of type of metric, the one being study the most is of course what we induce in \myref{Theorem}{2.3.2}.\\
-
-Notice that any subset of a metric space equipped with the original metric is also trivially a metric space.
+Above is specification.
 \end{minipage}}
 \begin{definition}
-\label{2.3.3}
+\label{3.1.3}
+\textbf{(Definition of Convergence of Reals)} Let $\set{a_n}$ be a sequence of reals. By $\set{a_n}$ converges to $a$ 
+\begin{equation}
+\lim_{n\to\infty} a_n=a
+\end{equation}
+We mean for each $\epsilon \inr^+$, there exists great enough $N_\epsilon \inn$  such that for each $n\inn$ 
+\begin{equation}
+n>N_\epsilon \implies \abso{a_n-a}<\epsilon 
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{3.1.4}
+\textbf{(Definition of Convergence)} Let $\set{a_n}$ be a sequence in metric space $X$. By $\set{a_n}$ converge to $a$
+\begin{equation}
+\lim_{n\to\infty}a_n=a
+\end{equation}
+We mean for each $\epsilon \inr^+$, there exists great enough $N\epsilon \inn$ such that for each $n\inn$
+ \begin{equation}
+n>N_\epsilon \implies d(a_n,a)<\epsilon 
+\end{equation}
+\end{definition}
+\fbox{\begin{minipage}{39em}
+Above is definition.
+\end{minipage}}
+\begin{theorem}
+\label{3.1.5}
+\textbf{(Other Definition for Convergence)} Let $\set{a_n}$ be a sequence in metric space $X$. We have
+ \begin{gather}
+\lim_{n\to \infty}a_n=a\iff \lim_{n\to\infty}d(a_n,a)=0\\
+\liff (\forall \epsilon ,\exists N_\epsilon, n\geq N_\epsilon \iff  d(a_n,a)<\epsilon) \\
+\liff (\forall \epsilon, \exists N_\epsilon , a_n\in B_\epsilon (a)\iff  n\geq N_\epsilon )
+\end{gather}
+\end{theorem}
+\begin{theorem}
+\label{3.1.6}
+\textbf{(Limit of Sequence is Unique)} Let $\set{a_n}$ be a sequence in metric space $X$. We have
+ \begin{equation}
+\lim_{n\to\infty}a_n=a\text{ and }\lim_{n\to\infty}a_n=a'\implies a'=a
+\end{equation}
+\end{theorem}
+\begin{proof}
+Assume not unique and use $\epsilon=\frac{d(a',a)}{2}$ to cause a contradiction.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Below discuss sub-sequence.
+\end{minipage}}
+\begin{definition}
+\label{3.1.7}
+\textbf{(Definition of Sub-Sequence)} We use
+\begin{equation}
+\set{a_{n_k}}
+\end{equation}
+To denote sub-sequence of $\set{a_n}$, so $n_k\inn$ must satisfy
+ \begin{equation}
+n_k> \max \set{n_1,\dots, n_{k-1}}\text{ and }n_k\geq k 
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{3.1.8}
+\textbf{(Sequence Converge if and only if All Sub-sequence Converge)} 
+\begin{equation}
+\text{ Sequence $\set{a_n}$ converge to $a$ $\iff $ all sub-sequence $\set{a_{n_k}}$ converge to $a$ }
+\end{equation}
+\end{theorem}
+\begin{proof}
+From right to left is trivial. From left to right, notice $k_n\geq n$. 
+\end{proof}
+\begin{theorem}
+\label{3.1.9}
+\textbf{(Existence of a Convenient sub-Sequence)} 
+\begin{gather}
+\set{a_n}\text{ converge to }a\\
+\implies  \text{ there exists a sub-sequence }\set{a_{n_k}}  \text{ such that }\forall k\inn, d(a_{n_k},a)<\frac{1}{k}
+\end{gather}
+\end{theorem}
+\begin{proof}
+The construction is done by recursion of selecting a point in $B_{\frac{1}{k+1}}(a)\cap \set{a_n}$ after $a_{n_k}$. Such point must exists, otherwise all point after $a_{n_k}$ is of distance to $a$ greater than  $\frac{1}{k+1}$.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Below introduce Cauchy.
+\end{minipage}}
+\begin{definition}
+\label{3.1.10}
+\textbf{(Definition of Cauchy Sequence)} We say 
+ \begin{equation}
+\set{a_n}\text{ is a Cauchy sequence }
+\end{equation}
+If for each $\epsilon \inr^+$, there exists great enough $N_\epsilon \inn$ such that for each $n,k\inn$
+\begin{equation}
+n,k>N_\epsilon \implies d(a_n,a_k)<\epsilon 
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{3.1.11}
+\textbf{(Every Convergent Sequence is Cauchy)}
+\begin{equation}
+\set{a_n}\text{ converge }\implies \set{a_n}\text{ is Cauchy }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $\set{a_n}$ converge to $a$. We know for each $\epsilon $ there exists $N_{\frac{\epsilon }{2} }$ such that $n>N_{\frac{\epsilon }{2}}\implies d(a_n,a)<\frac{\epsilon}{2}$. Observe $m,k>N_\frac{\epsilon }{2}\implies d(a_m,a_k)\leq d(a_m,a)+d(a,a_k)<\epsilon $
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Lastly, we close this section with example of uncompleted metric space.
+\end{minipage}}
+\begin{theorem}
+\label{3.1.12}
+\textbf{(Not Every Cauchy Sequence Converge)} 
+\begin{equation}
+\set{a_n}\text{ is Cauchy NOT}\implies \set{a_n}\text{ converge }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $X=\R \setminus \set{p}$ be standard. Observe $\set{a_n=p+\frac{1}{n}}$ is in $X$ and for each $\epsilon \inr^+$, we have
+\begin{equation}
+m\geq k>\frac{1}{\epsilon } \implies d(a_m,a_k)= a_k-a_m<\frac{1}{k}-\frac{1}{m}<\frac{1}{k}<\epsilon 
+\end{equation}
+Let $q\in X$. We know $q\neq p$. Let $\epsilon =\frac{\abso{p-q}}{2}$. Let $k>\frac{1}{\epsilon }$. Observe
+\begin{equation}
+\frac{1}{k}<\frac{\abso{p-q}}{2}\implies \frac{q-p}{2}<\frac{1}{k}<\frac{p-q}{2}
+\end{equation}
+And observe
+\begin{align}
+  d(a_k,q)=\abso{p+\frac{1}{k}-q}&>p-q+\frac{1}{k}>\frac{p-q}{2}\\
+  &>q-p-\frac{1}{k}>\frac{q-p}{2}
+\end{align}
+So we have
+\begin{equation}
+d(a_k,q)>\frac{\abso{p-q}}{2}=\epsilon 
+\end{equation}
+We have found an open ball around $q$ that contain only finite amount of  $\set{a_n}$, showing $\set{a_n}$ does not converge to $q$ when $q$ arbitrarily picked from  $X$.
+
+\end{proof}
+\section{Closed}
+\begin{definition}
+\label{3.2.1}
+\textbf{(Definition of Closure and Closed in Metric Space)} Let $E$ be a subset of  $(X,d)$. By closure $\overline{E}$, we mean the set containing precisely all possible points to which the sequence in $E$ may converge. We say $E$ is closed if every convergent sequence in $E$ converge to some point in $E$, in other words:
+ \begin{equation}
+\overline{E}=E
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{3.2.2}
+\textbf{(Another Definition of Closure)}
+\begin{equation}
+\overline{E}\text{ is the smallest closed set containing }E
+\end{equation}
+\end{theorem}
+\begin{proof}
+To see $E\subseteq \overline{E}$ is simple, for each $x\in E$, the trivial sequence $\set{x_n=x}$ is a sequence in $E$ that converge to $x$.\\
+
+We first prove \vi{$\overline{E}$ is closed}. Let $\set{x_n}$ be a convergent sequence in $\overline{E}$, and let
+\begin{equation}
+\lim_{n\to\infty} x_n=x
+\end{equation}
+We wish to prove $x\in \overline{E}$. If $\set{x_n}$ contain infinite terms in $E$, then we know $\set{x_n}$ has a sub-sequence $\set{x_{n_k}}$ in $E$ which converge to $x$ by  \myref{Theorem}{3.1.8}. By definition of closure, we know $x\in \overline{E}$ and we are done.\\
+
+Now, we only have to consider when $\set{x_n}$ contain finite terms in $E$, which tell us $\set{x_n}$ contain infinite terms (a sub-sequence that converge to $x$) $\set{x_{n_k}}$ in $\overline{E}\setminus E$.\\
+
+We wish to find a sequence in $E$ that converge to  $x$, then we know  $x$ is in $\overline{E}$. By definition of closure, we know each term $x_{n_k}$ of the sub-sequence $\set{x_{n_k}}$ is a limit of a sequence $\set{x^k_m}$ in $E$. Then for each $x_{n_k}$, we can pick a point $x^k_{m_k}$ in $E$ being $d(x,x_{n_k})$ closed to $x_{n_k}$ 
+\begin{equation}
+x_{m_k}^k\in E\text{ and }d(x^k_{m_k},x_{n_k})<d(x,x_{n_k})
+\end{equation}
+This also give us
+\begin{equation}
+d(x_{m_k}^k,x)\leq d(x_{m_k}^k,x_{n_k})+d(x_{n_k},x)<2d(x,x_{n_k})
+\end{equation}
+Now, we wish to prove 
+\begin{equation}
+\lim_{k\to\infty}x^k_{m_k}=x
+\end{equation}
+Because
+\begin{equation}
+\lim_{k\to\infty}x_{n_k}=x
+\end{equation}
+For each small $\epsilon $, we know there exists $N$ such that
+\begin{equation}
+k>N_\epsilon \implies d(x,x_{n_k})<\frac{\epsilon}{2} 
+\end{equation}
+Then we have
+\begin{equation}
+k>N_\epsilon \implies d(x^k_{m_k},x)<2d(x,x_{n_k})<\epsilon \vdone
+\end{equation}
+We now prove \blue{$\overline{E}$ is the smallest closed set containing $E$}.\\ 
+
+Let $K$ be a closed set containing  $E$. We wish to show all $x\in \overline{E}$ is also in $K$. By definition, we know  $x$ is a limit of a sequence  $\set{x_n}$ in $E\subseteq K$, then because $K$ is closed, we know $x$ is also in $K\bdone$  
+\end{proof}
+\begin{theorem}
+\label{3.2.3}
+\textbf{(Manipulation of Closure)} We have
+\begin{gather}
+\overline{X}=X\text{ and }\overline{\varnothing}=\varnothing\\
+\bigcup_{n=1}^\infty \overline{A_n}\subseteq \overline{\bigcup_{n=1}^\infty A_n}\text{ and }\overline{\bigcap_{n=1}^\infty A_n}\subseteq \bigcap_{n=1}^\infty \overline{A_n} 
+\end{gather}
+where the $\subseteq$ may be proper. Notice that $\infty$ does not need to be countable. 
+\end{theorem}
+\begin{proof}
+$\overline{X}=X\text{ and }\overline{\varnothing}=\varnothing$ are clear. We now prove  \vi{$\bigcup_{n=1}^\infty \overline{A_n}\subseteq \overline{\bigcup_{n=1}^\infty A_n}$}\\
+
+Let $x\in \bigcup_{n=1}^\infty \overline{A_n}$. We know $x$ is a limit of some sequence $\set{x_k}$ in some $A_i$. Notice that the sequence $\set{x_k}$ is also in $\bigcup_{n=1}^\infty A_n$, so we also have $x\in \overline{\bigcup_{n=1}^\infty A_n}$. $\vdone$\\
+
+For a case where $\subseteq$ is proper, well order $\Q$ into $\set{a_n}_{n\inn}$. We know $\overline{\set{a_n}}=\set{a_n}$, so we have
+\begin{equation}
+\bigcup _{n=1}^\infty \overline{A_n}=\Q 
+\end{equation}
+We also have
+\begin{equation}
+\overline{\bigcup_{n=1}^\infty A_n}=\overline{\Q}=\R
+\end{equation}
+For a rigorous proof of $\overline{\Q}=\R$, notice for each $x\inr$, the supremum of the set $\set{q\inq: q<x}$ is $x$.\\
+
+We now prove \blue{$\overline{\bigcap_{n=1}^\infty A_n}\subseteq \bigcap _{n=1}^\infty \overline{A_n}$}\\
+
+Let $x\in \overline{\bigcap _{n=1}^\infty A_n}$. We know there is a sequence $\set{x_n}$ in $\bigcap _{n=1}^\infty A_n$ that converge to $x$. Notice that $\set{x_n}$ is a sequence in $A_i$ for all  $i$, so by definition of closure, the limit  $x$ is in  $\overline{A_i}$ for all $i$. $\bdone$\\
+
+For a case where $\subseteq$ is proper, see the below proof for \myref{Theorem}{3.2.4}.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+If the above are said to be a "general" statements of how closure act on infinite union and intersection. The below shows a stronger property of closure, where one and only one of the inclusion become equality.
+\end{minipage}}
+\begin{theorem}
+\label{3.2.4}
+\textbf{(Manipulation of Closure)} We have
+\begin{equation}
+\overline{E}\cup \overline{F}=\overline{E\cup F}\text{ and }\overline{E\cap F}\subseteq \overline{E}\cap \overline{F}
+\end{equation}
+\end{theorem}
+\begin{proof}
+We first prove \vi{$\overline{E}\cup \overline{F}=\overline{E\cup F}$}.\\
+
+$\overline{E}\cup \overline{F}\subseteq \overline{E\cup F}$ is clear, since a convergent sequence in $E$ is a convergent sequence in $E\cup F$. To see $\overline{E\cup F}\subseteq \overline{E}\cup \overline{F}$, let $x$ be a limit of a sequence  $\set{x_n}$ in $E\cup F$. We know $\set{x_n}$ has infinite terms (a sub-sequence converging to $x$) $\set{x_{n_k}}$ either in $E$, in $F$ or in both. Then by definition of closure, we know $x$ is either in $\overline{E}$, $\overline{F}$ or both. $\vdone$\\
+
+
+We now prove \blue{$\overline{E\cap F}\subseteq \overline{E}\cap \overline{F}$}.\\
+
+Notice that if a sequence $\set{x_n}$ is in $E\cap F$, then the sequence $\set{x_n}$ is both in $E$ and in $F$. Then we know the limit is both in  $\overline{E}$ and $\overline{F}$. $\bdone$\\
+
+For a case where $\subseteq $ is proper, observe
+\begin{equation}
+E=(0,1)\text{ and }F=(1,2)
+\end{equation}
+We have
+\begin{equation}
+\overline{E\cap F}=\overline{\varnothing}=\varnothing \subset \set{1}=[0,1]\cap [1,2]=\overline{E}\cap \overline{F}
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{3.2.5}
+\textbf{(Manipulation of Closed Sets)} Let $\mathfrak{F}$ be the family of closed sets. We have
+\begin{gather}
+\varnothing\text{ and }X\text{ are closed. }\\
+\text{ Intersection of closed sets are closed. }\\
+\text{ Union of finite closed sets are closed, but union of infinite closed set may not be closed. }
+\end{gather}
+\end{theorem}
+\begin{proof}
+In \myref{Theorem}{3.2.3}, we have proved $\varnothing$ and $X$ are closed. Let $\set{A_\ld}$ be an infinite collection of closed sets. Because $A_\ld $ are closed, by \myref{Theorem}{3.2.3}, we have
+\begin{equation}
+\overline{\bigcap_{\ld  \in \Lambda }A_\ld }\subseteq \bigcap _{\ld \in\Lambda }\overline{A_\ld }=\bigcap _{\ld \in\Lambda }A_\ld 
+\end{equation}
+And notice the other side is trivial.\\
+
+Finite union of closed sets is closed is an immediate consequence of \myref{Theorem}{3.2.4} by induction. To see $\bigcup_{\ld \in \Lambda }A_\ld $ need not always be closed. Notice that if $\bigcup _{\ld \in\Lambda }A_\ld$ are closed, then we have
+ \begin{equation}
+   \overline{\bigcup_{\ld \in \Lambda }A_\ld}=\bigcup_{\ld \in\Lambda }A_\ld=\bigcup_{\ld \in\Lambda }\overline{A_\ld }
+\end{equation}
+but \myref{Theorem}{3.2.3} and \myref{Theorem}{3.2.4} tell us the equality between $\overline{\bigcup_{\ld \in\Lambda }A_\ld }=\bigcup_{\ld \in \Lambda }\overline{A_\ld }$ need not hold true. For a constructive counter-example, let $A_n=[\frac{1}{n},1]$, and observe
+\begin{equation}
+  \bigcup_{n=1}^\infty A_n=(0,1]\not\in \mathfrak{F}
+\end{equation}
+Notice if we let $A_n=(\frac{1}{n},1]$, we have a counter-example for $\bigcup_{\ld \in \Lambda }\overline{A_\ld }=\overline{\bigcup _{\ld \in\Lambda }A_\ld }$
+\begin{equation}
+  \bigcup_{n=1}^\infty A_n=\bigcup_{n=1}^\infty [\frac{1}{n},1]=(0,1]\subset [0,1]=\overline{(0,1]}=\overline{\bigcup_{n=1}^\infty(\frac{1}{n},1]}=\overline{\bigcup _{n=1}^\infty A_n}
+\end{equation}
+\fbox{\begin{minipage}{39em}
+We now introduce an important idea hidden behind our above proofs for each theorems. 
+\end{minipage}}
+\begin{definition}
+\label{3.2.6}
+\textbf{(Definition of Limit Point)} We say $x$ is a limit point of  $E$ if there is a sequence $\set{x_n}$ in $E$ such that
+\begin{equation}
+\lim_{n\to\infty} x_n=x\text{ and }\forall n, x_n\neq x
+\end{equation}
+We denote the set of limit points of $E$ by  $E'$. We say a point in $E$ that isn't a limit point is an isolated point. Also, we say a set is perfect if $E'=E$. 
+\end{definition}
+\begin{theorem}
+\label{3.2.7}
+\textbf{(Property of Limit Points)} We have
+\begin{equation}
+\overline{E}=E'\cup E
+\end{equation}
+\end{theorem}
+\begin{proof}
+The fact $E\cup E'\subseteq \overline{E}$ is clear, as we notice for each $x$ in $E$, the sequence $\set{x_n=x}$ is a sequence in $E$ that converges to $x$. Let $x\in \overline{E}\setminus E$. We wish to show $x\in E'$. Let $\set{x_n}$ be a sequence in $E$ that converge to  $x$. Because $\set{x_n}$ is a sequence in $E$ and $x$ is not in $E$, we know  $\set{x_n}$ must not contain $x$, and we are done.
+\end{proof}
+\begin{corollary}
+\label{3.2.8}
+\textbf{(Property of Limit Points)} We have
+\begin{equation}
+E\text{ is closed }\iff  E'\subseteq E
+\end{equation}
+\end{corollary}
+\begin{proof}
+If $E$ is closed, then  $E'\cup E=\overline{E}=E$ tell us $E'\subseteq E$. If $E'\subseteq E$, then $\overline{E}=E'\cup E=E$
+\end{proof}
+\begin{theorem}
+\label{3.2.9}
+\textbf{(Property of Limit Points)} 
+\begin{equation}
+p\in E'\iff \forall \epsilon, B_\epsilon (p)\cap E\text{ is infinite }
+\end{equation}
+\end{theorem}
+\begin{proof}
+  From left to right, let $\set{x_n}$ be a sequence in $E$ that converge to $p$ and does not contain  $p$. For all $\epsilon$, we know there exists $N_\epsilon $ such that $n>N_\epsilon \implies x_n\in B_\epsilon (p)$. \As{the terms after $N_\epsilon $ is finitely distinct}. We can let $\epsilon=\min \set{x_k:k>N_\epsilon }$ and $\tCaC$\\
+
+From right to left, we wish to construct a sequence $\set{x_n}$ in $E$ that converge to $p$. For all $n$, by premise we know there exists a point in  $B_{\frac{1}{n}}(p)\cap E$ that isn't $p$  (because $B_{\epsilon }(p)\cap E$ is infinite). Select that point as $x_n$. Then the sequence $\set{x_n}$ does converge to $p$ and does not contain $p$.
+\end{proof}
+\begin{theorem}
+\label{3.2.10}
+\textbf{(Property of Limit Points)} We have
+\begin{gather}
+(E\cap F)'\subseteq E'\cap F'\\
+E'\cup F'=(E\cup F)'
+\end{gather}
+Where the $\subseteq$ may be proper. We also have
+\begin{equation}
+E\subseteq F\implies E'\subseteq F'
+\end{equation}
+Where the converse may not hold true. We also have
+\begin{equation}
+E'\text{ is closed. }
+\end{equation}
+\end{theorem}
+\begin{proof}
+For the first two statements, use the fact that a sequence in $E\cap F$ is in $E$ and a sequence in  $E$ is in $E\cup F$, and that a sequence in $E\cup F$ must has a sub-sequence in $E$ or $F$.\\
+
+For an example of $\subseteq$ being proper, let $E=(0,1)$ and $F=(1,2)$. We have 
+\begin{equation}
+  (E\cap F)'=\varnothing \subset \set{1}=E'\cap F'
+\end{equation}
+For the third statements, use the fact a sequence in $E$ is in $F$. To see the converse may not hold true, let $E=(0,1)\cup \set{2}$ and $F=(0,1)$\\
+
+We now prove \vi{$E'$ is closed}. Let $\set{x_n}_{n\inn}$ be a convergent sequence in $E'$. Let $x=\lim_{n\to\infty} x_n$. We wish to prove $x\in E'$. Notice that we can construct a sub-sequence $\set{x_{n_m}}_{m \inn}$ such that for all $m$, we have 
+ \begin{equation}
+d(x_{n_m},x)<\frac{1}{m}
+\end{equation}
+Remember $\set{x_{n_m}}$ converge to $x$, and $\set{x_{n_m}}\subseteq \set{x_n}$ is in $E'$. From now, we use $\set{x_u}$ to denote $\set{x_{n_m}}$ where $u=m$.\\ 
+
+Because $\set{x_u}$ is in $E'$, so if  $x\in \set{x_u}$, our proof is trivially done. We only have to consider when $x\not\in \set{x_u}$.\\
+
+Because $\set{x_u}_{u\inn}$ is in $E'$, we know for each  $u\inn$, there exists a sequence  $\set{x^u_k}_{k\inn}$ in $E$ that converges to $x_u$. Using the infinite amount of sequence $\set{\set{x^u_k}_{k\inn}:u\inn}$ in $E$, we wish to construct a sequence in $E$ that converge to  $x$ and doesn't contain  $x$.\\
+
+Fix $u$. Because 
+\begin{equation}
+\lim_{k\to\infty} x_k^u=x_u
+\end{equation}
+We know there exists $N_{\frac{1}{u}}$ such that
+\begin{equation}
+k>N_{\frac{1}{u}}\implies d(x_k^u,x_u)<\frac{1}{u}
+\end{equation}
+Notice that because the limit is unique and we are under the consideration $x\not\in \set{x_n}$, it is impossible to happen that 
+\begin{equation}
+\forall k>N_{\frac{1}{u}}, x_k^u=x
+\end{equation}
+Otherwise we can see $\set{x^n_k}$ converge to $x$, not  $x_n$.\\
+
+Then, we know there exists some  $k_u$ such that  $d(x_{k_u}^u,x_u)<\frac{1}{u}$ and $x_{k_u}^u<\frac{1}{u}$. Collect all such $x^u_{k_u}$ for all $u$, and we have a sequence in  $E$ that doesn't contain $x$. We now prove $\set{x^u_{k_u}}_{u\inn}$ converge to $x$.\\
+
+Fix $\epsilon $. Recall how we construct $\set{x_u}$. We have
+\begin{equation}
+\forall u\inn, d(x_u,x)<\frac{1}{u}
+\end{equation}
+Observe  
+\begin{equation}
+u>\frac{2}{\epsilon }\implies d(x^u_{k_u},x)\leq d(x^u_{k_u},x_u)+d(x_u,x)<\frac{1}{u}+\frac{1}{u}<\frac{2}{u}<\epsilon \vdone
+\end{equation}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Lastly, we verify the idea of subspace topology. (need to formulate for limit point and closure)
+\end{minipage}}
+\begin{theorem}
+\label{3.2.11}
+\textbf{(Subspace Topology)} Let $Y$ be a subspace of  $(X,d)$, let $E\subseteq X$, and let $p\in Y$. We have
+\begin{gather}
+p\text{ is a limit point of $E\cap Y$ in }Y\implies p\text{ is a limit point of $E$ in  $X$ }\\
+\text{ The closure of $E\cap Y$  in $Y$ is a subset of the closure of $E$ in $X$ }\\
+E\text{ is closed in $X$ }\implies  E\cap Y\text{ is closed in $Y$ }
+\end{gather}
+where the converse of the first and the third statement may not hold true, and the subset relation in the second statement may be proper. 
+\end{theorem}
+\begin{proof}
+For the first statement, use the fact a sequence is in $E\cap Y$ is in $E$.\\
+
+For a non-trivial example of of the converse in first statement mat not hold true, let $X=\R$, let $Y=\set{1}\cup [2,3]$ and let $E=(0,3)$. We see $1$ and $0$ are both limit points of $E$ in $X$, and neither of them is a limit point of  $E\cap Y$ in $Y$, as $1\in Y$ is an isolated point and $0$ is not even in $Y$.\\
+
+We now prove the second statement. Let $p$ be in the closure of $E\cap Y$, and let $\set{x_n}$ be a sequence in $E\cap Y$ that converge to $p$. Notice that the sequence $\set{x_n}$ is in $E$ and we are done.\\
+
+We now prove the last statement. From left to right, let $\set{x_n}$ be a sequence in $E\cap Y$ that converge to some $p$ in $Y$. We wish to prove  $p$ is in  $E\cap Y$. Notice that $\set{x_n}$ is also in $E$, so we know  $p$ is in $E$. Then because $p$ is in $Y$, we know  $p\in  E\cap Y$.\\
+
+For an non-trivial example of the converse in last statement may not hold true. Let $X=\R$, let $Y=(0,2)$ and $E=[1,2)$. Clearly $E$ is not closed, but  $E\cap Y=[1,2)$ is closed in $Y$ (One can even observe that $E$ in  $Y$ is even "informally" unbounded).\\
+\end{proof}
+\section{Open}
+\begin{definition}
+\label{3.3.1}
+\textbf{(Definition of Interior Points and Open)} Let $E$ be a subset of $(X,d)$. By an interior point $p$ of $E$, we mean a point such every sequence  $\set{x_n}$ converge to $p$ must eventually be in  $E$:
+ \begin{equation}
+\exists N, \forall n>N, x_n\in E
+\end{equation}
+We call the set of interior points of $E$  interior, and denote interior by  $E^\circ $. We say $E$ is open if every sequence that converge to a point in  $E$ must eventually be in  $E$, in other words, every point of $E$ is an interior point of $E$:
+ \begin{equation}
+E^\circ =E
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{3.3.2}
+\textbf{(Another Definition of Interior)} 
+\begin{equation}
+E^\circ\text{ is the greatest open set in $E$ }
+\end{equation}
+\end{theorem}
+\begin{proof}
+We first prove \vi{$E^\circ \subseteq E$}.\\
+
+Let $p$ be an interior point of $E$. Verify for the trivial sequence $\set{x_n=p}_{n\inn}$. $\vdone$\\
+
+We now prove \blue{$E^\circ $ is open}.\\
+
+Let $x$ be a point in $E^\circ $, and let $\set{x_n}$ be a sequence converge to $x$. We wish to show  $\set{x_n}$ must eventually be in $E^\circ $. \As{$\set{x_n}$ doesn't end in $E^\circ $}. That is, there exists a sub-sequence $\set{x_u}$ of $\set{x_n}$ in $E\setminus E^\circ $.\\
+
+Because $\set{x_u}$ is a sub-sequence of $\set{x_n}$, we know $\set{x_u}$ converge to $x$. Because of such, by  \myref{Theorem}{3.1.9}, we know there exists a sub-sequence $\set{x_r}$ of $\set{x_u}$ such that
+\begin{equation}
+\forall r\inn, d(x_r,x)<\frac{1}{r}
+\end{equation}
+Fix $r$. Notice that $x_r\in \set{x_u}$, so we know $x_r$ is not in  $E^\circ $. Then we know there exists a sequence $\set{x^r_m}$ converge to $x_r$ that does not end in $E$.\\
+
+Then by \myref{Theorem}{3.1.9}, we know there exists a sub-sequence $\set{x^r_k}\subseteq \set{x^r_m}$ such that
+\begin{equation}
+\forall k\inn, d(x^r_k,x_r)<\frac{1}{k}
+\end{equation}
+Now for each $r$, notice that  $k=r$ implies
+\begin{equation}
+d(x_k^r,x)<d(x^r_k,x_r)+d(x_r,x)<\frac{1}{k}+\frac{1}{r}=\frac{2}{r}
+\end{equation}
+Collect all such $x_r^r$ as a sequence  $\set{x_r^r}$. Notice that every term $x_r^r$ is in the sequence $\set{x_m^r}$ which are not in $E$, so we know the sequence is not in $E$. Observe
+ \begin{equation}
+\forall \epsilon, r>\frac{2}{\epsilon }\implies d(x_r^r,x)<\frac{2}{r}<\epsilon 
+\end{equation}
+We have constructed a sequence $\set{x_r^r}$ that converge to $x$ but completely not in  $E\tCaC$ to $x\in E^\circ $. $\bdone$\\
+
+Lastly, we prove \vi{$E^\circ $ is the greatest open set contained by $E$}. \As{There exists an open set $O\subseteq E$ such that $O\not\subseteq E^\circ $}. Let $x\in O\setminus E^\circ $. Because $x\not\in E^\circ $, we know there exists a sequence $\set{x_n}$ converge to $x$ and have a sub-sequence  $\set{x_k}\subseteq \set{x_n}$ not in $E$. Then because $x\in O$, we know the sub-sequence $\set{x_k}$ must eventually end in $O\subseteq E\tCaC$. $\vdone$
+\end{proof}
+\begin{theorem}
+\label{3.3.3}
+\textbf{(Manipulation of Interior)} We have
+\begin{gather}
+X=X^\circ\text{ and }\varnothing^\circ =\varnothing\\
+\bigcup_{n=1}^\infty A_n^\circ \subseteq (\bigcup_{n=1}^\infty A_n)^\circ\\
+(\bigcap _{n=1}^\infty A_n)^\circ \subseteq \bigcap _{n=1}^\infty A_n^\circ 
+\end{gather}
+where the $\subseteq$ can be proper.
+\end{theorem}
+\begin{proof}
+The first statement is trivial. For the second and the third, use the fact a sequence that ends in  some $A_n$ will end in  $\bigcup A_n$ and the fact a sequence that ends in $\bigcap A_n$ will end in each $A_n$.\\
+
+For an example of the second statement may be proper, well order all numbers in $(0,1)$, and let $A_n$ contain exactly one number. Then
+\begin{equation}
+\bigcup_{n=1}^\infty A_n^\circ=\bigcup_{n=1}^\infty \varnothing=\varnothing \subset (0,1)=(\bigcup_{n=1}^\infty A_n)^\circ 
+\end{equation}
+For an example of the third statement may be proper, let $A_n:=(1-\frac{1}{n},1+\frac{1}{n})$. Then
+\begin{equation}
+  (\bigcap _{n=1}^\infty A_n)^\circ =\set{1}^\circ =\varnothing \subset \set{1}=\bigcap_{n=1}^\infty A_n^\circ 
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{3.3.4}
+\textbf{(Manipulation of Interior)} We have
+\begin{gather}
+E^\circ \cup F^\circ\subseteq (E\cup F)^\circ\\
+(E\cap F)^\circ = E^\circ \cap F^\circ 
+\end{gather}
+And if $E\subseteq F$, we have
+\begin{equation}
+E^\circ \subseteq F^\circ 
+\end{equation}
+\end{theorem}
+\begin{proof}
+For the first statement, use the fact a sequence that ends in $E$ is a sequence that ends in $E\cup F$. Notice that a sequence end in $E\cup F$ need not end in neither $E$ nor  $F$.\\
+
+To see the $\subseteq$ may be proper, let $E=[0,1]$ and $F=[1,2]$. We have
+\begin{equation}
+E^\circ \cup F^\circ= (0,1)\cup (1,2)\neq (0,2)=[0,2]^\circ =(E\cup F)^\circ 
+\end{equation}
+For $(E\cap F)^\circ \subseteq E^\circ \cap F^\circ $, use the fact a sequence that ends in $E\cap F$ will end in both $E$ and  $F$.\\
+
+For $E^\circ \cap F^\circ \subseteq (E\cap F)^\circ $, use the fact a sequence that end in both $E$ and  $F$ will end in  $E\cap F$. In more rigor, let $N_E$ satisfy
+ \begin{equation}
+n>N_E\implies x_n\in E
+\end{equation}
+and let $N_F$ satisfy
+\begin{equation}
+n>N_F\implies x_n\in F
+\end{equation}
+Then we see
+\begin{equation}
+n>\max \set{N_E,N_F}\implies x_n\in E\cap F
+\end{equation}
+For the last statement, use the fact a sequence that ends in $E$ is a sequence that ends in  $F$
+\end{proof}
+\begin{theorem}
+\label{3.3.5}
+\textbf{(Manipulation of Open Sets)} We have
+\begin{gather}
+\text{ $X$ and  $\varnothing$ are open. }\\
+\text{ Union of open sets are open. }\\
+\text{ Finite intersection of open sets are open}\\
+\text{ Infinite intersection of open sets may not be open. }
+\end{gather}
+\end{theorem}
+\begin{proof}
+In \myref{Theorem}{3.3.3}, we have proved $X$ and $\varnothing$ are open. Let $\set{A_\ld :\ld \in\Lambda }$ be a collection of open sets. By \myref{Theorem}{3.3.3}, we know
+\begin{equation}
+\bigcup_{\ld \in \Lambda } A_\ld= \bigcup_{\ld  \in \Lambda }A_\ld ^\circ \subseteq (\bigcup_{\ld  \in \Lambda } A_\ld )^\circ 
+\end{equation}
+The other side follows from \myref{Theorem}{3.3.2}.\\
+
+Finite intersection of open sets are open follows from \myref{Theorem}{3.3.4}:
+\begin{equation}
+  (E\cap F)^\circ =E^\circ \cap F^\circ =E\cap F
+\end{equation}
+For an example of infinite intersection of open sets may not be open, let $A_n=(1-\frac{1}{n},1+\frac{1}{n})$. We have $\bigcap_{n=1}^\infty A_n=\set{1}$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now introduce some interaction between interior and closure operator.
+\end{minipage}}
+\begin{theorem}
+\label{3.3.6}
+\textbf{(Interaction of Interior and Closure)} We have
+\begin{equation}
+  (E^\circ )^c=\overline{E^c}
+\end{equation}
+\end{theorem}
+\begin{proof}
+$x\in \overline{E^c}$ means there exists a sequence in $E^c$ converge to  $x$. That sequence has no term in $E$, so clearly does not end in  $E$. This show  $x\not \in E^\circ $, which means $x\in (E^\circ )^c$.\\
+
+$x\not \in E^\circ $ means there exists a sequence $\set{x_n}$ that converges to $x$ and does not end in  $E$. We know $\set{x_n}$ has a sub-sequence $\set{x_k}$ not in $E$ that converges to $x$. The sequence $\set{x_k}$ is in $E^c$, and converge to $x$, so we know  $x\in \overline{E^c}$
+\end{proof}
+\begin{theorem}
+\label{3.3.7}
+\textbf{(Non-relation)}  
+\begin{equation}
+  \overline{E^\circ }\subseteq \overline{E}\text{ and }E^\circ \subseteq (\overline{E})^\circ 
+\end{equation}
+Are true, but the $\subseteq$ can be proper. Also, $\overline{E^\circ }$ and $(\overline{E})^\circ $ are incomparable.
+\end{theorem}
+\begin{proof}
+For $\overline{E^\circ }\subset \overline{E}$ and $E^\circ \subset (\overline{E})^\circ $, let $E=\Q$. We have
+ \begin{equation}
+\overline{E^\circ }=\overline{\varnothing}=\varnothing \subset \R=\overline{\Q}=\overline{E}
+\end{equation}
+And we have
+\begin{equation}
+E^\circ = \varnothing \subset \R=(\R)^\circ  = (\overline{\Q})^\circ = (\overline{E})^\circ 
+\end{equation}
+\end{proof}
+For $\overline{E^\circ }\not \subseteq (\overline{E})^\circ $, let $E=[0,1]$. We have
+\begin{equation}
+\overline{E^\circ }=[0,1]\not\subseteq (0,1)=(\overline{E})^\circ 
+\end{equation}
+For $(\overline{E})^\circ \not\subseteq \overline{E^\circ }$, let $E=\Q$ . We have
+\begin{equation}
+  (\overline{E})^\circ =\R \not\subseteq \varnothing= \overline{E^\circ }
+\end{equation}
+\fbox{\begin{minipage}{39em}
+We now shed light on subspace topology of sequential space. 
+\end{minipage}}
+\begin{theorem}
+\label{3.3.8}
+\textbf{(Subspace Topology)} Let $Y$ be a subspace of $(X,d)$, let $E\subseteq X$, and let $p\in  Y$. We have
+\begin{gather}
+p\text{ is an interior point of $E$ in $X$ }\implies p\text{ is an interior point of $E\cap Y$ in $Y$ } \\
+\text{ $Y\cap E^\circ $ in $X$ is a subset of the interior of $E\cap Y$ in $Y$ }\\
+E\text{ is open in $X$ }\implies E\cap Y\text{ is open in $Y$ }
+\end{gather}
+where the converse may not hold true.
+\end{theorem}
+\begin{proof}
+We first prove the first statement. Let $\set{x_n}$ be a sequence in $Y$ that converge to $p$. Because  $p$ is an interior point of  $E$ in  $X$, and  $\set{x_n}$ is in $X$, as  $Y\subseteq X$, we know there exists $N$ such that 
+ \begin{equation}
+n>N\implies x_n\in E
+\end{equation}
+Notice $x_n\in Y$, and we are done.\\
+
+For a nontrivial example of the converse of the first statement may not hold true, let $E=(0,2)$, let $Y=\set{1}\cup (2,3)$. We see $1$ is an interior point of  $E$ in  $\R$, but  $1$ isn't an interior point of  $\set{1}=E\cap Y$ in $Y$.
+
+The second and the third statement follows from the first statement. 
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now show that metric space is sequential.
+\end{minipage}}
+\begin{theorem}
+\label{3.3.9}
+  \textbf{(Open Balls are Sequentially Open)} 
+  \begin{equation}
+  B_r(p)\text{ is open }
+  \end{equation}
+\end{theorem}
+\begin{proof}
+Let $x\in B_r(p)$. We wish to show every sequence $\set{x_n}$ that converge to $x$ ends in  $B_r(p)$. Let $u=r-d(p,x)$. Notice that $B_u(x)\subseteq B_r(p)$ and that $\set{x_n}$ ends in $B_u(x)$, and we are done.
+\end{proof}
+\begin{theorem}
+\label{3.3.10}
+\textbf{(Metric Spaces are Sequential)} 
+\begin{gather}
+\text{ $p$ is an interior point of $E$ }\\
+\liff \text{ there exists an small enough open ball $B_r(p)$ contained by $E$}
+\end{gather}
+\end{theorem}
+\begin{proof}
+We first prove from left to right. \As{every open ball $B_r(p)$ is too big to be contained by $E$}. That is:
+\begin{equation}
+\forall \epsilon, B_\epsilon (p)\setminus E\neq \varnothing
+\end{equation}
+Then for each $n$, we let  $x_n\in B_{\frac{1}{n}}(p)\setminus E$. Then $\set{x_n}$ is a sequence outside of $E$ that converge to  $p\tCaC$ to $p\in E^\circ $.\\
+
+We now prove from right to left. Let $\set{x_n}$ be a sequence converge to $p$. We know there exists $N$ such that
+\begin{equation}
+n>N\implies x_n\in B_r(p)\subseteq E
+\end{equation}
+This finish our proof.
+\end{proof}
+\begin{corollary}
+\label{3.3.11}
+\textbf{(Metric Spaces are Sequential)} 
+\begin{gather}
+\text{ $E$ is open  }\\
+\liff \text{ for each point  $p$ in  $E$ there exists an small enough open ball $B_r(p)$ contained by $E$ }
+\end{gather}
+\end{corollary}
+\fbox{\begin{minipage}{39em}
+Lastly, the most important.
+\end{minipage}}
+\begin{theorem}
+\label{3.3.12}
+\textbf{(Topology Axiom)}
+\begin{equation}
+E\text{ is open  }\iff E^c\text{ is closed }
+\end{equation}
+\end{theorem}
+\begin{proof}
+We first prove from left to right. Let $\set{x_n}$ be a sequence in $E^c$ that converge to $x$. We wish to show  $x\in E^c$. \As{$x\in E$}. Because $E$ is open, we know $\set{x_n}$ eventually ends in $E\tCaC$.\\
+
+We now prove from right to left. Let $x\in E$, and let $\set{x_n}$ be a sequence converge to $x$. We wish to show  $\set{x_n}$ eventually ends in $E$. Because  $x\not \in E^c$, and $E^c$ is closed, we know  $\set{x_n}$ has no sub-sequence in  $E^c$, otherwise we can see that sub-sequence in $E^c$ converge to  $x\not\in E^c$.\\
+
+Then we know there exists only finite terms in $E^c$. Let $N$ be the maximal index of all finite terms in  $E^c$. We see
+ \begin{equation}
+n>N\implies x_n\not\in E^c\implies x_n\in E
+\end{equation}
+\end{proof}
+\section{Connected}
+\begin{definition}
+\label{3.4.1}
+\textbf{(Definition of Separated)} We say two sets $A,B$ are separated if 
+ \begin{equation}
+A\cap \overline{B}=\varnothing=\overline{A}\cap B
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{3.4.2}
+\textbf{(Subsets of Separated Sets are Separated)} Let $A\subseteq N$ and $B\subseteq M$.  
+\begin{equation}
+N,M\text{ are separated }\implies A,B\text{ are separated }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Notice
+\begin{equation}
+\overline{A}\subseteq \overline{N}\subseteq M^c\subseteq B^c
+\end{equation}
+And
+\begin{equation}
+\overline{B}\subseteq \overline{M} \subseteq N^c \subseteq A^c
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{3.4.3}
+\textbf{(Subspace Topology)} Let $Y$ be a subspace of $(X,d)$.
+\begin{equation}
+A,B\text{ are separated }\implies A\cap Y\text{ and }B\cap Y\text{ are separated in $Y$ }
+\end{equation}
+The converse may not hold true.
+\end{theorem}
+\begin{proof}
+In \myref{Theorem}{3.2.11}, we have proved the closure of $A\cap Y$ in $Y$ is a subset of the closure of  $A$ in $X$. Then because $A,B$ are separated, we know the closure of  $A\cap Y$ in $Y$ is disjoint to  $B$, thus disjoint to $B\cap Y$. The other side is similar.\\
+
+To see the converse may not hold true, let $Y=(0,1)\cup (2,3)$, and let $A=(0,2)$ and $B=(1,3)$. 
+\end{proof}
+\begin{theorem}
+\label{3.4.4}
+\textbf{(Equivalent Definition of Connected)} The following are equivalent
+\begin{gather}
+E\text{ is not a union of two nonempty separated sets. }\\
+\liff E\text{ has no proper nontrivial clopen subset in subspace topology for $E$. }
+\end{gather}
+\end{theorem}
+\begin{proof}
+We prove
+\begin{gather}
+E\text{ has a proper non-trivial clopen subset in subspace topology for $E$}\\
+\liff E\text{ is a union of two non-empty separated sets }
+\end{gather}
+From \vi{left to right}, let $M\subseteq E$ be clopen in subspace topology of $E$ . We wish to show $M\text{ and }E\setminus M$ are separated, and we are done. \As{$M\text{ and }E\setminus M$ are not separated}. WOLG, let $x\in M'\cap (E\setminus M)$.\\
+
+ Because  $x\in E\setminus M$ and $E\setminus M$ is open in subspace topology of $E$, we know there exists open ball $B_r(x)$ such that $B_r(x)\cap E\subseteq E\setminus M$. Because  $x\in M'$, we know $B_r(x)$ contain infinite points in $M\tCaC$ to $B_r(x)\cap E\subseteq E\setminus M$. $\vdone$\\
+
+
+We now prove from \blue{right to left}. Let $A$ and  $B$ be separated and  $E=A\cup B$. We wish to show $A$ is clopen in subspace topology of  $E$. Notice we have 
+\begin{equation}
+A=\overline{A}\cup E
+\end{equation}
+so we know $A$ is closed in subspace topology of  $E$. Because we have
+\begin{equation}
+A\subseteq \overline{B}^c
+\end{equation}
+So we have
+\begin{equation}
+A=\overline{B}^c \cap E \bdone
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{3.4.5}
+\textbf{(Union of Connected Sets that have Nonempty Intersection is Connected)} Let $\mathcal{F}$ be a class of connected sets. We have 
+\begin{equation}
+\bigcap \mathcal{F}\neq \varnothing \implies \bigcup \mathcal{F}\text{ is connected }
+\end{equation}
+\end{theorem}
+\begin{proof}
+\As{$\bigcup \mathcal{F}$ is not connected}. Let 
+\begin{equation}
+\bigcup  \mathcal{F}= A \disjointunion B\text{ and }A\neq \varnothing\neq B
+\end{equation}
+And let $A,B$ be relatively open to  $\bigcup \mathcal{F}$. We know $\bigcap \mathcal{F}$ must intersect with either $A$, or  $B$, or both.\\
+
+WOLG, let
+\begin{equation}
+A\cap \bigcap \mathcal{F}\neq \varnothing
+\end{equation}
+Because $B$ is non-empty and $B\subseteq \bigcup \mathcal{F}$, we know $B$ must intersect with some $F_n\in \mathcal{F}$. Notice that because $A\cap \bigcap \mathcal{F}\neq \varnothing$, we have $A\cap F_n\neq \varnothing$. Then by \myref{Theorem}{3.3.8}, we see $A\cap F_n$ and $B\cap F_n$ are both relatively open to $F_n$, while $F_n= (A\cap F_n)\disjointunion (B\cap F_n)\tCaC$ 
+\end{proof}
+
+\section{Metric Space: Open}
+\begin{definition}
+\label{3.5.1}
 \textbf{(Definition of Open Ball)} Let $(X,d)$ be a metric space, we say the set
 \begin{equation}
 B_r(x)=\set{y \in X: d(x,y)<r}
@@ -2826,7 +3831,7 @@ B_r(x)=\set{y \in X: d(x,y)<r}
 is the open ball of radius $r$ around  $x$
 \end{definition}
 \begin{theorem}
-\label{2.3.4}
+\label{3.5.2}
 \textbf{(Basic Property of Open Ball)} If $r\leq h$, then  $B_r(x)\subseteq B_h(x)$.
 \end{theorem}
 \fbox{\begin{minipage}{39em}
@@ -2837,7 +3842,7 @@ Notice in $\R^1$, the open ball  $B_r(x)$ is just the interval $(x-r,x+r)$, and 
 The following first define interior points, then define open set from definition of interior points.
 \end{minipage}}
 \begin{definition}
-\label{2.3.5}
+\label{3.5.3}
 \textbf{(Definition of Interior Points and Open)} A point $p$ is an interior point of $E$ if 
 \begin{equation}
 \exists r\inr^+, B_r(x)\subseteq E
@@ -2848,23 +3853,23 @@ E^\circ =E
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.3.6}
+\label{3.5.4}
 \textbf{(Basic Property of Interior)} For all set $E$, we have  $E^\circ \subseteq E$
 \end{theorem}
 \fbox{\begin{minipage}{39em}
 Now, we prove an "open" ball is indeed open. The proof of such should of course be completely rigorous, but to come up with a proof rely more than rigor. One can and should try to use geometric intuition to form a proof, and try to rigorously formulate the proof to verify whether the idea also hold true in all metric spaces. \\
 
-Notice \myref{Theorem}{2.3.8} will prove that our definition of open do satisfy the axioms of open sets. In other words, every metric induce a topology. 
+Notice \myref{Theorem}{3.7.6} will prove that our definition of open do satisfy the axioms of open sets. In other words, every metric induce a topology. 
 \end{minipage}}
 \begin{theorem}
-\label{2.3.7}
+\label{3.5.5}
 \textbf{(Open Ball is Open)} Open ball is open.
 \end{theorem}
 \begin{proof}
   For each point $p\in B_r(x)$ with distance to the center $r'$, we can see the ball of radius  $r-r'$ centering $p$ is contained by $B_r(x)$.
 \end{proof}
 \begin{theorem}
-\label{2.3.8}
+\label{3.5.6}
 \textbf{(Compatibility of Definitions of Open)} 
 Let $\mathfrak{O}$ be the family of open set, by our definition of open in metric space $X$, we have
  \begin{equation}
@@ -2888,7 +3893,7 @@ For each point $p$ in an union of open sets, we know there exists an open set $O
 Now, we present some example of open sets in different metric spaces. Give clear notice that some open set in a sub-metric space may not be open in the larger metric space.
 \end{minipage}}
 \begin{theorem}
-\label{2.3.9}
+\label{3.5.7}
 \textbf{(Examples of Open Sets in Euclidean Metric Space)} The followings are open if not specified to be not open
 \begin{gather}
    (-\infty , a)\text{ in }\R\\
@@ -2907,7 +3912,7 @@ Now, we present some example of open sets in different metric spaces. Give clear
 \end{gather}
 \end{theorem}
 \begin{theorem}
-\label{2.3.10}
+\label{3.5.8}
 \textbf{(Example: Discrete Metric)} Discrete metric is defined as
 \begin{equation}
 d(x,y)=\begin{cases}
@@ -2921,7 +3926,7 @@ every set in discrete metric space is open.
 Every ball is either the whole space or the center, depending on if the radius is greater than $1$. Pick any ball of radius smaller than or equal to  $1$ and we are done.
 \end{proof}
 \begin{theorem}
-\label{2.3.11}
+\label{3.5.9}
 \textbf{(Subspace Topology)} Let $(X,d)$ be a metric space and let $(Y,d_Y)\subseteq (X,d)$, where $d_Y$ is the restriction of $d$. Let $\tau$ be the standard topology for $X$. The standard topology $\tau_Y$ for $(Y,d_Y)$ is exactly
 \begin{equation}
 \tau_Y=\set{O\cap Y: O\in \tau}
@@ -2958,15 +3963,18 @@ x\in B_{r_q}(q)\cap Y=B_{r_q}^Y(q)\subseteq O_Y\tdone \bdone
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{2.3.12}
-\textbf{(General Sufficient Condition for Open)} If a set $E$ miss only finite amount of point in $X$, then  $E$ is open.
+\label{3.5.10}
+\textbf{(General Sufficient Condition for Open)}
+\begin{equation}
+E\text{ is finite or }E^c\text{ is finite }\implies E\text{ is open }
+\end{equation}
 \end{theorem}
 \begin{proof}
 Verify for  $B_{\min \set{d(p,y):y\in E^c}}(p)$
 \end{proof}
 \section{Metric Space: Closed and Limit Point}
 \begin{definition}
-\label{2.4.1}
+\label{3.6.1}
 \textbf{(Definition of Limit Points and Closed)} A point $p$ is a limit point of $E$ if 
  \begin{equation}
 \forall r\inr^+, \exists q\neq p, q\in B_r(p) \cap E
@@ -2981,7 +3989,7 @@ E'\subseteq E
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.4.2}
+\label{3.6.2}
 \textbf{(Property of Limit Points)} Let $E\subseteq F$. We have
 \begin{equation}
 E'\subseteq F'
@@ -2991,24 +3999,24 @@ E'\subseteq F'
 If $p$ is a limit point of $E$, then we know every open ball centering $p$ non-trivially intersect with  $E$, which implies non-trivially intersecting with $F$. 
 \end{proof}
 \begin{theorem}
-\label{2.4.3}
+\label{3.6.3}
 \textbf{(Property of Limit Points)} If $p \in E'$, then every open neighborhood around $p$ non-trivially intersect with  $E$.
 \end{theorem}
 \begin{proof}
   Notice that an open neighborhood around $p$ must contain an open ball centering $p$.
 \end{proof}
 \fbox{\begin{minipage}{39em}
-    Notice \myref{Theorem}{2.4.3} is written in language of general topology. Now, we prove that our definition of closed and limit point in metric space is compatible to those in general topology. Then we can apply the result we have in general topology into metric space.
+    Notice \myref{Theorem}{3.12.3} is written in language of general topology. Now, we prove that our definition of closed and limit point in metric space is compatible to those in general topology. Then we can apply the result we have in general topology into metric space.
 \end{minipage}}
 \begin{theorem}
-\label{2.4.4}
+\label{3.6.4}
 \textbf{(Compatibility of Definition of Limit Point)} A point $p$ is a limit point of $E$ in metric space $(X,d)$ if and only if  $p$ is a limit point of $E$ in topology induced by $(X,d)$ 
 \end{theorem}
 \begin{proof}
 From left to right, notice every open neighborhood around $p$ contain an open ball centering $p$. From right to left, notice every open ball is an open neighborhood.
 \end{proof}
 \begin{theorem}
-\label{2.4.5}
+\label{3.6.5}
 \textbf{(Compatibility of Definition of Open and Closed)} 
 Let $\mathfrak{O},\mathfrak{F}$ respectively be the family of open sets and family of closed set under our metric definition. We have
 \begin{equation}
@@ -3021,7 +4029,7 @@ From left to right, let $p$ be a limit point of $E^c$. If $p$ is not in $E^c$, w
 From right to left, let $p\in E$. Because $p$ is not a limit point of $E^c$, we know there exists an open ball centering $p$ disjoint $E^c$, that is, contained by  $E$.
 \end{proof}
 \begin{corollary}
-\label{2.4.6}
+\label{3.6.6}
 \textbf{(Axioms for Closed Sets)} Let $\mathfrak{F}$ be the family of closed sets under our metric definition. We have
 \begin{gather}
 X,\varnothing \in \mathfrak{F}\\
@@ -3030,12 +4038,12 @@ A,B\in\mathfrak{F}\implies A\cup  B\in\mathfrak{F}\\
 \end{gather}
 \end{corollary}
 \fbox{\begin{minipage}{39em}
-Notice \myref{Corollary}{2.4.6} is proved using language of general topology in the first section of this chapter. I personally haven't tried to prove \myref{Corollary}{2.4.6} using limit point definition, but I think this won't be difficult.\\
+Notice \myref{Corollary}{3.7.6} is proved using language of general topology in the first section of this chapter. I personally haven't tried to prove \myref{Corollary}{3.7.6} using limit point definition, but I think this won't be difficult.\\
 
 Again, we now give some examples of closed set. One can see that the proof for some sets are closed if following straight from the limit point definition is extremely long: One have to first find the set of limit points, by checking every points whether for all real number a property stand, and then check if the set of limit points is a subset of $E$. A possible optimal way is proving the complement is open, since proving something is open is more.
 \end{minipage}}
 \begin{theorem}
-\label{2.4.7}
+\label{3.6.7}
 \textbf{(Example of Closed Sets in Euclidean Metric Space)} The followings are closed set if not specified.
 \begin{gather}
 [a,b]\text{ in }\R\\
@@ -3055,15 +4063,15 @@ Again, we now give some examples of closed set. One can see that the proof for s
 \end{gather}
 \end{theorem}
 \begin{theorem}
-\label{2.4.8}
+\label{3.6.8}
 \textbf{(Example: Discrete Metric)} Every set in discrete metric space is closed.
 \end{theorem}
 \begin{theorem}
-\label{2.4.9}
+\label{3.6.9}
 \textbf{(Subspace Topology)} Let $Y\subseteq X$. If $p$ is a limit point of $E\cap Y$ in $Y$, then $p$ is a limit point of  $E$ in $X$. 
 \end{theorem}
 \begin{corollary}
-\label{2.4.10}
+\label{3.6.10}
 \textbf{(Subspace Topology)} Let $(X,d)$ be a metric space and let $(Y,d_Y)\subseteq (X,d)$, where $d_Y$ is the restriction of $d$. Let $\tau^c$ be the family of closed set with respect to $X$, and let $\tau^c_Y$ be the family of closed set with respect to $Y$. We have
 \begin{equation}
 \tau^c_Y=\set{F\cap Y:F\in \tau^c}
@@ -3077,38 +4085,148 @@ If $p\in Y$ is a limit point of $F\cap Y$ in $Y$, then  $p$ is a limit point of 
 For each $F_Y\in \tau_Y^c$, we know $Y\setminus F_Y$ is open with respect to $Y$. Then we know there exists open $O\in\tau$ such that $O\cap Y=Y\setminus F_Y$. Then we have $O^c \cap Y=F_Y\vdone$
 \end{proof}
 \begin{theorem}
-\label{2.4.11}
+\label{3.6.11}
 \textbf{(General Sufficient Condition for Closed)} If a set $E$ is finite, it is closed.
 \end{theorem}
+\section{Metric Space: Cauchy Sequence}
+\fbox{\begin{minipage}{39em}
+We first introduce sequence and convergence.
+\end{minipage}}
+\begin{definition}
+\label{3.7.1}
+\textbf{(Definition of Convergence in Metric Space)} Let $X$ be a metric space. We say $\set{a_n}$ converge to $a$
+ \begin{equation}
+\lim_{n\to\infty}a_n=a
+\end{equation}
+If 
+\begin{equation}
+\forall \epsilon \inr^+,\exists N_\epsilon\inn , n>N_\epsilon \implies  d(a_n,a)<\epsilon 
+\end{equation}
+\end{definition}
+\fbox{\begin{minipage}{39em}
+We now introduce two properties concerning limit and convergence.  
+\end{minipage}}
+\begin{theorem}
+\label{3.7.2}
+\textbf{(In Metric Space, Sequence Converge to At Most One Point)} Let $\set{a_n}$ be a sequence in $(X,d)$. We have
+\begin{equation}
+\lim_{n\to\infty} a_n=a\text{ and }\lim_{n\to\infty} a_n=a'\implies a'=a
+\end{equation}
+\end{theorem}
+\begin{proof}
+Consider when $\epsilon =\frac{d(a,a')}{2}$
+\end{proof}
+\begin{theorem}
+\label{3.7.3}
+\textbf{(Limit Point is Limit of Some Sequence)} Let $E\subseteq X$ and let $p$ be a limit point of $E$. There exists a sequence $\set{p_n}$ in $E$  such that
+\begin{equation}
+\lim_{n\to\infty}p_n=p
+\end{equation}
+\end{theorem}
+\begin{proof}
+For each $k\inn$, we know there exists point  $q\in E$ in open ball $B_{\frac{1}{k}}(p)$. For each $k\inn$, let such $q$ be  $p_k$. 
+\end{proof}
+\begin{theorem}
+\label{3.7.4}
+\textbf{(Basic Property for Convergence Sequence)} Let $X$ be a metric space. We have
+\begin{equation}
+\lim_{n\to\infty}a_n=a\iff  \text{ every open ball $B_r(a)$ contain all but finitely many term of $\set{a_n}$ }
+\end{equation}
+\end{theorem}
+\begin{proof}
+From left to right is trivial. From right to left, let $k$ be the greatest natural such that $a_k\in \set{a_n}\cap B_r(a)$. Use $N=k+1$ and we are done.
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now introduce two equivalent definition of bounded.
+\end{minipage}}
+\begin{definition}
+\label{3.7.5}
+\textbf{(Definition of Bounded)} We say a set $E$ is bounded if there exists some open ball $B_r(p)$ that contain $E$.
+\end{definition}
+\begin{theorem}
+\label{3.7.6}
+\textbf{(Equivalent Definition of Bounded)} 
+\begin{equation}
+E\text{ is bounded }\iff \exists r\inr^+, \forall p,q\in E, d(p,q)<r 
+\end{equation}
+\end{theorem}
+\begin{proof}
+From left to right, notice that every two points in $B_r(p)$ is of distance smaller than $2r$. From right to left, verify $B_r(p)$. 
+\end{proof}
+\begin{theorem}
+\label{3.7.7}
+\textbf{(Converge Implies Bounded)}
+\begin{equation}
+\lim_{n\to\infty} a_n=a\implies \set{a_n}\text{ is bounded }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Fix $r $. Because $\set{a_n}$ converge to $a$, there exists $N_\epsilon \inn$ such that $n> N_r \implies a_n\in B_r (a)$. We know the ball $B_r(a)$ contain all but finitely many points of $\set{a_n}$. Then we know there exists a point in $\set{a_n}$ that is most far from $a$. Denote the most far point from $a$ by $a_k$. Observe that  $B_{d(a,a_k)+1}(a)$ contain $\set{a_n}$. 
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now introduce Cauchy Sequence
+\end{minipage}}
+\begin{definition}
+\label{3.7.8}
+\textbf{(Definition of Cauchy Sequence)} We say $\set{a_n}$ is a Cauchy sequence if 
+\begin{equation}
+\forall \epsilon \inr^+,\exists N_\epsilon\inn, m,k>N_\epsilon  \implies d(m,k)<\epsilon 
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{3.7.9}
+\textbf{(Every Convergent Sequence is Cauchy)} We have
+\begin{equation}
+\set{a_n}\text{ is convergent }\implies \set{a_n}\text{ is Cauchy }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $\set{a_n}$ converge to $a$.  Notice every two point is  $\epsilon$-close in $B_{\frac{\epsilon }{2}}(a)$. 
+\end{proof}
+\section{Metric Space: Continuous Function}
+\begin{definition}
+\label{3.8.1}
+\textbf{(Limit of a Function)} Let $f:X\rightarrow Y$ 
+\end{definition}
+\begin{definition}
+\label{3.8.2}
+\textbf{(Definition of Continuous at a Point)} We say $f:X\rightarrow Y$ is continuous at $a$ if 
+ \begin{equation}
+f(a)\text{ is defined and }\forall \epsilon\inr^+,\exists \delta\inr^+, x\in B_\delta(a)\implies d(f(x),f(a))<\epsilon 
+\end{equation}
+\end{definition}
+
+
+
 
 
 \section{Metric Space: Interior, Closure and Limit Points}
 \begin{definition}
-\label{2.5.1}
+\label{3.9.1}
 \textbf{(Definition of Closure)} We define the closure $\overline{E}$ of $E$ to be
 \begin{equation}
 \overline{E}=E'\cup E
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.5.2}
+\label{3.9.2}
 \textbf{(Property of Limit Points)} If $p$ is not in $\overline{E}$, then there exists $B_r(p)$ disjoint $E$.
 \end{theorem} 
 \begin{proof}
   Because $p$ is not in $E'$, we know  there exists an open ball $B(p)$ not intersecting with  $E$ at everywhere expect possibly  $p$. We know  $p$ is not in $E$, so we know  $B(p)$ is disjoint with $E$.
 \end{proof}
 \begin{theorem}
-\label{2.5.3}
+\label{3.9.3}
 \textbf{(Property of Closure and Interior)} Let $E\subseteq F$. We have
 \begin{equation}
 E^\circ \subseteq F^\circ\text{ and }\overline{E}\subseteq \overline{F}
 \end{equation}
 \end{theorem}
 \begin{proof}
-For $E^\circ \subseteq F^\circ $, notice an open ball contained by $E$ is also contained by $F$. For  $\overline{E}\subseteq \overline{F}$, notice $E'\subseteq F'$, by \myref{Theorem}{2.4.2}
+For $E^\circ \subseteq F^\circ $, notice an open ball contained by $E$ is also contained by $F$. For  $\overline{E}\subseteq \overline{F}$, notice $E'\subseteq F'$, by \myref{Theorem}{3.10.2}
 \end{proof}
 \begin{theorem}
-\label{2.5.4}
+\label{3.9.4}
 \textbf{(Property (definition) of Closure and Interior)} 
 \begin{gather}
 \text{ $\overline{E}$ is the smallest closed set containing $E$ }\\
@@ -3130,7 +4248,7 @@ Let $p$ be an interior point of $E$. We know there exists an open ball  $B_r(p)$
 Let $O$ be an open set contained by $E$, if  $O$ contain any point $q$ not in interior, then there exists an open ball $B_r(q)$ contained in $O$ and containing a point not in $E$, which is impossible.  
 \end{proof}
 \begin{corollary}
-\label{2.5.5}
+\label{3.9.5}
 \textbf{(Property of Closure)}
 \begin{equation}
 \text{ $E$ is closed $\iff \overline{E}=E$ }
@@ -3140,12 +4258,12 @@ Let $O$ be an open set contained by $E$, if  $O$ contain any point $q$ not in in
 \end{equation}
 \end{corollary}
 \fbox{\begin{minipage}{39em}
-Also, notice \myref{Theorem}{2.5.3} have been proved in language of general topology, and here we give a simple proof in language of metric.\\
+Also, notice \myref{Theorem}{3.10.1} have been proved in language of general topology, and here we give a simple proof in language of metric.\\
 
 Lastly, we show some result in metric topology.
 \end{minipage}}
 \begin{theorem}
-\label{2.5.6}
+\label{3.9.6}
 \textbf{(A Point is Limit Point if and only if All Open Ball Contain Infinite Point of $E$)} 
 \end{theorem}
 \begin{proof}
@@ -3154,179 +4272,36 @@ Lastly, we show some result in metric topology.
   From left to right, let $p$ be a limit point of  $E$. If an open ball $B_r(p)$ contain only finite amount of point in $E$, we can let $r'=\min \set{d(p,q):q\in B_r(p)\cap E}$ and verify  $B_{r'}(p)$ contain no point in $E$, which is impossible. 
 \end{proof}
 \begin{corollary}
-\label{2.5.7}
+\label{3.9.7}
 \textbf{(Finite Points Set In Metric Topology has no Limit Points)} 
 \end{corollary}
 \begin{corollary}
-\label{2.5.8}
+\label{3.9.8}
 \textbf{(Finite Points Set In Metric Topology is Always Clopen)} \end{corollary}
 \begin{proof}
 For closed, we can prove the complement is open or use above corollary. For open, verify for $B_{\min \set{d(x,y):y \in O}}(x)$. 
 \end{proof}
 \begin{theorem}
-\label{2.5.9}
+\label{3.9.9}
 \textbf{(Counter Example of Above Statement in General Topology)} Let $X=\set{a,b,c}$ and define $\mathfrak{O}:=\set{\varnothing,X}$. We have 
 \begin{equation}
 \set{a,b}'=X
 \end{equation}
 Not only does $\set{a,b}$ has limit point, also the neighborhood $X$ around limit point contain only finite points. Notice $\set{a,b}$ is neither open nor closed.
 \end{theorem}
-\section{General Topology: Three Non-Equivalent Compactness and Separable}
-\fbox{\begin{minipage}{39em}
-In this section, we will first give two equivalent definition of base and prove they are equivalent.
-\end{minipage}}
-\begin{definition}
-\label{2.6.1}
-\textbf{(Definition of Base)} We say a sub-collection $\mathcal{O}$ of topology $\tau$ on $X$ is a base if every open neighborhood $O$ around $x$ contain an open set $U$ in $\mathcal{O}$ containing $U$. That is
-\begin{equation}
-\forall x\in X, \forall O\in\tau:x\in O,\exists U\in \mathcal{O}, x\in U\subseteq O
-\end{equation}
-We call open sets in a base basic open sets.
-\end{definition}
-\begin{theorem}
-\label{2.6.2}
-\textbf{(Equivalent Definition of Base)} A sub-collection of topology $\tau$ is a base if and only if every open set can be expressed as a union of a set of basic open sets. That is, the necessary and sufficient condition for $\mathcal{O}$ to be a base is 
-\begin{equation}
-\forall O\in \tau, \exists \mathcal{U}\subseteq \mathcal{O}, O=\bigcup \mathcal{U}
-\end{equation}
-\end{theorem}
-\begin{proof}
-  From left to right, for each point $x\in O$, we know there exists $U_x\in \mathcal{O}$ such that $x\in U_x\subseteq O$. Collect $U_x$ for each $x\in O$ as $\mathcal{U}$, and we are partially done.\\
-
-  From right to left, let $O$ be an open neighborhood around $x$. If there exists no $U\in \mathcal{O}$ such that $x\in U\subseteq O$, then every union of sub-collection $\mathcal{U}\subseteq\mathcal{O}$ that contain $x$ contain some points not in  $O$, which is impossible.  
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Then, we will define separable, and give a sufficient condition of separable.
-\end{minipage}}
-\begin{definition}
-\label{2.6.3}
-\textbf{(Definition of Separable)} We say $X$ is separable if 
-\begin{equation}
-  X\text{ has a countable dense subset }
-\end{equation}
-\end{definition}
-\begin{theorem}
-\label{2.6.4}
-\textbf{(Base and Dense Set)} 
-\begin{equation}
-\text{ A set intersecting with all basic open set is dense }
-\end{equation}
-\end{theorem}
-\begin{proof}
-For each point $p$ not in $A$ and for each open neighborhood $N_p$ around $p$, there exists an basic open set  $O_p$ contained by $N_p$. The fact  $O_p$ intersect $A$ implies  $N_p$ intersect with  $A$. We have proved every point  $p$ not in $A $ is a limit point of $A$.
-\end{proof}
-\begin{corollary}
-\label{2.6.5}
-\textbf{(Countable Base Implies Separable)} 
-\begin{equation}
-X\text{ has a countable base }\implies X\text{ is separable }
-\end{equation}
-\end{corollary}
-\begin{proof}
-Let $\mathcal{O}$ be a countable base for $X$. For each $O\in \mathcal{O}$, we can collect a point $x_O\in O$, and have $A:=\set{x_O:O\in \mathcal{O}}$. Because $\mathcal{O}$ is countable, we know $A$ is countable, and by  \myref{Theorem}{2.6.4}, we know $A$ is dense.
-\end{proof}
-\fbox{\begin{minipage}{39em}
-The above let us draw a Venn diagram, where existence of countable base is a small circle in the big circle separable.\\
-
-Now, we give definition of three different compactness.
-\end{minipage}}
-\begin{definition}
-\label{2.6.6}
-\textbf{(Definition of Open Cover)} We say a collection $\set{G_\alpha  }$ of open sets is an open cover of $E$ if 
-\begin{equation}
-E\subseteq \bigcup \set{G_\alpha }
-\end{equation}
-\end{definition}
-\begin{definition}
-\label{2.6.7}
-\textbf{(Definition of Compact Space)} We say a topological space $X$ is compact if  
-\begin{equation}
-\text{every open cover for $X$ has a finite open sub-cover}
-\end{equation}
-\end{definition}
-\begin{definition}
-\label{2.6.8}
-\textbf{(Definition of Countably Compact Space)} We say a topological space $X$ is countably compact if 
-\begin{equation}
-\text{every countable open cover for $X$ has a finite open sub-cover}
-\end{equation}
-\end{definition}
-\begin{definition}
-\label{2.6.9}
-\textbf{(Definition of Limit Point Compact Space)} We say a topological space $X$ is limit point compact if 
-\begin{equation}
-\text{every infinite subset of $X$ has a limit point}
-\end{equation}
-\end{definition}
-\fbox{\begin{minipage}{39em}
-It is clear that compact implies countably compact, as every countable cover in compact space has a finite sub-cover. We now explore the relation of the three compactness.
-\end{minipage}}
-\begin{theorem}
-\label{2.6.10}
-\textbf{(Compact Implies Countably Compact)} 
-\begin{equation}
- X\text{ is compact }\implies X\text{ is countably compact }
-\end{equation}
-\end{theorem}
-\begin{theorem}
-\label{2.6.11}
-\textbf{(Countably Compact Implies Limit Point Compact)} 
-\begin{equation}
-X\text{ is countably compact }\implies X\text{ is limit point compact }
-\end{equation}
-\end{theorem}
-\begin{proof}
-Arbitrarily pick an infinite $A$. We know  $A$ is either countable or uncountable. We first prove  \vi{if $A$ is countably infinite, then $A$ has a limit point}.\\
-
-\As{$A$ has no limit point}. For each $a\in A$, because $a$ is not a limit point of $A$, we know there exists an open neighborhood  $O_a$ around $a$ such that  $O_a\cap A=\set{a}$. Notice that $A$ has no limit point let us deduce
-\begin{equation}
-A'=\varnothing \implies \overline{A}=A\implies A^c\text{ is open }
-\end{equation}
-For each $a\in A$, collect one $O_a$ into the collection $\mathcal{O}=\set{O_a:a\inA}$.\\
-
-Then, because $A$ is countable, we see $\mathcal{O}\cup \set{A^c}$ is an countable cover for $X$, and every finite open sub-cover contain only finite amount of point of $A$ when  $A$ is infinite. \CaC $\vdone$\\
-
-If $A$ is uncountable, then  $A$ contain a countable set  $B$. We know  $B$ has a limit point  $p$, and we know  $p$ is also a limit point for $A$.
-\end{proof}
-\begin{corollary}
-\label{2.6.12}
-\textbf{(Compact Implies Limit Point Compact)} If $X$ is compact, then $X$ is limit point compact.
-\end{corollary}
-\fbox{\begin{minipage}{39em}
-Lastly, we give a theorem involving countable base.
-\end{minipage}}
-\begin{theorem}
-\label{2.6.13}
-\textbf{(Existence of Countable Base Implies Existence of Countable Sub-Cover)} 
-\begin{equation}
-X\text{ has a countable base }\implies\text{every open cover for $X$ has a countable sub-cover}
-\end{equation}
-\end{theorem}
-\begin{proof}
-Let $\mathcal{O}$ be a countable base for $X$ and let $\mathcal{G}$ be an open cover of $X$. We wish to find an countable open sub-cover of $\mathcal{G}$.\\
-
-Because $\mathcal{O}$ is a base, for each $G\in \mathcal{G}$, there exists basic open set $O\in \mathcal{O}$ contained by $G$. Then because  $\mathcal{G}$ is an open cover, for each $p\in X$, there exists $G_p,O_p$ such that
-\begin{equation}
-p\in O_p\subseteq G_p
-\end{equation}
-Collect all $G_p$ from above so we have a sub-cover $\mathcal{G}'$. Because $\mathcal{O}$ is countable, we know $\mathcal{G}'$ is also countable.
-\end{proof}
-\fbox{\begin{minipage}{39em}
-Now, if we want to draw a conclusion for this section by drawing a Venn diagram, we should first draw compact inside countably compact inside limit point compact. 
-\end{minipage}}
 \section{Metric Space: Compact, Countably Compact and Limit Point Compact}
 \fbox{\begin{minipage}{39em}
 There are three tools we need to prove the MEGA TFAE. 
 \end{minipage}}
 \begin{theorem}
-\label{2.7.1}
+\label{3.10.1}
 \textbf{(In Metric Space, Existence of Countable Base is Equivalent to Separable)} Let $(X,d)$ be a metric space. 
 \begin{equation}
 X\text{ has a countable base }\iff  X\text{ is separable }
 \end{equation}
 \end{theorem}
 \begin{proof}
-Because by \myref{Corollary}{2.6.5}, $X$ is separable if  $X$ has a countable base, we only have to prove separable implies existence of countable base. Let $X$ be separable. Then we have a countable dense subset $E$ of $X$. We now prove
+Because by \myref{Corollary}{3.12.5}, $X$ is separable if  $X$ has a countable base, we only have to prove separable implies existence of countable base. Let $X$ be separable. Then we have a countable dense subset $E$ of $X$. We now prove
 \vi{
  \begin{equation}
 \mathcal{O}:=\set{B_r(p):p\in E\text{ and }r\inq} 
@@ -3346,7 +4321,7 @@ x\in B_n(q)\subseteq B_r(x)\subseteq O\text{ and }B_n(q)\in \mathcal{O}
 and we are done. $\vdone$
 \end{proof}
 \begin{lemma}
-\label{2.7.2}
+\label{3.10.2}
 \textbf{(Existence of Intuitively Small Enough Open Ball)} Let $p\in  B_r(q)$. There exists an open ball $B_{r'}(p)$ small enough to be contained by $B_r(q)$ and not containing $q$ 
 \end{lemma}
 \begin{proof}
@@ -3361,7 +4336,7 @@ If $d(p,q)\geq \frac{r}{2}$, we can let $r'=r-d(p,q)$. Clearly $B_{r'}(p)\subset
 so we have $q\in B_{r'}(p)$. In short, we use the open ball  $B_{\min \set{d(p,q),r-d(p,q)}}(p)$
 \end{proof}
 \begin{theorem}
-\label{2.7.3}
+\label{3.10.3}
 \textbf{(In Metric Space, Limit Point Compact Implies Separable)} Let $K$ be a metric space.
 \begin{equation}
 K\text{ is limit point compact }\implies K\text{ is separable }
@@ -3384,7 +4359,7 @@ E=\bigcup \set{B_\delta(a_{\delta,i}):a_{\delta,i}\in A^\N}
 \end{equation}
 Notice that each ball $B_{\delta}(a_{\delta,i})$ must not contain any other $a_{\delta,j}$.\\
 
-If $p$ is in $E$, we know $p$ is contained by some ball  $B_{\delta}(a_{\delta,i})$. If $p=a_{\delta,i}$  then $B_{\delta}(p)$ is small enough. If $p\neq a_{\delta,i}$, we wish to find an open ball $B_r(p)$ small enough so that it neither contain $a_{\delta,i}$ nor any other $a_{\delta,j}$. Notice that if the ball $B_r(p)$ is contained by $B_\delta(a_{\delta,i})$, then $B_r(p)$ contain no $a_{\delta,j}$. By \myref{Lemma}{2.7.2}, we have found an open ball small enough to satisfy our need.\\
+If $p$ is in $E$, we know $p$ is contained by some ball  $B_{\delta}(a_{\delta,i})$. If $p=a_{\delta,i}$  then $B_{\delta}(p)$ is small enough. If $p\neq a_{\delta,i}$, we wish to find an open ball $B_r(p)$ small enough so that it neither contain $a_{\delta,i}$ nor any other $a_{\delta,j}$. Notice that if the ball $B_r(p)$ is contained by $B_\delta(a_{\delta,i})$, then $B_r(p)$ contain no $a_{\delta,j}$. By \myref{Lemma}{3.12.2}, we have found an open ball small enough to satisfy our need.\\
 
 If $p$ is not in $E$, clearly $B_{\delta}(p)$ is small enough.\\
 
@@ -3400,11 +4375,11 @@ Because $A$ is a countable union of finite sets, we know $A$ is countable. We no
 Arbitrarily pick $p\in K\setminus A$. For each open ball $B_r(p)$, there exists $\frac{1}{n}$ small enough to be smaller than $r$ to give us $p\in B_{\frac{1}{n}}(a)$ for some $a\in A_{\frac{1}{n}}$, and give us $a\in B_{\frac{1}{n}}(p)\subseteq B_r(p)\bdone$
 \end{proof}
 \begin{theorem}
-\label{2.7.4}
+\label{3.10.4}
 \textbf{(In Metric Space, Limit Point Compact Implies Compact)} 
 \end{theorem}
 \begin{proof}
-  Let $\mathcal{G}$ be an open cover for $K$. By \myref{Theorem}{2.7.3}, we know $K$ is separable. Then by  \myref{Theorem}{2.7.1}, we know $K$ has a countable base. Then by \myref{Theorem}{2.6.13}, we know $\mathcal{G}$ contain a countable sub-cover
+  Let $\mathcal{G}$ be an open cover for $K$. By \myref{Theorem}{3.12.3}, we know $K$ is separable. Then by  \myref{Theorem}{3.12.1}, we know $K$ has a countable base. Then by \myref{Theorem}{2.3.13}, we know $\mathcal{G}$ contain a countable sub-cover
   \begin{equation}
   \set{G_i}_{i\inn}
   \end{equation}
@@ -3428,13 +4403,13 @@ We know $E_n$ converge to  $K$, that is
 \end{equation}
 Because $K$ is limit point compact, we know $\set{x_i}_{i=1}^\infty$ has a limit point $p$.\\
 
-Because $\set{G_i}_{i=1}^\infty$ is an open cover, we know $p\in G_n$ for some $n$. Then we know there exist open ball $B_r(p)$ small enough to be contained by $G_n$. Notice  $B_r(p)$ is contained by $G_n$ implies $B_r(p)$ is contained by $E_n$, so we know  $B_r(p)$ at best contain all $x_j$ where  $j\leq n\tCaC$ to \myref{Theorem}{2.5.6} $\vdone$
+Because $\set{G_i}_{i=1}^\infty$ is an open cover, we know $p\in G_n$ for some $n$. Then we know there exist open ball $B_r(p)$ small enough to be contained by $G_n$. Notice  $B_r(p)$ is contained by $G_n$ implies $B_r(p)$ is contained by $E_n$, so we know  $B_r(p)$ at best contain all $x_j$ where  $j\leq n\tCaC$ to \myref{Theorem}{3.7.4} $\vdone$
 \end{proof}
 \fbox{\begin{minipage}{39em}
 We now prove the MEGA TFAE.
 \end{minipage}}
 \begin{theorem}
-\label{2.7.5}
+\label{3.10.5}
 \textbf{(In Metric Space, Limit Point Compact is Equivalent to Compact)} For metric space $K$, the followings three are equivalent
 \begin{enumerate}[label=(\alph*)]
   \item $K$ is a limit point compact space
@@ -3452,29 +4427,29 @@ and all above implies
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-In \myref{Theorem}{2.6.5}, we prove that if $K$ has a count base then $K$ is separable by collecting one point from each basic open set, and in \myref{Theorem}{2.7.1}, we construct a countable base by collecting all open balls of rational radius around each point in the countable dense subset.\\
+In \myref{Theorem}{3.12.5}, we prove that if $K$ has a count base then $K$ is separable by collecting one point from each basic open set, and in \myref{Theorem}{3.12.1}, we construct a countable base by collecting all open balls of rational radius around each point in the countable dense subset.\\
 
-In \myref{Theorem}{2.7.3}, we prove if $K$ is limit point compact then  $K$ is separable. We proved such by covering $K$ with open ball of radius $\frac{1}{n}$ for each $n\inn$, and argue the set of centers $A$ is countable by proving to cover $K$ always require only finite amount of point (which is easy to see if one know $K$ is bounded, but our method here is to show if require infinite centers, then the set of infinite centers has no limit point, which is also easy to see if one use geometric intuition), and argue that each point $p$ that isn't in $A$ is a limit point of $A$ by arguing for each distance $r$, there exists an  $a\in A$ closed enough to be closer to $p$ than $r$.\\
+In \myref{Theorem}{3.12.3}, we prove if $K$ is limit point compact then  $K$ is separable. We proved such by covering $K$ with open ball of radius $\frac{1}{n}$ for each $n\inn$, and argue the set of centers $A$ is countable by proving to cover $K$ always require only finite amount of point (which is easy to see if one know $K$ is bounded, but our method here is to show if require infinite centers, then the set of infinite centers has no limit point, which is also easy to see if one use geometric intuition), and argue that each point $p$ that isn't in $A$ is a limit point of $A$ by arguing for each distance $r$, there exists an  $a\in A$ closed enough to be closer to $p$ than $r$.\\
 
-One may observe, at the end of the proof for \myref{Theorem}{2.7.3}, we also construct a countable base for $K$.\\
+One may observe, at the end of the proof for \myref{Theorem}{3.12.3}, we also construct a countable base for $K$.\\
 
-In  \myref{Theorem}{2.6.13}, we prove if  $K$ has a countable base then every open cover for  $K$ has a countable sub-cover by filtering the open cover with countable base.\\
+In  \myref{Theorem}{2.3.13}, we prove if  $K$ has a countable base then every open cover for  $K$ has a countable sub-cover by filtering the open cover with countable base.\\
 
 Notice that we have proved that if $K$ is limit point compact, then  $K$ is separable, has a countable base and every open cover for  $K$ has a countable sub-cover.\\
 
-Then, in \myref{Theorem}{2.7.4}, we proved that if $K$ is limit point compact, the countable sub-cover $\set{G_i}_{i\inn}$ for $K$ must has a finite sub-cover $\set{G_i}_{i=1}^m$, otherwise we can construct an infinite set $\set{x_i}_{i=1}^\infty$ by picking a point from area that isn't covered by $\set{G_i}_{i=1}^n$ for each natural $n$, and show that the limit point of $\set{x_i}_{i=1}^\infty$, being in some $G_n$, must contain at most of  $n$ amount of points of  $\set{x_i}_{i=1}^\infty$, which is impossible.\\
+Then, in \myref{Theorem}{3.12.4}, we proved that if $K$ is limit point compact, the countable sub-cover $\set{G_i}_{i\inn}$ for $K$ must has a finite sub-cover $\set{G_i}_{i=1}^m$, otherwise we can construct an infinite set $\set{x_i}_{i=1}^\infty$ by picking a point from area that isn't covered by $\set{G_i}_{i=1}^n$ for each natural $n$, and show that the limit point of $\set{x_i}_{i=1}^\infty$, being in some $G_n$, must contain at most of  $n$ amount of points of  $\set{x_i}_{i=1}^\infty$, which is impossible.\\
 
-It is clear that $K$ is compact implies $K$ is countably compact. In  \myref{Theorem}{2.6.11}, we proved if $K$ is countably compact, then $K$ is limit point compact by showing if no point is a limit point of a countably infinite set $A$, then for each point $a\in A$, we can find an open neighborhood around $a$ small enough to contain only one point in $A$, i.e.  $a$ itself, and the collection of such small enough open neighborhood and  $A^c$ form an open cover that has no finite sub-cover, as any finite sub-cover contain only finite amount of point in  $A$, and observe every uncountable set must contain some countable set thus also have a limit point.\\
+It is clear that $K$ is compact implies $K$ is countably compact. In  \myref{Theorem}{3.6.11}, we proved if $K$ is countably compact, then $K$ is limit point compact by showing if no point is a limit point of a countably infinite set $A$, then for each point $a\in A$, we can find an open neighborhood around $a$ small enough to contain only one point in $A$, i.e.  $a$ itself, and the collection of such small enough open neighborhood and  $A^c$ form an open cover that has no finite sub-cover, as any finite sub-cover contain only finite amount of point in  $A$, and observe every uncountable set must contain some countable set thus also have a limit point.\\
 
 In summary 
 \begin{gather}
-\text{(2)$\implies $(1) by \myref{Corollary}{2.6.5}}\\
-\text{(1)$\implies $(2) by \myref{Theorem}{2.7.1}}\\
-\text{(a)$\implies $(1) and (2) by \myref{Theorem}{2.7.3}}\\
-\text{(2)$\implies $(i) by \myref{Theorem}{2.6.13}}\\
-\text{(a)$\implies $(b) by \myref{Theorem}{2.7.4}, which use  (i)}\\
-\text{(b)$\implies$(c) by \myref{Theorem}{2.6.10}, which is trivial}\\
-\text{(c)$\implies $(a) by \myref{Theorem}{2.6.11}}
+\text{(2)$\implies $(1) by \myref{Corollary}{3.12.5}}\\
+\text{(1)$\implies $(2) by \myref{Theorem}{3.12.1}}\\
+\text{(a)$\implies $(1) and (2) by \myref{Theorem}{3.12.3}}\\
+\text{(2)$\implies $(i) by \myref{Theorem}{2.3.13}}\\
+\text{(a)$\implies $(b) by \myref{Theorem}{3.12.4}, which use  (i)}\\
+\text{(b)$\implies$(c) by \myref{Theorem}{3.6.10}, which is trivial}\\
+\text{(c)$\implies $(a) by \myref{Theorem}{3.6.11}}
 \end{gather}
 \end{proof}
 \fbox{\begin{minipage}{39em}
@@ -3485,14 +4460,14 @@ Above is a very important result. One must know how to prove such.
 Notice there is a difference between compact space and compact set
 \end{minipage}}
 \begin{definition}
-\label{2.8.1}
+\label{3.11.1}
 \textbf{(Definition of Compact Subset)} Let $X$ be a metric space, we say  $K\subseteq X$ is a compact subset if
 \begin{equation}
 \text{ every open cover for $K$ has a finite sub-cover}
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.8.2}
+\label{3.11.2}
 \textbf{(Compact Subset is itself a Compact Space)} 
 \begin{equation}
 \text{ A compact subset regarded as a metric space is compact }
@@ -3506,7 +4481,7 @@ Let $K$ be a compact subset, and regard  $K$ as a metric space. Let $\set{G_\ld 
 Because $\set{G_\ld }$ is an open cover for $K$ with respect to  $K$, we know  $\set{G_i}$ is an open cover for $K$.  Then because $K$ is compact, there exists a finite sub-cover  $\set{G_j}$. Notice $\set{G_j\cap K}$ is a finite sub-cover for $K$ with respect to  $K$.
 \end{proof}
 \begin{theorem}
-\label{2.8.3}
+\label{3.11.3}
 \textbf{(Compact Sets Are Closed)} Let $X$ be a metric space, and let $K\subseteq X$
 \begin{equation}
 K\text{ is compact }\implies K\text{ is closed }
@@ -3530,11 +4505,11 @@ Then we have
 d(p,q)+d(q,k_i)< r+\frac{d(k_i,p)}{2}\leq d(k_i,p)\tCaC\vdone
 \end{equation}
 \begin{definition}
-\label{2.8.4}
+\label{3.11.4}
 \textbf{(Definition of Bounded)} Let $X$ be a metric space, we say $E\subseteq X$ is bounded if there exists an open ball $B_r(p)$ centering some $p$ in $E$, that contained $E$
 \end{definition}
 \begin{theorem}
-\label{2.8.5}
+\label{3.11.5}
 \textbf{(Compact Sets are Bounded)} Let $X$ be a metric space and $K\subseteq X$. We have
 \begin{equation}
 K\text{ is compact }\implies K\text{ is bounded }
@@ -3548,7 +4523,7 @@ K\setminus B_n(q)\neq \varnothing
 Then we can construct a sequence $\set{x_n}_{n\inn}$ by arbitrarily picking $x_n$ from $K\setminus B_n(q)$ for each $n\inn$. Because  $K$ is compact implies $K$ is limit point compact, we know $\set{x_n}_{n\inn}$ has a limit point  $p$ in  $K$. Let $r=d(p,q)$, and let $m$ be the smallest natural greater than  $r$. Because $B_{m-r}(p)$ is contained by $B_m(q)$, we know $B_{m-r}(p)$ contain at most first $m$ points in  $\set{x_n}_{n=1}^\infty\tCaC$ to every open ball centering limit point contain infinite point.
 \end{proof}
 \begin{corollary}
-\label{2.8.6}
+\label{3.11.6}
 \textbf{(Compact Sets are Closed and Bounded)}
 \begin{equation}
 K\text{ is compact }\implies K\text{ is closed and bounded }
@@ -3559,7 +4534,7 @@ We close this section with a method to generate new compact sets.
 \end{minipage}}
 \end{proof}
 \begin{theorem}
-\label{2.8.7}
+\label{3.11.7}
 \textbf{(Closed Subsets of Compact Sets Are Compact)} 
 \begin{equation}
 \text{$K$ is compact and  $F\subseteq K$ is closed}\implies E\text{ is compact }
@@ -3569,7 +4544,7 @@ We close this section with a method to generate new compact sets.
 Arbitrarily pick an open cover $\mathcal{G}$ for $F$. We wish to prove there is a finite sub-cover for $F$. Because $F$ is closed, we know $F^c$ is open, so we know  $\mathcal{G}\cup \set{F^c}$ is also an open cover, and moreover, open cover for $X$ and $K$. Then because $K$ is compact, we know $\mathcal{G}\cup \set{F^c}$ has a finite sub-cover $\mathcal{G}'$ for $K$, and apparently, for $F$. If  $\mathcal{G}'\subseteq \mathcal{G}$, then we are done. If $F^c\subseteq \mathcal{G}'$, then we can see $\mathcal{G}'\setminus \set{F^c}$ is a finite sub-cover of $\mathcal{G}$ for $F$.
 \end{proof}
 \begin{corollary}
-\label{2.8.8}
+\label{3.11.8}
 Let $F$ be closed and  $K$ be compact. We have $F\cap K$ is compact.
 \end{corollary}
 \begin{proof} 
@@ -3577,14 +4552,14 @@ The fact that  $K$ is compact tell us $K$ is closed. Then we know $F\cap K$ is c
 \end{proof}
 \section{Euclidean Metric}
 \begin{definition}
-\label{2.9.1}
+\label{3.12.1}
 \textbf{(Definition of k-cell)} In $(\R^k,d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$,  we say $I$ is a $k$-cell, when there exists  $k$ intervals  $\set{[a_1,b_1],\dots , [a_k,b_k]}$ such that
  \begin{equation}
    I=\prod_{n=1}^k [a_n,b_n]
 \end{equation}
 \end{definition}
 \begin{lemma}
-\label{2.9.2}
+\label{3.12.2}
 \textbf{(Shrinking k-cell Sequence Convergence)} Let $\set{I_n}_{n=1}^\infty$ be a sequence of  k-cell such that 
 \begin{equation}
 \forall n\inn, I_{n+1}\subseteq I_n
@@ -3602,7 +4577,7 @@ For each $n\inn$, denote the first component of $I_n$ by $[a_n,b_n]$. We know $\
 Use the same argument in every other component to get a point in $\bigcap \set{I_n}_{n=1}^\infty$. 
 \end{proof}
 \begin{lemma}
-\label{2.9.3}
+\label{3.12.3}
 \textbf{(Maximum Distance of Two Points In k-cell is the length of Diagonal Line)} Let $I=[a_1,b_1]\times\cdots\times[a_k,b_k]$. Let $\vecta{a}=(a_1,\dots, a_k)\text{ and }\vecta{b}=(b_1,\dots, b_k)$. The maximum distance of two points in k-cell are 
 \begin{equation}
  \abso{\vecta{b}-\vecta{a}}= (\sum_{i=1}^k (b_i-a_i)^2)^\frac{1}{2}
@@ -3615,7 +4590,7 @@ Let $\vecta{x},\vecta{y}\in I$. For each $n\inn$ smaller then or equal to $k$,  
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{2.9.4}
+\label{3.12.4}
 \textbf{(k-Cell is Compact)} 
 \begin{equation}
 \text{ Every k-cell $I$ is compact. }
@@ -3640,7 +4615,7 @@ Let $I_2$ be one of the even smaller k-cell that can not be covered by finite am
 \begin{equation}
 \cdots \subseteq I_3 \subseteq I_2\subseteq I_1\subseteq I_0
 \end{equation}
-Denote this sequence $\set{I_n}_{n=1}^\infty$. By \myref{Lemma}{2.9.4}, we know 
+Denote this sequence $\set{I_n}_{n=1}^\infty$. By \myref{Lemma}{3.12.4}, we know 
 \begin{equation}
 \bigcap \set{I_n}_{n=0}^\infty \neq \varnothing
 \end{equation}
@@ -3670,113 +4645,1113 @@ Let
 \end{equation}
 We can use mathematical induction to rigorously prove that the length of diagonal line for each $I_n$ is exactly $2^{-n}\delta$.\\
 
-Now, using \myref{Lemma}{2.9.3}, it is easy to verify when  $m>\log_2 \frac{\delta}{r}$, the k-cell $I_m$ is small enough to be contained by $B_r(\vecta{x})\tCaC$.
+Now, using \myref{Lemma}{3.12.3}, it is easy to verify when  $m>\log_2 \frac{\delta}{r}$, the k-cell $I_m$ is small enough to be contained by $B_r(\vecta{x})\tCaC$.
 \end{proof}
 \begin{corollary}
-\label{2.9.5}
+\label{3.12.5}
 \textbf{(Heine-Borel Theorem)} In $(\R^k, d(\vecta{x},\vecta{y})=\abso{\vecta{x}-\vecta{y}})$, we have
 \begin{equation}
 K\text{ is closed and bounded}\iff K\text{ is compact }
 \end{equation}
 \end{corollary}
 \begin{proof}
-  We have proved from right to left in \myref{Theorem}{2.8.3} and  \myref{Theorem}{2.8.5}. To prove from left to right, just observe $K$ is bounded implies that $K$ is contained by some k-cell. Then because closed subset of compact set is compact, we can deduce $K$ is compact.
+  We have proved from right to left in \myref{Theorem}{3.12.3} and  \myref{Theorem}{3.12.5}. To prove from left to right, just observe $K$ is bounded implies that $K$ is contained by some k-cell. Then because closed subset of compact set is compact, we can deduce $K$ is compact.
 \end{proof}
-\chapter{Basic Topology, Part 2} 
 \chapter{Numerical Sequence and Series}
 \section{Convergence}
 \begin{definition}
-\label{3.1.1}
-\textbf{(Definition of Sequence of Point)} Let $X$ be a topological space. In our definition, sequence of points is a function from $\N$ to $X$. We denote a sequence by
-\begin{equation}
-\set{a_n}_{n\inn}\text{ or }\set{a_n}_{n=1}^\infty\text{ or }\set{a_n}
-\end{equation}
-For the third notation, only $\set{a_n}\text{ or }\set{a_i}$ stands for a sequence, others, like $\set{a_m}$, stand for singleton.
-\end{definition}
-\begin{definition}
-\label{3.1.2}
-\textbf{(Definition of Convergence in General Topology)} Let $\set{a_n}$ be a sequence of points in $X$. If we say $\set{a_n}$ converge to $a$ 
-\begin{equation}
-\lim_{n\to\infty} a_n=a
-\end{equation}
-We mean for each open neighborhood $U$ around  $a$, there exists great enough $N_U\inn$  such that for each $n\inn$ 
-\begin{equation}
-n\geq N_U\iff a_n\in U
+\label{4.1.1}
+\textbf{(Definition of Sequentially Compact)} Let $E\subseteq X$ be a topological space. We say $E$ is sequentially compact if 
+ \begin{equation}
+\text{ for each sequence $\set{a_n}$ there exists a converging sub-sequence $\set{a'_n}$  }
 \end{equation}
 \end{definition}
-\begin{theorem}
-\textbf{(Equivalent Statements for Convergence)} Let $U$ be an arbitrary open neighborhood around  $a$. The following are equivalent 
-\begin{gather}
-\lim_{n\to\infty}a_n=a\\
-\exists N_U\inn, \forall n\inn, n\geq N_U\implies a_n\in U\\
-\exists N_U\inn, \set{a_n:n\geq N_U}\subseteq U\text{ and }\set{a_n:n<N_U}\subseteq U^c\\
-\end{gather}
-\end{theorem}
-\begin{proof}
-From the first one to the second are trivial. From the second one to the first, just pick the smallest $N_U$. The first one and the third one are equivalent, the only "difference" is that the third one is written with set. 
-\end{proof}
 \fbox{\begin{minipage}{39em}
 Notice that in general topology, a sequence can converge to multiple point, the trivial topology of multiple points is an example.
 \end{minipage}}
-\begin{definition}
-\label{3.1.3}
-\textbf{(Definition of Convergence in Metric Space)} Let $X$ be a metric space. We say $\set{a_n}$ converge to $a$
- \begin{equation}
-\lim_{n\to\infty}a_n=a
-\end{equation}
-If for each $\epsilon\inr^+$, there exists an great enough natural $N_\epsilon $ such that for each $n\inn$
-\begin{equation}
- n\geq N_\epsilon \iff d(a_n,a)<\epsilon 
-\end{equation}
-\end{definition}
-\begin{theorem}
-\textbf{(Equivalent Statements for Convergence)} Let $\epsilon $ be an arbitrary real. The following are equivalent
-\begin{gather}
-\lim_{n\to\infty}a_n=a\\
-\exists N_\epsilon\inn, \forall n\inn, n\geq N_\epsilon \implies  d(a_n,a)<\epsilon \\
-\exists N_\epsilon\inn, \forall n\inn, n\geq N_\epsilon \implies a_n\in B_\epsilon (a)\\
-\exists N_\epsilon \inn, \set{a_n:n\geq N_\epsilon }\subseteq B_\epsilon (a)\text{ and }\set{a_n:n>N_\epsilon }\subseteq B_\epsilon (a)^c
-\end{gather}
-\end{theorem}
-\begin{proof}
-From the second to first, pick the smallest $N_\epsilon $
-\end{proof}
-\begin{theorem}
-\label{3.1.4}
-\textbf{(Compatibility of Definitions of Convergence)} Let $X$ be a metric space. A sequence  $\set{a_n}$ converge to $a$ if and only if for each open neighborhood  $U$ around $a$, there exists a great enough natural $N_U$ such that for each $n\inn$
-\begin{equation}
-n\geq N_U\iff a_n\in U 
-\end{equation}
-\end{theorem}
-\begin{proof}
-From right to left, just observe $B_\epsilon (a)$ is open. From left to right, let $B_\epsilon(a) $ be an open ball in $U$, we see 
-\begin{equation}
-N_\epsilon \in M:=\set{N\inn: \forall n\inn, n\geq N\implies a_n\in U}
-\end{equation}
-Then $N_U=\min M$.
-\end{proof}
 \fbox{\begin{minipage}{39em}
 Notice that in the proof above, we actually show that it is possible that it is impossible for $N_U$ and  $N_\epsilon $ to be equal.
 \end{minipage}}
 \begin{theorem}
-\label{3.1.5}
-\textbf{(In Metric Space, Sequence Converge to At Most One Point)} Let $\set{a_n}$ be a sequence in $(X,d)$. We have
+\label{4.1.2}
+\textbf{(In Metric Space, Limit Point Compact Implies Sequentially Compact)} 
 \begin{equation}
-\lim_{n\to\infty} a_n=a\text{ and }\lim_{n\to\infty} a_n=a'\implies a'=a
+K\text{ is limit point compact }\implies K\text{ is sequentially compact }
 \end{equation}
 \end{theorem}
 \begin{proof}
-\As{$a'\neq a$}. Let $r=\frac{d(a,a')}{2}$. We see there exists $N_r$ and $N'_r$ such that 
+Let $\set{p_n}$ be a sequence in $K$. If the range of $\set{p_n}$ is finite, then there exists a point $p_m$ appears infinitely many time in the sequence, otherwise the sequence end at a finite term. Then, we can pick the sub-sequence that contain only $p_m$ and we are done. \\
+
+If the range of $\set{p_n}$ is infinite, then because $K$ is limit point compact, we know  the range of  $\set{p_n:n\inn}$ has a limit point in $K$. Denote this point  by $p'$, and pick the first term $p'_1=p_{k_1}$ of our sub-sequence by arbitrarily picking  $p_{k_1}$ in  $B_1(p)$. Now, we wish to find points in $B_{\frac{1}{2}}(p)\cap \set{p_n:k_1<n\inn}$. Notice the set
 \begin{equation}
-n\geq N_r\iff  a_n\in B_r(a)\text{ and }n\geq N'_r\iff  a_n\in B_r(a')
+B_{\frac{1}{2}}(p)\cap \set{p_n:n\inn}
 \end{equation}
-Observe that $B_r(a)$ and $B_r(a')$ are disjoint and all $a_n$ such that  $n\geq \max \set{N_r,N'_r}$ is in both open balls.\CaC
+is infinite, so  it is impossible
+\begin{equation}
+B_{\frac{1}{2}}(p)\cap \set{p_n:n\inn}\subseteq \set{p_n:p\leq k_1\inn}
+\end{equation}
+then we know 
+\begin{equation}
+\text{ $B_{\frac{1}{2}}(p)\cap \set{p_n:n>k_1\inn}\neq \varnothing$  }
+\end{equation}
+So we can let $p'_2=p_{k_2}\in B_{\frac{1}{2}}(p)$. By axiom of choice, we can do this infinite amount of time and have a sub-sequence $\set{p'_n}$ that converge to $p$.
 \end{proof}
+\begin{theorem}
+\label{4.1.3}
+\textbf{(In Euclidean Space, Bounded Implies Existence of Convergent Sub-sequence)} In $\R^n$, we have
+ \begin{equation}
+\set{p_n}\text{ is bounded }\implies \set{p_n}\text{ has a convergent sub-sequence }
+\end{equation}
+\end{theorem}
+\begin{proof}
+In Euclidean space, if $\set{p_n}$ is bounded, we can find a k-cell $I$ that contain  $\set{p_n}$. We know k-cell $I$ is compact, so we know it is sequentially compact. Then we know  $\set{p_n}$ has a convergent sub-sequence in $I$. 
+\end{proof}
+\section{Cauchy Sequence}
+\begin{definition}
+\label{4.2.1}
+\textbf{(Definition of Cauchy Sequence)} Let $X$ be a metric space. We say $\set{p_n}$ is a Cauchy sequence if 
+\begin{equation}
+\forall \epsilon\inr^+,\exists N\inn, \forall k,m>N, d(p_m,p_k)<\epsilon 
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{4.2.2}
+\textbf{(Definition of Diameter)} Let $E\subseteq X$. We say the diameter of $E$ is
+ \begin{equation}
+\diam{E}=\sup \set{d(p,q):p,q\in E}
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{4.2.3}
+\textbf{(Convergent Implies Cauchy)} 
+\begin{equation}
+\set{p_n}\text{ converge }\implies \set{p_n}\text{ is a Cauchy sequence }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $\set{p_n}$ converge to $p$. Fix $\epsilon $, we know there exists $N_{\frac{\epsilon }{2}}$ such that
+\begin{equation}
+k,m>N_{\frac{\epsilon}{2}}\implies d(p_k,p),d(p_m,p)<\frac{\epsilon}{2}\implies d(p_k,p_m)<d(p_k,p)+d(p_m,p)=\epsilon 
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{4.2.4}
+\textbf{(Diameter of Closure Equals to Original Diameter)} Let $E\subseteq X$. We have
+\begin{equation}
+\diam{\overline{E}}=\diam{E}
+\end{equation}
+\end{theorem}
+\begin{proof}
+We wish to prove
+\begin{equation}
+  \vi{\sup \set{d(p,q):p,q\in \overline{E}}=\sup \set{d(p,q):p,q\in E}}
+\end{equation}
+Because $E\subseteq \overline{E}$, we have
+\begin{equation}
+\sup \set{d(p,q):p,q\in \overline{E}}\geq \sup \set{d(p,q):p,q\in E}
+\end{equation}
+\As{$\sup \set{d(p,q):p,q\in \overline{E}}>\sup \set{d(p,q):p,q\in E}$}. We know there exists $p',q'\in \overline{E}$ such that
+\begin{equation}
+d(p',q')>\diam{E}
+\end{equation}
+Clearly, $p',q'$ can not both be in  $E$. Let $p'\in \overline{E}\setminus E$. We know 
+\begin{equation}
+p'\in E'
+\end{equation}
+If $q'\in E$, denote $q'$ by  $q$. We see
+\begin{equation}
+\forall p\in  E,d(p',q)\leq d(p,p')+d(p,q)
+\end{equation}
+where $d(p,p')>0$ can be arbitrarily small. So if 
+\begin{equation}
+d(p,q)<\diam{E}
+\end{equation}
+We have
+\begin{equation}
+d(p',q)\leq d(p,p')+d(p,q)<\diam{E}
+\end{equation}
+Then we have
+\begin{equation}
+\forall p\in E, d(p,q)=\diam{E}
+\end{equation}
+Which give us 
+\begin{equation}
+E=\set{q}\tCaC
+\end{equation}
+Let $q'\not\in E$. We know
+\begin{equation}
+q'\in E'
+\end{equation}
+We see 
+\begin{equation}
+\forall p,q\in E, d(p',q')\leq d(p',p)+d(p,q)+d(q,q')
+\end{equation}
+where $d(p',p)$ and $d(q,q')$ can be arbitrarily small.\\
+
+Let $d(p,q)$ satisfy 
+\begin{equation}
+d(p,q)<\diam{E}
+\end{equation}
+Let $d(p',p)$ and $d(q,q')$ small enough to have 
+\begin{equation}
+d(p',q')\leq d(p',p)+d(p,q)+d(q,q')<\diam{E}
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{4.2.5}
+\textbf{(Sufficient Condition for Infinite Intersection of Compact Sets being Non-empty)} Let $\set{K_\ld :\ld \in \Lambda }$ be an infinite collection of compact sets.
+\begin{equation}
+\text{ every finite sub-collection of $\set{K_\ld:\ld \in\Lambda }$ is non-empty }\implies \text{ $\bigcap_{\ld\in \Lambda }  K_\ld $ is non-empty }
+\end{equation}
+\end{theorem}
+\begin{proof}
+\As{$\bigcap_{\ld \in \Lambda }K_\ld =\varnothing$}. Fix $K_{\alpha }$. Because 
+\begin{equation}
+K_{\alpha }\cap (\bigcap_{\ld \in \Lambda ,\ld \neq \alpha }K_{\ld  })=\varnothing
+\end{equation}
+We know no point of $K_{\alpha }$ belong to every $K_\ld $, otherwise that point is in $K_{\alpha }\cap (\bigcap_{\ld \in \Lambda ,\ld \neq \alpha }K_\ld )$.\\
+
+Then we see
+\begin{equation}
+\set{K_{\ld}^c: \ld  \in\Lambda }
+\end{equation}
+Is an open cover for $K_\alpha $.\\
+
+Because $K_\alpha $ is compact, there exists a finite sub-cover
+\begin{equation}
+\set{K^c_1,\dots, K^c_m}
+\end{equation}
+Notice that for all $x\in K_\alpha $, we have
+\begin{equation}
+\exists n:1\leq n\leq m, x\in K^c_n 
+\end{equation}
+Where $x\in K_n^c\implies x\not\in K_n$. This tell us 
+\begin{equation}
+\text{ no points in $K_\alpha $ belong to all }K_1,\dots ,K_m
+\end{equation}
+Meaning
+\begin{equation}
+  K_{\alpha }\cap \bigcap \set{K_1,\dots, K_m}=\varnothing\tCaC
+\end{equation}
+\end{proof}
+\begin{corollary}
+\label{4.2.6}
+\textbf{(Single Point)} Let $\set{K_n}$ be a sequence of compact sets such that 
+ \begin{equation}
+   \forall n,K_{n+1}\subseteq K_n\text{ and }\lim_{n\to\infty}\diam{K_n}=0
+\end{equation}
+We have
+\begin{equation}
+\bigcap_{n=1}^\infty K_n\text{ consists of exact one point }
+\end{equation}
+\end{corollary}
+\begin{proof}
+Notice if $\bigcap_{n=1}^\infty K_n$ has more than one point, we can pick two different points in $\bigcap_{n=1}^\infty K_n$ to show
+\begin{equation}
+  \diam{\bigcap_{n=1}^\infty K_n}>0
+\end{equation}
+However, because for all $m$, we have
+ \begin{equation}
+\bigcap_{n=1}^\infty K_n\subseteq K_m
+\end{equation}
+We know
+\begin{equation}
+\forall m, 0<\diam{\bigcap_{n=1}^\infty K_n}\leq \diam{K_m}
+\end{equation}
+\CaC to
+\begin{equation}
+\lim_{n\to\infty}\diam{K_n}=0
+\end{equation}
+\end{proof}
+\begin{definition}
+\label{4.2.7}
+\textbf{(Definition of Completed)} We say a subset $X$ of a metric space is complete if 
+\begin{equation}
+\text{ every Cauchy sequence in $X$ converge to some point in $X$}
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{4.2.8}
+\textbf{(Compact Implies Complete)} 
+\begin{equation}
+K\text{ is compact }\implies K\text{ is complete }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $\set{p_n}$ be a Cauchy sequence in $K$. For each $n$ let
+ \begin{equation}
+E_n:=\set{p_k:k> n}
+\end{equation}
+We first prove 
+\begin{equation}
+  \vi{\lim_{n\to\infty}\diam \overline{E_n}=0}
+\end{equation}
+Fix $\epsilon $. We know there exists $N$ such that
+ \begin{equation}
+m,k>N\implies d(p_m,p_k)<\epsilon 
+\end{equation}
+This implies
+\begin{equation}
+\epsilon \geq \diam{E_N}=\diam \overline{E_N}\vdone
+\end{equation}
+Notice that
+\begin{equation}
+\overline{E_n}\subseteq K\text{ and }\overline{E_n}\text{ is closed }\implies \overline{E_n}\text{ is compact }
+\end{equation}
+Then by \myref{Corollary}{4.2.6}, we know there exists a unique $p$ such that
+ \begin{equation}
+\forall n, p\in  \overline{E_n}
+\end{equation}
+Now, we wish to prove
+\begin{equation}
+  \blue{\lim_{n\to\infty}p_n=p}
+\end{equation}
+Fix $\epsilon $. Because
+\begin{equation} \lim_{n\to\infty}\diam{\overline{E_n}=0}
+\end{equation}
+We know there exists $N$ such that
+ \begin{equation}
+\forall n>N, \diam{\overline{E_n}}<\epsilon 
+\end{equation}
+Let $N_1>N$. We have
+ \begin{equation}
+\diam{\overline{E_{N_1}}}<\epsilon 
+\end{equation}
+Notice
+\begin{equation}
+E_{N_1}=\set{p_{N_1+1},p_{N_1+2},\dots }\subseteq \overline{E_{N_1}}
+\end{equation}
+This implies 
+\begin{equation}
+\forall n>N_1, d(p_n,p)\leq \diam{\overline{E_n}}<\epsilon \bdone
+\end{equation}
+\end{proof}
+\begin{corollary}
+\label{4.2.9}
+\textbf{($\R^n$ is complete)}
+\begin{equation}
+\R^n\text{ is complete }
+\end{equation}
+\end{corollary}
+\begin{proof}
+Let $\set{p_n}$ be a Cauchy sequence in $\R^n$. We first prove \vi{$\set{p_n}$ is bounded}.\\
+
+Again, let
+\begin{equation}
+E_n:=\set{p_k:k>n}
+\end{equation}
+Because 
+\begin{equation}
+\lim_{n\to\infty}\diam{\overline{E_n}}=0
+\end{equation}
+We know there exists $n$ such that
+ \begin{equation}
+\diam{E_n}=\diam{\overline{E_n}}\inr^+
+\end{equation}
+This implies $\set{p_n}$ is bounded. $\vdone$\\
+
+Pick a k-cell that contain $\set{p_n}$. We know k-cell is compact. By \myref{Theorem}{4.2.8}, we see $\set{p_n}$ must converge to some point in that k-cell.
+\end{proof}
+\begin{corollary}
+\label{4.2.10}
+\textbf{(Cauchy Criterion for Series)}  
+\begin{equation}
+\sum a_n\text{ converge }\iff \forall \epsilon ,\exists N, \forall m>u>N, \abso{\sum_{n=u}^m a_n}\leq \epsilon 
+\end{equation}
+\end{corollary}
+\begin{proof}
+Let 
+ \begin{equation}
+s_n=\sum_{k=1}^n a_k
+\end{equation}
+We see 
+\begin{equation}
+  \abso{s_m-s_u}=\abso{\sum_{n=u}^m a_n}
+\end{equation}
+Because $\R$ is complete, we know 
+ \begin{equation}
+s_n\text{ converge }\iff  s_n\text{ is Cauchy }
+\end{equation}
+Notice $s_n$ is Cauchy means 
+ \begin{equation}
+\forall \epsilon, \exists N, \forall m,u>N, \abso{s_m-s_u}<\epsilon 
+\end{equation}
+\end{proof}
+\section{Sub-sequential Limit}
+\begin{definition}
+\label{4.3.1}
+\textbf{(Definition of Sub-sequential Limit)} We say 
+\begin{gather}
+ x \text{ is a sub-sequential limit of $\set{x_n}$}\\
+\liff \text{ there exists a sub-sequence $\set{x_{f(n)}}$ such that $\lim_{n\to\infty} x_{f(n)}=x$ }  
+\end{gather}
+\end{definition}
+\fbox{\begin{minipage}{39em}
+Above is specification. We first give definition of lim-sup.
+\end{minipage}}
+\begin{definition}
+\label{4.3.2}
+\textbf{(Definition of Limit Superior)} For real sequence $\set{x_n}$, we define
+\begin{equation}
+\liminf_{n\to\infty} x_n=\lim_{n\to\infty}\inf \set{x_k:k>n}
+\end{equation}
+And
+\begin{equation}
+\limsup_{n\to\infty} x_n=\lim_{n\to\infty} \sup \set{x_k:k>n}
+\end{equation}
+Notice that the sequence $\set{\inf \set{x_k:k>n}}_{n\inn}$ monotonically increase, and the sequence $\set{\sup \set{x_k:k>n}}_{n\inn}$ monotonically decrease.
+\end{definition}
+\begin{theorem}
+\label{4.3.3}
+\textbf{(Main Property of Limit Superior)} 
+\begin{equation}
+\Lambda  >\limsup_{n\to\infty} x_n \implies  \text{ There exists only finite terms greater than $\Lambda $}
+\end{equation}
+\begin{equation}
+\text{ There exists infinite terms greater than $\Lambda $ }\implies \Lambda \leq \limsup_{n\to\infty} x_n
+\end{equation}
+\end{theorem}
+\begin{proof}
+We first prove
+\begin{equation}
+  \vi{\Lambda  >\limsup_{n\to\infty} x_n \implies  \text{ There exists only finite terms greater than $\Lambda $}}
+\end{equation}
+Because $\Lambda >\limsup_{n\to\infty} x_n$, we know there exists $N$ such that 
+\begin{equation}
+\Lambda >\sup \set{x_n:n>N}
+\end{equation}
+In other words,
+\begin{equation}
+\exists N,\forall n>N, x_n\leq \sup \set{x_n:n>N}<\Lambda 
+\end{equation}
+Then we know the amount of terms greater than $\Lambda $ is at most  $N\vdone$.\\
+
+We now prove
+\begin{equation}
+\blue{\text{ There exists infinite terms greater than $\Lambda $ }\implies \Lambda \leq \limsup_{n\to\infty} x_n}
+\end{equation}
+
+
+\end{proof}
+
+
+\begin{theorem}
+\label{4.3.4}
+\textbf{(Equivalent Definition of Limit Inferior)} Let $E$ be the set of sub-sequential limit of $\set{x_n}$. We have
+\begin{equation}
+\liminf_{n\to\infty} x_n=\inf E
+\end{equation}
+even in the context of extended real numbers. 
+\end{theorem}
+\begin{proof}
+Notice that the sequence 
+\begin{equation}
+\set{\inf \set{x_k:k>n}}_{n\inn}
+\end{equation}
+monotonically increase.\\
+
+We first prove
+\begin{equation}
+\vi{\liminf_{n\to\infty} x_n=-\infty\implies \inf E=-\infty}
+\end{equation}
+Because $\set{\inf \set{x_k:k>n}}_{n\inn}$ monotonically increase, we know
+\begin{equation}
+\inf \set{x_n}=-\infty
+\end{equation}
+For each $n$,  let 
+\begin{equation}
+R_n=-n
+\end{equation}
+Fix $n$. We know 
+\begin{equation}
+\forall N, \exists u_n>N,x_{u_n}<R_n
+\end{equation}
+Otherwise, say $\exists N,\forall u>N, x_u\geq -R$, we will have $\inf \set{x_k}_{k\inn}\geq \min \set{R_n,x_1,\dots ,x_N}\inr$.\\
+
+Then for each $n$, we know there exists $u_n$ greater than  $\max \set{u_1,\dots , u_{n-1}}$, such that 
+\begin{equation}
+x_{u_n}<R_n=-n
+\end{equation}
+Let $f(n)=u_n$. We see
+\begin{equation}
+\lim_{n\to\infty}x_{f(n)}=-\infty 
+\end{equation}
+which implies $\inf E=-\infty\vdone$\\
+
+We now prove 
+\begin{equation}
+\blue{\liminf_{n\to\infty} x_n=L \implies \inf E=L}
+\end{equation}
+Because $\set{\inf \set{x_k:k>n}}$ is a monotonically increasing sequence. For each $n$, we know
+\begin{equation}
+\inf \set{x_k:k>n}\leq L
+\end{equation}
+Then for each $n$, we can let  $f(n)$ be a number greater than $\max \set{f(1),\dots ,f(n-1),n}$ such that $x_{f(n)}\leq L$. Then by squeeze Theorem, we know 
+\begin{equation}
+\lim_{n\to\infty}x_{f(n)}=L
+\end{equation}
+We have proved $\inf E\leq L$. \As{$\inf E<L$}. Let $M=\frac{\inf E+L}{2}$. We have
+\begin{equation}
+\inf E<M<L
+\end{equation}
+Then there exists a sub-sequence $\set{x_{f(n)}}$ such that
+\begin{equation}
+\lim_{n\to\infty}x_{f(n)}=M
+\end{equation}
+Then we know there exists $N$ such that
+ \begin{equation}
+n>N\implies x_{f(n)}<\frac{L+M}{2}<L
+\end{equation}
+Then we see for all $n$
+\begin{equation}
+\inf \set{x_k:k>n}<\frac{L+M}{2}<L\tCaC\bdone
+\end{equation}
+Lastly we prove 
+\begin{equation}
+  \vi{\liminf_{n\to\infty} x_n=\infty\implies \inf E=\infty}
+\end{equation}
+Let $\set{x_{f(n)}}$ be a sub-sequence. We wish to prove
+\begin{equation}
+\lim_{n\to\infty} x_{f(n)}=\infty
+\end{equation}
+Notice that we have
+\begin{gather}
+\liminf_{n\to\infty} x_n=\infty\\
+\liff \forall R\inr^+ ,\exists N, n>N\implies \inf \set{x_k:k>n}>R\\
+\liff  \forall R\inr^+,\exists N, \inf \set{x_k:k>N}>R\\
+\implies  \forall R\inr^+,\exists N, k>N\implies x_k>R
+\end{gather}
+Then for all $R$, we know there must exists  $N_n$ such that  $f(N_n)>N$, then we see 
+\begin{equation}
+n>N_n\implies f(n)>f(N_n)>N\implies x_{f(n)}>R \vdone
+\end{equation}
+\end{proof}
+\begin{corollary}
+\label{4.3.5}
+\textbf{(Equivalent Definition of Limit Superior)} Let $E$ be the set of sub-sequential limit of  $\set{x_n}$. We have
+\begin{equation}
+\limsup_{n\to\infty} x_n=\sup E
+\end{equation}
+\end{corollary}
+\begin{theorem}
+\label{4.3.6}
+\textbf{(Sub-sequential Limit of a Sequence in Metric Space form a Closed Set)} Let $E$ be the set of all sub-sequential limit of $\set{x_n}$. We have
+\begin{equation}
+E\text{ is closed }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $q\in E'$. We wish to prove \vi{$q\in E$}. In other words, we wish to find a sub-sequence $\set{x_{f(n)}}$ of $\set{x_n}$ that converge to $q$.\\
+
+Because $q\in E'$, we know $q$ is a limit of some sequence  $\set{p_n}$ in $E$ such that $q\not\in \set{p_n}$.\\
+
+Let the sequence $\set{p_n}$ satisfy 
+\begin{equation}
+d(q,p_n)<\frac{1}{n}
+\end{equation}
+Because for each $k$, the point $p_k$ is a sub-sequential limit of $\set{x_n}$. We know for each $k$, there exists a sub-sequence $\set{x_{f_k(n)}}\subseteq \set{x_n}$ such that for each $k$, we have
+\begin{equation}
+\lim_{n\to\infty}x_{f_k(n)}= p_k
+\end{equation}
+We now construct a sub-sequence $\set{x_{f(n)}}$ that converge to $q$.\\
+
+We wish that for each $n$, we have
+\begin{equation}
+d(x_{f(n)},q)<\frac{2}{n}
+\end{equation}
+Notice that because 
+\begin{equation}
+  \lim_{n\to\infty}x_{f_k(n)}=p_k
+\end{equation}
+For all $n$, there exists  $N_n$ such that
+ \begin{equation}
+u>N_n\implies d(x_{f_n(u)},p_n)<\frac{1}{n}\implies d(x_{f_n(u)},q)\leq d(x_{f_n(u)},p_n)+d(p_n,q)<\frac{2}{n}
+\end{equation}
+Then we can let $f(n)>\max \set{N_n, f(1),\dots ,f(n-1)}$ and we are done. $\vdone$ 
+\end{proof}
+\begin{theorem}
+\label{4.3.7}
+\textbf{(Properties of Limit Inferior and Superior)} Let $\set{x_n}$ be a real sequence. We have 
+\begin{equation}
+\liminf_{n\to\infty} x_n=\inf E\in E\text{ and }\limsup_{n\to\infty} x_n=\sup E\in E
+\end{equation}
+And have
+\begin{equation}
+L<\liminf_{n\to\infty}  x_n\implies (\exists N, n>N\implies x_n>L)
+\end{equation}
+\end{theorem}
+\begin{proof}
+The first statement hold true because  $E$ is closed. Let $L<\liminf_{n\to\infty}  x_n$. We know there exists $N$ such that
+ \begin{equation}
+L<\inf \set{x_k:k>N}
+\end{equation}
+This tell us 
+\begin{equation}
+\forall k>N, x_k>L
+\end{equation}
+This finish the proof.
+\end{proof}
+\begin{theorem}
+\label{4.3.8}
+\textbf{(Useful Theorem)} If there exists $N$ such that
+ \begin{equation}
+\forall n>N, x_n\leq y_n
+\end{equation}
+Then
+\begin{equation}
+\limsup_{n\to\infty} x_n\leq \limsup_{n\to\infty} y_n
+\end{equation}
+And
+\begin{equation}
+\liminf_{n\to\infty} x_n\leq \liminf_{n\to\infty} y_n
+\end{equation}
+\end{theorem}
+\begin{proof}
+\As{ $\limsup_{n\to\infty} x_n>\limsup_{n\to\infty} y_n$}. Let $\beta $ satisfy
+\begin{equation}
+\limsup_{n\to\infty} x_n>\beta >\limsup_{n\to\infty} y_n
+\end{equation}
+We know there exists $N_1$ such that
+ \begin{equation}
+\forall n>N_1, y_n<\beta 
+\end{equation}
+Let $\set{x_{f(n)}}$ be a sub-sequence converge to $\limsup_{n\to\infty} x_n$. Then we know there exists $N_2$ such that
+ \begin{equation}
+\forall n>N_2, x_{f(n)}>\beta 
+\end{equation}
+Then we can select $n>\max \set{N_1,N_2}$, and because $f(n)>f(N_1)\geq N_1$, we have
+\begin{equation}
+y_{f(n)}<\beta <x_{f(n)}\tCaC
+\end{equation}
+The other side is similar.
+\end{proof}
+\section{Special Sequences}
+\begin{theorem}
+\label{4.4.1}
+\textbf{(Sequence Arithmetic)} Let $\set{x_n},\set{y_n}$ be two real sequences that respectively converge to $x$ and  $y$. We have
+\begin{gather}
+\lim_{n\to\infty} x_n+y_n= x+y\\
+\lim_{n\to\infty} cx_n=cx\text{ and }\lim_{n\to\infty}c+x_n=c+x\\
+\lim_{n\to\infty} x_ny_n=xy\\
+\lim_{n\to\infty} x_n^{-1}=x^{-1}
+\end{gather}
+\begin{proof}
+Fix $\epsilon $. We know there exists $N_{(x,\frac{\epsilon}{2})}$ and $N_{(y,\frac{\epsilon}{2})}$ such that
+\begin{equation}
+n>N_{(x,\frac{\epsilon}{2})}\implies \abso{x_n-x}<\frac{\epsilon}{2}\text{ and }n>N_{(y,\frac{\epsilon}{2})}\implies \abso{y_n-y}<\frac{\epsilon}{2}
+\end{equation}
+Then we have
+\begin{equation}
+n>\max \set{N_{(x,\frac{\epsilon}{2})},N_{(y,\frac{\epsilon}{2})}}\implies \abso{x_n+y_n-(x+y)}\leq \abso{x_n-x}+\abso{y_n-y}<\epsilon 
+\end{equation}
+We know there exists $N_{(x,\frac{\epsilon}{\abso{c}})}$ such that
+\begin{equation}
+n>N_{(x,\frac{\epsilon}{\abso{c}})}\implies \abso{x_n-x}<\frac{\epsilon}{\abso{c}}\implies \abso{cx_n-cx}=\abso{c}\abso{x_n-x}<\epsilon 
+\end{equation}
+We know there exists $N_\epsilon $ such that
+\begin{equation}
+n>N_{(x,\epsilon )}\implies \abso{c+x_n-c+x}=\abso{x_n-x}<\epsilon 
+\end{equation}
+Notice that
+\begin{align}
+  \abso{x_ny_n-xy}&=\abso{(x_n-x)(y_n-y)+x(y_n-y)+y(x_n-x)}\\
+  &\leq \abso{x_n-x}\abso{y_n-y}+\abso{x}\abso{y_n-y}+\abso{y}\abso{x_n-x}
+\end{align}
+We know there exists  $N_{(x,\sqrt{\frac{\epsilon }{3}} )}$ and $N_{(y,\sqrt{\frac{\epsilon}{3}} )}$ and $N_{(x,\frac{\epsilon}{\abso{y}})}$and $N_{(y,\frac{\epsilon}{\abso{x}})}$ such that if 
+\begin{equation}
+n>\max \set{N_{(x,\sqrt{\frac{\epsilon}{3}} )},N_{(y,\sqrt{\frac{\epsilon}{3}} )},N_{(x,\frac{\epsilon }{3\abso{y}})},N_{(y,\frac{\epsilon}{3\abso{x}})}}
+\end{equation}
+Then we have
+\begin{align}
+  \abso{x_ny_n-xy}&\leq \abso{x_n-x}\abso{y_n-y}+\abso{x}\abso{y_n-y}+\abso{y}\abso{x_n-x}\\
+  &\leq \sqrt{\frac{\epsilon}{3}}\sqrt{\frac{\epsilon}{3}}+\abso{x}\frac{\epsilon }{3\abso{x}}+\abso{y}\frac{\epsilon}{3\abso{y}}=\epsilon 
+\end{align}
+Notice that
+\begin{equation}
+\abso{\frac{1}{x_n}-\frac{1}{x}}=\abso{\frac{x-x_n}{xx_n}}=\frac{1}{\abso{x}}\frac{1}{\abso{x_n}}\abso{x-x_n}
+\end{equation}
+We know there exists $N_{(x,\frac{\abso{x}}{2})}$ such that  
+\begin{equation}
+n>N_{(x,\frac{\abso{x}}{2})}\implies \abso{x}-\abso{x_n}\leq \abso{x-x_n}<\frac{\abso{x}}{2}\implies \frac{\abso{x}}{2}<\abso{x_n}\implies \frac{1}{\abso{x}}\frac{1}{\abso{x_n}}<\frac{2}{\abso{x^2}}
+\end{equation}
+We also know there exists $N_{(x,\frac{\abso{x^2}\epsilon }{2})}$ such that
+\begin{equation}
+n>\max \set{N_{(x,\frac{\abso{x}}{2})},N_{(x,\frac{\abso{x^2}\epsilon }{2})}}\implies \abso{\frac{1}{x_n}-\frac{1}{x}}=\frac{1}{\abso{x}}\frac{1}{\abso{x_n}}\abso{x-x_n}<\frac{2}{\abso{x^2}}\frac{\abso{x^2}\epsilon }{2}=\epsilon 
+\end{equation}
+\end{proof}
+\end{theorem}
+\begin{theorem}
+\label{4.4.2}
+\textbf{(Special Sequence)} Let $p>0$. We have
+\begin{gather}
+\lim_{n\to\infty}\frac{1}{n^p}=0\\
+\end{gather}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. We have
+\begin{equation}
+\lim_{n\to\infty}\frac{1}{n^p}=\lim_{n\to\infty}(\frac{1}{n})^p=(\lim_{n\to\infty} \frac{1}{n})^p
+\end{equation}
+We only have to prove
+\begin{equation}
+\lim_{n\to\infty}\frac{1}{n}=0
+\end{equation}
+Let $N=\frac{1}{\epsilon }$ and we have
+\begin{equation}
+n>\frac{1}{\epsilon }\implies \abso{\frac{1}{n}-0}=\frac{1}{n}<\epsilon 
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{4.4.3}
+\textbf{(Special Sequence)} Let $p>0$. We have
+\begin{equation}
+\lim_{n\to\infty}\sqrt[n]{p} =1
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let 
+\begin{equation}
+u_n=\sqrt[n]{p}-1 
+\end{equation}
+Notice that  
+\begin{equation}
+\lim_{n\to\infty}u_n=0\implies \lim_{n\to\infty}\sqrt[n]{p} -1=0\implies \lim_{n\to\infty}\sqrt[n]{p}=1 
+\end{equation}
+So we only have to prove
+\begin{equation}
+\lim_{n\to\infty}u_n=0 
+\end{equation}
+Also, notice 
+\begin{equation}
+  1+\binom{n}{1}u_n+\binom{n}{2}u_n^2+\cdots +\binom{n}{n}u_n^n =(u_n+1)^n=(\sqrt[n]{p}-1+1)^n=p
+\end{equation}
+We first prove
+\begin{equation}
+  \vi{p>1\implies \lim_{n\to\infty}u_n=0}
+\end{equation}
+We have
+\begin{equation}
+p>1\implies \sqrt[n]{p}>1\implies u_n>0 \implies \binom{n}{2}u_n^2+\cdots +\binom{n}{n}u_n^n>0
+\end{equation}
+Then because
+\begin{equation}
+1+nu_n+\binom{n}{2}u_n^2+\cdots +\binom{n}{n}u_n^n=p
+\end{equation}
+We have
+\begin{equation}
+1+nu_n<p
+\end{equation}
+Which give us
+\begin{equation}
+0<u_n<\frac{p-1}{n}
+\end{equation}
+Then by Squeeze Theorem, we have 
+ \begin{equation}
+0\leq \lim_{n\to\infty}u_n\leq \lim_{n\to\infty}\frac{p-1}{n}=0\vdone
+\end{equation}
+Notice that if $0<p<1$, then by what we have just proved, we know
+\begin{equation}
+\lim_{n\to\infty}p^{-\frac{1}{n}}=1 
+\end{equation}
+Then we know
+\begin{equation}
+\lim_{n\to\infty}p^{\frac{1}{n}}=1
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{4.4.4}
+\textbf{(Special Sequence)}
+\begin{equation}
+\lim_{n\to\infty}\sqrt[n]{n} =1\\
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let
+\begin{equation}
+e_n=\sqrt[n]{n}-1 > 0
+\end{equation}
+We wish to prove
+ \begin{equation}
+\lim_{n\to\infty}e_n=0
+\end{equation}
+Notice
+\begin{equation}
+n=(e_n+1)^n=1+\binom{n}{1}e_n+\binom{n}{2}e_n^2+\cdots +\binom{n}{n}e_n^n
+\end{equation}
+So we have
+\begin{equation}
+\frac{n(n-1)}{2}e_n^2=\binom{n}{2}e_n^2< 1+\binom{n}{1}e_n+\binom{n}{2}e_n^2+\cdots +\binom{n}{n}e_n^n=n
+\end{equation}
+Then we have
+\begin{equation}
+e_n^2< \frac{2}{n-1}
+\end{equation}
+So we have
+\begin{equation}
+0<e_n<\sqrt{\frac{2}{n-1}} 
+\end{equation}
+By Squeeze Theorem, we have
+\begin{equation}
+0\leq \lim_{n\to\infty}e_n\leq \lim_{n\to\infty}\sqrt{\frac{2}{n-1}}=\sqrt{2}\lim_{n\to\infty}\frac{1}{(n-1)^{\frac{1}{2}}}=0
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{4.4.5}
+\textbf{(Special Sequence)}
+Let $\alpha \inr$ and $q>1$
+\begin{equation}
+\lim_{n\to\infty}\frac{n^\alpha }{q^n}=0
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let
+\begin{equation}
+q=1+p 
+\end{equation}
+So we have 
+\begin{equation}
+q^n=(1+p)^n=1+np+\binom{n}{2}p^2+\cdots + \binom{n}{n}p^n
+\end{equation}
+Let $k\inn$ satisfy
+\begin{equation}
+k>\alpha^+
+\end{equation}
+Then for $n$ greater than $k$, because $q>1\implies p>0$, we have
+\begin{equation}
+q^n=1+np+\binom{n}{2}p^2+\cdots +\binom{n}{n}p^n>\binom{n}{k}p^k
+\end{equation}
+If we require $n$ to be greater than  $2k$, we see
+\begin{equation}
+n>2k\implies n>2k-2\implies \frac{n}{2}>k-1\implies n-k+1>\frac{n}{2}
+\end{equation}
+Then we have
+\begin{equation}
+\binom{n}{k}p^k=\frac{n(n-1)\cdots(n-k+1)}{k!}p^k=n(n-1)\cdots (n-k+1) \frac{p^k}{k!}>(\frac{n}{2})^k \frac{p^k}{k!}
+\end{equation}
+Notice that we have 
+\begin{equation}
+q^n>\binom{n}{k}p^k>(\frac{n}{2})^k \frac{p^k}{k!}
+\end{equation}
+Then we have
+\begin{equation}
+\frac{n^\alpha }{q^n}<\frac{n^\alpha }{n^k}\frac{2^k}{p^k}k!=n^{\alpha -k}(\frac{2}{p})^{k}k!
+\end{equation}
+Because $k>\alpha^+$, we know $u=k-\alpha >0$. Then we have
+\begin{equation}
+0\leq \lim_{n\to\infty}\frac{n^\alpha }{q^n}\leq (\frac{2}{p})^kk!\lim_{n\to\infty}n^{-u}=0
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{4.4.6}
+\textbf{(Special Sequence)} Let $\abso{x}<1$. We have
+\begin{equation}
+\lim_{n\to\infty}x^n=0
+\end{equation}
+\end{theorem}
+\begin{proof}
+\myref{Theorem}{4.4.5} tell us $\forall \alpha \inr,\forall q>1$ we have
+\begin{equation}
+\lim_{n\to\infty}\frac{n^{\alpha }}{q^n}=0
+\end{equation}
+If we let $\alpha =0$, we have
+\begin{equation}
+\lim_{n\to\infty}\frac{1}{q^n}=0
+\end{equation}
+Notice
+\begin{equation}
+\abso{x}<1\implies \abso{\frac{1}{x}}>1
+\end{equation}
+If $x$ is positive, we immediately have
+\begin{equation}
+  \lim_{n\to\infty} x^n= \lim_{n\to\infty} \frac{1}{(\frac{1}{x})^n}=0
+\end{equation}
+\end{proof}
+\section{Comparison Test,  Root Test and Ratio Test}
+\begin{theorem}
+\label{4.5.1}
+\textbf{(Geometric Series)} Let $x$ be non-negative
+\begin{equation}
+\sum_{n=0}^\infty x^n\text{ converge }\iff x<1
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let 
+\begin{equation}
+s_n:=\sum_{k=1}^n x^k
+\end{equation}
+Notice
+\begin{equation}
+  (1-x)s_n=\sum_{k=1}^n x^k-\sum_{k=1}^n x^{k+1}=x-x^{n+1}
+\end{equation}
+This give us
+\begin{equation}
+s_n=\frac{x-x^{n+1}}{1-x}=\frac{x}{1-x}(1-x^{n+1})
+\end{equation}
+Then we have
+\begin{equation}
+x<1\implies \lim_{n\to\infty}x^{n+1}=0\implies \lim_{n\to\infty}s_n=\frac{x}{1-x}
+\end{equation}
+And have
+\begin{equation}
+x>1\implies \lim_{n\to\infty}x^{n+1}=\infty\implies \lim_{n\to\infty}s_n= \frac{x}{1-x}(-\infty)
+\end{equation}
+\end{proof}
+\begin{definition}
+\label{4.5.2}
+\textbf{(Monotonic)} We say a real sequence $\set{x_n}$ is monotonic if $\set{x_n}$ monotonically increase or monotonically decrease.\\
+
+We say $\set{x_n}$ monotonically increase if 
+\begin{equation}
+\forall n, x_{n+1}\geq x_n
+\end{equation}
+We say $\set{x_n}$ monotonically decrease if 
+\begin{equation}
+\forall n, x_{n+1}\leq x_n
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{4.5.3}
+\textbf{(Monotonic Sequence Converge if and only if Bounded)} Let $\set{x_n}$ be a monotonic sequence. We have
+\begin{equation}
+\set{x_n}\text{ converge }\iff \set{x_n}\text{ is bounded }
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $\set{x_n}$ monotonically increase. We know $\set{x_n}$ is bounded below by $x_1$. We first prove
+\begin{equation}
+  \vi{\set{x_n}\text{ is bounded above }\implies \set{x_n}\text{ converge }}
+\end{equation}
+Notice that
+\begin{equation}
+\set{x_n}\text{ is bounded above }\implies \sup \set{x_n}\inr
+\end{equation}
+Let $x:=\sup \set{x_n}$. We wish to prove
+\begin{equation}
+\lim_{n\to\infty}x_n=x
+\end{equation}
+Fix $\epsilon $. We know there exists some $N$ such that
+ \begin{equation}
+x_N>x-\epsilon 
+\end{equation}
+Notice that
+\begin{equation}
+\forall m>u>N, x_m,x_u\in (x-\epsilon ,x)\text{ and }\abso{x_m-x_u}<\epsilon 
+\end{equation}
+We have proved $\set{x_n}$ is Cauchy. $\vdone$\\
+
+We now prove
+\begin{equation}
+\blue{\set{x_n}\text{ converge }\implies \set{x_n}\text{ is bounded }}
+\end{equation}
+Let $\epsilon \inr$. We know there exists $N$ such that
+ \begin{equation}
+\forall n>N, x_n<x+\epsilon 
+\end{equation}
+Then we see $\set{x_n}$ is bounded above by $\max \set{x_1,\dots, x_{N},x+\epsilon }$. $\bdone$\\
+
+Let $\set{x_n}$ monotonically decrease. We know $\set{-x_n}$ increase. If $\set{x_n}$ is bounded, then $\set{-x_n}$ is bounded, which implies $\set{-x_n}$ converges and $\set{x_n}$ converges.\\
+
+If $\set{x_n}$ converge, then $\set{-x_n}$ converge, which implies $\set{-x_n}$ is bounded and $\set{x_n}$ is bounded.
+\end{proof}
+\begin{theorem}
+\label{4.5.4}
+\textbf{(Comparison Test)} 
+\begin{gather}
+\sum c_n\text{ converge and }\exists N, \forall n>N, \abso{a_n}\leq c_n\implies \sum a_n\text{ converge }
+\end{gather}
+\end{theorem}
+\begin{proof}
+By Cauchy criterion, we know 
+\begin{equation}
+\forall \epsilon ,\exists N_0, \forall m>u>N_0, \sum_{k=u}^m c_k<\epsilon 
+\end{equation}
+Fix $\epsilon $, let $N_1=\max \set{N_0,N}$. We have
+\begin{equation}
+\forall m>u>N_1, \sum_{k=u}^m a_k<\sum_{k=u}^m \abso{a_k}\leq \sum_{k=u}^m c_k<\epsilon 
+\end{equation}
+And we are done, because we have just prove the series $\sum a_n$ satisfy Cauchy Criterion.
+\end{proof}
+\begin{corollary}
+\label{4.5.5}
+\textbf{(Comparison Test)} 
+\begin{equation}
+\text{ $\sum d_n$ diverge and }\exists N, \forall n>N, a_n\geq d_n\geq 0\implies \sum a_n\text{ diverge }
+\end{equation}
+\end{corollary}
+\begin{proof}
+If $\sum a_n$ converge, then $\sum d_n$ converge by \myref{Theorem}{4.5.4}
+\end{proof}
+\begin{theorem}
+\label{4.5.6}
+\textbf{(Root Test)} Given $\sum a_n$. Let
+\begin{equation}
+\alpha:= \limsup_{n\to\infty} \sqrt[n]{\abso{a_n}} 
+\end{equation}
+Then 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha <1\implies \sum a_n$ converge\\
+  \item $\alpha >1\implies \sum a_n$ diverge
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Let 
+\begin{equation}
+\limsup_{n\to\infty} \sqrt[n]{\abso{a_n}} =\alpha <\beta <1
+\end{equation}
+We know there exists $N$ such that
+ \begin{equation}
+\forall n>N, \sqrt[n]{\abso{a_n}}<\beta <1 
+\end{equation}
+Then we have
+\begin{equation}
+\forall n>N, a_n\leq \abso{a_n}<\beta ^n
+\end{equation}
+Because $\beta<1$, we know 
+\begin{equation}
+\sum_{n=1}^\infty \beta^n=\frac{\beta }{1-\beta }
+\end{equation}
+Then by Comparison Test, we know $\sum a_n$ converge. If
+\begin{equation}
+\alpha =\limsup_{n\to\infty} \sqrt[n]{\abso{a_n}}>1
+\end{equation}
+Let $\set{a_{f(n)}}$ be a sub-sequence such that
+\begin{equation}
+  \lim_{n\to\infty}\sqrt[f(n)]{\abso{a_{f(n)}}}=\alpha>1 
+\end{equation}
+Then we see there exists $N_{\alpha -1}$ such that
+\begin{equation}
+  \forall n>N_{\alpha -1}, \sqrt[f(n)]{ \abso{a_{f(n)}}}>1\text{ and }\abso{a_{f(n)}}>1
+\end{equation}
+Notice that $\sum_{n=1}^\infty a_n$ converge implies $\lim_{n\to\infty}a_n=0\tCaC$
+\end{proof}
+\begin{theorem}
+\label{4.5.7}
+\textbf{(Ratio Test)} Given series $\sum a_n$. We have
+\begin{enumerate}[label=(\alph*)]
+  \item  $\limsup_{n\to\infty} \abso{\frac{a_{n+1}}{a_n}}<1\implies \sum a_n$ converge\\
+  \item $\liminf_{n\to\infty} \abso{\frac{a_{n+1}}{a_n}}> 1\implies \sum a_n$ diverge
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We first prove 
+\vi{
+\begin{equation}
+\limsup_{n\to\infty} \abso{\frac{a_{n+1}}{a_n}}<1\implies \sum a_n\text{ converge }
+\end{equation}}
+Let 
+\begin{equation}
+\limsup_{n\to\infty} \abso{\frac{a_{n+1}}{a_n}}<1
+\end{equation}
+Then we can pick $\beta $ such that
+\begin{equation}
+\limsup_{n\to\infty} \abso{\frac{a_{n+1}}{a_n}}<\beta <1
+\end{equation}
+We know there exists $N$ that satisfy
+ \begin{equation}
+\forall n\geq N, \abso{\frac{a_{n+1}}{a_n}}<\beta <1
+\end{equation}
+This give us
+\begin{equation}
+\forall n>N, \abso{a_n}<\beta^{n-N}\abso{a_N}
+\end{equation}
+In other words,
+\begin{equation}
+\forall k, \abso{a_{N+k}}<\beta^{k}\abso{a_N}
+\end{equation}
+Then because
+\begin{equation}
+\sum_{k=1}^\infty \beta^{k} \abso{a_N}=\frac{\abso{a_N}\beta }{1-\beta }
+\end{equation}
+By comparison test we know the series
+\begin{equation}
+\sum_{k=1}^\infty a_{N+k}\text{ converges }
+\end{equation}
+This tell us
+\begin{equation}
+\sum a_n=\sum_{k=1}^N a_k+ \sum_{k=1}^\infty a_{N+k}\text{ converge }\vdone
+\end{equation}
+We now prove 
+\blue{
+\begin{equation}
+\liminf_{n\to\infty} \abso{\frac{a_{n+1}}{a_n}}>1\implies \sum a_n\text{ diverge }
+\end{equation}}
+\As{$\sum a_n$ converge}. We have
+\begin{equation}
+\lim_{n\to\infty}a_n=0
+\end{equation}
+By 
+\begin{equation}
+\liminf_{n\to\infty} \abso{\frac{a_{n+1}}{a_n}}>1
+\end{equation}
+We know there exists $N$ such that
+ \begin{equation}
+   \forall n\geq N, \abso{\frac{a_{n+1}}{a_n}}>1
+\end{equation}
+This tell us
+\begin{equation}
+\forall n\geq N, \abso{a_n}>\abso{a_N}
+\end{equation}
+Let $\epsilon=\abso{a_N}$, clearly 
+\begin{equation}
+\forall N_1, \exists n> \max \set{N_1,N}, \abso{a_n}>\abso{a_N}=\epsilon \tCaC
+\end{equation}
+\end{proof}
+\begin{theorem}
+\label{4.5.8}
+\textbf{(Root Test is Stronger than Ratio Test)} For positive sequence $\set{a_n}$, we have
+\begin{equation}
+\liminf_{n\to\infty}\frac{a_{n+1}}{a_n}\leq \liminf_{n\to\infty} \sqrt[n]{a_n} \leq \limsup_{n\to\infty} \sqrt[n]{a_n} \leq \limsup_{n\to\infty} \frac{a_{n+1}}{a_n}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Clearly, 
+\begin{equation}
+\liminf_{n\to\infty} \sqrt[n]{a_n}\leq \limsup_{n\to\infty} \sqrt[n]{a_n}  
+\end{equation}
+We first prove
+\begin{equation}
+  \vi{\liminf_{n\to\infty} \frac{a_{n+1}}{a_n}\leq \liminf_{n\to\infty} \sqrt[n]{a_n}}
+\end{equation}
+Let 
+\begin{equation}
+\alpha =\liminf_{n\to\infty} \frac{a_{n+1}}{a_n}
+\end{equation}
+If $\alpha =-\infty$, the theorem hold true trivially. We only have to consider when $\alpha >-\infty$. Arbitrarily pick positive $\beta $ smaller than $\alpha $:
+\begin{equation}
+\beta <\alpha=\liminf_{n\to\infty} \frac{a_{n+1}}{a_n}
+\end{equation}
+Then we know there exists $N$ such that
+ \begin{equation}
+\forall n\geq N, \frac{a_{n+1}}{a_n}>\beta 
+\end{equation}
+This implies 
+\begin{equation}
+\forall k, a_{N+k}>\beta^k a_N
+\end{equation}
+Then for all $n>N$, we have
+ \begin{equation}
+   \sqrt[n]{a_n}>\sqrt[n]{ \beta^{n-N}a_{N}}=\beta \sqrt[n]{\beta^{-N}a_N} 
+\end{equation}
+Because 
+\begin{equation}
+\lim_{n\to\infty}\beta \sqrt[n]{\beta^{-N}a_N}=\beta 
+\end{equation}
+We see
+\begin{equation}
+\liminf_{n\to\infty} \sqrt[n]{a_n} \geq \beta 
+\end{equation}
+Then because $\beta<\alpha $ can be arbitrarily close to $\alpha $, we see
+\begin{equation}
+\liminf_{n\to\infty} \sqrt[n]{a_n}  \geq \alpha \vdone
+\end{equation}
+\end{proof}
+
+
 
 \chapter{Vector Analysis}
 \section{Important Inequalities}
 \begin{theorem}
-\label{4.1.1}
+\label{5.1.1}
 \textbf{(Young's Inequality)} If $a,b\geq 0$ and $p,q>1$ and  $\frac{1}{p}+\frac{1}{q}=1$, then
 \begin{equation}
 ab\leq \frac{a^p}{p}+\frac{b^q}{q}
@@ -3792,7 +5767,7 @@ ab\leq \frac{a^p}{p}+\frac{b^q}{q}
 The inequality above hold true because  $\exp$ is concave upward, and $\frac{1}{p}+\frac{1}{q}=1$. 
 \end{proof}
 \begin{theorem}
-\label{4.1.2}
+\label{5.1.2}
 \textbf{(Definition of $p$-norm)} Recall in Chapter 1, we define absolute value on $\R$ and  $\C$. With that definition, we have: for all $0<p \in \R$, the definition
 \begin{equation}
   \norm{\vecta{v}}_p:= (\sum \abso{v_i}^p)^{\frac{1}{p}}
@@ -3812,7 +5787,7 @@ Observe
 Nonnegative and positive definiteness is trivial. Triangle Inequality \textit{is left to proved}. 
 \end{proof}
 \begin{theorem}
-\label{4.1.3}
+\label{5.1.3}
 \textbf{(Holder's Inequality in $\C^n$)} Let $\vecta{x},\vecta{y}\in \C^n,\frac{1}{p}+\frac{1}{q}=1$. Define $\vecta{xy}$ by $\vecta{xy}_i=\vecta{x}_i\vecta{y}_i$. We have
 \begin{equation}
 \norm{\vecta{xy}}_1\leq \norm{\vecta{x}}_p\norm{\vecta{y}}_q
@@ -3832,7 +5807,7 @@ Notice because $(\sum \abso{\hat{x}_i}^p)^{\frac{1}{p}}=\norm{\hat{\vecta{x}}}_p
 \end{equation}
 \end{proof}
 \begin{corollary}
-\label{4.1.4}
+\label{5.1.4}
 \textbf{(Minkowskis Inequality in $\C^n$ and $p>1$)} Let $\vecta{x},\vecta{y}\in\C^n$, and let $p\in \R^+\text{ and }p\neq 1$. We have triangle inequality for all supposed $p$-norm
 \begin{equation}
 p>1\implies  \norm{\vecta{x}+\vecta{y}}_p\leq \norm{\vecta{x}}_p+\norm{\vecta{y}}_p
@@ -3862,7 +5837,7 @@ So
 \end{equation}
 \end{proof}
 \begin{definition}
-\label{4.1.5}
+\label{5.1.5}
 \textbf{(Definition of $p$-norm)} On $\C^n$,\textit{ if and only if $p>1$}, we say the  $p$-norm is 
 \begin{equation}
   \norm{\vecta{v}}_p:= (\sum \abso{v_i}^p)^{\frac{1}{p}}
@@ -3870,14 +5845,14 @@ So
 \end{definition}
 \section{Definition of Differential-able on Euclidean Space} 
 \begin{definition}
-\label{4.2.1}
+\label{5.2.1}
 \textbf{(Little-o Notation)} If we write $o(g(x))=f(x)$, we mean
 \begin{equation}
 \lim_{g(x)\to 0}\frac{f(x)}{g(x)}=0
 \end{equation}
 \end{definition}
 \begin{definition}
-\label{4.2.2}
+\label{5.2.2}
 \textbf{(Differentiable on $\R$)} We say a real-valued function $f(x)$ on $\R$ is differentiable on $a$ if 
 \begin{equation}
 \exists L\in \R, \lim_{x \to a}\frac{f(x)-f(a)}{x-a}=L
@@ -3885,7 +5860,7 @@ So
 Notice $L$ should be viewed as slope (not a number on real number line), or more abstract, a linear transformation from $\R^1$ to  $\R^1$. 
 \end{definition}
 \begin{definition}
-\label{4.2.3}
+\label{5.2.3}
 \textbf{(A General Definition of Differentiable of Function from Normed $\R^n$ to $\R^m$)} Let $\vecta{f}:\R^n\rightarrow \R^m$. We say $\vecta{f}$ is differentiable at $\vecta{a}$ if there exists a linear transformation $\vecta{J}:\R^n\rightarrow \R^m$ such that
 \begin{equation}
 \lim_{\vecta{h}\to \vecta{0}}\frac{\norm{\vecta{f}(\vecta{a+h})-\vecta{f}(\vecta{a})-\vecta{J}(\vecta{h})}_{\R^m}}{\norm{\vecta{h}}_{\R^n}}=0
@@ -3898,7 +5873,7 @@ We also say $\vecta{J}$ is a differential or a derivative of $\vecta{f}$ at $\ve
 \end{definition}
 
 \begin{definition}
-\label{4.2.4}
+\label{5.2.4}
 \textbf{(Tangent Plane)} Let $\vecta{f}:\R^n\rightarrow \R^m$ be differentiable at $\vecta{a}$. Let $\vecta{J}$ be a differential of $\vecta{f}$ at $\vecta{a}$. We say
 \begin{equation}
 \set{(\vecta{x},\vecta{J}(\vecta{x}))\in\R^{n+m}:\vecta{x}\in\R^n}\text{ where $\vecta{J}(\vecta{a})=\vecta{f}(\vecta{a})$ }
@@ -3906,7 +5881,7 @@ We also say $\vecta{J}$ is a differential or a derivative of $\vecta{f}$ at $\ve
 is the tangent plane of $\vecta{f}$ at $\vecta{a}$.
 \end{definition}
 \begin{definition}
-\label{4.2.5}
+\label{5.2.5}
 \textbf{(Definition of Gradient)}  Let $f:U\subseteq \R^n \rightarrow \R$. The gradient of $f$ is defined as
 \begin{equation}
   \nabla f=(\frac{\partial f}{\partial x_1},\dots ,\frac{\partial f}{\partial x_n})
@@ -3915,7 +5890,7 @@ Notice that we can verify Gradient is Jacobian, and jacobian is always a derivat
 \end{definition}
 
 \begin{definition}
-\label{4.2.6}
+\label{5.2.6}
 \textbf{(Jacobian Matrix)} For function $\vecta{f}:\R^n\rightarrow \R^m$, The Jacobian matrix  $\vecta{J}_\vecta{f}$ is  
 \begin{equation}
   \vecta{J}_\vecta{f}:=\begin{bmatrix}
@@ -3935,7 +5910,7 @@ The notation is
 \end{definition}
 
 \begin{theorem}
-\label{4.2.7}
+\label{5.2.7}
 \textbf{(If Differentiable, Then Jacobian give a Differential)}
 Let $\vecta{f}:\R^n\rightarrow \R^m$ be differentiable at $\vecta{a}$. Define
 \begin{equation}
@@ -3950,7 +5925,7 @@ We have
 \end{theorem}
 \section{Example Exercises for Differentiable}
 \begin{theorem}
-\label{4.3.1}
+\label{5.3.1}
 \textbf{(Example of Differentiable Function)} 
 \begin{equation}
 f(x,y)=x^2+2y\text{ is differentiable every where}
@@ -3984,7 +5959,7 @@ For all $\epsilon $, we then can pick the $\delta$ above so we have
 This prove equation 4.40 approach to 0
 \end{proof}
 \begin{theorem}
-\label{4.3.2}
+\label{5.3.2}
 \textbf{(Example of Differentiable Function)} Let $\vecta{f}:\R^n\rightarrow \R^m$ 
 \begin{equation}
 \text{ If $\vecta{f}$ is linear, then $\vecta{f}$ is differentiable everywhere }
@@ -3997,7 +5972,7 @@ Let $\vecta{H}=\vecta{f}$, then we have
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{4.3.3}
+\label{5.3.3}
 \textbf{(Example of Jacobian Exists, But Non-Differentiable)} 
 \begin{equation}
 f(x,y)=\begin{cases}
@@ -4028,7 +6003,7 @@ Then we have
 which prove  equation 4.47 does not approach to 0.
 \end{proof}
 \begin{theorem}
-\label{4.3.4}
+\label{5.3.4}
 \textbf{(Chain Rule)} Let $f:\R^n\rightarrow \R^m$ and let $g:\R^k\rightarrow \R^n$. We have
 \begin{equation}
 D_\vecta{a}(f\circ g)=D_{g(\vecta{a})}(f)\circ D_\vecta{a}(g)
@@ -4043,7 +6018,7 @@ and we have
 \end{equation}
 \end{theorem}
 \begin{theorem}
-\label{4.3.5}
+\label{5.3.5}
 \textbf{(Example of Chain Rule)} Let $\delta:(0,1)\rightarrow \R^n$ and $f:\R^n\rightarrow \R$ be differentiable. Define
 \begin{equation}
 F(t):=f(\delta (t))
@@ -4057,7 +6032,7 @@ L_{F'(t)}=D_{\delta (t)}(f)\circ D_{t}(\delta)
 Notice that $D_t(F)=L_{F'(t)}$, and we are done.
 \end{proof}
 \begin{theorem}
-\label{4.3.6}
+\label{5.3.6}
 \textbf{(Example of Chain Rule)} Let $f(u,v,w)=u^2v+wv^2$ and $\vecta{g}(x,y)=(xy,\sin x,e^x)$. Let $h=f\circ \vecta{g}$. We have
 \begin{equation}
 \frac{\partial h}{\partial x}=2xy^2\sin x+(x^2y^2+2e^x\sin x) \cos x+ e^x\sin^2 x
@@ -4073,7 +6048,7 @@ We have
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{4.3.7}
+\label{5.3.7}
 \textbf{(Mean Value Theorem)} Let $\vecta{f}:U\subseteq \R^n\rightarrow \R^m$. Suppose $\vecta{f}$ is differentiable on $U$ and $\vecta{x},\vecta{y}\in U$. For all $i\in \set{1,\dots , n}$, there exists $0\leq c_i\leq 1$ such that 
 \begin{equation}
 f_i(\vecta{y})-f_i(\vecta{x})=(Df_i)(\vecta{x}+c_i(\vecta{y}-\vecta{x}))
@@ -4081,14 +6056,14 @@ f_i(\vecta{y})-f_i(\vecta{x})=(Df_i)(\vecta{x}+c_i(\vecta{y}-\vecta{x}))
 \end{theorem}
 \section{Directional Derivative}
 \begin{definition}
-\label{4.4.1}
+\label{5.4.1}
   \textbf{(Definition of Directional Derivative)} Let $f$ be real valued and defined on a neighborhood of $\vecta{x}_0 \inr^n$ and let $\vecta{v}\inr^n$ with $\norm{\vecta{v}}=1$. We define 
   \begin{equation}
     (D_\vecta{v}f)(\vecta{x}_0):=\lim_{t\to 0}\frac{f(\vecta{x}_0+t\vecta{v})}{t}
   \end{equation}
 \end{definition}
 \begin{theorem}
-\label{4.4.2}
+\label{5.4.2}
 \textbf{(Directional Derivative)} Let $U$ be open and $f:U\rightarrow \R^n$ be differentiable at $x_0$. We have
  \begin{equation}
    (D_{\vecta{v}}f)(\vecta{x}_0)=\nabla f(\vecta{x}_0)\cdot \vecta{v}=\vecta{J}_f(\vecta{x}_0)\cdot \vecta{v}
@@ -4098,7 +6073,7 @@ f_i(\vecta{y})-f_i(\vecta{x})=(Df_i)(\vecta{x}+c_i(\vecta{y}-\vecta{x}))
 Outline: in the limit of differentiable equation, let $x=x_0+tv$ and see what happen when  $t \to 0$
 \end{proof}
 \begin{theorem}
-\label{4.4.3}
+\label{5.4.3}
 \textbf{(Example)} Let
 \begin{equation}
 f(x,y)=\begin{cases}
@@ -4117,18 +6092,18 @@ D_vf(0)&=\lim_{t \to 0}\frac{f(tv_1,tv_2)-f(0,0)}{t}\\
 \end{proof}
 \section{Gradient}
 \begin{definition}
-\label{4.5.1}
+\label{5.5.1}
 \textbf{(Level Set)} Let $f$ be a scalar function. A level set is a set of points
 \begin{equation}
 L(c)=\set{\vecta{x}\inr^n: f(\vecta{x})=c}
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{4.5.2}
+\label{5.5.2}
 \textbf{(Gradient and Tangent Plane)} Let $f$ be a scalar function. Vector $\nabla f(\vecta{p})$ is normal to the level set $L(f(\vecta{p}))$. 
 \end{theorem}
 \begin{theorem}
-\label{4.5.3}
+\label{5.5.3}
 \textbf{(Example)} Let $S=\set{(x,y,z):x^2+y^2+z^2=3}$. Find a vector normal to $S$ at  $(1,1,1)$
 \end{theorem}
 \begin{proof}
@@ -4146,7 +6121,7 @@ Compute
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{4.5.4}
+\label{5.5.4}
 \textbf{(TEST Example)} Let $S=\set{(x,y,z):x^2-y^2+xyz=1}$. Find the tangent plane of $S$ at $(1,0,1)$ 
 \end{theorem}
 \begin{proof}
@@ -4169,7 +6144,7 @@ The tangent plane is
 \end{proof}
 \section{Integral}
 \begin{theorem}
-\label{4.6.1}
+\label{5.6.1}
 \textbf{(Integral)} Let 
  \begin{equation}
 \forall x \in S, g_1(x)\leq g_2(x)
@@ -4185,7 +6160,7 @@ Let $f:A \rightarrow \R$ be continuous, we have
 This enable us to calculate integral by iteration.  
 \end{theorem}
 \begin{theorem}
-\label{4.6.2}
+\label{5.6.2}
 \textbf{(Example)} Let 
 \begin{equation}
 A=\set{(x,y)\inr^2 : 0\leq x\leq 1, x\leq y\leq 1}
@@ -4204,7 +6179,7 @@ Compute
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{4.6.3}
+\label{5.6.3}
 \textbf{(Example)} Let 
 \begin{equation}
 A=\set{(x,y)\inr^2 :0\leq x\leq 1, \sqrt{x} \leq y\leq 1}
@@ -4223,7 +6198,7 @@ Compute
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{4.6.4}
+\label{5.6.4}
 \textbf{(Example)} Let 
 \begin{equation}
 A=\set{(x_1,x_2,x_3):x_1,x_2,x_3 \geq 0, x_1+x_2+x_3\leq 1}
@@ -4243,7 +6218,7 @@ Find
 The answer is $\frac{4}{5}$
 \end{proof}
 \begin{theorem}
-\label{4.6.5}
+\label{5.6.5}
 \textbf{(Example)} Let $V(n)$ be the volume of unit $n$-ball. Compute $V(n)$
 \end{theorem}
 \begin{proof}
@@ -4566,7 +6541,7 @@ Notice $a+b$ is arbitrarily picked from $A+b$. Our proof is done  $\vdone$
 Show that every open set in \( \mathbb{R} \) is the union of at most countable collection of disjoint open intervals.
 \end{question}
 \begin{proof}
-Because $\Q$ is countable and dense in  $\R$, so in \myref{Theorem}{2.9.4}, we have proved the set
+Because $\Q$ is countable and dense in  $\R$, so in \myref{Theorem}{3.10.1}, we have proved the set
 \begin{equation}
 \mathcal{O}:=\set{B_r(p):p\inq\text{ and }r\inq^+}
 \end{equation}
@@ -4629,13 +6604,21 @@ We then can see $(a,b)$ and $(c,d)$ intersect, then we can use $S=\set{(a,b),(c,
 
 We now prove  \olive{open interval}.\\
  
-Let $B\in E$, and let $B'$ be equivalent class that satisfy  $B=\bigcup B'$. Because $B'$ contain only open sets, we know  $B$ is open. Then we know $\sup  B$ and $\inf B$ if exists, is not in $B$. We only have to prove every point in $(\inf B,\sup  B)$ is in $B$, where infimum and supremum can be negative or positive infinity. Notice that after we prove such, the proof is done, since $(\inf B,\sup B)\subseteq B$ is trivial.\\
+Let $B\in E$, and let $B'$ be equivalent class that satisfy  $B=\bigcup B'$. We wish to prove $B=(\inf B,\sup B)$ where negative and positive infinity is taken into account.\\
+
+Because $B'$ contain only open sets, we know  $B$ is open. Then we know $\sup  B$ and $\inf B$ if exists, is not in $B$. To see such, just observe every open ball centering $\sup B$ has a number greater than all numbers in $B$, and similarly for $\inf B$ vice versa.\\
+
+We have proved $B\subseteq (\inf B,\sup B)$.\\
+
+We only have to prove every point in $(\inf B,\sup  B)$ is in $B$, where infimum and supremum can be negative or positive infinity.\\
 
 \As{$\exists x\in (\inf B,\sup B), x\not\in B$}. We have
 \begin{equation}
-\exists (y_1,z_1)\in B, (y_1,z_1)\subseteq (\inf B,x)\text{ and }\exists (y_2,z_2)\in B, (y_2,z_2)\subseteq (x,\sup B)
+\exists (y_1,z_1)\in B', (y_1,z_1)\subseteq (\inf B,x)\text{ and }\exists (y_2,z_2)\in B', (y_2,z_2)\subseteq (x,\sup B)
 \end{equation}
-Because $(y_1,z_1)\sim (y_2,z_2)$ there exists $S\in \mathcal{O}'$ such that $(y_1,z_2)\subseteq \bigcup S\text{ and }\bigcup S$ is an open interval. If $S$ contain any element  $(v,w)$ not in $B$, we can use  $S$ to show  $(v,w)\sim (y_2,z_2)$, causing a contradiction. We have proved $S$ is a subset of  $B'$.\\
+Because $(y_1,z_1)\sim (y_2,z_2)$ there exists $S\in \mathcal{O}'$ such that $(y_1,z_2)\subseteq \bigcup S\text{ and }\bigcup S$ is an open interval.\\
+
+If $S$ contain any element  $(v,w)$ not in $B'$, we can use  $S$ to show  $(v,w)\sim (y_2,z_2)$, causing a contradiction. We have proved $S$ is a subset of  $B'$.\\
 
 Now, Because $x\in \bigcup S$, we know there must exists some interval in $S\subseteq B'$ containing  $x$  \CaC to $x\not\in B\odone\vdone$
 \end{proof}
@@ -4741,7 +6724,7 @@ Notice we have
 \begin{equation}
 \forall p\in M, B_1(p)=\set{p}
 \end{equation}
-So we know no set in $M$ has a limit point. Let $K\subseteq M$ be compact. By \myref{Theorem}{2.7.5}, we know $K$ is limit point compact. \As{$K$ is infinite}. Then $K$ has a limit point  $\tCaC$.
+So we know no set in $M$ has a limit point. Let $K\subseteq M$ be compact. By \myref{Theorem}{3.7.4}, we know $K$ is limit point compact. \As{$K$ is infinite}. Then $K$ has a limit point  $\tCaC$.
 \end{proof}
 \begin{question}{}{}
 
@@ -4752,7 +6735,7 @@ Let
 \begin{equation}
 E\subseteq \set{x_n:n\inn}\cup \set{x}
 \end{equation}
-If $E$ is infinite, we can regard  $E\setminus \set{x}$ as a sub-sequence of $\set{x_n}$. Then because $\set{x_n}_{n=1}^\infty$ converge to $x$, we know  $E\setminus \set{x}$ converge to $x$. Then we know $x$ is a limit point of $E\setminus \set{x}$ thus a limit point of $E$. We have proved every infinite subset of $\set{x_n:n\inn}\cup \set{x}$ has a limit point $x$ in $\set{x_n:n\inn}\cup \set{x}$. By \myref{Theorem}{2.7.5}, $\set{x_n:n\inn}\cup \set{x}$ is compact.
+If $E$ is infinite, we can regard  $E\setminus \set{x}$ as a sub-sequence of $\set{x_n}$. Then because $\set{x_n}_{n=1}^\infty$ converge to $x$, we know  $E\setminus \set{x}$ converge to $x$. Then we know $x$ is a limit point of $E\setminus \set{x}$ thus a limit point of $E$. We have proved every infinite subset of $\set{x_n:n\inn}\cup \set{x}$ has a limit point $x$ in $\set{x_n:n\inn}\cup \set{x}$. By \myref{Theorem}{3.7.4}, $\set{x_n:n\inn}\cup \set{x}$ is compact.
 \end{proof}
 \begin{question}{}{}
 
@@ -4798,53 +6781,46 @@ b_k-a_k=2^{1-k}<r\iff 1-k<\log_2 r\iff k>1-\log_2 r
 And we are done, by picking great enough $k$.\\
 
 
-We first prove \vi{the triangle inequality}
-\begin{equation}
-  \vi{d(X,Z)\leq d(X,Y)+d(Y,Z)}
-\end{equation}
-
-\As{$d(X,Z)>d(X,Y)+d(Y,Z)$}. We have
-\begin{equation}
-d(X,Z)-d(X,Y)>d(Y,Z)=\inf \set{d(y,z):y\in Y,z\in Z}
-\end{equation}
-Then we know there exists $y'\in Y, z'\in Z$ such that $d(y',z')<d(X,Z)-d(X,Y)$. Then we have
-\begin{equation}
-\inf \set{d(x,y):x\in X,y\in Y}=d(X,Y)<d(X,Z)-d(y',z')
-\end{equation}
-Then we know there exists $x'\in X, y'' \in Y$ such that 
-\begin{equation}
-d(x',y'')<d(X,Z)-d(y',z')
-\end{equation}
-in other words
-\begin{equation}
-d(x',y'')+d(y',z')<d(X,Z)
-\end{equation}
-Notice that 
-\begin{equation}
-d(x',z')\leq \min \set{d(x',y'')+d(y'',z'),d(x',y')+d(y',z')}\leq d(x',y'')+d(y',z')\tCaC\vdone
-\end{equation}
 
 Now we do (b).\\
 
-Notice   
+Because 
 \begin{equation}
-d(A,B)=\inf \bigcup \set{\set{d(a,b):a\in A}:b \in B}
+\set{d(a,b):a\in A,b\in B}=\bigcup \set{\set{d(a,b):a\in A}:b \in B}
 \end{equation}
-and notice
-\begin{equation}
-d(A,B)=\inf \set{\inf \set{d(a,b):a\inA}:b\in B}=\inf \set{d(A,\set{b}):b\in B}
-\end{equation}
+so we have 
+\begin{align}
+d(A,B)&=\inf \set{d(a,b):a\inA,b\inB}\\
+&=\inf \bigcup \set{\set{d(a,b):a\in A}:b\in B}\\
+&=\inf \set{\inf \set{d(a,b):a\in A}:b\in B}\\
+&=\inf \set{d(A,\set{b}):b \in B}
+\end{align}
+where the third equality hold true by the fourth question of HW1.\\
 
-We first prove if $d(A,B)=0$, then $A$ and  $B$ intersect.\\
+
+We first prove \vi{if $d(A,B)=0$, then $A$ and  $B$ intersect.}\\
 
 If $B$ is finite, then  $0=d(A,B)=\min \set{d(A,\set{b}:b\in B)}$, so we know there exists $b\in B$ such that $0=d(A,\set{b})=\inf \set{d(a,b):a\in A}$. Then we can deduce every open ball $B_r(b)$ contain a point $a\in A$, since there exists $a$ such that  $d(a,b)<r$. We have proved $b$ is a limit point of $A$, then because  $A$ is closed, we know  $b\in A$.\\
 
-If $B$ is infinite, then  $0=\inf \set{d(A,\set{b}):b\in B}$. If there exists $b$ such that $d(A,\set{b})=0$, we can use the same argument above to finish the proof. We only have to consider when $\forall b\in B, d(A,\set{b})>0$. For each $n$, we then know there exists  $b_n$ such that  $d(A,\set{b_n})<\frac{1}{n}$.\\
+If $B$ is infinite, then  $0=\inf \set{d(A,\set{b}):b\in B}$. For each $n$, we then know there exists  $b_n$ such that  $d(A,\set{b_n})<\frac{1}{n}$.\\
 
 
-Construct an infinite sequence $\set{b_n}_{n\inn}$ by picking $b_n$ such that $d(A,\set{b_n})<\frac{1}{n}$. We can see our method for picking $b_n$ will give us an infinite sequence as every $b$  satisfy  $d(A,\set{b})>0$. By \myref{Theorem}{2.7.5}, we know $B$ is limit point compact, so we know $\set{b_n}_{n\inn}$ has a limit point in $B$.\\
+Construct an infinite sequence $\set{b_n}_{n\inn}$ by picking $b_n$ such that $d(A,\set{b_n})<\frac{1}{n}$. We can see our method for picking $b_n$ will give us an infinite sequence as every $b$  satisfy  $d(A,\set{b})>0$. By \myref{Theorem}{3.7.4}, we know $B$ is limit point compact, so we know $\set{b_n}_{n\inn}$ has a limit point in $B$.\\
 
 Denote the limit point for $\set{b_n}_{n\inn}$ as $p$. We now show $p\in A$. \As{$p\in A^c$}. Because $A$ is closed, we know there exists an open ball  $B_r(p)$ disjoint with $A$. Then we know $d(A,\set{p})\geq r$. \\
+
+Notice that if we fix $b'\in B$. We have triangle inequality
+\begin{equation}
+d(A,\set{p})\leq d(A,\set{b'})+d(b',p)*
+\end{equation}
+Because 
+\begin{equation}
+d(A,\set{b'})+d(b',p)=\inf \set{d(a,b'):a \in A}+d(b',p)=\inf \set{d(a,b')+d(b',p):a \in A}
+\end{equation}
+where for each $a$, we have
+ \begin{equation}
+d(A,\set{p})\leq d(a,p)\leq d(a,b')+d(b',p)
+\end{equation}
 
 
 
@@ -4856,7 +6832,7 @@ we have
 \begin{equation}
   \forall b\in B [d(A,\set{b})< \frac{r}{2}\implies d(\set{b},\set{p})>\frac{r}{2}]
 \end{equation}
-Then we see if $n>\frac{2}{r}$, then $b_n$ is not contained by the open ball  $B_{\frac{r}{2}}(p)$. In other words, the open ball $B_{\frac{r}{2}}(p)$ that center a limit point $p$ contain at most $\lfloor \frac{2}{r}\rfloor$ amount of point in $\set{b_n}_{n\inn}$ \CaC.\\
+Then we see if $n>\frac{2}{r}$, then $b_n$ is not contained by the open ball  $B_{\frac{r}{2}}(p)$. In other words, the open ball $B_{\frac{r}{2}}(p)$ that center a limit point $p$ contain at most $\lfloor \frac{2}{r}\rfloor$ amount of point in $\set{b_n}_{n\inn}$ \CaC$\vdone$\\
 
 Lastly, we prove there exists $a\in A,b\in B$ such that $d(A,B)=d(a,b)$. If  $A$ and  $B$ are not disjoint, the fact $\exists a\in A,\exists b\in B, d(A,B)=\abso{a-b}$ is clear by picking $a=b$. We only have to consider when $A$ and $B$ are disjoint.\\
 
@@ -4874,13 +6850,13 @@ d(A,\set{b_n})<u+\frac{1}{n}
 \end{equation}
 Because $\forall b\in B, d(A,\set{b})>u$, we know if we collect one $b_n$ that satisfy $d(A,\set{b_n})<u+\frac{1}{n}$ for each $n\inn$, the sequence $\set{b_n}_{n\inn}$ is infinite.\\
 
-Then by \myref{Theorem}{2.7.5}, we know there exists a limit point $p\in B$ for $\set{b_n}_n\inn$.\\
+Then by \myref{Theorem}{3.7.4}, we know there exists a limit point $p\in B$ for $\set{b_n}_n\inn$.\\
 
 We know $d(A,\set{p})>u$ by our assumption.\\
 
 Let $m=d(A,\set{p})>u$. Then from
 \begin{equation}
-\forall b\in B,m=d(A,\set{p})<d(A,\set{b})+d(b,p)
+\forall b\in B,m=d(A,\set{p})<d(A,\set{b})+d(b,p)\text{ This was proved at * }
 \end{equation}
 we have
 \begin{equation}
@@ -4888,7 +6864,7 @@ we have
 \end{equation}
 Let $k$ be a natural such that  $u+\frac{1}{k}<m$. For each natural $t$ greater than  $k$, we have 
 \begin{equation}
-d(b_t,p)>m-u-\frac{1}{k}
+d(b_t,p)>m-u-\frac{1}{t}>m-u-\frac{1}{k}
 \end{equation}
 In other words, the open ball $B_{m-u-\frac{1}{k}}(p)$ centering a limit point contain at most $k$ amount of point in  $\set{b_n}_{n\inn}\tCaC\bdone$\\
 
@@ -4902,7 +6878,7 @@ Because $\forall a\in A, d(a,b)>u$, we know if we we collect one $a_n$ that sati
 
 Notice that the sequence $\set{a_n}_{n\inn}$ is also bounded as one can check $B_{2(u+1)}(a_1)$ contain all $\set{a_n}_{n\inn}$, using $b$ as a "pivot".\\
 
-Then by \myref{Corollary}{2.9.5}, we know $\set{a_n}_{n\inn}$ is compact, then by \myref{Theorem}{2.7.5}, we know $\set{a_n}_{n\inn}$ has a limit point in itself.\\
+Then because we are in $\R^n$ and $\set{a_n}_{n\inn}$ is closed and bounded, we know $\set{a_n}_{n\inn}$ is compact, then by \myref{Theorem}{3.7.4}, we know $\set{a_n}_{n\inn}$ has a limit point in itself.\\
 
 Let $a_k$ be a limit point of $\set{a_n}_{n\inn}$.\\
 
@@ -4916,7 +6892,7 @@ give us
 \end{equation}
 Let $s\inn$ be great enough so that  $m-u-\frac{1}{s}>0$. Then we see for each natural $w$ greater than  $s$, we have
  \begin{equation}
-d(a_w,b)<u+\frac{1}{s}
+d(a_w,b)<u+\frac{1}{w}<u+\frac{1}{s}
 \end{equation}
 so we have
 \begin{equation}
@@ -4962,8 +6938,564 @@ Notice that a compact set must be closed, and arbitrary collection of closed set
 \end{enumerate}
 \end{question}
 \begin{proof}
-See the proof in \myref{Theorem}{2.7.5}, there is a summary where you can find the numbering of rigorous proof for each step. Some proof for corollary is omitted because they are immediate consequences of theorem before.\\
+See the proof in \myref{Theorem}{3.7.4}, there is a summary where you can find the numbering of rigorous proof for each step. Some proof for corollary is omitted because they are immediate consequences of theorem before.\\
 
 Because I use a program written by artificial intelligence to update my reference in latex code whenever I edit my latex code, some reference may be directed to a wrong theorem, but all the tools are there in Chapter 2. 
 \end{proof}
+\section{HW3}
+\begin{question}{}{}
+1. Let $S_1$ and $S_2$ be two nonempty subsets in a metric space with $S_1 \cap \overline{S_2} = \overline{S_1}\cap S_2 = \emptyset$. If $A \subseteq S_1 \cup S_2$ is a connected set, then either $A \subseteq S_1$ or $A \subseteq S_2$.
+\end{question}
+\begin{proof}
+\As{we have $A\not\subseteq S_1\text{ and }A\not\subseteq S_2$}. Then we know $A\cap S_1\text{ and }A\cap S_2$ are both non-empty. We know
+\begin{equation}
+A=(A\cap S_1)\cup (A\cap S_2)
+\end{equation}
+We wish to show
+ \begin{equation}
+A\cap S_1\text{ and }A\cap S_2\text{ are separated. }
+\end{equation}
+Notice 
+\begin{equation}
+\overline{A\cap S_1}\subseteq \overline{S_1}
+\end{equation}
+Then because $\overline{S_1}$ and $S_2$ are disjoint, we know $\overline{A\cap S_1}$ and $S_2$ are disjoint. Then because $A\cap S_2\subseteq S_2$, we know $\overline{A\cap S_1}$ and $A\cap S_2$ are disjoint. Similarly, notice
+\begin{equation}
+\overline{A\cap S_2}\subseteq \overline{S_2}
+\end{equation}
+Then because $\overline{S_2}$ and $S_1$ are disjoint, we know $\overline{A\cap S_2}$ and $S_1$ are disjoint. Then because $A\cap S_1\subseteq S_1$, we know $\overline{A\cap S_2}$ and $A\cap S_1$ are disjoint.    \\
+
+We have proved $A\cap S_1$ and $A\cap S_2$ are separated, which $\tCaC$ to $A$ is connected.
+\end{proof}
+\begin{theorem}
+\label{6.3.1}
+\textbf{(Subspace Topology)} Let $Y$ be a subspace of  $(X,d)$, let $E\subseteq X$, and let $p\in Y$. We have
+\begin{gather}
+p\text{ is a limit point of $E\cap Y$ in }Y\implies p\text{ is a limit point of $E$ in  $X$ }\\
+\text{ The closure of $E\cap Y$  in $Y$ is a subset of the closure of $E$ in $X$ }\\
+E\text{ is closed in $X$ }\implies  E\cap Y\text{ is closed in $Y$ }
+\end{gather}
+where the converse of the first and the third statement may not hold true, and the subset relation in the second statement may be proper. 
+\end{theorem}
+\begin{proof}
+For the first statement, use the fact a sequence is in $E\cap Y$ is in $E$.\\
+
+For a non-trivial example of of the converse in first statement mat not hold true, let $X=\R$, let $Y=\set{1}\cup [2,3]$ and let $E=(0,3)$. We see $1$ and $0$ are both limit points of $E$ in $X$, and neither of them is a limit point of  $E\cap Y$ in $Y$, as $1\in Y$ is an isolated point and $0$ is not even in $Y$.\\
+
+We now prove the second statement. Let $p$ be in the closure of $E\cap Y$, and let $\set{x_n}$ be a sequence in $E\cap Y$ that converge to $p$. Notice that the sequence $\set{x_n}$ is in $E$ and we are done.\\
+
+We now prove the last statement. From left to right, let $\set{x_n}$ be a sequence in $E\cap Y$ that converge to some $p$ in $Y$. We wish to prove  $p$ is in  $E\cap Y$. Notice that $\set{x_n}$ is also in $E$, so we know  $p$ is in $E$. Then because $p$ is in $Y$, we know  $p\in  E\cap Y$.\\
+
+For an non-trivial example of the converse in last statement may not hold true. Let $X=\R$, let $Y=(0,2)$ and $E=[1,2)$. Clearly $E$ is not closed, but  $E\cap Y=[1,2)$ is closed in $Y$ (One can even observe that $E$ in  $Y$ is even "informally" unbounded).\\
+
+
+\end{proof}
+\begin{theorem}
+\label{6.3.2}
+\textbf{(Connected)} If $A$ is disconnected, then $A$ can be partitioned into two non-empty disjoint relatively open subsets. 
+\end{theorem}
+\begin{proof}
+Because $A$ is disconnected, we know  $A=E\cup F$ for some pair $E,F$ of separated sets. We wish to prove $E,F$ are both relatively open to $A$.\\
+
+Because $\overline{E}\cap F=\varnothing$, we know the closure of $E$ in subspace topology of $A$ is disjoint to $F$. Then with respect to $A$, we can see $\overline{E}\subseteq F^c=E$, so we know $E$ is relatively closed to  $A$.\\
+
+
+Similarly, because $\overline{F}\cap E=\varnothing$, we know the closure of $F$ in subspace topology of $A$ is disjoint to $E$. Then with respect to $A$, we can see $\overline{F}\subseteq E^c=F$, so we know $F$ is relatively closed to  $A$.\\
+
+Then because $E$ and  $F$ are both relatively closed to  $A$ and  $A=E\cup F$ where $E,F$ are disjoint, we know  $E$ and  $F$ are both relatively open to  $A$.
+\end{proof}
+\begin{question}{}{}
+2. If $A_1$ and $A_2$ are two nonempty and connected sets with $A_1\cap A_2\neq \varnothing$. Prove or disprove that
+\begin{enumerate}[label=(\alph*)]
+  \item $A_1\cap A_2$ is connected
+  \item $A_1\cup A_2$ is connected
+\end{enumerate}
+\end{question}
+\begin{proof}
+Let $A_1=\set{(x,y)\inr^2:x^2+y^2=1}$ and let  $A_2=\set{(0,y)\inr^2:y\inr}$.\\
+
+We see $A_1\cap A_2=\set{(0,1),(0,-1)}$. We see $\set{(0,1)}$ and $\set{(0,-1)}$ are separated, because they are close.\\
+
+We now prove $A_2$ is connected.\\
+
+For (b), see next Theorem.
+
+\end{proof}
+\begin{question}{}{}
+3. Let $\{A_k\}_{k=1}^{\infty}$ be a family of connected subsets of $M$, and suppose that $A$ is a connected subset of $M$ such that $A_k \cap A \neq \emptyset$ for all $k \in \mathbb{N}$. Show that the union $\left(\bigcup_{k \in \mathbb{N}} A_k\right) \cup A$ is also connected.
+\end{question}
+\begin{proof}
+\As{$\bigcup_{k\inn}A_k\cup A$ is not connected}. Let $\bigcup_{k\inn}A_k\cup A$ be partitioned into two non-empty  $E,F$ relatively open to  $\bigcup_{k\inn}A_k\cup A$.\\
+
+If $E,F$ both intersect with  $A$, observe that $A$ can be partitioned into two non-empty $E\cap A$ and $F\cap A$, which are relatively open to $A$, causing a contradiction to  $A$ is connected.\\
+
+Then, we only have to consider when only one of  $E,F$ intersect with  $A$. WOLG, let  $E$ intersect with $A$.\\
+
+We know $F$ must intersect with some  $A_n$. From last question, we know $A_n\cup A$ is connected. Notice that $A_n\cup A$ can be partitioned into two non-empty $E\cap (A\cup A_n)$ and $F\cap (A\cup A_n)$, and they are relatively open to $A\cup A_n\tCaC$ to $A_n\cup A$ is connected.
+\end{proof}
+\begin{question}{}{}
+4. Let $\{a_k\}_{k=1}^{\infty}$ be a sequence, and define $s_n = \frac{1}{n} \sum_{k=1}^{n} a_k$. Prove or disprove that
+\begin{enumerate}[label=(\alph*)]
+  \item If ${a_k}$ converges, then $s_n$ converges.\\
+  \item If $s_n$ converges, then $a_k$ converges.\\
+  \item Let $t = \frac{(2n-1)a_1 + (2n-3)a_2 + \ldots + 3a_{n-1} + a_n}{n^2}$. Assume ${a_k}$ converges to $a$. Does $t_n$ also converge to $a$?
+\end{enumerate}
+\end{question}
+\begin{proof}
+First notice
+\begin{align}
+  \abso{s_n-L}=\abso{\frac{\sum_{k=1}^n a_k}{n}-L}&=\abso{\frac{(\sum_{k=1}^na_k)-nL}{n}}\\
+  &=\abso{\frac{\sum _{k=1}^n a_k-L}{n}}\\
+  &=\frac{1}{n}\abso{\sum_{k=1}^n a_k-L}\\
+  &\leq \frac{1}{n} \sum_{k=1}^n \abso{a_k-L}
+\end{align}
+We prove \vi{$\lim_{k\to \infty}a_k=L\implies \lim_{k\to\infty }s_k=L$}.\\
+
+Arbitrarily pick $R\inr^+$. We wish to find $N$ such that 
+ \begin{equation}
+k>N\implies \abso{s_k-L}<R
+\end{equation}
+Because $\lim_{n\to\infty}a_n=L$, we know there exists $N_0$ such that 
+ \begin{equation}
+n>N_0\iff \abso{a_n-L}<\frac{R}{2}
+\end{equation}
+Let
+\begin{equation}
+H=\sum_{k=1}^{N_0} \abso{a_k-L}\text{ and }m=\frac{2}{R}(H-N_0R)
+\end{equation}
+We wish to prove
+\begin{equation}
+n>N_0+m \implies \abso{s_n-L}<R
+\end{equation}
+Let $n=N_0+u$ where $u>m$. Observe
+\begin{align}
+  \abso{s_n-L}\leq \frac{1}{n}\sum_{k=1}^n \abso{a_k-L}&=\frac{\sum_{k=1}^n \abso{a_k-L}}{N_0+u}\\
+  &= \frac{\sum_{k=1}^{N_0} \abso{a_k-L}+\sum_{k=N_0+1}^{N_0+u} \abso{a_k-L}}{N_0+u}\\
+  &\leq \frac{H+u \frac{R}{2}}{N_0+u}
+\end{align}
+and Observe 
+\begin{align}
+  u>m=\frac{2}{R}(H-N_0R)&\implies \frac{Ru}{2}>H-N_0R\\
+                         &\implies N_0R+ Ru>H+ \frac{Ru}{2}\\
+&\implies R>\frac{H+\frac{Ru}{2}}{N_0+u}
+\end{align}
+In other words, we have
+\begin{equation}
+n>N_0+m \implies u>m\implies \abso{s_n-L}\leq \frac{H+\frac{Ru}{2}}{N_0+u}<R\vdone
+\end{equation}
+For (b), we raise an counter-example. Let
+\begin{equation}
+a_n=\begin{cases}
+  1& \text{ if $n$ is odd }\\
+  0& \text{ if $n$ is even }
+\end{cases}
+\end{equation}
+To see $\set{a_n}$ does not converge to any number, consider the sub-sequences
+\begin{equation}
+\set{a_{n_k}}\text{ where }n_k=2k-1\text{ and }\set{a_{n_u}}\text{ where }n_u=2u
+\end{equation}
+We have
+\begin{equation}
+\forall k,a_{n_k}=1\text{ and }\forall u,a_{n_u}=0
+\end{equation}
+Then we see 
+\begin{equation}
+\lim_{k\to\infty}a_{n_k}=1\text{ and }\lim_{u\to\infty}a_{n_u}=0
+\end{equation}
+If $\set{a_n}$ converge, then these two sub-sequence should converge to the same number.\\
+
+We wish to show 
+\begin{equation}
+\lim_{n\to\infty}s_n=\frac{1}{2}
+\end{equation}
+With simple logical computation, we have
+\begin{equation}
+s_n=\begin{cases}
+  \frac{n-1}{2n}& \text{ if $n$ is odd }\\
+  \frac{1}{2}& \text{ if $n$ is even }
+\end{cases}
+\end{equation}
+Notice 
+\begin{equation}
+\frac{n-1}{2n}=\frac{1}{2}-\frac{1}{2n}
+\end{equation}
+Fix $\epsilon \inr^+$. We see that 
+\begin{equation}
+n>\frac{1}{2\epsilon }\implies \abso{s_n-\frac{1}{2}}=\begin{cases}
+\frac{1}{2n}& \text{ if $n$ is odd }\\
+ 0& \text{ if $n$ is even } 
+\end{cases}<\epsilon 
+\end{equation}
+Lastly, we prove 
+\begin{equation}
+\blue{\lim_{n\to\infty}a_n=a\implies \lim_{n\to\infty}t_n=a}
+\end{equation}
+First notice
+\begin{align}
+  \abso{t_n-a}&=\abso{\frac{(2n-1)a_1+(2n-3)a_2+\cdots + a_n}{n^2}-a}\\
+&=\abso{\frac{1}{n^2}[(2n-1)(a_1-a)+(2n-3)(a_2-a)+\cdots +(a_n-a)]}\\
+&=\frac{1}{n^2}\abso{\sum_{k=1}^n (2n-2k+1)(a_k -a)}\\
+&\leq \frac{1}{n^2}\sum_{k=1}^n \abso{(2n-2k+1)(a_k-a)}\\
+&= \frac{1}{n^2}\sum_{k=1}^n (2n-2k+1)\abso{a_k-a}\\
+&\leq \frac{1}{n^2}\sum_{k=1}^n (2n-1)\abso{a_k-a}=\frac{2n-1}{n^2}\sum_{k=1}^n \abso{a_k-a}
+\end{align}
+Arbitrarily pick $\epsilon \inr^+$. Because $\lim_{n\to\infty}a_n=a$. We know there exists $N_0$ such that
+ \begin{equation}
+n>N_0\implies \abso{a_n-a}<\frac{\epsilon }{4}\implies (\frac{2n-1}{n})\abso{a_n-a}=(2-\frac{1}{n})\abso{a_n-a}<2\abso{a_n-a}<\frac{\epsilon}{2} 
+\end{equation}
+Let
+\begin{equation}
+H=\sum_{k=1}^{N_0} \abso{a_k-a}
+\end{equation}
+We have
+\begin{align}
+  \abso{t_n-a}\leq \frac{2n-1}{n^2}\sum_{k=1}^n \abso{a_k-a}&=\frac{2n-1}{n^2}\sum_{k=1}^{N_0}\abso{a_k-a}+\frac{2n-1}{n^2}\sum_{k=N_0+1}^n \abso{a_k-a}\\
+&=\frac{2n-1}{n^2}H+\frac{2n-1}{n^2}\sum_{k=N_0+1}^n \abso{a_k-a}\\
+&= \frac{2n-1}{n^2}H+\frac{1}{n}\sum_{k=N_0+1}^n \frac{2n-1}{n}\abso{a_k-a}\\
+&\leq  \frac{2n-1}{n^2}H+ \frac{1}{n}(n-N_0) \frac{\epsilon }{2} 
+\end{align}
+Then if we let 
+\begin{equation}
+X_n:=\frac{2n-1}{n^2}H+\frac{(n-N_0)\epsilon }{2n}
+\end{equation}
+For all $n>N_0$, we have
+ \begin{equation}
+\abso{t_n-a}<X_n
+\end{equation}
+Notice 
+\begin{equation}
+X_n=\frac{2H}{n}-\frac{H}{n^2}+\frac{\epsilon}{2}-\frac{N_0\epsilon }{2n}
+\end{equation}
+So we have
+\begin{equation}
+\lim_{n\to\infty}X_n=\frac{\epsilon}{2}
+\end{equation}
+Then we know there exists some $N_1$ such that 
+ \begin{equation}
+   n>N_1\implies \abso{X_n-\frac{\epsilon}{2}}<\frac{\epsilon}{2}\implies \abso{t_n-a}\leq X_n<\epsilon \bdone
+\end{equation}
+
+
+\end{proof}
+\begin{question}{}{}
+5. If $a_k > 0$ for all $k \in \mathbb{N}$, prove that
+\[
+  \liminf_{k\to\infty} \frac{a_{k+1}}{a_k} \leq \liminf_{k\to\infty} \sqrt[k]{a_k} \leq \limsup_{k\to\infty} \sqrt[k]{a_k} \leq \limsup_{k\to\infty} \frac{a_{k+1}}{a_k}
+\]
+Moreover, find a sequence $\{a_k\}_{k=1}^{\infty}$ such that 
+\[
+  \limsup_{k\to\infty} \sqrt[k]{a_k} < \limsup_{k\to\infty} \frac{a_{k+1}}{a_k}
+\]
+\end{question}
+\begin{proof}
+In book Theorem 3.37. 
+\end{proof}
+\begin{question}{}{}
+6. If $s_1 = \sqrt{2}$, and
+\begin{equation}
+s_{n+1} =  \sqrt{2+\sqrt{s_n}}, \quad n = 1, 2, 3, \ldot
+\end{equation}
+prove that $s_n$ converge and bounded above by $2$
+\end{question}
+\begin{proof}
+We first prove \vi{$\set{s_n}$ increase monotonically} by induction.\\
+
+Base case:
+\begin{equation}
+s_1^2=2<2+\sqrt{2+\sqrt{\sqrt{2} } }=s_2^2 \implies s_1<s_2
+\end{equation}
+Induction case: Let $s_k<s_{k+1}$. We wish to prove $s_{k+1}<s_{k+2}$. Because $s_{k+1}=\sqrt{2+\sqrt{s_k} } $, we have
+\begin{equation}
+s_k\leq s_{k+1}=\sqrt{2+\sqrt{s_k} } 
+\end{equation}
+Then we can deduce
+\begin{gather}
+s_k\leq \sqrt{2+\sqrt{s_k} } \\
+\implies \sqrt{s_k}\leq \sqrt{\sqrt{2+\sqrt{s_k} } }\\
+\implies 2+\sqrt{s_k}\leq 2+\sqrt{\sqrt{2+\sqrt{s_k} } }\\
+\implies \sqrt{2+\sqrt{s_k} }\leq \sqrt{2+\sqrt{\sqrt{2+\sqrt{s_k} } } }\\
+\implies s_{k+1}=\sqrt{2+\sqrt{s_k} }\leq \sqrt{2+\sqrt{s_{k+1}} }=s_{k+2}\vdone
+\end{gather}
+We now prove \blue{$\set{s_n}$ is bounded above by 2} by induction.\\
+
+Base case: $s_1=\sqrt{2}<2$.\\
+
+Induction case: Let $s_k\leq 2$. We wish to prove  $s_{k+1}\leq 2$. Observe
+\begin{align}
+  s_k\leq 2&\implies s_k\leq 4\\
+  &\implies \sqrt{s_k}\leq \sqrt{4} =2\\
+  &\implies 2+\sqrt{s_k} \leq 4\\
+  &\implies s_{k+1}=\sqrt{2+\sqrt{s_k} }\leq \sqrt{4}=2 \bdone
+\end{align}
+The fact that $\set{s_n}$ monotonically increase and bounded above tell us $\set{s_n}$ converge.
+\end{proof}
+\begin{question}{}{}
+7. Suppose $a_n > 0$ and $s_n = \sum _{k=1}^{n} a_k$. If $s_n$ diverges, prove or disprove that $t_n=\sum_{k=1}^{n} \frac{a_k}{1+a_k}$ diverges. What can be said about
+\begin{equation}
+S_n=\sum_{k=1}^n \frac{a_k}{1+ka_k}
+\end{equation}
+\begin{equation}
+T_n=\sum_{k=1}^n \frac{a_k}{1+k^2a_k}
+\end{equation}
+\begin{equation}
+\text{If } s_n=\sum_{k=1}^n a_k\text{ converge, does }J_n=\sum_{k=1}^n ka_k\text{ converge }
+\end{equation}
+\end{question}
+\begin{proof}
+  We prove 
+ \vi{
+  \begin{equation}
+  t_n\text{ converge }\implies s_n\text{ converge }
+\end{equation}}
+Notice that
+\begin{equation}
+a_n=\frac{a_n+a_n^2}{1+a_n}=\frac{a_n}{1+a_n}+\frac{a_n^2}{1+a_n}
+\end{equation}
+So we have
+\begin{equation}
+s_n=t_n+\sum_{k=1}^n \frac{a_n^2}{1+a_n}
+\end{equation}
+Because $t_n$ converge, above tell us we only have to prove  $\sum_{k=1}^n \frac{a_n^2}{1+a_n}$ converge.\\
+
+Because $t_n$ converge, we know 
+ \begin{equation}
+\lim_{n\to\infty}\frac{a_n}{1+a_n}=0
+\end{equation}
+\As{$\lim_{n\to\infty}a_n\neq 0$}. Then there exists $\epsilon $ such that
+\begin{equation}
+\forall N\inn, \exists n>N, a_n>\epsilon 
+\end{equation}
+Notice
+\begin{equation}
+a_n>\epsilon \implies \frac{a_n}{1+a_n}=1-\frac{1}{1+a_n}>1-\frac{1}{1+\epsilon }\implies \abso{\frac{a_n}{1+a_n}-0}>1-\frac{1}{1+\epsilon }
+\end{equation}
+In other words, there exists a sub-sequence $\set{a_{f(n)}}$ such that
+\begin{equation}
+\lim_{n\to\infty}\frac{a_{f(n)}}{1+a_{f(n)}}\neq 0\tCaC
+\end{equation}
+We have proved $\lim_{n\to\infty}a_n=0$. Then we know there exists $N_1$ such that
+ \begin{equation}
+\forall n>N_1, a_n<1
+\end{equation}
+In other words,
+\begin{equation}
+\forall n>N_1, \frac{a_n^2}{1+a_n}<\frac{a_n}{1+a_n}
+\end{equation}
+By comparison test, our proof is done $\vdone$.\\
+
+We show
+\begin{equation}
+\blue{\text{ It is possible $s_n$ diverge and $S_n$ converge.}}
+\end{equation}
+Let 
+\begin{equation}
+a_k=\begin{cases}
+  1& \text{ if $\exists u\inn, k=u^2$ }\\
+  \frac{1}{k^2}& \text{ otherwise }
+\end{cases}
+\end{equation}
+Clearly,  $\lim_{n\to\infty}s_n=\infty$. Yet, we have
+\begin{align}
+  \lim_{n\to\infty}S_n=\sum_{k=1}^\infty \frac{a_k}{1+ka_k}&=\sum_{u=1}\frac{a_{u^2}}{1+u^2a_{u^2}}+\sum_{k\inn\setminus \set{r^2:r\inn}}\frac{a_k}{1+ka_k}\\
+&=\sum_{u=1}\frac{1}{1+u^2}+\sum_{k\inn\setminus \set{r^2:r\inn}}\frac{\frac{1}{k^2}}{1+\frac{1}{k}}\\
+&=\sum_{u=1}\frac{1}{1+u^2}+\sum_{k\inn\setminus \set{r^2:r\inn}} \frac{1}{k(k+1)}
+\end{align}
+Notice that 
+\begin{equation}
+\frac{1}{1+u^2}<\frac{1}{u^2}\text{ and }\frac{1}{k(k+1)}<\frac{1}{k^2}
+\end{equation}
+Then by comparison test, we know 
+\begin{equation}
+\text{ both }\sum_{u=1}\frac{1}{1+u^2}\text{ and }\sum_{k\inn\setminus \set{r^2:r\inn}} \frac{1}{k(k+1)}\text{ converge }
+\end{equation}
+Then we know
+\begin{equation}
+S_n\text{ also converge }\bdone
+\end{equation}
+Notice that for all $n$
+\begin{equation}
+k\geq 1\implies 1+k^2a_k>1+ka_k\implies \frac{a_k}{1+k^2a_k}<\frac{a_k}{1+ka_k}\implies T_n<S_n
+\end{equation}
+Then because the term is non-negative, by comparison test, we know the example above also satisfy $T_n$ converge while $s_n$ diverge.
+
+Notice that if we let $a_k=\frac{1}{k^2}$, then $s_n$ converge and $J_n=\sum_{k=1}^n \frac{1}{k}$ diverge. 
+
+\end{proof}
+\begin{question}{}{}
+8. Assume \( A \subset \mathbb{R} \) is compact and let \( a \in A \). Suppose \( \{ a_n \} \) is a sequence in \( A \) such that every convergent sub-sequence of \( \{ a_n \} \) converges to \( a \). 
+    \begin{enumerate}
+        \item Does the sequence \( \{ a_n \} \) also converge to \( a \)?
+        \item Without the assumption that \( A \) is compact, does the sequence \( \{ a_n \} \) converge to \( a \)?
+    \end{enumerate}
+\end{question}
+\begin{proof}
+\As{$a_n$ does not converge to $a$}. We know there exists $\epsilon $ such that there exists a sub-sequence $\set{a_{n_k}}_{k\inn}$
+\begin{equation}
+\forall k\inn, a_{n_k}\not\in B_{\epsilon }(a)
+\end{equation}
+Because  $A$ is (sequentially ) compact,  we know there must exist a sub-sequence $\set{a_{n_{k_u}}}_u\inn$ such that
+\begin{equation}
+\set{a_{n_{k_u}}}\text{ converge }
+\end{equation}
+Notice that
+\begin{equation}
+\set{a_{n_{k_u}}}\text{ is a sub-sequence of $\set{a_n}$ }
+\end{equation}
+So we know 
+ \begin{equation}
+\lim_{u\to\infty}a_{n_{k_u}}=a\tCaC\text{ to }\forall n\inn, a_{n_{k}}=\not\in B_\epsilon (a)
+\end{equation}
+Let $A=\Q$, and let
+ \begin{equation}
+a_n=\begin{cases}
+  0& \text{ if $n$ is odd }\\
+  n& \text{ if $n$ is even }
+\end{cases}
+\end{equation}
+and we see every convergent sub-sequence converge to $0$ but  $a_n$ itself does not converge to  $0$
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}
+    \setcounter{enumi}{8}
+    \item Suppose that \( a_k \neq 0 \) for large \( k \) and that
+    \[
+    p = \lim_{{k \to \infty}} \frac{\ln\left(\frac{1}{|a_k|}\right)}{\ln(k)}
+    \]
+    exists as an extended real number.
+    \begin{enumerate}
+        \item If \( p > 1 \), then \(\sum_{k=1}^{\infty} a_k\) converges absolutely.
+        \item If \( p < 1 \), then $\sum _{k=1}^\infty a_k$ diverge
+    \end{enumerate}
+\end{enumerate}
+\end{question}
+\begin{proof}
+Let $p>\alpha >1$.  Then we know there exists $N$ such that
+ \begin{equation}
+\forall n>N, \frac{\ln (\frac{1}{\abso{a_n}})}{\ln n}>\alpha >1
+\end{equation}
+This give us
+\begin{equation}
+\forall n>N, \ln(\frac{1}{\abso{a_n}})>\alpha \ln n 
+\end{equation}
+This give us
+\begin{equation}
+\forall n>N, \frac{\ln (\frac{1}{\abso{a_n}})}{\alpha }>\ln n
+\end{equation}
+This give us
+\begin{equation}
+\forall n>N, \ln (\abso{a_n}^{-\frac{1}{\alpha }})>\ln n
+\end{equation}
+This give us
+\begin{equation}
+\forall n>N, \abso{a_n}^{\frac{-1}{\alpha }}>n
+\end{equation}
+This give us
+\begin{equation}
+\forall n>N, \abso{a_n}<n^{-\alpha }<n^{-1}
+\end{equation}
+By comparison test, we are done.\\
+
+Let $p<\beta <1$. Then we know there exists $N$ such that
+\begin{equation}
+\forall n>N, \frac{\ln (\frac{1}{\abso{a_n}})}{\ln n}<\beta <1
+\end{equation}
+This give us
+\begin{equation}
+  \forall n>N, \frac{\ln(\abso{a_n}^{-1})}{\beta }<\ln n
+\end{equation}
+This give us
+\begin{equation}
+\forall n>N, \ln(\abso{a_n}^{\frac{-1}{\beta }})<\ln n 
+\end{equation}
+This give us
+\begin{equation}
+\forall n>N, \abso{a_n}^{\frac{-1}{\beta }}<n
+\end{equation}
+This give us
+\begin{equation}
+\forall n>N, \abso{a_n}>n^{-\beta }>n^{-1}
+\end{equation}
+By comparison test, we are done.
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}
+    \setcounter{enumi}{9}
+    \item Suppose that \( f : \mathbb{R} \to (0,\infty) \) is differentiable, that \( f(x) \to 0 \) as \( x \to \infty \), and that
+    \[
+    \alpha = \lim_{{x \to \infty}} \frac{xf'(x)}{f(x)}
+    \]
+    exists. If \( \alpha < -1 \), prove that
+    \[
+    \sum_{k=1}^{\infty} f(k)
+    \]
+    converges.
+\end{enumerate}
+\end{question}
+\begin{proof}
+Let $\beta $ satisfy
+\begin{equation}
+\alpha<\beta <-1 
+\end{equation}
+Because
+\begin{equation}
+\lim_{x\to\infty}\frac{xf'(x)}{f(x)}=\alpha 
+\end{equation}
+We know there exists $R$ such that
+\begin{equation}
+\forall x>R, \frac{xf'(x)}{f(x)}\leq \beta 
+\end{equation}
+Then we have
+\begin{equation}
+\forall x>R, \frac{d}{dx}\ln f(x)=\frac{f'(x)}{f(x)}\leq \frac{\beta }{x}
+\end{equation}
+This tell us 
+\begin{equation}
+  \forall y>R, \int^y_R \frac{d}{dx}\ln f(x)dx\leq \int^y_R \frac{\beta}{x}dx
+\end{equation}
+Which means
+\begin{equation}
+\forall y>R,\ln ( \frac{f(y)}{f(R)})=\ln f(y)-\ln f(R)\leq \beta (\ln(y)-\ln(R))= \ln(\frac{y}{R})^\beta 
+\end{equation}
+This shows
+\begin{equation}
+\forall y>R, \frac{f(y)}{f(R)}\leq (\frac{y}{R})^{\beta }
+\end{equation}
+It means
+\begin{equation}
+\forall y>R, f(y)\leq \frac{f(R)}{R^{\beta }}y^{\beta }
+\end{equation}
+Notice $\beta <-1$, we know the series 
+\begin{equation}
+\sum_{n>R} \frac{f(R)}{R^{\beta }}n^{\beta }=\frac{f(R)}{R^{\beta }}\sum_{n>R}n^{\beta }\text{ converge }
+\end{equation}
+Then because $f(y)$ is always positive (given by the question), we know $\sum_{n=1}^\infty f(n)$ converge by comparison test.
+\end{proof}
+\begin{lemma}
+\label{6.3.3}
+\textbf{(Bernoulli Inequality)} Let  $r\geq 1$ and $x\geq -1$. We have
+\begin{equation}
+  (1+x)^r\geq 1+rx
+\end{equation}
+\begin{equation}
+
+\end{equation}
+\end{lemma}
+\begin{question}{}{}
+\begin{enumerate}
+    \setcounter{enumi}{10}
+    \item Suppose that \( \{ a_n \} \) is a sequence of nonzero real numbers and that
+    \[
+    p = \lim_{{k \to \infty}} k(1-\abso{\frac{a_{k+1}}{a_k}})
+    \]
+    exists as an extended real number. Prove that
+    \[
+    \sum_{k=1}^{\infty} |a_k|
+    \]
+    converges absolutely when \( p > 1 \).
+\end{enumerate}
+\end{question}
+\begin{proof}
+Because
+\end{proof}
+
 \end{document}
