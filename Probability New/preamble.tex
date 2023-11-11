@@ -1,6 +1,6 @@
-
 %%%%%%%%%%%%%% macros.tex %%%%%%%%%%%%%%
 % Place your custom macros here, if any.
+
 
 %%%%%%%%%%%%%% letterfonts.tex %%%%%%%%%%%%%%
 % Place your font setup here, if any.
@@ -16,6 +16,18 @@
 % Page Setup
 \usepackage[letterpaper, tmargin=2cm, rmargin=0.5in, lmargin=0.5in, bmargin=80pt, footskip=.2in]{geometry}
 \usepackage{adjustbox}
+
+
+\usepackage{etoolbox} % Required for conditional toggles
+\newtoggle{firstsection}
+\toggletrue{firstsection} % Set to true initially
+
+\let\oldsection\section
+\let\oldchapter\chapter
+
+\renewcommand{\chapter}{\global\toggletrue{firstsection}\oldchapter}
+\renewcommand{\sectionbreak}{\iftoggle{firstsection}{}{\clearpage}}
+\renewcommand{\section}[1]{\sectionbreak\oldsection{#1}\global\togglefalse{firstsection}}
 
 % Mathematics
 \usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
@@ -33,16 +45,18 @@
 \definecolor{myb}{RGB}{45, 111, 177}
 \definecolor{myr}{RGB}{199, 68, 64}
 % Define more colors here...
-
+\definecolor{olive}{HTML}{6B8E23}
+\definecolor{orange}{HTML}{CC5500}
+\definecolor{brown}{HTML}{8B4513}
 % Hyperlinks
 \usepackage{bookmark}
 \usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,anchorcolor=blue]{hyperref}
 % \usepackage{hyperref}
 % \hypersetup{
-    pdftitle={Assignment},
-    colorlinks=true, linkcolor=doc!90,
-    bookmarksnumbered=true,
-    bookmarksopen=true
+%    pdftitle={Assignment},
+ %   colorlinks=true, linkcolor=doc!90,
+%    bookmarksnumbered=true,
+%    bookmarksopen=true
 %}
 
 % Figures and Graphics
@@ -190,9 +204,11 @@
 }{def}
 \makeatother
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % TABLE OF CONTENTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \usepackage{tikz}
 \definecolor{doc}{RGB}{0,60,110}
 \usepackage{titletoc}
@@ -201,7 +217,7 @@
 {\addvspace{30pt}%
 	\begin{tikzpicture}[remember picture, overlay]%
 		\draw[fill=doc!60,draw=doc!60] (-7,-.1) rectangle (-0.9,.5);%
-		\pgftext[left,x=-4.5cm,y=0.2cm]{\color{white}\Large\sc\bfseries Chapter\ \thecontentslabel};%
+		\pgftext[left,x=-5.5cm,y=0.2cm]{\color{white}\Large\sc\bfseries Chapter\ \thecontentslabel};%
 	\end{tikzpicture}\color{doc!60}\large\sc\bfseries}%
 {}
 {}
