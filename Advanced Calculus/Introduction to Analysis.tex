@@ -3620,7 +3620,7 @@ For $(\overline{E})^\circ \not\subseteq \overline{E^\circ }$, let $E=\Q$ . We ha
 We now shed light on subspace topology of sequential space. 
 \end{minipage}}
 \begin{theorem}
-\label{6.3.2}
+\label{7.3.2}
 \textbf{(Subspace Topology)} Let $Y$ be a subspace of $(X,d)$, let $E\subseteq X$, and let $p\in  Y$. We have
 \begin{gather}
 p\text{ is an interior point of $E$ in $X$ }\implies p\text{ is an interior point of $E\cap Y$ in $Y$ } \\
@@ -3704,14 +3704,14 @@ n>N\implies x_n\not\in E^c\implies x_n\in E
 \end{proof}
 \section{Connected}
 \begin{definition}
-\label{6.4.1}
+\label{7.4.2}
 \textbf{(Definition of Separated)} We say two sets $A,B$ are separated if 
  \begin{equation}
 A\cap \overline{B}=\varnothing=\overline{A}\cap B
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{6.4.2}
+\label{7.4.3}
 \textbf{(Subsets of Separated Sets are Separated)} Let $A\subseteq N$ and $B\subseteq M$.  
 \begin{equation}
 N,M\text{ are separated }\implies A,B\text{ are separated }
@@ -3773,7 +3773,7 @@ A=\overline{B}^c \cap E \bdone
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{6.3.3}
+\label{7.3.3}
 \textbf{(Union of Connected Sets that have Nonempty Intersection is Connected)} Let $\mathcal{F}$ be a class of connected sets. We have 
 \begin{equation}
 \bigcap \mathcal{F}\neq \varnothing \implies \bigcup \mathcal{F}\text{ is connected }
@@ -3790,7 +3790,7 @@ WOLG, let
 \begin{equation}
 A\cap \bigcap \mathcal{F}\neq \varnothing
 \end{equation}
-Because $B$ is non-empty and $B\subseteq \bigcup \mathcal{F}$, we know $B$ must intersect with some $F_n\in \mathcal{F}$. Notice that because $A\cap \bigcap \mathcal{F}\neq \varnothing$, we have $A\cap F_n\neq \varnothing$. Then by \myref{Theorem}{6.3.1}, we see $A\cap F_n$ and $B\cap F_n$ are both relatively open to $F_n$, while $F_n= (A\cap F_n)\disjointunion (B\cap F_n)\tCaC$ 
+Because $B$ is non-empty and $B\subseteq \bigcup \mathcal{F}$, we know $B$ must intersect with some $F_n\in \mathcal{F}$. Notice that because $A\cap \bigcap \mathcal{F}\neq \varnothing$, we have $A\cap F_n\neq \varnothing$. Then by \myref{Theorem}{7.3.1}, we see $A\cap F_n$ and $B\cap F_n$ are both relatively open to $F_n$, while $F_n= (A\cap F_n)\disjointunion (B\cap F_n)\tCaC$ 
 \end{proof}
 
 \section{Compactness}
@@ -6237,6 +6237,7 @@ Then we can observe
 \chapter{Ve 2}
 \section{Line Integral}
 \begin{theorem}
+\label{6.1.1}
 \textbf{(Computation of Arc Length with Intuition)} Let  $\gamma:\R\rightarrow \R^n$ be a function that represent the position of a particle. Let
 \begin{equation}
 C=\set{\gamma (t):a\leq t\leq b}
@@ -6257,6 +6258,7 @@ dS=\sqrt{(\frac{dx}{dt})^2+(\frac{dy}{dt})^2+(\frac{dz}{dt})^2}dt=\norm{\gamma '
 \end{equation}
 \end{proof}
 \begin{corollary}
+\label{6.1.2}
 \textbf{(Path Integral)} Let $f:\R^n\rightarrow \R$ be a scalar field, and 
 \begin{equation}
 C=\set{\gamma (t):a\leq t\leq b}
@@ -6267,6 +6269,7 @@ We have
 \end{equation}
 \end{corollary}
 \begin{corollary}
+\label{6.1.3}
 \textbf{(Line Integral)} Let $F:\R^n\rightarrow \R^n$ be a vector field, and
 \begin{equation}
 C=\set{\gamma (t):a\leq t\leq  b}
@@ -6282,6 +6285,7 @@ Above are specification. It is not proof or anything.\\
 Below practice some path integral.
 \end{minipage}}
 \begin{theorem}
+\label{6.1.4}
 \textbf{(Example)} Let
 \begin{equation}
 C=\set{(x,y):x=a\cos t,a\sin t, 0\leq t\leq \pi}
@@ -6305,6 +6309,7 @@ We have
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{6.1.5}
 \textbf{(Example)} Let
 \begin{equation}
   C=\set{(x,y):x^{\frac{2}{3}}+y^{\frac{2}{3}}=a ^{\frac{2}{3}}}
@@ -6333,6 +6338,7 @@ Then
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{6.1.6}
 \textbf{(Example)} Let 
 \begin{equation}
 A=(0,0,0)\text{ and }B=(1,2,3)
@@ -6359,6 +6365,7 @@ Then
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{6.1.7}
 \textbf{(Example)} Let
 \begin{equation}
 C=\set{(a\cos^3 t,a\sin^3 t):0\leq t\leq \frac{\pi}{2}}
@@ -6389,6 +6396,7 @@ Then
 Below practice line integral.
 \end{minipage}}
 \begin{theorem}
+\label{6.1.8}
 \textbf{(Example)} Let
 \begin{equation}
 F(x,y,z)=(xy,2,4z)\text{ and }\gamma (t)=(\cos t,\sin t,t)
@@ -6416,6 +6424,7 @@ Compute
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{6.1.9}
 \textbf{(Example)} Let
 \begin{equation}
 F(x,y)=(e^{y},-\sin \pi x)\text{ and }C=\set{(-1,0)\to (1,0)}\cup \set{(1,0)\to (0,1)}\cup \set{(0,1)\to (-1,0)}
@@ -6457,6 +6466,7 @@ This give us
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{6.1.10}
 \textbf{(Example)} Let
 \begin{equation}
 F(x,y,z)=(xy,yz,xz)\text{ and }\gamma (t)=(t,t^2,t^3)
@@ -6485,6 +6495,7 @@ Then
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{6.1.11}
 \textbf{(Example)} Let
 \begin{equation}
 F(x,y,z)=(y^2+z^2,x^2+z^2,x^2+y^2)\text{ and }\gamma_1 (t)=(t,t,t)\text{ and }\gamma _2 (t)=(t,t^2,t^3)
@@ -6527,6 +6538,212 @@ Then
 \end{align}
 \end{proof}
 \section{Fundamental Theorem of Line Integral}
+\begin{theorem}
+\label{6.2.1}
+\textbf{(Fundamental Theorem of Calculus)} Let $C=\set{\gamma (t):t\in [a,b]}$ be a piece-wise smooth curve. If $f$ is differential, then
+ \begin{equation}
+\int_C \nabla f(\gamma )\cdot d\gamma =f(\gamma (b))-f(\gamma (a))
+\end{equation}
+\end{theorem}
+\begin{proof}
+Notice the multivariate chain rule
+\begin{equation}
+\frac{d}{dt} f\circ \gamma =\nabla f(\gamma (t)) \cdot \gamma '(t)
+\end{equation}
+Then
+\begin{align}
+\int_C \nabla f(\gamma )\cdot d\gamma &=\int_a^b \nabla f(\gamma (t))\cdot \gamma '(t)dt\\
+&=\int_a^b \frac{d}{dt}f(\gamma (t))dt\\
+&=f(\gamma (b))-f(\gamma (a))
+\end{align}
+\end{proof}
+\begin{definition}
+\label{6.2.2}
+\textbf{(Definition of Conservative Vector Field)} We say a vector field $F$ is conservative if there exists  a scalar field  $f$ such that
+ \begin{equation}
+F=\nabla f
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{6.2.3}
+\textbf{(Definition of Vector Field Being Independent of Path)} We say a vector field $F$ is independent of path if for each pair of paths $C_1,C_2$ of same starting and ending points $a,b$, we have
+\begin{equation}
+\int_{C_1} F(\gamma )\cdot d\gamma =\int_{C_2}F(\gamma )\cdot d\gamma 
+\end{equation}
+\end{definition}
+\begin{theorem}
+\label{6.2.4}
+\textbf{(Independent of Path Theorem)} 
+\begin{equation}
+\text{ $F$ is conservative }\iff \text{ $F$ is independent of path }
+\end{equation}
+\end{theorem}
+\begin{proof}
+$(\longrightarrow)$\\
+
+This follows from \myref{Theorem}{6.2.1} (Fundamental Theorem of Line Integral)\\
+
+$(\longleftarrow)$\\
+
+Define
+\begin{equation}
+f(0)=0\text{ and }f(s)=\int_0^s F(\gamma )\cdot d\gamma 
+\end{equation}
+We now see 
+\begin{equation}
+\frac{\partial f}{\partial x}= \lim_{h\to 0} \frac{f(x+h(1,0,0))-f(x)}{h}=\lim_{h\to 0}\frac{\int_0^{x+h(1,0,0)}F(\gamma )\cdot d \gamma -\int_0^x F(\gamma )\cdot d\gamma }{h}
+\end{equation}
+Because $F$ is independent of path, we have
+ \begin{equation}
+\int_0^{x+h(1,0,0)}F(\gamma )\cdot d \gamma -\int_0^x F(\gamma )\cdot d\gamma =\int_x^{x+h(1,0,0)}F(\gamma )\cdot d\gamma 
+\end{equation}
+By changing the path of $0\to (x+h(1,0,0))$ to $0\to x \cup  x\to (x+h(1,0,0))$. Then we have
+\begin{align}
+\frac{\partial f}{\partial x}&=\lim_{h\to 0}\frac{\int_x^{x+h(1,0,0)} F(\gamma )\cdot d\gamma }{h}\\
+&=\lim_{h\to 0}\frac{\int_0^1 F(x+t(1,0,0))\cdot (h,0,0)dt}{h}\\
+&=\lim_{h\to 0}\frac{\int_0^1 h F_1(x+(th,0,0))dt}{h}\\
+&=\lim_{h\to 0}\int_0^1 F_1(x+(th,0,0))dt=F_1(x)
+\end{align}
+\end{proof}
+\begin{theorem}
+\textbf{(Formula for Line Integral)} Let 
+ \begin{equation}
+F=(P,Q,R)\text{ and }\gamma (t)=(x(t),y(t),z(t))
+\end{equation}
+We have
+\begin{equation}
+\int_C F(\gamma )\cdot d\gamma =\int_a^b P(\gamma (t)) x'(t)+Q(\gamma (t)) y'(t)+R(\gamma (t)) z'(t)dt
+\end{equation}
+\end{theorem}
+\fbox{\begin{minipage}{39em}
+Below practice formula for line integral.
+\end{minipage}}
+\begin{theorem}
+\textbf{(Example)} Let
+\begin{equation}
+\gamma (t)=(1-t,t)\text{ and }C=\set{\gamma (t):t\in [0,1]}
+\end{equation}
+We have
+\begin{equation}
+\int_C x^2ydx+xydy=\frac{1}{12}
+\end{equation}
+\end{theorem}
+\begin{proof}
+We have
+\begin{equation}
+\frac{dx}{dt}=-1\text{ and }\frac{dy}{dt}=1
+\end{equation}
+Then
+\begin{align}
+\int_C x^2ydx+xydy&=\int_0^1 (1-t)^2t(-1)+(1-t)tdt\\
+&=\int_0^1 -t^3+t^2dt\\
+&=\frac{-t^4}{4}+\frac{t^3}{3}\at_{0}^1\\
+&=\frac{1}{12}
+\end{align}
+\end{proof}
+\begin{theorem}
+\textbf{(Example)} Let
+\begin{equation}
+\gamma_1 (t)=(3t,2)\text{ and }\gamma _2(t)=(3,2+3t)\text{ and }\gamma _3(t)=(3-3t,5-3t)
+\end{equation}
+Let
+ \begin{equation}
+C_1=\set{\gamma _1(t):t\in[0,1]}\text{ and }C_2=\set{\gamma _2(t):t\in[0,1]}\text{ and }C_3=\set{\gamma _3(t):t\in[0,1]}
+\end{equation}
+We have
+\begin{equation}
+\int_C xy^2 dx+xy^2 dy 
+\end{equation}
+\end{theorem}
+\begin{proof}
+ Notice 
+ \begin{equation}
+ \frac{dx}{dt}=3\text{ or }0\text{ or }-3\text{ and }\frac{dy}{dt}=0\text{ or }3\text{ or }-3
+ \end{equation}
+We have
+\begin{align}
+\int_{C_1} xy^2 dx+xy^2dy&=\int_0^1 3t 2^2 3+3t 2^2 0 dt\\
+&=\int_0^1 36t dt=18t^2 \at_{0}^1=18
+\end{align}
+We have
+\begin{align}
+\int_{C_2} xy^2dx+xy^2dy &=\int_0^1 3(2+3t)^2 3dt\\
+&=(2+3t)^3 \at_{0}^1=117
+\end{align}
+We have
+\begin{align}
+\int_{C_3}xy^2 dx+xy^2dy&=\int_0^1 -6(3-3t)(5-3t)^2 dt\\
+&=\int_0^1 -18(-9t^3+39t^2-55t+25)dt\\
+&=-18 (\frac{-9}{4}t^4+13t^3-\frac{55}{2}t^2+25t) \at_{0}^1 =\frac{-297}{2}
+\end{align}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Lastly 
+\end{minipage}}
+\begin{theorem}
+\textbf{(Curl = 0 If and Only If Conservative)}
+\begin{equation}
+\forall s, \text{ curl }F(s)=0\iff F\text{ is conservative }
+\end{equation}
+\end{theorem}
+\begin{proof}
+$(\longleftarrow)$\\
+
+Let $f$ satisfy
+ \begin{equation}
+\nabla f=F
+\end{equation}
+We have
+\begin{align}
+\text{ curl }F &=\nabla \times F\\
+&=\nabla \times (\nabla f)\\
+&=\abso{\begin{bmatrix}
+    \textbf{ i }&\textbf{ j }&\textbf{ k }\\
+    \frac{\partial }{\partial x }&\frac{\partial }{\partial y}&\frac{\partial }{\partial z}\\
+  f_x & f_y & f_z
+\end{bmatrix}}\\
+&=(f_{yz}-f_{zy},f_{xz}-f_{zx},f_{yx},f_{xy})=(0,0,0)
+\end{align}
+$(\longrightarrow)$\\
+
+Let $\Sigma$ be a smooth oriented surface in  $\R^3$. Let  $\Gamma$ be the boundary of  $\Sigma$. Stokes' Theorem give us
+ \begin{equation}
+\int \int_{\Sigma} \nabla \times F d\Sigma =\int_{\Gamma} F\cdot dS
+\end{equation}
+Because curl equals $0$, we see  $F$ is independent of the path by observing seeing 
+ \begin{equation}
+\int_{\Gamma} F\cdot dS=0
+\end{equation}
+By viewing $\Gamma$ to be the union of two different path with one of them reversed. 
+\end{proof}
+\begin{theorem}
+\textbf{(Test Example)} Let
+\begin{equation}
+F=(4x^3+9x^2y^2,6x^3y+6y^5)
+\end{equation}
+We have
+\begin{equation}
+f=x^4+3x^3y^2+y^5+C\implies F=\nabla f
+\end{equation}
+\end{theorem}
+\begin{proof}
+We see 
+\begin{equation}
+F_X=4x^3+9x^2y^2 \implies f=x^4+3x^3y^2+C
+\end{equation}
+and
+\begin{equation}
+F_Y=6x^3y+6y^5\implies f=y^5+3x^3y^2+C
+\end{equation}
+Then 
+\begin{equation}
+f=x^4+3x^3y^2+y^5+C
+\end{equation}
+\end{proof}
+\section{Green's Theorem}
+\begin{theorem}
+\textbf{(Green's Theorem)}
+\end{theorem}
 
 
 
@@ -7295,7 +7512,7 @@ We see $A_1\cap A_2=\set{(0,1),(0,-1)}$. We see $\set{(0,1)}$ and $\set{(0,-1)}$
 For (b), see next three Theorems.
 \end{proof}
 \begin{theorem}
-\label{6.3.1}
+\label{7.3.1}
 \textbf{(Connected)} If $A$ is disconnected, then $A$ can be partitioned into two non-empty disjoint relatively open subsets. 
 \end{theorem}
 \begin{proof}
@@ -7309,7 +7526,7 @@ Similarly, because $\overline{F}\cap E=\varnothing$, we know the closure of $F$ 
 Then because $E$ and  $F$ are both relatively closed to  $A$ and  $A=E\cup F$ where $E,F$ are disjoint, we know  $E$ and  $F$ are both relatively open to  $A$.
 \end{proof}
 \begin{theorem}
-\label{6.3.2}
+\label{7.3.2}
 \textbf{(Subspace Topology)} Let $Y$ be a subspace of $(X,d)$, let $E\subseteq X$, and let $p\in  Y$. We have
 \begin{gather}
 p\text{ is an interior point of $E$ in $X$ }\implies p\text{ is an interior point of $E\cap Y$ in $Y$ } \\
@@ -7330,7 +7547,7 @@ For a nontrivial example of the converse of the first statement may not hold tru
 The second and the third statement follows from the first statement. 
 \end{proof}
 \begin{theorem}
-\label{6.3.3}
+\label{7.3.3}
 \textbf{(Union of Connected Sets that have Nonempty Intersection is Connected)} Let $\mathcal{F}$ be a class of connected sets. We have 
 \begin{equation}
 \bigcap \mathcal{F}\neq \varnothing \implies \bigcup \mathcal{F}\text{ is connected }
@@ -7347,7 +7564,7 @@ WOLG, let
 \begin{equation}
 A\cap \bigcap \mathcal{F}\neq \varnothing
 \end{equation}
-Because $B$ is non-empty and $B\subseteq \bigcup \mathcal{F}$, we know $B$ must intersect with some $F_n\in \mathcal{F}$. Notice that because $A\cap \bigcap \mathcal{F}\neq \varnothing$, we have $A\cap F_n\neq \varnothing$. Then by \myref{Theorem}{6.3.2}, we see $A\cap F_n$ and $B\cap F_n$ are both relatively open to $F_n$, while $F_n= (A\cap F_n)\disjointunion (B\cap F_n)\tCaC$ 
+Because $B$ is non-empty and $B\subseteq \bigcup \mathcal{F}$, we know $B$ must intersect with some $F_n\in \mathcal{F}$. Notice that because $A\cap \bigcap \mathcal{F}\neq \varnothing$, we have $A\cap F_n\neq \varnothing$. Then by \myref{Theorem}{7.3.2}, we see $A\cap F_n$ and $B\cap F_n$ are both relatively open to $F_n$, while $F_n= (A\cap F_n)\disjointunion (B\cap F_n)\tCaC$ 
 \end{proof}
 \begin{question}{}{}
 3. Let $\{A_k\}_{k=1}^{\infty}$ be a family of connected subsets of $M$, and suppose that $A$ is a connected subset of $M$ such that $A_k \cap A \neq \emptyset$ for all $k \in \mathbb{N}$. Show that the union $\left(\bigcup_{k \in \mathbb{N}} A_k\right) \cup A$ is also connected.
@@ -7892,7 +8109,7 @@ Notice $\beta <-1$, we know the series
 Then because $f(y)$ is always positive (given by the question), we know $\sum_{n=1}^\infty f(n)$ converge by comparison test.
 \end{proof}
 \begin{lemma}
-\label{6.3.4}
+\label{7.3.4}
 \textbf{(Bernoulli Inequality)} Let  $r\geq 1$ and $x\geq -1$. We have
 \begin{equation}
   (1+x)^r\geq 1+rx
@@ -7973,7 +8190,7 @@ With a little algebra,
 \begin{equation}
 \forall n>N, 1-\frac{\alpha }{n}>\abso{\frac{a_{n+1}}{a_n}}
 \end{equation}
-Plugin \myref{Lemma}{6.3.4} (Bernoulli Inequality) with $r=\alpha >1$ and $x=\frac{-1}{n}\geq -1$. We have
+Plugin \myref{Lemma}{7.3.4} (Bernoulli Inequality) with $r=\alpha >1$ and $x=\frac{-1}{n}\geq -1$. We have
 \begin{equation}
 \forall n>N,\abso{\frac{a_{n+1}}{a_n}}<1+\frac{-\alpha }{n}\leq (1-\frac{1}{n})^\alpha= (\frac{n-1}{n})^{\alpha }
 \end{equation}
@@ -8022,6 +8239,7 @@ Then by comparison test, we know
 
 \section{HW4}
 \begin{theorem}
+\label{7.4.1}
 Let $B_n=\sum_{k=1}^n b_n$. Given
 \begin{equation}
   a_n\searrow 0\text{ or }a_n\nearrow 0\text{ as }n\to\infty
@@ -8144,7 +8362,7 @@ We then see
 Because $\epsilon $ is arbitrarily picked from $\R^+$. We have proved  $\lim_{n\to\infty}Y_n=\alpha $
 \end{proof}
 \begin{lemma}
-\label{6.4.1}
+\label{7.4.2}
 Given $n$
 \begin{equation}
   \sum_{k=1}^\infty x_k\text{ converge }\implies \sum_{k=n}^\infty x_k=\sum_{k=1}^\infty x_k-\sum_{k=1}^{n-1}x_k
@@ -8173,13 +8391,13 @@ Which written in series is
 \end{equation}
 \end{proof}
 \begin{lemma}
-\label{6.4.2}
+\label{7.4.3}
 \begin{equation}
 \sum_{k=1}^\infty x_k\text{ converge }\implies \lim_{n\to\infty}\sum_{k=n}^\infty x_k=0
 \end{equation}
 \end{lemma}
 \begin{proof} 
-By \myref{Lemma}{6.4.1}, we have
+By \myref{Lemma}{7.4.2}, we have
 \begin{align}
   \lim_{n\to\infty}\sum_{k=n}^\infty x_k&=\lim_{n\to\infty}\sum_{k=1}^\infty a_k-\sum_{k=1}^{n-1}a_k\\
   &=\sum_{k=1}^\infty a_k-\lim_{n\to\infty}\sum_{k=1}^{n-1}a_k\\
@@ -8198,7 +8416,7 @@ Define
 \begin{equation}
 c_k=a_kb_k\text{ and }C_k=\sum_{j=k}^\infty c_j
 \end{equation}
-By \myref{Lemma}{6.4.2}, we have
+By \myref{Lemma}{7.4.3}, we have
 \begin{equation}
 \lim_{k\to\infty}C_k=0
 \end{equation}
@@ -8276,9 +8494,9 @@ Define
 \begin{equation}
 r_n:=\sum_{k=n}^\infty a_k
 \end{equation}
-Because $\set{a_k}$ are positive, by \myref{Lemma}{6.4.1}, we know $r_n$ monotonically decrease.\\
+Because $\set{a_k}$ are positive, by \myref{Lemma}{7.4.2}, we know $r_n$ monotonically decrease.\\
 
-Moreover, by \myref{Lemma}{6.4.2}, we know $r_n\searrow 0$.\\
+Moreover, by \myref{Lemma}{7.4.3}, we know $r_n\searrow 0$.\\
 
 Observe
 \begin{equation}
