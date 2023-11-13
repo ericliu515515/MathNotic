@@ -6234,6 +6234,302 @@ Then we can observe
   &=V(n-1)\int_0^1 (1-u)^{n-1}\frac{u^{\frac{-1}{2}}}{2}du (\because u=x_1^2)
 \end{align}
 \end{proof}
+\chapter{Ve 2}
+\section{Line Integral}
+\begin{theorem}
+\textbf{(Computation of Arc Length with Intuition)} Let  $\gamma:\R\rightarrow \R^n$ be a function that represent the position of a particle. Let
+\begin{equation}
+C=\set{\gamma (t):a\leq t\leq b}
+\end{equation}
+The length of $C$ is then
+ \begin{equation}
+\int_C dS=\int_a^b  \norm{\gamma '(t)}dt
+\end{equation}
+\end{theorem}
+\begin{proof}
+We have
+\begin{equation}
+  dS=\sqrt{(dx)^2+(dy)^2+(dz)^2}
+\end{equation}
+Then 
+\begin{equation}
+dS=\sqrt{(\frac{dx}{dt})^2+(\frac{dy}{dt})^2+(\frac{dz}{dt})^2}dt=\norm{\gamma '(t)}dt
+\end{equation}
+\end{proof}
+\begin{corollary}
+\textbf{(Path Integral)} Let $f:\R^n\rightarrow \R$ be a scalar field, and 
+\begin{equation}
+C=\set{\gamma (t):a\leq t\leq b}
+\end{equation}
+We have
+\begin{equation}
+\int_C f(\gamma )dS=\int_a^b f(\gamma (t)) \times \abso{\gamma '(t)}dt
+\end{equation}
+\end{corollary}
+\begin{corollary}
+\textbf{(Line Integral)} Let $F:\R^n\rightarrow \R^n$ be a vector field, and
+\begin{equation}
+C=\set{\gamma (t):a\leq t\leq  b}
+\end{equation}
+We have
+\begin{equation}
+\int_C F(\gamma )\cdot dS =\int_a^b F(\gamma (t)) \cdot \gamma '(t)dt
+\end{equation}
+\end{corollary}
+\fbox{\begin{minipage}{39em}
+Above are specification. It is not proof or anything.\\
+
+Below practice some path integral.
+\end{minipage}}
+\begin{theorem}
+\textbf{(Example)} Let
+\begin{equation}
+C=\set{(x,y):x=a\cos t,a\sin t, 0\leq t\leq \pi}
+\end{equation}
+We have
+\begin{equation}
+\int_C x^2y ds=\frac{2}{3}a^4
+\end{equation}
+\end{theorem}
+\begin{proof}
+Observe
+\begin{equation}
+\gamma (t)=(a\cos t,a\sin t)\implies \gamma '(t)=(-a\sin t,a\cos t)\implies \abso{\gamma '(t)}=a
+\end{equation}
+We have
+\begin{align}
+\int_C f(\gamma ) dS&=\int_0^{\pi} f(\gamma (t))\times adt\\
+&=\int_0^{\pi} a^4 \cos^2t \sin tdt\\
+&=a^4 \frac{-\cos^3 t}{3}\at_{t=0}^\pi\\
+&=\frac{a^4}{3}(1+1)=\frac{2a^4}{3}
+\end{align}
+\end{proof}
+\begin{theorem}
+\textbf{(Example)} Let
+\begin{equation}
+  C=\set{(x,y):x^{\frac{2}{3}}+y^{\frac{2}{3}}=a ^{\frac{2}{3}}}
+\end{equation}
+We have
+\begin{equation}
+\int_C dS= 6a
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let $\gamma (t)=(a\cos^3 t,a\sin^3 t)$. Then 
+\begin{equation}
+C=\set{\gamma  (t):0\leq t\leq  2\pi }
+\end{equation}
+We have
+\begin{equation}
+\gamma '(t)=(-3a\cos ^2t \sin t,3a\sin^2 t\cos t)\implies \abso{\gamma '(t)}=3a\abso{\cos t\sin t}
+\end{equation}
+Then
+\begin{align}
+\int_C dS&= \int_0^{2\pi} 3a\abso{\cos t\sin t}dt\\
+&=4\int_0^{\frac{\pi}{2}}3a \cos t \sin tdt\\
+&=12a\int_0^{\frac{\pi}{2}}\frac{\sin 2t}{2}dt\\
+&=12a \frac{-\cos 2t}{4}\at_{0}^{\frac{\pi}{2}}\\
+&=6a
+\end{align}
+\end{proof}
+\begin{theorem}
+\textbf{(Example)} Let 
+\begin{equation}
+A=(0,0,0)\text{ and }B=(1,2,3)
+\end{equation}
+Let $C$ be the segment that connect  $A$ and  $B$. We have
+\begin{equation}
+\int_C (x^2+y^3)dS=\frac{7\sqrt{14} }{3}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Let 
+\begin{equation}
+\gamma (t)=(t,2t,3t)
+\end{equation}
+We have
+\begin{equation}
+C=\set{\gamma (t):0\leq t\leq 1}\text{ and }\abso{\gamma '(t)}=\sqrt{14} 
+\end{equation}
+Then
+\begin{align}
+\int_C (x^2+y^3)dS&=\int_0^1 (t^2+8t^3)\sqrt{14}dt\\
+&=\sqrt{14}(\frac{t^3}{3}+2t^4) \at_{0}^1\\
+&=\sqrt{14} \times \frac{7}{3} =\frac{7\sqrt{14} }{3}
+\end{align}
+\end{proof}
+\begin{theorem}
+\textbf{(Example)} Let
+\begin{equation}
+C=\set{(a\cos^3 t,a\sin^3 t):0\leq t\leq \frac{\pi}{2}}
+\end{equation}
+We have
+\begin{equation}
+\int_C \frac{x^2dy-y^2dx }{x^{\frac{5}{3}}+y^{\frac{5}{3}}}
+\end{equation}
+Notice
+\begin{equation}
+\frac{dx}{dt}=-3a\cos^2 t \sin t\text{ and }\frac{dy}{dt}=3a\sin^2 t\cos t
+\end{equation}
+Then
+\begin{align}
+  \int_C \frac{x^2dy-y^2dx}{x^{\frac{5}{3}}+y^{\frac{5}{3}}}&=\int_0^{\frac{\pi}{2}}\frac{a^2\cos^6 t 3a \sin^2 t \cos t-a^2 \sin^6 t (-3a)\cos ^2 t \sin t}{a^{\frac{5}{3}}(\cos^5 t+\sin^5 t)}dt\\
+  &=3a^{\frac{4}{3}}\int_0^{\frac{\pi}{2}} \frac{\cos^7 t \sin^2 t+ \sin^7 t \cos^2 t}{\cos^5 t+ \sin^5 t}dt\\
+  &=3a^{\frac{4}{3}}\int_0^{\frac{\pi}{2}}\sin^2 t \cos^2 t dt\\
+  &=3a^{\frac{4}{3}}\int_0^{\frac{\pi}{2}} (\frac{\sin 2t}{2})^2 dt\\
+  &=\frac{3}{4}a^{\frac{4}{3}}\int_0^{\frac{\pi}{2}} \sin^2 2t dt\\
+  &=\frac{3a^{\frac{4}{3}}}{4}\int_0^{\frac{\pi}{2}} \frac{1-\cos 4t}{2}dt\\
+  &=\frac{3a^{\frac{4}{3}}}{8}\int_0^{\frac{\pi}{2}} 1-\cos 4t dt\\
+  &=\frac{3a^{\frac{4}{3}}}{8} (\frac{-\sin 4t}{4}+t)\at_{0}^{\frac{\pi}{2}}\\
+  &=\frac{3a^{\frac{4}{3}}}{8}(\frac{\pi}{2})=\frac{3\pi a^{\frac{4}{3}}}{16}
+\end{align}
+
+\end{theorem}
+\fbox{\begin{minipage}{39em}
+Below practice line integral.
+\end{minipage}}
+\begin{theorem}
+\textbf{(Example)} Let
+\begin{equation}
+F(x,y,z)=(xy,2,4z)\text{ and }\gamma (t)=(\cos t,\sin t,t)
+\end{equation}
+Let 
+\begin{equation}
+C=\set{\gamma (t):0\leq t\leq 2\pi }
+\end{equation}
+We have
+\begin{equation}
+\int_C F(\gamma )\cdot dS=8\pi^2
+\end{equation}
+\end{theorem}
+\begin{proof}
+We have
+\begin{equation}
+\gamma '(t)=(-\sin t,\cos t,1)
+\end{equation}
+Compute
+\begin{align}
+\int_C F(\gamma )\cdot dS&= \int_0^{2\pi} F(\cos t,\sin t,t)\cdot (-\sin t, \cos t,1)dt\\
+&=\int_0^{2\pi} (\cos t\sin t, 2, 4t)\cdot (-\sin t,\cos t,1)dt\\
+&=\int_0^{2\pi} -\cos t\sin^2 t+2\cos t+4tdt\\
+&=\frac{-\sin^3 t}{3}+2\sin t+2t^2 \at_{0}^{2\pi}=8\pi^2
+\end{align}
+\end{proof}
+\begin{theorem}
+\textbf{(Example)} Let
+\begin{equation}
+F(x,y)=(e^{y},-\sin \pi x)\text{ and }C=\set{(-1,0)\to (1,0)}\cup \set{(1,0)\to (0,1)}\cup \set{(0,1)\to (-1,0)}
+\end{equation}
+We have
+\begin{equation}
+\int_C F(\gamma )\cdot dS=4-2e-\frac{4}{\pi}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Define
+\begin{equation}
+\gamma_1 (t)=(-1+2t,0)\text{ and }\gamma_2 (t)=(1-t,t)\text{ and }\gamma _3(t)=(-t,1-t)
+\end{equation}
+We have
+\begin{align}
+\int_{C_1}F(\gamma _1)\cdot dS&= \int_0^1 (1,- \sin (\pi (-1+2t)))\cdot (2,0) dt\\
+&=\int_0^1 2dt=2
+\end{align}
+We have
+\begin{align}
+\int_{C_2}F(\gamma _2)\cdot dS&= \int_0^1 (e^t,- \sin \pi (1-t))\cdot (-1,1)dt\\
+&=\int_0^1 -e^t- \sin \pi (1-t)dt\\
+&=-e^t-\frac{1}{\pi} \cos \pi (1-t)\at_{0}^1\\
+&=-e+1-\frac{2}{\pi}
+\end{align}
+We have
+\begin{align}
+\int_{C_3} F(\gamma _3)\cdot dS&=\int_0^1 (e^{1-t}, \sin \pi t)\cdot (-1,-1)dt\\
+&=-\int_0^1 e^{1-t}+\sin \pi tdt\\
+&= e^{1-t}+\frac{\cos \pi t}{\pi }\at_{0}^1\\
+&=(1-e)+\frac{-1-1}{\pi}\\
+&=-e+1-\frac{2}{\pi}
+\end{align}
+This give us
+\begin{align}
+\int_C F(\gamma )\cdot dS&= \int_{C_1}F(\gamma _1)\cdot dS+\int_{C_2}F(\gamma _2)\cdot dS+\int_{C_3}F(\gamma _3)\cdot dS\\
+&=2+2(-e+1-\frac{2}{\pi})=4-2e-\frac{4}{\pi}
+\end{align}
+\end{proof}
+\begin{theorem}
+\textbf{(Example)} Let
+\begin{equation}
+F(x,y,z)=(xy,yz,xz)\text{ and }\gamma (t)=(t,t^2,t^3)
+\end{equation}
+Let 
+\begin{equation}
+C=\set{\gamma (t):0\leq t\leq 1}
+\end{equation}
+We have
+\begin{equation}
+\int_C F(\gamma )\cdot dS=\frac{27}{28}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Notice 
+\begin{equation}
+\gamma '(t)=(1,2t,3t^2)
+\end{equation}
+Then
+\begin{align}
+\int_{C} F(\gamma )\cdot dS&= \int_0^1 F(t,t^2,t^3)\cdot (1,2t,3t^2) dt\\
+&=\int_0^1 (t^3,t^5,t^4)\cdot (1,2t,3t^2)dt\\
+&=\int_0^1 5t^6+t^3 dt\\
+&=\frac{5}{7}t^7+\frac{t^4}{4}\at_{t=0}^1\\
+&=\frac{27}{28}
+\end{align}
+\end{proof}
+\begin{theorem}
+\textbf{(Example)} Let
+\begin{equation}
+F(x,y,z)=(y^2+z^2,x^2+z^2,x^2+y^2)\text{ and }\gamma_1 (t)=(t,t,t)\text{ and }\gamma _2 (t)=(t,t^2,t^3)
+\end{equation}
+Let
+\begin{equation}
+C_1=\set{\gamma _1(t):0\leq t\leq 1}\text{ and }C_2=\set{\gamma _2(t):0\leq t\leq 1}
+\end{equation}
+We have
+\begin{equation}
+\int_{C_1}F(\gamma_1 )\cdot dS=2
+\end{equation}
+We have
+\begin{equation}
+\int_{C_2}F(\gamma _2)\cdot dS=\frac{297}{140}
+\end{equation}
+\end{theorem}
+\begin{proof}
+We have
+\begin{equation}
+\gamma _1'(t)=(1,1,1)\text{ and }\gamma _2'(t)=(1,2t,3t^2)
+\end{equation}
+Then
+\begin{align}
+\int_{C_1}F(\gamma _1)\cdot dS&=\int_0^1 F(\gamma _1(t))\cdot \gamma _1'(t)dt\\
+&=\int_0^1 F(t,t,t)\cdot (1,1,1)dt\\
+&=\int_0^1 (2t^2,2t^2,2t^2)\cdot (1,1,1)dt\\
+&=\int_0^1 6t^2 dt\\
+&=2t^3\at_{t=0}^1=2
+\end{align}
+Then 
+\begin{align}
+\int_{C_2}F(\gamma _2)\cdot dS&=\int_0^1 F(\gamma _2(t))\cdot \gamma _2'(t)dt\\
+&=\int_0^1 F(t,t^2,t^3)\cdot (1,2t,3t^2)dt\\
+&=\int_0^1 (t^4+t^6,t^2+t^6,t^2+t^4)\cdot (1,2t,3t^2)dt\\
+&=\int_0^1 t^4+t^6+2t^3+2t^7+3t^4+3t^6dt\\
+&=\int_0^1 2t^7+4t^6+4t^4 +2t^3dt\\
+&=\frac{t^8}{4}+\frac{4t^7}{7}+\frac{4t^5}{5}+\frac{t^4}{2}\at_{t=0}^1\\
+&=\frac{35+80+112+70}{140}=\frac{297}{140}
+\end{align}
+\end{proof}
+\section{Fundamental Theorem of Line Integral}
+
+
+
 \chapter{Advanced Calculus HW}
 \section{HW1}
 \begin{question}{}{}
