@@ -911,7 +911,7 @@ F_Y(y)&=P(Y\leq y)\\
 &=P(X\geq (1-y)^{\frac{1}{4}})\\
 &=\int_{(1-y)^{\frac{1}{4}}}^\infty f_X(s)ds\\
 &=\int_{(1-y)^{\frac{1}{4}}}^1 3s^2ds\\
-&= \put{s^3}_{s=(1-y)^{\frac{1}{4}}}^1\\
+&= \at{s^3}_{s=(1-y)^{\frac{1}{4}}}^1\\
 &=1-(1-y)^{\frac{3}{4}}
 \end{align}
 This give us
@@ -1115,7 +1115,7 @@ P(X\geq a)&=\int_a^\infty \ld e^{-\ld x}dx\\
 \label{2.2.6}
 \textbf{(Memory-less Property of Exponential Random Variable)}  Let $X\sim \text{Exp}(\ld )$. We see
 \begin{equation}
-P(X\geq  a+b\put X\geq  b)=\frac{e^{-(a+b)\ld }}{e^{-b\ld }}=e^{-a\ld }
+P(X\geq  a+b \at  X\geq  b)=\frac{e^{-(a+b)\ld }}{e^{-b\ld }}=e^{-a\ld }
 \end{equation}
 \end{theorem}
 \fbox{\begin{minipage}{39em}
@@ -1146,7 +1146,7 @@ I^2=\pi \implies I=\sqrt{\pi}
 \begin{theorem}
 \textbf{(Gauss Integral)} 
 \begin{equation}
-\int_{-\infty}^\infty e^{\frac{-(x-a)^2}{b}}dx
+\int_{-\infty}^\infty e^{\frac{-(x-a)^2}{b}}dx=\sqrt{b\pi} 
 \end{equation}
 \end{theorem}
 \begin{proof}
@@ -1160,6 +1160,12 @@ Then we have
 &=\sqrt{b\pi} 
 \end{align}
 \end{proof}
+\begin{theorem}
+\textbf{(Gamma Function)} For $z\inr$, let 
+\begin{equation}
+\Gamma (z)=\int_0^\infty t^z e^{-t}dt
+\end{equation}
+\end{theorem}
 \fbox{\begin{minipage}{39em}
 Now we start to discuss normal distribution. 
 \end{minipage}}
@@ -1186,8 +1192,30 @@ Observe
 \begin{align}
 E[X]&=\int_{-\infty}^\infty x \frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx\\
 &=\frac{1}{\sigma \sqrt{2\pi} }\int_{-\infty}^\infty (x-\mu +\mu)e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx\\
-&=\frac{1}{\sigma \sqrt{2\pi} }\int_{-\infty}^\infty (x-\mu) e^{\frac{-(x-\mu)^2}{2\sigma ^2}}dx+ }\int_{-\infty}^\infty \mu \frac{1}{\sigma \sqrt{2\pi}e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx\\
+&=\frac{1}{\sigma \sqrt{2\pi} }\int_{-\infty}^\infty (x-\mu) e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx + \mu\int_{-\infty}^\infty \frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx\\
+&=\frac{1}{\sigma \sqrt{2\pi} }\int_{-\infty}^\infty ze^{\frac{-z^2}{2\sigma^2}}dz+\mu\\
+&=\mu
 \end{align}
+Where 
+\begin{equation}
+\frac{1}{\sigma \sqrt{2\pi} }\int_{-\infty}^\infty ze^{\frac{-z^2}{2\sigma^2}}dz=0\text{ because }ze^{\frac{-z^2}{2\sigma^2}}\text{ is odd function }
+\end{equation}
+Observe
+\begin{align}
+E[X^2]&=\int_{-\infty}^\infty x^2 \frac{1}{\sigma \sqrt{2\pi} } e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx\\
+      &=\int_{-\infty}^\infty (x-\mu)^2 \frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx+2\mu \int_{-\infty}^\infty x \frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx-\mu^2 \int_{-\infty}^\infty \frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx\\
+      &=\int_{-\infty}^\infty z^2 \frac{1}{\sigma\sqrt{2\pi} }e^{\frac{-z^2}{2\sigma^2}}dz+\mu^2\\
+      &=2 \frac{\sigma^2}{\sqrt{\pi} }\int_{-\infty}^\infty s^2e^{-s^2}ds+\mu^2\text{ where }s=\frac{z}{\sqrt{2} \sigma}\\
+      &=4 \frac{\sigma^2}{\sqrt{\pi} }\int_0^\infty s^2e^{-s^2}ds +\mu^2\\
+      &=2 \frac{\sigma^2}{\sqrt{\pi} }\int_0^\infty t^{\frac{1}{2}} e^{-t}dt +\mu^2\text{ where }t=s^2\\
+      &=2 \frac{\sigma^2}{\sqrt{\pi} }\Gamma(\frac{3}{2})+\mu^2\\
+      &=2 \frac{\sigma^2}{\sqrt{\pi} } (\frac{\sqrt{\pi} }{2})+\mu^2\\
+      &=\sigma^2+\mu^2
+\end{align}
+Then we have
+\begin{equation}
+\var [X]=E[X^2]-E^[X]=\sigma^2+\mu^2-\mu^2=\sigma^2
+\end{equation}
 \end{proof}
 
 
