@@ -1,0 +1,376 @@
+\documentclass{report}
+
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\title{\Huge{NCKU 112.1}\\Discrete Math}
+\author{\huge{Eric Liu}}
+\date{}
+\begin{document}
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+
+
+\setcounter{chapter}{-1}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+\chapter{General Counting Methods for Arrangements and Selection}
+\section{Practical Identity}
+\begin{theorem}
+\label{0.1.1}
+\textbf{(Fundamental Identity)} We have
+\begin{equation}
+\binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}
+\end{equation}
+\end{theorem}
+\begin{proof}
+Notice that  $\binom{n}{k}$ represent amount of ways to pick $k$ numbers from the set  $\set{1,\dots ,n}$. There are two possibilities:
+\begin{equation}
+\begin{cases}
+  1\text{ is picked }\\
+  1\text{ is not picked }
+\end{cases}
+\end{equation}
+The amount of ways to pick $k$ numbers from the set  $\set{1,\dots ,n}$ when $1$ is mandatory to pick is $\binom{n-1}{k-1}$, and the amount of ways when $1$ is mandatory not to pick is  $\binom{n-1}{k}$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+The above identity is the most important in the sense that it allow us to deduce other identities with induction.
+\end{minipage}}
+\begin{theorem}
+\label{0.1.2}
+\textbf{(First Identity)} We have
+\begin{equation*}
+\binom{n}{k}\binom{k}{m}=\binom{n}{m}\binom{n-m}{k-m}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Consider possibility of picking subsets $I\subseteq \set{1,\dots ,n}$ of cardinality $k$  and subsets $I_1\subseteq I$ of cardinality $m$. The amount of possibilities equals to $\binom{n}{k}\binom{k}{m}$.\\
+
+We can first pick the subset $I_1$ which has  $\binom{n}{m}$ possibilities. We can then pick the subset $I$ by picking  $k-m$ amount of numbers in  $\set{1,\dots ,n}\setminus I_1$ and add $I_1$ to have  $I$. There are  $\binom{n-m}{k-m}$ ways to do such, as $\abso{\set{1,\dots ,n}\setminus I_1}=n-m$. 
+\end{proof}
+\begin{theorem}
+\label{0.1.3}
+\textbf{(Second Identity)} We have
+\begin{equation*}
+\sum_{k=0}^n \binom{n}{k}=2^n
+\end{equation*}
+\end{theorem}
+\begin{proof}
+We have 
+\begin{align*}
+2^n&=(1+1)^n\\
+&=\sum_{k=0}^n \binom{n}{k}1^k 1^n\\
+&=\sum_{k=0}^n \binom{n}{k}
+\end{align*}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+The first identity rely on the usage of intuition of picking $r$ objects from $n$ distinct objects.\\
+
+The second identity use binomial theorem.  
+\end{minipage}}
+\begin{theorem}
+\textbf{(Identity When Both Arguments are Growing)} We have 
+\begin{equation*}
+\sum_{k=0}^r \binom{n+k}{k}=\binom{n+r+1}{r}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Base case: $r=0$
+ \begin{align*}
+\sum_{k=0}^r \binom{n+k}{k}&=\sum_{k=0}^0 \binom{n}{0}\\
+&=1\\
+&=\binom{n+1}{0}\\
+&=\binom{n+r+1}{r}
+\end{align*}
+Induction case: suppose 
+\begin{equation*}
+\sum_{k=0}^s \binom{n+k}{k}=\binom{n+s+1}{s}
+\end{equation*}
+Observe
+\begin{align*}
+\binom{n+s+2}{s+1}&=\binom{n+s+1}{s+1}+\binom{n+s+1}{s}\\
+&=\sum_{k=0}^s \binom{n+k}{k}+\binom{n+s+1}{s+1}\\
+&=\sum_{k=0}^{s+1} \binom{n+k}{k}
+\end{align*}
+\end{proof}
+\begin{corollary}
+\textbf{(Putting at most $r$ different things in  $n$ barrels)} We have
+\begin{equation*}
+\sum_{k=0}^r H^{n}_k=\sum_{k=0}^r \binom{\left(n-1 \right)+ k}{k}=\binom{n+r}{r}=H_r^{n+1}
+\end{equation*}
+\end{corollary}
+\begin{theorem}
+\textbf{(Identity When Only The Larger Argument is Growing)} We have
+\begin{equation*}
+\sum_{k=0}^{n-r} \binom{r+k}{r}=\binom{n+1}{r+1}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Base case: $n=r$ 
+\begin{equation*}
+\sum_{k=0}^{n-r}\binom{r+k}{r}=\binom{r}{r}=1=\binom{r+1}{r+1}=\binom{n+1}{r+1}
+\end{equation*}
+Induction case: Suppose
+ \begin{equation*}
+\sum_{k=0}^{n-s} \binom{s+k}{s}=\binom{n+1}{s+1}
+\end{equation*}
+Observe 
+\begin{align*}
+\binom{n+2}{s+1}&=\binom{n+1}{s+1}+\binom{n+1}{s}\\
+&=\sum_{k=0}^{n-s} \binom{s+k}{s}+\binom{n+1}{s}\\
+&=\sum_{k=0}^{n+1-s}\binom{s+k}{s}
+\end{align*}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+The above two identities can be applied when the arguments are growing, notice that the second identity is an identity when the smaller argument is growing.
+\end{minipage}}
+\begin{theorem}
+\textbf{(Fifth Identity)} We have
+\begin{equation*}
+\sum_{k=0}^n \binom{n}{k}^2 =\binom{2n}{n}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Imagine an $n\times n$ grid. Imagine we wish to go from the lower left corner to top right corner without going left or low.\\
+
+The amount of path that cross $(0,n)$ is $\binom{n}{0}^2$ and the amount of path that cross $(1,n-1)$ is $\binom{n}{1}^2$,\dots .
+\end{proof}
+\begin{theorem}
+\textbf{(Identity When Multiplying Two Binomial where the Sum of the Smaller Arguments is Fixed)} 
+\begin{equation*}
+\sum_{k=0}^r \binom{m}{k}\binom{n}{r-k}=\binom{m+n}{r}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+The right hand side is to pick $r$ objects from  $m+n$ distinct object. The left hand side is also the same, but done so by first picking from  $m$ then from  $n$
+\end{proof}
+\begin{corollary}
+\textbf{(identity When Multiplying Two Binomials where the Gap of the Smaller Arguments is Fixed)}
+\begin{equation*}
+\sum_{k=0}^m \binom{m}{k}\binom{n}{r+k}=\binom{m+n}{m+r}
+\end{equation*}
+\end{corollary}
+\begin{proof}
+\begin{align*}
+\sum_{k=0}^m \binom{m}{k}\binom{n}{r+k}&=\sum_{k=0}^m \binom{m}{m-k}\binom{n}{r+k}\\
+&=\sum_{u=0}^m \binom{m}{u}\binom{n}{m+r-u}\text{ where $u=m-k$}\\
+&=\binom{m+n}{m+r}
+\end{align*}
+\end{proof}
+
+\chapter{Generating Function} 
+\section{Modeling of Generating Function}
+\fbox{\begin{minipage}{39em}
+Chapter 6 has 3 question, 6.4 has 1 question.
+\end{minipage}}
+\begin{theorem}
+\textbf{(Putting Same Object into Distinct Barrels)} Given 
+\begin{equation*}
+\sum_{i=1}^n e_i=r
+\end{equation*}
+There are 
+\begin{equation*}
+H^n_r:=\binom{n+r-1}{n-1}=\binom{n+r-1}{r}\text{ amount of solutions }
+\end{equation*}
+
+\end{theorem}
+\section{Calculation of Generating Function}
+\begin{theorem}
+\textbf{(Important Identity)} We have
+\begin{equation*}
+\frac{1}{1-x}=\sum_{k=0}^\infty x^k
+\end{equation*}
+\begin{equation*}
+\frac{1}{(1-x)^n}=(\sum_{k=0}^\infty x^k)^n=\sum_{k=0}^\infty H^n_k x^k=\sum_{k=0}^\infty \binom{n+k-1}{k}x^k
+\end{equation*}
+\begin{equation*}
+  \sum_{k=0}^n x^k=\frac{1-x^{n+1}}{1-x}
+\end{equation*}
+\end{theorem}
+\section{Exponential Generating Function}
+\begin{theorem}
+\textbf{($r$ Arrangement with and without Repetition of $n$ objects)}
+\begin{equation*}
+\text{ This means the numbers of ways of selecting $r$ object from distinct $n$ object and rearrange them  }
+\end{equation*}
+\end{theorem}
+\begin{theorem}
+\textbf{(Taylor Expansion)}
+\begin{equation*}
+e^nx=
+\end{equation*}
+\end{theorem}
+\chapter{HW}
+\section{HW3}
+\begin{question}{}{}
+How many numbers between 0 and 10000 have a sum of digit
+\begin{enumerate}[label=(\alph*)]
+  \item Equal to 7?\\
+  \item Less than or equal to 7?\\
+  \item Equal to 13
+\end{enumerate}
+\end{question}
+\begin{proof}
+Represent the number by 
+\begin{equation*}
+e_0e_1e_2e_3e_4
+\end{equation*}
+where if the number is $237$, we have
+ \begin{equation*}
+e_0=0\text{ and }e_1=0\text{ and }e_2=2\text{ and }e_3=3\text{ and }e_4=7
+\end{equation*}
+And of course we have the constraint
+\begin{equation*}
+0\leq e_1,e_2,e_3,e_4\leq 9\text{ and }e_0\in \set{0,1}\text{ and }e_0=1\implies e_1=e_2=e_3=e_4=0
+\end{equation*}
+Then the first question is equivalent to asking the amount of solution of 
+\begin{equation*}
+e_0+e_1+e_2+e_3+e_4=7
+\end{equation*}
+If $e_1=1$, clearly there is no solution. If  $e_0=0$, there exists $H^4_7=\binom{10}{7}=120$ amount of solutions.\\
+
+The second question is equivalent to asking the amount of solution of 
+\begin{equation*}
+e_0+e_1+e_2+e_3+e_4\leq 7
+\end{equation*}
+If $e_0=1$, clearly there exists only one solution. If  $e_0=0$, there exists
+\begin{equation*}
+\sum_{k=0}^7 H^4_k=\sum_{k=0}^7 \binom{k+3}{k}=\binom{11}{7}=330
+\end{equation*}
+So 
+\begin{equation*}
+\text{ The amount of solutions are }331
+\end{equation*}
+The third question is equivalent to asking the amount of solution of 
+\begin{equation*}
+e_0+e_1+e_2+e_3+e_4=13
+\end{equation*}
+Clearly, we can not have $e_0=1$, so our question has become 
+\begin{equation*}
+e_1+e_2+e_3+e_4=13
+\end{equation*}
+where the constrain is 
+\begin{equation*}
+0\leq e_1,e_2,e_3,e_4\leq 9
+\end{equation*}
+If we remove the 9 upper bound constrain, the amount of solutions is then 
+\begin{equation*}
+H^4_{13}=560
+\end{equation*}
+Adding the constrain back, we need to remove those solutions that doesn't satisfy the constrain, i.e. $e_j>9$ for some  $j\in \set{1,2,3,4}$.\\
+
+Clearly if $e_j>9$, then no other digit would be greater than $9$. The amount of solutions that should be removed are
+\begin{equation*}
+4(H^3_{13-10}+H^3_{13-11}+H^3_{13-12}+H^3_{13-13})=4(\sum_{k=0}^3 H^3_k)=4(\sum_{k=0}^3 \binom{k+2}{k})=4\binom{6}{3}=80
+\end{equation*}
+Then the amount of solutions are 
+\begin{equation*}
+560-80=480\text{ ways }
+\end{equation*}
+\end{proof}
+\begin{question}{}{}
+Evaluate
+\begin{equation*}
+\sum_{k=1}^n \binom{n}{k}\binom{n}{k-1}
+\end{equation*}
+\end{question}
+\begin{proof}
+\begin{align*}
+\sum_{k=1}^n \binom{n}{k}\binom{n}{k-1}&=\sum_{k=1}^n \binom{n+1}{k}\\
+                                                    &=\sum_{k=0}^{n+1} \binom{n+1}{k}-\binom{n+1}{0}-\binom{n+1}{n+1}\\
+                                                    &=\sum_{k=0}^{n+1} \binom{n+1}{k}-2\\
+                                                    &=2^{n+1}-2
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Show that the generating function for the number of integer solutions to 
+\begin{equation*}
+e_1+e_2+e_3+e_4=r,0\leq e_1\leq e_2\leq e_3\leq e_4
+\end{equation*}
+is
+\begin{equation*}
+  \left(1+x+x^2+ \cdots \right)\left(1+x^2+x^4+\cdots \right)\left(1+x^3+x^6+\cdots \right)\left(1+x^4+x^8+\cdots \right)
+\end{equation*}
+\end{question}
+\begin{proof}
+Define
+\begin{equation*}
+d_1:=e_2-e_1\text{ and }d_2:=e_3-e_2\text{ and }d_3:=e_4-e_3
+\end{equation*}
+Then we have
+\begin{equation*}
+e_2=e_1+d_1\text{ and }e_3=e_1+d_1+d_2\text{ and }e_4=e_1+d_1+d_2+d_3
+\end{equation*}
+The question is thus reduced to finding the generating function for 
+\begin{equation*}
+4e_1+3d_1+2d_2+d_3=r, \set{e_1,d_1,d_2,d_3}\in \N \cup \set{0}
+\end{equation*}
+Which is 
+\begin{equation*}
+\left(1+x^4+x^8+\cdots \right)\left(1+x^3+x^6+\cdots \right)\left(1+x^2+x^4+\cdots \right)\left(1+x+x^2+ \cdots \right)
+\end{equation*}
+\end{proof}
+\begin{question}{}{}
+Use the equation
+\begin{equation*}
+\frac{\left(1-x^2 \right)^n}{\left(1-x \right)^n}=\left(1+x \right)^n
+\end{equation*}
+to show that
+\begin{equation*}
+\sum_{k=0}^{\frac{m}{2}}\left(-1 \right)^k \binom{n}{k} \binom{n+m-2k-1}{n-1}=\binom{n}{m}\text{ $m\leq n\text{ and }m$ even }
+\end{equation*}
+\end{question}
+\begin{proof}
+Observe that 
+\begin{equation*}
+\binom{n}{m}\text{ is the coefficient of $x^m$ in } \left(1+x \right)^n
+\end{equation*}
+So we only have to prove that 
+\begin{equation*}
+\sum_{k=0}^{\frac{m}{2}}\left(-1 \right)^k \binom{n}{k} \binom{n+m-2k-1}{n-1}\text{ is the coefficient of $x^m$ in }\frac{\left(1-x^2 \right)^n}{\left(1-x \right)^n}
+\end{equation*}
+Observe that 
+\begin{equation*}
+  \left(1-x^2 \right)^n=\sum_{k=0}^n \left(-1 \right)^k \binom{n}{k} x^{2k}
+\end{equation*}
+and that 
+\begin{equation*}
+  \frac{1}{\left(1-x \right)^n}=\sum_{u=0}^\infty \binom{u+n-1}{u} x^u
+\end{equation*}
+Then because $m$ is even, we can compute the coefficient by summing $k\in \left[0,\frac{m}{2} \right]$ and $u=m-2k\text{ from $\left(2k+u=m \right)$ }$, which tell us that the coefficient is 
+ \begin{equation*}
+ \sum_{k=0}^{\frac{m}{2}}\left(-1 \right)^k \binom{n}{k}\binom{m-2k+n-1}{m-2k}
+\end{equation*}
+which equals to 
+\begin{equation*}
+\sum_{k=0}^{\frac{m}{2}} \left(-1 \right)^k \binom{n}{k} \binom{n+m-2k-1}{n-1}
+\end{equation*}
+
+
+
+\end{proof}
+\begin{question}{}{}
+Show that 
+\begin{equation*}
+2\left(1-x \right)^{-3}\left[\left(1-x \right)^{-3}+\left(1+x \right)^{-3} \right]
+\end{equation*}
+is the generating function for the number of ways to toss $r$ identical dice and obtain even sum.
+\end{question}
+\begin{proof}
+The generating function of ways to toss $r$ identical dice is 
+\begin{equation*}
+  \left( \sum_{k=1}^6 x^k\right)^r
+\end{equation*}
+which equals to
+\begin{equation*}
+  \left(\frac{1-x^7}{1-x} \right)^r
+\end{equation*}
+Then the generating function for the number of ways to toss $r$ identical dice and obtain even sum is
+\begin{equation*}
+  \frac{1}{2}\left[ \left(\frac{1-x^7}{1-x} \right)^r - \left(\frac{1+x^7}{1+x}\right)^r\right]
+\end{equation*}
+\end{proof}
+\end{document}

@@ -2591,13 +2591,13 @@ This section illustrates three methods to define a topology. However, in practic
 \end{minipage}}
 \begin{definition}
 \label{2.1.1}
-\textbf{(Definition of Topology, via Open Set)} Given a set $X$, which called a topological space, if we say a family $\mathfrak{O}$  of subsets of $X$ is a topology on $X$, then we mean
+\textbf{(Definition of Topology, via Open Set)} Given a set $X$, called a topological space, if we say a family $\tau$  of subsets of $X$ is a topology on $X$, then we mean
 \begin{gather}
-X, \varnothing \in \mathfrak{O}\\
-A,B\in\mathfrak{O}\implies A\cap B\in\mathfrak{O}\\
-\mathfrak{U}\subseteq \mathfrak{O}\implies \bigcup \mathfrak{U}\in \mathfrak{O}
+X, \varnothing \in \tau\\
+A,B\in\tau\implies A\cap B\in\tau\\
+\mathfrak{U}\subseteq \tau\implies \bigcup \mathfrak{U}\in \tau
 \end{gather}
-If a subset of $X$ belong to  $\mathfrak{O}$, we say it is an open set, and if a subset of $X$ is an complement of an open set, we say it is an closed set.
+If a subset of $X$ belong to  $\tau$, we say it is an open set, and if a subset of $X$ is an complement of an open set, we say it is an closed set.
 \end{definition}
 \fbox{\begin{minipage}{39em}
 The method above is the usual way to define a topology. Next, we'll look at some properties of closed sets. Keep in mind that the related properties for open sets are basic axioms
@@ -2638,116 +2638,93 @@ This mean if we are given a family of closed sets, the family of closed sets giv
 Trivial. 
 \end{proof}
 \fbox{\begin{minipage}{39em}
-Let's move on to the axioms for the neighborhood system. After covering that, we'll demonstrate that these axioms and those for open sets aren't just interconnected – they're essentially the same thing. Notice the proof below uses Zorn's Lemma. 
+Let's move on to the axioms for the neighborhood system. After covering that, we'll demonstrate that these axioms and those for open sets aren't just interconnected – they're essentially the same thing. 
 \end{minipage}}
 \begin{definition}
 \label{2.1.4}
 \textbf{(Definition of Neighborhood Function)} We say a function $\mathcal{N}:X\rightarrow \power{\power{X}}$ is neighborhood function if 
-\begin{gather}
-\forall x \in X,\mathcal{N}(x)\neq \varnothing\text{ (Existence) }\\
-N \in \mathcal{N}(x)\implies x \in N\text{ (Around) }\\
-\exists N \in \mathcal{N}(x), N\subseteq M\implies M\in \mathcal{N}(x)\text{ (Super set) }\\
-N,M \in \mathcal{N}(x)\implies N \cap M\in \mathcal{N}(x)\text{ (Intersection) }\\
-\forall N\in \mathcal{N}(x),\exists M\in \mathcal{N}(x), M \subseteq N\text{ and }\forall y \in M, N \in \mathcal{N}(y)
-\end{gather}
-The last property reads: every neighborhood $N$ around arbitrary point $x$ contain a neighborhood $M$ around $x$ such that $N$ is a neighborhood of each points of $M$.
+\begin{enumerate}[label=(\alph*)]
+  \item \text{ The set of neighborhood $\mathcal{N}(x)$ for $x$ is non-empty.  }\\
+  \item \text{ A neighborhood around $x$ must contain $x$ }\\
+  \item \text{ A set containing a neighborhood around $x$ is a neighborhood around  $x$ }\\
+  \item \text{ The intersection of two neighborhoods around $x$ is a neighborhood around  $x$ }\\
+  \item Every neighborhood $N$ around $x$ contain an neighborhood $M$ around $x$ such that $N$ is an neighborhood of all $m \in M$
+\end{enumerate}
 \end{definition}
 \begin{theorem}
 \label{2.1.5}
 \textbf{(Equivalent Ways to Define The Same Topology, Part 2)} There exists a one-to-one correspondence between the class of all topology on $X$ and the class of all neighborhood function on $X$.\\
 
 The correspondence can be written in the form of 
-\begin{equation} (g(\mathfrak{O}))(x)=\set{N\subseteq X: \exists O\in \mathfrak{O},x\in O\subseteq N}
+\begin{equation} (g(\tau))(x)=\set{N\subseteq X: \exists O\in \tau,x\in O\subseteq N}
 \end{equation}
+In English, $g$ define
+\begin{equation*}
+N\text{ is an neighborhood around $x$ }\iff \text{ there exists an open set $O$ s.t. }x\in O\subseteq N
+\end{equation*}
 The inverse of $g$ will be proved to be
- \begin{equation}
-g^{-1}(\mathcal{N})=\set{O:\forall x \in O, O\in \mathcal{N}(x)}
+\begin{equation}
+   h(\mathcal{N})=\set{O:\forall x \in O, O\in \mathcal{N}(x)}
 \end{equation}
+In English, $h$ define
+\begin{equation*}
+\text{ $O$ is an open set }\iff O \text{ is an neighborhood around all its element }
+\end{equation*}
 \end{theorem}
 \begin{proof}
   We first prove \vi{$g$ do map topology to neighborhood function}.\\
 
-$g(\mathfrak{O})(x)$ is always nonempty because
-\begin{equation}
-X \in \mathfrak{O}\implies X\in (g(\mathfrak{O}))(x)
-\end{equation}
-By definition of $g$, every defined neighborhood around $x$ do contain  $x$. A super set of $N\in (g(\mathfrak{O}))(x)$ belong to $(g(\mathfrak{O}))(x)$, since an open set containing $x$ contained by  $N$ is also contained by the super set.\\
+Try to prove that $X$ is an neighborhood around $x$. The fact an neighborhood around $x$ must contain  $x$ and the fact follows from definition.\\
 
-Let $N,M \in (g(\mathfrak{O}))(x)$ and $x \in O_N \subseteq N, x\in O_M \subseteq M$. We have 
-\begin{equation}
-x \in O_N\cap O_M\subseteq N\cap M
-\end{equation}
-For each neighborhood $N$ around $x$, the open set containing  $x$ contained by the neighborhood is also a neighborhood around  $x$, since it contain itself and it is an open set.  Then we see $N$ is a neighborhood around each point of the open set, since each point is contained by the open set contained by $N$ $\vdone$\\
+For proving intersection of two neighborhood around $x$ is an neighborhood around  $x$, use the fact the intersection of two open set is open.\\
 
-We now prove  \blue{$g^{-1}$ do map neighborhood function to topology}.\\
-
-Proving $\varnothing \in g^{-1}(\mathcal{N})$ is trivial. We have $X \in g^{-1}(\mathcal{N})$ because  $\mathcal{N}(x)$ is nonempty for all $x$ and  $X$ is a super set of any neighborhood.\\
+For proving each neighborhood $N$ around $x$ contain an neighborhood $M$ around $x$ such that $N$ is an neighborhood of all  $m \in M$, verify for $M=O$, where  $O$ is the open set such that  $x\in O\subseteq N\vdone$\\
 
 
+We now prove  \blue{$h$ do map neighborhood function to topology}.\\
 
-Let $A,B\in g^{-1}(\mathcal{N})$. Arbitrarily pick $x$ in $A\cap B$, we know by definition of $g^{-1}$,  $A$ is a neighborhood of  $x$ and so is  $B$. Then by definition of neighborhood function, we know $A\cap B\in \mathcal{N}(x)$. Because $x$ is arbitrary picked from $A\cap B$,  we have proved $A\cap B\in g^{-1}(\mathcal{N})$.\\
+Proving $\varnothing \in h(\mathcal{N})$ is trivial. We have $X \in h(\mathcal{N})$ because  $\mathcal{N}(x)$ is nonempty for all $x$ and  $X$ is a super set of any neighborhood.\\
 
-Let $\mathfrak{A}\subseteq g^{-1}(\mathcal{N})$. We deduce
-\begin{equation}
-x \in \bigcup \mathfrak{A}\implies \exists O \in \mathfrak{A}, x \in O \in \mathfrak{A}\subseteq g^{-1}(\mathcal{N})\implies O \in \mathcal{N}(x)\implies O \subseteq \bigcup \mathfrak{A} \in \mathcal{N}(x)
-\end{equation}
-By definition of $g^{-1}(\mathcal{N})$, the above deduction shows $\bigcup \mathfrak{A}\in g^{-1}(\mathcal{N})\bdone$\\
+Let $A,B$ be open. To prove $A\cap B$ is open, first realize $A$ and  $B$ are both neighborhood around  $x\in A\cap B$, and use the fact the intersection of neighborhood is an neighborhood.\\
 
+Let $\mathfrak{A}$ be a class of open sets. To prove $\bigcup \mathfrak{A}$ is open, first use the fact $x\in \mathfrak{A}$ implies $x$ is in some open set  $A\in \mathfrak{A}$. Then use the fact $A$ is neighborhood around  $x$, and deduce the super set $\bigcup \mathfrak{A}$ must also be a neighborhood.$\bdone$\\
 
-Lastly, we prove \teal{$g^{-1}$ is the inverse of $g$}. To prove such, we have to first prove \vi{$g^{-1}(g(\mathfrak{O}))=\mathfrak{O}$}. \\
+Lastly, we prove \teal{$h$ is the inverse of $g$}.\\
 
+To prove such, we have to first prove \vi{$h(g(\tau))=\tau$}. \\
 
-Arbitrarily pick $Z\in \mathfrak{O}$. Deduce 
-\begin{equation}
-x\in Z \implies \exists Z\in \mathfrak{O},x \in Z\subseteq Z\implies Z\in (g(\mathfrak{O}))(x)
-\end{equation}
-By definition of $g^{-1}$, our deduction give us $Z\in g^{-1}(g(\mathfrak{O}))$. Because $Z$ is arbitrarily picked from  $\mathfrak{O}$, we have $\mathfrak{O}\subseteq g^{-1}(g(\mathfrak{O}))$.\\
+We first have
+\begin{align*}
+  Z\in h(g(\tau))&\iff \forall z\in Z, Z\in (g(\tau))(z)\\
+      &\iff \forall z\in Z, \exists O_z\in \tau, z\in O_z\subseteq Z 
+\end{align*}
 
-Arbitrarily pick $Y \in g^{-1}(g(\mathfrak{O}))$. Define $\mathfrak{S}:=\set{O\in \mathfrak{O}: O \subseteq Y}$. By definition of $g^{-1}\text{ and }g$, we have
-\begin{equation}
-y \in Y\implies Y \in (g(\mathfrak{O}))(y)\implies \exists O\in\mathfrak{O}, y \in O\subseteq Y\implies y \in \bigcup \mathfrak{S}
-\end{equation}
-The last implication hold true because $O\in \mathfrak{S}$ by definition of $\mathfrak{S}$. We have proved $Y\subseteq \bigcup \mathfrak{S}$. Also, trivially by definition of  $\mathfrak{S}$, we have $\bigcup \mathfrak{S}\subseteq Y$. Then we have $Y=\bigcup \mathfrak{S} \in \mathfrak{O}$. Because $Y$ is arbitrarily picked from $g^{-1}(g(\mathfrak{O}))$, we have proved $g^{-1}(g(\mathfrak{O}))\subseteq \mathfrak{O}\vdone$\\
+It is now quite clear that $\tau \subseteq h(g(\tau))$. To see $h(g(\tau))\subseteq \tau$, collect $O_z$ for each  $z\in Z$ and use the fact the union of open set is open. $\vdone$\\
 
-We now prove \blue{$g(g^{-1}(\mathcal{N}))=\mathcal{N}$. More precisely, we want to prove $\forall x, g(g^{-1}(\mathcal{N}))(x)=\mathcal{N}(x)$}\\
+We now prove \blue{$g(h(\mathcal{N}))=\mathcal{N}$. More precisely, we want to prove $\forall x, g(h(\mathcal{N}))(x)=\mathcal{N}(x)$}\\
 
 Let $x\in X$. Observe
 \begin{equation}
-Y \in g(g^{-1}(\mathcal{N}))(x)\implies \exists O \in g^{-1}(\mathcal{N}),x \in O \subseteq Y
+Y \in g(h(\mathcal{N}))(x)\iff  \exists O \in h(\mathcal{N}),x \in O \subseteq Y
+\label{1}
 \end{equation}
-Bydefinition of $g^{-1}$, we see $O\in \mathcal{N}(x)$. Then by super set property, we know $Y \in \mathcal{N}(x)$. We have proved $ g(g^{-1}(\mathcal{N}))(x)\subseteq \mathcal{N}(x)$.\\
+By definition of $h$, we see $O\in \mathcal{N}(x)$. Then by super set property, we know $Y \in \mathcal{N}(x)$. We have proved $ g(h(\mathcal{N}))(x)\subseteq \mathcal{N}(x)$.\\
 
-Arbitrarily pick $N\in \mathcal{N}(x)$. Let 
-\begin{equation}
-U:=\set{y\in N: N \in \mathcal{N}(y)}
-\end{equation}
-Deduce
-\begin{gather}
-y \in U \implies N \in\mathcal{N}(y)\\
-\implies \exists M \in \mathcal{N}(y), M \subseteq N, \forall z \in M, N \in \mathcal{N}(z)\\
-\implies \forall z\in M, z\in N\text{ and }N\in\mathcal{N}(z)\\
-\implies \forall z\in M, z \in U\implies M \subseteq U\implies U\in \mathcal{N}(y)
-\end{gather}
-We have proved
-\begin{equation}
-\forall y\in U, U\in \mathcal{N}(y)
-\end{equation}
-which means
-\begin{equation}
-U\in g^{-1}(\mathcal{N})
-\end{equation}
-By definition of $U$, we know
- \begin{equation}
-U\subseteq N
-\end{equation}
-The fact $N$ is chosen from $\mathcal{N}(x)$ let us know $x\in U\subseteq N$, so we can deduce 
-\begin{equation}
-N\in g(g^{-1}(\mathcal{N}))(x)
-\end{equation}
-Because $N$ is arbitrarily picked from $\mathcal{N}(x)$, we have $\mathcal{N}(x)\subseteq g(g^{-1}(\mathcal{N}))(x)\bdone\tdone$
+Arbitrarily pick $N\in \mathcal{N}(x)$. We wish to prove $N\in g(h(\mathcal{N}))$. Let $M$ be the largest neighborhood around  $x$ contained by $N$ such that  $N$ is an neighborhood around all  $m \in M$. Such greatest $M$ exists because the union of neighborhood  around  $x$ is again an neighborhood around  $x$.\\
+
+We now have 
+\begin{equation*}
+M=\set{m\in N:N\in \mathcal{N}(m)}
+\label{2}
+\end{equation*}
+since if $M\subset \set{m \in N:N\in \mathcal{N}(m)}$, we can pick any $m$  not in $M$ to see  $M\cup \set{m}$ is even larger.\\
+
+We wish to show the neighborhood $M\subseteq N$ is open to close the proof, by using $M=O$ in \myref{equation}{1}.\\
+
+Arbitrarily pick $m \in M$. We know $N$ is an neighborhood around  $m$, then there exists an neighborhood $Q_m$ around $m$ contained by $N$ such that $N$ is an neighborhood around all  $q\in Q_m$. We see $Q_m\subseteq M$ as \myref{equation}{2} suggest. By super set property, we are done. $\bdone \tdone$
 \end{proof}
 \fbox{\begin{minipage}{39em}
-We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{3.8.5} into language without neighborhood function. 
+We now give the formal definition of neighborhood while a topology is given, and translate \myref{Theorem}{2.1.5} into language without neighborhood function. 
 \end{minipage}}
 \begin{definition}
 \label{2.1.6}
@@ -2761,7 +2738,7 @@ We now give the formal definition of neighborhood while a topology is given, and
   \item The super set of a neighborhood around  $x$ is a neighborhood around $x$.\\
   \item The intersection of two neighborhood around  $x$ is a neighborhood around $x$.\\
   \item 
-For each neighborhood $N$ around $x$, there exists a smaller neighborhood $M$ around $x$ such that  $N$ is a neighborhood around all points in $N$.
+For each neighborhood $N$ around $x$, there exists a smaller neighborhood $M$ around $x$ such that  $N$ is a neighborhood around all $m \inM$.
 \end{enumerate}
 \end{corollary}
 \begin{theorem}
@@ -2774,100 +2751,101 @@ For each neighborhood $N$ around $x$, there exists a smaller neighborhood $M$ ar
 \begin{proof}
 From left to right, it trivially follows from our definition of neighborhood.\\
 
-From right to left, we know every point $x$ in  $E$ is contained by an open set contained by $E$. By axiom, the union of such open sets is an open set and contained by $E$. Also, every point in $E$ belong to an open set contained by by $E$, so belong to the union. We have proved  $E$ is the union. 
+From right to left, use the definition of neighborhood for each $x\in E$, and the fact that union of open set is open. 
 \end{proof}
 \section{Closure and Interior Operator}
 \fbox{\begin{minipage}{39em}
 This section won't go into any detailed general topology. It merely work as a comparison for the next section. 
 \end{minipage}}
 \begin{definition}
-\label{4.2.1}
+\label{2.2.1}
 \textbf{(Definition of Closure and Interior Operator)} We define the closure $\overline{E}$ of $E$ to be smallest closed set containing $E$
 \begin{equation}
   \overline{E}:=\bigcap \set{F\in\mathfrak{F}:E\subseteq F}
 \end{equation}
 and define the interior $E^\circ$ of  $E$ to be the largest open set contained by  $E$ 
 \begin{equation}
-E^\circ :=\bigcup  \set{O\in\mathfrak{O}:O \subseteq E}
+E^\circ :=\bigcup  \set{O\in\tau :O \subseteq E}
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{4.2.2}
+\label{2.2.2}
 \textbf{(Basic Property of Closure and Interior Operator)} We have
 \begin{gather}
-  \overline{E}=E\iff E\in\mathfrak{F}\text{ and }E^\circ=E\iff E\in\mathfrak{O}\\
+  \overline{E}=E\iff E\in\mathfrak{F}\text{ and }E^\circ=E\iff E\in\tau\\
 \overline{(\overline{E})}=\overline{E}\text{ and }(E^\circ)^\circ=E^\circ\\
   S\subseteq T \implies S^\circ \subseteq T^\circ\text{ and }\overline{S}\subseteq \overline{T}
 \end{gather}
 \end{theorem}
 \begin{theorem}
-\label{4.2.3}
+\label{2.2.3}
 \textbf{(Basic Property of Closure and Interior Operator)} We have 
 \begin{equation}
    \overline{E\cup F}=\overline{E}\cup \overline{F}\text{ and }(E\cap F)^\circ=E^\circ \cap F^\circ
 \end{equation}
+\begin{equation*}
+\overline{E\cap F}\subseteq \overline{E}\cap \overline{F}\text{ and }E^\circ \cup F^\circ \subseteq (E\cup F)^\circ 
+\end{equation*}
+\begin{equation*}
+  (E^\circ )^c=\overline{E^c}
+\end{equation*}
 \end{theorem}
+\begin{proof}
+\As{$C$ is closed and  $E\cup F\subseteq C\subset \overline{E}\cup \overline{F}$}. WOLG, $E\subseteq C\cap \overline{E} \subset \overline{E}\tCaC$. \As{$O$ is open and  $E^\circ \cap F^\circ  \subset O\subseteq E\cap F $}. WOLG, $ E^\circ  \subset O\cup  E^\circ \subseteq E\tCaC$\\
+
+Because $E^\circ \subseteq E$, we have $E^c \subseteq (E^\circ )^c$. \As{$C\text{ is closed and }E^c\subseteq C\subset (E^\circ )^c$}. We see $E^\circ  \subset C^c\subseteq E\tCaC$
+\end{proof}
 \fbox{\begin{minipage}{39em}
 Now, we define interior point and limit point without referencing interior and closure. We'll also demonstrate that the interior, described as the largest open set within $E$, can in turn define interior points.\\ 
 
 Aside from the last section, this is another example in general topology where definitions can be expressed in several ways, yet they remain equivalent.
 \end{minipage}}
 \begin{definition}
-\label{4.2.4}
-\textbf{(Definition of Interior Point)} A point $p$ is an interior point of $E$ if
+\label{2.2.4}
+\textbf{(Definition of Interior Point)} 
 \begin{equation}
-E\in \mathcal{N}(p)
+\text{ $p$ is an interior point of }E\iff E \text{ is an neighborhood around  $p$ }
 \end{equation}
 \end{definition}
 \begin{definition}
-\label{4.2.5}
-\textbf{(Definition of Limit and Isolated Point)} A point $p \in X$ is a limit point of a subset $E$ of $X$, if 
-\begin{equation}
-\forall O\in \mathfrak{O}:p \in O, \exists u\neq p, u \in O\cap E
-\end{equation}
-or equivalently
-\begin{equation}
-\forall O\in\mathfrak{O}:p\in O, O\cap E\setminus \set{p}\neq \varnothing
-\end{equation}
-or equivalently
-\begin{equation}
-\forall N\in \mathcal{N}(p), N\cap E\setminus \set{p}\neq \varnothing
-\end{equation}
+\label{2.2.5}
+\textbf{(Definition of Limit and Isolated Point)} 
+\begin{gather}
+p\text{ is limit point of $E$ }\\
+\iff \text{ every open neighborhood around $p$ contain some $q\in E$ that isn't $p$ }
+\end{gather}
 We denote the set of limit point of $E$ by  $E'$. 
 \end{definition}
 \begin{theorem}
-\label{4.2.6}
-\textbf{(Interior Contain Exactly All Interior Points)} We have
+\label{2.2.6}
+\textbf{(Interior Contain Exactly All Interior Points)} 
 \begin{equation}
-E^\circ = \set{p:E\in \mathcal{N}(p)}
+\text{ Interior contain exactly all interior point }
 \end{equation}
 \end{theorem}
 \begin{proof}
-Arbitrarily pick $p$ from $\set{p: E \in \mathcal{N}(p)}$. By definition, we have 
-\begin{equation}
-\exists O\in \mathfrak{O}, p \in O \subseteq E\text{ where }O\subseteq E^\circ 
-\end{equation}
-Then we have $p \in E^\circ $. Because $p$ is arbitrarily picked from $\set{p:E \in \mathcal{N}(p)}$, we now have $\set{p:E \in\mathcal{N}(p)}\subseteq E^\circ $. Arbitrarily pick $p'$ from $E^\circ$. We deduce
-\begin{equation}
-p' \in E^\circ \subseteq E\implies E\in \mathcal{N}(p')\implies p' \in \set{p: E\in \mathcal{N}(p)}
-\end{equation}
-
-Because $p'$ is arbitrarily picked from  $E^\circ $, we have $E^\circ \subseteq \set{p:E\in \mathcal{N}(p)}$ 
+All interior points has an open neighborhood contained by $E$, which is contained by  $E^\circ $ by definition. Each point in interior is an interior point because interior itself is an open neighborhood.
 \end{proof}
 \begin{theorem}
-\label{4.2.7}
+\label{2.2.7}
 \textbf{(Closure Contain Exactly All Limit Points of $E$ and Points in $E$)} We have
 \begin{equation}
 \overline{E}= E' \cup  E
 \end{equation}
 \end{theorem}
 \begin{proof}
-  Arbitrarily pick $p\in (E'\cup E)^c$. Because $p$ is neither an limit point nor in  $E$, we know there exists an open set $O$ containing $p$ and disjoint with $E$. We know $O$ doesn't contain a limit point of $E$, otherwise  $O$ intersect with  $E$. We have constructed an open set containing  $p$ in  $(E'\cup E)^c$, so we have proved $(E'\cup E)^c$ is open. Then we know $E'\cup E$ is closed.\\
-
-  Let $F$ be a closed set containing  $E$. Arbitrarily pick  $p\in F^c$. Clearly $p$ is not in $E$,  and we can see $p$ is not a limit point of $E$, otherwise the open set  $F^c$ would have  intersect with $E$. We have proved  $F^c\subseteq (E'\cup E)^c$. In other words, we have proved $E'\cup E$ is the smallest closed set containing $E$. 
+Let $p\in (E'\cup E)^c$. Because $p$ is not a limit point of  $E$, we know there exists an open neighborhood $N$ such that
+ \begin{equation*}
+N\cap E\subseteq \set{p}
+\end{equation*}
+Because $p\not\in E$, we then know
+\begin{equation*}
+N\in E^c
+\end{equation*}
+We have proved $E'\cup E$ is closed. We wish to show  $E'$ is contained by all closed set $F$ containing  $E$. Let $p\in F^c$. Because $F^c$ is open, we see  $p$ is not a limit point of  $E$.  
 \end{proof}
 \begin{corollary}
-\label{4.2.8}
+\label{2.2.8}
 \textbf{(Every Point in Closure And Not in the Set is a Limit Point)}
 \begin{equation}
 \overline{E}\setminus E\subseteq E'
@@ -2879,7 +2857,7 @@ Because $p'$ is arbitrarily picked from  $E^\circ $, we have $E^\circ \subseteq 
     We now give some useful facts that shall later be compared with.
 \end{minipage}}
 \begin{theorem}
-\label{4.2.9}
+\label{2.2.9}
 \textbf{(Point in Closure if and only if No Neighborhood is Disjoint)} We have
 \begin{equation}
 \overline{E}=\set{p: \forall M\in \mathcal{N}(p), M\cap E\neq \varnothing}
@@ -2892,12 +2870,12 @@ Because $p'$ is arbitrarily picked from  $E^\circ $, we have $E^\circ \subseteq 
   \end{equation}
   There are two possibilities for point have no disjoint neighborhood
   \begin{equation}
-  p\in E\text{ or }p\not\in E
+  p\in E\text{ or }p\in E'
   \end{equation}
   Notice each first possibilities are identical, and each second possibilities are equivalent.
 \end{proof}
 \begin{theorem}
-\label{4.2.10}
+\label{2.2.10}
 \textbf{(Point is Limit Point if and only if In the Closure of Set Excluding The Point)} We have  
 \begin{equation}
 E'=\set{p:p \in \overline{E\setminus \set{p}}}
@@ -2906,12 +2884,780 @@ E'=\set{p:p \in \overline{E\setminus \set{p}}}
 \begin{proof}
   Notice each limit point $p\in  E'$ is still a limit point of $E\setminus \set{p}$, and notice each limit point of  $E$ is a limit point of $E\cup \set{p}$.
 \end{proof}
+\fbox{\begin{minipage}{39em}
+We now introduce boundary.
+\end{minipage}}
+\begin{definition}
+\label{2.2.11}
+\textbf{(Definition of Boundary)} We define the boundary of $S$ by the closure of $S$ minus the interior of  $S$
+ \begin{equation*}
+\partial S=\overline{S}\setminus S^\circ 
+\end{equation*}
+\end{definition}
+\begin{theorem}
+\label{2.2.12}
+\textbf{(Equivalent Definition for Boundary)} We have
+\begin{equation*}
+\partial S=\overline{S}\cap \overline{S^c}
+\end{equation*}
+and
+\begin{equation*}
+\partial S=\set{p:\text{for every open neighborhood $O$ around $p$, }O\cap S\neq \varnothing\neq O\cap S^c}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Notice $\overline{S^c}=(S^\circ )^c$ from \myref{Theorem}{2.2.3} and we are done. The second result follows from $\partial S=\overline{S}\cap \overline{S^c}$.
+\end{proof}
+\begin{corollary}
+\label{2.2.13}
+\textbf{(Boundary is Closed)} We have
+\begin{equation*}
+\partial S\text{ is closed }
+\end{equation*}
+\end{corollary}
+\begin{corollary}
+\label{2.2.14}
+\textbf{(Boundary of Boundary is Subset of Boundary)} For all $S$, we have
+\begin{equation*}
+\partial \partial S\subseteq \partial S
+\end{equation*}
+\end{corollary}
+\begin{proof}
+$\partial S$ is closed tell us
+\begin{equation*}
+\partial \partial S= \partial S\setminus (\partial S)^\circ 
+\end{equation*}
+\end{proof}
+\begin{theorem}
+\label{2.2.15}
+\textbf{(Boundary is also the Boundary of Complement)} 
+\begin{equation*}
+\partial S=\partial (S^c)
+\end{equation*}
+\end{theorem}
+\begin{proof}
+This follows from $\partial S=\overline{S}\cap \overline{S^c}$
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now introduce exterior
+\end{minipage}}
+\begin{definition}
+\label{2.2.16}
+\textbf{(Definition of Exterior)} We define the exterior by
+\begin{equation*}
+\text{ext}(S):=(\overline{S})^c
+\end{equation*}
+\end{definition}
+\begin{theorem}
+\label{2.2.17}
+\textbf{(Equivalent definition of Interior)} We have
+\begin{equation*}
+X=S^\circ \cup \partial S\cup \text{ ext }(S)
+\end{equation*}
+and have
+\begin{equation*}
+\text{ext}(S)=(S^c)^\circ 
+\end{equation*}
+\end{theorem}
+\begin{proof}
+The first result follows straight from definition, as $\partial S\cup S^\circ =\overline{S}$.Rewrite \myref{Theorem}{2.2.3} into
+\begin{equation*}
+  (E^\circ )^c =\overline{E^c}\implies ((E^c)^\circ )^c=\overline{E}
+\end{equation*}
+Then we have
+\begin{equation*}
+\text{ext}(S)=(\overline{S})^c=(S^c)^\circ 
+\end{equation*}
+\end{proof}
+\begin{theorem}
+\label{2.2.18}
+\textbf{(Basic Property of Exterior)} We have
+\begin{equation*}
+S\subseteq T \implies  \text{ext}(T)\subseteq \text{ext}(S)
+\end{equation*}
+\begin{equation*}
+S^\circ  \subseteq \text{ext}(\text{ext}(S))
+\end{equation*}
+\end{theorem}
+\begin{proof}
+\begin{equation*}
+S\subseteq T\implies \overline{S}\subseteq \overline{T}\implies \text{ext}(T)=(\overline{T})^c\subseteq (\overline{S})^c=\text{ext}(S)
+\end{equation*}
+Deduce
+\begin{equation*}
+S\subseteq \overline{S}\implies (\overline{S})^c \subseteq S^c\implies \overline{(\overline{S})^c}\subseteq \overline{S^c}=(S^\circ )^c\implies S^\circ \subseteq (\overline{(\overline{S})^c})^c=\text{ext}(\text{ext}(S))
+\end{equation*}
+\end{proof}
+\section{Different Types of Connected}
+\begin{definition}
+\label{2.3.1}
+  \textbf{(Definition of Path)} By a path from $a$ to  $b$ in a subset $S\subseteq X$, we mean a
+  \begin{equation*}
+  \text{ Continuous function $f:[0,1]\rightarrow S$ such that $f(0)=a$ and $f(1)=b$ }
+  \end{equation*}
+\end{definition}
+\begin{definition}
+\label{2.3.2}
+\textbf{(Definition of Path-Connected)} We say a set $S$ is path-connected if 
+\begin{equation*}
+\text{ For each $a,b\in S$, there exists a path $f$ in $S$ from $a$ to $b$ }
+\end{equation*}
+\end{definition}
+\begin{definition}
+\label{2.3.3}
+\textbf{(Definition of Separated)} We say $A,B$ are separated if 
+\begin{equation*}
+\overline{A}\cap B=\varnothing=A\cap \overline{B}\text{ and }A,B\text{ are non-empty }
+\end{equation*}
+\end{definition}
+\begin{definition}
+\label{2.3.4}
+\textbf{(Definition of Connected)} We say a set $V$ is connected if 
+ \begin{equation*}
+V\text{ can not be expressed as union of  two non-empty separated sets}
+\end{equation*}
+\end{definition}
+\begin{theorem}
+\label{2.3.5}
+\textbf{(Equivalent Definition of Connected)} The following are equivalent
+\begin{enumerate}[label=(\alph*)]
+  \item $V$ is connected
+  \item $V$ has no proper non-empty subset  $U$ relatively clopen to  $V$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  We first prove \vi{$V$ is connected  $\implies $$V$ has no proper non-empty subset  $U$ relatively clopen to  $V$}.\\
+
+\As{$U$ is a proper non-empty subset of $V$ relatively clopen to $V$}. Define 
+\begin{equation*}
+W:=V\setminus U
+\end{equation*}
+We know $W$ is also a proper non-empty subset of $V$ relatively clopen to $V$. WOLG, we only wish to prove
+ \begin{equation*}
+\overline{U}\cap W=\varnothing
+\end{equation*}
+Because $U$ is relatively closed to  $V$, we know there exists a close set  $F$ such that 
+ \begin{equation*}
+U=F\cap V
+\end{equation*}
+Then by definition of closure, we know 
+\begin{equation*}
+\overline{U}\subseteq F
+\end{equation*}
+Notice that $F$ and $W$ are disjoint, otherwise  there exists some $x\in F\cap W$, and we can deduce
+\begin{equation*}
+x\in W\implies x\in V\implies x\in F\cap V=U\left(\because x\in F\cap W\right)
+\end{equation*}
+which is clearly impossible, since $W$ and $U$ are disjoint.\\
+
+Then because $F$ and $W$ are disjoint, we see
+\begin{equation*}
+\overline{U}\cap W\subseteq F\cap W=\varnothing
+\end{equation*}
+WOLG, we see $U$ and $W$ are separated and $V=U\cup W\tCaC\vdone$\\
+
+We now prove \blue{$V$ has no proper non-empty subset $U$ relatively clopen to $V\implies V$ is connected}.\\
+
+\As{$V$ is disconnected}. Then we can express $V$ into union of non-empty separated subsets $A,B$
+ \begin{equation*}
+V=A\cup B\text{ and }\overline{A}\cap B=\varnothing=A\cap \overline{B}
+\end{equation*}
+We wish to prove 
+\begin{equation*}
+A\text{ is relatively clopen to }V
+\end{equation*}
+We first prove 
+\begin{equation*}
+\teal{A=\overline{A}\cap V}
+\end{equation*}
+It is clear that 
+\begin{equation*}
+A\subseteq\overline{A}\cap V
+\end{equation*}
+Let $x\in \overline{A}\cap V$. Because $\overline{A}\cap B=\varnothing$, we know 
+\begin{equation*}
+x\not\in B
+\end{equation*}
+Then because $x\in V$, we know 
+\begin{equation*}
+x\in A\tdone
+\end{equation*}
+WOLG, from \teal{teal} part, we also know $B$ is relatively closed to $V$, then we can deduce  $A$ is relatively clopen to $V$.\\
+
+Because $B$ is non-empty, we know  $A$ is proper. We have proved  $A$ is an non-empty proper subset of $V$ relatively clopen to  $V\tCaC$ 
+
+\end{proof}
+\begin{theorem}
+\label{2.3.6}
+\textbf{(Union of non-Disjoint Connected Sets is Connected)} 
+\begin{equation*}
+  \text{ $A,B$ are both connected and }A\cap B\neq \varnothing\implies A\cup  B\text{ is connected } 
+\end{equation*}
+\end{theorem}
+\begin{proof}
+\As{$A\cup B$ is disconnected}. Let
+\begin{equation*}
+V\cup W=A\cup B\text{ and }V,W\text{ be separated }
+\end{equation*}
+Let $x\in A\cap B$. Because $A\cup B=V\cup W$, we see $x$ must belong to one of  $V,W$. WOLG, let  $x\in V$. We know $W$ must intersect with one of $A,B$. WOLG, let  $W\cap  A\neq \varnothing$. We see 
+\begin{equation*}
+x\in A\cap B\text{ and }x\in V\implies V\cap A\neq \varnothing
+\end{equation*}
+Notice
+\begin{equation*}
+\overline{W\cap A}\subseteq \overline{W}\cap \overline{A}\text{ and }\overline{V\cap A}\subseteq \overline{V}\cap \overline{A}\text{ and }(V\cap A)\cup (W\cap A)=A\tCaC
+\end{equation*}
+\end{proof}
+\begin{theorem}
+\label{2.3.7}
+\textbf{(Path Connected is Stronger than Connected)} 
+\begin{equation*}
+S\text{ is path-connected }\implies S\text{ is connected }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+\As{$S$ is not connected}. Express $S$ into union of two proper non-empty separated subsets $A,B$
+\begin{equation*}
+S=A\cup B\text{ where $A,B$ are separated }
+\end{equation*}
+Let 
+\begin{equation*}
+a\in A\text{ and }b\in B
+\end{equation*}
+Because $S$ is path-connected, we know there exists a path $f$ in  $S$ from  $a$ to $b$. Consider
+\begin{equation*}
+c :=f\left(\sup f^{-1}\left[A \right] \right)
+\end{equation*}
+and denote $x:=\sup f^{-1}\left[A \right]\inr$. Remember
+\begin{equation*}
+c=f\left(x \right)
+\end{equation*}
+Because $c\in S$, we know
+\begin{equation*}
+c\text{ belong to either $A$ or  $B$ }
+\end{equation*}
+To cause contradiction, we wish to prove
+\begin{equation*}
+\begin{cases}
+  c\in B\implies c\in \overline{A}\\
+  c\in A\implies c\in \overline{B}
+\end{cases}
+\end{equation*}
+We first prove 
+\begin{equation*}
+  \vi{c\in B\implies  c\in \overline{A}}
+\end{equation*}
+Let $C$ be an open neighborhood around  $c$, we only wish to prove 
+\begin{equation*}
+\text{ There exists $c'\neq c$ such that $c'\in A\cap C$ }
+\end{equation*}
+We know 
+\begin{equation*}
+f\left(x \right)=c\in C
+\end{equation*}
+Then because $f$ is continuous, we know there exists an open set $O$ in  $\left[0,1 \right]$ such that  
+\begin{equation*}
+x\in O\text{ and }f\left[O \right]\subseteq C
+\end{equation*}
+Because $O$ is an open neighborhood around $x\in\R$, we know there exists an open ball $B_r\left(x \right)$ contained by $O$. Clearly,
+\begin{equation*}
+x-\frac{r}{2}<x=\sup f^{-1}\left[A \right]
+\end{equation*}
+Then we know there exists some $y\in f^{-1}\left[A \right]$ such that 
+\begin{equation*}
+x-\frac{r}{2}<y\leq x 
+\end{equation*}
+Clearly, 
+\begin{equation*}
+  y\in \left(x-\frac{r}{2},x \right]\subseteq B_r\left(x \right)\subseteq O
+\end{equation*}
+We now prove \teal{$f\left(y \right)$ is the wanted  $c'$} to finish the partial proof.\\
+
+Notice that 
+\begin{equation*}
+y\in f^{-1}\left[A \right]\implies f\left(y \right)\in A\implies f\left(y \right)\neq c\text{  }\text{     $\left(\because c\not\in A \right)$ }
+\end{equation*}
+Because $x-\frac{r}{2}<y\leq x$, we can deduce
+\begin{equation*}
+y\in B_r\left(x \right)\subseteq O
+\end{equation*}
+and deduce 
+\begin{equation*}
+f\left(y \right)\in f\left[O \right]\subseteq C
+\end{equation*}
+We have proved
+\begin{equation*}
+f\left(y \right)\neq c\text{ and }f\left(y \right)\in A\cap C\tdone\vdone
+\end{equation*}
+We now prove 
+\begin{equation*}
+\blue{c\in A\implies c\in \overline{B}}
+\end{equation*}
+Let $C$ be an open neighborhood around $c$, we only wish to prove 
+ \begin{equation*}
+\text{ There exist $c'\neq c$ such that $c'\in B\cap C$ }
+\end{equation*}
+We know 
+\begin{equation*}
+f\left(x \right)=c\in C
+\end{equation*}
+Then because $f$ is continuous, we know there exists an open set $O$ in  $\left[0,1 \right]$ such that  
+\begin{equation*}
+x\in O\text{ and }f\left[O \right]\subseteq C
+\end{equation*}
+Because $f\left(x \right)=c\in A$, we know $x\neq 1$, otherwise $f\left(x \right)\in A\cap B$, which is clearly impossible.\\
+
+Then we know there exists $y\in O$ such that 
+\begin{equation*}
+x<y
+\end{equation*}
+Because $x=\sup f^{-1}\left[A \right]$, we know 
+\begin{equation*}
+y \not\in f^{-1}\left[A \right]
+\end{equation*}
+Then we can deduce 
+\begin{equation*}
+f\left(y \right)\in B
+\end{equation*}
+and from $y\in O$, deduce
+\begin{equation*}
+f\left(y \right)\in f\left[O \right]\subseteq C
+\end{equation*}
+Notice that from $f\left(y \right)\in B$ and $c\in A$, we know 
+\begin{equation*}
+f\left(y \right)\neq c
+\end{equation*}
+We have proved
+\begin{equation*}
+f\left(y \right)\neq c\text{ and }f\left(y \right)\in B\cap C\bdone
+\end{equation*}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now introduce connected component. 
+\end{minipage}}
+\begin{theorem}
+\label{2.3.8}
+\textbf{(Path-Connected Component)} Define a relation $\sim$ in $S$ by 
+\begin{equation*}
+a\sim b\text{ if there exists a path in $S$ from $a$ to  $b$}
+\end{equation*}
+Then 
+\begin{equation*}
+\sim\text{ is an equivalence relation }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+To see $a\sim a$
+\begin{equation*}
+\text{ define }f(x)=a
+\end{equation*}
+The inverse image of open set is either $\varnothing$ or $\left[0,1 \right]$. Both are open in $\left[0,1 \right]$.\\
+
+We now prove 
+\begin{equation*}
+  \vi{a\sim b\implies b\sim a}
+\end{equation*}
+Let $f$ be a path in $S$ from $a$ to $b$. It is clear that $g:\left[0,1 \right]\rightarrow \left[0,1 \right]$
+\begin{equation*}
+g(x)=1-x\text{ is continuous }
+\end{equation*}
+Then we see 
+\begin{equation*}
+f\circ g\text{ is a path in $S$ from $b$ to $a$ }\vdone
+\end{equation*}
+We now prove 
+\begin{equation*}
+\blue{a\sim b\text{ and }b\sim c\implies a\sim c}
+\end{equation*}
+Let $f$ be a path in $S$ from  $a$ to $b$, and let $g$ be a path in $S$ from $b$ to $c$. Define $h:\left[0,1 \right]\rightarrow S$ by
+\begin{equation*}
+h(x)=\begin{cases}
+  f(2x)& \text{ if  }x\in [0,\frac{1}{2} )\\
+  g(2(x-\frac{1}{2}))& \text{ if  }x\in [\frac{1}{2},1]
+\end{cases}
+\end{equation*}
+Suppose $x\in [0,\frac{1}{2})$. We wish to prove 
+\begin{equation*}
+  \teal{h\text{ is continuous at }x}
+\end{equation*}
+Let $W\subseteq S$ be an neighborhood around  $h(x)$. We wish to find an neighborhood $V\subseteq [0,1]$ around $x$ such that 
+\begin{equation*}
+h[V]\subseteq W
+\end{equation*}
+Because $f$ is continuous at $2x$, we know there exist an neighborhood $T\subseteq [0,1]$ around $2x$ such that 
+ \begin{equation*}
+h(x)=f(2x)\in f[T]\subseteq W
+\end{equation*}
+Let
+\begin{equation*}
+T_{\frac{1}{2}}=\set{\frac{t}{2}:t \in T}
+\end{equation*}
+Clearly, $T_{\frac{1}{2}}$ is an neighborhood around $x$, such that $T_{\frac{1}{2}}\subseteq [0,\frac{1}{2}]$, and we can see
+\begin{equation*}
+ h[T_{\frac{1}{2}}]=f[T]\subseteq W\tdone
+\end{equation*}
+Suppose $x\in [\frac{1}{2},1]$. We wish to prove 
+\begin{equation*}
+\olive{h\text{ is continuous at $x$ }}
+\end{equation*}
+Let $W\subseteq S$ be an neighborhood around $h(x)$. We wish to find an neighborhood $V\subseteq [0,1]$ around $x$ such that 
+\begin{equation*}
+h[V]\subseteq W
+\end{equation*}
+Because $g$ is continuous at $2(x-\frac{1}{2})$, we know there exists an neighborhood $T\subseteq [0,1]$ around $2(x-\frac{1}{2})$ such that 
+\begin{equation*}
+h(x)=g(2(x-\frac{1}{2}))\in g[T]\subseteq W
+\end{equation*}
+Let 
+\begin{equation*}
+T_{\frac{1}{2}}'=\set{\frac{t}{2}+\frac{1}{2}:t \in T}
+\end{equation*}
+Clearly, $T_{\frac{1}{2}}'$ is an neighborhood around $x$, such that  $T'_{\frac{1}{2}}\subseteq [\frac{1}{2},1]$, and we can see
+\begin{equation*}
+h[T'_{\frac{1}{2}}]\subseteq g[T]\subseteq W\odone
+\end{equation*}
+\end{proof}
+\begin{definition}
+\label{2.3.9}
+\textbf{(Definition of Path-Connected Component)} Partition $S$ by equivalence relation  $\sim$ defined in \myref{Theorem}{2.3.8} into 
+\begin{equation*}
+\set{S_\ld:\ld  \in \Lambda }
+\end{equation*}
+We say each $S_\ld $ is an path-connected component.
+\end{definition}
+\begin{theorem}
+\label{2.3.10}
+\textbf{(Connected Components are Mutually Separated)} 
+\begin{equation*}
+A,B\text{ are non-equal connected component of $S$ }\implies A,B\text{ are separated }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\label{2.3.11}
+\textbf{(Topologist's Sine Curve)} In standard topology of $\R^2$
+ \begin{equation*}
+\set{\left(x,\sin \frac{1}{x} \right):x\in \left(0,1 \right)}\cup \set{\left(0,0 \right)}\text{ is connected }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Denote $S=\set{\left(x,\sin \frac{1}{x} \right):x\in \left(0,1 \right)}\cup \set{\left(0,0 \right)}$, and arbitrarily partition $S$ into non-empty disjoint $A,B$
+ \begin{equation*}
+S=A\cup B
+\end{equation*}
+We wish to prove 
+\begin{equation*}
+\overline{A}\cap B\neq \varnothing\text{ or }A\cap \overline{B}\neq \varnothing
+\end{equation*}
+WOLG, suppose $\left(0,0 \right)\in A$. Denote $\left(0,0 \right)$ by $g$. Consider the set 
+\begin{equation*}
+\set{x: (x,\sin \frac{1}{x})\in B}
+\end{equation*}
+and let 
+\begin{equation*}
+\alpha =\inf \set{x:(x,\sin \frac{1}{x})\in B}
+\end{equation*}
+If $\alpha =0$, there are two possibilities
+\begin{equation*}
+  \begin{cases}
+    \exists t\inr^+, \forall x\in (0,t), (x,\sin \frac{1}{x})\in B\\
+    \forall t\inr^+, \exists x\in (0,t), (x,\sin \frac{1}{x})\not\in B
+  \end{cases}
+\end{equation*}
+If $\vi{\exists t\inr^+, \forall x\in (0,t), (x,\sin \frac{1}{x})\in B}$, we can construct a sequence 
+\begin{equation*}
+\set{(\frac{1}{n\pi},(\sin n\pi))}_{n\inn}
+\end{equation*}
+which converge to $g$, and its tail is in  $B$. It is now easy to see
+\begin{equation*}
+  (0,0)\in \overline{B}\vdone
+\end{equation*}
+If $\blue{\forall t\inr^+, \exists x\in (0,t), (x,\sin \frac{1}{x})\not\in B}$, arbitrarily pick a path connected component $B_1$ of $B$. Consider $f(\inf p[B_1])$
+
+
+
+
+\begin{theorem}
+\label{2.3.12}
+\textbf{(Conjecture)} In $\R^n$, two connected subset $A,B$ are disjoint implies  $A,B$ are separated.
+\end{theorem}
+\section{Continuous Function} 
+\begin{definition}
+\label{2.4.1}
+\textbf{(Definition of Continuous Function)} We say a function $f:X\rightarrow Y$ is continuous if  
+\begin{equation*}
+V\text{ is open }\implies f^{-1}\left[V \right]\text{ is open }
+\end{equation*}
+\end{definition}
+\begin{definition}
+\label{2.4.2}
+\textbf{(Definition of Continuous at a point)} We say $f$ is continuous at $x$ if 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       For all neighborhood $V$ around $f\left(x \right)$, there exists neighborhood $U$ around $x$ such that $f\left[U \right]\subseteq V$
+   \end{minipage}
+\end{center}
+\end{definition}
+\begin{lemma}
+\label{2.4.3}
+Given $f:X\rightarrow Y$, we have
+\begin{equation*}
+f\left[f^{-1}\left[V \right] \right]\subseteq V
+\end{equation*}
+where the equality hold true when $V\subseteq f\left[X \right]$
+\end{lemma}
+\begin{proof}
+Deduce 
+\begin{align*}
+  y\in f\left[f^{-1}\left[V \right] \right]&\implies \exists x\in f^{-1}\left[V \right], y=f\left(x \right)\\
+&\implies \exists y'\in V, y'=f\left(x \right)=y
+\end{align*}
+Suppose $V\subseteq f\left[X \right]$ and $y\in V$. We know 
+\begin{equation*}
+f^{-1}\left[y \right]\text{ is non empty }
+\end{equation*}
+Then We know there exists $x$ such that 
+ \begin{equation*}
+y=f\left(x \right)
+\end{equation*}
+Because $y\in V$, we know $x\in f^{-1}\left[V \right]$, then we see 
+\begin{equation*}
+y\in f\left[f^{-1}\left[V \right] \right]
+\end{equation*}
+\end{proof}
+\begin{theorem}
+\label{2.4.4}
+\textbf{(Equivalent Definition of Continuous)} Given $f:X\rightarrow Y$. The following are equivalent
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is continuous
+  \item every inverse image of closed set is closed
+  \item $f$ is continuous at all $x\in X$
+  \item for all $A\subseteq X$, we have $f[\overline{A}]\subseteq \overline{f[A]}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+From  $\left(a \right)$ to $\left(b \right)$, deduce from $V$ is closed to $f^{-1}\left[V^c \right]$ is open, and deduce $f^{-1}\left[V \right]=\left(f^{-1}\left[V^c \right] \right)^c$.\\
+
+From $\left(b \right)$ to $\left(a \right)$, deduce from $V$ is open to $f^{-1}\left[V^c \right]$ is closed, and deduce $f^{-1}\left[V \right]=\left(f^{-1}\left[V^c \right] \right)^c$.\\
+
+We now prove \vi{$f\text{ is continuous }\implies f\text{ is continuous at all $x\in X$ }$}. Let $V$ be an neighborhood around $f\left(x \right)$. We wish to find an neighborhood $U$ around $x$ such that $f\left[U \right]\subseteq V$. By definition of neighborhood, we know there exists an open set $O$ such that
+\begin{equation*}
+  f\left(x \right)\in O\subseteq V
+\end{equation*}
+Because $f$ is continuous, we know 
+\begin{equation*}
+f^{-1}\left[O \right]\text{ is open }
+\end{equation*}
+Observe that by \myref{lemma}{2.4.3}, we have
+\begin{equation*}
+x\in f^{-1}\left[O \right]\text{ and }f\left[f^{-1}\left[O \right] \right]\subseteq O\subseteq V\vdone
+\end{equation*}
+
+
+We now prove \blue{$f$ is continuous at all  $x\in X\implies f$ is continuous}. Let $V\subseteq Y$ be open. We wish to prove $f^{-1}\left[V \right]$ is open.\\
+
+Notice that $V$ is an neighborhood around all  $y\in V$, then because $f$ is continuous at all $x\in X$, we know for all $x\in f^{-1}\left[V \right]$, there exists an neighborhood $U_x$ around  $x$ such that  
+\begin{equation*}
+f\left[U_x \right]\subseteq V 
+\end{equation*}
+Then for all $x\in f^{-1}\left[V \right]$, there exists an open neighborhood $O_x$ around  $x$ such that 
+\begin{equation*}
+f\left[O_x \right]\subseteq V
+\end{equation*}
+This give us 
+\begin{equation*}
+O_x \subseteq f^{-1}\left[V \right]
+\end{equation*}
+Then if we collect all such open neighborhood $O_x$, we see 
+ \begin{equation*}
+\bigcup_{x\in f^{-1}\left[V \right]}O_x=f^{-1}\left[V \right]\bdone
+\end{equation*}
+We now prove 
+\begin{equation*}
+\vi{f\text{ is continuous at all $x\in X$ }\implies \forall A\subseteq X, f[\overline{A}]\subseteq \overline{f[A]}}
+\end{equation*}
+It is clear that 
+\begin{equation*}
+f[A]\subseteq \overline{f[A]}
+\end{equation*}
+Let $a'\in \overline{A}\setminus A$, we reduce the problem into proving 
+\begin{equation*}
+f(a')\in \overline{f[A]}
+\end{equation*}
+In fact, we will only have to prove
+\begin{equation*}
+f(a')\in (f[A])'
+\end{equation*}
+Let $N$ be an neighborhood around  $f(a')$, we reduce the problem into finding an $p\in  f[A]$ such that
+\begin{equation*}
+p\neq f(a')\text{ and }p\in N
+\end{equation*}
+Because $a'\not\in A$, we don't have to worry about  $p\neq f(a')$. Because $f$ is continuous at  $a'$, we know there exists a neighborhood  $N_{X}$ around $a'$ such that 
+ \begin{equation*}
+f[N_X]\subseteq N
+\end{equation*}
+Then because $a'\in \overline{A}\setminus A$ is a limit point of $A$, we know there exists  $a \in A$   such that 
+\begin{equation*}
+a\in N_X
+\end{equation*}
+This give us 
+\begin{equation*}
+f(a)\in N\vdone
+\end{equation*}
+We now prove 
+\begin{equation*}
+  \blue{\forall A\subseteq X, f[\overline{A}]\subseteq \overline{f[A]}\implies \text{ every inverse image of closed set is closed }}
+\end{equation*}
+Let $B\subseteq Y$, and $A=f^{-1}[B]$. Suppose
+ \begin{equation*}
+\overline{B}=B
+\end{equation*}
+We reduce the problem into proving
+\begin{equation*}
+\overline{A}\subseteq A
+\end{equation*}
+From premise, we have
+\begin{equation*}
+f[\overline{A}]\subseteq \overline{f[A]}=B
+\end{equation*}
+This implies
+\begin{equation*}
+\overline{A}\subseteq f^{-1}[B]=A\bdone
+\end{equation*}
+
+
+
+
+
+
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now introduce other concepts we are familiar.
+\end{minipage}}
+\begin{theorem}
+\label{2.4.5}
+\textbf{(Composition of Continuous Function is Continuous)} Let $f:X\rightarrow Y$ and $g:Y\rightarrow Z$ be continuous. We have
+\begin{equation*}
+g\circ f\text{ is continuous }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let $V\subseteq Z$ be open. We know 
+\begin{equation*}
+g^{-1}[V]\text{ is open }
+\end{equation*}
+This give us
+\begin{equation*}
+f^{-1}[g^{-1}[V]]\text{ is open }
+\end{equation*}
+Deduce
+\begin{align*}
+  x\in (g\circ f)^{-1}[V]&\iff g(f(x))\in V\\
+  &\iff f(x)\in g^{-1}[V]\\
+  &\iff f^{-1}[g^{-1}[V]]
+\end{align*}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+We now introduce connected.
+\end{minipage}}
+\begin{theorem}
+\label{2.4.6}
+\textbf{(Continuity Map Connected Set to Connected Set)} Let $D$ be the domain of continuous function $f$. Let $A\subseteq D$.  
+ \begin{equation*}
+A\text{ is connected }\implies f[A]\text{ is connected }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+We prove the contrapositive
+\begin{equation*}
+f[A]\text{ is disconnected }\implies A\text{ is disconnected }
+\end{equation*}
+Suppose 
+\begin{equation*}
+f[A]=V\cup W\text{ and $V,W$ are separated }
+\end{equation*}
+Notice
+\begin{align*}
+  (f^{-1}[V]\cap A)\cup (f^{-1}[W]\cap A)&=(f^{-1}[V]\cup  f^{-1}[W])\cap A\\
+  &=f^{-1}[V \cup W]\cap A\\
+  &=A
+\end{align*}
+WOLG, we only wish to prove
+\begin{equation*}
+\overline{f^{-1}[V]\cap A}\cap (f^{-1}[W]\cap A)=\varnothing
+\end{equation*}
+Notice
+\begin{align*}
+  \overline{f^{-1}[V]\cap A}\subseteq \overline{f^{-1}[V]}\cap \overline{A}\subseteq \overline{f^{-1}[\overline{V}]}\cap \overline{A}=f^{-1}[\overline{V}]\cap \overline{A}
+\end{align*}
+We have reduce our problem into proving 
+\begin{equation*}
+f^{-1}[\overline{V}]\cap \overline{A}\cap f^{-1}[W]\cap A=\varnothing
+\end{equation*}
+\As{$x\in f^{-1}[V]\cap  A \cap f^{-1}[W]$}. We see $f(x)\in \overline{V}$ and $f(x)\in W$, which is impossible, since $V,W$ are separated.  \CaC
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Lastly, about compact.
+\end{minipage}}
+\begin{theorem}
+\label{2.4.7}
+\textbf{(Continuous Function Maps Compact Set to Compact Set)} Let $D$ be the domain of $f$ and $f$ be continuous. Let $A\subseteq D$.
+\begin{equation*}
+A\text{ is compact }\implies f[A]\text{ is compact }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let $\set{G_i}$ be an open cover of $f[A]$. We first wish to show
+\begin{equation*}
+  \vi{\set{f^{-1}[G_i]}\text{ is an open cover for $A$ }}
+\end{equation*}
+It is clear that $f^{-1}[G_i]$ are all open.\\
+
+Let $x\in A$. We know $f(x)\in f[A]$. Then we know there exists some $G_j$ such that 
+ \begin{equation*}
+f(x)\in G_j
+\end{equation*}
+Then we see $x\in f^{-1}[G_j]\vdone$\\
+
+Because $A$ is compact, we know there exists a finite sub-cover  $\set{f^{-1}[G_\ld] :\ld  \in \Lambda }$.\\
+
+We wish to prove
+\begin{equation*}
+\blue{\set{G_\ld :\ld \in \Lambda }\text{ is an open cover for $f[A]$ }}
+\end{equation*}
+Let $y\in f[A]$. We know there exists $x\in A$ such that 
+\begin{equation*}
+y=f(x)
+\end{equation*}
+Then we know there exists  $\ld _j$ such that
+\begin{equation*}
+x\in f^{-1}[G_{\ld _j}]
+\end{equation*}
+Then we see 
+\begin{equation*}
+y=f(x)\in G_{\ld _j}\bdone
+\end{equation*}
+\end{proof}
+\section{Homeomorphism}
+\begin{theorem}
+\label{2.5.1}
+\textbf{(Inverse Function of One-to-One Continuous Function is Again Continuous)} Let $f:X\rightarrow Z$ be continuous and one-to-one. Let $Y$ be the range of  $f$. Consider the sub-space topology  $(Y,\tau)$. The inverse function 
+\begin{equation*}
+f^{-1}:(Y,\tau)\rightarrow X\text{ is also continuous }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+  \red{Wrong Conjecture}
+\end{proof}
+
 \section{Three Non-Equivalent Compactness and Separable}
 \fbox{\begin{minipage}{39em}
 In this section, we will first give two equivalent definition of base and prove they are equivalent.
 \end{minipage}}
 \begin{definition}
-\label{2.3.1}
+\label{2.6.1}
 \textbf{(Definition of Base)} We say a sub-collection $\mathcal{O}$ of topology $\tau$ on $X$ is a base if every open neighborhood $O$ around $x$ contain an open set $U$ in $\mathcal{O}$ containing $U$. That is
 \begin{equation}
 \forall x\in X, \forall O\in\tau:x\in O,\exists U\in \mathcal{O}, x\in U\subseteq O
@@ -2919,7 +3665,7 @@ In this section, we will first give two equivalent definition of base and prove 
 We call open sets in a base basic open sets.
 \end{definition}
 \begin{theorem}
-\label{2.3.2}
+\label{2.6.2}
 \textbf{(Equivalent Definition of Base)} A sub-collection of topology $\tau$ is a base if and only if every open set can be expressed as a union of a set of basic open sets. That is, the necessary and sufficient condition for $\mathcal{O}$ to be a base is 
 \begin{equation}
 \forall O\in \tau, \exists \mathcal{U}\subseteq \mathcal{O}, O=\bigcup \mathcal{U}
@@ -2934,14 +3680,14 @@ We call open sets in a base basic open sets.
 Then, we will define separable, and give a sufficient condition of separable.
 \end{minipage}}
 \begin{definition}
-\label{2.3.3}
+\label{2.6.3}
 \textbf{(Definition of Separable)} We say $X$ is separable if 
 \begin{equation}
   X\text{ has a countable dense subset }
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{2.3.4}
+\label{2.6.4}
 \textbf{(Base and Dense Set)} 
 \begin{equation}
 \text{ A set intersecting with all basic open set is dense }
@@ -2951,14 +3697,14 @@ Then, we will define separable, and give a sufficient condition of separable.
 For each point $p$ not in $A$ and for each open neighborhood $N_p$ around $p$, there exists an basic open set  $O_p$ contained by $N_p$. The fact  $O_p$ intersect $A$ implies  $N_p$ intersect with  $A$. We have proved every point  $p$ not in $A $ is a limit point of $A$.
 \end{proof}
 \begin{corollary}
-\label{2.3.5}
+\label{2.6.5}
 \textbf{(Countable Base Implies Separable)} 
 \begin{equation}
 X\text{ has a countable base }\implies X\text{ is separable }
 \end{equation}
 \end{corollary}
 \begin{proof}
-Let $\mathcal{O}$ be a countable base for $X$. For each $O\in \mathcal{O}$, we can collect a point $x_O\in O$, and have $A:=\set{x_O:O\in \mathcal{O}}$. Because $\mathcal{O}$ is countable, we know $A$ is countable, and by  \myref{Theorem}{2.3.4}, we know $A$ is dense.
+Let $\mathcal{O}$ be a countable base for $X$. For each $O\in \mathcal{O}$, we can collect a point $x_O\in O$, and have $A:=\set{x_O:O\in \mathcal{O}}$. Because $\mathcal{O}$ is countable, we know $A$ is countable, and by  \myref{Theorem}{2.6.4}, we know $A$ is dense.
 \end{proof}
 \fbox{\begin{minipage}{39em}
 The above let us draw a Venn diagram, where existence of countable base is a small circle in the big circle separable.\\
@@ -2966,14 +3712,14 @@ The above let us draw a Venn diagram, where existence of countable base is a sma
 It is clear that compact implies countably compact, as every countable cover in compact space has a finite sub-cover. We now explore the relation of the three compactness.
 \end{minipage}}
 \begin{theorem}
-\label{2.3.6}
+\label{2.6.6}
 \textbf{(Compact Implies Countably Compact)} 
 \begin{equation}
  X\text{ is compact }\implies X\text{ is countably compact }
 \end{equation}
 \end{theorem}
 \begin{theorem}
-\label{2.3.7}
+\label{2.6.7}
 \textbf{(Countably Compact Implies Limit Point Compact)} 
 \begin{equation}
 X\text{ is countably compact }\implies X\text{ is limit point compact }
@@ -2993,14 +3739,14 @@ Then, because $A$ is countable, we see $\mathcal{O}\cup \set{A^c}$ is an countab
 If $A$ is uncountable, then  $A$ contain a countable set  $B$. We know  $B$ has a limit point  $p$, and we know  $p$ is also a limit point for $A$.
 \end{proof}
 \begin{corollary}
-\label{2.3.8}
+\label{2.6.8}
 \textbf{(Compact Implies Limit Point Compact)} If $X$ is compact, then $X$ is limit point compact.
 \end{corollary}
 \fbox{\begin{minipage}{39em}
 Lastly, we give a theorem involving countable base.
 \end{minipage}}
 \begin{theorem}
-\label{2.3.9}
+\label{2.6.9}
 \textbf{(Existence of Countable Base Implies Existence of Countable Sub-Cover)} 
 \begin{equation}
 X\text{ has a countable base }\implies\text{every open cover for $X$ has a countable sub-cover}
@@ -3620,7 +4366,7 @@ For $(\overline{E})^\circ \not\subseteq \overline{E^\circ }$, let $E=\Q$ . We ha
 We now shed light on subspace topology of sequential space. 
 \end{minipage}}
 \begin{theorem}
-\label{7.3.2}
+\label{8.3.2}
 \textbf{(Subspace Topology)} Let $Y$ be a subspace of $(X,d)$, let $E\subseteq X$, and let $p\in  Y$. We have
 \begin{gather}
 p\text{ is an interior point of $E$ in $X$ }\implies p\text{ is an interior point of $E\cap Y$ in $Y$ } \\
@@ -3703,95 +4449,80 @@ n>N\implies x_n\not\in E^c\implies x_n\in E
 \end{equation}
 \end{proof}
 \section{Connected}
-\begin{definition}
-\label{7.4.2}
-\textbf{(Definition of Separated)} We say two sets $A,B$ are separated if 
- \begin{equation}
-A\cap \overline{B}=\varnothing=\overline{A}\cap B
-\end{equation}
-\end{definition}
 \begin{theorem}
-\label{7.4.3}
-\textbf{(Subsets of Separated Sets are Separated)} Let $A\subseteq N$ and $B\subseteq M$.  
-\begin{equation}
-N,M\text{ are separated }\implies A,B\text{ are separated }
-\end{equation}
+\label{3.4.1}
+\textbf{(Interval is Connected)} 
+\begin{equation*}
+[0,1],(0,1),[0,1),(0,1]\text{ are all connected }
+\end{equation*}
 \end{theorem}
 \begin{proof}
-Notice
-\begin{equation}
-\overline{A}\subseteq \overline{N}\subseteq M^c\subseteq B^c
-\end{equation}
-And
-\begin{equation}
-\overline{B}\subseteq \overline{M} \subseteq N^c \subseteq A^c
-\end{equation}
+Arbitrarily partition $[0,1]$ into $A\cup B$. We wish to prove
+\begin{equation*}
+  \vi{A,B\text{ are not separated }}
+\end{equation*}
+If $\sup A=1=\sup B$, notice that $1$ is, WOLG, in $A$, and we can construct sequence in $B$ that converge to  $1$. This give us $1\in A\cap \overline{B}$. WOLG, let  $\sup A\neq 1$.\\
+
+
+If $\sup A\in A$. We see the tail of
+ \begin{equation*}
+\sup A+0.1, \sup A+0.01, \sup A+0.001,\dots
+\end{equation*}
+is a sequence in $B$ that converge to  $A$. This give us $\sup A\in A\cap \overline{B}$\\
+
+If $\sup A\not\in A$. Then $\sup A\in B$, and we can construct a sequence in $A$ that converge to  $\sup A$. This give us $\sup A=\overline{A}\cap B\vdone$\\
+
+Arbitrarily partition $(0,1)$ into $A\cup B$. We wish to prove 
+\begin{equation*}
+\blue{A,B\text{ are not separated }}
+\end{equation*}
+Let $a\in A$. There are two possibilities:
+\begin{equation*}
+\begin{cases}
+  \set{b\in B: b<a}\text{ is empty }\\
+  \set{b\in B:b<a}\text{ is non-empty }
+\end{cases}
+\end{equation*}
+If $\set{b\in B:b<a}$ is empty, we see
+\begin{equation*}
+0<a\leq \inf B
+\end{equation*}
+Then there are two possibility: $\inf B\in B\text{ or } \inf B\not\in B$. The former give us an sequence in $A$ converge to  $\inf B$ and the latter give us a sequence in $B$ converge to  $\inf B\in A$.\\
+
+If $\set{b\in B:b<a}$ is non-empty. Let
+\begin{equation*}
+b'=\sup \set{b\in B:b<a}
+\end{equation*}
+If $b'\in B$ we construct a sequence in $A$ that converge to  $b'$. If  $b'\in A$, we construct a sequence in $B$ that converge to  $b'\bdone$\\
+
+For $[0,1)$ and $(0,1]$ use the same argument for \vi{violet} part with infimum when dealing with $[0,1)$.
+\end{proof}
+\begin{theorem}
+\label{3.4.2}
+\textbf{(Non-Singleton Connected Set In $\R^k$ Must be Uncountable)} In $\R^k$
+\begin{equation*}
+  S\text{ is connected and $\abso{S}>1$ }\implies S\text{ is uncountable }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+
 \end{proof}
 \begin{theorem}
 \label{3.4.3}
-\textbf{(Subspace Topology)} Let $Y$ be a subspace of $(X,d)$.
-\begin{equation}
-A,B\text{ are separated }\implies A\cap Y\text{ and }B\cap Y\text{ are separated in $Y$ }
-\end{equation}
-The converse may not hold true.
+\textbf{(Path Connected if and only if Connected In Metric Space)} In metric space 
+\begin{equation*}
+S\text{ is path connected }\iff  S\text{ is connected }
+\end{equation*}
 \end{theorem}
 \begin{proof}
-In \myref{Theorem}{3.2.11}, we have proved the closure of $A\cap Y$ in $Y$ is a subset of the closure of  $A$ in $X$. Then because $A,B$ are separated, we know the closure of  $A\cap Y$ in $Y$ is disjoint to  $B$, thus disjoint to $B\cap Y$. The other side is similar.\\
+We only have to prove from right to left.\\
 
-To see the converse may not hold true, let $Y=(0,1)\cup (2,3)$, and let $A=(0,2)$ and $B=(1,3)$. 
+
 \end{proof}
 \begin{theorem}
 \label{3.4.4}
-\textbf{(Equivalent Definition of Connected)} The following are equivalent
-\begin{gather}
-E\text{ is not a union of two nonempty separated sets. }\\
-\liff E\text{ has no proper nontrivial clopen subset in subspace topology for $E$. }
-\end{gather}
+\textbf{(Cantor Set is Uncountable but nowhere connected)}
 \end{theorem}
-\begin{proof}
-We prove
-\begin{gather}
-E\text{ has a proper non-trivial clopen subset in subspace topology for $E$}\\
-\liff E\text{ is a union of two non-empty separated sets }
-\end{gather}
-From \vi{left to right}, let $M\subseteq E$ be clopen in subspace topology of $E$ . We wish to show $M\text{ and }E\setminus M$ are separated, and we are done. \As{$M\text{ and }E\setminus M$ are not separated}. WOLG, let $x\in M'\cap (E\setminus M)$.\\
-
- Because  $x\in E\setminus M$ and $E\setminus M$ is open in subspace topology of $E$, we know there exists open ball $B_r(x)$ such that $B_r(x)\cap E\subseteq E\setminus M$. Because  $x\in M'$, we know $B_r(x)$ contain infinite points in $M\tCaC$ to $B_r(x)\cap E\subseteq E\setminus M$. $\vdone$\\
-
-
-We now prove from \blue{right to left}. Let $A$ and  $B$ be separated and  $E=A\cup B$. We wish to show $A$ is clopen in subspace topology of  $E$. Notice we have 
-\begin{equation}
-A=\overline{A}\cup E
-\end{equation}
-so we know $A$ is closed in subspace topology of  $E$. Because we have
-\begin{equation}
-A\subseteq \overline{B}^c
-\end{equation}
-So we have
-\begin{equation}
-A=\overline{B}^c \cap E \bdone
-\end{equation}
-\end{proof}
-\begin{theorem}
-\label{7.3.3}
-\textbf{(Union of Connected Sets that have Nonempty Intersection is Connected)} Let $\mathcal{F}$ be a class of connected sets. We have 
-\begin{equation}
-\bigcap \mathcal{F}\neq \varnothing \implies \bigcup \mathcal{F}\text{ is connected }
-\end{equation}
-\end{theorem}
-\begin{proof}
-\As{$\bigcup \mathcal{F}$ is not connected}. Let 
-\begin{equation}
-\bigcup  \mathcal{F}= A \disjointunion B\text{ and }A\neq \varnothing\neq B
-\end{equation}
-And let $A,B$ be relatively open to  $\bigcup \mathcal{F}$. We know $\bigcap \mathcal{F}$ must intersect with either $A$, or  $B$, or both.\\
-
-WOLG, let
-\begin{equation}
-A\cap \bigcap \mathcal{F}\neq \varnothing
-\end{equation}
-Because $B$ is non-empty and $B\subseteq \bigcup \mathcal{F}$, we know $B$ must intersect with some $F_n\in \mathcal{F}$. Notice that because $A\cap \bigcap \mathcal{F}\neq \varnothing$, we have $A\cap F_n\neq \varnothing$. Then by \myref{Theorem}{7.3.1}, we see $A\cap F_n$ and $B\cap F_n$ are both relatively open to $F_n$, while $F_n= (A\cap F_n)\disjointunion (B\cap F_n)\tCaC$ 
-\end{proof}
 
 \section{Compactness}
 \fbox{\begin{minipage}{39em}
@@ -3805,7 +4536,7 @@ X\text{ has a countable base }\iff  X\text{ is separable }
 \end{equation}
 \end{theorem}
 \begin{proof}
-Because by \myref{Corollary}{2.3.5}, $X$ is separable if  $X$ has a countable base, we only have to prove separable implies existence of countable base. Let $X$ be separable. Then we have a countable dense subset $E$ of $X$. We now prove
+Because by \myref{Corollary}{2.6.5}, $X$ is separable if  $X$ has a countable base, we only have to prove separable implies existence of countable base. Let $X$ be separable. Then we have a countable dense subset $E$ of $X$. We now prove
 \vi{
  \begin{equation}
 \mathcal{O}:=\set{B_r(p):p\in E\text{ and }r\inq} 
@@ -3902,7 +4633,7 @@ K\text{ is limit point compact }\implies K\text{ is compact }
 \end{equation}
 \end{theorem}
 \begin{proof}
-  Let $\mathcal{G}$ be an open cover for $K$. By \myref{Theorem}{3.5.4}, we know $K$ is separable. Then by  \myref{Theorem}{3.5.1}, we know $K$ has a countable base. Then by \myref{Theorem}{2.3.9}, we know $\mathcal{G}$ contain a countable sub-cover
+  Let $\mathcal{G}$ be an open cover for $K$. By \myref{Theorem}{3.5.4}, we know $K$ is separable. Then by  \myref{Theorem}{3.5.1}, we know $K$ has a countable base. Then by \myref{Theorem}{2.6.9}, we know $\mathcal{G}$ contain a countable sub-cover
   \begin{equation}
   \set{G_i}_{i\inn}
   \end{equation}
@@ -3983,7 +4714,7 @@ In \myref{Theorem}{3.7.3}, we prove if $K$ is limit point compact then  $K$ is s
 
 One may observe, at the end of the proof for \myref{Theorem}{3.7.3}, we also construct a countable base for $K$.\\
 
-In  \myref{Theorem}{2.3.13}, we prove if  $K$ has a countable base then every open cover for  $K$ has a countable sub-cover by filtering the open cover with countable base.\\
+In  \myref{Theorem}{2.4.7}, we prove if  $K$ has a countable base then every open cover for  $K$ has a countable sub-cover by filtering the open cover with countable base.\\
 
 Notice that we have proved that if $K$ is limit point compact, then  $K$ is separable, has a countable base and every open cover for  $K$ has a countable sub-cover.\\
 
@@ -3996,7 +4727,7 @@ In summary
 \text{(2)$\implies $(1) by \myref{Corollary}{3.8.5}}\\
 \text{(1)$\implies $(2) by \myref{Theorem}{3.7.1}}\\
 \text{(a)$\implies $(1) and (2) by \myref{Theorem}{3.7.3}}\\
-\text{(2)$\implies $(i) by \myref{Theorem}{2.3.13}}\\
+\text{(2)$\implies $(i) by \myref{Theorem}{2.4.7}}\\
 \text{(a)$\implies $(b) by \myref{Theorem}{3.5.7}, which use  (i)}\\
 \text{(b)$\implies$(c) by \myref{Theorem}{3.6.10}, which is trivial}\\
 \text{(c)$\implies $(a) by \myref{Theorem}{3.6.11}}
@@ -5749,11 +6480,528 @@ Define $b'_n:=b_n-b$. We have
 \end{align}
 Where by  \myref{Theorem}{4.5.5} (Dirichlet's test), the series converge.
 \end{proof}
+\chapter{Continuity}
+\section{Equivalent Definition of Continuous Function in Metric Space}
+\begin{definition}
+\label{5.1.1}
+\textbf{(Definition of Limit of Function)} Let $f:X\rightarrow Y$. Suppose $p$ is a limit point of $X$. We write 
+\begin{equation*}
+\lim_{x\to p}f(x)=q
+\end{equation*}
+if
+\begin{equation*}
+\forall \epsilon , \exists \delta, \forall x \in X\cap B_\delta(p), f(x)\in B_{\epsilon }(q)
+\end{equation*}
+\end{definition}
+\begin{theorem}
+\label{5.1.2}
+\textbf{(Equivalent Definition of Limit of Function)} The following are equivalent
+\begin{enumerate}[label=(\alph*)]
+  \item $\lim_{x\to p}f(x)=q$
+  \item $p$ is a limit point of  $X$ and every sequence $\set{p_n}$ in $X$  that converge to $p$  satisfy 
+    \begin{equation*}
+    \lim_{n\to\infty}f(p_n)=q
+    \end{equation*}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{equation*}
+\vi{\lim_{x\to p}f(x)=q\implies (b)}
+\end{equation*}
+Arbitrarily pick a sequence $\set{p_n}$ in $X$ that converge to $p$. Fix $\epsilon $. Because $\lim_{x\to p}f(x)=q$, we know there exists $\delta$ such that 
+\begin{equation*}
+p_n \in B_{\delta}(p)\implies f(p_n)\in B_\epsilon (q)
+\end{equation*}
+Then because $p_n$ converge to $p$, we know there exists  $N$ such that 
+\begin{equation*}
+\forall n>N, p_n\in B_{\delta }(p)
+\end{equation*}
+Then we have 
+\begin{equation*}
+\forall n>N,f(p_n)\in B_\epsilon (q)\vdone
+\end{equation*}
+We now prove 
+\begin{equation*}
+\blue{(b)\implies \lim_{x\to p}f(x)=q}
+\end{equation*}
+\As{$\exists \epsilon , \forall \delta, \exists x_\delta\in E\cap B_{\delta}(p),f(x_\delta)\not\in  B_\epsilon (q)$}. Consider the sequence 
+\begin{equation*}
+\set{x_{\frac{1}{n}}}_{n\inn}
+\end{equation*}
+This sequence converge to $p$ but we don't have 
+\begin{equation*}
+\lim_{n\to\infty}f(x_{\frac{1}{n}})=q
+\end{equation*}
+since $\forall n, f(x_{\frac{1}{n}})\not\in B_\epsilon (q)\tCaC\bdone$ 
+\end{proof}
+\begin{theorem}
+\label{5.1.3}
+\textbf{(Limit of Function is Unique)} 
+\begin{equation*}
+\lim_{x\to p}f(x)=q\text{ and }\lim_{x \to p}f(x)=q'\implies q=q'
+\end{equation*}
+\end{theorem}
+\begin{proof}
+\As{$q\neq q'$}. Let $\alpha =d(q,q')$. We know $\alpha >0$. Then we know there exists $\delta_q$ and $\delta_{q'}$ such that 
+\begin{align}
+&x\in B_{\delta_q}(p)\implies f(x)\in B_{\frac{\alpha}{2}}(q)\\
+\text{ and }&x\in B_{\delta_{q'}}(p)\implies f(x)\in B_{\frac{\alpha}{2}} (q')
+\end{align}
+Because $p$ is an limit point of $X$, we know there must exists $x\neq p$ such that $x\in B_{\min \set{\delta_q,\delta_{q'}}}(p)$, and that $x$ is in both $B_{\frac{\alpha }{2}}(q)$ and $B_{\frac{\alpha}{2}}(q')$, which is impossible. \CaC
+\end{proof}
+\begin{theorem}
+\label{5.1.4}
+\textbf{(Arithmetic of Limit of $\R^n$ Valued Function)} Suppose  $f:X\rightarrow \R^n$ and $g:X\rightarrow \R^n$ satisfy
+\begin{equation*}
+\lim_{x\to p}f(x)=A\text{ and }\lim_{x\to p}g(x)=B
+\end{equation*}
+We have
+\begin{enumerate}[label=(\alph*)]
+  \item $\lim_{x\to p}(f+g)(x)=A+B$ 
+  \item $\lim_{x\to p}(fg)(x)=AB$  
+  \item $\lim_{x\to p}(\textbf{f}\cdot \textbf{g})(x)=A\cdot B$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Arbitrarily pick a sequence $\set{p_n}$ in $X$ that converge to  $p$. We have
+ \begin{equation*}
+\lim_{n\to\infty}f(p_n)=A\text{ and }\lim_{n\to\infty}g(p_n)=B
+\end{equation*}
+Then the result follows from showing each component of the L.H.S converge to R.H.S, which is proved in \myref{Theorem}{4.1.6}
+\end{proof}
+\begin{definition}
+\label{5.1.5}
+\textbf{(Definition of Function being Continuous at point $p$ in Metric Space)} We say a function $f:X\rightarrow Y$ is continuous at $p$ 
+\begin{equation*}
+\text{ If one of the }\begin{cases}
+p \text{ is an isolated point of $X$ }\\
+\lim_{x\to p}f(x)=f(p)
+\end{cases}\text{ is true }
+\end{equation*}
+\end{definition}
+\begin{definition}
+\label{5.1.6}
+\textbf{(Definition of Continuous)} We say a function $f:X\rightarrow Y$ is continuous 
+\begin{equation*}
+\text{ If }f\text{ is continuous at all $x\in X$ }
+\end{equation*}
+\end{definition}
+\begin{theorem}
+\label{5.1.7}
+\textbf{(Equivalent Definition)} The following are equivalent
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is continuous 
+  \item For all open $V\subseteq Y$, the set $f^{-1}[V]\subseteq X$ is open
+\item For all closed $V\subseteq Y$, the set $f^{-1}[V]\subseteq X$ is closed\\
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\myref{Theorem}{5.1.7} is the special case of \myref{Theorem}{2.4.4}. The only thing we have to prove is 
+\begin{equation*}
+f\text{ is continuous }\iff  f\text{ is continuous at all $x\in X$ }
+\end{equation*}
+where the term "continuous" at R.H.S. is in the sense of neighborhood.\\
+
+$(\longrightarrow)$\\
+
+Let $W$ be a neighborhood around  $f(x)$. By definition of neighborhood and open in metric space, there exists  an open ball $B_{\epsilon }(f(x))$ centering $f(x)$ small enough to be contained by $W$. Because $f$ is continuous at  $x$ in the sense of metric space, we know either $x$ is an isolated point or we have 
+\begin{equation*}
+\lim_{p\to x}f(p)=f(x)
+\end{equation*}
+If $x$ is an isolated point, then we can pick an neighborhood $V$ (open ball if you want) around $x$  small enough so that $V\cap X=\set{x}$. Then we see 
+\begin{equation*}
+f[V]\subseteq W
+\end{equation*}
+If we have 
+\begin{equation*}
+\lim_{p\to x}f(p)=f(x)
+\end{equation*}
+Then we know there exists $\delta$ such that 
+\begin{equation*}
+p\in B_{\delta}(x)\implies f(p)\in B_{\epsilon }(f(x))\subseteq W
+\end{equation*}
+Then we see $B_{\delta}(x)\cap X$ is the neighborhood we want.\\
+
+$(\longleftarrow)$\\
+
+Let $p\in  X$. We wish to prove $f$ is continuous at $p$ in the sense of metric space. We don't have to consider when $p$ is an isolated point, so we only need to prove
+\begin{equation*}
+\lim_{x\to p}f(x)=f(p)
+\end{equation*}
+Notice that $B_{\epsilon }(f(p))$ is an neighborhood around $p$, so we know there exists an neighborhood $V$ around $p$ such that 
+\begin{equation*}
+f[V]\subseteq B_{\epsilon }(f(p))
+\end{equation*}
+By definition of neighborhood and open in metric space, we know there exists $\delta$ small enough so that 
+\begin{equation*}
+B_{\delta}(p)\subseteq V
+\end{equation*}
+which give us
+\begin{equation*}
+f[B_{\delta}(p)]\subseteq f[V]\subseteq B_{\epsilon }(f(p))
+\end{equation*}
+Then 
+\begin{equation*}
+\forall x\in B_{\delta}(p), f(x)\in f[B_{\delta}(p)]\subseteq B_{\epsilon }(f(p))
+\end{equation*}
+\end{proof}
+\section{Uniformly Continuous}
+\begin{definition}
+\label{5.2.1}
+\textbf{(Uniformly Continuous)} We say a function $f:X\rightarrow Y$ is uniformly continuous if 
+\begin{equation*}
+\forall \epsilon, \exists \delta, d(p,q)<\delta \implies d(f(p),f(q))<\epsilon 
+\end{equation*}
+\end{definition}
+\begin{theorem}
+\label{5.2.2}
+\textbf{(Uniformly Continuous is Stronger than Continuous)} Given $f:X\rightarrow Y$
+\begin{equation*}
+f\text{ is uniformly continuous }\implies f\text{ is continuous }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Arbitrarily pick $x\in X$ and $\epsilon \inr^+$. We wish to prove there exists $\delta$ such that 
+\begin{equation*}
+p \in B_{\delta}(x)\implies f(p)\in B_{\epsilon }(f(x))
+\end{equation*}
+Because $f$ is uniformly continuous, we know there exists $\delta'$ such that 
+\begin{equation*}
+d(p,q)<\delta'\implies d(f(p),f(q))<\epsilon 
+\end{equation*}
+Then we can deduce 
+\begin{equation*}
+p\in B_{\delta'}(x)\implies d(p,x)<\delta ' \implies d(f(p),f(x))<\epsilon  \implies f(p)\in B_{\epsilon }(f(x))
+\end{equation*}
+We have proved $\delta'$ is the desired $\delta$. 
+\end{proof}
+\begin{theorem}
+\label{5.2.3}
+\textbf{(Uniformly Continuous is Stronger than Continuous)} Define $f:\R\rightarrow \R$ by
+\begin{equation*}
+f(x)=x^2
+\end{equation*}
+We have 
+\begin{equation*}
+f\text{ is continuous but not uniformly continuous }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let $a\inr$. We wish to prove $f$ is continuous at  $a$. Fix  $\epsilon $. Observe 
+\begin{align*}
+  \abso{x^2-a^2}&=\abso{x^2-ax+ax-a^2}\\
+  &\leq \abso{x^2-ax}+\abso{ax-a^2}\\
+  &=\abso{x}\times\abso{x-a}+\abso{a}\times \abso{x-a}\\
+  &=(\abso{x}+\abso{a})\abso{x-a}\\
+  &=(\abso{x-a+a}+\abso{a})\abso{x-a}\\
+  &\leq (\abso{x-a}+2\abso{a})\abso{x-a}\\
+  &=\abso{x-a}^2 +2 \abso{a}\times \abso{x-a}
+\end{align*}
+Then if we let
+\begin{equation*}
+  \delta< \min \set{\frac{\epsilon }{4\abso{a}},\sqrt{\frac{\epsilon}{2}} }
+\end{equation*}
+we see 
+\begin{equation*}
+\abso{x-a}<\delta \implies \abso{x^2-a^2}\leq \abso{x-a}^2 + 2\abso{a}\times \abso{x-a}\leq \frac{\epsilon}{2}+ \frac{\epsilon}{2}=\epsilon 
+\end{equation*}
+We now prove $f$ is not uniformly continuous. Arbitrarily pick $\delta\inr^+$, we wish to find a pair of real number $b,c$ such that $d(b,c)<\delta$ but $d(f(b),f(c))>1$.\\
+
+Observe
+\begin{equation*}
+d(f(b),f(c))=\abso{f(c)-f(b)}=\abso{c^2-b^2}=\abso{c-b}\times \abso{c+b}
+\end{equation*}
+Then  we can let $b=\frac{2}{\delta}$ and $c=\frac{2}{\delta}+\frac{\delta}{2}$, and we have
+\begin{equation*}
+d(b,c)=\frac{\delta}{2}<\delta
+\end{equation*}
+and
+\begin{equation*}
+d(f(b),f(c))=\abso{c-b}\times \abso{c+b}=\frac{\delta}{2}\times (\frac{4}{\delta}+\frac{\delta}{2})=2+\frac{\delta^2}{4}>1
+\end{equation*}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Before we prove the hardest result, Heine-Cantor Theorem. We first prove \myref{Lemma}{5.2.4} and \myref{Lemma}{5.2.5}, which are quite geometry.
+\end{minipage}}
+\begin{lemma} 
+\label{5.2.4}
+\textbf{(Intersection of Two Spheres is Closed)} Given $d(x_j,x_k)=\alpha >0$, and $r_j,r_k\inr^+$, suppose 
+\begin{equation*}
+r_j+r_k>\alpha 
+\end{equation*}
+Let
+\begin{equation*}
+C_{j,k}:=\set{z \in X: d(x_j,z)=r_j\text{ and }d(x_k,z)=r_k}
+\end{equation*}
+Then
+\begin{equation*}
+C_{j,k}\text{ is closed }
+\end{equation*}
+\end{lemma}
+\begin{proof}
+Arbitrarily pick a convergent sequence in $C_{j,k}$
+\begin{equation*}
+\set{c_n}:\lim_{n\to\infty}c_n=z
+\end{equation*}
+By definition of closed in metric space, we reduce the problem to proving
+\begin{equation*}
+z\in C_{j,k}
+\end{equation*}
+By definition of $C_{j,k}$, we reduce the problem to proving 
+\begin{equation*}
+d(x_j,z)=r_j\text{ and }d(x_k,z)=r_k
+\end{equation*}
+We first prove 
+\begin{equation*}
+  \vi{d(x_j,z)=r_j}
+\end{equation*}
+by disproving
+\begin{equation*}
+d(x_j,z)<r_j \text{ and }d(x_j,z)>r_j
+\end{equation*}
+\As{$d(x_j,z)<r_j$}. Let $\epsilon =r_j -d(x_j,z)$. Because $c_n\to z$, we see 
+\begin{equation*}
+d(c_n,z)<r_j -d(x_j,z)\text{ for large $n$ }
+\end{equation*}
+Recall that $c_n\in C_{j,k}$. We now have
+\begin{equation*}
+r_j=d(c_n,x_j)\leq d(c_n,z)+d(z,x_j)<r_j\tCaC 
+\end{equation*}
+\As{$d(x_j,z)>r_j$}. Let $\epsilon = d(x_j,z)-r_j $. Because $c_n \to z$, we see
+\begin{equation*}
+d(c_n,z)<d(x_j,z)-r_j \text{ for large $n$ }
+\end{equation*}
+Which give us
+\begin{equation*}
+  d(x_j,z)\leq d(x_j,c_n)+d(c_n,z)=r_j+d(c_n,z)<d(x_j,z)\tCaC\vdone
+\end{equation*}
+Using similar method, it is easy to prove $d(x_k,z)=r_k$
+\end{proof}
+\begin{theorem}
+\label{5.2.6}
+\textbf{(Heine-Cantor Theorem)} Given $f:X\rightarrow Y$
+\begin{equation*}
+X\text{ is compact and  }f\text{ is continuous }\implies f\text{ is uniformly continuous }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. We wish to find $\delta$ such that 
+\begin{equation*}
+d(x,y)<\delta \implies d(f(x),f(y))<\epsilon 
+\end{equation*}
+Because $f$ is continuous, for each $x\in X$ we can associate it with a positive number $\delta_x$ such that 
+\begin{equation*}
+\forall y\in B_{\delta_x}(x), f(y) \in B_{\frac{\epsilon}{2}}(x)
+\end{equation*}
+The set $\set{B_{\frac{\delta_x}{2}}(x):x\in X}$ is an open cover of $X$. Because  $X$ is compact, we know there exists a finite sub-cover
+\begin{equation*}
+\set{B_{\frac{\delta_{x_1}}{2}}(x_1),\dots ,B_{\frac{\delta_{x_m}}{2}}(x_m)}
+\end{equation*}
+Let 
+\begin{equation*}
+\delta=\min \set{\frac{\delta_{x_1}}{2},\dots , \frac{\delta_{x_m}}{2}}
+\end{equation*}
+Suppose $d(x,y)<\delta$. We have to prove
+\begin{equation*}
+d(f(x),f(y))<\epsilon 
+\end{equation*}
+Because 
+\begin{equation*}
+\set{B_{\frac{\delta_{x_1}}{2}}(x_1),\dots ,B_{\frac{\delta_{x_m}}{2}}(x_m)}\text{ is an sub-cover }
+\end{equation*}
+We know there exists $r\in \set{1,\dots ,m}$ such that 
+\begin{equation*}
+x\in B_{\frac{\delta_{x_r}}{2}}(x_r)
+\end{equation*}
+Which means 
+\begin{equation*}
+d(x,x_r)<\frac{\delta_{x_r}}{2}
+\end{equation*}
+Then because 
+ \begin{equation*}
+d(x,y)<\delta \leq \frac{\delta_{x_r}}{2}
+\end{equation*}
+We have 
+\begin{equation*}
+d(y,x_r)\leq d(y,x)+d(x,x_r)<\frac{\delta_{x_r}}{2}+\frac{\delta_{x_r}}{2}=\delta_{x_r}
+\end{equation*}
+Then because 
+\begin{equation*}
+d(x,x_r)<\frac{\delta_{x_r}}{2}<\delta_{x_r}
+\end{equation*}
+We now have
+\begin{equation*}
+x\in B_{\delta_{x_r}}(x_r)\text{ and }y\in B_{\delta_{x_r}}(x_r)
+\end{equation*}
+By triangular inequality, we now have
+\begin{equation*}
+d(f(x),f(y))\leq d(f(x),f(x_r))+d(f(x_r),f(y))<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon 
+\end{equation*}
+
+
+
+\end{proof}
+\begin{lemma}
+  \textbf{(Lebesgue Number Covering Lemma)}
+\end{lemma}
+\section{Absolute Continuous and Lipschitz Continuous}
+
+\begin{definition}
+\label{5.3.1}
+\textbf{(Absolute Continuous)} Let $I$ be an interval in $\R$. We say a function $f: I\rightarrow \R$ is absolute continuous if for all $\epsilon $ there exists $\delta$ such that whenever a finite sequence of pairwise disjoint sub-intervals $(x_k,y_k)\subseteq I$ satisfy
+\begin{equation*}
+\sum_{k=1}^m (y_k-x_k)< \delta
+\end{equation*}
+we have 
+\begin{equation*}
+\sum_{k=1}^m \abso{f(y_k)-f(x_k)}<\epsilon 
+\end{equation*}
+\end{definition}
+\begin{theorem}
+\label{5.3.2}
+\textbf{(Absolute Continuous is Stronger than Uniformly Continuous)} Let $I$ be an interval of $\R$. Given  $f:I\rightarrow \R$, we have 
+\begin{equation*}
+f\text{ is absolute continuous }\implies f\text{ is uniformly continuous }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. Because $f$ is absolutely continuous, we know there exists  $\delta$ such that for all finite sequence of pairwise disjoint sub-interval $(x_k,y_k)\subseteq I$ that satisfy
+\begin{equation*}
+\sum_{k=1}^m (y_k-x_k)<\delta
+\end{equation*}
+we have 
+\begin{equation*}
+\sum_{k=1}^m \abso{f(y_k)-f(x_k)}<\epsilon 
+\end{equation*}
+Then for all pair of real number $p,q$ that satisfy 
+\begin{equation*}
+d(p,q)=\abso{p-q}<\delta
+\end{equation*}
+we can WOLG, let $a_1=\min  \set{p,q}$  and $b_1=\max  \set{p,q}$, and see
+\begin{equation*}
+  \sum_{k=1}^1 b_1-a_1=\abso{p-q}<\delta
+\end{equation*}
+which give us 
+\begin{equation*}
+d(f(p),f(q))=\abso{f(p)-f(q)}=\abso{f(b_1)-f(a_1)}=\sum_{k=1}^1 \abso{f(b_k)-f(a_k)}<\epsilon 
+\end{equation*}
+as we wish
+\end{proof}
+\begin{lemma}
+\textbf{(Order property of Cantor Set )} Let $\mathcal{C}$ be cantor set. Suppose $x\in [0,1]\not\in \mathcal{C}$. Then 
+\begin{equation*}
+  \max \set{y\in \mathcal{C}:y<x}\text{ exists }
+\end{equation*}
+\end{lemma}
+\begin{theorem}
+\textbf{(Cantor Function is Uniformly Continuous)} Transfinite recursively define 
+\begin{equation*}
+f(x):=\begin{cases}
+  \sum_{k=1}^\infty \frac{\frac{a_k}{2}}{2^{k}}& \text{ if $x=\sum_{k=1}^\infty \frac{a_k}{3^k}\in \mathcal{C}$ }\\
+  \sup_{y<x,y \in \mathcal{C}} f(y)& \text{ if $x\in [0,1]\setminus \mathcal{C}$ }
+\end{cases}
+\end{equation*}
+Then 
+\begin{equation*}
+f(x)\text{ is uniformly continuous }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. Notice that we don't have to consider when $\epsilon \geq 1$, since if we can prove the theorem when $\epsilon <1$, the result applies to when $\epsilon \geq 1$.\\
+
+Express $\epsilon $ in the form
+\begin{equation*}
+\epsilon =\sum_{k=1}^\infty \frac{\epsilon _k}{2^k}\text{ where }\forall k,\epsilon _k\in \set{0,1}
+\end{equation*}
+For all $k$, define 
+\begin{equation*}
+\delta_k:=2\epsilon _k
+\end{equation*}
+Define 
+\begin{equation*}
+\delta:=\sum_{k=1}^\infty \frac{\delta_k}{3^k}
+\end{equation*}
+We now proceed to show $\delta$ works. WOLG, let $x<y$. Suppose $y-x<\delta$. Define 
+\begin{equation*}
+N=\min  \set{k\inn, \epsilon_k\neq 0}
+\end{equation*}
+Express $x,y$ in unique tenary sequence (we use $02222\cdots$ instead of  $10000\cdots$ if the situation happen)
+ \begin{equation*}
+x=\sum_{k=1}^\infty \frac{a_k}{3^k}\text{ and }y=\sum_{k=1}^\infty \frac{b_k}{3^k}\text{ and }y-x=\sum_{k=1}^\infty \frac{c_k}{3^k}
+\end{equation*}
+Let 
+\begin{equation*}
+N_x=\min \set{k\inn, a_k=1}\text{ and }N_y=\min \set{k\inn,b_k=1}
+\end{equation*}
+If $N_x$ and  $N_y$ both does not exists, then $x$ and $y$ are both member of Cantor set. Let 
+ \begin{equation*}
+N_c=\min \set{k\inn, a_k\neq b_k}
+\end{equation*}
+Notice that $N_c$ must exists, otherwise $y=x$. Also, notice the first non-zero digit of  $y-x$ would be $c_{N_c}$. Then, if $N_c<N$, 
+
+
+
+
+\end{proof}
+\begin{theorem}
+\textbf{(Cantor Function is NOT Absolutely Continuous)} Transfinite recursively define 
+\begin{equation*}
+f(x):=\begin{cases}
+  \sum_{k=1}^\infty \frac{a_k}{2^k}& \text{ if $x=\sum_{k=1}^\infty \frac{2a_k}{3^k}\in \mathcal{C}$ }\\
+  \sup_{y<x,y \in \mathcal{C}} f(y)& \text{ if $x\in [0,1]\setminus \mathcal{C}$ }
+\end{cases}
+\end{equation*}
+Then 
+\begin{equation*}
+f(x)\text{ is not absolutely continuous }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon =\frac{1}{2}$.  $\delta\inr^+$, and let $\set{(x_k,y_k)}_{k=1}^m$ be a finite sequence of pairwise disjoint sub-interval $(x_k,y_k)\subseteq [0,1]$ that satisfy
+\begin{equation*}
+\sum_{k=1}^m (y_k-x_k)<\delta
+\end{equation*}
+We reduce the problem into proving 
+\begin{equation*}
+\sum_{k=1}^m f(y_k)-f(x_k)>\epsilon 
+\end{equation*}
+\end{proof}
+\begin{definition}
+\label{5.3.3}
+\textbf{(Lipschitz Continuous)} We say a function $f:X\rightarrow Y$ is Lipschitz continuous if there exists a non-negative real constant $K$ such that 
+\begin{equation*}
+\forall p,q\in X, d(f(p),f(q))\leq Kd(p,q)
+\end{equation*}
+\end{definition}
+\begin{theorem}
+\label{5.3.4}
+\textbf{(Lipschitz Continuous is Stronger than Uniform Continuous)} Given $f:X\rightarrow Y$
+\begin{equation*}
+f\text{ is Lipschitz continuous }\implies f\text{ is uniform continuous }
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. If $K=0$, we see 
+ \begin{equation*}
+\forall p,q\in X, d(f(p),f(q))\leq (0)d(p,q)=0
+\end{equation*}
+Then clearly $f$ is uniform continuous as every positive real can be our $\delta$.\\
+
+
+If $K>0$, we see 
+\begin{equation*}
+d(p,q)<\frac{\epsilon}{K}\implies d(f(p),f(q))<Kd(p,q)=\epsilon 
+\end{equation*}
+In this case, $\frac{\epsilon}{K}$ can be our $\delta$. 
+\end{proof}
+
+
 
 \chapter{Vector Analysis}
 \section{Important Inequalities}
 \begin{theorem}
-\label{5.1.1}
+\label{6.1.1}
 \textbf{(Young's Inequality)} If $a,b\geq 0$ and $p,q>1$ and  $\frac{1}{p}+\frac{1}{q}=1$, then
 \begin{equation}
 ab\leq \frac{a^p}{p}+\frac{b^q}{q}
@@ -5769,7 +7017,7 @@ ab\leq \frac{a^p}{p}+\frac{b^q}{q}
 The inequality above hold true because  $\exp$ is concave upward, and $\frac{1}{p}+\frac{1}{q}=1$. 
 \end{proof}
 \begin{theorem}
-\label{5.1.2}
+\label{6.1.2}
 \textbf{(Definition of $p$-norm)} Recall in Chapter 1, we define absolute value on $\R$ and  $\C$. With that definition, we have: for all $0<p \in \R$, the definition
 \begin{equation}
   \norm{\vecta{v}}_p:= (\sum \abso{v_i}^p)^{\frac{1}{p}}
@@ -5789,7 +7037,7 @@ Observe
 Nonnegative and positive definiteness is trivial. Triangle Inequality \textit{is left to proved}. 
 \end{proof}
 \begin{theorem}
-\label{5.1.3}
+\label{6.1.3}
 \textbf{(Holder's Inequality in $\C^n$)} Let $\vecta{x},\vecta{y}\in \C^n,\frac{1}{p}+\frac{1}{q}=1$. Define $\vecta{xy}$ by $\vecta{xy}_i=\vecta{x}_i\vecta{y}_i$. We have
 \begin{equation}
 \norm{\vecta{xy}}_1\leq \norm{\vecta{x}}_p\norm{\vecta{y}}_q
@@ -5809,7 +7057,7 @@ Notice because $(\sum \abso{\hat{x}_i}^p)^{\frac{1}{p}}=\norm{\hat{\vecta{x}}}_p
 \end{equation}
 \end{proof}
 \begin{corollary}
-\label{5.1.4}
+\label{6.1.4}
 \textbf{(Minkowskis Inequality in $\C^n$ and $p>1$)} Let $\vecta{x},\vecta{y}\in\C^n$, and let $p\in \R^+\text{ and }p\neq 1$. We have triangle inequality for all supposed $p$-norm
 \begin{equation}
 p>1\implies  \norm{\vecta{x}+\vecta{y}}_p\leq \norm{\vecta{x}}_p+\norm{\vecta{y}}_p
@@ -5839,7 +7087,7 @@ So
 \end{equation}
 \end{proof}
 \begin{definition}
-\label{5.1.5}
+\label{6.1.5}
 \textbf{(Definition of $p$-norm)} On $\C^n$,\textit{ if and only if $p>1$}, we say the  $p$-norm is 
 \begin{equation}
   \norm{\vecta{v}}_p:= (\sum \abso{v_i}^p)^{\frac{1}{p}}
@@ -5847,14 +7095,14 @@ So
 \end{definition}
 \section{Definition of Differential-able on Euclidean Space} 
 \begin{definition}
-\label{5.2.1}
+\label{6.2.1}
 \textbf{(Little-o Notation)} If we write $o(g(x))=f(x)$, we mean
 \begin{equation}
 \lim_{g(x)\to 0}\frac{f(x)}{g(x)}=0
 \end{equation}
 \end{definition}
 \begin{definition}
-\label{5.2.2}
+\label{6.2.2}
 \textbf{(Differentiable on $\R$)} We say a real-valued function $f(x)$ on $\R$ is differentiable on $a$ if 
 \begin{equation}
 \exists L\in \R, \lim_{x \to a}\frac{f(x)-f(a)}{x-a}=L
@@ -5862,7 +7110,7 @@ So
 Notice $L$ should be viewed as slope (not a number on real number line), or more abstract, a linear transformation from $\R^1$ to  $\R^1$. 
 \end{definition}
 \begin{definition}
-\label{5.2.3}
+\label{6.2.3}
 \textbf{(A General Definition of Differentiable of Function from Normed $\R^n$ to $\R^m$)} Let $\vecta{f}:\R^n\rightarrow \R^m$. We say $\vecta{f}$ is differentiable at $\vecta{a}$ if there exists a linear transformation $\vecta{J}:\R^n\rightarrow \R^m$ such that
 \begin{equation}
 \lim_{\vecta{h}\to \vecta{0}}\frac{\norm{\vecta{f}(\vecta{a+h})-\vecta{f}(\vecta{a})-\vecta{J}(\vecta{h})}_{\R^m}}{\norm{\vecta{h}}_{\R^n}}=0
@@ -5875,7 +7123,7 @@ We also say $\vecta{J}$ is a differential or a derivative of $\vecta{f}$ at $\ve
 \end{definition}
 
 \begin{definition}
-\label{5.2.4}
+\label{6.2.4}
 \textbf{(Tangent Plane)} Let $\vecta{f}:\R^n\rightarrow \R^m$ be differentiable at $\vecta{a}$. Let $\vecta{J}$ be a differential of $\vecta{f}$ at $\vecta{a}$. We say
 \begin{equation}
 \set{(\vecta{x},\vecta{J}(\vecta{x}))\in\R^{n+m}:\vecta{x}\in\R^n}\text{ where $\vecta{J}(\vecta{a})=\vecta{f}(\vecta{a})$ }
@@ -5883,7 +7131,7 @@ We also say $\vecta{J}$ is a differential or a derivative of $\vecta{f}$ at $\ve
 is the tangent plane of $\vecta{f}$ at $\vecta{a}$.
 \end{definition}
 \begin{definition}
-\label{5.2.5}
+\label{6.2.5}
 \textbf{(Definition of Gradient)}  Let $f:U\subseteq \R^n \rightarrow \R$. The gradient of $f$ is defined as
 \begin{equation}
   \nabla f=(\frac{\partial f}{\partial x_1},\dots ,\frac{\partial f}{\partial x_n})
@@ -5892,7 +7140,7 @@ Notice that we can verify Gradient is Jacobian, and jacobian is always a derivat
 \end{definition}
 
 \begin{definition}
-\label{5.2.6}
+\label{6.2.6}
 \textbf{(Jacobian Matrix)} For function $\vecta{f}:\R^n\rightarrow \R^m$, The Jacobian matrix  $\vecta{J}_\vecta{f}$ is  
 \begin{equation}
   \vecta{J}_\vecta{f}:=\begin{bmatrix}
@@ -5912,7 +7160,7 @@ The notation is
 \end{definition}
 
 \begin{theorem}
-\label{5.2.7}
+\label{6.2.7}
 \textbf{(If Differentiable, Then Jacobian give a Differential)}
 Let $\vecta{f}:\R^n\rightarrow \R^m$ be differentiable at $\vecta{a}$. Define
 \begin{equation}
@@ -5927,7 +7175,7 @@ We have
 \end{theorem}
 \section{Example Exercises for Differentiable}
 \begin{theorem}
-\label{5.3.1}
+\label{6.3.1}
 \textbf{(Example of Differentiable Function)} 
 \begin{equation}
 f(x,y)=x^2+2y\text{ is differentiable every where}
@@ -5961,7 +7209,7 @@ For all $\epsilon $, we then can pick the $\delta$ above so we have
 This prove equation 4.40 approach to 0
 \end{proof}
 \begin{theorem}
-\label{5.3.2}
+\label{6.3.2}
 \textbf{(Example of Differentiable Function)} Let $\vecta{f}:\R^n\rightarrow \R^m$ 
 \begin{equation}
 \text{ If $\vecta{f}$ is linear, then $\vecta{f}$ is differentiable everywhere }
@@ -5974,7 +7222,7 @@ Let $\vecta{H}=\vecta{f}$, then we have
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{5.3.3}
+\label{6.3.3}
 \textbf{(Example of Jacobian Exists, But Non-Differentiable)} 
 \begin{equation}
 f(x,y)=\begin{cases}
@@ -6005,7 +7253,7 @@ Then we have
 which prove  equation 4.47 does not approach to 0.
 \end{proof}
 \begin{theorem}
-\label{5.3.4}
+\label{6.3.4}
 \textbf{(Chain Rule)} Let $f:\R^n\rightarrow \R^m$ and let $g:\R^k\rightarrow \R^n$. We have
 \begin{equation}
 D_\vecta{a}(f\circ g)=D_{g(\vecta{a})}(f)\circ D_\vecta{a}(g)
@@ -6020,7 +7268,7 @@ and we have
 \end{equation}
 \end{theorem}
 \begin{theorem}
-\label{5.3.5}
+\label{6.3.5}
 \textbf{(Example of Chain Rule)} Let $\delta:(0,1)\rightarrow \R^n$ and $f:\R^n\rightarrow \R$ be differentiable. Define
 \begin{equation}
 F(t):=f(\delta (t))
@@ -6034,7 +7282,7 @@ L_{F'(t)}=D_{\delta (t)}(f)\circ D_{t}(\delta)
 Notice that $D_t(F)=L_{F'(t)}$, and we are done.
 \end{proof}
 \begin{theorem}
-\label{5.3.6}
+\label{6.3.6}
 \textbf{(Example of Chain Rule)} Let $f(u,v,w)=u^2v+wv^2$ and $\vecta{g}(x,y)=(xy,\sin x,e^x)$. Let $h=f\circ \vecta{g}$. We have
 \begin{equation}
 \frac{\partial h}{\partial x}=2xy^2\sin x+(x^2y^2+2e^x\sin x) \cos x+ e^x\sin^2 x
@@ -6050,7 +7298,7 @@ We have
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{5.3.7}
+\label{6.3.7}
 \textbf{(Mean Value Theorem)} Let $\vecta{f}:U\subseteq \R^n\rightarrow \R^m$. Suppose $\vecta{f}$ is differentiable on $U$ and $\vecta{x},\vecta{y}\in U$. For all $i\in \set{1,\dots , n}$, there exists $0\leq c_i\leq 1$ such that 
 \begin{equation}
 f_i(\vecta{y})-f_i(\vecta{x})=(Df_i)(\vecta{x}+c_i(\vecta{y}-\vecta{x}))
@@ -6058,14 +7306,14 @@ f_i(\vecta{y})-f_i(\vecta{x})=(Df_i)(\vecta{x}+c_i(\vecta{y}-\vecta{x}))
 \end{theorem}
 \section{Directional Derivative}
 \begin{definition}
-\label{5.4.1}
+\label{6.4.1}
   \textbf{(Definition of Directional Derivative)} Let $f$ be real valued and defined on a neighborhood of $\vecta{x}_0 \inr^n$ and let $\vecta{v}\inr^n$ with $\norm{\vecta{v}}=1$. We define 
   \begin{equation}
     (D_\vecta{v}f)(\vecta{x}_0):=\lim_{t\to 0}\frac{f(\vecta{x}_0+t\vecta{v})}{t}
   \end{equation}
 \end{definition}
 \begin{theorem}
-\label{5.4.2}
+\label{6.4.2}
 \textbf{(Directional Derivative)} Let $U$ be open and $f:U\rightarrow \R^n$ be differentiable at $x_0$. We have
  \begin{equation}
    (D_{\vecta{v}}f)(\vecta{x}_0)=\nabla f(\vecta{x}_0)\cdot \vecta{v}=\vecta{J}_f(\vecta{x}_0)\cdot \vecta{v}
@@ -6075,7 +7323,7 @@ f_i(\vecta{y})-f_i(\vecta{x})=(Df_i)(\vecta{x}+c_i(\vecta{y}-\vecta{x}))
 Outline: in the limit of differentiable equation, let $x=x_0+tv$ and see what happen when  $t \to 0$
 \end{proof}
 \begin{theorem}
-\label{5.4.3}
+\label{6.4.3}
 \textbf{(Example)} Let
 \begin{equation}
 f(x,y)=\begin{cases}
@@ -6094,18 +7342,18 @@ D_vf(0)&=\lim_{t \to 0}\frac{f(tv_1,tv_2)-f(0,0)}{t}\\
 \end{proof}
 \section{Gradient}
 \begin{definition}
-\label{5.5.1}
+\label{6.5.1}
 \textbf{(Level Set)} Let $f$ be a scalar function. A level set is a set of points
 \begin{equation}
 L(c)=\set{\vecta{x}\inr^n: f(\vecta{x})=c}
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{5.5.2}
+\label{6.5.2}
 \textbf{(Gradient and Tangent Plane)} Let $f$ be a scalar function. Vector $\nabla f(\vecta{p})$ is normal to the level set $L(f(\vecta{p}))$. 
 \end{theorem}
 \begin{theorem}
-\label{5.5.3}
+\label{6.5.3}
 \textbf{(Example)} Let $S=\set{(x,y,z):x^2+y^2+z^2=3}$. Find a vector normal to $S$ at  $(1,1,1)$
 \end{theorem}
 \begin{proof}
@@ -6123,7 +7371,7 @@ Compute
 \end{equation}
 \end{proof}
 \begin{theorem}
-\label{5.5.4}
+\label{6.5.4}
 \textbf{(TEST Example)} Let $S=\set{(x,y,z):x^2-y^2+xyz=1}$. Find the tangent plane of $S$ at $(1,0,1)$ 
 \end{theorem}
 \begin{proof}
@@ -6146,7 +7394,7 @@ The tangent plane is
 \end{proof}
 \section{Integral}
 \begin{theorem}
-\label{5.6.1}
+\label{6.6.1}
 \textbf{(Integral)} Let 
  \begin{equation}
 \forall x \in S, g_1(x)\leq g_2(x)
@@ -6162,7 +7410,7 @@ Let $f:A \rightarrow \R$ be continuous, we have
 This enable us to calculate integral by iteration.  
 \end{theorem}
 \begin{theorem}
-\label{5.6.2}
+\label{6.6.2}
 \textbf{(Example)} Let 
 \begin{equation}
 A=\set{(x,y)\inr^2 : 0\leq x\leq 1, x\leq y\leq 1}
@@ -6181,7 +7429,7 @@ Compute
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{5.6.3}
+\label{6.6.3}
 \textbf{(Example)} Let 
 \begin{equation}
 A=\set{(x,y)\inr^2 :0\leq x\leq 1, \sqrt{x} \leq y\leq 1}
@@ -6200,7 +7448,7 @@ Compute
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{5.6.4}
+\label{6.6.4}
 \textbf{(Example)} Let 
 \begin{equation}
 A=\set{(x_1,x_2,x_3):x_1,x_2,x_3 \geq 0, x_1+x_2+x_3\leq 1}
@@ -6220,7 +7468,7 @@ Find
 The answer is $\frac{4}{5}$
 \end{proof}
 \begin{theorem}
-\label{5.6.5}
+\label{6.6.5}
 \textbf{(Example)} Let $V(n)$ be the volume of unit $n$-ball. Compute $V(n)$
 \end{theorem}
 \begin{proof}
@@ -6237,7 +7485,7 @@ Then we can observe
 \chapter{Ve 2}
 \section{Line Integral}
 \begin{theorem}
-\label{6.1.1}
+\label{7.1.1}
 \textbf{(Computation of Arc Length with Intuition)} Let  $\gamma:\R\rightarrow \R^n$ be a function that represent the position of a particle. Let
 \begin{equation}
 C=\set{\gamma (t):a\leq t\leq b}
@@ -6258,7 +7506,7 @@ dS=\sqrt{(\frac{dx}{dt})^2+(\frac{dy}{dt})^2+(\frac{dz}{dt})^2}dt=\norm{\gamma '
 \end{equation}
 \end{proof}
 \begin{corollary}
-\label{6.1.2}
+\label{7.1.2}
 \textbf{(Path Integral)} Let $f:\R^n\rightarrow \R$ be a scalar field, and 
 \begin{equation}
 C=\set{\gamma (t):a\leq t\leq b}
@@ -6269,7 +7517,7 @@ We have
 \end{equation}
 \end{corollary}
 \begin{corollary}
-\label{6.1.3}
+\label{7.1.3}
 \textbf{(Line Integral)} Let $F:\R^n\rightarrow \R^n$ be a vector field, and
 \begin{equation}
 C=\set{\gamma (t):a\leq t\leq  b}
@@ -6285,7 +7533,7 @@ Above are specification. It is not proof or anything.\\
 Below practice some path integral.
 \end{minipage}}
 \begin{theorem}
-\label{6.1.4}
+\label{7.1.4}
 \textbf{(Example)} Let
 \begin{equation}
 C=\set{(x,y):x=a\cos t,a\sin t, 0\leq t\leq \pi}
@@ -6309,7 +7557,7 @@ We have
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{6.1.5}
+\label{7.1.5}
 \textbf{(Example)} Let
 \begin{equation}
   C=\set{(x,y):x^{\frac{2}{3}}+y^{\frac{2}{3}}=a ^{\frac{2}{3}}}
@@ -6338,7 +7586,7 @@ Then
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{6.1.6}
+\label{7.1.6}
 \textbf{(Example)} Let 
 \begin{equation}
 A=(0,0,0)\text{ and }B=(1,2,3)
@@ -6365,7 +7613,7 @@ Then
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{6.1.7}
+\label{7.1.7}
 \textbf{(Example)} Let
 \begin{equation}
 C=\set{(a\cos^3 t,a\sin^3 t):0\leq t\leq \frac{\pi}{2}}
@@ -6396,7 +7644,7 @@ Then
 Below practice line integral.
 \end{minipage}}
 \begin{theorem}
-\label{6.1.8}
+\label{7.1.8}
 \textbf{(Example)} Let
 \begin{equation}
 F(x,y,z)=(xy,2,4z)\text{ and }\gamma (t)=(\cos t,\sin t,t)
@@ -6424,7 +7672,7 @@ Compute
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{6.1.9}
+\label{7.1.9}
 \textbf{(Example)} Let
 \begin{equation}
 F(x,y)=(e^{y},-\sin \pi x)\text{ and }C=\set{(-1,0)\to (1,0)}\cup \set{(1,0)\to (0,1)}\cup \set{(0,1)\to (-1,0)}
@@ -6466,7 +7714,7 @@ This give us
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{6.1.10}
+\label{7.1.10}
 \textbf{(Example)} Let
 \begin{equation}
 F(x,y,z)=(xy,yz,xz)\text{ and }\gamma (t)=(t,t^2,t^3)
@@ -6495,7 +7743,7 @@ Then
 \end{align}
 \end{proof}
 \begin{theorem}
-\label{6.1.11}
+\label{7.1.11}
 \textbf{(Example)} Let
 \begin{equation}
 F(x,y,z)=(y^2+z^2,x^2+z^2,x^2+y^2)\text{ and }\gamma_1 (t)=(t,t,t)\text{ and }\gamma _2 (t)=(t,t^2,t^3)
@@ -6539,7 +7787,7 @@ Then
 \end{proof}
 \section{Fundamental Theorem of Line Integral}
 \begin{theorem}
-\label{6.2.1}
+\label{7.2.1}
 \textbf{(Fundamental Theorem of Calculus)} Let $C=\set{\gamma (t):t\in [a,b]}$ be a piece-wise smooth curve. If $f$ is differential, then
  \begin{equation}
 \int_C \nabla f(\gamma )\cdot d\gamma =f(\gamma (b))-f(\gamma (a))
@@ -6558,21 +7806,21 @@ Then
 \end{align}
 \end{proof}
 \begin{definition}
-\label{6.2.2}
+\label{7.2.2}
 \textbf{(Definition of Conservative Vector Field)} We say a vector field $F$ is conservative if there exists  a scalar field  $f$ such that
  \begin{equation}
 F=\nabla f
 \end{equation}
 \end{definition}
 \begin{definition}
-\label{6.2.3}
+\label{7.2.3}
 \textbf{(Definition of Vector Field Being Independent of Path)} We say a vector field $F$ is independent of path if for each pair of paths $C_1,C_2$ of same starting and ending points $a,b$, we have
 \begin{equation}
 \int_{C_1} F(\gamma )\cdot d\gamma =\int_{C_2}F(\gamma )\cdot d\gamma 
 \end{equation}
 \end{definition}
 \begin{theorem}
-\label{6.2.4}
+\label{7.2.4}
 \textbf{(Independent of Path Theorem)} 
 \begin{equation}
 \text{ $F$ is conservative }\iff \text{ $F$ is independent of path }
@@ -6581,7 +7829,7 @@ F=\nabla f
 \begin{proof}
 $(\longrightarrow)$\\
 
-This follows from \myref{Theorem}{6.2.1} (Fundamental Theorem of Line Integral)\\
+This follows from \myref{Theorem}{7.2.1} (Fundamental Theorem of Line Integral)\\
 
 $(\longleftarrow)$\\
 
@@ -6606,6 +7854,7 @@ By changing the path of $0\to (x+h(1,0,0))$ to $0\to x \cup  x\to (x+h(1,0,0))$.
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{7.2.5}
 \textbf{(Formula for Line Integral)} Let 
  \begin{equation}
 F=(P,Q,R)\text{ and }\gamma (t)=(x(t),y(t),z(t))
@@ -6619,6 +7868,7 @@ We have
 Below practice formula for line integral.
 \end{minipage}}
 \begin{theorem}
+\label{7.2.6}
 \textbf{(Example)} Let
 \begin{equation}
 \gamma (t)=(1-t,t)\text{ and }C=\set{\gamma (t):t\in [0,1]}
@@ -6642,6 +7892,7 @@ Then
 \end{align}
 \end{proof}
 \begin{theorem}
+\label{7.2.7}
 \textbf{(Example)} Let
 \begin{equation}
 \gamma_1 (t)=(3t,2)\text{ and }\gamma _2(t)=(3,2+3t)\text{ and }\gamma _3(t)=(3-3t,5-3t)
@@ -6681,6 +7932,7 @@ We have
 Lastly 
 \end{minipage}}
 \begin{theorem}
+\label{7.2.8}
 \textbf{(Curl = 0 If and Only If Conservative)}
 \begin{equation}
 \forall s, \text{ curl }F(s)=0\iff F\text{ is conservative }
@@ -6717,6 +7969,7 @@ Because curl equals $0$, we see  $F$ is independent of the path by observing see
 By viewing $\Gamma$ to be the union of two different path with one of them reversed. 
 \end{proof}
 \begin{theorem}
+\label{7.2.9}
 \textbf{(Test Example)} Let
 \begin{equation}
 F=(4x^3+9x^2y^2,6x^3y+6y^5)
@@ -6741,10 +7994,348 @@ f=x^4+3x^3y^2+y^5+C
 \end{equation}
 \end{proof}
 \section{Green's Theorem}
+\begin{definition}
+\label{7.3.1}
+\textbf{(Definition of Curve)} By a curve $C$, we mean a continuous function  $p$ from $I\subseteq \R$  to a topological space.
+\end{definition}
+\begin{definition}
+\label{7.3.2}
+\textbf{(Definition of Simple Curve)} We say a curve $C$ is simple if $p$ is one-to-one.
+\end{definition}
+\begin{definition}
+\label{7.3.3}
+\textbf{(Definition of Closed Curve)} We say a curve $C$ is closed if 
+ \begin{equation}
+C=p[I]\text{ and }p(a)=p(b)\text{ where $I=[a,b]$ }
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{7.3.4}
+\textbf{(Definition of Simple Closed Curve)} We say a curve $C$ is simple closed if 
+ \begin{equation}
+C=p[I]\text{ and }p(a)=p(b)\text{ and }I=[a,b)\text{ and }p\text{  }
+\end{equation}
+\end{definition}
+\begin{definition}
+\label{7.3.5}
+\textbf{(Definition of Simple Region)} We say a connected region $\Omega\subseteq \R^2$ is simple if $\Omega$ is both $x$-simple and  $y$-simple. By $\Omega$ is $y$-simple, we mean 
+ \begin{equation}
+\Omega=\set{(x,y):x\in [a,b]\text{ and }y\in [f_1(x),f_2(x)]}
+\end{equation}
+Similarly, by $\Omega$ is $x$-simple, we mean
+ \begin{equation}
+\Omega=\set{(x,y):y\in [a,b]\text{ and }x\in [f_1(y),f_2(y)]}
+\end{equation}
+\end{definition}
 \begin{theorem}
-\textbf{(Green's Theorem)}
+\label{7.3.6}
+\textbf{(Green's Theorem)} Let $\Omega$ be a simple closed region with smooth boundary. Let $P$ and  $Q:\R^2\rightarrow \R$ be differentiable. Let $C$ be counterclockwise boundary of  $\Omega$ We have
+\begin{equation}
+\iint_{\Omega} \left(\frac{\partial Q}{\partial  x}-\frac{\partial P}{\partial y} \right) dxdy=\int_C Pdx+Qdy
+\end{equation}
+In other words, let $F=(P,Q)$, we have 
+\begin{equation}
+\iint_{\Omega} \begin{vmatrix}
+    \frac{\partial}{\partial x} & \frac{\partial}{\partial  y}\\
+    P & Q 
+\end{vmatrix} dA=\int_{C} F(\gamma )\cdot d\gamma 
+\end{equation}
 \end{theorem}
+\begin{proof}
+We wish to prove
+\begin{equation}
+\iint_{\Omega} \frac{\partial  Q}{\partial x}dxdy=\int_C Qdy\text{ and }\iint_{\Omega} \frac{-\partial P}{\partial y}dxdy=\int_C Pdx
+\end{equation}
+Because $\Omega$ is $y$-simple. We can characterize $\Omega$ as
+\begin{equation}
+\Omega=\set{(x,y):x\in [a,b]\text{ and }y\in [g(x),f(x)]}
+\end{equation}
+Then
+\begin{align}
+\iint_\Omega \frac{\partial P}{\partial y}dA&=\int_a^b \int_{g(x)}^{f(x)} \frac{\partial P}{\partial y}dy dx\\
+&=\int_a^b P(x,f(x))-P(x,g(x))dx
+\end{align}
+Partition $C$ into  $C_1\cup C_2\cup C_3\cup C_4$. Clearly
+\begin{equation}
+\int_{C_2}Pdx=0=\int_{C_4}Pdx
+\end{equation}
+We have
+\begin{align}
+\int_{C_1}Pdx&=\int_a^b P(x,g(x))dx\text{ and }\int_{C_3}Pdx=\int_b^a P(x,f(x))dx
+\end{align}
+Then
+\begin{equation}
+\int_{C}Pdx=\int_a^b P(x,g(x))-P(x,f(x))dx=-\iint_\Omega \frac{\partial P}{\partial y}dA
+\end{equation}
+It remains to prove
+\begin{equation}
+\iint_{\Omega} \frac{\partial Q}{\partial  x}dxdy=\int_C Qdy
+\end{equation}
+Because $\Omega$ is $x$-simple. We can characterize  $\Omega$ as
+\begin{equation}
+\Omega=\set{(x,y):y\in [a,b]\text{ and }x\in [g(y),f(y)]}
+\end{equation}
+Then
+\begin{align}
+\iint_\Omega \frac{\partial Q}{\partial x}dA&=\int_a^b\int_{g(y)}^{f(y)} \frac{\partial Q}{\partial x}dxdy\\
+&=\int_a^b Q(f(y),y)-Q(g(y),y)dy
+\end{align}
+Clearly 
+\begin{equation}
+\int_{C_1}Qdy=0=\int_{C_3}Qdy
+\end{equation}
+We have
+\begin{equation}
+\int_{C_2} Qdy=\int_a^b Q(f(y),y)dy\text{ and }\int_{C_4}Qdy=\int_b^a Q(g(y),y)dy
+\end{equation}
+Then
+\begin{equation}
+\int_C Qdy =\int_a^b Q(f(y),y)-Q(g(y),y)dy=\iint_{\Omega} \frac{\partial Q}{\partial x}dA
+\end{equation}
+\end{proof}
+\begin{corollary}
+\label{7.3.7}
+Let $F=(P,Q)$ be a  $\R^2$ vector field. We have
+\begin{equation}
+F\text{ is conservative }\iff \frac{\partial Q}{\partial x}=\frac{\partial P}{\partial y}
+\end{equation}
+\end{corollary}
+\begin{proof}
+$(\longleftarrow)$\\
 
+Let $C_1$ and  $C_2$ be two curve from  $a$ to  $b$. We wish to show 
+ \begin{equation}
+\int_{C_1} Pdx+Qdy=\int_{C_2} Pdx+Qdy
+\end{equation}
+We see 
+\begin{equation}
+\int_{C_1\cup -C_2}Pdx+Qdy=\iint_{\Omega}(\frac{\partial Q}{\partial x}-\frac{\partial P}{\partial y})dxdy=0
+\end{equation}
+$(\longrightarrow)$\\
+
+Let 
+ \begin{equation}
+F=\nabla f
+\end{equation}
+We have
+\begin{equation}
+P=f_x\text{ and }Q=f_y
+\end{equation}
+Then we see
+\begin{equation}
+\frac{\partial P}{\partial y}=f_{xy}=f_{yx}=\frac{\partial Q}{\partial x}
+\end{equation}
+\end{proof}
+
+\fbox{\begin{minipage}{39em}
+We now practice the usage of Green's Theorem. 
+\end{minipage}}
+\begin{theorem}
+\label{7.3.8}
+\textbf{(Example)} Let
+\begin{equation}
+a>0\text{ and }C=\set{(x,y):x^2+y^2=a^2}
+\end{equation}
+Compute
+\begin{equation}
+\int_C (3x^2+y)dx+(2x+y^2)dy
+\end{equation}
+\end{theorem}
+\begin{proof}
+We have
+\begin{align}
+\int_C (3x^2+y)dx+(2x+y^2)dy&=\iint_\Omega \frac{\partial 2x+y^2}{\partial x}-\frac{\partial 3x^2+y}{\partial y} dA\\
+&=\iint_{\Omega} dA=a^2\pi
+\end{align}
+\end{proof}
+\fbox{\begin{minipage}{39em}
+Below practice how to compute area of simple region using Green's Theorem.
+\end{minipage}}
+\begin{theorem}
+\label{7.3.9}
+\textbf{(Area Calculation)} Let $\Omega$ be a simple closed region with piece-wise smooth curve $C$. Then
+ \begin{equation}
+A(\Omega)=\iint_{\Omega} dA=\frac{1}{2}\int_C xdy-ydx 
+\end{equation}
+\end{theorem}
+\begin{theorem}
+\label{7.3.10}
+\textbf{(Example)} Let 
+\begin{equation}
+\Omega=\set{(x,y):\frac{x^2}{a^2}+\frac{y^2}{b^2}\leq 1}
+\end{equation}
+We have
+\begin{equation}
+A(\Omega)=ab\pi
+\end{equation}
+\end{theorem}
+\begin{proof}
+\begin{equation}
+C=\set{(x,y):\frac{x^2}{a^2}+\frac{y^2}{b^2}=1}
+\end{equation}
+Let
+\begin{equation}
+\gamma (t)=(a\cos t,b\sin t)
+\end{equation}
+We have
+\begin{align}
+A(\Omega)&= \iint_{\Omega}dA\\
+&=\frac{1}{2}\int_C xdy-ydx\\
+&=\frac{1}{2}\int_0^{2\pi} ab\cos^2 t+ab \sin^2 tdt\\
+&=\frac{1}{2}\int_0^{2\pi} abdt\\
+&=ab\pi
+\end{align}
+\end{proof}
+\begin{theorem}
+\label{7.3.11}
+\textbf{(Example)} Let $C$ be a simple closed curve.
+\begin{equation*}
+\int_C \frac{-y}{x^2+y^2}dx+\frac{x}{x^2+y^2} dy=\begin{cases}
+  0& \text{ if  }(0,0)\not\in \Omega\\
+  2\pi& \text{ if $(0,0)\in \Omega$ }
+\end{cases}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let 
+\begin{equation*}
+P=\frac{-y}{x^2+y^2}\text{ and }Q=\frac{x}{x^2+y^2}
+\end{equation*}
+Notice that $P_y,Q_x$ exists if and only if $(x,y)\neq (0,0)$.\\
+
+
+Then if $(0,0)\not\in \Omega$, by Green's Theorem, we have
+\begin{align*}
+\int_C \frac{-y}{x^2+y^2}dx+\frac{x}{x^2+y^2}dy&=\int_C Pdx+Qdy\\
+&=\iint_{\Omega} \frac{y^2-x^2}{(x^2+y^2)^2}-\frac{y^2-x^2}{(x^2+y^2)^2} dA=0
+\end{align*}
+If $(0,0)\in \Omega$, we  draw a circle of radius $r$ centering $(0,0)$ contained by $\Omega$. Draw two segments, one starting from $(r,0)$ and head straight right, while the other start from $(-r,0)$ and head straight left. Let  $O_r$ represent the clockwise boundary of the circle. We have
+ \begin{equation*}
+C=C_1+C_2-O_r
+\end{equation*}
+Because $C_1$ and  $C_2$ doesn't enclose  $(0,0)$, we have
+\begin{equation*}
+\int_{C_1} Pdx+Qdy=0=\int_{C_2}Pdx+Qdy
+\end{equation*}
+Then
+\begin{align*}
+\int_C \frac{-y}{x^2+y^2}dx+\frac{x}{x^2+y^2}dy&=\int_{O_r} F(\gamma )\cdot d\gamma\\
+&=\int_0^{2\pi} (-\sin t,\cos t)\cdot (-\sin t,\cos t)dt\\
+&=\int_0^{2\pi} 1dt=2\pi
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{7.3.12}
+\textbf{(Example)} Let
+\begin{equation*}
+C=(0,0)\to (1,0)+(1,0)\to (0,1)+(0,1)\to (0,0)
+\end{equation*}
+We have
+\begin{equation*}
+\int_{C}xy^2dx+(x^2+y)dy=\frac{1}{4}
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let $P=xy^2$ and $Q=x^2+y$. Notice that $Q_x=2x$ and  $P_y=2xy$. We have
+\begin{align*}
+\int_C xy^2dx+(x^2+y)dy&=\iint_{\Omega} Q_x-P_ydA\\
+&=\iint_\Omega 2x(1-y)dA\\
+&=\int_0^1\int_0^{1-x} 2x(1-y)dydx\\
+&=\int_0^12x \frac{-y^2+2y}{2}\at_{0}^{1-x}dx\\
+&=\int_0^1 2x \frac{-(1-x)^2+2(1-x)}{2}dx\\
+&=\int_0^1 x(-x^2+1)dx\\
+&=\int_0^1 -x^3+xdx\\
+&=\frac{-x^4}{4}+\frac{x^2}{2}\at_{x=0}^1\\
+&=\frac{1}{4}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{7.3.13}
+\textbf{(Example)} Let 
+\begin{equation*}
+C=\set{(x,y):x^2+y^2=a^2}
+\end{equation*}
+We have
+\begin{equation*}
+\int_C (2y+\sqrt{9+x^2} )dx+(5x+e^{\tan^{-1}y})dy
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let 
+\begin{equation*}
+P=2y+\sqrt{9+x^2}\text{ and }Q=5x+e^{\tan^{-1} y} 
+\end{equation*}
+We have
+\begin{equation*}
+Q_x=5\text{ and }P_y=2
+\end{equation*}
+Then
+\begin{align*}
+\int_C (2y+\sqrt{9+x^2} )dx+(5x+e^{\tan^{-1}y})dy&=\iint_{\Omega} Pdx+Qdy\\
+&=\iint_\Omega Q_x-P_y dA\\
+&=\iint_{\Omega}3dA\\
+&=3a^2\pi
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{7.3.14}
+\textbf{(Example)}
+Let $C$ be the boundary of  $\set{(x,y):x<y<x^2}$. We have
+\begin{equation*}
+\int_C (2xy-x^2)dx+(x+y^2)dy
+\end{equation*}
+\end{theorem}
+\begin{proof}
+Let
+\begin{equation*}
+P=2xy-x^2\text{ and }Q=x+y^2
+\end{equation*}
+We have
+\begin{equation*}
+Q_x=1\text{ and }P_y=2x
+\end{equation*}
+Then
+\begin{align*}
+\int_C (2xy-x^2)dx+(x+y^2)dy&=\int_C Pdx+Qdy\\
+&=\iint_\Omega Q_x-P_y dA\\
+&=\iint_\Omega 1-2x dA\\
+&=\int_0^1\int_{x^2}^{x} 1-2x dydx\\
+&=\int_0^1 (1-2x)(x^2-x)dx\\
+&=\int_0^1 -2x^3+3x^2-xdx\\
+&=\frac{-x^4}{2}+x^3 -\frac{x^2}{2}\at_{x=0}^1=0
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{7.3.15}
+\textbf{(Example)} Let
+\begin{equation*}
+\gamma (t)=(\frac{3at}{1+t^3},\frac{3at^2}{1+t^3})
+\end{equation*}
+This is the parametrization of
+\begin{equation*}
+x^3+y^3=3axy
+\end{equation*}
+where 
+\begin{equation*}
+t=\frac{y}{x}
+\end{equation*}
+Find area of $\Omega$.
+\end{theorem}
+\begin{proof}
+We have
+\begin{align*}
+dx=\frac{3a(1+t^3)-9at^3}{(1+t^3)^2}dt\text{ and }dy=\frac{6at(1+t^3)-9at^4}{(1+t^2)^2}dt
+\end{align*}
+\begin{align*}
+\iint_{\Omega} dA&=\frac{1}{2}\int_C -ydx+xdy\\
+&=\frac{1}{2}\int_0^\infty \frac{-3at^2}{1+t^3}\times \frac{3a(1+t^3)-9at^3}{(1+t^3)^2}+\frac{3at}{1+t^3}\times \frac{6at(1+t^3)-9at^4}{(1+t^3)^2}dt\\
+&=\frac{1}{2}\int_0^\infty \frac{9a^2 (t^2+t^5)}{(1+t^3)^3}dt\\
+&=\frac{9a^2}{2}\int_0^\infty \frac{t^2}{(1+t^3)^2}dt\\
+&=\frac{9a^2}{2}\int_1^\infty \frac{1}{3u^2}du\text{ use $u=1+t^3$ }\\
+&=\frac{9a^2}{2}\times \frac{1}{-3u}\at_{u=1}^\infty\\
+&=\frac{3a^2}{2}
+\end{align*}
+\end{proof}
 
 
 \chapter{Advanced Calculus HW}
@@ -7512,7 +9103,7 @@ We see $A_1\cap A_2=\set{(0,1),(0,-1)}$. We see $\set{(0,1)}$ and $\set{(0,-1)}$
 For (b), see next three Theorems.
 \end{proof}
 \begin{theorem}
-\label{7.3.1}
+\label{8.3.1}
 \textbf{(Connected)} If $A$ is disconnected, then $A$ can be partitioned into two non-empty disjoint relatively open subsets. 
 \end{theorem}
 \begin{proof}
@@ -7526,7 +9117,7 @@ Similarly, because $\overline{F}\cap E=\varnothing$, we know the closure of $F$ 
 Then because $E$ and  $F$ are both relatively closed to  $A$ and  $A=E\cup F$ where $E,F$ are disjoint, we know  $E$ and  $F$ are both relatively open to  $A$.
 \end{proof}
 \begin{theorem}
-\label{7.3.2}
+\label{8.3.2}
 \textbf{(Subspace Topology)} Let $Y$ be a subspace of $(X,d)$, let $E\subseteq X$, and let $p\in  Y$. We have
 \begin{gather}
 p\text{ is an interior point of $E$ in $X$ }\implies p\text{ is an interior point of $E\cap Y$ in $Y$ } \\
@@ -7547,7 +9138,7 @@ For a nontrivial example of the converse of the first statement may not hold tru
 The second and the third statement follows from the first statement. 
 \end{proof}
 \begin{theorem}
-\label{7.3.3}
+\label{8.3.3}
 \textbf{(Union of Connected Sets that have Nonempty Intersection is Connected)} Let $\mathcal{F}$ be a class of connected sets. We have 
 \begin{equation}
 \bigcap \mathcal{F}\neq \varnothing \implies \bigcup \mathcal{F}\text{ is connected }
@@ -7564,7 +9155,7 @@ WOLG, let
 \begin{equation}
 A\cap \bigcap \mathcal{F}\neq \varnothing
 \end{equation}
-Because $B$ is non-empty and $B\subseteq \bigcup \mathcal{F}$, we know $B$ must intersect with some $F_n\in \mathcal{F}$. Notice that because $A\cap \bigcap \mathcal{F}\neq \varnothing$, we have $A\cap F_n\neq \varnothing$. Then by \myref{Theorem}{7.3.2}, we see $A\cap F_n$ and $B\cap F_n$ are both relatively open to $F_n$, while $F_n= (A\cap F_n)\disjointunion (B\cap F_n)\tCaC$ 
+Because $B$ is non-empty and $B\subseteq \bigcup \mathcal{F}$, we know $B$ must intersect with some $F_n\in \mathcal{F}$. Notice that because $A\cap \bigcap \mathcal{F}\neq \varnothing$, we have $A\cap F_n\neq \varnothing$. Then by \myref{Theorem}{8.3.2}, we see $A\cap F_n$ and $B\cap F_n$ are both relatively open to $F_n$, while $F_n= (A\cap F_n)\disjointunion (B\cap F_n)\tCaC$ 
 \end{proof}
 \begin{question}{}{}
 3. Let $\{A_k\}_{k=1}^{\infty}$ be a family of connected subsets of $M$, and suppose that $A$ is a connected subset of $M$ such that $A_k \cap A \neq \emptyset$ for all $k \in \mathbb{N}$. Show that the union $\left(\bigcup_{k \in \mathbb{N}} A_k\right) \cup A$ is also connected.
@@ -8109,7 +9700,7 @@ Notice $\beta <-1$, we know the series
 Then because $f(y)$ is always positive (given by the question), we know $\sum_{n=1}^\infty f(n)$ converge by comparison test.
 \end{proof}
 \begin{lemma}
-\label{7.3.4}
+\label{8.3.4}
 \textbf{(Bernoulli Inequality)} Let  $r\geq 1$ and $x\geq -1$. We have
 \begin{equation}
   (1+x)^r\geq 1+rx
@@ -8190,7 +9781,7 @@ With a little algebra,
 \begin{equation}
 \forall n>N, 1-\frac{\alpha }{n}>\abso{\frac{a_{n+1}}{a_n}}
 \end{equation}
-Plugin \myref{Lemma}{7.3.4} (Bernoulli Inequality) with $r=\alpha >1$ and $x=\frac{-1}{n}\geq -1$. We have
+Plugin \myref{Lemma}{8.3.4} (Bernoulli Inequality) with $r=\alpha >1$ and $x=\frac{-1}{n}\geq -1$. We have
 \begin{equation}
 \forall n>N,\abso{\frac{a_{n+1}}{a_n}}<1+\frac{-\alpha }{n}\leq (1-\frac{1}{n})^\alpha= (\frac{n-1}{n})^{\alpha }
 \end{equation}
@@ -8239,7 +9830,7 @@ Then by comparison test, we know
 
 \section{HW4}
 \begin{theorem}
-\label{7.4.1}
+\label{8.4.1}
 Let $B_n=\sum_{k=1}^n b_n$. Given
 \begin{equation}
   a_n\searrow 0\text{ or }a_n\nearrow 0\text{ as }n\to\infty
@@ -8362,7 +9953,7 @@ We then see
 Because $\epsilon $ is arbitrarily picked from $\R^+$. We have proved  $\lim_{n\to\infty}Y_n=\alpha $
 \end{proof}
 \begin{lemma}
-\label{7.4.2}
+\label{8.4.2}
 Given $n$
 \begin{equation}
   \sum_{k=1}^\infty x_k\text{ converge }\implies \sum_{k=n}^\infty x_k=\sum_{k=1}^\infty x_k-\sum_{k=1}^{n-1}x_k
@@ -8391,13 +9982,13 @@ Which written in series is
 \end{equation}
 \end{proof}
 \begin{lemma}
-\label{7.4.3}
+\label{8.4.3}
 \begin{equation}
 \sum_{k=1}^\infty x_k\text{ converge }\implies \lim_{n\to\infty}\sum_{k=n}^\infty x_k=0
 \end{equation}
 \end{lemma}
 \begin{proof} 
-By \myref{Lemma}{7.4.2}, we have
+By \myref{Lemma}{8.4.2}, we have
 \begin{align}
   \lim_{n\to\infty}\sum_{k=n}^\infty x_k&=\lim_{n\to\infty}\sum_{k=1}^\infty a_k-\sum_{k=1}^{n-1}a_k\\
   &=\sum_{k=1}^\infty a_k-\lim_{n\to\infty}\sum_{k=1}^{n-1}a_k\\
@@ -8416,7 +10007,7 @@ Define
 \begin{equation}
 c_k=a_kb_k\text{ and }C_k=\sum_{j=k}^\infty c_j
 \end{equation}
-By \myref{Lemma}{7.4.3}, we have
+By \myref{Lemma}{8.4.3}, we have
 \begin{equation}
 \lim_{k\to\infty}C_k=0
 \end{equation}
@@ -8494,9 +10085,9 @@ Define
 \begin{equation}
 r_n:=\sum_{k=n}^\infty a_k
 \end{equation}
-Because $\set{a_k}$ are positive, by \myref{Lemma}{7.4.2}, we know $r_n$ monotonically decrease.\\
+Because $\set{a_k}$ are positive, by \myref{Lemma}{8.4.2}, we know $r_n$ monotonically decrease.\\
 
-Moreover, by \myref{Lemma}{7.4.3}, we know $r_n\searrow 0$.\\
+Moreover, by \myref{Lemma}{8.4.3}, we know $r_n\searrow 0$.\\
 
 Observe
 \begin{equation}
@@ -8800,15 +10391,49 @@ By integral test, we now know
 \begin{question}{}{}
 Find all values of \( p \in \mathbb{R} \) that make the following series converge absolutely:
 \[
-\sum_{k=1}^{\infty} (-1)^k \frac{\ln(p^k)}{k}
+\sum_{k=1}^{\infty} (-1)^k \frac{1}{\ln^p (k)}
 \]
 \end{question}
 \begin{proof}
-Notice 
-\begin{equation}
-  \sum_{k=1}^\infty \abso{(-1)^k \frac{\ln (p^k)}{k}}=\sum_{k=1}^\infty \ln p
-\end{equation}
-Then the series $\sum_{k=1}^\infty (-1)^k \frac{\ln (p^k)}{k}$ converge absolutely only when $\ln p=0$, which only happen when $p=e$. 
+Suppose $p\leq 0$. Let $q=-p$. We have
+ \begin{equation*}
+\abso{(-1)^k \frac{1}{\ln^p(k)}}=\ln^q (k)\text{ where $q\geq 0$ }
+\end{equation*}
+Then we have
+\begin{equation*}
+\lim_{k\to\infty} \abso{(-1)^k \frac{1}{\ln^p (k)}}= \lim_{k\to\infty}\ln^q (k)\neq 0
+\end{equation*}
+This tell us if $p\leq 0$, the series do not converge.\\
+
+Suppose $p>0$. We see 
+ \begin{equation*}
+\ln(x^{\frac{1}{p}})\leq  x^{\frac{1}{p}}\text{ for large $x$ }
+\end{equation*}
+Then for large $x$ we have
+ \begin{equation*}
+\frac{1}{p}\ln x\leq x^{\frac{1}{p}}
+\end{equation*}
+This give us
+\begin{equation*}
+\ln x\leq  px^{\frac{1}{p}}
+\end{equation*}
+This give us
+\begin{equation*}
+  (\ln x)^p\leq p^p x
+\end{equation*}
+This give us 
+\begin{equation*}
+\frac{1}{ (\ln x)^p}\geq \frac{1}{p^px}
+\end{equation*}
+Then because 
+\begin{equation*}
+\frac{1}{p^p}\sum_{x=1}^\infty \frac{1}{x}\text{ diverge }
+\end{equation*}
+By Comparison Test, we see 
+\begin{equation*}
+\sum_{x=1}^\infty \abso{(-1)^x \frac{1}{\ln^p (x)}}=\sum_{x=1}^\infty \frac{1}{(\ln x)^p}\text{ diverge }
+\end{equation*}
+In conclusion, for all $p$, the series diverge.
 \end{proof}
 
 \begin{question}{}{}
@@ -8929,5 +10554,174 @@ a_n=\frac{1}{(\frac{n}{2})^2}>0=a_{n+1}
 \end{equation}
 So we don't have $a_n\searrow 0$ as  $n\to\infty$. This serve as a counter example for the last question.
 \end{proof}
+\section{HW5}
+
+\begin{question}{}{}
+1. Let \((X, d)\), \((Y, d)\) be metric spaces; let \(f : X \rightarrow Y\). Show that \(f\) is continuous on \(X\) if and
+only if for every open set \(V\subseteq Y\), \(f^{-1}(V)\) is open.
+\end{question}
+\begin{proof}
+See \myref{Theorem}{2.4.4}
+\end{proof}
+
+\begin{question}{}{}
+
+2. Let \(X\) and \(Y\) be metric spaces; let \(f : X \rightarrow Y\). Show that the following statements are
+equivalent:
+
+\begin{enumerate}
+    \item \(f\) is continuous.
+    \item For every subset \(A\) of \(X\), one has \(f(A) \subseteq \overline{f(A)}\).
+    \item For every closed set \(B\) of \(Y\), the set \(f^{-1}(B)\) is closed in \(X\).
+\end{enumerate}
+\end{question}
+\begin{proof}
+See \myref{Theorem}{2.4.4}
+\end{proof}
+
+\begin{question}{}{}
+3. Suppose that \(E\) is a nonempty subset of \(\mathbb{R}\), let \(a \in E\), and that \(f : E \rightarrow \mathbb{R}\). If \(f\) has
+the property that if \(\{x_n\} \subseteq E\) and \(x_n\) converges to \(a\), then \(f(x_n) \rightarrow f(a)\) as \(n \rightarrow \infty\). Is \(f\)
+continuous at \(a\)? Justify your result.
+\end{question}
+\begin{proof}
+We prove that $f$ is continuous at $a$. \As{ $f$ is not continuous at  $a$}. Then we know $a$ is an limit point of $E$ and 
+ \begin{equation*}
+\lim_{x\to a}f(x)\neq f(a)
+\end{equation*}
+Then there exists a sequence $\set{x_n}\subseteq E$ that converge to $a$ and satisfy
+ \begin{equation*}
+\forall n,a\neq x_n\text{ and }\lim_{n\to\infty}f(x_n)\neq f(a)\tCaC\text{ to premise }
+\end{equation*}
+\end{proof}
+
+\begin{question}{}{}
+4. Let \(f : M \rightarrow N\) be a map from metric space \(M\) to another metric space \(N\) with the property
+that if a sequence \(\{p_n\}\) in \(M\) converges, then the sequence \(\{f(p_n)\}\) in \(N\) also converges. Is
+\(f\) continuous? Justify your result.
+\end{question}
+\begin{proof}
+  We prove $f$ is continuous. \As{$f$ is not continuous at  $p$}. Then we know there exists a sequence $\set{p_n}\subseteq M$ such that 
+  \begin{equation*}
+  \lim_{n\to\infty}p_n=p \text{ and } \forall n\inn, p_n\neq p
+  \end{equation*}
+From premise, we know 
+\begin{equation*}
+\lim_{n\to\infty} f(p_n)\text{ exists }
+\end{equation*}
+Because $f$ is not continuous at  $p$, we know 
+ \begin{equation*}
+\lim_{n\to\infty}f(p_n)\neq f(p)
+\end{equation*}
+Consider the sequence 
+\begin{equation*}
+q_{n}=\begin{cases}
+p_n& \text{ if $n$ is odd }\\
+p & \text{ if $n$ is even }
+\end{cases}
+\end{equation*}
+$\set{q_n}$ clearly is a sequence that converge to $p$. By premise, we should have 
+\begin{equation*}
+\lim_{n\to\infty}f(q_n)\text{ exists }
+\end{equation*}
+Yet, we see 
+\begin{equation*}
+\lim_{n\to\infty}f(q_{2n})=f(p)\neq \lim_{n\to\infty}f(p_n)=\lim_{n\to\infty}f(q_{2n+1})\tCaC
+\end{equation*}
+\end{proof}
+\begin{question}{}{}
+5. Suppose \(f\) is a real function defined on \(\mathbb{R}\) which satisfies
+\[
+\lim_{h \rightarrow 0} [f(x + h) - f(x - h)] = 0
+\]
+for every \(x \in \mathbb{R}\). Does this imply that \(f\) is continuous?
+
+\end{question}
+\begin{proof}
+No. Define 
+\begin{equation*}
+x\mapsto \begin{cases}
+  0& \text{ if $x\neq 0$ }\\
+  1& \text{ if $x=0$ }
+\end{cases}
+\end{equation*}
+Clearly $f$ is not continuous at $0$. We now prove  $f$ satisfy the premise.\\
+
+Let $y\neq 0$. We see  
+\begin{equation*}
+\abso{h}\leq \abso{y}\implies f(y+h)-f(y-h)=0-0=0\in B_\epsilon (0)
+\end{equation*}
+This shows 
+\begin{equation*}
+\lim_{h\to 0}[f(y+h)-f(y-h)]=0
+\end{equation*}
+Let $y=0$. We see  
+\begin{equation*}
+0<h\implies f(y+h)-f(y-h)=1-1=0\in B_\epsilon (0)
+\end{equation*}
+\end{proof}
+\begin{question}{}{}
+6. Let \( f: \mathbb{R} \rightarrow \mathbb{R} \) and \( g : I (\subseteq \mathbb{R}) \rightarrow \mathbb{R} \) be a map. Please state the definition of following nouns.
+(There is no standard answer, you can write down all equivalent statements as possible as you can)
+\begin{enumerate}
+    \item \( f \) is continuous on \( \mathbb{R} \).
+    \item \( f \) is uniformly continuous on \( \mathbb{R} \).
+    \item \( f \) is Lipschitz continuous on \( \mathbb{R} \).
+    \item \( g \) is absolutely continuous on \( I \).
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+7. Let \( f : \mathbb{R} \rightarrow \mathbb{R} \) and \( g : I (\subseteq \mathbb{R}) \rightarrow \mathbb{R} \) be a map. Prove or disprove following statement.
+\begin{itemize}
+    \item[(i)] if \( f \) is continuous on \( \mathbb{R} \), then \( f \) is uniformly continuous on \( \mathbb{R} \).
+    \item[(ii)] if \( f \) is uniformly continuous on \( \mathbb{R} \), then \( f \) is continuous on \( \mathbb{R} \).
+    \item[(iii)] if \( g \) is continuous on \( I \) and \( I \) is compact, then \( g \) is uniformly continuous on \( I \).
+    \item[(iv)] if \( f \) is continuous on \( \mathbb{R} \), then \( f \) is Lipschitz continuous on \( \mathbb{R} \).
+    \item[(v)] if \( f \) is Lipschitz continuous on \( \mathbb{R} \), then \( f \) is continuous on \( \mathbb{R} \).
+    \item[(vi)] if \( g \) is Lipschitz continuous on \( I \), then \( g \) is uniformly continuous on \( I \).
+    \item[(vii)] if \( g \) is uniformly continuous on \( I \), then \( g \) is Lipschitz continuous on \( I \).
+    \item[(viii)] if \( g \) is absolutely continuous on \( I \), then \( g \) is uniformly continuous on \( I \).
+    \item[(ix)] if \( g \) is uniformly continuous on \( I \), then \( g \) is absolutely continuous on \( I \).
+    \item[(x)] if \( g \) is absolutely continuous on \( I \), then \( g \) is Lipschitz continuous on \( I \).
+    \item[(xi)] if \( g \) is Lipschitz continuous on \( I \), then \( g \) is absolutely continuous on \( I \).
+\end{itemize}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+8. Suppose that \( f : [0, \infty) \rightarrow \mathbb{R} \) is continuous and there is an \( L \in \mathbb{R} \) such that \( f(x) \rightarrow L \) as \( x \rightarrow \infty \). Prove that \( f \) is uniformly continuous on \( [0, \infty) \).
+\end{question}
+\begin{proof}
+Fix $\epsilon $. 
+Because $f(x)\to L$ as $x\to \infty$, we know there exists $R\inr^+$ such that 
+\begin{equation*}
+\forall x>R, \abso{f(x)-L}<\frac{\epsilon}{2}
+\end{equation*}
+Also, because $[0,R+1]$ is compact and $f$ is continuous, we know $f$ is uniformly continuous on  $[0,R+1]$, then we know there exists $\delta'$ such that 
+\begin{equation*}
+\forall y',z'\in [0,R+1], \abso{y'-z'}<\delta'\implies \abso{f(y')-f(z')}<\epsilon 
+\end{equation*}
+We now prove 
+\begin{equation*}
+\delta:=\min \set{\delta',1}\text{ works }
+\end{equation*}
+WOLG, let $z+\delta>y>z\geq 0$. If $z<R$, then  $y<z+\delta<R+\delta\leq R+1$. This tell us $z,y\in [0,R+1]$. Then because $y-z<\delta<\delta'$, we have $\abso{f(y')-f(z')}<\epsilon $. If $z\geq R$. We have $y>z>R$. Then we have 
+ \begin{equation*}
+\abso{f(y)-f(z)}\leq \abso{f(y)-L}+\abso{f(z)-L}<\epsilon 
+\end{equation*}
+\end{proof}
+\begin{question}{}{}
+
+9. Show that if \( f \) is monotone on an interval \( I \), then \( f \) has at most countably many points of discontinuity on \( I \).
+\end{question}
+\begin{proof}
+
+\end{proof}
+
+
 
 \end{document}
