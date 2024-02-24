@@ -1,6 +1,6 @@
-
 %%%%%%%%%%%%%% macros.tex %%%%%%%%%%%%%%
 % Place your custom macros here, if any.
+
 
 %%%%%%%%%%%%%% letterfonts.tex %%%%%%%%%%%%%%
 % Place your font setup here, if any.
@@ -17,23 +17,17 @@
 \usepackage[letterpaper, tmargin=2cm, rmargin=0.5in, lmargin=0.5in, bmargin=80pt, footskip=.2in]{geometry}
 \usepackage{adjustbox}
 
-\usepackage{etoolbox}
 
-% Create a new toggle
+\usepackage{etoolbox} % Required for conditional toggles
 \newtoggle{firstsection}
+\toggletrue{firstsection} % Set to true initially
 
-% Redefine the \chapter command to reset the toggle for each new chapter
-\let\oldchapter\chapter
-\renewcommand{\chapter}{\toggletrue{firstsection}\oldchapter}
-
-% Redefine the \section command to check the toggle
 \let\oldsection\section
-\renewcommand{\section}{
-    \iftoggle{firstsection}
-    {\togglefalse{firstsection}} % If it's the first section, just switch off the toggle for next sections
-    {\clearpage} % If it's not the first section, start a new page
-    \oldsection
-}
+\let\oldchapter\chapter
+
+\renewcommand{\chapter}{\global\toggletrue{firstsection}\oldchapter}
+\renewcommand{\sectionbreak}{\iftoggle{firstsection}{}{\clearpage}}
+\renewcommand{\section}[1]{\sectionbreak\oldsection{#1}\global\togglefalse{firstsection}}
 
 % Mathematics
 \usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
