@@ -137,105 +137,13 @@ By a \textbf{tail} $T_d$ of a directed set $D$, we mean  $T_d=\set{e \in D: d\le
 \section{Homotopy}
 \section{Simply connected}
 \section{Fundamental group}
-\chapter{Universal Notion in Metric Space}
+\chapter{Metric Space and some Linear Algebra}
 \section{Pseudo Metric}
 \section{Completion}
 \section{Bounded and Totally Bounded}
 \section{Compactness}
 \section{Holder Continuity}
-\section{Modes of Convergence} 
-\label{27CaB}
-\begin{mdframed}
-This section is the starting point for us to study spaces of function. At first, we will define two modes of convergence for sequence of function and point out some basic properties and the difference between two modes of convergence.\\
-
-
-
-Given an arbitrary set $X$ and a metric space  $Y$, we say a sequence of functions $f_n$ from $X$ to  $Y$ \textbf{pointwise converge} to $f$ if for all $\epsilon \text{ and }x$ in $X$, there exists $N$ such that 
-\begin{align*}
-\forall n>N, f_n(x)\in B_{\epsilon }\big(f(x) \big)
-\end{align*}
-In other words, for each fixed $x$ in $X$, we have $f_n(x)\to f(x)$.\\
-
-We say $f_n$ \textbf{uniformly converge} to $f$ if for all $\epsilon $ there exists $N$ such that 
-\begin{align*}
-\forall x\in X, \forall n>N, f_n(x)\in B_\epsilon \big(f(x)\big)
-\end{align*}
-The difference between pointwise convergence and uniform convergence is that if we require $f_n(x)$ to be $\epsilon $-close to $f(x)$ for all $n>N$, then 
-\begin{enumerate}[label=(\bullet)]
-  \item $N$ depend on both  $\epsilon $ and $x$ if $f_n\to f$ pointwise
-  \item $N$ depend on only  $\epsilon $ if $f_n\to f$ uniformly 
-\end{enumerate}
-A few properties of sequence of functions similar to that of sequences in metric space is obvious. If $f_n\to f$ pointwise, then all sub-sequences  $f_{n_k}\to f$ pointwise. If $f_n \to f$ uniformly, then all sub-sequences $f_{n_k}\to f$ uniformly. Suppose $Z\subseteq X$. It is clear that if $f_n \to f$ uniformly (resp: pointwise) the restricts $f_n|_Z\to f|_Z$ uniformly (resp: pointwise). Also, if $f_n \to f$ uniformly, then $f_n\to f$ pointwise.\\
-
-Suppose we have a family $\mathcal{F}$ of functions $f:X\rightarrow (Y,d)$. If we define 
-\begin{align*}
-d_{\infty}(f,g)=\sup_{x \in X}d\big(f(x),g(x) \big)
-\end{align*}
-instead of a metric, $d_{\infty}$ become an extended metric. If $f$ is bounded and  $g$ is unbouneded, we have  $d_{\infty}(f,g)=\infty$. If $f,g$ are both bounded, then  $d_{\infty}(f,g)\inr^+$. Because of such, for $d_{\infty}$ to be a metric, one but not the only condition is for  $\mathcal{F}$ to be space of bounded functions.\\
-
-Now, regardless of $d_{\infty}$ is an extended metric or not, we have 
-\begin{align*}
-f_n\to f\text{ uniformly }\iff d_{\infty}(f_n,f)\to 0
-\end{align*}
-With this in mind, it shall be clear that the uniform limit of bounded (resp: unbounded) functions is always bounded (resp: unbounded).\\ 
-
-Examples for bounded (resp: unbounded) function $f_n$ pointwise converge to unbounded (resp: bounded) function $f$ are as follows.
-
-\begin{Example}{\textbf{(Bounded functions pointwise converge to unbounded function)}}{}
-\label{bfpce}
-\begin{align*}
-  X=(0,1],f_n(x)=\min  \set{n,\frac{1}{x}}
-\end{align*}
-It is clear that $\forall n\inn,f_n(x) \in [0,n]$, and the limit $f:X\rightarrow \R$ is $f(x)=\frac{1}{x}$
-\begin{center}
-   \begin{minipage}{0.9\linewidth}  
-       \centering
-\includegraphics[height=9cm,width=15cm]{pwise converge1.png}
-   \end{minipage}
-\end{center}
-\end{Example}
-\begin{Example}{\textbf{(Unbounded functions pointwise converge to bounded function)}}{}
-\begin{align*}
-X=\R,f_n(x)=\frac{1}{n}x
-\end{align*}
-The limit function is $f(x)=0$
-\begin{center}
-   \begin{minipage}{0.9\linewidth}  
-       \centering  \includegraphics[height=7cm,width=15cm]{pwise converge2.png}
-   \end{minipage}
-\end{center}
-\end{Example}
-\end{mdframed} 
-\begin{mdframed}
-As pointed out earlier, if $f:X\rightarrow (Y,d)$ is bounded and $g:X\rightarrow (Y,d)$ is unbounded, then $d_{\infty}(f,g)=\infty$. This means that if $Y$ is unbounded, the uniform metric $d_{\infty}$ is extended on $X^Y$. For this, it is necessary to develop some basic fact concerning extended metric space.\\
-
-Suppose $(X,d)$ is an extended metric space. If we define $\sim$ on $X$ by $x \sim y\iff  d(x,y)<\infty$, then $\sim $ is an equivalence relation. We say each equivalence class is a \textbf{galaxy} of $(X,d)$. Suppose $T$ is the collection of the galaxies of $(X,d)$. For each $\mathcal{T} \in T$, the space $(\mathcal{T},d)$ is just a metric space.\\
-
-It is easy to see that the way we induce topology from metric space is still valid if the metric is extended. That is 
-\begin{align*}
-  \tau=\set{Z \in X: \forall z \in Z, \exists \epsilon ,B_\epsilon (z)\subseteq Z}
-\end{align*}
-is still a topology, even though $d$ is an extended metric on $X$.\\
-
-We can verify that a set $Y$ in $X$ is open if and only if for all  $\mathcal{T} \in T$, the set $Y \cap \mathcal{T}$ is open, and the set $Y$ in $X$ is closed if and only if all convergent sequences $y_n$ in  $Y$ converge to points in $Y$. \\
-\end{mdframed}
-\begin{mdframed}
-Now, suppose we are given an arbitrary set  $X$ and a complete metric space  $(\overline{Y},d)$, and on $X^{\overline{Y}}$, we define the uniform metric  $d_{\infty}$. We say a set $\mathcal{F}\subseteq X^{\overline{Y}}$ of functions is \textbf{closed under uniform convergence} if  for all uniform convergent sequence $f_n \subseteq \mathcal{F}$, the limit function $f$ is also in  $\mathcal{F}$. There are justified reasons for us to give the premise that $\overline{Y}$ is complete prior to the definition of the term \textbf{closed under uniform convergence}. One reason is that by \myref{Theorem}{Tsof}, if $Y$ is not complete, then the extended metric space  $(X^Y,d_{\infty})$ is also not complete, which implies the possibility a Cauchy sequence $f_n$ in  $X^Y$ converge to a function $f \in X^{\overline{Y}} \setminus X^Y$ where $\overline{Y}$ is the completion of  $Y$. For instance, if we let $Y=\R\setminus \set{1}$ where $X=\R$, and let $f_n(x)=\begin{cases}
-  0& \text{ if  }x\neq 0\\
-  1+\frac{1}{n}& \text{ if $x=0$ }
-\end{cases}\in Y$, we see that the set $\mathcal{F}=\set{f_n:n\inn}$ is "closed under uniform convergence" in the context of $X^Y$, but when in fact $f_n$ uniformly converge to  $f(x)=\begin{cases}
-  0& \text{ if  }x\neq 0\\
-  1& \text{ if $x=0$ }
-\end{cases}$ which is not in $\mathcal{F}$. This awkward usage of words can be solved if we define the term  \textbf{closed under uniform convergence} after the premise that $Y$ is complete.\\
-
-Now, given a set of functions $\mathcal{F}\subseteq X^{\overline{Y}}$, one can verify that 
-\begin{align*}
-  \mathcal{F}\text{ is closed under uniform convergence }&\iff (\mathcal{F},d_{\infty})\text{ is complete }\\
-&\iff \mathcal{F}\text{ is closed with respect to $(X^{\overline{Y}},d_{\infty})$ }
-\end{align*}
-Let $\mathcal{G}$ be a galaxy of $(X^{\overline{Y}},d_{\infty})$. With multiple ways, we can verify that $\mathcal{G}$ is closed with respect to $(X^{\overline{Y}},d_{\infty})$. Then, acknowledging the space of bounded functions $B(X,\overline{Y})$ is a galaxy of $X^{\overline{Y}}$, we see that $B(X,\overline{Y})$ is closed under uniform convergence. The statement that $B(X,\overline{Y})$ is closed under uniform convergence, although already "proved" before as we pointed out the limit of uniform convergent sequence of bounded functions must be bounded, is now in fact actually proved in the sense the term "closed under uniform convergence" is formally given a satisfying definition.
-\end{mdframed}
-\section{Uniform Convergence and Double Sequences}
+\section{Limit Interchange}
 \begin{mdframed}
 Given an arbitrary set $X$ and  a complete metric space  $(\overline{Y},d)$, in \myref{Section}{27CaB}, we have proved that the set of functions with the following properties 
 \begin{enumerate}[label=(\alph*)]
@@ -559,7 +467,7 @@ Then from  \myref{Equation}{K10} and \myref{Equation}{K11}, we can deduce
 d(A_n,A_m)\leq d(A_n,a_{n,j})+d(a_{n,j},a_{m,j})+d(a_{m,j},A_m)<\epsilon \vdone
 \end{align*}
 \end{proof}
-\section{Uniform Convergence and Continuity Hierarchy}
+\section{Closed under Uniform Convergence}
 \label{UCaCH}
 \begin{mdframed}
 The end goal for this section is to prove that the following properties 
@@ -682,6 +590,98 @@ X=[0,1]\text{ and }f_n(x)=\sqrt{x+\frac{1}{n}}
 \end{align*}
 \end{Example}
 \end{mdframed}
+\section{Modes of Convergence} 
+\label{27CaB}
+\begin{mdframed}
+This section is the starting point for us to study spaces of function. At first, we will define two modes of convergence for sequence of function and point out some basic properties and the difference between two modes of convergence.\\
+
+
+
+Given an arbitrary set $X$ and a metric space  $Y$, we say a sequence of functions $f_n$ from $X$ to  $Y$ \textbf{pointwise converge} to $f$ if for all $\epsilon \text{ and }x$ in $X$, there exists $N$ such that 
+\begin{align*}
+\forall n>N, f_n(x)\in B_{\epsilon }\big(f(x) \big)
+\end{align*}
+In other words, for each fixed $x$ in $X$, we have $f_n(x)\to f(x)$.\\
+
+We say $f_n$ \textbf{uniformly converge} to $f$ if for all $\epsilon $ there exists $N$ such that 
+\begin{align*}
+\forall x\in X, \forall n>N, f_n(x)\in B_\epsilon \big(f(x)\big)
+\end{align*}
+The difference between pointwise convergence and uniform convergence is that if we require $f_n(x)$ to be $\epsilon $-close to $f(x)$ for all $n>N$, then 
+\begin{enumerate}[label=(\bullet)]
+  \item $N$ depend on both  $\epsilon $ and $x$ if $f_n\to f$ pointwise
+  \item $N$ depend on only  $\epsilon $ if $f_n\to f$ uniformly 
+\end{enumerate}
+A few properties of sequence of functions similar to that of sequences in metric space is obvious. If $f_n\to f$ pointwise, then all sub-sequences  $f_{n_k}\to f$ pointwise. If $f_n \to f$ uniformly, then all sub-sequences $f_{n_k}\to f$ uniformly. Suppose $Z\subseteq X$. It is clear that if $f_n \to f$ uniformly (resp: pointwise) the restricts $f_n|_Z\to f|_Z$ uniformly (resp: pointwise). Also, if $f_n \to f$ uniformly, then $f_n\to f$ pointwise.\\
+
+Suppose we have a family $\mathcal{F}$ of functions $f:X\rightarrow (Y,d)$. If we define 
+\begin{align*}
+d_{\infty}(f,g)=\sup_{x \in X}d\big(f(x),g(x) \big)
+\end{align*}
+instead of a metric, $d_{\infty}$ become an extended metric. If $f$ is bounded and  $g$ is unbouneded, we have  $d_{\infty}(f,g)=\infty$. If $f,g$ are both bounded, then  $d_{\infty}(f,g)\inr^+$. Because of such, for $d_{\infty}$ to be a metric, one but not the only condition is for  $\mathcal{F}$ to be space of bounded functions.\\
+
+Now, regardless of $d_{\infty}$ is an extended metric or not, we have 
+\begin{align*}
+f_n\to f\text{ uniformly }\iff d_{\infty}(f_n,f)\to 0
+\end{align*}
+With this in mind, it shall be clear that the uniform limit of bounded (resp: unbounded) functions is always bounded (resp: unbounded).\\ 
+
+Examples for bounded (resp: unbounded) function $f_n$ pointwise converge to unbounded (resp: bounded) function $f$ are as follows.
+
+\begin{Example}{\textbf{(Bounded functions pointwise converge to unbounded function)}}{}
+\label{bfpce}
+\begin{align*}
+  X=(0,1],f_n(x)=\min  \set{n,\frac{1}{x}}
+\end{align*}
+It is clear that $\forall n\inn,f_n(x) \in [0,n]$, and the limit $f:X\rightarrow \R$ is $f(x)=\frac{1}{x}$
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+\includegraphics[height=9cm,width=15cm]{pwise converge1.png}
+   \end{minipage}
+\end{center}
+\end{Example}
+\begin{Example}{\textbf{(Unbounded functions pointwise converge to bounded function)}}{}
+\begin{align*}
+X=\R,f_n(x)=\frac{1}{n}x
+\end{align*}
+The limit function is $f(x)=0$
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering  \includegraphics[height=7cm,width=15cm]{pwise converge2.png}
+   \end{minipage}
+\end{center}
+\end{Example}
+\end{mdframed} 
+\begin{mdframed}
+As pointed out earlier, if $f:X\rightarrow (Y,d)$ is bounded and $g:X\rightarrow (Y,d)$ is unbounded, then $d_{\infty}(f,g)=\infty$. This means that if $Y$ is unbounded, the uniform metric $d_{\infty}$ is extended on $X^Y$. For this, it is necessary to develop some basic fact concerning extended metric space.\\
+
+Suppose $(X,d)$ is an extended metric space. If we define $\sim$ on $X$ by $x \sim y\iff  d(x,y)<\infty$, then $\sim $ is an equivalence relation. We say each equivalence class is a \textbf{galaxy} of $(X,d)$. Suppose $T$ is the collection of the galaxies of $(X,d)$. For each $\mathcal{T} \in T$, the space $(\mathcal{T},d)$ is just a metric space.\\
+
+It is easy to see that the way we induce topology from metric space is still valid if the metric is extended. That is 
+\begin{align*}
+  \tau=\set{Z \in X: \forall z \in Z, \exists \epsilon ,B_\epsilon (z)\subseteq Z}
+\end{align*}
+is still a topology, even though $d$ is an extended metric on $X$.\\
+
+We can verify that a set $Y$ in $X$ is open if and only if for all  $\mathcal{T} \in T$, the set $Y \cap \mathcal{T}$ is open, and the set $Y$ in $X$ is closed if and only if all convergent sequences $y_n$ in  $Y$ converge to points in $Y$. \\
+\end{mdframed}
+\begin{mdframed}
+Now, suppose we are given an arbitrary set  $X$ and a complete metric space  $(\overline{Y},d)$, and on $X^{\overline{Y}}$, we define the uniform metric  $d_{\infty}$. We say a set $\mathcal{F}\subseteq X^{\overline{Y}}$ of functions is \textbf{closed under uniform convergence} if  for all uniform convergent sequence $f_n \subseteq \mathcal{F}$, the limit function $f$ is also in  $\mathcal{F}$. There are justified reasons for us to give the premise that $\overline{Y}$ is complete prior to the definition of the term \textbf{closed under uniform convergence}. One reason is that by \myref{Theorem}{Tsof}, if $Y$ is not complete, then the extended metric space  $(X^Y,d_{\infty})$ is also not complete, which implies the possibility a Cauchy sequence $f_n$ in  $X^Y$ converge to a function $f \in X^{\overline{Y}} \setminus X^Y$ where $\overline{Y}$ is the completion of  $Y$. For instance, if we let $Y=\R\setminus \set{1}$ where $X=\R$, and let $f_n(x)=\begin{cases}
+  0& \text{ if  }x\neq 0\\
+  1+\frac{1}{n}& \text{ if $x=0$ }
+\end{cases}\in Y$, we see that the set $\mathcal{F}=\set{f_n:n\inn}$ is "closed under uniform convergence" in the context of $X^Y$, but when in fact $f_n$ uniformly converge to  $f(x)=\begin{cases}
+  0& \text{ if  }x\neq 0\\
+  1& \text{ if $x=0$ }
+\end{cases}$ which is not in $\mathcal{F}$. This awkward usage of words can be solved if we define the term  \textbf{closed under uniform convergence} after the premise that $Y$ is complete.\\
+
+Now, given a set of functions $\mathcal{F}\subseteq X^{\overline{Y}}$, one can verify that 
+\begin{align*}
+  \mathcal{F}\text{ is closed under uniform convergence }&\iff (\mathcal{F},d_{\infty})\text{ is complete }\\
+&\iff \mathcal{F}\text{ is closed with respect to $(X^{\overline{Y}},d_{\infty})$ }
+\end{align*}
+Let $\mathcal{G}$ be a galaxy of $(X^{\overline{Y}},d_{\infty})$. With multiple ways, we can verify that $\mathcal{G}$ is closed with respect to $(X^{\overline{Y}},d_{\infty})$. Then, acknowledging the space of bounded functions $B(X,\overline{Y})$ is a galaxy of $X^{\overline{Y}}$, we see that $B(X,\overline{Y})$ is closed under uniform convergence. The statement that $B(X,\overline{Y})$ is closed under uniform convergence, although already "proved" before as we pointed out the limit of uniform convergent sequence of bounded functions must be bounded, is now in fact actually proved in the sense the term "closed under uniform convergence" is formally given a satisfying definition.
+\end{mdframed}
 \section{Arzelà–Ascoli Theorem}
 \begin{mdframed}
 Given a topological space $(X,\tau)$ and a metric space $(Y,d)$, let $\mathcal{F}$ be a collection of functions from $X$ to $Y$. We say $\mathcal{F}$ is \textbf{equicontinuous} if for all $\epsilon $ and for all $x \in X$ there exists a neighborhood $U_x$ around  $x$ such that 
@@ -803,55 +803,11 @@ Then from \myref{Inequality}{A6} and \myref{Inequality}{A7}, we see
 
  
 \end{proof} 
-\section{Equicontinuous}
-\begin{mdframed}
-Now, suppose we have a collection of function 
-
-
-\\
-
-
-
-Suppose $X$ is also a metric space. We say a set $\mathcal{F}$ of functions from $X$ to  $Y$ is  \textbf{equicontinuous} if  
-\begin{align*}
-\forall \epsilon , \exists \delta, \forall  f \in \mathcal{F}, \forall x,y \in X, d(x,y)<\delta \implies d(f(x),f(y))<\epsilon 
-\end{align*}
-
-\end{mdframed}
-\begin{mdframed}
-Other two definitions for sequences of functions are the following.\\
-
-We say $f_n$ is \textbf{pointwise bounded} if for all $x\in X$, the sequence $\set{f_n(x)}$ is bounded. We say $f_n$ is \textbf{uniformly bounded} if the set $\set{f_n(x) \in Y: x \in X \text{ and }n\inn}$ is bounded. \\
-
-Again, basic properties will be pointed out immediately. If $f_n$ is uniformly bounded then $f_n$ is pointwise bounded, and the sequence $\set{f_n}$ is trivially bounded with respect to uniform metric $d_{\infty}$.  If $\mathcal{F}$ is space of bounded function from $X$ to  $Y$ and $Y$ is bounded, then all sequence $f_n$ in $\mathcal{F}$ is uniformly bounded. If $f_n$ pointwise converge, then $f_n$ is pointwise bounded.\\
-
-Although pointwise convergence implies pointwise boundedness, we should notice the fact that $f_n$ uniformly converges does not imply $f_n$ is uniformly bounded. A trivial example is that when $f_1$ is unbounded.\\
-
-
-However, if we require $f_n$ to be bounded for all $n\inn$, while $f_n$ still uniformly converge, the sequence $f_n$ become uniformly bounded. Yet, unlike other basic properties pointed out in this section, this property require a non-trivial proof. 
-\end{mdframed}
-\begin{theorem}
-\label{ucso}
-\textbf{(Uniformly Convergent sequence of Bounded functions is Uniformly Bounded)} Suppose 
-\begin{enumerate}[label=(\alph*)]
-  \item $f_n\to f$ uniformly  
-  \item $f_n$ is bounded for all $n\inn$
-\end{enumerate}
-Then $f_n$ is uniformly bounded.
-\end{theorem}
-\begin{proof}
-We know $f$ is bounded. Because $f_n\to f$ uniformly, we know there exists $N$ such that
-\begin{align*}
-\forall n>N, d_{\infty}(f_n,f)<1
-\end{align*}
-This tell us $\set{f_{n+N}}_{n\inn}$ is uniformly bounded. By premise, for all $n\leq N$, function $f_n$ are bounded. This tell us $f_n$ is uniformly bounded.
-\end{proof}
-\section{Algebra}
-
+\section{The Stone-Weierstrass Theorem}
 \section{Contraction Mapping Theorem}
-\chapter{Calculus for $\R$ to $\R$ function}
+\chapter{Calculus}
 
-\section{Equivalent Definitions for Riemann Integral and Riemann Rearrangement Theorem}
+\section{Equivalent Definitions for Riemann Integral}
 \begin{mdframed}
 In this section, we will give a principal Theorem (\myref{Theorem}{1}) that can serve as a lemma to prove the equivalency of multiple different definitions of Riemann integral on a compact interval. With this approach, we shall diminish the trouble of getting through miscellaneous minor definitions, where they are all equivalent, with only the difference of taking different tags and partitions of certain pattern, which solely serve as a pedagogical tool to give students a concrete idea of integration.\\
 
@@ -931,7 +887,7 @@ Because $\norm{P}\leq C=\min_{j \in J} \Delta x_j$, we know for each distinct $i
 \end{align}
 Combining  \myref{Equation}{e2}, \myref{Equation}{e3} and \myref{Equation}{e4}, we now see 
 \begin{align*}
-U(P,f)-L(P,f) \leq \epsilon \vdone
+U(P,f)-L(P,f) <\epsilon \vdone
 \end{align*}
 \end{proof}
 \begin{mdframed}
@@ -1233,364 +1189,6 @@ Getting back to \myref{Equation}{3.13}, by \myref{Equation}{3.12}, we now see
 \end{align*}
 which finish the proof.
 \end{proof}
-\section{The Stone-Weierstrass Theorem}
-\begin{theorem}
-\label{Bernoulli's Inequality}
-\textbf{(Bernoulli's Inequality)} Given $r,x \in\R$, suppose 
-\begin{enumerate}[label=(\alph*)]
-  \item $r\geq 1$ 
-  \item $x\geq -1$
-\end{enumerate}
-Then
-\begin{align*}
-  (1+x)^r\geq 1+rx
-\end{align*}
-\end{theorem}
-\begin{proof}
-Fix $r\geq 1$. We wish 
-\begin{align*}
-\vi{\text{ to prove }(1+x)^r\geq 1+rx\text{ for all  }x \geq -1}
-\end{align*}
-Define $f:[-1,\infty)\rightarrow \R$ by 
- \begin{align}
-\label{Bere1}
-f(x)=(1+x)^r-(1+rx)
-\end{align}
-We reduced the problem into  
-\begin{align*}
-\vi{\text{ proving }f(x)\geq 0\text{ for all } x\geq -1}
-\end{align*}
-Because $r\geq 1$ by premise, by definition of $f(x)$  (\myref{Equation}{Bere1}), we see that 
-\begin{align*}
-f(0)=0\text{, and }f(-1)=r-1\geq 0
-\end{align*}
-Notice that by definition of $f$  (\myref{Equation}{Bere1}),  $f(x)$ is clearly differentiable on $(-1,\infty)$.\\
-
-Then, by MVT (\myref{Theorem}{MVT}), to prove $f(x)\geq 0$ on $(-1,\infty)$, we only wish 
-\begin{align*}
-\vi{\text{ to prove }f'(x)\geq 0\text{ for all }x> 0\text{ and }f'(x)\leq 0\text{ for all $x \in (-1,0)$ }}
-\end{align*}
-Compute $f'$
- \begin{align*}
-f'(x)&=r(1+x)^{r-1}-r\\
-&=r\Big((1+x)^{r-1}-1 \Big)
-\end{align*}
-Because $r\geq 1$, we can deduce 
-\begin{align*}
-x>0 \implies (1+x)^{r-1}\geq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\geq 0
-\end{align*}
-and deduce 
-\begin{align*}
-x \in (-1,0) \implies 1+x \in (0,1) \implies (1+x)^{r-1}\leq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\leq  0
-\end{align*}
-$\vdone$
-\end{proof}
-\begin{theorem}
-\textbf{(The Stone-Weierstrass Theorem: Real Version)} Let $\mathcal{C}\big([a,b] \big)$ be the set of real continuous functions on $[a,b]$, and let $\R[x]\big|_{[a,b]}$ be the set of polynomials in $x$ with real coefficients on $[a,b]$. Then 
-\begin{align*}
-\text{ $\R[x]\big|_{[a,b]}$ is dense in $\Big(\mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty} \Big)$ }
-\end{align*}
-\end{theorem}
-\begin{proof*}
-WOLG, we can let $[a,b]=[0,1]$. The reason we can assume such is explained at last. Now, let $f:[0,1]\rightarrow \R$ be a continuous function. Fix $\epsilon $. We only wish 
-\begin{align*}
-\vi{\text{ to find $P \in \R[x]\big|_{[0,1]}$ such that $\norm{f-P}_{\infty}<\epsilon $}}
-\end{align*}
-Define $\tilde{f} \in \mathcal{C}\big([0,1] \big)$ by 
-\begin{align}
-  \label{tse1}
-\tilde{f}(x)=f(x)-f(0)-x \big[f(1)-f(0) \big] 
-\end{align}
-It is easy to check $\tilde{f}$ is continuous. We first prove that 
-\begin{align*}
-\blue{\big( \tilde{f}(x)-f(x)\big)\in \R[x]\big|_{[0,1]}  }
-\end{align*}
-By definition of $\tilde{f} $ (\myref{Equation}{tse1}), we see 
-\begin{align*}
-\tilde{f}(x)-f(x)=(f(0)-f(1))x- f(0)\in \R[x]\big|_{[0,1]}\bdone
-\end{align*}
-This reduce our problem into 
-\begin{align*}
-\vi{\text{ finding }P\in \R[x]\big|_{[0,1]}\text{ such that $\norm{\tilde{f}-P}_{\infty}<\epsilon $ }}
-\end{align*}
-Notice that by definition of $\tilde{f}$ (\myref{Equation}{tse1}), we have 
-\begin{align*}
-\tilde{f}(0)=0=\tilde{f}(1) 
-\end{align*}
-Then, we can expand the definition of $\tilde{f} $  by
-\begin{align}
-\label{tse2}  
-\tilde{f}(x)=\begin{cases}
-  \tilde{f} (x)& \text{ if $x\in [0,1]$ }\\
-  0& \text{ if $x \not \in [0,1]$ }
-\end{cases}
-\end{align}
-This makes $\tilde{f}$ uniformly continuous on $\R$, since  $\tilde{f}$ is uniformly continuous on $[0,1]$ and $[0,1]^c$. Now, for each $n\inn$, define $Q_n \in \R[x]$ by 
-\begin{align}
-\label{tse3}
-Q_n=c_n(1-x^2)^n\text{ where $c_n$ is chosen to satisfy }\int_{-1}^1 Q_n(x)dx=1
-\end{align}
-Define $P_n:[0,1]\rightarrow \R$ by 
-\begin{align*}
-P_n(x)=\int_{-1}^1 \tilde{f} (x+t)Q_n(t)dt
-\end{align*}
-We now prove 
-\begin{align*}
-\olive{P_n \in \R[x]\big|_{[0,1]}}
-\end{align*}
-Because $\tilde{f}(x)=0$ for all $x \not \in (0,1)$ by definition of $\tilde{f} $ (\myref{Equation}{tse2}), we see that 
-\begin{align}
-\label{tse4}
-P_n(x)=\int_{-x}^{1-x}\tilde{f}(x+t)Q_n(t)dt \text{ for all }x \in [0,1]
-\end{align}
-Fix $x \in [0,1]$. Now, by change of variable, we see 
-\begin{align*}
-P_n(x)=\int_{-x}^{1-x} \tilde{f}(x+t)Q_n(t)dt=\int_{0}^1 \tilde{f}(u)Q_n(u-x)du  
-\end{align*}
-Because $Q_n$ is a polynomial by definition (\myref{Equation}{tse3}), we can express $Q_n(u-x)$ by 
-\begin{align*}
-Q_n(u-x)=\sum_{k=0}^{m} a_k x^k\text{ for some $\set{a_0,\dots ,a_m}$ depending on $u$}
-\end{align*}
-Then we see 
-\begin{align*}
-  P_n(x)=\int_0^1 \tilde{f}(u)Q_n(u-x)du= \sum_{k=0}^m x^k \Big( 
-\int_0^1 \tilde{f}(u) a_kdu
-  \Big)  
-\end{align*}
-This shows that $P_n \inr[x]\big|_{[0,1]}$
-
-$\odone$\\
-
-
-Now, because $\tilde{f}$ is uniformly continuous on $\R$, we can fix $\delta<1$ such that 
-\begin{align}
-\label{tse5}
-\forall x,y \inr, \abso{x-y}<\delta \implies \abso{\tilde{f}(x)-\tilde{f}(y)  }<\frac{\epsilon}{2}
-\end{align}
-By definition of $\tilde{f}$ (\myref{Equation}{tse2}), we know $\tilde{f} $ is a bounded function. Then we can set $M$ by 
-\begin{align*}
-M=\sup_{x \inr} \abso{f(x)}
-\end{align*}
-Let $n$ satisfy 
- \begin{align}
-  \label{tse5}
-4M \sqrt{n} (1-\delta^2)^n < \frac{\epsilon}{2} 
-\end{align}
-Such $n$ exists, because  $\delta<1 \implies  \sqrt{n}(1-\delta^2)^n \to 0 $. We claim 
-\begin{align*}
-\vi{\text{ $P_n$ satisfy $\norm{\tilde{f}-P_n}_{\infty}<\epsilon $}}
-\end{align*}
-We first prove 
-\begin{align*}
-\blue{c_n< \sqrt{n} }
-\end{align*}
-By Bernoulli's Inequality (\myref{Theorem}{Bernoulli's Inequality}). Compute 
-\begin{align*}
-1=\int_{-1}^1 Q_n(x)dx&=  c_n\int_{-1}^1 (1-x^2)^n dx \\
-&=2c_n\int_0^1 (1-x^2)^n dx\\
-&\geq 2c_n\int_0^{\frac{1}{\sqrt{n} }}(1-x^2)^n dx\\
-&\geq 2c_n \int_0^{\frac{1}{\sqrt{n} }} 1-nx^2dx=c_n\big(\frac{4}{3\sqrt{n} } \big)> c_n (\frac{1}{\sqrt{n} })
-\end{align*}
-
-
-This implies 
-\begin{align*}
-\sqrt{n}>c_n \bdone
-\end{align*}
-Because $\sqrt{n}>c_n $, by definition of $Q_n$  (\myref{Equation}{tse3}), we have 
-\begin{align*}
-Q_n(x)<\sqrt{n}(1-x^2)^n \leq \sqrt{n}(1-\delta^2)^n \text{ for all $x$ such that  $\delta \leq \abso{x}\leq 1$ }
-\end{align*}
-Fix $x \in [0,1]$. Finally, because 
-\begin{enumerate}[label=(\alph*)]
-  \item $\int_{-1}^1 Q_n(x)dx=1$ by definition of  $Q_n$  (\myref{Equation}{tse3})
-  \item $Q_n(x)=c_n(1-x^2)^n\geq 0$ for all $x \in [-1,1]$ 
-  \item $\abso{\tilde{f}(x+t)-\tilde{f}(x)}<\frac{\epsilon}{2} $ for all $t$ such that $\abso{t}<\delta $, by definition of $\delta $ (\myref{Equation}{tse5})
-  \item $Q_n(x)\leq \sqrt{n}(1-\delta^2)^n $ for all $x$ such that  $\delta\leq \abso{x}\leq 1$
-  \item $4M\sqrt{n}(1-\delta^2)^n<\frac{\epsilon}{2} $ by definition of $n$  (\myref{Equation}{tse5})
-\end{enumerate}
-we have
-\begin{align*}
-\abso{P_n(x)-\tilde{f}(x)}&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)}\\
-&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)\int_{-1}^1 Q_n(t)dt }\\
-&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt -\int_{-1}^1 \tilde{f}(x)Q_n(t)dt}\\
-&=\abso{\int_{-1}^1 \big[\tilde{f}(x+t)-\tilde{f}(x)   \big]Q_n(t)dt}\\
-&\leq \int_{-1}^1 \abso{\big[ \tilde{f}(x+t)-\tilde{f}(x)\big]Q_n(t)}dt\\
-&=\int_{-1}^1 \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt\\
-&\leq \int_{-1}^{-\delta} 2MQ_n(t)dt +\int_{-\delta}^{\delta} \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt+\int_{\delta}^1 2M Q_n(t)dt\\
-&\leq 2M\Big(\int_{-1}^{-\delta}Q_n(t)dt+\int_{\delta}^1 Q_n(t)dt  \Big)+ \int_{-\delta}^\delta \big(\frac{\epsilon}{2} \big)Q_n(t)dt\\
-&\leq 4M(1-\delta) \sqrt{n}(1-\delta^2)^n+ \frac{\epsilon}{2} \\
-&\leq 4M\sqrt{n}(1-\delta^2)^n+\frac{\epsilon}{2} <\epsilon  
-\end{align*}
-Because $x$ is arbitrarily picked from  $[0,1]$, we now have $\norm{P_n-\tilde{f} }_{\infty}<\epsilon \vdone$
-
-
-
-
-
-
-\end{proof*}
-
-\section{Bounded Variation}
-\section{Computation for Riemann-Stieltjes Integral}
-\begin{theorem}
-\textbf{(Change of Variable)} Given two functions $g,\beta  :[A,B]\rightarrow \R$, a function $\phi: [A,B]\rightarrow [a,b]$ and two functions $f,\alpha :[a,b]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $g = f \circ  \phi $ for all $x \in [a,b]$
-  \item $\beta = \alpha  \circ \phi $ for all $x \in [a,b]$ 
-  \item $\alpha , \beta  $ increase respectively on $[a,b]$ and $[A,B]$ 
-  \item $\phi:[A,B]\rightarrow [a,b]$ is a homeomorphism 
-  \item $\int_a^b fd\alpha $ exist
-\end{enumerate}
-Then 
-\begin{align*}
-\int_A^B g d\beta  =\int_a^b fd\alpha \text{   (This implies $\int_A^B gd\beta $ exists)}
-\end{align*}
-\end{theorem}          
-\begin{proof}
-Fix $\epsilon $. We only wish 
-\begin{align*}
-  \vi{\text{ to find a partition $Q$ of  $[A,B]$ &such that $U(Q,g,\beta )-L(Q,g,\beta )<\epsilon  $  }}\\
-  \vi{\text{ and such that $\int_a^b fd\alpha \in \Big[L(Q,g,\beta ),U(Q,g,\beta ) \Big]$  }}
-\end{align*}
-Because $\int_a^b fd\alpha $ exists, we know 
-\begin{align}
-\label{CR1}
-\text{ there exists a partition $P$ of  $[a,b]$ such that }U(P,f,\alpha )-L(P,f,\alpha )<\epsilon 
-\end{align}
-where, of course, $\int_a^b fd\alpha  \in \Big[L(P,f,\alpha ),U(P,f,\alpha )\Big]$.\\
-
-Let $P=\set{a=x_0,x_1,\dots ,x_n=b}$. Because $\phi$ is a homeomorphism, we can let $\phi$ be strictly increasing WOLG.\\ 
-
-Define a partition $Q$ on  $[A,B]$ by 
-\begin{align*}
-Q=\phi^{-1}[P]=\set{A=\phi^{-1}(x_0),\phi^{-1}(x_1),\dots ,\phi^{-1}(x_n)=B}
-\end{align*}
-Now, because $\beta =\alpha \circ  \phi$ and $g=f\circ \phi$  for all $x\in [a,b]$ by premise, and because $\phi$ is a homeomorphism, we have 
-\begin{align}
-  U(Q,g,\beta )&=\sum_{k=1}^n \big[  \sup_{t \in [\phi^{-1}(x_{k-1}),\phi^{-1}(x_k)]} g(t)\big] \big[\beta (\phi^{-1}(x_{k})) - \beta  (\phi^{-1}(x_{k-1}))\big]\notag\\
-  &=\sum_{k=1}^n  \big[  \sup_{t \in [\phi^{-1}(x_{k-1}),\phi^{-1}(x_k)]} f \circ  \phi (t)\big] \big[\alpha \circ \phi  \big(\phi^{-1}(x_{k})\big) - \alpha \circ \phi \big(\phi^{-1}(x_{k-1})\big)\big]\notag\\
-  &=\sum_{k=1}^n \big[\sup_{t \in [x_{k-1},x_k]}f(t) \big] \big(\alpha (x_k)-\alpha (x_{k-1}) \big)=U(P,f,\alpha )
-\label{CR2}
-\end{align}
-Similarly, we can deduce $L(Q,g,\beta )=L(P,f,\alpha )$. Now, from \myref{Equation}{CR2} and by definition of $P$ (\myref{Equation}{CR1}), we see 
-\begin{align*}
-&U(Q,g,\beta )-L(Q,g,\beta )=U(P,f,\alpha )-L(P,f,\alpha )<\epsilon \\
-  \text{ and }&\int_a^b fd\alpha \in \Big[L(P,f,\alpha ),U(P,f,\alpha ) \Big]=\Big[ L(Q,g,\beta ),U(Q,g,\beta ) \Big]\vdone
-\end{align*}
-
-
-
-\end{proof}
-\begin{theorem}
-\textbf{(Reduction of Riemann-Stieltjes Integral: Part 1)} Given two functions $f,\alpha :[a,b]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\alpha $ increase on $[a,b]$ 
-  \item $\alpha $ is differentiable on $(a,b)$ 
-  \item $\lim_{x\to b^-}\frac{\alpha (x)-\alpha (b)}{x-b}$ exists and $\lim_{x\to a^+}\frac{\alpha (x)-\alpha (a)}{x-a}$ exists
-  \item $\alpha '$ is properly Riemann-Integrable on $[a,b]$  
-  \item $f$ is bounded on  $[a,b]$
-\end{enumerate}
-Then 
-\begin{align*}
-\int_a^b fd\alpha \text{ exists }\iff  \int_a^b f(x)\alpha '(x)dx\text{ exists and they equal to each other if exists}
-\end{align*}
-\end{theorem}
-\begin{proof}
-We wish to prove 
-\begin{align*}  \vi{\overline{\int_a^b}fd\alpha = \overline{\int_a^b} f(x)\alpha '(x)dx}
-\end{align*}
-Fix $\epsilon $. We reduce the problem into proving 
-\begin{align*}  \vi{\abso{\overline{\int_a^b}fd\alpha -\overline{\int_a^b}f(x)\alpha '(x)dx}<\epsilon }
-\end{align*}
-Then, because for all partition $P$ of  $[a,b]$, we have 
-\begin{align*}  &\abso{\overline{\int_a^b}fd\alpha - \overline{\int_a^b}f(x)\alpha '(x)dx}\\
-  &\leq \abso{\overline{\int_a^b} fd\alpha -U(P,f,\alpha )}-\Bigg|U(P,f,\alpha )-U(P,f\alpha' )\Bigg|-\abso{U(P,f\alpha' )- \overline{\int_a^b} f(x)\alpha '(x)dx}
-\end{align*}
-We only wish 
-\begin{align*}
-\vi{\text{  to find $P$ such that}}&\vi{\abso{\overline{\int_a^b}fd\alpha - U(P,f,\alpha )}<\frac{\epsilon}{3}}\\
-\vi{\text{ and }}&\vi{\Bigg|U(P,f,\alpha )-U(P,f\alpha' )\Bigg|<\frac{\epsilon}{3}\text{ and }\abso{\overline{\int_a^b}f(x)\alpha '(x)dx- U(P,f\alpha ')}<\frac{\epsilon}{3}}
-\end{align*} 
-Because $f$ is bounded on  $[a,b]$, we can let $M=\sup_{x \in [a,b]} \abso{f(x)}$. Because $\int_a^b \alpha' (x)dx$ exists, we can let $P$ satisfy 
- \begin{align}
-\label{CR3}
-U(P,\alpha ')-L(P,\alpha ')<\frac{\epsilon }{4M}
-\end{align}
-By definition of Riemann Upper sum, we can further refine $P$ to let $P$ satisfy 
-\begin{align*}
-\abso{\overline{\int_a^b}fd\alpha -U(P,f,\alpha )}<\frac{\epsilon}{3}\text{ and }\abso{\overline{\int_a^b}f(x)\alpha '(x)dx- U(P,f\alpha ')}<\frac{\epsilon}{3}
-\end{align*}
-It is clear that the statement concerning $P$  (\myref{Equation}{CR3}) remain valid after refinement of $P$. Fix such $P$. We now have reduced the problem into proving 
-\begin{align*}
-  \vi{\abso{U(P,f,\alpha )-U(P,f\alpha ')}<\frac{\epsilon}{3}}
-\end{align*}
-Express $P$ in the form $P=\set{a=x_0,x_1,\dots ,x_n=b}$. By MVT (\myref{Theorem}{MVT}), we know for all $k \in \set{1,\dots ,n}$ there exists $t_k \in [x_{k-1},x_k]$ such that
-\begin{align}
-\label{CR4}
-\Delta \alpha_k=  \alpha' (t_k)\Delta x_k
-\end{align}
-Then, because $U(P,\alpha ')-L(P,\alpha )'<\frac{\epsilon}{3M}$ (\myref{Equation}{CR3}), we now see 
-\begin{align}
-  \label{CR5}
-\sum_{k=1}^n \abso{\alpha '(s_k)-\alpha '(t_k)} \Delta x_k<\frac{\epsilon}{3M} \text{ if $s_k \in [x_{k-1},x_k]$ for all $k \in \set{1,\dots , n}$ }
-\end{align}
-Then from \myref{Equation}{CR4}, definition of $M$ and \myref{Equation}{CR5}, we have 
-\begin{align*}
-\abso{\sum_{k=1}^n f(s_k)\Delta \alpha_k - \sum_{k=1}^n f(s_k)\alpha '(s_k)\Delta x_k}&=\abso{\sum_{k=1}^n f(s_k)\big(\alpha '(s_k)-\alpha '(t_k) \big)\Delta x_k}\\
-&\leq \sum_{k=1}^n \abso{f(s_k)}\cdot \abso{\alpha '(s_k)-\alpha '(t_k)}\Delta x_k\\
-&\leq M \sum_{k=1}^n \abso{\alpha '(s_k)-\alpha '(t_k)}\Delta x_k \\
-&<\frac{\epsilon}{4}
-\end{align*}
-Then because $\sum_{k=1}^m f(s_k)\alpha '(s_k)\Delta x_k\leq  U(P,f\alpha ')$, we now have 
-\begin{align}
-\label{CR6}
-\sum_{k=1}^n f(s_k)\Delta \alpha_k < U(P,f\alpha ')+\frac{\epsilon}{4}
-\end{align}
-Because \myref{Equation}{CR6} hold true for all choices of  $s_k$, we have 
-\begin{align*}
-U(P,f,\alpha )<  U(P,f\alpha ')+\frac{\epsilon}{3}
-\end{align*}
-Similarly, we can deduce 
-\begin{align*}
-U(P,f\alpha ')<U(P,f,\alpha )+\frac{\epsilon}{3}\vdone
-\end{align*}
-\end{proof}
-\begin{theorem}
-\textbf{(Reduction of Riemann-Stieltjes Integral: Part 2)} Define $I:\R\rightarrow \R$ by 
-\begin{align*}
-I(x)=\begin{cases}
-  1& \text{ if $x>0$ }\\
-  0& \text{ if $x\leq 0$ }
-\end{cases}
-\end{align*}
-and suppose 
-\begin{enumerate}[label=(\alph*)]
-  \item $c_n\geq 0$ for all $n \inn$ 
-  \item $\sum c_n$ converge 
-  \item $\set{s_n}$ are a sequence of points in $(a,b)$
-  \item $f$ is continuous on $[a,b]$
-\end{enumerate}
-Then if we define 
-\begin{align*}
-\alpha (x)=\sum_{n=1}^\infty c_n I(x-s_n)
-\end{align*} 
-We have
-\begin{align*}
-\int_a^b fd\alpha = \sum_{n=1}^\infty c_nf(s_n)
-\end{align*}
-\end{theorem}
-\begin{proof}
-Fix $\epsilon $. We wish to prove 
-\begin{align*}
-\vi{\abso{\int_a^b fd\alpha -\sum_{n=1}^\infty c_n f(s_n)}}
-\end{align*}
-\end{proof}
-
-
-\section{Uniform Convergence on Differentiation and Integration}
-
-
 \section{IVT, EVT and MVT}
 \begin{mdframed}
   If one wish to understand most of the Theorems after this section, one must first know MVT, for what an important role it cast in the sections after. Logically prior to MVT is IVT. Yet, unlike MVT involve the intrinsic nature of field and limit structure of $\R$. IVT can be considered as purely topological in the sense that its proof can be stated almost in the language of topology. There are only two facts (the first are purely topological and the second is very close to purely topological) one need to know to prove IVT.\\
@@ -1811,6 +1409,156 @@ f(a)=G(b^-)\int_a^b \phi(t)dt\text{ and }f(b)=G(a^+)\int_a^b \phi(t)dt
 
 
 
+\section{Computation for Riemann-Stieltjes Integral}
+\begin{theorem}
+\label{CoV}
+\textbf{(Change of Variable)} Given two functions $g,\beta  :[A,B]\rightarrow \R$, a function $\phi: [A,B]\rightarrow [a,b]$ and two functions $f,\alpha :[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $g = f \circ  \phi $ for all $x \in [a,b]$
+  \item $\beta = \alpha  \circ \phi $ for all $x \in [a,b]$ 
+  \item $\alpha , \beta  $ increase respectively on $[a,b]$ and $[A,B]$ 
+  \item $\phi:[A,B]\rightarrow [a,b]$ is a homeomorphism 
+  \item $\int_a^b fd\alpha $ exist
+\end{enumerate}
+Then 
+\begin{align*}
+\int_A^B g d\beta  =\int_a^b fd\alpha \text{   (This implies $\int_A^B gd\beta $ exists)}
+\end{align*}
+\end{theorem}          
+\begin{proof}
+Fix $\epsilon $. We only wish 
+\begin{align*}
+  \vi{\text{ to find a partition $Q$ of  $[A,B]$ &such that $U(Q,g,\beta )-L(Q,g,\beta )<\epsilon  $  }}\\
+  \vi{\text{ and such that $\int_a^b fd\alpha \in \Big[L(Q,g,\beta ),U(Q,g,\beta ) \Big]$  }}
+\end{align*}
+Because $\int_a^b fd\alpha $ exists, we know 
+\begin{align}
+\label{CR1}
+\text{ there exists a partition $P$ of  $[a,b]$ such that }U(P,f,\alpha )-L(P,f,\alpha )<\epsilon 
+\end{align}
+where, of course, $\int_a^b fd\alpha  \in \Big[L(P,f,\alpha ),U(P,f,\alpha )\Big]$.\\
+
+Let $P=\set{a=x_0,x_1,\dots ,x_n=b}$. Because $\phi$ is a homeomorphism, we can let $\phi$ be strictly increasing WOLG.\\ 
+
+Define a partition $Q$ on  $[A,B]$ by 
+\begin{align*}
+Q=\phi^{-1}[P]=\set{A=\phi^{-1}(x_0),\phi^{-1}(x_1),\dots ,\phi^{-1}(x_n)=B}
+\end{align*}
+Now, because $\beta =\alpha \circ  \phi$ and $g=f\circ \phi$  for all $x\in [a,b]$ by premise, and because $\phi$ is a homeomorphism, we have 
+\begin{align}
+  U(Q,g,\beta )&=\sum_{k=1}^n \big[  \sup_{t \in [\phi^{-1}(x_{k-1}),\phi^{-1}(x_k)]} g(t)\big] \big[\beta (\phi^{-1}(x_{k})) - \beta  (\phi^{-1}(x_{k-1}))\big]\notag\\
+  &=\sum_{k=1}^n  \big[  \sup_{t \in [\phi^{-1}(x_{k-1}),\phi^{-1}(x_k)]} f \circ  \phi (t)\big] \big[\alpha \circ \phi  \big(\phi^{-1}(x_{k})\big) - \alpha \circ \phi \big(\phi^{-1}(x_{k-1})\big)\big]\notag\\
+  &=\sum_{k=1}^n \big[\sup_{t \in [x_{k-1},x_k]}f(t) \big] \big(\alpha (x_k)-\alpha (x_{k-1}) \big)=U(P,f,\alpha )
+\label{CR2}
+\end{align}
+Similarly, we can deduce $L(Q,g,\beta )=L(P,f,\alpha )$. Now, from \myref{Equation}{CR2} and by definition of $P$ (\myref{Equation}{CR1}), we see 
+\begin{align*}
+&U(Q,g,\beta )-L(Q,g,\beta )=U(P,f,\alpha )-L(P,f,\alpha )<\epsilon \\
+  \text{ and }&\int_a^b fd\alpha \in \Big[L(P,f,\alpha ),U(P,f,\alpha ) \Big]=\Big[ L(Q,g,\beta ),U(Q,g,\beta ) \Big]\vdone
+\end{align*}
+
+
+
+\end{proof}
+\begin{theorem}
+\label{RRSI}
+\textbf{(Reduction of Riemann-Stieltjes Integral: Part 1)} Given two functions $f,\alpha :[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ increase on $[a,b]$ 
+  \item $\alpha $ is differentiable on $(a,b)$ 
+  \item $\lim_{x\to b^-}\frac{\alpha (x)-\alpha (b)}{x-b}$ exists and $\lim_{x\to a^+}\frac{\alpha (x)-\alpha (a)}{x-a}$ exists
+  \item $\alpha '$ is properly Riemann-Integrable on $[a,b]$  
+  \item $f$ is bounded on  $[a,b]$
+\end{enumerate}
+Then 
+\begin{align*}
+\int_a^b fd\alpha \text{ exists }\iff  \int_a^b f(x)\alpha '(x)dx\text{ exists and they equal to each other if exists}
+\end{align*}
+\end{theorem}
+\begin{proof}
+We wish to prove 
+\begin{align*}  \vi{\overline{\int_a^b}fd\alpha = \overline{\int_a^b} f(x)\alpha '(x)dx}
+\end{align*}
+Fix $\epsilon $. We reduce the problem into proving 
+\begin{align*}  \vi{\abso{\overline{\int_a^b}fd\alpha -\overline{\int_a^b}f(x)\alpha '(x)dx}<\epsilon }
+\end{align*}
+Then, because for all partition $P$ of  $[a,b]$, we have 
+\begin{align*}  &\abso{\overline{\int_a^b}fd\alpha - \overline{\int_a^b}f(x)\alpha '(x)dx}\\
+  &\leq \abso{\overline{\int_a^b} fd\alpha -U(P,f,\alpha )}-\Bigg|U(P,f,\alpha )-U(P,f\alpha' )\Bigg|-\abso{U(P,f\alpha' )- \overline{\int_a^b} f(x)\alpha '(x)dx}
+\end{align*}
+We only wish 
+\begin{align*}
+\vi{\text{  to find $P$ such that}}&\vi{\abso{\overline{\int_a^b}fd\alpha - U(P,f,\alpha )}<\frac{\epsilon}{3}}\\
+\vi{\text{ and }}&\vi{\Bigg|U(P,f,\alpha )-U(P,f\alpha' )\Bigg|<\frac{\epsilon}{3}\text{ and }\abso{\overline{\int_a^b}f(x)\alpha '(x)dx- U(P,f\alpha ')}<\frac{\epsilon}{3}}
+\end{align*} 
+Because $f$ is bounded on  $[a,b]$, we can let $M=\sup_{x \in [a,b]} \abso{f(x)}$. Because $\int_a^b \alpha' (x)dx$ exists, we can let $P$ satisfy 
+ \begin{align}
+\label{CR3}
+U(P,\alpha ')-L(P,\alpha ')<\frac{\epsilon }{4M}
+\end{align}
+By definition of Riemann Upper sum, we can further refine $P$ to let $P$ satisfy 
+\begin{align*}
+\abso{\overline{\int_a^b}fd\alpha -U(P,f,\alpha )}<\frac{\epsilon}{3}\text{ and }\abso{\overline{\int_a^b}f(x)\alpha '(x)dx- U(P,f\alpha ')}<\frac{\epsilon}{3}
+\end{align*}
+It is clear that the statement concerning $P$  (\myref{Equation}{CR3}) remain valid after refinement of $P$. Fix such $P$. We now have reduced the problem into proving 
+\begin{align*}
+  \vi{\abso{U(P,f,\alpha )-U(P,f\alpha ')}<\frac{\epsilon}{3}}
+\end{align*}
+Express $P$ in the form $P=\set{a=x_0,x_1,\dots ,x_n=b}$. By MVT (\myref{Theorem}{MVT}), we know for all $k \in \set{1,\dots ,n}$ there exists $t_k \in [x_{k-1},x_k]$ such that
+\begin{align}
+\label{CR4}
+\Delta \alpha_k=  \alpha' (t_k)\Delta x_k
+\end{align}
+Then, because $U(P,\alpha ')-L(P,\alpha )'<\frac{\epsilon}{3M}$ (\myref{Equation}{CR3}), we now see 
+\begin{align}
+  \label{CR5}
+\sum_{k=1}^n \abso{\alpha '(s_k)-\alpha '(t_k)} \Delta x_k<\frac{\epsilon}{3M} \text{ if $s_k \in [x_{k-1},x_k]$ for all $k \in \set{1,\dots , n}$ }
+\end{align}
+Then from \myref{Equation}{CR4}, definition of $M$ and \myref{Equation}{CR5}, we have 
+\begin{align*}
+\abso{\sum_{k=1}^n f(s_k)\Delta \alpha_k - \sum_{k=1}^n f(s_k)\alpha '(s_k)\Delta x_k}&=\abso{\sum_{k=1}^n f(s_k)\big(\alpha '(s_k)-\alpha '(t_k) \big)\Delta x_k}\\
+&\leq \sum_{k=1}^n \abso{f(s_k)}\cdot \abso{\alpha '(s_k)-\alpha '(t_k)}\Delta x_k\\
+&\leq M \sum_{k=1}^n \abso{\alpha '(s_k)-\alpha '(t_k)}\Delta x_k \\
+&<\frac{\epsilon}{4}
+\end{align*}
+Then because $\sum_{k=1}^m f(s_k)\alpha '(s_k)\Delta x_k\leq  U(P,f\alpha ')$, we now have 
+\begin{align}
+\label{CR6}
+\sum_{k=1}^n f(s_k)\Delta \alpha_k < U(P,f\alpha ')+\frac{\epsilon}{4}
+\end{align}
+Because \myref{Equation}{CR6} hold true for all choices of  $s_k$, we have 
+\begin{align*}
+U(P,f,\alpha )<  U(P,f\alpha ')+\frac{\epsilon}{3}
+\end{align*}
+Similarly, we can deduce 
+\begin{align*}
+U(P,f\alpha ')<U(P,f,\alpha )+\frac{\epsilon}{3}\vdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Substitution Law)} Given a function $\phi: [a,b]\rightarrow [A,B]$ and a function $f:[A,B]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\phi$ is a homoeomorphism. 
+  \item $\phi$ is differentiable on $(a,b)$ 
+  \item $\int_a^b \phi' (x)dx$ exists.  
+  \item $f$ is integrable on  $[A,B]$
+\end{enumerate}
+We have 
+\begin{align*}
+\int_a^b f\big(\phi (x) \big)\phi' (x)dx=\int_A^B f(u)du
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $f\circ \phi$ and  $\phi'$ is integrable on $[a,b]$, by reduction of Riemann-Stieljes Integral (\myref{Tehroem}{RRSI}), we know 
+\begin{align*}
+\int_a^b \big(f\circ \phi)(x)  \phi'(x)dx= \int_a^b \big(f\circ \phi \big)(x)d \phi
+\end{align*}
+Let $\alpha (x)=x$. Let $\beta = \alpha \circ  \phi$. Define $g=f \circ  \phi $. By Change of Variable (\myref{Theorem}{CoV}), we now have  
+\begin{align*}
+\int_a^b \big(f \circ  \phi \big)(x)d \phi =\int_a^b g(x)d\beta = \int_A^B f(x)dx
+\end{align*}
+\end{proof}
+
 
 
 
@@ -1943,19 +1691,280 @@ Notice that by Chain Rule,
 \end{align*}
 Then the result follows from Part 2 of Fundamental Theorem of Calculus (\myref{Theorem}{FTC2}). $\vdone$
 \end{proof}
-\section{Uniform Convergence to Integral and Derivative}
-\label{16}
-\section{Taylor's Theorem}
-\label{8}
+\section{The Stone-Weierstrass Theorem}
+\begin{theorem}
+\label{Bernoulli's Inequality}
+\textbf{(Bernoulli's Inequality)} Given $r,x \in\R$, suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $r\geq 1$ 
+  \item $x\geq -1$
+\end{enumerate}
+Then
+\begin{align*}
+  (1+x)^r\geq 1+rx
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $r\geq 1$. We wish 
+\begin{align*}
+\vi{\text{ to prove }(1+x)^r\geq 1+rx\text{ for all  }x \geq -1}
+\end{align*}
+Define $f:[-1,\infty)\rightarrow \R$ by 
+ \begin{align}
+\label{Bere1}
+f(x)=(1+x)^r-(1+rx)
+\end{align}
+We reduced the problem into  
+\begin{align*}
+\vi{\text{ proving }f(x)\geq 0\text{ for all } x\geq -1}
+\end{align*}
+Because $r\geq 1$ by premise, by definition of $f(x)$  (\myref{Equation}{Bere1}), we see that 
+\begin{align*}
+f(0)=0\text{, and }f(-1)=r-1\geq 0
+\end{align*}
+Notice that by definition of $f$  (\myref{Equation}{Bere1}),  $f(x)$ is clearly differentiable on $(-1,\infty)$.\\
+
+Then, by MVT (\myref{Theorem}{MVT}), to prove $f(x)\geq 0$ on $(-1,\infty)$, we only wish 
+\begin{align*}
+\vi{\text{ to prove }f'(x)\geq 0\text{ for all }x> 0\text{ and }f'(x)\leq 0\text{ for all $x \in (-1,0)$ }}
+\end{align*}
+Compute $f'$
+ \begin{align*}
+f'(x)&=r(1+x)^{r-1}-r\\
+&=r\Big((1+x)^{r-1}-1 \Big)
+\end{align*}
+Because $r\geq 1$, we can deduce 
+\begin{align*}
+x>0 \implies (1+x)^{r-1}\geq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\geq 0
+\end{align*}
+and deduce 
+\begin{align*}
+x \in (-1,0) \implies 1+x \in (0,1) \implies (1+x)^{r-1}\leq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\leq  0
+\end{align*}
+$\vdone$
+\end{proof}
+\begin{theorem}
+\textbf{(The Stone-Weierstrass Theorem: Real Version)} Let $\mathcal{C}\big([a,b] \big)$ be the set of real continuous functions on $[a,b]$, and let $\R[x]\big|_{[a,b]}$ be the set of polynomials in $x$ with real coefficients on $[a,b]$. Then 
+\begin{align*}
+\text{ $\R[x]\big|_{[a,b]}$ is dense in $\Big(\mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty} \Big)$ }
+\end{align*}
+\end{theorem}
+\begin{proof*}
+WOLG, we can let $[a,b]=[0,1]$. The reason we can assume such is explained at last. Now, let $f:[0,1]\rightarrow \R$ be a continuous function. Fix $\epsilon $. We only wish 
+\begin{align*}
+\vi{\text{ to find $P \in \R[x]\big|_{[0,1]}$ such that $\norm{f-P}_{\infty}<\epsilon $}}
+\end{align*}
+Define $\tilde{f} \in \mathcal{C}\big([0,1] \big)$ by 
+\begin{align}
+  \label{tse1}
+\tilde{f}(x)=f(x)-f(0)-x \big[f(1)-f(0) \big] 
+\end{align}
+It is easy to check $\tilde{f}$ is continuous. We first prove that 
+\begin{align*}
+\blue{\big( \tilde{f}(x)-f(x)\big)\in \R[x]\big|_{[0,1]}  }
+\end{align*}
+By definition of $\tilde{f} $ (\myref{Equation}{tse1}), we see 
+\begin{align*}
+\tilde{f}(x)-f(x)=(f(0)-f(1))x- f(0)\in \R[x]\big|_{[0,1]}\bdone
+\end{align*}
+This reduce our problem into 
+\begin{align*}
+\vi{\text{ finding }P\in \R[x]\big|_{[0,1]}\text{ such that $\norm{\tilde{f}-P}_{\infty}<\epsilon $ }}
+\end{align*}
+Notice that by definition of $\tilde{f}$ (\myref{Equation}{tse1}), we have 
+\begin{align*}
+\tilde{f}(0)=0=\tilde{f}(1) 
+\end{align*}
+Then, we can expand the definition of $\tilde{f} $  by
+\begin{align}
+\label{tse2}  
+\tilde{f}(x)=\begin{cases}
+  \tilde{f} (x)& \text{ if $x\in [0,1]$ }\\
+  0& \text{ if $x \not \in [0,1]$ }
+\end{cases}
+\end{align}
+This makes $\tilde{f}$ uniformly continuous on $\R$, since  $\tilde{f}$ is uniformly continuous on $[0,1]$ and $[0,1]^c$. Now, for each $n\inn$, define $Q_n \in \R[x]$ by 
+\begin{align}
+\label{tse3}
+Q_n=c_n(1-x^2)^n\text{ where $c_n$ is chosen to satisfy }\int_{-1}^1 Q_n(x)dx=1
+\end{align}
+Define $P_n:[0,1]\rightarrow \R$ by 
+\begin{align*}
+P_n(x)=\int_{-1}^1 \tilde{f} (x+t)Q_n(t)dt
+\end{align*}
+We now prove 
+\begin{align*}
+\olive{P_n \in \R[x]\big|_{[0,1]}}
+\end{align*}
+Because $\tilde{f}(x)=0$ for all $x \not \in (0,1)$ by definition of $\tilde{f} $ (\myref{Equation}{tse2}), we see that 
+\begin{align}
+\label{tse4}
+P_n(x)=\int_{-x}^{1-x}\tilde{f}(x+t)Q_n(t)dt \text{ for all }x \in [0,1]
+\end{align}
+Fix $x \in [0,1]$. Now, by change of variable, we see 
+\begin{align*}
+P_n(x)=\int_{-x}^{1-x} \tilde{f}(x+t)Q_n(t)dt=\int_{0}^1 \tilde{f}(u)Q_n(u-x)du  
+\end{align*}
+Because $Q_n$ is a polynomial by definition (\myref{Equation}{tse3}), we can express $Q_n(u-x)$ by 
+\begin{align*}
+Q_n(u-x)=\sum_{k=0}^{m} a_k x^k\text{ for some $\set{a_0,\dots ,a_m}$ depending on $u$}
+\end{align*}
+Then we see 
+\begin{align*}
+  P_n(x)=\int_0^1 \tilde{f}(u)Q_n(u-x)du= \sum_{k=0}^m x^k \Big( 
+\int_0^1 \tilde{f}(u) a_kdu
+  \Big)  
+\end{align*}
+This shows that $P_n \inr[x]\big|_{[0,1]}$
+
+$\odone$\\
+
+
+Now, because $\tilde{f}$ is uniformly continuous on $\R$, we can fix $\delta<1$ such that 
+\begin{align}
+\label{tse5}
+\forall x,y \inr, \abso{x-y}<\delta \implies \abso{\tilde{f}(x)-\tilde{f}(y)  }<\frac{\epsilon}{2}
+\end{align}
+By definition of $\tilde{f}$ (\myref{Equation}{tse2}), we know $\tilde{f} $ is a bounded function. Then we can set $M$ by 
+\begin{align*}
+M=\sup_{x \inr} \abso{f(x)}
+\end{align*}
+Let $n$ satisfy 
+ \begin{align}
+  \label{tse5}
+4M \sqrt{n} (1-\delta^2)^n < \frac{\epsilon}{2} 
+\end{align}
+Such $n$ exists, because  $\delta<1 \implies  \sqrt{n}(1-\delta^2)^n \to 0 $. We claim 
+\begin{align*}
+\vi{\text{ $P_n$ satisfy $\norm{\tilde{f}-P_n}_{\infty}<\epsilon $}}
+\end{align*}
+We first prove 
+\begin{align*}
+\blue{c_n< \sqrt{n} }
+\end{align*}
+By Bernoulli's Inequality (\myref{Theorem}{Bernoulli's Inequality}). Compute 
+\begin{align*}
+1=\int_{-1}^1 Q_n(x)dx&=  c_n\int_{-1}^1 (1-x^2)^n dx \\
+&=2c_n\int_0^1 (1-x^2)^n dx\\
+&\geq 2c_n\int_0^{\frac{1}{\sqrt{n} }}(1-x^2)^n dx\\
+&\geq 2c_n \int_0^{\frac{1}{\sqrt{n} }} 1-nx^2dx=c_n\big(\frac{4}{3\sqrt{n} } \big)> c_n (\frac{1}{\sqrt{n} })
+\end{align*}
+
+
+This implies 
+\begin{align*}
+\sqrt{n}>c_n \bdone
+\end{align*}
+Because $\sqrt{n}>c_n $, by definition of $Q_n$  (\myref{Equation}{tse3}), we have 
+\begin{align*}
+Q_n(x)<\sqrt{n}(1-x^2)^n \leq \sqrt{n}(1-\delta^2)^n \text{ for all $x$ such that  $\delta \leq \abso{x}\leq 1$ }
+\end{align*}
+Fix $x \in [0,1]$. Finally, because 
+\begin{enumerate}[label=(\alph*)]
+  \item $\int_{-1}^1 Q_n(x)dx=1$ by definition of  $Q_n$  (\myref{Equation}{tse3})
+  \item $Q_n(x)=c_n(1-x^2)^n\geq 0$ for all $x \in [-1,1]$ 
+  \item $\abso{\tilde{f}(x+t)-\tilde{f}(x)}<\frac{\epsilon}{2} $ for all $t$ such that $\abso{t}<\delta $, by definition of $\delta $ (\myref{Equation}{tse5})
+  \item $Q_n(x)\leq \sqrt{n}(1-\delta^2)^n $ for all $x$ such that  $\delta\leq \abso{x}\leq 1$
+  \item $4M\sqrt{n}(1-\delta^2)^n<\frac{\epsilon}{2} $ by definition of $n$  (\myref{Equation}{tse5})
+\end{enumerate}
+we have
+\begin{align*}
+\abso{P_n(x)-\tilde{f}(x)}&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)}\\
+&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)\int_{-1}^1 Q_n(t)dt }\\
+&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt -\int_{-1}^1 \tilde{f}(x)Q_n(t)dt}\\
+&=\abso{\int_{-1}^1 \big[\tilde{f}(x+t)-\tilde{f}(x)   \big]Q_n(t)dt}\\
+&\leq \int_{-1}^1 \abso{\big[ \tilde{f}(x+t)-\tilde{f}(x)\big]Q_n(t)}dt\\
+&=\int_{-1}^1 \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt\\
+&\leq \int_{-1}^{-\delta} 2MQ_n(t)dt +\int_{-\delta}^{\delta} \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt+\int_{\delta}^1 2M Q_n(t)dt\\
+&\leq 2M\Big(\int_{-1}^{-\delta}Q_n(t)dt+\int_{\delta}^1 Q_n(t)dt  \Big)+ \int_{-\delta}^\delta \big(\frac{\epsilon}{2} \big)Q_n(t)dt\\
+&\leq 4M(1-\delta) \sqrt{n}(1-\delta^2)^n+ \frac{\epsilon}{2} \\
+&\leq 4M\sqrt{n}(1-\delta^2)^n+\frac{\epsilon}{2} <\epsilon  
+\end{align*}
+Because $x$ is arbitrarily picked from  $[0,1]$, we now have $\norm{P_n-\tilde{f} }_{\infty}<\epsilon \vdone$
+
+
+
+
+
+
+\end{proof}
+\section{Closed under Uniform Convergence}
+\begin{theorem}
+\textbf{(Riemann-Integrable Functions are Closed under Uniform Convergence)} Given a function $\alpha :[a,b],\rightarrow \R$ and a sequence of functions $f_n:[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ increase on $[a,b]$ 
+  \item $\int_a^b f_nd\alpha $ exists for all $n\inn$ 
+  \item $f_n \to f $ uniformly on $[a,b]$ 
+\end{enumerate}
+Then 
+\begin{align*}
+  \lim_{n\to \infty}\int_a^n f_n d\alpha \text{ exists and }\int_a^b fd\alpha =\lim_{n\to \infty}\int_a^b f_nd\alpha 
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+\vi{\int_a^b fd\alpha \text{ exists }}
+\end{align*}
+Fix $\epsilon $. We wish to prove 
+\begin{align*}
+\vi{\overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha < \epsilon }
+\end{align*}
+Let $\epsilon _n = \norm{f_n-f}_\infty$. Because $f_n \to f$ uniformly, we know 
+\begin{align*}
+\text{ there exists $n\inn$ such that $\epsilon _n=\norm{f_n-f}_\infty < \frac{\epsilon }{2\big[\alpha (b)-\alpha (a) \big]}$ }
+\end{align*}
+Because $\alpha $ increase, by definition of $\epsilon _n$, we see 
+\begin{align*}
+\int_a^b (f_n-\epsilon _n)d\alpha \leq \underline{\int_a^b}fd\alpha \leq \overline{\int_a^b}fd\alpha \leq \int_a^b (f_n+\epsilon_n) d\alpha  
+\end{align*}
+Because $\epsilon _n <\frac{\epsilon}{2\big[\alpha (b)-\alpha (a) \big]}$, we now see 
+\begin{align*}
+  \overline{\int_a^b}fd\alpha -\underline{\int_a^b}fd\alpha &\leq \int_a^b (f_n+\epsilon _n)d\alpha -\int_a^b (f_n-\epsilon _n)d\alpha \\
+&=\int_a^b (2\epsilon _n)d\alpha<2 \epsilon_n \cdot \big[\alpha (b)-\alpha (a) \big] = \epsilon \vdone
+\end{align*}
+We now prove 
+\begin{align*}
+  \blue{\int_a^b f_n d\alpha \to \int_a^b fd\alpha \text{ as $n \to \infty $ }}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\blue{\text{ to find $N$ such that }\forall n>N,\abso{\int_a^b f_nd\alpha-\int_a^b fd\alpha }<\epsilon  }
+\end{align*}
+Recall the definition $\epsilon_n= \norm{f_n-f}_\infty$. Because $\epsilon _n \to 0$, we know 
+\begin{align}
+\label{CuU1}
+\text{ there exists $N$ such that }\forall n>N, \epsilon_n < \frac{\epsilon }{\alpha (b)-\alpha (a)}
+\end{align}
+We claim 
+\begin{align*}
+\blue{\text{ such $N$ works }}
+\end{align*}
+Fix $n>N$. From \myref{Equation}{CuU1}, we see
+ \begin{align*}
+  \abso{\int_a^b f_nd\alpha -\int_a^b fd\alpha }&=\abso{\int_a^b (f_n-f)d\alpha }\\
+  &\leq \int_a^b \abso{f_n-f}d\alpha \\
+  &\leq \int_a^b \epsilon_n d\alpha =\epsilon_n \big[\alpha (b)-\alpha (a) \big]<\epsilon \bdone
+\end{align*}
+
+
+\end{proof}
 \begin{mdframed}
-In this section, we give  
+
 \end{mdframed}
 \begin{theorem}
-\textbf{()}
+\textbf{(Uniform convergence and differentiation)} Given a sequence of function $f_n:I \rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $I\subseteq \R$ is bounded 
+  \item $f_n(x_0)$ converge as $n \to \infty$ for some $x_0 \in I$
+  \item $f_n$ are differentiable on  $I^\circ $
+  \item $f'_n$ converge uniformly on $I^\circ $
+\end{enumerate}
+Then there exists a function $f:I^\circ \rightarrow \R$ such that 
+\begin{align*}
+\text{} f_n\to f\text{ uniformly and $f'(x)=\lim_{n\to \infty}f'_n(x)$ for all $x \in I^\circ $}
+\end{align*}
 \end{theorem}
 
-\section{Lebesgue-Vitali Theorem}
-\label{s1}
-\chapter{Multi-Variable Calculus}
-\section{}
+\section{Taylor's Theorem}
 \end{document}

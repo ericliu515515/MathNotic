@@ -1,0 +1,456 @@
+\documentclass{report}
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\title{\Huge{NCKU 112.2}\\
+Geometry 1}
+\author{\huge{Eric Liu}}
+\date{}
+\begin{document}
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+\chapter{HW}
+\section{HW1}
+\begin{mdframed}
+  In this section, by a \textbf{curve} in $\R^n$, we mean a function form an open interval $I$ to $\R^n$.  We say a curve is \textbf{differentiable} if it is infinitely differentiable (smooth). That is, $\gamma ^{(n)}(t)$ exists for all $n\inn$ and for all $t \in I$. Clearly, for each differentiable curve $\gamma $, the function $\gamma^{(n)}:I\rightarrow \R$ (also a curve) must be continuous.  We say a differentiable curve $\gamma  :I\rightarrow \R^n$ is \textbf{regular} if $\gamma '(t)\neq 0$ for all $t  \in I$. We say a differentiable curve $\gamma :I\rightarrow \R^n$ is a \textbf{parametrized by arc-length} if $\abso{\gamma '(t)}=1$ for all $t \in I$.\\
+\end{mdframed}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{mdframed}
+\textbf{Trick to parametrize by arc-length}.\\
+
+Given a regular curve $\gamma :I\rightarrow \R^n$ and fix $t_0 \in I$. We use
+\begin{align*}
+  s(t)=\int_{t_0}^t \abso{\gamma  ' (x)}dx
+\end{align*}
+to define the arc-length of  $\gamma $ from $\gamma (t_0)$ to $\gamma (t)$. Because $\gamma $ is regular, by FTC, it is clear that $s$ is one-to-one.\\
+
+Let $t(s)$ be the inverse of $s$. Define 
+ \begin{align*}
+\beta (s)\triangleq \alpha (t(s))
+\end{align*}
+We have by Chain rule 
+\begin{align*}
+\beta '(s)&=t'(s)\alpha '(t(s))\\
+&=\frac{\alpha '(t(s))}{s'(t)}\\
+&=\frac{\alpha '(t(s))}{\abso{\alpha '(t(s))}}
+\end{align*}
+Now, $\beta $ is clearly a regular curve, and 
+\begin{align*}
+\int_{0}^x \abso{\beta '(s)}ds=x
+\end{align*}
+\end{mdframed} 
+\begin{mdframed}
+Now, suppose a curve $\gamma(s) $ is parametrized by arc-length. We see that for all $s \in I$ 
+\begin{align*}
+\frac{d}{ds} (\gamma '\cdot \gamma ')(s)=2(\gamma ''\cdot \gamma ')(s)
+\end{align*}
+Then because $\gamma '$ is constant $1$, this implies for all $s$ 
+\begin{align}
+\label{6}
+\gamma ''(s) \perp \gamma '(s)
+\end{align}
+This let us naturally define the \textbf{curvature} $\kappa$ of $\gamma $ by 
+\begin{align*}
+\kappa (s)=\abso{\gamma ''(s)}
+\end{align*}
+It is clear that if $\gamma $ is linear (a straight line), then the curvature $\kappa(s)$ is $0$ for all $s$. 
+\end{mdframed}
+\begin{mdframed}
+For a regular curve $\gamma $, we define its \textbf{unit tangent} by 
+\begin{align*}
+T(t)=\frac{\gamma '(t)}{\abso{\gamma '(t)}}
+\end{align*}
+and we define its \textbf{unit normal} by 
+\begin{align*}
+N(t)=\frac{T'(t)}{\abso{T'(t)}}
+\end{align*}
+and define its \textbf{binormal} vector by 
+\begin{align*}
+B(t)=T(t) \times N(t)
+\end{align*}
+Notice that we have $T(t)\perp N(t)$ from \myref{Equation}{6}. Fix $t_0$. We say 
+\begin{align*}
+\set{T(t),N(t),B(t)}\text{ form a \textbf{positively oriented orthonormal basis} of $\R^3$ }
+\end{align*}
+This basis in general is constantly changing, yet always form an orthonormal basis.\\
+
+In a geoemtric sense, we shall note that the curve $\gamma :I\rightarrow \R^3$ stay on a plane if and only if $B$ is a constant (does not change orientation).\\
+
+In the same spirit, $T'$ measure how curved a curve is.  (Notice that $\abso{T'}$ generally is not a constant unlike $\abso{T}$ and $\abso{N}$ ). Again, in the same spirit, $B'$ measure how fast $\gamma $ leave the plane (osculating plane) spanned by $T$ and $N$. 
+\end{mdframed}
+\begin{mdframed}
+Given two vectors $u,v \inr^n$, we use  \textbf{dot product} 
+\begin{align*}
+u\cdot v= u_1v_1+\cdots + u_nv_n
+\end{align*}
+to denote the Euclidean inner product, and we use \textbf{length} 
+\begin{align*}
+\abso{u}=\sqrt{\sum_{k=1}^n u_k^2} 
+\end{align*}
+to denote the Euclidean norm. Note that we clearly have 
+\begin{align*}
+\abso{u}=\sqrt{u\cdot u} 
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Differentiate the Dot Product)} Given two parametrized curves $u,v:(a,b)\rightarrow \R^n$, such that $u,v$ are differentiable at  $t \in (a,b)$. We have 
+\begin{align*}
+\frac{d}{dt}\big(u(t)\cdot v(t) \big)= u'(t)\cdot v(t)+u(t)\cdot v'(t)
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+\frac{d}{dt}\big(u(t)\cdot v(t) \big)&=\frac{d}{dt}\sum_{k=1}^n u_k(t)v_k(t)\\
+&=\sum_{k=1}^n \frac{d}{dt} u_k(t)v_k(t)\\
+&=\sum_{k=1}^n u_k'(t)v_k(t)+u_k(t)v_k'(t)\\
+&=\sum_{k=1}^n u_k'(t)v_k(t)+\sum_{k=1}^n u_k(t)v_k'(t)\\
+&=u'(t)\cdot v(t)+u(t)\cdot v'(t)
+\end{align*}
+\end{proof}
+\begin{mdframed}
+For the result above, sometimes we write 
+\begin{align*}
+  (u\cdot v)'=u'\cdot v+ u \cdot v'
+\end{align*}
+\end{mdframed}
+\begin{question}{1-2: 2}{}
+
+Let \(\alpha(t)\) be a parametrized curve which does not pass through the origin. If \(\alpha(t_0)\) is the point of the trace of \(\alpha\) closest to the origin and \(\alpha'(t_0) \neq 0\), show that the position vector \(\alpha(t_0)\) is orthogonal to \(\alpha'(t_0)\).
+\end{question}
+\begin{proof}
+Define $g:I\rightarrow \R$ by 
+\begin{align*}
+g(t)\triangleq \abso{\alpha (t)}^2=(\alpha \cdot \alpha )(t)
+\end{align*}
+Notice that 
+\begin{align*}
+g'(t)=(2\alpha '\cdot \alpha )(t)\text{ if exists }
+\end{align*}
+From premise, we know $g$ attains minimum at $t_0$. This tell us 
+\begin{align*}
+0=g'(t_0)=(2\alpha '\cdot \alpha )(t_0)
+\end{align*}
+Then, we can deduce 
+\begin{align*}
+\alpha '(t_0)\cdot \alpha (t_0)=0
+\end{align*}
+This implies $\alpha (t_0)\perp \alpha '(t_0)$. 
+\end{proof}
+\begin{question}{1-2: 5}{}
+
+Let \(\alpha : I \rightarrow \mathbb{R}^3\) be a parametrized curve, with \(\alpha''(t) \neq 0\) for all \(t \in I\). Show that \(|\alpha(t)|\) is a nonzero constant if and only if \(\alpha(t)\) is orthogonal to \(\alpha'(t)\) for all \(t \in I\).
+\end{question}
+\begin{proof}
+We wish to prove 
+\begin{align*}
+\exists \beta  \inr^*,  \forall t \in I, \abso{\alpha (t)}=\beta  \iff \forall t \in I , (\alpha \cdot \alpha ')(t)=0
+\end{align*}
+Define $g:I\rightarrow \R$ by 
+\begin{align*}
+g(t)\triangleq \abso{\alpha (t)}^2=(\alpha \cdot \alpha )(t)
+\end{align*}
+
+Notice that 
+\begin{align}
+\label{1.2.5.1}
+g'(t)=(2\alpha '\cdot \alpha )(t)
+\end{align}
+$(\longrightarrow)$\\
+
+From premise, $g$ is a constant on  $I$. This implies  $g'(t)=0$  for all $t \in I$. Then, from \myref{Equation}{1.2.5.1}, we see 
+\begin{align*}
+  (\alpha \cdot \alpha ')(t)=0\text{ for all $t \in I$ }
+\end{align*}
+$(\longleftarrow)$\\
+
+Again, from  \myref{Equation}{1.2.5.1}, we deduce 
+\begin{align*}
+\forall t \in I , (\alpha \cdot \alpha ')(t)=0 \implies \forall t \in I, g'(t)=0
+\end{align*}
+
+This implies $g$ is a constant, which implies $\abso{\alpha }$ is a constant, that is 
+\begin{align*}
+\exists \beta \inr, \abso{\alpha (t)}=\beta 
+\end{align*}
+Lastly, we have to show 
+\begin{align*}
+\vi{\text{ $\beta \neq 0$ }}
+\end{align*}
+\As{$\beta =0$}. Then, we see $\alpha (t)=0$ for all $t \in I$. This implies $\alpha ''(t)=0 $ for all $t \in I$, which \CaC to the premise. $\vdone$
+\end{proof}
+\begin{question}{1-3:2}{}
+\includegraphics[height=10cm,width=18cm]{1.png}
+\end{question}
+\begin{proof}
+The solution of the question \textbf{a} is 
+\begin{align*}
+\alpha (t)=(t-\sin t,1-\cos t)
+\end{align*}
+Compute 
+\begin{align*}
+\alpha'(t)=(1-\cos t,\sin t)
+\end{align*}
+and compute
+\begin{align*}
+\abso{\alpha '(t)}=\sqrt{1-2\cos t +\cos^2 t +\sin^2 t}  = \sqrt{2}\cdot \sqrt{1-\cos t}  
+\end{align*}
+This implies the singular points are 
+\begin{align*}
+  \set{2n\pi : n\inz}
+\end{align*}
+
+
+The solution of the question \textbf{b} is then 
+\begin{align*}
+\int_0^{2\pi} \abso{\alpha '(t)}dt&=\sqrt{2}\int_0^{2\pi} \sqrt{1-\cos t}dt \\
+&=\sqrt{2} \int_{0}^{2\pi} \sqrt{2} \abso{\sin \frac{t}{2}}dt  \\
+&=2\int_0^{2\pi}\abso{\sin \frac{t}{2}}dt\\
+&=4 \int_{0}^{\pi}\sin (\frac{t}{2})dt\\
+&=-8 \cos \frac{t}{2}\Big|_0^{\pi}
+\end{align*}
+
+\end{proof}
+\begin{question}{1-3:4}{}
+\includegraphics[height=4cm,width=18cm]{3.png}
+\includegraphics[height=18cm,width=18cm]{2.png}
+Typo correction: $\alpha (t)=(\sin t,\cos t + \ln \tan \frac{t}{2})$
+\end{question}
+\begin{proof}
+\textbf{(a)}
+
+Notice that the interval $I$ is  $(0,\pi)$. It is clear that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\sin t$ is smooth on $\R$
+  \item $\cos t$ is smooth on $\R$
+  \item $\ln t$ is smooth on $\R$
+  $\tan \frac{t}{2}$ is smooth on $I$
+\end{enumerate}
+Then it follows that $\alpha $ is a differentiable curve.\\
+
+Compute 
+\begin{align*}
+\alpha '(t)=(\cos t,- \sin t + \frac{1}{\tan \frac{t}{2}} \cdot \sec^2 \frac{t}{2}\cdot \frac{1}{2})
+\end{align*}
+Because $\cos t=\alpha '_1(t)$ is $0$ on  $I$ only when  $t=\frac{\pi}{2}$, we know $\alpha $ is regular on $I$ except possibly at  $t=\frac{\pi}{2}$.\\
+
+Compute 
+\begin{align*}
+\alpha '(\frac{\pi}{2})=(0,-1+\frac{1}{1}\cdot 2 \cdot \frac{1}{2} )=(0,0)
+\end{align*}
+We now conclude $\alpha $ is regular on $I$ except  $\frac{\pi}{2}$. \\
+
+\textbf{(b)}
+
+A useful Identity give us 
+\begin{align*}
+\alpha '(t)=(\cos t,-\sin t+ \csc t)
+\end{align*}
+From the following facts
+\begin{enumerate}[label=(\alph*)]
+  \item the first argument of the segment is from $0$ to  $\sin t =\alpha (t)$
+  \item $\alpha_x'(t)=\cos t$
+  \item $\frac{\sin t}{\cos t}=\tan t$
+\end{enumerate}
+We conclude that the length of the segment is 
+\begin{align*}
+\abso{\tan t}\cdot \abso{\alpha '(t)}&= \abso{\tan t} \cdot \sqrt{\cos ^2 t + \sin^2 t - 2 \sin t \csc t + \csc ^2 t }\\
+&=\abso{\tan t} \cdot \sqrt{1-2+\csc ^2 t}\\
+&=\abso{\tan t } \cdot \sqrt{\csc ^2 t-1}=\abso{\tan t } \cdot  \sqrt{\cot ^2 t} =1
+\end{align*}
+
+
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=14cm,width=18cm]{qu4}
+\end{question}
+\begin{proof}
+\textbf{(a)}
+\begin{align*}
+\frac{\alpha (t)}{t}\to (0,0)\text{ as $t \to 0^-$ }
+\end{align*}
+\begin{align*}
+\frac{\alpha (h)-\alpha (k)}{h-k}=\frac{\Big(h^3-k^3 ,h^2-k^2\Big)}{h-k}=\Big(h^2+hk+k^2 , h+k \Big) \to 
+\end{align*}
+\textbf{(b)} 
+By MVT, for each $h,k$ there exists a set of real numbers $\set{c_x,c_y,c_z}$ between $t+h$ and  $t+k$ such that 
+ \begin{align*}
+\frac{\alpha (t_0+h)-\alpha  (t_0+k)}{h-k}=\Big(x'(c_x),y'(c_y),z'(c_z) \Big)
+\end{align*}
+Then because 
+\begin{align*}
+h,k  \to 0 \implies t_0+h ,t_0+k \to t_0 \implies c_x,c_y,c_z \to t_0
+\end{align*}
+Then from the fact $\alpha $ is of class $C^1$ ($x',y',z'$ are all continuous), we can now deduce 
+\begin{align*}
+\frac{\alpha (t_0+h)-\alpha (t_0+k)}{h-k}\to \alpha '(t_0)\text{ as $h,k \to 0$ }
+\end{align*}
+Now, because $\alpha '(t_0)\neq 0$ as $\alpha $ is regular, we see 
+\begin{align*}
+\lim_{h,k\to 0}\frac{\alpha (t_0+h)-\alpha (t_0+k)}{h-k}\cdot \alpha '(t_0)= \abso{\alpha '(t_0)}^2
+\end{align*}
+\textbf{(c)}\\
+
+From 
+\begin{align*}
+\alpha (t)=\Big(t^2,\begin{cases}
+  t^2& \text{ if $t\geq 0$ }\\
+  -t^2& \text{ if $t\leq 0$ }
+\end{cases} \Big)
+\end{align*}
+Compute 
+\begin{align*}
+\alpha '(t)=\Big(2t,\begin{cases}
+  2t& \text{ if $t\geq 0$ }\\
+  -2t& \text{ if $t\leq 0$ }
+\end{cases} \Big)
+\end{align*}
+Notice that the derivative at $t=0$ is computed from definition instead of product rule.\\
+
+
+Now, it is clear that $x',y'$ are continuous. This implies $\alpha  \in C^1$. Yet, we see $y'$ is not differentiable at  $t=0$. This implies  $\alpha \not \in C^2$.\\
+
+The sketch:\includegraphics[height=8cm,width=15cm]{qsp}
+\end{proof}
+\begin{theorem}
+\textbf{(MVT for curve)} Given a curve $\alpha  : [a,b]\rightarrow \R^n$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha  $ is differentaible on $(a,b)$ 
+  \item $\alpha  $ is continuous on $[a,b]$
+\end{enumerate}
+there exists $ \xi  \in (a,b)$ such that 
+\begin{align*}
+\abso{\alpha  (b)-\alpha  (a)}\leq \abso{\alpha  '(\xi  )}(b-a)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $\phi:[a,b]\rightarrow \R$ by 
+\begin{align*}
+\phi(t)=\alpha (t)\cdot \big(\alpha (b)-\alpha (a) \big) 
+\end{align*}
+Clearly $\phi$ satisfy the hypothesis of Lagrange's MVT, then we know there exists $\xi \in (a,b)$ such that 
+\begin{align*}
+\phi(b)-\phi (a)=\phi'(\xi )\cdot (b-a)
+\end{align*}
+Written the equation in $\alpha $, we have 
+\begin{align*}
+\abso{\alpha (b)-\alpha (a)}^2= (b-a)\alpha '(\xi)\cdot \big(\alpha (b)-\alpha (a) \big)
+\end{align*}
+Notice that Cauchy-Schwarz inequality give us 
+\begin{align*}
+  (b-a)\abso{\alpha '(\xi)}\cdot \abso{\alpha (b)-\alpha (a)}&\geq (b-a)\abso{\alpha ' (\xi)\cdot \big(\alpha (b)-\alpha (a) \big)} \\
+  &=\abso{\alpha (b)-\alpha (a)}^2
+\end{align*}
+This then implies 
+\begin{align*}
+  (b-a)\abso{\alpha '(\xi)}\geq \abso{\alpha (b)-\alpha (a)}
+\end{align*}
+\end{proof}
+\begin{corollary}
+\label{MVI}
+\textbf{(Mean Value Inequality)} Given a curve $\alpha :[a,b]\rightarrow \R^n$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ is differentiable on $(a,b)$ 
+  \item $\alpha $ is continuous on $[a,b]$
+\end{enumerate}
+we have 
+\begin{align*}
+\abso{\alpha (b)-\alpha (a)}\leq (b-a)\sup_{(a,b)}\abso{\alpha '}
+\end{align*}
+\end{corollary}
+\begin{question}{}{}
+\includegraphics[height=15cm,width=18cm]{qu8}
+\includegraphics[height=3cm,width=18cm]{qu7}
+\end{question}
+\begin{proof}
+We first prove 
+\begin{align*}
+\vi{\int_a^b \abso{\alpha '(t)}dt \geq  l(\alpha ,P)}
+\end{align*}
+By FTC, we have
+\begin{align*}
+  \abso{\alpha (t_i)-\alpha (t_{i-1})}&=\abso{\int_{t_{i-1}}^{t_i} \alpha '(t)dt}\\
+&\leq \int_{t_{i-1}}^{t_i} \abso{\alpha '(t)}dt 
+\end{align*}
+This then implies 
+\begin{align*}
+l(\alpha ,P)=\sum \abso{\alpha (t_i)-\alpha (t_{i-1})}\leq \sum \int_{t_{i-1}}^{t_i}\abso{\alpha '(t)}dt=\int_a^b \abso{\alpha '(t)}dt \vdone
+\end{align*}
+We have reduced the problem into 
+\begin{align*}
+\blue{\text{ finding $\delta$ such that }\forall P: \abso{P}<\delta , \int_a^b \abso{\alpha '(t)}dt - l(\alpha ,P)<\epsilon }
+\end{align*}
+
+
+Because $\alpha '$ is uniformly continuous on $[a,b]$ ($\because$ continuous function on compact domain is uniformly continuous), we know there exists $\delta ' $ such that 
+\begin{align*}
+\abso{\alpha '(s)-\alpha '(t)}< \frac{\epsilon }{2(b-a)}\text{ if $\abso{s-t}<\delta'$ }
+\end{align*}
+We claim 
+\begin{align*}
+\blue{\text{ such $\delta'$ works }}
+\end{align*}
+Let $\abso{P}<\delta$, and let $s_i \in [t_{i-1},t_i]$. Because $\abso{s_i-t_i}<\delta$, we have
+\begin{align}
+\label{siti}
+\abso{\alpha '(s_i)-\alpha '(t_i)}<\frac{\epsilon}{2(b-a)}
+\end{align}
+This give us 
+\begin{align*}
+\abso{\alpha '(s_i)}<\abso{\alpha '(t_i)} + \frac{\epsilon}{2(b-a)}
+\end{align*}
+Now, we can deduce 
+\begin{align*}
+  \int_{t_{i-1}}^{t_i} \abso{\alpha '(s)}ds&\leq   \abso{\alpha '(t_i)}\Delta t_i+ \frac{\epsilon }{2(b-a)}\Delta t_i\\
+  &=\int_{t_{i-1}}^{t_i}\abso{\alpha '(t_i)}dt + \frac{\epsilon}{2(b-a)}\Delta t_i\\
+ &=\abso{\int_{t_{i-1}}^{t_i} \alpha '(t_i)dt}+ \frac{\epsilon }{2(b-a)}\Delta t_i\\
+  &=\abso{\int_{t_{i-1}}^{t_i} \alpha' (t_i)-\alpha '(t)dt + \int_{t_{i-1}}^{t_i} \alpha '(t)dt }+ \frac{\epsilon}{2(b-a)}\Delta t_i \\
+  &\leq  \abso{\int_{t_{i-1}}^{t_i} \alpha '(t_i)-\alpha' (t)dt}+ \abso{\int_{t_{i-1}}^{t_i} \alpha '(t)dt}+\frac{\epsilon}{2(b-a)}\Delta t_i \\
+  &\leq \frac{\epsilon}{2(b-a)}\Delta t_i + \abso{\alpha (t_i)-\alpha (t_{i-1})}+\frac{\epsilon}{2(b-a)}\Delta t_i\\
+  &=\abso{\alpha (t_i)-\alpha (t_{i-1})}+ \frac{\epsilon }{b-a}\Delta t_i
+\end{align*}
+Notice that the last inequality follows from \myref{Equation}{siti}. The long deduction above then give us 
+\begin{align*}
+  \int_{a}^b \abso{\alpha '(t)}dt&\leq \sum \abso{\alpha (t_i)-\alpha (t_{i-1})}+ \frac{\epsilon}{b-a} (b-a)\\
+&=l(\alpha ,P)+\epsilon 
+\end{align*}
+Then we have 
+\begin{align*}
+\int_a^b \abso{\alpha '(t)}dt -l(\alpha ,P)\leq \epsilon \bdone
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=7cm,width=18cm]{qu6}
+\end{question}
+\begin{proof}
+\textbf{(a)} 
+Suppose $I=[a,b]$. Define arc length by 
+\begin{align*}
+\sup_{P} l(P,\alpha )\text{ where $\sup $ runs over all partition $P$ of $[a,b]$  }
+\end{align*}
+
+\textbf{(b)}\\
+
+Geometrically, we know the arc length of the portion of the curve corresponding to $t \in [\frac{1}{n+1},\frac{1}{n}]$ must be greater than 
+\begin{align*}
+\abso{\alpha \big(\frac{1}{n}\big)-\alpha \big(\frac{1}{n+\frac{1}{2}}\big)}+\abso{\alpha \big(\frac{1}{n+1} \big)-\alpha \big(\frac{1}{n+\frac{1}{2}} \big)}
+\end{align*}
+This 
+
+
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{qu5}
+\end{question}
+
+
+
+\end{document}

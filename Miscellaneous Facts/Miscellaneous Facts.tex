@@ -434,6 +434,78 @@ Prove
 \begin{proof}
 
 \end{proof}
+\section{Dini's Theroem}
+\begin{theorem}
+\textbf{(Dini's Theorem)} Given a topological space $X$ and a sequence of functions  $f_n:X\rightarrow \R$, suppose
+\begin{enumerate}[label=(\alph*)]
+  \item $X$ is compact
+  \item $f_n$ is continuous  
+  \item $f_n\to f$ pointwise  
+  \item $f$ is continuous  
+  \item $f_n(x)\leq f_{n+1}(x)$ for all $x \in X$
+\end{enumerate}
+Then 
+\begin{align*}
+f_n \to f \text{ uniformly }
+\end{align*}
+\end{theorem}
+\begin{proof}
+  Define $g_n:X\rightarrow \R$ 
+\begin{align*}
+g_n=f-f_n
+\end{align*}
+We reduce the problem into 
+\begin{align*}
+\vi{\text{ proving }g_n \to 0\text{ uniformly }}
+\end{align*}
+Notice that we have the property 
+\begin{enumerate}[label=(\alph*)]
+  \item $g_n(x)\geq g_{n+1}(x)$ for all $x \in X$ 
+  \item $g_n$ is continuous 
+   \item $g_n \to 0$ pointwise
+\end{enumerate}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to find $N$ such that }\forall n>N, \forall x \in X,  g_n(x)<\epsilon }
+\end{align*}
+Define $E_n \subseteq X$ by 
+\begin{align*}
+E_n= \set{x \in X: g_n(x)<\epsilon }
+\end{align*}
+Because $g_n$ is continuous and  $E_n=g_n^{-1}\Big[(-\infty,\epsilon ) \Big]$, we know 
+\begin{align*}
+E_n\text{ is open for all $n \inn$ }
+\end{align*}
+We first prove 
+\begin{align*}
+\blue{\set{E_n}_{n\inn}\text{ is an open cover of $X$ }}
+\end{align*}
+Fix $y \in X$. We wish 
+\begin{align*}
+\blue{\text{ to find $n$ such that }y \in E_n}
+\end{align*}
+Because $g_n(y)\to 0$, this is clear. $\bdone$\\
+
+We now prove 
+\begin{align*}
+\olive{\set{E_n}_{n\inn}\text{ is ascending }}
+\end{align*}
+Fix $n \inn$. We wish 
+\begin{align*}
+\olive{\text{ to prove }E_n\subseteq E_{n+1}}
+\end{align*}
+Because $g_n(x)\geq g_{n+1}(x)$ for all $x \in X$ and $E_n=g_{n}^{-1}\Big[(-\infty,\epsilon ) \Big]$ by definition, we see 
+\begin{align*}
+y \in E_n \implies g_{n+1}(y)<g_n(y)<\epsilon \implies y \in E_{n+1}\odone
+\end{align*}
+Now, because $X$ is compact and $\set{E_n}_{n\inn}$ is an open cover of $X$, we know  
+\begin{align}
+\label{Dimi1}
+\text{ there exists $N$ such that  $X \subseteq \bigcup_{k=1}^N E_k= E_N$ }
+\end{align}
+It is clear such $N$ works.  $\vdone$
+\end{proof}
+
 
 
 \chapter{Multi-Variable Calculus}
