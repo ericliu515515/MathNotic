@@ -17,10 +17,187 @@ Geometry 1}
 \chapter{HW}
 \section{HW1}
 \begin{mdframed}
-  In this section, by a \textbf{curve} in $\R^n$, we mean a function form an open interval $I$ to $\R^n$.  We say a curve is \textbf{differentiable} if it is infinitely differentiable (smooth). That is, $\gamma ^{(n)}(t)$ exists for all $n\inn$ and for all $t \in I$. Clearly, for each differentiable curve $\gamma $, the function $\gamma^{(n)}:I\rightarrow \R$ (also a curve) must be continuous.  We say a differentiable curve $\gamma  :I\rightarrow \R^n$ is \textbf{regular} if $\gamma '(t)\neq 0$ for all $t  \in I$. We say a differentiable curve $\gamma :I\rightarrow \R^n$ is a \textbf{parametrized by arc-length} if $\abso{\gamma '(t)}=1$ for all $t \in I$.\\
+In this section, we will use $I$ to denote an \textbf{bounded open interval}. By a \textbf{curve} in $\R^n$, we mean a function form an open interval $I$ to $\R^n$.  We say a curve is \textbf{differentiable} if it is infinitely differentiable (smooth). That is, $\gamma ^{(n)}(t)$ exists and are continuous for all $n\inn$ and $t \in I$.\\
+
+We say a differentiable curve $\gamma  :I\rightarrow \R^n$ is \textbf{regular} if $\gamma '(t)\neq 0$ for all $t  \in I$. We say a differentiable curve $\gamma :I\rightarrow \R^n$ is a \textbf{parametrized by arc-length} if $\abso{\gamma '(t)}=1$ for all $t \in I$. 
 \end{mdframed}
 \begin{mdframed}
+For a regular curve $\gamma $, we say $\gamma '(t)$ is the \textbf{tangent vector} of $\gamma $ at $t$, and we define the \textbf{unit tangent vector} $T$ by    
+\begin{align*}
+T(t)\triangleq \frac{\gamma '(t)}{\abso{\gamma '(t)}}
+\end{align*}
+We say $\gamma ''(t)$ is the \textbf{oriented curvature} (normal vector) of $\gamma $ at $t$, and we define the  \textbf{unit normal vector} $N$ by 
+ \begin{align*}
+N(t)\triangleq \frac{T'(t)}{\abso{T'(t)}}=\frac{\gamma ''(t)}{\abso{\gamma ''(t)}}
+\end{align*}
+With some messy computation, we can observe 
+\begin{align*}
+T'(t)=\frac{\gamma ''(t)}{\abso{\gamma '(t)}}
+\end{align*}
+Some interesting facts can be observed from what we have deduced.
+\begin{enumerate}[label=(\alph*)]
+  \item $\gamma ',\gamma ''$ always exists. 
+  \item $\gamma $ is parametrized by arc-length $\implies \gamma ' \perp \gamma ''$
+  \item $\gamma $ is parametrized by arc-length $\implies \gamma $ is regular
+  \item $T$ and $T'$ exists at $t$  $\iff $ $\gamma $ is regular at $t$ 
+  \item $T=\gamma '\iff \gamma $ is parametrized by arc-length   
+  \item $N$ exists at $t$ $\iff \gamma ''(t)\neq 0\iff  \kappa (t)\neq 0$  
+  \item $N$ and  $T'$ point to the same direction $\gamma ''$.
+  \item $\abso{T'}=\kappa\iff \gamma $ is paramterized by arc-length 
+  \item $\gamma \perp \gamma '$ and $\gamma'' \perp \gamma '''$ are generally false even for curve $\gamma $ paramterized by arc-length. 
+  \item Given a curve $\gamma $ parametrized by arc-length
+\begin{align*}
+  \gamma \text{ is a straight line on }[a,b]&\iff  \gamma '\text{ and }T\text{ are constant on $(a,b)$ }\\
+  &\iff \gamma ''(t)=0\text{ on $(a,b)$ }\\
+  &\iff \kappa (t)=0\text{ on $(a,b)$ }\\
+  &\iff T'(t)=0\text{ on }(a,b)
+\end{align*}
+\end{enumerate}
+Notice that the last fact is false if $\gamma $ is not paramtetrized by arc-length, since $\gamma $ can move in the straight line with changing speed $\gamma '$.  
+\end{mdframed}
 
+\begin{mdframed}
+Given a curve $\gamma $, if $T(t)$ and $N(t)$ exists (regular and non-zero curvature), we define its \textbf{binormal} vector by 
+\begin{align*}
+B(t)=T(t) \times N(t)
+\end{align*}
+Fix $t$. We say 
+\begin{align*}
+\set{T(t),N(t),B(t)}\text{ form a \textbf{positively oriented orthonormal basis} of $\R^3$ }
+\end{align*}
+This basis in general is constantly changing, yet always form an orthonormal basis.\\
+
+Also, we say 
+\begin{align*}
+\text{span}\Big( T(t),N(t)\Big)\text{ is the \textbf{osculating plane} of $\gamma $ at $t$ }
+\end{align*}
+Suppose $\gamma $ is parametrized by arc-length and always has non-zero curvature. With some geometric intuition, one shall note that $\abso{T'}$ measure how curved $\gamma $ is and that $\abso{B'}$ measure how fast  $\gamma $ leave the osculating plane.\\
+
+Because $\abso{B}=1$ is a constant, we can deduce  
+\begin{align*}
+B'\perp B
+\end{align*}
+and the computation 
+\begin{align*}
+B'=T' \times N + T \times N'=T \times N' 
+\end{align*}
+give us 
+\begin{align*}
+B'\perp T
+\end{align*}
+This ultimately show us 
+\begin{align*}
+B',N,T'\text{ are all parallel where $N,T'$ even point to the same direction}
+\end{align*}
+
+
+Notice that if we parametrize the curve with opposite direction, then 
+\begin{enumerate}[label=(\alph*)]
+  \item $T,\gamma '$ change direction 
+  \item $N,\gamma ''$ keep the same direction 
+  \item $B$ change direction 
+  \item $B'$ keep the same direction 
+\end{enumerate}
+Now, for a curve $\gamma $ parametrized by arc-length, we define the \textbf{curvature} $\kappa$ and \textbf{torsion} $\tau$ of $\gamma $ by 
+\begin{align*}
+\kappa(t)=\abso{\gamma ''(t)}\text{ and }\tau (t)=\frac{B'(t)}{N(t)}
+\end{align*}
+With unfortunately heavy computation, we can verify that the definition of curvature must stay in the framework of curve parametrized by arc-length, otherwise we will be given two different values of curvature of two curves that are equivalent in the sense of sets.\\
+
+Now, notice that we already have $T'=\kappa N$ and $B'=\tau N$, and by basic identity, we have $N=B\times T$.\\
+
+Then with some computation, we have the \textbf{Frenet Formula}
+\begin{align*}
+\begin{cases}
+  T'=\kappa N\\
+  N'=B'\times T+B\times T'=-\tau B-\kappa T\\
+  B'=\tau N
+\end{cases}
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+Given two vectors $u,v \inr^n$, we use  \textbf{dot product} 
+\begin{align*}
+u\cdot v= u_1v_1+\cdots + u_nv_n
+\end{align*}
+to denote the Euclidean inner product, and we use \textbf{length} 
+\begin{align*}
+\abso{u}=\sqrt{\sum_{k=1}^n u_k^2} 
+\end{align*}
+to denote the Euclidean norm. Note that we clearly have 
+\begin{align*}
+\abso{u}=\sqrt{u\cdot u} 
+\end{align*}
+Given three vectors $u,v,w \inr^3$, we define \textbf{cross product} by 
+\begin{align*}
+  u\times v&\triangleq \begin{vmatrix} 
+  \textbf{i} & \textbf{j} & \textbf{k}\\
+  u_1 & u_2 & u_3 \\
+  v_1 & v_2 & v_3
+\end{vmatrix}\\
+&=(u_2v_3-u_3v_2,u_3v_1-u_1v_3,u_1v_2-u_2v_1)
+\end{align*}
+With some simple computation, we have the following identity 
+\begin{enumerate}[label=(\alph*)]
+  \item $u\times v=-v \times u$ (anti-commutative)
+  \item $(au+w)\times v=a(u\times v)+w \times v$ (Linearity)
+  \item $u\times (aw+v)=a (u\times w)+ u \times v$
+  \item $u \times v =0 \iff u=cv$ for some $c \inr$
+  \item $(u\times v)\cdot w =\begin{vmatrix} 
+      u_1 & u_2 & u_3 \\
+      v_1 & v_2 & v_3 \\
+      w_1 & w_2 & w_3   \end{vmatrix}=\begin{vmatrix}
+      w_1 & w_2 & w_3 \\
+      u_1 & u_2 & u_3 \\
+      v_1 & v_2 & v_3 
+  \end{vmatrix}$ 
+  \item $(u \times v)\cdot v=0=(u \times v)\cdot u$
+  \item $u \times v \perp u$ and $u\times v\perp v$
+  \item $u \perp v \implies  \abso{u \times v}= \abso{u}\cdot \abso{v}$
+  \item $(u \times v)\times w=(u \cdot w)v-(v \cdot w)u$
+\end{enumerate}
+All proofs except that of the last identity are merely manipulation of determinant. A simple proof of the last identity follows from the fact both side are linear in all $u,v,w$, and the observation 
+\begin{align*}
+  (e_1\times e_2)\times e_3=0=(e_1\cdot e_3)e_2-(e_2\cdot e_3)e_1
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Differentiate the Dot Product)} Given two parametrized curves $u,v:(a,b)\rightarrow \R^n$, such that $u,v$ are differentiable at  $t \in (a,b)$. We have 
+\begin{align*}
+\frac{d}{dt}\big(u(t)\cdot v(t) \big)= u'(t)\cdot v(t)+u(t)\cdot v'(t)
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+\frac{d}{dt}\big(u(t)\cdot v(t) \big)&=\frac{d}{dt}\sum_{k=1}^n u_k(t)v_k(t)\\
+&=\sum_{k=1}^n \frac{d}{dt} u_k(t)v_k(t)\\
+&=\sum_{k=1}^n u_k'(t)v_k(t)+u_k(t)v_k'(t)\\
+&=\sum_{k=1}^n u_k'(t)v_k(t)+\sum_{k=1}^n u_k(t)v_k'(t)\\
+&=u'(t)\cdot v(t)+u(t)\cdot v'(t)
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Differentiate the Cross Product)} Given two curves $u,v:(a,b)\rightarrow \R^3$, such that $u,v$ are differentiable at  $t \in (a,b)$. We have 
+\begin{align*}
+\frac{d}{dt}\big(u (t)\times v(t) \big)=u'(t)\times v(t)+u(t)\times v'(t)
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+  \frac{d}{dt}\big(u(t)\times v(t) \big)=&\frac{d}{dt}(u_2v_3-u_3v_2,u_3v_1-u_1v_3,u_1v_2-u_2v_1)\\
+=&(u_2'v_3+u_2v_3'-u_3'v_2-u_3v_2',\\
+ & u_3'v_1+u_3v_1'-u_1'v_3-u_1v_3',\\
+ &u_1'v_2+u_1v_2'-u_2'v_1-u_1v_2')\\
+=&(u_2'v_3-u_3'v_2,u_3'v_1-u_1'v_3,u_1'v_2-u_2'v_1)\\
++&(u_2v_3'-u_3v_2',u_3v_1'-u_1v_3',u_1v_2'-u_1v_2')\\
+=&u'\times v+u \times v'
+\end{align*}
+\end{proof}
+\begin{mdframed}
+For the result above, sometimes we write 
+\begin{align*}
+  (u\cdot v)'=u'\cdot v+ u \cdot v'\text{ and }(u\times v)'=u' \times v+u\times v'
+\end{align*}
 \end{mdframed}
 \begin{mdframed}
 \textbf{Trick to parametrize by arc-length}.\\
@@ -46,80 +223,6 @@ Now, $\beta $ is clearly a regular curve, and
 \int_{0}^x \abso{\beta '(s)}ds=x
 \end{align*}
 \end{mdframed} 
-\begin{mdframed}
-Now, suppose a curve $\gamma(s) $ is parametrized by arc-length. We see that for all $s \in I$ 
-\begin{align*}
-\frac{d}{ds} (\gamma '\cdot \gamma ')(s)=2(\gamma ''\cdot \gamma ')(s)
-\end{align*}
-Then because $\gamma '$ is constant $1$, this implies for all $s$ 
-\begin{align}
-\label{6}
-\gamma ''(s) \perp \gamma '(s)
-\end{align}
-This let us naturally define the \textbf{curvature} $\kappa$ of $\gamma $ by 
-\begin{align*}
-\kappa (s)=\abso{\gamma ''(s)}
-\end{align*}
-It is clear that if $\gamma $ is linear (a straight line), then the curvature $\kappa(s)$ is $0$ for all $s$. 
-\end{mdframed}
-\begin{mdframed}
-For a regular curve $\gamma $, we define its \textbf{unit tangent} by 
-\begin{align*}
-T(t)=\frac{\gamma '(t)}{\abso{\gamma '(t)}}
-\end{align*}
-and we define its \textbf{unit normal} by 
-\begin{align*}
-N(t)=\frac{T'(t)}{\abso{T'(t)}}
-\end{align*}
-and define its \textbf{binormal} vector by 
-\begin{align*}
-B(t)=T(t) \times N(t)
-\end{align*}
-Notice that we have $T(t)\perp N(t)$ from \myref{Equation}{6}. Fix $t_0$. We say 
-\begin{align*}
-\set{T(t),N(t),B(t)}\text{ form a \textbf{positively oriented orthonormal basis} of $\R^3$ }
-\end{align*}
-This basis in general is constantly changing, yet always form an orthonormal basis.\\
-
-In a geoemtric sense, we shall note that the curve $\gamma :I\rightarrow \R^3$ stay on a plane if and only if $B$ is a constant (does not change orientation).\\
-
-In the same spirit, $T'$ measure how curved a curve is.  (Notice that $\abso{T'}$ generally is not a constant unlike $\abso{T}$ and $\abso{N}$ ). Again, in the same spirit, $B'$ measure how fast $\gamma $ leave the plane (osculating plane) spanned by $T$ and $N$. 
-\end{mdframed}
-\begin{mdframed}
-Given two vectors $u,v \inr^n$, we use  \textbf{dot product} 
-\begin{align*}
-u\cdot v= u_1v_1+\cdots + u_nv_n
-\end{align*}
-to denote the Euclidean inner product, and we use \textbf{length} 
-\begin{align*}
-\abso{u}=\sqrt{\sum_{k=1}^n u_k^2} 
-\end{align*}
-to denote the Euclidean norm. Note that we clearly have 
-\begin{align*}
-\abso{u}=\sqrt{u\cdot u} 
-\end{align*}
-\end{mdframed}
-\begin{theorem}
-\textbf{(Differentiate the Dot Product)} Given two parametrized curves $u,v:(a,b)\rightarrow \R^n$, such that $u,v$ are differentiable at  $t \in (a,b)$. We have 
-\begin{align*}
-\frac{d}{dt}\big(u(t)\cdot v(t) \big)= u'(t)\cdot v(t)+u(t)\cdot v'(t)
-\end{align*}
-\end{theorem}
-\begin{proof}
-\begin{align*}
-\frac{d}{dt}\big(u(t)\cdot v(t) \big)&=\frac{d}{dt}\sum_{k=1}^n u_k(t)v_k(t)\\
-&=\sum_{k=1}^n \frac{d}{dt} u_k(t)v_k(t)\\
-&=\sum_{k=1}^n u_k'(t)v_k(t)+u_k(t)v_k'(t)\\
-&=\sum_{k=1}^n u_k'(t)v_k(t)+\sum_{k=1}^n u_k(t)v_k'(t)\\
-&=u'(t)\cdot v(t)+u(t)\cdot v'(t)
-\end{align*}
-\end{proof}
-\begin{mdframed}
-For the result above, sometimes we write 
-\begin{align*}
-  (u\cdot v)'=u'\cdot v+ u \cdot v'
-\end{align*}
-\end{mdframed}
 \begin{question}{1-2: 2}{}
 
 Let \(\alpha(t)\) be a parametrized curve which does not pass through the origin. If \(\alpha(t_0)\) is the point of the trace of \(\alpha\) closest to the origin and \(\alpha'(t_0) \neq 0\), show that the position vector \(\alpha(t_0)\) is orthogonal to \(\alpha'(t_0)\).
