@@ -510,4 +510,730 @@ It is clear such $N$ works.  $\vdone$
 
 \chapter{Multi-Variable Calculus}
 \section{}
+\chapter{HW}
+\section{HW1}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{HW1.7}
+\end{question}
+\begin{proof}
+\textbf{(a)} 
+We claim 
+\begin{align*}
+\vi{f_k \to f\text{ pointwise  on $[0,1]$ where }f(x)=\begin{cases}
+    0& \text{ if $x\in (0,1]$ } \\
+    1& \text{ if $x=0$ }
+\end{cases}}
+\end{align*}
+Because $\forall k\inn, f_k(0)=1$, it is clear $f_k(0)\to f(0)$. Now, let $x \in (0,1]$. We reduce our problem into proving 
+\begin{align*}
+\vi{f_k(x)\to 0\text{ as $k \to \infty$ }}
+\end{align*}
+By definition, we have 
+\begin{align*}
+\forall n>\frac{1}{x}, f_n(x)=0\vdone
+\end{align*}
+Above is true since $n>\frac{1}{x}\implies \frac{1}{n}<x$. 
+
+\textbf{b}
+No. It is easy to show that $f_k$ are all continuous and that $f$ is discontinuous at $0$. This let us deduce that the convergence is not uniform, since if it is, the function $f$ should have been continuous. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{HW1.6}
+\end{question}
+\begin{proof}
+\textbf{(a)} We claim 
+\begin{align*}
+\vi{f_k\to f\text{ pointwise on $[0,1]$ where }f(x)=\begin{cases}
+  1& \text{ if $x=1$ }\\
+  0& \text{ if $x\in [0,1)$ }
+\end{cases}}
+\end{align*}
+Because $f_k(1)=1$ for all $k\inn$, it is clear $f_k(1)\to f(1)$. Now, let $x \in (0,1]$. We reduce our problem into proving 
+\begin{align*}
+\vi{f_k(x)\to 0\text{ as $k \to \infty$ }}
+\end{align*}
+Fix $\epsilon $. We wish  
+\begin{align*}
+\vi{\text{ to find $N$ such that }\forall n>N, f_n(x)< \epsilon }
+\end{align*}
+We claim 
+\begin{align*}
+  \vi{N>\log_x \epsilon\text{ works }}
+\end{align*}
+Fix $n>N$. Because $x<1$,  we see 
+ \begin{align*}
+f_n(x)=x^n<x^N<\epsilon \vdone
+\end{align*}
+\textbf{b}
+No. It is easy to show that $f_k$ are all continuous and that $f$ is discontinuous at $1$. This let us deduce that the convergence is not uniform, since if it is, the function $f$ should have been continuous.\\
+
+\textbf{(c)} Yes. Fix $\epsilon $ and $a \in (0,1)$. We wish to 
+\begin{align*}
+\vi{\text{ find $N$ such that }\forall n>N,\forall x \in [0,a], f_n(x)\leq \epsilon }
+\end{align*}
+We claim 
+\begin{align*}
+\vi{N>\log_a \epsilon \text{ works }}
+\end{align*}
+Observe 
+\begin{align*}
+\forall n >N, \forall  x\in [0,a], f_n(x)=x^n \leq a^n \leq a^N <\epsilon vdon
+\end{align*}
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{HW1.5}
+\end{question}
+\begin{proof}
+We show 
+\begin{align*}
+\vi{f_k\to 0\text{ uniformly }}
+\end{align*}
+Remark: Notice that the $0$ above is the function that map all reals to $0$.\\
+
+Fix $\epsilon $. 
+\begin{align*}
+\vi{\text{ find $N$ such that }\forall n>N, \norm{f_n-0}_\infty \leq \epsilon }
+\end{align*}
+We claim 
+\begin{align*}
+  \vi{N>\frac{1}{\epsilon }\text{ works }}
+\end{align*}
+Using the fact $\abso{\sin x}\leq 1$ for all $x \inr$, we can deduce 
+\begin{align*}
+\forall n>N, \forall x\inr, \abso{f_n(x)}=\abso{\frac{\sin x}{n}}\leq \frac{1}{n}<\frac{1}{N}< \epsilon 
+\end{align*}
+This then implies $\norm{f_n-0}_{\infty}\leq \epsilon\vdone $.\\
+
+Remark: Notice that it is of course possible that $\norm{f_N}_\infty=\epsilon $. This is why you shouldn't always set the goal by proving strict inequality when proving convergence. That maybe "technically cool" if you catch my drift, but it is just unnecessary and stupid. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{HW1.4}
+\end{question}
+\begin{proof}
+Because $f_n$ is Riemann-integrable on $(0,1)$ and $f_n\to f$ uniformly on $(0,1)$. We know $f$ is Riemann-integrable on  $(0,1)$ and  
+\begin{align*}
+\int_0^1 f_ndx \to \int_0^1 f(x)dx\text{ as }n\to \infty
+\end{align*}
+Then 
+\begin{align*}
+\lim_{n\to \infty}\int_0^{b_n}f_ndx=\lim_{n\to \infty}\Big(\int_0^1 f_ndx-\int_{b_n}^1 f_ndx \Big)=\int_0^1 fdx-\lim_{n\to \infty}\int_{b_n}^1 f_ndx
+\end{align*}
+This let us reduce the problem into proving 
+\begin{align*}
+\vi{\int_{b_n}^1 f_ndx \to 0\text{ as }n \to \infty}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to find $N$ such that }\forall n>N, \abso{\int_{b_n}^1 f_ndx}\leq  \epsilon }
+\end{align*}
+Because each $f_n:[0,1]\rightarrow \R$ is bounded  ($f_n$ is integrable), and $f_n \to f$ uniformly. We know $f_n$ are uniformly bounded (This will be \textit{fully} justified in the proof for  Question 7). Then, we know there exists $M$ such that 
+\begin{align*}
+M> \sup_n (\sup_{[0,1]} \abso{f_n}) 
+\end{align*}
+Because $b_n \nearrow 1$. We know 
+\begin{align*}
+\exists N, \forall n>N, \abso{b_n-1} < \frac{\epsilon}{M}
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+Let $n>N$. See 
+ \begin{align*}
+   \abso{\int_{b_n}^1 f_ndx}&\leq \int_{b_n}^1 \abso{f_n}dx\\
+   &\leq \int_{1-\frac{\epsilon}{M}}^1 \abso{f_n}dx\\
+   &\leq \int_{1-\frac{\epsilon}{M}}^1 Mdx=\epsilon \vdone
+\end{align*}
+\end{proof}
+\begin{lemma}
+\label{pouc}
+\textbf{(product of uniformly convergent sequence is uniformly convergent on bounded domain)} Given 
+\begin{enumerate}[label=(\alph*)]
+   \item $f_n\to f\text{ and }g_n\to g$ uniformly on $I$
+  \item $f,g$ are bounded on $I$ 
+\end{enumerate}
+Then 
+\begin{align*}
+f_ng_n \to fg\text{ on }I
+\end{align*}
+\end{lemma}
+\begin{proof}
+Observe 
+\begin{align*}
+  \abso{(f_ng_n)(x)-(fg)(x)}&=\abso{\big((f_n-f)g_n \big)(x)+\big(f(g_n-g) \big)(x)}\\
+  &\leq \abso{(f_n-f)(x)}\cdot \abso{g_n(x)}+\abso{f(x)}\cdot \abso{(g_n-g)(x)}
+\end{align*}
+Notice that there exists $M$ globally greater than both $\abso{g_n}$ and $\abso{f}$, and that $(f_n-f)(x)$ and $(g_n-g)(x)$ both uniformly converge to $0$ and we are done.
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{HW1.3}
+\end{question}
+\begin{proof}
+By Stone-Weierstrass Theorem, there exists a sequence of polynomial $P_k \to f$ uniformly. Because each polynomial is an finite linear combination of $x^n\hspace{0.5cm}(n=0,1,2,\dots)$, from premise we can deduce
+\begin{align*}
+\int_0^1 f P_kdx=0\text{ for all $k\inn$ }
+\end{align*}
+Because $f$ is continuous on the compact domain $[0,1]$ and $P_n \to f$. It is easy to see that $f$ and  $P_n$ satisfy the hypothesis of \myref{Lemma}{pouc}. Then, we see 
+\begin{align*}
+fP_n \to f^2\text{ uniformly }
+\end{align*}
+This then let us deduce 
+\begin{align*}
+\int_0^1 f^2 dx=0
+\end{align*}
+\As{$f(x)\neq 0$ for some $x \in [0,1]$}, in the aiming for a contradiction. Because $f^2$ is continuous at $x$ ($\because$  $f$ is continuous at $x$). We know there exists  $\delta$ such that 
+\begin{align*}
+\inf_{[x-\delta,x+\delta]}f^2=\alpha >0
+\end{align*}
+for some appropriate $\alpha $, says, $\alpha =\frac{f^2(x)}{2}$.\\
+
+Now, because $f^2\geq 0$, we have 
+\begin{align*}
+  \int_0^1 f^2dt\geq \int_{x-\delta}^{x+\delta}f^2dt\geq 2\delta \alpha >0 \tCaC\text{ to }\int_0^1 f^2dt=0
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{HW1.2}
+\end{question}
+\begin{proof}
+Click the following hyperlink
+(\myref{Theorem}{ULT})
+\end{proof}
+\begin{question}{}{}
+
+\includegraphics[height=3cm,width=18cm]{HW1.1}
+\end{question}
+\begin{proof}
+We first prove 
+\begin{align*}
+\vi{f\text{ is bounded }}
+\end{align*}
+\As{$f$ is not bounded}. Let $p \in E$, we know there exists sequence  $x_n \subseteq E$ such that  $d(f(x_n),p) \to \infty$. Now, for arbitrary $k \inn$, we see
+\begin{align*}
+d(f(x_n),p)\leq d(f_k(x_n),f(x_n))+d(f_k(x_n),p)
+\end{align*}
+Then because $f_k(x_n) \to f(x_n)$ uniformly, this give us 
+\begin{align*}
+d(f_k(x_n),p)\geq d(f(x_n,p))-d(f_k(x_n),f(x_n))\to \infty
+\end{align*}
+This implies $f_k$ is unbounded \CaC. $\vdone$\\
+
+We now prove 
+\begin{align*}
+\blue{f_n\text{ is uniformly bounded }}
+\end{align*}
+Let $p \in E$ and $M \inr^+$ satisfy 
+\begin{align*}
+f[E]\subseteq B_M(p)
+\end{align*}
+Because $\norm{f_n-f}_\infty \to 0$, we know there exists $L\inr^+$ such that $\norm{f_n-f}_\infty <L$ for all $n\inn$. We claim 
+\begin{align*}
+\blue{\bigcup_{n\inn}f[E]\subseteq B_{M+L}(p)}
+\end{align*}
+Fix $n \inn$ and $x \in E$. We wish to show 
+\begin{align*}
+\blue{d(f_n(x),p)<M+L}
+\end{align*}
+Observe 
+\begin{align*}
+d(f_n(x),p)\leq d(f_n(x),f(x))+d(f(x),p)< L+M \bdone
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=9cm,width=18cm]{HW1.8}
+\end{question}
+\begin{proof}
+\textbf{(a)} The assumption (1) implies $f_k$ is pointwise bounded.  We first show 
+\begin{align*}
+\vi{f_k\text{ are equicontinuous }}
+\end{align*}
+Fix $\epsilon $. We wish to find $\delta$ such that 
+\begin{align*}
+  \vi{\forall n \inn, \forall x,y \in [0,1], \abso{x-y}<\delta \implies \abso{f_n(x)-f_n(y)}\leq \epsilon }
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\delta < \frac{\epsilon}{M_2}\text{ works }}
+\end{align*}
+Fix $n\inn$ and $x,y \in [0,1]$ such that $\abso{x-y}<\delta$. By Lagrange's MVT, we see 
+\begin{align*}
+\frac{\abso{f_k(x)-f_k(y)}}{\abso{x-y}}\leq M_2
+\end{align*}
+Then 
+\begin{align*}
+\abso{f_k(x)-f_k(y)}\leq M_2\cdot \abso{x-y}\leq  M_2\cdot \delta =\epsilon \vdone
+\end{align*}
+\textbf{(b)}. No. Consider $f_k(x)=x+k$. It is clear that $f_k(x)$ has no even pointwise convergent sequence, as for all $x_0$, the sequence  $f_k(x_0)$ diverge.\\
+
+\textbf{(c)} 
+Suppose we are given assumption (2). It suffice to show that 
+\begin{align*}
+  \vi{\forall k\inn,f_k(0)=0\implies \exists M_1\inr^+, \forall k\inn, \forall x\in [0,1],\abso{f_k(x)}\leq M_1}
+\end{align*}
+We claim 
+\begin{align*}
+\vi{M_1=M_2\text{ works }}
+\end{align*}
+Fix $k\inn$ and $x\in [0,1]$. By FTC and assumption two, we see 
+\begin{align*}
+\abso{f_k(x)}=\abso{\int_0^x f_k'dt}\leq  \int_0^x \abso{f_k'}dt\leq \int_0^1 \abso{f'_k}dt\leq \int_0^1 M_2dt=M_2=M_1\vdone
+\end{align*}
+
+
+
+
+
+
+
+\end{proof}
+
+\section{Limit Interchange}
+\begin{mdframed}
+Given an arbitrary set $X$ and  a complete metric space  $(\overline{Y},d)$, in \myref{Section}{27CaB}, we have proved that the set of functions with the following properties 
+\begin{enumerate}[label=(\alph*)]
+  \item boundedness 
+  \item unboundedness
+\end{enumerate}
+are respectively closed under uniform convergence. In next section (\myref{Section}{UCaCH}), we will prove that the following three properties 
+\begin{enumerate}[label=(\alph*)]
+  \item continuity
+  \item uniform continuity
+  \item $K$-Lipschitz continuity
+\end{enumerate}
+are again all closed under uniform convergence, where the proof for continuity is closed under uniform convergence use \myref{Theorem}{COLO} as a lemma.\\
+
+Here, we prove 
+\begin{enumerate}[label=(\alph*)]
+  \item convergent of sequences 
+\end{enumerate}
+in, of course, complete metric space, is also closed under uniform convergence.\\
+
+
+The reason we require the codomain $\overline{Y}$ of sequence to be complete is explained in the last paragraph of \myref{Section}{27CaB}. An example of such beautiful closure is lost if the codmain $(Y,d)$ is not complete is $Y=\R^*$ and  $a_{n,k}=\frac{1}{n}+\frac{1}{k}$. 
+\end{mdframed}
+\begin{theorem}
+\label{COLO}
+\textbf{(Change Order of Limit Operations: Part 1)} Given a double sequence $a_{n,k}$ whose codomain is $(Y,d)$. Suppose
+\begin{enumerate}[label=(\alph*)]
+  \item $a_{n,k}\to a_{\bullet,k}$ uniformly as $n\to \infty$ 
+  \item $a_{n,k}\to A_n$ pointwise as  $k\to \infty$.
+  \item $A_n \to A$ 
+\end{enumerate}
+Then we can deduce 
+\begin{align*}
+\lim_{k\to \infty}a_{\bullet,k}\text{ exists and }\lim_{k\to \infty}a_{\bullet,k}=A
+\end{align*}
+In other words, we can switch the order of limit operations
+\begin{align*}
+\lim_{k\to \infty}\lim_{n\to \infty}a_{n,k}=\lim_{n\to \infty}\lim_{k\to \infty}a_{n,k}
+\end{align*}
+\end{theorem}
+\begin{proof}
+We wish to prove 
+\begin{align*}
+\vi{a_{\bullet,k}\to A\text{ as }k\to \infty}
+\end{align*}
+Fix $\epsilon $. Because $a_{n,k}\to a_{\bullet,k}$ uniformly and $A_n\to A$ as $n\to \infty$, we know there exists $m$ such that 
+ \begin{align}
+  \label{K1}
+d(A_m,A)<\frac{\epsilon}{3}\text{ and }\forall k\inn,d(a_{m,k},a_{\bullet,k})<\frac{\epsilon}{3}
+\end{align}
+Then because $a_{m,k}\to A_m$ as $k\to \infty$, we know there exists $K$ such that
+\begin{align}
+\label{K2}
+\forall k>K, d(a_{m,k},A_m)<\frac{\epsilon}{3}
+\end{align}
+We now claim 
+\begin{align*}
+  \vi{\forall k>K, d(a_{\bullet,k},A)<\epsilon}
+\end{align*}
+The claim is true since by \myref{Equation}{K1} and \myref{Equation}{K2}, we have 
+\begin{align*}
+  \forall k>K, d(a_{\bullet,k},A)\leq d(a_{\bullet,k},a_{m,k})+d(a_{m,k},A_m)+d(A_m,A)<\epsilon \vdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{COLO2}
+\textbf{(Change Order of Limit Operations: Part 2)} Given a double sequence $a_{n,k}$ whose codomain is $(Y,d)$. Suppose 
+
+\begin{enumerate}[label=(\alph*)]
+  \item $a_{n,k}\to a_{\bullet,k}$ uniformly as $n\to \infty$ 
+  \item $a_{n,k}\to A_n$ pointwise as $k\to \infty$ 
+  \item $a_{\bullet,k}\to A$ as $k\to \infty$
+\end{enumerate}
+Then we can deduce
+\begin{align*}
+A_n\text{ converge and  }A_n \to A
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. We wish to find $N$ such that 
+ \begin{align*}
+   \vi{\forall n>N, d(A_n,A)<\epsilon}
+\end{align*}
+Because  $a_{n,k}\to a_{\bullet,k}$ uniformly as $n \to \infty$, we can let $N$ satisfy 
+\begin{align}
+\label{K3}
+\forall n>N,\forall k\inn, d(a_{n,k},a_{\bullet,k})<\frac{\epsilon}{3}
+\end{align}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+Arbitrarily pick $n>N$. Because $a_{\bullet,k} \to A$, and because $a_{n,k} \to A_n$, we know there exists $j$ such that 
+ \begin{align}
+  \label{K4}
+d(a_{\bullet,j},A)<\frac{\epsilon}{3}\text{ and }d(a_{n,j},A_n)<\frac{\epsilon}{3}
+\end{align}
+From \myref{Equation}{K3} and \myref{Equation}{K4}, we now have
+\begin{align*}
+d(A_n,A)\leq d(A_n,a_{n,j})+d(a_{n,j},a_{\bullet,j})+d(a_{\bullet,j},A)<\epsilon \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+In summary of \myref{Theorem}{COLO} and \myref{Theorem}{COLO2}, given a double sequence $a_{n,k}$ converging both side 
+\begin{enumerate}[label=(\alph*)]
+  \item $a_{n,k}\to a_{\bullet,k}$ pointwise as $n \to \infty$
+  \item $a_{n,k}\to a_{n,\bullet}$ pointwise as $k\to \infty$
+\end{enumerate}
+As long as 
+\begin{enumerate}[label=(\alph*)]
+  \item one side of convergence is uniform 
+  \item between two sequence $\set{a_{\bullet,k}}_{k\inn}$ and $\set{a_{n,\bullet}}_{n\inn}$, one of them converge, say, to $A$
+\end{enumerate}
+Then the other sequence also converge, and the limit is also $A$.\\
+
+It is at this point, we shall introduce two other terminologies. Suppose $f_n$ is a sequence of functions from an arbitrary set  $X$ to a metric space  $Y$. We say $f_n$ is  \textbf{pointwise Cauchy} if for all fixed $x \in X$, the sequence $f_n(x)$ is Cauchy. We say $f_n$ is  \textbf{uniformly Cauchy} if for all $\epsilon $, there exists $N\inn$ such that 
+\begin{align*}
+\forall n,m>N, \forall x\in X, d\big(f_n(x),f_m(x) \big)<\epsilon 
+\end{align*}
+In last Section (\myref{Section}{27CaB}), we define the \textbf{uniform metric} $d_{\infty}$ on $X^Y$ by 
+ \begin{align*}
+d_{\infty}(f,g)=\sup_{x\in X}d\big(f(x),g(x) \big)
+\end{align*}
+and say that $f_n\to f$ uniformly if and only if $f_n\to f$ in $(X^Y,d_{\infty})$. Similar to this clear fact, we have 
+\begin{align*}
+f_n\text{ is uniformly Cauchy }\iff \text{ $f_n$ is Cauchy in  $(X^Y, d_\infty)$ }
+\end{align*}
+It should be very easy to verify that if $f_n$ uniformly converge, then $f_n$ is uniformly Cauchy, and just like sequences in metric space, the converse hold true if and only if the space $\big(X^Y,d_\infty \big)$ is complete. In \myref{Theorem}{Tsof}, we give a necessary and sufficient condition for $\big(X^Y,d_{\infty}\big)$ to be complete. 
+\end{mdframed}
+\begin{theorem}
+\label{Tsof}
+\textbf{(Space of functions $\big(X^Y,d_{\infty}\big)$ is Complete iff $Y$ is Complete)} Given an arbitrary set $X$ and a metric space  $(Y,d)$, we have 
+\begin{align*}
+\text{ the extended metric space $\big(X^Y,d_{\infty} \big)$ is complete }\iff Y\text{ is complete }
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\longleftarrow)$\\
+
+Suppose $f_n$ is uniformly Cauchy. We wish 
+\begin{align*}
+  \vi{\text{ to construct a $f:X\rightarrow Y$ such that }f_n\to f\text{ uniformly }}
+\end{align*}
+Because $f_n$ is uniformly Cauchy, we know that for all $x \in X$, the sequence $f_n(x)$ is Cauchy in $(Y,d)$. Then because $Y$ is complete, we can define $f:X\rightarrow Y$ by 
+ \begin{align*}
+f(x)=\lim_{n\to \infty}f_n(x)
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\text{ such $f$ works, i.e.  $f_n\to f$ uniformly }}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+  \vi{\text{ to find $N\inn$ such that for all $n>N$ and  $x \in X$ we have $d\big(f_n(x),f(x)\big)<\epsilon $ }}
+\end{align*}
+Because $f_n$ is uniformly Cauchy, we know there exists $N$ such that  
+\begin{align}
+\label{K5}
+\forall n,m>N, \forall x\in X, d\big(f_n(x),f_m(x) \big)<\frac{\epsilon }{2}
+\end{align}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+ \As{there exists $n>N\text{ and }x\in X$ such that  $d\big(f_n(x),f(x) \big)\geq \epsilon $}. Because $f_k(x)\to f(x)$ as $k\to \infty$, we know 
+\begin{align}
+  \label{K6}
+\exists m \inn, d\big(f_m(x),f(x) \big)<\frac{\epsilon}{2}
+\end{align}
+Then from \myref{Equation}{K5} and \myref{Equation}{K6}, we can deduce 
+\begin{align*}
+\epsilon \leq d\big(f_n(x),f(x)\big)\leq  d\big(f(x),f_m(x)\big)  + d\big(f_n(x),f_m(x)\big)<\epsilon \tCaC \vdone
+ \end{align*}
+ $(\longrightarrow)$\\
+
+Let $K$ be the set of constant functions  in $X^Y$. We first prove 
+ \begin{align*}
+\blue{K\text{ is closed }}
+\end{align*}
+Arbitrarily pick $f \in K^c$. We wish 
+\begin{align*}
+\blue{\text{ to find $\epsilon \inr^+$ such that $B_{\epsilon }(f) \in K^c$ }}
+\end{align*}
+Because $f$ is not a constant function, we know there exists $x_1,x_2 \in X$ such that 
+\begin{align*}
+d\big(f(x_1),f(x_2) \big)>0
+\end{align*}
+We claim that 
+\begin{align*}
+\blue{\epsilon=\frac{d\big(f(x_1),f(x_2) \big)}{3}\text{ works }}
+\end{align*}
+Arbitrarily pick $g \in B_\epsilon(f)$. We wish 
+\begin{align*}
+\blue{\text{ to show $g\in K^c$  }}
+\end{align*}
+Notice the triangle inequality 
+\begin{align}
+\label{K7}
+3\epsilon =d\big(f(x_1),f(x_2) \big)\leq d\big(f(x_1),g(x_1) \big)+d\big(g(x_1),g(x_2) \big)+d\big(g(x_2),f(x_2) \big)
+\end{align}
+Also, because $g\in B_\epsilon (f)$, we have
+\begin{align}
+  \label{K8}
+\forall x\in X, d\big(f(x),g(x) \big)<\epsilon 
+\end{align}
+Then by \myref{Equation}{K7} and \myref{Equation}{K8}, we see 
+\begin{align*}
+d\big(g(x_1),g(x_2) \big)> \epsilon 
+\end{align*}
+This then implies $g$ is not a constant function.  $\bdone$\\
+
+Now, Because by premise $(X^Y,d_{\infty})$ is complete, and we have proved $K$ is closed in  $(X^Y,d_\infty)$, we know $K$ is complete. Then, we resolve the whole problem into proving 
+\begin{align*}
+\vi{Y \text{ is isometric to }K}
+\end{align*}
+Define $\sigma:Y \to K $ by 
+\begin{align*}
+y \mapsto \tilde{y}\text{ where }\forall x \in X, \tilde{y}(x)=y 
+\end{align*}
+It is easy to verify $\sigma$ is an isometry. $\vdone$
+\end{proof}
+\begin{corollary}
+\label{SoB}
+\textbf{(Space of Bounded functions $\big(B(X,Y),d_{\infty} \big)$ is Complete iff  $Y$ is Complete)} 
+\begin{align*}
+\big(B(X,Y),d_\infty \big)\text{ is complete }\iff  Y\text{ is complete }
+\end{align*}
+\end{corollary}
+\begin{proof}
+$(\longleftarrow)$\\
+
+By \myref{Theorem}{Tsof}, the space $(X^Y, d_{\infty})$ is complete. Then because $B(X,Y)$ is closed in $(X^Y,d_\infty)$, we know $B(X,Y)$ is complete.\\
+
+$(\longrightarrow)$\\
+
+Notice that the set of constant function $K$ is a subset of the galaxy  $B(X,Y)$. The whole proof in \myref{Theorem}{Tsof} works in here too. 
+\end{proof}
+\begin{mdframed}
+Remember in the beginning of this section we say we will prove convergent sequences in $Y$ is closed under uniform convergence if $Y$ is complete. The proof of this result relies on \myref{Theorem}{Tsof}.\\
+
+Now, before we actually prove convergence sequences are closed under uniform convergence if codomain $(Y,d)$ is complete (\myref{Theorem}{CSaC}), we will state and prove Weierstrass M-test  (\myref{Theorem}{WM-t}), which concerns the uniform convergence of series of complex functions. 
+\end{mdframed}
+\begin{theorem}
+\label{WM-t}
+\textbf{(Weierstrass M-test)} Given sequences $f_n:X\rightarrow \C$, and suppose 
+\begin{align}
+\label{K9}
+\forall n\inn,\forall x\in X, \abso{f_n(x)}\leq M_n
+\end{align}
+Then 
+\begin{align*}
+\sum_{n=1}^\infty M_n\text{ converge }\implies \sum_{n=1}^\infty f_n\text{ uniformly converge }
+\end{align*} 
+\end{theorem}
+\begin{proof}
+Because $(\C,\norm{\cdot }_2)$  is complete, by \myref{Corollary}{SoB}, we only wish to prove 
+\begin{align*}
+\vi{ \bset{\sum_{k=1}^n f_k}_{n\inn}\text{ is uniformly Cauchy }} 
+\end{align*}
+Fix $\epsilon $. We wish 
+ \begin{align*}
+   \vi{\text{ to find $N$ such that  }\forall n,m>N, \forall  x\in X, \abso{\sum_{k=n}^m f_k(x)}< \epsilon}
+\end{align*}
+Because $\sum_{n=1}^\infty M_n$ converge, we know there exists $N$ such that 
+\begin{align*}
+\forall n,m>N, \sum_{k=n}^m M_k<\epsilon 
+\end{align*}
+We claim
+\begin{align*}
+\text{ such $N$ works }
+\end{align*}
+By \myref{Premise}{K9}, we have 
+\begin{align*}
+  \forall n,m>N, \forall x \in X, \abso{\sum_{k=n}^m f_k(x)}\leq \sum_{k=n}^m \abso{f_k(x)}\leq \sum_{k=n}^m M_k <\epsilon 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{CSaC}
+\textbf{(Convergent Sequences are Closed under Uniform Convergence if Codomain $\big(Y,d\big)$ is Complete)} Given a complete metric space $\big(Y,d\big)$, let $\mathcal{C}_\N^Y$ be the set of convergent sequences in $Y$.
+\begin{align*}
+Y\text{ is complete }\implies \text{ $\mathcal{C}_\N^Y$ is closed under uniform convergent }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $a_{n,k}\to a_{\bullet,k}$ uniformly as $n\to \infty$ where for all $n,k \inn, a_{n,k}\in Y$ and let $A_n= \lim_{k\to \infty}a_{n,k}$ for all $n\inn$.  
+\begin{align*}
+  \vi{\text{ to prove $a_{\bullet,k}$ converge}}
+\end{align*}
+By \myref{Theorem}{COLO2}, we can reduce the problem to 
+\begin{align*}
+\vi{\text{ proving $A_n$ converge }}
+\end{align*}
+Then because $Y$ is complete, we can then reduce the problem into proving 
+\begin{align*}
+  \vi{A_n\text{ is Cauchy }}
+\end{align*}
+Fix $\epsilon $. We wish to find $N$ such that 
+ \begin{align*}
+   \vi{\forall n,m>N, d(A_n,A_m)<\epsilon }
+\end{align*}
+Because $a_{n,k}\to a_{\bullet,k}$ uniformly, we can find $N$ such that  
+ \begin{align}
+\label{K10}
+\forall n,m> N, d_\infty(\set{a_{n,k}}_{k\inn},\set{a_{m,k}}_{k\inn})<\frac{\epsilon}{3} 
+\end{align}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+Arbitrarily pick $n,m>N$. We wish to prove 
+\begin{align*}
+\vi{d(A_n,A_m)<\epsilon }
+\end{align*}
+Because $a_{n,k} \to A_n$ and $a_{m,k}\to A_m$ as $k \to \infty$, we can find $j$ such that  
+\begin{align}
+\label{K11}
+d(a_{n,j},A_n)<\frac{\epsilon}{3}\text{ and }d(a_{m,j},A_m)<\frac{\epsilon}{3}
+\end{align}
+Then from  \myref{Equation}{K10} and \myref{Equation}{K11}, we can deduce
+\begin{align*}
+d(A_n,A_m)\leq d(A_n,a_{n,j})+d(a_{n,j},a_{m,j})+d(a_{m,j},A_m)<\epsilon \vdone
+\end{align*}
+\end{proof}
+\section{Closed under Uniform Convergence}
+\label{UCaCH}
+\begin{mdframed}
+The end goal for this section is to prove that the following properties 
+\begin{enumerate}[label=(\alph*)]
+  \item continuity 
+  \item uniform continuity 
+  \item $K$-Lipschitz Continuity 
+\end{enumerate}
+\end{mdframed}
+\begin{theorem}
+\label{ULT}
+\textbf{(Uniform Limit Theorem)} Given a sequence of function $f_n$ from a topological space $(X,\tau)$ to a metric space $(Y,d)$, suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n\to f$ uniformly as $n\to \infty$
+  \item $f_n$ is continuous for all  $n\inn$ 
+\end{enumerate}
+Then $f$ is also continuous. 
+\end{theorem}
+\begin{proof}
+Fix $x \in X$, and let $x_k\to x$. We wish to prove
+\begin{align*}
+  \vi{f(x_k)\to f(x)}
+\end{align*}
+Because $f_n\to f$ uniformly as $n\to \infty$, we know 
+\begin{align}
+\label{282e1}
+\bset{f_n(x_k)}_{k\inn}\to \bset{f(x_k)}_{k\inn}\text{ uniformly as }n\to \infty
+\end{align}
+Also, because for each $n\inn$, the function $f_n$ is continuous at $x$, we know 
+\begin{align}
+\label{282e2}
+\forall n\inn, f_n(x_k)\to f_n(x)\text{ as $k\to \infty$ }
+\end{align}
+Then because $f_n\to f$ pointwise, we know 
+\begin{align}
+\label{282e3}
+f_n(x)\to f(x)
+\end{align}
+Now, because \myref{Equation}{282e1},  \myref{Equation}{282e2} and  \myref{Equation}{282e3}, by \myref{Theorem}{COLO}, we have
+\begin{align*}
+\lim_{k\to \infty}f(x_k)=\lim_{k\to \infty}\lim_{n\to \infty}f_n(x_k)=\lim_{n\to \infty}\lim_{k\to \infty}f_n(x_k)=\lim_{n\to \infty}f_n(x)=f(x)\vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Suppose $X$ is a compact Hausdroff space,  with \myref{Theorem}{}, we can now say that the set $\mathcal{C}(X)$ of complex-valued continuous functions on $X$ 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Uniformly Continuous functions are Closed under Uniform Convergence)} Given a sequence of functions $f_n$ from a metric space  $(X,d_X)$ to metric space $(Y,d_Y)$, suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n\to f$ uniformly 
+  \item $f_n$ is uniformly continuous for all  $n\inn$
+\end{enumerate}
+Then $f$ is also uniformly continuous
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to find $\delta$ such that $\forall x,y \in X, d_X(x,y)<\delta \implies d_Y\big(f(x),f(y) \big)<\epsilon $}}
+\end{align*}
+Because $f_n\to f$ uniformly, we know there exists  $m \inn$ such that 
+\begin{align}
+\label{L1}
+\forall x \in X, d_Y\big(f_m(x),f(x) \big)<\frac{\epsilon}{3}
+\end{align}
+Because $f_m$ is uniformly continuous, we know 
+\begin{align}
+\label{L2}
+\exists \delta, \forall x,y \in X, d_X(x,y)<\delta \implies d_Y\big(f_m(x),f_m(y) \big)<\frac{\epsilon}{3}
+\end{align}
+We claim 
+\begin{align*}
+\text{ \vi{such $\delta$ works} }
+\end{align*}
+Let $x,y \in X$ satisfy $d_X(x,y)<\delta$. We wish 
+\begin{align*}
+\vi{\text{ to prove }d_Y\big(f(x),f(y) \big)<\epsilon }
+\end{align*}
+From \myref{Equation}{L1} and \myref{Equation}{L2}, we have 
+\begin{align*}
+d_Y\big(f(x),f(y) \big)\leq d_Y\big(f(x),f_m(x) \big)+d_Y\big(f_m(x),f_m(y) \big)+d_Y\big(f_m(y),f(y) \big)=\epsilon \vdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{($K$-Lipschitz functions are Closed under Uniform Convergence)} Given a sequence of functions $f_n$ from metric space $(X,d_X)$ to metric space $(Y,d_Y)$, suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n\to f$ uniformly as $n\to \infty$ 
+  \item $f_n$ is $K$-Lipschtize continuous for all $n\inn$
+\end{enumerate}
+Then $f$ is also $K$-Lipschtize continuous. 
+\end{theorem}
+\begin{proof}
+Arbitrarily pick $x,y \in X$, to show $f$ is $K$-Lipschtize continuous, we wish 
+\begin{align*}
+\vi{\text{ to show $d_Y\big(f(x),f(y) \big)\leq Kd_X(x,y)$ }}
+\end{align*}
+Fix $\epsilon $. We reduce the problem into proving 
+\begin{align*}
+  \vi{d_Y\big(f(x),f(y) \big)<Kd_X(x,y)+\epsilon }
+\end{align*}
+Because $f_n\to f$ uniformly as $n\to \infty$, we know there exists $m$ such that 
+ \begin{align}
+\label{L4}
+\forall z \in X, d_Y\big(f(z),f_m(z) \big)<\frac{\epsilon}{2}
+\end{align}
+Because $f_m$ is $K$-Lispchitz continuous, we know 
+\begin{align}
+\label{L3}
+d_Y\big(f_m(x),f_m(y) \big)\leq Kd_X(x,y)
+\end{align}
+Now, from \myref{Equation}{L3} and \myref{Equation}{L4}, we now see 
+\begin{align*}
+  d_Y\big(f(x),f(y) \big)&\leq d_Y\big(f(x),f_m(x) \big)+d_Y\big(f_m(x),f_m(y) \big)+d_Y\big(f_m(y),f(y) \big)< Kd_X(x,y)+\epsilon 
+\end{align*}
+\end{proof}
+\begin{mdframed}
+An example of sequences of Lipschitz continuous functions with unbounded Lipschitz constant can uniformly converge to a non-Lipschitz continuous function is given below 
+\begin{Example}{\textbf{(Lipschitz functions with Unbounded Lipschitz constant Uniformly Converge to a non-Lipschitz function)}}{}
+\begin{align*}
+X=[0,1]\text{ and }f_n(x)=\sqrt{x+\frac{1}{n}} 
+\end{align*}
+\end{Example}
+\end{mdframed}
+
 \end{document}

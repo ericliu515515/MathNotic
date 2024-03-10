@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  25 FEB 2024 20:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  6 MAR 2024 22:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -950,7 +950,22 @@ Library (tcolorbox): 'tcbposter.code.tex' version '6.0.1'
  (/usr/local/texlive/2023/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2021/07/05 v2.14 TOC entries
 \ttl@leftsep=\dimen323
-)) (./macros.tex) (./letterfonts.tex) (./AC 2 note.aux
+)) (./macros.tex
+
+./macros.tex:45: LaTeX Error: Command \rap already defined.
+               Or name \end... illegal, see p.192 of the manual.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.45 \newcommand{\rap}[1]{\rrap{\text{ (#1)}}}
+                                              
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+) (./letterfonts.tex) (./AC 2 note.aux
 
 LaTeX Warning: Label `tse5' multiply defined.
 
@@ -1154,7 +1169,7 @@ Missing character: There is no ; in font nullfont!
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.25 ...Arzelà–Ascoli Theorem}{40}{section.2.9}
+l.25 ...Arzelà–Ascoli Theorem}{41}{section.2.9}
                                                   % [1
 
 ]
@@ -1162,12 +1177,8 @@ Overfull \hbox (0.36497pt too wide) detected at line 26
 \T1/cmr/m/n/14.4 2.10 
  []
 
-
-Overfull \hbox (0.36497pt too wide) detected at line 27
-\T1/cmr/m/n/14.4 2.11 
- []
-
 Missing character: There is no ; in font nullfont!
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 32.
 )
 \tf@toc=\write4
 \openout4 = `"AC 2 note.toc"'.
@@ -1185,7 +1196,6 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <20.16003> not available
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 21.
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 21.
 
 Underfull \hbox (badness 10000) in paragraph at lines 29--31
 
@@ -1302,107 +1312,107 @@ Underfull \hbox (badness 10000) in paragraph at lines 165--166
 
 [25
 
-] [26]
+] [26] [27]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 250.
+(mdframed)              on input line 310.
 
-Underfull \hbox (badness 10000) in paragraph at lines 260--261
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
 
  []
 
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 275.
-[27]
-Underfull \hbox (badness 10000) in paragraph at lines 284--285
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 319--321
-
- []
-
+(mdframed)              on input line 335.
 [28]
-Underfull \hbox (badness 10000) in paragraph at lines 355--357
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 376--377
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 378--379
+Underfull \hbox (badness 10000) in paragraph at lines 344--345
 
  []
 
 [29]
-Underfull \hbox (badness 10000) in paragraph at lines 380--381
+Underfull \hbox (badness 10000) in paragraph at lines 379--381
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 415--417
+
+ []
+
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 436--437
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 438--439
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 440--441
 
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 385.
+(mdframed)              on input line 445.
 
-Underfull \hbox (badness 10000) in paragraph at lines 385--386
+Underfull \hbox (badness 10000) in paragraph at lines 445--446
 
  []
 
-[30] [31] [32]
+[31] [32] [33]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 473.
+(mdframed)              on input line 533.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 515.
+(mdframed)              on input line 575.
 
 
-LaTeX Warning: Hyper reference `' on page 33 undefined on input line 515.
+LaTeX Warning: Hyper reference `' on page 34 undefined on input line 575.
 
 
-LaTeX Warning: Reference `' on page 33 undefined on input line 515.
+LaTeX Warning: Reference `' on page 34 undefined on input line 575.
 
-[33
+[34
 
 ]
-Overfull \hbox (4.78252pt too wide) detected at line 583
+Overfull \hbox (4.78252pt too wide) detected at line 643
 []
  []
 
-[34]
+[35]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 586.
- [35]
+(mdframed)              on input line 646.
+ [36]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 596.
+(mdframed)              on input line 656.
 
-Underfull \hbox (badness 10000) in paragraph at lines 596--597
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 603--605
+Underfull \hbox (badness 10000) in paragraph at lines 656--657
 
  []
 
-./AC 2 note.tex:612: Missing $ inserted.
+
+Underfull \hbox (badness 10000) in paragraph at lines 663--665
+
+ []
+
+./AC 2 note.tex:672: Missing $ inserted.
 <inserted text> 
                 $
-l.612   \item $
+l.672   \item $
                N$ depend on both  $\epsilon $ and $x$ if $f_n\to f$ pointwise
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./AC 2 note.tex:612: Extra }, or forgotten $.
+./AC 2 note.tex:672: Extra }, or forgotten $.
 \labelenumi ->{(\bullet )}
                           
-l.612   \item $
+l.672   \item $
                N$ depend on both  $\epsilon $ and $x$ if $f_n\to f$ pointwise
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1410,10 +1420,10 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-./AC 2 note.tex:612: Extra }, or forgotten $.
+./AC 2 note.tex:672: Extra }, or forgotten $.
 \llap  #1->\hb@xt@ \z@ {\hss #1}
                                 
-l.612   \item $
+l.672   \item $
                N$ depend on both  $\epsilon $ and $x$ if $f_n\to f$ pointwise
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1421,18 +1431,18 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-./AC 2 note.tex:612: Missing $ inserted.
+./AC 2 note.tex:672: Missing $ inserted.
 <inserted text> 
                 $
-l.612   \item $
+l.672   \item $
                N$ depend on both  $\epsilon $ and $x$ if $f_n\to f$ pointwise
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./AC 2 note.tex:612: Missing } inserted.
+./AC 2 note.tex:672: Missing } inserted.
 <inserted text> 
                 }
-l.612   \item $
+l.672   \item $
                N$ depend on both  $\epsilon $ and $x$ if $f_n\to f$ pointwise
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1440,10 +1450,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./AC 2 note.tex:612: Missing } inserted.
+./AC 2 note.tex:672: Missing } inserted.
 <inserted text> 
                 }
-l.612   \item $
+l.672   \item $
                N$ depend on both  $\epsilon $ and $x$ if $f_n\to f$ pointwise
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1451,18 +1461,18 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./AC 2 note.tex:613: Missing $ inserted.
+./AC 2 note.tex:673: Missing $ inserted.
 <inserted text> 
                 $
-l.613   \item $
+l.673   \item $
                N$ depend on only  $\epsilon $ if $f_n\to f$ uniformly
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./AC 2 note.tex:613: Extra }, or forgotten $.
+./AC 2 note.tex:673: Extra }, or forgotten $.
 \labelenumi ->{(\bullet )}
                           
-l.613   \item $
+l.673   \item $
                N$ depend on only  $\epsilon $ if $f_n\to f$ uniformly
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1470,10 +1480,10 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-./AC 2 note.tex:613: Extra }, or forgotten $.
+./AC 2 note.tex:673: Extra }, or forgotten $.
 \llap  #1->\hb@xt@ \z@ {\hss #1}
                                 
-l.613   \item $
+l.673   \item $
                N$ depend on only  $\epsilon $ if $f_n\to f$ uniformly
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -1481,18 +1491,18 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-./AC 2 note.tex:613: Missing $ inserted.
+./AC 2 note.tex:673: Missing $ inserted.
 <inserted text> 
                 $
-l.613   \item $
+l.673   \item $
                N$ depend on only  $\epsilon $ if $f_n\to f$ uniformly
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./AC 2 note.tex:613: Missing } inserted.
+./AC 2 note.tex:673: Missing } inserted.
 <inserted text> 
                 }
-l.613   \item $
+l.673   \item $
                N$ depend on only  $\epsilon $ if $f_n\to f$ uniformly
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1500,10 +1510,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./AC 2 note.tex:613: Missing } inserted.
+./AC 2 note.tex:673: Missing } inserted.
 <inserted text> 
                 }
-l.613   \item $
+l.673   \item $
                N$ depend on only  $\epsilon $ if $f_n\to f$ uniformly
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -1512,243 +1522,270 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 615--616
+Underfull \hbox (badness 10000) in paragraph at lines 675--676
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 620--622
+Underfull \hbox (badness 10000) in paragraph at lines 680--682
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 626--628
+Underfull \hbox (badness 10000) in paragraph at lines 686--688
 
  []
 
-<pwise converge1.png, id=438, 711.65875pt x 467.7475pt>
+<pwise converge1.png, id=450, 711.65875pt x 467.7475pt>
 File: pwise converge1.png Graphic file (type png)
 <use pwise converge1.png>
-Package pdftex.def Info: pwise converge1.png  used on input line 640.
+Package pdftex.def Info: pwise converge1.png  used on input line 700.
 (pdftex.def)             Requested size: 426.78136pt x 256.08426pt.
-<pwise converge2.png, id=440, 715.67375pt x 453.695pt>
+<pwise converge2.png, id=452, 715.67375pt x 453.695pt>
 File: pwise converge2.png Graphic file (type png)
 <use pwise converge2.png>
-Package pdftex.def Info: pwise converge2.png  used on input line 651.
+Package pdftex.def Info: pwise converge2.png  used on input line 711.
 (pdftex.def)             Requested size: 426.7976pt x 199.16951pt.
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
-(mdframed)              on input line 655.
-[36
+(mdframed)              on input line 715.
+[37
 
-] [37 <./pwise converge1.png>]
+] [38 <./pwise converge1.png>]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 657.
+(mdframed)              on input line 717.
 
-Underfull \hbox (badness 10000) in paragraph at lines 657--658
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 659--660
+Underfull \hbox (badness 10000) in paragraph at lines 717--718
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 664--666
+Underfull \hbox (badness 10000) in paragraph at lines 719--720
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 667--668
+Underfull \hbox (badness 10000) in paragraph at lines 724--726
 
  []
 
-[38 <./pwise converge2.png>]
+
+Underfull \hbox (badness 10000) in paragraph at lines 727--728
+
+ []
+
+[39 <./pwise converge2.png>]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 670.
+(mdframed)              on input line 730.
 
-Underfull \hbox (badness 10000) in paragraph at lines 670--677
+Underfull \hbox (badness 10000) in paragraph at lines 730--737
 
  []
 
-[39]
+[40]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 687.
+(mdframed)              on input line 747.
 
-Overfull \hbox (9.24414pt too wide) detected at line 696
-[]
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 699--700
+Underfull \hbox (badness 10000) in paragraph at lines 747--748
 
  []
 
-[40
+[41
 
 ]
-Overfull \hbox (7.13303pt too wide) detected at line 774
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 804.
+
+Underfull \hbox (badness 10000) in paragraph at lines 804--805
+
+ []
+
+
+Overfull \hbox (0.22902pt too wide) detected at line 813
 []
  []
 
-[41] [42] [43
 
-] [44
+Underfull \hbox (badness 10000) in paragraph at lines 827--829
+
+ []
+
+[42]
+Underfull \hbox (badness 10000) in paragraph at lines 869--871
+
+ []
+
+[43]
+Overfull \hbox (10.27933pt too wide) detected at line 883
+[]
+ []
+
+
+Overfull \hbox (5.94691pt too wide) detected at line 907
+[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 907--909
+
+ []
+
+[44] [45
 
 ]
 Chapter 3.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 812.
+(mdframed)              on input line 916.
 
-Underfull \hbox (badness 10000) in paragraph at lines 812--813
-
- []
-
-
-LaTeX Warning: Hyper reference `s1' on page 45 undefined on input line 814.
-
-
-LaTeX Warning: Reference `s1' on page 45 undefined on input line 814.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 814--815
+Underfull \hbox (badness 10000) in paragraph at lines 916--917
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 825--827
+LaTeX Warning: Hyper reference `s1' on page 46 undefined on input line 918.
+
+
+LaTeX Warning: Reference `s1' on page 46 undefined on input line 918.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 918--919
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 829--830
+Underfull \hbox (badness 10000) in paragraph at lines 929--931
 
  []
 
-[45
 
-] [46]
+Underfull \hbox (badness 10000) in paragraph at lines 933--934
+
+ []
+
+[46
+
+] [47]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 894.
+(mdframed)              on input line 998.
 
-Underfull \hbox (badness 10000) in paragraph at lines 894--895
+Underfull \hbox (badness 10000) in paragraph at lines 998--999
 
  []
 
-[47] [48]
+[48] [49]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 958.
+(mdframed)              on input line 1062.
 
-Underfull \hbox (badness 10000) in paragraph at lines 958--959
+Underfull \hbox (badness 10000) in paragraph at lines 1062--1063
 
- []
-
-[49]
-Underfull \hbox (badness 10000) in paragraph at lines 977--979
-
- []
-
-
-Overfull \hbox (8.87448pt too wide) in paragraph at lines 995--996
-\T1/cmr/m/n/14.4 but not ab-so-lutely, then there ex-ists per-mu-ta-tions $\OML/cmm/m/it/14.4 ^^[[]; ^^[[] \OT1/cmr/m/n/14.4 : \U/msb/m/n/14 N \OMS/cmsy/m/n/14.4 ! \U/msb/m/n/14 N$ \T1/cmr/m/n/14.4 such that $[][] \OML/cmm/m/it/14.4 a[] \OMS/cmsy/m/n/14.4 !
  []
 
 [50]
-Underfull \hbox (badness 10000) in paragraph at lines 1016--1018
+Underfull \hbox (badness 10000) in paragraph at lines 1081--1083
 
  []
 
+
+Overfull \hbox (8.87448pt too wide) in paragraph at lines 1099--1100
+\T1/cmr/m/n/14.4 but not ab-so-lutely, then there ex-ists per-mu-ta-tions $\OML/cmm/m/it/14.4 ^^[[]; ^^[[] \OT1/cmr/m/n/14.4 : \U/msb/m/n/14 N \OMS/cmsy/m/n/14.4 ! \U/msb/m/n/14 N$ \T1/cmr/m/n/14.4 such that $[][] \OML/cmm/m/it/14.4 a[] \OMS/cmsy/m/n/14.4 !
+ []
+
 [51]
-Underfull \hbox (badness 10000) in paragraph at lines 1085--1086
+Underfull \hbox (badness 10000) in paragraph at lines 1120--1122
 
  []
 
 [52]
-Underfull \hbox (badness 10000) in paragraph at lines 1087--1088
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1089--1090
+Underfull \hbox (badness 10000) in paragraph at lines 1189--1190
 
  []
 
 [53]
+Underfull \hbox (badness 10000) in paragraph at lines 1191--1192
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1193--1194
+
+ []
+
+[54]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1095.
-<product rule.png, id=605, 309.155pt x 233.87375pt>
+(mdframed)              on input line 1199.
+<product rule.png, id=598, 309.155pt x 233.87375pt>
 File: product rule.png Graphic file (type png)
 <use product rule.png>
-Package pdftex.def Info: product rule.png  used on input line 1096.
+Package pdftex.def Info: product rule.png  used on input line 1200.
 (pdftex.def)             Requested size: 284.5534pt x 199.17902pt.
- [54
+ [55
 
  <./product rule.png>]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1125.
+(mdframed)              on input line 1229.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1138.
+(mdframed)              on input line 1242.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1138--1139
+Underfull \hbox (badness 10000) in paragraph at lines 1242--1243
 
  []
 
-[55]
-Underfull \hbox (badness 10000) in paragraph at lines 1183--1185
+[56]
+Underfull \hbox (badness 10000) in paragraph at lines 1287--1289
 
  []
 
-[56] [57]
+[57] [58]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1194.
+(mdframed)              on input line 1298.
 
-Underfull \hbox (badness 10000) in paragraph at lines 1194--1195
+Underfull \hbox (badness 10000) in paragraph at lines 1298--1299
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1196--1197
+Underfull \hbox (badness 10000) in paragraph at lines 1300--1301
 
  []
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1209.
+(mdframed)              on input line 1313.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1217.
-<CMVT.png, id=635, 284.06125pt x 271.0125pt>
+(mdframed)              on input line 1321.
+<CMVT.png, id=627, 284.06125pt x 271.0125pt>
 File: CMVT.png Graphic file (type png)
 <use CMVT.png>
-Package pdftex.def Info: CMVT.png  used on input line 1223.
+Package pdftex.def Info: CMVT.png  used on input line 1327.
 (pdftex.def)             Requested size: 284.55464pt x 199.1773pt.
-[58
+[59
 
-] [59 <./CMVT.png>]
+] [60 <./CMVT.png>]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1284.
- [60]
-Underfull \hbox (badness 10000) in paragraph at lines 1338--1340
+(mdframed)              on input line 1388.
+ [61]
+Underfull \hbox (badness 10000) in paragraph at lines 1442--1444
 
  []
 
-[61] [62] [63]
-./AC 2 note.tex:1433: Misplaced alignment tab character &.
+[62] [63] [64]
+./AC 2 note.tex:1537: Misplaced alignment tab character &.
 <argument>  to find a partition $Q$ of $[A,B]$ &
                                                 such that $U(Q,g,\beta )-L(Q...
-l.1433 \end{align*}
+l.1537 \end{align*}
                    
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1757,10 +1794,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-./AC 2 note.tex:1433: Misplaced alignment tab character &.
+./AC 2 note.tex:1537: Misplaced alignment tab character &.
 <argument> ...to find a partition $Q$ of $[A,B]$ &
                                                   such that $U(Q,g,\beta )-L...
-l.1433 \end{align*}
+l.1537 \end{align*}
                    
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1769,10 +1806,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-./AC 2 note.tex:1433: Misplaced alignment tab character &.
+./AC 2 note.tex:1537: Misplaced alignment tab character &.
 <argument> ...to find a partition $Q$ of $[A,B]$ &
                                                   such that $U(Q,g,\beta )-L...
-l.1433 \end{align*}
+l.1537 \end{align*}
                    
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1781,10 +1818,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-./AC 2 note.tex:1433: Misplaced alignment tab character &.
+./AC 2 note.tex:1537: Misplaced alignment tab character &.
 <argument> ...to find a partition $Q$ of $[A,B]$ &
                                                   such that $U(Q,g,\beta )-L...
-l.1433 \end{align*}
+l.1537 \end{align*}
                    
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1793,10 +1830,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-./AC 2 note.tex:1433: Misplaced alignment tab character &.
+./AC 2 note.tex:1537: Misplaced alignment tab character &.
 <argument>  to find a partition $Q$ of $[A,B]$ &
                                                 such that $U(Q,g,\beta )-L(Q...
-l.1433 \end{align*}
+l.1537 \end{align*}
                    
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1805,10 +1842,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-./AC 2 note.tex:1433: Misplaced alignment tab character &.
+./AC 2 note.tex:1537: Misplaced alignment tab character &.
 <argument> ...to find a partition $Q$ of $[A,B]$ &
                                                   such that $U(Q,g,\beta )-L...
-l.1433 \end{align*}
+l.1537 \end{align*}
                    
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1817,10 +1854,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-./AC 2 note.tex:1433: Misplaced alignment tab character &.
+./AC 2 note.tex:1537: Misplaced alignment tab character &.
 <argument> ...to find a partition $Q$ of $[A,B]$ &
                                                   such that $U(Q,g,\beta )-L...
-l.1433 \end{align*}
+l.1537 \end{align*}
                    
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1829,10 +1866,10 @@ up above has ended a previous alignment prematurely,
 you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
-./AC 2 note.tex:1433: Misplaced alignment tab character &.
+./AC 2 note.tex:1537: Misplaced alignment tab character &.
 <argument> ...to find a partition $Q$ of $[A,B]$ &
                                                   such that $U(Q,g,\beta )-L...
-l.1433 \end{align*}
+l.1537 \end{align*}
                    
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
@@ -1842,72 +1879,122 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1438--1440
+Underfull \hbox (badness 10000) in paragraph at lines 1542--1544
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1441--1442
+Underfull \hbox (badness 10000) in paragraph at lines 1545--1546
 
  []
 
-[64
+[65
 
-] [65] [66] [67] [68] [69
+] [66] [67] [68] [69]
+LaTeX Font Info:    Calculating math sizes for size <20.16003> on input line 1665.
 
-] [70]
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 1665.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 1665.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 1665.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 1665.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1665.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\rightarrow' on input line 1665.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1665.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1695--1697
+
+ []
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1663.
+(mdframed)              on input line 1718.
+Package mdframed Info: Not enough space on this page on input line 1719.
+[70
+
+]
+Package mdframed Info: Not enough space on this page on input line 1719.
  [71]
-Underfull \hbox (badness 10000) in paragraph at lines 1724--1726
+Underfull \hbox (badness 10000) in paragraph at lines 1794--1795
 
  []
 
-[72
-
-]
-
-./AC 2 note.tex:1752: LaTeX Error: Environment proof* undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1752 \begin{proof*}
-                     
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-[73]
-Underfull \hbox (badness 10000) in paragraph at lines 1820--1821
+[72] [73]
+Underfull \hbox (badness 10000) in paragraph at lines 1856--1858
 
  []
 
-[74] [75]
+[74]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1890.
 
-./AC 2 note.tex:1890: LaTeX Error: \begin{document} ended by \end{proof}.
+Underfull \hbox (badness 10000) in paragraph at lines 1890--1891
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.1890 \end{proof}
-                  
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+ []
 
-[76] [77
+LaTeX Font Info:    Trying to load font information for U+euf on input line 1892.
+(/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+) [75] [76]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 1928.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1951--1952
+
+ []
+
+[77
+
+] [78] [79
+
+] [80] [81] [82] [83
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
-(mdframed)              on input line 1953.
- [78] [79
+(mdframed)              on input line 2152.
+ [84] [85] [86] [87]
+Overfull \hbox (37.30482pt too wide) in paragraph at lines 2306--2308
+\T1/cmr/m/n/14.4 Then (No-tice that the sec-ond equal-ity be-low hold true be-cause we have known $[][] [][] \OML/cmm/m/it/14.4 ^^^[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 t\OT1/cmr/m/n/14.4 )$
+ []
 
-] (./AC 2 note.aux)
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2320.
+[88]
+Underfull \hbox (badness 10000) in paragraph at lines 2342--2344
+
+ []
+
+[89] [90]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 2385.
+ [91
+
+] [92] [93] (./AC 2 note.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.99791pt have occurred.
@@ -1920,18 +2007,19 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 33677 strings out of 476025
- 683194 string characters out of 5790017
+ 33783 strings out of 476025
+ 684610 string characters out of 5790017
  1881388 words of memory out of 5000000
- 53207 multiletter control sequences out of 15000+600000
- 537640 words of font info for 98 fonts, out of 8000000 for 9000
+ 53254 multiletter control sequences out of 15000+600000
+ 542797 words of font info for 118 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  91i,20n,99p,1267b,812s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc3583.pfb>
-Output written on "AC 2 note.pdf" (80 pages, 802377 bytes).
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public
+/cm-super/sfxc2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc3583.pfb>
+Output written on "AC 2 note.pdf" (94 pages, 879109 bytes).
 PDF statistics:
- 1139 PDF objects out of 1200 (max. 8388607)
- 919 compressed objects within 10 object streams
- 301 named destinations out of 1000 (max. 500000)
+ 1261 PDF objects out of 1440 (max. 8388607)
+ 1025 compressed objects within 11 object streams
+ 353 named destinations out of 1000 (max. 500000)
  473 words of extra memory for PDF output out of 10000 (max. 10000000)
 

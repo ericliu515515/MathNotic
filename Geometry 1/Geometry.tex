@@ -14,8 +14,8 @@ Geometry 1}
 \pdfbookmark[section]{\contentsname}{toc}
 \tableofcontents
 \pagebreak
-\chapter{HW}
-\section{HW1}
+\chapter{Curve}
+\section{Frenet Trihedron}
 \begin{mdframed}
 In this section, we will use $I$ to denote an \textbf{bounded open interval}. By a \textbf{curve} in $\R^n$, we mean a function form an open interval $I$ to $\R^n$.  We say a curve is \textbf{differentiable} if it is infinitely differentiable (smooth). That is, $\gamma ^{(n)}(t)$ exists and are continuous for all $n\inn$ and $t \in I$.\\
 
@@ -30,7 +30,7 @@ We say $\gamma ''(t)$ is the \textbf{oriented curvature} (normal vector) of $\ga
  \begin{align*}
 N(t)\triangleq \frac{T'(t)}{\abso{T'(t)}}=\frac{\gamma ''(t)}{\abso{\gamma ''(t)}}
 \end{align*}
-With some messy computation, we can observe 
+If the curve is parametrized by arc-length, with some messy computation, we can observe 
 \begin{align*}
 T'(t)=\frac{\gamma ''(t)}{\abso{\gamma '(t)}}
 \end{align*}
@@ -106,7 +106,7 @@ With unfortunately heavy computation, we can verify that the definition of curva
 
 Now, notice that we already have $T'=\kappa N$ and $B'=\tau N$, and by basic identity, we have $N=B\times T$.\\
 
-Then with some computation, we have the \textbf{Frenet Formula}
+Then $\underline{\text{with some computation}}$, we have the \textbf{Frenet Formula}
 \begin{align*}
 \begin{cases}
   T'=\kappa N\\
@@ -193,12 +193,78 @@ All proofs except that of the last identity are merely manipulation of determina
 =&u'\times v+u \times v'
 \end{align*}
 \end{proof}
+\begin{theorem}
+\textbf{(Integrating the Dot Product)} Given a curve $u:[a,b]\rightarrow \R^n$ and a vector $v \in\R^n$, suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $u$ is differentiable on $(a,b)$ 
+  \item $u$ is continuous on  $[a,b]$
+\end{enumerate}
+We have 
+\begin{align*}
+\int_a^b u'(t)\cdot v dt=
+\Big(\int_a^b u'(t)dt \Big)\cdot v= \big(u(b)-u(a) \big)\cdot v
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+\int_a^b u'(t)\cdot vdt&=\int_a^b \sum_{k=1}^n u'_k(t)\cdot v_k dt \\
+&=\sum_{k=1}^n  \int_a^b u'_k(t)\cdot v_k dt\\
+&=\sum_{k=1}^n v_k \int_a^b u'_k(t)dt\\
+&=v\cdot \Big(\int_a^b u'(t)dt \Big)
+\end{align*}
+\end{proof}
 \begin{mdframed}
 For the result above, sometimes we write 
 \begin{align*}
   (u\cdot v)'=u'\cdot v+ u \cdot v'\text{ and }(u\times v)'=u' \times v+u\times v'
 \end{align*}
 \end{mdframed}
+\begin{theorem}
+\textbf{(MVT for curve)} Given a curve $\alpha  : [a,b]\rightarrow \R^n$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha  $ is differentaible on $(a,b)$ 
+  \item $\alpha  $ is continuous on $[a,b]$
+\end{enumerate}
+there exists $ \xi  \in (a,b)$ such that 
+\begin{align*}
+\abso{\alpha  (b)-\alpha  (a)}\leq \abso{\alpha  '(\xi  )}(b-a)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $\phi:[a,b]\rightarrow \R$ by 
+\begin{align*}
+\phi(t)=\alpha (t)\cdot \big(\alpha (b)-\alpha (a) \big) 
+\end{align*}
+Clearly $\phi$ satisfy the hypothesis of Lagrange's MVT, then we know there exists $\xi \in (a,b)$ such that 
+\begin{align*}
+\phi(b)-\phi (a)=\phi'(\xi )\cdot (b-a)
+\end{align*}
+Written the equation in $\alpha $, we have 
+\begin{align*}
+\abso{\alpha (b)-\alpha (a)}^2= (b-a)\alpha '(\xi)\cdot \big(\alpha (b)-\alpha (a) \big)
+\end{align*}
+Notice that Cauchy-Schwarz inequality give us 
+\begin{align*}
+  (b-a)\abso{\alpha '(\xi)}\cdot \abso{\alpha (b)-\alpha (a)}&\geq (b-a)\abso{\alpha ' (\xi)\cdot \big(\alpha (b)-\alpha (a) \big)} \\
+  &=\abso{\alpha (b)-\alpha (a)}^2
+\end{align*}
+This then implies 
+\begin{align*}
+  (b-a)\abso{\alpha '(\xi)}\geq \abso{\alpha (b)-\alpha (a)}
+\end{align*}
+\end{proof}
+\begin{corollary}
+\label{MVI}
+\textbf{(Mean Value Inequality)} Given a curve $\alpha :[a,b]\rightarrow \R^n$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ is differentiable on $(a,b)$ 
+  \item $\alpha $ is continuous on $[a,b]$
+\end{enumerate}
+we have 
+\begin{align*}
+\abso{\alpha (b)-\alpha (a)}\leq (b-a)\sup_{(a,b)}\abso{\alpha '}
+\end{align*}
+\end{corollary}
 \begin{mdframed}
 \textbf{Trick to parametrize by arc-length}.\\
 
@@ -218,11 +284,81 @@ We have by Chain rule
 &=\frac{\alpha '(t(s))}{s'(t)}\\
 &=\frac{\alpha '(t(s))}{\abso{\alpha '(t(s))}}
 \end{align*}
-Now, $\beta $ is clearly a regular curve, and 
-\begin{align*}
-\int_{0}^x \abso{\beta '(s)}ds=x
-\end{align*}
 \end{mdframed} 
+\begin{mdframed}
+\textbf{(Frenet Formula Summary)} \\
+
+By definition, we are given 
+\begin{align*}
+\begin{cases}
+  T'=\kappa N\\
+  B'=\tau N
+\end{cases}
+\end{align*}
+To compute $N'$, an identity should be first given 
+ \begin{align*}
+N=B\times T
+\end{align*}
+We can now complete the Frenet Formula 
+\begin{align*}
+N'&=B'\times T + B \times T'\\
+&=\tau N \times T + B \times \kappa N\\
+&=-\tau B-\kappa T
+\end{align*}
+In conclusion 
+\begin{align*}
+\begin{cases}
+  T'=\kappa N
+  B' =\tau N\\
+  N'=-\tau B-\kappa T
+\end{cases}
+\end{align*}
+Give very close attention to the fact the two definitions of curvature 
+\begin{align*}
+\kappa =\frac{T'}{N}\text{ and }\kappa = \abso{\gamma ''}
+\end{align*}
+coincides $\underline{\text{only when }}\gamma $ is parametrzied by arc-length. The first definition remain same for all parametrizaiton of the same curve, while the latter doesn't.\\
+
+Some comment should be dropped for the computation of torsion. If you overlook the fact $\alpha $ is parametrized by arc-length and disregard Frenet Formula, it is very likely you will get a result that you can not even sure if it is valid (the nominator and denominator may end up not seem explicitly parallel), let alone an identity beautiful as below. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Identity of Torsion)} Given a parametrized by arc-length cruve $\alpha  :I \rightarrow \R^3$, we have 
+\begin{align*}
+\tau(s)=-\frac{\big(\alpha '(s)\times \alpha ''(s) \big)\cdot \alpha '''(s)}{\kappa ^2 (s)}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $\underline{\alpha  \text{ is parametrized by arc-length}}$, we have 
+\begin{align*}
+  \alpha '(s)=T(s)
+\end{align*}
+We first show 
+\begin{align}
+\label{A''}
+\vi{\alpha ''(s)=\kappa (s)N(s)}
+\end{align}
+Compute 
+\begin{align*}
+N(s)&=\frac{T'(s)}{\abso{T'(s)}}\\
+&=\frac{\alpha ''(s)}{\abso{\alpha ''(s)}}=\frac{\alpha ''(s)}{\kappa (s)}\vdone
+\end{align*}
+We now show 
+\begin{align*}
+\blue{\alpha '''(s)=\kappa(s)\big(-(\tau B)(s)-(\kappa T)(s)\big)+\kappa'(s)N(s) }
+\end{align*}
+By \myref{Equation}{A''} and Frenet Formula, we have 
+\begin{align*}
+\alpha '''(s)&=\kappa'(s)N(s)+\kappa(s)N'(s)\\
+&=\kappa'(s)N(s)+\kappa(s)\big(- (\tau B)(s)-(\kappa T)(s) \big)\bdone
+\end{align*}
+Lastly, we verify 
+\begin{align*}
+-\frac{\big(\alpha '(s)\times \alpha ''(s) \big)\cdot \alpha '''(s)}{\kappa^2(s)}&=-\frac{(T\times \kappa N)\cdot \Big( \kappa \big(-\tau B-\kappa T \big)+\kappa ' N\Big) }{\kappa ^2}\\
+&=-\frac{-\kappa^2 \tau (T\times N)\cdot B }{\kappa^2}\hspace{1cm}(\because T\times N \cdot (T\text{ or }N)=0)\\
+&=\tau 
+\end{align*}
+\end{proof}
+\section{HW1}
 \begin{question}{1-2: 2}{}
 
 Let \(\alpha(t)\) be a parametrized curve which does not pass through the origin. If \(\alpha(t_0)\) is the point of the trace of \(\alpha\) closest to the origin and \(\alpha'(t_0) \neq 0\), show that the position vector \(\alpha(t_0)\) is orthogonal to \(\alpha'(t_0)\).
@@ -376,12 +512,21 @@ We conclude that the length of the segment is
 \end{question}
 \begin{proof}
 \textbf{(a)}
+Let $v=(0,1)$. Compute 
 \begin{align*}
-\frac{\alpha (t)}{t}\to (0,0)\text{ as $t \to 0^-$ }
+\frac{\alpha (t)-\alpha (0)}{\abso{\alpha (t)-\alpha (0)}}\cdot v=\frac{t^2}{\sqrt{t^6+t^4} }=\frac{1}{\sqrt{t^2+1} }\to 1\text{ as }t \to 1
 \end{align*}
+This implies $\alpha $ has a weak tangent at $t=0$. Now, if $\alpha $ has a strong tangent, we must have 
 \begin{align*}
-\frac{\alpha (h)-\alpha (k)}{h-k}=\frac{\Big(h^3-k^3 ,h^2-k^2\Big)}{h-k}=\Big(h^2+hk+k^2 , h+k \Big) \to 
+\frac{\alpha (h)-\alpha (-h)}{2h}\cdot v \to 1\text{ or }\to -1
 \end{align*}
+But this is clearly not the case as 
+\begin{align*}
+\frac{\alpha (h)-\alpha (-h)}{2h}\cdot v=0\text{ for all $h>0$ }
+\end{align*}
+So we have the conclusion that $\alpha $ has no strong tangent at $0$.\\
+
+
 \textbf{(b)} 
 By MVT, for each $h,k$ there exists a set of real numbers $\set{c_x,c_y,c_z}$ between $t+h$ and  $t+k$ such that 
  \begin{align*}
@@ -392,13 +537,23 @@ Then because
 h,k  \to 0 \implies t_0+h ,t_0+k \to t_0 \implies c_x,c_y,c_z \to t_0
 \end{align*}
 Then from the fact $\alpha $ is of class $C^1$ ($x',y',z'$ are all continuous), we can now deduce 
-\begin{align*}
+\begin{align}
+\label{ahk}
 \frac{\alpha (t_0+h)-\alpha (t_0+k)}{h-k}\to \alpha '(t_0)\text{ as $h,k \to 0$ }
-\end{align*}
+\end{align}
 Now, because $\alpha '(t_0)\neq 0$ as $\alpha $ is regular, we see 
 \begin{align*}
 \lim_{h,k\to 0}\frac{\alpha (t_0+h)-\alpha (t_0+k)}{h-k}\cdot \alpha '(t_0)= \abso{\alpha '(t_0)}^2
 \end{align*}
+This then implies 
+\begin{align*}
+\lim_{h,k\to 0}\frac{\alpha (t_0+h)-\alpha (t_0+k)}{\abso{\alpha (t_0+h)-\alpha (t_0+k)}}\cdot \frac{\alpha '(t_0)}{\abso{\alpha '(t_0)}}=1
+\end{align*}
+which implies the "strong tangent" must always converge to $\alpha '(t_0)$.\\
+
+Notice that the last implication is backed by \myref{Equation}{ahk}\\
+
+
 \textbf{(c)}\\
 
 From 
@@ -422,52 +577,6 @@ Now, it is clear that $x',y'$ are continuous. This implies $\alpha  \in C^1$. Ye
 
 The sketch:\includegraphics[height=8cm,width=15cm]{qsp}
 \end{proof}
-\begin{theorem}
-\textbf{(MVT for curve)} Given a curve $\alpha  : [a,b]\rightarrow \R^n$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\alpha  $ is differentaible on $(a,b)$ 
-  \item $\alpha  $ is continuous on $[a,b]$
-\end{enumerate}
-there exists $ \xi  \in (a,b)$ such that 
-\begin{align*}
-\abso{\alpha  (b)-\alpha  (a)}\leq \abso{\alpha  '(\xi  )}(b-a)
-\end{align*}
-\end{theorem}
-\begin{proof}
-Define $\phi:[a,b]\rightarrow \R$ by 
-\begin{align*}
-\phi(t)=\alpha (t)\cdot \big(\alpha (b)-\alpha (a) \big) 
-\end{align*}
-Clearly $\phi$ satisfy the hypothesis of Lagrange's MVT, then we know there exists $\xi \in (a,b)$ such that 
-\begin{align*}
-\phi(b)-\phi (a)=\phi'(\xi )\cdot (b-a)
-\end{align*}
-Written the equation in $\alpha $, we have 
-\begin{align*}
-\abso{\alpha (b)-\alpha (a)}^2= (b-a)\alpha '(\xi)\cdot \big(\alpha (b)-\alpha (a) \big)
-\end{align*}
-Notice that Cauchy-Schwarz inequality give us 
-\begin{align*}
-  (b-a)\abso{\alpha '(\xi)}\cdot \abso{\alpha (b)-\alpha (a)}&\geq (b-a)\abso{\alpha ' (\xi)\cdot \big(\alpha (b)-\alpha (a) \big)} \\
-  &=\abso{\alpha (b)-\alpha (a)}^2
-\end{align*}
-This then implies 
-\begin{align*}
-  (b-a)\abso{\alpha '(\xi)}\geq \abso{\alpha (b)-\alpha (a)}
-\end{align*}
-\end{proof}
-\begin{corollary}
-\label{MVI}
-\textbf{(Mean Value Inequality)} Given a curve $\alpha :[a,b]\rightarrow \R^n$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\alpha $ is differentiable on $(a,b)$ 
-  \item $\alpha $ is continuous on $[a,b]$
-\end{enumerate}
-we have 
-\begin{align*}
-\abso{\alpha (b)-\alpha (a)}\leq (b-a)\sup_{(a,b)}\abso{\alpha '}
-\end{align*}
-\end{corollary}
 \begin{question}{}{}
 \includegraphics[height=15cm,width=18cm]{qu8}
 \includegraphics[height=3cm,width=18cm]{qu7}
@@ -542,18 +651,566 @@ Suppose $I=[a,b]$. Define arc length by
 \textbf{(b)}\\
 
 Geometrically, we know the arc length of the portion of the curve corresponding to $t \in [\frac{1}{n+1},\frac{1}{n}]$ must be greater than 
-\begin{align*}
+\begin{align}
+\label{19b}
 \abso{\alpha \big(\frac{1}{n}\big)-\alpha \big(\frac{1}{n+\frac{1}{2}}\big)}+\abso{\alpha \big(\frac{1}{n+1} \big)-\alpha \big(\frac{1}{n+\frac{1}{2}} \big)}
+\end{align}
+WOLG of $n$ being odd or even, Compute 
+\begin{align*}
+\abso{\alpha \big(\frac{1}{n} \big)-\alpha \big(\frac{1}{n+\frac{1}{2}} \big)}&=\abso{(\frac{1}{n},0)-(\frac{1}{n+\frac{1}{2}},\frac{1}{n+\frac{1}{2}})}\\
+&=\sqrt{\big(\frac{1}{n}-\frac{1}{n+\frac{1}{2}} \big)^2 +\big(\frac{1}{n+\frac{1}{2}} \big)^2} \\
+&=\sqrt{\frac{1}{n^2}-\frac{4}{n(2n+1)}+\frac{8}{(2n+1)^2}} \\
+&=\sqrt{\frac{(2n+1)^2-4n(2n+1)+8n^2}{n^2(2n+1)^2}} \\
+&=\sqrt{\frac{4n^2+1}{n^2(2n+1)^2}}\\
+&=\frac{\sqrt{4n^2+1} }{n(2n+1)}\geq \frac{\sqrt{4n^2} }{n(2n+1)}=\frac{2}{2n+1}
 \end{align*}
-This 
-
-
-
+and compute 
+\begin{align*}
+\abso{\alpha \big(\frac{1}{n+\frac{1}{2}} \big)-\alpha \big(\frac{1}{n} \big)}&=\abso{(\frac{1}{n+\frac{1}{2}},\frac{1}{n+\frac{1}{2}})-(\frac{1}{n+1},0)}\\
+&=\sqrt{\big(\frac{1}{n+1}-\frac{1}{n+\frac{1}{2}} \big)^2 + \big(\frac{1}{n+\frac{1}{2}} \big)^2} \\
+&=\sqrt{\frac{1}{(n+1)^2}-\frac{4}{(n+1)(2n+1)}+\frac{8}{(2n+1)^2}}\\
+&=\sqrt{\frac{(2n+1)^2 -4(n+1)(2n+1)+8(n+1)^2}{(n+1)^2(2n+1)^2}}\\
+&=\sqrt{\frac{4n^2+8n+5}{(n+1)^2(2n+1)^2}}\\
+&\geq \frac{\sqrt{4n^2+8n+4} }{(n+1)(2n+1)}=\frac{2}{2n+1}
+\end{align*}
+From the computation and \myref{Equation}{19b}, it is now clear that the arc length of the portion of the curve corresponding to $ t \in [\frac{1}{n+1},\frac{1}{n}]$ is at least $\frac{2}{n+\frac{1}{2}}$. With simple addition, this then implies the arc length of the curve in the interval $[\frac{1}{N},1]$ is at least 
+\begin{align*}
+  \sum_{n=1}^{N-1} \frac{2}{2n+1}=2 \sum_{n=1}^{N-1}\frac{1}{2n+1}
+\end{align*}
+The number is clearly greater than 
+\begin{align*}
+2 \sum_{n=1}^{N-1}\frac{1}{2n+2}
+\end{align*}
+which equals to 
+\begin{align*}
+\sum_{n=1}^{N-1}\frac{1}{n+1}
+\end{align*}
+The series diverge to $+\infty$ as $N$ to  $\infty$. 
+\end{proof}
+\begin{theorem}
+\label{IDP}
+\textbf{(Integrating the Dot Product)} Given a curve $u:[a,b]\rightarrow \R^n$ and a vector $v \in\R^n$, suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $u$ is differentiable on $(a,b)$ 
+  \item $u$ is continuous on  $[a,b]$
+\end{enumerate}
+We have 
+\begin{align*}
+\int_a^b u'(t)\cdot v dt=
+\Big(\int_a^b u'(t)dt \Big)\cdot v= \big(u(b)-u(a) \big)\cdot v
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+\int_a^b u'(t)\cdot vdt&=\int_a^b \sum_{k=1}^n u'_k(t)\cdot v_k dt \\
+&=\sum_{k=1}^n  \int_a^b u'_k(t)\cdot v_k dt\\
+&=\sum_{k=1}^n v_k \int_a^b u'_k(t)dt\\
+&=v\cdot \Big(\int_a^b u'(t)dt \Big)
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 \includegraphics[height=10cm,width=18cm]{qu5}
 \end{question}
+\begin{proof}
+\textbf{(a)}\\
 
 
+The first equality 
+\begin{align*}
+  (q-p)\cdot v=\int_a^b \alpha '(t)\cdot vdt
+\end{align*}
+follows directly from \myref{Theorem}{IDP}.\\
+
+Now, by Cauchy-Schwarz inequality, we have 
+\begin{align*}
+  \abso{\alpha '(t)\cdot v} \leq \abso{\alpha '(t)}\cdot \abso{v}
+\end{align*}
+This then give us 
+\begin{align*}
+\alpha '(t)\cdot v\leq \abso{\alpha '(t)\cdot v}\leq \abso{\alpha '(t)}\cdot \abso{v}=\abso{\alpha '(t)}
+\end{align*}
+We now have 
+\begin{align*}
+\int_a^b \alpha '(t)\cdot v \leq \abso{\alpha '(t)}dt
+\end{align*}
+as desired.\\
+
+\textbf{(b)}
+
+The first inequality tell us that if $v$ is a constant and $\abso{v}=1$, we have 
+\begin{align*}
+  (q-p)\cdot v \leq \int_a^b \abso{\alpha '(t)}dt
+\end{align*}
+If $v=\frac{q-p}{\abso{q-p}}$, it is clear that $v$ is a constant and  $\abso{v}=1$, and at the same time, we have 
+\begin{align*}
+  (q-p)\cdot v=\frac{(q-p)\cdot (q-p)}{\abso{q-p}}=\frac{\abso{q-p}^2}{\abso{q-p}}=\abso{q-p}
+\end{align*}
+We now have 
+\begin{align*}
+\abso{q-p}=(q-p)\cdot v \leq \int_a^b \abso{\alpha '(t)}dt
+\end{align*}
+from the first inequality 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=2cm,width=18cm]{qu9}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\begin{vmatrix} 
+  1 & 4 \\
+  3 & 2
+\end{vmatrix}=-10
+\end{align*}
+and compute 
+\begin{align*}
+\begin{vmatrix}
+  1& 2 & 4 \\
+  3 & 3 & 8 \\
+  5 & 7 & 3
+\end{vmatrix}=-9
+\end{align*}
+Both bases are negatively oriented. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=2cm,width=18cm]{qu10}
+\end{question}
+\begin{proof}
+Arbitrarily pick two points $u,w$ in  $P$. We wish to show 
+\begin{align*}
+  \vi{v\cdot (u-w)=0}
+\end{align*}
+Because $v=(a,b,c)$ and 
+\begin{align*}
+\begin{cases}
+  au_1+b u_2+cu_3=-d
+  aw_1+b w_2+cw_3=-d
+\end{cases}
+\end{align*}
+We see
+\begin{align*}
+v\cdot (u-w)&= a(u_1-w_2)+b(u_2-w_2)+c(u_3-w_2)\\
+&=(-d)-(-d)=0\vdone
+\end{align*}
+To measure the distance between $P$ and the origin, we wish to find a vector $u$ such that  $u\perp P$ and $u \in P$. We know that $u$ must be linearly dependent with  $v=(a,b,c)$, since the dimension of  $P^\perp$ is $1$. Then, we can write
+\begin{align*}
+u=c_0(a,b,c)\text{ for some $c_0\inr$ }
+\end{align*}
+Because $u \in P$, we know 
+\begin{align*}
+c_0a^2+c_0b^2+c_0c^2+d=0
+\end{align*}
+This tell us 
+\begin{align*}
+c_0=\frac{-d}{a^2+b^2+c^2}
+\end{align*}
+We now see that the distance $\abso{u}$ between $P$ and origin is 
+\begin{align*}
+\abso{u}=\abso{c_0}\cdot \sqrt{a^2+b^2+c^2}= \frac{\abso{d}}{\sqrt{a^2+b^2+c^2} }
+\end{align*}
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=2cm,width=18cm]{qu11}
+\end{question}
+\begin{proof}
+From last question, we know the two vectors $u,v$ that are respectively perpendicular to  $P:5x+3y+2z-4=0$ and  $Q:3x+4y-7z=0$ respectively have the direction 
+ \begin{align*}
+   (5,3,2)\text{ and }(3,4,-7)
+\end{align*}
+Then, we see the angle of the intersection are 
+\begin{align*}
+\arccos \frac{5\cdot 3+3\cdot 4 +2 \cdot (-7)}{\sqrt{5^2+3^2+2^2} \sqrt{3^2+4^2+7^2} }=\arccos \frac{13}{\sqrt{38}\sqrt{71}  }
+\end{align*}
+Notice that this angle is smaller than $\frac{\pi}{2}$ as we intend it to be. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=4cm,width=18cm]{qu12}
+\end{question}
+\begin{proof}
+Let $v=(x,y,z)$ be a point on the line of intersection.  We see the vector  $v-(x_0,y_0,z_0)$ lies on both planes, and thus must be perpendicular to $(a_1,b_1,c_1)=v_1$ and $(a_2,b_2,c_2)=v_2$ thus satisfying 
+\begin{align*}
+v-(x_0,y_0,z_0)=tv_1\times v_2=tu\text{ for some $t\inr$ }
+\end{align*}
+sine in $\R^3$, the only direction perpendicular to both  $v_1,v_2$ is  $v_1\times v_2$. We can rewrite the above equation of course into 
+\begin{align*}
+x-x_0=u_1t,y-y_0=u_2t,z-z_0=u_3t
+\end{align*}
+\end{proof}
+\section{Fundamental Theorem of Local Curves}
+\begin{mdframed}
+In this section, by an \textbf{orthogonal transformation} we mean a linear transformation $M$ from  $\big(V,\langle \cdot,\cdot\rangle_V  \big)$ to $\big(W,\langle \cdot,\cdot\rangle_W  \big)$ such that 
+\begin{align*}
+\hspace{3cm}\langle v,w\rangle_V =\langle Mv,Mw\rangle_W\hspace{2cm}(v,w \in V)
+\end{align*}
+By a \textbf{rigid motion} $M$, we mean an orthogonal transformation from $\R^3$ to  $\R^3$ such that 
+\begin{align*}
+\text{det}\big([M]_{\set{e_1,e_2,e_3}} \big)>0
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Fundamental Theorem of Local Curves: Uniqueness Part 1)} Given an $\underline{\text{open}}$ interval $I \subseteq \R$, a parametrized by arc-length curve $\alpha :I \rightarrow \R^3$ with positive curvature, a rigid motion $M$ and a vector  $c \inr^3$, we see that the function  $\beta : I \rightarrow \R^3 $ defined by 
+\begin{align*}
+\beta (s)=(M \circ \gamma )(s)+c
+\end{align*}
+is a curve parametrized by arc-length such that 
+\begin{align*}
+\alpha \text{ and }\beta \text{ has the same curvature and torsion on all $s \in I$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first have to prove 
+\begin{align*}
+\vi{\beta :I\rightarrow \R^3\text{ is parametrized by arc-length }}
+\end{align*}
+Fix $s \in I$. We have to prove 
+\begin{align*}
+\vi{\abso{\beta '(s)}=1}
+\end{align*}
+Compute 
+\begin{align*}
+\abso{\beta '(s)}&=\abso{(M\circ \gamma )'(s)}\\
+&=\abso{}\vdone
+\end{align*}
+We now prove 
+\begin{align*}
+\blue{\beta '(s)}
+\end{align*}
+
+Because we have the identity 
+\begin{align*}
+\kappa (s)=\abso{\alpha ''(s)}\text{ and }\tau (s)=-\frac{(\alpha '\times \alpha '')\cdot \alpha '''}{\kappa^2}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{FTLCU}
+\textbf{(Fundamental Theorem of Local Curves: Uniqueness Part 2)} Given an $\underline{\text{open}}$ interval $I \subseteq \R$ and two parametrized by arc-length curves $\alpha ,\overline{\alpha }:I\rightarrow \R^3$ such that 
+\begin{align*}
+\hspace{3cm}\kappa(s)=\overline{\kappa}(s)\text{ and }\tau(s)=\overline{\tau}(s)\hspace{2cm}(s \in I)
+\end{align*}
+Then there exists an rigid motion $M$ and a vector  $c \inr^3$ such that 
+\begin{align*}
+\hspace{3cm}\alpha (s)=M\big(\overline{\alpha }(s) \big)+c\hspace{2cm}(s \in I)
+\end{align*}
+\end{theorem} 
+\begin{proof}
+Fix distinct $s_0\in I$. We first have to 
+\begin{align*}
+  \vi{\text{ find a rigid motion $M:\R^3\rightarrow \R^3$ and some vector $c\inr^3$ }}\\
+\vi{\text{ such that $\begin{cases}
+  \alpha (s_0)=(M\circ \overline{\alpha })(s_0)+c\\
+  T(s_0)=M\circ \overline{T}(s_0)\\
+  N(s_0)=M\circ \overline{N}(s_0)\\
+  B(s_0)=M\circ \overline{B}(s_0)
+\end{cases}\vdone$}}
+\end{align*}
+Now, express 
+\begin{align*}
+T_M(s)=\text{ normal tangent of }M\circ \overline{\alpha }+c\text{ at $s$ }
+\end{align*}
+We show 
+\begin{align*}
+\blue{\begin{cases}
+  T_M=T\\
+  N_M=N\\
+  B_M=B
+\end{cases}\text{ on $I$ }}
+\end{align*}
+By Frenet Formula, compute 
+\begin{align*}
+&\frac{1}{2}\frac{d}{ds}\Big(\abso{T-T_M}^2+ \abso{N-N_M}^2+\abso{B-B_M}^2 \Big)\\
+=&\frac{1}{2}\frac{d}{ds}\Big(\sum_{X=T,N,B} (X-X_M)\cdot (X-X_M)\Big)\\
+=&\sum_{X=T,N,B} (X-X_M)'\cdot (X-X_M)\\
+=&\sum_{X=T,N,B} (X'-X_M')\cdot (X-X_M)\\
+=&(T'-T'_M)\cdot (T-T_M)+(N'-N'_M)\cdot (N-N_M)+(B'-B_M')\cdot (B-B_M)\\
+ &\\
+=&(\kappa N'-\kappa N'_M)\cdot (T-T_M)\\
++\Big)&\big(-\kappa T-\tau B+\kappa T_M'+\tau BT'_M \big)\cdot (N-N_M)\\
++\Big)& \big(\tau N-\tau N_M\big)\cdot (B-B_M)\hspace{1cm}(\because \text{ Frenet Formula and $\alpha ,\alpha _M$ same curvature and torsion})\\
+=&0\hspace{1cm}(\because\text{ Elimination })
+\end{align*}
+We now know 
+\begin{align*}
+\abso{T-T_M}^2+\abso{N-N_M}^2+\abso{B-B_M}^2\text{ is a constant }
+\end{align*}
+Moreover, because by our setting  
+\begin{align*}
+\Big( \abso{T-T_M}^2+\abso{N-N_M}^2+\abso{B-B_M}^2\Big)(s_0)=0
+\end{align*}
+We know 
+\begin{align*}
+\hspace{3cm}\abso{T-T_M}^2+\abso{N-N_M}^2+\abso{B-B_M}^2=0\hspace{1cm}(s \in I)
+\end{align*}
+This implies 
+\begin{align*}
+\begin{cases}
+  T=T_M\\
+  N=N_M\\
+  B=B_M
+\end{cases}\text{ on $I\bdone$ }
+\end{align*}
+Because both  $\alpha $ and $\alpha _M$ are parametrized by arc-length and $\alpha (s_0)=\alpha _M(s_0)$, we now see 
+\begin{align*}
+\hspace{2cm}\alpha (s)=\int_{s_0}^s T(x)dx+ \alpha (s_0)=\int_{s_0}^s T_M(x)dx+ \alpha_M(s_0)=\alpha_M(s)\hspace{1cm}(s \in I)
+\end{align*}
+This finish the proof. 
+\end{proof}
+
+\section{Isoperimetric Inequality}
+\begin{mdframed}
+In this section, by \textbf{a closed plane curve}, we mean a regular parametrized curve $\alpha :[a,b]\rightarrow \R^2$ such that 
+\begin{align*}
+\alpha^{(n)}(a)=\alpha^{(n)}(b)\text{ for all $n\inz_0^+$ }
+\end{align*}
+If we say a closed plane curve $\alpha :[a,b]\rightarrow \R^2$ is \textbf{simple}, we mean 
+\begin{align*}
+\alpha (t_1)\neq \alpha (t_2)\text{ for all distinct pair $(t_1,t_2) \subseteq [a,b]$ except $(a,b)$}
+\end{align*}
+A closed plane curve must divide $\R^2$ into two separate subsets, in the sense that  $\R^2 \setminus \alpha \big[[a,b] \big]$ has two connected component. The one connected component that has finite area in the sense of Lebesgue outer measure is called the \textbf{interior} of the $\alpha $. If the interior is always on the left side of $\alpha $, we say $\alpha $ is \textbf{positively oriented}, in other words, $\alpha $ runs counter clockwise.
+\end{mdframed}
+\begin{theorem}
+\textbf{(Green's Theorem)} Given a  $\underline{\text{positively oriented, piecewise smooth,}}$\\ $\underline{\text{simple closed plane}}$ curve $\alpha :[a,b]\rightarrow \R^2$, where $C$ is the image of $\alpha $  and $D$ is the region bounded by $C$, and two function  $L,M:D\rightarrow \R$ that has continuous partial derivative, we have 
+\begin{align*}
+\oint_C L dx+Mdy =\iint_D (M_x-L_y) dA
+\end{align*}
+\end{theorem}
+\begin{mdframed}
+If we $\underline{\text{define}}$ area for bounded \textbf{region} $D$ by 
+\begin{align*}
+A(D)\triangleq \iint_D 1dA
+\end{align*}
+Green's Theorem give us 
+\begin{align*}
+  A(D)&=\oint_C xdy =\oint_C -ydx =\oint_C \frac{-y}{2}dx+\frac{x}{2}dy\\
+  &=\int_a^b x(t)y'(t)dt=\int_a^b -x'(t)y(t)dt =\frac{1}{2}\int_a^b (xy'-y'x)dt
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+  \label{IIPI}
+\textbf{(Isoperimetric Inequality: Part 1)} Let $C$ be a piece-wise $C^1$ simple closed curve with length  $l$, and let  $A$ be the area of the region bounded by  $C$. Then 
+ \begin{align*}
+A\leq \frac{l^2}{4\pi}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Parametrize $C$  with $\big(x(t),y(t) \big):[a,b]\rightarrow \R^2$. Because $x:[a,b]\rightarrow \R$ is a continuous function, by EVT, we know there exists $c',d \in [a,b]$ such that 
+\begin{align*}
+x(c')=\min _{t\in [a,b]}x(t) \text{ and }x(d)=\max_{t\in [a,b]}x(t)
+\end{align*}
+Now, let $\gamma :[0,l]$ be a positively oriented arc-length parametrization such that 
+\begin{align*}
+\gamma (l)=\gamma (0)\triangleq x(d)
+\end{align*}
+Let $c \in [0,l]$ satisfy 
+\begin{align*}
+\gamma (c)\triangleq x(c')
+\end{align*}
+Let $S$ be a circle such that 
+\begin{align*}
+S\text{ has the radius }r=\frac{\gamma (0)-\gamma (c)}{2}
+\end{align*}
+We first show 
+\begin{align}
+  \vi{A+\pi r^2\leq lr}
+\end{align}
+We translate $S$ so that $S$ centers at origin, and translate  $C$ so that  $\gamma (0)$ has value $(r,0)$ .  Note that such translation does not change area, which can be verified using change of variable.\\
+
+Now, we know $S=\set{(x,y):x^2+y^2=r^2}$. If we parametrize $S$ by  $(r\cos t, r\sin t)$, with Green's Theorem, we see 
+\begin{align*}
+A(S)&=\oint (r\cos t)(d r\sin t)\\
+&=\int_0^{2\pi} (r^2\cos^2 t )dt\\
+&=\int_0^{2\pi } r^2\cdot \frac{\cos 2t+1}{2}=r^2\pi 
+\end{align*}
+Now, express $\gamma (s)$ by
+\begin{align*}
+\gamma (s)=(x(s),y(s))
+\end{align*}
+We positively oriented parametrize $S$ by 
+\begin{align*}
+\alpha (t)\triangleq (x(t),\overline{y}(t)) 
+\end{align*}
+We now prove 
+\begin{align}
+\label{pir2}
+  \olive{\pi r^2 = -\int_0^l \overline{y}x'ds  }
+\end{align}
+By Green's Theorem 
+\begin{align*}
+\pi r^2=A(S)=\oint -\overline{y}dx=\int_0^l -\overline{y}x'ds \odone
+\end{align*}
+We now prove 
+\begin{align}
+\label{sqxy}
+\blue{(xy'-\overline{y}x')^2 \leq \big(x^2+(\overline{y})^2 \big)\big( (x')^2+(y')^2\big)}
+\end{align}
+Using Cauchy-Schwarz Inequality on $(x,\overline{y})$ and $(y',-x')$. We see
+\begin{align}
+  (xy'-\overline{y}x')^2&=\abso{(x,\overline{y})\cdot (y',-x')}^2\notag\\
+                        &\leq \abso{(x,\overline{y})}^2 \cdot \abso{(y',-x')}^2\\ \label{CSxy}
+  &=\big(x^2+(\overline{y})^2 \big)\big((x')^2+(y')^2 \big)\notag\bdone
+\end{align}
+
+
+Now, because 
+\begin{enumerate}[label=(\alph*)]
+  \item Green's Theorem
+  \item \myref{Equation}{pir2}
+  \item \myref{Equation}{sqxy}
+  \item $C=(x,y)$ is parametrized by arc-length
+  \item $S=(x,\overline{y})$ is a circle of radius $r$ 
+\end{enumerate}
+we have
+\begin{align}
+A+ \pi r^2 &= \int_0^l xdy -\int_0^l \overline{y}x'ds\notag\\
+&=\int_0^l xy'-\overline{y}x'ds\notag\\
+&\leq \int_0^l \sqrt{(xy'-\overline{y}x')^2}\notag ds\\
+&\leq \int_0^l \sqrt{\big(x^2+(\overline{y})^2 \big)\big((x')^2+(y')^2 \big)}\notag ds \\
+&\leq \int_0^l \sqrt{x^2+(\overline{y})^2}ds\notag \\
+&\leq \int_0^l rds =rl \vdone \label{A+pi}
+\end{align}
+Lastly, we show 
+\begin{align*}
+  \blue{A\leq \frac{l^2}{4\pi}}
+\end{align*}
+By AM-GM inequality and \myref{Equation}{A+pi}, we now can deduce
+\begin{align}
+\label{AM}
+  \sqrt{A\pi r^2}\leq \frac{A+\pi r^2}{2}\leq \frac{rl}{2}
+\end{align}
+This let us deduce 
+\begin{align*}
+A\leq \frac{l^2}{4\pi}\bdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Isoperimetric Inequality: Part 2)} Let $C$ be a piece-wise $C^1$ simple closed curve with length  $l$, and let  $A$ be the area of the region bounded by  $C$. We have 
+\begin{align*}
+A=\frac{l^2}{4\pi}\implies C\text{ is a circle }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Do exactly the same thing in the proof of \myref{First part of Isoperimetric Inequality}{IIPI} on $C$.\\
+
+We wish to prove 
+\begin{align*}
+  \vi{x^2+y^2=r^2}
+\end{align*}
+Because 
+\begin{align*}
+A=\frac{l^2}{4\pi}\implies A\pi r^2=(\frac{rl}{2})^2 \implies \sqrt{A\pi r^2}=\frac{rl}{2} 
+\end{align*}
+Then from \myref{Equation}{AM}, we deduce
+\begin{align*}
+\sqrt{A\pi r^2}=\frac{A+ \pi r^2 }{2}
+\end{align*}
+Then because AM-GM inequality become an equality only when two sides equals, we now have 
+\begin{align*}
+A=\pi r^2\text{ and }l=2\pi r
+\end{align*}
+This let us deduce 
+\begin{align*}
+A+\pi r^2=2\pi r^2=2rl
+\end{align*}
+Then by \myref{Equation}{A+pi}, we can deduce 
+\begin{align*}
+\abso{(x,\overline{y})\cdot (y',-x')}^2&=(xy'-\overline{y}x')^2\\
+  &=\big(x^2+(\overline{y})^2 \big)\big((x')^2+(y')^2 \big)\\
+  &=\abso{(x,\overline{y})}^2 \cdot \abso{(x',y')}^2
+\end{align*}
+Because Cauchy-Schwarz inequality become an equality only when two vectors are linearly independent, we know there exist $\ld \inr$ such that 
+\begin{align*}
+  (x,\overline{y})=\ld (y',-x')
+\end{align*}
+This let us deduce 
+\begin{align}
+\label{ldxy}
+\ld =\frac{x}{y'}=\frac{\overline{y}}{-x'}\text{ and }\ld =\frac{\sqrt{x^2+(\overline{y})^2}
+ }{\sqrt{(y')^2 + (x')^2}}
+\end{align}
+Now, because $\gamma =(x,y)$ is parametrized by arc-length and $(x, \overline{y})$ form the circle $S$ with radius $r$, from \myref{Equation}{ldxy}, we have 
+\begin{align}
+\label{ldsq}
+\ld = \sqrt{x^2+(\overline{y})^2} =r
+\end{align}
+Then from \myref{Equation}{ldxy} and \myref{Equation}{ldsq}, we can deduce 
+\begin{align*}
+\frac{x}{y'}=\frac{\overline{y}}{-x'}=\ld  =r
+\end{align*}
+This then give us 
+\begin{align*}
+x=ry' 
+\end{align*}
+Now, do exactly the same thing in the proof of \myref{First part of Isoperimetric Inequality}{IIPI}, except, at this time, we parametrize $S$ by  $(\overline{x},y)$. The similar argument then went on and give us 
+\begin{align*}
+y=rx'
+\end{align*}
+Finally, because $\gamma =(x,y)$ is parametrized by arc-length, we have
+\begin{align*}
+x^2+y^2=r^2\big((y')^2+(x')^2 \big)=r^2\vdone
+\end{align*}
+
+\end{proof}
+\section{Four Vertex Theorem}
+\section{HW2}
+
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{hw2q5}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw2q4}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw2q3}
+\includegraphics[height=4cm,width=18cm]{hw2q2}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{hw2q1}
+\end{question}
+
+\begin{question}{}{}
+\includegraphics[height=6cm,width=18cm]{hw2q18}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=6cm,width=18cm]{hw2q17}
+\end{question}
+
+\begin{question}{}{}
+\includegraphics[height=8cm,width=18cm]{hw2q16}
+\end{question}
+---------------------------------------------------------------------------------------
+
+\begin{question}{}{}
+\includegraphics[height=4cm,width=18cm]{hw2q15}
+\end{question}
+
+
+\begin{question}{}{}
+\includegraphics[height=6cm,width=18cm]{hw2q14}
+\end{question}
+
+\begin{question}{}{}
+\includegraphics[height=8cm,width=18cm]{hw2q13}
+\end{question}
+
+
+\begin{question}{}{}
+\includegraphics[height=6cm,width=18cm]{hw2q12}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=4cm,width=18cm]{hw2q11}
+
+\includegraphics[height=4cm,width=18cm]{hw2q10}
+\end{question}
+---------------------------------------------------------------------------------------
+
+\begin{question}{}{}
+\includegraphics[height=2cm,width=18cm]{hw2q9}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=1cm,width=18cm]{hw2q8}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw2q7}
+\end{question}
 
 \end{document}

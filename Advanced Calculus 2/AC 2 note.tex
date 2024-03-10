@@ -246,6 +246,66 @@ From \myref{Equation}{K3} and \myref{Equation}{K4}, we now have
 d(A_n,A)\leq d(A_n,a_{n,j})+d(a_{n,j},a_{\bullet,j})+d(a_{\bullet,j},A)<\epsilon \vdone
 \end{align*}
 \end{proof}
+\begin{corollary}
+\label{COiC}
+\textbf{(Change Order of Limit Operation in Complete Metric Space)} Given a sequence of function $f_n:E\rightarrow (Y,d)$ and a function $f:E\rightarrow (Y,d)$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n$ converge uniformly
+   \item $\lim_{t\to x}f_n(t)$ exists for all $n \inn$
+    \item $(Y,d)$ is complete
+\end{enumerate}
+We have
+\begin{align*}
+\lim_{n\to \infty }\lim_{t\to x}f_n(t)=\lim_{t\to x}\lim_{n\to \infty}f_n(t)
+\end{align*}
+\end{corollary}
+\begin{proof}
+Fix a sequence $t_k$ in $E$ that converge to  $x$. We reduced the problem into proving
+\begin{align*}
+  \vi{\lim_{n\to \infty}\lim_{k \to \infty}f_n(t_k)=\lim_{k\to \infty}\lim_{n\to \infty}f_n(t_k)}
+\end{align*}
+Set 
+\begin{align}
+a_{n,k}\triangleq f_n(t_k)
+\end{align}
+We then reduced the problem into proving 
+\begin{align*}
+  \vi{\lim_{n\to \infty}\lim_{k\to \infty}a_{n,k}=\lim_{k\to \infty}\lim_{n\to \infty}a_{n,k}}
+\end{align*}
+Set 
+\begin{align*}
+A_n\triangleq \lim_{t \to x}f_n(t)\text{ and }a_{\bullet,k}\triangleq \lim_{n \to \infty}f_n(t_k)
+\end{align*}
+We now prove 
+\begin{align*}
+\blue{\text{ $A_n$ converge }}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\blue{\text{ to find $N$ such that }d(A_n,A_m)\leq \epsilon \text{ for all $n,m>N$ }}
+\end{align*}
+Because $a_{n,k}$ uniformly converge (to $a_{\bullet , k}$) as $n \to \infty$ by our setting, we know there exists $N$ such that
+\begin{align*}
+\forall n,m>N,\forall k\inn, d(a_{n,k},a_{m,k})<\frac{\epsilon}{3}
+\end{align*}
+We claim 
+\begin{align*}
+\blue{\text{ such $N$ works }}
+\end{align*}
+Fix $n,m>N$. Because $a_{n,k}\to A_n$ and $a_{m,k}\to A_m$, we know there exists $j \inn$ such that 
+\begin{align*}
+d(a_{n,j},A_n)<\frac{\epsilon}{3}\text{ and }d(a_{m,j},A_m)<\frac{\epsilon}{3}
+\end{align*}
+We now have
+\begin{align*}
+  d(A_n,A_m)&\leq  d(A_n,a_{n,j})+d(a_{n,j},a_{m,j})+d(a_{m,j},A_m)\\
+&< \frac{\epsilon}{3}+\frac{\epsilon}{3}+\frac{\epsilon}{3}=\epsilon \bdone
+\end{align*}
+Now, because $a_{n,k}\to a_{\bullet ,k}$ uniformly, by \myref{Theorem}{COLO2}, we have 
+\begin{align*}
+\lim_{n\to \infty}\lim_{k\to \infty}a_{n,k}=\lim_{n\to \infty}A_n=\lim_{k\to \infty}a_{\bullet ,k}=\lim_{k\to \infty}\lim_{n\to \infty}a_{n,k}\vdone
+\end{align*}
+\end{proof}
 \begin{mdframed}
 In summary of \myref{Theorem}{COLO} and \myref{Theorem}{COLO2}, given a double sequence $a_{n,k}$ converging both side 
 \begin{enumerate}[label=(\alph*)]
@@ -684,126 +744,170 @@ Let $\mathcal{G}$ be a galaxy of $(X^{\overline{Y}},d_{\infty})$. With multiple 
 \end{mdframed}
 \section{Arzelà–Ascoli Theorem}
 \begin{mdframed}
-Given a topological space $(X,\tau)$ and a metric space $(Y,d)$, let $\mathcal{F}$ be a collection of functions from $X$ to $Y$. We say $\mathcal{F}$ is \textbf{equicontinuous} if for all $\epsilon $ and for all $x \in X$ there exists a neighborhood $U_x$ around  $x$ such that 
-\begin{align*}
-\forall y \in U_x, \forall f \in \mathcal{F}, d_Y\big(f(x),f(y) \big)<\epsilon 
-\end{align*}
+In this section, we will give a complete proof of Arzelà–Ascoli Theorem for functions from arbitrary compact topological space to arbitrary metric space. Note that in Baby Rudin, Arzelà–Ascoli Theorem are given for functions from compact metric space to metric space. Because Arzelà–Ascoli Theorem are concerned with family of equicontinuos functions, it is crucial for us to give a definition to equicontinuity for functions from topological  space to metric space, for the sake of our generalization.\\
+
+Let $X,Y$ be metric space. Let  $Z$ be topological space. Let  $\mathcal{F}_X$ be family of functions from $X$ to  $Y$, and let  $\mathcal{F}_Z$ be family of functions from $Z$ to  $Y$. We say  $\mathcal{F}_Z$ is \textbf{pointwise equicontinuous} if 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       For all $\epsilon $ and for all $x$, there exists a neighborhood $U_x$ such that  $d_Y(f(x),f(y))<\epsilon $ for all $y \in U_x$   
+   \end{minipage}
+\end{center}
+We say $\mathcal{F}_X$ is \textbf{equicontinuous} if 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       For all $\epsilon $, there exists $\delta$ such that  $d_{Y}(f(x),f(y))<\epsilon $ for all $\delta$-close $x,y \in X$ and all  $f \in \mathcal{F}$. 
+   \end{minipage}
+\end{center}
+It is easy to verify that if $\mathcal{F}_X$ is equicontinuous, then $\mathcal{F}_X$ is pointwise equicontinuous. The converse don't always hold true. Say, $\mathcal{F}=\set{n+x^2}_{n\inn}$, the set $\set{n+x^2}_{n\inn}$ is clearly pointwise equicontinuous on $\R$, and is not equicontinuous on $\R$, since no function $n+x^2$  is uniform continuous on $\R$. However, the same set $\mathcal{F}=\set{n+x^2}$ is equicontinous on compact domain $[a,b]$. This is a general result, as we shall prove below.
 \end{mdframed}
 \begin{theorem}
-\textbf{(Arzelà–Ascoli theorem)} Given a compact metric space $(X,d_X)$, let $\mathcal{C}(X)$ denote the set of complex-valued continuous function on $X$. Let $\mathcal{F}$ be a subset of $\mathcal{C}(X)$. 
+\textbf{(Pointwise Equicontinous is Uniform on Compact Domain)} Given two metric space $(X,d_X),(Y,d_Y)$, and a family $\mathcal{F}$ of functions from $X$ to  $Y$ such that 
+ \begin{enumerate}[label=(\alph*)]
+  \item $X$ is compact 
+   \item $\mathcal{F}$ is pointwise equicontinuous
+\end{enumerate}
+Then 
 \begin{align*}
-\mathcal{F}\text{ is compact in metric space }\big(\mathcal{C}(X),d_{\infty} \big)\iff  \mathcal{F}\text{ is equicontinous and pointwise bounded }
+\mathcal{F}\text{ is equicontinuous }
 \end{align*}
 \end{theorem}
 \begin{proof}
-$(\longleftarrow)$\\
-
-Let $f_n$ be a sequence in $\mathcal{F}$. To prove $\mathcal{F}$ is compact in $\big(\mathcal{C}(X),d_{\infty} \big)$, we wish 
+Fix $\epsilon $. We wish to 
 \begin{align*}
-\vi{\text{ to find a sub-sequence }f_{n_k}\text{ that uniformly converge }}
+\vi{\text{ find $\delta$ such that $d_X(x,y)<\delta \implies d_Y(f(x),f(y))\leq \epsilon $ for all $f \in \mathcal{F}$ }}
 \end{align*}
-Because $X$ is compact, we know $X$ is separable. Let $G=\set{x_k}_{k\inn}$ be a countable dense subset of $(X,d_X)$. Because $\mathcal{F}$ is pointwise bounded, we know 
- \begin{align}
-\label{A1}
-\bset{f_n(x_k)}_{n\inn}\text{ is bounded for all $k \inn$ }
+Because $\mathcal{F}$ is pointwise equicontinuous, we know for each $x \in X$, there exists $\delta_x$ such that 
+\begin{align}
+\label{PEe1}
+\forall y\in B_{\delta_x}(x), d_Y\big(f(x),f(y) \big)<\frac{\epsilon}{2} \text{ for all $f\in \mathcal{F}$ }
 \end{align}
-Then by Bolzano-Weierstrass Theorem, we know there exists a convergent sub-sequence 
-\begin{align*}
-\bset{f_{g_1(k)}(x_1)}_{k\inn} 
+It is clear that $\set{B_{\frac{\delta_x}{2}}(x):x \in X}$ form an open cover of $X$. Then because  $X$ is compact, we know  
+ \begin{align*}
+\text{ there exists a finite open sub-cover: }\set{B_{\frac{\delta_x}{2}}(x):x \in X_{\text{finite}}}
 \end{align*}
-Notice that $\bset{f_{g_1(k)}(x_2)}_{k\inn}$ is a sub-sequence of $\bset{f_n(x_2)}_{n\inn}$. Then because \myref{Equation}{A1}, we know $\bset{f_{g_1(k)}(x_2)}_{k\inn}$ is bounded. Then again by Bolzano-Weierstrass Theorem, we know there exists a convergent sub-sequence 
+We claim 
 \begin{align*}
-\bset{f_{g_2\circ g_1(k)}(x_2)}_{k\inn}
+\vi{\delta=\min_{x \in X_{\text{finite}}}\frac{\delta_x}{2}\text{ works }}
 \end{align*}
-Again, notice that $\bset{f_{g_2\circ g_1(k)}(x_3)}$ is a sub-sequence of $\bset{f_n(x_3)}_{n\inn}$. Then again because \myref{Equation}{A1}, again by Bolzano-Weierstrass Theorem, we know there exists a convergent sub-sequence 
+Fix $y,z \in X: d_X(y,z)<\delta$. We have to prove 
 \begin{align*}
-\bset{f_{g_3\circ g_2\circ g_1(k)}(x_3)}_{k\inn}
+\vi{d_Y\big(f(y),f(z) \big)< \epsilon }
 \end{align*}
-Repeatedly do such, we see 
+We know $y$ must lie in some  $B_\frac{\delta_x}{2}(x)$ for some $x \in X_\text{finite}$. Because $d_X(y,z)<\frac{\delta_x}{2}$, we see that $z$ must lie in  $B_{\delta_x}(x)$. We now know $y,z$ are both in  $B_{\delta_x}(x)$. Then from \myref{(}{PEe1}), we can now deduce 
+\begin{align*}
+d_Y\big(f(y),f(z) \big)\leq d_Y\big(f(y),f(x) \big)+d_Y\big(f(x),f(z) \big)< \epsilon \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+The proof above should be a great example why in the discussion of metric space, instead of using sequential definition of compactness, which leads to the beautiful Bolzano-Weierstrass Theorem, some people prefer the open-cover definitions.\\
+
+Now, we give proof for the Arzelà–Ascoli Theorem. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Arzelà–Ascoli Theorem)} Given a compact topological space $(X,\tau)$, a metric space $(Y,d_Y)$, and a family $\mathcal{F}\subseteq C\big(X,Y \big)$ of continuous function  
+ \begin{align*}
+&\mathcal{F}\text{ is pointwise equicontinuous and $\set{f(x):f \in \mathcal{F}}$ has compact closure in $Y$ for all $x \in X$}\\
+&\implies \mathcal{F}\text{ has a compact closure in $C(X,Y)$}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix a sequence $f_n$ in $\mathcal{F}$. We wish to show
+\begin{align*}
+\vi{f_n\text{ has a sub-sequence $f_{n_k}$ uniformly converge to some }f:X\rightarrow Y}
+\end{align*}
+First, we prove 
+\begin{align*}
+\blue{\text{ there exists a countable set $P$ such that $P$ works like a dense set }}
+\end{align*}
+Because $\mathcal{F}$ is pointwise equicontinuous, we know for all $x \in X$ 
+\begin{align*}
+\exists U_{x,n}, \forall y \in U_{x,n},\forall f \in \mathcal{F}, d_Y\big(f(x),f(y) \big)<\frac{1}{n} \text{ for each fixed $n\inn$ }
+\end{align*}
+Now, because $X$ is compact, for each $n\inn$, there exists a finite subset $P_n\subseteq X$ such that $\bset{U_{x,n}:x \in P_n}$ is a cover of $X$. Let $P=\bigcup_{n\inn}P_n$. $\bdone$\\
+
+Now, we wish to 
+\begin{align*}
+\olive{\text{ construct a sub-sequence $f_{n_k}$ pointwise converge on $P$ }}
+\end{align*}
+
+Express $P=\set{p_k}_{k\inn}$. By premise (pointwise image has compact closure), we know there exists a compact set that contain $\set{f_n(p_1)}_{n\inn}$, so by Bolzano-Weierstrass Theorem, there exists a sub-sequence 
+\begin{align*}
+\bset{f_{g_1(k)}(p_1)}_{k\inn}\text{ converge to some point in $Y$ }
+\end{align*}
+Now, again by premise and Bolzano-Weierstrass Theorem, there exists a sub-sequence 
+\begin{align*}
+\bset{f_{g_2\circ g_1(k)}(p_2)}_{k\inn}\text{ converge to some point in $Y$ }
+\end{align*}
+Repeatedly doing such, we have 
 \begin{align*}
 \begin{matrix} 
-  f_{g_1(1)}(x_1) & f_{g_2\circ g_1 (1)}(x_2) & f_{g_3\circ g_2 \circ  g_1 (1)}(x_3) & \cdots \\
-  f_{g_1(2)}(x_1) & f_{g_2\circ g_1 (2)}(x_2) & f_{g_3\circ g_2 \circ  g_1 (2)}(x_3) & \cdots \\
-  f_{g_1(3)}(x_1) & f_{g_2\circ g_1 (3)}(x_2) & f_{g_3\circ g_2 \circ  g_1 (3)}(x_3) & \cdots \\
-  \vdots &\vdots &\vdots & \\
-  \lim_{k\to \infty } f_{g_1(k)}(x_1) &\lim_{k\to \infty } f_{g_2\circ g_1(k)}(x_2) &\lim_{k\to \infty } f_{g_3\circ g_2\circ g_1(k)}(x_3) \in Y
+  f_{g_1(1)}(p_1) & f_{g_2\circ g_1 (1)}(p_2) & f_{g_3\circ g_2 \circ  g_1 (1)}(p_3) & \cdots \\
+  f_{g_1(2)}(p_1) & f_{g_2\circ g_1 (2)}(p_2) & f_{g_3\circ g_2 \circ  g_1 (2)}(p_3) & \cdots \\
+  f_{g_1(3)}(p_1) & f_{g_2\circ g_1 (3)}(p_2) & f_{g_3\circ g_2 \circ  g_1 (3)}(p_3) & \cdots \\
+  \vdots &\vdots &\vdots & \ddots\\
+  \downarrow & \downarrow &\downarrow &\\
+  y_1 & y_2 & y_3 & \cdots 
 \end{matrix}
 \end{align*}
 Now, let 
-\begin{align*}
-n_k=g_k\circ \cdots \circ  g_1(k)
+ \begin{align*}
+n_k=g_k\circ \cdots \circ g_1(k)
 \end{align*}
-Then, we see 
+Then 
 \begin{align*}
-\forall m \inn, n_k\text{ is eventually a sub-sequence of }g_m\circ \dots \circ  g_1(k)
+n_k\text{ is eventually a sub-sequence of $g_m\circ \cdots \circ g_1(k)$ for all $m$ }
 \end{align*}
-Then we see 
+This then implies 
 \begin{align*}
-\forall j\inn, f_{n_k}(x_j)\to \lim_{k\to \infty}f_{g_j\circ \cdots \circ  g_1(k)}(x_k)\text{ as $k \to \infty$ }
+f_{n_k}(p_m)\to y_m\text{ for all $p_m \in P \odone$ }
+\end{align*}
+Next, we show 
+\begin{align*}
+\blue{\text{ To prove $f_{n_k}$ uniformly converge on $X$, it suffice to prove $f_{n_k}$ is uniformly Cauchy on $X$. }}
+\end{align*}
+By premise (pointwise image has compact closure), if $f_{n_k}$ is uniformly Cauchy, then we know $f_{n_k}$ pointwise converge to some $f$.\\
+
+Fix $\epsilon $. We reduced the problem into 
+\begin{align*}
+\blue{\text{ finding  $N$ such that for all $k>N$, we have  $d_Y\big(f_{n_k}(x), f(x)\big)\leq \epsilon $ for all $x\in X$ }}
+\end{align*}
+Because $f_{n_k}$ is uniformly Cauchy, we know there exists $N$ such that for all $m,k>M$ $d_Y\big(f_{n_k}(x),f_{n_m}(x) \big)\leq \frac{\epsilon}{2}$ for all $x \in X$. We claim 
+\begin{align*}
+ \blue{\text{ such $N$ works }}
+\end{align*}
+Let $k>N$.  \As{$d_Y\big(f_{n_k}(x),f(x) \big)>\epsilon $}. We see that 
+ \begin{align*}
+   d_Y\big(f(x),f_{n_m}(x) \big)\geq d_Y\big(f(x),f_{n_k}(x)\big)-d_Y\big(f_{n_k}(x),f_{n_m}(x) \big)>\frac{\epsilon}{2}\text{ for all $m>N\tCaC \bdone$} 
+\end{align*}
+Lastly, we wish to prove 
+\begin{align*}
+\vi{f_{n_k}\text{ is uniformly Cauchy }}
+\end{align*}
+Fix $\epsilon $. We wish  
+\begin{align*}
+\vi{\text{ to find }N\text{ such that }\forall j,k >N,\forall x\in X, d_Y\big(f_{n_j}(x),f_{n_k}(x)\big)\leq \epsilon  }
+\end{align*}
+Fix $m > \frac{3}{\epsilon }$. Express $P_m=\set{p^m_1,\dots ,p^m_u}$. Because $f_{n_k}(p^m_t)$ converge for each $t \in \set{1,\dots ,u}$, we know 
+\begin{align*}
+\forall t , \exists N_t, d_Y\big(f_{n_j}(p_t^m),f_{n_k}(p_t^m) \big)<\frac{\epsilon}{3}\text{ for all $j,k>N_t$ }
 \end{align*}
 We claim 
 \begin{align*}
-\vi{f_{n_k}\text{ uniformly converge }}
+\vi{N=\max_t N_t\text{ works }}
 \end{align*}
-Fix $\epsilon$. We wish  
- \begin{align*}
-\vi{\text{ to find }K\inn\text{ such that }\forall k,l>K, \forall x \in X, \abso{f_{n_k}(x)-f_{n_l}(x)}<\epsilon  }
-\end{align*}
-Because $\mathcal{F}$ is equicontinuous and $\set{f_{n_k}}_{k \inn}\subseteq \mathcal{F}$, we know 
-\begin{align}
-\label{A2}
-\exists \delta , \forall k \inn, \forall x,y \in X , d_X(x,y)<\delta \implies \abso{f_{n_k}(x)-f_{n_k}(y)}<\frac{\epsilon}{3}
-\end{align}
-Fix such $\delta$. Now, because 
- \begin{align*}
-f_{n_j}(x_p)\text{ converge as $j\to \infty$ for each fixed $p\inn$}
-\end{align*}
-For each fixed $p\inn$, we can let $N_p$ satisfy 
- \begin{align}
-  \label{A3}
-\forall k,l>N_p, \abso{f_{n_k}(x_p)-f_{n_l}(x_p)}<\frac{\epsilon}{3}
-\end{align}
-Because $G=\set{x_k}_{k\inn}$ is dense (See the statement above \myref{Equation}{A1}, the statement contains the definition of $G$), we see that 
+Fix $j,k>N$ and $x \in X$. We have to show 
 \begin{align*}
-\bset{B_{\delta}(x_k):k\inn}\text{ is an open cover of $(X,d_X)$ }
+  \vi{d_Y\big(f_{n_j}(x),f_{n_k}(x) \big)\leq \epsilon}
 \end{align*}
-Recall by premise that $(X,d_X)$ is compact. Then we know 
-\begin{align}
-\label{A4}
-\text{ there exists a finite set $Q$ of natural number such that $\bset{B_\delta (x_k):k\in Q}$ is an open cover } 
-\end{align}
-We claim 
-\begin{align}
-\label{A5}
-  \vi{K=\max_{q \in Q}N_q\text{ where $N_q$ is defined by}}\text{ \myref{Equation}{A3}}\vi{\text{ works. }} 
-\end{align}
-Fix $k,l>K$ and $x \in X$. We wish 
+Because $\set{U_{p_t^m,m}}$ form an open cover of $X$, we know there exists  $t$ such that $x \in U_{p_t^m,m}$. We can now deduce 
 \begin{align*}
-\vi{\text{ to prove }\abso{f_{n_k}(x)-f_{n_l}(x)}<\epsilon }
+d_Y\big(f_{n_j}(x),f_{n_k}(x) \big)\leq d_Y\big(f_{n_j}(x),f_{n_j}(p_t^m) \big)+d_Y\big(f_{n_j}(p_t^m),f_{n_k}(p_t^m) \big)+d_Y\big(f_{n_k}(p_t^m),f_{n_k}(x) \big)<\epsilon 
 \end{align*}
-Because $\bset{B_{\delta}(x_k):k \in Q}$ is an open cover (We create this in \myref{Equation}{A4} from the compactness of $X$), we know there exists $i\in Q$ such that 
-\begin{align*}
-d_X(x_i,x)<\delta
-\end{align*}
-By \myref{Equation}{A2} we know 
-\begin{align}
-\label{A6}
-\abso{f_{n_k}(x)-f_{n_k}(x_i)}<\frac{\epsilon}{3}\text{ and }\abso{f_{n_l}(x)-f_{n_l}(x_i)}<\frac{\epsilon}{3}
-\end{align}
-From the definition of $K$ (\myref{Equation}{A5} and \myref{Equation}{A3}), we know 
-\begin{align}
-\label{A7}
-\abso{f_{n_k}(x_i)-f_{n_l}(x_i)}<\frac{\epsilon}{3}
-\end{align}
-Then from \myref{Inequality}{A6} and \myref{Inequality}{A7}, we see 
-\begin{align*}
-\abso{f_{n_k}(x)-f_{n_l}(x)}\leq \abso{f_{n_k}(x)-f_{n_k}(x_i)}+\abso{f_{n_k}(x_i)-f_{n_l}(x_i)}+\abso{f_{n_l}(x_i)-f_{n_l}(x)}<\epsilon \vdone
-\end{align*}
+$\vdone$\\
 
-
- 
-\end{proof} 
-\section{The Stone-Weierstrass Theorem}
+\end{proof}
 \section{Contraction Mapping Theorem}
 \chapter{Calculus}
 
@@ -1409,7 +1513,7 @@ f(a)=G(b^-)\int_a^b \phi(t)dt\text{ and }f(b)=G(a^+)\int_a^b \phi(t)dt
 
 
 
-\section{Computation for Riemann-Stieltjes Integral}
+\section{Riemann-Stieltjes on Computation}
 \begin{theorem}
 \label{CoV}
 \textbf{(Change of Variable)} Given two functions $g,\beta  :[A,B]\rightarrow \R$, a function $\phi: [A,B]\rightarrow [a,b]$ and two functions $f,\alpha :[a,b]\rightarrow \R$ such that 
@@ -1558,140 +1662,7 @@ Let $\alpha (x)=x$. Let $\beta = \alpha \circ  \phi$. Define $g=f \circ  \phi $.
 \int_a^b \big(f \circ  \phi \big)(x)d \phi =\int_a^b g(x)d\beta = \int_A^B f(x)dx
 \end{align*}
 \end{proof}
-
-
-
-
-\section{FTC}
-\begin{theorem}
-  \label{FTC1}
-\textbf{(Fundamental Theorem of Calculus: Part 1)} Given a function $f:[a,b]\rightarrow \R$ proper-Riemann-Integrable on $[a,b]$, and let $f$ be continuous at  $x_0 \in [a,b]$. If we define $F:[a,b]\rightarrow \R$ by 
-\begin{align*}
-F(x)=\int_a^x f(t)dt
-\end{align*}
-Then 
-\begin{align*}
-F\text{ is continuous on $[a,b]$ and is differentiable at $x_0$ where $F'(x_0)=f(x_0)$} 
-\end{align*}
-\end{theorem}
-\begin{proof}
-Fix $\epsilon $. To prove $F$ is continuous on  $[a,b]$, we only wish 
-\begin{align*}
-\vi{\text{ to find $\delta$ such that $\forall [x,y]\subseteq [a,b], \abso{x-y}<\delta \implies \abso{F(x)-F(y)}<\epsilon $}}
-\end{align*}
-Because $f $ is proper-Riemann-Integrable on $[a,b]$, we know $f$ is bounded on  $[a,b]$. Let $M$ be an upper bound of  $\abso{f}$ on $[a,b]$. We claim 
-\begin{align*}
-\vi{\text{ $\delta=\frac{\epsilon}{M}$ works }} 
-\end{align*}
-Because $y-x <\delta=\frac{\epsilon}{M}$, we have
-\begin{align*}
-  \abso{F(x)-F(y)}&=\abso{\int_x^y f(t)dt}\\
-  &\leq \int_x^y \abso{f(t)}dt\\
-  &\leq (y-x)<\epsilon \vdone
-\end{align*}
-Now, to prove $F'(x_0)=f(x_0)$, we wish 
-\begin{align*}
-  \vi{\text{ to prove $\lim_{x\to x_0} \frac{F(x)-F(x_0)}{x-x_0}= f(x_0)$ }}
-\end{align*}
-Fix $\epsilon $. We wish 
-\begin{align*}
-\vi{\text{ to find $\delta$ such that $\abso{x-x_0}<\delta \implies \abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}<\epsilon $ }}
-\end{align*}
-Because $f$ is continuous at $x_0$, we know  
-\begin{align}
-\label{F1}
-\exists \delta, \abso{x-x_0}<\delta \implies \abso{f(x)-f(x_0)}<\epsilon 
-\end{align}
-We claim 
-\begin{align*}
-\vi{\text{ such $\delta$ in}}\text{ \myref{Equation}{F1} }\vi{\text{works}}
-\end{align*}
-WOLG, let $x>x_0$. Deduce 
-\begin{align*}
-\abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}&=\abso{\frac{\int_{x_0}^x f(t)dt}{x-x_0}-f(x_0)}\\
-&=\abso{\frac{\int_{x_0}^x \big[f(t)-f(x_0) \big]dt}{x-x_0}}\\
-&\leq \frac{\int_{x_0}^x \abso{f(t)-f(x_0)}dt}{\abso{x-x_0}}\\
-&\leq \frac{\int_{x_0}^x \epsilon dt}{\abso{x-x_0}}=\epsilon \vdone
-\end{align*}
-\end{proof}
-\begin{theorem}
-\label{FTC2}
-\textbf{(Fundamental Theorem of Calculus: Part 2, Leibniz Rule)} Given two functions $f,F:[a,b]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $f$ is proper Riemann-Integrable on $[a,b]$ 
-\item $F'(x)=f(x)$ for all $x\in (a,b)$ 
-\item $F$ is continuous on $[a,b]$
-\end{enumerate}
-Then 
-\begin{align*}
-\int_a^b f(x)dx=F(b)-F(a)
-\end{align*}
-\end{theorem}
-\begin{proof}
-Fix $\epsilon $. We wish 
-\begin{align*}
-\vi{\text{ to show that $\abso{\Big( F(b)-F(a)\Big)-\int_a^b f(x)dx}<\epsilon $ }}
-\end{align*}
-Because $f$ is proper Riemann-Integrable on $[a,b]$, we know there exists a partition $P=\set{a=x_0,x_1,\dots , x_n=b}$ of  $[a,b]$ such that 
-\begin{align}
-\label{FP}
-U(P,f)-L(P,f)<\epsilon 
-\end{align}
-Because $f=F'$ on  $[a,b]$, for each $k \in \set{1,\dots ,n}$, by MVT (\myref{Theorem}{MVT}), we know 
-\begin{align*}
-\exists t_k \in (x_{k-1},x_k), \frac{F(x_k)-F(x_{k-1})}{x_k-x_{k-1}}=f(t_k)
-\end{align*}
-This let us deduce
-\begin{align*}
-F(b)-F(a)=\sum_{k=1}^n F(x_k)-F(x_{k-1})=\sum_{k=1}^n f(t_k) \Delta x_k
-\end{align*}
-Now, we have 
-\begin{align*}
-  \int_a^b f(x)dx\text{ and }F(b)-F(a)\text{ are both in }\big[ L(P,f),U(P,f) \big]
-\end{align*}
-Then by \myref{Equation}{FP}, we can deduce 
-\begin{align*}
-\abso{F(b)-F(a)- \int_a^b f(x)dx}<\epsilon \vdone
-\end{align*}
-
-
-
-
-\end{proof}
-
-\begin{mdframed}
-With the  
-\end{mdframed}
-\begin{theorem}
-\textbf{(Integral By Part)} Given four function $f,g,F,G:[a,b]\rightarrow \R$ such that 
-
-\begin{enumerate}[label=(\alph*)]
-  \item $F'(x)=f(x)\text{ and }G'(x)=g(x)$ for all $x\in (a,b)$ 
-  \item $f,g$ are properly Riemann-Integrable on  $[a,b]$ 
-  \item $F,G$ are continuous on  $[a,b]$
-\end{enumerate}
-We have
-\begin{align}
-\label{FI}
-\int_a^b F(x)g(x)dx=FG\Big|^b_a-\int_a^b f(x)G(x)dx
-\end{align}
-\end{theorem}
-\begin{proof}
-To prove \myref{Equation}{FI}, we only with 
-\begin{align*}
-\vi{\text{ to prove }\int_a^b F(x)g(x)dx+\int_a^b f(x)G(x)dx=FG\Big|_a^b}
-\end{align*}
-We can reduce the problem 
-\begin{align*}
-\vi{\text{ into proving }\int_a^b \big( Fg+fG \big) dx=FG\Big|_a^b}
-\end{align*}
-Notice that by Chain Rule,  
-\begin{align*}
-\big(FG \big)'(x)=F(x)g(x)+f(x)G(x)\text{ for all $x \in (a,b)$ }
-\end{align*}
-Then the result follows from Part 2 of Fundamental Theorem of Calculus (\myref{Theorem}{FTC2}). $\vdone$
-\end{proof}
-\section{The Stone-Weierstrass Theorem}
+\section{Weierstrass approximation Theorem: $[a,b]\rightarrow \R$}
 \begin{theorem}
 \label{Bernoulli's Inequality}
 \textbf{(Bernoulli's Inequality)} Given $r,x \in\R$, suppose 
@@ -1743,13 +1714,16 @@ x \in (-1,0) \implies 1+x \in (0,1) \implies (1+x)^{r-1}\leq 1 \implies f'(x)=r\
 \end{align*}
 $\vdone$
 \end{proof}
+\begin{mdframed}
+In this section, notation  $\mathcal{C}\big([a,b] \big)$ means the set of \textbf{real-valued continuous function on $[a,b]$}.
+\end{mdframed}
 \begin{theorem}
-\textbf{(The Stone-Weierstrass Theorem: Real Version)} Let $\mathcal{C}\big([a,b] \big)$ be the set of real continuous functions on $[a,b]$, and let $\R[x]\big|_{[a,b]}$ be the set of polynomials in $x$ with real coefficients on $[a,b]$. Then 
+\textbf{(Weierstrass approximation Theorem: $[a,b]\rightarrow \R$)} Let $\R[x]\big|_{[a,b]}$ be the space of polynomials on $[a,b]$ with real coefficient. We have 
 \begin{align*}
 \text{ $\R[x]\big|_{[a,b]}$ is dense in $\Big(\mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty} \Big)$ }
 \end{align*}
 \end{theorem}
-\begin{proof*}
+\begin{proof}
 WOLG, we can let $[a,b]=[0,1]$. The reason we can assume such is explained at last. Now, let $f:[0,1]\rightarrow \R$ be a continuous function. Fix $\epsilon $. We only wish 
 \begin{align*}
 \vi{\text{ to find $P \in \R[x]\big|_{[0,1]}$ such that $\norm{f-P}_{\infty}<\epsilon $}}
@@ -1757,7 +1731,7 @@ WOLG, we can let $[a,b]=[0,1]$. The reason we can assume such is explained at la
 Define $\tilde{f} \in \mathcal{C}\big([0,1] \big)$ by 
 \begin{align}
   \label{tse1}
-\tilde{f}(x)=f(x)-f(0)-x \big[f(1)-f(0) \big] 
+\tilde{f}(x)= f(x)-f(0)-x \big[f(1)-f(0) \big] 
 \end{align}
 It is easy to check $\tilde{f}$ is continuous. We first prove that 
 \begin{align*}
@@ -1880,17 +1854,242 @@ we have
 &\leq 4M(1-\delta) \sqrt{n}(1-\delta^2)^n+ \frac{\epsilon}{2} \\
 &\leq 4M\sqrt{n}(1-\delta^2)^n+\frac{\epsilon}{2} <\epsilon  
 \end{align*}
-Because $x$ is arbitrarily picked from  $[0,1]$, we now have $\norm{P_n-\tilde{f} }_{\infty}<\epsilon \vdone$
+Because $x$ is arbitrarily picked from  $[0,1]$, we now have $\norm{P_n-\tilde{f} }_{\infty}<\epsilon \vdone$\\
 
+Lastly, we show 
+\begin{align*}
+\olive{\text{ our result can be transplanted to arbitrary $\mathcal{C}\big([a,b] \big)$ }}
+\end{align*}
+Let $[a,b]$ be arbitrary. Fix $\epsilon $ and $f \in \mathcal{C}\big([a,b] \big)$. We wish 
+\begin{align*}
+\olive{\text{ to find $P \in \R[x]\big|_{[a,b]}$ such that $\norm{f-P}_\infty\leq \epsilon $ }}
+\end{align*}
+Define $g:[0,1]\rightarrow \R$ by 
+\begin{align}
+g(x)\triangleq f(a+(b-a)x)
+\end{align}
+We know there exists $P_n:[0,1]\rightarrow \R$ such that 
+\begin{align*}
+\norm{P_n-g}_{\infty}<\epsilon 
+\end{align*}
+Define $H_n:[a,b]\rightarrow \R$ by 
+\begin{align*}
+H_n(x)=P_n\big(\frac{x-a}{b-a} \big)
+\end{align*}
+Because $P_n$ is a real polynomial on  $[0,1]$, we know $H_n$ is a real polynomial on $[a,b]$. We now claim 
+\begin{align*}
+  \olive{\text{ such $H_n\text{ works }$ }}
+\end{align*}
+Fix $x \in [a,b]$. Observe 
+\begin{align*}
+\big|f(x)-H_n(x)\big|&=\abso{f(x)-P_n\big(\frac{x-a}{b-a} \big)}\\
+&=\abso{g\big(\frac{x-a}{b-a} \big)-P_n\big(\frac{x-a}{b-a} \big)}< \epsilon \odone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+It is at now, we will show that every real-valued continuous functions on $[a,b]$ can be approximated by polynomials with rational coefficient. This fact enable our computer to more easily approximate real-valued continuous function on $[a,b]$.\\
 
+Note that since $\mathcal{C}\big([a,b] \big)$ is a separable metric space, we can show that $\mathcal{C}\big([a,b] \big)$ has cardinality of at most continuum $\mathfrak{c}$ . 
+\end{mdframed}
+\begin{theorem}
+\textbf{(The space $\Q[x]|_{[a,b]}$ is dense in $\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)$, thus $\mathcal{C}\big([a,b] \big)$ is separable)} 
+\begin{align*}
+\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)\text{ is separable }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $\Q[x]\big|_{[a,b]}$ is countable, to show $\mathcal{C}\big([a,b] \big)$ is separable, we only wish to show 
+\begin{align*}
+\vi{\Q [x]\big|_{[a,b]}\text{ is dense in }\mathcal{C}\big([a,b] \big)}
+\end{align*}
+Because $\R[x]\big|_{[a,b]}$ is dense in $\mathcal{C}\big([a,b] \big)$, we reduce our problem into proving 
+\begin{align*}
+\vi{\Q[x]\big|_{[a,b]}\text{ is dense in }\R[x]\big|_{[a,b]}}
+\end{align*}
+Fix $\epsilon \text{ and } P \in \R[x]\big|_{[a,b]}$. We must
+\begin{align*}
+\vi{\text{ find $Q \in \Q[x]\big|_{[a,b]}$ such that $\norm{Q-P}_\infty \leq \epsilon $}}
+\end{align*}
+Express $P(x)=\sum_{k=0}^n r_kx^k$. Let $M> \max \set{\abso{a},\abso{b}}$. Because $\Q$ is dense in $\R$, we know there exists $c_k \inq$ such that  $\abso{c_k-r_k}< \frac{\epsilon }{(n+1)M^n}$. We claim 
+\begin{align*}
+\vi{Q(x)=\sum_{k=0}^n c_kx^k\text{ works }}
+\end{align*}
+Fix $x \in [a,b]$. See
+\begin{align*}
+\abso{P(x)-Q(x)}&=\abso{\sum_{k=0}^n (c_k-r_k)x^k}\\
+&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot \abso{x}^k\\
+&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot M^k\\
+&\leq (M^n)\sum_{k=0}^n \abso{c_k-r_k}\\
+&< M^n (n+1)\big( \frac{\epsilon }{(n+1)M^n}\big)=\epsilon \vdone
+\end{align*}
+\end{proof}
+\section{The Stone-Weierstrass Theorem}
+\begin{mdframed}
+Recall that a \textbf{vector space over a field $\F$} is a set $V$ equipped with \textbf{vector addition} $+:V\times V\to V$  and \textbf{scalar multiplication}  such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $(V,+)$ is an abelian group. 
+  \item Scalar multiplication is compatible with field multiplication:   $\Big((ab)v=a(bv) \Big)$
+  \item Scalar multiplication is distributive: $\Big((a+b)v=av+bv\text{ and }a(v+w)=av+aw \Big)$
+\end{enumerate}
+
+There are many ways to define the term \textbf{algebra over a field $\F$}. One can exhaust all the laws an algebra should obey. In short, an \textbf{algebra over a field $\F$} (or \textbf{$\F$-algebra}) is a set $(A,+,\cdot )$ equipped scalar multiplication over $\F$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item Multiplication $\cdot $ is $\underline{\text{distributive}}$ with respect to $+$  
+  \item $(A,+)$ and scalar multiplication form a vector space. 
+   \item Scalar multiplication and vector multiplication $\cdot $ is compatible: $\Big((av)\cdot (bw)=ab(v\cdot w) \Big)$
+\end{enumerate}
+Given an arbitrary set $E$ and a field $\F$, let $A$ be the set of all functions from  $E$ to $\F$. The following is a list of some algebra 
+\begin{enumerate}[label=(\alph*)]
+  \item $(\R^3,\text{cross product})$  over $\R$ 
+  \item $(\C,\text{complex multiplication})$ over $\C$ 
+  \item $(\Q[x],\text{function multiplication})$ over $\Q$
+  \item $(\text{Functions from }E\text{ to }\F,\text{function multiplication})$ over $\F$
+  \item $(\text{Continuous functions from $(E,\tau)$ to $\C$ },\text{function multiplication})$ over $\C$  
+  \item $(\text{Linear transformation from $V$ to $V$, composition})$ over $\F$ where  $V$ is over $\F$
+  \item $\big(M_n(\F),\text{matrix multiplication}\big)$ over $\F$
+\end{enumerate}
+Note that $B=(\text{continuous functions from }\C\text{ to }\C,\text{composition})$ over $\C$ is not an algebra, even though $B$ is both a vector space and a ring. ($\because$ scalar multiplication and multiplication are not compatible).\\
+
+It is at here we shall introduce some general terminologies. Given an arbitrary set $E$, a field  $\F$ and a point $x \in E$, we say a family $\mathcal{F}$ of functions  from $E$ to  $\F$  \textbf{vanish at $x$} if for all $f \in \mathcal{F}$, we have $f(x)=0$. We say $\mathcal{F}$ \textbf{separate points} in $E$ if for all  $x_2\neq x_1 \in E$, there exists $f\in \mathcal{F}$ such that $f(x_2)\neq f(x_1)$. 
+\end{mdframed}
+
+\section{FTC}
+\begin{theorem}
+  \label{FTC1}
+\textbf{(Fundamental Theorem of Calculus: Part 1)} Suppose a function $f:[a,\infty )\rightarrow \R$ satisfy
+\begin{align*}
+f\text{ is $\underline{\text{proper-Riemann integrable}}$ on $[a,b]$  for all $b>a$}
+\end{align*}
+If we set $F:[a,\infty) \to \R$ 
+\begin{align*}
+F(x)=\int_a^x f(t)dt
+\end{align*}
+Then 
+\begin{enumerate}[label=(\alph*)]
+  \item $F$ is continuous on $[a,\infty )$
+  \item $F$ is differentiable at  $x_0 \in [a,\infty )$  where $F'(x_0)=f(x_0)$ if $f$ is continuous at $x_0$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $ and $[a,b]$. We only wish  
+\begin{align*}
+\vi{\text{ to prove }F\text{ is continuous on $[a,b]$ }}
+\end{align*}
+To prove $F$ is continuous on  $[a,b]$, we only wish 
+\begin{align*}
+\vi{\text{ to find $\delta$ such that $\forall [x,y]\subseteq [a,b], \abso{x-y}<\delta \implies \abso{F(x)-F(y)}<\epsilon $}}
+\end{align*}
+Because $f $ is proper-Riemann-Integrable on $[a,b]$, we know $f$ is bounded on  $[a,b]$. Let $M$ be an upper bound of  $\abso{f}$ on $[a,b]$. We claim 
+\begin{align*}
+\vi{\text{ $\delta=\frac{\epsilon}{M}$ works }} 
+\end{align*}
+Because $y-x <\delta=\frac{\epsilon}{M}$, we have
+\begin{align*}
+  \abso{F(x)-F(y)}&=\abso{\int_x^y f(t)dt}\\
+  &\leq \int_x^y \abso{f(t)}dt\\
+  &\leq (y-x)<\epsilon \vdone
+\end{align*}
+Now, to prove $F'(x_0)=f(x_0)$, we wish 
+\begin{align*}
+  \blue{\text{ to prove $\lim_{x\to x_0} \frac{F(x)-F(x_0)}{x-x_0}= f(x_0)$ }}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\blue{\text{ to find $\delta$ such that $\abso{x-x_0}<\delta \implies \abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}<\epsilon $ }}
+\end{align*}
+Because $f$ is continuous at $x_0$, we know  
+\begin{align}
+\label{F1}
+\exists \delta, \abso{x-x_0}<\delta \implies \abso{f(x)-f(x_0)}<\epsilon 
+\end{align}
+We claim 
+\begin{align*}
+\blue{\text{ such $\delta$ in}}\text{ \myref{Equation}{F1} }\blue{\text{works}}
+\end{align*}
+WOLG, let $x>x_0$. Deduce 
+\begin{align*}
+\abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}&=\abso{\frac{\int_{x_0}^x f(t)dt}{x-x_0}-f(x_0)}\\                  &=\abso{\frac{\int_{x_0}^x \big[f(t)-f(x_0) \big]dt}{x-x_0}}\\
+&\leq \frac{\int_{x_0}^x \abso{f(t)-f(x_0)}dt}{\abso{x-x_0}}\\
+&\leq \frac{\int_{x_0}^x \epsilon dt}{\abso{x-x_0}}=\epsilon \bdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{FTC2}
+\textbf{(Fundamental Theorem of Calculus: Part 2, Leibniz Rule)} Suppose two functions $f,F:[a,\infty )\rightarrow \R$ satisfy 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is proper Riemann-Integrable on $[a,b]$ for all $b>a$ 
+\item $F'(x)=f(x)$ for all $x \in (a, \infty)$ 
+\item $F$ is continuous on  $[a,\infty)$
+\end{enumerate}
+Then for all $b>a$, 
+\begin{align*}
+\int_a^b f(x)dx=F(b)-F(a)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to show that $\abso{\Big( F(b)-F(a)\Big)-\int_a^b f(x)dx}<\epsilon $ }}
+\end{align*}
+Because $f$ is proper Riemann-Integrable on $[a,b]$, we know there exists a partition $P=\set{a=x_0,x_1,\dots , x_n=b}$ of  $[a,b]$ such that 
+\begin{align}
+\label{FP}
+U(P,f)-L(P,f)<\epsilon 
+\end{align}
+Because $f=F'$ on  $(a,b)$, for each $k \in \set{1,\dots ,n}$, by MVT (\myref{Theorem}{MVT}), we know 
+\begin{align*}
+\exists t_k \in (x_{k-1},x_k), \frac{F(x_k)-F(x_{k-1})}{x_k-x_{k-1}}=f(t_k)
+\end{align*}
+This let us deduce
+\begin{align*}
+F(b)-F(a)=\sum_{k=1}^n F(x_k)-F(x_{k-1})=\sum_{k=1}^n f(t_k) \Delta x_k
+\end{align*}
+Now, we have 
+\begin{align*}
+  \int_a^b f(x)dx\text{ and }F(b)-F(a)\text{ are both in }\big[ L(P,f),U(P,f) \big]
+\end{align*}
+Then by \myref{Equation}{FP}, we can deduce 
+\begin{align*}
+\abso{F(b)-F(a)- \int_a^b f(x)dx}<\epsilon \vdone
+\end{align*}
 
 
 
 
 \end{proof}
-\section{Closed under Uniform Convergence}
 \begin{theorem}
-\textbf{(Riemann-Integrable Functions are Closed under Uniform Convergence)} Given a function $\alpha :[a,b],\rightarrow \R$ and a sequence of functions $f_n:[a,b]\rightarrow \R$ such that 
+\textbf{(Integral By Part)} Given four function $f,g,F,G:[a,b]\rightarrow \R$ such that 
+
+\begin{enumerate}[label=(\alph*)]
+  \item $F'(x)=f(x)\text{ and }G'(x)=g(x)$ for all $x\in (a,b)$ 
+  \item $f,g$ are properly Riemann-Integrable on  $[a,b]$ 
+  \item $F,G$ are continuous on  $[a,b]$
+\end{enumerate}
+We have
+\begin{align}
+\label{FI}
+\int_a^b F(x)g(x)dx=FG\Big|^b_a-\int_a^b f(x)G(x)dx
+\end{align}
+\end{theorem}
+\begin{proof}
+To prove \myref{Equation}{FI}, we only with 
+\begin{align*}
+\vi{\text{ to prove }\int_a^b F(x)g(x)dx+\int_a^b f(x)G(x)dx=FG\Big|_a^b}
+\end{align*}
+We can reduce the problem 
+\begin{align*}
+\vi{\text{ into proving }\int_a^b \big( Fg+fG \big) dx=FG\Big|_a^b}
+\end{align*}
+Notice that by Chain Rule,  
+\begin{align*}
+\big(FG \big)'(x)=F(x)g(x)+f(x)G(x)\text{ for all $x \in (a,b)$ }
+\end{align*}
+Then the result follows from Part 2 of Fundamental Theorem of Calculus (\myref{Theorem}{FTC2}). $\vdone$
+\end{proof}
+\section{Uniform Convergence on Integration and Differentiation}
+\begin{theorem}
+\label{RIFac}
+\textbf{(Riemann-Integration and Uniform Convergence)} Given a function $\alpha :[a,b]\rightarrow \R$ and a sequence of functions $f_n:[a,b]\rightarrow \R$ such that 
 \begin{enumerate}[label=(\alph*)]
   \item $\alpha $ increase on $[a,b]$ 
   \item $\int_a^b f_nd\alpha $ exists for all $n\inn$ 
@@ -1898,7 +2097,7 @@ Because $x$ is arbitrarily picked from  $[0,1]$, we now have $\norm{P_n-\tilde{f
 \end{enumerate}
 Then 
 \begin{align*}
-  \lim_{n\to \infty}\int_a^n f_n d\alpha \text{ exists and }\int_a^b fd\alpha =\lim_{n\to \infty}\int_a^b f_nd\alpha 
+  \lim_{n\to \infty}\int_a^b f_n d\alpha \text{ exists and }\int_a^b fd\alpha =\lim_{n\to \infty}\int_a^b f_nd\alpha 
 \end{align*}
 \end{theorem}
 \begin{proof}
@@ -1950,21 +2149,378 @@ Fix $n>N$. From \myref{Equation}{CuU1}, we see
 
 \end{proof}
 \begin{mdframed}
-
+Before the next Theorem, let's see three examples why this time we don't (can't) use the hypothesis: $f_n \to f$ uniformly. 
+\begin{Example}{\textbf{(Differentiable functions are NOT closed under uniform convergence)}}{}
+\begin{align*}
+X=[-1,1]\text{ and }f(x)=\abso{x}
+\end{align*}
+By Weierstrass approximation Theorem, there is a sequence of polynomials (differentiable) that uniformly converge to $f$, which is not differntiable at  $0$. 
+\end{Example}
+\begin{Example}{\textbf{(Derivative won't necessarily converge to the right place)}}{}
+\begin{align*}
+X=\R \text{ and }f_n(x)=\frac{\sin nx}{\sqrt{n} }
+\end{align*}
+Compute 
+\begin{align*}
+f'(x)=0 \text{ and }f'_n(x)=\sqrt{n} \cos nx
+\end{align*}
+\end{Example}
+\begin{Example}{\textbf{(Derivative won't necessarily converge to the right place)}}{}
+\begin{align*}
+X=\R \text{ and }f_n(x)=\frac{x}{1+nx^2}
+\end{align*}
+Compute 
+\begin{align*}
+f=\tilde{0} \text{ and }f'_n(0)=1
+\end{align*}
+\end{Example}
+Informally speaking, these examples together with the fact integral are closed under uniform convergence (\myref{Theorem}{RIFac}) should give you some ideas that differentiation and integration although are operations inverse to each other, are NOT symmetric. There is a certain hierarchy on continuous functions on a fixed compact interval. Thus, we have the next Theorem in its form. 
 \end{mdframed}
 \begin{theorem}
-\textbf{(Uniform convergence and differentiation)} Given a sequence of function $f_n:I \rightarrow \R$ such that 
+\textbf{(Uniform Convergence and Differentiation)} Given a sequence of function $f_n:[a,b]\rightarrow \R$ such that 
 \begin{enumerate}[label=(\alph*)]
-  \item $I\subseteq \R$ is bounded 
-  \item $f_n(x_0)$ converge as $n \to \infty$ for some $x_0 \in I$
-  \item $f_n$ are differentiable on  $I^\circ $
-  \item $f'_n$ converge uniformly on $I^\circ $
+  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
+  \item $f_n$ are differentiable on $(a,b)$   
+  \item $f_n$ are continuous on  $[a,b]$
+  \item $f'_n$ uniformly converge on  $(a,b)$
 \end{enumerate}
-Then there exists a function $f:I^\circ \rightarrow \R$ such that 
+Then there exists a function $f:[a,b]\rightarrow \R$ such that 
 \begin{align*}
-\text{} f_n\to f\text{ uniformly and $f'(x)=\lim_{n\to \infty}f'_n(x)$ for all $x \in I^\circ $}
+&f\text{ is differentiable on $(a,b)$ }\\
+  \text{and }&f_n \to f\text{ uniformly on $[a,b]$}\\
+  \text{ and }&f'_n \to f'\text{ uniformly on $(a,b)$ } 
 \end{align*}
 \end{theorem}
+\begin{proof}
+We first prove 
+\begin{align}
+\label{fnun}
+\vi{f_n\text{ uniformly converge on $[a,b]$}}
+\end{align}
+Fix $\epsilon $. We wish  
+\begin{align*}
+  \vi{\text{ to find $N$ such that $\norm{f_n-f_m}_\infty \leq \epsilon $ for all $n,m>N$}}
+\end{align*}
+Because $f_n(x_0)$ converge, and $f'_n$ uniformly converge, we know there exists $N$ such that 
+ \begin{align}
+\label{UCD1}
+\begin{cases}
+ \abso{f_n(x_0)-f_m(x_0)}<\frac{\epsilon}{2} \\
+\norm{f_n'-f_m'}_\infty <\frac{\epsilon }{2(b-a)}
+\end{cases}\text{ for all $n,m>N$ }
+\end{align}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+Fix $x \in [a,b]$ and $n,m>N$. We need
+\begin{align*}
+  \vi{\text{ to show }\abso{f_n(x)-f_m(x)}\leq \epsilon}
+\end{align*}
+We first prove
+\begin{align*}
+\olive{\abso{f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)}\leq \frac{\epsilon}{2}}
+\end{align*}
+Because $(f_n-f_m)'=f_n'-f_m'$, by MVT (\myref{Theorem}{MVT}) and \myref{Equation}{UCD1}, we can deduce 
+\begin{align*}
+ \abso{f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)}&=\abso{(f_n-f_m)(x)-(f_n-f_m)(x_0)}\\
+ &=\Big|\big[(f_n-f_m)'(t)\big](x-x_0)\Big|\text{ for some $t$ between $x,x_0$ }\\
+ &< \frac{\epsilon}{2(b-a)}\cdot \abso{x-x_0}\\
+ &\leq \frac{\epsilon }{2(b-a)}\cdot (b-a)=\frac{\epsilon}{2}\hspace{0.3cm}\big(\because x,x_0  \in [a,b]\big)\odone
+\end{align*}
+Now, by \myref{Equation}{UCD1}, we have 
+\begin{align*}
+  \abso{f_n(x)-f_m(x)}&\leq \abso{f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)}+\abso{f_n(x_0)-f_m(x_0)}\\
+&<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
+\end{align*}
+We claim 
+\begin{align}
+\label{UCAC2}
+\blue{f(x)\triangleq \lim_{n\to \infty}f_n(x)\text{ for all $x \in [a,b]$ works }}
+\end{align}
+We first show 
+\begin{align*}
+\olive{f\text{ is differentiable on $(a,b)$ }}
+\end{align*}
+Fix $x \in (a,b)$. We wish to prove
+\begin{align*}
+  \olive{{\lim_{t\to x}\frac{f(t)-f(x)}{t-x}\text{ exists }}}
+\end{align*}
+Define $\phi :[a,b]\setminus x\rightarrow \R$ by 
+\begin{align*}
+\phi (t)\triangleq \frac{f(t)-f(x)}{t-x}
+\end{align*}
+We reduce our problem into proving 
+\begin{align*}
+  \olive{\lim_{t\to x}\phi (t)\text{ exists }}
+\end{align*}
+Set $\phi_n:[a,b]\setminus x\rightarrow \R$ by 
+\begin{align*}
+\phi_n(t)\triangleq \frac{f_n(t)-f_n(x)}{t-x}
+\end{align*}
+We first show  
+\begin{align}
+\label{UCACu}
+  \vi{\phi_n\text{ uniformly converge on }[a,b]\setminus x}
+\end{align}
+Fix $\epsilon $. We have
+\begin{align*}
+  \vi{\text{ to find $N$ such that  $\abso{\phi_n(t)-\phi _m(t)}\leq \epsilon $ for all $n,m>N$ and  $t\in [a,b]\setminus x$ }}
+\end{align*}
+Because $f_n'$ uniformly converge on  $[a,b]$, we know there exists $N$ such that 
+ \begin{align}
+\label{CUaC1}
+\norm{f_n'-f_m'}_\infty\leq \epsilon \text{ for all $n,m>N$ }
+\end{align}
+We claim 
+\begin{align*}
+\vi{\text{ such }N\text{ works }}
+\end{align*}
+Fix $n,m>N$ and $t \in [a,b]\setminus x$. We wish to prove 
+\begin{align*}
+\vi{\abso{\phi_n(t)-\phi_m(t)}\leq \epsilon }
+\end{align*}
+Because $(f_n-f_m)'=f_n'-f'_m$, by MVT (\myref{Theorem}{MVT}) and \myref{Equation}{CUaC1}, we can deduce 
+\begin{align*}
+  \abso{\phi_n(t)-\phi_m(t)}&\leq \abso{\frac{f_n(t)-f_n(x)}{t-x}-\frac{f_m(t)-f_m(x)}{t-x}}\\
+                            &=\abso{\frac{\big(f_n-f_m\big)(t)-\big(f_n-f_m\big)(x)}{t-x}}\\
+ &=\abso{\big(f'_n-f'_m\big)(t_0)}\text{ for some $t_0$ between $t,x$  }\\
+&\leq \epsilon \vdone
+\end{align*}
+We now show 
+\begin{align}
+\label{UCACP}
+\brown{\phi_n \to \phi\text{ pointwise on $[a,b]\setminus x$}}
+\end{align}
+Because $f_n \to f$ on $[a,b]$ by definition (\myref{Equation}{UCAC2}), (the convergence is in fact uniform as we have shown. This doesn't matter here tho), for each $t \in [a,b]\setminus x$, we can deduce
+\begin{align*}
+\lim_{n\to \infty} \phi_n(t)&=\lim_{n\to \infty}\frac{f_n(t)-f_n(x)}{t-x}=\frac{f(t)-f(x)}{t-x}=\phi (t)\bodone
+\end{align*}
+Now, by \myref{Equation}{UCACu} and \myref{Equation}{UCACP}, we know 
+\begin{align*}
+\phi_n \to \phi \text{ uniformly on $[a,b]\setminus x$ }
+\end{align*}
+Notice that because $f_n'(x)$ converge, we know
+\begin{align*}
+\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)=\lim_{n\to \infty}f'_n(x)\text{ exists }
+\end{align*}
+Then (Notice that the second equality below hold true because we have known $\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)$ exists), we can finally deduce 
+\begin{align*}
+\lim_{t\to x}\phi (t)&=\lim_{t\to x}\lim_{n\to \infty}\phi_n(t)\\
+&=\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)\\
+&=\lim_{n\to \infty}f'_n(x)\text{ exists }\odone
+\end{align*}
+Now, notice that $f'(x)=\lim_{t\to x}\phi (t)$, so in fact, we have just proved $f'_n \to f'$, and the convergence is uniform by premise. Also, the statement 
+\begin{align*}
+f_n\to f\text{ uniformly on $[a,b]$ }
+\end{align*}
+has been proved, since we already have $f_n \to f$ by our setting (\myref{Equation}{UCAC2}) and we have proved such convergence is uniform (\myref{Equation}{fnun}). The proof is now completed. $\bdone$
+\end{proof}
+\begin{mdframed}
+As Rudin remarked, a much shorter (and much more intuitive) proof can be given, if we require $f'$ to be continuous on  $[a,b]$. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Uniform Convergence and Differentiation: Weaker Version)} Given a sequence of function $f_n:[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
+  \item $f_n$ are differentiable on $(a,b)$  
+  \item $f_n'$ are continuous on $[a,b]$ ($f_n'$ at  $a,b$ are one-sided)
+  \item $f_n$ are continuous on  $[a,b]$
+  \item $f'_n$ uniformly converge on  $[a,b]$
+\end{enumerate}
+Then there exists a function $f:[a,b]\rightarrow \R$ such that 
+\begin{align*}
+&f\text{ is differentiable on $(a,b)$ }\\
+  \text{and }&f_n \to f\text{ uniformly on $[a,b]$}\\
+  \text{ and }&f'_n \to f'\text{ uniformly on $(a,b)$ } 
+\end{align*}
+\end{theorem}
+\begin{proof}
+We claim 
+\begin{align*}
+  \vi{f(x)=\lim_{n\to \infty}\int_{x_0}^x f'_n(t)dt+L\text{ works }} 
+\end{align*}
+Note that $\lim_{n\to \infty}\int_{x_0}^x f'_n(t)dt$ exists because $f'_n$ uniformly converge  (\myref{Theorem}{RIFac}).\\
 
-\section{Taylor's Theorem}
+Because $f'_n$ uniformly converge, we know
+ \begin{align*}
+\int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt+L\text{ exists }
+\end{align*}
+and know 
+\begin{align*}
+f(x)=\int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt + L 
+\end{align*}
+Because $f'_n$ are all continuous, by Uniform Limit Theorem, we know $\lim_{n\to \infty}f'_n(t)$ as a function of $t$ is continuous. Then by FTC, we know 
+ \begin{align*}
+f'(x)=\lim_{n\to \infty}f'_n(x)\text{ on }(a,b)
+\end{align*}
+Such convergence is uniform by premise. To finish the proof, we now only have to prove 
+\begin{align*}
+\vi{f_n\to f\text{ uniformly on }[a,b]}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to find $N$ such that  $\abso{f_n(x)-f(x)}\leq \epsilon $ for all $n>N$ and  $x \in [a,b]$}}
+\end{align*}
+Because $f'_n \to f$ uniformly, and $f_n(x_0) \to L=f(x_0)$ (Check $L=f(x_0)$), we know there exists $N$ such that 
+ \begin{align*}
+\begin{cases}
+  \norm{f'_n-f}_\infty < \frac{\epsilon }{2(b-a)}\\
+  \abso{f_n(x_0)-f(x_0)}<\frac{\epsilon}{2}
+\end{cases}\text{ for all $n>N$ }
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+Fix $n>N$ and  $x\in [a,b]$. Observe 
+\begin{align*}
+\abso{f(x)-f_n(x)}&= \abso{\int_{x_0}^x \big(f'(t)-f'_n(t) \big)dt+f(x_0)-f_n(x_0)}\\
+&\leq \int_{x_0}^x \abso{f'(t)-f'_n(t)}dt+ \abso{f(x_0)-f_n(x_0)}\\
+&\leq \frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
+\end{align*}
+\end{proof}
+\section{Real Analytic Functions}
+\begin{mdframed}
+In this section, by a \textbf{power series}, we mean a pair $(a,c_n)$ where $a \inc$ is called the \textbf{center} of power series, and $c_n\inc$ are the coefficients sequence. By \textbf{radius of convergence}, we mean a unique  $R \in \R^+_0 \cup  \infty$ such that 
+ \begin{align*}
+\sum_{n=0}^\infty c_n(z-a)^n
+\begin{cases}
+  \text{ converge absolutely }& \text{ if  }\abso{z-a}<R\\
+  \text{ diverge }& \text{ if  }\abso{z-a}>R\\
+\end{cases}
+\end{align*}
+Note that if $R=0$, then the definition should be slightly modified. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Cauchy-Hadamard Theorem)} Given a power series $(a,c_n)$, and define $R \inr_0^+ \cup  \infty$ by 
+\begin{align*}
+R=\frac{1}{\limsup_{n\to\infty} \sqrt[n]{\abso{c_n}} }
+\end{align*}
+We have
+ \begin{align*}
+\sum_{n=0}^\infty c_n(z-a)^n
+\begin{cases}
+  \text{ converge absolutely }& \text{ if  }\abso{z-a}<R\\
+  \text{ diverge }& \text{ if  }\abso{z-a}>R\\
+\end{cases}
+\end{align*}
+\end{theorem}
+\begin{proof}
+WOLG, let $a=0$. We first prove when $R=0$. That is 
+\begin{align*}
+  \vi{R=0 \implies \sum_{n=0}^\infty c_nz^n\text{ diverge }\forall z\neq 0 }
+\end{align*}
+Fix $R=0$ and  $z\inc^*$. We reduce the problem into
+\begin{align*}
+\vi{\text{ proving $c_nz^n\not\to 0$ }}
+\end{align*}
+Because $R=0$, we know 
+\begin{align*}
+ \limsup_{n\to\infty} \big(\abso{c_n} \big)^{\frac{1}{n}}=\infty 
+\end{align*}
+This implies the existence of a sub-sequence $n_k$ such that 
+\begin{align*}
+\big(\abso{c_{n_k}} \big)^{\frac{1}{n_k}} \nearrow \infty
+\end{align*}
+We now see 
+\begin{align*}
+  \abso{c_{n_k}z^{n_k}}&= \big(\abso{z}\cdot \abso{c_{n_k}}^{\frac{1}{n_k}}  \big)^{n_k} \nearrow \infty \vdone
+\end{align*}
+We now prove when $R\inr^+$. That is 
+\begin{align*}
+  \blue{R\inr^+ \implies \sum_{n=0}^\infty c_nz^n}
+\blue{\begin{cases}
+  \text{ converge absolutely }& \text{ if  }\abso{z}<R\\
+  \text{ diverge }& \text{ if  }\abso{z}>R\\
+\end{cases}}
+\end{align*}
+Fix $R\inr^+$ and $\abso{z}>R$. We first prove 
+\begin{align*}
+  \olive{ \sum_{n=0}^\infty c_nz^n\text{ diverge }}
+\end{align*}
+We reduce the problem into 
+\begin{align*}
+\olive{\text{ proving $c_nz^n\not\to 0$ }}
+\end{align*}
+Define 
+\begin{align*}
+t\triangleq \limsup_{n\to\infty} \sqrt[n]{\abso{c_n}} =\frac{1}{R}
+\end{align*}
+Because $\abso{z}>R$, we know  $t=\frac{1}{R}>\frac{1}{\abso{z}}$. Then, we can let $\epsilon $ satisfy
+\begin{align*}
+t-\epsilon>\frac{1}{\abso{z}}
+\end{align*}
+Now, because 
+\begin{align*}
+\limsup_{n\to\infty} \sqrt[n]{\abso{c_n}}>t-\epsilon 
+\end{align*}
+we know there exists a sub-sequence  $n_k$ such that 
+\begin{align*}
+\big(\abso{c_{n_k}} \big)^{\frac{1}{n_k}}>t-\epsilon=\frac{1}{\abso{z}} \text{ for all $n_k$  }
+\end{align*}
+We now see
+\begin{align*}
+\abso{c_{n_k}z^{n_k}}=\big(\abso{c_{n_k}}^{\frac{1}{n_k}}\cdot \abso{z} \big)^{n_k}>1\text{ for all $n_k\odone$ }
+\end{align*}
+
+
+
+
+
+
+
+\end{proof}
+\begin{theorem}
+\textbf{(Uniform Convergence of Power Series)} Given a power series $(a,c_n)$ of radius $R$, if we define $f:(a-R,a+R)\rightarrow \R$ by 
+\begin{align*}
+f(x)=\sum_{n=0}^\infty c_n (x-a)^n 
+\end{align*}
+Then 
+\begin{enumerate}[label=(\alph*)]
+  \item the convergence of $f$ is uniform on  $[a-R+\epsilon ,a+R-\epsilon ]$ for all $\epsilon $
+  \item $f'(x)$ and $\sum_{n=1}^\infty nc_nx^{n-1}$ both exist and are equal, on $(a-R,a+R)$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. We first prove
+\begin{align*}
+  \vi{\sum_{n=0}^\infty c_n(x-a)^n\text{ uniformly converge on }[a-R+\epsilon ,a+R-\epsilon ]}
+\end{align*}
+First deduce
+\begin{align*}
+  \abso{x-a}\leq R-\epsilon \text{ for all $x \in [a-R+\epsilon ,a+R-\epsilon ]$ }
+\end{align*}
+This give us 
+\begin{align*}
+\abso{c_n(x-a)^n}&=\abso{c_n}\cdot \abso{x-a}^n \\
+                 &\leq \abso{c_n} (R-\epsilon )^n
+\end{align*}
+
+
+
+
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{document}
