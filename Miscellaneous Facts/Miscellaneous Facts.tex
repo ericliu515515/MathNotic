@@ -1235,5 +1235,730 @@ X=[0,1]\text{ and }f_n(x)=\sqrt{x+\frac{1}{n}}
 \end{align*}
 \end{Example}
 \end{mdframed}
+\section{HW2}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{ahw23}
+\end{question}
+\begin{proof}
+We can reduce the problem into proving 
+\begin{align*}
+\vi{\lim_{t\to 0^+}\int_0^\infty te^{-tx}f(x)dx-1=0}
+\end{align*}
+Notice that for each $t>0$, we have 
+ \begin{align*}
+1=\int_0^\infty te^{-tx}dx
+\end{align*}
+This then give us 
+\begin{align*}
+\int_0^\infty e^{-tx}f(x)dx-1&=\int_0^\infty te^{-tx}f(x)dx-\int_0^\infty te^{-tx}dx\\
+&=\int_0^\infty te^{-tx}\big[f(x)-1 \big]dx
+\end{align*}
+Define $g(x)\triangleq f(x)-1$. Because $f\to 1$ at $\infty$, we know $g \to 0$ at infinity. We now reduce the problem into proving 
+\begin{align*}
+\vi{\lim_{t\to 0^+}\int_0^\infty te^{-tx}g(x)dx=0}
+\end{align*}
+Note that with simple computation 
+\begin{align*}
+\int_0^\infty te^{-tx}dx\text{ exists for all $t\inr^+$ }
+\end{align*}
+Then because we have $te^{-tx}\sim te^{-tx}f(x)$ as $x \to \infty$, we see 
+\begin{align*}
+\int_0^\infty te^{-tx}g(x)dx\text{ exists for all $t\inr^+$ by Integral Test and Limit Comparison Test
+}
+\end{align*}
+Fix $\epsilon $. We now reduce the problem into proving 
+\begin{align*}
+\vi{\text{ finding $\delta$ such that }\abso{\int_0^\infty te^{-tx}g(x)dx}\leq \epsilon \text{ for all $t\in (0,\delta)$ }}
+\end{align*}
+Let $A$ be large enough such that $g(x)$ is  $\frac{\epsilon}{2}$-close to $0$ whenever $x\geq A$. Note that $g$ is bounded on $[A,\infty)$ and bounded on $[0,A]$ because $g$ is integrable on $[0,A]$. Now, let $M>\sup_{\R^+}\abso{g}$. We claim
+ \begin{align*}
+   \vi{\delta= \frac{-\ln (1-\frac{\epsilon}{2M})}{A}\text{ works }}
+\end{align*}
+Observe 
+\begin{align*}
+  \abso{\int_0^\infty te^{-tx}g(x)dx}&\leq \abso{\int_0^A te^{-tx}g(x)dx}+\abso{\int_A^\infty te^{-tx}g(x)dx}\\
+  &\leq \int_0^A te^{-tx}\abso{g(x)}dx+ \int_A^\infty te^{-tx}\abso{g(x)}dx\\
+  &\leq M\int_0^A te^{-tx}dx + \frac{\epsilon}{2}\int_A^\infty te^{-tx}dx\\
+  &\leq  -Me^{-tx}\Big|_{x=0}^A +\frac{\epsilon}{2}\int_0^\infty te^{-tx}dx\\
+  &\leq M(1-e^{-tA})+\frac{\epsilon}{2}\\
+  &\leq M(1-e^{-\delta A})+\frac{\epsilon}{2}\\
+  &=M(1-e^{\ln (1-\frac{\epsilon}{2M})})+\frac{\epsilon}{2}=\epsilon \vdone
+\end{align*}
 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=9cm,width=18cm]{ahw22}
+\end{question}
+\begin{proof}
+\textbf{(a)}\\
+
+For $n\neq 0$, compute 
+\begin{align*}
+c_n &= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-i nx}dx\\
+&=\frac{1}{2\pi}\int_{-\delta}^\delta \cos (-nx)+ i \sin (nx)dx\\
+&=\frac{1}{2\pi}\int_{-\delta}^\delta \cos (-nx)dx \hspace{0.5cm}(\because \text{ $\sin$ is odd function })\\
+&=\frac{1}{2\pi} \cdot \frac{\sin (-nx)}{-n}\Big |_{x=-\delta}^{\delta}= \frac{ \sin (n\delta)}{n \pi }
+\end{align*}
+Compute 
+\begin{align*}
+c_0=\frac{1}{2\pi}\int^{\pi}_{-\pi}f(x)dx=\frac{\delta}{\pi}
+\end{align*}
+\textbf{(b)}\\
+
+Note that $c_{-n}=c_n$. We then deduce that the Fourier Series of $f$ is 
+\begin{align*}
+\frac{\delta}{\pi}+\sum_{n=1}^\infty \frac{2\sin (n\delta)}{n\pi} e^{-i nx}
+\end{align*}
+Because $f$ is constant around $0$, it is clearly Lipschitz at $0$. We now deduce
+ \begin{align*}
+1=f(0)=\frac{\delta}{\pi} + \sum_{n=1}^\infty \frac{2 \sin (n\delta)}{n \pi }
+\end{align*}
+This implies 
+\begin{align*}
+\sum_{n=1}^\infty \frac{2\sin (n \delta)}{n\pi}=1-\frac{\delta}{\pi}
+\end{align*}
+which implies 
+\begin{align*}
+\sum_{n=1}^\infty \frac{\sin (n\delta)}{n}=(1-\frac{\delta}{\pi})\cdot \frac{\pi}{2}=\frac{\pi - \delta}{\pi}\cdot \frac{\pi}{2}=\frac{\pi -\delta}{2}
+\end{align*}
+\textbf{(c)} \\
+
+Parseval's Theorem says 
+\begin{align*}
+\frac{1}{2\pi}\int_{-\pi}^{\pi}\abso{f(x)}^2dx=\sum_{-\infty}^\infty \abso{c_n}^2
+\end{align*}
+Clearly $f$ is Riemann-Integrable. Plugin our setting, we see 
+\begin{align*}
+\frac{1}{2\pi}\int_{-\pi}^\pi\abso{f}^2dx= \frac{\delta}{\pi}
+\end{align*}
+and
+\begin{align*}
+\sum_{-\infty}^\infty \abso{c_n}^2&=(\frac{\delta}{\pi})^2+ \sum_{n=1}^\infty 2\Big( \frac{\sin (n\delta)}{n \pi }\Big)^2\\
+&=(\frac{\delta}{\pi})^2 + \frac{2}{\pi^2}\sum_{n=1}^\infty \frac{\sin^2 (n\delta)}{n^2} 
+\end{align*}
+This let us deduce 
+\begin{align*}
+\sum_{n=1}^\infty \frac{\sin ^2 (n\delta)}{n^2}=\frac{\pi^2}{2}\cdot \big(\frac{\delta}{\pi}-\frac{\delta^2}{\pi^2} \big)=\frac{\pi \delta -\delta^2}{2}
+\end{align*}
+So 
+\begin{align*}
+\sum_{n=1}^\infty \frac{\sin^2(n\delta)}{n^2 \delta}=\frac{\pi -\delta}{2}
+\end{align*}
+\textbf{(d)}\\
+
+Fix $\epsilon $. Because $\int_0^\infty \frac{\sin^2}{x^2}dx$ absolutely converge, we can find $R$ satisfying
+\begin{align*}
+\abso{\int_R^\infty \frac{\sin^2 x}{x^2}dx}<\frac{\epsilon}{3}\text{ and }R>\frac{3}{\epsilon }
+\end{align*}
+Define $\delta_N \triangleq \frac{R}{N}$. Partition $[0,R]$ by $\set{0,R(\frac{1}{N}),R(\frac{2}{N}),\dots ,R }$. We see 
+\begin{align*}
+\sum_{n=1}^N \frac{\sin^2 (n\delta_N)}{(n\delta_N)^2}\delta_N\text{ is a Riemann Sum of Norm $\abso{\delta_N}$ }
+\end{align*}
+This implies that there exists $N_0$ such that 
+\begin{align*}
+\forall N>N_0, \abso{\sum_{n=1}^N \frac{\sin^2 (n\delta_N)}{(n\delta_N)^2}\delta_N- \int_0^R \frac{\sin^2 x}{x^2}dx}<\frac{\epsilon}{3}
+\end{align*}
+Fix $N>N_0$. Observe that 
+ \begin{align*}
+   \abso{\sum_{n=N+1}^\infty \frac{\sin^2 (n\delta_N)}{(n\delta_N)^2}\delta_N}&\leq \sum_{n=N+1}^\infty \frac{\sin^2 (n\delta_N)}{n^2 \delta_N}\\
+&\leq \sum_{n=N+1}^\infty \frac{1}{n^2 \delta_N}\\
+&=\frac{1}{\delta_N}\sum_{n=N+1}^\infty \frac{1}{n^2}\\
+&\leq \frac{1}{\delta_N}\int_N^\infty \frac{1}{x^2}dx\hspace{0.5cm}(\because \frac{1}{x^2}\searrow )\\
+&=\frac{1}{N\delta_N}=\frac{1}{R}<\frac{\epsilon}{3}
+\end{align*}
+We now see 
+\begin{align*}
+  &\abso{\sum_{n=1}^\infty \frac{\sin^2 (n\delta_N)}{(n\delta_N)^2}\delta_N- \int_0^\infty \frac{\sin^2 x}{x^2}dx}\\
+  \leq &\abso{\sum_{n=1}^N \frac{\sin^2 (n\delta_N)}{(n\delta_N)^2}\delta_N - \int_0^R \frac{\sin^2 x}{x^2}dx}+\abso{\sum_{n=N+1}^\infty \frac{\sin^2  (n\delta_N)}{(n\delta_N)^2}\delta_N}+\abso{\int_R^{\infty}\frac{\sin^2 x}{x^2}dx}\\
+  \leq & \frac{\epsilon }{3}+\frac{\epsilon}{3}+\frac{\epsilon}{3}=\epsilon 
+\end{align*}
+This now implies, for all $\epsilon $, we can find $R$ and a threshold $N_0$ corresponding to $R$ such that 
+\begin{align*}
+\forall N>N_0, \abso{\sum_{n=1}^\infty \frac{\sin^2 (n\delta_N)}{(n\delta_N)^2}\delta_N - \int_0^\infty \frac{\sin^2 x}{x^2}dx}\leq \epsilon 
+\end{align*}
+Then for $\epsilon_k=\frac{1}{k}$, we can find a sequence of real number $\delta_k\triangleq \frac{R_k}{N_k}\to 0$ such that 
+\begin{align*}
+\abso{\sum_{n=1}^\infty \frac{\sin^2 (n\delta_k)}{(n\delta_k)^2}\delta_k -\int_0^\infty \frac{\sin^2 x}{x^2}dx}\leq \frac{1}{k}
+\end{align*}
+Because we know 
+ \begin{align*}
+\sum_{n=1}^\infty \frac{\sin^2 (n\delta_k)}{(n\delta_k)^2}\delta_k =\frac{\pi -\delta_k}{2}
+\end{align*}
+We now see for each $\epsilon '$, because $\delta_k \to 0$, we can find $k$ large enough such that  
+\begin{align*}
+  \abso{\int_0^\infty \frac{\sin^2 x}{x^2}dx-\frac{\pi}{2}}&=\abso{{\int_0^\infty \frac{\sin^2 x}{x^2}dx- \frac{\pi-\delta_k}{2}- \frac{\delta_k}{2}}}\\
+  &\leq \abso{\int_0^\infty \frac{\sin^2 x}{x^2}dx- \sum_{n=1}^{\infty} \frac{\sin^2 (n\delta_k)}{(n\delta_k)^2}\delta_k}+ \frac{\delta_k}{2}\\
+  &\leq \frac{1}{k}+\frac{\delta_k}{2}<\epsilon ' 
+\end{align*}
+\textbf{(e)}\\
+
+Put $\delta=\frac{\pi}{2}$. We have
+\begin{align*}
+\frac{\pi}{4}&=\frac{\pi-\delta}{2}\\
+&=\frac{2}{\pi}\cdot\sum_{n=1}^\infty \frac{\sin^2 \frac{\pi}{2}n}{n^2}
+\end{align*}
+This then implies 
+\begin{align*}
+\sum_{n=1}^\infty \frac{1}{(2n-1)^2}=\frac{\pi^2}{8}
+\end{align*}
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=4cm,width=18cm]{ahw29}
+\end{question}
+\begin{proof}
+Compute Fourier coefficient 
+\begin{align*}
+c_0&=\frac{1}{2\pi}\int_{-\pi}^\pi (\pi - \abso{x})^2dx=\frac{\pi^2}{3}
+\end{align*}
+and 
+\begin{align*}
+c_n&=\frac{1}{2\pi}\int_{-\pi}^\pi (\pi -\abso{x})^2 e^{-inx}dx\\
+&=\frac{2}{n^2}
+\end{align*}
+Note that $f$ is an even function, that  $f'(x)=2(x-\pi)$ on $(0,\pi ]$ and that 
+\begin{align*}
+f'(0)=\lim_{x\to 0^+} \frac{(\pi - \abso{x})^2 - \pi^2}{x}=\lim_{x\to 0^+} \frac{-2\pi x +x^2}{x}=-2\pi 
+\end{align*}
+This now let us deduce 
+\begin{align*}
+\abso{f'}\leq  2\pi \text{ on $[-\pi , \pi]$ }
+\end{align*}
+Which implies $f$ is  $2\pi$-Lipschitz on $[-\pi , \pi ]$. This tell us that the Fourier Series $s_N(f;x)$ converge to $f$, meaning 
+\begin{align*}
+f(x)=\sum_{-\infty}^\infty c_ne^{-i nx}&=\frac{\pi^2}{3}+\sum_{-\infty, n\neq 0}^\infty \frac{2}{n^2}\cdot \big(\cos (-nx)+ i \sin (-nx) \big)\\
+&=\frac{\pi^2}{3}+\sum_{n=1}^\infty \frac{4 \cos nx}{n^2}=\frac{\pi^2}{3}+4\sum_{n=1}^\infty \frac{\cos nx}{n^2}
+\end{align*}
+We now can deduce
+\begin{align*}
+f(0)&=\pi^2\\
+&=\frac{\pi^2}{3}+4 \sum_{n=1}^\infty \frac{1}{n^2}
+\end{align*}
+This then implies  
+\begin{align*}
+\sum_{n=1}^\infty \frac{1}{n^2}=\frac{\pi^2}{6}
+\end{align*}
+Because $f$ is continuous on $[-\pi , \pi]$, we know $f$ is Riemann-Integrable. Then Parseval's Theorem assert 
+\begin{align*}
+\frac{1}{2\pi} \int_{-\pi}^{\pi} \abso{f}^2 dx= \sum_{-\infty}^\infty \abso{c_n}^2
+\end{align*}
+Now compute 
+\begin{align*}
+\frac{1}{2\pi} \int_{-\pi }^\pi \abso{f}^2dx&=\frac{1}{2\pi}\int_{-\pi}^{\pi} (\pi - \abso{x})^4dx\\
+&=\frac{1}{\pi}\int_0^\pi (\pi -x)^4 dx\hspace{0.5cm}(\because (\pi -\abso{x})^4 \text{ is even })\\
+&=\frac{1}{\pi} \cdot \frac{(\pi -x )^5}{-5}\Big|_{x=0}^\pi= \frac{\pi^4}{5}
+\end{align*}
+and 
+\begin{align*}
+\sum_{-\infty}^\infty \abso{c_n}^2= \frac{\pi^4}{9}+ 2\sum_{n=1}^\infty \frac{4}{n^4}
+\end{align*}
+This now implies 
+\begin{align*}
+\sum_{n=1}^\infty \frac{1}{n^4}= \frac{1}{8}\cdot (\frac{\pi^4}{5}-\frac{\pi^4}{9})=\frac{\pi^4}{90}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{ahw28}
+\includegraphics[height=4cm,width=18cm]{ahw27}
+\end{question}
+\begin{proof}
+Proving $(a)$ can be reduced to proving 
+\begin{align*}
+\vi{\sum_{n=0}^N \frac{\sin (n+\frac{1}{2})x}{\sin (\frac{x}{2})}=\frac{1- \cos (N+1)x}{1-\cos x}}
+\end{align*}
+Using $\sin \alpha \sin \beta = \frac{1}{2}\Big(\cos (\alpha -\beta )-\cos (\alpha +\beta ) \Big)$ to compute 
+\begin{align*}
+\sum_{n=0}^N \frac{\sin (n+\frac{1}{2})x}{\sin (\frac{x}{2})}&= \frac{1-\cos x}{1- \cos x} \sum_{n=0}^N \frac{\sin (n+\frac{1}{2})x}{\sin (\frac{x}{2})}\\
+&=\frac{2 \sin^2 (\frac{x}{2})}{1- \cos x} \sum_{n=0}^N \frac{\sin (n+\frac{1}{2})x}{\sin (\frac{x}{2})}\\
+&=\frac{1}{1-\cos x}\sum_{n=0}^N 2\sin(\frac{x}{2})\sin (n+\frac{1}{2})x\\
+&=\frac{1}{1- \cos x}\sum_{n=0}^N \cos (-nx)- \cos (n+1)x\\
+&=\frac{1}{1- \cos x}\sum_{n=0}^N \cos (nx)- \cos (n+1)x=\frac{1- \cos (N+1)x}{1- \cos x}\vdone
+\end{align*}
+\textbf{(b)}\\
+
+Notice that $\cos x < 1$ and $\cos (N+1)x\leq 1\hspace{0.5cm}(\because K_N\text{ is only well defined on $(0, 2\pi)$ })$. This then implies 
+\begin{align*}
+1-\cos x>0\text{ and }1-\cos (N+1)x\geq 0
+\end{align*}
+Then we can deduce 
+\begin{align*}
+K_N(x)=\frac{1}{N+1}\cdot \frac{1- \cos (N+1)x}{1-\cos x}\geq 0
+\end{align*}
+\textbf{(c)}\\
+
+We first compute the Dirchlet Kernel $D_N$
+\begin{align*}
+D_N(x)&=\sum_{-N}^N e^{-i nx}\\
+&=\frac{e^{i(-N)x}-e^{i(N+1)x}}{1-e^{ix}}\\
+&=\frac{e^{i(-N-\frac{1}{2})x}-e^{i(N+\frac{1}{2})x}}{e^{i\frac{-1}{2}x}-e^{i\frac{1}{2}x}}\\
+&=\frac{2i\sin((-N-\frac{1}{2})x)}{2i \sin (\frac{-1}{2}x)}= \frac{\sin (N+\frac{1}{2})x}{\sin (\frac{x}{2})}
+\end{align*}
+and 
+\begin{align*}
+D_N(x)=\sum_{-N}^N e^{-i nx}=1+2\sum_{n=1}^N \cos nx 
+\end{align*}
+Now we can compute 
+\begin{align*}
+\frac{1}{2\pi}\int_{-\pi}^\pi K_N(x)dx&=\frac{1}{2\pi}\int_{-\pi}^{\pi} \frac{1}{N+1}\sum_{n=0}^N \frac{\sin (n+\frac{1}{2})x}{\sin \frac{x}{2}}dx\\
+&=\frac{1}{2\pi (N+1)}\sum_{n=0}^N \int_{-\pi}^{\pi} D_n(x)dx\\
+&=\frac{1}{2\pi (N+1)}\sum_{n=0}^N \int_{-\pi}^{\pi} (1+2 \sum_{k=1}^n \cos kx)dx\\
+&=\frac{1}{2\pi(N+1)}\sum_{n=0}^N 2\pi=1\hspace{0.5cm}(\because \int_{-\pi}^{\pi}\cos kx=0)
+\end{align*}
+\textbf{(d)}\\
+
+Suppose $0<\delta\leq \abso{x}\leq \pi$. Observe
+\begin{align*}
+K_N(x)&=\frac{1}{N+1}\cdot \frac{1- \cos (N+1)x}{1-\cos x}\\
+&\leq  \frac{1}{N+1}\cdot \frac{2}{1 - \cos x}\hspace{0.5cm}(\because \cos x <1)\\
+&\leq \frac{1}{N+1}\cdot \frac{2}{1- \cos \delta}\hspace{0.5cm}(\because 0<\delta \leq \abso{x}\leq \pi \implies \cos x\leq \cos \delta <1 )
+\end{align*}
+\textbf{(e)}\\
+
+Compute 
+\begin{align*}
+\sigma_N(f;x)&=\frac{(s_0+ \cdots +s_N)}{N+1}(f;x)\\
+&=\frac{1}{N+1}\sum_{k=0}^N s_k(f;x)\\
+&=\frac{1}{N+1}\sum_{k=0}^N \sum_{n=-k}^k c_ne^{i nx}\\
+&=\frac{1}{N+1}\sum_{k=0}^N \sum_{n=-k}^k \frac{1}{2\pi}\int_{-\pi}^\pi f(t)e^{-i nt}dte^{inx}\\
+&=\frac{1}{N+1}\sum_{k=0}^N \frac{1}{2\pi}\sum_{n=-k}^{k}\int_{-\pi}^{\pi}f(t)e^{in(x-t)}dt\\
+&=\frac{1}{N+1}\sum_{k=0}^N \frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)\sum_{n=-k}^{k}e^{in(x-t)}dt\\
+&=\frac{1}{N+1}\sum_{k=0}^N \frac{1}{2\pi} \int_{-\pi}^{\pi}f(t)D_k(x-t)dt\\
+&=\frac{1}{(N+1)2\pi}\sum_{k=0}^N \int^{x-\pi}_{x+\pi} -f(x-u)D_k(u)du\hspace{0.5cm}(\because u=x-t)\\
+&=\frac{1}{(N+1)2\pi}\sum_{k=0}^N \int_{x-\pi}^{x+\pi}f(x-u)D_k(u)du\\
+&=\frac{1}{(N+1)2\pi}\sum _{k=0}^{N}\int_{-\pi}^{\pi}f(x-u)D_k(u)du\hspace{0.5cm}(\because \text{ periodicity of $D_k$ and $f$ })\\
+&=\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x-u)\cdot\Big( \frac{1}{N+1}\sum_{k=0}^N D_k(u)\Big)du\\
+&=\frac{1}{2\pi}\int_{-\pi}^{\pi} f(x-u)K_N(u)du
+\end{align*}
+\textbf{(e)}\\
+
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to find $N'$ such that for all $N>N'$ and  $x \inr$ we have }\abso{\sigma_N(f;x)-f(x)}\leq \epsilon }
+\end{align*}
+Because $f$ is continuous with period $2\pi$, we know $f$ is uniformly continuous on $\R$. We then can fix $\delta$ small enough such that 
+\begin{align*}
+\sup_{\abso{t}\leq \delta} \abso{f(x-t)-f(x)}<\frac{\epsilon}{2}
+\end{align*}
+Also, we can fix $M>\sup_{[-\pi,\pi]}\abso{f}$. Define $Q_\delta=\frac{4M(\pi-\delta)}{\pi (1-\cos \delta)}$. We claim 
+\begin{align*}
+\vi{\text{ $N'>\frac{2Q_\delta}{\epsilon }$ works }}
+\end{align*}
+Fix $N>N'$ and  $x \inr$. Using $\frac{1}{2\pi}\int_{-\pi}^{\pi}K_N(t)dt=1$ and $K_N\geq 0$, see 
+\begin{enumerate}[label=(\alph*)]
+  \item $\frac{1}{2\pi}\int_{-\pi}^{\pi}K_N(t)dt=1$ 
+  \item $K_N\geq 0$
+  \item $\pi \geq \abso{x}\geq \delta \implies K_N(x)\leq \frac{1}{N+1}\cdot \frac{2}{1-\cos \delta}$
+\end{enumerate}
+\begin{align*}
+\abso{\sigma_N(f;x)-f(x)}&=\abso{\frac{1}{2\pi}\int_{-\pi}^{\pi}f(x-t)K_N(t)dt-f(x)\frac{1}{2\pi}\int_{-\pi}^{\pi}K_N(t)dt}\\
+&=\frac{1}{2\pi}\int_{-\pi}^{\pi}\abso{f(x-t)-f(x)}K_N(t)dt\\
+&=\frac{1}{2\pi}\int_{-\delta}^{\delta} \abso{f(x-t)-f(x)}K_N(t)dt+\frac{2(\pi -\delta)2M}{2\pi}\cdot \frac{1}{N+1}\cdot \frac{2}{1-\cos \delta}\\
+&\leq \frac{1}{2\pi}\int_{-\pi}^{\pi}\frac{\epsilon }{2}K_N(t)dt+\frac{4M(\pi -\delta)}{(N+1)\pi(1-\cos \delta)\pi}\\
+&=\frac{\epsilon}{2}+\frac{4M(\pi-\delta)}{\frac{2Q_\delta}{\epsilon }\pi(1-\cos \delta)}=\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon\vdone
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{ahw26}
+\end{question}
+\begin{theorem}
+\textbf{(Power Series are Smooth)} Given a power series $(a,c_n)$ of convergence radius $R$, if we define $f:D_R(a)\rightarrow \C$ by 
+\begin{align*}
+f(z)=\sum_{n=0}^\infty c_n (z-a)^n 
+\end{align*}
+Then 
+\begin{align*}
+f\text{ is of class }C^\infty\text{ on $D_{R}(a)$ and $f^{(k)}(z)=\sum_{n=k}^\infty \frac{n!}{(n-k)!}c_n(z-a)^{n-k}$  on $D_R(a)$}
+\end{align*}
+\end{theorem}
+\begin{proof}
+We prove by induction. Base case $k=0$ is trivial. Fix $k\geq 0$. Suppose we have 
+\begin{align*}
+f^{(k)}(z)=\sum_{n=k}^{\infty} \frac{n!}{(n-k)!}c_n(z-a)^{n-k}\text{ on $D_R(a)$ }
+\end{align*}
+We are required to prove 
+\begin{align*}
+\vi{f^{(k+1)}(z)=\sum_{n=k+1}^\infty \frac{n!}{(n-k-1)!}c_n(z-a)^{n-k-1}\text{ on }D_R(a)}
+\end{align*} 
+Set $f_m$ 
+ \begin{align*}
+f_m(z)\triangleq \sum_{n=k}^{k+m} \frac{n!}{(n-k)!}c_n(z-a)^{n-k}
+\end{align*}
+We have 
+\begin{align}
+\label{PS1}
+f_m \to f^{(k)}\text{ pointwise on $D_R(a)$ and }f'_m (z)= \sum_{n=k+1}^{k+m}\frac{n!}{(n-k-1)!}c_n(z-a)^{n-k-1}
+\end{align}
+We abstract our problem into proving 
+\begin{align*}
+  \vi{f'_m \to f^{(k+1)}\text{ pointwise on $D_R(a)$ }}
+\end{align*}
+Fix $z_0 \in D_R(a)$. We only wish to prove 
+\begin{align*}
+\vi{(f^{(k)})'(z_0)=\lim_{m\to \infty}f'_m(z_0)}
+\end{align*}
+Fix $\epsilon $ such that $\abso{z_0-a}< R-\epsilon $. By \myref{Equation}{PS1}, using \myref{Theorem}{UCaD} (Uniform Convergence and Differentiaiton). We only have to prove 
+\begin{align*}
+  \vi{f'_m\text{ uniformly converge on $\overline{D}_{R-\epsilon }$ }}
+\end{align*}
+Note that 
+\begin{align*}
+f'_m(z)=\sum_{n=0}^{m-1} \frac{(n+k+1)!}{n!}c_{n+k+1}(z-a)^n
+\end{align*}
+so we can compute the radius of convergence for $f'_m$
+\begin{align*}
+\limsup_{n\to\infty} \sqrt[n]{\frac{(n+k+1)!}{n!}\abso{c_{n+k+1}}}&=\limsup_{n\to\infty} \sqrt[n]{\abso{c_{n+k+1}}} \\
+&=\limsup_{n\to\infty} \sqrt[n]{\abso{c_n}}=R 
+\end{align*}
+Together by Cauchy-Hadamrd (absolute convergent on $a+R-\epsilon $) and M-test show that 
+\begin{align*}
+\sum_{n=0}^\infty \frac{(n+k+1)!}{n!}c_{n+k+1}(z-a)^n \text{ uniformly converge on $\overline{D}_{R-\epsilon }(a)$ }\vdone
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=8cm,width=18cm]{ahw25}
+\end{question}
+\begin{proof}
+\textbf{(a)}
+No. Let $f_k=k$. It is then a trivial counter example. \\
+
+\textbf{(b)}
+No. Consider $\abso{x}$. The function $\abso{x}$ is continuous on $[-1,1]$ but not differentiable on $x=0$. By Weierstrass approximation Theorem, we know there exists a sequence of polynomials on $[-1,1]$ uniformly converge to $\abso{x}$, and they clearly all are differentiable. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{ahw24}
+\end{question}
+\begin{proof}
+No. Consider 
+\begin{Example}{\textbf{(Derivative won't necessarily converge to the right place)}}{}
+\begin{align*}
+X=\R \text{ and }f_n(x)=\frac{\sin nx}{\sqrt{n} }
+\end{align*}
+Compute 
+\begin{align*}
+f'(x)=0 \text{ and }f'_n(x)=\sqrt{n} \cos nx
+\end{align*}
+\end{Example}
+$f'_n(0) \to \infty$ shows that $f'_n$ doesn't even have to be pointwise convergence. Note that the fact $f_k$ uniformly converge can be easily proved by choosing  $n>\frac{1}{\epsilon ^2}$  
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{ahw21}
+\end{question}
+\begin{proof}
+No. Consider 
+\begin{Example}{\textbf{(Riemann-integrable functions Pointwise Converge to a Non-Riemann-integrable function)}}{}
+\begin{align*}
+X=[-1,1]\text{ and }f_m(x)=\lim_{n\to \infty} (\cos m! \pi x)^{2n}
+\end{align*}
+\end{Example}
+Because $\cos$ has range $[-1,1]$, we know that 
+\begin{align*}
+m!x \inz \iff  f_m(x)\neq 0
+\end{align*}
+This tell us that for all $x\inr\setminus \Q$, $f_m(x)=0$, and that for all $x\inq$, we have $f_n(x)=1$ for large enough $n$, with some simple computation.\\
+
+Then, we see that 
+\begin{align*}
+f_n \to \textbf{1}_\Q\text{ pointwise }
+\end{align*}
+Now, notice that for all fixed $m$, if  $m!x\inz$, we must have 
+\begin{align*}
+x=\frac{p}{m!}\text{ for some $p\inz$ }
+\end{align*}
+Such $x$ in bounded domain must then happen only finite amount of time. This show  $f_n$ are all continuous almost everywhere and thus integrable, while $\textbf{1}_\Q$, the function to which they converge, is not, as it is discontinuous almost everywhere.  
+\end{proof}
+\section{Uniform Convergence on Integration and Differentiation}
+\begin{theorem}
+\label{RIFac}
+\textbf{(Riemann-Integration and Uniform Convergence)} Given a function $\alpha :[a,b]\rightarrow \R$ and a sequence of functions $f_n:[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ increase on $[a,b]$ 
+  \item $\int_a^b f_nd\alpha $ exists for all $n\inn$ 
+  \item $f_n \to f $ uniformly on $[a,b]$ 
+\end{enumerate}
+Then 
+\begin{align*}
+  \lim_{n\to \infty}\int_a^b f_n d\alpha \text{ exists and }\int_a^b fd\alpha =\lim_{n\to \infty}\int_a^b f_nd\alpha 
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+\vi{\int_a^b fd\alpha \text{ exists }}
+\end{align*}
+Fix $\epsilon $. We wish to prove 
+\begin{align*}
+\vi{\overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha < \epsilon }
+\end{align*}
+Let $\epsilon _n = \norm{f_n-f}_\infty$. Because $f_n \to f$ uniformly, we know 
+\begin{align*}
+\text{ there exists $n\inn$ such that $\epsilon _n=\norm{f_n-f}_\infty < \frac{\epsilon }{2\big[\alpha (b)-\alpha (a) \big]}$ }
+\end{align*}
+Because $\alpha $ increase, by definition of $\epsilon _n$, we see 
+\begin{align*}
+\int_a^b (f_n-\epsilon _n)d\alpha \leq \underline{\int_a^b}fd\alpha \leq \overline{\int_a^b}fd\alpha \leq \int_a^b (f_n+\epsilon_n) d\alpha  
+\end{align*}
+Because $\epsilon _n <\frac{\epsilon}{2\big[\alpha (b)-\alpha (a) \big]}$, we now see 
+\begin{align*}
+  \overline{\int_a^b}fd\alpha -\underline{\int_a^b}fd\alpha &\leq \int_a^b (f_n+\epsilon _n)d\alpha -\int_a^b (f_n-\epsilon _n)d\alpha \\
+&=\int_a^b (2\epsilon _n)d\alpha<2 \epsilon_n \cdot \big[\alpha (b)-\alpha (a) \big] = \epsilon \vdone
+\end{align*}
+We now prove 
+\begin{align*}
+  \blue{\int_a^b f_n d\alpha \to \int_a^b fd\alpha \text{ as $n \to \infty $ }}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\blue{\text{ to find $N$ such that }\forall n>N,\abso{\int_a^b f_nd\alpha-\int_a^b fd\alpha }<\epsilon  }
+\end{align*}
+Recall the definition $\epsilon_n= \norm{f_n-f}_\infty$. Because $\epsilon _n \to 0$, we know 
+\begin{align}
+\label{CuU1}
+\text{ there exists $N$ such that }\forall n>N, \epsilon_n < \frac{\epsilon }{\alpha (b)-\alpha (a)}
+\end{align}
+We claim 
+\begin{align*}
+\blue{\text{ such $N$ works }}
+\end{align*}
+Fix $n>N$. From \myref{Equation}{CuU1}, we see
+ \begin{align*}
+  \abso{\int_a^b f_nd\alpha -\int_a^b fd\alpha }&=\abso{\int_a^b (f_n-f)d\alpha }\\
+  &\leq \int_a^b \abso{f_n-f}d\alpha \\
+  &\leq \int_a^b \epsilon_n d\alpha =\epsilon_n \big[\alpha (b)-\alpha (a) \big]<\epsilon \bdone
+\end{align*}
+
+
+\end{proof}
+\begin{mdframed}
+Before the next Theorem, let's see three examples why this time we don't (can't) use the hypothesis: $f_n \to f$ uniformly. 
+\begin{Example}{\textbf{(Differentiable functions are NOT closed under uniform convergence)}}{}
+\begin{align*}
+X=[-1,1]\text{ and }f(x)=\abso{x}
+\end{align*}
+By Weierstrass approximation Theorem, there is a sequence of polynomials (differentiable) that uniformly converge to $f$, which is not differntiable at  $0$. 
+\end{Example}
+\begin{Example}{\textbf{(Derivative won't necessarily converge to the right place)}}{}
+\begin{align*}
+X=\R \text{ and }f_n(x)=\frac{\sin nx}{\sqrt{n} }
+\end{align*}
+Compute 
+\begin{align*}
+f'(x)=0 \text{ and }f'_n(x)=\sqrt{n} \cos nx
+\end{align*}
+\end{Example}
+\begin{Example}{\textbf{(Derivative won't necessarily converge to the right place)}}{}
+\begin{align*}
+X=\R \text{ and }f_n(x)=\frac{x}{1+nx^2}
+\end{align*}
+Compute 
+\begin{align*}
+f=\tilde{0} \text{ and }f'_n(0)=1
+\end{align*}
+\end{Example}
+Informally speaking, these examples together with the fact integral are closed under uniform convergence (\myref{Theorem}{RIFac}) should give you some ideas that differentiation and integration although are operations inverse to each other, are NOT symmetric. There is a certain hierarchy on continuous functions on a fixed compact interval. Thus, we have the next Theorem in its form. 
+\end{mdframed}
+\begin{theorem}
+\label{UCaD}
+\textbf{(Uniform Convergence and Differentiation)} Given a sequence of function $f_n:[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
+  \item $f_n$ are differentiable on $(a,b)$   
+  \item $f_n$ are continuous on  $[a,b]$
+  \item $f'_n$ uniformly converge on  $(a,b)$
+\end{enumerate}
+Then there exists a function $f:[a,b]\rightarrow \R$ such that 
+\begin{align*}
+&f\text{ is differentiable on $(a,b)$ }\\
+  \text{and }&f_n \to f\text{ uniformly on $[a,b]$}\\
+  \text{ and }&f'_n \to f'\text{ uniformly on $(a,b)$ } 
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align}
+\label{fnun}
+\vi{f_n\text{ uniformly converge on $[a,b]$}}
+\end{align}
+Fix $\epsilon $. We wish  
+\begin{align*}
+  \vi{\text{ to find $N$ such that $\norm{f_n-f_m}_\infty \leq \epsilon $ for all $n,m>N$}}
+\end{align*}
+Because $f_n(x_0)$ converge, and $f'_n$ uniformly converge, we know there exists $N$ such that 
+ \begin{align}
+\label{UCD1}
+\begin{cases}
+ \abso{f_n(x_0)-f_m(x_0)}<\frac{\epsilon}{2} \\
+\norm{f_n'-f_m'}_\infty <\frac{\epsilon }{2(b-a)}
+\end{cases}\text{ for all $n,m>N$ }
+\end{align}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+Fix $x \in [a,b]$ and $n,m>N$. We need
+\begin{align*}
+  \vi{\text{ to show }\abso{f_n(x)-f_m(x)}\leq \epsilon}
+\end{align*}
+We first prove
+\begin{align*}
+\olive{\abso{f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)}\leq \frac{\epsilon}{2}}
+\end{align*}
+Because $(f_n-f_m)'=f_n'-f_m'$, by MVT (\myref{Theorem}{MVT}) and \myref{Equation}{UCD1}, we can deduce 
+\begin{align*}
+ \abso{f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)}&=\abso{(f_n-f_m)(x)-(f_n-f_m)(x_0)}\\
+ &=\Big|\big[(f_n-f_m)'(t)\big](x-x_0)\Big|\text{ for some $t$ between $x,x_0$ }\\
+ &< \frac{\epsilon}{2(b-a)}\cdot \abso{x-x_0}\\
+ &\leq \frac{\epsilon }{2(b-a)}\cdot (b-a)=\frac{\epsilon}{2}\hspace{0.3cm}\big(\because x,x_0  \in [a,b]\big)\odone
+\end{align*}
+Now, by \myref{Equation}{UCD1}, we have 
+\begin{align*}
+  \abso{f_n(x)-f_m(x)}&\leq \abso{f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)}+\abso{f_n(x_0)-f_m(x_0)}\\
+&<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
+\end{align*}
+We claim 
+\begin{align}
+\label{UCAC2}
+\blue{f(x)\triangleq \lim_{n\to \infty}f_n(x)\text{ for all $x \in [a,b]$ works }}
+\end{align}
+We first show 
+\begin{align*}
+\olive{f\text{ is differentiable on $(a,b)$ }}
+\end{align*}
+Fix $x \in (a,b)$. We wish to prove
+\begin{align*}
+  \olive{{\lim_{t\to x}\frac{f(t)-f(x)}{t-x}\text{ exists }}}
+\end{align*}
+Define $\phi :[a,b]\setminus x\rightarrow \R$ by 
+\begin{align*}
+\phi (t)\triangleq \frac{f(t)-f(x)}{t-x}
+\end{align*}
+We reduce our problem into proving 
+\begin{align*}
+  \olive{\lim_{t\to x}\phi (t)\text{ exists }}
+\end{align*}
+Set $\phi_n:[a,b]\setminus x\rightarrow \R$ by 
+\begin{align*}
+\phi_n(t)\triangleq \frac{f_n(t)-f_n(x)}{t-x}
+\end{align*}
+We first show  
+\begin{align}
+\label{UCACu}
+  \vi{\phi_n\text{ uniformly converge on }[a,b]\setminus x}
+\end{align}
+Fix $\epsilon $. We have
+\begin{align*}
+  \vi{\text{ to find $N$ such that  $\abso{\phi_n(t)-\phi _m(t)}\leq \epsilon $ for all $n,m>N$ and  $t\in [a,b]\setminus x$ }}
+\end{align*}
+Because $f_n'$ uniformly converge on  $[a,b]$, we know there exists $N$ such that 
+ \begin{align}
+\label{CUaC1}
+\norm{f_n'-f_m'}_\infty\leq \epsilon \text{ for all $n,m>N$ }
+\end{align}
+We claim 
+\begin{align*}
+\vi{\text{ such }N\text{ works }}
+\end{align*}
+Fix $n,m>N$ and $t \in [a,b]\setminus x$. We wish to prove 
+\begin{align*}
+\vi{\abso{\phi_n(t)-\phi_m(t)}\leq \epsilon }
+\end{align*}
+Because $(f_n-f_m)'=f_n'-f'_m$, by MVT (\myref{Theorem}{MVT}) and \myref{Equation}{CUaC1}, we can deduce 
+\begin{align*}
+  \abso{\phi_n(t)-\phi_m(t)}&\leq \abso{\frac{f_n(t)-f_n(x)}{t-x}-\frac{f_m(t)-f_m(x)}{t-x}}\\
+                            &=\abso{\frac{\big(f_n-f_m\big)(t)-\big(f_n-f_m\big)(x)}{t-x}}\\
+ &=\abso{\big(f'_n-f'_m\big)(t_0)}\text{ for some $t_0$ between $t,x$  }\\
+&\leq \epsilon \vdone
+\end{align*}
+We now show 
+\begin{align}
+\label{UCACP}
+\brown{\phi_n \to \phi\text{ pointwise on $[a,b]\setminus x$}}
+\end{align}
+Because $f_n \to f$ on $[a,b]$ by definition (\myref{Equation}{UCAC2}), (the convergence is in fact uniform as we have shown. This doesn't matter here tho), for each $t \in [a,b]\setminus x$, we can deduce
+\begin{align*}
+\lim_{n\to \infty} \phi_n(t)&=\lim_{n\to \infty}\frac{f_n(t)-f_n(x)}{t-x}=\frac{f(t)-f(x)}{t-x}=\phi (t)\bodone
+\end{align*}
+Now, by \myref{Equation}{UCACu} and \myref{Equation}{UCACP}, we know 
+\begin{align*}
+\phi_n \to \phi \text{ uniformly on $[a,b]\setminus x$ }
+\end{align*}
+Notice that because $f_n'(x)$ converge, we know
+\begin{align*}
+\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)=\lim_{n\to \infty}f'_n(x)\text{ exists }
+\end{align*}
+Then (Notice that the second equality below hold true because we have known $\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)$ exists), we can finally deduce 
+\begin{align*}
+\lim_{t\to x}\phi (t)&=\lim_{t\to x}\lim_{n\to \infty}\phi_n(t)\\
+&=\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)\\
+&=\lim_{n\to \infty}f'_n(x)\text{ exists }\odone
+\end{align*}
+Now, notice that $f'(x)=\lim_{t\to x}\phi (t)$, so in fact, we have just proved $f'_n \to f'$, and the convergence is uniform by premise. Also, the statement 
+\begin{align*}
+f_n\to f\text{ uniformly on $[a,b]$ }
+\end{align*}
+has been proved, since we already have $f_n \to f$ by our setting (\myref{Equation}{UCAC2}) and we have proved such convergence is uniform (\myref{Equation}{fnun}). The proof is now completed. $\bdone$
+\end{proof}
+\begin{mdframed}
+As Rudin remarked, a much shorter (and much more intuitive) proof can be given, if we require $f'$ to be continuous on  $[a,b]$. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Uniform Convergence and Differentiation: Weaker Version)} Given a sequence of function $f_n:[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
+  \item $f_n$ are differentiable on $(a,b)$  
+  \item $f_n'$ are continuous on $[a,b]$ ($f_n'$ at  $a,b$ are one-sided)
+  \item $f_n$ are continuous on  $[a,b]$
+  \item $f'_n$ uniformly converge on  $[a,b]$
+\end{enumerate}
+Then there exists a function $f:[a,b]\rightarrow \R$ such that 
+\begin{align*}
+&f\text{ is differentiable on $(a,b)$ }\\
+  \text{and }&f_n \to f\text{ uniformly on $[a,b]$}\\
+  \text{ and }&f'_n \to f'\text{ uniformly on $(a,b)$ } 
+\end{align*}
+\end{theorem}
+\begin{proof}
+We claim 
+\begin{align*}
+  \vi{f(x)=\lim_{n\to \infty}\int_{x_0}^x f'_n(t)dt+L\text{ works }} 
+\end{align*}
+Note that $\lim_{n\to \infty}\int_{x_0}^x f'_n(t)dt$ exists because $f'_n$ uniformly converge  (\myref{Theorem}{RIFac}).\\
+
+Because $f'_n$ uniformly converge and are continuous on $[a,b]$, by ULT, we know
+ \begin{align*}
+\int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt+L\text{ exists }
+\end{align*}
+and know 
+\begin{align*}
+f(x)=\int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt + L 
+\end{align*}
+By FTC, we see
+ \begin{align*}
+f'(x)=\lim_{n\to \infty}f'_n(x)\text{ on }(a,b)
+\end{align*}
+Such convergence is uniform by premise. To finish the proof, we now only have to prove 
+\begin{align*}
+\vi{f_n\to f\text{ uniformly on }[a,b]}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to find $N$ such that  $\abso{f_n(x)-f(x)}\leq \epsilon $ for all $n>N$ and  $x \in [a,b]$}}
+\end{align*}
+Because $f'_n \to f$ uniformly, and $f_n(x_0) \to L=f(x_0)$ (Check $L=f(x_0)$), we know there exists $N$ such that 
+ \begin{align*}
+\begin{cases}
+  \norm{f'_n-f}_\infty < \frac{\epsilon }{2(b-a)}\\
+  \abso{f_n(x_0)-f(x_0)}<\frac{\epsilon}{2}
+\end{cases}\text{ for all $n>N$ }
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+Fix $n>N$ and  $x\in [a,b]$. Observe 
+\begin{align*}
+\abso{f(x)-f_n(x)}&= \abso{\int_{x_0}^x \big(f'(t)-f'_n(t) \big)dt+f(x_0)-f_n(x_0)}\\
+&\leq \int_{x_0}^x \abso{f'(t)-f'_n(t)}dt+ \abso{f(x_0)-f_n(x_0)}\\
+&\leq \frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
+\end{align*}
+\end{proof}
 \end{document}

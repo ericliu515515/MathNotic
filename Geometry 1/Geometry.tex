@@ -15,7 +15,7 @@ Geometry 1}
 \tableofcontents
 \pagebreak
 \chapter{Curve}
-\section{Frenet Trihedron}
+\section{Prerequiste}
 \begin{mdframed}
 In this section, we will use $I$ to denote an \textbf{bounded open interval}. By a \textbf{curve} in $\R^n$, we mean a function form an open interval $I$ to $\R^n$.  We say a curve is \textbf{differentiable} if it is infinitely differentiable (smooth). That is, $\gamma ^{(n)}(t)$ exists and are continuous for all $n\inn$ and $t \in I$.\\
 
@@ -321,43 +321,319 @@ coincides $\underline{\text{only when }}\gamma $ is parametrzied by arc-length. 
 
 Some comment should be dropped for the computation of torsion. If you overlook the fact $\alpha $ is parametrized by arc-length and disregard Frenet Formula, it is very likely you will get a result that you can not even sure if it is valid (the nominator and denominator may end up not seem explicitly parallel), let alone an identity beautiful as below. 
 \end{mdframed}
-\begin{theorem}
-\textbf{(Identity of Torsion)} Given a parametrized by arc-length cruve $\alpha  :I \rightarrow \R^3$, we have 
+\section{Frenet Trihedron}
+\begin{mdframed}
+In this section, we are given a smooth curve $\alpha (s)\inr^3$ parametrized by arc-length and a smooth curve $\beta  (t)\inr^3$ with unknown parametrization. We seek to 
+\begin{enumerate}[label=(\alph*)]
+  \item define Frenet Trihedron for $\alpha $.
+  \item prove Frenet-Serret Formula.
+  \item give identity of torsion of $\alpha $.
+  \item give identity of curvature of $\beta $.
+\end{enumerate}
+in particular, at the end of this section, using $(d)$, we prove that the curvature of a plane curve $\beta (t)=(x,y)$ with unknown parametrization is exactly 
 \begin{align*}
-\tau(s)=-\frac{\big(\alpha '(s)\times \alpha ''(s) \big)\cdot \alpha '''(s)}{\kappa ^2 (s)}
+\kappa(t)=\frac{\abso{x'y''-x''y'}}{\big((x')^{2}+(y')^{2} \big)^{\frac{3}{2}}}
+\end{align*}
+\end{mdframed}
+\textbf{(a): Define Frenet Trihedron for $\alpha $}
+\begin{mdframed}
+We define the \textbf{tangent vector} $T$ of $\alpha $ at each $s$ by 
+ \begin{align*}
+T(s)\triangleq \alpha '(s)
+\end{align*}
+and we define its \textbf{normal vector} $N$ by
+\begin{align*}
+N(s)\triangleq \frac{T'(s)}{\abso{T'(s)}}
+\end{align*}
+Note that $N$ is well defined if and only if  $\alpha ''(s)\neq 0$. We define  \textbf{binormal vector} $B$ by 
+ \begin{align*}
+B(s)\triangleq T(s)\times N(s)
+\end{align*}
+Note that from $B'\perp B$ and $B'=\big( T \times N'\big) \perp T$, we have $B'\parallelsum  N$. This then justify our later definition of  \textbf{torsion}.\\
+
+We define \textbf{curvature} $\kappa (s)$ and \textbf{torsion} $\tau(s)$ by 
+\begin{align*}
+\kappa(s)\triangleq \abso{T'(s)}\text{ and }\tau(s)\triangleq \frac{B'(s)}{N(s)}
+\end{align*}
+\end{mdframed}
+\textbf{(b): Frenet-Serret Formula}
+\begin{theorem}
+\textbf{(Frenet-Serret Formula)} Given a smooth curve $\alpha(s)$ parametrized by arc-length, if $T'(s)\neq 0$, we have the following  
+\begin{align*}
+\begin{cases}
+  T'=\kappa N\\
+  N'=-\kappa T-\tau B\\
+  B'=\tau N
+\end{cases}
 \end{align*}
 \end{theorem}
 \begin{proof}
-Because $\underline{\alpha  \text{ is parametrized by arc-length}}$, we have 
+The first and the third equations follows from that of definition. Now, see 
 \begin{align*}
-  \alpha '(s)=T(s)
+N'&=(B\times T)'\\
+&=B' \times T +  B \times T'\\
+&=\tau N \times T + B \times \kappa N\\
+&=\tau (-B)+ \kappa (-T)=-\kappa T-\tau B
 \end{align*}
-We first show 
-\begin{align}
-\label{A''}
-\vi{\alpha ''(s)=\kappa (s)N(s)}
-\end{align}
+
+\end{proof}
+\begin{mdframed}
+Note that in $\R^2$, the Frenet-Serret Formula still holds, in the sense 
+ \begin{align*}
+\begin{cases}
+  T'=\kappa N\\
+  N'= -\kappa T
+\end{cases}
+\end{align*}
+This can be proved by setting the ambient space to be $\R^3$. 
+\end{mdframed}
+\textbf{(c): Identity of Torsion of $\alpha(s) $}
+\begin{theorem}
+\textbf{(Identity of Torsion)} Given a smooth curve $\alpha (s)\inr^3$ parametrized by arc-length, if $\kappa(s)\neq 0$, we have 
+\begin{align*}
+\tau (s)=-\frac{\alpha ' (s)\times \alpha ''(s)\cdot \alpha '''(s)}{\big(\alpha ''(s) \big)^2}
+\end{align*}
+\end{theorem}
+\begin{proof}
+By definition 
+\begin{align*}
+\alpha '(s)=T(s)
+\end{align*}
 Compute 
 \begin{align*}
-N(s)&=\frac{T'(s)}{\abso{T'(s)}}\\
-&=\frac{\alpha ''(s)}{\abso{\alpha ''(s)}}=\frac{\alpha ''(s)}{\kappa (s)}\vdone
+\alpha ''(s)=T'(s)= -\kappa N (s)
 \end{align*}
-We now show 
+Compute 
 \begin{align*}
-\blue{\alpha '''(s)=\kappa(s)\big(-(\tau B)(s)-(\kappa T)(s)\big)+\kappa'(s)N(s) }
+\alpha '''= (-\kappa N)'=-\kappa ' N+ \kappa^2 T +\kappa \tau B
 \end{align*}
-By \myref{Equation}{A''} and Frenet Formula, we have 
+Compute 
 \begin{align*}
-\alpha '''(s)&=\kappa'(s)N(s)+\kappa(s)N'(s)\\
-&=\kappa'(s)N(s)+\kappa(s)\big(- (\tau B)(s)-(\kappa T)(s) \big)\bdone
+\alpha' \times \alpha '' = T \times (- \kappa N)=-\kappa B
 \end{align*}
-Lastly, we verify 
+Compute 
 \begin{align*}
--\frac{\big(\alpha '(s)\times \alpha ''(s) \big)\cdot \alpha '''(s)}{\kappa^2(s)}&=-\frac{(T\times \kappa N)\cdot \Big( \kappa \big(-\tau B-\kappa T \big)+\kappa ' N\Big) }{\kappa ^2}\\
-&=-\frac{-\kappa^2 \tau (T\times N)\cdot B }{\kappa^2}\hspace{1cm}(\because T\times N \cdot (T\text{ or }N)=0)\\
-&=\tau 
+\alpha ' \times \alpha '' \cdot \alpha '''&=(-\kappa B)\cdot (-\kappa N+\kappa^2 T + \kappa \tau B)\\
+&= -\kappa^2 \tau 
+\end{align*}
+The result then follows. 
+\end{proof}
+\textbf{(d): Identity of Curvature of $\beta(t)$} 
+\begin{theorem}
+\textbf{(Identity of Curvature)} Given a smooth curve $\beta (t)\inr^3$ with unknown parametrization, we have 
+\begin{align*}
+\kappa(t)=\frac{\abso{\beta '(t)\times \beta ''(t)}}{\abso{\beta '(t)}^3}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $s$  (arc-length) by
+\begin{align*}
+s(t)=\int_{t_0}^{t} \abso{\beta '(t')}dt'
+\end{align*}
+We have $\frac{ds}{dt}=\abso{\beta' (t)}$. This then give us  
+\begin{align*}
+\kappa (t)= \abso{\frac{dT}{ds}}=\abso{\frac{dT}{dt}}\cdot \abso{\frac{dt}{ds}}=\abso{\frac{dT}{dt}}\cdot \frac{1}{\abso{\beta '(t)}}
+\end{align*}
+We then can reduce the problem into 
+\begin{align*}
+\vi{\text{ proving }\abso{\frac{dT}{dt}}=\frac{\abso{\beta '(t)\times \beta ''(t)}}{\abso{\beta '(t)}^2}}
+\end{align*}
+Note that we have 
+\begin{enumerate}[label=(\alph*)]
+  \item $\frac{ds}{dt}=\abso{\beta '(t)}$ 
+  \item $T(t)=\frac{\beta '(t)}{\abso{\beta '(t)}}$
+\end{enumerate}
+Then we can deduce 
+\begin{align*}
+\beta '(t)\times \beta ''(t)&= \Big(\frac{ds}{dt}T(t) \Big)\times \Big( \frac{d^2s}{dt^2}T(t)+\frac{ds}{dt}T'(t) \Big)\\
+&=\big(\frac{ds}{dt} \big)^2 \cdot \Big(T(t)\times T'(t) \Big)\\
+&=\abso{\beta '(t)}^2 \cdot (\pm \abso{T'(t)})
+\end{align*}
+This then give us 
+\begin{align*}
+\abso{T'(t)}=\frac{\abso{\beta '(t)\times \beta ''(t)}}{\abso{\beta '(t)}^2}\vdone
 \end{align*}
 \end{proof}
+\begin{corollary}
+\textbf{(Curvature of Plane Curves with unknown parametrization)} Given a smooth curve $\beta (t)=(x,y)\inr^3$ with unknown parametrization, we have 
+\begin{align*}
+  \kappa(t)=\frac{\abso{x'y''-x''y'}}{\big((x')^2+(y')^2 \big)^{\frac{3}{2}}}
+\end{align*}
+\end{corollary}
+\section{Fundamental Theorem of Local Curves}
+\begin{mdframed}
+Prerequisite facts:
+\begin{enumerate}[label=(\alph*)]
+  \item Suppose $T\in L(\R^n,\R^n)$ and $f:I\rightarrow \R^n$ has a limit at $t_0\in I$. We have 
+    \begin{align*}
+    \lim_{t\to t_0 } T (f(t))=T\big(\lim_{t\to t_0}f(t) \big)
+    \end{align*}
+\end{enumerate}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Rigid motion on Local space curves)} Let 
+\begin{enumerate}[label=(\alph*)]
+  \item $I$ be a bounded open interval 
+  \item $\gamma : I \rightarrow \R^3$ be a smooth curve such that $\kappa_\gamma (t)\neq 0$ for all $t \in I$ 
+  \item $\rho\in L(\R^3,\R^3)$ be an orthogonal linear transformation with positive determinant 
+  \item $c\inr^3$ be a vector in $\R^3$
+  \item $\alpha :I\rightarrow \R^3$ be defined by $\alpha(t) \triangleq \rho(\gamma(t)) $
+  \item $\beta :I\rightarrow \R^3$ be defined by $\beta(t) \triangleq \alpha(t) + c $
+\end{enumerate}
+We have 
+\begin{align*}
+\hspace{2.5cm}\begin{cases}
+  \kappa_\gamma (t)=\kappa_\alpha (t)=\kappa_\beta (t)\\
+  \tau_\gamma (t)=\tau_\alpha (t)=\tau_\beta (t)
+\end{cases}\hspace{1.5cm}(t \in I)
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first show 
+\begin{align*}
+\vi{\hspace{2.5cm}(\rho v) \times (\rho w)=\rho (v\times w)\hspace{1.5cm}(v,w\inr^3)}
+\end{align*}
+Fix $v,w\inr^3$. We reduce the problem into proving 
+\begin{align*}
+  \vi{\hspace{2.5cm}(\rho v)\times (\rho w)\cdot z=\rho (v\times w)\cdot z\hspace{1.5cm}(z\inr^3)}
+\end{align*}
+Observe 
+\begin{align*}
+  (\rho v)\times (\rho w) \cdot z &= \begin{vmatrix} 
+    \rho v & \rho w & \rho(\rho^{-1}(z) )
+  \end{vmatrix}\\
+  &=\begin{vmatrix} 
+    v & w & \rho^{-1}(z)
+  \end{vmatrix}\\
+  &=v \times w \cdot \rho^{-1}(z)\\
+  &=\rho (v\times w)\cdot z \vdone
+\end{align*}
+We first prove 
+\begin{align*}
+  \olive{\hspace{2.5cm}\kappa_\alpha (t)=\kappa_\gamma (t)\hspace{1.5cm}(t \in I)}
+\end{align*}
+Note that $\gamma ''$ exists, so we can compute 
+\begin{align*}
+\kappa_\alpha &= \frac{\abso{\alpha ' \times \alpha''}}{\abso{\alpha '}^3}\\
+&=\frac{\abso{(\rho \gamma )'\times (\rho  \gamma )''}}{\abso{(\rho\gamma )'}^3}\\
+&=\frac{\abso{\rho \gamma '\times \rho \gamma ''}}{\abso{\rho \gamma '}^3}\\
+&=\frac{\abso{\rho (\gamma '\times \gamma '')}}{\abso{\rho \gamma '}^3}\\
+&=\frac{\abso{\gamma '\times \gamma ''}}{\abso{\gamma '}^3}=\kappa_\gamma \odone
+\end{align*}
+We now prove 
+\begin{align*}
+  \vi{\hspace{2.5cm}\tau_\alpha (t)=\tau_\gamma (t)\hspace{1.5cm}(t \in I)}
+\end{align*}
+Compute 
+\begin{align*}
+\tau_\alpha &=-\frac{\alpha '\times \alpha '' \cdot \alpha '''}{\abso{\alpha '\times \alpha'' }}\\
+&=-\frac{\rho \gamma  ' \times \rho \gamma '' \cdot \rho \gamma '''}{\abso{\rho \gamma '\times \rho \gamma ''}}\\
+&=-\frac{\gamma '\times \gamma '' \cdot \gamma '''}{\abso{\gamma '\times \gamma ''}}=\tau_\gamma \vdone
+\end{align*}
+
+
+\end{proof}
+\begin{theorem}
+\textbf{(Fundamental Theorem of Local Curves)} Let 
+\begin{enumerate}[label=(\alph*)]
+  \item $I$ be a bounded open interval 
+  \item $\kappa:I\rightarrow \R^+$ be a smooth function
+  \item  $\tau:I\rightarrow \R$ be a smooth function
+\end{enumerate}
+And, let $E$  be the set of all space curves $\gamma $ such that  
+\begin{enumerate}[label=(\alph*)]
+  \item $\gamma $ has domain $I$
+  \item $\abso{\gamma '(s)}=1$
+   \item $\kappa_\gamma (s)=\kappa(s)$ 
+    \item $\tau_{\gamma }(s)=\tau (s)$
+\end{enumerate}
+The following statement hold true. 
+\begin{enumerate}[label=(\alph*)]
+  \item $E$ is non-empty. \textbf{(existence part)}
+  \item For each two $\gamma ,\alpha \in E$, there exists an orthogonal linear transformation $\rho \in L(\R^3,\R^3)$ with positive determinant and a vector $c\inr^3$ such that  $\gamma (s)=\rho \circ \alpha (s)+c$ for all $s \in I$. \textbf{(uniqueness part)}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Fix $\gamma ,\alpha \in E$ and fix $s_0\in I$. There clearly exists a rigid motion $M$ such that if we denote 
+\begin{align*}
+\overline{\alpha }(s)\triangleq M\circ \alpha (s)
+\end{align*}
+Then 
+\begin{align*}
+\gamma (s_0)=\overline{\alpha }(s_0)\text{ and }\begin{cases}
+  T_\gamma (s_0)=T_{\overline{\alpha }}(s_0)\\
+  N_\gamma (s_0)=N_{\overline{\alpha }}(s_0)\\
+  B_\gamma  (s_0)=B_{\overline{\alpha  }}(s_0)
+\end{cases}
+\end{align*}
+We only wish to prove 
+\begin{align*}
+\vi{\hspace{2.5cm}T_\gamma (s)=T_{\overline{\alpha }}(s)\hspace{1.5cm}(s \in I)}
+\end{align*}
+Denote 
+\begin{align*}
+T\triangleq T_\gamma \text{ and }\overline{T}\triangleq T_{\overline{\alpha }\text{ and also similarly for $N,B$ }}
+\end{align*}
+Compute 
+\begin{align*}
+&\frac{d}{ds} \Big( \abso{T-\overline{T}}^2 + \abso{N-\overline{N}}^2+ \abso{B-\overline{B}}^2\Big)\\
+  =&2\Big( \langle T'-\overline{T}',T-\overline{T}\rangle + \langle N'-\overline{N}' ,N-\overline{N}\rangle + \langle B'-\overline{B}', B-\overline{B}\rangle \Big)\\
+  =&2\Big(\kappa \langle N-\overline{N},T-\overline{T}\rangle - \kappa\langle T-\overline{T},N-\overline{N}\rangle -\tau \langle B-\overline{B},N-\overline{N}\rangle + \tau\langle N- \overline{N},B-\overline{B}\rangle  \Big)\\
+  =&0 
+\end{align*}
+This then implies 
+\begin{align*}
+\abso{T-\overline{T}}^2 + \abso{N-\overline{N}}^2 + \abso{B-\overline{B}}^2 \text{ is a fixed constant on $I$ }
+\end{align*}
+Note that 
+\begin{align*}
+T(s_0)=\overline{T}(s_0)\text{ and }N(s_0)=\overline{N}(s_0)\text{ and }B(s_0)=\overline{B}(s_0)
+\end{align*}
+Then we know that fixed constant is exactly $0$. This then let us deduce
+ \begin{align*}
+T=\overline{T}\text{ on $I$ }\vdone
+\end{align*}
+
+
+
+
+
+
+
+
+
+\end{proof}
+\section{Isoperimetric Inequality and Four-Vertex Theorem}
+\begin{mdframed}
+  In this section, we are given a smooth plane curve $\alpha :[a,b]\rightarrow \R^2$ parametrized by arc-length. We say
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ is a \textbf{closed curve} if $\alpha ^{(k)}(a)=\alpha ^{(k)}(b)$ for all $k\inz_0^+$. 
+\item  $\alpha $ is a \textbf{simple closed curve} if $\alpha $ is closed and $\alpha (t_1)\neq \alpha (t_2)$ for all $t_1,t_2 \in [a,b)$.
+\item  $\alpha $ is \textbf{positively oriented} if $\alpha ' \times \alpha ''$ is always positive.  
+\item $\alpha $ is \textbf{convex} the trace $\alpha ([a,b])$ always entirely lies on the same side of the closed half-plane determined by $T(s)$ for all $s$ 
+\item $\alpha $ has \textbf{vertex} $\alpha (s_0)$ if $\kappa'(s_0)=0$ 
+\end{enumerate}
+The interior $D$ of a piece-wise smooth, simple closed plane curve $\alpha :[a,b]\rightarrow \R^2$ can be assigned a number to represent its area 
+\begin{align}
+\label{A(D)}
+A(D)=\iint_D 1dxdy
+\end{align}
+that match with our geometric intuition, in the sense that if one compute the area of a rectangle or that of a circle, using \myref{Formula}{A(D)}, then one obtain number same as the number obtained using elementary geometric way (height $\times $ width, etc).\\ 
+
+Note that by Green's Theorem, we know $A(D)$ equals to 
+\begin{enumerate}[label=(\alph*)]
+  \item $\int_a^b xy'dt$ 
+  \item $-\int_a^b yx'dt$
+  \item $\frac{1}{2}\int_a^b xy'-yx'dt=\frac{1}{2}\int_a^b (x,y)\times (x',y')dt$
+\end{enumerate}
+
+
+
+
+
+
+
+\end{mdframed}
 \section{HW1}
 \begin{question}{1-2: 2}{}
 
@@ -966,7 +1242,10 @@ If we say a closed plane curve $\alpha :[a,b]\rightarrow \R^2$ is \textbf{simple
 \begin{align*}
 \alpha (t_1)\neq \alpha (t_2)\text{ for all distinct pair $(t_1,t_2) \subseteq [a,b]$ except $(a,b)$}
 \end{align*}
-A closed plane curve must divide $\R^2$ into two separate subsets, in the sense that  $\R^2 \setminus \alpha \big[[a,b] \big]$ has two connected component. The one connected component that has finite area in the sense of Lebesgue outer measure is called the \textbf{interior} of the $\alpha $. If the interior is always on the left side of $\alpha $, we say $\alpha $ is \textbf{positively oriented}, in other words, $\alpha $ runs counter clockwise.
+A closed plane curve must divide $\R^2$ into two separate subsets, in the sense that  $\R^2 \setminus \alpha \big[[a,b] \big]$ has two connected component. The one connected component that has finite area in the sense of Lebesgue outer measure is called the \textbf{interior} of the $\alpha $. If the interior is always on the left side of $\alpha $, we say $\alpha $ is \textbf{positively oriented}, in other words, $\alpha $ runs counter clockwise ($\begin{vmatrix} 
+\alpha '\\
+\alpha ''
+\end{vmatrix} \geq 0$).
 \end{mdframed}
 \begin{theorem}
 \textbf{(Green's Theorem)} Given a  $\underline{\text{positively oriented, piecewise smooth,}}$\\ $\underline{\text{simple closed plane}}$ curve $\alpha :[a,b]\rightarrow \R^2$, where $C$ is the image of $\alpha $  and $D$ is the region bounded by $C$, and two function  $L,M:D\rightarrow \R$ that has continuous partial derivative, we have 
@@ -1150,67 +1429,1672 @@ x^2+y^2=r^2\big((y')^2+(x')^2 \big)=r^2\vdone
 \end{align*}
 
 \end{proof}
-\section{Four Vertex Theorem}
+\section{Four Vertices Theorem}
+\begin{mdframed}
+
+\end{mdframed}
+
 \section{HW2}
 
 \begin{question}{}{}
 \includegraphics[height=10cm,width=18cm]{hw2q5}
 \end{question}
+\begin{proof}
+\textbf{(a)}
+By computation 
+\begin{align*}
+\alpha '(s)=(\frac{-a}{c} \sin \frac{s}{c},\frac{a}{c}\cos \frac{s}{c},\frac{b}{c}) 
+\end{align*}
+So 
+\begin{align*}
+\abso{\alpha '(s)}=\sqrt{\frac{a^2+b^2}{c^2}}=1\hspace{3cm}(\because \text{ $\sin^2+\cos^2=1$ })
+\end{align*}
+This shows $\alpha $ is parametrized by arc-length.\\
+
+\textbf{(b)}
+By computation 
+\begin{align*}
+\alpha ''(s)=\Big(\frac{-a}{c^2} \cos \frac{s}{c}, \frac{-a}{c^2} \sin \frac{s}{c},0\Big)
+\end{align*}
+Then because $\alpha $ is parametrized by arc-length, we have 
+\begin{align*}
+\kappa(s)=\abso{\alpha ''(s)}&= \sqrt{\frac{a^2}{c^4}}\\
+&=\frac{\abso{a}}{c^2}
+\end{align*}
+By computation 
+\begin{align*}
+\alpha '''(s)=\Big(\frac{a}{c^3}\sin \frac{s}{c}, \frac{-a}{c^3} \cos \frac{s}{c},0 \Big)
+\end{align*}
+Then using the identity of torsion, we have 
+\begin{align*}
+\tau (s)&=- \frac{- \big(\alpha '(s)\times \alpha ''(s) \big)\cdot \alpha '''(s)}{\abso{\kappa (s)}^2}\\
+&=-\frac{\frac{a^2b}{c^6}}{\frac{a^2}{c^4}}\\
+&=\frac{b}{-c^2}
+\end{align*}
+\textbf{(c)}
+Fix $s$. Define a set $A$  by 
+\begin{align*}
+A=\text{span}\Big(\alpha '(s),\alpha ''(s) \Big)
+\end{align*}
+The osculating plane of $\alpha $ at $s$ is then exactly 
+\begin{align*}
+\set{a+\alpha (s): a \in A}
+\end{align*}
+\textbf{(d)}
+Because $\alpha ''(s)$ by our computation is valued $0$ in  $z$-opponent, we know if the line containing  $N$ and passing through $\alpha $ meet the $z$ axis, it must be under a constant angle equal to  $\frac{\pi}{2}$. (use dot product to check this fact.).\\
+
+Now, we only have to prove that the line does meet the $z$-axis. See that 
+\begin{align*}
+\alpha + c^2 \alpha ''=\Big(0,0,b\frac{s}{c} \Big)
+\end{align*}
+and we are done.
+
+\textbf{(e)}
+Observe that 
+\begin{align*}
+\alpha ' \cdot \Big(0,0,1 \Big)=\frac{b}{c}\text{ is a constant }
+\end{align*}
+This together with the fact $\abso{\alpha '}$ is a constant show that the angle between the tangent to $\alpha $ and $z$-axis is a constant.
+
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw2q4}
 \end{question}
+\begin{theorem}
+\textbf{(Identity of Torsion)} Given a parametrized by arc-length cruve $\alpha  :I \rightarrow \R^3$, we have 
+\begin{align*}
+\tau(s)=-\frac{\big(\alpha '(s)\times \alpha ''(s) \big)\cdot \alpha '''(s)}{\kappa ^2 (s)}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $\underline{\alpha  \text{ is parametrized by arc-length}}$, we have 
+\begin{align*}
+  \alpha '(s)=T(s)
+\end{align*}
+We first show 
+\begin{align}
+\label{A'''}
+\vi{\alpha ''(s)=\kappa (s)N(s)}
+\end{align}
+Compute 
+\begin{align*}
+N(s)&=\frac{T'(s)}{\abso{T'(s)}}\\
+&=\frac{\alpha ''(s)}{\abso{\alpha ''(s)}}=\frac{\alpha ''(s)}{\kappa (s)}\vdone
+\end{align*}
+We now show 
+\begin{align*}
+\blue{\alpha '''(s)=\kappa(s)\big(-(\tau B)(s)-(\kappa T)(s)\big)+\kappa'(s)N(s) }
+\end{align*}
+By \myref{Equation}{A'''} and Frenet Formula, we have 
+\begin{align*}
+\alpha '''(s)&=\kappa'(s)N(s)+\kappa(s)N'(s)\\
+&=\kappa'(s)N(s)+\kappa(s)\big(- (\tau B)(s)-(\kappa T)(s) \big)\bdone
+\end{align*}
+Lastly, we verify 
+\begin{align*}
+-\frac{\big(\alpha '(s)\times \alpha ''(s) \big)\cdot \alpha '''(s)}{\kappa^2(s)}&=-\frac{(T\times \kappa N)\cdot \Big( \kappa \big(-\tau B-\kappa T \big)+\kappa ' N\Big) }{\kappa ^2}\\
+&=-\frac{-\kappa^2 \tau (T\times N)\cdot B }{\kappa^2}\hspace{1cm}(\because T\times N \cdot (T\text{ or }N)=0)\\
+&=\tau 
+\end{align*}
+\end{proof}
 \begin{question}{}{}
-\includegraphics[height=3cm,width=18cm]{hw2q3}
+\includegraphics[height=1.5cm,width=18cm]{hw2q3}
 \includegraphics[height=4cm,width=18cm]{hw2q2}
 \end{question}
+\begin{proof}
+\textbf{(a)}\\
+
+The indicatrix of tangents $\gamma :I \rightarrow \R^2$ is defined by 
+\begin{align*}
+\gamma = \frac{\alpha '(s)}{\abso{\alpha '(s)}}
+\end{align*}
+Express $\alpha '(s)$ by 
+\begin{align*}
+\alpha ' \triangleq (x,y)
+\end{align*}
+To show $\gamma $ is regular. We wish to show 
+\begin{align*}
+  \vi{\gamma '(s)\neq 0\text{ for all $s \in I$ }}
+\end{align*}
+Express $\gamma $ by 
+\begin{align*}
+\gamma =\frac{(x,y)}{\sqrt{x^2+y^2} }
+\end{align*}
+Then, we see the $x$-component of  $\gamma '(s)$ is 
+\begin{align*}
+\gamma '(s)\Big|_x= \frac{x'y^2}{(x^2+y^2)^{\frac{3}{2}}}
+\end{align*}
+With similar computation on the $y$-component, we now arrive at 
+ \begin{align*}
+\gamma '(s)=\frac{\Big(x'y^2,y'x^2 \Big)}{(x^2+y^2)^{\frac{3}{2}}}
+\end{align*}
+Now, for a contradiction, \As{$\gamma '(s)=0$ for some $s$}. Then one of the three things below must happen 
+\begin{enumerate}[label=(\alph*)]
+  \item $x'=y'=0$ 
+  \item $y^2=x^2=0$ 
+  \item $x'=x^2=0$ WLOG
+\end{enumerate}
+Because $(x,y)=\alpha '$ and $\alpha $ is parametrized by arc-length and  curvature is non-zero by premise, we know it can not happen $\alpha ''=(x',y')=0$.\\
+
+Because $(x,y)=\alpha '$ and $\alpha $ is parametrized by arc-length, we also know it can not happen $\alpha '=(x,y)=0$.\\
+
+Now, we are given the hypothesis $x'=x^2=0$. Because $\alpha$ is parametrized by arc-length, from $x=0$, we know  $y=\pm 1$.  Then because $\abso{\alpha '}$ is constant, we can deduce
+\begin{align*}
+  0&=(x',y')\cdot (x,y)\\
+  &=(0,y')\cdot (0,\pm 1)
+\end{align*}
+This show us $y'=0$, which is impossible, since if  $(x',y')=0$ then the curvature is $0\tCaC\vdone$\\
+
+\textbf{(b)}
+The functions $\theta : [0,l]\rightarrow \R$, is defined by  
+\begin{align*}
+ T= (x,y)\triangleq (\cos \theta, \sin \theta)
+\end{align*}
+By Frenet Formula, we have 
+\begin{align}
+\label{kN=}
+\kappa N=T'= \theta' (- \sin \theta , \cos \theta)
+\end{align}
+Because $\abso{(-\sin \theta, \cos \theta)}=1$ and $(- \sin \theta ,\cos \theta)\cdot T=0$ and  
+ \begin{align*}
+\begin{vmatrix} 
+  \cos \theta & \sin \theta\\
+  - \sin \theta & \cos \theta
+\end{vmatrix}=1
+\end{align*}
+we can identify $(-\sin \theta, \cos \theta)=N$. Then from \myref{Equation}{kN=}, we now can deduce 
+\begin{align*}
+\kappa =\theta' 
+\end{align*}
+
+
+
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=10cm,width=18cm]{hw2q1}
 \end{question}
+\begin{proof}
+Let $A$ be a translation and $\rho$ be an orthogonal transformation.\\
 
+\textbf{(a)}
+Observe
+\begin{align*}
+\norm{v}&= \sqrt{ v \cdot  v} \\
+&=\sqrt{\rho v \cdot \rho v}\\
+&=\norm{\rho v}
+\end{align*}
+Because $\theta$ is given by 
+\begin{align*}
+\theta= \arccos \frac{v \cdot w}{ \abso{v}\cdot \abso{w}}
+\end{align*}
+and because norm is invariant under orthogonal transformation, from the definition of orthogonal transformation, we now see 
+ \begin{align*}
+\theta &= \arccos \frac{v \cdot w}{\abso{v}\cdot \abso{w}}\\
+&=\arccos \frac{\rho v \cdot \rho w}{\abso{v}\cdot \abso{w}}\\
+&=\arccos \frac{\rho v \cdot \rho w}{\abso{\rho v}\cdot \abso{\rho w}}=\theta_\rho\\
+\end{align*}
+where $\theta_\rho$ is the angle between $\rho v$ and $\rho w$. \\
+
+\textbf{(b)}
+Fix $v,w \inr^3$ and a positive determinant orthogonal transformation $\rho$. We wish to show 
+\begin{align*}
+\vi{\rho v \times \rho w = \rho(v \times w)}
+\end{align*}
+We can reduce the problem into proving 
+\begin{align*}
+\vi{\rho v \times \rho w \cdot z = \rho (v \times w) \cdot z\text{ for all $z \inr^3$ }}
+\end{align*}
+Fix $z \inr^3$. Because $\rho$ has non-zero determinant, we know there exists $z' \inr^3$ such that 
+\begin{align*}
+\rho z'=z
+\end{align*}
+Now, because orthogonal transformation has determinant  $\pm 1$ and we have know  $\rho$ has positive determinant, we know
+\begin{align*}
+\rho v \times \rho w \cdot z&=\rho v \times \rho w \cdot \rho z'\\
+&=\begin{vmatrix} 
+\rho v\\
+\rho w\\
+\rho z'\end{vmatrix} \\
+&= \begin{vmatrix} 
+  \rho v & \rho w & \rho z'
+\end{vmatrix}\hspace{1cm}(\because \text{det}A=\text{det}A^t)\\
+&=\abso{\rho} \cdot \begin{vmatrix} 
+  v & w & z'
+\end{vmatrix}\hspace{1cm}(\because \text{det}A\text{det}B=\text{det}AB)\\
+&=\begin{vmatrix} 
+v \\
+w \\
+z'
+\end{vmatrix}\hspace{1cm}(\because \text{det}\rho=1)\\
+&=v \times w \cdot z'\\
+&=\rho (v \times w) \cdot \rho z'\\
+&= \rho (v \times w)\cdot z \vdone
+\end{align*}
+The assertion is clearly false if the determinant is negative. One can check $v=(1,0,0)$ and $w=(0,1,0)$ and $\rho(x,y,z)=(-x,y,z)$. \\
+
+\textbf{(c)}
+We first show arc length is invariant under rigid motion. We first show 
+\begin{align*}
+\vi{\text{ arc length is invariant under orthogonal transformation }}
+\end{align*}
+To show such, we only have to show 
+\begin{align*}
+  \vi{\abso{(\rho \circ \gamma )'}=\abso{\gamma '}}
+\end{align*}
+\end{proof}
+Fix $y \in I$. We have
+\begin{align*}
+\abso{\gamma '(y)}= \abso{\lim_{t\to y}\frac{\gamma (t)-\gamma (y)}{t-y}}=\lim_{t\to y} \abso{\frac{\gamma (t)-\gamma (y)}{t-y}} 
+\end{align*}
+Notice that in above deduction, we exchange limit and norm. Such exchange hold true because the function inside is continuous.\\
+
+Similarly, we have 
+\begin{align*}
+\abso{(\rho \circ \gamma )'(y)}=\lim_{t\to y} \abso{\frac{\rho \circ \gamma (t)-\rho \circ  \gamma (y)}{t-y}}
+\end{align*}
+Then, we can reduce the problem into 
+\begin{align*}
+\vi{\text{proving} \abso{\gamma (t)-\gamma (y)}=\abso{\rho \circ \gamma (t)-\rho \circ \gamma (y)}}
+\end{align*} 
+Because $\rho:\R^3\rightarrow \R^3$ is an orthogonal transformation (a linear transformation too), we can deduce 
+\begin{align*}
+\abso{\rho \circ \gamma (t)-\rho \circ  \gamma (y)}&=\abso{\rho \big(\gamma (t)-\gamma (y) \big)}\\
+&=\abso{\gamma (t)-\gamma (y)}\vdone
+\end{align*}
+We have proved arc-length is invariant under orthogonal transformation. With some simple computation, it is clear that arc-length is invariant under translation. This let us conclude arc length is invariant under rigid motion.\\
+
+Now, to show curvature and torsion are also invariant under rigid motion. We first recall the following identities for curve parametrzied by arc-length 
+\begin{align*}
+\kappa = \abso{\gamma ''}\text{ and }\tau = -\frac{\gamma ' \times \gamma '' \cdot \gamma '''}{\kappa ^2}
+\end{align*}
+We now prove 
+\begin{align*}
+\blue{\text{ curvature is invariant under rigid motion }}
+\end{align*}
+Notice that $\gamma '$ is invariant under translation, so in fact, we only have to prove 
+\begin{align*}
+\blue{\text{ curvature is invariant under orthogonal transformation }}
+\end{align*}
+Observe 
+\begin{align*}
+\abso{\gamma ''(y)}=\abso{\lim_{t\to y}\frac{\gamma '(t)-\gamma '(y)}{t-y}}=\lim_{t\to y}\abso{\frac{\gamma '(t)-\gamma '(y)}{t-y}}
+\end{align*}
+and 
+\begin{align*}
+\abso{(\rho \circ \gamma )''(y)}&=\lim_{t\to y}\abso{\frac{(\rho \circ \gamma )'(t)-(\rho\circ \gamma )'(y)}{t-y}}
+\end{align*}
+We can now reduce the problem into proving 
+\begin{align*}
+  \blue{\abso{\gamma '(t)-\gamma '(y)}=\abso{(\rho \circ \gamma )'(t)-(\rho \circ \gamma )'(y)}}
+\end{align*}
+Because $\rho$ is a linear transformation, we can compute 
+\begin{align}
+\label{rho'}
+(\rho \circ \gamma )'(t)&=\lim_{u\to t} \frac{\rho \circ \gamma (u)-\rho \circ \gamma (t)}{u-t}\notag\\
+&=\lim_{u\to t}\rho\Big( \frac{\gamma (u)-\gamma (t)}{u-t}\Big)\notag\\
+&=\rho\lim_{u\to t}\Big( \frac{\gamma (u)-\gamma (t)}{u-t}\Big)=\rho \circ \gamma '(t)
+\end{align}
+We now using the fact norm is invariant under orthogonal transformation to compute 
+\begin{align*}
+\abso{(\rho \circ  \gamma )'(t)-(\rho \circ \gamma )'(y)}&= \abso{\rho \circ \gamma '(t)-\rho \circ  \gamma '(y)}\\
+&=\abso{\rho \big(\gamma '(t)-\gamma '(y) \big)}\\
+&=\abso{\gamma '(t)-\gamma '(y)}\bdone
+\end{align*}
+Now, notice that in \myref{Equation}{rho'}, we just proved 
+\begin{align*}
+ (\rho \gamma )'=\rho \gamma '
+\end{align*}
+Iterating the same argument, we can show
+\begin{align*}
+  (\rho \gamma )''&=\big((\rho \gamma )' \big)'\\
+  &=(\rho \gamma ')'\\
+  &=\rho \gamma ''
+\end{align*}
+and also show
+\begin{align*}
+  (\rho \gamma )'''&= \big((\rho \gamma )'' \big)'\\
+  &=(\rho \gamma '')'\\
+  &=\rho \gamma '''
+\end{align*}
+We now using the fact that $\abso{\rho}=1$ to compute  
+\begin{align*}
+  (\rho \gamma )' \times (\rho \gamma )'' \cdot (\rho \gamma )'''&= \begin{vmatrix} 
+    (\rho \gamma )' & (\rho \gamma )'' & (\rho \gamma )'''
+  \end{vmatrix}\\
+ &=\begin{vmatrix}  \rho \gamma ' & \rho \gamma '' & \rho \gamma'''\end{vmatrix}\\
+ &=\begin{vmatrix} 
+\rho \begin{bmatrix}
+  \gamma ' & \gamma '' & \gamma '''
+\end{bmatrix}
+ \end{vmatrix}\\
+ &=\abso{\rho}\cdot \begin{vmatrix} 
+   \gamma ' & \gamma '' & \gamma '''
+ \end{vmatrix}\\
+ &=\gamma ' \times \gamma '' \cdot \gamma '''
+\end{align*}
+Above computation with identity of torsion and the fact curvature is invariant under orthogonal transformation with positive determinant then show that torsion is also invariant under orthogonal transformation with positive determinant.\\
+
+Because $(\gamma +c)'=\gamma '$, together with what we have proved, it is easy to check torsion is also invariant under rigid motion. 
 \begin{question}{}{}
 \includegraphics[height=6cm,width=18cm]{hw2q18}
 \end{question}
+\begin{proof}
+By Fundamental Theorem of Local Curves (you can think of our application as identifying $\tau=0$), we know if such curve exists then it is unique up to translation and rotation. This reduced our proof into showing 
+\begin{align*}
+\vi{\alpha \text{ has curvature $\kappa$ }}
+\end{align*}
+Compute 
+\begin{align*}
+\alpha '=(\cos \theta, \sin \theta)
+\end{align*}
+This shows that $\alpha $ is parametrized by arc-length, and shows that we can compute
+\begin{align*}
+\abso{\alpha ''}&=\abso{\theta ' (- \sin \theta, \cos \theta)}\\
+&=\abso{\theta'}=\abso{\kappa}=\kappa \vdone
+\end{align*}
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=6cm,width=18cm]{hw2q17}
 \end{question}
+\begin{proof}
+\textbf{(a)}
+
+Parametrize by 
+\begin{align*}
+  \alpha (\theta)\triangleq (x,y)\triangleq (r \cos \theta, r \sin \theta)
+\end{align*}
+where $r(\theta)$ is a function. With respect to $\theta$, we compute 
+\begin{align*}
+  (x')^2+(y')^2&=(r'\cos \theta-r\sin \theta)^2+(r' \sin \theta + r \cos \theta)^2\\
+  &=(r')^2 \cos ^2 \theta + r^2 \sin ^2 \theta + (r')^2 \sin ^2 \theta + r^2 \cos ^2 \theta \hspace{1cm}(\because \text{ elimination })\\
+  &=r^2+(r')^2 
+\end{align*}
+We now see that the arc-length can be computed by 
+\begin{align*}
+\int_a^b \abso{\alpha '(\theta)}d\theta&= \int_a^b \sqrt{(x')^2+(y')^2}d\theta \\
+&=\int_a^b \sqrt{r^2 +(r')^2}d\theta 
+\end{align*}
+
+\textbf{(b)}\\
+
+Recall that 
+\begin{align*}
+\kappa(t) = \frac{x'y''-x''y'}{\big((x')^2 + (y')^2 \big)^{\frac{3}{2}}}
+\end{align*}
+plugin 
+\begin{align*}
+  (x',y')&=(r'\cos \theta -r \sin \theta, r' \sin \theta + r \cos \theta)\\
+  (x'',y'')&=(r''\cos \theta -2r' \sin \theta -r\cos \theta, r'' \sin \theta + 2r' \cos \theta  -r \sin \theta)
+\end{align*}
+To compute 
+\begin{align*}
+x'y''&= r'r''\cos \theta \sin \theta + 2(r')^2 \cos ^2 \theta -rr'\cos \theta \sin \theta -r r'' \sin ^2 \theta -2rr' \cos \theta \sin \theta +r^2 \sin ^2 \theta\\
+x''y'&=r'r''\sin \theta \cos \theta - 2(r')^2 \sin ^2 \theta -rr' \cos \theta \sin \theta +rr'' \cos ^2 \theta - 2rr' \cos \theta \sin \theta  -r^2 \cos ^2 \theta
+\end{align*}
+Eliminating the odd terms and using $\cos^2+\sin^2=1$, we now compute 
+\begin{align*}
+\kappa&=\frac{x'y''-x''y'}{\big((x')^2 +(y')^2\big)^{\frac{3}{2}}}\\
+&=\frac{2(r')^2-2rr''+r^2}{\big(r^2+(r')^2 \big)^{\frac{3}{2}}}
+\end{align*}
+\end{proof}
 
 \begin{question}{}{}
 \includegraphics[height=8cm,width=18cm]{hw2q16}
 \end{question}
----------------------------------------------------------------------------------------
+\begin{proof}
+\textbf{(a)}
+$(\longrightarrow)$\\
+
+Because $\alpha $ is a helix, we know there exists fixed unit $a \inr^3$ and $b \inr$ such that 
+\begin{align*}
+\alpha '  \cdot a =b \text{ for all $s$ }
+\end{align*}
+This then implies 
+\begin{align*}
+\alpha '' \cdot a = 0\text{ for all $s$ }
+\end{align*}
+which implies 
+\begin{align*}
+N\cdot a =0
+\end{align*}
+since $N$ is parallel with  $\alpha ''$. Because $\set{T,N,B}$ is an orthonormal basis, this $(N\cdot a =0)$ together with $a$ being unit then tell us we can express $a$ by
+\begin{align*}
+a= T \cos \theta + B \sin \theta \text{ for some fixed $\theta \inr$ }
+\end{align*}
+We now have the information $T \cos \theta + B \sin \theta$ is a constant function  in $s$. Then, using Frenet Formula, we can deduce 
+\begin{align*}
+  0=(T \cos \theta + B \sin \theta)'&= \kappa N \cos \theta + \tau N \sin \theta
+\end{align*}
+This them implies 
+\begin{align*}
+\frac{\kappa}{\tau}=\frac{-\sin \theta}{\cos \theta}\text{ is a constant since $\theta $ is fixed. }
+\end{align*}
+Notice that $\cos \theta \neq 0$ because $\tau \neq 0$ for all $s$.\\
+
+$(\longleftarrow)$\\
+
+Define $\theta\inr$ by 
+\begin{align*}
+\theta=\arctan \frac{-\kappa}{\tau}
+\end{align*}
+We wish to show 
+\begin{align*}
+  \vi{a=T \cos \theta + B \sin \theta \text{ suffice }}
+\end{align*}
+Because we have 
+ \begin{align*}
+T\cdot a= \cos \theta 
+\end{align*}
+We only wish to show 
+\begin{align*}
+  \vi{a\text{ is a constant function in $s$ }}
+\end{align*}
+Because $\theta=\arctan \frac{-\kappa}{\tau}$, we know 
+\begin{align*}
+\frac{\sin \theta}{\cos \theta}=\tan \theta = \frac{-\kappa}{\tau}
+\end{align*}
+This then tell us 
+\begin{align*}
+\tau \sin \theta + \kappa \cos \theta =0
+\end{align*}
+and implies 
+\begin{align*}
+\tau N \sin \theta + \kappa N \cos \theta =0
+\end{align*}
+Then 
+\begin{align*}
+a'&=(T\cos \theta+ N \sin \theta)'\\
+&= \kappa N \cos \theta + \tau N \sin \theta =0 
+\end{align*}
+This implies $a$ is indeed a constant.  $\vdone$\\
+
+\textbf{(b)}\\
+
+$(\longrightarrow)$\\
+
+Let $a\inr^3$ be the unit vector such that 
+\begin{align*}
+T\cdot a \text{ is fixed }
+\end{align*}
+We now see 
+\begin{align*}
+N\cdot a= (T\cdot a)'=0
+\end{align*}
+This implies 
+\begin{align*}
+\text{ the plane $\set{a}^{\perp}$ suffice }
+\end{align*}
+
+$(\longleftarrow)$\\
+
+Observe that 
+\begin{align*}
+&0=N \cdot a= \frac{T'}{\abso{T'}} \cdot a \\
+&\implies T' \cdot a =0\\
+&\implies T\cdot a\text{ is fixed }
+\end{align*}
+
+\textbf{(c)}\\
+
+$(\longrightarrow)$\\
+
+Because $T \cdot a $ is fixed, we can deduce
+\begin{align*}
+\kappa N \cdot a =T'\cdot a=0
+\end{align*}
+Now observe from Frenet Formula that 
+\begin{align*}
+  (B \cdot a )'=- \tau N \cdot a =0 
+\end{align*}
+This implies $B \cdot a $ is fixed.\\
+
+$(\longleftarrow)$\\
+
+Because $B \cdot a$ is fixed, we can deduce
+\begin{align*}
+  &0= (B \cdot a)'=-\tau N \cdot a \\
+ &\implies  N \cdot  a=0
+\end{align*}
+The proof then now follows from the result of  \textbf{(b)}.\\
+
+\textbf{(d)}\\
+
+First we have to notice the fucking typo correction $\frac{\kappa}{\tau}=\frac{a}{b}$.\\
+
+Compute 
+\begin{align*}
+\alpha '(s)&=\Big(\frac{a}{c}\sin \theta, \frac{a}{c}\cos \theta, \frac{b}{c} \Big)\\
+\alpha ''(s)&=\Big(\theta ' \frac{a}{c}\cos \theta , \theta ' \frac{-a}{c}\sin \theta, 0 \Big)\\
+\alpha '''(s)&=\Big(\theta'' \frac{a}{c}\cos \theta + (\theta')^2 \frac{-a}{c}\sin \theta , \theta '' \frac{-a}{c}\sin \theta + (\theta ')^2 \frac{-a}{c}\cos \theta, 0 \Big)
+\end{align*}
+This give us 
+\begin{align*}
+&\alpha ' \times \alpha '' \cdot \alpha '''\\
+&=\frac{b}{c}\Big[\theta ' \theta '' \frac{-a^2}{c^2}\cos \theta \sin \theta + (\theta ')^3 \frac{-a^2}{c^2}\cos ^2 \theta - \theta' \theta '' \frac{-a^2}{c}\sin \theta \cos \theta - (\theta ')^3 \frac{a^2}{c^2}\sin ^2 \theta \Big]\\
+&=\frac{b}{c}\Big( (\theta ')^3 \frac{-a^2}{c^2} \Big)=\frac{-a^2b}{c^3}(\theta ')^3
+\end{align*}
+And give us 
+\begin{align*}
+\kappa = \theta' \frac{a}{c}
+\end{align*}
+We now compute 
+\begin{align*}
+\frac{\kappa}{\tau}&= \frac{\kappa}{-\frac{\alpha ' \times \alpha '' \cdot \alpha '''}{\kappa ^2}}\\
+&=\frac{-\kappa ^3}{\alpha ' \times \alpha '' \cdot \alpha '''}\\
+&=\frac{-(\theta')^3 \frac{a^3}{c^3}}{\frac{-a^2b}{c^3}(\theta ')^3}=\frac{a}{b}
+\end{align*}
+
+
+
+\end{proof}
 
 \begin{question}{}{}
 \includegraphics[height=4cm,width=18cm]{hw2q15}
 \end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\begin{cases}
+  x'=-a \sin t \text{ and }x''=-a\cos t\\
+  y'=b \cos t \text{ and } y''=-b \sin t
+\end{cases}
+\end{align*}
+Plugging the curvature formula 
+\begin{align*}
+\kappa =\frac{x'y''-x''y'}{\big((x')^2 +(y')^2 \big)^{\frac{3}{2}}}
+\end{align*}
+We now have 
+\begin{align*}
+\kappa = \frac{ab }{\big(a^2 \sin ^2 t + b^2 \cos ^2 t \big)^{\frac{3}{2}}}
+\end{align*}
+Compute 
+\begin{align*}
+\kappa' = (2a^2 \sin t \cos t -2b^2 \sin t \cos t)(a^2\sin ^2 t + b^2 \cos ^2 t)^{\frac{-5}{2}}\cdot (ab)
+\end{align*}
+We see that 
+\begin{align*}
+\kappa'=0 \iff  \sin 2t =0
+\end{align*}
+This only happens when $t \in \set{0,\frac{\pi}{2},\pi,\frac{3\pi}{2},2\pi}$ where $2 \pi$ is just $0$ in the sense of parametrizeation of closed curve. We have shown there are exactly four vertices 
+ \begin{align*}
+   (a,0),(-a,0),(0,b),(0,-b)
+\end{align*}
+\end{proof}
 
 
 \begin{question}{}{}
 \includegraphics[height=6cm,width=18cm]{hw2q14}
 \end{question}
+\begin{proof}
+WOLG, let $p=(0,0)$, $T$ be the $x$-axis and some neighborhood around $p$ be above  $T$. Positively oriented  parametrize $C$ by arc-length using  $(x,y)$ and $(x,y)(0)=(0,0)$. Using Taylor Theorem about $y(0)$, we see 
+\begin{align*}
+y(s)=y(0)+y'(0)s + \frac{y''(0)}{2}s^2 + R_y\text{ where $\frac{R_y}{s^2}\to 0$ as $s\to 0$ }
+\end{align*}
+ Because $T$ the tangent is the $x$-axis, we know $x''(0)=0\hspace{0.5cm}(\because N=(0,1))$. This tell us 
+ \begin{align*}
+\abso{\kappa(0)}&=\sqrt{(x'')^2(0)+(y'')^2(0)} \\
+ &=y''(0)\hspace{1cm}(\because N=(0,1) )
+ \end{align*}
+\end{proof} 
+By our setting $(x,y)(0)=(0,0)$, we see 
+\begin{align*}
+\hspace{3cm}y(0)=y'(0)=0\hspace{1cm}(\because (x',y')=(1,0))
+\end{align*}
+We now see 
+\begin{align*}
+y''(0)= \frac{2\big(y(s)-R_y \big)}{s^2}\text{ for all $s\neq 0$ }
+\end{align*}
+This tell us 
+\begin{align*}
+y''(0)=\lim_{s\to 0}\frac{2\big(y(s)-R_y \big)}{s^2}=\lim_{s\to 0}\frac{2y(s)}{s^2}
+\end{align*}
+Using Taylor Theorem about $x(0)$, we see 
+\begin{align*}
+x(s)=x(0)+x'(0)s + R_x\text{ where }\frac{R_x}{s}\to 0\text{ as $x \to 0$ }
+\end{align*}
+Because $x(0)=0$ and $x'(0)=1$, we see 
+\begin{align*}
+\lim_{s\to 0}\frac{x(s)}{s}=\lim_{s\to 0} \frac{s+R_x}{s}=1
+\end{align*}
+This now give us 
+\begin{align*}
+\abso{\kappa (0)}=y''(0)=\lim_{s\to 0}\frac{2y(s)}{s^2}=\lim_{s\to 0}\frac{2y(s)}{x^2(s)}=\lim_{d\to 0}\frac{2h}{d^2}
+\end{align*}
+
+
 
 \begin{question}{}{}
 \includegraphics[height=8cm,width=18cm]{hw2q13}
 \end{question}
+\begin{proof}
+\textbf{(a)}\\
+
+Using Frenet Formula to compute 
+\begin{align*}
+\beta '(s)=\alpha '(s)+r\kappa  T(s)
+\end{align*}
+Because $\alpha $ is parametrized by arc-length, we now know 
+\begin{align*}
+  \abso{\beta '}=\abso{(1+r\kappa)\alpha '}=\abso{1+r\kappa }=1+ r\kappa
+\end{align*}
+This now give us 
+\begin{align*}
+  \int_0^l \abso{\beta '} ds= l + r \int_0^l \kappa ds
+\end{align*}
+Because a closed convex curve must also be simple (Sec. 5-7, Prop. 1), we now can deduce 
+\begin{align*}
+\text{ Length of  }\beta &=l + r \int_0^l \kappa ds\\
+&=\text{ Length of }\alpha +r(2\pi)
+\end{align*}
+
+\textbf{(b)}\\
+
+Set 
+\begin{align*}
+\alpha =(x,y)\text{ and }\beta =(x-r N_1,y-rN_2)
+\end{align*}
+Because 
+\begin{align*}
+\beta '=(1+ r\kappa)\alpha ' 
+\end{align*}
+We know 
+\begin{align*}
+\beta ' =\Big((1+r\kappa)x',(1+r\kappa)y' \Big)
+\end{align*}
+Now, we use Green's Theorem to compute the Area 
+\begin{align*}
+A(\beta )&=\frac{1}{2}\int_0^l (x-rN_1)(1+r\kappa)y' -(y-rN_2)(1+r\kappa)x'ds\\
+         &=\frac{1}{2}\int_0^l (xy'-yx') ds + \frac{r}{2}\int_0^l (\kappa xy' + \kappa x'y) ds \\
+&+ \frac{r}{2}\int_0^l -(N_1y'+N_2x')ds + \frac{r^2}{2}\int_0^l (-N_1y'\kappa+N_2x'\kappa)ds
+\end{align*}
+Notice that by Frenet Formula, we have
+\begin{align*}
+N'=- \kappa (x',y')
+\end{align*}
+so in fact we know 
+\begin{align*}
+\kappa xy'+\kappa x'y=N'\cdot (-y,x)
+\end{align*}
+Now using integral by part and the fact $\alpha =(x,y)$ is closed, we know  
+\begin{align*}
+\int_0^l (\kappa xy'+\kappa x'y)ds&=\int_0^l N' \cdot (-y,x)ds\\
+&=\int_0^l N\cdot (-y',x')ds
+\end{align*}
+Then now we have 
+\begin{align*}
+  \frac{r}{2}\int_0^l (\kappa xy'+\kappa x'y)ds+\frac{r}{2}\int_0^l -N_1y'+N_2x'ds&=\frac{r}{2}\int_0^l 2N\cdot (-y',x')ds
+\end{align*}
+Using positive orientation and the fact $\abso{N}=1=\abso{(-y',x')}$ to identify that $N=(-y',x')$, we now have 
+\begin{align*}
+\frac{r}{2}\int_0^l 2N \cdot (-y',x')ds=rl
+\end{align*}
+and have 
+\begin{align*}
+\frac{r^2}{2}\int_0^l (-N_1y'\kappa+N_2x' \kappa)ds=\frac{r^2}{2}\int_0^l \kappa ds =r^2 \pi 
+\end{align*}
+since $(x,y)$ is simple closed. This finishes the proof. \\
+
+\textbf{(c)}\\
+
+Recall that 
+\begin{align*}
+\kappa (a,b) = \frac{a'b''-a''b'}{\big((a')^2+(b')^2 \big)^{\frac{3}{2}}}
+\end{align*}
+We use this formula on $\beta$ to compute
+\begin{align*}
+\kappa_\beta &= \frac{(1+r\kappa)x'\big((1+r\kappa)y' \big)'-\big((1+r\kappa)x' \big)'(1+r\kappa)y'}{(1+r\kappa)^3}\\
+&=\frac{(1+r\kappa)^2 (x'y''-x''y')}{(1+r\kappa)^3}\\
+&=\frac{x'y''-x''y'}{1+r \kappa}=\frac{\kappa}{1+r\kappa}\hspace{1cm}(\because (x')^2+(y')^2=1)
+\end{align*}
+\end{proof}
 
 
 \begin{question}{}{}
 \includegraphics[height=6cm,width=18cm]{hw2q12}
 \end{question}
+\begin{proof}
+\textbf{(a)}\\
+
+Because $\alpha $ is simple closed and $\kappa \leq c$, we know 
+\begin{align*}
+cl=\int_0^l cds\geq \int_0^l \kappa ds=2\pi
+\end{align*}
+This then implies 
+\begin{align*}
+\text{ Length of }\alpha =l\geq \frac{2\pi }{c}
+\end{align*}
+\textbf{(b)}\\
+
+Because $\alpha $ has rotation index $N$ and  $\kappa \leq c$, we know 
+\begin{align*}
+cl=\int_0^l cds\geq \int_0^l \kappa ds=N2\pi
+\end{align*}
+This the implies
+\begin{align*}
+\text{ Length of }\alpha =l\geq \frac{2\pi N}{c}
+\end{align*}
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=4cm,width=18cm]{hw2q11}
 
 \includegraphics[height=4cm,width=18cm]{hw2q10}
 \end{question}
----------------------------------------------------------------------------------------
-
+\begin{proof}
+Suppose we have proved that a convex closed curve must satisfy the isoperimetric inequality. Let $C$ be an arbitrary closed plane curve, and let  $H$ be its convex hull. Now, because straight line is the shortest curve between two point and because we know $H$, a convex curve, must satisfy isoperimetric inequality, we now see 
+ \begin{align*}
+4 \pi A(C)\leq 4 \pi A(H)\leq l_H^2 \leq l_C^2
+\end{align*}
+If the equality hold true, we can deduce from $l_H=l_C$ that  $H=C$ and use the argument for isoperimetric inequality of convex curve to argue that $C=H$ must be a circle.
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=2cm,width=18cm]{hw2q9}
 \end{question}
+\begin{proof}
+Let $S=\set{(x,y,z)\inr^3:x^2+y^2-z^2=0}$. It is clear $S$ contain  $(0,0,0)$. To show $S$ is not regular, we only wish to find a neighborhood $V$ around  $(0,0,0)$ in $S$ such that  $V$ can not expressed as graph of differentiable functions from $\R^2$ to  $\R$. This is trivially true, as all neighborhood ought to contain some open ball $B_\epsilon (0)$, and in this open ball, if we fix, say $(x,y)\in B_\epsilon (0)$ such that $(x,y,\sqrt{x^2+y^2}) \in B_\epsilon (0)$, we see that $z=-\sqrt{x^2+y^2} $ is also in $B_\epsilon (0)$ and $S$. The same argument applies to when $(x,z)$ and $(y,z)$ are fixed. 
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=1cm,width=18cm]{hw2q8}
 \end{question}
+\begin{proof}
+Because $f$ is differentiable, we see $f_x,f_y$ are all continuous on $U$. This then implies 
+ \begin{align*}
+h_x(x,y,z)=f_x(x,y),h_y(x,y,z)=f_y(x,y),h_z=-1\text{ are all continuous on $U$ }
+\end{align*}
+We have shown $h$ is differentiable. Now that observe 
+\begin{align*}
+h(x,y,z)=0 \implies (x,y,z)=(x,y,f(x,y))
+\end{align*}
+The converse of course hold true. This then implies 
+\begin{align*}
+  f[U]=h^{-1}[0]
+\end{align*}
+Fix arbitrary $(x,y) \in U$. We see 
+ \begin{align*}
+\textbf{d}h\big(x,y,f(x,y) \big)=\begin{bmatrix} 
+  h_x & h_y & h_z
+\end{bmatrix}\Big|_{(x,y,f(x,y))}=\begin{bmatrix}
+  f_x(x,y) & f_y(x,y) & -1 
+\end{bmatrix}
+\end{align*}
+which is clearly not onto. This show 
+\begin{align*}
+  (x,y,f(x,y))\text{ is not a critical point }
+\end{align*}
+Because $(x,y) \in U $ is arbitrary, we have shown $f[U]$ contain no critical point. Now it follows $0$ is a regular value and $f[U]=h^{-1}[0]$ is a regular surface.
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw2q7}
 \end{question}
+\begin{proof}
+\textbf{(a)}\\
 
+Compute 
+\begin{align*}
+f_x=f_y=f_z=2(x+y+z-1)
+\end{align*}
+This implies the set of critical points are 
+\begin{align*}
+\set{(x,y,z)\inr^3:x+y+z=1}
+\end{align*}
+Then it follows from simple computation the set of  critical values is exactly 
+\begin{align*}
+\set{0}
+\end{align*}
+\textbf{(b)}\\
+
+For all $c>0$,  the set $f^{-1}[c]$ is a regular surface, and for all $c<0$, the set  $f^{-1}[c]$ is empty (thus trivially regular).\\
+
+\textbf{(c)}\\
+
+Compute 
+\begin{align*}
+f_x=yz^2\text{ and }f_y=xz^2\text{ and }f_z=2xyz
+\end{align*}
+This implies the set of critical points is 
+\begin{align*}
+\set{(x,y,z):z=0\text{ or }x=y=0}
+\end{align*}
+With simple computation, we see the set of  critical values is exactly 
+\begin{align*}
+\set{0}
+\end{align*}
+The set of regular values are exactly $\R^*$, so all  $c\neq 0$ suffice.
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{Ghw2b}
+\end{question}
+\begin{proof}
+Note that 
+\begin{align*}
+dx_q=\begin{bmatrix}
+  \partial_u x & \partial_v x
+\end{bmatrix}
+\end{align*} 
+This give us 
+\begin{align*}
+dx_q:\R^2 \rightarrow \R^3\text{ is one-to-one }\iff \partial_ux, \partial_vx \inr^3 \text{ is linearly independent everywhere }
+\end{align*}
+Then we can reduce the problem into proving 
+\begin{align*}
+\partial _u x, \partial_v x\inr^3 \text{ is linearly independent everywhere }\iff \partial_ux\times\partial_v x\neq 0\text{ everywhere }
+\end{align*}
+This then follows from \myref{Theorem}{CtcL} at the next page, as one can see that each component of the output of cross product is exactly the three determinant. 
+\end{proof}
+\begin{theorem}
+\label{CtcL}
+  \textbf{(Computation to check Linearly Independence)} 
+\begin{align*}
+\begin{bmatrix}
+  v_1 & w_1\\
+  v_2 & w_2 \\
+  v_3 & w_3
+\end{bmatrix}\text{ is linearly independent }\iff \begin{vmatrix} 
+  v_1 & w_1\\
+  v_2 & w_2
+\end{vmatrix}\neq 0\text{ or }\begin{vmatrix} 
+  v_2 & w_2\\
+  v_3 & w_3
+\end{vmatrix}\neq 0\text{ or }\begin{vmatrix} 
+  v_1 & w_1\\
+  v_3 & w_3
+\end{vmatrix}\neq 0
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\longleftarrow)$\\
+
+\As{$v,w$ are linearly dependent}. Fix $w_k=cv_k$. We see 
+\begin{align*}
+\begin{vmatrix} 
+  v_1 & w_1 \\
+  v_2 & w_2
+\end{vmatrix}=cv_1v_2-cv_1v_2=0\tCaC
+\end{align*}
+
+$(\longrightarrow)$\\
+
+\As{all determinant are $0$}. Pick $k$ such that $v_k$ is non-zero. Define 
+\begin{align*}
+c\triangleq \frac{w_k}{v_k}
+\end{align*}
+WOLG, suppose 
+\begin{align*}
+w_1=cv_1\text{ and }v_1\neq 0
+\end{align*}
+We then can deduce
+\begin{align*}
+\begin{vmatrix} 
+  v_1 & w_1 \\
+  v_2 & w_2
+\end{vmatrix}\implies cv_1v_2=v_1w_2 \implies w_2=cv_2
+\end{align*}
+The same arguement implies $w_3=cv_3\tCaC$
+\end{proof}
+\section{HW3}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{HW312}
+\end{question}
+\begin{proof}
+We are required to show 
+\begin{enumerate}[label=(\alph*)]
+  \item range of $\textbf{x}$ lies in the ellipsoid
+  \item $\textbf{x}$ is smooth 
+  \item $d\textbf{x}$ is one-to-one everywhere on $U\triangleq (0,\pi)\times (0,2\pi)$ 
+  \item $\textbf{x}$ is a homeomorphism
+\end{enumerate}
+Compute 
+\begin{align*}
+\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}&=\sin^2 u \cos^2 v + \sin^2 u \sin^2 v + \cos^2 u=1
+\end{align*}
+This shows that the range of  $\textbf{x}$ indeed lies in the ellipsoid.\\
+
+It is clear that $\textbf{x}$ is smooth.\\
+
+Compute 
+\begin{align*}
+d\textbf{x}=\begin{bmatrix}
+  a\cos u \cos v & -a \sin u \sin v\\
+  b \cos u \sin v & b \sin u \cos v \\
+  -c \sin u & 0 
+\end{bmatrix}
+\end{align*}
+Then compute
+\begin{align*}
+\frac{\partial (y,z)}{\partial (u,v)}=bc \sin^2 u \cos v\text{ and }\frac{\partial (x,z)}{\partial (u,v)}=-ac \sin^2 u \sin v
+\end{align*}
+Because $u \in (0,\pi)$ and $v \in (0,2\pi)$, and $b,c\neq 0$, we now can deduce
+\begin{align*}
+&\frac{\partial (y,z)}{\partial (u,v)}=0\iff v\in \set{\frac{\pi}{2},\frac{3}{2}\pi}\\
+&\frac{\partial (y,z)}{\partial (u,v)}=0\iff v=\pi 
+\end{align*}
+This then let us deduce 
+\begin{align*}
+d\textbf{x}\text{ is one-to-one everywhere on }(0,\pi)\times (0,2\pi)
+\end{align*}
+Traditionally, the function $\arctan$ is defined on $\R$ and have codomaiin $(-\frac{\pi}{2},\frac{\pi}{2})$.\\
+
+Deduce first from the $z$-component of  $\textbf{x}$. We see
+\begin{align*}
+\textbf{x}^{-1}(x,y,z)=
+  \Big(\arccos \frac{z}{c}, \begin{cases}
+    \arctan \frac{ay}{bx}& \text{ if $x,y\inr^+$ (first quadrant) }\\
+    \frac{\pi}{2}& \text{ if $x=0,y\inr^+$ }\\
+    \frac{3\pi}{2}+\arctan \frac{ay}{bx}& \text{ if $x\inr^-,y\inr^+$ (second quadrant) }\\
+    \pi + \arctan \frac{ay}{bx}& \text{ if $x\inr^-,y\inr^-_0$ (third quadrant) }\\ 
+    \frac{3\pi }{2}& \text{ if $x=0,y\inr^-$ }\\
+    \frac{4\pi }{2}+\arctan \frac{ay}{bx}& \text{ if $x\inr^+,y\inr^-$ (forth quadrant) }
+  \end{cases}\Big)
+\end{align*}
+Now it follows that $\textbf{x}$ is indeed a homeomorphism. 
+\end{proof}
+\begin{definition}
+\textbf{(Definition of regular plane curve)} We say $C\subseteq \R^2$ is a regular plane curve if for all $p\in  C$ there exists 
+\begin{enumerate}[label=(\alph*)]
+  \item an open neighborhood $p \in V \subseteq \R^2$ 
+  \item an open set $U\subseteq \R$
+  \item a function $\textbf{x}:U \rightarrow V\cap C $
+\end{enumerate}
+such that $\textbf{x}$ satisfy
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}$ is smooth 
+  \item $\textbf{x}$ is a homoeomorphism between $U$ and  $V\cap C$
+  \item $d\textbf{x}_q\in L(\R,\R^2)$ is one-to-one for all $q \in U$
+\end{enumerate}
+\end{definition}
+\begin{definition}
+\textbf{(Definition of regular space curve)} We say $C\subseteq \R^3$ is a regular space curve if for all $p\in  C$ there exists 
+\begin{enumerate}[label=(\alph*)]
+  \item an open neighborhood $p \in V \subseteq \R^3$ 
+  \item an open set $U\subseteq \R$
+  \item a function $\textbf{x}:U \rightarrow V\cap C $
+\end{enumerate}
+such that $\textbf{x}$ satisfy
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}$ is smooth 
+  \item $\textbf{x}$ is a homoeomorphism between $U$ and  $V\cap C$
+  \item $d\textbf{x}_q\in L(\R,\R^3)$ is one-to-one for all $q \in U$
+\end{enumerate}
+\end{definition}
+\begin{question}{}{}
+\includegraphics[height=8cm,width=18cm]{HW317}
+\end{question}
+\begin{proof}
+\textbf{(a)}\\
+
+Suppose $f:U\subseteq \R^2\rightarrow \R$ is a smooth function and $c$ is a regular value. We wish to prove 
+\begin{align*}
+  \vi{C\triangleq f^{-1}[c]\text{ is a regular plane curve }}
+\end{align*}
+Fix $p \in f^{-1}[c]$. We wish 
+\begin{align*}
+\vi{\text{ to find a local parametrization $\textbf{x}: I \subseteq \R \rightarrow  C$ around $p$}}
+\end{align*}
+Because $c$ is a regular value, we know $df_p$ is one-to-one. Then, WOLG, we can let $\partial_y F(p)\neq c$. Define $F:U\rightarrow \R^2$ by 
+\begin{align*}
+F(x,y)\triangleq \Big(x,f(x,y)\Big)
+\end{align*}
+Compute 
+\begin{align*}
+dF=\begin{bmatrix}
+  1 & 0 \\
+  \partial_x f & \partial _yf 
+\end{bmatrix}
+\end{align*}
+It is now clear that  $\text{det}(dF_p)\neq 0$. Now, because $f$ is smooth, we can use inverse function Theorem and obtain a diffeoemorphism $F$ between open neighborhood around $p$ and open neighborhoood around $f(p)$. Now, note that $f[C]=\set{c}$. This tell us 
+\begin{align*}
+F[C]\subseteq \set{(x,c)\inr^2:x\inr}
+\end{align*}
+we now claim
+\begin{align*}
+ \vi{\textbf{x}(u)\triangleq F^{-1}(u,c)\text{ is the desired local parametrization around $p$ }}
+\end{align*}
+The fact that $\textbf{x}$ is smooth and homeomorphism follows from 
+\begin{enumerate}[label=(\alph*)]
+  \item $F$ is a diffeomorphism around $p$ 
+  \item $\textbf{x}$ can be identified as restriction of $F^{-1}$
+\end{enumerate}
+Note that $d(F^{-1})_p=\big(dF_{F^{-1}(p)} \big)^{-1}\neq 0$. Now, because $\textbf{x}$ is restriction of $F^{-1}$, we see $d\textbf{x}$ must not be $0$ around  $p$. $\vdone$ \\
+
+An example is $f(x,y)=(y-1)^2 -x^2$.\\
+
+\includegraphics[height=10cm,width=18cm]{HW3pic1}
+
+
+\textbf{(b)}\\
+
+Suppose $F:U\subseteq \R^3\rightarrow \R^2$ is a smooth function and $(c_0,c_1)$ is a regular value. We wish to prove 
+\begin{align*}
+\vi{C\triangleq F^{-1}[(c_0,c_1)]\text{ is a regular space curve }}
+\end{align*}
+Fix $p\in  F^{-1}[(c_0,c_1)]$. We wish 
+\begin{align*}
+\vi{\text{ to find a local parametrization $\textbf{x}:I\subseteq \R\rightarrow C$  around $p$ }}
+\end{align*}
+Define $G:U\rightarrow \R^3$ by
+\begin{align*}
+G(x,y,z)\triangleq \Big(x,F(x,y,z) \Big)
+\end{align*}
+Compute 
+\begin{align*}
+dG=\begin{bmatrix}
+  1 & 0 & 0 \\
+  \partial_x F_1 & \partial_y F_1 & \partial_z F_1\\
+  \partial_x F_2 & \partial_y F_2 & \partial_z F_2
+\end{bmatrix}
+\end{align*}
+Because $p$ is a regular point of $F$, we can WOLG, suppose 
+\begin{align*}
+\text{det}\big( dG_p\big)=\text{det}\Big( \frac{\partial (F_1,F_2)}{\partial (y,z)}\Big|_p\Big)\neq 0
+\end{align*}
+This Then, by Inverse function Theorem, $G$ is locally a diffeomorphism around $p$. We now see 
+\begin{align*}
+\textbf{x}(t)\triangleq G^{-1}(t,c_0,c_1)\text{ is the desired local parametrization around $p\vdone$}
+\end{align*}
+Suppose we are given two function $A,B:\R^3\rightarrow \R$, and suppose  $A^{-1}[c_0],B^{-1}[c_1]$ are two surfaces. Define $F:\R^3\rightarrow \R^2$ by  
+\begin{align*}
+F(p)\triangleq (A(p),B(p))
+\end{align*}
+We see that 
+\begin{align*}
+\text{ the intersection }A^{-1}[c_0]\cap B^{-1}[c_1]\text{ is exactly }F^{-1}[(c_0,c_1)]
+\end{align*}
+
+\textbf{(c)}\\
+
+\As{for a contradiction, $C$ is a regular curve}. Note that $(0,0)\in C$. We know there exists an open-neighborhood $N\subseteq \R^2$ around $(0,0)$ such that $N\cap C$ is the graph of some differentiable function in $x$ or  $y$. However, this is impossible, since if one view $N\cap C$ as a function in $x$, the function  $y=x^{\frac{2}{3}}$ is not differetaible at $x=0$, and one can not even view $N\cap C$ as a function in $y$ as each  $y$ correspond to two $x$, namely  $x=\pm y^{\frac{3}{2}}$. $\tCaC$ 
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{HW3a6}
+\end{question}
+\begin{proof}
+Yes. Fix $p$ in  $S$. We wish to prove 
+ \begin{align*}
+\vi{\pi\text{ is differentiable at $p$ in the sense of manifold }}
+\end{align*}
+Let $\textbf{x}_1:U_1\subseteq \R^2 \rightarrow V_1 \cap  S\subseteq \R^3$ be a local parametrization around $p$. Define a local parametrization $\textbf{x}_2:U_2 \subseteq \R^2 \rightarrow \R^2 $ around $\pi(p)$ by 
+\begin{align*}
+\textbf{x}_2\triangleq \textbf{id}_{U_2}
+\end{align*}
+We are require to prove 
+\begin{align*}
+  \vi{\textbf{x}_2^{-1}\circ \pi \circ \textbf{x}_1\text{ is differentiable at $\textbf{x}_1^{-1}(p)$ }}
+\end{align*}
+Notice that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1:U_1 \rightarrow \R^3$ is differentiable at $p$ by definition 
+  \item $\pi :\R^3 \rightarrow \R^2$ is clearly differntiable, with derivative $\begin{bmatrix}
+      1 & 0 &0 \\
+      0 & 1 &0 \\
+      0 & 0 &0 
+  \end{bmatrix}$
+  \item $\textbf{x}_2^{-1}=\textbf{id}_{U_2}:U_2 \rightarrow \R^2$ is clearly differntiable. 
+\end{enumerate}
+This shows that $\textbf{x}_2^{-1}\circ  \pi \circ  \textbf{x}_1$ is differentiable at $p$. $\vdone$ 
+\end{proof}
+
+
+\begin{question}{}{}
+\includegraphics[height=1.5cm,width=18cm]{HW3a5}
+\end{question}
+\begin{proof}
+Let $S$ be the paraboloid. We show 
+\begin{align*}
+\vi{S\text{ is diffeomorphic to }\set{(x,y,0):x,y\inr}}
+\end{align*}
+Define 
+\begin{align*}
+\pi:S\rightarrow \set{(x,y,0):x,y\inr}\text{ by }\pi(x,y,z)\triangleq (x,y,0)
+\end{align*}
+We wish to show 
+\begin{align*}
+\vi{\pi\text{ and }\pi^{-1}\text{ is differentiable everywhere in the sense of manifold }}
+\end{align*}
+Define global parametrizaitons $\textbf{x}_1$ of $S$ and global parametrization  $\textbf{x}_2$ of $\set{(x,y,0):x,y\inr}$ by
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1:\R^2 \rightarrow S$ and $\textbf{x}_1(x,y)\triangleq (x,y,x^2+y^2)$ 
+  \item $\textbf{x}_2:\R^2 \rightarrow \set{(x,y,0):x,y \inr}$ and $\textbf{x}_2\triangleq \textbf{id}_{\R^2}$
+\end{enumerate}
+We now reword the problem into proving 
+\begin{align*}
+  \vi{\textbf{x}_2^{-1}\circ \pi \circ \textbf{x}_1:\R^2 \rightarrow \R^2\text{ and }\textbf{x}_1^{-1}\circ \pi^{-1}\circ \textbf{x}_2:\R^2 \rightarrow \R^2\text{ both are differentiable }}
+\end{align*}
+Because $\pi,\textbf{x}_1,\textbf{x}_2,\textbf{x}_2^{-1}$ are clearly differentiable, we only have to prove 
+\begin{align*}
+  \vi{\pi^{-1}: \set{(x,y,0):x,y\inr}\rightarrow \R^3\text{ is differentiable and }\textbf{x}_1^{-1}:\R^3\cap S\rightarrow \R^2 \text{ is differnetiable on $S$ }}
+\end{align*}
+Observe 
+\begin{align*}
+\pi^{-1}(x,y,0)\equiv(x,y,x^2+y^2)\text{ and }\textbf{x}_1(x,y,z)\equiv(x,y)
+\end{align*}
+It is now clear that $\pi^{-1}$ and $\textbf{x}_1^{-1}$ are both differentiable. $\vdone$
+\end{proof}
+
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{HW3a4}
+\end{question}
+\begin{proof}
+Suppose we are given a map $\pi:S_1\rightarrow S_2$ differentiable in the sense of manifold. We know for $\underline{\text{arbitrary}}$ $p$ in  $S_1$, there exists 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1:U_1\rightarrow S_1$ (a local parametrization around $p$)
+  \item $\textbf{x}_2:U_2\rightarrow S_2$ (a local parametrization around $\pi(p)$)
+\end{enumerate}
+such that 
+\begin{align}
+\label{dife}
+\Big(\textbf{x}_2^{-1}\circ \pi \circ \textbf{x}_1 \Big):U_1\subseteq \R^2\rightarrow U_2\subseteq \R^2\text{ is a diffeomorphism }
+\end{align}
+Now, fix two arbitrary 
+\begin{enumerate}[label=(\alph*)]
+  \item  $\textbf{x}_1':U_1'\rightarrow S_1$ (a local parametrization around $p$)
+  \item $\textbf{x}_2':U_2'\rightarrow S_2$ (a local parametrization around $\pi(p)$)
+\end{enumerate}
+We are required to prove (Note that the domain of each composited function may be smaller, but this does not undermine the validity of our argument, since we only care about the differentiablity at $p$) 
+\begin{align*}
+\vi{\Big((\textbf{x}_2')^{-1}\circ \pi \circ \textbf{x}_1' \Big):U_1'\subseteq \R^2\rightarrow U_2'\subseteq \R^2\text{ is a diffeomorphism  }}
+\end{align*}
+Note that 
+\begin{align*}
+  (\textbf{x}_2')^{-1}\circ \pi \circ \textbf{x}_1' &=(\textbf{x}_2')^{-1}\circ \big( \textbf{x}_2 \circ  \textbf{x}_2^{-1} \big)\circ \pi \circ \big( \textbf{x}_1 \circ \textbf{x}_1^{-1}  \big)\circ  \textbf{x}_1'\\
+  &=(\textbf{x}_2')^{-1}\circ \textbf{x}_2 \circ  \textbf{x}_2^{-1} \circ \pi \circ  \textbf{x}_1 \circ \textbf{x}_1^{-1} \circ  \textbf{x}_1'\\\
+  &=h_2\circ \textbf{x}_2^{-1} \circ  \pi \circ \textbf{x}_1 \circ h_1
+\end{align*}
+where
+\begin{align*}
+\begin{cases}
+ h_1\equiv\textbf{x}_1^{-1}\circ \textbf{x}_1':U_1'\rightarrow U_1 \\
+ h_2\equiv (\textbf{x}_2')^{-1}\circ \textbf{x}_2:U_2\rightarrow U_2'
+\end{cases}\text{ are changes of coordinate }
+\end{align*}
+Now, because changes of coordinates are diffeomorhphism, and $\textbf{x}_2^{-1}\circ \pi \circ \textbf{x}_1$ is diffeomorphism by \myref{Equation}{dife} (definition), we see that 
+\begin{align*}
+  (\textbf{x}_2')^{-1}\circ \pi \circ \textbf{x}_1'=h_2\circ \big(\textbf{x}_2^{-1}\circ \pi \circ \textbf{x}_1 \big)\circ h_1\text{ is a diffeomorphism at $(\textbf{x}_1')^{-1}(p)$ }
+\end{align*}
+This then conclude the proof, since $p$ is arbitrary picked from $S_1$. $\vdone$
+\end{proof}
+\begin{definition}
+\textbf{(Definition of Differentiable function on a regular curve)} Given two regular curve $C_1,C_2$, we say the function $f:C_1\rightarrow C_2$ is differentiable at $p$ if for all local parametrizations  $\textbf{x}_1:I\rightarrow C_1\ni p,\textbf{x}_2:I\rightarrow C_2\ni f(p)$,  we have 
+\begin{align*}
+\textbf{x}_2^{-1}\circ f\circ \textbf{x}_1\text{ is differentaible as a real to real function }
+\end{align*}
+\end{definition}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{HW3a3}
+\end{question}
+\begin{proof}
+Fix $t_0 \inr$. We wish to prove 
+\begin{align*}
+\vi{E\text{ is differentaible at $t_0$ in the sense of manifold }}
+\end{align*}
+Locally parametize $t_0$ and $E(t_0)$ by 
+\begin{align*}
+\textbf{x}_1(t)\triangleq t\text{ and }\textbf{x}_2(t)\triangleq (\cos t,\sin t)
+\end{align*}
+Now, see that 
+\begin{align*}
+\textbf{x}_2^{-1}\circ E\circ \textbf{x}_1(t)=t\text{ is clearly differentiable $\vdone$}
+\end{align*}
+\end{proof}
+
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{HW3a2}
+\end{question}
+\begin{proof}
+$(\longleftarrow)$\\
+
+Fix $a \in A$. Because $a \in S$, we know there exists a local parametrization $\textbf{x}_1:E\rightarrow V\cap S$ around $a$. Suppose 
+\begin{align*}
+  E'\triangleq \textbf{x}_1^{-1}[V\cap U\cap S]
+\end{align*}
+We see 
+\begin{align*}
+\text{ the restriction }\textbf{x}_1|_{E'}\text{ is clearly a local parametrizaiton around $a$ contained by $A$ }
+\end{align*}
+Because $a$ is arbitrary, this established that $A$ is a regular surface.\\
+
+$(\longrightarrow)$\\
+
+Suppose $A$ is a regular surface. \As{$A$ is not open in $S$, for a contradiction}. Then, there exists $a \in A$ such that 
+\begin{align}
+\label{epsa}
+\forall \epsilon, B_\epsilon (a)\cap S \not\subseteq A
+\end{align}
+Because $A$ is a regular surface, we know there exists a local parametrization $\textbf{x}_1:U\subseteq\R^2 \rightarrow V\subseteq A$ around $a$. We know 
+\begin{align*}
+\textbf{x}_1^{-1}:V\rightarrow U\text{ is continuous }
+\end{align*}
+Let $M\subseteq  U$ be an open neighborhood around $\textbf{x}_1^{-1}(a)$, such that $M\neq U$. Because $\textbf{x}_1^{-1}$ is continuous, we know there exists an open neighborhood $N\subseteq V$ around $a$ such that 
+ \begin{align*}
+\textbf{x}_1^{-1}[N]\subseteq M
+\end{align*}
+Yet, by \myref{Equation}{epsa}, the only open-neighborhood $N\subseteq V$ is exactly $N=V$. Then, we see 
+ \begin{align*}
+\textbf{x}_1^{-1}[N]=\textbf{x}_1^{-1}[V]=U\subseteq M
+\end{align*}
+this then implies $M=U\tCaC$. 
+\end{proof}
+
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{HW3a1}
+\end{question}
+\begin{proof}
+We first prove 
+\begin{align*}
+ \vi{F \text{ is differentiable on $S^2\setminus N$ }}
+\end{align*}
+Fix $p \in S^2 \setminus N$. We wish to prove 
+\begin{align*}
+\vi{F\text{ is differentiable at $p$ }}
+\end{align*}
+Because composition of differentiable functions is again differentiable (\myref{Theorem}{CoD}), we can reduce our problem into proving  
+\begin{align*}
+\vi{\begin{cases}
+  \pi_N:S^2\setminus N \rightarrow \overline{\R^2}\\
+  P:\overline{\R^2}\rightarrow \overline{\R^2}\\
+ \pi_N^{-1}:\overline{\R^2}\rightarrow S^2 
+\end{cases}\text{ are differentiable where $\overline{\R}^2\equiv \set{(x,y,-1)\inr^3:x,y\inr}$ }}
+\end{align*}
+Note that 
+\begin{align*}
+\pi_N(x,y,z)=(\frac{2x}{1-z},\frac{2y}{1-z})\text{ and }\pi_N^{-1}(u,v)=(\frac{4u}{u^2+v^2+4},\frac{4v}{u^2+v^2+4},\frac{u^2+v^2-4}{u^2+v^2+4})
+\end{align*}
+
+
+
+\end{proof}
+\chpater{HWs}
+
+\chapter{Surface}
+\section{Prerequisite}
+\begin{theorem}
+  \textbf{(Computation to check Linearly Independence)} 
+\begin{align*}
+\begin{bmatrix}
+  v_1 & w_1\\
+  v_2 & w_2 \\
+  v_3 & w_3
+\end{bmatrix}\text{ is linearly independent }\iff \begin{vmatrix} 
+  v_1 & w_1\\
+  v_2 & w_2
+\end{vmatrix}\neq 0\text{ or }\begin{vmatrix} 
+  v_2 & w_2\\
+  v_3 & w_3
+\end{vmatrix}\neq 0\text{ or }\begin{vmatrix} 
+  v_1 & w_1\\
+  v_3 & w_3
+\end{vmatrix}\neq 0
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\longleftarrow)$\\
+
+\As{$v,w$ are linearly dependent}. Fix $w_k=cv_k$. We see 
+\begin{align*}
+\begin{vmatrix} 
+  v_1 & w_1 \\
+  v_2 & w_2
+\end{vmatrix}=cv_1v_2-cv_1v_2=0\tCaC
+\end{align*}
+
+$(\longrightarrow)$\\
+
+\As{all determinant are $0$}. Pick $k$ such that $v_k$ is non-zero. Define 
+\begin{align*}
+c\triangleq \frac{w_k}{v_k}
+\end{align*}
+WOLG, suppose 
+\begin{align*}
+w_1=cv_1\text{ and }v_1\neq 0
+\end{align*}
+We then can deduce
+\begin{align*}
+\begin{vmatrix} 
+  v_1 & w_1 \\
+  v_2 & w_2
+\end{vmatrix}\implies cv_1v_2=v_1w_2 \implies w_2=cv_2
+\end{align*}
+The same arguement implies $w_3=cv_3\tCaC$
+\end{proof}
+\begin{theorem}
+\textbf{(Inverse function Theorem)} Given a map $f$ from open $E \subseteq \R^n$ to $\R^n$, if 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is continuously differentiable on $E$ 
+  \item $df_a$ is one-to-one 
+\end{enumerate}
+Then there exists open neighborhood $U\subseteq E$ around $a$ and  open  $V\subseteq \R^n$ such that 
+\begin{align*}
+f|_U:U\to V\text{ is a diffeomorphism }
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\textbf{(Implicit function Theorem)} Given a map $f$ from an open neighborhood around $(a,b) \in E \subseteq \R^{n+m}\to \R^n$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is continuously differentiable on $E$
+  \item the linear transformation $df_{(a,b)}|_{\R^n}:\R^n \to \R^n$ is one-to-one
+  \item $f(a,b)=0$
+\end{enumerate}
+Then there exists open neighborhood $U$ around $(a,b)\in U \subseteq \R^{n+m}$ and open neighborhood $V$ around  $b  \in V \subseteq \R^m$ such that we can uniquely define a function $g:V \to U$ by 
+\begin{align*}
+&f(g(y),y)=0\text{ for all $y \in V$}\\
+&\text{ and }g\text{ is continuously differentiable with }dg_b=- (df_{(a,b)}|_{\R^n})^{-1}\circ df_{(a,b)}|_{\R^m}
+\end{align*}
+\end{theorem}
+\section{Equivalent Definition of Regular Surface}
+\begin{definition}
+\textbf{(Definition of Regular Surface: Local Parametrization)} We say a set $S\subseteq \R^3$ is a regular surface if for all $p \in S$ there exists 
+\begin{enumerate}[label=(\alph*)]
+  \item an open neighborhood $p \in V\subseteq \R^3$
+  \item an open set $U\subseteq \R^2$
+  \item a function $\textbf{x}:U\rightarrow V\cap S$
+\end{enumerate}
+such that $\textbf{x}$ satisfy
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}$ is smooth 
+  \item $\textbf{x}$ is a homemomorphism between $U$ and  $V\cap S$
+  \item $d\textbf{x}_q \in L(\R^2,\R^3)$ is one-to-one for all $q\in U$ 
+\end{enumerate}
+\end{definition}
+\begin{definition}
+\textbf{(Definition of Regular Surface: Implicit function)} We say a set $S\subseteq \R^3$ is a regular surface if for all $p \in S$ there exists 
+\begin{enumerate}[label=(\alph*)]
+  \item an open neighborhood $p \in V\subseteq \R^3$ 
+  \item a function $F:V\rightarrow \R$ 
+\end{enumerate}
+such that $F$ satisfy
+\begin{enumerate}[label=(\alph*)]
+  \item $\text{det}(dF_q)\neq 0$ for all $q\in V\cap S$
+  \item $F$ is smooth on  $V$
+  \item $\exists c_0\inr, V\cap S=\bset{(x,y,z)\in V:F(x,y,z)=c_0}$
+\end{enumerate}
+\end{definition}
+\begin{mdframed}
+We now verify the equivalency between the two definitions. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Implicit function definition $\longrightarrow$ Local parametrization definition)} 
+\end{theorem}
+\begin{proof}
+Fix $p \in S$. We are given an open neighborhood $p \in V \subseteq \R^3$ and a function $F:V\rightarrow \R$ such that, WOLG, 
+\begin{enumerate}[label=(\alph*)]
+  \item $\text{det}(dF_q)\neq 0$ for all $q\in V\cap S$
+  \item $F$ is smooth on  $V$
+  \item $V\cap S=\bset{(x,y,z)\in V: F(x,y,z)=0}$ 
+\end{enumerate}
+
+
+We wish to find 
+\begin{align*}
+\vi{\text{ a local parametrization $\textbf{x}$ around $p$ }}
+\end{align*}
+Define $f:V \rightarrow \R^3$ by 
+\begin{align*}
+f(x,y,z)=(x,y,F(x,y,z))
+\end{align*}
+Because $dF_p\neq 0$, WOLG, we can suppose $\partial _zF(p)\neq 0$. Now, see 
+\begin{align*}
+\text{det}(df)=\begin{vmatrix}
+  1 & 0 & 0\\
+  0 & 1 & 0\\
+  \partial_x F & \partial_y F & \partial _z F
+\end{vmatrix}\neq 0
+\end{align*}
+Now, note that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is smooth on $V\hspace{0.5cm}(\because \text{ $F$ is smooth on $V$ })$  
+  \item $df_p$ is one-to-one $\hspace{0.5cm}(\because \partial_zF(p)\neq 0)$  
+\end{enumerate}
+Then, by inverse function Theorem, we know  
+\begin{align*}
+f\big|_{V'}\to U'\text{ is a local diffeomorphism around $V'\ni p$ and around $U'\ni f(p)$}
+\end{align*}
+Let $U\subseteq \set{(x,y,0):(x,y)\inr^2}$ be an open-neighborhood around $f(p)$ contained by $U'$. We claim  
+\begin{align*}
+  \vi{\textbf{x}\triangleq f^{-1}\big|_U\text{ suffices }}
+\end{align*}
+Note that $\textbf{x}$ is well-defined since $U\subseteq U'$ and $f$ is a bijective between  $V'$ and $U'$.\\
+
+
+Also, note that $\textbf{x}$ do maps points in $U$ to points in $V\cap S$, since $V\cap S=\bset{(x,y,z)\in V:F(x,y,z)=0}$.\\
+
+Suppose that 
+\begin{align*}
+\begin{bmatrix}
+  \alpha_{1,1} & \alpha_{1,2} & \alpha _{1,3}\\
+  \alpha _{2,1} & \alpha _{2,2} & \alpha _{2,3}\\
+  \alpha _{3,1} & \alpha _{3,2} & \alpha _{3,3}
+\end{bmatrix}\triangleq df^{-1}_\alpha  =\big(df_{f^{-1}(\alpha )} \big)^{-1}\text{ for all $\alpha \in U$ }
+\end{align*}
+We clearly have 
+\begin{align*}
+d\textbf{x}=\begin{bmatrix}
+  \alpha_{1,1} & \alpha _{1,2}\\
+  \alpha _{2,1} & \alpha _{2,2}\\
+  \alpha_{3,1} & \alpha_{3,2}
+\end{bmatrix}
+\end{align*}
+Now, one can use the premise 
+\begin{align*}
+\text{det}(dF_q)\neq 0 \text{ for all } q\in V\cap S
+\end{align*}
+to check $\textbf{x}$ do satisfy the regular condition. (Compute $\text{det}(df_{\alpha }^{-1})$ using co-factor formula on the third column) $\vdone$
+\end{proof}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of Regular surface: Monge Patches)} We say a set $S\subseteq \R^3$ is a regular surface if for all $p \in S$ there exists some open neighborhood $ p \in V\subseteq \R^3$ such that 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+
+$V\cap S$   can be expressed as the graph of some smooth function $f:O\subseteq \R^2 \rightarrow \R$ in the sense that one of the followings hold 
+   \end{minipage}
+\end{center}
+\begin{enumerate}[label=(\alph*)]
+  \item $V\cap S=\set{(x,y,f):(x,y)\in O}$ for some smooth $f:O \subseteq \R^2 \rightarrow \R$
+  \item $V\cap S=\set{(x,f,z):(x,z)\in O}$ for some smooth $f:O \subseteq \R^2 \rightarrow \R$
+  \item $V\cap S=\set{(f,y,z):(y,z)\in O}$ for some smooth $f:O \subseteq \R^2 \rightarrow \R$
+\end{enumerate}
+\end{definition}
+\section{Examples of Regular Surfaces}
+\begin{mdframed}
+Among all regular surfaces, the most classic one is perhaps the $S^2$. Here, we show some local parametriatoin of $S^2$.\\
+
+
+Note that because  $S^2=F^{-1}[0]$, where $F(x,y,z)=x^2+y^2+z^2-1$ clearly has non-zero derivative everywhere on $\R^3 \setminus 0$, we know $S^2$ is a regular surface. 
+\end{mdframed}
+\begin{mdframed}
+\begin{Example}{\textbf{(Graph Coordinates of $S^2$)}}{}
+\begin{align*}
+U=\set{(u,v):u^2+v^2<1}\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2=1}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+    \item $f_1:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_1(x,y)=(x,y,\sqrt{1-x^2-y^2})$  
+    \item $f_2:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_2(x,y)=(x,y,-\sqrt{1-x^2-y^2})$  
+    \item $f_3:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_3(x,z)=(x,\sqrt{1-x^2-z^2},z)$  
+    \item $f_4:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_4(x,z)=(x,-\sqrt{1-x^2-z^2},z)$  
+    \item $f_5:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_5(y,z)=(\sqrt{1-y^2-z^2},y,z)$  
+    \item $f_6:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_6(y,z)=(-\sqrt{1-y^2-z^2},y,z)$  
+\end{enumerate}
+\end{Example}  
+\begin{Example}{\textbf{(Spherical Coordinates of $S^2$)}}{}
+\begin{align*}
+S^2=\set{(x,y,z):x^2+y^2+z^2=1}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1:(0,\pi)\times (0,2\pi)\rightarrow S^2 $ by $\textbf{x}_1(\theta,\phi)=(\sin \theta \cos \phi,\sin \theta \sin \phi,\cos \theta)$
+  \item $\textbf{x}_2:(0,\pi)\times (0,2\pi)\rightarrow S^2$ by $\textbf{x}_2(\theta,\phi)=(-\sin \theta\cos \phi  ,\cos \theta,\sin \theta \sin \phi )$
+\end{enumerate}
+Note that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1$ does not contain $\set{(x,0,z)\in S^2: \begin{cases}
+    x^2+z^2=1\\
+    x\geq 0
+  \end{cases}}$ 
+\item $\textbf{x}_2$ does not contain $\set{(x,y,0)\in S^2: \begin{cases}
+  x^2+y^2=1\\
+  x\leq 0
+\end{cases}}$
+\end{enumerate}
+\end{Example}
+
+\begin{Example}{\textbf{(Stereographical Coordinates of $S^2$: Projection Plane be the Equator)}}{}
+\begin{align*}
+U=\R^2\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2=1}
+\end{align*}
+Note that
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_N^{-1}(x,y,z)\equiv (\frac{x}{1-z},\frac{y}{1-z})$ 
+  \item $\textbf{x}_S^{-1}(x,y,z)\equiv (\frac{x}{z+1},\frac{y}{z+1}) $
+\end{enumerate}
+For explicit expression of $\textbf{x}_N$, Use the trick 
+\begin{align*}
+u^2+v^2=\frac{x^2+y^2}{(1-z)^2}=\frac{1-z^2}{(1-z)^2}\text{ and }x=u(1-z),y=v(1-z)
+\end{align*}
+to first solve for $z$, then solve for $x,y$.\\
+
+Now, we have 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_N(u,v)=\big(\frac{2u}{u^2+v^2+1},\frac{2v}{u^2+v^2+1},\frac{u^2+v^2-1}{u^2+v^2+1} \big)$
+  \item $\textbf{x}_S(u,v)=\big(\frac{2u}{u^2+v^2+1},\frac{2v}{u^2+v^2+1},\frac{1-u^2-v^2}{1+u^2+v^2} \big)$
+\end{enumerate}
+Let
+\begin{align*}
+\textbf{x}_N(u,v)=(x,y,z)
+\end{align*}
+Compute 
+\begin{align*}
+  \frac{\partial (x,y)}{\partial (u,v)}&=\frac{4(-u^2 - v^2 + 1)}{u^6 + 3u^4v^2 + 3u^4 + 3u^2v^4 + 6u^2v^2 + 3u^2 + v^6 + 3v^4 + 3v^2 + 1}\\
+  \frac{\partial (y,z)}{\partial (u,v)}&=\frac{-8u}{u^6 + 3u^4v^2 + 3u^4 + 3u^2v^4 + 6u^2v^2 + 3u^2 + v^6 + 3v^4 + 3v^2 + 1}\\
+  \frac{\partial (x,z)}{\partial (u,v)}&=\frac{8v}{u^6 + 3u^4v^2 + 3u^4 + 3u^2v^4 + 6u^2v^2 + 3u^2 + v^6 + 3v^4 + 3v^2 + 1}
+\end{align*}
+This shows $\textbf{x}_N$ is indeed a local parametrization.   
+\end{Example}
+Note that 
+\begin{align*}
+\textbf{x}^{-1}_S \circ \textbf{x}_N (u,v)=\big( \frac{u}{u^2+v^2},\frac{v}{u^2+v^2}\big)
+\end{align*}
+is a diffeomorphism on $\R^2\setminus 0$, since $\text{det}\Big( d(\textbf{x}_S^{-1}\circ \textbf{x}_N)\Big)=\frac{-1}{(u^2+v^2)^2}$.\\
+
+Also, note that if we identify $(u,v)\equiv u+iv\triangleq \xi$, we have 
+\begin{align*}
+\textbf{x}_S^{-1}\circ \textbf{x}_N (\xi)=\frac{\overline{\xi}}{\abso{\xi}^2}
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+\begin{Example}{\textbf{(Stereographical Coordinates of $S^2$: Projection Plane at the Bottom)}}{}
+\begin{align*}
+U=\R^2\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2}
+\end{align*}
+\end{Example}
+\end{mdframed}
+\section{Change of Parameter}
+\begin{mdframed}
+Given two regular surfaces $S_1,S_2$, an open neighborhood $V_1\subseteq \R^3$ around $p$, and a continuous function  $f:V_1\cap S_1\rightarrow S_2$, we say $f$ is differentiable at $p\in V_1$ if there exists local parametrizations 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1:U_1\subseteq \R^2\rightarrow V_1'\cap S_1$ around $p$
+  \item $\textbf{x}_2:U_2\subseteq \R^2 \rightarrow V_2\cap  S_2$ around $f(p)$
+\end{enumerate}
+such that 
+\begin{align*}
+\textbf{x}_2^{-1}\circ f \circ \textbf{x}_1\text{ is differentaible at $\textbf{x}_1^{-1}(p)$ }
+\end{align*}
+Note the our definition of differentiablity of function between regular surface is well-defined, in the sense that if $f$ differentiable, all local parametrizations suffice to check. This fact is backed by \myref{Theorem}{CoP} 
+\end{mdframed}
+\begin{theorem}
+\label{CoP}
+\textbf{(Change of Parameter is a diffeomorphism)} Let $p$ be a point of a regular surface $S$, and let $\textbf{x}:U_1\rightarrow V_1\cap S$ and $\textbf{y}:U_2\rightarrow V_2\cap S$ be two local parametrization around $p$. Define $W\triangleq V_1\cap V_2 \cap S$. Then 
+\begin{align*}
+  \text{ The \textbf{change of coordinate} $h=\textbf{x}^{-1}\circ \textbf{y}:\textbf{y}^{-1}(W)\to \textbf{x}^{-1}(W)$ is a diffoeomorphism }
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is clear that $h$ is a homeomorphism, since $\textbf{x},\textbf{y}$ both are. \\
+
+Note the symmetry $h^{-1}=\textbf{y}^{-1}\circ \textbf{x}$. WOLG, we only have to prove 
+\begin{align*}
+\vi{h:\textbf{y}^{-1}(W)\subseteq U_2\rightarrow \textbf{x}^{-1}(W)\subseteq U_1\text{ is differentiable }}
+\end{align*}
+Fix $r \in \textbf{y}^{-1}(W)$. We prove 
+\begin{align*}
+  \vi{h\text{ is differentiable at $r$ }}
+\end{align*}
+Define $q\triangleq h(r) \in \textbf{x}^{-1}(W)\subseteq \R^2$. Let's write $\textbf{x}$ by 
+\begin{align*}
+\textbf{x}(u,v)=(x,y,z)
+\end{align*}
+By definition, we know $d\textbf{x}_q$ is one-to-one. This, WOLG, let us have 
+\begin{align*}
+\begin{vmatrix} 
+  \partial_u x & \partial_v x\\
+  \partial_u y & \partial_v y
+\end{vmatrix}(q)\neq 0
+\end{align*}
+Now, define $F:\textbf{x}^{-1}(W)\times \R\rightarrow \R^3$ by  
+\begin{align}
+\label{CC1}
+F(u,v,t)\triangleq  \Big(x(u,v),y(u,v),z(u,v)+t \Big)
+\end{align}
+Compute 
+\begin{align*}
+  \text{det}(dF_{(q,0)})=\begin{vmatrix}
+  \partial_u x & \partial_v x & 0\\
+  \partial_u y & \partial_v y & 0\\
+  \partial_u z & \partial_v z & 1 
+\end{vmatrix}(q,0)\neq 0 
+\end{align*}
+Then by Inverse function Theorem, we see that there exists an open neighborhood $M\subseteq \R^3$ around $F(q,0)$ such that $F^{-1}$ exists and is differentiable on $M$.\\
+
+Now, from \myref{Equation}{CC1}, note that 
+\begin{align*}
+F(u,v,0)=\textbf{x}(u,v)
+\end{align*}
+Recall the definition $h$, we now have 
+\begin{align*}
+h\equiv \textbf{x}^{-1}\circ \textbf{y}=F^{-1}\circ \textbf{y}
+\end{align*}
+Then because 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{y}$ is differentiable at $r$ 
+   \item $F^{-1}$ is differentiable at $F(q,0)=\textbf{x}(q)=\textbf{y}(r)$ 
+\end{enumerate}
+We see $h$ is indeed differentiable at $r\vdone$
+\end{proof}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{theorem}
+\label{CoD}
+\textbf{(Composition of Differentiable functions is differentiable)} Given three regular surfaces $\set{S_1,S_2,S_3}$, two differentiable functions $f_1:S_1\rightarrow S_2$ and $f_2:S_2\rightarrow S_3$, we see 
+\begin{align*}
+f_2\circ f_1\text{ is differentiable on $S_1$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $p_1\in S_1 $. We wish to prove 
+\begin{align*}
+  \vi{f_2\circ f_1\text{ is differentiable at $p_1$ }}
+\end{align*}
+Set 
+\begin{enumerate}[label=(\alph*)]
+  \item $p_2\triangleq f_1(p_1)$ 
+  \item $p_3\triangleq f_2(p_2)$
+\end{enumerate}
+Let 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1:U_1 \rightarrow V_1\cap S_1 \ni p_1 $ be a local parametrzaiton 
+   \item $\textbf{x}_2:U_2\rightarrow V_2\cap S_2\ni p_2$ be a local parametrizaiton 
+    \item $\textbf{x}_3:U_3\rightarrow V_3\cap S_3\ni p_3$ be a local parametrizaiton 
+\end{enumerate}
+We wish to prove 
+\begin{align*}
+  \vi{\textbf{x}_3^{-1}\circ f_2\circ f_1 \circ \textbf{x}_1\text{ is differentiable at $p_1$ }}
+\end{align*}
+Observe that 
+\begin{align*}
+\textbf{x}_3^{-1}\circ f_2\circ f_1\circ \textbf{x}_1&=\textbf{x}_3^{-1}\circ f_2 \circ \textbf{x}_2 \circ \textbf{x}_2^{-1} \circ f_1 \circ \textbf{x}_1\\
+&=\Big(\textbf{x}_3^{-1}\circ f_2\circ \textbf{x}_2 \Big)\circ \Big(\textbf{x}_2^{-1}\circ f_1\circ \textbf{x}_1 \Big)\text{ is differentiable $\vdone$}
+\end{align*}
+\end{proof}
+
+\section{Tangent Plane}
 \end{document}

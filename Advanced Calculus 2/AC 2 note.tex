@@ -2174,22 +2174,24 @@ Compute
 f=\tilde{0} \text{ and }f'_n(0)=1
 \end{align*}
 \end{Example}
-Informally speaking, these examples together with the fact integral are closed under uniform convergence (\myref{Theorem}{RIFac}) should give you some ideas that differentiation and integration although are operations inverse to each other, are NOT symmetric. There is a certain hierarchy on continuous functions on a fixed compact interval. Thus, we have the next Theorem in its form. 
+Informally speaking, these examples together with the fact integral are closed under uniform convergence (\myref{Theorem}{RIFac}) should give you some ideas that differentiation and integration although are operations inverse to each other, are NOT symmetric. There is a certain hierarchy on continuous functions on a fixed compact interval. Thus, we have the next Theorem in its form. Note that in application, the next Theorem only require us to prove $f'_n$ uniformly converge, and doesn't require us to prove to where does it converge. 
 \end{mdframed}
 \begin{theorem}
+\label{UCaD}
 \textbf{(Uniform Convergence and Differentiation)} Given a sequence of function $f_n:[a,b]\rightarrow \R$ such that 
 \begin{enumerate}[label=(\alph*)]
-  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
-  \item $f_n$ are differentiable on $(a,b)$   
-  \item $f_n$ are continuous on  $[a,b]$
   \item $f'_n$ uniformly converge on  $(a,b)$
+  \item $f_n$ are continuous on  $[a,b]$
+  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
 \end{enumerate}
-Then there exists a function $f:[a,b]\rightarrow \R$ such that 
+Then 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n$ uniformly converge on  $[a,b]$ 
+  \item and
 \begin{align*}
-&f\text{ is differentiable on $(a,b)$ }\\
-  \text{and }&f_n \to f\text{ uniformly on $[a,b]$}\\
-  \text{ and }&f'_n \to f'\text{ uniformly on $(a,b)$ } 
+\Big(\lim_{n\to \infty}f_n \Big)'(x_0)=\lim_{n\to \infty}f_n'(x_0)\text{ on $(a,b)$ }
 \end{align*}
+\end{enumerate}
 \end{theorem}
 \begin{proof}
 We first prove 
@@ -2236,7 +2238,7 @@ Now, by \myref{Equation}{UCD1}, we have
 We claim 
 \begin{align}
 \label{UCAC2}
-\blue{f(x)\triangleq \lim_{n\to \infty}f_n(x)\text{ for all $x \in [a,b]$ works }}
+\blue{f(x)\triangleq \lim_{n\to \infty}f_n(x)\text{ satisfy }f'(x)=\lim_{n\to \infty}f'_n(x)\text{ on $(a,b)$ }}
 \end{align}
 We first show 
 \begin{align*}
@@ -2310,11 +2312,10 @@ Then (Notice that the second equality below hold true because we have known $\li
 &=\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)\\
 &=\lim_{n\to \infty}f'_n(x)\text{ exists }\odone
 \end{align*}
-Now, notice that $f'(x)=\lim_{t\to x}\phi (t)$, so in fact, we have just proved $f'_n \to f'$, and the convergence is uniform by premise. Also, the statement 
-\begin{align*}
-f_n\to f\text{ uniformly on $[a,b]$ }
-\end{align*}
-has been proved, since we already have $f_n \to f$ by our setting (\myref{Equation}{UCAC2}) and we have proved such convergence is uniform (\myref{Equation}{fnun}). The proof is now completed. $\bdone$
+Now, notice that $f'(x)=\lim_{t\to x}\phi (t)$, so in fact, we have just proved $f'_n \to f'\odone \bdone$
+
+
+
 \end{proof}
 \begin{mdframed}
 As Rudin remarked, a much shorter (and much more intuitive) proof can be given, if we require $f'$ to be continuous on  $[a,b]$. 
@@ -2322,18 +2323,19 @@ As Rudin remarked, a much shorter (and much more intuitive) proof can be given, 
 \begin{theorem}
 \textbf{(Uniform Convergence and Differentiation: Weaker Version)} Given a sequence of function $f_n:[a,b]\rightarrow \R$ such that 
 \begin{enumerate}[label=(\alph*)]
-  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
-  \item $f_n$ are differentiable on $(a,b)$  
-  \item $f_n'$ are continuous on $[a,b]$ ($f_n'$ at  $a,b$ are one-sided)
-  \item $f_n$ are continuous on  $[a,b]$
   \item $f'_n$ uniformly converge on  $[a,b]$
+  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
+  \item $f_n$ are of class $C^1$ on $[a,b]$ 
 \end{enumerate}
-Then there exists a function $f:[a,b]\rightarrow \R$ such that 
+
+Then 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n$ uniformly converge on  $[a,b]$ 
+  \item and
 \begin{align*}
-&f\text{ is differentiable on $(a,b)$ }\\
-  \text{and }&f_n \to f\text{ uniformly on $[a,b]$}\\
-  \text{ and }&f'_n \to f'\text{ uniformly on $(a,b)$ } 
+\frac{d}{dx}\Big(\lim_{n\to \infty}f_n(x) \Big)\Big|_{x=x_0}=\lim_{n\to \infty}f_n'(x_0)\text{ on $(a,b)$ }
 \end{align*}
+\end{enumerate}
 \end{theorem}
 \begin{proof}
 We claim 
@@ -2342,7 +2344,7 @@ We claim
 \end{align*}
 Note that $\lim_{n\to \infty}\int_{x_0}^x f'_n(t)dt$ exists because $f'_n$ uniformly converge  (\myref{Theorem}{RIFac}).\\
 
-Because $f'_n$ uniformly converge, we know
+Because $f'_n$ uniformly converge and are continuous on $[a,b]$, by ULT, we know
  \begin{align*}
 \int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt+L\text{ exists }
 \end{align*}
@@ -2350,7 +2352,7 @@ and know
 \begin{align*}
 f(x)=\int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt + L 
 \end{align*}
-Because $f'_n$ are all continuous, by Uniform Limit Theorem, we know $\lim_{n\to \infty}f'_n(t)$ as a function of $t$ is continuous. Then by FTC, we know 
+By FTC, we see
  \begin{align*}
 f'(x)=\lim_{n\to \infty}f'_n(x)\text{ on }(a,b)
 \end{align*}
@@ -2362,10 +2364,10 @@ Fix $\epsilon $. We wish
 \begin{align*}
 \vi{\text{ to find $N$ such that  $\abso{f_n(x)-f(x)}\leq \epsilon $ for all $n>N$ and  $x \in [a,b]$}}
 \end{align*}
-Because $f'_n \to f$ uniformly, and $f_n(x_0) \to L=f(x_0)$ (Check $L=f(x_0)$), we know there exists $N$ such that 
+Because $f'_n \to f'$ uniformly, and $f_n(x_0) \to L=f(x_0)$ (Check $L=f(x_0)$), we know there exists $N$ such that 
  \begin{align*}
 \begin{cases}
-  \norm{f'_n-f}_\infty < \frac{\epsilon }{2(b-a)}\\
+  \norm{f'_n-f'}_\infty < \frac{\epsilon }{2(b-a)}\\
   \abso{f_n(x_0)-f(x_0)}<\frac{\epsilon}{2}
 \end{cases}\text{ for all $n>N$ }
 \end{align*}
@@ -2380,142 +2382,627 @@ Fix $n>N$ and  $x\in [a,b]$. Observe
 &\leq \frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
 \end{align*}
 \end{proof}
-\section{Real Analytic Functions}
+\section{Fundamental Tests*}
+\begin{theorem}
+\textbf{(LCT)}
+\end{theorem}
 \begin{mdframed}
-In this section, by a \textbf{power series}, we mean a pair $(a,c_n)$ where $a \inc$ is called the \textbf{center} of power series, and $c_n\inc$ are the coefficients sequence. By \textbf{radius of convergence}, we mean a unique  $R \in \R^+_0 \cup  \infty$ such that 
- \begin{align*}
-\sum_{n=0}^\infty c_n(z-a)^n
-\begin{cases}
-  \text{ converge absolutely }& \text{ if  }\abso{z-a}<R\\
-  \text{ diverge }& \text{ if  }\abso{z-a}>R\\
-\end{cases}
-\end{align*}
-Note that if $R=0$, then the definition should be slightly modified. 
+
 \end{mdframed}
 \begin{theorem}
-\textbf{(Cauchy-Hadamard Theorem)} Given a power series $(a,c_n)$, and define $R \inr_0^+ \cup  \infty$ by 
+\textbf{(Geometric Series)}
+\end{theorem}
+\begin{theorem}
+\textbf{(p-Series)}
+\end{theorem}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{theorem}
+\textbf{(Limit Superior Lemma 1)} 
 \begin{align*}
-R=\frac{1}{\limsup_{n\to\infty} \sqrt[n]{\abso{c_n}} }
+d_n \text{ converge }\implies \limsup_{n\to\infty} c_nd_n=\lim_{n\to \infty}d_n\limsup_{n\to\infty} c_n
 \end{align*}
-We have
+\end{theorem}
+\begin{theorem}
+\textbf{(Limit Superior Lemma 2)} 
+\begin{align*}
+\limsup_{n\to\infty} \sqrt[n]{c_n} =\limsup_{n\to\infty} \sqrt[n]{c_{n+k}} 
+\end{align*}
+\end{theorem}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{theorem}
+\textbf{(Ratio Test)}
+\end{theorem}
+\begin{theorem}
+\textbf{(Root Test)}
+\end{theorem}
+\begin{theorem}
+\textbf{(Root Test is Stronger Than Ratio Test)}
+\end{theorem}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{theorem}
+\textbf{(Absolute Convergent Series Converge)}
+\end{theorem}
+\begin{theorem}
+\textbf{(Absolute Convergent Series Unconditionally Converge)}
+\end{theorem}
+\begin{theorem}
+\textbf{(Fubini's Theorem for Infinite Series)}
+\end{theorem}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{theorem}
+\textbf{(Summation by Part)}
+\end{theorem}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{theorem}
+\textbf{(Alternating Series Test)}
+\end{theorem}
+\begin{theorem}
+\textbf{(Abel's Test)}
+\end{theorem}
+\begin{theorem}
+\textbf{(Dirichlet's Test)}
+\end{theorem}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{theorem}
+\textbf{(Merten's Theorem)} Suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $\sum_{n=0}^\infty a_n$ converge absolutely 
+  \item $\sum_{n=0}^\infty a_n=A$
+  \item $\sum_{n=0}^\infty b_n=B$ 
+  \item $c_n=\sum_{k=0}^n a_kb_{n-k}$
+\end{enumerate}
+Then we have 
+\begin{align*}
+\sum_{n=0}^{\infty}c_n=AB
+\end{align*}
+\end{theorem}
+\begin{mdframed}
+
+\end{mdframed}
+\begin{theorem}
+\textbf{(Special Sequence)} $(n!)^{\frac{1}{n}}$
+\end{theorem}
+\section{Analytic Functions}
+\begin{mdframed}
+In this section, by a  \textbf{real power series}, we mean a pair $(a,c_n)$ where $a \inr$ is called the \textbf{center} of power series, and $c_n\inr$ are the coefficients sequence. By \textbf{radius of convergence}, we mean a unique  $R \in \R^+_0 \cup  \infty$ such that 
  \begin{align*}
-\sum_{n=0}^\infty c_n(z-a)^n
+\sum_{n=0}^\infty c_n(x-a)^n
 \begin{cases}
-  \text{ converge absolutely }& \text{ if  }\abso{z-a}<R\\
-  \text{ diverge }& \text{ if  }\abso{z-a}>R\\
+  \text{ converge absolutely }& \text{ if  }\abso{x-a}<R\\
+  \text{ diverge }& \text{ if  }\abso{x-a}>R\\
 \end{cases}
+\end{align*}
+Such $R$ always exist (and is unique, this fact can be checked without computing the actual value of $R$) and is exactly 
+\begin{align*}
+R=\frac{1}{\limsup_{n\to\infty} \sqrt[n]{c_n} }
+\end{align*}
+This result is called \textbf{Cauchy-Hadamard Theorem}. It can be directly proved by applying Root Test to $\sum c_n(z-a)^n$. For this, we say $(a-R,a+R)$ is the \textbf{interval of convergence}. Note that Cauchy-Hadamard Theorem does not tell us whether a power series converges at points of boundary of disk of convergence. It require extra works to determine if the power series converge at endpoints. Following is an example of such discussion.   
+\begin{Example}{\textbf{(Discussion of Convergence on Boundary)}}{}
+\begin{align*}
+f_q(z)=\sum_{n=0}^\infty n^q z^n \text{ provided $q\inr$ }
+\end{align*}
+It is clear that  $f_q$ has convergence radius  $1$ for all  $q\inr$. For boundary, we have
+\begin{align*}
+\begin{cases}
+  q<-1 \implies f_q\text{ converge on $S^1$ }\\
+  -1\leq q<0 \implies f_q\text{ converge on }S^1\setminus \set{1}\\
+  0 \leq q \implies f_q \text{ diverge on }S^1
+\end{cases}
+\end{align*}
+At $z=1$, the discussion is just p-series. On $S^1\setminus \set{1}$, the discussion use Dirichlet's Test, where boundedness of $\sum^n_{k=0} z^k$ is proved by geometric formula.  
+\begin{align*}
+\abso{\sum_{k=1}^n z^k}&=\abso{\sum_{k=1}^n e^{ik\theta}}=\frac{\abso{e^{i\theta}-e^{i(n+1)\theta}}}{\abso{1-e^{i\theta}}}\leq \frac{2}{\abso{1-e^{i\theta}}}
+\end{align*}
+\end{Example}
+Notice that the fact $\sum c_n(z-a)^n$ absolutely converge in $(a-R,a+R)$ implies the convergence is uniform on all $[a-R+\epsilon ,a+R-\epsilon ]$ by M-Test. However, on $(a-R,a+R)$, the convergence is not always uniform. 
+\begin{Example}{\textbf{(Failure of Uniform Convergence on $(a-R,a+R)$)}}{}
+\begin{align*}
+f(z)=\sum_{n=0}^\infty z^n
+\end{align*}
+Note $R=1$. Use Geometric Series Formula to show $f(x)=\frac{1}{1-x}$ on $(-1,1)$. It is then clear that $f$ is unbounded on  $(-1,1)$ while all partial sums $\sum_{k=0}^n z^k$ is bounded on $(-1,1)$. 
+\end{Example}
+We now introduce some terminologies. We say a real function $f$ is \textbf{real analytic at} $a\inr$ if there exists a power series $(a,c_n)$ such that $f$ agrees with $\sum_{n=0}^\infty c_n(z-a)^n$ on $(a-R,a+R)$ for some $R$  (of course, such $R$ must not be strictly greater than the radius of convergence of $(a,c_n)$).\\
+
+It shall be quite clear that if $f,g$ are both analytic at  $a\inr$ with radius $R_f\leq R_g$, then $f+g$ and $fg$ are both analytic at  $a$ with radius at least $R_f$. (the fact $fg$ is analytic at $a$ with radius at least $R_f$ is an immediate consequence of  Merten's Theorem)\\
+
+We now investigate deeper into real analytic functions. We first prove that real analytic functions are smooth, that is,  $C^{\omega}(I)\subseteq C^{\infty}(I)$ on open $I\subseteq \R$. 
+\end{mdframed}
+\begin{theorem}
+\label{AfaS}
+\textbf{(Analytic functions are Smooth)} Given a power series $(a,c_n)$ of convergence radius $R$, if we define $f:D_R(a)\rightarrow \C$ by 
+\begin{align*}
+f(z)=\sum_{n=0}^\infty c_n (z-a)^n 
+\end{align*}
+Then 
+\begin{align*}
+f\text{ is of class }C^\infty\text{ on $D_{R}(a)$ and $f^{(k)}(z)=\sum_{n=k}^\infty \frac{n!}{(n-k)!}c_n(z-a)^{n-k}$  on $D_R(a)$}
 \end{align*}
 \end{theorem}
 \begin{proof}
-WOLG, let $a=0$. We first prove when $R=0$. That is 
+We prove by induction. Base case $k=0$ is trivial. Fix $k\geq 0$. Suppose we have 
 \begin{align*}
-  \vi{R=0 \implies \sum_{n=0}^\infty c_nz^n\text{ diverge }\forall z\neq 0 }
+f^{(k)}(z)=\sum_{n=k}^{\infty} \frac{n!}{(n-k)!}c_n(z-a)^{n-k}\text{ on $D_R(a)$ }
 \end{align*}
-Fix $R=0$ and  $z\inc^*$. We reduce the problem into
+We are required to prove 
 \begin{align*}
-\vi{\text{ proving $c_nz^n\not\to 0$ }}
+\vi{f^{(k+1)}(z)=\sum_{n=k+1}^\infty \frac{n!}{(n-k-1)!}c_n(z-a)^{n-k-1}\text{ on }D_R(a)}
+\end{align*} 
+Set $f_m$ 
+ \begin{align*}
+f_m(z)\triangleq \sum_{n=k}^{k+m} \frac{n!}{(n-k)!}c_n(z-a)^{n-k}
 \end{align*}
-Because $R=0$, we know 
+We have 
+\begin{align}
+\label{PS1}
+f_m \to f^{(k)}\text{ pointwise on $D_R(a)$ and }f'_m (z)= \sum_{n=k+1}^{k+m}\frac{n!}{(n-k-1)!}c_n(z-a)^{n-k-1}
+\end{align}
+We abstract our problem into proving 
 \begin{align*}
- \limsup_{n\to\infty} \big(\abso{c_n} \big)^{\frac{1}{n}}=\infty 
+  \vi{f'_m \to f^{(k+1)}\text{ pointwise on $D_R(a)$ }}
 \end{align*}
-This implies the existence of a sub-sequence $n_k$ such that 
+Fix $z_0 \in D_R(a)$. We only wish to prove 
 \begin{align*}
-\big(\abso{c_{n_k}} \big)^{\frac{1}{n_k}} \nearrow \infty
+\vi{(f^{(k)})'(z_0)=\lim_{m\to \infty}f'_m(z_0)}
 \end{align*}
-We now see 
+Fix $\epsilon $ such that $\abso{z_0-a}< R-\epsilon $. By \myref{Equation}{PS1}, using \myref{Theorem}{UCaD} (Uniform Convergence and Differentiaiton). We only have to prove 
 \begin{align*}
-  \abso{c_{n_k}z^{n_k}}&= \big(\abso{z}\cdot \abso{c_{n_k}}^{\frac{1}{n_k}}  \big)^{n_k} \nearrow \infty \vdone
+  \vi{f'_m\text{ uniformly converge on $\overline{D}_{R-\epsilon }$ }}
 \end{align*}
-We now prove when $R\inr^+$. That is 
+Note that 
 \begin{align*}
-  \blue{R\inr^+ \implies \sum_{n=0}^\infty c_nz^n}
-\blue{\begin{cases}
-  \text{ converge absolutely }& \text{ if  }\abso{z}<R\\
-  \text{ diverge }& \text{ if  }\abso{z}>R\\
-\end{cases}}
+f'_m(z)=\sum_{n=0}^{m-1} \frac{(n+k+1)!}{n!}c_{n+k+1}(z-a)^n
 \end{align*}
-Fix $R\inr^+$ and $\abso{z}>R$. We first prove 
+so we can compute the radius of convergence for $f'_m$
 \begin{align*}
-  \olive{ \sum_{n=0}^\infty c_nz^n\text{ diverge }}
+\limsup_{n\to\infty} \sqrt[n]{\frac{(n+k+1)!}{n!}\abso{c_{n+k+1}}}&=\limsup_{n\to\infty} \sqrt[n]{\abso{c_{n+k+1}}} \\
+&=\limsup_{n\to\infty} \sqrt[n]{\abso{c_n}}=R 
 \end{align*}
-We reduce the problem into 
+Together by Cauchy-Hadamrd (absolute convergent on $a+R-\epsilon $) and M-test show that 
 \begin{align*}
-\olive{\text{ proving $c_nz^n\not\to 0$ }}
+\sum_{n=0}^\infty \frac{(n+k+1)!}{n!}c_{n+k+1}(z-a)^n \text{ uniformly converge on $\overline{D}_{R-\epsilon }(a)$ }\vdone
 \end{align*}
-Define 
-\begin{align*}
-t\triangleq \limsup_{n\to\infty} \sqrt[n]{\abso{c_n}} =\frac{1}{R}
-\end{align*}
-Because $\abso{z}>R$, we know  $t=\frac{1}{R}>\frac{1}{\abso{z}}$. Then, we can let $\epsilon $ satisfy
-\begin{align*}
-t-\epsilon>\frac{1}{\abso{z}}
-\end{align*}
-Now, because 
-\begin{align*}
-\limsup_{n\to\infty} \sqrt[n]{\abso{c_n}}>t-\epsilon 
-\end{align*}
-we know there exists a sub-sequence  $n_k$ such that 
-\begin{align*}
-\big(\abso{c_{n_k}} \big)^{\frac{1}{n_k}}>t-\epsilon=\frac{1}{\abso{z}} \text{ for all $n_k$  }
-\end{align*}
-We now see
-\begin{align*}
-\abso{c_{n_k}z^{n_k}}=\big(\abso{c_{n_k}}^{\frac{1}{n_k}}\cdot \abso{z} \big)^{n_k}>1\text{ for all $n_k\odone$ }
-\end{align*}
+\end{proof}
+\begin{mdframed}
+Now by \myref{Theorem}{AfaS}, if we are given a real function $f$ analytic at $a$, the power series representation $(a,c_n):\sum_{n=0}^\infty c_n(z-a)^n=f$ must be unique, since $f$ is proved to be infinitely differentiable at $a$ and proved to satisfy $c_k=\frac{f^{(k)}(a)}{k!}$.\\
 
+Notice that the arguments above are all based on the hypothesis that $f$ is analytic, and that smoothness does not imply analytic. See the following examples.
+\end{mdframed}
+\begin{mdframed}
+\begin{Example}{\textbf{(Smooth but not Analytic Function)}}{}
+\begin{align*}
+f(x)=\begin{cases}
+  e^{\frac{-1}{x^2}}& \text{ if $x\neq 0$ }\\
+  0& \text{ if $x=0$ }
+\end{cases}
+\end{align*}
+Use induction to show that 
+\begin{align*}
+f^{(k)}(x)=P_k(\frac{1}{x})e^{-(\frac{1}{x})^2}\hspace{0.5cm}\exists P_k\inr[x^{-1}],\forall k\inz^+_0,\forall x\inr^*
+\end{align*}
+and again use induction to show that  
+\begin{align*}
+f^{(k)}(0)=0\hspace{0.5cm}\forall k\inz_0^+
+\end{align*}
+The trick to show $f^{(k)}(0)=0$ is let $u=\frac{1}{x}$.\\
 
+Now, with \myref{Theorem}{AfaS}, we see that $f$ is not analytic at $0$. 
+\end{Example}
+\begin{Example}{\textbf{(Bump Function)}}{}
+\begin{align*}
+f(x)=\begin{cases}
+  e^{\frac{-1}{1-x^2}}& \text{ if $\abso{x}<1$ }\\
+  0& \text{ otherwise }
+\end{cases}
+\end{align*}
+Use the same trick (but more advanced) to show $f$ is smooth, and note that $f$ is not analytic at $\pm 1$. 
+\end{Example}
+\end{mdframed}
+\begin{mdframed}
+Now, it comes an interesting question. Given a real function $f$ analytic at $a$ with radius  $R$, and suppose $b \in (a-R,a+R)$.
+\begin{enumerate}[label=(\alph*)]
+  \item Is $f$ also analytic at $b$?
+   \item What do we know about the radius of convergence of $f$ at $b$?
+   \item Suppose $f$ is indeed analytic at $b$. It is trivial to see that the power series $(a,c_{a;n})$ and $(b,c_{b;n})$ must agree on the common convergence interval, and because $f$ is given, we by \myref{Theorem}{AfaS}, have already known the value of $c_{b;n}$. Can we verify that the power series  $(a,c_{a;n})$ and $(a,c_{b;n})$ do indeed agree with each other on the common convergence interval?
+\end{enumerate}
+\myref{Theorem}{TT} (Taylor's Theorem) give satisfying answers to these problems. 
+\end{mdframed}
+\begin{theorem}
+\label{TT}
+  \textbf{(Taylor's Theorem)} Given a real function $f$ analytic at $a$ with radius $R$, and suppose $b\in (a-R,a+R)$. Then 
+\begin{align*}
+f(x)=\sum_{k=0}^\infty \frac{f^{(k)}(b)}{k!}(x-b)^k\text{ on $\abso{x-b}<R-\abso{b-a}$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+WOLG, let $a=0$. Suppose $x$ satisfy $\abso{x-b}<R-\abso{b}$. Compute 
+ \begin{align*}
+f(x)&=\sum_{k=0}^{\infty}\frac{f^{(k)}(a)}{k!}x^k\\
+&=\sum_{k=0}^{\infty}\frac{f^{(k)}(a)}{k!}(x-b+b)^k\\
+&=\sum_{k=0}^{\infty}\frac{f^{(k)}(a)}{k!}\sum_{n=0}^k \binom{k}{n} (x-b)^n b^{k-n}\\
+&=\sum_{k=0}^\infty \sum_{n=0}^k \frac{f^{(k)}(a)}{k!}\binom{k}{n}(x-b)^n b^{k-n}
+\end{align*}
+Note that 
+\begin{align*}
+  \sum_{k=0}^\infty \abso{\sum_{n=0}^\infty \frac{f^{(k)}(a)}{k!}\binom{k}{n}(x-b)^n b^{k-n}}&\leq \sum_{k=0}^\infty \sum_{n=0}^\infty \abso{\frac{f^{(k)}(a)}{k!}}\binom{k}{n}\abso{x-b}^n \cdot \abso{b}^{k-n}\\
+  &=\sum_{k=0}^{\infty} \abso{\frac{f^{(k)}(a)}{k!}}\sum_{n=0}^{\infty}\binom{k}{n}\abso{x-b}^{n}\cdot \abso{b}^{k-n}\\
+  &=\sum_{k=0}^\infty \abso{\frac{f^{(k)}(a)}{k!}} \big(\abso{x-b}+\abso{b} \big)^k
+\end{align*}
+converge, by Cauchy-Hadamard Theorem and $\abso{x-b}+\abso{b}<R$.\\
 
-
-
-
+Now, using Fubini's Theorem for Infinite Series, we have 
+\begin{align*}
+\sum_{k=0}^\infty \sum_{n=0}^{k} \frac{f^{(k)}(a)}{k!}\binom{k}{n}(x-b)^{n}b^{k-n}&=\sum_{k=0}^\infty \sum_{n=0}^{\infty} \frac{f^{(k)}(a)}{k!} \binom{k}{n}(x-b)^n b^{k-n}\\
+&=\sum_{n=0}^\infty \sum_{k=0}^\infty \frac{f^{(k)}(a)}{k!} \binom{k}{n}(x-b)^n b^{k-n}\\
+&=\sum_{n=0}^\infty \sum_{k=n}^\infty \frac{f^{(k)}(a)}{k!} \binom{k}{n}(x-b)^n b^{k-n}\\
+&=\sum_{n=0}^\infty \Big[ \sum_{k=n}^\infty \frac{f^{(k)}(a)}{k!} \binom{k}{n}b^{k-n}\Big] (x-b)^n\\
+\end{align*}
+We have reduced the problem into proving 
+\begin{align*}
+\vi{\sum_{k=n}^\infty \frac{f^{(k)}(a)}{k!} \binom{k}{n}b^{k-n}=\frac{f^{(n)}(b)}{n!}}
+\end{align*}
+Using the formula in \myref{Theorem}{AfaS}, because $b$ is in $(a-R,a+R)$, we can compute 
+\begin{align*}
+f^{(n)}(b)&=\sum_{k=n}^{\infty}\frac{k!}{(k-n)!}c_{a;k}(b)^{k-n}\\
+&=\sum_{k=n}^\infty \frac{k!}{(k-n)!} \cdot \frac{f^{(k)}(a)}{k!} \cdot b^{k-n}\\
+&=\sum _{k=n}^{\infty}\frac{f^{(k)}(a)}{(k-n)!}b^{k-n}
+\end{align*}
+This now implies 
+\begin{align*}
+\frac{f^{(n)}(b)}{n!}&=\sum_{k=n}^\infty \frac{f^{(k)}(a)}{n!(k-n)!}b^{k-n}\\
+&=\sum_{k=n}^\infty \frac{f^{(k)}(a)}{k!}\binom{k}{n}b^{k-n}\vdone
+\end{align*}
 
 \end{proof}
-\begin{theorem}
-\textbf{(Uniform Convergence of Power Series)} Given a power series $(a,c_n)$ of radius $R$, if we define $f:(a-R,a+R)\rightarrow \R$ by 
-\begin{align*}
-f(x)=\sum_{n=0}^\infty c_n (x-a)^n 
-\end{align*}
-Then 
+\chapter{Calculus in Euclidean Space}
+\section{Linear Algebra Review*}
+\textbf{(Axiom Parts)}
+\begin{mdframed}
+Recall that by a \textbf{normed space} $V$, we mean a vector space over a sub-field $\F$ of $\C$ equipped with  $\norm{\cdot}:V\to \R_0^+$ satisfying the following $\underline{\text{axioms}}$: 
 \begin{enumerate}[label=(\alph*)]
-  \item the convergence of $f$ is uniform on  $[a-R+\epsilon ,a+R-\epsilon ]$ for all $\epsilon $
-  \item $f'(x)$ and $\sum_{n=1}^\infty nc_nx^{n-1}$ both exist and are equal, on $(a-R,a+R)$. 
+  \item $\norm{x}=0 \implies x=0$ (positive-definiteness)
+  \item $\norm{sx}=\abso{s}\cdot \norm{x}$ for all $s \in \F$ and $x\in V$ (absolute-homogenity)
+  \item $\norm{x+y}\leq \norm{x}+\norm{y}$ for all $x,y \in V$ (triangle inequality)
+\end{enumerate}
+Observe
+\begin{align*}
+\norm{0}=\norm{0+x}\leq \norm{0}+\norm{x}\text{ for all $x\in V$ }
+\end{align*}
+This shows that $\norm{x}\geq 0$ for all $x\in V$. Also observe 
+\begin{align*}
+\norm{0}=\norm{0(x)}=\abso{0}\cdot \norm{x}=0
+\end{align*}
+
+We can now rewrite the normed space axioms into
+\begin{enumerate}[label=(\alph*)]
+  \item $\norm{x}=0\iff x=0$ (positive-definiteness)
+  \item $\norm{sx}=\abso{s}\cdot \norm{x}$ for all $s \in \F$ and $x\in V$ (absolute-homogeneity)
+  \item $\norm{x+y}\leq \norm{x}+\norm{y}$ for all $x,y \in V$ (triangle inequality)
+  \item $\norm{x}\geq 0$ for all $x \in V$ (non-negativity)
+\end{enumerate}
+\end{mdframed}
+\begin{mdframed}
+Recall that by an \textbf{inner product space} $V$, we mean a vector space over  $\R$ of  $\C$ equipped with  $\langle \cdot,\cdot\rangle : V^2 \rightarrow \R\text{ or }\C$  satisfying the following $\underline{\text{axioms}}$
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle x,x\rangle >0$ for all $x\neq 0$ (Positive-definiteness)
+  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (Conjugate symmetry)
+  \item $\langle x+y,z\rangle =\langle x,z\rangle +\langle y,z\rangle $ and $\langle cx,z\rangle=c\langle x,z\rangle $ (Linearity in the first argument)
+\end{enumerate}
+Note that conjugate symmetry let us deduce
+\begin{align*}
+\langle x,x\rangle =\overline{\langle x,x\rangle }\implies \langle x,x\rangle \inr
+\end{align*}
+Also, one can easily use linearity in first argument to deduce 
+\begin{align*}
+\langle 0,0\rangle =2\langle 0,0\rangle \implies \langle 0,0\rangle =0
+\end{align*}
+This now let us rewrite the inner product space over $\C$ axioms into 
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity) 
+  \item $\langle x,x\rangle =0 \iff x=0$ (positive-definiteness)
+  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (conjugate symmetry)
+  \item $\langle cx+y,z\rangle =c\langle x,z\rangle +\langle y,z\rangle $ and $\langle x,cy+z\rangle =\overline{c}\langle x,y\rangle +\langle x,z\rangle $ (Linearity)
+\end{enumerate}
+Note that using $c=1$ and $y=0$, ($\because \langle 0,z\rangle =0\langle x,z\rangle=0 $) one can check that the latter expression of linearity implies the first expression.
+\end{mdframed}
+\begin{mdframed}
+If the scalar field is $\R$, then conjugate symmetry is just symmetry and we also have linearity in the second argument.\\
+
+This now let us rewrite the inner product space over $\R$ axioms into 
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity) 
+  \item $\langle x,x\rangle =0 \iff x=0$ (positive-definiteness)
+  \item $\langle x,y\rangle =\langle y,x\rangle $ (symmetry)
+  \item Linearity in both arguments
+\end{enumerate}
+\end{mdframed}
+\begin{mdframed}
+If we do not require $\langle \cdot,\cdot\rangle $ to be positive-definite, but only non-negative, i.e. $\langle x,x\rangle \geq 0$ for all $x\in V$, then we have a \textbf{positive semi-definite Hermitian form}. Formally speaking, a positive semi-definite Hermitian form $\langle\cdot,\cdot \rangle :V^2 \rightarrow \R\text{ or }\C$ satisfy the following axioms
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity)
+  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (conjugate symmetry)
+  \item $\langle x+y,z\rangle =\langle x,z\rangle +\langle y,z\rangle $ and $\langle cx,z\rangle=c\langle x,z\rangle $ (Linearity in the first argument)
+\end{enumerate}
+\begin{Example}{\textbf{(Example of Positive semi-definite Hermitian form)}}{}
+\begin{align*}
+\text{ arbitrary }V\text{ over $\R$ or  $\C$ }\hspace{0.5cm}\langle x,y\rangle \triangleq 0\text{ for all $x,y$ }\hspace{1cm}
+\end{align*}
+\end{Example}
+\end{mdframed}
+\textbf{(Norm Induce Part)}
+\begin{mdframed}
+Given a vector space $V$ over $\R$ or  $\C$, one can check that if  $V$ is equipped with an inner product  $\langle \cdot,\cdot\rangle :V^2\rightarrow \R\text{ or }\C$, then we can induce a norm on $V$ by 
+\begin{align*}
+\hspace{3cm}\norm{x}=\sqrt{\langle x,x\rangle }\hspace{1.5cm}(x \in V)
+\end{align*}
+Note that 
+\begin{align*}
+\norm{x}=0\iff \langle x,x\rangle =0 
+\end{align*}
+This implies that if $\langle \cdot,\cdot\rangle $ is an inner product (satisfy positive-definiteness), then $\norm{\cdot}$ is also positive-definite. And if $\langle \cdot,\cdot\rangle $ is not positive-definite, then there exists  $x\neq 0\in V$ such that $\norm{x}=0$, which make $\norm{\cdot}$ a \textbf{semi-norm}.\\
+
+Absolute homogeneity follows from the linearity of inner product.\\
+
+To check triangle inequality, we first have to prove Cauchy-Schwarz inequality.
+\end{mdframed}
+\begin{theorem}
+\textbf{(Pythagorean Theorem)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle : V^2 \rightarrow \C $ on some vector space $V$ over $\C$, we have 
+ \begin{align*}
+\langle x,y\rangle =0 \implies \norm{x+y}^2=\norm{x}^2+\norm{y}^2
+\end{align*}
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+\norm{x+y}^2&=\langle x+y,x+y\rangle\\
+&=\langle x,x+y\rangle +\langle y,x+y\rangle \\
+&=\overline{\langle x+y,x\rangle }+\overline{\langle x+y,y\rangle }\\
+&=\langle x,x\rangle + \overline{\langle y,x\rangle }+ \overline{\langle x,y\rangle }+\langle y,y\rangle \\
+&=\langle x,x\rangle +\langle y,y\rangle = \norm{x}^2 +\norm{y}^2
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Cauchy-Schwarz Inequality)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle :V^2\rightarrow \C$ on vector space $V$ over $\C$, we have 
+\begin{enumerate}[label=(\alph*)]
+  \item $\abso{\langle x,y\rangle}\leq  \norm{x}\cdot\norm{y}\hspace{0.5cm}(x,y \in V)$ 
+  \item the equality hold true if $x,y$ are linearly dependent
+  \item if $\langle \cdot,\cdot\rangle $ is an inner product (being positive-definite), then the equality hold true if and only if $x,y$ are linearly independent.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-Fix $\epsilon $. We first prove
+We first prove 
 \begin{align*}
-  \vi{\sum_{n=0}^\infty c_n(x-a)^n\text{ uniformly converge on }[a-R+\epsilon ,a+R-\epsilon ]}
+  \vi{\abso{\langle x,y\rangle }\leq \norm{x}\cdot\norm{y}}
 \end{align*}
-First deduce
+We reduce the problem into proving 
 \begin{align*}
-  \abso{x-a}\leq R-\epsilon \text{ for all $x \in [a-R+\epsilon ,a+R-\epsilon ]$ }
+\vi{\frac{\abso{\langle x,y\rangle }^2}{\norm{x}^2}\leq\norm{y}^2  }
 \end{align*}
-This give us 
+Set $z\triangleq y-\frac{\langle y,x\rangle }{\norm{x}^2}x$. We then have 
 \begin{align*}
-\abso{c_n(x-a)^n}&=\abso{c_n}\cdot \abso{x-a}^n \\
-                 &\leq \abso{c_n} (R-\epsilon )^n
+\langle z,x\rangle =\langle y-\frac{\langle y,x\rangle }{\norm{x}^2}x,x \rangle =\langle y,x\rangle - \frac{\langle y,x\rangle }{\norm{x}^2}\langle x,x\rangle =0
 \end{align*}
-
-
-
-
+Then from $y=z+\frac{\langle y,x\rangle }{\norm{x}^2}x$, we can now deduce
+\begin{align*}
+\langle y,y\rangle &= \langle z+\frac{\langle y,x\rangle }{\norm{x}^2}x,z+ \frac{\langle y,x\rangle }{\norm{x}^2}x\rangle  \\
+&=\langle z,z\rangle + \abso{\frac{\langle y,x\rangle }{\langle x,x\rangle }}^2 \langle x,x\rangle \\
+&=\langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }
+\end{align*}
+Because $\langle z,z\rangle\geq 0 $, we now have
+\begin{align*}
+\langle y,y\rangle = \langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\geq  \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\vdone
+\end{align*}
+The equality hold true if and only if $\langle z,z\rangle =0$. This explains the other two statements regarding the equality. 
 \end{proof}
+\begin{mdframed}
+The proof is clearly geometrical. If one wish to remember the proof, one should see the trick we use is exactly 
+\begin{align*}
+z\triangleq y-\abso{y}(\cos \theta )\hat{x}\text{ is the projection of $y$ onto $x^{\perp}$ }
+\end{align*}
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       \includegraphics[height=5cm,width=12cm]{CSp.jpeg}
+   \end{minipage}
+\end{center}
+Then all we do rest is just expanding $\abso{y}^2=\abso{z+\tilde{x}}^2$, where $\tilde{x}=y-z=\abso{y}(\cos \theta)\hat{x}$, which give the answer and is easy to compute since $z\cdot \tilde{x}=0$.\\
+
+Now, with Cauchy-Schwarz Inequality, we can check the triangle inequality 
+\begin{align*}
+  \norm{x+y}^2&=\langle x+y,x+y\rangle \\
+&=\langle x,x\rangle +\langle x,y\rangle +\langle y,x\rangle +\langle y,y\rangle \\
+&= \langle x,x\rangle + \langle y,y\rangle +2\text{ Re }\langle x,y\rangle \\
+&\leq \norm{x}^2 + \norm{y}^2 + 2\abso{\langle x,y\rangle }\\
+&\leq \norm{x}^2 + \norm{y}^2 + 2\norm{x}\cdot \norm{y}=\Big(\norm{x}+\norm{y}\Big)^2
+\end{align*}
+\end{mdframed}
+\textbf{(Euclidean Space Abstract Part)} 
+\begin{mdframed}
+  By a \textbf{concrete Euclidean Space}, we mean some space of $n$-tuple  $(x_1,\dots ,x_n)$ over $\R$, equipped with inner product  $\langle \cdot,\cdot\rangle_E$ defined by 
+\begin{align*}
+  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle_E= \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
+\end{align*}
+By an \textbf{Euclidean Space}, we simply mean a finite dimensional vector space $V$ over $\R$,  equipped with an inner product $\langle \cdot,\cdot\rangle $ such that there exists a concrete Euclidean space $E$ and an isomorphism  $\phi:V\to E$ such that 
+\begin{align*}
+\hspace{3cm}\langle x,y\rangle= \langle \phi (x),\phi (y)\rangle_E \hspace{1.5cm}(x,y \in V)
+\end{align*}
+Note that if you define $\langle \cdot,\cdot\rangle $ on the space of $n$-tuples $(x_1,\dots ,x_n)$ over $\R$ by 
+\begin{align*}
+  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle=2 \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
+\end{align*}
+Then, the space of $n$-tuple is clearly not a concrete Euclidean space, but a Euclidean space. 
+
+\end{mdframed}
+\section{Differentiability Theorem*}
+\begin{mdframed}
+
+
+Given two normed space $V,W$, suppose $f$ maps an open neighborhood $O$ around $x$ in $V$ to $W$. We say $f$ is \textbf{differentiable at} $x$ if there exists a linear transformation $A_x:V\rightarrow W$ (from now, $A_x$ will be denoted $df_x$) such that the remainder of the local approximation $df_x$ satisfy 
+\begin{align*}
+  \lim_{h\to 0} \frac{\norm{f(x+h)-f(x)-df_x(h)}_W}{\norm{h}_V}=0
+\end{align*}
+Given a function $f:\R^n \to \R$ and a normal vector $e_i\inr^m$, the \textbf{partial derivative} $\partial_if:\R^n \to \R$ is defined by 
+\begin{align*}
+\partial_i f(x)=\lim_{t\to 0} \frac{f(x+te_j)-f(x)}{t}
+\end{align*}
+Given a function $f:E\rightarrow \R^m$ and an orthonormal basis $\set{e_\ld}$ of $\R^m$, we use  $f_j$ to denote $f\cdot e_j $.
+
+
+\end{mdframed}
+\begin{theorem}
+\label{DiJ}
+\textbf{(Derivative is Jacobian)} Suppose  $\alpha =\set{e_1,\dots ,e_n}$ is an orthonormal basis of $\R^n$, and $\beta =\set{q_1,\dots ,q_m}$ is an orthonormal basis of  $\R^m$. Suppose  $f$ maps an open neighborhood $O$ around $x\inr^n$ to $\R^m$.  Then 
+\begin{align*}
+  f\text{ is differentiable at }x\implies \begin{cases}
+    \partial_{i}f_j(x)\text{ exists for all }i,j\\
+    [df_x]_{\alpha }^{\beta }=\begin{bmatrix}
+      \partial_1f_1(x)&\cdots & \partial_nf_1(x)\\
+      \vdots & \ddots & \vdots\\
+      \partial_1f_m(x) & \cdots & \partial_nf_m(x)
+    \end{bmatrix}
+  \end{cases}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $i,j$. We wish to show 
+ \begin{align*}
+\vi{\lim_{t\to 0} \frac{f_j(x+te_i)-f_j(x)}{t}\text{ exists }}
+\end{align*}
+Because $f$ is differentiable at $x$, by definition of $df_x$, we have
+\begin{align*}
+\lim_{t\to 0} \frac{\abso{f(x+te_i)-f(x)-df_x(te_i)}}{\abso{te_i}}=0
+\end{align*}
+Set $R_i:\R\rightarrow \R^m$ by $R_i(t)\triangleq f(x+te_i)-f(x)-df_x(te_i)$. We have 
+\begin{align}
+\label{Dij1}
+  \lim_{t\to 0}\frac{\abso{R_i(t)}}{\abso{t}}=0
+\end{align}
+Compute
+\begin{align*}
+f_j(x+te_i)-f_j(x)&=\big(f(x+te_i)-f(x) \big)\cdot q_j\\
+&=\big(R_i(t)+df_x(te_i) \big) \cdot q_j\\
+&= R_i(t)\cdot q_j+ tdf_x(e_i)\cdot q_j
+\end{align*}
+This then give us 
+\begin{align*}
+\frac{f_j(x+te_i)-f_j(x)}{t}=\frac{R_i(t)\cdot q_j}{t}+ df_x(e_i)\cdot q_j
+\end{align*}
+and 
+\begin{align*}
+  df_x(e_i)\cdot q_j - \frac{\abso{R_i(t)\cdot q_j}}{\abso{t}} \leq \frac{f_j(x+te_i)-f_j(x)}{t}\leq df_x(e_i)\cdot q_j + \frac{\abso{R_i(t)\cdot q_j}}{\abso{t}}
+\end{align*}
+By Cauchy-Schwarz Inequality, we now have 
+\begin{align*}
+  df_x(e_i)\cdot q_j - \frac{\abso{R_i(t)}}{\abso{t}} \leq \frac{f_j(x+te_i)-f_j(x)}{t}\leq df_x(e_i)\cdot q_j + \frac{\abso{R_i(t)}}{\abso{t}}
+\end{align*}
+Now applying Squeeze Theorem and \myref{Equation}{Dij1}, we have  
+\begin{align*}
+\lim_{t\to 0} \frac{f_j(x+te_i)-f_j(x)}{t}=df_x(e_i)\cdot q_j \vdone
+\end{align*}
+We now have 
+\begin{align*}
+\hspace{2cm}df_x(e_i)\cdot q_j=\partial _if_j(x)\hspace{1.5cm}(\forall i,j)
+\end{align*}
+This now give us 
+\begin{align*}
+df_x(e_i)=\sum_{j=1}^m \Big(df_x(e_i)\cdot q_j \Big)q_j=\sum_{j=1}^m \partial_if_j(x)q_j
+\end{align*}
+and suggest the matrix representation. 
+\end{proof}
+\begin{mdframed}
+Note that the converse is not always true, that is, given $f:\R^n\rightarrow \R^m$, even if the partial derivative $\partial_if_j$ all exists at $x$, the function $f$ can still not be differentiable at $x$. In fact, it doesn't even have to be continuous at $x$. See the following examples. 
+\begin{Example}{\textbf{(Discontinuous Function with Partial Derivative)}}{}
+\begin{align*}
+f:\R^2\rightarrow \R\text{ and }f(x,y)=\begin{cases}
+  1& \text{ otherwise}\\
+  0& \text{ if }x=0\text{ or }y=0
+\end{cases}
+\end{align*}
+\end{Example}
+\begin{Example}{\textbf{(Discontinuous Function with Partial Derivative)}}{}
+\begin{align*}
+f:\R^2\rightarrow \R\text{ and }f(x,y)=\begin{cases}
+  \frac{x^2y}{x^4+y^2}& \text{ if }(x,y)\neq 0\\
+  0& \text{ if }(x,y)=0
+\end{cases}
+\end{align*}
+We have
+\begin{align*}
+f(h,h^2)\to \frac{1}{2}\text{ as $h\to 0$ and }\partial_xf(0)=\partial _yf(0)=0
+\end{align*}
+\end{Example}
+\begin{Example}{\textbf{(Non-differentiable Continuous Funciton with Partial Derivative)}}{}
+\begin{align*}
+f:\R^2 \rightarrow \R\text{ and }f(x,y)=\begin{cases}
+  \frac{x\abso{y}}{\sqrt{x^2+y^2} }& \text{ if $(x,y)\neq 0$ }\\
+  0& \text{ if $(x,y)=0$ }
+\end{cases}
+\end{align*}
+We have 
+\begin{align*}
+\partial_xf(0)=\partial_yf(0)=0
+\end{align*}
+By \myref{Theorem}{DiJ} (Derivative is Jacobian), if $f$ is differentiable at $0$, then  $df_0$ must be trivial. Yet  
+\begin{align*}
+\frac{\abso{f(h,h)-f(0)-df_0(h,h)}}{\abso{(h,h)}}=\frac{\abso{h}\sqrt{2} }{\abso{h}\sqrt{2} }\to 1
+\end{align*}
+Note that $f$ is continuous at  $0$, by observing 
+\begin{align*}
+  x^2+y^2- 2\abso{xy}=\big(\abso{x}-\abso{y} \big)^2\geq 0 \implies \frac{x^2+y^2}{2}\geq \abso{xy}
+\end{align*}
+which implies 
+\begin{align*}
+\abso{f}\leq \frac{\sqrt{x^2+y^2} }{2}
+\end{align*}
+\end{Example}
+\end{mdframed}
+\begin{mdframed}
+On the space $L(V,W)$ of linear transformations from $V$ to $W$, we can define a norm by 
+\begin{align*}
+\norm{A}=\sup_{\norm{x}_V\leq 1} \norm{Ax}_W
+\end{align*}
+Check that this norm on $L(V,W)$ indeed satisfy the axioms.\\
+
+We say $f:E\subseteq V\rightarrow W$ is \textbf{continuously differentiable} at limit point $y\in E$ if 
+\begin{align*}
+x\mapsto df_x\text{ is a continuous at $y$ }
+\end{align*}
+Note that the definition coincide when $V=W=\R$ and $df_x$ is just  $h\mapsto f'(x)h$.  
+\end{mdframed}
+\begin{theorem}
+\textbf{(Differentiability Theorem)} Suppose  $\alpha =\set{e_1,\dots ,e_n}$ is an orthonormal basis of $\R^n$, and $\beta =\set{q_1,\dots ,q_m}$ is an orthonormal basis of  $\R^m$. Suppose  $f$ maps an open set $O\subseteq\R^n$ to $\R^m$.  Then  
+\begin{align*}
+f\text{ is continuously differentiable on $O$ }\iff \partial_if_j\text{ exists and is continuous on $O$ for all $i,j$ }
+\end{align*}
+\end{theorem}
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+\section{Inverse Function Theorem}
+\begin{theorem}
+\textbf{(Inverse Function Theorem)} Given a map $f$ from open set $E\subseteq \R^n$ to $\R^n $ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is conitnuously differentiable on $E$ 
+   \item $df_a$ is invertible  
+  \item $f(a)=b$
+\end{enumerate}
+Then there exists open neighborhood $U$ around $a$ and  $V$ around  $b$ such that  
+\begin{align*}
+f\text{ is a diffeomorphism from $U$ to  $V$}
+\end{align*}
+\end{theorem}
+\section{Implicit Function Theorem}
 
 
 
