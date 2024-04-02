@@ -443,6 +443,14 @@ Note that we have
   \item $\frac{ds}{dt}=\abso{\beta '(t)}$ 
   \item $T(t)=\frac{\beta '(t)}{\abso{\beta '(t)}}$
 \end{enumerate}
+This then let us compute 
+\begin{align*}
+T'(t)= \frac{\abso{\beta '(t)}\beta ''(t) -\beta '(t) \frac{d^2s}{(dt)^2}}{\abso{\beta '(t)}^2}
+\end{align*}
+and give us 
+\begin{align*}
+\beta ''(t)=\frac{d^2 s}{dt^2}
+\end{align*}
 Then we can deduce 
 \begin{align*}
 \beta '(t)\times \beta ''(t)&= \Big(\frac{ds}{dt}T(t) \Big)\times \Big( \frac{d^2s}{dt^2}T(t)+\frac{ds}{dt}T'(t) \Big)\\
@@ -554,6 +562,77 @@ The following statement hold true.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
+We first prove 
+\begin{align*}
+\blue{E\text{ is non-empty }}
+\end{align*}
+Fix $s_0 \in I$, and fix 
+\begin{align}
+\label{inic}
+\begin{bmatrix}
+T(s_0)\\
+N(s_0)\\
+B(s_0)
+\end{bmatrix}=\begin{bmatrix}
+1 & 0 &0 \\
+0 & 1 &0 \\
+0 & 0 &1 
+\end{bmatrix}
+\end{align}
+Consider the system of differential equation 
+\begin{align*}
+  \begin{bmatrix}
+    0 & \kappa & 0 \\
+    - \kappa & 0 & -\tau \\
+    0 & \tau & 0 
+  \end{bmatrix}\begin{bmatrix}
+  T\\
+  N\\
+  B
+  \end{bmatrix}=\begin{bmatrix}
+  T'\\
+  N'\\
+  B'
+  \end{bmatrix}
+\end{align*}
+This is a first order, linear system of differential equation (3, if you wish), which has a unique solution $\set{T,N,B:I\rightarrow \R^3}$ with given initial condition (\myref{Equation}{inic}).\\
+
+We claim 
+\begin{align*}
+  \blue{\gamma (s)\triangleq \gamma (s_0)+\int_{s_0}^{s} T(s')ds'\in E}
+\end{align*}
+Note that the solution $\set{T,N,B:I\rightarrow \R^3}$ must satisfy 
+\begin{align*}
+  \frac{d}{ds}\langle T,N\rangle &= \kappa \langle N,N\rangle - \kappa\langle T,T\rangle - \tau \langle T,B\rangle \\
+  \frac{d}{ds}\langle T,B\rangle &= \kappa \langle N,B\rangle + \tau \langle T,N \rangle \\
+  \frac{d}{ds}\langle N,B\rangle &= -\kappa \langle T,B\rangle - \tau \langle B,B\rangle + \tau \langle N,N\rangle \\
+  \frac{d}{ds}\langle T,T\rangle &= 2\kappa \langle T,N\rangle \\
+ \frac{d}{ds}\langle N,N\rangle &= -2\kappa \langle T,N\rangle -2\tau \langle B,N\rangle \\
+ \frac{d}{ds} \langle B,B\rangle &= 2\tau \langle N,B\rangle 
+\end{align*}
+which is another linear first order system of differential equation, which has unique solution when initial condition are given.\\
+
+It is easy to check that 
+\begin{align}
+\label{sol}
+\langle T,T\rangle \triangleq \langle N,N\rangle \triangleq \langle B,B\rangle \triangleq  1\text{ and }\langle T,N\rangle \triangleq \langle T,B\rangle \triangleq \langle N,B\rangle =0 
+\end{align}
+is a solution.\\
+
+Now, note that our unique solution $\set{T,N,B}$ given before has initial condition coincide with that of \myref{}{sol}. Then it follows from the uniqueness of solution of linear first order system of differential equations that $\set{T(s),N(s),B(s)}$ is an orthonormal basis for all $s \in I$.\\
+
+Since $\gamma '(s)=T(s)$, it is now clear that $\kappa_\gamma =\kappa$ and $\tau_\gamma  =\tau$. $\bdone$\\
+
+
+
+
+
+
+
+
+
+
+
 Fix $\gamma ,\alpha \in E$ and fix $s_0\in I$. There clearly exists a rigid motion $M$ such that if we denote 
 \begin{align*}
 \overline{\alpha }(s)\triangleq M\circ \alpha (s)
@@ -607,7 +686,7 @@ T=\overline{T}\text{ on $I$ }\vdone
 \begin{mdframed}
   In this section, we are given a smooth plane curve $\alpha :[a,b]\rightarrow \R^2$ parametrized by arc-length. We say
 \begin{enumerate}[label=(\alph*)]
-  \item $\alpha $ is a \textbf{closed curve} if $\alpha ^{(k)}(a)=\alpha ^{(k)}(b)$ for all $k\inz_0^+$. 
+  \item $\alpha $ is a \textbf{closed curve} if $\alpha(a)=\alpha(b)$. 
 \item  $\alpha $ is a \textbf{simple closed curve} if $\alpha $ is closed and $\alpha (t_1)\neq \alpha (t_2)$ for all $t_1,t_2 \in [a,b)$.
 \item  $\alpha $ is \textbf{positively oriented} if $\alpha ' \times \alpha ''$ is always positive.  
 \item $\alpha $ is \textbf{convex} the trace $\alpha ([a,b])$ always entirely lies on the same side of the closed half-plane determined by $T(s)$ for all $s$ 
@@ -626,14 +705,194 @@ Note that by Green's Theorem, we know $A(D)$ equals to
   \item $-\int_a^b yx'dt$
   \item $\frac{1}{2}\int_a^b xy'-yx'dt=\frac{1}{2}\int_a^b (x,y)\times (x',y')dt$
 \end{enumerate}
-
-
-
-
-
-
-
 \end{mdframed}
+\begin{theorem}
+\textbf{(Isoperimetric Inequality)} Given a piece-wise $C^1$ simple closed plane curve $\alpha :[0,l]\rightarrow \R^2$, where $D$ is the interior of $\alpha $ and $A\triangleq A(D)$, we have 
+\begin{enumerate}[label=(\alph*)]
+  \item $4 \pi A\leq l^2$
+  \item $4 \pi A=l^2 \iff \alpha $ is a parametriation of $S^1$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We first show 
+\begin{align*}
+\vi{4 \pi A\leq l^2}
+\end{align*}
+Express $\alpha =(x,y)$. Define 
+\begin{align*}
+r=\frac{1}{2}\Big(\sup_{[0,l]}x-\inf_{[0,l]}x \Big)
+\end{align*}
+WOLG, suppose $\sup_{[0,l]}x=r$. Now, positively parametrize $S^1$ by $(\overline{x},\overline{y})$ where
+ \begin{align*}
+\overline{x}\triangleq x
+\end{align*}
+Observe 
+\begin{align*}
+A+\pi r^2&=\oint_\alpha  xdy-\oint_{S^1} ydx\\
+&= \int_0^l \big(xy'-x'\overline{y} \big)dt \\
+         &=  \int_0^l (x,-\overline{y}) \cdot (y',x') dt\\
+         &\leq  \int_0^l \abso{(x,-\overline{y})}\cdot \abso{(y',x')}dt\hspace{1.5cm}(\text{ Cauchy-Schwarz })\\
+         &= \int_0^l \sqrt{x^2+(-\overline{y})^2} \sqrt{(y')^2 + (x')^2} dt\\
+         &= \int_0^l \sqrt{x^2+ \overline{y}^2}dt \\
+         &=\int_0^l rdt=lr
+\end{align*}
+Using AM-GM inequality, we now have 
+\begin{align*}
+\sqrt{A\pi r^2} \leq \frac{A+\pi r^2}{2}\leq \frac{lr}{2}
+\end{align*}
+This then implies 
+\begin{align*}
+4\pi A\leq l^2 \vdone
+\end{align*}
+It is easy to see that the equality hold true when $\alpha $ is a parametrization of $S^1$. We prove 
+\begin{align*}
+\blue{4\pi A= l^2 \implies \alpha \text{ is a parametrization of $S^1$ of radius $\frac{l}{2\pi }$ }}
+\end{align*}
+We first prove 
+\begin{align*}
+  \olive{4 \pi A=l^2 \implies x=\frac{l}{2\pi}y'}
+\end{align*}
+Note that $4\pi A=l^2$ implies the Cauchy-Schwarz inequality 
+\begin{align*}
+  (x,-\overline{y})\cdot (y',x')\leq \abso{(x,-\overline{y})}\cdot \abso{(y',x')} 
+\end{align*}
+must hold equal. This then give us  
+\begin{align*}
+  (x,-\overline{y})\parallelsum (y',x')
+\end{align*}
+Also, note that $4\pi A=l^2$ implies the AM-GM inequality
+\begin{align*}
+\sqrt{A\pi r^2}\leq \frac{A+ \pi r^2}{2} 
+\end{align*}
+must also hold equal. This then give us 
+\begin{align*}
+A=\pi r^2 \text{ and }l=2\pi r
+\end{align*}
+Now, because 
+\begin{enumerate}[label=(\alph*)]
+  \item $(x,y)$ is parametrization by arc-length
+  \item $\abso{(x,-\overline{y})}=\abso{(\overline{x},\overline{y})}=r$
+    \item $r=\frac{l}{2\pi}$
+\end{enumerate}
+We have 
+\begin{align}
+  x=\frac{l}{2\pi}y'\odone
+\end{align}
+Similar argument now, WOLG, applies to 
+\begin{align*}
+4 \pi A= l^2 \implies y=\frac{l}{2\pi} x'
+\end{align*}
+We now conclude 
+\begin{align*}
+4\pi A=l^2 \implies \abso{(x,y)}=\frac{l}{2\pi}\abso{(y',x')}=\frac{l}{2\pi}\bdone
+\end{align*}
+
+\end{proof}
+\begin{mdframed}
+For next Theorem, we expand the definition of closed curve. We say 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ is a \textbf{closed curve} if $\alpha ^{k}(a)=\alpha ^{k} (b)$ for all $k\in \Z_0^+$
+\end{enumerate}
+\end{mdframed}
+\begin{lemma}
+If $\alpha :[0,l]\rightarrow \R^2$ is a smooth, convex, simple closed plane curve, then for all $A,B,C \inr$, we have 
+\begin{align*}
+\int_0^l \Big(Ax+By+C \Big)d\kappa =0
+\end{align*}
+\end{lemma}
+\begin{proof}
+Because $\alpha $ is closed, it is clear that 
+\begin{align*}
+\int_0^l Cd\kappa=0
+\end{align*}
+Let $\theta :[0,l]\rightarrow [0,2\pi]$ satisfy 
+\begin{align*}
+  (x',y')=(\cos \theta, \sin \theta)
+\end{align*}
+It is easy to check
+\begin{enumerate}[label=(\alph*)]
+  \item $\kappa=\theta'$
+  \item $(x'',y'')=\kappa (-y', x')$
+\end{enumerate}
+We now see 
+\begin{align*}
+\int_0^l Axd\kappa&=A\int_0^l x\kappa' ds\\
+&= -A\int_0^l x' \kappa ds \\
+&=A\int_0^l y''ds=0
+\end{align*}
+and 
+\begin{align*}
+\int_0^l Byd\kappa&= B\int_0^l y\kappa' ds\\
+&=-\B \int_0^l y'\kappa ds\\
+&=-B \int_0^l x''ds=0
+\end{align*}
+
+
+\end{proof}
+\begin{theorem}
+\textbf{(Four-Vertex Theorem for Convex Curve)} If $\alpha :[0,l]\rightarrow \R^2$ is a smooth, convex, simple closed plane curve, then 
+\begin{align*}
+\alpha \text{ has at least four distinct vertices }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $\kappa$ is continuous on $[0,l]$, by EVT, we know there exists $p,q$ such that 
+ \begin{align*}
+\kappa(p)= \max_{[0,l]}\kappa\text{ and }\kappa(q)= \min _{[0,l]}\kappa 
+\end{align*}
+Because $\kappa(p),\kappa(q)$ are local (global, in fact) extremum, we know 
+\begin{align*}
+\kappa'(p)=\kappa '(q)=0
+\end{align*}
+Note that if $p=q$, then the proof become trivial. We have thus obtained two distinct vertices, namely, $p$ and  $q$.\\
+
+WOLG, suppose $p<q$. Let $L$ be the unique line containing $\alpha (p)$ and $\alpha (q)$. We claim 
+\begin{align*}
+\vi{\alpha [(p,q)]\text{ and }\alpha \Big[[0,l]\setminus [p,q] \Big]\text{ are on different side of $L$ }}
+\end{align*}
+$\vdone$\\
+
+Note that 
+\begin{enumerate}[label=(\alph*)]
+  \item $p<q$
+  \item $\kappa(p)$ is a maximum 
+  \item $\kappa(q)$ is a minimum
+\end{enumerate}
+\As{ $\kappa'\leq 0$ on $(p,q)$ and $\kappa' \geq 0$ on $[p,q]^c$}. WOLG, suppose $\alpha [(p,q)]$ is on the left side of $L$. Let $A,B,C \inr$ satisfy 
+\begin{enumerate}[label=(\alph*)]
+  \item $L=\set{(x,y):Ax+By+C=0}$ 
+  \item $A\inr^+$
+\end{enumerate}
+Now, because $\alpha [(p,q)]$ is completely on the left side of $L$, we see 
+\begin{align*}
+\hspace{2.5cm}\int_p^q \big(Ax+By+C \big)d\kappa > 0\hspace{1.5cm}(\because \kappa',Ax+By+C<0)
+\end{align*}
+and because $\alpha [[p,q]^c]$ is completely on the right side of $L$, we see 
+\begin{align*}
+\hspace{1.5cm}\int_0^p \big(Ax+By+C \big)d\kappa + \int_q^l \big(Ax+By+C \big)d\kappa >0\hspace{0.5cm}(\because \kappa',Ax+By+C>0)
+\end{align*}
+This now let us deduce 
+\begin{align*}
+\int_0^l \big(Ax+By+C \big)d\kappa >0 \tCaC
+\end{align*}
+WOLG, suppose $\kappa'(s)>0$ for some $s \in (p,q)$. Because 
+\begin{enumerate}[label=(\alph*)]
+  \item $\kappa(p)$ is a maximum
+  \item $\kappa(q)$ is a minimum 
+\end{enumerate}
+we know there exists $\epsilon $ such that 
+\begin{align*}
+\kappa(p+\epsilon )<0\text{ and }\kappa(q-\epsilon )<0
+\end{align*}
+Then by IVT, we see 
+\begin{align*}
+\kappa'(s_1)=\kappa'(s_2)=0\text{ for some distinct $s_1,s_2 \in (p,q)$  }
+\end{align*}
+
+\end{proof}
+
+
+\chapter{HW}
 \section{HW1}
 \begin{question}{1-2: 2}{}
 
@@ -1113,327 +1372,6 @@ sine in $\R^3$, the only direction perpendicular to both  $v_1,v_2$ is  $v_1\tim
 x-x_0=u_1t,y-y_0=u_2t,z-z_0=u_3t
 \end{align*}
 \end{proof}
-\section{Fundamental Theorem of Local Curves}
-\begin{mdframed}
-In this section, by an \textbf{orthogonal transformation} we mean a linear transformation $M$ from  $\big(V,\langle \cdot,\cdot\rangle_V  \big)$ to $\big(W,\langle \cdot,\cdot\rangle_W  \big)$ such that 
-\begin{align*}
-\hspace{3cm}\langle v,w\rangle_V =\langle Mv,Mw\rangle_W\hspace{2cm}(v,w \in V)
-\end{align*}
-By a \textbf{rigid motion} $M$, we mean an orthogonal transformation from $\R^3$ to  $\R^3$ such that 
-\begin{align*}
-\text{det}\big([M]_{\set{e_1,e_2,e_3}} \big)>0
-\end{align*}
-\end{mdframed}
-\begin{theorem}
-\textbf{(Fundamental Theorem of Local Curves: Uniqueness Part 1)} Given an $\underline{\text{open}}$ interval $I \subseteq \R$, a parametrized by arc-length curve $\alpha :I \rightarrow \R^3$ with positive curvature, a rigid motion $M$ and a vector  $c \inr^3$, we see that the function  $\beta : I \rightarrow \R^3 $ defined by 
-\begin{align*}
-\beta (s)=(M \circ \gamma )(s)+c
-\end{align*}
-is a curve parametrized by arc-length such that 
-\begin{align*}
-\alpha \text{ and }\beta \text{ has the same curvature and torsion on all $s \in I$ }
-\end{align*}
-\end{theorem}
-\begin{proof}
-We first have to prove 
-\begin{align*}
-\vi{\beta :I\rightarrow \R^3\text{ is parametrized by arc-length }}
-\end{align*}
-Fix $s \in I$. We have to prove 
-\begin{align*}
-\vi{\abso{\beta '(s)}=1}
-\end{align*}
-Compute 
-\begin{align*}
-\abso{\beta '(s)}&=\abso{(M\circ \gamma )'(s)}\\
-&=\abso{}\vdone
-\end{align*}
-We now prove 
-\begin{align*}
-\blue{\beta '(s)}
-\end{align*}
-
-Because we have the identity 
-\begin{align*}
-\kappa (s)=\abso{\alpha ''(s)}\text{ and }\tau (s)=-\frac{(\alpha '\times \alpha '')\cdot \alpha '''}{\kappa^2}
-\end{align*}
-\end{proof}
-\begin{theorem}
-\label{FTLCU}
-\textbf{(Fundamental Theorem of Local Curves: Uniqueness Part 2)} Given an $\underline{\text{open}}$ interval $I \subseteq \R$ and two parametrized by arc-length curves $\alpha ,\overline{\alpha }:I\rightarrow \R^3$ such that 
-\begin{align*}
-\hspace{3cm}\kappa(s)=\overline{\kappa}(s)\text{ and }\tau(s)=\overline{\tau}(s)\hspace{2cm}(s \in I)
-\end{align*}
-Then there exists an rigid motion $M$ and a vector  $c \inr^3$ such that 
-\begin{align*}
-\hspace{3cm}\alpha (s)=M\big(\overline{\alpha }(s) \big)+c\hspace{2cm}(s \in I)
-\end{align*}
-\end{theorem} 
-\begin{proof}
-Fix distinct $s_0\in I$. We first have to 
-\begin{align*}
-  \vi{\text{ find a rigid motion $M:\R^3\rightarrow \R^3$ and some vector $c\inr^3$ }}\\
-\vi{\text{ such that $\begin{cases}
-  \alpha (s_0)=(M\circ \overline{\alpha })(s_0)+c\\
-  T(s_0)=M\circ \overline{T}(s_0)\\
-  N(s_0)=M\circ \overline{N}(s_0)\\
-  B(s_0)=M\circ \overline{B}(s_0)
-\end{cases}\vdone$}}
-\end{align*}
-Now, express 
-\begin{align*}
-T_M(s)=\text{ normal tangent of }M\circ \overline{\alpha }+c\text{ at $s$ }
-\end{align*}
-We show 
-\begin{align*}
-\blue{\begin{cases}
-  T_M=T\\
-  N_M=N\\
-  B_M=B
-\end{cases}\text{ on $I$ }}
-\end{align*}
-By Frenet Formula, compute 
-\begin{align*}
-&\frac{1}{2}\frac{d}{ds}\Big(\abso{T-T_M}^2+ \abso{N-N_M}^2+\abso{B-B_M}^2 \Big)\\
-=&\frac{1}{2}\frac{d}{ds}\Big(\sum_{X=T,N,B} (X-X_M)\cdot (X-X_M)\Big)\\
-=&\sum_{X=T,N,B} (X-X_M)'\cdot (X-X_M)\\
-=&\sum_{X=T,N,B} (X'-X_M')\cdot (X-X_M)\\
-=&(T'-T'_M)\cdot (T-T_M)+(N'-N'_M)\cdot (N-N_M)+(B'-B_M')\cdot (B-B_M)\\
- &\\
-=&(\kappa N'-\kappa N'_M)\cdot (T-T_M)\\
-+\Big)&\big(-\kappa T-\tau B+\kappa T_M'+\tau BT'_M \big)\cdot (N-N_M)\\
-+\Big)& \big(\tau N-\tau N_M\big)\cdot (B-B_M)\hspace{1cm}(\because \text{ Frenet Formula and $\alpha ,\alpha _M$ same curvature and torsion})\\
-=&0\hspace{1cm}(\because\text{ Elimination })
-\end{align*}
-We now know 
-\begin{align*}
-\abso{T-T_M}^2+\abso{N-N_M}^2+\abso{B-B_M}^2\text{ is a constant }
-\end{align*}
-Moreover, because by our setting  
-\begin{align*}
-\Big( \abso{T-T_M}^2+\abso{N-N_M}^2+\abso{B-B_M}^2\Big)(s_0)=0
-\end{align*}
-We know 
-\begin{align*}
-\hspace{3cm}\abso{T-T_M}^2+\abso{N-N_M}^2+\abso{B-B_M}^2=0\hspace{1cm}(s \in I)
-\end{align*}
-This implies 
-\begin{align*}
-\begin{cases}
-  T=T_M\\
-  N=N_M\\
-  B=B_M
-\end{cases}\text{ on $I\bdone$ }
-\end{align*}
-Because both  $\alpha $ and $\alpha _M$ are parametrized by arc-length and $\alpha (s_0)=\alpha _M(s_0)$, we now see 
-\begin{align*}
-\hspace{2cm}\alpha (s)=\int_{s_0}^s T(x)dx+ \alpha (s_0)=\int_{s_0}^s T_M(x)dx+ \alpha_M(s_0)=\alpha_M(s)\hspace{1cm}(s \in I)
-\end{align*}
-This finish the proof. 
-\end{proof}
-
-\section{Isoperimetric Inequality}
-\begin{mdframed}
-In this section, by \textbf{a closed plane curve}, we mean a regular parametrized curve $\alpha :[a,b]\rightarrow \R^2$ such that 
-\begin{align*}
-\alpha^{(n)}(a)=\alpha^{(n)}(b)\text{ for all $n\inz_0^+$ }
-\end{align*}
-If we say a closed plane curve $\alpha :[a,b]\rightarrow \R^2$ is \textbf{simple}, we mean 
-\begin{align*}
-\alpha (t_1)\neq \alpha (t_2)\text{ for all distinct pair $(t_1,t_2) \subseteq [a,b]$ except $(a,b)$}
-\end{align*}
-A closed plane curve must divide $\R^2$ into two separate subsets, in the sense that  $\R^2 \setminus \alpha \big[[a,b] \big]$ has two connected component. The one connected component that has finite area in the sense of Lebesgue outer measure is called the \textbf{interior} of the $\alpha $. If the interior is always on the left side of $\alpha $, we say $\alpha $ is \textbf{positively oriented}, in other words, $\alpha $ runs counter clockwise ($\begin{vmatrix} 
-\alpha '\\
-\alpha ''
-\end{vmatrix} \geq 0$).
-\end{mdframed}
-\begin{theorem}
-\textbf{(Green's Theorem)} Given a  $\underline{\text{positively oriented, piecewise smooth,}}$\\ $\underline{\text{simple closed plane}}$ curve $\alpha :[a,b]\rightarrow \R^2$, where $C$ is the image of $\alpha $  and $D$ is the region bounded by $C$, and two function  $L,M:D\rightarrow \R$ that has continuous partial derivative, we have 
-\begin{align*}
-\oint_C L dx+Mdy =\iint_D (M_x-L_y) dA
-\end{align*}
-\end{theorem}
-\begin{mdframed}
-If we $\underline{\text{define}}$ area for bounded \textbf{region} $D$ by 
-\begin{align*}
-A(D)\triangleq \iint_D 1dA
-\end{align*}
-Green's Theorem give us 
-\begin{align*}
-  A(D)&=\oint_C xdy =\oint_C -ydx =\oint_C \frac{-y}{2}dx+\frac{x}{2}dy\\
-  &=\int_a^b x(t)y'(t)dt=\int_a^b -x'(t)y(t)dt =\frac{1}{2}\int_a^b (xy'-y'x)dt
-\end{align*}
-\end{mdframed}
-\begin{theorem}
-  \label{IIPI}
-\textbf{(Isoperimetric Inequality: Part 1)} Let $C$ be a piece-wise $C^1$ simple closed curve with length  $l$, and let  $A$ be the area of the region bounded by  $C$. Then 
- \begin{align*}
-A\leq \frac{l^2}{4\pi}
-\end{align*}
-\end{theorem}
-\begin{proof}
-Parametrize $C$  with $\big(x(t),y(t) \big):[a,b]\rightarrow \R^2$. Because $x:[a,b]\rightarrow \R$ is a continuous function, by EVT, we know there exists $c',d \in [a,b]$ such that 
-\begin{align*}
-x(c')=\min _{t\in [a,b]}x(t) \text{ and }x(d)=\max_{t\in [a,b]}x(t)
-\end{align*}
-Now, let $\gamma :[0,l]$ be a positively oriented arc-length parametrization such that 
-\begin{align*}
-\gamma (l)=\gamma (0)\triangleq x(d)
-\end{align*}
-Let $c \in [0,l]$ satisfy 
-\begin{align*}
-\gamma (c)\triangleq x(c')
-\end{align*}
-Let $S$ be a circle such that 
-\begin{align*}
-S\text{ has the radius }r=\frac{\gamma (0)-\gamma (c)}{2}
-\end{align*}
-We first show 
-\begin{align}
-  \vi{A+\pi r^2\leq lr}
-\end{align}
-We translate $S$ so that $S$ centers at origin, and translate  $C$ so that  $\gamma (0)$ has value $(r,0)$ .  Note that such translation does not change area, which can be verified using change of variable.\\
-
-Now, we know $S=\set{(x,y):x^2+y^2=r^2}$. If we parametrize $S$ by  $(r\cos t, r\sin t)$, with Green's Theorem, we see 
-\begin{align*}
-A(S)&=\oint (r\cos t)(d r\sin t)\\
-&=\int_0^{2\pi} (r^2\cos^2 t )dt\\
-&=\int_0^{2\pi } r^2\cdot \frac{\cos 2t+1}{2}=r^2\pi 
-\end{align*}
-Now, express $\gamma (s)$ by
-\begin{align*}
-\gamma (s)=(x(s),y(s))
-\end{align*}
-We positively oriented parametrize $S$ by 
-\begin{align*}
-\alpha (t)\triangleq (x(t),\overline{y}(t)) 
-\end{align*}
-We now prove 
-\begin{align}
-\label{pir2}
-  \olive{\pi r^2 = -\int_0^l \overline{y}x'ds  }
-\end{align}
-By Green's Theorem 
-\begin{align*}
-\pi r^2=A(S)=\oint -\overline{y}dx=\int_0^l -\overline{y}x'ds \odone
-\end{align*}
-We now prove 
-\begin{align}
-\label{sqxy}
-\blue{(xy'-\overline{y}x')^2 \leq \big(x^2+(\overline{y})^2 \big)\big( (x')^2+(y')^2\big)}
-\end{align}
-Using Cauchy-Schwarz Inequality on $(x,\overline{y})$ and $(y',-x')$. We see
-\begin{align}
-  (xy'-\overline{y}x')^2&=\abso{(x,\overline{y})\cdot (y',-x')}^2\notag\\
-                        &\leq \abso{(x,\overline{y})}^2 \cdot \abso{(y',-x')}^2\\ \label{CSxy}
-  &=\big(x^2+(\overline{y})^2 \big)\big((x')^2+(y')^2 \big)\notag\bdone
-\end{align}
-
-
-Now, because 
-\begin{enumerate}[label=(\alph*)]
-  \item Green's Theorem
-  \item \myref{Equation}{pir2}
-  \item \myref{Equation}{sqxy}
-  \item $C=(x,y)$ is parametrized by arc-length
-  \item $S=(x,\overline{y})$ is a circle of radius $r$ 
-\end{enumerate}
-we have
-\begin{align}
-A+ \pi r^2 &= \int_0^l xdy -\int_0^l \overline{y}x'ds\notag\\
-&=\int_0^l xy'-\overline{y}x'ds\notag\\
-&\leq \int_0^l \sqrt{(xy'-\overline{y}x')^2}\notag ds\\
-&\leq \int_0^l \sqrt{\big(x^2+(\overline{y})^2 \big)\big((x')^2+(y')^2 \big)}\notag ds \\
-&\leq \int_0^l \sqrt{x^2+(\overline{y})^2}ds\notag \\
-&\leq \int_0^l rds =rl \vdone \label{A+pi}
-\end{align}
-Lastly, we show 
-\begin{align*}
-  \blue{A\leq \frac{l^2}{4\pi}}
-\end{align*}
-By AM-GM inequality and \myref{Equation}{A+pi}, we now can deduce
-\begin{align}
-\label{AM}
-  \sqrt{A\pi r^2}\leq \frac{A+\pi r^2}{2}\leq \frac{rl}{2}
-\end{align}
-This let us deduce 
-\begin{align*}
-A\leq \frac{l^2}{4\pi}\bdone
-\end{align*}
-\end{proof}
-\begin{theorem}
-\textbf{(Isoperimetric Inequality: Part 2)} Let $C$ be a piece-wise $C^1$ simple closed curve with length  $l$, and let  $A$ be the area of the region bounded by  $C$. We have 
-\begin{align*}
-A=\frac{l^2}{4\pi}\implies C\text{ is a circle }
-\end{align*}
-\end{theorem}
-\begin{proof}
-Do exactly the same thing in the proof of \myref{First part of Isoperimetric Inequality}{IIPI} on $C$.\\
-
-We wish to prove 
-\begin{align*}
-  \vi{x^2+y^2=r^2}
-\end{align*}
-Because 
-\begin{align*}
-A=\frac{l^2}{4\pi}\implies A\pi r^2=(\frac{rl}{2})^2 \implies \sqrt{A\pi r^2}=\frac{rl}{2} 
-\end{align*}
-Then from \myref{Equation}{AM}, we deduce
-\begin{align*}
-\sqrt{A\pi r^2}=\frac{A+ \pi r^2 }{2}
-\end{align*}
-Then because AM-GM inequality become an equality only when two sides equals, we now have 
-\begin{align*}
-A=\pi r^2\text{ and }l=2\pi r
-\end{align*}
-This let us deduce 
-\begin{align*}
-A+\pi r^2=2\pi r^2=2rl
-\end{align*}
-Then by \myref{Equation}{A+pi}, we can deduce 
-\begin{align*}
-\abso{(x,\overline{y})\cdot (y',-x')}^2&=(xy'-\overline{y}x')^2\\
-  &=\big(x^2+(\overline{y})^2 \big)\big((x')^2+(y')^2 \big)\\
-  &=\abso{(x,\overline{y})}^2 \cdot \abso{(x',y')}^2
-\end{align*}
-Because Cauchy-Schwarz inequality become an equality only when two vectors are linearly independent, we know there exist $\ld \inr$ such that 
-\begin{align*}
-  (x,\overline{y})=\ld (y',-x')
-\end{align*}
-This let us deduce 
-\begin{align}
-\label{ldxy}
-\ld =\frac{x}{y'}=\frac{\overline{y}}{-x'}\text{ and }\ld =\frac{\sqrt{x^2+(\overline{y})^2}
- }{\sqrt{(y')^2 + (x')^2}}
-\end{align}
-Now, because $\gamma =(x,y)$ is parametrized by arc-length and $(x, \overline{y})$ form the circle $S$ with radius $r$, from \myref{Equation}{ldxy}, we have 
-\begin{align}
-\label{ldsq}
-\ld = \sqrt{x^2+(\overline{y})^2} =r
-\end{align}
-Then from \myref{Equation}{ldxy} and \myref{Equation}{ldsq}, we can deduce 
-\begin{align*}
-\frac{x}{y'}=\frac{\overline{y}}{-x'}=\ld  =r
-\end{align*}
-This then give us 
-\begin{align*}
-x=ry' 
-\end{align*}
-Now, do exactly the same thing in the proof of \myref{First part of Isoperimetric Inequality}{IIPI}, except, at this time, we parametrize $S$ by  $(\overline{x},y)$. The similar argument then went on and give us 
-\begin{align*}
-y=rx'
-\end{align*}
-Finally, because $\gamma =(x,y)$ is parametrized by arc-length, we have
-\begin{align*}
-x^2+y^2=r^2\big((y')^2+(x')^2 \big)=r^2\vdone
-\end{align*}
-
-\end{proof}
-\section{Four Vertices Theorem}
-\begin{mdframed}
-
-\end{mdframed}
-
 \section{HW2}
 
 \begin{question}{}{}
@@ -2385,7 +2323,9 @@ Deduce first from the $z$-component of  $\textbf{x}$. We see
     \frac{4\pi }{2}+\arctan \frac{ay}{bx}& \text{ if $x\inr^+,y\inr^-$ (forth quadrant) }
   \end{cases}\Big)
 \end{align*}
-Now it follows that $\textbf{x}$ is indeed a homeomorphism. 
+Now it follows that $\textbf{x}$ is indeed a homeomorphism.\\
+
+When $u$ is fixed, the image is an oval missing a point $(a\sin u, 0,c \cos u)$ floating in air (contained by $\set{(x,y,c_0)\inr^3:(x,y)\inr^2}$ where $c_0=c \cos u$ is fixed )
 \end{proof}
 \begin{definition}
 \textbf{(Definition of regular plane curve)} We say $C\subseteq \R^2$ is a regular plane curve if for all $p\in  C$ there exists 
@@ -2642,67 +2582,159 @@ Now, see that
 \begin{proof}
 $(\longleftarrow)$\\
 
-Fix $a \in A$. Because $a \in S$, we know there exists a local parametrization $\textbf{x}_1:E\rightarrow V\cap S$ around $a$. Suppose 
+Fix $a \in A$. Because $a \in S$, we know there exists a local parametrization $\textbf{x}_1:E\rightarrow V\cap S$ around $a$ where $V$ is open in  . Suppose 
 \begin{align*}
-  E'\triangleq \textbf{x}_1^{-1}[V\cap U\cap S]
+  E'\triangleq \textbf{x}_1^{-1}[ U\cap V\cap S]
 \end{align*}
+Now, from 
+\begin{enumerate}[label=(\alph*)]
+  \item $U\cap V\cap S$ is open in $V\cap S\hspace{1.5cm}(\because U\text{ is open in }\R^3)$ 
+  \item $\textbf{x}_1$ is a homeomorphism between $E$ and $V\cap S$ 
+  \item $\textbf{x}_1$ is smooth 
+  \item $d\textbf{x}_1$ is one-to-one for all $p \in E$
+  \item $E'\subseteq E$
+\end{enumerate}
 We see 
-\begin{align*}
-\text{ the restriction }\textbf{x}_1|_{E'}\text{ is clearly a local parametrizaiton around $a$ contained by $A$ }
-\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item $E'$ is open in  $\R^2$
+  \item the restriction $\textbf{x}_1|_{E'}$ is a local parametrizaiton around $a$ contained by $A$ 
+\end{enumerate}
 Because $a$ is arbitrary, this established that $A$ is a regular surface.\\
 
 $(\longrightarrow)$\\
 
-Suppose $A$ is a regular surface. \As{$A$ is not open in $S$, for a contradiction}. Then, there exists $a \in A$ such that 
-\begin{align}
-\label{epsa}
-\forall \epsilon, B_\epsilon (a)\cap S \not\subseteq A
-\end{align}
-Because $A$ is a regular surface, we know there exists a local parametrization $\textbf{x}_1:U\subseteq\R^2 \rightarrow V\subseteq A$ around $a$. We know 
+Suppose $A$ is a regular surface. Fix arbitrary $a\in A$. Using Proposition 2.2.3 in Do Carmo, WOLG, we can suppose there exists a chart $\textbf{x}:U\rightarrow \overline{V}\cap S$ around $a$ where $\overline{V}$ is open in $\R^3$ such that 
 \begin{align*}
-\textbf{x}_1^{-1}:V\rightarrow U\text{ is continuous }
+\textbf{x}(x,y)=(x,y,f(x,y))\text{ for some smooth $f$ }
 \end{align*}
-Let $M\subseteq  U$ be an open neighborhood around $\textbf{x}_1^{-1}(a)$, such that $M\neq U$. Because $\textbf{x}_1^{-1}$ is continuous, we know there exists an open neighborhood $N\subseteq V$ around $a$ such that 
+Because each curve in $A$ lies in  $S$ and  $A$ is itself a regular surface, we see that 
+\begin{align*}
+T_a(A)=T_a(S)
+\end{align*}
+This tell us the restriction
+\begin{align*}
+\textbf{x}|_A\text{ is one-to-one }
+\end{align*}
+Note that $\textbf{x}$ is smooth. Now by inverse function theorem, it follows that there exists $V$ open in $\R^3$ such that 
  \begin{align*}
-\textbf{x}_1^{-1}[N]\subseteq M
+\textbf{x}|_{A\cap V}\text{ is a chart around $a$ }
 \end{align*}
-Yet, by \myref{Equation}{epsa}, the only open-neighborhood $N\subseteq V$ is exactly $N=V$. Then, we see 
- \begin{align*}
-\textbf{x}_1^{-1}[N]=\textbf{x}_1^{-1}[V]=U\subseteq M
+Now, define $W\triangleq V\cap \overline{V}$. Now, identify 
+\begin{align*}
+  \textbf{x}|_{A\cap W}\text{ is a chart in both $A$ and  $S$ }
 \end{align*}
-this then implies $M=U\tCaC$. 
+We now see 
+\begin{align*}
+A\cap W\text{ is an open neighborhood around $a$ in topology of $S$ }
+\end{align*}
+This shows that $a \in A^\circ $ in topology of $S$. Because $a$ is arbitrary, it follows that $A$ is open in $S$. 
 \end{proof}
 
 \begin{question}{}{}
 \includegraphics[height=10cm,width=18cm]{HW3a1}
 \end{question}
 \begin{proof}
-We first prove 
-\begin{align*}
- \vi{F \text{ is differentiable on $S^2\setminus N$ }}
-\end{align*}
-Fix $p \in S^2 \setminus N$. We wish to prove 
-\begin{align*}
-\vi{F\text{ is differentiable at $p$ }}
-\end{align*}
-Because composition of differentiable functions is again differentiable (\myref{Theorem}{CoD}), we can reduce our problem into proving  
-\begin{align*}
-\vi{\begin{cases}
-  \pi_N:S^2\setminus N \rightarrow \overline{\R^2}\\
-  P:\overline{\R^2}\rightarrow \overline{\R^2}\\
- \pi_N^{-1}:\overline{\R^2}\rightarrow S^2 
-\end{cases}\text{ are differentiable where $\overline{\R}^2\equiv \set{(x,y,-1)\inr^3:x,y\inr}$ }}
-\end{align*}
 Note that 
 \begin{align*}
 \pi_N(x,y,z)=(\frac{2x}{1-z},\frac{2y}{1-z})\text{ and }\pi_N^{-1}(u,v)=(\frac{4u}{u^2+v^2+4},\frac{4v}{u^2+v^2+4},\frac{u^2+v^2-4}{u^2+v^2+4})
 \end{align*}
+and that 
+\begin{align*}
+P(x,y,-1)=\Big(Q(x,y),T(x,y),-1 \Big)\text{ for some $Q,T\inr[x,y]$ }
+\end{align*}
+It is then now clear that 
+\begin{align*}
+F\text{ is differentiable on $S^2\setminus N$ }
+\end{align*}
+Note that 
+\begin{align*}
+\pi_S(x,y,z)=(\frac{2x}{1+z},\frac{2y}{1+z})\text{ and }\pi_S^{-1}(u,v)=(\frac{4u}{u^2+v^2+4},\frac{4v}{u^2+v^2+4},\frac{-u^2-v^2+4}{u^2+v^2+4})
+\end{align*}
+Note that 
+\begin{align*}
+\pi_{S}^{-1}\circ \pi_S\circ F\circ \pi_S^{-1}\circ \pi_S\text{ coincide with $F$ on $S^2\setminus S$}
+\end{align*}
+Then, we can reduce proving $F$ is differentiable at $N$ into 
+\begin{align*}
+\vi{\text{ proving }\pi_{S}^{-1}\circ \pi_S\circ F\circ \pi_S^{-1}\circ \pi_S\text{ is differentiable at $N$ }}
+\end{align*}
+Compute 
+\begin{align*}
+\pi_N\circ \pi_S^{-1}(u,v)&=\pi_N(\frac{4u}{u^2+v^2+4},\frac{4v}{u^2+v^2+4},\frac{-u^2-v^2+4}{u^2+v^2+4})\\
+&=(\frac{4u}{u^2+v^2},\frac{4v}{u^2+v^2})
+\end{align*}
+Compute
+\begin{align*}
+\pi_S\circ \pi_N^{-1}(u,v)=(\frac{4u}{u^2+v^2},\frac{4v}{u^2+v^2})
+\end{align*}
+Note that if we identify $\R^2\setminus 0$ by $\C^*$, we see
+\begin{align*}
+\hspace{2.5cm}\pi_S\circ \pi_N^{-1}(z)=\pi_N\circ \pi_S^{-1}(z)=\frac{4z}{\abso{z^2}}=\frac{4z}{z\overline{z}}=\frac{4}{\overline{z}}\hspace{1.5cm}(z\inc^*)
+\end{align*}
+Fix $z\inc^*$. Compute
+\begin{align*}
+\pi_S\circ F\circ \pi_S^{-1}(z)&=\pi_S \circ \pi_N^{-1}\circ P\circ \pi_N \circ \pi_S^{-1}(z)\\
+&=\pi_S\circ \pi_N^{-1}\circ P(\frac{4}{\overline{z}})\\
+&=\pi_S \circ \pi_N^{-1}\Big(a_0(\frac{4}{\overline{z}})^n+ \cdots + a_n \Big)\\
+&=\frac{4}{\overline{a_0(\frac{4}{\overline{z}})^n+\cdots +a_n}}\\
+&=\frac{4}{\overline{a_0}(\frac{4}{z})^n+\cdots +\overline{a_n}}\\
+&=\frac{4z^n}{\overline{a_n}z^n+\cdots +\overline{a_0}4^n}
+\end{align*}
+Compute
+\begin{align*}
+\pi_S \circ F\circ \pi_S^{-1}(0)=\pi_S \circ F(N)=\pi_S(N)=0
+\end{align*}
+Then because $a_0\neq 0$. It is now clear that 
+\begin{align*}
+\hspace{1.5cm}\pi_S\circ F\circ \pi_S^{-1}(z)=\frac{4z^n}{\overline{a_n}z^n+\cdots +\overline{a_0}4^n}\hspace{1.5cm}(z\inc)
+\end{align*}
+which is differentiable at $0$. Now, we have
+\begin{enumerate}[label=(\alph*)]
+  \item $\pi_S:S^2\setminus S\rightarrow \C$ is differentiable on $S^2 \setminus S$
+  \item $\pi_S\circ F\circ \pi_S^{-1}:\C\rightarrow \C$ is differnetiable on $\C$
+   \item $\pi_S^{-1}:\C\rightarrow S^2\setminus S$ is differntiable on $\C$
+\end{enumerate}
+We can deduce 
+\begin{align*}
+\pi_S^{-1}\circ \Big(\pi_S\circ F\circ \pi_S^{-1} \Big)\circ \pi_S\text{ is differentiable on $S^2\setminus S\vdone$ }
+\end{align*}
 
-
-
+Note that we used  \myref{Theorem}{CoDf} in our proof. 
 \end{proof}
-\chpater{HWs}
+\begin{theorem}
+\label{CoDf}
+\textbf{(Composition of Differentiable functions is differentiable)} Given three regular surfaces $\set{S_1,S_2,S_3}$, two differentiable functions $f_1:S_1\rightarrow S_2$ and $f_2:S_2\rightarrow S_3$, we see 
+\begin{align*}
+f_2\circ f_1\text{ is differentiable on $S_1$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $p_1\in S_1 $. We wish to prove 
+\begin{align*}
+  \vi{f_2\circ f_1\text{ is differentiable at $p_1$ }}
+\end{align*}
+Set 
+\begin{enumerate}[label=(\alph*)]
+  \item $p_2\triangleq f_1(p_1)$ 
+  \item $p_3\triangleq f_2(p_2)$
+\end{enumerate}
+Let 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1:U_1 \rightarrow V_1\cap S_1 \ni p_1 $ be a local parametrzaiton 
+   \item $\textbf{x}_2:U_2\rightarrow V_2\cap S_2\ni p_2$ be a local parametrizaiton 
+    \item $\textbf{x}_3:U_3\rightarrow V_3\cap S_3\ni p_3$ be a local parametrizaiton 
+\end{enumerate}
+We wish to prove 
+\begin{align*}
+  \vi{\textbf{x}_3^{-1}\circ f_2\circ f_1 \circ \textbf{x}_1\text{ is differentiable at $p_1$ }}
+\end{align*}
+Observe that 
+\begin{align*}
+\textbf{x}_3^{-1}\circ f_2\circ f_1\circ \textbf{x}_1&=\textbf{x}_3^{-1}\circ f_2 \circ \textbf{x}_2 \circ \textbf{x}_2^{-1} \circ f_1 \circ \textbf{x}_1\\
+&=\Big(\textbf{x}_3^{-1}\circ f_2\circ \textbf{x}_2 \Big)\circ \Big(\textbf{x}_2^{-1}\circ f_1\circ \textbf{x}_1 \Big)\text{ is differentiable $\vdone$}
+\end{align*}
+\end{proof}
+
 
 \chapter{Surface}
 \section{Prerequisite}
@@ -2802,7 +2834,7 @@ such that $\textbf{x}$ satisfy
 \end{enumerate}
 such that $F$ satisfy
 \begin{enumerate}[label=(\alph*)]
-  \item $\text{det}(dF_q)\neq 0$ for all $q\in V\cap S$
+  \item $dF_q$ is onto for all $q\in V\cap S$
   \item $F$ is smooth on  $V$
   \item $\exists c_0\inr, V\cap S=\bset{(x,y,z)\in V:F(x,y,z)=c_0}$
 \end{enumerate}
@@ -2816,7 +2848,7 @@ We now verify the equivalency between the two definitions.
 \begin{proof}
 Fix $p \in S$. We are given an open neighborhood $p \in V \subseteq \R^3$ and a function $F:V\rightarrow \R$ such that, WOLG, 
 \begin{enumerate}[label=(\alph*)]
-  \item $\text{det}(dF_q)\neq 0$ for all $q\in V\cap S$
+  \item $dF_q$ is onto for all $q\in V\cap S$
   \item $F$ is smooth on  $V$
   \item $V\cap S=\bset{(x,y,z)\in V: F(x,y,z)=0}$ 
 \end{enumerate}
@@ -2874,7 +2906,7 @@ d\textbf{x}=\begin{bmatrix}
 \end{align*}
 Now, one can use the premise 
 \begin{align*}
-\text{det}(dF_q)\neq 0 \text{ for all } q\in V\cap S
+dF_q\text{ is onto for all } q\in V\cap S
 \end{align*}
 to check $\textbf{x}$ do satisfy the regular condition. (Compute $\text{det}(df_{\alpha }^{-1})$ using co-factor formula on the third column) $\vdone$
 \end{proof}
@@ -2977,7 +3009,7 @@ is a diffeomorphism on $\R^2\setminus 0$, since $\text{det}\Big( d(\textbf{x}_S^
 
 Also, note that if we identify $(u,v)\equiv u+iv\triangleq \xi$, we have 
 \begin{align*}
-\textbf{x}_S^{-1}\circ \textbf{x}_N (\xi)=\frac{\overline{\xi}}{\abso{\xi}^2}
+\textbf{x}_S^{-1}\circ \textbf{x}_N (\xi)=\frac{\xi}{\abso{\xi}^2}
 \end{align*}
 \end{mdframed}
 \begin{mdframed}
