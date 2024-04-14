@@ -15,312 +15,6 @@ Geometry 1}
 \tableofcontents
 \pagebreak
 \chapter{Curve}
-\section{Prerequiste}
-\begin{mdframed}
-In this section, we will use $I$ to denote an \textbf{bounded open interval}. By a \textbf{curve} in $\R^n$, we mean a function form an open interval $I$ to $\R^n$.  We say a curve is \textbf{differentiable} if it is infinitely differentiable (smooth). That is, $\gamma ^{(n)}(t)$ exists and are continuous for all $n\inn$ and $t \in I$.\\
-
-We say a differentiable curve $\gamma  :I\rightarrow \R^n$ is \textbf{regular} if $\gamma '(t)\neq 0$ for all $t  \in I$. We say a differentiable curve $\gamma :I\rightarrow \R^n$ is a \textbf{parametrized by arc-length} if $\abso{\gamma '(t)}=1$ for all $t \in I$. 
-\end{mdframed}
-\begin{mdframed}
-For a regular curve $\gamma $, we say $\gamma '(t)$ is the \textbf{tangent vector} of $\gamma $ at $t$, and we define the \textbf{unit tangent vector} $T$ by    
-\begin{align*}
-T(t)\triangleq \frac{\gamma '(t)}{\abso{\gamma '(t)}}
-\end{align*}
-We say $\gamma ''(t)$ is the \textbf{oriented curvature} (normal vector) of $\gamma $ at $t$, and we define the  \textbf{unit normal vector} $N$ by 
- \begin{align*}
-N(t)\triangleq \frac{T'(t)}{\abso{T'(t)}}=\frac{\gamma ''(t)}{\abso{\gamma ''(t)}}
-\end{align*}
-If the curve is parametrized by arc-length, with some messy computation, we can observe 
-\begin{align*}
-T'(t)=\frac{\gamma ''(t)}{\abso{\gamma '(t)}}
-\end{align*}
-Some interesting facts can be observed from what we have deduced.
-\begin{enumerate}[label=(\alph*)]
-  \item $\gamma ',\gamma ''$ always exists. 
-  \item $\gamma $ is parametrized by arc-length $\implies \gamma ' \perp \gamma ''$
-  \item $\gamma $ is parametrized by arc-length $\implies \gamma $ is regular
-  \item $T$ and $T'$ exists at $t$  $\iff $ $\gamma $ is regular at $t$ 
-  \item $T=\gamma '\iff \gamma $ is parametrized by arc-length   
-  \item $N$ exists at $t$ $\iff \gamma ''(t)\neq 0\iff  \kappa (t)\neq 0$  
-  \item $N$ and  $T'$ point to the same direction $\gamma ''$.
-  \item $\abso{T'}=\kappa\iff \gamma $ is paramterized by arc-length 
-  \item $\gamma \perp \gamma '$ and $\gamma'' \perp \gamma '''$ are generally false even for curve $\gamma $ paramterized by arc-length. 
-  \item Given a curve $\gamma $ parametrized by arc-length
-\begin{align*}
-  \gamma \text{ is a straight line on }[a,b]&\iff  \gamma '\text{ and }T\text{ are constant on $(a,b)$ }\\
-  &\iff \gamma ''(t)=0\text{ on $(a,b)$ }\\
-  &\iff \kappa (t)=0\text{ on $(a,b)$ }\\
-  &\iff T'(t)=0\text{ on }(a,b)
-\end{align*}
-\end{enumerate}
-Notice that the last fact is false if $\gamma $ is not paramtetrized by arc-length, since $\gamma $ can move in the straight line with changing speed $\gamma '$.  
-\end{mdframed}
-
-\begin{mdframed}
-Given a curve $\gamma $, if $T(t)$ and $N(t)$ exists (regular and non-zero curvature), we define its \textbf{binormal} vector by 
-\begin{align*}
-B(t)=T(t) \times N(t)
-\end{align*}
-Fix $t$. We say 
-\begin{align*}
-\set{T(t),N(t),B(t)}\text{ form a \textbf{positively oriented orthonormal basis} of $\R^3$ }
-\end{align*}
-This basis in general is constantly changing, yet always form an orthonormal basis.\\
-
-Also, we say 
-\begin{align*}
-\text{span}\Big( T(t),N(t)\Big)\text{ is the \textbf{osculating plane} of $\gamma $ at $t$ }
-\end{align*}
-Suppose $\gamma $ is parametrized by arc-length and always has non-zero curvature. With some geometric intuition, one shall note that $\abso{T'}$ measure how curved $\gamma $ is and that $\abso{B'}$ measure how fast  $\gamma $ leave the osculating plane.\\
-
-Because $\abso{B}=1$ is a constant, we can deduce  
-\begin{align*}
-B'\perp B
-\end{align*}
-and the computation 
-\begin{align*}
-B'=T' \times N + T \times N'=T \times N' 
-\end{align*}
-give us 
-\begin{align*}
-B'\perp T
-\end{align*}
-This ultimately show us 
-\begin{align*}
-B',N,T'\text{ are all parallel where $N,T'$ even point to the same direction}
-\end{align*}
-
-
-Notice that if we parametrize the curve with opposite direction, then 
-\begin{enumerate}[label=(\alph*)]
-  \item $T,\gamma '$ change direction 
-  \item $N,\gamma ''$ keep the same direction 
-  \item $B$ change direction 
-  \item $B'$ keep the same direction 
-\end{enumerate}
-Now, for a curve $\gamma $ parametrized by arc-length, we define the \textbf{curvature} $\kappa$ and \textbf{torsion} $\tau$ of $\gamma $ by 
-\begin{align*}
-\kappa(t)=\abso{\gamma ''(t)}\text{ and }\tau (t)=\frac{B'(t)}{N(t)}
-\end{align*}
-With unfortunately heavy computation, we can verify that the definition of curvature must stay in the framework of curve parametrized by arc-length, otherwise we will be given two different values of curvature of two curves that are equivalent in the sense of sets.\\
-
-Now, notice that we already have $T'=\kappa N$ and $B'=\tau N$, and by basic identity, we have $N=B\times T$.\\
-
-Then $\underline{\text{with some computation}}$, we have the \textbf{Frenet Formula}
-\begin{align*}
-\begin{cases}
-  T'=\kappa N\\
-  N'=B'\times T+B\times T'=-\tau B-\kappa T\\
-  B'=\tau N
-\end{cases}
-\end{align*}
-\end{mdframed}
-\begin{mdframed}
-Given two vectors $u,v \inr^n$, we use  \textbf{dot product} 
-\begin{align*}
-u\cdot v= u_1v_1+\cdots + u_nv_n
-\end{align*}
-to denote the Euclidean inner product, and we use \textbf{length} 
-\begin{align*}
-\abso{u}=\sqrt{\sum_{k=1}^n u_k^2} 
-\end{align*}
-to denote the Euclidean norm. Note that we clearly have 
-\begin{align*}
-\abso{u}=\sqrt{u\cdot u} 
-\end{align*}
-Given three vectors $u,v,w \inr^3$, we define \textbf{cross product} by 
-\begin{align*}
-  u\times v&\triangleq \begin{vmatrix} 
-  \textbf{i} & \textbf{j} & \textbf{k}\\
-  u_1 & u_2 & u_3 \\
-  v_1 & v_2 & v_3
-\end{vmatrix}\\
-&=(u_2v_3-u_3v_2,u_3v_1-u_1v_3,u_1v_2-u_2v_1)
-\end{align*}
-With some simple computation, we have the following identity 
-\begin{enumerate}[label=(\alph*)]
-  \item $u\times v=-v \times u$ (anti-commutative)
-  \item $(au+w)\times v=a(u\times v)+w \times v$ (Linearity)
-  \item $u\times (aw+v)=a (u\times w)+ u \times v$
-  \item $u \times v =0 \iff u=cv$ for some $c \inr$
-  \item $(u\times v)\cdot w =\begin{vmatrix} 
-      u_1 & u_2 & u_3 \\
-      v_1 & v_2 & v_3 \\
-      w_1 & w_2 & w_3   \end{vmatrix}=\begin{vmatrix}
-      w_1 & w_2 & w_3 \\
-      u_1 & u_2 & u_3 \\
-      v_1 & v_2 & v_3 
-  \end{vmatrix}$ 
-  \item $(u \times v)\cdot v=0=(u \times v)\cdot u$
-  \item $u \times v \perp u$ and $u\times v\perp v$
-  \item $u \perp v \implies  \abso{u \times v}= \abso{u}\cdot \abso{v}$
-  \item $(u \times v)\times w=(u \cdot w)v-(v \cdot w)u$
-\end{enumerate}
-All proofs except that of the last identity are merely manipulation of determinant. A simple proof of the last identity follows from the fact both side are linear in all $u,v,w$, and the observation 
-\begin{align*}
-  (e_1\times e_2)\times e_3=0=(e_1\cdot e_3)e_2-(e_2\cdot e_3)e_1
-\end{align*}
-\end{mdframed}
-\begin{theorem}
-\textbf{(Differentiate the Dot Product)} Given two parametrized curves $u,v:(a,b)\rightarrow \R^n$, such that $u,v$ are differentiable at  $t \in (a,b)$. We have 
-\begin{align*}
-\frac{d}{dt}\big(u(t)\cdot v(t) \big)= u'(t)\cdot v(t)+u(t)\cdot v'(t)
-\end{align*}
-\end{theorem}
-\begin{proof}
-\begin{align*}
-\frac{d}{dt}\big(u(t)\cdot v(t) \big)&=\frac{d}{dt}\sum_{k=1}^n u_k(t)v_k(t)\\
-&=\sum_{k=1}^n \frac{d}{dt} u_k(t)v_k(t)\\
-&=\sum_{k=1}^n u_k'(t)v_k(t)+u_k(t)v_k'(t)\\
-&=\sum_{k=1}^n u_k'(t)v_k(t)+\sum_{k=1}^n u_k(t)v_k'(t)\\
-&=u'(t)\cdot v(t)+u(t)\cdot v'(t)
-\end{align*}
-\end{proof}
-\begin{theorem}
-\textbf{(Differentiate the Cross Product)} Given two curves $u,v:(a,b)\rightarrow \R^3$, such that $u,v$ are differentiable at  $t \in (a,b)$. We have 
-\begin{align*}
-\frac{d}{dt}\big(u (t)\times v(t) \big)=u'(t)\times v(t)+u(t)\times v'(t)
-\end{align*}
-\end{theorem}
-\begin{proof}
-\begin{align*}
-  \frac{d}{dt}\big(u(t)\times v(t) \big)=&\frac{d}{dt}(u_2v_3-u_3v_2,u_3v_1-u_1v_3,u_1v_2-u_2v_1)\\
-=&(u_2'v_3+u_2v_3'-u_3'v_2-u_3v_2',\\
- & u_3'v_1+u_3v_1'-u_1'v_3-u_1v_3',\\
- &u_1'v_2+u_1v_2'-u_2'v_1-u_1v_2')\\
-=&(u_2'v_3-u_3'v_2,u_3'v_1-u_1'v_3,u_1'v_2-u_2'v_1)\\
-+&(u_2v_3'-u_3v_2',u_3v_1'-u_1v_3',u_1v_2'-u_1v_2')\\
-=&u'\times v+u \times v'
-\end{align*}
-\end{proof}
-\begin{theorem}
-\textbf{(Integrating the Dot Product)} Given a curve $u:[a,b]\rightarrow \R^n$ and a vector $v \in\R^n$, suppose 
-\begin{enumerate}[label=(\alph*)]
-  \item $u$ is differentiable on $(a,b)$ 
-  \item $u$ is continuous on  $[a,b]$
-\end{enumerate}
-We have 
-\begin{align*}
-\int_a^b u'(t)\cdot v dt=
-\Big(\int_a^b u'(t)dt \Big)\cdot v= \big(u(b)-u(a) \big)\cdot v
-\end{align*}
-\end{theorem}
-\begin{proof}
-\begin{align*}
-\int_a^b u'(t)\cdot vdt&=\int_a^b \sum_{k=1}^n u'_k(t)\cdot v_k dt \\
-&=\sum_{k=1}^n  \int_a^b u'_k(t)\cdot v_k dt\\
-&=\sum_{k=1}^n v_k \int_a^b u'_k(t)dt\\
-&=v\cdot \Big(\int_a^b u'(t)dt \Big)
-\end{align*}
-\end{proof}
-\begin{mdframed}
-For the result above, sometimes we write 
-\begin{align*}
-  (u\cdot v)'=u'\cdot v+ u \cdot v'\text{ and }(u\times v)'=u' \times v+u\times v'
-\end{align*}
-\end{mdframed}
-\begin{theorem}
-\textbf{(MVT for curve)} Given a curve $\alpha  : [a,b]\rightarrow \R^n$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\alpha  $ is differentaible on $(a,b)$ 
-  \item $\alpha  $ is continuous on $[a,b]$
-\end{enumerate}
-there exists $ \xi  \in (a,b)$ such that 
-\begin{align*}
-\abso{\alpha  (b)-\alpha  (a)}\leq \abso{\alpha  '(\xi  )}(b-a)
-\end{align*}
-\end{theorem}
-\begin{proof}
-Define $\phi:[a,b]\rightarrow \R$ by 
-\begin{align*}
-\phi(t)=\alpha (t)\cdot \big(\alpha (b)-\alpha (a) \big) 
-\end{align*}
-Clearly $\phi$ satisfy the hypothesis of Lagrange's MVT, then we know there exists $\xi \in (a,b)$ such that 
-\begin{align*}
-\phi(b)-\phi (a)=\phi'(\xi )\cdot (b-a)
-\end{align*}
-Written the equation in $\alpha $, we have 
-\begin{align*}
-\abso{\alpha (b)-\alpha (a)}^2= (b-a)\alpha '(\xi)\cdot \big(\alpha (b)-\alpha (a) \big)
-\end{align*}
-Notice that Cauchy-Schwarz inequality give us 
-\begin{align*}
-  (b-a)\abso{\alpha '(\xi)}\cdot \abso{\alpha (b)-\alpha (a)}&\geq (b-a)\abso{\alpha ' (\xi)\cdot \big(\alpha (b)-\alpha (a) \big)} \\
-  &=\abso{\alpha (b)-\alpha (a)}^2
-\end{align*}
-This then implies 
-\begin{align*}
-  (b-a)\abso{\alpha '(\xi)}\geq \abso{\alpha (b)-\alpha (a)}
-\end{align*}
-\end{proof}
-\begin{corollary}
-\label{MVI}
-\textbf{(Mean Value Inequality)} Given a curve $\alpha :[a,b]\rightarrow \R^n$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\alpha $ is differentiable on $(a,b)$ 
-  \item $\alpha $ is continuous on $[a,b]$
-\end{enumerate}
-we have 
-\begin{align*}
-\abso{\alpha (b)-\alpha (a)}\leq (b-a)\sup_{(a,b)}\abso{\alpha '}
-\end{align*}
-\end{corollary}
-\begin{mdframed}
-\textbf{Trick to parametrize by arc-length}.\\
-
-Given a regular curve $\gamma :I\rightarrow \R^n$ and fix $t_0 \in I$. We use
-\begin{align*}
-  s(t)=\int_{t_0}^t \abso{\gamma  ' (x)}dx
-\end{align*}
-to define the arc-length of  $\gamma $ from $\gamma (t_0)$ to $\gamma (t)$. Because $\gamma $ is regular, by FTC, it is clear that $s$ is one-to-one.\\
-
-Let $t(s)$ be the inverse of $s$. Define 
- \begin{align*}
-\beta (s)\triangleq \alpha (t(s))
-\end{align*}
-We have by Chain rule 
-\begin{align*}
-\beta '(s)&=t'(s)\alpha '(t(s))\\
-&=\frac{\alpha '(t(s))}{s'(t)}\\
-&=\frac{\alpha '(t(s))}{\abso{\alpha '(t(s))}}
-\end{align*}
-\end{mdframed} 
-\begin{mdframed}
-\textbf{(Frenet Formula Summary)} \\
-
-By definition, we are given 
-\begin{align*}
-\begin{cases}
-  T'=\kappa N\\
-  B'=\tau N
-\end{cases}
-\end{align*}
-To compute $N'$, an identity should be first given 
- \begin{align*}
-N=B\times T
-\end{align*}
-We can now complete the Frenet Formula 
-\begin{align*}
-N'&=B'\times T + B \times T'\\
-&=\tau N \times T + B \times \kappa N\\
-&=-\tau B-\kappa T
-\end{align*}
-In conclusion 
-\begin{align*}
-\begin{cases}
-  T'=\kappa N
-  B' =\tau N\\
-  N'=-\tau B-\kappa T
-\end{cases}
-\end{align*}
-Give very close attention to the fact the two definitions of curvature 
-\begin{align*}
-\kappa =\frac{T'}{N}\text{ and }\kappa = \abso{\gamma ''}
-\end{align*}
-coincides $\underline{\text{only when }}\gamma $ is parametrzied by arc-length. The first definition remain same for all parametrizaiton of the same curve, while the latter doesn't.\\
-
-Some comment should be dropped for the computation of torsion. If you overlook the fact $\alpha $ is parametrized by arc-length and disregard Frenet Formula, it is very likely you will get a result that you can not even sure if it is valid (the nominator and denominator may end up not seem explicitly parallel), let alone an identity beautiful as below. 
-\end{mdframed}
 \section{Frenet Trihedron}
 \begin{mdframed}
 In this section, we are given a smooth curve $\alpha (s)\inr^3$ parametrized by arc-length and a smooth curve $\beta  (t)\inr^3$ with unknown parametrization. We seek to 
@@ -2739,61 +2433,18 @@ Observe that
 \chapter{Surface}
 \section{Prerequisite}
 \begin{theorem}
-  \textbf{(Computation to check Linearly Independence)} 
-\begin{align*}
-\begin{bmatrix}
-  v_1 & w_1\\
-  v_2 & w_2 \\
-  v_3 & w_3
-\end{bmatrix}\text{ is linearly independent }\iff \begin{vmatrix} 
-  v_1 & w_1\\
-  v_2 & w_2
-\end{vmatrix}\neq 0\text{ or }\begin{vmatrix} 
-  v_2 & w_2\\
-  v_3 & w_3
-\end{vmatrix}\neq 0\text{ or }\begin{vmatrix} 
-  v_1 & w_1\\
-  v_3 & w_3
-\end{vmatrix}\neq 0
-\end{align*}
-\end{theorem}
-\begin{proof}
-$(\longleftarrow)$\\
-
-\As{$v,w$ are linearly dependent}. Fix $w_k=cv_k$. We see 
-\begin{align*}
-\begin{vmatrix} 
-  v_1 & w_1 \\
-  v_2 & w_2
-\end{vmatrix}=cv_1v_2-cv_1v_2=0\tCaC
-\end{align*}
-
-$(\longrightarrow)$\\
-
-\As{all determinant are $0$}. Pick $k$ such that $v_k$ is non-zero. Define 
-\begin{align*}
-c\triangleq \frac{w_k}{v_k}
-\end{align*}
-WOLG, suppose 
-\begin{align*}
-w_1=cv_1\text{ and }v_1\neq 0
-\end{align*}
-We then can deduce
-\begin{align*}
-\begin{vmatrix} 
-  v_1 & w_1 \\
-  v_2 & w_2
-\end{vmatrix}\implies cv_1v_2=v_1w_2 \implies w_2=cv_2
-\end{align*}
-The same arguement implies $w_3=cv_3\tCaC$
-\end{proof}
-\begin{theorem}
-\textbf{(Inverse function Theorem)} Given a map $f$ from open $E \subseteq \R^n$ to $\R^n$, if 
+\textbf{(Inverse function Theorem)} Given a map $f$ from  $E$ open in $\R^n$ to $\R^n$, if 
 \begin{enumerate}[label=(\alph*)]
   \item $f$ is continuously differentiable on $E$ 
   \item $df_a$ is one-to-one 
+  \item $a\in E$
 \end{enumerate}
-Then there exists open neighborhood $U\subseteq E$ around $a$ and  open  $V\subseteq \R^n$ such that 
+Then there exists
+\begin{enumerate}[label=(\alph*)]
+  \item $U\subseteq E$ open in $E$ where $a\in U$
+  \item $V\subseteq \R^n$ open in $\R^n$
+\end{enumerate}
+Such that 
 \begin{align*}
 f|_U:U\to V\text{ is a diffeomorphism }
 \end{align*}
@@ -2927,98 +2578,6 @@ $V\cap S$   can be expressed as the graph of some smooth function $f:O\subseteq 
   \item $V\cap S=\set{(f,y,z):(y,z)\in O}$ for some smooth $f:O \subseteq \R^2 \rightarrow \R$
 \end{enumerate}
 \end{definition}
-\section{Examples of Regular Surfaces}
-\begin{mdframed}
-Among all regular surfaces, the most classic one is perhaps the $S^2$. Here, we show some local parametriatoin of $S^2$.\\
-
-
-Note that because  $S^2=F^{-1}[0]$, where $F(x,y,z)=x^2+y^2+z^2-1$ clearly has non-zero derivative everywhere on $\R^3 \setminus 0$, we know $S^2$ is a regular surface. 
-\end{mdframed}
-\begin{mdframed}
-\begin{Example}{\textbf{(Graph Coordinates of $S^2$)}}{}
-\begin{align*}
-U=\set{(u,v):u^2+v^2<1}\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2=1}
-\end{align*}
-\begin{enumerate}[label=(\alph*)]
-    \item $f_1:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_1(x,y)=(x,y,\sqrt{1-x^2-y^2})$  
-    \item $f_2:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_2(x,y)=(x,y,-\sqrt{1-x^2-y^2})$  
-    \item $f_3:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_3(x,z)=(x,\sqrt{1-x^2-z^2},z)$  
-    \item $f_4:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_4(x,z)=(x,-\sqrt{1-x^2-z^2},z)$  
-    \item $f_5:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_5(y,z)=(\sqrt{1-y^2-z^2},y,z)$  
-    \item $f_6:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_6(y,z)=(-\sqrt{1-y^2-z^2},y,z)$  
-\end{enumerate}
-\end{Example}  
-\begin{Example}{\textbf{(Spherical Coordinates of $S^2$)}}{}
-\begin{align*}
-S^2=\set{(x,y,z):x^2+y^2+z^2=1}
-\end{align*}
-\begin{enumerate}[label=(\alph*)]
-  \item $\textbf{x}_1:(0,\pi)\times (0,2\pi)\rightarrow S^2 $ by $\textbf{x}_1(\theta,\phi)=(\sin \theta \cos \phi,\sin \theta \sin \phi,\cos \theta)$
-  \item $\textbf{x}_2:(0,\pi)\times (0,2\pi)\rightarrow S^2$ by $\textbf{x}_2(\theta,\phi)=(-\sin \theta\cos \phi  ,\cos \theta,\sin \theta \sin \phi )$
-\end{enumerate}
-Note that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\textbf{x}_1$ does not contain $\set{(x,0,z)\in S^2: \begin{cases}
-    x^2+z^2=1\\
-    x\geq 0
-  \end{cases}}$ 
-\item $\textbf{x}_2$ does not contain $\set{(x,y,0)\in S^2: \begin{cases}
-  x^2+y^2=1\\
-  x\leq 0
-\end{cases}}$
-\end{enumerate}
-\end{Example}
-
-\begin{Example}{\textbf{(Stereographical Coordinates of $S^2$: Projection Plane be the Equator)}}{}
-\begin{align*}
-U=\R^2\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2=1}
-\end{align*}
-Note that
-\begin{enumerate}[label=(\alph*)]
-  \item $\textbf{x}_N^{-1}(x,y,z)\equiv (\frac{x}{1-z},\frac{y}{1-z})$ 
-  \item $\textbf{x}_S^{-1}(x,y,z)\equiv (\frac{x}{z+1},\frac{y}{z+1}) $
-\end{enumerate}
-For explicit expression of $\textbf{x}_N$, Use the trick 
-\begin{align*}
-u^2+v^2=\frac{x^2+y^2}{(1-z)^2}=\frac{1-z^2}{(1-z)^2}\text{ and }x=u(1-z),y=v(1-z)
-\end{align*}
-to first solve for $z$, then solve for $x,y$.\\
-
-Now, we have 
-\begin{enumerate}[label=(\alph*)]
-  \item $\textbf{x}_N(u,v)=\big(\frac{2u}{u^2+v^2+1},\frac{2v}{u^2+v^2+1},\frac{u^2+v^2-1}{u^2+v^2+1} \big)$
-  \item $\textbf{x}_S(u,v)=\big(\frac{2u}{u^2+v^2+1},\frac{2v}{u^2+v^2+1},\frac{1-u^2-v^2}{1+u^2+v^2} \big)$
-\end{enumerate}
-Let
-\begin{align*}
-\textbf{x}_N(u,v)=(x,y,z)
-\end{align*}
-Compute 
-\begin{align*}
-  \frac{\partial (x,y)}{\partial (u,v)}&=\frac{4(-u^2 - v^2 + 1)}{u^6 + 3u^4v^2 + 3u^4 + 3u^2v^4 + 6u^2v^2 + 3u^2 + v^6 + 3v^4 + 3v^2 + 1}\\
-  \frac{\partial (y,z)}{\partial (u,v)}&=\frac{-8u}{u^6 + 3u^4v^2 + 3u^4 + 3u^2v^4 + 6u^2v^2 + 3u^2 + v^6 + 3v^4 + 3v^2 + 1}\\
-  \frac{\partial (x,z)}{\partial (u,v)}&=\frac{8v}{u^6 + 3u^4v^2 + 3u^4 + 3u^2v^4 + 6u^2v^2 + 3u^2 + v^6 + 3v^4 + 3v^2 + 1}
-\end{align*}
-This shows $\textbf{x}_N$ is indeed a local parametrization.   
-\end{Example}
-Note that 
-\begin{align*}
-\textbf{x}^{-1}_S \circ \textbf{x}_N (u,v)=\big( \frac{u}{u^2+v^2},\frac{v}{u^2+v^2}\big)
-\end{align*}
-is a diffeomorphism on $\R^2\setminus 0$, since $\text{det}\Big( d(\textbf{x}_S^{-1}\circ \textbf{x}_N)\Big)=\frac{-1}{(u^2+v^2)^2}$.\\
-
-Also, note that if we identify $(u,v)\equiv u+iv\triangleq \xi$, we have 
-\begin{align*}
-\textbf{x}_S^{-1}\circ \textbf{x}_N (\xi)=\frac{\xi}{\abso{\xi}^2}
-\end{align*}
-\end{mdframed}
-\begin{mdframed}
-\begin{Example}{\textbf{(Stereographical Coordinates of $S^2$: Projection Plane at the Bottom)}}{}
-\begin{align*}
-U=\R^2\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2}
-\end{align*}
-\end{Example}
-\end{mdframed}
 \section{Change of Parameter}
 \begin{mdframed}
 Given two regular surfaces $S_1,S_2$, an open neighborhood $V_1\subseteq \R^3$ around $p$, and a continuous function  $f:V_1\cap S_1\rightarrow S_2$, we say $f$ is differentiable at $p\in V_1$ if there exists local parametrizations 
@@ -3128,5 +2687,73 @@ Observe that
 \end{align*}
 \end{proof}
 
-\section{Tangent Plane}
+\section{Equivalent Definition of Tangent Plane}
+
+\begin{definition}
+\textbf{(Definition of Tangent Plane: Space of Tangent Vectors)} Given a regular surface $S$ and $p\in  S$, we define \textbf{tangent plane $T_pS$ to $S$ at $p$} by 
+\begin{align*}
+T_pS=\set{\alpha '(0)\inr^3|\hspace{0.1cm}\alpha:I\rightarrow S \text{ is a smooth curve  passing through $p$ at $\alpha (0)$ }}
+\end{align*}
+\end{definition}
+\begin{definition}
+\textbf{(Definition of Tangent Plane: Local Parametrization)} Given a regular surface $S$, that $p\in  S$ and a local parametrzaiton $\textbf{x}:(u,v)\mapsto  (x,y,z)$ around $p$ such that $\textbf{x}(q)=p$,  we define \textbf{tangent plane $T_pS$ to  $S$ at $p$} by 
+\begin{align*}
+T_pS=\text{span}(\partial_u\textbf{x}(q), \partial_v\textbf{x}(q))
+\end{align*}
+\end{definition}
+
+\section{Questions Regarding Manifold}
+\begin{definition}
+\textbf{(Definition of Topological Manifold? 1)} Given a topological space $(M,\tau_M)$, we say $M$ is a \textbf{n-manifold} if for each $p$ in $M$ there exists $N_p$ such that
+\begin{enumerate}[label=(\alph*)]
+  \item $p\in N_p \subseteq M$
+  \item $N_p$ contain  some  $U$ open in $M$ 
+  \item $N_p$ is homeomorphic to some $E$ open in $\R^n$
+\end{enumerate}
+\end{definition}
+\begin{definition}
+\textbf{(Definition of Topological Manifold? 2)} Given a topological space $(M,\tau_M)$, we say $M$ is a \textbf{n-manifold} if for each $p$ in $M$ there exists $N_p$ such that
+\begin{enumerate}[label=(\alph*)]
+  \item $p\in N_p \subseteq M$
+  \item $N_p$ is open in $M$ 
+  \item $N_p$ is homeomorphic to some $E$ open in $\R^n$
+\end{enumerate}
+\end{definition}
+\begin{definition}
+\textbf{(Definition of Topological Manifold? 3)} Given a topological space $(M,\tau_M)$, we say $M$ is a \textbf{n-manifold} if for each $p$ in $M$ there exists $N_p$ such that
+\begin{enumerate}[label=(\alph*)]
+  \item $p\in N_p \subseteq M$
+  \item $N_p$ is open in $M$ 
+  \item $N_p$ is homeomorphic to $\R^n$
+\end{enumerate}
+\end{definition}
+\begin{definition}
+\textbf{(Definition of Topological Manifold? 4)} Given a topological space $(M,\tau_M)$, we say $M$ is a \textbf{n-manifold} if for each $p$ in $M$ there exists $N_p$ such that
+\begin{enumerate}[label=(\alph*)]
+  \item $p\in N_p \subseteq M$
+  \item $N_p$ contain some $U$ open in $M$ 
+  \item $N_p$ is homeomorphic to $\R^n$
+\end{enumerate}
+\end{definition}
+\begin{mdframed}
+Question: are the above 4 definitions all equivalent? 
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of Differentiable Manifold? )} Given a $2$-manifold  $M$, we say  $M$ is a \textbf{differentiable manifold} if for each  two chart $\textbf{x}_1:U_1\rightarrow V_1\subseteq M,\textbf{x}_2:U_2\rightarrow V_2\subseteq M$ such that 
+\begin{align*}
+\textbf{x}_1(U_1)\cap \textbf{x}_2(U_2)\neq \varnothing
+\end{align*}
+we have the statement 
+\begin{align*}
+f\begin{cases}
+ :\textbf{x}_1^{-1}(V_1\cap V_2)\rightarrow U_2 \\
+ q\mapsto  \textbf{x}_2^{-1}\circ \textbf{x}_1(q)
+\end{cases}\text{ is differentiable }
+\end{align*}
+\end{definition}
+\begin{mdframed}
+Question: In our class, we have proved that a regular surface is a differentiable manifold. Does there exists a 2-manifold that is NOT a differentiable manifold? 
+\end{mdframed}
+
+
 \end{document}

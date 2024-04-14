@@ -505,6 +505,18 @@ Now, because $X$ is compact and $\set{E_n}_{n\inn}$ is an open cover of $X$, we 
 \end{align}
 It is clear such $N$ works.  $\vdone$
 \end{proof}
+\section{Fourier Stuff}
+\begin{mdframed}
+Suppose $f$ is a complex valued function Riemann-Integrable on  $[-\pi,\pi]$, and 
+\begin{align*}
+  c_n&\triangleq \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{-inx}dx\\
+s_N(x)&\triangleq \sum_{n=-N}^{N} c_ne^{inx} 
+\end{align*}
+Show 
+\begin{align*}
+\frac{1}{2\pi}\int_{-\pi}^{\pi} \abso{s_N(x)}^2dx=\sum_{n=-N}^{N}\abso{c_n}^2
+\end{align*}
+\end{mdframed}
 
 
 
@@ -1961,4 +1973,891 @@ Fix $n>N$ and  $x\in [a,b]$. Observe
 &\leq \frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
 \end{align*}
 \end{proof}
+\section{HW3}
+\begin{question}{}{}
+\includegraphics[height=6cm,width=18cm]{hw3q1}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\hat{f'}-i\xi \hat{f}&=\int_{-\infty}^{\infty}\big( f'(x)e^{-i\xi x}-i\xi f(x)e^{-i \xi x}\big)dx\\
+&=f(x)e^{-i\xi x}\Big|_{x=-\infty}^{\infty}
+\end{align*}
+Note that 
+\begin{align*}
+\abso{f(x)e^{-i\xi x}}= \abso{f(x)}
+\end{align*}
+Compute 
+\begin{align*}
+ \Big|f(M)e^{-i\xi M}-f(-M)e^{i \xi M} \Big|\leq  \abso{f(M)}+ \abso{f(-M)}\to 0\text{ as $M\to \infty$ }\\
+\end{align*}
+This now implies  
+\begin{align*}
+\hat{f'}-i \xi \hat{f}=\lim_{M\to \infty}f(x)e^{-i \xi x}\big|_{x=-M}^{M}=0
+\end{align*}
+Define 
+ \begin{align*}
+\phi(x,\xi)\triangleq f(x)e^{-i\xi x}
+\end{align*}
+It is clear that 
+\begin{align*}
+\partial_{\xi}\phi(x,\xi)=-ixf(x)e^{- i\xi x}\text{ is continuous every where }
+\end{align*}
+Then, we can apply Feynman's Trick to compute
+\begin{align*}
+i \frac{d}{d\xi}\hat{f}&= i \frac{d}{d\xi}\int_{-\infty}^{\infty}f(x)e^{-i\xi x}dx\\
+&=i \int_{-\infty}^{\infty}-ix f(x)e^{-i\xi x}dx\\
+&=\int_{-\infty}^{\infty}xf(x)e^{-i\xi x}dx=\widehat{xf}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Gau1} 
+\textbf{(Gaussian Integral)} 
+\begin{align*}
+\int_{-\infty}^{\infty}e^{-x^2}dx=\sqrt{\pi} 
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $I=\int_{-\infty}^{\infty}e^{-x^2}dx$. Compute using Fubini's Theorem 
+\begin{align*}
+I^2&=\int_{-\infty}^{\infty}e^{-x^2}dx\int_{-\infty}^{\infty}e^{-y^2}dy\\
+&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}e^{-(x^2+y^2)}dxdy\\
+&=\int_0^{\infty}\int_{0}^{2\pi}re^{-r^2}d\theta dr\\
+&=2\pi \int_0^{\infty}re^{-r^2}dr\\
+&=-\pi e^{-r^2}\big|_{r=0}^{\infty}=\pi
+\end{align*}
+Because $e^{-x^2}$ is a positive function, we now have 
+\begin{align*}
+\int_{-\infty}^{\infty}e^{-x^2}dx=I=\sqrt{I^2}=\sqrt{\pi}  
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Gau2}
+\textbf{(Gaussian Integral)}
+\begin{align*}
+\int_{-\infty}^{\infty}e^{-\frac{(x-a)^2}{b}}dx
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix 
+\begin{align*}
+y\triangleq \frac{x-a}{\sqrt{b}}\text{ and }\frac{dy}{dx}=\frac{1}{\sqrt{b} }
+\end{align*}
+Compute using \myref{Theorem}{Gau1}
+\begin{align*}
+\int_{-\infty}^{\infty}e^{-\frac{(x-a)^2}{b}}dx&=\int_{-\infty}^{\infty}e^{-y^2}\sqrt{b} dy\\
+&=\sqrt{b\pi} 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Fourier of Gaussian}
+\textbf{(Fourier Transformation of Gaussian)} Given 
+\begin{enumerate}[label=(\alph*)]
+  \item $C\neq 0$
+  \item $f(t)\triangleq e^{-Ct^2}$
+\end{enumerate}
+We have
+\begin{align*}
+\hat{f}(\xi)=e^{\frac{-\xi^2}{4C}}\sqrt{\frac{\pi}{C}} 
+\end{align*}
+\end{theorem}
+\begin{proof}
+Compute using \myref{Theorem}{Gau2}
+\begin{align*}
+\hat{f}(\xi)&=\int_{-\infty}^{\infty}e^{-Ct^2}e^{-i\xi t}dt\\
+&=\int_{-\infty}^{\infty}e^{-C(t+\frac{i\xi}{2C})^2}e^{\frac{-\xi^2}{4C}}dt\\
+&=e^{\frac{-\xi^2}{4C}}\int_{-\infty}^{\infty} e^{-C(t+\frac{i\xi}{2C})^2}dt\\
+&=e^{\frac{-\xi^2}{4C}}\int_{-\infty}^{\infty} e^{-\frac{(t-\frac{-i\xi}{2C})^2}{\frac{1}{C}}}dt=e^{\frac{-\xi^2}{4C}} \sqrt{\frac{\pi}{C}} 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw3q2}
+\end{question}
+\begin{proof}
+Fix 
+\begin{align*}
+C\triangleq \frac{1}{2\sigma^2}
+\end{align*}
+Then because $g(x)=\frac{1}{\sigma \sqrt{2\pi} }e^{-Cx^2}$, by \myref{Theorem}{Fourier of Gaussian}, we have 
+\begin{align*}
+\hat{g}(\xi)&=\frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-\xi^2}{4C}}\sqrt{\frac{\pi}{C}} \\
+&= \frac{1}{\sigma\sqrt{2\pi} }e^{\frac{-\sigma^2 \xi^2}{2}}\sqrt{2\sigma^2 \pi}= \frac{\abso{\sigma}}{\sigma}e^{\frac{-\sigma^2 \xi^2}{2}}
+\end{align*}
+\end{proof}
+
+
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw3q3}
+\end{question}
+\begin{proof}
+Compute using Fubini's Theorem
+\begin{align*}
+  \widehat{f*g}(\xi)&=\int_{-\infty}^{\infty}(f*g)(u)e^{-i\xi u}du\\
+  &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(u-y)g(y)e^{-i\xi u}dudy
+\end{align*}
+Compute using Fubini's Theorem 
+\begin{align*}
+\widehat{f}\cdot \widehat{g}(\xi)&=\int_{-\infty}^{\infty}f(x)e^{-i\xi x}dx\int_{-\infty}^{\infty}g(y)e^{-\xi y}dy\\
+&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(x)g(y)e^{-i\xi (x+y)}dxdy\\
+  &=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}f(u-y)g(y)e^{-i\xi u}dudy\hspace{0.5cm}\text{ where $u=x+y$ and  $\frac{du}{dx}=1$ }\\
+  &=\widehat{f*g}(\xi)
+\end{align*}
+\end{proof}
+
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw3q4}
+\end{question}
+\begin{proof}
+Define 
+\begin{align*}
+g(x)\triangleq \frac{1}{\abso{x}^{1-\alpha }}
+\end{align*}
+We see 
+\begin{align*}
+\int_\R \frac{f(y)}{\abso{x-y}^{1-\alpha }}dy&=\int_\R \frac{f(x-u)}{\abso{u}^{1-\alpha }}du\hspace{0.3cm}(\because u=x-y)\\
+&=\int_{\R} f(x-u)g(u)du=f*g(x)
+\end{align*}
+Compute 
+\begin{align*}
+C_{\alpha }\mathcal{F}^{-1}[\pi^{\frac{1}{2}}2^{\alpha }\abso{\xi}^{-\alpha }\widehat{f}](x)&=C_\alpha \pi^{\frac{1}{2}}2^{\alpha } \mathcal{F}^{-1}[\abso{\xi}^{-\alpha } \widehat{f}](x)
+\end{align*}
+We now can reduce the problem into proving 
+\begin{align*}
+\vi{C_\alpha \pi^{\frac{1}{2}}2^{\alpha } \mathcal{F}^{-1}[\abso{\xi}^{-\alpha } \widehat{f}](x)=C_{1-\alpha }f* g(x)}
+\end{align*}
+Using Fourier Inversion Theorem, and Convolution Theorem, we then can reduce the problem into proving  
+\begin{align*}
+  \vi{C_\alpha \pi^{\frac{1}{2}}2^{\alpha } \frac{1}{\abso{\xi}^{\alpha }} \widehat{f}(\xi)=C_{1-\alpha }\widehat{g}(\xi)\cdot \widehat{f}(\xi)}
+\end{align*}
+Then, we reduce the problem into 
+\begin{align*}
+\vi{C_\alpha \pi^{\frac{1}{2}}2^{\alpha }\frac{1}{\abso{\xi}^{\alpha }}=C_{1-\alpha }\widehat{g}(\xi)}
+\end{align*}
+Compute 
+\begin{align*}
+\widehat{g}(\xi)&=\int_{-\infty}^{\infty} \abso{x}^{\alpha -1}e^{-i \xi x}dx\\
+&=\int_{-\infty}^{\infty} \abso{x}^{\alpha -1}\big(\cos (\xi x)- i \sin (\xi x) \big)dx\\
+&=\int_{-\infty}^{\infty}\abso{x}^{\alpha -1}\cos (\xi x)dx\hspace{0.5cm}(\because \abso{x}^{\alpha -1}\sin (\xi x)\text{ is odd in $x$ })\\
+&=2\int_{0}^{\infty}\abso{x}^{\alpha -1}\cos (\xi x)dx\hspace{0.5cm}(\because \abso{x}^{\alpha -1}\cos (\xi x)\text{ is even in $x$ })\\
+&=2\int_{0}^{\infty}\abso{x}^{\alpha -1}\text{Re }e^{i \xi x}dx\\
+&=\text{Re }2\int_{0}^{\infty}\abso{x}^{\alpha -1}e^{i \xi x}dx\\
+&=\text{Re }2\int_{0}^{\infty} \abso{\frac{u}{\xi}}^{\alpha -1}e^{iu}\frac{du}{\xi}\hspace{0.5cm}( u\equiv\xi x)\\
+&=\text{Re } \frac{2}{\abso{\xi}^{\alpha }}\int_0^{\infty}u^{\alpha -1}e^{iu}du\\
+&=\text{Re }\frac{2}{\abso{\xi}^{\alpha }}e^{i \frac{\alpha \pi}{2}}\int_0^{\infty}x^{\alpha -1}e^{-x}dx\hspace{0.5cm}(\because \text{ Cauchy Integral Theorem })\\
+&=\text{Re }\frac{2}{\abso{\xi}^{\alpha }}e^{i \frac{\alpha \pi}{2}}\Gamma(\alpha )\\
+&=\frac{2\cos \frac{\alpha \pi}{2}\Gamma (\alpha )}{\abso{\xi}^{\alpha }}
+\end{align*}
+We can reduce our problem into proving 
+\begin{align*}
+  \vi{\frac{\Gamma (\frac{\alpha}{2})\sqrt{\pi} 2^{\alpha }}{\abso{\xi}^{\alpha }}=\frac{2\cos \frac{\alpha \pi}{2}\Gamma (\alpha )\Gamma (\frac{1-\alpha }{2})}{\abso{\xi}^{\alpha }}}
+\end{align*}
+Reduce to 
+\begin{align*}
+  \vi{\Gamma (\frac{\alpha }{2})\sqrt{\pi} 2^{\alpha -1}=\cos \frac{\alpha \pi}{2}\Gamma (\alpha )\Gamma (\frac{1-\alpha }{2})}
+\end{align*}
+Note that the Legendre Duplication Formula give us 
+\begin{align*}
+\Gamma (\frac{\alpha }{2})\Gamma (\frac{\alpha +1}{2})=2^{1-\alpha }\Gamma (\alpha )\sqrt{\pi} 
+\end{align*}
+This give us 
+\begin{align}
+\label{game1}
+\Gamma (\frac{\alpha}{2})\sqrt{\pi}2^{\alpha -1}&= \frac{2^{1-\alpha }\Gamma (\alpha )\sqrt{\pi} }{\Gamma (\frac{\alpha +1}{2})}\sqrt{\pi} 2^{\alpha -1}\notag\\
+&=\frac{\Gamma (\alpha )\pi }{\Gamma (\frac{\alpha +1}{2})}
+\end{align}
+Note that Euler Reflection Formula give us 
+\begin{align*}
+\Gamma (\frac{1-\alpha }{2})\Gamma (\frac{1+\alpha}{2})=\frac{\pi}{\sin (\pi \frac{1+\alpha }{2})}= \frac{\pi}{\cos \frac{\alpha \pi}{2}}
+\end{align*}
+This give us 
+\begin{align}
+  \label{game2}
+\cos \frac{\alpha \pi}{2}\Gamma (\frac{1-\alpha }{2}) \Gamma (\alpha )&= \cos \frac{\alpha \pi}{2}\Gamma (\alpha )  \frac{\pi}{\cos \frac{\alpha \pi}{2}\Gamma  (\frac{1+\alpha }{2})}\notag\\
+&=\frac{\Gamma (\alpha )\pi}{\Gamma (\frac{\alpha +1}{2})}
+\end{align}
+Note that \myref{Equation}{game1} and \myref{Equation}{game2} are identical, and we are done. $\vdone$
+\end{proof}
+\begin{theorem}
+\label{6.5.2}
+\textbf{(Remainder of Taylor's Theorem in Mean Values Form)} Given 
+\begin{align*}
+f:I\subseteq \R\rightarrow \R\text{ is $n$ time continuously differentiable at $a\in I$}
+\end{align*}
+Define 
+\begin{enumerate}[label=(\alph*)]
+  \item $P_n(x)\triangleq \sum_{k=0}^n \frac{f^{(k)}(a) (x-a)^k}{k!}$ 
+  \item  $R_n(x)\triangleq f(x)-P_n(x)$
+\end{enumerate}
+If 
+\begin{enumerate}[label=(\alph*)]
+  \item $G$ is continuous on  $[a,x]$ 
+  \item  $G'$ exists and not equals to  $0$ on  $(a,x)$
+\end{enumerate}
+We have 
+\begin{align*}
+\exists \xi \in (a,x), R_n(x)=\frac{f^{(n+1)}(\xi)(x-\xi )^n}{n!}  \frac{G(x)-G(a)}{G'(\xi )}
+\end{align*}
+\end{theorem}
+\begin{proof}
+WLOG suppose $x>a$. Define $F:(a,x)\to \R$ by 
+\begin{align*}
+F(t)=\sum_{k=0}^n \frac{f^{(k)}(t)(x-t)^k}{k!}
+\end{align*}
+By Cauchy's MVT, we know  
+\begin{align*}
+\exists \xi\in (a,x),\frac{F'(\xi)}{G'(\xi)}=\frac{F(x)-F(a)}{G(x)-G(a)}
+\end{align*}
+Compute 
+\begin{align*}
+F(x)=f(x)
+\end{align*}
+Compute 
+\begin{align*}
+F(a)=\sum_{k=0}^n \frac{f^{(k)}(a)(x-a)^k}{k!}=P_n(x)
+\end{align*}
+Compute 
+\begin{align*}
+F'(\xi)&=\sum_{k=0}^n \frac{f^{(k+1)}(\xi)(x-\xi)^k-k f^{(k)}(\xi)(x-\xi)^{k-1}}{k!}\\
+&=\frac{f^{(n+1)}(\xi)(x-\xi)^n}{n!} 
+\end{align*}
+We now have 
+\begin{align*}
+\frac{\frac{f^{(n+1)}(\xi)(x-\xi)^{n}}{n!}}{G'(\xi)}=\frac{R_n(x)}{G(x)-G(a)}
+\end{align*}
+Then we can deduce 
+\begin{align*}
+R_n(x)=\frac{f^{(n+1)}(\xi)(x-\xi)^n}{n!}\frac{G(x)-G(a)}{G'(\xi)}
+\end{align*}
+\end{proof}
+\begin{corollary}
+\label{6.5.3}
+\textbf{(Lagarange Form of Remainders in Taylor's Theorem)} Let 
+\begin{align*}
+G(t)=(x-t)^{n+1}
+\end{align*}
+We have
+\begin{align*}
+\exists \xi \in (a,x), R_n(x)=\frac{f^{(n+1)}(\xi)(x-a)^{n+1}}{(n+1)!} 
+\end{align*}
+\end{corollary}
+\begin{proof}
+Compute 
+\begin{align*}
+G'(\xi)&=-(n+1)(x-\xi)^{n}\\
+G(x)&=0\\
+G(a)&=(x-a)^{n+1}
+\end{align*}
+The result now follows from \myref{Theorem}{6.5.2}. 
+\end{proof}
+\begin{theorem}
+\label{sinxx}
+\textbf{($\sin x\leq x$)}
+\begin{align*}
+\hspace{2cm}\abso{\sin x}\leq \abso{x}\hspace{1.5cm}(x\in [\frac{-\pi}{2},\frac{\pi}{2}])
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $\abso{\sin x}$ and $\abso{x}$ are both odd and positive, WOLG, we only have to prove when $x\in (0,\frac{\pi}{2}]$. Compute the Taylor polynomials to second degree and its remainder. 
+\begin{align*}
+\sin x= x- \cos (\xi)\frac{x^3}{3!}\text{ for some $\xi\in (0,x)$  }
+\end{align*}
+Because $0<\xi <x$, it is now clear that 
+\begin{align*}
+0< \sin x =x- \cos(\xi) \frac{x^3}{3!}\leq x
+\end{align*}
+This then implies 
+\begin{align*}
+\abso{\sin x}\leq \abso{x}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw3q5}
+\end{question}
+\begin{proof}
+No. Compute using \myref{Theorem}{sinxx}
+\begin{align*}
+\int_{-\pi}^{\pi}\abso{D_N(x)}dx&=\int_{-\pi}^{\pi}\abso{\frac{\sin (N+\frac{1}{2})x}{\sin (\frac{x}{2})}}dx\\
+&\geq 2\int_{-\pi}^{\pi} \frac{\abso{\sin (N+\frac{1}{2})x}}{\abso{x}}dx
+\end{align*}
+Using $u=(N+\frac{1}{2})x,dx=\frac{du}{N+\frac{1}{2}}$, we have the approximation
+\begin{align*}
+  2\int_{-(N+\frac{1}{2})\pi}^{(N+\frac{1}{2})\pi} \frac{\abso{\sin u}}{\abso{\frac{u}{N+\frac{1}{2}}}}\frac{1}{N+\frac{1}{2}}du&=4\int_{0}^{(N+\frac{1}{2})\pi} \frac{\abso{\sin u}}{\abso{u}}du\\
+&\geq 4\Big(\int_0^{\pi}\frac{\sin u}{u}du+\int_{\pi}^{N\pi} \frac{\abso{\sin u} }{\abso{u} }du+\int_{N\pi}^{(N+\frac{1}{2})\pi} \frac{\abso{\sin u}}{\abso{u}}du \Big)\\
+&\geq 4\Big(\int_0^{\pi}\frac{\sin u}{\pi}du+\int_{\pi}^{N\pi} \frac{\abso{\sin u} }{\abso{u} }du+\int_{N\pi}^{(N+\frac{1}{2})\pi} \frac{\abso{\sin u}}{(N+\frac{1}{2})\pi}du \Big)\\
+&= 4\int_{\pi}^{N\pi} \frac{\abso{\sin u}}{\abso{u}}du+\frac{8}{\pi}+\frac{4}{(N+\frac{1}{2})\pi} \\
+&=4\sum_{k=1}^{N-1}\int_{k\pi}^{(k+1)\pi } \frac{\abso{\sin u}}{\abso{u}}du+\frac{8}{\pi}+\frac{4}{(N+\frac{1}{2})\pi}\\
+&\geq 4 \sum_{k=1}^{N-1}\frac{1}{(k+1)\pi} \int_{k\pi}^{(k+1)\pi} \abso{\sin u}du+\frac{8}{\pi}+\frac{4}{(N +\frac{1}{2})\pi}\\
+&=4\sum_{k=1}^{N-1}\frac{2}{(k+1)\pi}+\frac{8}{\pi}+\frac{4}{(N+\frac{1}{2})\pi}\\
+&=\frac{8}{\pi}\sum_{k=1}^{N-1}\frac{1}{k+1}+\frac{8}{\pi}+\frac{4}{(N+\frac{1}{2})\pi}\to \infty
+\end{align*}
+where the last expression tends to infinity because $\sum_{k=1}^{N}\frac{1}{k}$ tends to infinity and the other two terms stay bounded.\\
+
+We have now seen 
+\begin{align*}
+  \int_{-\pi}^{\pi}\abso{D_N(x)}dx&\geq 2\int_{-\pi}^{\pi} \frac{\abso{\sin (N+\frac{1}{2})x}}{\abso{x}}dx\\
+  &= 2\int_{-(N+\frac{1}{2})\pi}^{(N+\frac{1}{2})\pi} \frac{\abso{\sin u}}{\abso{\frac{u}{N+\frac{1}{2}}}}\frac{1}{N+\frac{1}{2}}du \to \infty\text{ as }N\to \infty
+\end{align*}
+This shows that the Dirichlet's Kernel $D_N(x)$ does NOT satisfy the second criterion. 
+\end{proof}
+
+
+
+\begin{lemma}
+\label{Dkernel variant}
+\begin{align*}
+D_N(x)\triangleq \sum_{n=-N}^{N}e^{-inx}=1+2\sum_{n=1}^N \cos nx = \frac{\sin (N+\frac{1}{2})x}{\sin \frac{x}{2}}
+\end{align*}
+\end{lemma}
+\begin{proof}
+\begin{align*}
+\sum_{n=-N}^{N}e^{-i nx}&=1+2\sum_{n=1}^N \big(\cos nx+ i \sin nx + \cos nx - i \sin nx \big)\\
+&=1+2\sum_{n=1}^N \cos nx
+\end{align*}
+\end{proof}
+\begin{lemma}
+\label{sinx/2}
+\begin{align*}
+\hspace{3cm}\abso{\sin x}\geq \frac{\abso{x}}{2}\hspace{1.5cm}(x\in  [-\frac{\pi}{2},\frac{\pi}{2}] )
+\end{align*}
+\end{lemma}
+\begin{proof}
+Because both $\abso{\sin x}\text{ and }\frac{\abso{x}}{2}$ are both odd and positive, WOLG, it suffices to just prove  for $x \in (0,\frac{\pi}{2}]$.\\
+
+Notice that $\sin x$ is concave on $[0,\frac{\pi}{2}]$ by computing second derivative.\\
+
+Then, for all $x\in [0,\frac{\pi}{2}]$, we have
+\begin{align*}
+\sin x \geq \sin 0+ x \frac{\sin \frac{\pi}{2}- \sin 0}{\frac{\pi}{2}-0}
+\end{align*}
+This give us 
+\begin{align*}
+\sin x\geq \frac{2x}{\pi}\geq \frac{x}{2}\hspace{0.5cm}(\because \frac{\pi}{2}\leq x)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw3q6}
+\end{question}
+\begin{proof}
+Yes. For first condition, compute 
+\begin{align*}
+\frac{1}{2\pi}\int_{-\pi}^\pi F_N(x)dx&=\frac{1}{2\pi}\int_{-\pi}^{\pi} \frac{1}{N+1}\sum_{n=0}^N \frac{\sin (n+\frac{1}{2})x}{\sin \frac{x}{2}}dx\\
+&=\frac{1}{2\pi (N+1)}\sum_{n=0}^N \int_{-\pi}^{\pi} D_n(x)dx\\
+&=\frac{1}{2\pi (N+1)}\sum_{n=0}^N \int_{-\pi}^{\pi} (1+2 \sum_{k=1}^n \cos kx)dx\hspace{0.5cm}(\text{\myref{Lemma}{Dkernel variant}})\\
+&=\frac{1}{2\pi(N+1)}\sum_{n=0}^N 2\pi=1\hspace{0.5cm}(\because \int_{-\pi}^{\pi}\cos kx=0)
+\end{align*}
+For second condition, just not that $F_N$ is positive, so 
+\begin{align*}
+\int_{-\pi}^{\pi}\abso{F_n(x)}dx=\int_{-\pi}^{\pi}F_n(x)=2\pi
+\end{align*}
+For third condition, suppose $0<\delta \leq \abso{x}\leq \pi$.\\
+
+Using \myref{Lemma}{sinx/2} to compute 
+\begin{align*}
+0\leq F_n(x)&=\frac{\sin^2 \frac{nx}{2}}{n \sin^2 \frac{x}{2}}\leq \frac{1}{n \sin^2 \frac{x}{2}}\leq \frac{1}{n(\frac{x}{4})^2}\leq \frac{1}{n(\frac{\delta}{4})^2}\searrow 0\text{ as $n\to \infty$ }
+\end{align*}
+Then 
+\begin{align*}
+\int_{\delta\leq \abso{x}\leq \pi}F_n(x)dx\leq \int_{\delta\leq \abso{x}\leq \pi} \frac{16}{n\delta^2}dx=\frac{32(\pi-\delta)}{n \delta^2}\searrow 0\text{ as $n\to \infty$ }
+\end{align*}
+
+
+\end{proof}
+
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw3q7}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+P_r(\theta)&=\sum_{n=-\infty}^{\infty}r^{\abso{n}}e^{i n\theta}\\
+&=1+\sum_{n=1}^{\infty}r^n e^{i n\theta} + \sum_{n=1}^{\infty}r^n e^{-i n \theta}\\
+&=1+\frac{re^{i\theta}}{1-re^{i\theta}}+\frac{re^{-i\theta}}{1-re^{-i \theta}}\\
+&=1+ \frac{re^{i\theta}(1-re^{-i\theta})+re^{-i\theta}(1-re^{i\theta})}{(1-re^{i\theta})(1-re^{-i \theta})}\\
+&=1+ \frac{re^{i\theta}+re^{-i\theta}-2r^2}{1-re^{i\theta}-re^{-i\theta}+r^2}\\
+&=1+\frac{2r\cos \theta-2r^2}{1-2r\cos \theta+r^2}=\frac{1-r^2}{1-2r\cos \theta +r^2}
+\end{align*}
+\end{proof}
+
+
+\begin{question}{}{}
+\includegraphics[height=2cm,width=18cm]{hw3q8}
+\end{question}
+\begin{proof}
+Yes. For first condition, compute 
+\begin{align*}
+\frac{1}{2\pi}\int_{-\pi}^{\pi} P_r(\theta)d\theta &=\frac{1}{2\pi}\int_{-\pi}^{\pi}\sum_{n=-\infty}^{\infty}r^{\abso{n}}e^{i n\theta}d\theta\\
+&=\frac{1}{2\pi}\sum_{n=-\infty}^{\infty}r^{\abso{n}}\int_{-\pi}^{\pi}e^{i n \theta}d\theta\\
+&=\frac{1}{2\pi}r^0 2\pi=1
+\end{align*}
+For second condition, note that 
+\begin{align*}
+1-2r \cos \theta+r^2\geq 1-2r+r^2=(1-r)^2\inr^+
+\end{align*}
+Then because $1-r^2\inr^+$, we see 
+\begin{align*}
+P_r(\theta)=\frac{1-r^2}{1-2r\cos \theta+r^2}\inr^+
+\end{align*}
+We now have 
+\begin{align*}
+  \int_{-\pi}^{\pi}\abso{P_r(\theta)}d\theta &=\int_{-\pi}^{\pi}P_r(\theta)d\theta=1
+\end{align*}
+Note that $P_r$ is even, we then can reduce proving the third critirion into proving 
+\begin{align*}
+\vi{P_r(\theta)\to 0\text{ uniformly on $[\delta,\pi]$ as $r\nearrow 1$ }}
+\end{align*}
+Compute 
+\begin{align*}
+P_r'(\theta)=\frac{-2r \sin \theta (1-r^2)}{(1-2r \cos \theta + r^2)^2}<0\text{ on $[\delta,\pi]$ }
+\end{align*}
+This then give us 
+\begin{align*}
+P_r(\theta)\leq P_r(\delta)\text{ on }[\delta,\pi]
+\end{align*}
+Compute 
+\begin{align*}
+P_r(\delta)=\frac{1-r^2}{(1-r)^2+2r(1-\cos \delta)}\to 0\text{ as $r\nearrow 1$ }
+\end{align*}
+and we are done $\vdone$
+\begin{align*}
+y=\Big(\frac{\sin 2t}{2}-t \Big)\cos t + \Big(\frac{-\cos 2t}{2} \Big)\sin t
+\end{align*}
+\end{proof}
+\chapter{ODE}
+\section{Solution 2}
+\begin{mdframed}
+1.(a)
+\begin{align*}
+x^2+2x+2
+\end{align*}
+1.(b)
+\begin{align*}
+x
+\end{align*}
+2.(a)
+\begin{align*}
+y_P(t)=9te^{2t}+ \frac{-1}{5}\cos t+ \frac{3}{5}\sin t
+\end{align*}
+2.(b)
+\begin{align*}
+y_P(t)= \frac{t^3}{6}e^t+t^2+4t+6
+\end{align*}
+2.(c)
+\begin{align*}
+y_1=e^t,y_2=e^{-t},y_3=t,y_4=1,y_P=\frac{-t^3}{6}+\frac{t}{2}e^t
+\end{align*}
+2.(d)
+\begin{align*}
+\begin{cases}
+  y_1=e^t,y_2=te^t, y_3=1,y_4=\cos t, y_5= \sin t\\
+  y_P(t)=\frac{t^2}{2}+2t+\frac{t^2}{4}e^t- \frac{t \cos t }{4}
+\end{cases}
+\end{align*}
+3.(a)
+\begin{align*}
+y_P(t)=\Big(\frac{\sin 2t}{2}-t \Big)\cos t+ \Big(\frac{-\cos 2t}{2} \Big)\sin t
+\end{align*}
+3.(b)
+\begin{align*}
+y_P(t)=te^t+(\ln t)te^t
+\end{align*}
+3.(c)
+\begin{align*}
+  y_P(x)=\Big(\frac{x}{2}-1 \Big)e^{2x}
+\end{align*}
+\end{mdframed}
+\chapter{Geometry Archived}
+\section{Prerequiste}
+\begin{mdframed}
+In this section, we will use $I$ to denote an \textbf{bounded open interval}. By a \textbf{curve} in $\R^n$, we mean a function form an open interval $I$ to $\R^n$.  We say a curve is \textbf{differentiable} if it is infinitely differentiable (smooth). That is, $\gamma ^{(n)}(t)$ exists and are continuous for all $n\inn$ and $t \in I$.\\
+
+We say a differentiable curve $\gamma  :I\rightarrow \R^n$ is \textbf{regular} if $\gamma '(t)\neq 0$ for all $t  \in I$. We say a differentiable curve $\gamma :I\rightarrow \R^n$ is a \textbf{parametrized by arc-length} if $\abso{\gamma '(t)}=1$ for all $t \in I$. 
+\end{mdframed}
+\begin{mdframed}
+For a regular curve $\gamma $, we say $\gamma '(t)$ is the \textbf{tangent vector} of $\gamma $ at $t$, and we define the \textbf{unit tangent vector} $T$ by    
+\begin{align*}
+T(t)\triangleq \frac{\gamma '(t)}{\abso{\gamma '(t)}}
+\end{align*}
+We say $\gamma ''(t)$ is the \textbf{oriented curvature} (normal vector) of $\gamma $ at $t$, and we define the  \textbf{unit normal vector} $N$ by 
+ \begin{align*}
+N(t)\triangleq \frac{T'(t)}{\abso{T'(t)}}
+\end{align*}
+Some interesting facts can be observed from what we have deduced.
+\begin{enumerate}[label=(\alph*)]
+  \item $\gamma ',\gamma ''$ always exists. 
+  \item $\gamma $ is parametrized by arc-length $\implies \gamma ' \perp \gamma ''$
+  \item $\gamma $ is parametrized by arc-length $\implies \gamma $ is regular
+  \item $T$ and $T'$ exists at $t$  $\iff $ $\gamma $ is regular at $t$ 
+  \item $T=\gamma '\iff \gamma $ is parametrized by arc-length   
+  \item $N$ exists at $t$ $\iff \gamma ''(t)\neq 0\iff  \kappa (t)\neq 0$  
+  \item $N$ and  $T'$ point to the same direction $\gamma ''$.
+  \item $\abso{T'}=\kappa\iff \gamma $ is paramterized by arc-length 
+  \item $\gamma \perp \gamma '$ and $\gamma'' \perp \gamma '''$ are generally false even for curve $\gamma $ paramterized by arc-length. 
+  \item Given a curve $\gamma $ parametrized by arc-length
+\begin{align*}
+  \gamma \text{ is a straight line on }[a,b]&\iff  \gamma '\text{ and }T\text{ are constant on $(a,b)$ }\\
+  &\iff \gamma ''(t)=0\text{ on $(a,b)$ }\\
+  &\iff \kappa (t)=0\text{ on $(a,b)$ }\\
+  &\iff T'(t)=0\text{ on }(a,b)
+\end{align*}
+\end{enumerate}
+Notice that the last fact is false if $\gamma $ is not paramtetrized by arc-length, since $\gamma $ can move in the straight line with changing speed $\gamma '$.  
+\end{mdframed}
+
+\begin{mdframed}
+Given a curve $\gamma $, if $T(t)$ and $N(t)$ exists (regular and non-zero curvature), we define its \textbf{binormal} vector by 
+\begin{align*}
+B(t)=T(t) \times N(t)
+\end{align*}
+Fix $t$. We say 
+\begin{align*}
+\set{T(t),N(t),B(t)}\text{ form a \textbf{positively oriented orthonormal basis} of $\R^3$ }
+\end{align*}
+This basis in general is constantly changing, yet always form an orthonormal basis.\\
+
+Also, we say 
+\begin{align*}
+\text{span}\Big( T(t),N(t)\Big)\text{ is the \textbf{osculating plane} of $\gamma $ at $t$ }
+\end{align*}
+Suppose $\gamma $ is parametrized by arc-length and always has non-zero curvature. With some geometric intuition, one shall note that $\abso{T'}$ measure how curved $\gamma $ is and that $\abso{B'}$ measure how fast  $\gamma $ leave the osculating plane.\\
+
+Because $\abso{B}=1$ is a constant, we can deduce  
+\begin{align*}
+B'\perp B
+\end{align*}
+and the computation 
+\begin{align*}
+B'=T' \times N + T \times N'=T \times N' 
+\end{align*}
+give us 
+\begin{align*}
+B'\perp T
+\end{align*}
+This ultimately show us 
+\begin{align*}
+B',N,T'\text{ are all parallel where $N,T'$ even point to the same direction}
+\end{align*}
+
+
+Notice that if we parametrize the curve with opposite direction, then 
+\begin{enumerate}[label=(\alph*)]
+  \item $T,\gamma '$ change direction 
+  \item $N,\gamma ''$ keep the same direction 
+  \item $B$ change direction 
+  \item $B'$ keep the same direction 
+\end{enumerate}
+Now, for a curve $\gamma $ parametrized by arc-length, we define the \textbf{curvature} $\kappa$ and \textbf{torsion} $\tau$ of $\gamma $ by 
+\begin{align*}
+\kappa(t)=\abso{\gamma ''(t)}\text{ and }\tau (t)=\frac{B'(t)}{N(t)}
+\end{align*}
+With unfortunately heavy computation, we can verify that the definition of curvature must stay in the framework of curve parametrized by arc-length, otherwise we will be given two different values of curvature of two curves that are equivalent in the sense of sets.\\
+
+Now, notice that we already have $T'=\kappa N$ and $B'=\tau N$, and by basic identity, we have $N=B\times T$.\\
+
+Then $\underline{\text{with some computation}}$, we have the \textbf{Frenet Formula}
+\begin{align*}
+\begin{cases}
+  T'=\kappa N\\
+  N'=B'\times T+B\times T'=-\tau B-\kappa T\\
+  B'=\tau N
+\end{cases}
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+Given two vectors $u,v \inr^n$, we use  \textbf{dot product} 
+\begin{align*}
+u\cdot v= u_1v_1+\cdots + u_nv_n
+\end{align*}
+to denote the Euclidean inner product, and we use \textbf{length} 
+\begin{align*}
+\abso{u}=\sqrt{\sum_{k=1}^n u_k^2} 
+\end{align*}
+to denote the Euclidean norm. Note that we clearly have 
+\begin{align*}
+\abso{u}=\sqrt{u\cdot u} 
+\end{align*}
+Given three vectors $u,v,w \inr^3$, we define \textbf{cross product} by 
+\begin{align*}
+  u\times v&\triangleq \begin{vmatrix} 
+  \textbf{i} & \textbf{j} & \textbf{k}\\
+  u_1 & u_2 & u_3 \\
+  v_1 & v_2 & v_3
+\end{vmatrix}\\
+&=(u_2v_3-u_3v_2,u_3v_1-u_1v_3,u_1v_2-u_2v_1)
+\end{align*}
+With some simple computation, we have the following identity 
+\begin{enumerate}[label=(\alph*)]
+  \item $u\times v=-v \times u$ (anti-commutative)
+  \item $(au+w)\times v=a(u\times v)+w \times v$ (Linearity)
+  \item $u\times (aw+v)=a (u\times w)+ u \times v$
+  \item $u \times v =0 \iff u=cv$ for some $c \inr$
+  \item $(u\times v)\cdot w =\begin{vmatrix} 
+      u_1 & u_2 & u_3 \\
+      v_1 & v_2 & v_3 \\
+      w_1 & w_2 & w_3   \end{vmatrix}=\begin{vmatrix}
+      w_1 & w_2 & w_3 \\
+      u_1 & u_2 & u_3 \\
+      v_1 & v_2 & v_3 
+  \end{vmatrix}$ 
+  \item $(u \times v)\cdot v=0=(u \times v)\cdot u$
+  \item $u \times v \perp u$ and $u\times v\perp v$
+  \item $u \perp v \implies  \abso{u \times v}= \abso{u}\cdot \abso{v}$
+  \item $(u \times v)\times w=(u \cdot w)v-(v \cdot w)u$
+\end{enumerate}
+All proofs except that of the last identity are merely manipulation of determinant. A simple proof of the last identity follows from the fact both side are linear in all $u,v,w$, and the observation 
+\begin{align*}
+  (e_1\times e_2)\times e_3=0=(e_1\cdot e_3)e_2-(e_2\cdot e_3)e_1
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Differentiate the Dot Product)} Given two parametrized curves $u,v:(a,b)\rightarrow \R^n$, such that $u,v$ are differentiable at  $t \in (a,b)$. We have 
+\begin{align*}
+\frac{d}{dt}\big(u(t)\cdot v(t) \big)= u'(t)\cdot v(t)+u(t)\cdot v'(t)
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+\frac{d}{dt}\big(u(t)\cdot v(t) \big)&=\frac{d}{dt}\sum_{k=1}^n u_k(t)v_k(t)\\
+&=\sum_{k=1}^n \frac{d}{dt} u_k(t)v_k(t)\\
+&=\sum_{k=1}^n u_k'(t)v_k(t)+u_k(t)v_k'(t)\\
+&=\sum_{k=1}^n u_k'(t)v_k(t)+\sum_{k=1}^n u_k(t)v_k'(t)\\
+&=u'(t)\cdot v(t)+u(t)\cdot v'(t)
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Differentiate the Cross Product)} Given two curves $u,v:(a,b)\rightarrow \R^3$, such that $u,v$ are differentiable at  $t \in (a,b)$. We have 
+\begin{align*}
+\frac{d}{dt}\big(u (t)\times v(t) \big)=u'(t)\times v(t)+u(t)\times v'(t)
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+  \frac{d}{dt}\big(u(t)\times v(t) \big)=&\frac{d}{dt}(u_2v_3-u_3v_2,u_3v_1-u_1v_3,u_1v_2-u_2v_1)\\
+=&(u_2'v_3+u_2v_3'-u_3'v_2-u_3v_2',\\
+ & u_3'v_1+u_3v_1'-u_1'v_3-u_1v_3',\\
+ &u_1'v_2+u_1v_2'-u_2'v_1-u_1v_2')\\
+=&(u_2'v_3-u_3'v_2,u_3'v_1-u_1'v_3,u_1'v_2-u_2'v_1)\\
++&(u_2v_3'-u_3v_2',u_3v_1'-u_1v_3',u_1v_2'-u_1v_2')\\
+=&u'\times v+u \times v'
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Integrating the Dot Product)} Given a curve $u:[a,b]\rightarrow \R^n$ and a vector $v \in\R^n$, suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $u$ is differentiable on $(a,b)$ 
+  \item $u$ is continuous on  $[a,b]$
+\end{enumerate}
+We have 
+\begin{align*}
+\int_a^b u'(t)\cdot v dt=
+\Big(\int_a^b u'(t)dt \Big)\cdot v= \big(u(b)-u(a) \big)\cdot v
+\end{align*}
+\end{theorem}
+\begin{proof}
+\begin{align*}
+\int_a^b u'(t)\cdot vdt&=\int_a^b \sum_{k=1}^n u'_k(t)\cdot v_k dt \\
+&=\sum_{k=1}^n  \int_a^b u'_k(t)\cdot v_k dt\\
+&=\sum_{k=1}^n v_k \int_a^b u'_k(t)dt\\
+&=v\cdot \Big(\int_a^b u'(t)dt \Big)
+\end{align*}
+\end{proof}
+\begin{mdframed}
+For the result above, sometimes we write 
+\begin{align*}
+  (u\cdot v)'=u'\cdot v+ u \cdot v'\text{ and }(u\times v)'=u' \times v+u\times v'
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(MVT for curve)} Given a curve $\alpha  : [a,b]\rightarrow \R^n$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha  $ is differentaible on $(a,b)$ 
+  \item $\alpha  $ is continuous on $[a,b]$
+\end{enumerate}
+there exists $ \xi  \in (a,b)$ such that 
+\begin{align*}
+\abso{\alpha  (b)-\alpha  (a)}\leq \abso{\alpha  '(\xi  )}(b-a)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $\phi:[a,b]\rightarrow \R$ by 
+\begin{align*}
+\phi(t)=\alpha (t)\cdot \big(\alpha (b)-\alpha (a) \big) 
+\end{align*}
+Clearly $\phi$ satisfy the hypothesis of Lagrange's MVT, then we know there exists $\xi \in (a,b)$ such that 
+\begin{align*}
+\phi(b)-\phi (a)=\phi'(\xi )\cdot (b-a)
+\end{align*}
+Written the equation in $\alpha $, we have 
+\begin{align*}
+\abso{\alpha (b)-\alpha (a)}^2= (b-a)\alpha '(\xi)\cdot \big(\alpha (b)-\alpha (a) \big)
+\end{align*}
+Notice that Cauchy-Schwarz inequality give us 
+\begin{align*}
+  (b-a)\abso{\alpha '(\xi)}\cdot \abso{\alpha (b)-\alpha (a)}&\geq (b-a)\abso{\alpha ' (\xi)\cdot \big(\alpha (b)-\alpha (a) \big)} \\
+  &=\abso{\alpha (b)-\alpha (a)}^2
+\end{align*}
+This then implies 
+\begin{align*}
+  (b-a)\abso{\alpha '(\xi)}\geq \abso{\alpha (b)-\alpha (a)}
+\end{align*}
+\end{proof}
+\begin{corollary}
+\label{MVI}
+\textbf{(Mean Value Inequality)} Given a curve $\alpha :[a,b]\rightarrow \R^n$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ is differentiable on $(a,b)$ 
+  \item $\alpha $ is continuous on $[a,b]$
+\end{enumerate}
+we have 
+\begin{align*}
+\abso{\alpha (b)-\alpha (a)}\leq (b-a)\sup_{(a,b)}\abso{\alpha '}
+\end{align*}
+\end{corollary}
+\begin{mdframed}
+\textbf{Trick to parametrize by arc-length}.\\
+
+Given a regular curve $\gamma :I\rightarrow \R^n$ and fix $t_0 \in I$. We use
+\begin{align*}
+  s(t)=\int_{t_0}^t \abso{\gamma  ' (x)}dx
+\end{align*}
+to define the arc-length of  $\gamma $ from $\gamma (t_0)$ to $\gamma (t)$. Because $\gamma $ is regular, by FTC, it is clear that $s$ is one-to-one.\\
+
+Let $t(s)$ be the inverse of $s$. Define 
+ \begin{align*}
+\beta (s)\triangleq \alpha (t(s))
+\end{align*}
+We have by Chain rule 
+\begin{align*}
+\beta '(s)&=t'(s)\alpha '(t(s))\\
+&=\frac{\alpha '(t(s))}{s'(t)}\\
+&=\frac{\alpha '(t(s))}{\abso{\alpha '(t(s))}}
+\end{align*}
+\end{mdframed} 
+\begin{mdframed}
+\textbf{(Frenet Formula Summary)} \\
+
+By definition, we are given 
+\begin{align*}
+\begin{cases}
+  T'=\kappa N\\
+  B'=\tau N
+\end{cases}
+\end{align*}
+To compute $N'$, an identity should be first given 
+ \begin{align*}
+N=B\times T
+\end{align*}
+We can now complete the Frenet Formula 
+\begin{align*}
+N'&=B'\times T + B \times T'\\
+&=\tau N \times T + B \times \kappa N\\
+&=-\tau B-\kappa T
+\end{align*}
+In conclusion 
+\begin{align*}
+\begin{cases}
+  T'=\kappa N
+  B' =\tau N\\
+  N'=-\tau B-\kappa T
+\end{cases}
+\end{align*}
+Give very close attention to the fact the two definitions of curvature 
+\begin{align*}
+\kappa =\frac{T'}{N}\text{ and }\kappa = \abso{\gamma ''}
+\end{align*}
+coincides $\underline{\text{only when }}\gamma $ is parametrzied by arc-length. The first definition remain same for all parametrizaiton of the same curve, while the latter doesn't.\\
+
+Some comment should be dropped for the computation of torsion. If you overlook the fact $\alpha $ is parametrized by arc-length and disregard Frenet Formula, it is very likely you will get a result that you can not even sure if it is valid (the nominator and denominator may end up not seem explicitly parallel), let alone an identity beautiful as below. 
+\end{mdframed}
+\section{Examples of Regular Surfaces}
+\begin{mdframed}
+Among all regular surfaces, the most classic one is perhaps the $S^2$. Here, we show some local parametriatoin of $S^2$.\\
+
+
+Note that because  $S^2=F^{-1}[0]$, where $F(x,y,z)=x^2+y^2+z^2-1$ clearly has non-zero derivative everywhere on $\R^3 \setminus 0$, we know $S^2$ is a regular surface. 
+\end{mdframed}
+\begin{mdframed}
+\begin{Example}{\textbf{(Graph Coordinates of $S^2$)}}{}
+\begin{align*}
+U=\set{(u,v):u^2+v^2<1}\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2=1}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+    \item $f_1:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_1(x,y)=(x,y,\sqrt{1-x^2-y^2})$  
+    \item $f_2:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_2(x,y)=(x,y,-\sqrt{1-x^2-y^2})$  
+    \item $f_3:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_3(x,z)=(x,\sqrt{1-x^2-z^2},z)$  
+    \item $f_4:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_4(x,z)=(x,-\sqrt{1-x^2-z^2},z)$  
+    \item $f_5:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_5(y,z)=(\sqrt{1-y^2-z^2},y,z)$  
+    \item $f_6:B_{1}(0)\subseteq \R^2 \rightarrow \R^3$ by $f_6(y,z)=(-\sqrt{1-y^2-z^2},y,z)$  
+\end{enumerate}
+\end{Example}  
+\begin{Example}{\textbf{(Spherical Coordinates of $S^2$)}}{}
+\begin{align*}
+S^2=\set{(x,y,z):x^2+y^2+z^2=1}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1:(0,\pi)\times (0,2\pi)\rightarrow S^2 $ by $\textbf{x}_1(\theta,\phi)=(\sin \theta \cos \phi,\sin \theta \sin \phi,\cos \theta)$
+  \item $\textbf{x}_2:(0,\pi)\times (0,2\pi)\rightarrow S^2$ by $\textbf{x}_2(\theta,\phi)=(-\sin \theta\cos \phi  ,\cos \theta,\sin \theta \sin \phi )$
+\end{enumerate}
+Note that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_1$ does not contain $\set{(x,0,z)\in S^2: \begin{cases}
+    x^2+z^2=1\\
+    x\geq 0
+  \end{cases}}$ 
+\item $\textbf{x}_2$ does not contain $\set{(x,y,0)\in S^2: \begin{cases}
+  x^2+y^2=1\\
+  x\leq 0
+\end{cases}}$
+\end{enumerate}
+\end{Example}
+
+\begin{Example}{\textbf{(Stereographical Coordinates of $S^2$: Projection Plane be the Equator)}}{}
+\begin{align*}
+U=\R^2\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2=1}
+\end{align*}
+Note that
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_N^{-1}(x,y,z)\equiv (\frac{x}{1-z},\frac{y}{1-z})$ 
+  \item $\textbf{x}_S^{-1}(x,y,z)\equiv (\frac{x}{z+1},\frac{y}{z+1}) $
+\end{enumerate}
+For explicit expression of $\textbf{x}_N$, Use the trick 
+\begin{align*}
+u^2+v^2=\frac{x^2+y^2}{(1-z)^2}=\frac{1-z^2}{(1-z)^2}\text{ and }x=u(1-z),y=v(1-z)
+\end{align*}
+to first solve for $z$, then solve for $x,y$.\\
+
+Now, we have 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{x}_N(u,v)=\big(\frac{2u}{u^2+v^2+1},\frac{2v}{u^2+v^2+1},\frac{u^2+v^2-1}{u^2+v^2+1} \big)$
+  \item $\textbf{x}_S(u,v)=\big(\frac{2u}{u^2+v^2+1},\frac{2v}{u^2+v^2+1},\frac{1-u^2-v^2}{1+u^2+v^2} \big)$
+\end{enumerate}
+Let
+\begin{align*}
+\textbf{x}_N(u,v)=(x,y,z)
+\end{align*}
+Compute 
+\begin{align*}
+  \frac{\partial (x,y)}{\partial (u,v)}&=\frac{4(-u^2 - v^2 + 1)}{u^6 + 3u^4v^2 + 3u^4 + 3u^2v^4 + 6u^2v^2 + 3u^2 + v^6 + 3v^4 + 3v^2 + 1}\\
+  \frac{\partial (y,z)}{\partial (u,v)}&=\frac{-8u}{u^6 + 3u^4v^2 + 3u^4 + 3u^2v^4 + 6u^2v^2 + 3u^2 + v^6 + 3v^4 + 3v^2 + 1}\\
+  \frac{\partial (x,z)}{\partial (u,v)}&=\frac{8v}{u^6 + 3u^4v^2 + 3u^4 + 3u^2v^4 + 6u^2v^2 + 3u^2 + v^6 + 3v^4 + 3v^2 + 1}
+\end{align*}
+This shows $\textbf{x}_N$ is indeed a local parametrization.   
+\end{Example}
+Note that 
+\begin{align*}
+\textbf{x}^{-1}_S \circ \textbf{x}_N (u,v)=\big( \frac{u}{u^2+v^2},\frac{v}{u^2+v^2}\big)
+\end{align*}
+is a diffeomorphism on $\R^2\setminus 0$, since $\text{det}\Big( d(\textbf{x}_S^{-1}\circ \textbf{x}_N)\Big)=\frac{-1}{(u^2+v^2)^2}$.\\
+
+Also, note that if we identify $(u,v)\equiv u+iv\triangleq \xi$, we have 
+\begin{align*}
+\textbf{x}_S^{-1}\circ \textbf{x}_N (\xi)=\frac{\xi}{\abso{\xi}^2}
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+\begin{Example}{\textbf{(Stereographical Coordinates of $S^2$: Projection Plane at the Bottom)}}{}
+\begin{align*}
+U=\R^2\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2}
+\end{align*}
+\end{Example}
+\end{mdframed}
 \end{document}
