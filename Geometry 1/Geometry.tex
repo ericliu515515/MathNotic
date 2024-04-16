@@ -2698,9 +2698,61 @@ T_pS=\set{\alpha '(0)\inr^3|\hspace{0.1cm}\alpha:I\rightarrow S \text{ is a smoo
 \begin{definition}
 \textbf{(Definition of Tangent Plane: Local Parametrization)} Given a regular surface $S$, that $p\in  S$ and a local parametrzaiton $\textbf{x}:(u,v)\mapsto  (x,y,z)$ around $p$ such that $\textbf{x}(q)=p$,  we define \textbf{tangent plane $T_pS$ to  $S$ at $p$} by 
 \begin{align*}
-T_pS=\text{span}(\partial_u\textbf{x}(q), \partial_v\textbf{x}(q))
+T_pS=d\textbf{x}(\R^2)
 \end{align*}
 \end{definition}
+\begin{theorem}
+\textbf{(Equivalence of Definitions)} Given a regular surface $S$, that $p\in  S $ and a local parametrization $\textbf{x}:(u,v)\mapsto  (x,y,z)$ around $p$ such that $\textbf{x}(q)=p$. we have 
+\begin{align*}
+d\textbf{x}(\R^2)=\set{\alpha '(0)\inr^3|\hspace{0.1cm}\alpha:I\rightarrow S \text{ is a smooth curve  passing through $p$ at $\alpha (0)$ }}
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+ \vi{d\textbf{x}_q(\R^2)\subseteq\set{\alpha '(0)\inr^3|\hspace{0.1cm}\alpha:I\rightarrow S \text{ is a smooth curve  passing through $p$ at $\alpha (0)$ }}}
+\end{align*}
+Fix $w\in d\textbf{x}_q(\R^2)$. We wish
+\begin{align*}
+\vi{\text{ to find smooth $\alpha :I\rightarrow S$ such that $\alpha (0)=p$ and $\alpha '(0)=w$ }}
+\end{align*}
+We know there exists $v \inr^2$ such that $d\textbf{x}_q(v)=w$. Define $\gamma :I\rightarrow \R^2$ by 
+\begin{align*}
+\gamma (t)= tv+q
+\end{align*}
+We claim 
+\begin{align*}
+  \vi{\textbf{x}\circ \gamma :I\rightarrow S\text{ suffices }}
+\end{align*}
+Note that $\textbf{x}\circ \gamma (0)=\textbf{x}(q)=p$ and
+\begin{align*}
+(\textbf{x}\circ \gamma )'(0)=d\textbf{x}_q(\gamma '(0))=d\textbf{x}_q(v)=w \vdone 
+\end{align*}
+We now prove 
+\begin{align*}
+\blue{\set{\alpha '(0)\inr^3|\hspace{0.1cm}\alpha:I\rightarrow S \text{ is a smooth curve  passing through $p$ at $\alpha (0)$ }}\subseteq d\textbf{x}_q(\R^2)}
+\end{align*}
+Fix a smooth curve $\alpha :I \rightarrow S$ passing through $p$ at $\alpha (0)$. We wish 
+\begin{align*}
+\blue{\text{ to show }\alpha '(0)\in d\textbf{x}_q(\R^2)}
+\end{align*}
+Define $\beta :I\rightarrow U$ by 
+\begin{align*}
+\beta (t)=\textbf{x}^{-1}\circ \alpha (t)
+\end{align*}
+We claim 
+\begin{align*}
+\blue{\alpha '(0)=d\textbf{x}_q(\beta '(0))}
+\end{align*}
+Compute using Chain Rule 
+\begin{align*}
+\beta '(0)=(d\textbf{x}_q)^{-1}\circ \alpha '(0)
+\end{align*}
+This now give us 
+\begin{align*}
+d\textbf{x}_q(\beta '(0))=\alpha '(0)\bdone
+\end{align*}
+\end{proof}
 
 \section{Questions Regarding Manifold}
 \begin{definition}

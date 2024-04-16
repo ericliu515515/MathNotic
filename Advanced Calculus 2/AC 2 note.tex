@@ -2670,12 +2670,179 @@ This now implies
 \end{proof}
 \chapter{Calculus in Euclidean Space}
 \section{Operator Norm}
+\begin{mdframed}
+In this section, and particularly in functional analysis, we say a function $T$ between two metric space is a  \textbf{bounded operator} if $T$ always map bounded set to bounded set. In particular, if $T$ is a linear transformation between two normed space, we say $T$ is a \textbf{bounded linear operator}.\\
 
+Suppose $\mathcal{X},\mathcal{Y}$ are two normed space over $\R\text{ or }\C$. In space $L(\mathcal{X},\mathcal{Y})$, alternatively, we can define the boundedness for each linear transformation $T$ by 
+\begin{align*}
+T\text{ is bounded } \overset{\triangle}{\iff} \exists M\inr,\forall x\in \mathcal{X}, \norm{Tx}\leq M\norm{x}
+\end{align*}
+The proof of equivalency is simple. For $(\longrightarrow )$, let $E\triangleq \set{y \in \mathcal{X}: \norm{y}=1}$ is non-empty. Clearly, $E$ is bounded. Let $M=\sup_{y\in E} \norm{Ty}$. We now have 
+\begin{align*}
+\norm{Tx}= \norm{x}\cdot\norm{T \frac{x}{\norm{x}}}\leq M\norm{x}
+\end{align*}
+For $(\longleftarrow)$, just observe $\norm{Tx-Ty}=\norm{T(x-y)}\leq M\norm{x-y}$.\\
+
+Two chapters ago, we drew the connection between concept of boundedness and concept of continuity by showing a continuous function between metric spaces must map a bounded set to another bounded set.\\
+
+Here, we show this connection is even deeper in the case of linear transformation by proving that a linear transformation is continuous if and only if it is bounded. (\myref{Theorem}{LOB}) 
+\end{mdframed}
+\begin{theorem}
+\label{LOB}
+\textbf{(Liner Operator is Bounded if and only if it is Continuous)} Given two normed space $\mathcal{X},\mathcal{Y}$ over $\R\text{ or }\C$ and  $T\in L(\mathcal{X},\mathcal{Y})$, we have 
+\begin{align*}
+T\text{ is a bounded operator }\iff T\text{ is continuous on $\mathcal{X}$}
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\longrightarrow)$ We show 
+\begin{align*}
+\vi{T\text{ is Lipschitz continuous on }V}
+\end{align*}
+Because $T$ is bounded, we can let $M\inr^+$ satisfy $\norm{Tx}\leq M\norm{x}$. We see 
+\begin{align*}
+\norm{Tx-Ty}\leq \norm{T(x-y)}\leq M \norm{x-y}\vdone
+\end{align*}
+$(\longleftarrow)$\\
+
+Because $T$ is linear and continuous at $0$, we know there exists  $\epsilon $ such that 
+\begin{align*}
+\sup_{\norm{y}\leq \epsilon } \norm{Ty} \leq 1
+\end{align*}
+We claim 
+\begin{align*}
+\blue{\hspace{3cm}\norm{Tx}\leq \frac{1}{\epsilon }\norm{x}\hspace{1.5cm}(x\in \mathcal{X})}
+\end{align*}
+Fix $x\in V$. Compute 
+\begin{align*}
+\norm{Tx}= \frac{\norm{x}}{\epsilon } \bnorm{T \frac{\epsilon x}{\norm{x}}}\leq \frac{\norm{x}}{\epsilon}\bdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Here, we introduce a new terminology, which shall later show its value. Given a set $X$, we say two metrics $d_1,d_2$ on $X$ are \textbf{equivalent}, and write $d_1\sim d_2$, if we have 
+\begin{align*}
+\exists m,M \inr^+, \forall x ,y\in X, md_1(x,y)\leq d_2(x,y) \leq Md_1(x,y)
+\end{align*}
+Now, given a fixed vector space $V$, naturally, we say two norms $\norm{\cdot}_1,\norm{\cdot}_2$ on $V$ are \textbf{equivalent} if 
+\begin{align*}
+\exists m,M \inr^+, \forall x\in X, m \norm{x}_1\leq \norm{x}_2 \leq M\norm{x}_1
+\end{align*}
+We say two metric $d_1,d_2$ on  $X$ are  \textbf{topologically equivalent} if the topology they induce on $X$ are identical.\\
+
+A few properties can be immediately spotted.  
+\begin{enumerate}[label=(\alph*)]
+  \item Our definition of $\sim$ between metrics of a fixed $X$ is an equivalence relation.\\
+  \item Our definition of $\sim$ between norms on a fixed $V$ is an equivalence relation.
+  \item Equivalent norms induce equivalent metrics.
+  \item Equivalent metrics are topologically equivalent. 
+\end{enumerate}
+
+We now prove that if $V$ is finite-dimensional, then all norms on  $V$ are equivalent (\myref{Theorem}{ANoF}). This property will later show its value, as used to prove that linear map of finite-dimensional domain is alwasy continuous (\myref{Theorem}{LmoF})
+\end{mdframed}
+\begin{theorem}
+\label{ANoF}
+\textbf{(All Norms on Finite-dimensional space are Equivalent)} Suppose $V$ is a finite-dimensional vector space over $\R\text{ or }\C$. Then 
+\begin{align*}
+\text{ all norms on $V$ are equivalent }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $\set{e_1,\dots ,e_n}$ be a basis of $V$. Define $\infty$-norm $\norm{\cdot}_\infty$ on $V$ by 
+\begin{align*}
+\bnorm{\sum \alpha_i e_i}_{\infty}\triangleq  \max \abso{\alpha_i} 
+\end{align*}
+It is easily checked that $\norm{\cdot}_\infty$ is indeed a norm. Fix a norm $\norm{\cdot}$ on $V$. We reduce the problem into  
+\begin{align*}
+  \vi{\text{ finding $m,M\inr^+$ such that }m\norm{x}_\infty \leq \norm{x}\leq M\norm{x}_\infty}
+\end{align*}
+We first claim 
+\begin{align*}
+\blue{M=\sum \norm{e_i}\text{ suffices }}
+\end{align*}
+Compute 
+\begin{align*}
+\norm{x}= \bnorm{\sum \alpha_ie_i} \leq \sum \abso{\alpha _i} \norm{e_i} \leq \norm{x}_\infty \sum \norm{e_i}= M \norm{x}_\infty \bdone
+\end{align*}
+Reverse triangle inequality give us 
+\begin{align*}
+\Big|\norm{x}-\norm{y}\Big|\leq \norm{x-y} \leq M \norm{x}_\infty
+\end{align*}
+This implies that $\norm{\cdot}:\Big(V,\norm{\cdot}_\infty \Big)\rightarrow \R$ is Lipschitz continuous.\\
+
+
+ 
+Define $S\triangleq \set{y \in V: \norm{y}_\infty =1}$ is non-empty. Check that $S$ is compact in $\norm{\cdot}_\infty$ by checking  $S$ is sequentially compact using the fact $\R^{n-1}$ is locally compact.\\
+
+
+Now, by EVT, we know $\min _{y \in S}\norm{y}$ exists. Note that $\min_{y \in S}\norm{y}>0$, since $0 \not\in S$.\\ 
+
+We claim 
+\begin{align*}
+  \olive{m= \min_{y \in S}\norm{y}\text{ suffices }}
+\end{align*}
+Fix $x \in V$. Compute 
+\begin{align*}
+m\norm{x}_\infty = \norm{x}_\infty (\min_{y \in S} \norm{y})\leq \norm{x}_\infty \cdot  \bnorm{ \frac{x}{\norm{x}_\infty}}=\norm{x}\odone \vdone
+\end{align*}
+
+
+
+
+
+
+\end{proof}
+\begin{theorem}
+\label{LmoF}
+\textbf{(Linear map of Finite-dimensional Domain is always Continuous)} Given a finite-dimensional normed space $\mathcal{X}$ over $\R\text{ or }\C$, an arbitrary normed space  $\mathcal{Y}$ over $\R\text{ or }\C$ and a linear transformation  $T:\mathcal{X}\rightarrow \mathcal{Y}$, we have 
+\begin{align*}
+T\text{ is continuous }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $x\in \mathcal{X},\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to find $\delta$ such that }\forall h\in \mathcal{X}: \norm{h}\leq \delta, \norm{T(x+h)-Tx}\leq \epsilon }
+\end{align*}
+Let $\set{e_1,\dots ,e_n}$ be a basis of $\mathcal{X}$. Note that $ \norm{ \sum \alpha_i e_i }_1: = \sum \abso{\alpha _i}$ is a norm. By \myref{Theorem}{ANoF}, we know $\norm{\cdot}$ and $\norm{\cdot}_1$ are equivalent. Then, we can fix $M\inr^+$ such that 
+\begin{align*}
+\hspace{2cm}\norm{x}_1 \leq M\norm{x}\hspace{0.5cm}(x \in V)
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\delta= \frac{\epsilon }{M(\max \norm{Te_i} )}\text{ suffices }} 
+\end{align*}
+Fix $\norm{h}\leq \delta$ and express $h=\sum \alpha_i e_i$. Compute using linearity of $T$
+\begin{align*}
+  \norm{T(x+h)-Tx}&=\norm{\sum \alpha_i T e_i}\\
+  &\leq \sum \abso{\alpha _i} \norm{Te_i}\\
+  &\leq  \norm{h}_1 (\max \norm{Te_i} )\\
+  &\leq M \norm{h}(\max \norm{Te_i})\leq \epsilon \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+As a corollary of \myref{Theorem}{LOB} and \myref{Theorem}{LmoF}, we now see that, if $\mathcal{X}$ is finite-dimensional, then all linear map of domain $\mathcal{X}$ are bounded. A counter example to the generalization of this statement is followed. 
+\begin{Example}{\textbf{(Differentiation is an Unbounded Linear Operator)}}{}
+\begin{align*}
+\mathcal{X}=\Big(\R[x]|_{[0,1]}, \norm{\cdot}_\infty \Big), D(P)\triangleq P'
+\end{align*}
+Note that $\set{x^n}_{n\inn}$ is bounded in $\mathcal{X}$ and $\set{D(x^n)}_{n\inn}$ is not.   
+\end{Example}
+Now, suppose $\mathcal{X},\mathcal{Y}$ are two fixed normed spaces over $\R$ or $\C$. We can easily check that the set $BL(\mathcal{X},\mathcal{Y})$ of bounded linear operators from $\mathcal{X}$ to $\mathcal{Y}$ form a vector space over whichever field $\mathcal{Y}$ is over.\\
+
+Naturally, our definition of boundedness of linear operator derive us a norm on $BL(\mathcal{X},\mathcal{Y})$, as followed 
+\begin{align*}
+\norm{T}\triangleq \inf \set{M\inr^+ :\forall x \in \mathcal{X}, \norm{Tx}\leq M\norm{x}}
+\end{align*}
+The verification of our definition of $\norm{\cdot}$ on $BL(\mathcal{X},\mathcal{Y})$ is simple, the tricks are 
+\begin{enumerate}[label=(\alph*)]
+  \item For positive-definiteness, try to prove the contraposition. Fix non-trivial $T$ and fix $x\in \mathcal{X}\setminus N(T)$. Show $\norm{T}\geq \frac{\norm{Tx}}{\norm{x}}>0$. 
+\end{enumerate}
+\end{mdframed}
 \section{Differentiability Theorem}
 \begin{mdframed}
 
 
-Given two normed space $V,W$, suppose $f$ maps an open neighborhood $O$ around $x$ in $V$ to $W$. We say $f$ is \textbf{differentiable at} $x$ if there exists a linear transformation $A_x:V\rightarrow W$ (from now, $A_x$ will be denoted $df_x$) such that the remainder of the local approximation $df_x$ satisfy 
+Given two normed space $V,W$, suppose $f$ maps an open neighborhood $O$ around $x$ in $V$ to $W$. We say $f$ is \textbf{differentiable at} $x$ if there exists a linear transformation $A_x:V\rightarrow W$ (from now, $A_x$ will be denoted $df_x$) such that the remainder $f(x+h)$of the local approximation $df_x$ satisfy 
 \begin{align*}
   \lim_{h\to 0} \frac{\norm{f(x+h)-f(x)-df_x(h)}_W}{\norm{h}_V}=0
 \end{align*}

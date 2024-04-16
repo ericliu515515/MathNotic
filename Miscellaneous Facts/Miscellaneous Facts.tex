@@ -2049,42 +2049,35 @@ Compute using \myref{Theorem}{Gau1}
 &=\sqrt{b\pi} 
 \end{align*}
 \end{proof}
-\begin{theorem}
-\label{Fourier of Gaussian}
-\textbf{(Fourier Transformation of Gaussian)} Given 
-\begin{enumerate}[label=(\alph*)]
-  \item $C\neq 0$
-  \item $f(t)\triangleq e^{-Ct^2}$
-\end{enumerate}
-We have
-\begin{align*}
-\hat{f}(\xi)=e^{\frac{-\xi^2}{4C}}\sqrt{\frac{\pi}{C}} 
-\end{align*}
-\end{theorem}
-\begin{proof}
-Compute using \myref{Theorem}{Gau2}
-\begin{align*}
-\hat{f}(\xi)&=\int_{-\infty}^{\infty}e^{-Ct^2}e^{-i\xi t}dt\\
-&=\int_{-\infty}^{\infty}e^{-C(t+\frac{i\xi}{2C})^2}e^{\frac{-\xi^2}{4C}}dt\\
-&=e^{\frac{-\xi^2}{4C}}\int_{-\infty}^{\infty} e^{-C(t+\frac{i\xi}{2C})^2}dt\\
-&=e^{\frac{-\xi^2}{4C}}\int_{-\infty}^{\infty} e^{-\frac{(t-\frac{-i\xi}{2C})^2}{\frac{1}{C}}}dt=e^{\frac{-\xi^2}{4C}} \sqrt{\frac{\pi}{C}} 
-\end{align*}
-\end{proof}
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw3q2}
 \end{question}
 \begin{proof}
-Fix 
+Compute 
 \begin{align*}
-C\triangleq \frac{1}{2\sigma^2}
+g'(x)=\frac{1}{\sigma \sqrt{2\pi} }\cdot \frac{-2x}{2\sigma^2}  e^{\frac{-x^2}{2\sigma^2}}= -\frac{1}{\sigma^2}xg(x)
 \end{align*}
-Then because $g(x)=\frac{1}{\sigma \sqrt{2\pi} }e^{-Cx^2}$, by \myref{Theorem}{Fourier of Gaussian}, we have 
+Using the statement of the first question, which we have proved, we now have 
 \begin{align*}
-\hat{g}(\xi)&=\frac{1}{\sigma \sqrt{2\pi} }e^{\frac{-\xi^2}{4C}}\sqrt{\frac{\pi}{C}} \\
-&= \frac{1}{\sigma\sqrt{2\pi} }e^{\frac{-\sigma^2 \xi^2}{2}}\sqrt{2\sigma^2 \pi}= \frac{\abso{\sigma}}{\sigma}e^{\frac{-\sigma^2 \xi^2}{2}}
+  i \xi \widehat{g}= \widehat{g'} = - \frac{1}{\sigma^2} \widehat{xg} =  \frac{-i}{\sigma^2}  \frac{d\widehat{g}}{d\xi}
+\end{align*}
+This give us the first order homogenoeous ODE 
+\begin{align*}
+  \frac{d}{d\xi}\widehat{g}+ \sigma^2 \xi \widehat{g}=0
+\end{align*}
+Compute the general solution 
+\begin{align*}
+\widehat{g}(\xi)= C e^{\frac{-\sigma^2 \xi^2}{2}}
+\end{align*}
+Compute using \myref{Theorem}{Gau2}
+\begin{align*}
+C=\widehat{g}(0)=\int_{-\infty}^{\infty}g(x)dx=1
+\end{align*}
+We now have the $\underline{\text{answer}}$ 
+\begin{align*}
+\widehat{g}(\xi)=e^{\frac{-\sigma^2\xi^2}{2}}
 \end{align*}
 \end{proof}
-
 
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw3q3}
@@ -2331,7 +2324,7 @@ Then, for all $x\in [0,\frac{\pi}{2}]$, we have
 \end{align*}
 This give us 
 \begin{align*}
-\sin x\geq \frac{2x}{\pi}\geq \frac{x}{2}\hspace{0.5cm}(\because \frac{\pi}{2}\leq x)
+\sin x\geq \frac{2x}{\pi}\geq \frac{x}{2}\hspace{0.5cm}(\because 2\geq  \frac{\pi}{2} )
 \end{align*}
 \end{proof}
 \begin{question}{}{}
@@ -2418,9 +2411,6 @@ Compute
 P_r(\delta)=\frac{1-r^2}{(1-r)^2+2r(1-\cos \delta)}\to 0\text{ as $r\nearrow 1$ }
 \end{align*}
 and we are done $\vdone$
-\begin{align*}
-y=\Big(\frac{\sin 2t}{2}-t \Big)\cos t + \Big(\frac{-\cos 2t}{2} \Big)\sin t
-\end{align*}
 \end{proof}
 \chapter{ODE}
 \section{Solution 2}
@@ -2464,6 +2454,15 @@ y_P(t)=te^t+(\ln t)te^t
 \begin{align*}
   y_P(x)=\Big(\frac{x}{2}-1 \Big)e^{2x}
 \end{align*}
+\end{mdframed}
+\begin{mdframed}
+Summary of the information I gathered: 7 questions. 
+\begin{enumerate}[label=(\alph*)]
+  \item 3 questions are solving second order homogeneous linear ODE with constant coefficients. i.e. $ay''+by'+cy=0, y(t_0)=y_0, y'(t_0)=y_0'$. The Characteristic polynomials of these 3 questions will respectively have distinct roots, complex roots, and repeated root.
+  \item 2 questions are solving second order non-homogeneous linear ODE. Probably, one of them shall be solved by "undetermined coefficients", and another shall be solved by "variation of parameter" 
+  \item The last 2 questions are third order (linear) ODE. The method wasn't revealed. 
+\end{enumerate}
+
 \end{mdframed}
 \chapter{Geometry Archived}
 \section{Prerequiste}
