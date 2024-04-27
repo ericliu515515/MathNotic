@@ -2753,59 +2753,320 @@ This now give us
 d\textbf{x}_q(\beta '(0))=\alpha '(0)\bdone
 \end{align*}
 \end{proof}
-
-\section{Questions Regarding Manifold}
-\begin{definition}
-\textbf{(Definition of Topological Manifold? 1)} Given a topological space $(M,\tau_M)$, we say $M$ is a \textbf{n-manifold} if for each $p$ in $M$ there exists $N_p$ such that
-\begin{enumerate}[label=(\alph*)]
-  \item $p\in N_p \subseteq M$
-  \item $N_p$ contain  some  $U$ open in $M$ 
-  \item $N_p$ is homeomorphic to some $E$ open in $\R^n$
-\end{enumerate}
-\end{definition}
-\begin{definition}
-\textbf{(Definition of Topological Manifold? 2)} Given a topological space $(M,\tau_M)$, we say $M$ is a \textbf{n-manifold} if for each $p$ in $M$ there exists $N_p$ such that
-\begin{enumerate}[label=(\alph*)]
-  \item $p\in N_p \subseteq M$
-  \item $N_p$ is open in $M$ 
-  \item $N_p$ is homeomorphic to some $E$ open in $\R^n$
-\end{enumerate}
-\end{definition}
-\begin{definition}
-\textbf{(Definition of Topological Manifold? 3)} Given a topological space $(M,\tau_M)$, we say $M$ is a \textbf{n-manifold} if for each $p$ in $M$ there exists $N_p$ such that
-\begin{enumerate}[label=(\alph*)]
-  \item $p\in N_p \subseteq M$
-  \item $N_p$ is open in $M$ 
-  \item $N_p$ is homeomorphic to $\R^n$
-\end{enumerate}
-\end{definition}
-\begin{definition}
-\textbf{(Definition of Topological Manifold? 4)} Given a topological space $(M,\tau_M)$, we say $M$ is a \textbf{n-manifold} if for each $p$ in $M$ there exists $N_p$ such that
-\begin{enumerate}[label=(\alph*)]
-  \item $p\in N_p \subseteq M$
-  \item $N_p$ contain some $U$ open in $M$ 
-  \item $N_p$ is homeomorphic to $\R^n$
-\end{enumerate}
-\end{definition}
 \begin{mdframed}
-Question: are the above 4 definitions all equivalent? 
+Now, given a differentiable function $f$ between two regular surface $S_1,S_2$, we can define the differential $df$ of $f$ in the sense of differentiable manifold.
+\end{mdframed}
+\begin{mdframed}
+Question: Isn't the derivative $df_p$ exactly the same as  $df_p$ when  $f$ has domain  $\R^3$? Then why bother? just to avoid the definition of derivative on a non-interior point? 
 \end{mdframed}
 \begin{definition}
-\textbf{(Definition of Differentiable Manifold? )} Given a $2$-manifold  $M$, we say  $M$ is a \textbf{differentiable manifold} if for each  two chart $\textbf{x}_1:U_1\rightarrow V_1\subseteq M,\textbf{x}_2:U_2\rightarrow V_2\subseteq M$ such that 
+\textbf{(Derivative of Differntiable mapping between regular surface)} Given a differentiable mapping $f:S_1\rightarrow S_2$, we define $df_p:T_p(S_1)\to T_{f(p)}(S_2)$ by 
 \begin{align*}
-\textbf{x}_1(U_1)\cap \textbf{x}_2(U_2)\neq \varnothing
+df_p(\alpha '(0))\triangleq \frac{d}{dt}f(\alpha (t))|_{t=0}
 \end{align*}
-we have the statement 
+\end{definition}
+\begin{theorem}
+\textbf{(Derivative is well-defined and linear)}
+\end{theorem}
+\begin{proof}
+Note that 
 \begin{align*}
-f\begin{cases}
- :\textbf{x}_1^{-1}(V_1\cap V_2)\rightarrow U_2 \\
- q\mapsto  \textbf{x}_2^{-1}\circ \textbf{x}_1(q)
-\end{cases}\text{ is differentiable }
+df_p(\alpha '(0))\overset{\text{def}}{=}\frac{d}{dt}f(\alpha (t))|_{t=0}=(f\circ \alpha )'(0)
+\end{align*}
+Note that 
+\end{proof}
+\section{First Fundamental Form}
+\begin{definition}
+\textbf{(First Fundamental Form)} Given a regular surface $S$ and $p\in  S$, by \textbf{the first fundamental form of $S$ at $p$}, we mean a function $I_p:T_p(S)\rightarrow \R$ defined by 
+\begin{align*}
+I_p(w)\triangleq w\cdot w
 \end{align*}
 \end{definition}
 \begin{mdframed}
-Question: In our class, we have proved that a regular surface is a differentiable manifold. Does there exists a 2-manifold that is NOT a differentiable manifold? 
+Given a local parametrization $\textbf{x}(u,v)$ and a parametrized curve $\alpha (t)=\textbf{x}(u(t),v(t))$, we see that  
+\begin{align*}
+I_p(\alpha '(t))&=\abso{\alpha '(t)}^2\\
+&=\abso{\partial_u \textbf{x}(q) u'(t)+ \partial_v \textbf{x}(q) v'(t)}^2 \\
+&=E(q)(u'(t))^2+ 2F(q)u'(t)v'(t)+G(q)(v'(t))^2
+\end{align*}
+where 
+\begin{align*}
+q&=(u(t),v(t))\\
+E(q)&= \abso{\partial_u \textbf{x}(q)}^2 \\
+F(q)&= \partial_u\textbf{x}(q)\cdot \partial_v \textbf{x}(q)\\
+G(q)&=\abso{\partial_v \textbf{x}(q)}^2
+\end{align*}
 \end{mdframed}
+\begin{mdframed}
+!!!!! Show that given a stereographical projection $\textbf{x}:\R^2 \times 0 \rightarrow S^2\setminus N$ preserve angle. Prove that given $v,w \inr^2$ starting at $p\inr^2$, we have 
+\begin{align*}
+\frac{d\textbf{x}_q(v)\cdot d\textbf{x}_q(w)}{\abso{d\textbf{x}_q(v)}\abso{d\textbf{x}_q(w)}}=v\cdot w
+\end{align*}
+So, we can show that  $\textbf{x}:\R^2 \rightarrow S^2 \setminus N$ satisfy 
+\begin{align*}
+d\textbf{x}(v)\cdot d\textbf{x}(w)= C (v\cdot w)\text{ where }C\text{ is a constant }
+\end{align*}
+is conformal (preserving angle). 
+\end{mdframed}
+\section{HW4}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw4q1}
+\includegraphics[height=3cm,width=18cm]{hw4q1a}
+\end{question}
+\begin{proof}
+The question first ask us to prove 
+\begin{align*}
+\vi{T_{p_0}(S)=\set{(x,y,z)\inr^3: z=f(x_0,y_0)+(x-x_0)\partial_x f(p_0)+(y-y_0)\partial_y f(p_0)}}
+\end{align*}
+By premise of the question, we know there exists a global chart $\textbf{x}$  
+ \begin{align*}
+\textbf{x}(x,y)\triangleq (x,y,f(x,y))
+\end{align*}
+Compute 
+\begin{align*}
+d\textbf{x}=\begin{bmatrix}
+  1 & 0 \\
+  0 & 1\\
+  \partial_x f & \partial_y f
+\end{bmatrix}
+\end{align*}
+This tell us 
+\begin{align*}
+T_{p_0}(S)&=(x_0,y_0,f(x_0,y_0))+\text{span}(\begin{bmatrix}
+  1 \\
+  0\\
+  \partial_x f(p_0)
+\end{bmatrix},\begin{bmatrix}
+0\\
+1\\
+\partial_y f(p_0)
+\end{bmatrix})\\
+&=\set{(x,y,z)\inr^3: z=f(x_0,y_0)+(x-x_0) \partial_x f(p_0)+(y_y_0) \partial_y f(p_0)}\vdone
+\end{align*}
+Compute 
+\begin{align*}
+df_{p_0}=\begin{bmatrix}
+  \partial_x f(p_0) & \partial_y f(p_0)
+\end{bmatrix}
+\end{align*}
+Then we see 
+\begin{align*}
+T_{p_0}(S)=(x_0,y_0,f(x_0,y_0))+ \set{(x,y,df_{p_0}(x,y))\inr^3: (x,y)\inr^2}
+\end{align*}
+where the left hand side is the graph of $df_{p_0}$ when the origin is set to be $(p_0,f(p_0))$ 
 
+
+
+
+
+
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=7cm,width=18cm]{hw4q2}
+\end{question}
+\begin{proof}
+WOLG, suppose the coordinate curve $\gamma :I\rightarrow S$ is  
+\begin{align*}
+\gamma  (t)=\textbf{x}(u_0,t)
+\end{align*}
+Compute 
+\begin{align*}
+d\textbf{x}=\begin{bmatrix}
+  \alpha_1' (u) & \alpha _2'(v)
+\end{bmatrix}\text{ and }d\textbf{x}_{\gamma (t)}=\begin{bmatrix}
+  \alpha_1'(u_0)& \alpha_2'(v)
+\end{bmatrix}
+\end{align*}
+Then see that 
+\begin{align*}
+T_{\gamma (t)} (S)=\text{span}(\alpha_1'(u_0),\alpha_2'(t))
+\end{align*}
+Since $\alpha_1'(u_0)$ is fixed, we see $T_{\gamma (t) }(S)$ are all parallel to $\alpha_1'(u_0)$. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=13cm,width=18cm]{hw4q3}
+\end{question}
+\begin{proof}
+Use Frenet-Serret Formula to compute 
+\begin{align*}
+d\textbf{x}= \begin{bmatrix}
+  \alpha '+r \big((-\kappa T-\tau B)\cos v+ \tau N \sin v \big) & r(-N \sin v+ B \cos v)
+\end{bmatrix}
+\end{align*}
+We wish to show 
+\begin{align*}
+  \vi{-(N \cos v+B \sin v)\perp d\textbf{x}(\R^2)}
+\end{align*}
+We then only have to prove 
+\begin{align*}
+&\vi{\big(N \cos v+B \sin v \big)\perp -N \sin v + B \cos v} \\
+  \text{ and }&\vi{\big(N \cos v+B \sin v \big) \perp \alpha' + r  \big((-\kappa T-\tau B)\cos v+ \tau N \sin v \big)}
+\end{align*}
+Because $\set{T,N,B}$ form an othothonormal basis and $\alpha '$ is just $T$, we have 
+\begin{align*}
+  (N \cos v + B \sin v)\cdot (-N \sin v+ B \cos v)=-(\cos v \sin v)+\sin v \cos v=0
+\end{align*}
+and have 
+\begin{align*}
+  &(N \cos v + B \sin v)\cdot \Big(\alpha '+r\big((-\kappa T-\tau B)\cos v + \tau N \sin v \big) \Big)\\
+  &= r\tau \cos v \sin v- r \tau \sin v \cos v=0 \vdone
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{hw4q4}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+dh_p(\alpha '(0))=\frac{d}{dt}h(\alpha (t))|_{t=0}=v\cdot \alpha '(0)
+\end{align*}
+In other words, 
+\begin{align*}
+dh_p(w)=v\cdot w
+\end{align*}
+This implies 
+\begin{align*}
+dh_p(l)=0,\forall l\in T_p(S)\iff v\perp T_p(S)\iff  v\text{ is a normal vector of $S$ at $p$ }
+\end{align*}
+\end{proof}
+
+
+
+
+
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw4q5}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw4q6}
+\end{question}
+\begin{proof}
+WOLG, suppose $P$ is the  $x,y$-plane, $p$ is the origin and $S\subseteq \set{(x,y,z)\inr^3: z\geq 0}$ (This can be achieved by a rigid motion). We wish to show 
+\begin{align*}
+  \vi{T_p(S)=P}
+\end{align*}
+Because  $\text{dim}(T_pS)=\text{dim}(P)=2$, we can reduce the problem into proving 
+\begin{align*}
+  \vi{T_p(S)\subseteq P}
+\end{align*}
+Fix $w \in T_p(S)$. We reduce the problem into 
+\begin{align*}
+\vi{\text{ proving }w\in P}
+\end{align*} 
+Let $\alpha:(-\epsilon ,\epsilon )\rightarrow S$ satisfy 
+\begin{align*}
+\alpha (0)=0\text{ and }\alpha '(0)=w
+\end{align*}
+Express 
+\begin{align*}
+\alpha (t)\triangleq (x,y,z)
+\end{align*}
+Because $S$ is above $P$, the $x,y$-plane, we know  $z$ attain minimum at $0$. This implies $z'(0)=0$, and implies $\alpha '(0)=(x'(t),y'(0),0)\in P$ (the $x,y$-plane) $\vdone$
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{hwextra}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{hw4q8}
+\end{question}
+\begin{proof}
+\textbf{(a)}
+Compute 
+\begin{align*}
+&\partial_u \textbf{x}=(a\cos u \cos v, b \cos u \sin v, -c \sin u)\\
+\text{ and }&\partial_v \textbf{x}=(-a \sin u \sin v,b \sin u \cos v, 0)
+\end{align*}
+This give us 
+\begin{align*}
+E&=\abso{\partial_u\textbf{x}}^2= \cos^2 u (a^2\cos ^2v + b^2 \sin^2 v)+c^2 \sin^2 u \\
+F&=\partial_u \textbf{x}\cdot \partial_v \textbf{x}=(-a^2+b^2)\cos u \sin u \cos v \sin v\\
+G&=\abso{\partial_v \textbf{x}}^2= \sin^2 u (a^2 \sin^2 v + b^2 \cos ^2 v)
+\end{align*}
+\textbf{(b)} Compute 
+\begin{align*}
+\partial_u \textbf{x}=(a\cos v, b \sin v, 2u)\text{ and }\partial_v \textbf{x}=(-au \sin v, b u \cos v, 0)
+\end{align*}
+This give us 
+\begin{align*}
+E&=\abso{\partial_u \textbf{x}}^2= a^2 \cos^2 v + b^2 \sin^2 v + 4u^2\\
+F&=\partial_u \textbf{x}\cdot \partial_v \textbf{x}=\cos v \sin v (-a^2 +b^2)u\\
+G&=\abso{\partial_v \textbf{x}}^2 = u^2 (a^2 \sin^2 v+ b^2 \cos ^2 v)
+\end{align*}
+\textbf{(c)} Compute 
+\begin{align*}
+  \partial_u \textbf{x}=(a \cosh v, b \sinh v,2u)\text{ and }\partial_v \textbf{x}=(au \sinh v, b u \cosh v, 0)
+\end{align*}
+This give us 
+\begin{align*}
+E&=\abso{\partial_u \textbf{x}}^2 = a^2 \cosh^2 v+ b^2 \sinh^2 v+4u^2\\
+F&=\partial_u \textbf{x}\cdot \partial_v \textbf{x}=(a^2+b^2)u \cosh v \sinh v\\
+G&=\abso{\partial_v \textbf{x}}^2= u^2 (a^2 \sinh^2 v+ b^2 \cosh^2 v)
+\end{align*}
+\textbf{(d)} Compute 
+\begin{align*}
+\partial_u \textbf{x}=(a \cosh u \cos v , b \cosh u \sin v, c\sinh u)\text{ and }\partial_v \textbf{x}=(-a\sinh u \sin v, b \sinh u \cos v, 0)
+\end{align*}
+This give us 
+\begin{align*}
+E&= \abso{\partial _u\textbf{x}}^2= \cosh^2 u (a^2 \cos^2 v+b^2 \sin^2 v)+c^2 \sinh^2 u\\
+F&=\partial_u \textbf{x}\cdot \partial_v \textbf{x}= \cosh u \sinh u \cos v \sin v (b^2-a^2)\\
+G&=\abso{\partial_v \textbf{x}}^2 = \sinh2 u (a^2 \sin^2 v +b^2 \cos^2 v)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw4q9}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=7cm,width=18cm]{hw4q10}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=7cm,width=18cm]{hw4q11}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=7cm,width=18cm]{hw4q12}
+\end{question}
+\begin{proof}
+Because $S$ is a surface of revolution, we have an almost global chart 
+\begin{align*}
+\textbf{x}(\theta,s)=(\cos \theta f(s),\sin \theta f(s),g(s))
+\end{align*}
+where 
+\begin{align*}
+f(s)=\rho(s)\text{ and }(f')^2+(g')^2=1
+\end{align*}
+Compute 
+\begin{align*}
+\partial_\theta \textbf{x}=(-\sin \theta f(s), \cos \theta f(s),0)\text{ and }\partial_s \textbf{x}=(\cos \theta f'(s),\sin \theta f'(s),g'(s))
+\end{align*}
+This let us compute 
+\begin{align*}
+E&=\abso{\partial _\theta \textbf{x}}^2=\abso{f(s)}^2=\rho(s)^2 \\
+F&=\partial_\theta \textbf{x}\cdot \partial_ s \textbf{x}=0 \\
+G&=\abso{\partial_s \textbf{x}}^2 = (f'(s))^2 + (g'(s))^2=1
+\end{align*}
+Now we see that the area $A(S)$ of $S$ is exactly 
+\begin{align*}
+A(S)=\int_0^{2\pi}\int_0^l \sqrt{EG-F^2}dsd\theta =2\pi \int_0^l \rho (s) ds
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=18cm,width=18cm]{hw4q13}
+\end{question}
+\begin{proof}
+
+\end{proof}
 
 \end{document}
