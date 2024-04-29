@@ -2783,18 +2783,25 @@ I_p(w)\triangleq w\cdot w
 \end{align*}
 \end{definition}
 \begin{mdframed}
-Given a local parametrization $\textbf{x}(u,v)$ and a parametrized curve $\alpha (t)=\textbf{x}(u(t),v(t))$, we see that  
+Given a local chart $\textbf{x}(u,v):U\rightarrow S$, we can define three real valued- function $E,F,G: U\rightarrow \R$ by 
 \begin{align*}
-I_p(\alpha '(t))&=\abso{\alpha '(t)}^2\\
-&=\abso{\partial_u \textbf{x}(q) u'(t)+ \partial_v \textbf{x}(q) v'(t)}^2 \\
-&=E(q)(u'(t))^2+ 2F(q)u'(t)v'(t)+G(q)(v'(t))^2
+E(u,v)&\triangleq  \abso{\partial_u \textbf{x}(u,v)}^2 \\
+F(u,v)&\triangleq  \partial_u\textbf{x}(u,v)\cdot \partial_v \textbf{x}(u,v)\\
+G(u,v)&\triangleq \abso{\partial_v \textbf{x}(u,v)}^2
 \end{align*}
-where 
+These three functions help us compute the arc-length of a smooth curve that lies in $\textbf{x}(U)$. Suppose $\alpha (t)$ lies in $\textbf{x}(U)$, and express 
 \begin{align*}
-q&=(u(t),v(t))\\
-E(q)&= \abso{\partial_u \textbf{x}(q)}^2 \\
-F(q)&= \partial_u\textbf{x}(q)\cdot \partial_v \textbf{x}(q)\\
-G(q)&=\abso{\partial_v \textbf{x}(q)}^2
+\alpha (t)=\textbf{x}(u(t),v(t))
+\end{align*}
+Note that the expression give us 
+\begin{align*}
+\alpha'(t)=d\textbf{x}(u'(t),v'(t))=u'(t)\partial_u \textbf{x}(u(t),v(t))+v'(t)\partial_v \textbf{x}(u(t),v(t))\text{ where $q=\alpha (t)$ }
+\end{align*}
+We see that 
+\begin{align*}
+  \int_0^r \abso{\alpha '(t)}dt&= \int_0^r \sqrt{\alpha '(t)\cdot \alpha '(t)} dt\\
+  &=\int_0^r \sqrt{\big(u'(t)\partial_u \textbf{x}(q)+v'(t)\partial_v \textbf{x}(q) \big)\cdot \big(u'(t)\partial_u \textbf{x}(q)+v'(t)\partial_v \textbf{x}(q) \big)}dt\\
+  &=\int_0^r \sqrt{E(q)\big(u'(t) \big)^2 + 2F(q)u'(t)v'(t)+G(q)\big(v'(t) \big)^2} dt
 \end{align*}
 \end{mdframed}
 \begin{mdframed}
@@ -2853,7 +2860,7 @@ Then we see
 \begin{align*}
 T_{p_0}(S)=(x_0,y_0,f(x_0,y_0))+ \set{(x,y,df_{p_0}(x,y))\inr^3: (x,y)\inr^2}
 \end{align*}
-where the left hand side is the graph of $df_{p_0}$ when the origin is set to be $(p_0,f(p_0))$ 
+where the right hand side is the graph of $df_{p_0}$ when the origin is set to be $(p_0,f(p_0))$ 
 
 
 
@@ -2939,6 +2946,42 @@ dh_p(l)=0,\forall l\in T_p(S)\iff v\perp T_p(S)\iff  v\text{ is a normal vector 
 \includegraphics[height=3cm,width=18cm]{hw4q5}
 \end{question}
 \begin{proof}
+WOLG, suppose the fixed point is the origin. Let $S$ be the regular surface. We are given the fact that any local chart $\textbf{x}(u,v)$ satisfy the equation 
+\begin{align}
+\label{lca}
+\textbf{x}(u,v)=f_{\textbf{x}}(u,v)N(u,v)
+\end{align}
+where $f_\textbf{x}(u,v)$ is a scalar-valued function and $N(u,v)$ is the unit normal vector of $S$ at $\textbf{x}(u,v)$. We first show that 
+\begin{align*}
+\vi{\text{ the distance of the surface to the origin is locally a constant }}
+\end{align*}
+In other words, we wish to prove that any local chart $\textbf{x}(u,v)$ satisfy 
+\begin{align*}
+  \vi{f_\textbf{x}\text{ is constant on domain of $\textbf{x}$ }}
+\end{align*}
+Doing partial derivative on $N\cdot N=1$, we see that 
+\begin{align*}
+\partial_u N\perp N \text{ and }\partial_v N\perp N
+\end{align*}
+This implies 
+\begin{align*}
+\partial_u N, \partial _v N \in T_p(S)
+\end{align*}
+We know 
+\begin{align*}
+\partial_u \textbf{x},\partial_v \textbf{x}\in T_p(S)
+\end{align*}
+Now, doing partial derivative on both side of (\myref{}{lca}), we see
+\begin{align*}
+\partial_u \textbf{x}=(\partial_u f_\textbf{x})N+f_\textbf{x}(\partial_u N)\text{ and }\partial_v \textbf{x}=(\partial_v f_\textbf{x})N+ f_\textbf{x} (\partial_v N)
+\end{align*}
+and see 
+\begin{align*}
+  (\partial_uf_\textbf{x})N=\partial_u \textbf{x}-f_\textbf{x}(\partial_u N)\in T_p(S)\text{ and }  (\partial_vf_\textbf{x})N=\partial_v \textbf{x}-f_\textbf{x}(\partial_v N)\in T_p(S)
+\end{align*}
+Then because $N\not\in T_p(S)$, we can conclude $\partial_uf_\textbf{x}=\partial_v f_\textbf{x}=0$. This establish that $f_\textbf{x}$ is a constant.  $\vdone$\\
+
+Note that the surface is connected, this implies that the distance of the surface to the origin is globally a constant, which implies the surface is contained in a sphere.
 
 \end{proof}
 \begin{question}{}{}
@@ -2970,10 +3013,113 @@ Because $S$ is above $P$, the $x,y$-plane, we know  $z$ attain minimum at $0$. T
 \begin{question}{}{}
 \includegraphics[height=10cm,width=18cm]{hwextra}
 \end{question}
+\begin{proof}
+Let $S$ be the ellipsoid. Let 
+\begin{align*}
+E\triangleq  \set{(x,y,z)\inr^3 : (x^2+y^2+z^2)^2=a^2x^2+b^2y^2+c^2z^2}\setminus O
+\end{align*}
+Let $E'$ be the perpendicular projections of  $O$ of $S$ onto the tangent planes of  $S$. We are required to prove 
+ \begin{align*}
+   \vi{E'=E}
+\end{align*}
+We first prove 
+\begin{align*}
+\blue{E' \subseteq E}
+\end{align*}
+
+
+Fix $p_0=(x_0,y_0,z_0)\in S$. We first prove 
+\begin{align}
+\label{tp0}
+\olive{T_{p_0}(S)=\set{(x,y,z)\inr^3: \frac{xx_0}{a^2}+\frac{yy_0}{b^2}+\frac{zz_0}{c^2}=1}}
+\end{align}
+Fix 
+\begin{align*}
+f(x,y,z)=\frac{x^2}{a^2}+\frac{y^2}{b^2}+\frac{z^2}{c^2}
+\end{align*}
+We have $S=f^{-1}(1)$. Compute 
+\begin{align*}
+\nabla f(x,y,z)=(\frac{2x}{a^2},\frac{2y}{b^2},\frac{2z}{c^2})
+\end{align*}
+Then because $T_{p_0}(S)\perp \nabla f(p_0)$, we have 
+\begin{align*}
+T_{p_0}(S)=\set{(x,y,z)\inr^3: \frac{x x_0}{a^2}+\frac{y y_0}{b^2}+\frac{z z_0}{c^2}=\frac{x_0^2}{a^2}+\frac{y_0^2}{b^2}+\frac{z_0^2}{c^2}=1}\odone
+\end{align*}
+We know that the line $L$ passing through $O$ and perpendicular to $T_{p_0}(S)$ can be parametrized by 
+\begin{align*}
+  L(t)=t\nabla f(p_0)\equiv t(\frac{x_0}{a^2},\frac{y_0}{b^2},\frac{z_0}{c^2})
+\end{align*}
+Compute 
+\begin{align*}
+L(t)\in T_{p_0}(S)\implies t(\frac{x_0^2}{a^4}+\frac{y_0^2}{b^4}+\frac{z_0^2}{c^4})=1
+\end{align*}
+This implies 
+\begin{align*}
+t=(\frac{x_0^2}{a^4}+\frac{y_0^2}{b^4}+\frac{z_0^2}{c^4})^{-1}\text{ and }q=t(\frac{x_0}{a^2},\frac{y_0}{b^2},\frac{z_0}{c^2})
+\end{align*}
+where $q\in T_{p_0}(S)$ is the point to which $O$ is perpendicular projected.\\ 
+
+Express $q=(x,y,z)$. Now, we can reduce the problem into proving 
+\begin{align*}
+\blue{(x^2+y^2+z^2)^2=a^2x^2+b^2y^2+c^2z^2}
+\end{align*}
+
+
+
+Compute  
+\begin{align*}
+  (x^2+y^2+z^2)^2=\Big(t^2(\frac{x_0^2}{a^4}+\frac{y_0^2}{b^4}+\frac{z_0^2}{c^2}) \Big)^2
+\end{align*}
+Compute 
+\begin{align*}
+a^2x^2+b^2y^2+c^2z^2=t^2 (\frac{x_0^2}{a^2}+\frac{y_0^2}{b^2}+\frac{z_0^2}{c^2})=t^2\hspace{0.5cm}(\because \frac{x_0^2}{a^2}+\frac{y_0^2}{b^2}+\frac{z_0^2}{c^2}=1)
+\end{align*}
+We reduce the problem into proving
+\begin{align*}
+\blue{t^2 (\frac{x_0^2}{a^4}+\frac{y_0^2}{b^4}+\frac{z_0^2}{c^4})^2=1}
+\end{align*}
+Note that $t=(\frac{x_0^2}{a^4}+\frac{y_0^2}{b^4}+\frac{z_0^2}{c^4})^{-1}$ and we are done. $\bdone$ \\
+
+It remains to prove 
+\begin{align*}
+\vi{E\subseteq E'}
+\end{align*}
+Fix $(x_1,y_1,z_1)\in S_1$. Let
+\begin{align*}
+r\triangleq \sqrt{a^2x_1^2+b^2y_1^2+c^2z_1^2} 
+\end{align*}
+We claim 
+\begin{align*}
+\vi{(x_1,y_1,z_1)\text{ is the projection of $O$ onto the tangent plane of  $S$ at  $(\frac{a^2x_1}{r},\frac{b^2y_1}{r},\frac{c^2z_1}{r})$ }}
+\end{align*}
+It is easily checked that $(\frac{a^2x_1}{r},\frac{b^2y_1}{r},\frac{c^2z_1}{r})\in S$. Let $p=(\frac{a^2x_1}{r},\frac{b^2y_1}{r},\frac{c^2z_1}{r})$. Using (\myref{}{tp0}), we have 
+\begin{align*}
+T_p(S)=\set{(x,y,z)\inr^3 : \frac{x x_1+y y_1+z z_1}{r}=1}
+\end{align*}
+It is now very clear that 
+\begin{align*}
+  (x_1,y_1,z_1)\text{ as a vector is perepndicular to $T_p(S)$ }
+\end{align*}
+and we can use the fact $(x_1,y_1,z_1)\in E$ to compute 
+\begin{align*}
+\frac{x_1^2+y_1^2+z_1^2}{r}= \frac{\sqrt{a^2x_1^2+b^2y_1^2+c^2z_1^2} }{r}=1
+\end{align*}
+This conclude $(x_1,y_1,z_1)\in T_p(S)$. $\vdone$
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=10cm,width=18cm]{hw4q8}
 \end{question}
 \begin{proof}
+Let $\alpha '(0)\in T_p(S)$ and express $\alpha (t)=\textbf{x}(u(t),v(t))$. We have 
+\begin{align*}
+I_p(\alpha '(0))&= \alpha '(0)\cdot \alpha '(0)\\
+&= \Big( u'(0)\partial_u \textbf{x}(p)+ v'(0)\partial_u \textbf{x}(p) \Big) \cdot\Big( u'(0)\partial_u \textbf{x}(p)+ v'(0)\partial_u \textbf{x}(p) \Big)\\
+&= \abso{\textbf{x}_u(p)}^2 (u'(0))^2+ 2(\partial_u \textbf{x}(p)\cdot \partial_v \textbf{x}(p))u'(0)v'(0)+ \abso{\textbf{x}_v(p)}^2 (v'(0))^2\\
+&\triangleq E(u'(0))^2 +2Fu'(0)v'(0)+G(v'(0))^2
+\end{align*}
+From now on, we compute only $E,F,G$.\\
+
+
 \textbf{(a)}
 Compute 
 \begin{align*}
@@ -3014,31 +3160,112 @@ This give us
 \begin{align*}
 E&= \abso{\partial _u\textbf{x}}^2= \cosh^2 u (a^2 \cos^2 v+b^2 \sin^2 v)+c^2 \sinh^2 u\\
 F&=\partial_u \textbf{x}\cdot \partial_v \textbf{x}= \cosh u \sinh u \cos v \sin v (b^2-a^2)\\
-G&=\abso{\partial_v \textbf{x}}^2 = \sinh2 u (a^2 \sin^2 v +b^2 \cos^2 v)
+G&=\abso{\partial_v \textbf{x}}^2 = \sinh^2 u (a^2 \sin^2 v +b^2 \cos^2 v)
 \end{align*}
 \end{proof}
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw4q9}
 \end{question}
 \begin{proof}
-
+We are given 
+\begin{align*}
+\textbf{x}(u,v)=\Big(\frac{4u}{u^2+v^2+4}, \frac{4v}{u^2+v^2+4}, \frac{2(u^2+v^2)}{u^2+v^2+4} \Big)
+\end{align*}
+Note that in Question 2.5.1, we have already given the complete formula of $I_p(\alpha '(0))$. We only have to compute $E,F,G$. 
+\begin{align*}
+\partial_u \textbf{x}&=\Big(\frac{4(-u^2+v^2+4)}{(u^2+v^2+4)^2}, \frac{-8vu}{(u^2+v^2+4)^2}, \frac{16u}{(u^2+v^2+4)^2} \Big)\\
+\partial_v \textbf{x}&=\Big(\frac{-8uv}{(u^2+v^2+4)^2}, \frac{4(-v^2+u^2+4)}{(u^2+v^2+4)^2},\frac{16v}{(u^2+v^2+4)^2} \Big)
+\end{align*}
+Then compute 
+\begin{align*}
+E&= \frac{16u^4+32u^2v^2+128u^2+16v^4+128v^2+256}{(u^2+v^2+4)^4}\\
+F&=0\\
+G&= \frac{16 v^4 + 32u^2v^2+ 128 v^2 + 16u^4 + 128 u^2 +256}{(u^2+v^2+4)^4}
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 \includegraphics[height=7cm,width=18cm]{hw4q10}
 \end{question}
 \begin{proof}
+For each $v$, define 
+\begin{align*}
+\alpha_v (t)=\textbf{x}(t,v)
+\end{align*}
+ WOLG, we are require to show  
+\begin{align*}
+  \vi{\forall r\inr^+,\int_0^r \abso{\alpha'_v(t)}dt\text{ is a constant in $v$ }\iff \frac{\partial E}{\partial v}=0}
+\end{align*}
+$(\longleftarrow)$\\
+
+Note that we have 
+\begin{align*}
+u'(t)=1 \text{ and }v'(t)=0\text{ if we write }\alpha _v(t)=\textbf{x}(u(t),v(t))
+\end{align*}
+Then, we have 
+\begin{align*}
+\int_0^C \abso{\alpha'_v(t)}dt=\int_0^C \sqrt{E(t,v)}dt
+\end{align*}
+If $ \frac{\partial E}{\partial v}=0$, then for each $v_1,v_2$, we clearly have  
+ \begin{align*}
+\int_0^r \abso{\alpha '_{v_1}(t)}dt=\int_0^r\sqrt{E(t,v_1)}dt=\int_0^r \sqrt{E(t,v_2)}dt=\int_0^r \abso{\alpha '_{v_2}(t)}dt
+\end{align*}
+$(\longrightarrow)$\\
+
+Suppose for all $r\inr^+$, the function $\int_0^r \abso{\alpha '_v(t)}dt$ is a constant in $v$. We then can define  $f:\R^+\rightarrow \R^+$ by 
+\begin{align*}
+f(r)=\int_0^r \abso{\alpha '_v(t)}dt\text{ for all $v$ }
+\end{align*}
+Differentiating $f$, we see 
+ \begin{align*}
+f'(r)=\sqrt{E(r,v)} \text{ for all $v$ }
+\end{align*}
+This tell us 
+\begin{align*}
+E(r,v)\text{ is a constant in $v$ for all $r$ }
+\end{align*}
+which implies 
+\begin{align*}
+\frac{\partial E}{\partial v}=0\vdone
+\end{align*}
+
+
+
+
+
 
 \end{proof}
 \begin{question}{}{}
 \includegraphics[height=7cm,width=18cm]{hw4q11}
 \end{question}
 \begin{proof}
-
+Note that $\frac{\partial  E}{\partial v}=\frac{\partial G}{\partial u}=0$ implies 
+\begin{align*}
+E\text{ stay constant in $v$ and  $G$ stay constant in  $u$ }
+\end{align*}
+In other words, $E$ can be treated as a function of  $u$ and $G$ can be treated as a function of $v$. Let
+\begin{align*}
+\overline{u}(u)=\int_0^u  \sqrt{E(t)}dt \text{ and }\overline{v}(v)=\int_0^v \sqrt{G(t)}dt 
+\end{align*}
+Reparametrize by 
+\begin{align*}
+\textbf{x}(u(\overline{u}),v(\overline{v}))
+\end{align*}
+By Chain Rule and Single-Variable Inverse Function Theorem, we have 
+\begin{align*}
+\partial_{\overline{u}} \textbf{x}=\frac{1}{\sqrt{E(u)} }\partial_u \textbf{x} \text{ and }\partial_{\overline{v}}\textbf{x}=\frac{1}{\sqrt{G(v)} }\partial_v \textbf{x}
+\end{align*}
+This give us 
+\begin{align*}
+  \overline{E}= \partial_{\overline{u}}\textbf{x}\cdot \partial_{\overline{u}}\textbf{x}= \frac{E(u)}{E(u)}=1\text{ and }\overline{G}=\partial_{\overline{v}}\textbf{x}\cdot \partial_{\overline{v}}\textbf{x}=\frac{G(v)}{G(v)}=1
+\end{align*}
+Now, by CS-inequality, we know $\overline{F}=\partial_{\overline{u}}\textbf{x}\cdot \partial_{\overline{v}}\textbf{x}\in (-1,1)$. Then there must exists $\theta$ such that $\overline{F}=\cos \theta$. 
 \end{proof}
 \begin{question}{}{}
 \includegraphics[height=7cm,width=18cm]{hw4q12}
 \end{question}
 \begin{proof}
+\textbf{(a)}\\
+
 Because $S$ is a surface of revolution, we have an almost global chart 
 \begin{align*}
 \textbf{x}(\theta,s)=(\cos \theta f(s),\sin \theta f(s),g(s))
@@ -3061,12 +3288,99 @@ Now we see that the area $A(S)$ of $S$ is exactly
 \begin{align*}
 A(S)=\int_0^{2\pi}\int_0^l \sqrt{EG-F^2}dsd\theta =2\pi \int_0^l \rho (s) ds
 \end{align*}
+\textbf{(b)}\\
+Note that 
+\begin{align*}
+  \big(f(s),g(s) \big)\triangleq (a+r \cos \frac{s}{r},a+ r \sin \frac{s}{r})\text{ where }f(s)\equiv \rho(s)
+\end{align*}
+satisfy all the condition. Then we can compute the surface area of the torus by
+\begin{align*}
+2\pi \int_0^{2\pi r} (a+ r \cos (\frac{s}{r}))ds= 4\pi^2 ra
+\end{align*}
+
 \end{proof}
 \begin{question}{}{}
 \includegraphics[height=18cm,width=18cm]{hw4q13}
 \end{question}
 \begin{proof}
+\textbf{(a)}\\
 
+Suppose $\nabla f= \frac{f_uG-f_vF}{EG-F^2}\textbf{x}_u+ \frac{f_vE-f_uF}{EG-F^2}$. First observe 
+\begin{align*}
+\langle \nabla f, \textbf{x}_u\rangle &= \frac{f_u G -f_v F}{EG-F^2} E+ \frac{f_v E-f_u F}{EG-F^2}F\\
+&=\frac{f_u(GE-F^2)}{EG-F^2}\\
+&=f_u=\frac{\partial }{\partial u}(f \circ \textbf{x})=df(\textbf{x}_u)
+\end{align*}
+The justification of the last inequality is as followed. Define 
+\begin{align*}
+\alpha (t)=\textbf{x}(u_0+t,v_0)
+\end{align*}
+We have 
+\begin{align*}
+\alpha (0)=\textbf{x}(u_0,v_0)\text{ and }\alpha '(0)=d\textbf{x}_{(u_0,v_0)}(1,0)=\textbf{x}_u(u_0,v_0)
+\end{align*}
+Now
+\begin{align*}
+df_{\textbf{x}(u_0,v_0)}(\textbf{x}_u(u_0,v_0))\overset{\text{def}}{=}\frac{d}{dt}(f\circ \alpha (t))\Big|_{t=0}=\frac{d}{dt}\big((f\circ \textbf{x})(u_0+t,v_0)\big)=\frac{\partial}{\partial u}(f\circ \textbf{x})(u_0,v_0)
+\end{align*}
+This justified the $\langle \nabla f, \textbf{x}_u\rangle =df(\textbf{x}_u)$.\\
+
+Similarly, we have 
+\begin{align*}
+\langle \nabla f,\textbf{x}_v\rangle =df(\textbf{x}_v)
+\end{align*}
+Now, for all $w\in T_p(S)$, we see that 
+\begin{align*}
+\langle \nabla f(p),w\rangle&= \langle \nabla f(p),c_u\textbf{x}_u(p)+c_v\textbf{x}_v(p)\rangle\hspace{0.5cm}(\text{ for a unique pair $c_u,c_v\inr$ })\\
+&=c_u\langle \nabla f(p),\textbf{x}_u(p)\rangle + c_v \langle \nabla f(p),\textbf{x}_v(p)\rangle \\
+&=c_u df_p(\textbf{x}_u(p))+c_vdf_p(\textbf{x}_v(p))\\
+&=df_p(c_u\textbf{x}_u(p)+c_v\textbf{x}_v(p))=df_p(w)
+\end{align*}
+If $S=\R^2$ with coordinates  $x,y$, we can easily compute 
+ \begin{align*}
+\textbf{x}_x=(1,0)\text{ and }\textbf{x}_y=(0,1)
+\end{align*}
+and 
+\begin{align*}
+E=1\text{ and }F=0\text{ and }G=1
+\end{align*}
+Then from the formula of $\nabla f$ we just derived, we have 
+\begin{align*}
+\nabla f= f_x(1,0)+f_y(0,1)\equiv f_xe_1+f_ye_2
+\end{align*}
+\textbf{(b)}\\
+
+By C-S inequality, we see that 
+\begin{align*}
+ df_p(v)\equiv \langle \nabla f(p),v\rangle \text{ reach maximum if and only if  $v=c_0\nabla f(p)$  for some positive $c_0$ }
+\end{align*}
+It then come very clear, under the constraint $\abso{v}=1$, that $c_0$ must be  $\frac{1}{\abso{\nabla f(p)}}$.\\
+
+\textbf{(c)}\\
+
+Let that constant be $c_0$, and let $p=\textbf{x}(q) \in C$. Define $g:\R^{2+1} \rightarrow \R$ by 
+\begin{align*}
+g(u,v,t)=f(\textbf{x}(u,v))-t
+\end{align*}
+Check that 
+\begin{align*}
+\partial_t g=-1 \neq 0
+\end{align*}
+Then by Implicit function theorem, there exists a function $h:U\subseteq \R^2 \rightarrow \R$ such that 
+\begin{align*}
+h(q)=c_0 \text{ and }g(u,v,h(u,v))=0\text{ for all $(u,v)\in U$ }
+\end{align*}
+We now see 
+\begin{align*}
+C=(h\circ \textbf{x}^{-1})^{-1}(c_0)\text{ which is a regular preimage }
+\end{align*}
+This established that $C$ is a regular curve.\\
+
+Locally parametrize $\gamma (t)\subseteq C$. Because $f\circ \gamma $ stay constant, we see
+\begin{align*}
+0=df_{\gamma (t)}(\gamma '(t))=\langle \nabla f(\gamma (t)),\gamma '(t)\rangle 
+\end{align*}
+This then implies $\nabla f(\gamma (t))$ is perpendicular to $\gamma '(t)$, thus perpendicualr to $C$. 
 \end{proof}
 
 \end{document}

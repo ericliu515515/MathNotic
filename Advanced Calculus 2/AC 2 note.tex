@@ -2995,167 +2995,42 @@ Then (\myref{}{equivdefopnorm1}) give us
 \norm{T_1T_2}_\text{op}\leq \norm{T_1}_\text{op}\cdot \norm{T_2}_\text{op}
 \end{align*}
 \end{mdframed}
-\section{Chain Rule}
+
+
+\section{Partial Derivative}
 \begin{mdframed}
-Given two normed space $\mathcal{X},\mathcal{Y}$, suppose $f$ maps an open neighborhood $O$ around $x$ in $\mathcal{X}$ to $\mathcal{Y}$. We say $f$ is \textbf{differentiable at} $x$ if there exists a bounded linear transformation $A_x:\mathcal{X}\rightarrow \mathcal{Y}$ (from now, $A_x$ will be denoted $df_x$) such that  
-\begin{align}
-\label{defdi}
-  \lim_{h\to 0} \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}=0
-\end{align}
-Immediately, we should check that the linear approximation is unique. Suppose $df_x$ and  $df_x'$ both satisfy (\myref{}{defdi}). We are required to show $(df_x-df_x')h=0$ for all $\norm{h}_\mathcal{X}=1$. Fix $h\in \mathcal{X}$ such that $\norm{h}_\mathcal{X}=1$. Note that 
-\begin{align*}
- \frac{(df_x-df'_x)th}{t}\text{ is a constant in $t$ for $t\neq 0$ }
-\end{align*}
-This then reduced the problem into showing 
-\begin{align}
-\label{goaldib}
-\frac{(df_x-df'_x)th}{t\norm{h}_{\mathcal{X}}}\to 0\text{ as $t\to 0$ }
-\end{align}
-Observe 
-\begin{align*}
-  (df_x-df'_x)th&= \Big( f(x+th)-f(x)-df'_x(th)\Big) - \Big(f(x+th)-f(x)-df_x(th) \Big)
-\end{align*}
-which implies 
-\begin{align*}
-\norm{(df_x-df_x')th}_\mathcal{Y}\leq \norm{f(x+th)-f(x)-df'_x(th)}_{\mathcal{Y}}+ \norm{f(x+th)-f(x)-df_x(th)}_\mathcal{Y}
-\end{align*}
-and thus implies (\myref{}{goaldib}).\\
+Most books containing a treatment of multi-variables calculus works in $n$-tuple real space, the set containing all $(x_1,\dots ,x_n)$, where $x_i \inr$, and define an inner product, named dot product, by $(x_1,\dots ,x_n)\cdot (y_1,\dots ,y_n)=x_1y_1+\cdots + x_ny_n$. Here, we use a different setting.\\
 
-It shall be quite clear that a function $f$ differentiable at $x$ must be continuous at $x$, by noting the nominator of (\myref{}{defdi}) must tend to $0$.\\
+When we use the notation $\R^n$, we are not referring to the "$n$-tuple real space", instead, we are referring to an unspecified inner product $n$-dimensional vector space over $\R$.\\
 
-We now prove the Chain Rule for function between normed space. 
+At first glance, our setting may not seem well-defined. Yet, with a little effort, one can prove that every two inner product $n$-dimensional vector space over $\R$ are inner product space isomorphic to each other.\\
+
+By saying two inner product space $\Big(V,\langle \cdot,\cdot\rangle_V  \Big),\Big(W,\langle \cdot,\cdot\rangle_W  \Big)$ are inner product space isomorphic to each other, I mean there exists a bijective linear transformation $T:V\rightarrow W$ such that 
+\begin{align*}
+\hspace{2cm}\langle x,y\rangle_V =\langle Tx,Ty\rangle_W\hspace{1.5cm}(x,y \in V)
+\end{align*}
 \end{mdframed}
-\begin{theorem}
-\textbf{(Chain Rule)} Given three normed space $\mathcal{X},\mathcal{Y},\mathcal{Z}$, a point $x \in \mathcal{X}$, a function $g$ that map an open set $U\subseteq \mathcal{Y}$ containing $f(x)$ into $\mathcal{Z}$, a function $f$ that map an open-neighborhood around $x$ into $U$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $f$ is differentiable at $x$
-   \item $g$ is differentiable at $f(x)$
-\end{enumerate}
-we have 
+\begin{definition}
+\textbf{(Definition of Partial Derivative)} Given a normal vector $u \inr^n$ and a function $f$ that maps an open-neighborhood $E$ around  $x \inr^n$ into $\R$, we define the  \textbf{partial derivative} $\partial_u f(x)$ by  
 \begin{align*}
-d(g\circ f)_x=dg_{f(x)}\circ df_{x}
+\partial_u f(x)\triangleq \lim_{t\to 0} \frac{f(x+tu)-f(x)}{t}\text{ exists }
 \end{align*}
-\end{theorem}
-\begin{proof}
-For brevity, we use $F\triangleq g\circ f$. We wish to prove 
-\begin{align*}
-\vi{\lim_{h\to 0}\frac{\norm{F(x+h)-F(x)-dg_{f(x)}df_x(h)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
-\end{align*}
-Fix $k\triangleq f(x+h)-f(x)$. Observe 
-\begin{align*}
- F(x+h)-F(x)-dg_{f(x)}df_x(h)=\Big(g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) \Big) + dg_{f(x)}\big(k-df_x(h)\big)
-\end{align*}
-This now implies 
-\begin{align*}
-&\frac{\norm{F(x+h)-F(x)-dg_{f(x)}df_x(h)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}\text{ is smaller than }
-\end{align*}
-\begin{align*}
-\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z+ \norm{dg_{f(x)}\big(k-df_x(h)\big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}} 
-\end{align*}
-This let us reduce the problem into proving 
-\begin{align*}
-  &\olive{ \lim_{h\to 0}\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0}\\
-  \text{ and }&\blue{\lim_{h\to 0} \frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
-\end{align*}
-We first prove 
-\begin{align*}
-\olive{ \lim_{h\to 0}\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0}
-\end{align*}
-Note that if $\norm{k}_\mathcal{Y}=0$, we have 
-\begin{align*}
-\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0
-\end{align*}
-Now, observe that 
-\begin{align*}
-\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} = \frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{k}_\mathcal{Y}}\cdot \frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}} 
-\end{align*}
-Because $h \to 0 \implies k\to 0$, we can now reduce the problem into proving 
-\begin{align*}
-\olive{\limsup_{h\to 0} \frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\text{ exists }}
-\end{align*}
-Observe 
-\begin{align*}
-\frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}}&= \frac{\norm{f(x+h)-f(x)-df_x(h)+df_x(h)}_\mathcal{X}}{\norm{h}_\mathcal{X}}\\
-&\leq \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}+\frac{\norm{df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\\
-&\leq \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}} + \norm{df_x}_\text{op} \odone
-\end{align*}
-We now prove 
-\begin{align*}
-\blue{\lim_{h\to 0} \frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
-\end{align*}
-Note that if $f(x+h)-f(x)-df_x(h)=0$, then $\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}=0$. Now, observe 
-\begin{align*}
-\frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}&= \frac{\norm{dg_{f(x)}\big(f(x+h)-f(x)-df_x(h) \big)}_\mathcal{Z}}{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}\cdot \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\\
-&\leq \norm{dg_{f(x)}}_\text{op}\cdot \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\to 0 \bdone
-\end{align*}
-\end{proof}
+\end{definition}
 \begin{mdframed}
-Interestingly, if $f:\Big(\R,\norm{\cdot}_2 \Big)\rightarrow \Big(\R^n , \norm{\cdot}_2\Big)$ is a curve in $\R^n$ 
-\begin{align*}
-f(t)=(f_1(t),\cdots , f_n(t))
-\end{align*}
-and we define 
-\begin{align*}
-f'(t)\triangleq (f_1'(t),\cdots ,f_n'(t))
-\end{align*}
-We have 
-\begin{align*}
-\abso{f'(t)}= \norm{df_t}_{\text{op}}
-\end{align*}
-This give us the following expected result (\myref{Corollary}{BPoD}). 
+Note that in our definition, the partial derivative $\partial_i f(x)$ is defined only if $f$ is defined on an open-neighborhood around $x$. Also, note that if $\partial _uf(x)$ exists, then $\partial_{-u}f(x)$ also exists, and $\partial_{-u}f(x)=-\partial_uf(x)$.\\
+
+We now define \textbf{gradient}. 
 \end{mdframed}
-\begin{theorem}
-\textbf{(Basic Property of Derivative)} Suppose $f$ maps a convex open set $E\subseteq \Big(\R^n,\norm{\cdot}_2 \Big)$ into $\Big(\R^m,\norm{\cdot}_2 \Big)$,  $f$ is differentiable on $E$, and there exists $M\inr$ such that 
+\begin{definition}
+\textbf{(Definition of Gradient)} Given two normed space $\mathcal{X},\mathcal{Y}$ where $\mathcal{X}$ is finite-dimensional, an orthonormal basis $\set{e_i:1\leq i \leq n}$ of $\mathcal{X}$ and a function $f$ that maps an open-neighborhood $E$ around  $x \in \mathcal{X}$ into $ \mathcal{Y}$, we define the \textbf{gradient} $\nabla f(x)$ of at $x$ by 
 \begin{align*}
-\hspace{2.5cm}\norm{df_x}_\text{op}\leq M\hspace{1.5cm}(x \in E)
+  \nabla f(x)=\sum_{i=1}^n \partial_i f(x)\cdot e_i
 \end{align*}
-Then for all $a,b \in E$, we have
-\begin{align*}
-\abso{f(b)-f(a)}\leq M \abso{b-a}
-\end{align*}
-\end{theorem}
-\begin{proof}
-Define $\gamma:[0,1]\rightarrow E$ by 
-\begin{align*}
-\gamma (t)\triangleq a+(b-a)t
-\end{align*}
-Now, note that 
-\begin{align*}
-\abso{f(b)-f(a)}&= \abso{(f\circ \gamma )(1)-(f\circ \gamma )(0)}\\
-&= \abso{\int_0^ 1(f\circ \gamma )'(t)dt}\\
-&\leq \int_0^1 \abso{(f\circ \gamma )'(t)}dt\\
-&=\int_0^1 \norm{d(f\circ \gamma )_t}_\text{op}dt\\
-&\leq \int_0^1 \norm{df_{\gamma (t)}}_\text{op}\cdot \norm{d\gamma_t}_\text{op}dt\\
-&=\int_0^1 M\cdot \abso{b-a}dt=M\abso{b-a}
-\end{align*}
-\end{proof}
-\begin{corollary}
-\label{BPoD}
-\textbf{(Basic Property of Derivative)} Suppose $f$ maps a convex open set $E\subseteq \Big(\R^n,\norm{\cdot}_2 \Big)$ into $\Big(\R^m,\norm{\cdot}_2 \Big)$, $f$ is differentiable on $E$, and $df_x=0$ for all $x\in E$, then
-\begin{align*}
-f\text{ stay constant on $E$ }
-\end{align*}
-\end{corollary}
-
-
-
-
-
+\end{definition}
 
 \section{Differentiability Theorem}
 \begin{mdframed}
-
-
-Suppose $W$ is equipped with an inner product. Given a function $f:E\rightarrow W$ and an orthonormal basis $\set{e_\ld}$ of $W$, depending on over $\R\text{ or }\C$, the notation $f_j$ represent a function from $E$ to  $\R\text{ or }\C$ defined by $f_j(x)=\langle f(x),e_j\rangle_W$.\\
-
-
-
-Given a function $f:V \to \R$ and a normal vector $e_i\in V$, the \textbf{partial derivative} $\partial_if:V \to \R$ is defined by 
-\begin{align*}
-\partial_i f(x)=\lim_{t\to 0} \frac{f(x+te_i)-f(x)}{t}
-\end{align*}
-
-
+Given an inner product space $\Big(W,\langle \cdot,\cdot\rangle_W\Big)$, an orthonormal basis $\set{e_\ld }$ of $W$ and a function $f:E\rightarrow W$, depending on $W$ over $\R\text{ or }\C$, the notation $f_j$ represent a function from $E$ to  $\R\text{ or }\C$ defined by $f_j(x)\triangleq \langle f(x),e_j\rangle_W$.
 \end{mdframed}
 \begin{theorem}
 \label{DiJ}
@@ -3318,6 +3193,149 @@ $(\longleftarrow)$\\
 
 
 \end{proof}
+\section{Chain Rule}
+\begin{mdframed}
+Given two normed space $\mathcal{X},\mathcal{Y}$, suppose $f$ maps an open neighborhood $O$ around $x$ in $\mathcal{X}$ to $\mathcal{Y}$. We say $f$ is \textbf{differentiable at} $x$ if there exists a bounded linear transformation $A_x:\mathcal{X}\rightarrow \mathcal{Y}$ (from now, $A_x$ will be denoted $df_x$) such that  
+\begin{align}
+\label{defdi}
+  \lim_{h\to 0} \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}=0
+\end{align}
+Immediately, we should check that the linear approximation is unique. Suppose $df_x$ and  $df_x'$ both satisfy (\myref{}{defdi}). We are required to show $(df_x-df_x')h=0$ for all $\norm{h}_\mathcal{X}=1$. Fix $h\in \mathcal{X}$ such that $\norm{h}_\mathcal{X}=1$. Note that 
+\begin{align*}
+ \frac{(df_x-df'_x)th}{t}\text{ is a constant in $t$ for $t\neq 0$ }
+\end{align*}
+This then reduced the problem into showing 
+\begin{align}
+\label{goaldib}
+\frac{(df_x-df'_x)th}{t\norm{h}_{\mathcal{X}}}\to 0\text{ as $t\to 0$ }
+\end{align}
+Observe 
+\begin{align*}
+  (df_x-df'_x)th&= \Big( f(x+th)-f(x)-df'_x(th)\Big) - \Big(f(x+th)-f(x)-df_x(th) \Big)
+\end{align*}
+which implies 
+\begin{align*}
+\norm{(df_x-df_x')th}_\mathcal{Y}\leq \norm{f(x+th)-f(x)-df'_x(th)}_{\mathcal{Y}}+ \norm{f(x+th)-f(x)-df_x(th)}_\mathcal{Y}
+\end{align*}
+and thus implies (\myref{}{goaldib}).\\
+
+It shall be quite clear that a function $f$ differentiable at $x$ must be continuous at $x$, by noting the nominator of (\myref{}{defdi}) must tend to $0$.\\
+
+We now prove the Chain Rule for function between normed space. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Chain Rule)} Given three normed space $\mathcal{X},\mathcal{Y},\mathcal{Z}$, a point $x \in \mathcal{X}$, a function $g$ that map an open set $U\subseteq \mathcal{Y}$ containing $f(x)$ into $\mathcal{Z}$, a function $f$ that map an open-neighborhood around $x$ into $U$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is differentiable at $x$
+   \item $g$ is differentiable at $f(x)$
+\end{enumerate}
+we have 
+\begin{align*}
+d(g\circ f)_x=dg_{f(x)}\circ df_{x}
+\end{align*}
+\end{theorem}
+\begin{proof}
+For brevity, we use $F\triangleq g\circ f$. We wish to prove 
+\begin{align*}
+\vi{\lim_{h\to 0}\frac{\norm{F(x+h)-F(x)-dg_{f(x)}df_x(h)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
+\end{align*}
+Fix $k\triangleq f(x+h)-f(x)$. Observe 
+\begin{align*}
+ F(x+h)-F(x)-dg_{f(x)}df_x(h)=\Big(g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) \Big) + dg_{f(x)}\big(k-df_x(h)\big)
+\end{align*}
+This now implies 
+\begin{align*}
+&\frac{\norm{F(x+h)-F(x)-dg_{f(x)}df_x(h)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}\text{ is smaller than }
+\end{align*}
+\begin{align*}
+\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z+ \norm{dg_{f(x)}\big(k-df_x(h)\big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}} 
+\end{align*}
+This let us reduce the problem into proving 
+\begin{align*}
+  &\olive{ \lim_{h\to 0}\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0}\\
+  \text{ and }&\blue{\lim_{h\to 0} \frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
+\end{align*}
+We first prove 
+\begin{align*}
+\olive{ \lim_{h\to 0}\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0}
+\end{align*}
+Note that if $\norm{k}_\mathcal{Y}=0$, we have 
+\begin{align*}
+\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0
+\end{align*}
+Now, observe that 
+\begin{align*}
+\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} = \frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{k}_\mathcal{Y}}\cdot \frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}} 
+\end{align*}
+Because $h \to 0 \implies k\to 0$, we can now reduce the problem into proving 
+\begin{align*}
+\olive{\limsup_{h\to 0} \frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\text{ exists }}
+\end{align*}
+Observe 
+\begin{align*}
+\frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}}&= \frac{\norm{f(x+h)-f(x)-df_x(h)+df_x(h)}_\mathcal{X}}{\norm{h}_\mathcal{X}}\\
+&\leq \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}+\frac{\norm{df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\\
+&\leq \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}} + \norm{df_x}_\text{op} \odone
+\end{align*}
+We now prove 
+\begin{align*}
+\blue{\lim_{h\to 0} \frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
+\end{align*}
+Note that if $f(x+h)-f(x)-df_x(h)=0$, then $\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}=0$. Now, observe 
+\begin{align*}
+\frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}&= \frac{\norm{dg_{f(x)}\big(f(x+h)-f(x)-df_x(h) \big)}_\mathcal{Z}}{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}\cdot \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\\
+&\leq \norm{dg_{f(x)}}_\text{op}\cdot \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\to 0 \bdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Interestingly, if $f:\Big(\R,\norm{\cdot}_2 \Big)\rightarrow \Big(\R^n , \norm{\cdot}_2\Big)$ is a curve in $\R^n$ 
+\begin{align*}
+f(t)=(f_1(t),\cdots , f_n(t))
+\end{align*}
+and we define 
+\begin{align*}
+f'(t)\triangleq (f_1'(t),\cdots ,f_n'(t))
+\end{align*}
+We have 
+\begin{align*}
+\abso{f'(t)}= \norm{df_t}_{\text{op}}
+\end{align*}
+This give us the following expected result (\myref{Corollary}{BPoD}). 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Basic Property of Derivative)} Suppose $f$ maps a convex open set $E\subseteq \Big(\R^n,\norm{\cdot}_2 \Big)$ into $\Big(\R^m,\norm{\cdot}_2 \Big)$,  $f$ is differentiable on $E$, and there exists $M\inr$ such that 
+\begin{align*}
+\hspace{2.5cm}\norm{df_x}_\text{op}\leq M\hspace{1.5cm}(x \in E)
+\end{align*}
+Then for all $a,b \in E$, we have
+\begin{align*}
+\abso{f(b)-f(a)}\leq M \abso{b-a}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $\gamma:[0,1]\rightarrow E$ by 
+\begin{align*}
+\gamma (t)\triangleq a+(b-a)t
+\end{align*}
+Now, note that 
+\begin{align*}
+\abso{f(b)-f(a)}&= \abso{(f\circ \gamma )(1)-(f\circ \gamma )(0)}\\
+&= \abso{\int_0^ 1(f\circ \gamma )'(t)dt}\\
+&\leq \int_0^1 \abso{(f\circ \gamma )'(t)}dt\\
+&=\int_0^1 \norm{d(f\circ \gamma )_t}_\text{op}dt\\
+&\leq \int_0^1 \norm{df_{\gamma (t)}}_\text{op}\cdot \norm{d\gamma_t}_\text{op}dt\\
+&=\int_0^1 M\cdot \abso{b-a}dt=M\abso{b-a}
+\end{align*}
+\end{proof}
+\begin{corollary}
+\label{BPoD}
+\textbf{(Basic Property of Derivative)} Suppose $f$ maps a convex open set $E\subseteq \Big(\R^n,\norm{\cdot}_2 \Big)$ into $\Big(\R^m,\norm{\cdot}_2 \Big)$, $f$ is differentiable on $E$, and $df_x=0$ for all $x\in E$, then
+\begin{align*}
+f\text{ stay constant on $E$ }
+\end{align*}
+\end{corollary}
+
+
 
 
 
