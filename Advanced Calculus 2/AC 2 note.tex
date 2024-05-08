@@ -908,7 +908,80 @@ d_Y\big(f_{n_j}(x),f_{n_k}(x) \big)\leq d_Y\big(f_{n_j}(x),f_{n_j}(p_t^m) \big)+
 $\vdone$\\
 
 \end{proof}
-\section{Contraction Mapping Theorem}
+\section{Banach Fixed Point Theorem}
+\begin{mdframed}
+  This section give a complete statement and proof of Banach Fixed Point Theorem. Given two metric spaces $(X,d_X),(Y,d_Y)$ and a function $f:X\rightarrow Y$, we say $f$ is a \textbf{contraction} if there exists $r\in [0,1)$ such that 
+\begin{align*}
+\hspace{3cm}d_Y(f(x),f(y))\leq rd_X(x,y)\hspace{1.5cm}(x,y \in X)
+\end{align*}
+or equivalently 
+\begin{align*}
+\sup_{x\neq y \in X} \frac{d_Y(f(x),f(y))}{d_X(x,y)}<1
+\end{align*}
+Note that the restriction of a contraction is again a contraction.\\
+
+Given a function $g:X\rightarrow X$, we say $g$ admits a \textbf{fixed point} $x$ if we have 
+\begin{align*}
+g(x)=x
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{BFPT}
+\textbf{(Banach Fixed Point Theorem)} Given a metric space $(X,d)$, if $f$ is a contraction that maps $X$ into $X$, then 
+\begin{align*}
+f\text{ admits at most one fixed point }
+\end{align*}
+Moreover, if $(X,d)$ is complete, then 
+\begin{align*}
+\text{ the fixed point exists }
+\end{align*}
+And if we use the notation $f^n$ to denote $f\circ f^{n-1}$, then for all $x\in X$,  
+\begin{align*}
+  \text{ the fixed point can be written in the form }\lim_{n\to \infty}f^n(x)
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first 
+\begin{align*}
+\vi{\text{ prove the uniqueness of the fixed point }}
+\end{align*}
+Suppose $x,y$ are both fixed by $f$.  We have
+\begin{align*}
+d(f(x),f(y))=d(x,y)
+\end{align*}
+Because  $f$ is a contraction mapping,  this implies $d(x,y)=0$. $\vdone$ \\
+
+Suppose $(X,d)$ is complete. We now 
+\begin{align*}
+\blue{\text{ prove the existence of the fixed point }}
+\end{align*}
+Fix $x \in X$. Because we have already prove the uniqueness of the fixed point, we only have to prove 
+\begin{align*}
+\blue{\lim_{n\to \infty}f^n(x)\text{ exists and }\lim_{n\to \infty}f^n(x)\text{ is a fixed point of $f$ }}
+\end{align*}
+Because $(X,d)$ is complete, to prove $\lim_{n\to \infty}f^n(x)$ exists, we only have to prove
+\begin{align*}
+\olive{\set{f^n(x)}_{n\inn}\text{ is Cauchy }}
+\end{align*}
+Observe 
+\begin{align*}
+  d(f^n(x),f^{n+k}(x))&\leq \sum_{i=0}^{k-1}d(f^{n+i}(x),f^{n+i+1}(x))\\
+  &\leq d(x,f(x))\sum_{i=0}^{k-1}r^{n+i}\\
+  &\leq \frac{r^n}{1-r}d(x,f(x))\to 0\text{ as $n\to \infty$ }\odone
+\end{align*}
+Note that contraction is Lipschitz thus continuous. This allow us to carry the below limit process 
+\begin{align*}
+f\big(\lim_{n\to \infty}f^n(x)\big)=\lim_{n\to \infty}f(f^n(x))=\lim_{n\to \infty}f^{n+1}(x)=\lim_{n\to \infty}f^n(x)\bdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Banach Fixed Point Theorem is one of the most important Theorem in Mathematics. It will be used to prove 
+\begin{enumerate}[label=(\alph*)]
+  \item Inverse Function Theorem (\myref{Theorem}{IFT}) 
+  \item Picard-Lindelof Theorem  
+  \item Nash-Embedding Theorem
+\end{enumerate}
+\end{mdframed}
 \chapter{Calculus}
 
 \section{Equivalent Definitions for Riemann Integral}
@@ -2799,7 +2872,7 @@ The proof of equivalency is simple. For $(\longrightarrow )$, let $E\triangleq \
 \begin{align*}
 \norm{Tx}= \norm{x}\cdot\norm{T \frac{x}{\norm{x}}}\leq M\norm{x}
 \end{align*}
-For $(\longleftarrow)$, just observe $\norm{Tx-Ty}=\norm{T(x-y)}\leq M\norm{x-y}$.\\
+For $(\longleftarrow)$, use $\norm{Tx-Ty}=\norm{T(x-y)}\leq M\norm{x-y}$.\\
 
 
 We first show that a linear transformation is continuous if and only if it is bounded. (\myref{Theorem}{LOB}) 
@@ -2995,46 +3068,133 @@ Then (\myref{}{equivdefopnorm1}) give us
 \norm{T_1T_2}_\text{op}\leq \norm{T_1}_\text{op}\cdot \norm{T_2}_\text{op}
 \end{align*}
 \end{mdframed}
-
-
-\section{Partial Derivative}
+\section{$\partial_u f$ and $\nabla f$ of general $f:\R^n\rightarrow \R$}
 \begin{mdframed}
-Most books containing a treatment of multi-variables calculus works in $n$-tuple real space, the set containing all $(x_1,\dots ,x_n)$, where $x_i \inr$, and define an inner product, named dot product, by $(x_1,\dots ,x_n)\cdot (y_1,\dots ,y_n)=x_1y_1+\cdots + x_ny_n$. Here, we use a different setting.\\
-
-When we use the notation $\R^n$, we are not referring to the "$n$-tuple real space", instead, we are referring to an unspecified inner product $n$-dimensional vector space over $\R$.\\
-
-At first glance, our setting may not seem well-defined. Yet, with a little effort, one can prove that every two inner product $n$-dimensional vector space over $\R$ are inner product space isomorphic to each other.\\
-
-By saying two inner product space $\Big(V,\langle \cdot,\cdot\rangle_V  \Big),\Big(W,\langle \cdot,\cdot\rangle_W  \Big)$ are inner product space isomorphic to each other, I mean there exists a bijective linear transformation $T:V\rightarrow W$ such that 
+Given two normed space $\mathcal{X},\mathcal{Y}$, suppose $f$ maps an open neighborhood $O$ around $x$ in $\mathcal{X}$ into $\mathcal{Y}$. We say $f$ is \textbf{differentiable at} $x$ if there exists a bounded linear transformation $A_x:\mathcal{X}\rightarrow \mathcal{Y}$ (from now, $A_x$ will be denoted $df_x$) such that  
+\begin{align}
+\label{defdi}
+  \lim_{h\to 0} \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}=0 
+\end{align}
+Immediately, we should check that the linear approximation is unique. Suppose $df_x$ and  $df_x'$ both satisfy (\myref{}{defdi}). We are required to show $(df_x-df_x')h=0$ for all $\norm{h}_\mathcal{X}=1$. Fix $h\in \mathcal{X}$ such that $\norm{h}_\mathcal{X}=1$. Note that 
 \begin{align*}
-\hspace{2cm}\langle x,y\rangle_V =\langle Tx,Ty\rangle_W\hspace{1.5cm}(x,y \in V)
+ \frac{(df_x-df'_x)th}{t}\text{ is a constant in $t$ for $t\neq 0$ }
 \end{align*}
+This then reduced the problem into showing 
+\begin{align}
+\label{goaldib}
+\frac{(df_x-df'_x)th}{t\norm{h}_{\mathcal{X}}}\to 0\text{ as $t\to 0$ }
+\end{align}
+Observe 
+\begin{align*}
+  (df_x-df'_x)th&= \Big( f(x+th)-f(x)-df'_x(th)\Big) - \Big(f(x+th)-f(x)-df_x(th) \Big)
+\end{align*}
+which implies 
+\begin{align*}
+\norm{(df_x-df_x')th}_\mathcal{Y}\leq \norm{f(x+th)-f(x)-df'_x(th)}_{\mathcal{Y}}+ \norm{f(x+th)-f(x)-df_x(th)}_\mathcal{Y}
+\end{align*}
+and thus implies (\myref{}{goaldib}).\\
+
+It shall be quite clear that a function $f$ differentiable at $x$ must be continuous at $x$, by noting the nominator of (\myref{}{defdi}) must tend to $0$.\\
+
+For clarity, we here specify the notation. By $\R$, we mean a field equipped with the usual norm $\norm{x}\triangleq \abso{x}$. By  $\R^n$ we mean the set of functions from $\set{1,\dots ,n}$ to $\R$ equipped with the usual vector addition, scalar multiplication, dot product and induced norm. 
 \end{mdframed}
 \begin{definition}
-\textbf{(Definition of Partial Derivative)} Given a normal vector $u \inr^n$ and a function $f$ that maps an open-neighborhood $E$ around  $x \inr^n$ into $\R$, we define the  \textbf{partial derivative} $\partial_u f(x)$ by  
+\label{DoDDoS}
+\textbf{(Definition of Directional Derivative of Scalar function)} Given a normal vector $v \inr^n$ and a function $f$ that maps an open-neighborhood $E$ around  $x \inr^n$ into $\R$, by the \textbf{directional derivative} $\partial _v f(x)$ of $f$ with respect to $v$ at $x$, we mean
 \begin{align*}
-\partial_u f(x)\triangleq \lim_{t\to 0} \frac{f(x+tu)-f(x)}{t}\text{ exists }
+\partial_v f(x)\triangleq \lim_{t\to 0} \frac{f(x+tv)-f(x)}{t}\text{ if exists }
 \end{align*}
 \end{definition}
 \begin{mdframed}
-Note that in our definition, the partial derivative $\partial_i f(x)$ is defined only if $f$ is defined on an open-neighborhood around $x$. Also, note that if $\partial _uf(x)$ exists, then $\partial_{-u}f(x)$ also exists, and $\partial_{-u}f(x)=-\partial_uf(x)$.\\
-
-We now define \textbf{gradient}. 
+Something to note in our definition for directional derivative (\myref{Definition}{DoDDoS})
+\begin{enumerate}[label=(\alph*)]
+  \item The limit on the right hand side is done in $\Big(\R ,\abso{\cdot}\Big)$ 
+  \item If $f$ is differntiable at  $x$, then we have
+    \begin{align}
+    \label{pavfx}
+    \partial_v f(x)=df_x(v)
+    \end{align}
+  regardless if $v$ is normal or not, as long as $v\neq 0$. 
+  \item In our definition of directional derivative, we required $v$ to be normal, even though the definition remain well-defined if the hypothesis that $v$ is normal is dropped. A reason to require $v$ to be normal in our definition is to preserve the spirit of the term "directional". Suppose $\partial_v f(x)$ exists, we have 
+\begin{align}
+\label{pa2v}
+\partial_{2v}f(x)=2\partial_v f(x)
+\end{align}
+In (\myref{}{pa2v}), we see that the value of directional derivative vary if the magnitude of $v$ change.
+\end{enumerate}
+Of course, one can "fix" the  (\myref{}{pa2v}) by defining $\partial_vf(x)$ to be $\lim_{t\to 0}\frac{f(x+tv)-f(x)}{t \abso{v}}$. This definition is not desired, because we will no longer have (\myref{}{pavfx}). With what we observed, one can immediately see that if a function $f$ is differentiable at $x$, then $f$ has directional derivative with respect to any direction at $x$. The converse is not true. It is possible that  $f$ has directional derivative with respect to all directions, and yet $f$ is still not differentaible. Consider 
+\begin{Example}{\textbf{(Discontinuous function such that all directional derivatives exist)}}{}
+\begin{align*}
+f:\R^2 \rightarrow \R, f(x,y)=\begin{cases}
+ \frac{x^2y}{x^4+y^2} & \text{ if $x^2+y^2\neq 0$ }\\
+ 0& \text{ if $x=y=0$ }
+\end{cases}
+\end{align*}
+\end{Example}
 \end{mdframed}
 \begin{definition}
-\textbf{(Definition of Gradient)} Given two normed space $\mathcal{X},\mathcal{Y}$ where $\mathcal{X}$ is finite-dimensional, an orthonormal basis $\set{e_i:1\leq i \leq n}$ of $\mathcal{X}$ and a function $f$ that maps an open-neighborhood $E$ around  $x \in \mathcal{X}$ into $ \mathcal{Y}$, we define the \textbf{gradient} $\nabla f(x)$ of at $x$ by 
+\textbf{(Definition of Gradient of $\R^n\rightarrow \R$ function)} Given a point $x\inr^n$ with open neighborhood $E$, a function $f:E\rightarrow \R$ differentiable at $x$, we define the \textbf{gradient} $\nabla f(x)\inr^n$ of $f$ at $x$ to be the unique vector that satisfy
 \begin{align*}
-  \nabla f(x)=\sum_{i=1}^n \partial_i f(x)\cdot e_i
+\nabla f(x)\cdot v=df_x(v)\text{ for all $v\inr^n$ }
 \end{align*}
 \end{definition}
+\begin{mdframed}
+We should immediately discuss whether our definition of gradient is well-defined. The proof of existence and uniqueness follows from generating an orthogonal basis $\set{v_1,\dots ,v_n}$ and noting $\nabla f(x)$ must equal to $\sum_{i=1}^n df_x(v_i)v_i$.\\
 
+A few things you must know about gradient is as followed
+\begin{enumerate}[label=(\alph*)]
+  \item $\nabla f(x)$ is only defined when $f$ is differentiable at  $x$.
+  \item gradient $\nabla f(x)$ "points toward" the direction at which $f:\R^n\rightarrow \R$ grow the fastest. Suppose $v$ is normal. See 
+\begin{align*}
+\nabla f(x)\cdot v = df_x(v)=\partial_v f(x)
+\end{align*}
+Using Cauchy-Schwarz Inequality, we see that $\partial_v f(x)$ is of largest value when $v=\frac{\nabla f(x)}{\abso{\nabla f(x)}}$. If $v=\frac{\nabla f(x)}{\abso{\nabla f(x)}}$, then 
+\begin{align*}
+\partial_v f(x)=\abso{\nabla f(x)}
+\end{align*}
+\item It is possible $\nabla f(x)=0$. This is true if and only if $df_x$ maps  $\R^n$ into $0$. This fact echos with the fact gradient points toward the fastest growing direction. See (b).  
+\item Given an orthogonal basis $\set{v_1,\dots ,v_n}$, we have
+  \begin{align*}
+  \nabla f(x)=\sum_{i=1}^n df_x (v_i)v_i=\sum_{i=1}^n \partial_{v_i}f(x)v_i
+  \end{align*}
+This is how you compute $\nabla f(x)$ when you have to.
+\item Given an open set $E\subseteq \R^n$, differentaible $f:E\subseteq \R^n\rightarrow \R$, a value $y\inr$ such that $S\triangleq f^{-1}[y]$ has non-empty interior and $\nabla f(p)\neq 0$ for all $p\in  S$, we have 
+  \begin{align*}
+ \nabla f(p)\perp S\text{ for all $p \in S$ } 
+  \end{align*}
+More precisely this means that all differentiable curves $\alpha:(-\epsilon  ,\epsilon )\rightarrow S$ that lies in $S$ satisfy 
+ \begin{align*}
+\alpha '(0)\cdot \nabla f(\alpha (0))=0
+\end{align*}
+This can be easily proved after we learn how to use the Chain Rule. Note that at here, we utilize the set-theoretic nature of $\R^n$ to present the statement. By $\alpha '(0)$, we mean $(\alpha_1'(0),\dots ,\alpha_n'(0))$, where $\alpha (t)$ is in fact a function from $\set{1,\dots ,n}$ to $\R$, and $\alpha_1(t)=(\alpha (t))(1)$ for all $t$.
+\end{enumerate}
+\end{mdframed}
 \section{Differentiability Theorem}
 \begin{mdframed}
-Given an inner product space $\Big(W,\langle \cdot,\cdot\rangle_W\Big)$, an orthonormal basis $\set{e_\ld }$ of $W$ and a function $f:E\rightarrow W$, depending on $W$ over $\R\text{ or }\C$, the notation $f_j$ represent a function from $E$ to  $\R\text{ or }\C$ defined by $f_j(x)\triangleq \langle f(x),e_j\rangle_W$.
+We shall now include functions between $\R^n$ and  $\R^m$ into our discussion. The goal of this section is to prove 
+\begin{enumerate}[label=(\alph*)]
+  \item If $f:\R^n\rightarrow \R^m$ is differentiable at $x$, then all partial derivatives exists and the total derivative  $df_x$ is a linear combination of the partial derivatives. (\myref{Theorem}{DiJ})
+  \item $\partial_i f_j$ all exist and continuous around $x$  if and only if $f$ is continuously differentiable at $x$. (\myref{Theorem}{DT})
+\end{enumerate}
+The proof of the latter in continuously differentiable part use the fact that all norms on $\R^{k}$ are equivalent (\myref{Theorem}{ANoF}), where $k=nm$, and utilize the Frobenius norm. 
+\end{mdframed}
+\begin{mdframed}
+
+Given an orthonormal basis  $\set{q_1,\dots ,q_m}$ of $\R^m$ and a function $f:\R^n \rightarrow \R^m$, we let $f_j(x)$ be a real number
+\begin{align*}
+f_j(x)=f(x)\cdot q_j
+\end{align*}
+It shall be clear that 
+\begin{align*}
+f(x)=\sum_{j=1}^m f_j(x)q_j
+\end{align*}
+which explain why we require $\set{q_1,\dots ,q_m}$ to be orthonormal in the first place.\\
+
+For brevity of the statement of the next theorem (\myref{Theorem}{DiJ}), we introduce more a notation. If we are provided a basis $\set{e_1,\dots ,e_n}$ of $\R^n$, we denote $\partial_{e_i} f_j(x)$ by $\partial_i f_j(x)$
 \end{mdframed}
 \begin{theorem}
 \label{DiJ}
-\textbf{(Derivative is Jacobian)} Suppose  $\alpha =\set{e_1,\dots ,e_n}$ is an orthonormal basis of $\R^n$, and $\beta =\set{q_1,\dots ,q_m}$ is an orthonormal basis of  $\R^m$. Suppose  $f$ maps an open neighborhood $O$ around $x\inr^n$ to $\R^m$.  Then 
+\textbf{(Derivative is Jacobian)} Suppose  $\alpha =\set{e_1,\dots ,e_n}$ is a basis of $\R^n$, and $\beta =\set{q_1,\dots ,q_m}$ is an orthonormal basis of  $\R^m$. Suppose  $f$ maps an open neighborhood $O$ around $x\inr^n$ to $\R^m$.  Then 
 \begin{align*}
   f\text{ is differentiable at }x\implies \begin{cases}
     \partial_{i}f_j(x)\text{ exists for all }i,j\\
@@ -3047,9 +3207,9 @@ Given an inner product space $\Big(W,\langle \cdot,\cdot\rangle_W\Big)$, an orth
 \end{align*}
 \end{theorem}
 \begin{proof}
-Fix $i,j$. We wish to show 
+Suppose $e_1,\dots ,e_n$ are all normal. Fix $i,j$. We wish to show 
  \begin{align*}
-\vi{\lim_{t\to 0} \frac{f_j(x+te_i)-f_j(x)}{t}\text{ exists }}
+\vi{\partial_i f_j(x) \text{ exists }}
 \end{align*}
 Because $f$ is differentiable at $x$, by definition of $df_x$, we have
 \begin{align*}
@@ -3080,40 +3240,20 @@ By Cauchy-Schwarz Inequality, we now have
 \end{align*}
 Now applying Squeeze Theorem and \myref{Equation}{Dij1}, we have  
 \begin{align*}
-\lim_{t\to 0} \frac{f_j(x+te_i)-f_j(x)}{t}=df_x(e_i)\cdot q_j \vdone
+\partial_i f_j(x)=\lim_{t\to 0} \frac{f_j(x+te_i)-f_j(x)}{t}=df_x(e_i)\cdot q_j \vdone
 \end{align*}
-We now have 
-\begin{align*}
-\hspace{2cm}df_x(e_i)\cdot q_j=\partial _if_j(x)\hspace{1.5cm}(\forall i,j)
-\end{align*}
-This now give us 
+Using the fact $\beta $ is orthonormal, we now have 
 \begin{align*}
 df_x(e_i)=\sum_{j=1}^m \Big(df_x(e_i)\cdot q_j \Big)q_j=\sum_{j=1}^m \partial_if_j(x)q_j
 \end{align*}
-and suggest the matrix representation. 
+and suggest the matrix representation. Now use \myref{Equation}{pa2v} on $f_j$ to prove the case when $e_1,\dots, e_n$ are not all normal.
 \end{proof}
 \begin{mdframed}
-Note that the converse is not always true, that is, given $f:\R^n\rightarrow \R^m$, even if the partial derivative $\partial_if_j$ all exists at $x$, the function $f$ can still not be differentiable at $x$. In fact, it doesn't even have to be continuous at $x$. See the following examples. 
-\begin{Example}{\textbf{(Discontinuous Function with Partial Derivative)}}{}
-\begin{align*}
-f:\R^2\rightarrow \R\text{ and }f(x,y)=\begin{cases}
-  1& \text{ otherwise}\\
-  0& \text{ if }x=0\text{ or }y=0
-\end{cases}
-\end{align*}
-\end{Example}
-\begin{Example}{\textbf{(Discontinuous Function with Partial Derivative)}}{}
-\begin{align*}
-f:\R^2\rightarrow \R\text{ and }f(x,y)=\begin{cases}
-  \frac{x^2y}{x^4+y^2}& \text{ if }(x,y)\neq 0\\
-  0& \text{ if }(x,y)=0
-\end{cases}
-\end{align*}
-We have
-\begin{align*}
-f(h,h^2)\to \frac{1}{2}\text{ as $h\to 0$ and }\partial_xf(0)=\partial _yf(0)=0
-\end{align*}
-\end{Example}
+Note that the converse is not always true. It is possible that a function $f$ has all partial derivatives with respect to a given basis, or even all directions, and yet $f$ is still discontinuous. We have given an example already. Consider a less trivial one. 
+
+\end{mdframed}
+\begin{mdframed}
+
 \begin{Example}{\textbf{(Non-differentiable Continuous Funciton with Partial Derivative)}}{}
 \begin{align*}
 f:\R^2 \rightarrow \R\text{ and }f(x,y)=\begin{cases}
@@ -3140,13 +3280,35 @@ which implies
 \end{Example}
 \end{mdframed}
 \begin{mdframed}
+We now introduce a property of function between normed space that are stronger than differentiablity.\\
+
 Given two normed space $\mathcal{X},\mathcal{Y}$, and an open $E\subseteq \mathcal{X}$, we say $f:E\rightarrow \mathcal{Y}$ is \textbf{continuously differentiable } on $\mathcal{Y}$ if the map $D:(E,\norm{\cdot}_\mathcal{X})\rightarrow \Big(BL(\mathcal{X},\mathcal{Y}), \norm{\cdot}_\text{op} \Big)$ defined by 
 \begin{align*}
 D(x)=df_x
 \end{align*}
-is continuous. Note that the definition of the term "continuously differentiable" coincide when $\mathcal{X}=\mathcal{Y}=\R$ and $df_x$ is just $h\mapsto f'(x)h$.  
+is continuous. Note that the definition of the term "continuously differentiable" coincide when $\mathcal{X}=\mathcal{Y}=\R$ and $df_x$ is just $h\mapsto f'(x)h$.\\
+
+Before we prove the differentiability Theorem (\myref{Theorem}{DT}), we first prove a small lemma. 
 \end{mdframed}
+\begin{lemma}
+\label{CfiS}
+\textbf{(Concave functions is Subaddivity if  $f(0)\geq 0$)} If $f$ is concave on  $[0,\infty)$ and $f(0)\geq 0$, then we have 
+\begin{align*}
+f(a)+f(b)\geq f(a+b)\text{ for all $a,b \inr^+$ }
+\end{align*}
+\end{lemma}
+\begin{proof}
+Let $t \in [0,1]$. We see 
+\begin{align*}
+f(tx)=f(tx+(1-t)0)\geq tf(x)+(1-t)f(0)\geq t f(x)
+\end{align*}
+This give us 
+\begin{align*}
+f(a)+f(b)=f\big( (a+b) \frac{a}{a+b} \big)+f\big((a+b) \frac{b}{a+b} \big)\geq \frac{a}{a+b}f(a+b)+\frac{b}{a+b}f(a+b)=f(a+b)
+\end{align*}
+\end{proof}
 \begin{theorem}
+\label{DT}
 \textbf{(Differentiability Theorem)} Suppose  $\alpha =\set{e_1,\dots ,e_n}$ is an orthonormal basis of $\R^n$, and $\beta =\set{q_1,\dots ,q_m}$ is an orthonormal basis of  $\R^m$. Suppose  $f$ maps an open set $E\subseteq\R^n$ to $\R^m$.  Then  
 \begin{align*}
 f\text{ is continuously differentiable on $E$ }\iff \partial_if_j\text{ exists and is continuous on $E$ for all $i,j$ }
@@ -3187,40 +3349,266 @@ By Cauchy-Inequality, we then have
 
 $(\longleftarrow)$\\
 
+We first show 
+\begin{align*}
+\vi{f\text{ is differentiable on $E$ }}
+\end{align*}
+We first prove 
+\begin{align*}
+\olive{\forall j\in \set{1,\dots, m}, f_j:\R^n\rightarrow \R\text{ is differentiable on $E$ }\implies f\text{ is differentiable on $E$ }}
+\end{align*}
+Fix $x\in E$. We wish to prove 
+\begin{align*}
+\olive{\text{ $f$ is differentiable at $x$ }}
+\end{align*}
+Define $A:E\rightarrow \R^m$ by 
+\begin{align*}
+A(h)\triangleq \sum_{j=1}^m  (df_j)_x (h)q_j
+\end{align*}
+We claim 
+\begin{align*}
+\olive{A\text{ suffices to be the $df_x$ }}
+\end{align*}
+Using the fact $q_j$ are orthonormal, we have
+\begin{align*}
+f(x+h)-f(x)-A(h)=\sum_{j=1}^m \big(f_j(x+h)-f_j(x)-(df_j)_x(h)  \big)q_j
+\end{align*}
+This give us 
+\begin{align*}
+\lim_{h\to 0} \frac{\abso{f(x+h)-f(x)-A(h)}}{\abso{h}}&=\lim_{h\to 0} \frac{\abso{\sum_{j=1}^m \big(f_j(x+h)-f_j(x)-(df_j)_x (h) \big)q_j}}{\abso{h}}\\
+&=\lim_{h\to 0} \frac{\sum_{j=1}^m \abso{f_j(x+h)-f_j(x)-(df_j)_x(h)}}{\abso{h}}=0 \odone
+\end{align*}
+Fix $j \in \set{1,\dots ,m}$. We can now reduce the problem into 
+\begin{align*}
+  \vi{f_j:\R^n\rightarrow \R\text{ is differentiable on $E$ }}
+\end{align*}
+Fix $x \in E$. We wish to prove 
+\begin{align*}
+\vi{f_j\text{ is differentiable at $x$ }}
+\end{align*}
+Express $h=\sum_{i=1}^n h_ie_i$. Define $B:E\rightarrow \R$ by
+\begin{align*}
+B(h)=\sum_{i=1}^n \partial_i f_j(x)h_i
+\end{align*}
+We claim 
+\begin{align*}
+\vi{B\text{ suffices to be $(df_j)_x$ }}
+\end{align*}
+By continuity of each $\partial_i f_j$ on $E$, we can let  $\delta$ satisfy 
+\begin{align*}
+\abso{\partial_i f_j(y)-\partial_i f_j(x)}< \epsilon  \text{ for all $y\in B_\delta(x)$  }
+\end{align*}
+We claim 
+\begin{align*}
+  \vi{\frac{\abso{f_j(y)-f_j(x)-B(y-x)}}{\abso{y-x}}\leq \epsilon \text{ for all }y \in B_\epsilon (x)}
+\end{align*}
+Express $y-x=\sum_{k=1}^n h_ke_k$. Define $v_0,\dots,v_n\inr^n$ by
+\begin{align*}
+v_0\triangleq 0\text{ and }v_k\triangleq \sum_{i=1}^k h_ie_i\text{ for all $k\in \set{1,\dots ,n}$ }
+\end{align*}
+Note that the squared-root $x\mapsto \sqrt{x}  $ is a concave function on $[0,\infty)$. Then \myref{Lemma}{CfiS} give us 
+\begin{align*}
+  \sum_{k=1}^n \abso{h_k}\leq \sqrt{\sum_{k=1}^n h_k^2}=\abso{y-x}  
+\end{align*}
+Now observe
+\begin{align*}
+\frac{\abso{f_j(y)-f_j(x)-B(y-x)}}{\abso{y-x}}&=\frac{\abso{f_j(x+v_n)-f_j(x)-B(\sum_{k=1}^n h_ke_k)}}{\abso{y-x}}\\
+&=\frac{\abso{\big(\sum_{k=1}^nf_j(x+v_k)-f_j(x+v_{k-1}) \big)- \sum_{k=1}^n \partial_k f_j(x)h_k   }}{\abso{y-x}}\\
+&=\frac{\abso{\sum_{k=1}^n f_j(x+v_k)-f_j(x+v_{k-1})-\partial_k f_j(x)h_k}}{\abso{y-x}}\\
+&=\frac{\abso{\sum_{k=1}^n f_j(x+v_{k-1}+h_ke_k)-f_j(x+v_{k-1})-\partial_k f_j(x)h_k}}{\abso{y-x}}\\
+&=\frac{\abso{\sum_{k=1}^n \partial_k f_j(x+v_{k-1}+t_ke_k)h_k-\partial_k f_j(x)h_k}}{\abso{y-x}}\\
+&\leq \frac{\sum_{k=1}^n \abso{\big(\partial_k f_j(x+v_{k-1}+t_ke_k)-\partial_k f_j(x) \big)h_k}}{\abso{y-x}}\\
+&< \frac{\sum_{k=1}^n \epsilon \abso{h_k}}{\abso{y-x}}\leq \epsilon \vdone
+\end{align*}
+We now prove
+\begin{align*}
+\blue{f\text{ is continuously differentiable on $E$ }}
+\end{align*}
+Fix $\epsilon $ and $x\in E$. We are required 
+\begin{align*}
+\blue{\text{ to find $\delta$ such that $\norm{df_y-df_x}_\text{op}\leq \epsilon $ for all $y\in B_\delta (x)$ }}
+\end{align*}
+Note that one can define a norm $\norm{\cdot}_F$ called "Forbenius Norm" on $BL(\R^n,\R^n)$ by 
+\begin{align*}
+\norm{A}_F\triangleq \sqrt{\sum_{i=1}^n \sum_{j=1}^n a_{i,j}^2}  \text{ where }[A]_\alpha ^\beta = \begin{bmatrix}
+  a_{1,1}& \cdots & a_{n,1}\\
+  \vdots & \ddots & \vdots \\
+  a_{1,n} & \cdots & a_{n,n}  
+\end{bmatrix}
+\end{align*}
+Because all norms on finite-dimensional real vector spaces are equivalent (\myref{Theorem}{ANoF}), we know there exists $M$ such that for all $x\in E$, we have 
+\begin{align*}
+\norm{df_x}_\text{op}\leq  M\norm{df_x}_F
+\end{align*}
+Because the partial derivatives are all continuous by definition, we can let $\delta$ satisfy 
+\begin{align*}
+  \big(\partial_i f_j(x+h)\big)^2-\big(\partial_i f_j(x)\big)^2< \frac{\epsilon^2 }{M^2n^2}\text{ for all $h \in B_\delta (0)$ }
+\end{align*}
+We claim 
+\begin{align*}
+\blue{\text{ such }\delta\text{ suffices }}
+\end{align*}
+Let $\abso{y-x}<\delta$. We see 
+\begin{align*}
+\norm{df_y-df_x}_\text{op}\leq M\norm{df_y -df_x}_F< M \sqrt{\sum_{i=1}^n \sum_{j=1}^n\frac{\epsilon^2 }{M^2n^2}}=\epsilon 
+\end{align*}
+
+
+
+
+
+
+
 
 
 
 
 
 \end{proof}
-\section{Chain Rule}
+\section{Smoothness of $f:\R^n\rightarrow \R^m$}
 \begin{mdframed}
-Given two normed space $\mathcal{X},\mathcal{Y}$, suppose $f$ maps an open neighborhood $O$ around $x$ in $\mathcal{X}$ to $\mathcal{Y}$. We say $f$ is \textbf{differentiable at} $x$ if there exists a bounded linear transformation $A_x:\mathcal{X}\rightarrow \mathcal{Y}$ (from now, $A_x$ will be denoted $df_x$) such that  
+Given the set of all real-valued functions on an open set $E$ of $\R^n$, we can define the differentaible class by saying a function $f:E\rightarrow \R$ is of class $C^k$ if 
+\begin{align*}
+\frac{\partial^kf}{(\partial x_1)^{\alpha_1}\cdots (\partial x_n)^{\alpha_n}}\text{ is continuous on $E$ for all $\alpha_1+\cdots + \alpha_n=k$  }
+\end{align*}
+Alternatively, we can say a function $f:E\rightarrow \R$ is of $C^2$ if the function $D:E\rightarrow \big(L(\R^n,\R),\norm{\cdot}_\text{op} \big)$ defined by 
+ \begin{align*}
+D(x)=df_x
+\end{align*}
+is again differentaible on $E$. 
+\end{mdframed}
+\begin{theorem}
+\label{SoMPD}
+\textbf{(Structure of Mixed Partial Derivative)} Given an open set $E\subseteq \R^2$, a point $p\in  E$, a basis $\set{e_1,e_2}$ of $\R^2$, a function $f:E\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\partial_1 f$ exists on $E$
+   \item $\partial_2 f$ exists on $E$
+     \item $\partial_{21} f$ exists on $E$ and is continuous at $p$
+\end{enumerate}
+Then 
+\begin{align*}
+\partial_{12} f(p)=\partial_{21}f(p)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Express elements of $E$ in the basis $\set{e_1,e_2}$, and express $p=(a,b)$. We are required to prove 
+\begin{align*}
+  \vi{\lim_{h\to 0}\frac{\partial_2f(a+h,b)-\partial_2 f(a,b)}{h}=\partial_{21}f(a,b)}
+\end{align*}
+Define $\Delta(h,k)$ on $E\setminus p$ by 
+\begin{align*}
+\Delta(h,k)\triangleq f(a+h,b+k)-f(a,b+k)-f(a+h,b)+f(a,b)
+\end{align*}
+Note that because $\partial_2f$ exists on $E$, for all $h\neq 0$, we have 
+ \begin{align*}
+\lim_{k\to 0} \frac{\Delta (h,k)}{hk}=\frac{\partial_2 f(a+h,b)-\partial_2 f(a,b)}{h}
+\end{align*}
+This let us reduce the problem into proving 
+\begin{align*}
+  \vi{\lim_{h\to 0}\lim_{k\to 0} \frac{\Delta (h,k)}{hk}=\partial_{21}f(a,b)}
+\end{align*}
+We first show 
 \begin{align}
-\label{defdi}
-  \lim_{h\to 0} \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}=0
+\label{oea}
+  \olive{\frac{\Delta (h,k)}{hk}=\partial_{21}f(x,y)\text{ for some $(x,y):\abso{x-a}<h\text{ and }\abso{y-b}<k$ }}
 \end{align}
-Immediately, we should check that the linear approximation is unique. Suppose $df_x$ and  $df_x'$ both satisfy (\myref{}{defdi}). We are required to show $(df_x-df_x')h=0$ for all $\norm{h}_\mathcal{X}=1$. Fix $h\in \mathcal{X}$ such that $\norm{h}_\mathcal{X}=1$. Note that 
+Define $u(t)$ by 
 \begin{align*}
- \frac{(df_x-df'_x)th}{t}\text{ is a constant in $t$ for $t\neq 0$ }
+u(t)\triangleq f(t,b+k)-f(t,b)
 \end{align*}
-This then reduced the problem into showing 
-\begin{align}
-\label{goaldib}
-\frac{(df_x-df'_x)th}{t\norm{h}_{\mathcal{X}}}\to 0\text{ as $t\to 0$ }
-\end{align}
-Observe 
+Compute 
 \begin{align*}
-  (df_x-df'_x)th&= \Big( f(x+th)-f(x)-df'_x(th)\Big) - \Big(f(x+th)-f(x)-df_x(th) \Big)
+u'(t)=\partial_1 f(t,b+k)-\partial_1 f(t,b)
 \end{align*}
-which implies 
+Then we have
 \begin{align*}
-\norm{(df_x-df_x')th}_\mathcal{Y}\leq \norm{f(x+th)-f(x)-df'_x(th)}_{\mathcal{Y}}+ \norm{f(x+th)-f(x)-df_x(th)}_\mathcal{Y}
+\Delta (h,k)&=u(a+h)-u(a)\\
+&=hu'(x)\text{ for some $x\in (a,a+h)$ by MVT (\myref{Corollary}{MVT}) }\\
+&=h\big(\partial_1 f(x,b+k)-\partial_1 f(x,b) \big)
 \end{align*}
-and thus implies (\myref{}{goaldib}).\\
+Define $v(t)$ by 
+\begin{align*}
+v(t)\triangleq \partial_1 f(x,t)
+\end{align*}
+Compute 
+\begin{align*}
+v'(t)=\lim_{h\to 0}\frac{\partial_1 f(xe_1+(t+h)e_2)-\partial_1 f(xe_1+te_2)}{h}=\partial_{21}f(x,t)
+\end{align*}
+Then we have 
+\begin{align*}
+\Delta (h,k)&=h(\partial_1 f(x,b+k)-f(x,b))\\
+&=h\big(v(b+k)-v(b)\big)\\
+&=hk v'(y)\text{ for some $y\in (b,b+k)$ }\\
+&=hk\partial_{21}f(x,y)\odone
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+  \vi{\text{ to find some $\delta$ such that for all }h \in (-\delta,\delta)\setminus 0, \abso{\lim_{k\to 0}\frac{\Delta (h,k)}{hk}-\partial_{21}f(x,y)}\leq \epsilon }
+\end{align*}
+Because of \olive{\myref{Equation}{oea}} and $\partial_{21}f$ is continuous at $p$, we know there exists $\delta$ such that for all $h,k\in (-\delta,\delta)\setminus 0$ , we have 
+\begin{align*}
+  \abso{\frac{\Delta ( h,k)}{hk}-\partial_{21}f(a,b)}<\frac{\epsilon }{2} 
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\text{ such }\delta\text{ works }}
+\end{align*}
+Fix $h\in (-\delta,\delta)\setminus 0$. Note that $\lim_{k\to 0}\frac{\Delta (h,k)}{hk}=\frac{\partial_2 f(a+h,b)-\partial_2 f(a,b)}{h}$ exists, so we can find small enough $k'$ such that
+\begin{align*}
+  0<\abso{k'}<\delta \text{ and } \abso{\lim_{k\to 0} \frac{\Delta (h,k)}{hk}- \frac{\Delta (h,k')}{hk'}}<\frac{\epsilon}{2}
+\end{align*}
+Now observe 
+\begin{align*}
+\abso{\lim_{k\to 0}\frac{\Delta (h,k)}{hk}-\partial_{21}f(x,y)}\leq \abso{\lim_{k\to 0}\frac{\Delta (h,k)}{hk}-\frac{\Delta (h,k')}{hk'}}+ \abso{\frac{\Delta (h,k')}{hk'}-\partial_{21}f(a,b)}\leq \epsilon \vdone
+\end{align*}
 
-It shall be quite clear that a function $f$ differentiable at $x$ must be continuous at $x$, by noting the nominator of (\myref{}{defdi}) must tend to $0$.\\
 
+
+
+
+\end{proof}
+\begin{corollary}
+\textbf{(Clairaut's Theorem on equality of mixed partial)} Given a basis $\set{e_1,\dots ,e_n}$ of $\R^n$, an open set $E\subseteq \R^n$, a function $f:E\rightarrow \R$ such that 
+\begin{align*}
+\partial_{ij}f\text{ exist and is continuous on }E\text{ for all }i,j \in \set{1,\dots ,n}
+\end{align*}
+Then 
+\begin{align*}
+\partial_{ij}f=\partial_{ji}f\text{ on $E$ for all }i,j\in \set{1,\dots ,n}
+\end{align*}
+\end{corollary}
+\begin{proof}
+Fix $p\in E$, and fix $i,j \in \set{1,\dots ,n}$. We are required to prove 
+\begin{align*}
+\vi{\partial_{ij}f(p)=\partial_{ji}f(p)}
+\end{align*}
+Express $p$ in the form  $p=x_0e_i+y_0e_j+v$ where $v\in\text{span}\Big(\set{e_1,\dots ,e_n}\setminus \set{e_i,e_j}\Big)$.\\
+
+Because $E$ is open, we can let $B_\epsilon (p)\subseteq \R^n$ be contained by $E$. Define $U\subseteq \R^2$ by   
+\begin{align*}
+U= B_{\epsilon }(x_0,y_0)
+\end{align*}
+Check that 
+\begin{align*}
+\set{xe_i+ye_j+v \inr^n :(x,y)\in U}\subseteq E
+\end{align*}
+Define $g:U\rightarrow \R$ by 
+\begin{align*}
+g(x,y)\triangleq f(xe_i+ye_j+v)
+\end{align*}
+Check that 
+\begin{align*}
+\partial_1 g(x,y)=\partial_i f(xe_i+ye_j+v)\text{ and }\partial_2g(x,y)=\partial_j f(xe_i+ye_j+v)
+\end{align*}
+We can now apply \myref{Theorem}{SoMPD} to $g$ and have 
+ \begin{align*}
+\partial_{ij}f(p)=\partial_{12}g(x_0,y_0)=\partial_{21}g(x_0,y_0)=\partial_{ji}f(p)\vdone
+\end{align*}
+\end{proof}
+
+
+\section{Product Rule and Chain Rule}
+\begin{mdframed}
 We now prove the Chain Rule for function between normed space. 
 \end{mdframed}
 \begin{theorem}
@@ -3303,6 +3691,7 @@ We have
 This give us the following expected result (\myref{Corollary}{BPoD}). 
 \end{mdframed}
 \begin{theorem}
+\label{BPoDB}
 \textbf{(Basic Property of Derivative)} Suppose $f$ maps a convex open set $E\subseteq \Big(\R^n,\norm{\cdot}_2 \Big)$ into $\Big(\R^m,\norm{\cdot}_2 \Big)$,  $f$ is differentiable on $E$, and there exists $M\inr$ such that 
 \begin{align*}
 \hspace{2.5cm}\norm{df_x}_\text{op}\leq M\hspace{1.5cm}(x \in E)
@@ -3339,27 +3728,145 @@ f\text{ stay constant on $E$ }
 
 
 
+
+
 \section{Inverse Function Theorem}
 \begin{theorem}
-\textbf{(Inverse Function Theorem)} Given a map $f$ from open set $E\subseteq \R^n$ to $\R^n $ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $f$ is conitnuously differentiable on $E$ 
-   \item $df_a$ is invertible  
-  \item $f(a)=b$
-\end{enumerate}
-Then there exists open neighborhood $U$ around $a$ and  $V$ around  $b$ such that  
+\label{IFT}
+\textbf{(Inverse Function Theorem)} Given a function $f$ that maps an open subset  $E$ of  $\R^n$  into $\R^n$ such that $f$ is continuously differentiable on  $E$, if a point $a \in E$ has invertible derivative $df_a$, then there exists an open set $U\subseteq E$ containing $a$ such that
 \begin{align*}
-f\text{ is a diffeomorphism from $U$ to  $V$}
+f(U)\text{ is open in $\R^n$ and }f|_U:U\rightarrow f(U)\text{ is a diffeomorphism }
 \end{align*}
 \end{theorem}
+\begin{proof}
+Fix 
+ \begin{align}
+\label{ldteq}
+\ld   \triangleq  \frac{1}{2\norm{(df_a)^{-1}}_\text{op}}
+\end{align}
+Because $f$ is continuously differentaible at  $x$, we know there exists  $\delta$ such that
+\begin{align}
+\label{fcond}
+\hspace{3cm}\norm{df_x-df_a}_\text{op}< \ld  \hspace{1.5cm}(x\in B_\delta (a))
+\end{align}
+We claim 
+\begin{align*}
+  \vi{U\triangleq B_\delta(a)\text{ suffices }}
+\end{align*}
+For each $y\inr^n$, define $\phi_y:U\rightarrow \R^n$ by 
+\begin{align*}
+\phi_y(x)\triangleq x+ (df_a)^{-1}(y-f(x))
+\end{align*}
+Before anything, we first prove
+\begin{align*}
+  \olive{\text{ for all }y\inr^n, \phi_y:U\rightarrow \R^n\text{ is a contraction}}
+\end{align*}
+Fix $y \inr^n$, and $x_1,x_2 \in U$. We claim 
+\begin{align*}
+\olive{\abso{\phi_y(x_1)-\phi_y (x_2)}\leq \frac{1}{2}\abso{x_1-x_2}}
+\end{align*}
+Because $U$ is convex, \myref{Theorem}{BPoDB} allow use to reduce the problem into proving 
+\begin{align*}
+\olive{\norm{d(\phi_y)_x}_\text{op}\leq \frac{1}{2}\text{ for all $x \in U$ }}
+\end{align*}
+Fix $x \in U$. Use Chain Rule and the fact the derivative of a bounded linear transformation is itself to compute $d(\phi_y)_x$ 
+\begin{align*}
+d(\phi_y)_x&=I+(df_a)^{-1}(-df_x)\\
+&=(df_a)^{-1}(df_a-df_x)
+\end{align*}
+
+This together with \myref{Equation}{ldteq} and \myref{Equation}{fcond} give us 
+\begin{align*}
+\norm{d(\phi_y)_x}_\text{op}\leq \norm{(df_a)^{-1}}_\text{op}\norm{df_a-df_x}_\text{op}<\frac{1}{2}\odone
+\end{align*}
+
+We now prove 
+\begin{align*}
+\blue{f\text{ is one-to-one in $U$ }}
+\end{align*}
+Fix $y$ in $f(U)$. We wish to show 
+\begin{align*}
+\blue{\text{ there exists at most one $x\in U$ such that }f(x)=y}
+\end{align*}
+Because $f(x)=y \iff x\text{ is a fixed point of }\phi_y$, we can reduce the problem into
+\begin{align*}
+  \blue{\phi_y\text{ has at most one fixed point in $U$}}
+\end{align*}
+Suppose $x,x'\in U$ are both fixed point of $\phi_y$. Observe 
+\begin{align*}
+\abso{x-x'}=\abso{\phi_y(x)-\phi_y(x')}\leq \frac{1}{2}\abso{x-x'}
+\end{align*}
+This implies $\abso{x-x'}=0$. $\bdone$\\
+
+We now prove 
+\begin{align*}
+\brown{f(U)\text{ is open in $\R^n$ }}
+\end{align*}
+Fix $y_0 \in f(U)$. Let $x_0= f^{-1}(y_0)$. Because $U$ is open, we know there exists $r$ such that 
+\begin{align*}
+  \overline{B_r(x_0)}\subseteq U
+\end{align*}
+We claim 
+\begin{align*}
+  \brown{B_{\ld r}(y_0)\subseteq f(U)}
+\end{align*}
+Fix $y\in B_{\ld r}(y_0)$. We are required to prove 
+\begin{align*}
+  \brown{y\in f(U)}
+\end{align*}
+Because 
+\begin{align*}
+y=f(x)\iff  x\text{ is a fixed point of }\phi_y
+\end{align*}
+We then can use Banach Fixed Point Theorem to reduce the problem into proving 
+\begin{align*}
+\brown{\phi_y\text{ is a contraction that maps some complete subset of $U$ into  itself}}
+\end{align*}
+We claim 
+\begin{align*}
+\brown{\overline{B_r(x_0)}\text{ suffices }}
+\end{align*}
+We have already $\phi_y$ is a contraction on $U$, and it is clear that $\overline{B_r(x_0)}$ is complete. We reduce the problem into proving 
+\begin{align*}
+\brown{\phi_y\big(\overline{B_r(x_0)} \big)\subseteq \overline{B_r(x_0)}}
+\end{align*}
+Using
+\begin{enumerate}[label=(\alph*)]
+  \item definition of $\phi_y$
+  \item $\abso{y-y_0}<\ld r$ 
+  \item $\norm{(df_a)^{-1}}_\text{op}=\frac{1}{2\ld }$
+\end{enumerate}
+We can deduce 
+\begin{align*}
+\abso{\phi_y (x_0)-x_0}&= \abso{(df_a)^{-1}(y-f(x_0))}\\
+&\leq \norm{(df_a)^{-1}}_\text{op} \abso{y-y_0}<\frac{r}{2}
+\end{align*}
+Fix $x\in \overline{B_r(x_0)}$. We then see
+\begin{align*}
+  \abso{\phi_y (x)-x_0}&\leq \abso{\phi_y (x_0)-\phi_y (x)}+\abso{x_0-\phi_y (x_0)}\\
+&\leq \frac{1}{2}\abso{x_0-x}+\frac{r}{2}\leq r \bodone
+\end{align*}
+
+Lastly, it remains to prove 
+\begin{align*}
+  \vi{f^{-1}:f(U)\rightarrow U\text{ is continuously differentiable }}
+\end{align*}
+Because $f^{-1}\circ f=I$. We know $d(f^{-1})_{f(x)}$ if exists must satisfy 
+\begin{align*}
+d(f^{-1})_{f(x)}=(df_x)^{-1}
+\end{align*}
+
+
+
+\end{proof}
 \section{Implicit Function Theorem}
 \section{Appendix: Linear Algebra}
 \begin{mdframed}
 This section contains
 \begin{enumerate}[label=(\alph*)]
-  \item definitions and basic property for \textbf{norm}
-  \item definitions and basic property for \textbf{inner product}
-  \item definitions and basic property of \textbf{positive semi-definite Hermitian form}
+  \item definition and basic properties of the term \textbf{norm}
+  \item definition and basic properties of the term \textbf{inner product}
+  \item definition and basic properties of the term \textbf{positive semi-definite Hermitian form}
   \item full statement and proof of \textbf{Cauchy Schwarz Inequality} for both inner product space and positive semi-definite Hermitian form  
   \item statement and proof of \textbf{SVD} (singular value decomposition). 
 \end{enumerate}

@@ -2578,49 +2578,35 @@ $V\cap S$   can be expressed as the graph of some smooth function $f:O\subseteq 
   \item $V\cap S=\set{(f,y,z):(y,z)\in O}$ for some smooth $f:O \subseteq \R^2 \rightarrow \R$
 \end{enumerate}
 \end{definition}
-\section{Change of Parameter}
-\begin{mdframed}
-Given two regular surfaces $S_1,S_2$, an open neighborhood $V_1\subseteq \R^3$ around $p$, and a continuous function  $f:V_1\cap S_1\rightarrow S_2$, we say $f$ is differentiable at $p\in V_1$ if there exists local parametrizations 
-\begin{enumerate}[label=(\alph*)]
-  \item $\textbf{x}_1:U_1\subseteq \R^2\rightarrow V_1'\cap S_1$ around $p$
-  \item $\textbf{x}_2:U_2\subseteq \R^2 \rightarrow V_2\cap  S_2$ around $f(p)$
-\end{enumerate}
-such that 
-\begin{align*}
-\textbf{x}_2^{-1}\circ f \circ \textbf{x}_1\text{ is differentaible at $\textbf{x}_1^{-1}(p)$ }
-\end{align*}
-Note the our definition of differentiablity of function between regular surface is well-defined, in the sense that if $f$ differentiable, all local parametrizations suffice to check. This fact is backed by \myref{Theorem}{CoP} 
-\end{mdframed}
+\section{Differentiable Mapping Between Regular Surfaces}
 \begin{theorem}
 \label{CoP}
-\textbf{(Change of Parameter is a diffeomorphism)} Let $p$ be a point of a regular surface $S$, and let $\textbf{x}:U_1\rightarrow V_1\cap S$ and $\textbf{y}:U_2\rightarrow V_2\cap S$ be two local parametrization around $p$. Define $W\triangleq V_1\cap V_2 \cap S$. Then 
+\textbf{(Change of Parameter is a diffeomorphism)} Let $p$ be a point of a regular surface $S$, and let $\textbf{x}_1:U_1\rightarrow S$ and $\textbf{x}_2:U_2\rightarrow S$ be two charts containing $p$. Define $W\triangleq \textbf{x}_1(U_1)\cap \textbf{x}_2(U_2)\cap S$. Then 
 \begin{align*}
-  \text{ The \textbf{change of coordinate} $h=\textbf{x}^{-1}\circ \textbf{y}:\textbf{y}^{-1}(W)\to \textbf{x}^{-1}(W)$ is a diffoeomorphism }
+  \text{ The \textbf{change of coordinate } $h\triangleq \textbf{x}_2^{-1}\circ \textbf{x}_1:\textbf{x}_1^{-1}(W)\to \textbf{x}_2^{-1}(W)$ is a diffoeomorphism }
 \end{align*}
 \end{theorem}
 \begin{proof}
-It is clear that $h$ is a homeomorphism, since $\textbf{x},\textbf{y}$ both are. \\
-
-Note the symmetry $h^{-1}=\textbf{y}^{-1}\circ \textbf{x}$. WOLG, we only have to prove 
+Note the symmetry of $h$ and $h^{-1}$. WOLG, we only have to prove 
 \begin{align*}
-\vi{h:\textbf{y}^{-1}(W)\subseteq U_2\rightarrow \textbf{x}^{-1}(W)\subseteq U_1\text{ is differentiable }}
+\vi{h:\textbf{x}_1^{-1}(W)\rightarrow \textbf{x}_2^{-1}(W)\text{ is differentiable }}
 \end{align*}
-Fix $r \in \textbf{y}^{-1}(W)$. We prove 
+Fix $r \in \textbf{x}_1^{-1}(W)$. We prove 
 \begin{align*}
   \vi{h\text{ is differentiable at $r$ }}
 \end{align*}
-Define $q\triangleq h(r) \in \textbf{x}^{-1}(W)\subseteq \R^2$. Let's write $\textbf{x}$ by 
+Define $q\triangleq h(r)$. Express $\textbf{x}_2$ by 
 \begin{align*}
-\textbf{x}(u,v)=(x,y,z)
+\textbf{x}_2(u,v)=(x,y,z)
 \end{align*}
-By definition, we know $d\textbf{x}_q$ is one-to-one. This, WOLG, let us have 
+Because $(d\textbf{x}_2)_q$ is one-to-one, WOLG, we have 
 \begin{align*}
 \begin{vmatrix} 
   \partial_u x & \partial_v x\\
   \partial_u y & \partial_v y
 \end{vmatrix}(q)\neq 0
 \end{align*}
-Now, define $F:\textbf{x}^{-1}(W)\times \R\rightarrow \R^3$ by  
+Now, define $F:\textbf{x}_2^{-1}(W)\times \R\rightarrow \R^3$ by  
 \begin{align}
 \label{CC1}
 F(u,v,t)\triangleq  \Big(x(u,v),y(u,v),z(u,v)+t \Big)
@@ -2637,25 +2623,34 @@ Then by Inverse function Theorem, we see that there exists an open neighborhood 
 
 Now, from \myref{Equation}{CC1}, note that 
 \begin{align*}
-F(u,v,0)=\textbf{x}(u,v)
+F(u,v,0)=\textbf{x}_2(u,v)
 \end{align*}
 Recall the definition $h$, we now have 
 \begin{align*}
-h\equiv \textbf{x}^{-1}\circ \textbf{y}=F^{-1}\circ \textbf{y}
+h=\textbf{x}_2^{-1}\circ \textbf{x}_1=F^{-1}\circ \textbf{x}_1\text{ on $\textbf{x}_1^{-1}(M)$ }
 \end{align*}
 Then because 
 \begin{enumerate}[label=(\alph*)]
-  \item $\textbf{y}$ is differentiable at $r$ 
-   \item $F^{-1}$ is differentiable at $F(q,0)=\textbf{x}(q)=\textbf{y}(r)$ 
+  \item $\textbf{x}_1$ is differentiable at $r$ 
+   \item $F^{-1}$ is differentiable at $F(q,0)=\textbf{x}_2(q)=\textbf{x}_1(r)$ 
 \end{enumerate}
 We see $h$ is indeed differentiable at $r\vdone$
 \end{proof}
 \begin{mdframed}
-
+Now, given two regular surfaces $S_1,S_2$, a set  $E\subseteq S_1$ open in $S_1$, and a function  $f:E\rightarrow S_2$, we can say $f$ is \textbf{differentiable at $p\in  E$} if there exists some local charts $\textbf{x}_1:U_1 \rightarrow S_1,\textbf{x}_2:U_2\rightarrow S_2$, containing $p,f(p)$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item there exists $\epsilon $ small enough such that $B_{\epsilon }(\textbf{x}_1^{-1}(p))\subseteq U_1$ and $\textbf{x}_2^{-1}\circ f\circ \textbf{x}_1$ is defined on $B_\epsilon (\textbf{x}_1^{-1}(p))$ 
+  \item $\textbf{x}_2^{-1}\circ f\circ \textbf{x}_1:B_\epsilon (\textbf{x}_1^{-1}(p))\rightarrow U_2$ is differentiable at $\textbf{x}_1^{-1}(p)$
+\end{enumerate}
+One can check that if $f:E\rightarrow S_2$ is differetnaible at $p$, then  $f:E\rightarrow S_2$ must be continuous at  $p$. Also, using \myref{Theorem}{CoP}, one can check that if $f$ is differnetiable at $p$, then every local charts  $\textbf{x}_3:U_3\rightarrow S_1,\textbf{x}_4:U_4\rightarrow S_2$ containing $p,f(p)$ satisfy 
+\begin{align*}
+\textbf{x}_4^{-1}\circ f\circ \textbf{x}_3\text{ is differentiable at $\textbf{x}_3^{-1}(p)$ }
+\end{align*}
+Thus, if we wish to check whether some function $f:E\rightarrow S_2$ is differentiable at $p$, every pair of local charts respectively containing  $p,f(p)$ can be used.
 \end{mdframed}
 \begin{theorem}
 \label{CoD}
-\textbf{(Composition of Differentiable functions is differentiable)} Given three regular surfaces $\set{S_1,S_2,S_3}$, two differentiable functions $f_1:S_1\rightarrow S_2$ and $f_2:S_2\rightarrow S_3$, we see 
+\textbf{(Composition of Differentiable functions is differentiable)} Given three regular surfaces $S_1,S_2,S_3$, two differentiable functions $f_1:S_1\rightarrow S_2$ and $f_2:S_2\rightarrow S_3$, we see 
 \begin{align*}
 f_2\circ f_1\text{ is differentiable on $S_1$ }
 \end{align*}
@@ -2666,15 +2661,14 @@ Fix $p_1\in S_1 $. We wish to prove
   \vi{f_2\circ f_1\text{ is differentiable at $p_1$ }}
 \end{align*}
 Set 
-\begin{enumerate}[label=(\alph*)]
-  \item $p_2\triangleq f_1(p_1)$ 
-  \item $p_3\triangleq f_2(p_2)$
-\end{enumerate}
+\begin{align*}
+p_2\triangleq f_1(p_1)\text{ and }p_3\triangleq f_2(p_2)
+\end{align*}
 Let 
 \begin{enumerate}[label=(\alph*)]
-  \item $\textbf{x}_1:U_1 \rightarrow V_1\cap S_1 \ni p_1 $ be a local parametrzaiton 
-   \item $\textbf{x}_2:U_2\rightarrow V_2\cap S_2\ni p_2$ be a local parametrizaiton 
-    \item $\textbf{x}_3:U_3\rightarrow V_3\cap S_3\ni p_3$ be a local parametrizaiton 
+  \item $\textbf{x}_1:U_1 \rightarrow S_1 \ni p_1 $ be a local chart 
+   \item $\textbf{x}_2:U_2\rightarrow S_2\ni p_2$ be a local chart
+    \item $\textbf{x}_3:U_3\rightarrow  S_3\ni p_3$ be a local chart
 \end{enumerate}
 We wish to prove 
 \begin{align*}
@@ -2702,27 +2696,27 @@ T_pS=d\textbf{x}(\R^2)
 \end{align*}
 \end{definition}
 \begin{theorem}
-\textbf{(Equivalence of Definitions)} Given a regular surface $S$, that $p\in  S $ and a local parametrization $\textbf{x}:(u,v)\mapsto  (x,y,z)$ around $p$ such that $\textbf{x}(q)=p$. we have 
+\textbf{(Equivalence of Definitions)} Given a regular surface $S$, $p\in  S $ and a local chart $\textbf{x}:U\rightarrow S$ containing $p$ such that $\textbf{x}(q)=p$, we have 
 \begin{align*}
-d\textbf{x}(\R^2)=\set{\alpha '(0)\inr^3|\hspace{0.1cm}\alpha:I\rightarrow S \text{ is a smooth curve  passing through $p$ at $\alpha (0)$ }}
+d\textbf{x}_q(\R^2)=\set{\alpha '(0)\inr^3|\alpha:(-\epsilon ,\epsilon )\rightarrow S\text{ satisfy }\alpha (0)=p}
 \end{align*}
 \end{theorem}
 \begin{proof}
 We first prove 
 \begin{align*}
- \vi{d\textbf{x}_q(\R^2)\subseteq\set{\alpha '(0)\inr^3|\hspace{0.1cm}\alpha:I\rightarrow S \text{ is a smooth curve  passing through $p$ at $\alpha (0)$ }}}
+\vi{d\textbf{x}_q(\R^2)\subseteq \set{\alpha '(0)\inr^3|\alpha:(-\epsilon ,\epsilon )\rightarrow S\text{ satisfy }\alpha (0)=p}}
 \end{align*}
-Fix $w\in d\textbf{x}_q(\R^2)$. We wish
+Fix $w\in d\textbf{x}_q(\R^2)$. We reduce the problem into 
 \begin{align*}
-\vi{\text{ to find smooth $\alpha :I\rightarrow S$ such that $\alpha (0)=p$ and $\alpha '(0)=w$ }}
+\vi{\text{ constructing smooth $\alpha :(-\epsilon ,\epsilon )\rightarrow S$ such that $\alpha (0)=p$ and $\alpha '(0)=w$ }}
 \end{align*}
-We know there exists $v \inr^2$ such that $d\textbf{x}_q(v)=w$. Define $\gamma :I\rightarrow \R^2$ by 
+We know there exists $v \inr^2$ such that $d\textbf{x}_q(v)=w$. Define $\gamma :(-\epsilon ,\epsilon )\rightarrow U$ by 
 \begin{align*}
 \gamma (t)= tv+q
 \end{align*}
 We claim 
 \begin{align*}
-  \vi{\textbf{x}\circ \gamma :I\rightarrow S\text{ suffices }}
+  \vi{\alpha =\textbf{x}\circ \gamma :(-\epsilon ,\epsilon )\rightarrow S\text{ suffices }}
 \end{align*}
 Note that $\textbf{x}\circ \gamma (0)=\textbf{x}(q)=p$ and
 \begin{align*}
@@ -2730,13 +2724,14 @@ Note that $\textbf{x}\circ \gamma (0)=\textbf{x}(q)=p$ and
 \end{align*}
 We now prove 
 \begin{align*}
-\blue{\set{\alpha '(0)\inr^3|\hspace{0.1cm}\alpha:I\rightarrow S \text{ is a smooth curve  passing through $p$ at $\alpha (0)$ }}\subseteq d\textbf{x}_q(\R^2)}
+\blue{\set{\alpha '(0)\inr^3|\alpha:(-\epsilon ,\epsilon )\rightarrow S\text{ satisfy }\alpha (0)=p}\subseteq d\textbf{x}_q(\R^2)}
 \end{align*}
-Fix a smooth curve $\alpha :I \rightarrow S$ passing through $p$ at $\alpha (0)$. We wish 
+
+Fix a smooth curve $\alpha :(-\epsilon ,\epsilon ) \rightarrow S$ passing through $p$ at $\alpha (0)$. We wish 
 \begin{align*}
 \blue{\text{ to show }\alpha '(0)\in d\textbf{x}_q(\R^2)}
 \end{align*}
-Define $\beta :I\rightarrow U$ by 
+Define $\beta :(-\epsilon ,\epsilon )\rightarrow U$ by 
 \begin{align*}
 \beta (t)=\textbf{x}^{-1}\circ \alpha (t)
 \end{align*}
@@ -2746,34 +2741,44 @@ We claim
 \end{align*}
 Compute using Chain Rule 
 \begin{align*}
-\beta '(0)=(d\textbf{x}_q)^{-1}\circ \alpha '(0)
+\beta '(0)=(d\textbf{x}^{-1})_p\circ \alpha '(0)
 \end{align*}
-This now give us 
+Note that $(d\textbf{x}^{-1})_p=(d\textbf{x}_q)^{-1}$. This then give us 
 \begin{align*}
-d\textbf{x}_q(\beta '(0))=\alpha '(0)\bdone
+  d\textbf{x}_q(\beta '(0))=d\textbf{x}_q \circ (d\textbf{x}^{-1})_p \circ \alpha '(0)=\alpha '(0)\bdone
 \end{align*}
 \end{proof}
 \begin{mdframed}
-Now, given a differentiable function $f$ between two regular surface $S_1,S_2$, we can define the differential $df$ of $f$ in the sense of differentiable manifold.
-\end{mdframed}
-\begin{mdframed}
-Question: Isn't the derivative $df_p$ exactly the same as  $df_p$ when  $f$ has domain  $\R^3$? Then why bother? just to avoid the definition of derivative on a non-interior point? 
+Now, given a differentiable function $f$ between two regular surface $S_1,S_2$, we can define the \textbf{derivative} $df$ of $f$ 
 \end{mdframed}
 \begin{definition}
-\textbf{(Derivative of Differntiable mapping between regular surface)} Given a differentiable mapping $f:S_1\rightarrow S_2$, we define $df_p:T_p(S_1)\to T_{f(p)}(S_2)$ by 
+\textbf{(Derivative of Differntiable mapping between regular surface)} Given a differentiable mapping $f:S_1\rightarrow S_2$, we define $df_p:T_pS_1\to T_{f(p)}S_2$ by 
 \begin{align*}
-df_p(\alpha '(0))\triangleq \frac{d}{dt}f(\alpha (t))|_{t=0}
+df_p(\alpha '(0))\triangleq (f\circ \alpha )'(0)
 \end{align*}
 \end{definition}
 \begin{theorem}
 \textbf{(Derivative is well-defined and linear)}
 \end{theorem}
 \begin{proof}
-Note that 
+Fix local charts $\textbf{x}(u,v)$ containing $p$ and $\overline{\textbf{x}}(\overline{u},\overline{v})$ containing $f(p)$. Express $f$ locally in coordinate 
 \begin{align*}
-df_p(\alpha '(0))\overset{\text{def}}{=}\frac{d}{dt}f(\alpha (t))|_{t=0}=(f\circ \alpha )'(0)
+f(u,v)=(f_1(u,v),f_2(u,v))
 \end{align*}
-Note that 
+Express $\alpha(t)$ in the form 
+\begin{align*}
+\alpha (t)=(u(t),v(t))
+\end{align*}
+We now have 
+\begin{align*}
+  (f\circ \alpha )(t)=(f_1(u,v),f_2(u,v))(t)
+\end{align*}
+Compute 
+\begin{align}
+\label{falpha}
+  (f\circ \alpha )'(0)&=\Big(\big(\frac{\partial f_1}{\partial u},\frac{\partial f_1}{\partial v} \big)(p)\cdot \alpha '(0),\big(\frac{\partial f_2}{\partial u},\frac{\partial f_2}{\partial v} \big)(p)\cdot \alpha '(0)  \Big)
+\end{align}
+This shows that $(f\circ \alpha )'(0)$ is only determined by $\alpha '(0)$ and $f$. Thus, our definition is well defined, and from (\myref{}{falpha}), it is easily checked that $df_p$ is linear.  
 \end{proof}
 \section{First Fundamental Form}
 \begin{definition}
@@ -2803,6 +2808,24 @@ We see that
   &=\int_0^r \sqrt{\big(u'(t)\partial_u \textbf{x}(q)+v'(t)\partial_v \textbf{x}(q) \big)\cdot \big(u'(t)\partial_u \textbf{x}(q)+v'(t)\partial_v \textbf{x}(q) \big)}dt\\
   &=\int_0^r \sqrt{E(q)\big(u'(t) \big)^2 + 2F(q)u'(t)v'(t)+G(q)\big(v'(t) \big)^2} dt
 \end{align*}
+These three functions also help us define and compute the area of some bounded region $Q$ that lies in $\textbf{x}(U)$. Suppose we define the area of $Q$ by 
+\begin{align*}
+A(Q)=\iint_Q \abso{\textbf{x}_u \times \textbf{x}_v} dudv 
+\end{align*}
+One can rigorously by computation in component to justify the following  
+\begin{align*}
+\abso{v\times w}^2 + (v\cdot w)^2= (\sin^2 \theta+ \cos^2 \theta)\abso{v}^2\abso{w}^2= \abso{v}^2\abso{w}^2
+\end{align*}
+This then give us 
+\begin{align*}
+  \iint_Q \abso{\textbf{x}_u \times \textbf{x}_v}dudv &= \iint_Q \sqrt{ \abso{\textbf{x}_u}^2\abso{\textbf{x}_v}^2-(\textbf{x}_u \cdot \textbf{x}_v)^2}  dudv\\
+&=\iint_Q \sqrt{EG-F^2}dudv 
+\end{align*}
+Also, note that the angle of two coordinates can also be computed by 
+\begin{align*}
+\cos \theta = \frac{\textbf{x}_u \cdot \textbf{x}_v }{\abso{\textbf{x}_u}\abso{\textbf{x}_v}}=\frac{F}{\sqrt{EG} }
+\end{align*}
+
 \end{mdframed}
 \begin{mdframed}
 !!!!! Show that given a stereographical projection $\textbf{x}:\R^2 \times 0 \rightarrow S^2\setminus N$ preserve angle. Prove that given $v,w \inr^2$ starting at $p\inr^2$, we have 
@@ -3382,5 +3405,397 @@ Locally parametrize $\gamma (t)\subseteq C$. Because $f\circ \gamma $ stay const
 \end{align*}
 This then implies $\nabla f(\gamma (t))$ is perpendicular to $\gamma '(t)$, thus perpendicualr to $C$. 
 \end{proof}
+\chapter{Gauss Map}
+\section{Equivalent Definitions of the Term "Orientable"}
+\begin{mdframed}
+Only three results are important in this section 
+\begin{enumerate}[label=(\alph*)]
+  \item \myref{Definition}{SD}
+  \item Preimage of regular value is orientable. (\myref{Theorem}{PoaR})
+  \item The Gauss Map $N:S\rightarrow \R^3$ maps $S$ into  $S^2$ because  $N(p)$ is unit for all $p\in  S$, and because $T_pS\perp N(p)\perp T_{N(p)}S^2$, we see $T_{N(p)}S^2=T_pS$, so one can just treat the derivative of $dN_p:T_{p}S\rightarrow T_{N(p)}S^2$ as a linear transformation $dN_p:T_pS\rightarrow T_pS$ that maps $T_pS$ into itself. 
+\end{enumerate}
+Particularly, \myref{Theorem}{PoaR} give a simple proof that $S^2$ is orientable, and perhaps almost all questions in midterm 2 that ask you to show some regular surface is orientable can be very easily answered using \myref{Theorem}{PoaR}.
+\end{mdframed}
+\begin{mdframed}
+In this section, by an \textbf{atlas} of a regular surface $S$, we mean a set $L$ of parametrizatoin
+ \begin{align*}
+L=\set{\textbf{x}_\ld  :U_\ld  \rightarrow S|\ld  \in \Lambda }
+\end{align*}
+such that  $L$ cover  $S$ 
+ \begin{align*}
+S\subseteq \bigcup_{\textbf{x}_\ld \in L} \textbf{x}_\ld  (U_\ld ) 
+\end{align*}
+\end{mdframed}
+\begin{definition}
+\label{FD}
+\textbf{(First Definition: Consistently Oriented Atlas)} We say $S$ is orientable if $S$ has at least one  \textbf{consistently oriented atlas} $L$.\\
 
+
+
+We say an atlas $L$ of  $S$ is consistently orietned if every two  $\textbf{x}(u,v),\overline{\textbf{x}}(\overline{u},\overline{v})$ that belongs $L$ and has non-empty intersection $E$ satisfy 
+\begin{align*}
+  \text{det}\Big([df_{(u,v)}]\Big)>0\text{ for all $(u,v) \in \textbf{x}^{-1}(E)$ }
+\end{align*}
+where the function $f$ from $\textbf{x}^{-1}(E)$ to $(\overline{\textbf{x}})^{-1}(E)$ is defined by 
+\begin{align*}
+f(u,v)\triangleq (\overline{\textbf{x}})^{-1}\circ \textbf{x}(u,v)
+\end{align*}
+\end{definition}
+\begin{definition}
+\label{SD}
+\textbf{(Second Definition: Gauss Map)} We say $S$ is orientable if there exists a differentiable function $N$, which we call \textbf{Gauss map}, that maps each $p\in  S$ to a unit vector $N(p)\inr^3$ such that 
+\begin{align*}
+N(p)\perp T_p(S)
+\end{align*}
+\end{definition}
+\begin{mdframed}
+Note that in \myref{Definition}{FD}, $[df]$ is just
+ \begin{align*}
+[df]= \frac{\partial (\overline{u},\overline{v})}{\partial (u,v)}
+\end{align*}
+You will later use this fact. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Equivalence of \myref{Definition}{FD} and \myref{Definition}{SD})}  
+\end{theorem}
+\begin{proof}
+Suppose $S$ has an consistently oriented atlas  $L$. We are required to 
+ \begin{align*}
+\vi{\text{ define an $N:S\rightarrow \R^3$ that satisfy \myref{Definition}{SD}}}
+\end{align*}
+For each $p \in S$, arbitrarily pick a chart $\textbf{x}\in L$ covering $p$. We claim
+\begin{align*}
+  \vi{N(p)\triangleq \Big(\frac{\textbf{x}_u\times \textbf{x}_v}{\abso{\textbf{x}_u \times \textbf{x}_v}} \Big)(p)\text{ suffices }}
+\end{align*}
+We are required to show 
+\begin{enumerate}[label=(\alph*)]
+  \item \vi{$N$ is well defined}
+  \item \vi{$N$ is differentiable}
+  \item  $\forall p \in S, \abso{N(p)}=1$ 
+\end{enumerate}
+It is easy to check (c). That's why (c) isn't colored.\\
+
+Suppose $\overline{\textbf{x}}\in L$ cover $p$. To show $N$ is well defined, we have to show 
+\begin{align*}
+\vi{\big(\overline{\textbf{x}}_{\overline{u}}\times \overline{\textbf{x}}_{\overline{v}} \big)(p)=c\big((\textbf{x}_u \times \textbf{x}_v) \big)(p) \text{ for some $c\inr^+$ }}
+\end{align*}
+Calculus 2 taught us (You shall blindly assume this is correct.)
+\begin{align}
+\label{CTYb}
+\overline{\textbf{x}}_{\overline{u}}\times \overline{\textbf{x}}_{\overline{v}}= \big(\textbf{x}_u \times \textbf{x}_v \big) \text{det}\Big(\frac{\partial  (u,v)}{\partial (\overline{u},\overline{v})} \Big) 
+\end{align}
+Note that the \myref{Definition}{FD} says $\text{det}\Big(\frac{\partial  (u,v)}{\partial (\overline{u},\overline{v})} \Big) $ is positive at $p$ (in fact every where the two chart $\textbf{x},\overline{\textbf{x}}$ intersect). This complete the proof of  (a).\\
+
+Fix $p\in  S$. To show $N$ is differentiable at $p$, we are required to show there exists $\textbf{x}$ covering $p$ such that 
+\begin{align*}
+  \vi{N\circ \textbf{x}:U\subseteq\R^2 \rightarrow \R^3\text{ is differentiable }}
+\end{align*}
+This shall be clear once we write down the exact expression of $N\circ \textbf{x}$
+\begin{align*}
+\text{ for all $(u_0,v_0)\in U$ we have }N\circ \textbf{x}(u_0,v_0)= \frac{\frac{\partial \textbf{x} }{\partial u}(u_0,v_0)\times \frac{\partial \textbf{x}}{\partial v}(u_0,v_0)}{\abso{\frac{\partial \textbf{x} }{\partial u}(u_0,v_0)\times \frac{\partial \textbf{x}}{\partial v}(u_0,v_0)}}
+\end{align*}
+This is clearly differnetiable. $\vdone$ \\
+
+Now, given a differtiable unit normal vector field $N:S\rightarrow \R^3$, we are required 
+\begin{align*}
+\blue{\text{ to construct a consistently oriented atlas }L}
+\end{align*}
+Note that given a chart $\textbf{x}(u,v):U\rightarrow S$ containing $p$, if we define 
+\begin{align*}
+E\triangleq \set{(x,y)\inr^2: (y,x)\in U}
+\end{align*}
+(It is easy to see $E$ is open by using the fact $U$ is open) and define $\textbf{x}':E\rightarrow S$ by 
+\begin{align*}
+\textbf{x}'(u,v)\triangleq \textbf{x}(v,u)
+\end{align*}
+we have 
+\begin{align*}
+\textbf{x}'_u\times \textbf{x}'_v= \textbf{x}_v\times \textbf{x}_u = -(\textbf{x}_u \times \textbf{x}_v)
+\end{align*}
+It is clear that there exists an atlas $L$ contained only connected charts. We can now use  $\textbf{x}'$ to replace the $\textbf{x}$ that has the wrong direction, i.e. 
+\begin{align*}
+\frac{\textbf{x}_u\times \textbf{x}_v}{\abso{\textbf{x}_u \times \textbf{x}_v}}(p)=-N(p)
+\end{align*}
+and have an atlas $L'$ that always give us the correct direction.
+\begin{mdframed}
+Note that there is a reason we require $L$ to contain only connected charts, since if $\textbf{x}(U)$ is disconnected for some $\textbf{x}$, it is possible  
+\begin{align*}
+\frac{\textbf{x}_u \times \textbf{x}_v}{\abso{\textbf{x}_u \times \textbf{x}_v}}(u_0,v_0)=N(\textbf{x}(u_0,v_0))\text{ and }\frac{\textbf{x}_u \times \textbf{x}_v}{\abso{\textbf{x}_u \times \textbf{x}_v}}(u_1,v_1)=-N(\textbf{x}(u_1,v_1))
+\end{align*}
+which invalidate the whole proof.
+\end{mdframed}
+The fact that all charts in $L'$ has the same direction can now let us easily use \myref{Equation}{CTYb} to verify 
+ \begin{align*}
+\text{det}\Big(\frac{\partial  (u,v)}{\partial (\overline{u},\overline{v})} \Big) >0 \bdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{PoaR}
+\textbf{(Preimage of a Regular Value is orientible)} If $f:\R^3\rightarrow \R$ is a smooth function and $r\inr$ is a regular value of $f$, then 
+ \begin{align*}
+f^{-1}(r)\text{ is an orientable regular surface }
+\end{align*}
+\end{theorem}
+\begin{proof}
+We claim 
+\begin{align*}
+\vi{N(p)\triangleq \frac{\nabla f(p)}{\abso{\nabla f(p)}}\text{ suffices }}
+\end{align*}
+The fact $\nabla f(p)\perp T_pS$ is proved in the last Midterm. The trick is let $\alpha $ be a curve that lies in $S\triangleq f^{-1}(r)$, and see 
+\begin{align*}
+0=(f\circ \alpha )'(s)=\nabla f(\alpha (s))\cdot \alpha '(s)
+\end{align*}
+Express $N(p)$ precisely,  
+\begin{align*}
+N(x_0,y_0,z_0)= \Big(\frac{f_x}{\sqrt{f_x^2+f_y^2+f_z^2} }, \frac{f_y}{\sqrt{f_x^2+f_y^2+f_z^2} }, \frac{f_z}{\sqrt{f_x^2+f_y^2+f_z^2} } \Big)\Big|_{p=(x_0,y_0,z_0)}
+\end{align*}
+It is then clear that $N:S\rightarrow \R^3$ is a restriction of the differentiable function $\frac{\nabla f}{\abso{\nabla f}}$. Use the fact $f$ is smooth to show $\frac{\nabla f}{\abso{\nabla f}}$ is differentiable. This implies $N$ is differentiable. 
+\end{proof} 
+\begin{mdframed}
+Reminder: If a function $f:S\rightarrow \R^3$ is the restriction of some differentiable function $g:\R^3\rightarrow \R$, then $f$ is differentiable. This can be directly proved using Chain Rule. 
+\end{mdframed}
+\section{Second Fundamental Form}
+\begin{mdframed}
+  Given an inner product space $\Big(V, \langle \cdot,\cdot\rangle  \Big)$, we say a linear transformation $T\in L(V,V)$ is \textbf{self-adjoint} if 
+\begin{align*}
+\langle Tv,w\rangle = \langle v,Tw\rangle \text{ for all $v,w\in V$ }
+\end{align*}
+\end{mdframed}
+\begin{definition}
+  \textbf{(Definition of Second Fundamental Form)} We define the second fundamental form $\Sec_p(v):T_pS\rightarrow R$ on each point $p$ of $S$ by  
+\begin{align*}
+\Sec _p(v)\triangleq - \langle dN_p(v),v\rangle 
+\end{align*}
+\end{definition}
+\begin{mdframed}
+We will later show $dN_p:T_pS\rightarrow T_pS$ is self-adjoint. This then implies that $\Sec_p$ is a quadratic form.
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of Normal Curvature)} Given a curve $\alpha (s)$ that lies in $S$ passing through $p=\alpha (0)$, let $\kappa$ be the curvature of $C$ at $p$, and let  
+\begin{align*}
+\cos \theta \triangleq \langle N_\alpha (p),N(p)\rangle 
+\end{align*}
+The normal curvature $\kappa_{\alpha ,p}$ of $\alpha (s)$ at $p$ is then defined by 
+\begin{align*}
+\kappa_{\alpha ,p} \triangleq  \kappa \langle N_\alpha (p),N(p)\rangle = \kappa \cos \theta
+\end{align*}
+\end{definition}
+\begin{theorem}
+\label{Ncdo}
+\textbf{(Normal curvature depends only on $\alpha '(0)$)} Suppose we are given a curve $\alpha (s)$  that lies in $S$ passing through $p$.  We have 
+\begin{align*}
+\kappa_{\alpha ,p }=\Sec_p(\alpha '(0))
+\end{align*}
+\end{theorem}
+\begin{proof}
+By definition, we have 
+\begin{align*}
+\langle N(\alpha (s)),\alpha '(s)\rangle =0\text{ for all $s$ }
+\end{align*}
+Taking Differentiation
+\begin{align*}
+\langle N(\alpha (s)),\alpha ''(s)\rangle + \langle dN_{\alpha (s)}(\alpha '(s)), \alpha '(s)\rangle =0 
+\end{align*}
+This give us 
+\begin{align*}
+\Sec_{\alpha (s)}(\alpha '(s))= \langle N(\alpha (s)),\alpha ''(s)\rangle 
+\end{align*}
+Especially, let $s=0$, we have 
+\begin{align*}
+\Sec_p(\alpha '(0))=\langle N(p),\kappa N_\alpha (p)\rangle = \kappa \langle N_\alpha (p),N(p)\rangle = \kappa_{\alpha,p }
+\end{align*}
+\end{proof}
+\begin{mdframed}
+One thing about \myref{Theorem}{Ncdo} is that it show us that give two curve $\alpha (s),\beta (s)$ passing though $p=\alpha (0)=\beta (0)$, if two curves has the same tangent at $0$, i.e. 
+ \begin{align*}
+\alpha '(0)=\beta '(0)
+\end{align*}
+then we have 
+\begin{align*}
+\kappa_{\alpha ,p}=\Sec_p (\alpha '(0))=\Sec_p (\beta '(0))=\kappa_{\beta ,p}
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{($dN_p$ is self-adjoint)} Given a $p\in  S$, the linear transformation $dN_p:T_p(S)\rightarrow T_{N(p)}(S^2)$ is self-adjoint.
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+\vi{\langle dN_p(\textbf{x}_u),\textbf{x}_v\rangle = \langle \textbf{x}_u , dN_p (\textbf{x}_v)\rangle }
+\end{align*}
+Note that 
+\begin{align*}
+\langle N \circ \textbf{x},\textbf{x}_u\rangle = \langle N\circ \textbf{x},\textbf{x}_v\rangle = 0\text{ on  $U$ }
+\end{align*}
+Respectively take partial derivative with respect to $v,u$, we have 
+ \begin{align*}
+\langle dN_p(\textbf{x}_v),\textbf{x}_u\rangle + \langle N\circ \textbf{x}, \textbf{x}_{uv}\rangle = \langle dN_p(\textbf{x}_u),\textbf{x}_v\rangle + \langle N\circ \textbf{x}, \textbf{x}_{vu}\rangle =0 \text{ on $U$ where  $p=\textbf{x}(u,v)$ }
+\end{align*}
+Note that $\textbf{x}_{vu}=\textbf{x}_{uv}$ and we are done. $\vdone$\\
+
+Observe 
+\begin{align}
+&\langle dN_p(c_1\textbf{x}_u +c_2 \textbf{x}_v),c_3\textbf{x}_u+c_4\textbf{x}_v\rangle \notag\\
+&=c_1c_3 \langle dN_p(\textbf{x}_u),\textbf{x}_u\rangle + c_2c_4 \langle dN_p(\textbf{x}_v),\textbf{x}_v\rangle + c_1c_4\langle dN_p(\textbf{x}_u), \textbf{x}_v\rangle + c_2c_3 \langle dN_p(\textbf{x}_v),\textbf{x}_u\rangle \notag  \\
+&=c_1c_3 \langle dN_p(\textbf{x}_u),\textbf{x}_u\rangle + c_2c_4 \langle dN_p(\textbf{x}_v),\textbf{x}_v\rangle + (c_1c_4+c_2c_3)\langle dN_p(\textbf{x}_u),\textbf{x}_v\rangle \label{xuv} \\
+&=\langle c_1\textbf{x}_u+c_2\textbf{x}_v, dN_p(c_3\textbf{x}_u+c_4\textbf{x}_v)\rangle \label{xuv2}
+\end{align}
+Note that \myref{Equation}{xuv} and \myref{Equation}{xuv2} use the \vi{violet} result, and note that \myref{Equation}{xuv2} implies that $dN_p$ is self-adjoint. 
+\end{proof}
+\begin{mdframed}
+Because $dN_p:T_p(S)\rightarrow T_p(S)$ is self-adjoint, by spectral theorem, we know there exists an orthonormal basis $\set{e_1,e_2}$ of $T_pS$ containing only eigenvectors. Express 
+\begin{align*}
+  dN_p(e_1)=-\kappa_1 e_1\text{ and }dN_p(e_2)=-\kappa _2 e_2\text{ and }\kappa_1 \geq \kappa_2
+\end{align*}
+We say $\kappa_1,\kappa_2$ are the \textbf{principal curvature of $p$ at  $S$} and $e_1,e_2$ are the  \textbf{principal direction of $p$ at  $S$}.\\
+
+
+
+
+Note that we have  
+\begin{align*}
+\Sec_p(c_1e_1+c_2e_2)&=-dN_p(c_1e_1+c_2e_2)\cdot (c_1e_1+c_2e_2)\\
+&=-(-c_1\kappa_1 e_1-c_2\kappa_2 e_2)\cdot (c_1e_1+c_2e_2)\\
+&=c_1^2 \kappa_1 + c_2^2\kappa_2
+\end{align*}
+Suppose $\alpha '(0)=c_1e_1+c_2e_2$. By \myref{Theorem}{Ncdo}, we have
+\begin{align*}
+\kappa_{\alpha ,p} = \Sec_p(c_1e_1+c_2e_2)&=c_1^2 \kappa_1 +c_2^2 \kappa_2\\
+&=c_1^2 \kappa_1 + (1-c_1^2)\kappa_2\hspace{1.5cm}(\because c_1^2+c_2^2=1)\\
+&= \kappa_2 + c_1^2 (\kappa_1-\kappa_2)
+\end{align*}
+Then $\kappa_{\alpha ,p}$ reach maximum when $\alpha '(0)=e_2$ and reach minimum when $\alpha '(0)=e_1$.\\ 
+\end{mdframed}
+\begin{mdframed}
+Suppose we are given a linear transformation $A\in L(\R^2,\R^2)$, and $\set{e_1,e_2},\set{q_1,q_1}$ are two different basis. One can check that 
+\begin{align*}
+  \text{det}\Big([A]_{\set{e_1,e_2}} \Big)=\text{det}\Big([A]_{\set{q_1,q_2}} \Big)\text{ and }\text{tr}\Big([A]_{\set{e_1,e_2}} \Big)=\text{tr}\Big([A]_{\set{q_1,q_2}} \Big)
+\end{align*}
+Now when we are given $dN_p$, we can just say 
+ \begin{align*}
+\text{det}\Big(dN_p \Big)=(-\kappa_1)(-\kappa_2)=\kappa_1\kappa_2\text{ and }\text{tr}\Big(dN_p \Big)=-(\kappa_1+\kappa_2)
+\end{align*}
+It shall be clear that if we define $\overline{N}=-N$, then $d\overline{N}_p=-dN_p$ and the principal curvature will change sign, while as $\text{det}\Big(dN_p \Big)=\text{det}\Big(d\overline{N}_p \Big)$.\\
+
+Now, independent of the choice of the orientation, we can classify $p\in  S$ by saying $p$ is 
+\begin{enumerate}[label=(\alph*)]
+  \item Elliptic if $\text{det}\Big(dN_p \Big)>0$ 
+  \item Hyperbolic if $\text{det}\Big(dN_p \Big)<0$ 
+  \item Parabolic if $\text{det}\Big(dN_p \Big)=0\text{ and }dN_p\neq 0$ 
+  \item Planar if $dN_p=0$
+\end{enumerate}
+\end{mdframed}
+\begin{mdframed}
+For a reason of the naming, one can quickly check that 
+\begin{align*}
+S\triangleq \set{(x,y,0)\inr^3:(x,y)\inr^2}\text{ contain only planar point }
+\end{align*}
+and 
+\begin{align*}
+S\triangleq \set{(x,y,x^2+y^2)\inr^3:(x,y)\inr^2}
+\end{align*}
+
+\end{mdframed}
+
+\section{HW5}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw5q1}
+\end{question}
+\begin{proof}
+Suppose the curve is $\alpha (s)$. We see that 
+\begin{align*}
+  (N\circ \alpha)(s)\text{ stay constant } 
+\end{align*}
+Differentiation give us 
+\begin{align*}
+dN_{\alpha (s)}(\alpha '(s))=0
+\end{align*}
+Then for each $p$ that lies in $\alpha (I)$, we see 
+\begin{align*}
+dN_p\text{ is not full rank }
+\end{align*}
+This then show us 
+\begin{align*}
+\text{det}(dN_p)=0
+\end{align*}
+and give us the conclusion.
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw5q2}
+\end{question}
+\begin{proof}
+Suppose $\kappa_1\leq \kappa_2$. Let $\theta$ be the angle between $N_\alpha (p)$ and $N(p)$. We have 
+\begin{align*}
+\kappa \cos \theta \in [\kappa_1,\kappa_2]
+\end{align*}
+This then implies 
+\begin{align*}
+\abso{\kappa}\geq \abso{\kappa \cos \theta}\geq \min (\abso{\kappa_1},\abso{\kappa_2})
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw5q3}
+\end{question}
+\begin{proof}
+Let $e_1,e_2$ be the principal direction. Suppose the fixed direction is $\cos \theta_0 e_1+ \sin \theta_0 e_2$.  Define $\alpha :[0,\pi]\rightarrow T_p(S)$ by 
+\begin{align*}
+\alpha (\theta)= \cos (\theta_0+\theta) e_1+ \sin (\theta_0+\theta)e_2
+\end{align*}
+Compute $\kappa_n (\theta)$ by  
+\begin{align*}
+\kappa_n(\alpha (\theta))&=\Sec_p(\cos (\theta_0+\theta) e_1+ \sin (\theta_0+\theta)e_2)\\
+&=\kappa_1 \cos^2(\theta_0+\theta)+\kappa_2 \sin^2 (\theta_0+\theta)
+\end{align*}
+This then give us 
+\begin{align*}
+\frac{1}{\pi}\int_0^{\pi}\kappa_n (\theta)d\theta&= \frac{1}{\pi}\int_0^{\pi} \kappa_1 \cos^2 (\theta_0+\theta)+ \kappa_2 \sin^2 (\theta_0+\theta)d\theta\\
+&=\frac{1}{\pi}(\frac{\kappa_1 \pi}{2}+ \frac{\kappa_2 \pi}{2})=H
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=4cm,width=18cm]{hw5q4}
+\end{question}
+\begin{proof}
+Suppose $e_1,e_2$ are principal direction, and express the pair $v_1,v_2$ of orthogonal directions by  $v_1=\cos \theta e_1+ \sin \theta e_2$ and $v_2=\cos (\theta + \frac{\pi}{2}) e_1+ \sin (\theta + \frac{\pi}{2}) e_2$. We have 
+\begin{align*}
+\kappa_{v_1}&=\Sec_p (\cos \theta e_1+\sin \theta e_2)\\
+&=\kappa_1 \cos^2 \theta + \kappa_2 \sin^2 \theta
+\end{align*}
+and have 
+\begin{align*}
+\kappa_{v_2}&=\Sec_p(\cos (\theta + \frac{\pi}{2})e_1+ \sin (\theta + \frac{\pi}{2})e_2)\\
+&=\Sec_p (\sin \theta e_1+\cos \theta e_2)\\
+&=\kappa_1 \sin^2 \theta + \kappa_2\cos^2 \theta 
+\end{align*}
+This then give us 
+\begin{align*}
+\kappa_{v_1}+\kappa_{v_2}= \kappa_1+ \kappa_2=\text{const.}
+\end{align*}
+\end{proof}
+
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw5q5}
+\end{question}
+
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw5q6}
+\end{question}
+
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw5q7}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw5q8}
+\includegraphics[height=12cm,width=18cm]{hw5q8a}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{hw5q9}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw5q10}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=18cm,width=18cm]{hw5q11}
+\end{question}
 \end{document}
+
