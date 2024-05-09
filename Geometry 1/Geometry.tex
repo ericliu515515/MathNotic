@@ -3776,10 +3776,45 @@ This then give us
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw5q5}
 \end{question}
+\begin{proof}
+A pair of conjugate directions $v,w$ is a pair of direction that satisfy 
+\begin{align*}
+\langle dN_p(v),w\rangle = \langle v,dN_p(w)\rangle 
+\end{align*}
+Express 
+\begin{align*}
+r=\cos \theta e_1+ \sin \theta e_2\text{ and }r'=\cos \theta' e_1+ \sin \theta' e_2
+\end{align*}
+Now compute 
+\begin{align*}
+\langle dN_p(r),r'\rangle &= \langle -\kappa_1 \cos \theta e_1- \kappa_2 \sin \theta e_2, \cos \theta ' e_1+ \sin \theta' e_2 \rangle \\
+&=
+\end{align*}
+
+
+
+
+\end{proof}
 
 \begin{question}{}{}
 \includegraphics[height=5cm,width=18cm]{hw5q6}
 \end{question}
+\begin{proof}
+Let $v_1,\dots,v_m$ be the directions of $\ld _1,\dots ,\ld _m$. We have 
+\begin{align*}
+v_k= \cos (\frac{k(2\pi )}{m})e_1 + \sin (\frac{k(2\pi)}{m})e_2
+\end{align*}
+Observe 
+\begin{align*}
+\ld_k =\Sec_p(v_k)&= \Sec_p ( \cos (\frac{2\pi k}{m})e_1 + \sin (\frac{2\pi k}{m})e_2)\\
+&= \kappa_1 \cos^2 (\frac{2\pi k}{m})+ \kappa_2 \sin^2 (\frac{2\pi k}{m})
+\end{align*}
+Now compute using elementary identity
+\begin{align*}
+\sum_{k=1}^m \ld_k &=\sum_{k=1}^m \kappa_1 \cos^2 (\frac{2\pi k}{m})+ \kappa_2 \sin^2 (\frac{2\pi k}{m})\\
+&= \kappa_1 \frac{m}{2}+ \kappa_2 \frac{m}{2}=mH
+\end{align*}
+\end{proof}
 
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw5q7}
