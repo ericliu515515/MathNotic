@@ -3109,6 +3109,256 @@ Then (\myref{}{equivdefopnorm1}) give us
 \norm{T_1T_2}_\text{op}\leq \norm{T_1}_\text{op}\cdot \norm{T_2}_\text{op}
 \end{align*}
 \end{mdframed}
+\section{HW5}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{ahw5q1}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+[df_{(x,y)}]=\begin{bmatrix}
+  y & x \\
+  \cos y & -x \sin y \\
+  \sin y & x\cos y 
+\end{bmatrix}
+\end{align*}
+This give us 
+\begin{align*}
+  (Df)(1,0)=\begin{bmatrix}
+    0 & 1 \\
+    1 & 0\\
+    0 & 1
+  \end{bmatrix}
+\end{align*}
+Compute 
+\begin{align*}
+[dg_{(0,1,0)}]=\begin{bmatrix}
+  v+w & u+w & u+v
+\end{bmatrix}
+\end{align*}
+This give us 
+\begin{align*}
+  (Dg)(0,1,0)=\begin{bmatrix}
+    1 & 0 & 1
+  \end{bmatrix}
+\end{align*}
+Compute 
+\begin{align*}
+f(1,0)=(0,1,0)
+\end{align*}
+Then Chain rule give us 
+\begin{align*}
+[D(g\circ f)](1,0)=[dg_{(0,1,0)}][df_{(1,0)}]= \begin{bmatrix}
+  0 & 2
+\end{bmatrix}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{ahw5q2}
+\end{question}
+\begin{proof}
+Given two normed space $\mathcal{X},\mathcal{Y}$, suppose $f$ maps an open neighborhood $O$ around $x$ in $\mathcal{X}$ into $\mathcal{Y}$. We say $f$ is \textbf{differentiable at} $x$ if there exists a bounded linear transformation $A_x:\mathcal{X}\rightarrow \mathcal{Y}$ (from now, $A_x$ will be denoted $df_x$) such that  
+\begin{align}
+\label{defdi}
+  \lim_{h\to 0} \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}=0 
+\end{align}
+Immediately, we should check that the linear approximation is unique. Suppose $df_x$ and  $df_x'$ both satisfy (\myref{}{defdi}). We are required to show $(df_x-df_x')h=0$ for all $\norm{h}_\mathcal{X}=1$. Fix $h\in \mathcal{X}$ such that $\norm{h}_\mathcal{X}=1$. Note that 
+\begin{align*}
+ \frac{(df_x-df'_x)th}{t}\text{ is a constant in $t$ for $t\neq 0$ }
+\end{align*}
+This then reduced the problem into showing 
+\begin{align}
+\label{goaldib}
+\frac{(df_x-df'_x)th}{t\norm{h}_{\mathcal{X}}}\to 0\text{ as $t\to 0$ }
+\end{align}
+Observe 
+\begin{align*}
+  (df_x-df'_x)th&= \Big( f(x+th)-f(x)-df'_x(th)\Big) - \Big(f(x+th)-f(x)-df_x(th) \Big)
+\end{align*}
+which implies 
+\begin{align*}
+\norm{(df_x-df_x')th}_\mathcal{Y}\leq \norm{f(x+th)-f(x)-df'_x(th)}_{\mathcal{Y}}+ \norm{f(x+th)-f(x)-df_x(th)}_\mathcal{Y}
+\end{align*}
+and thus implies (\myref{}{goaldib}).
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{ahw5q3}
+\end{question}
+\begin{proof}
+Because 
+ \begin{align*}
+\nabla f(p)=\begin{bmatrix}
+  \partial _1 f(p)\\
+   \vdots \\
+   \partial _n f(p)
+   \end{bmatrix}\text{ and }[df_p]=\begin{bmatrix} \partial_1 f(p)& \cdots  & \partial_n f(p)
+\end{bmatrix}
+\end{align*}
+We see $\nabla f(p)$ satisfy 
+\begin{align*}
+\nabla f(p)\cdot v= df_p(v)\text{ for all $v\inr^n$ }
+\end{align*}
+Fix a direction (a unit vector) $v\inr^n$. The direction derivative is defined by
+\begin{align*}
+\partial_v f(p)\triangleq \lim_{t\to 0} \frac{f(p+tv)-f(p)}{t}
+\end{align*}
+The Frechet definition of differentaibility of $f$ give us 
+\begin{align*}
+\lim_{t\to 0} \frac{f(p+tv)-f(p)-df_p(tv)}{t}=0
+\end{align*}
+Using the linearity of $df_p$, we then have 
+ \begin{align*}
+\partial_v f(p)=df_p(v)=\nabla f(p)\cdot v
+\end{align*}
+Now, using C-S Inequality, we see $\partial _v f(p)$ respectively reach to maximum and minium when $v= \frac{\nabla f(p)}{\abso{\nabla f(p)}}$ and $v=\frac{-\nabla f(p)}{\abso{\nabla f(p)}}$. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=6cm,width=18cm]{ahw5q4}
+\end{question}
+\begin{proof}
+\textbf{(a)} Let $U,K$ be two different path-connected components of $E$. Suppose $U\neq \varnothing$. We are required to prove 
+ \begin{align*}
+\vi{K=\varnothing}
+\end{align*}
+Because $E$ is connected, we can reduce the problem into proving 
+\begin{align*}
+  \vi{U,K\text{ are both open}}
+\end{align*}
+Note that we didn't mention if the ambient space is $E$ or  $\R^n$. This doesn't matter since  $E$ is open in  $\R^n$, which implies $\tau_{E}= \power{E}\cap \tau_{\R^n}$.\\
+
+WOLG, we only have to prove 
+\begin{align*}
+\vi{U\text{ is open }}
+\end{align*}
+Fix $x \in U$. Because $E$ is open. We know there exists  $\epsilon $ such that 
+\begin{align*}
+B_\epsilon (x)\subseteq E
+\end{align*}
+It is clear that every point $p$ in  $B_\epsilon (x)$ can be joined with $x$ by a straight line 
+\begin{align*}
+f(t)\triangleq (p-x)t+x
+\end{align*}
+This then implies $B_\epsilon (x)\subseteq U\vdone$.\\
+
+\textbf{(b)} Let $c_0\in f(E)$ and define 
+\begin{align*}
+A\triangleq \set{p \in E: f(p)=c_0}
+\end{align*}
+We are required to prove 
+\begin{align*}
+  \blue{A=E}
+\end{align*}
+Because $E$ is connected, we can reduce the problem into proving 
+\begin{align*}
+\blue{A\text{ is both open and close }}
+\end{align*}
+Fix a convergent sequence $x_n \in A$. Because $f$ is continuous, we see 
+\begin{align*}
+f\Big(\lim_{n\to \infty}x_n \Big)=\lim_{n\to \infty}f(x_n)=c_0
+\end{align*}
+Let $x=\lim_{n\to \infty}x_n$. We now see $f(x)=c_0$, which implies $x\in A$. This implies $A$ is closed, since  $x_n$ is arbitrary. \\
+
+Fix $a \in A\subseteq E$. Because $E$ is open, there exists 
+\begin{align*}
+B_\epsilon (a)\subseteq E
+\end{align*}
+Clearly, for all $x \in B_\epsilon (a)$, there exists a differetiable straight path $\gamma $ that starts from $a$  and ends at $x$. Now, observe 
+\begin{align*}
+f(x)-f(a)=f\circ \gamma(t)\Big|_{t=0}^1= \int_0^1 (f\circ \gamma )'(t)dt=0
+\end{align*}
+The last inequality follows from the fact $df=0$ and Chain Rule.\\
+
+Now, we have $f(x)=f(a)$, and of course $x \in A$. Because $x$ is arbitrarily picked from  $B_\epsilon (a)$. We can conclude $B_\epsilon (a)\subseteq A$. $\bdone$\\
+
+\textbf{(c)} \\
+
+Yes, the result remains true. A convex subset is path-connected (every two points are joined by a straight line), thus connected. The rest of the proof follows from that of \textbf{(b)}. 
+
+
+
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=7cm,width=18cm]{ahw5q5}
+\end{question}
+\begin{proof}
+\textbf{(a)}\\
+
+Define $\gamma :[0,1]\rightarrow \R^n$ by 
+\begin{align*}
+\gamma (t)=x+(y-x)t
+\end{align*}
+We see 
+\begin{align*}
+f_i(y)=(f_i\circ \gamma )(1)\text{ and }f_i(x)=(f_i\circ \gamma )(0)
+\end{align*}
+Using the fact $f$ is differentiable and Chain Rule, we see 
+\begin{align*}
+f_i\circ \gamma:[0,1]\rightarrow \R \text{ is differenetiable on $(0,1)$ }
+\end{align*}
+Then by MVT, we know there exists $t_i$ such that 
+ \begin{align*}
+f_i(y)-f_i(x)&= (f_i\circ \gamma )'(t_i)\\
+&=d(f_i)_{\gamma (t_i)}(\gamma '(t_i))\\
+&=[(Df_i)(c_i)](y-x)
+\end{align*}
+where $c_i=\gamma (t_i)$.\\
+
+\textbf{(b)}
+Let $U=(-1,0)\cup  (1,2)$. Define $f:U\rightarrow \R$ by 
+\begin{align*}
+f(t)=\begin{cases}
+  0 & \text{ if $t \in (-1,0)$ }\\
+  1& \text{ if $t\in (1,2)$ }
+\end{cases}
+\end{align*}
+It is clear that $df=0$ everywhere,  and if $x,y$ does not belong to the same connected component, then the result of \textbf{(a)} does not  hold true. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{ahw5q6}
+\end{question}
+\begin{proof}
+\textbf{(a)}\\
+
+We claim 
+\begin{align*}
+\vi{df_0=0\text{ suffices }}
+\end{align*}
+We wish to prove 
+\begin{align*}
+  \vi{\lim_{(x,y)\to 0} \frac{(x^2+y^2)^2-2y^4}{(x^2+y^2)^{\frac{3}{2}}}=0}
+\end{align*}
+We can reduce the problem into proving 
+\begin{align*}
+\vi{\lim_{(x,y)\to 0} \frac{y^4}{(x^2+y^2)^{\frac{3}{2}}}=0}
+\end{align*}
+Observe 
+\begin{align*}
+0\leq  \frac{y^4}{(x^2+y^2)^{\frac{3}{2}}}\leq  \frac{(x^2+y^2)^2}{(x^2+y^2)^{\frac{3}{2}}}= \sqrt{x^2+y^2}\to 0\text{ as }(x,y)\to 0 \vdone
+\end{align*}
+\textbf{(b)} 
+Observe 
+\begin{align*}
+g(h,h)=\begin{cases}
+  2& \text{ if $h\neq 0$ }\\
+  0& \text{ if $h=0$ }
+\end{cases}
+\end{align*}
+This implies $g$ is not even continuous at $0$, let alone differentiable.\\
+
+Compute 
+\begin{align*}
+g(x,0)=2x\text{ and }g(0,y)=-y 
+\end{align*}
+This implies 
+\begin{align*}
+\partial_x g(0,0)=2\text{ and }\partial_y g(0,0)=-1
+\end{align*}
+and implies 
+\begin{align*}
+\partial_y \partial_x g(0,0)=\partial_x \partial _y g(0,0)=0
+\end{align*}
+\end{proof}
 \chapter{ODE}
 \section{Solution 2}
 \begin{mdframed}

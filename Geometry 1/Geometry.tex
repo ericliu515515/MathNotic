@@ -3779,7 +3779,7 @@ This then give us
 \begin{proof}
 A pair of conjugate directions $v,w$ is a pair of direction that satisfy 
 \begin{align*}
-\langle dN_p(v),w\rangle = \langle v,dN_p(w)\rangle 
+\langle dN_p(v),w\rangle  = 0
 \end{align*}
 Express 
 \begin{align*}
@@ -3788,7 +3788,14 @@ r=\cos \theta e_1+ \sin \theta e_2\text{ and }r'=\cos \theta' e_1+ \sin \theta' 
 Now compute 
 \begin{align*}
 \langle dN_p(r),r'\rangle &= \langle -\kappa_1 \cos \theta e_1- \kappa_2 \sin \theta e_2, \cos \theta ' e_1+ \sin \theta' e_2 \rangle \\
-&=
+&=- \kappa_1 \cos \theta \cos \theta '- \kappa_2 \sin \theta \sin \theta'
+\end{align*}
+This give us 
+\begin{align*}
+\kappa_1 \cos \theta \cos \theta' + \kappa_2 \sin \theta \sin \theta ' =0 \end{align*}
+and we are required to maximize 
+\begin{align*}
+\cos (\theta - \theta ' )=\cos \theta \cos \theta'+\sin \theta \sin \theta' 
 \end{align*}
 
 
@@ -3819,6 +3826,37 @@ Now compute using elementary identity
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw5q7}
 \end{question}
+\begin{proof}
+We have the global chart 
+\begin{align*}
+\textbf{x}(x,y)=(x,y,axy)
+\end{align*}
+Compute 
+\begin{align*}
+\textbf{x}_x=(1,0,ay)\text{ and }\textbf{x}_y=(0,1,ax)
+\end{align*}
+Because $N\perp \textbf{x}_x,\textbf{x}_y$, we have 
+\begin{align*}
+N(x,y)= \frac{(-ay,-ax,1)}{\sqrt{a^2(x^2+y^2)+1} }
+\end{align*}
+Define 2 curves that passing through origin from different direction
+ \begin{align*}
+\alpha (t)\triangleq (t,0,0)\text{ and }\beta (t)\triangleq (0,t,0)
+\end{align*}
+Compute 
+\begin{align*}
+N\circ \alpha (t)= \Big(0, \frac{-at}{\sqrt{a^2t^2+1} }, \frac{1}{\sqrt{a^2t^2+1} } \Big)\text{ and }N\circ \beta (t)=\Big(\frac{-at}{\sqrt{a^2t^2+1} },0, \frac{1}{\sqrt{a^2t^2+1} } \Big)
+\end{align*}
+This then give us 
+\begin{align*}
+dN_{0}(\alpha' (0))=(N\circ \alpha )'(0)=(0,-a,0)\text{ and }dN_0(\beta '(0))=(N\circ \beta )'(0)=(-a,0,0)
+\end{align*}
+Note that $\alpha '(0)=(1,0,0)$ and $\beta '(0)=(0,1,0)$. We now see $dN_0$ have action
+\begin{align*}
+  (1,0,0)\mapsto  (0,-a,0)\text{ and }(0,1,0)\mapsto  (-a,0,0)
+\end{align*}
+Then we can compute the eigenvalues of $dN_0$  to be  $a\text{ and }-a$. In other words, the principal curvatures at $0$ are $a$ and  $-a$, which give us  $K=-a^2$ and  $H=0$. 
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw5q8}
 \includegraphics[height=12cm,width=18cm]{hw5q8a}
@@ -3829,6 +3867,20 @@ Now compute using elementary identity
 \begin{question}{}{}
 \includegraphics[height=5cm,width=18cm]{hw5q10}
 \end{question}
+\begin{proof}
+Define $f:\R^3\rightarrow \R$ by 
+\begin{align*}
+f(x,y,z)=\frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2}
+\end{align*}
+Compute the gradient 
+\begin{align*}
+\nabla f(x,y,z)= \Big(\frac{2x}{a^2},\frac{2y}{b^2},\frac{2z}{c^2}\Big)
+\end{align*}
+This give us a normal of $S$ 
+ \begin{align*}
+N(x,y,z)=  
+\end{align*}
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=18cm,width=18cm]{hw5q11}
 \end{question}
