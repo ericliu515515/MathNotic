@@ -3568,6 +3568,31 @@ Reminder: If a function $f:S\rightarrow \R^3$ is the restriction of some differe
 \end{align*}
 \end{definition}
 \begin{mdframed}
+Question: Fix an orientation of $S$. Suppose we have a curve $\alpha (s)$ that lies in $S$ passing through $p=\alpha (0)$, and suppose we have another curve $\beta (s)=- \alpha (s)$.\\
+
+We know that 
+\begin{align*}
+N_{\beta }(p)=-N_\alpha (p)
+\end{align*}
+This give us 
+\begin{align*}
+\kappa_{\alpha ,p}=-\kappa_{\beta ,p}
+\end{align*}
+We also know that 
+\begin{align*}
+\beta '(0)=-\alpha '(0)
+\end{align*}
+This however give us 
+\begin{align*}
+\Sec_p(\beta '(0))=\Sec_p(\alpha '(0))
+\end{align*}
+We now apply \myref{Theorem}{Ncdo}, and see a false statement
+\begin{align*}
+\kappa_{\beta ,p}=\Sec_p(\beta '(0))=\Sec_p(\alpha '(0))=\kappa_{\alpha ,p}=-\kappa_{\beta ,p}
+\end{align*}
+What goes wrong? 
+\end{mdframed}
+\begin{mdframed}
 We will later show $dN_p:T_pS\rightarrow T_pS$ is self-adjoint. This then implies that $\Sec_p$ is a quadratic form.
 \end{mdframed}
 \begin{definition}
@@ -3647,10 +3672,7 @@ Because $dN_p:T_p(S)\rightarrow T_p(S)$ is self-adjoint, by spectral theorem, we
 \begin{align*}
   dN_p(e_1)=-\kappa_1 e_1\text{ and }dN_p(e_2)=-\kappa _2 e_2\text{ and }\kappa_1 \geq \kappa_2
 \end{align*}
-We say $\kappa_1,\kappa_2$ are the \textbf{principal curvature of $p$ at  $S$} and $e_1,e_2$ are the  \textbf{principal direction of $p$ at  $S$}.\\
-
-
-
+We say $\kappa_1,\kappa_2$ are the \textbf{principal curvature of $p$ at  $S$} and $e_1,e_2$ are the  \textbf{principal direction of $p$ at  $S$}. Note that principal direction can change sign, yet the value of principal curvature remain the same.\\
 
 Note that we have  
 \begin{align*}
@@ -3677,13 +3699,16 @@ Now when we are given $dN_p$, we can just say
 \end{align*}
 It shall be clear that if we define $\overline{N}=-N$, then $d\overline{N}_p=-dN_p$ and the principal curvature will change sign, while as $\text{det}\Big(dN_p \Big)=\text{det}\Big(d\overline{N}_p \Big)$.\\
 
-Now, independent of the choice of the orientation, we can classify $p\in  S$ by saying $p$ is 
-\begin{enumerate}[label=(\alph*)]
-  \item Elliptic if $\text{det}\Big(dN_p \Big)>0$ 
-  \item Hyperbolic if $\text{det}\Big(dN_p \Big)<0$ 
-  \item Parabolic if $\text{det}\Big(dN_p \Big)=0\text{ and }dN_p\neq 0$ 
-  \item Planar if $dN_p=0$
-\end{enumerate}
+\end{mdframed}
+\begin{mdframed}
+Some definitions: 
+\begin{align*}
+K\triangleq \kappa_1 \kappa_2 \text{ and }H\triangleq \frac{\kappa_1 +\kappa_2}{2}
+\end{align*}
+an \textbf{asymptotic direction} $v\in T_pS$ is a vector such that 
+\begin{align*}
+\Sec_p(v)=0
+\end{align*}
 \end{mdframed}
 \begin{mdframed}
 For a reason of the naming, one can quickly check that 
@@ -3696,7 +3721,182 @@ S\triangleq \set{(x,y,x^2+y^2)\inr^3:(x,y)\inr^2}
 \end{align*}
 
 \end{mdframed}
+\section{Computation of Second Fundamental Form}
+\begin{mdframed}
+\textbf{(Motivation behind the definitions of $e,f,g$)}\\
 
+Suppose we are given a connected chart $\textbf{x}(u,v):U\rightarrow S$. We now define the following functions 
+\begin{enumerate}[label=(\alph*)]
+\item $N= \Big(\frac{\textbf{x}_u \times \textbf{x}_v}{\abso{\textbf{x}_u \times \textbf{x}_v}} \Big)$
+\item $N_u= \frac{\partial}{\partial u}(N \circ \textbf{x})\text{ and }N_v=\frac{\partial }{\partial v}(N\circ \textbf{x})$ 
+\end{enumerate}
+Given a curve $\alpha (t)$ that lies in $\textbf{x}(U)$, and let $\gamma (t):(-\epsilon ,\epsilon )\rightarrow U$ be a curve that satisfy 
+\begin{align*}
+\alpha (t)=\textbf{x}\circ \gamma (t)
+\end{align*}
+Express 
+\begin{align*}
+\gamma (t)=\big(u(t),v(t) \big)
+\end{align*}
+We have 
+\begin{align*}
+\alpha '(t)=d\textbf{x}_{\gamma (t)}(\gamma '(t))=\begin{bmatrix}
+  \textbf{x}_u & \textbf{x}_v
+\end{bmatrix}\begin{bmatrix}
+u'\\
+v'
+\end{bmatrix}= u'\textbf{x}_u + v' \textbf{x}_v
+\end{align*}
+We also have 
+\begin{align*}
+dN(\alpha ')=(N\circ \alpha  )'(t)=(N\circ \textbf{x}\circ \gamma )'(t)=\begin{bmatrix}
+  N_u & N_v
+\end{bmatrix}\begin{bmatrix}
+u' \\
+v'
+\end{bmatrix}=u'N_u + v'N_v
+\end{align*}
+Now observe 
+\begin{align*}
+\Sec_p(\alpha ')&=-\langle dN(\alpha '),\alpha '\rangle \\
+&=-\langle u'N_u+v'N_v, u'\textbf{x}_u+v'\textbf{x}_v\rangle \\
+&=e(u')^2 + 2fu'v'+ g(v')^2
+\end{align*}
+where 
+\begin{align*}
+e&\triangleq -\langle N_u,\textbf{x}_u\rangle = \langle N,\textbf{x}_{uu}\rangle \\
+f&\triangleq \frac{-1}{2}\Big(\langle N_v,\textbf{x}_u\rangle + \langle N_u,\textbf{x}_v\rangle   \Big)= \langle N,\textbf{x}_{uv}\rangle \\
+g&\triangleq -\langle N_v, \textbf{x}_v\rangle =\langle N,\textbf{x}_{vv}\rangle 
+\end{align*}
+Note that 
+\begin{align*}
+\langle N_v, \textbf{x}_u\rangle = -\langle N,\textbf{x}_{uv}\rangle = - \langle N ,\textbf{x}_{vu}\rangle =  \langle N_u,\textbf{x}_v\rangle 
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+\textbf{(Computation of $e,f,g$)} Note that 
+\begin{align*}
+e&=\langle N,\textbf{x}_{uu}\rangle \\
+&=\langle \frac{\textbf{x}_u \times \textbf{x}_v}{\abso{\textbf{x}_u \times \textbf{x}_v}}, \textbf{x}_{uu}\rangle \\
+&= \frac{\langle \textbf{x}_u \times \textbf{x}_v, \textbf{x}_{uu}\rangle }{\sqrt{EG-F^2} }= \frac{1}{\sqrt{EG-F^2} }\begin{vmatrix} 
+  \textbf{x}_u & \textbf{x}_v & \textbf{x}_{uu}
+\end{vmatrix}
+\end{align*}
+\begin{align*}
+f&=\langle N,\textbf{x}_{uv}\rangle \\
+&=\frac{\langle  \textbf{x}_u \times \textbf{x}_v , \textbf{x}_{uv}\rangle}{\sqrt{EG-F^2} }= \frac{1}{\sqrt{EG-F^2} }\begin{vmatrix} 
+  \textbf{x}_u & \textbf{x}_v & \textbf{x}_{uv}
+\end{vmatrix}
+\end{align*}
+\begin{align*}
+g&=\langle N,\textbf{x}_{vv}\rangle \\
+&= \frac{\langle \textbf{x}_u \times \textbf{x}_v , \textbf{x}_{vv}\rangle }{\sqrt{EG-F^2} }= \frac{1}{\sqrt{EG-F^2} }\begin{vmatrix} 
+  \textbf{x}_u & \textbf{x}_v & \textbf{x}_{vv}
+\end{vmatrix}
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+  \textbf{(How to use $e,f,g,E,F,G$ to compute  $K$)}
+Note that $N_u\perp N \perp N_v$, so $N_u,N_v \in T_pS$. Then we can express 
+\begin{align*}
+N_u = a_{11}\textbf{x}_u + a_{21}\textbf{x}_v \text{ and }N_v= a_{12}\textbf{x}_u + a_{22}\textbf{x}_v
+\end{align*}
+We can now express $e,f,g$ by 
+ \begin{align*}
+e&=-\langle N_u,\textbf{x}_u\rangle = -\langle a_{11}\textbf{x}_u +a_{21}\textbf{x}_v , \textbf{x}_u \rangle = -a_{11}E -a_{21}F\\
+f&=-\langle N_v,\textbf{x}_u\rangle = -\langle a_{12}\textbf{x}_u +a_{22}\textbf{x}_v, \textbf{x}_u\rangle = -a_{12}E - a_{22}F   \\
+&= -\langle N_u ,\textbf{x}_v\rangle =- \langle a_{11}\textbf{x}_u +a_{21}\textbf{x}_v, \textbf{x}_v\rangle =- a_{11}F- a_{21}G   \\
+g&= - \langle N_v,\textbf{x}_v\rangle = -\langle a_{12}\textbf{x}_u + a_{22}\textbf{x}_v, \textbf{x}_v\rangle = - a_{12}F-a_{22}G
+\end{align*}
+This give us 
+\begin{align}
+\label{dN1}
+\begin{bmatrix}
+  e & f \\
+  f & g
+\end{bmatrix}= - \begin{bmatrix}
+  a_{11} & a_{21} \\
+  a_{12} & a_{22} 
+\end{bmatrix}\begin{bmatrix}
+ E & F \\
+ F & G
+\end{bmatrix}
+\end{align}
+
+At the same time, from the following algebraic deduction 
+\begin{align*}
+dN(u' \textbf{x}_u + v' \textbf{x}_v)&=u'N_u +v'N_v\\
+&=u'(a_{11} \textbf{x}_u + a_{21}\textbf{x}_v)+ v'(a_{12}\textbf{x}_u+ a_{22}\textbf{x}_v)\\
+&=(u'a_{11}+v'a_{12})\textbf{x}_u + (u'a_{21}+v'a_{22})\textbf{x}_v
+\end{align*}
+we have 
+\begin{align}
+\label{dN2}
+  [dN]_{\textbf{x}_u,\textbf{x}_v}=\begin{bmatrix}
+    a_{11} & a_{12}\\
+    a_{21} & a_{22}
+  \end{bmatrix}
+\end{align}
+Now using \myref{Equation}{dN1},\myref{Equation}{dN2} and the fact that the product of eigenvalues is the determinant (Diagonalize the diagonlizable matrix to check), we have 
+\begin{align*}
+K=\text{det}\Big([dN]_{\textbf{x}_u,\textbf{x}_v} \Big)= \frac{eg-f^2}{EG-F^2}
+\end{align*}
+Note that the principal curvatures $\kappa_1,\kappa_2$ are the roots of the following polynomial
+\begin{align*}
+  (a_{11}+t)(a_{22}+t)-a_{12}a_{21}=t^2+ (a_{11}+a_{22})t+a_{11}a_{22}-a_{12}a_{21}
+\end{align*}
+This implies 
+\begin{align*}
+H=\frac{\kappa _1+ \kappa_2}{2}= \frac{a_{11}+a_{22}}{-2}
+\end{align*}
+Now we can solve $H$ in terms of $e,f,g,E,F,G$ from \myref{Equation}{dN1} 
+\begin{align*}
+H=\frac{Ge-2fF+Eg}{2(EG-F^2)}
+\end{align*}
+\end{mdframed}
+\section{Dupin Indicatrix}
+\begin{mdframed}
+
+Fix the orientation on an orientible surface $S$. Fix $p \in S$. Let $e_1,e_2\in T_pS$ be the principal direction at  $p$, with minimum and maximum normal curvature $\kappa_1,\kappa_2$. We have 
+\begin{align*}
+\Sec_p (c_1e_1+c_2e_2)&= c_1^2 \kappa_1 + c_2^2 \kappa_2
+\end{align*}
+Then if we classify, independently of the choice of the orientation, $p\in  S$ by saying $p$ is 
+\begin{enumerate}[label=(\alph*)]
+  \item Elliptic if $\text{det}\Big(dN_p \Big)>0$ 
+  \item Hyperbolic if $\text{det}\Big(dN_p \Big)<0$ 
+  \item Parabolic if $\text{det}\Big(dN_p \Big)=0\text{ and }dN_p\neq 0$ 
+  \item Planar if $dN_p=0$
+\end{enumerate}
+We see that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\Sec_p^{-1}(\pm 1)$ is an ellipse if $p$ is elliptic. 
+  \item $\Sec_p^{-1}(\pm 1)$ is an hyperbola if $p$ is hyperbolic.
+  \item $\Sec_p^{-1}(\pm 1)$ is the union of two straight line if $p$ is parabolic.
+  \item $\Sec_p^{-1}(\pm 1)=\varnothing$ if $p$ is planar. 
+\end{enumerate}
+We say $\Sec_p^{-1}(\pm 1)$ is the \textbf{Dupin indicatrix} of $p$.
+\end{mdframed}
+\begin{mdframed}
+  We say $v \in T_pS$ is an \textbf{asymptotic direction} in $T_pS$ if 
+\begin{align*}
+\Sec_p(v)=0
+\end{align*}
+Note that 
+\begin{align*}
+dN_p(v)=0 \begin{cases}
+  \implies \\
+\not \longleftarrow
+\end{cases} \Sec_p(v)=0
+\end{align*}
+and if 
+\begin{enumerate}[label=(\alph*)]
+  \item $p$ is elliptic, then the only asymptotic direction is $0$.
+  \item $p$ is hyperbolic, then $c_1e_2+c_2e_2$ is the asymptotic direction if and only if  $c_1=c_2=0$ or  $\frac{c_2}{c_1}=\pm \sqrt{\frac{\kappa_2}{-\kappa_1}} $, and the set of asymptotic direction would be exactly the two asymptotic lines. 
+  \item $p$ is parabolic, then the set of asymptotic direction will contain only the multiples of $e_1$ or  $e_2$, depending on which of   $\kappa_1,\kappa_2$ is $0$. 
+  \item $p $ is planar, than all $v \in T_pS$ is asymptotic direction. 
+\end{enumerate}
+\end{mdframed}
 \section{HW5}
 \begin{question}{}{}
 \includegraphics[height=3cm,width=18cm]{hw5q1}
@@ -3724,13 +3924,21 @@ and give us the conclusion.
 \includegraphics[height=5cm,width=18cm]{hw5q2}
 \end{question}
 \begin{proof}
-Suppose $\kappa_1\leq \kappa_2$. Let $\theta$ be the angle between $N_\alpha (p)$ and $N(p)$. We have 
+Because $K>0$, we know the principal curvatures $\kappa_1, \kappa_2$ satisfy 
 \begin{align*}
-\kappa \cos \theta \in [\kappa_1,\kappa_2]
+0<\kappa_1 \leq \kappa_2 \text{ or }\kappa_2\leq \kappa_1 < 0
+\end{align*}
+WOLG, suppose $0<\kappa_1\leq \kappa_2$. Let $\alpha:(-\epsilon ,\epsilon )\rightarrow C$ be an arc-length parametrization passing through $p$ at  $\alpha (0)$. Let $\theta$ be the angle between $N_\alpha (p)$ and $N(p)$. We know 
+\begin{align*}
+\kappa \cos \theta = \kappa_{\alpha ,p}
+\end{align*}
+Because $0<\kappa_1 \leq \kappa_2$, we can deduce 
+\begin{align*}
+\kappa_{\alpha ,p}\geq \kappa_1 =\min (\abso{\kappa_1},\abso{\kappa_2})>0
 \end{align*}
 This then implies 
 \begin{align*}
-\abso{\kappa}\geq \abso{\kappa \cos \theta}\geq \min (\abso{\kappa_1},\abso{\kappa_2})
+\abso{\kappa}\geq \abso{\kappa }\abso{\cos \theta}=\abso{\kappa \cos \theta}= \abso{\kappa_{\alpha ,p}}\geq \min (\abso{\kappa_1},\abso{\kappa_2})
 \end{align*}
 \end{proof}
 \begin{question}{}{}
@@ -3777,11 +3985,7 @@ This then give us
 \includegraphics[height=3cm,width=18cm]{hw5q5}
 \end{question}
 \begin{proof}
-A pair of conjugate directions $v,w$ is a pair of direction that satisfy 
-\begin{align*}
-\langle dN_p(v),w\rangle  = 0
-\end{align*}
-Express 
+WOLG, suppose $0<\kappa_1 \leq \kappa_2$. Express 
 \begin{align*}
 r=\cos \theta e_1+ \sin \theta e_2\text{ and }r'=\cos \theta' e_1+ \sin \theta' e_2
 \end{align*}
@@ -3790,17 +3994,39 @@ Now compute
 \langle dN_p(r),r'\rangle &= \langle -\kappa_1 \cos \theta e_1- \kappa_2 \sin \theta e_2, \cos \theta ' e_1+ \sin \theta' e_2 \rangle \\
 &=- \kappa_1 \cos \theta \cos \theta '- \kappa_2 \sin \theta \sin \theta'
 \end{align*}
-This give us 
+This give us the constraint
 \begin{align*}
 \kappa_1 \cos \theta \cos \theta' + \kappa_2 \sin \theta \sin \theta ' =0 \end{align*}
-and we are required to maximize 
+and we are required to find the extremum of 
 \begin{align*}
 \cos (\theta - \theta ' )=\cos \theta \cos \theta'+\sin \theta \sin \theta' 
 \end{align*}
+We use the method of Lagarange multiplier. Define 
+\begin{align*}
+  f(\theta ,\theta')&\triangleq \cos \theta \cos \theta ' + \sin \theta \sin \theta'\\
+g(\theta, \theta')&\triangleq  \kappa_1 \cos \theta \cos \theta' + \kappa_2 \sin \theta \sin \theta' 
+\end{align*}
+We are required to 
+\begin{align*}
+\text{ maximize or minimize $f$ subjecting to the constraint $g=0$ }
+\end{align*}
+Compute 
+\begin{align*}
+\nabla f&= \Big(-\sin \theta \cos \theta' + \cos \theta \sin \theta' , - \cos \theta \sin \theta' + \sin \theta \cos \theta' \Big)\\
+\nabla g&=\Big(-\kappa_1 \sin \theta \cos \theta' + \kappa_2 \cos \theta \sin \theta' , -\kappa_1 \cos \theta \sin \theta' + \kappa_2 \sin \theta \cos \theta' \Big)
+\end{align*}
+It is now easy and straight forward to check that 
+\begin{align*}
+\cos \theta&= \sqrt{\frac{\kappa_1}{\kappa_1 +\kappa_2}}\text{ and }\sin \theta = \sqrt{\frac{\kappa_2}{\kappa_1+ \kappa_2}} \\
+\cos \theta'&= \sqrt{\frac{\kappa_1}{\kappa_1 +\kappa_2}}\text{ and }\sin \theta'= - \sqrt{\frac{\kappa_2}{\kappa_1+\kappa_2}} 
+\end{align*}
+is a non-trivial solution of $\nabla f=\ld \nabla g$. \\
 
-
-
-
+This then let us conclude 
+\begin{align*}
+r\in \text{span}(\sqrt{\kappa_1}e_1+ \sqrt{\kappa_2}e_2)\text{ and }r' \in \text{span}(\sqrt{\kappa_1}e_1-\sqrt{\kappa_2}e_2  )
+\end{align*}
+which is the so called "symmetry". 
 \end{proof}
 
 \begin{question}{}{}
@@ -3861,28 +4087,388 @@ Then we can compute the eigenvalues of $dN_0$  to be  $a\text{ and }-a$. In othe
 \includegraphics[height=3cm,width=18cm]{hw5q8}
 \includegraphics[height=12cm,width=18cm]{hw5q8a}
 \end{question}
+\begin{proof}
+\textbf{(a)}
+Compute 
+\begin{align*}
+\textbf{x}_u&=(1-u^2+v^2, 2uv, 2u)\\
+\textbf{x}_v&=(2uv, 1-v^2+u^2, -2v)
+\end{align*}
+This give us 
+\begin{align*}
+E&= (1-u^2+v^2)^2 + 4u^2v^2+4u^2= (1+u^2+v^2)^2\\
+G&=(1-v^2+u^2)^2 + 4u^2v^2 + rv^2= (1+u^2+v^2)^2\\
+F&=2uv(1-u^2+v^2+1-v^2+u^2)-4uv=0
+\end{align*}
+\textbf{(b)}
+Compute 
+\begin{align*}
+\textbf{x}_{uu}&=(-2u,2v,2)\\
+\textbf{x}_{vv}&=(2u,-2v,-2)\\
+\textbf{x}_{uv}&=(2v,2u,0)
+\end{align*}
+Compute 
+\begin{align*}
+\sqrt{EG-F^2}=(1+u^2+v^2)^2 
+\end{align*}
+Compute 
+\begin{align*}
+\begin{vmatrix} 
+  \textbf{x}_u & \textbf{x}_{v} & \textbf{x}_{uu}
+\end{vmatrix}&=2(1+u^2+v^2)^2\\
+\begin{vmatrix}
+  \textbf{x}_u & \textbf{x}_v & \textbf{x}_{vv}
+\end{vmatrix}&=-2(1+u^2+v^2)^2\\
+\begin{vmatrix}
+  \textbf{x}_u & \textbf{x}_v & \textbf{x}_{uv}
+\end{vmatrix}&=0
+\end{align*}
+This then give us 
+\begin{align*}
+e=2\text{ and }g=-2\text{ and }f=0
+\end{align*}
+\textbf{(c)}
+Compute 
+\begin{align*}
+K= \frac{eg-f^2}{EG-F^2}= \frac{-4}{(1+u^2+v^2)^4}
+\end{align*}
+and 
+\begin{align*}
+H= \frac{Ge+gE-2fF}{2(EG-F^2)}= 0
+\end{align*}
+This tell us $-\kappa_1 =\kappa_2=\sqrt{K}$ and 
+\begin{align*}
+\kappa_1 = \frac{-2}{(1+u^2+v^2)^2}\text{ and }\kappa_2=\frac{2}{(1+u^2+v^2)^2}
+\end{align*}
+\textbf{(d)}
+Fix a coordinate curve $\gamma (t)=\textbf{x}(t,v)$. Use the formula 
+\begin{align*}
+\kappa (t)= \frac{\abso{\gamma '(t)\times \gamma ''(t)}}{\abso{\gamma '(t)}^{\frac{3}{2}}}= \frac{2}{(1+t^2+v^2)^2}=\abso{\kappa_1}=\abso{\kappa_2}
+\end{align*}
+This conclude part of the result. Fix another coordinate curve $\alpha (t)=\textbf{x}(u,t)$. Use the formula 
+\begin{align*}
+\kappa(t)= \frac{\abso{\alpha '(t)\times \alpha ''(t)}}{\abso{\alpha  '(t)}^{\frac{3}{2}}}= \frac{2}{(1+t^2+u^2)^2}=\abso{\kappa_1}=\abso{\kappa_2}
+\end{align*}
+\textbf{(e)} Fix a curve $\gamma (t)=\textbf{x}(t,c-t)$. Observe 
+\begin{align*}
+\gamma '(t)=\textbf{x}_u - \textbf{x}_v
+\end{align*}
+Note that part \textbf{(d)} tell us the principal directions are $\textbf{x}_u$ and $\textbf{x}_v$. We can now WOLG deduce 
+ \begin{align*}
+\Sec (\gamma ')&=-\langle dN(\textbf{x}_u- \textbf{x}_v),\textbf{x}_u -\textbf{x}_v\rangle \\
+&=\langle \kappa_1 \textbf{x}_u - \kappa_2\textbf{x}_v , \textbf{x}_u -\textbf{x}_v\rangle \\
+&= \kappa_1 E + \kappa_2 G - (\kappa_1 +\kappa_2)F=0
+\end{align*}
+This tell us $\gamma $ are indeed the asymptotic curves. \\
+
+Fix $\alpha  (t)=\textbf{x}(t,c+t)$. Observe 
+\begin{align*}
+\alpha  '(t)=\textbf{x}_u + \textbf{x}_v
+\end{align*}
+WOLG deduce 
+\begin{align*}
+\Sec (\alpha ')&= - \langle dN(\textbf{x}_u + \textbf{x}_v), \textbf{x}_u + \textbf{x}_v\rangle \\
+&= \langle \kappa_1 \textbf{x}_u + \kappa_2 \textbf{x}_v , \textbf{x}_u + \textbf{x}_v \rangle \\
+&=\kappa_1 E+ \kappa_2 G+ (\kappa_1 +\kappa_2)F=0
+\end{align*}
+This tell us $\alpha $ are indeed the asymptotic curves.
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=10cm,width=18cm]{hw5q9}
 \end{question}
+\begin{proof}
+\textbf{(a)} In HW1, we have seen that the following plane curve $\alpha :(0,\frac{\pi}{2})\rightarrow \R^2$ satisfy the desired condition 
+\begin{align*}
+\alpha (t)=\Big(\sin t, \cos t + \ln (\tan \frac{t}{2}) \Big)
+\end{align*}
+See at the end of this HW a proof that $\alpha $ satisfy the desired condition.\\
+
+
+From now, we let $C= \alpha \Big((0, \frac{\pi}{2}) \Big)$. Note that $C$ is regular, and the rotation of  $C$ is only the upper half of the usual Pseudosphere. To see a picture of our pseudosphere, see Fig. 3-22, and note that our pseudosphere have empty intersection with the  $x,y$-plane.\\
+
+\textbf{(b)} We here give a more abstract result. Suppose 
+\begin{align*}
+\gamma (t)=\Big(f(t),g(t) \Big) \text{ with $f\neq 0$ every where }
+\end{align*}
+with domain $I\overset{\text{open}}{\subseteq}\R$ is a regular parametrized smooth curve. We claim $\textbf{x}:(0, 2\pi) \times I$ 
+\begin{align*}
+\textbf{x}(\theta, t)\triangleq \Big(f(t)\cos \theta, f(t)\sin \theta,g(t)  \Big)
+\end{align*}
+is a regular chart.\\
+
+It is clear that $\textbf{x}$ is smooth. We now show $d\textbf{x}$ is one-to-one on $(0, 2\pi) \times I $. Compute 
+\begin{align*}
+\textbf{x}_\theta= \Big(- f \sin \theta , f \cos \theta , 0 \Big)\text{ and }\textbf{x}_t= (f'\cos \theta, f' \sin \theta ,g')
+\end{align*}
+\As{$d\textbf{x}$ is not one-to-one}. We then can deduce
+\begin{align*}
+f g' \cos \theta = f g' \sin \theta = f f' =0\text{ for some $(t,\theta)$ }
+\end{align*}
+Fix such $(t, \theta)$. Because $f\neq 0$, we then can deduce 
+\begin{align*}
+f'(t)=g'(t)\cos \theta = g' (t) \sin \theta =0 
+\end{align*}
+Because $\cos \theta$ and $\sin \theta$ can not be both $0$, we then can deduce 
+ \begin{align*}
+f'(t)=g'(t)=0
+\end{align*}
+which \CaC to the premise $\gamma $ is a regular parametrization.\\
+
+Lastly, we are required to show 
+\begin{align*}
+  \vi{\textbf{x}^{-1}\text{ is continuous }}
+\end{align*}
+Express 
+\begin{align*}
+\textbf{x}(\theta, t)\triangleq \Big(x,y,z \Big)(\theta, t)
+\end{align*}
+We wish to show 
+\begin{align*}
+\vi{\theta,t \text{ are continuous functions in }(x,y,z)}
+\end{align*}
+Because $z(\theta, t)=g(t)$, we know 
+\begin{align*}
+t=g^{-1}(z)
+\end{align*}
+This implies $t$ is a continuous function in $(x,y,z)$.\\
+
+Compute 
+
+\begin{align*}
+\theta =\begin{cases}
+    \arctan \frac{y}{x}& \text{ if $x,y\inr^+$ (first quadrant) }\\
+    \frac{\pi}{2}& \text{ if $x=0,y\inr^+$ }\\
+    \frac{3\pi}{2}+\arctan \frac{y}{x}& \text{ if $x\inr^-,y\inr^+$ (second quadrant) }\\
+    \pi + \arctan \frac{y}{x}& \text{ if $x\inr^-,y\inr^-_0$ (third quadrant) }\\ 
+    \frac{3\pi }{2}& \text{ if $x=0,y\inr^-$ }\\
+    \frac{4\pi }{2}+\arctan \frac{y}{x}& \text{ if $x\inr^+,y\inr^-$ (forth quadrant) }
+  \end{cases}
+\end{align*}
+This implies $\theta$ is a continuous function in $(x,y,z)$. $\vdone$ \\
+
+
+\textbf{(c)} Let $S$ be surface of revolution of  $C$. We are given the chart
+\begin{align*}
+\textbf{x}(\theta ,t)=\Big(\sin t \cos \theta, \sin t \sin \theta , \cos t + \ln (\tan \frac{t}{2}) \Big) 
+\end{align*}
+Note that $\textbf{x}(\theta, t)$ dose not cover all of $S$, and   
+\begin{align*}
+\textbf{y}(\theta, t)=\Big( \sin t \cos (\theta+ \frac{\pi}{2}), \sin t \sin (\theta + \frac{\pi}{2}), \cos t + \ln (\tan \frac{t}{2}) \Big)
+\end{align*}
+cover the rest of $S$. Note that $\textbf{y}$ is merely a rotation of $\textbf{x}$, so if we show that $\textbf{x}(U)$ has constant Gauss curvature $-1$, then the proof is finished.\\
+
+Compute 
+ \begin{align*}
+\textbf{x}_\theta= \Big(-\sin t \sin \theta, \sin t \cos \theta , 0 \Big)\text{ and }\textbf{x}_t &= \Big(\cos t \cos \theta , \cos t \sin \theta ,- \sin t + \frac{\sec^2 \frac{t}{2}}{2 \tan \frac{t}{2}}  \Big)
+\end{align*}
+Simplify the $z$-component of  $\textbf{x}_t$
+\begin{align}
+\label{simp1}
+ -\sin t + \frac{\sec^2 \frac{t}{2}}{2 \tan \frac{t}{2}}= - \sin t +\frac{1}{2 \sin \frac{t}{2}\cos \frac{t}{2}}= -\sin t + \frac{1}{\sin t}= \cos t \cot t 
+\end{align}
+We now have 
+\begin{align*}
+\textbf{x}_\theta = \sin t \Big(-\sin \theta, \cos \theta ,0 \Big)\text{ and }\textbf{x}_t = \cos t \Big(\cos \theta, \sin \theta, \cot t \Big)
+\end{align*}
+We can now compute
+\begin{align*}
+E&= \sin^2 t\\
+F&= 0 \\
+G&= \cot^2 t
+\end{align*}
+Using the fact $N\perp \textbf{x}_\theta, \textbf{x}_t$ and \myref{Equation}{simp1}, we can conclude 
+\begin{align*}
+N\text{ is parallel with }\Big(\cot t \cos \theta , \cot t \sin \theta, -1 \Big)
+\end{align*}
+and conclude 
+\begin{align*}
+N=\Big(\cos t \cos \theta, \cos t \sin \theta, -\sin t \Big)
+\end{align*}
+Compute 
+\begin{align*}
+N_t=\Big(- \sin t \cos \theta, -\sin t \sin \theta, -\cos t \Big)\text{ and }N_\theta = \Big(-\cos t \sin \theta, \cos t \cos \theta, 0 \Big)
+\end{align*}
+Compute 
+\begin{align*}
+e&=-N_\theta \cdot \textbf{x}_\theta = -\sin t \cos t\\
+f&=-N_\theta \cdot \textbf{x}_t= 0\\
+g&=-N_t \cdot \textbf{x}_t= \cot t
+\end{align*}
+Finally, we conclude 
+\begin{align*}
+K=\frac{eg-f^2}{EG-F^2}=\frac{-\sin t \cos t \cot t}{\sin^2 t \cot^2 t  }=-1
+\end{align*}
+
+
+
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=5cm,width=18cm]{hw5q10}
 \end{question}
-\begin{proof}
-Define $f:\R^3\rightarrow \R$ by 
+Using Gradient, it is easy to see that we have an orientation 
 \begin{align*}
-f(x,y,z)=\frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2}
+N(x,y,z)= \frac{\Big(\frac{x}{a^2}, \frac{y}{b^2}, \frac{z}{c^2} \Big)}{\sqrt{\frac{x^2}{a^4}+ \frac{y^2}{b^4}+\frac{z^2}{c^4}} }
 \end{align*}
-Compute the gradient 
+We claim 
 \begin{align*}
-\nabla f(x,y,z)= \Big(\frac{2x}{a^2},\frac{2y}{b^2},\frac{2z}{c^2}\Big)
+\vi{p\text{ is umbilical }\iff dN_p(v)\cdot N \times v=0\text{ for all $v\in T_pS$ }}
 \end{align*}
-This give us a normal of $S$ 
- \begin{align*}
-N(x,y,z)=  
+From left to right is clear. We prove only from right to left. Fix arbitrary $v\in T_pS$. We know $\set{N,v,N\times v}$ is an orthogonal basis. Express $dN_p(v)$ in the form 
+\begin{align*}
+dN_p(v)=\ld_1 v+ \ld_2 N + \ld_3 N \times v 
 \end{align*}
-\end{proof}
+Because $dN_p(v)\in T_pS$, we know $\ld _2=0$. Using $dN_p(v)\cdot N \times v=0$, we can further deduce $\ld_3 =0$. We now see $dN_p(v)=\ld _1 v$. Because $v$ is arbitrary, our proof is finished.  $\vdone$\\
+
+Define $h:S\rightarrow \R$ by 
+\begin{align*}
+h(x,y,z)\triangleq  \sqrt{\frac{x^2}{a^4}+\frac{y^2}{b^4}+\frac{z^2}{c^4}} 
+\end{align*}
+Fix a arc-length parametrized curve $\alpha :I\rightarrow S$, and express 
+\begin{align*}
+\alpha (s)=\Big(x(s),y(s),z(s) \Big)
+\end{align*}
+We have 
+\begin{align*}
+  (h\circ \alpha) (s) (N\circ \alpha )(s)= \Big(\frac{x}{a^2},\frac{y}{b^2},\frac{z}{c^2} \Big)(s)
+\end{align*}
+Differentiating both side
+\begin{align*}
+(h\circ \alpha )'(s)(N\circ \alpha )(s)+ (h \circ \alpha )(s) dN_{\alpha }(\alpha '(s))= \Big(\frac{x'}{a^2},\frac{y'}{b^2},\frac{z'}{c^2} \Big)(s)
+\end{align*}
+Then if $p$ is umbilical, for all possible $\alpha $ we must have 
+\begin{align*}
+\Big(\frac{x'}{a^2},\frac{y'}{b^2},\frac{z'}{c^2} \Big)\cdot N \times \Big(x',y',z' \Big)=0 
+\end{align*}
+and have 
+\begin{align*}
+  \begin{vmatrix} 
+    \frac{x'}{a^2} & \frac{y'}{b^2} & \frac{z'}{c^2}\\
+    \frac{x}{a^2} & \frac{y}{b^2} & \frac{z}{c^2}\\
+    x' & y' & z'
+  \end{vmatrix}=0 
+\end{align*}
+Now, WOLG, suppose $0<a<b<c$.\\
+
+We 
+
+
+
+
 \begin{question}{}{}
 \includegraphics[height=18cm,width=18cm]{hw5q11}
 \end{question}
+\begin{proof}
+Express 
+\begin{align*}
+\alpha (t)=\textbf{x}(u(t),v(t))
+\end{align*}
+We know 
+\begin{align*}
+w=\alpha '= u' \textbf{x}_u + v' \textbf{x}_v
+\end{align*}
+Compute 
+\begin{align*}
+H_p(u'\textbf{x}_u + v' \textbf{x}_v)=H_ph(w)&= (h\circ \alpha )''(0)\\
+&=(h_uu'+h_vv')'\\
+&=(h_{uu}u'+h_{uv}v')u'+ h_u(u'') +(h_{vu}u'+ h_{vv}v')v'+ h_v (v'')\\
+&=h_{uu}(u')^2 + 2h_{uv} (u')(v') + h_{vv}(v')^2\hspace{0.5cm}(\because dh_p=0\implies h_u=h_v=0)
+\end{align*}
+We know $\set{\textbf{x}_u ,\textbf{x}_v }$ is a basis of $T_pS$. Our computation now show us that for any given vector $c_1\textbf{x}_u+c_2\textbf{x}_v\in T_pS$, we have
+\begin{align*}
+H_p(c_1\textbf{x}_u+c_2\textbf{x}_v)&=h_{uu}c_1^2+ 2h_{uv}c_1c_2+ h_{vv}c_2^2\\
+&=\begin{bmatrix}
+  c_1 & c_2
+\end{bmatrix} \begin{bmatrix}
+  h_{uu} & h_{uv}\\
+  h_{uv} & h_{vv}
+\end{bmatrix}\begin{bmatrix}
+c_1\\
+c_2
+\end{bmatrix}
+\end{align*}
+This then implies $H_p$ is a quadratic form on  $T_pS$.\\
+
+Note that the definition of  $H_ph$ doesn't take usage of  $\textbf{x}$. We merely defiend 
+\begin{align*}
+H_ph(w)\triangleq (h\circ \alpha )''(0)
+\end{align*}
+\textbf{(b)}
+Compute 
+\begin{align*}
+h_u&=\langle \textbf{x}_u ,N(p)\rangle =0\\
+\text{ and }h_v&=\langle \textbf{x}_v, N(p)\rangle =0
+\end{align*}
+This implies  $dh_p=0$, so $p$ is indeed a critical point of $h$.\\
+
+Compute 
+\begin{align*}
+h_{uu}&=\langle \textbf{x}_{uu}, N\rangle =e \\
+h_{uv}&=\langle \textbf{x}_{uv},N\rangle =f \\
+h_{vv}&=\langle \textbf{x}_{vv},N\rangle =g 
+\end{align*}
+This now give us 
+\begin{align*}
+H_ph(w)=(u')^2e+2u'v'f+g(v')^2=\Sec_p(w)
+\end{align*}
+and conclude the desired result. 
+
+
+
+\end{proof}
+
+\vspace{10cm}
+
+----------------------------------------------------- The following is the reference of 3.3.6  \textbf{(a)}
+\begin{question}{1-3:4}{}
+\includegraphics[height=4cm,width=18cm]{3.png}
+\includegraphics[height=15cm,width=18cm]{2.png}
+Typo correction: $\alpha (t)=(\sin t,\cos t + \ln \tan \frac{t}{2})$
+\end{question}
+\begin{proof}
+\textbf{(a)}
+
+Notice that the interval $I$ is  $(0,\pi)$. It is clear that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\sin t$ is smooth on $\R$
+  \item $\cos t$ is smooth on $\R$
+  \item $\ln t$ is smooth on $\R^+$
+  \item  $\tan \frac{t}{2}$ is smooth on $I$
+\end{enumerate}
+Then it follows that $\alpha $ is a differentiable curve.\\
+
+Compute 
+\begin{align*}
+\alpha '(t)=(\cos t,- \sin t + \frac{1}{\tan \frac{t}{2}} \cdot \sec^2 \frac{t}{2}\cdot \frac{1}{2})
+\end{align*}
+Because $\cos t=\alpha '_1(t)$ is $0$ on  $I$ only when  $t=\frac{\pi}{2}$, we know $\alpha $ is regular on $I$ except possibly at  $t=\frac{\pi}{2}$.\\
+
+Compute 
+\begin{align*}
+\alpha '(\frac{\pi}{2})=(0,-1+\frac{1}{1}\cdot 2 \cdot \frac{1}{2} )=(0,0)
+\end{align*}
+We now conclude $\alpha $ is regular on $I$ except  $\frac{\pi}{2}$. \\
+
+\textbf{(b)}\\
+
+A useful Identity give us 
+\begin{align*}
+\alpha '(t)=(\cos t,-\sin t+ \csc t)
+\end{align*}
+From the following facts
+\begin{enumerate}[label=(\alph*)]
+  \item the first argument of the segment is from $0$ to  $\sin t =\alpha (t)$
+  \item $\alpha_x'(t)=\cos t$
+  \item $\frac{\sin t}{\cos t}=\tan t$
+\end{enumerate}
+We conclude that the length of the segment is 
+\begin{align*}
+\abso{\tan t}\cdot \abso{\alpha '(t)}&= \abso{\tan t} \cdot \sqrt{\cos ^2 t + \sin^2 t - 2 \sin t \csc t + \csc ^2 t }\\
+&=\abso{\tan t} \cdot \sqrt{1-2+\csc ^2 t}\\
+&=\abso{\tan t } \cdot \sqrt{\csc ^2 t-1}=\abso{\tan t } \cdot  \sqrt{\cot ^2 t} =1
+\end{align*}
+
+
+
+\end{proof}
 \end{document}
 

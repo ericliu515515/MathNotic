@@ -910,34 +910,40 @@ $\vdone$\\
 \end{proof}
 \section{Banach Fixed Point Theorem}
 \begin{mdframed}
-  This section give a complete statement and proof of Banach Fixed Point Theorem. Given two metric spaces $(X,d_X),(Y,d_Y)$ and a function $f:X\rightarrow Y$, we say $f$ is a \textbf{contraction} if there exists $r\in [0,1)$ such that 
+This section give a complete statement and proof of Banach Fixed Point Theorem. The setting is 
+\begin{enumerate}[label=(\alph*)]
+  \item a metric space $\Big(X,d_X \Big)$ 
+  \item a subset $E\subseteq X$
+  \item another metric space $\Big(Y,d_Y \Big)$ 
+  \item a function $f:E\rightarrow Y$ 
+  \item another function $g:E\rightarrow X$
+\end{enumerate}
+We say $f$ is a \textbf{contraction} on $E$ if there exists $r\in [0,1)$ such that 
 \begin{align*}
-\hspace{3cm}d_Y(f(x),f(y))\leq rd_X(x,y)\hspace{1.5cm}(x,y \in X)
+\hspace{3cm}d_Y(f(x),f(y))\leq rd_X(x,y)\hspace{1.5cm}(x,y \in E)
 \end{align*}
 or equivalently 
 \begin{align*}
-\sup_{x\neq y \in X} \frac{d_Y(f(x),f(y))}{d_X(x,y)}<1
+\sup_{x\neq y \in E} \frac{d_Y(f(x),f(y))}{d_X(x,y)}<1
 \end{align*}
-Note that the restriction of a contraction is again a contraction.\\
-
-Given a function $g:X\rightarrow X$, we say $g$ admits a \textbf{fixed point} $x$ if we have 
+Note that the restriction of a contraction is again a contraction. We say $g$ admits a \textbf{fixed point} $x$ if we have 
 \begin{align*}
 g(x)=x
 \end{align*}
 \end{mdframed}
 \begin{theorem}
 \label{BFPT}
-\textbf{(Banach Fixed Point Theorem)} Given a metric space $(X,d)$, if $f$ is a contraction that maps $X$ into $X$, then 
+\textbf{(Banach Fixed Point Theorem)} If $g$ is a contraction that maps $E$ into $X$, then 
 \begin{align*}
-f\text{ admits at most one fixed point }
+g\text{ admits at most one fixed point }
 \end{align*}
-Moreover, if $(X,d)$ is complete, then 
+Moreover, if $E$ is complete and $g(E)\subseteq E$, then 
 \begin{align*}
 \text{ the fixed point exists }
 \end{align*}
-And if we use the notation $f^n$ to denote $f\circ f^{n-1}$, then for all $x\in X$,  
+And if we use the notation $g^n$ to denote $g\circ g^{n-1}$, then for all $x\in E$,  
 \begin{align*}
-  \text{ the fixed point can be written in the form }\lim_{n\to \infty}f^n(x)
+  \text{ the fixed point can be written in the form }\lim_{n\to \infty}g^n(x)
 \end{align*}
 \end{theorem}
 \begin{proof}
@@ -945,33 +951,33 @@ We first
 \begin{align*}
 \vi{\text{ prove the uniqueness of the fixed point }}
 \end{align*}
-Suppose $x,y$ are both fixed by $f$.  We have
+Suppose $x,y$ are both fixed by $g$.  We have
 \begin{align*}
-d(f(x),f(y))=d(x,y)
+d(g(x),g(y))=d(x,y)
 \end{align*}
-Because  $f$ is a contraction mapping,  this implies $d(x,y)=0$. $\vdone$ \\
+Because  $g$ is a contraction mapping,  this implies $d(x,y)=0$. $\vdone$ \\
 
-Suppose $(X,d)$ is complete. We now 
+Suppose $E$ is complete and $g(E)\subseteq E$. We now 
 \begin{align*}
 \blue{\text{ prove the existence of the fixed point }}
 \end{align*}
-Fix $x \in X$. Because we have already prove the uniqueness of the fixed point, we only have to prove 
+Fix $x \in E$. Because we have already prove the uniqueness of the fixed point, we only have to prove 
 \begin{align*}
-\blue{\lim_{n\to \infty}f^n(x)\text{ exists and }\lim_{n\to \infty}f^n(x)\text{ is a fixed point of $f$ }}
+\blue{\lim_{n\to \infty}g^n(x)\text{ exists and }\lim_{n\to \infty}g^n(x)\text{ is a fixed point of $g$ }}
 \end{align*}
-Because $(X,d)$ is complete, to prove $\lim_{n\to \infty}f^n(x)$ exists, we only have to prove
+Because $E$ is complete, to prove $\lim_{n\to \infty}g^n(x)$ exists, we only have to prove
 \begin{align*}
-\olive{\set{f^n(x)}_{n\inn}\text{ is Cauchy }}
+\olive{\set{g^n(x)}_{n\inn}\text{ is Cauchy }}
 \end{align*}
 Observe 
 \begin{align*}
-  d(f^n(x),f^{n+k}(x))&\leq \sum_{i=0}^{k-1}d(f^{n+i}(x),f^{n+i+1}(x))\\
-  &\leq d(x,f(x))\sum_{i=0}^{k-1}r^{n+i}\\
-  &\leq \frac{r^n}{1-r}d(x,f(x))\to 0\text{ as $n\to \infty$ }\odone
+  d(g^n(x),g^{n+k}(x))&\leq \sum_{i=0}^{k-1}d(g^{n+i}(x),g^{n+i+1}(x))\\
+  &\leq d(x,g(x))\sum_{i=0}^{k-1}r^{n+i}\\
+  &\leq \frac{r^n}{1-r}d(x,g(x))\to 0\text{ as $n\to \infty$ }\odone
 \end{align*}
-Note that contraction is Lipschitz thus continuous. This allow us to carry the below limit process 
+Note that contraction is Lipschitz thus continuous, and note that $\lim_{n\to \infty}g^n(x) \in E$. This allow us to carry the below limit process 
 \begin{align*}
-f\big(\lim_{n\to \infty}f^n(x)\big)=\lim_{n\to \infty}f(f^n(x))=\lim_{n\to \infty}f^{n+1}(x)=\lim_{n\to \infty}f^n(x)\bdone
+  g\big(\lim_{n\to \infty}g^n(x)\big)=\lim_{n\to \infty}g(g^n(x))=\lim_{n\to \infty}g^{n+1}(x)=\lim_{n\to \infty}g^n(x)\bdone
 \end{align*}
 \end{proof}
 \begin{mdframed}
@@ -3612,6 +3618,7 @@ We can now apply \myref{Theorem}{SoMPD} to $g$ and have
 We now prove the Chain Rule for function between normed space. 
 \end{mdframed}
 \begin{theorem}
+\label{CR}
 \textbf{(Chain Rule)} Given three normed space $\mathcal{X},\mathcal{Y},\mathcal{Z}$, a point $x \in \mathcal{X}$, a function $g$ that map an open set $U\subseteq \mathcal{Y}$ containing $f(x)$ into $\mathcal{Z}$, a function $f$ that map an open-neighborhood around $x$ into $U$ such that 
 \begin{enumerate}[label=(\alph*)]
   \item $f$ is differentiable at $x$
@@ -3713,7 +3720,7 @@ Now, note that
 &\leq \int_0^1 \abso{(f\circ \gamma )'(t)}dt\\
 &=\int_0^1 \norm{d(f\circ \gamma )_t}_\text{op}dt\\
 &\leq \int_0^1 \norm{df_{\gamma (t)}}_\text{op}\cdot \norm{d\gamma_t}_\text{op}dt\\
-&=\int_0^1 M\cdot \abso{b-a}dt=M\abso{b-a}
+&\leq \int_0^1 M\cdot \abso{b-a}dt=M\abso{b-a}
 \end{align*}
 \end{proof}
 \begin{corollary}
@@ -3731,9 +3738,84 @@ f\text{ stay constant on $E$ }
 
 
 \section{Inverse Function Theorem}
+\begin{mdframed}
+In this section, we will give a local statement and the proof for Inverse Function Theorem in  $\R^n$ (\myref{Theorem}{IFT}).  Let $L(\R^n)$ be the set of linear transformation that maps $\R^n$ into itself. Let $\Omega$ be the set of invertibles in $L(\R^n)$. We will first prove that  $\Omega$ is open (\myref{Theorem}{SCftI}). 
+\end{mdframed}
+\begin{theorem}
+\label{SCftI}
+\textbf{($\Omega$ is Open)} Suppose $A\in \Omega$. If we define $\epsilon \triangleq \frac{1}{\norm{A^{-1}}_\text{op}}$, then  
+\begin{align*}
+B_\epsilon (A) \subseteq \Omega
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $T \in B_\epsilon (A)$ and $x\neq 0\inr^n$. We are required to show 
+\begin{align*}
+\vi{\abso{Tx}>0}
+\end{align*}
+If $T=A$, then the proof is trivial. We therefore suppose $T\neq A$. Define 
+\begin{align*}
+\beta \triangleq \norm{T-A}_\text{op}
+\end{align*}
+Note that $T\neq A\in B_\epsilon (A)$ implies $0<\beta < \epsilon  $. We claim 
+\begin{align*}
+  \vi{(\epsilon  -\beta )\abso{x}\leq \abso{Tx}}
+\end{align*}
+Observe 
+\begin{align}
+\label{Obe1}
+\epsilon  \abso{x}= \epsilon  \abso{A^{-1}Ax}\leq \abso{Ax}
+\end{align}
+Observe 
+\begin{align}
+\label{Obe2}
+\abso{Ax}\leq \abso{(A-T)x}+\abso{Tx}\leq \beta \abso{x}+ \abso{Tx}
+\end{align}
+\myref{Equation}{Obe1} and \myref{Equation}{Obe2} implies 
+\begin{align*}
+\epsilon  \abso{x}\leq \beta \abso{x}+ \abso{Tx}
+\end{align*}
+which implies 
+\begin{align*}
+  (\epsilon  -\beta  )\abso{x}\leq \abso{Tx} \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+We now have enough tool to prove the Inverse Function Theorem.
+\end{mdframed}
+\begin{mdframed}
+Before actually trying to prove the Theorem, one can read the statement and think about what happen if $f$ is linear. If $f$ is linear, then $f^{-1}$ is linear, and we will have 
+\begin{align*}
+df^{-1}=f^{-1}=(f)^{-1}=(df)^{-1}
+\end{align*}
+Because derivative is unique, it is rational to suppose if $f$ is not linear and $f^{-1}$ is differentiable, we would have 
+\begin{align*}
+df^{-1}=(df)^{-1}
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+We here give a sketch of the proof. 
+\begin{enumerate}[label=\arabic*:]
+  \item Let $\ld \triangleq \frac{1}{2 \norm{(df_a)^{-1}}_{\text{op}}}$ 
+  \item Claim $B_\delta(a)$ suffices to be $U$, where $\norm{df_x-df_a}_\text{op}<\ld $ 
+  \item For each $y\inr^n$, define $\phi_y:U\rightarrow \R^n$ by $\phi_y(x)=x+(df_a)^{-1}(y)$. 
+  \item Prove that $\phi_y$ is a contraction of $U$ by taking derivative and utilize step 1 and 2.
+  \item Prove that $\phi_y$ fix $x\iff f(x)=y$ 
+  \item Prove $f$ is one-to-one in $U$ using step 4,5.
+  \item Prove $f(U)$ is open by proving $B_{\ld r}(y_0)\subseteq f(U)$, while $\overline{B_r(x_0)}\subseteq U$. The proof use step 4,5, some computation and ultimately claim that $\phi_y$ admits a fixed point as $\phi_y$ maps $\overline{B_r(x_0)}$ into itself. 
+  \item Prove $df_x$ is invertible in $U$ by \myref{Theorem}{SCftI}
+  \item Algebraically prove $df^{-1}=(df)^{-1}$, using $\abso{h-(df_a)^{-1}k}=\abso{\phi_y (x+h)-\phi_y (x)}\leq \frac{\abso{h}}{2}$
+\end{enumerate}
+\end{mdframed}
 \begin{theorem}
 \label{IFT}
-\textbf{(Inverse Function Theorem)} Given a function $f$ that maps an open subset  $E$ of  $\R^n$  into $\R^n$ such that $f$ is continuously differentiable on  $E$, if a point $a \in E$ has invertible derivative $df_a$, then there exists an open set $U\subseteq E$ containing $a$ such that
+\textbf{(Inverse Function Theorem)} Given a function $f$ that maps an open neighborhood $E\subseteq \R^n$ around $a$  into $\R^n$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is differentiable on $E$  
+  \item $df_a$ is invertible 
+   \item $f$ is continuously differentiable at  $a$
+\end{enumerate}
+Then there exists open $U \subseteq E$ containing $a$ such that
 \begin{align*}
 f(U)\text{ is open in $\R^n$ and }f|_U:U\rightarrow f(U)\text{ is a diffeomorphism }
 \end{align*}
@@ -3744,7 +3826,7 @@ Fix
 \label{ldteq}
 \ld   \triangleq  \frac{1}{2\norm{(df_a)^{-1}}_\text{op}}
 \end{align}
-Because $f$ is continuously differentaible at  $x$, we know there exists  $\delta$ such that
+Because $f$ is continuously differentaible at  $a$, we know there exists  $\delta$ such that
 \begin{align}
 \label{fcond}
 \hspace{3cm}\norm{df_x-df_a}_\text{op}< \ld  \hspace{1.5cm}(x\in B_\delta (a))
@@ -3759,17 +3841,18 @@ For each $y\inr^n$, define $\phi_y:U\rightarrow \R^n$ by
 \end{align*}
 Before anything, we first prove
 \begin{align*}
-  \olive{\text{ for all }y\inr^n, \phi_y:U\rightarrow \R^n\text{ is a contraction}}
+  \olive{\text{ for all }y\inr^n, \phi_y:U\rightarrow \R^n\text{ is a contraction of $U$}}
 \end{align*}
 Fix $y \inr^n$, and $x_1,x_2 \in U$. We claim 
-\begin{align*}
+\begin{align}
+\label{phiy12}
 \olive{\abso{\phi_y(x_1)-\phi_y (x_2)}\leq \frac{1}{2}\abso{x_1-x_2}}
-\end{align*}
-Because $U$ is convex, \myref{Theorem}{BPoDB} allow use to reduce the problem into proving 
+\end{align}
+Because $U$ is convex, \myref{Theorem}{BPoDB} allow us to reduce the problem into proving 
 \begin{align*}
 \olive{\norm{d(\phi_y)_x}_\text{op}\leq \frac{1}{2}\text{ for all $x \in U$ }}
 \end{align*}
-Fix $x \in U$. Use Chain Rule and the fact the derivative of a bounded linear transformation is itself to compute $d(\phi_y)_x$ 
+Fix $x \in U$. Using Chain Rule (\myref{Theorem}{CR}) and the fact that the derivative of a bounded linear transformation is itself, we can compute $d(\phi_y)_x$ 
 \begin{align*}
 d(\phi_y)_x&=I+(df_a)^{-1}(-df_x)\\
 &=(df_a)^{-1}(df_a-df_x)
@@ -3790,13 +3873,9 @@ Fix $y$ in $f(U)$. We wish to show
 \end{align*}
 Because $f(x)=y \iff x\text{ is a fixed point of }\phi_y$, we can reduce the problem into
 \begin{align*}
-  \blue{\phi_y\text{ has at most one fixed point in $U$}}
+  \blue{\phi_y\text{ has at most one fixed point }}
 \end{align*}
-Suppose $x,x'\in U$ are both fixed point of $\phi_y$. Observe 
-\begin{align*}
-\abso{x-x'}=\abso{\phi_y(x)-\phi_y(x')}\leq \frac{1}{2}\abso{x-x'}
-\end{align*}
-This implies $\abso{x-x'}=0$. $\bdone$\\
+Because $\phi_y$ \olive{is a contraction of $U$}, Banach Fixed Point Theorem  (\myref{Theorem}{BFPT}) tell us $\phi_y$ has at most one fixed point. $\bdone$\\  
 
 We now prove 
 \begin{align*}
@@ -3818,7 +3897,7 @@ Because
 \begin{align*}
 y=f(x)\iff  x\text{ is a fixed point of }\phi_y
 \end{align*}
-We then can use Banach Fixed Point Theorem to reduce the problem into proving 
+We then can use Banach Fixed Point Theorem (\myref{Theorem}{BFPT}) to reduce the problem into proving 
 \begin{align*}
 \brown{\phi_y\text{ is a contraction that maps some complete subset of $U$ into  itself}}
 \end{align*}
@@ -3826,7 +3905,7 @@ We claim
 \begin{align*}
 \brown{\overline{B_r(x_0)}\text{ suffices }}
 \end{align*}
-We have already $\phi_y$ is a contraction on $U$, and it is clear that $\overline{B_r(x_0)}$ is complete. We reduce the problem into proving 
+We have already known $\phi_y$ is a contraction on $U$, and it is clear that $\overline{B_r(x_0)}$ is complete. We reduce the problem into proving 
 \begin{align*}
 \brown{\phi_y\big(\overline{B_r(x_0)} \big)\subseteq \overline{B_r(x_0)}}
 \end{align*}
@@ -3841,25 +3920,183 @@ We can deduce
 \abso{\phi_y (x_0)-x_0}&= \abso{(df_a)^{-1}(y-f(x_0))}\\
 &\leq \norm{(df_a)^{-1}}_\text{op} \abso{y-y_0}<\frac{r}{2}
 \end{align*}
-Fix $x\in \overline{B_r(x_0)}$. We then see
+Fix $x\in \overline{B_r(x_0)}$. We can now deduce 
 \begin{align*}
   \abso{\phi_y (x)-x_0}&\leq \abso{\phi_y (x_0)-\phi_y (x)}+\abso{x_0-\phi_y (x_0)}\\
 &\leq \frac{1}{2}\abso{x_0-x}+\frac{r}{2}\leq r \bodone
 \end{align*}
+We now prove 
+\begin{align*}
+\blue{df_x\text{ is invertible for all }x \in U}
+\end{align*}
+Fix $x\in U$.  
+\begin{align*}
+\norm{df_x-df_a}_\text{op}\cdot \norm{(df_a)^{-1}}_\text{op}<\frac{1}{2}
+\end{align*}
+\myref{Theorem}{SCftI} now implies $df_x$ is invertible. $\bdone$\\
 
 Lastly, it remains to prove 
 \begin{align*}
-  \vi{f^{-1}:f(U)\rightarrow U\text{ is continuously differentiable }}
+  \vi{f^{-1}:f(U)\rightarrow U\text{ is differentiable on $f(U)$}}
 \end{align*}
-Because $f^{-1}\circ f=I$. We know $d(f^{-1})_{f(x)}$ if exists must satisfy 
+Fix $y\in f(U)$, and $x\triangleq f^{-1}(y)$. We are required to prove 
 \begin{align*}
-d(f^{-1})_{f(x)}=(df_x)^{-1}
+  \vi{\lim_{k\to 0} \frac{\abso{f^{-1}(y+k)-x-(df_x)^{-1}k}}{\abso{k}}=0}
 \end{align*}
+Fix $h(k)\triangleq f^{-1}(y+k)-f(x)$. In other words, $h\inr^n$ is fixed to be the unique vector such that 
+\begin{align*}
+f(x+h)=f(x)+k=y+k
+\end{align*}
+We now see 
+\begin{align*}
+f^{-1}(y+k)-x-(df_x)^{-1}k&= h-(df_x)^{-1}k\\
+&=-(df_x^{-1})(f(x+h)-f(x)-df_xh)
+\end{align*}
+and see 
+\begin{align*}
+\abso{f^{-1}(y+k)-x-(df_x)^{-1}k}\leq \norm{(df_x)^{-1}}_\text{op} \abso{f(x+h)-f(x)-df_xh}
+\end{align*}
+which give us 
+\begin{align*}
+\frac{\abso{f^{-1}(y+k)-x-(df_x)^{-1}k}}{\abso{k}}\leq \norm{(df_x)^{-1}}_\text{op} \frac{\abso{f(x+h)-f(x)-df_xh}}{\abso{h}} \cdot \frac{\abso{h}}{\abso{k}}
+\end{align*}
+This allow us to reduce the problem into proving 
+\begin{align*}
+\vi{\limsup_{k\to 0} \frac{\abso{h}}{\abso{k}}\inr}
+\end{align*}
+We claim 
+\begin{align*}
+  \vi{\frac{\abso{h}}{\abso{k}}\leq \ld ^{-1}\text{ for all $k$ such that $y+k \in f(U)$ }}
+\end{align*}
+Compute 
+\begin{align*}
+\phi_y (x+h)-\phi_y (x)=h- (df_a)^{-1}k
+\end{align*}
+\olive{\myref{Equation}{phiy12}} let us deduce 
+\begin{align*}
+\abso{h-(df_a)^{-1}k}= \abso{\phi_y (x+h)-\phi_y (x)}\leq \frac{\abso{h}}{2}
+\end{align*}
+This with triangle inequality implies  
+\begin{align*}
+ \norm{(df_a)^{-1}}_\text{op} \abso{k} \geq \abso{(df_a)^{-1}k}\geq  \frac{\abso{h}}{2} \vdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Inversion is Continuous)} If we define the function $L:\Omega \rightarrow \Omega$ by 
+\begin{align*}
+L(A)=A^{-1}
+\end{align*}
+then 
+\begin{align*}
+L\text{ is continuous on $\Omega$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $A\in \Omega$ and let $B \in \Omega$. We are required to prove 
+\begin{align*}
+  \vi{\lim_{B\to A} \norm{B^{-1}-A^{-1}}_\text{op}=0}
+\end{align*}
+\end{proof}
+\section{Implicit Function Theorem}
+\begin{mdframed}
+Some notations first. If $A \in L(\R^{n+m}, \R^k)$. We define $A|_{\R^n}:L(\R^n,\R^k)$ by
+\begin{align*}
+A|_{\R^n}(x)\triangleq A(x,0)
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Implicit Function Theorem)} Suppose a function $f$ that maps an open neighborhood $E\subseteq \R^n \times \R^m$ around $(a,b)$ into $\R^n$ satisfy 
+\begin{enumerate}[label=(\alph*)]
+  \item $f(a,b)=0$ 
+  \item $(df_{(a,b)})|_{\R^m}$ is invertible 
+  \item $f$ is continuously differentiable on $E$
+\end{enumerate}
+Then there exists open-neighborhood $U \subseteq E$ around $(a,b)$ and open $W\subseteq \R^m$ containing $b$ such that there exists a unique function $g$ from $W$ to  $\R^n$ such that
+\begin{enumerate}[label=(\alph*)]
+  \item $\big(g(y),y \big) \in U$ for all $y \in W$
+  \item $f(g(y),y)=0$ for all $y \in W$  
+\end{enumerate}
+Moreover, $g$ satisfy 
+\begin{enumerate}[label=(\alph*)]
+  \item $g$ is continuously differentiable on $W$
+   \item $g$ satisfy $dg_b=-(df_{(a,b)}|_{\R^n})^{-1}\circ df_{(a,b)}|_{\R^m}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Define $F:E\rightarrow \R^n \times \R^n$ by 
+\begin{align*}
+F(x,y)=\Big(f(x,y),y \Big)
+\end{align*}
+Because $f$ is continuously differentiable on $E$, using Differentaibility Theorem (\myref{Theorem}{DT}), we can deduce 
+\begin{align*}
+F\text{ is continuously differentiable on $E$ }
+\end{align*}
+Again using Differentiability Theorem  (\myref{Theorem}{DiJ}), we can write down $dF_{(a,b)}$ in the matrix form with respect to standard basis
+\begin{align*}
+[dF_{(a,b)}]= \begin{bmatrix}
+  df_{(a,b)}|_{\R^n} & O \\
+  df_{(a,b)}|_{\R^m} & I
+\end{bmatrix}
+\end{align*}
+Now, because $df_{(a,b)}|_{\R^n}$ is invertible, we know $dF_{(a,b)}$ is invertible.\\
+
+We can now apply Inverse Function Theorem (\myref{Theorem}{IFT}) to $F:E\rightarrow \R^n \times \R^m$. This give us 
+\begin{enumerate}[label=(\alph*)]
+  \item an open $U\subseteq E\subseteq \R^n \times \R^m$ containing $(a,b)$
+  \item open $V\triangleq F(U)\subseteq \R^n \times \R^m$ containing $(0,b)$
+  \item $F|_U:U\rightarrow V$ is a diffeomorphism.
+\end{enumerate}
+Define $W$ by 
+\begin{align*}
+W\triangleq \set{y\inr^m : (0,y)\in V}
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\text{ such }U,W\text{ suffices }}
+\end{align*}
+Note that it is easy to check $W$ is open, utilizing $V$ is open and the same $\epsilon $.\\
+
+Now, because $F|_U:U\rightarrow V$ is bijective, we know for each $y\in W$, there exists a unique $v_y \in U$ such that 
+\begin{align*}
+F(v_y)=(0,y)
+\end{align*}
+By definition of $F$, we must have 
+\begin{align*}
+  v_y=(x,y)\text{ for some unique $x\inr^n$ }
+\end{align*}
+
+
+This implies the existence of the unique $g:W\rightarrow \R^n$ such that 
+\begin{align*}
+\Big(g(y),y \Big)\in U\text{ and }f(g(y),y)=0\text{ for all $y \in W$ }
+\end{align*}
+It remains to show 
+\begin{enumerate}[label=(\alph*)]
+  \item \blue{$g$ is continuously differnetiable on  $W$}
+  \item  \olive{$dg_b=-(df_{(a,b)})|_{\R^n}^{-1}(df_{(a,b)})|_{\R^m}$}
+\end{enumerate}
+Observe 
+\begin{align*}
+\hspace{3cm}F^{-1}(0,y)=(g(y),y)\hspace{1.5cm}(y \in W)
+\end{align*}
+Now observe 
+\begin{align*}
+ \frac{\partial }{\partial y_i}(F^{-1})_{j}(0,y)&=\lim_{t\to 0} \frac{\big(F^{-1}(0,y_1,\dots , y_i+t,\dots, y_m)-F^{-1}(0,y_1,\dots,y_m) \big)_{j}}{t}\\
+ &=\lim_{t\to 0}  \frac{g_j(y_1,\dots , y_i+y,\dots ,y_m)-g_j(y)}{t}
+\end{align*}
+This implies 
+\begin{align*}
+\frac{\partial }{\partial y_i}g_j(y)= \frac{\partial}{\partial y_i} (F^{-1})_{j}(0,y)\text{ is continuous on $W$ }\bdone
+\end{align*}
+
+
 
 
 
 \end{proof}
-\section{Implicit Function Theorem}
+\section{Feynman's Trick}
+
+
 \section{Appendix: Linear Algebra}
 \begin{mdframed}
 This section contains
