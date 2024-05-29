@@ -3568,31 +3568,6 @@ Reminder: If a function $f:S\rightarrow \R^3$ is the restriction of some differe
 \end{align*}
 \end{definition}
 \begin{mdframed}
-Question: Fix an orientation of $S$. Suppose we have a curve $\alpha (s)$ that lies in $S$ passing through $p=\alpha (0)$, and suppose we have another curve $\beta (s)=- \alpha (s)$.\\
-
-We know that 
-\begin{align*}
-N_{\beta }(p)=-N_\alpha (p)
-\end{align*}
-This give us 
-\begin{align*}
-\kappa_{\alpha ,p}=-\kappa_{\beta ,p}
-\end{align*}
-We also know that 
-\begin{align*}
-\beta '(0)=-\alpha '(0)
-\end{align*}
-This however give us 
-\begin{align*}
-\Sec_p(\beta '(0))=\Sec_p(\alpha '(0))
-\end{align*}
-We now apply \myref{Theorem}{Ncdo}, and see a false statement
-\begin{align*}
-\kappa_{\beta ,p}=\Sec_p(\beta '(0))=\Sec_p(\alpha '(0))=\kappa_{\alpha ,p}=-\kappa_{\beta ,p}
-\end{align*}
-What goes wrong? 
-\end{mdframed}
-\begin{mdframed}
 We will later show $dN_p:T_pS\rightarrow T_pS$ is self-adjoint. This then implies that $\Sec_p$ is a quadratic form.
 \end{mdframed}
 \begin{definition}
@@ -3721,6 +3696,17 @@ S\triangleq \set{(x,y,x^2+y^2)\inr^3:(x,y)\inr^2}
 \end{align*}
 
 \end{mdframed}
+\begin{mdframed}
+Given the standard chart of $\mathbb{T}^2$
+\begin{align*}
+\textbf{x}(u,v)=\Big((a+r \cos u)\cos v, (a+r \cos u)\sin v, r \sin u \Big)
+\end{align*}
+We have
+\begin{align*}
+N(u,v)=(\cos u \cos v, \cos u \sin v, \sin u)
+\end{align*}
+
+\end{mdframed}
 \section{Computation of Second Fundamental Form}
 \begin{mdframed}
 \textbf{(Motivation behind the definitions of $e,f,g$)}\\
@@ -3843,11 +3829,19 @@ K=\text{det}\Big([dN]_{\textbf{x}_u,\textbf{x}_v} \Big)= \frac{eg-f^2}{EG-F^2}
 \end{align*}
 Note that the principal curvatures $\kappa_1,\kappa_2$ are the roots of the following polynomial
 \begin{align*}
-  (a_{11}+t)(a_{22}+t)-a_{12}a_{21}=t^2+ (a_{11}+a_{22})t+a_{11}a_{22}-a_{12}a_{21}
+  (a_{11}+t)(a_{22}+t)-a_{12}a_{21}&=t^2+ (a_{11}+a_{22})t+a_{11}a_{22}-a_{12}a_{21}
 \end{align*}
 This implies 
 \begin{align*}
 H=\frac{\kappa _1+ \kappa_2}{2}= \frac{a_{11}+a_{22}}{-2}
+\end{align*}
+We can now see $\kappa_1,\kappa_2$ is the root of 
+\begin{align*}
+t^2 -2Ht+K=0
+\end{align*}
+This implies 
+\begin{align*}
+\kappa= H\pm \sqrt{H^2-K} 
 \end{align*}
 Now we can solve $H$ in terms of $e,f,g,E,F,G$ from \myref{Equation}{dN1} 
 \begin{align*}
@@ -4140,38 +4134,41 @@ This tell us $-\kappa_1 =\kappa_2=\sqrt{K}$ and
 \begin{align*}
 \kappa_1 = \frac{-2}{(1+u^2+v^2)^2}\text{ and }\kappa_2=\frac{2}{(1+u^2+v^2)^2}
 \end{align*}
-\textbf{(d)}
-Fix a coordinate curve $\gamma (t)=\textbf{x}(t,v)$. Use the formula 
+\textbf{(d)} Given $\alpha (t)=\textbf{x}(u(t),v(t))$. We know  
 \begin{align*}
-\kappa (t)= \frac{\abso{\gamma '(t)\times \gamma ''(t)}}{\abso{\gamma '(t)}^{\frac{3}{2}}}= \frac{2}{(1+t^2+v^2)^2}=\abso{\kappa_1}=\abso{\kappa_2}
+\alpha \text{ is a line of  curvature }\iff \Sec_p(\alpha ')= (\kappa_1\text{ or }\kappa_2) \abso{\alpha '}^2
 \end{align*}
-This conclude part of the result. Fix another coordinate curve $\alpha (t)=\textbf{x}(u,t)$. Use the formula 
+Plugin the first fundamental form and second fundamental form, we now know that $\alpha $ is a line of curvature if and only if 
 \begin{align*}
-\kappa(t)= \frac{\abso{\alpha '(t)\times \alpha ''(t)}}{\abso{\alpha  '(t)}^{\frac{3}{2}}}= \frac{2}{(1+t^2+u^2)^2}=\abso{\kappa_1}=\abso{\kappa_2}
+e(u')^2 + 2f(u')(v')+ g (v')^2 = (\kappa_1\text{ or }\kappa_2) \big(E(u')^2 +2F(u')(v')+ G(v')^2 \big)
 \end{align*}
-\textbf{(e)} Fix a curve $\gamma (t)=\textbf{x}(t,c-t)$. Observe 
+We have already known the value of the coefficients and the value of $\kappa_1,\kappa_2$, so we can deduce $\alpha $ is a line of curvature if and only if 
 \begin{align*}
-\gamma '(t)=\textbf{x}_u - \textbf{x}_v
+  2(u')^2 -2 (v')^2 = \pm 2 \big((u')^2 +(v')^2 \big)
 \end{align*}
-Note that part \textbf{(d)} tell us the principal directions are $\textbf{x}_u$ and $\textbf{x}_v$. We can now WOLG deduce 
- \begin{align*}
-\Sec (\gamma ')&=-\langle dN(\textbf{x}_u- \textbf{x}_v),\textbf{x}_u -\textbf{x}_v\rangle \\
-&=\langle \kappa_1 \textbf{x}_u - \kappa_2\textbf{x}_v , \textbf{x}_u -\textbf{x}_v\rangle \\
-&= \kappa_1 E + \kappa_2 G - (\kappa_1 +\kappa_2)F=0
+The solution of this equation is clearly 
+\begin{align*}
+u'=0\text{ or }v'=0
 \end{align*}
-This tell us $\gamma $ are indeed the asymptotic curves. \\
+This implies that
+\begin{align*}
+\alpha \text{ is a line of curvature }\iff u'=0\text{ or } v'=0\iff \alpha \text{ is a coordinate curve }
+\end{align*}
 
-Fix $\alpha  (t)=\textbf{x}(t,c+t)$. Observe 
+
+
+
+\textbf{(e)} Given $\alpha (t)=\textbf{x}(u(t),v(t))$. Observe
 \begin{align*}
-\alpha  '(t)=\textbf{x}_u + \textbf{x}_v
+  \alpha \text{ is an asymptotic curve }&\iff \Sec_p(\alpha ')=0\\
+  &\iff  e(u')^2 +2f (u')(v')+ g(v')^2=0\\
+  &\iff (u')^2-(v')^2=0 \\
+  &\iff u'=v'\text{ or }u'=-v' \\
+  &\iff (u+v)'=0\text{ or }(u-v)'=0\\
+  &\iff u+v=\text{const.}\text{ or }u-v=\text{const.}
 \end{align*}
-WOLG deduce 
-\begin{align*}
-\Sec (\alpha ')&= - \langle dN(\textbf{x}_u + \textbf{x}_v), \textbf{x}_u + \textbf{x}_v\rangle \\
-&= \langle \kappa_1 \textbf{x}_u + \kappa_2 \textbf{x}_v , \textbf{x}_u + \textbf{x}_v \rangle \\
-&=\kappa_1 E+ \kappa_2 G+ (\kappa_1 +\kappa_2)F=0
-\end{align*}
-This tell us $\alpha $ are indeed the asymptotic curves.
+
+
 \end{proof}
 \begin{question}{}{}
 \includegraphics[height=10cm,width=18cm]{hw5q9}
@@ -4302,44 +4299,63 @@ K=\frac{eg-f^2}{EG-F^2}=\frac{-\sin t \cos t \cot t}{\sin^2 t \cot^2 t  }=-1
 
 
 \end{proof}
-\begin{question}{}{}
-\includegraphics[height=5cm,width=18cm]{hw5q10}
-\end{question}
-Using Gradient, it is easy to see that we have an orientation 
+\begin{lemma}
+\label{UL}
+\textbf{(Umbilical Lemma)} 
 \begin{align*}
-N(x,y,z)= \frac{\Big(\frac{x}{a^2}, \frac{y}{b^2}, \frac{z}{c^2} \Big)}{\sqrt{\frac{x^2}{a^4}+ \frac{y^2}{b^4}+\frac{z^2}{c^4}} }
+p\text{ is umbilical }\iff  dN_p(v)\cdot N \times v=0\text{ for all $v \in T_pS$ }
 \end{align*}
-We claim 
-\begin{align*}
-\vi{p\text{ is umbilical }\iff dN_p(v)\cdot N \times v=0\text{ for all $v\in T_pS$ }}
-\end{align*}
+\end{lemma}
+\begin{proof}
+
 From left to right is clear. We prove only from right to left. Fix arbitrary $v\in T_pS$. We know $\set{N,v,N\times v}$ is an orthogonal basis. Express $dN_p(v)$ in the form 
 \begin{align*}
 dN_p(v)=\ld_1 v+ \ld_2 N + \ld_3 N \times v 
 \end{align*}
-Because $dN_p(v)\in T_pS$, we know $\ld _2=0$. Using $dN_p(v)\cdot N \times v=0$, we can further deduce $\ld_3 =0$. We now see $dN_p(v)=\ld _1 v$. Because $v$ is arbitrary, our proof is finished.  $\vdone$\\
+Because $dN_p(v)\in T_pS$, we know $\ld _2=0$. Using $dN_p(v)\cdot N \times v=0$, we can further deduce $\ld_3 =0$. We now see $dN_p(v)=\ld _1 v$. Because $v$ is arbitrary, our proof is finished.  
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw5q10}
+\end{question}
+\begin{proof}
+\textbf{(Elipsoid Case)}\\
 
+We claim 
+\begin{align*}
+  \blue{p=(x,y,z)\text{ is umbilical }\iff \text{ For all $(v_1,v_2,v_3)\in T_pS$ we have the following three equations }}
+\end{align*}
+\begin{align}
+  \frac{-x v_2v_3}{a^2}(\frac{1}{b^2}-\frac{1}{c^2})+ \frac{yv_1v_3}{b^2}(\frac{1}{a^2}-\frac{1}{c^2})+ \frac{-zv_1v_2}{c^2}(\frac{1}{a^2}-\frac{1}{b^2})=0\label{eq1}\\
+  \frac{xv_1}{a^2}+\frac{yv_2}{b^2}+ \frac{zv_3}{c^2}=0\label{eq2}\\
+  \frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2}=1\label{eq3}
+\end{align}
+It is clear that $(x,y,z) \in S$ if and only if \myref{Equation}{eq2} and \myref{Equation}{eq3} are both satisfied. The proof of our claim now can be reduced to \blue{proving $p$ is umbilical if and only if  \myref{Equation}{eq1} is satisfied}.\\
+
+Using Gradient, It is easy to see that we have an orientation 
+\begin{align*}
+N(x,y,z)= \frac{\Big(\frac{x}{a^2}, \frac{y}{b^2}, \frac{z}{c^2} \Big)}{\sqrt{\frac{x^2}{a^4}+ \frac{y^2}{b^4}+\frac{z^2}{c^4}} }
+\end{align*}
 Define $h:S\rightarrow \R$ by 
 \begin{align*}
 h(x,y,z)\triangleq  \sqrt{\frac{x^2}{a^4}+\frac{y^2}{b^4}+\frac{z^2}{c^4}} 
 \end{align*}
-Fix a arc-length parametrized curve $\alpha :I\rightarrow S$, and express 
+Fix an arc-length parametrized curve $\alpha :I\rightarrow S$, passing through $p=\alpha (0)$ and express 
 \begin{align*}
 \alpha (s)=\Big(x(s),y(s),z(s) \Big)
 \end{align*}
 We have 
 \begin{align*}
-  (h\circ \alpha) (s) (N\circ \alpha )(s)= \Big(\frac{x}{a^2},\frac{y}{b^2},\frac{z}{c^2} \Big)(s)
+  (h\circ \alpha )(N\circ \alpha )= \Big(\frac{x}{a^2}, \frac{y}{b^2}, \frac{z}{c^2} \Big)
 \end{align*}
-Differentiating both side
+Differentiating both side yield us 
 \begin{align*}
-(h\circ \alpha )'(s)(N\circ \alpha )(s)+ (h \circ \alpha )(s) dN_{\alpha }(\alpha '(s))= \Big(\frac{x'}{a^2},\frac{y'}{b^2},\frac{z'}{c^2} \Big)(s)
+(h\circ \alpha )'N(\alpha )+ h(\alpha ) dN_{\alpha }(\alpha ')= \Big(\frac{x'}{a^2},\frac{y'}{b^2},\frac{z'}{c^2} \Big)
 \end{align*}
-Then if $p$ is umbilical, for all possible $\alpha $ we must have 
+and give us 
 \begin{align*}
-\Big(\frac{x'}{a^2},\frac{y'}{b^2},\frac{z'}{c^2} \Big)\cdot N \times \Big(x',y',z' \Big)=0 
+h(p)dN_p (v)= \Big(\frac{x'}{a^2}, \frac{y'}{b^2}, \frac{z'}{c^2} \Big) - (h\circ \alpha )' N(p)\text{ where }v=\alpha '(0)=(x',y',z')
 \end{align*}
-and have 
+Note that $(h\circ \alpha )'N$ is parallel with $N$. Now by \myref{Lemma}{UL}, we see $p$ is umbilical if and only if for all $\alpha $ we have 
 \begin{align*}
   \begin{vmatrix} 
     \frac{x'}{a^2} & \frac{y'}{b^2} & \frac{z'}{c^2}\\
@@ -4347,9 +4363,70 @@ and have
     x' & y' & z'
   \end{vmatrix}=0 
 \end{align*}
+Expand the above determinant and substitute $(x',y',z')$ with $(v_1,v_2,v_3)$. We see this is exactly \myref{Equation}{eq1}. $\bdone$\\
+
+
 Now, WOLG, suppose $0<a<b<c$.\\
 
-We 
+We claim 
+\begin{align*}
+\vi{\text{ umbilical point will never be in the plane }z=0}
+\end{align*}
+\As{$z=0\text{ and }p=(x,y,0)\text{ is an umbilical point }$}. For all $(v_1,v_2,v_3)\in T_pS$, we have 
+\begin{align}
+  \frac{-xv_2v_3}{a^2}(\frac{1}{b^2}-\frac{1}{c^2})+ \frac{yv_1v_3}{b^2}(\frac{1}{a^2}-\frac{1}{c^2})&=0\label{eq4}\\
+  \frac{xv_1}{a^2}+ \frac{yv_2}{b^2}&=0\label{eq5}\\
+  \frac{x^2}{a^2}+ \frac{y^2}{b^2}&=1 \label{eq6}
+\end{align}
+\myref{Equation}{eq6} implies that either $x\neq 0$ or $y\neq 0$. WOLG suppose $x\neq 0$. We can now fix $(v_1,v_2,v_3)\in T_pS$ such that $v_2v_3\neq 0$. \\
+
+By multiplying with  $\frac{x}{v_3}$ on both side, \myref{Equation}{eq4} now implies 
+\begin{align*}
+\frac{x^2 v_2}{a^2}(\frac{1}{b^2}-\frac{1}{c^2})= \frac{xyv_1}{b^2}(\frac{1}{a^2}-\frac{1}{c^2})
+\end{align*}
+Note that \myref{Equation}{eq5} give us $\frac{y}{b^2}= \frac{-xv_1}{a^2v_2}$. This then implies 
+\begin{align*}
+\frac{x^2v_2}{a^2}(\frac{1}{b^2}-\frac{1}{c^2})=\frac{xyv_1}{b^2}(\frac{1}{a^2}-\frac{1}{c^2})=\frac{-v_1^2x^2}{a^2v_2}(\frac{1}{a^2}-\frac{1}{c^2})
+\end{align*}
+We can now use $a<b<c$ to deduce 
+\begin{align*}
+0<\frac{x^2v_2^2}{a^2}(\frac{1}{b^2}-\frac{1}{c^2})= \frac{-v_1^2x^2}{a^2}(\frac{1}{a^2}-\frac{1}{c^2})<0 \tCaC \vdone
+\end{align*}
+Lastly, we claim \olive{$p$ is an umbilical point if and only if}
+\begin{align*}
+  \olive{x^2= a^2 \frac{b^2-a^2}{c^2-a^2}\text{ and }y=0\text{ and }z^2= c^2 \frac{c^2-b^2}{c^2-a^2}}
+\end{align*}
+Because $z\neq 0$. We can now replace \myref{Equation}{eq1} with 
+\begin{align}
+\label{eq7}
+\frac{-xzv_2v_3}{a^2c^2}(\frac{1}{b^2}-\frac{1}{c^2})+ \frac{yzv_1v_3}{b^2c^2}(\frac{1}{a^2}-\frac{1}{c^2})+ \frac{-z^2 v_1v_2}{c^4}(\frac{1}{a^2}-\frac{1}{b^2})=0
+\end{align}
+\myref{Equation}{eq2} give us $\frac{z}{c^2}= \frac{-xv_1}{a^2v_3}+ \frac{-yv_2}{b^2v_3}$. Substitute this into \myref{Equation}{eq7} (Except the $\frac{z^2}{c^4}$ term), we have 
+\begin{align}
+&v_2^2\frac{yx}{b^2a^2}\left(\frac{1}{b^2}-\frac{1}{c^2}\right)-v_1^2\frac{yx}{b^2a^2}\left(\frac{1}{a^2}-\frac{1}{c^2}\right)\notag\\
+  +&v_1v_2\left(\frac{x^2}{a^4}\left(\frac{1}{b^2}-\frac{1}{c^2}\right)-\frac{y^2}{b^4}\left(\frac{1}{a^2}-\frac{1}{c^2}\right)-\frac{z^2}{c^4}\left(\frac{1}{a^2}-\frac{1}{b^2}\right)\right) =0\label{eq8}
+\end{align}
+\As{$x=0$}, we see 
+\begin{align*}
+0<\frac{z^2}{c^4}\Big(\frac{1}{a^2}-\frac{1}{b^2} \Big)= \frac{-y^2}{b^4}\Big(\frac{1}{a^2}-\frac{1}{c^2} \Big)<0 \tCaC
+\end{align*}
+Because $x\neq 0$, we know there exists $(v_1,v_2,v_3)$ such that $v_1=0$ and  $v_2=1$. Substituting this back into \myref{Equation}{eq8}, we can deduce 
+\begin{align*}
+xy=0
+\end{align*}
+Because $x\neq 0$. We now know $y=0$. Again substituting this back into \myref{Equation}{eq8}, we have 
+\begin{align*}
+\frac{x^2}{a^4}\Big(\frac{1}{b^2}-\frac{1}{c^2} \Big)= \frac{z^2}{c^4} \Big(\frac{1}{a^2}-\frac{1}{b^2} \Big)
+\end{align*}
+Substituting $y=0$ back into  \myref{Equation}{eq3}, we now see 
+\begin{align*}
+\frac{x^2}{a^2}+ \frac{z^2}{c^2}=1
+\end{align*}
+We can now solve for $x^2,z^2$ in terms of  $a,b,c$, using only linear algebra. The solution is 
+ \begin{align*}
+x^2= a^2 \frac{b^2-a^2}{c^2-a^2}\text{ and }z^2= c^2\frac{c^2-b^2}{c^2-a^2} \odone
+\end{align*}
+\end{proof}
 
 
 
@@ -4470,5 +4547,110 @@ We conclude that the length of the segment is
 
 
 \end{proof}
+\chapter{The Intrinsic Geometry of Surfaces}
+\section{Isometry}
+\begin{definition}
+\textbf{(Definition of Isometry)} Given two regular surface $S,\overline{S}$, we say map $\phi:S\rightarrow \overline{S}$ is an \textbf{isometry} if 
+\begin{enumerate}[label=(\alph*)]
+  \item $\phi$ is a diffeomorphism 
+  \item $w_1\cdot w_2= d\phi_p (w_1)\cdot d\phi_p (w_2) $ for all $p \in S$ and $w_1,w_2 \in T_pS$
+\end{enumerate}
+\end{definition}
+\begin{mdframed}
+Suppose $q \in \overline{S}$ and $v_1,v_2 \in T_q \overline{S}$ and $\phi (p)=q$. One can check 
+\begin{align*}
+v_1\cdot v_2 &=  d\phi_p \circ (d\phi_p)^{-1} v_1\cdot d\phi_p \circ (d\phi_p)^{-1} v_2\\
+&=(d\phi_p)^{-1}v_1 \cdot (d\phi_p)^{-1}v_2\\
+&=d(\phi^{-1})_qv_1 \cdot d(\phi^{-1})_q v_2
+\end{align*}
+This established that Isometry is a symmetric relation. Checking Isometry relation is also transitive is easy.\\
+
+Note that given a diffeomorphism $\phi:S\rightarrow \overline{S}$, we have 
+\begin{align*}
+\phi\text{ is an isometry }\iff I_p(w)=I_{\phi (p)}(d\phi_p w)\text{ for all }w \in T_pS
+\end{align*}
+The converse is true, since 
+\begin{align*}
+2\langle w_1,w_2\rangle = I_p(w_1+w_2)-I_p(w_1)-I_p(w_2)
+\end{align*}
+\end{mdframed}
+\begin{Example}{\textbf{(Part of the Cylinder is Isometry to Rectangle)}}{}
+\begin{align*}
+U\triangleq \set{(u,v)\inr^2: u \in (0,2\pi)}
+\end{align*}
+Define $\textbf{x}:U\rightarrow \R^3$ and $\overline{\textbf{x}}:U\rightarrow \R^3$ by, where $w_1,w_2$ are orthonormal
+\begin{align*}
+\textbf{x}(u,v)\triangleq p_0+ uw_1+vw_2 \text{ and } \overline{\textbf{x}}(u,v)\triangleq (\cos u , \sin u , v)
+\end{align*}
+Define $S,\overline{S}$ by 
+\begin{align*}
+S\triangleq \textbf{x}(U)\text{ and } \overline{S}=\overline{\textbf{x}}(U)
+\end{align*}
+It is clear that $S,\overline{S}$ are all regular surface, as a global coordinate are already given. Define $f:\overline{S}\rightarrow S$ by 
+\begin{align*}
+f(p)\triangleq \textbf{x}\circ (\overline{\textbf{x}})^{-1}(p)
+\end{align*}
+We claim 
+\begin{align*}
+  \vi{f\text{ is an isometry from $\overline{S}$ to $S$ }}
+\end{align*}
+We first prove 
+\begin{align*}
+\blue{f\text{ is a diffeomorphism}}
+\end{align*}
+Observe 
+\begin{align*}
+  \textbf{x}^{-1} \circ f\circ \overline{\textbf{x}}=\textbf{id}\text{ and }  (\overline{\textbf{x}})^{-1}\circ  f^{-1}\circ \textbf{x}= \textbf{id}
+\end{align*}
+This conclude $f$ is diffeomorphism. $\bdone$ \\
+
+Fix $\phi \triangleq  f^{-1}= \overline{\textbf{x}}\circ \textbf{x}^{-1}$. Suppose that we are given a curve $\alpha (t)\triangleq \textbf{x}(u(t),v(t))$ lies in $S$. We wish to show 
+ \begin{align*}
+ \vi{I_\alpha (\alpha ')=I_{\phi (\alpha )}(d\phi_\alpha  \alpha ')}
+\end{align*}
+We know 
+\begin{align*}
+I_{\alpha }(\alpha ')=E (u')^2 + 2F(u')(v')+ G(v')^2
+\end{align*}
+Observe that 
+\begin{align*}
+\phi \circ \alpha (t)=\overline{\textbf{x}}(u(t),v(t))
+\end{align*}
+This implies 
+\begin{align*}
+I_{\phi \alpha }(d\phi_{\alpha }\alpha ')=\overline{E}(u')^2 + 2F(u'v')+ G(v')^2
+\end{align*}
+After checking that 
+\begin{align*}
+E&=\overline{E}=1\\
+F&=\overline{F}=0\\
+G&=\overline{G}=1 \vdone
+\end{align*}
+\end{Example}
+\begin{mdframed}
+This give us our next Theorem.
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of Local Isometry)} Note that a set open in a regular surface is again regular.\\
+
+A map $\phi$ from a set $V$ open in $S$  containing $p$ to $\overline{S}$ is a \textbf{local isometry} at $p$ if there exists $\overline{V}$ open in $\overline{S}$ such that 
+\begin{align*}
+\phi:V\rightarrow \overline{V}\text{ is an isometry }
+\end{align*}
+\end{definition}
+\begin{theorem}
+\textbf{(Existence of Local Isometry)} If there exists regular chart $\textbf{x}, \overline{\textbf{x}}$ from $U$ into $S,\overline{S}$ such that 
+\begin{align*}
+E=\overline{E}\text{ and }F=\overline{F}\text{ and }G=\overline{G}\text{ on }U
+\end{align*}
+then 
+\begin{align*}
+\overline{\textbf{x}}\circ \textbf{x}^{-1}\text{ is a local isometry }
+\end{align*}
+\end{theorem}
+\begin{definition}
+\textbf{(Definition of )}
+\end{definition}
+
 \end{document}
 

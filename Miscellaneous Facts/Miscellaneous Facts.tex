@@ -505,19 +505,53 @@ Now, because $X$ is compact and $\set{E_n}_{n\inn}$ is an open cover of $X$, we 
 \end{align}
 It is clear such $N$ works.  $\vdone$
 \end{proof}
-\section{Fourier Stuff}
-\begin{mdframed}
-Suppose $f$ is a complex valued function Riemann-Integrable on  $[-\pi,\pi]$, and 
-\begin{align*}
-  c_n&\triangleq \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x)e^{-inx}dx\\
-s_N(x)&\triangleq \sum_{n=-N}^{N} c_ne^{inx} 
-\end{align*}
-Show 
-\begin{align*}
-\frac{1}{2\pi}\int_{-\pi}^{\pi} \abso{s_N(x)}^2dx=\sum_{n=-N}^{N}\abso{c_n}^2
-\end{align*}
-\end{mdframed}
 
+\section{Exam Shit}
+\begin{align*}
+  A_{n\times n}\text{ is invertible }&\iff \text{det}(A)\neq 0\\
+                                       &\iff L_A(x)\triangleq [A_{n\times n}][x]\text{ is invertible }\\
+                                       &\iff \text{ Columns space is of dimension $n$ }\\
+                                       &\iff \text{ Row spaces is of dimension $n$ }\\
+                                       &\iff L_{A^t}(x)\triangleq [A^t][x]\text{ is invertible }\\
+                                       &\iff L_A\text{ is one-to-one }\\
+                                       &\iff L_A\text{ is onto }\\
+                                       &\iff N(L_A)\text{ is of dimension $0$ }\\
+                                       &\iff R(L_A)\text{ is of dimension $n$ }\\
+                                       &\iff \text{ the above four same things  but change $L_A$ to  $L_{A^t}$ }
+\end{align*}
+\begin{proof}
+Recall that $A^{-1}$ is the matrix defined to satisfy 
+\begin{align*}
+A^{-1}A= I
+\end{align*}
+We now see 
+\begin{align*}
+y=Ax \implies A^{-1}(y)=A^{-1}(Ax)=(A^{-1}A)x=Ix=x
+\end{align*}
+Using $\text{det}(A^{-1})\text{det}(A)=\text{det}(A^{-1}A)=\text{det}(I)=1$, it is to see that $\text{det}(A^{-1})\neq 0$. This implies the row space of $A^{-1}$ is full rank. Now, because 
+\begin{align*}
+  (AA^{-1})A= A(A^{-1}A)=AI=A
+\end{align*}
+By distribution law, we can deduce 
+\begin{align*}
+  (AA^{-1}-I)A=0
+\end{align*}
+Arbitrarily pick $x\in M_{1\times n}(\R)$. We see 
+\begin{align*}
+  [x(AA^{-1}-I)]A=0
+\end{align*}
+Because the row space of $A^{-1}$ is full rank, this give us 
+\begin{align*}
+x(AA^{-1}-I)=0
+\end{align*}
+Now, because $x$ is arbitrary, we can deduce  $AA^{-1}-I=0$, which implies 
+\begin{align*}
+  AA^{-1}=I
+\end{align*}
+This give us 
+\begin{align*}
+A^{-1}x=y \implies x=Ix=(AA^{-1})x=A(A^{-1}x)=Ay\end{align*}
+\end{proof}
 
 
 \chapter{Multi-Variable Calculus}
@@ -3359,6 +3393,373 @@ and implies
 \partial_y \partial_x g(0,0)=\partial_x \partial _y g(0,0)=0
 \end{align*}
 \end{proof}
+\section{HW6}
+\begin{question}{}{}
+\includegraphics[height=4cm,width=18cm]{hw6a1}
+\end{question}
+\begin{proof}
+Compute
+\begin{align*}
+[df_{(x,y)}]=\begin{bmatrix}
+  3x^2 & \frac{4y^3}{x}\\
+  \cos x & - \sin y
+\end{bmatrix}
+\end{align*}
+By Differentiability Theorem, it is now clear that $f$ is continuously differentiable everywhere on its domain $\set{(x,y)\inr^2 :x\neq 0}$.\\
+
+Compute the determinant 
+\begin{align*}
+\text{det}\Big(df_{(x,y)} \Big)= -3x^2 \sin y - \frac{4y^3 \cos x}{x}
+\end{align*}
+Now by Inverse Function Theorem, the set of points $(x,y)$ where we can solve for $x,y$ in terms of $u,v$ is exactly
+\begin{align*}
+\set{(x,y)\inr^2: 3x^2 \sin y + \frac{4y^3}{x}\cos x\neq 0 \text{ and }x\neq 0}
+\end{align*}
+Observe 
+\begin{align*}
+[df_{(\frac{\pi}{2}, \frac{\pi}{2})}]= \begin{bmatrix}
+  \frac{3\pi^2}{4} & \pi^2 \\
+  0 & -1
+\end{bmatrix}
+\end{align*}
+This implies the local inverse is 
+\begin{align*}
+  [d(f^{-1})_{f(\frac{\pi}{2},\frac{\pi}{2})}]=[df_{(\frac{\pi}{2},\frac{\pi}{2})}]^{-1}= \begin{bmatrix}
+    \frac{4}{3\pi^2} & \frac{4}{3}\\
+    0 & -1
+  \end{bmatrix}
+\end{align*}
+We now have 
+\begin{align*}
+\frac{\partial  u}{\partial x}= \frac{4}{3\pi^2}\text{ and }\frac{\partial u}{\partial y}= \frac{4}{3}\text{ and } \frac{\partial v}{\partial x}=0 \text{ and } \frac{\partial v}{\partial y}=-1
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw6a2}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+[df]= \begin{bmatrix}
+  u & v^2 & x & 2yv \\
+  v^3 & 2yu^6 & 6u^5y^2 & 3xv^2
+\end{bmatrix}
+\end{align*}
+By Differentiability Theorem, it is now clear that $f$ is continuously differentiable on $\R^4$.\\
+
+Compute 
+\begin{align*}
+[df_{(1,-1,1,-1)}]=\begin{bmatrix}
+  1 & 1 & 1 & 2\\
+  -1 & -2 & 6 & 3 
+\end{bmatrix}
+\end{align*}
+It is clear that the left Jacobian $\begin{bmatrix}
+  1 & 1 \\
+  -1 & -2
+\end{bmatrix}$ is invertible. Now by Implicit Function Theorem, we can conclude (a), and if we write the implicit function by $g$ we have    
+\begin{align*}
+[dg_{(u,v)}]= - \begin{bmatrix}
+  u & v^2 \\
+  v^3 & 2yu^6
+\end{bmatrix}^{-1} \circ \begin{bmatrix}
+  x & 2yv \\
+  6u^5y^2 & 3xv^2 
+\end{bmatrix}=\begin{bmatrix}
+\frac{6u^5v^2y^2-2u^6xy}{v^5-2u^7y} & \frac{3v^4x-4u^6vy^2}{v^5-2u^7y} \\
+\frac{v^3x-6u^6y^2}{v^5-2u^7y} & \frac{-3uv^2x+2v^4y}{v^5-2u^7y}
+\end{bmatrix}
+\end{align*}
+\begin{align*}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw6a3}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+[df]=\begin{bmatrix}
+  e^y & xe^y+e^z & ye^z \\
+  e^z & ze^y & xe^z+e^y
+\end{bmatrix}
+\end{align*}
+By Differentiability Theorem, it is now clear that $f$ is continuously differentiable on $\R^3$. 
+
+Compute 
+\begin{align*}
+[df_{(-1,1,1)}]=\begin{bmatrix}
+  e & 0 & e \\
+  e & e & 0
+\end{bmatrix}
+\end{align*}
+It is clear that the right Jacobian $\begin{bmatrix}
+  0 & e \\
+  e & 0
+\end{bmatrix}$ is invertible. Now, by Implicit Function Theorem, we can conclude (a), and if we write the implicit function by $g$, we have 
+\begin{align*}
+[dg_x]= -\begin{bmatrix}
+  xe^y + e^z & ye^z \\
+  ze^y & xe^z
+\end{bmatrix}^{-1} \circ \begin{bmatrix}
+e^y\\
+e^z
+\end{bmatrix}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw6a4}
+\end{question}
+\begin{proof}
+If we define $g:\R\rightarrow \R$ by  
+\begin{align*}
+g(t)\triangleq f(t)\cdot f(t)
+\end{align*}
+We have 
+\begin{align*}
+g\text{ is constant $1$ and }g'=0
+\end{align*}
+It remains to prove 
+\begin{align*}
+\vi{g'(t)=2f'(t)\cdot f(t)}
+\end{align*}
+Observe 
+\begin{align*}
+g(t)=\sum_{k=1}^n f_k^2(t)
+\end{align*}
+This implies 
+\begin{align*}
+g'(t)=\sum_{k=1}^n 2f_k(t) f'_k(t)=2f'(t)\cdot f(t)\vdone
+\end{align*}
+From the graph below, we see that $f(t)$ and $f'(t)$ orthogonal.
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw6a5}
+\end{question}
+\begin{definition}
+\textbf{(Definition of Hessian)} For all $p \in V$, we define 
+\begin{align*}
+H(p)\triangleq \begin{bmatrix}
+  f_{xx}(p) & f_{xy}(p)\\
+  f_{yx}(p) & f_{yy}(p)
+\end{bmatrix}\text{ and }D(p)\triangleq (f_{xx} \cdot f_{yy} - f_{xy}^2)(p)
+\end{align*}
+Note that $f \in \mathcal{C}^2 (V)\implies f_{xy}=f_{yx}\text{ on }V \implies H\text{ is symmetric on }V$.\\
+
+Then by Spectral Theorem, we know 
+\begin{align*}
+H\text{ has an orthonormal basis consisting of eigenvectors }
+\end{align*}
+\end{definition}
+\begin{definition}
+\textbf{(Definition of Saddle)} Given real-valued function $f$ exists on an open set $V\subseteq \R^2$ containing $p$ and is differentiable at  $p$, we say $f$ is a saddle point at $p$ if 
+ \begin{align*}
+df_p=0\text{ and }f\text{ is neither a local minimum nor a local maximum at $p$ }
+\end{align*}
+\end{definition}
+\begin{lemma}
+\label{5102}
+Given a $\alpha (t)$ that lies in $V$ and satisfy $\alpha ''=0$. We have 
+ \begin{align*}
+   (f\circ \alpha )''=\alpha '\cdot H\alpha '
+\end{align*}
+\end{lemma}
+\begin{proof}
+Using Chain Rule and the property of gradient, we can write
+\begin{align*}
+  (f\circ \alpha )'= \nabla f(\alpha )\cdot \alpha '
+\end{align*}
+This give us  
+\begin{align*}
+  (f\circ \alpha )''&= (\nabla f(\alpha ))' \cdot \alpha ' + \nabla f(\alpha )\cdot \alpha ''\\
+  &=(\nabla f(\alpha ))' \cdot \alpha '
+\end{align*}
+This reduce the problem into proving 
+\begin{align*}
+\vi{(\nabla f(\alpha ))'\cdot \alpha '=\alpha '\cdot H \alpha '}
+\end{align*}
+Express 
+\begin{align*}
+\nabla f(\alpha )=\Big( \big(\partial _x f\big)(\alpha ) , \big(\partial _yf\big)(\alpha )   \Big)
+\end{align*}
+Compute 
+\begin{align*}
+  \big(\nabla f(\alpha )\big)'=\Big( \nabla (\partial _x f)(\alpha ) \cdot \alpha ', \nabla  (\partial_y f)(\alpha )\cdot \alpha '  \Big)
+\end{align*}
+Note that 
+\begin{align*}
+\nabla (\partial _x f)=(\partial_{x x}f, \partial_{xy}f)\text{ and }\nabla (\partial_y f)=(\partial_ {yx}f, \partial_{yy}f)
+\end{align*}
+Express  $\alpha =(\alpha _1, \alpha _2)$. Compute 
+\begin{align*}
+\nabla (\partial_x f)(\alpha )\cdot \alpha ' &= \partial_{x x}f(\alpha )\cdot \alpha_1' + \partial_{xy} f(\alpha )\cdot \alpha_2' \\
+\nabla(\partial _y f)(\alpha )\cdot \alpha '&=\partial_{yx} f(\alpha )\cdot \alpha_1' + \partial_{yy}f(\alpha ) \cdot  \alpha_2' 
+\end{align*}
+We can now compute 
+\begin{align*}
+  \big(\nabla f(\alpha ) \big)' \cdot \alpha '&= \Big((\alpha_1')\partial_{x x}f(\alpha ) + (\alpha_2')\partial_{xy}f(\alpha ), (\alpha _1)' \partial_{yx}f(\alpha )+ (\alpha _2')\partial_{yy}f(\alpha )\Big) \cdot \alpha ' \\
+  &= (\alpha_1')^2 \partial_{x x}f(\alpha ) + 2(\alpha _1' \alpha _2')\partial_{xy} f(\alpha )+ (\alpha_2')^2 \partial_{yy}f(\alpha )\\
+  &= \alpha' \cdot H \alpha '\vdone
+\end{align*}
+\end{proof}
+\begin{lemma}
+\label{5103}
+\textbf{(Property of $H$)} 
+\begin{enumerate}[label=(\alph*)]
+  \item If $D>0$ and  $f_{xx}>0$, then $H$ is positive definite.
+  \item If $D>0\text{ and }f_{xx}<0$, then $H$ is negative definite. 
+  \item If $D<0$, then $H$ has a positive and a negative eigenvalue.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Observe that $\text{det}(H)=D$. This let us write the characteristic polynomial of $H$ by
+\begin{align*}
+t^2 - (\partial_{xx}f+ \partial _{yy}f)t + D
+\end{align*}
+Then we know the eigenvalues are 
+\begin{align*}
+  t= \frac{(\partial_{xx}f+\partial_{yy}f)\pm \sqrt{(\partial_{xx}f+\partial_{yy}f)^2- 4D} }{2}
+\end{align*}
+Now, if
+\begin{align*}
+\partial_{xx}f\partial_{yy}f- (\partial_{xy}f)^2 =D>0
+\end{align*}
+Then we have 
+\begin{align*}
+\partial_{xx}f\partial_{yy}f>0
+\end{align*}
+Moreover, if $\partial_{xx}f>0$, we can deduce 
+\begin{align*}
+\partial_{xx}f+\partial_{yy}f>0
+\end{align*}
+Then from the formula of the eigenvalues $t$, because $D>0$, regardless of the sign of the square-root term, we have 
+\begin{align*}
+t>0
+\end{align*}
+Note that $t\inr$ by Spectral Theorem.\\
+
+Similarly, if $D>0$ and $\partial_{xx}f<0$, then $t<0$, and if $D<0$, then the two eigenvalues are of opposite signs and non-zero.\\
+
+Now, if $D>0\text{ and }f_{xx}>0$, the two eigenvalues of $H$ are all positive. Fix the orthonormal basis $\set{e_1,e_2}$ corresponding to eigenvalues $t_1,t_2>0$. We see that for all $c_1e_1+c_2e_2\neq 0\inr^2$
+ \begin{align*}
+   (c_1e_1+c_2e_2)\cdot H(c_1e_2+c_2e_2)= t_1c_1^2 + t_2c_2^2 >0
+\end{align*}
+Similarly, if $D>0\text{ and }f_{xx}<0$ , the two eigenvalues of $H$ are negative, which leads to 
+\begin{align*}
+  (c_1e_1+c_2e_2)\cdot H(c_1e_1+c_2e_2)=t_1c_1^2 +t_2c_2^2<0
+\end{align*}
+
+
+
+
+
+
+\end{proof}
+\begin{proof}
+\textbf{($D>0\text{ and }\partial_{xx}f(a,b)>0$ Case)} Because $f\in\mathcal{C}^2(V)$, we know there exists $B_\epsilon (a,b)$ such that $D$ and $\partial _{xx}f$ are positive on  $B_\epsilon (a,b)$. We claim 
+\begin{align*}
+  \vi{f(a,b)=\min_{(x,y)\in B_\epsilon (a,b)}f(x,y)}
+\end{align*}
+Fix $(c,d)\in B_{\epsilon }(a,b)$. We reduce the problem into proving 
+\begin{align*}
+  \vi{f(a,b)\leq f(c,d)}
+\end{align*}
+Let $\gamma: [-1,1]\rightarrow B_{\epsilon }(a,b)$ be the line joining $(2a-c,2b-d)$ and $(c,d)$ 
+\begin{align*}
+\gamma (t)\triangleq \Big(a+(c-a)t, b+(d-b)t \Big)
+\end{align*}
+Note that $\gamma''=0$ and $\gamma (0)=(a,b)$. Now by \myref{Lemma}{5102} and \myref{Lemma}{5103}, we have 
+\begin{align*}
+  (f\circ \gamma )''>0\text{ on $[-1,1]$ }
+\end{align*}
+This implies $f\circ \gamma  $ is convex on $[-1,1]$. Compute using $\nabla f(a,b)=0$
+ \begin{align*}
+   (f\circ \gamma )'(0)=df_{(a,b)}(c-a,d-b)=\nabla f(a,b)\cdot (c-a,d-b)=0 
+\end{align*}
+This then implies 
+\begin{align*}
+  (f\circ \gamma )(0)\text{ is minimum on $[-1,1]$ }\vdone
+\end{align*}
+\end{proof}
+
+\begin{proof}
+\textbf{($D>0\text{ and }\partial_{xx}f(a,b)<0$ Case)} Because $f\in\mathcal{C}^2(V)$, we know there exists $B_\epsilon (a,b)$ such that $D$ is positive and $\partial _{xx}f$ is negative on  $B_\epsilon (a,b)$. We claim 
+\begin{align*}
+  \blue{f(a,b)=\max_{(x,y)\in B_\epsilon (a,b)}f(x,y)}
+\end{align*}
+Fix $(c,d)\in B_{\epsilon }(a,b)$. We reduce the problem into proving 
+\begin{align*}
+  \blue{f(a,b)\geq  f(c,d)}
+\end{align*}
+Let $\gamma: [-1,1]\rightarrow B_{\epsilon }(a,b)$ be the line joining $(2a-c,2b-d)$ and $(c,d)$ 
+\begin{align*}
+\gamma (t)\triangleq \Big(a+(c-a)t, b+(d-b)t \Big)
+\end{align*}
+Note that $\gamma''=0$ and $\gamma (0)=(a,b)$. Now by \myref{Lemma}{5102} and \myref{Lemma}{5103}, we have 
+\begin{align*}
+  (f\circ \gamma )''<0\text{ on $[-1,1]$ }
+\end{align*}
+This implies $f\circ \gamma  $ is concave on $[-1,1]$. Compute using $\nabla f(a,b)=0$
+ \begin{align*}
+   (f\circ \gamma )'(0)=df_{(a,b)}(c-a,d-b)=\nabla f(a,b)\cdot (c-a,d-b)=0 
+\end{align*}
+This then implies 
+\begin{align*}
+  (f\circ \gamma )(0)\text{ is maximum on $[-1,1]$ }\bdone
+\end{align*}
+\end{proof}
+\begin{proof}
+\textbf{($D<0$ Case)} From $\nabla f(a,b)=0$, we know $df_{(a,b)}=0$. This reduce the problem into proving 
+\begin{align*}
+\vi{(a,b)\text{ is not a local extremum }}
+\end{align*}
+Fix $\epsilon $ such that $D<0$ on  $B_{\epsilon }(a,b)$. We prove 
+\begin{align*}
+  \vi{\min_{(x,y)\in B_\epsilon (a,b)}f(x,y) <f(a,b)< \max_{(x,y)\in B_{\epsilon }(a,b)}f(x,y)}
+\end{align*}
+Fix two curve $\alpha ,\beta :(-\epsilon ,\epsilon )\rightarrow \R^2$ by
+\begin{align*}
+\alpha (t)\triangleq (a,b)+te_1\text{ and }\beta (t)\triangleq (a,b)+te_2
+\end{align*}
+where $e_1,e_2$ are the eigenvectors of  $H(p)$, $e_1$ correspond to the positive eigenvalue and $e_2$ correspond to the negative eigenvalue. \\
+
+Compute using \myref{Lemma}{5103}
+\begin{align*}
+  (f\circ \alpha )''(0)>0 \text{ and }(f\circ \beta  )''(0)<0
+\end{align*}
+Because $(f\circ \alpha )''$ and $(f\circ \beta )''$ is continuous, we know $(f\circ \alpha )''>0$ and $(f\circ \beta )''<0$ on a small enough interval $I$ containing $0$. In other words 
+\begin{align*}
+  (f\circ \alpha )\text{ is strictly convex and }(f\circ \beta )\text{ is strictly concave on $I$ }
+\end{align*}
+Again, we know $(f\circ \alpha )'(0)=\nabla f(a,b)\cdot e_1=0$ and, similarly, $(f\circ \beta )'(0)=0$. We can now deduce 
+\begin{align*}
+  \begin{cases}
+    f\circ \alpha \\
+    f\circ \beta 
+  \end{cases}\text{ reach }\begin{cases}
+    \text{ strict minimum }\\
+     \text{ strict maximum }
+  \end{cases}\text{ at $p$ on  $I$ }
+\end{align*}
+The former implies $f(a,b)< \max_{(x,y)\in B_\epsilon (a,b)}f(x,y)$, and the latter implies $f(a,b)> \min_{(x,y)\in B_{\epsilon }(a,b)}f(x,y)$. $\vdone$ 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw6a6}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=4cm,width=18cm]{hw6a7}
+\end{question}
+\begin{question}{}{}
+\includegraphics[height=4cm,width=18cm]{hw6a8}
+\end{question}
+
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw6a9}
+\end{question}
+
+\begin{question}{}{}
+\includegraphics[height=4cm,width=18cm]{hw6a10}
+\end{question}
 \chapter{ODE}
 \section{Solution 2}
 \begin{mdframed}
@@ -3807,4 +4208,425 @@ U=\R^2\text{ and }S^2=\set{(x,y,z):x^2+y^2+z^2}
 \end{Example}
 \end{mdframed}
 
+\chapter{Archived Materials}
+
+\section{Equivalent Definitions for Riemann Integral}
+\begin{mdframed}
+In this section, we will give a principal Theorem (\myref{Theorem}{1}) that can serve as a lemma to prove the equivalency of multiple different definitions of Riemann integral on a compact interval. With this approach, we shall diminish the trouble of getting through miscellaneous minor definitions, where they are all equivalent, with only the difference of taking different tags and partitions of certain pattern, which solely serve as a pedagogical tool to give students a concrete idea of integration.\\
+
+A caveat will be made clear here: this section concern only the proper Riemann Integral. That is, we only consider the integration of a function bounded on a compact interval. For a treatment of inproper integral, see \myref{Section}{s1}.\\
+
+In this section, by a \textbf{partition} $P$ of $[a,b]$, we mean a finite set of values $P=\set{a=x_0 \leq  x_1 \leq  \cdots \leq  x_{n_P-1} \leq x_{n_P} =b}$. We say the partition $P'$ is \textbf{finer} than $P$ if $P\subseteq P'$. Given a partition $P$, we put
+\begin{align*}
+\begin{cases}  
+M_i=\sup_{[x_{i-1},x_i]} f(x)\\
+m_i=\inf_{[x_{i-1},x_i]}f(x)
+\end{cases}\text{and }\begin{cases}
+  U(P,f)=\sum_{i=1}^{n_P} M_i \Delta x_i\\
+  L(P,f)=\sum_{i=1}^{n_P}m_i\Delta x_i
+\end{cases}\text{ where }\Delta x_i= x_i-x_{i-1}
+\end{align*}
+We shall write $n$ instead of $n_P$ if no confusion will be made.\\
+
+
+The word \textbf{norm of partition} $\norm{P}$ is defined by $\max_{1\leq i\leq n} \Delta x_i$. We say $U(P,f)$ is an \textbf{upper sum} of $f$. We say the \textbf{upper integral} $\overline{\int_a^b}fdx$ of $f$ on $[a,b]$ is $\inf_P U(P,f)$ where the infimum run through all partitions $P$ of $[a,b]$. The \textbf{lower integral} $\underline{\int_a^b}fdx$ is defined similarly. We say a function $f$ is \textbf{integrable} on $[a,b]$ if   $\overline{\int_a^b}fdx=\underline{\int_a^b}fdx$.\\
+
+Give close attention to the setting that $P$ is finite. This is crucial for making the integration operation possible, since if  $P$ is countable and we define $U(P,f)$ by taking limits for sums, the order of addition can make a difference if the sum does not converge absolutely. This fact is backed by Riemann Rearrangement Theorem  (\myref{Theorem}{t4}), of which we will later give a proof.
+\end{mdframed}
+\begin{theorem}
+\label{1}
+\textbf{(Principal for Proving Equivalency of Definitions for Riemann Integral)} 
+\begin{align*}
+\int_a^b fdx\inr \iff  \forall \set{P_k} : \norm{P_k}\to 0, U(P_k,f)-L(P_k,f)\to 0
+\end{align*}
+\end{theorem}
+\begin{proof}
+From right to left is obvious. We prove only 
+\begin{align*}
+  \vi{\int_a^b fdx\inr \implies   \forall \set{P_k} : \norm{P_k}\to 0, U(P_k,f)-L(P_k,f)\to 0}
+\end{align*}
+Fix $\epsilon $. We wish to find a positive number $\beta \inr^+$ such that $\forall P: \norm{P}\leq \beta , U(P,f)-L(P,f)<\epsilon $. Because $\int_a^b fdx \inr$, we can let $W$ be a partition such that 
+\begin{align*}
+U(W,f)-L(W,f)<\frac{\epsilon}{2}
+\end{align*}
+Let $W=\set{a=x_0^*,x_1^*,\dots ,x_{n_W}^*=b}$, and let $J=\set{1,\dots ,n_W}$ be the set of indices of $W$. Suppose
+\begin{align}
+\label{e1}
+L= \max_{1\leq j\leq n_W-1} \big(\sup_{[x_{j-1}^*,x_{j+1}^*]} f(x)- \inf_{[x_{j-1}^*,x_{j+1}^*]} f(x) \big)
+\end{align}
+Notice that if $L=0$, then  $f$ must be constant and the proof become trivial, so we can assume $L>0$. We claim that 
+\begin{align*}
+L\beta n_W\leq \frac{\epsilon}{2}\text{ and }\beta < \min_{j \in J}\Delta x_j
+\end{align*}
+suffice so that $\forall P:\norm{P}\leq \beta , U(P,f)-L(P,f)<\epsilon $. Let $C= \min_{j \in J}\Delta x_j$. In other words, we now reduce the problem into proving 
+\begin{align*}
+  \vi{ \norm{P} \leq \min \set{\frac{\epsilon }{2Ln_W },C} \implies U(P,f)-L(P,f)<\epsilon }
+\end{align*}
+Let $I=\set{1,\dots , n_P}$ be the set of indices for $P$. Suppose 
+\begin{align*}
+P=\set{a=x_0,x_1,\dots ,x_{n_P}=b}
+\end{align*}
+We partition $I$ into 
+\begin{align*}
+\begin{cases}
+  A=\bset{i \in I : \exists j \in J,  [x_{i-1},x_i]\subseteq [x_{j-1}^*,x_j^*]}\\
+  B=I \setminus  A
+\end{cases}
+\end{align*}
+We now have 
+\begin{align}
+\label{e2}
+U(P,f)-L(P,f)= \sum_{i \in A} \big(M_i-m_i \big) \Delta x_i +\sum_{i \in B} \big(M_i-m_i \big)\Delta x_i
+\end{align}
+Because for each $i\in A$, there is a unique corresponding $j \in J$ such that $[x_{i-1},x_i] \subseteq [x_{j-1}^*,x_j^*]$, we have 
+\begin{align}
+  \label{e3}
+\sum_{i \in A} \big( M_i-m_i\big) \Delta x_i \leq \sum_{j \in J} \big(M_j^W-m_j^W \big) \Delta x_j^* = U(W,f)-L(W,f)< \frac{\epsilon}{2}
+\end{align}
+Because $\norm{P}\leq C=\min_{j \in J} \Delta x_j$, we know for each distinct $i \in B$, there exists a distinct $ j \in J$ such that $[x_{i-1},x_i]\subseteq [x_{j-1}^*, x_{j+1}^*]$, so by definition of $L$  (\myref{Equation}{e1}), we have 
+\begin{align}
+\label{e4}
+\sum_{i \in B} \big(M_i-m_i \big) \Delta x_i \leq L\sum_{i \in B} \Delta x_i \leq L n_W \norm{P} \leq \frac{\epsilon }{2} 
+\end{align}
+Combining  \myref{Equation}{e2}, \myref{Equation}{e3} and \myref{Equation}{e4}, we now see 
+\begin{align*}
+U(P,f)-L(P,f) <\epsilon \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Recall that we say a series $\sum_{n=1}^\infty a_n$ \textbf{absolutely converge} if $\sum_{n=1}^\infty \abso{a_n} $ converge. We can show that a series converges if it absolutely converges by proving it is Cauchy. In this section, by a \textbf{permutation on $\N$}, we mean a bijective function $\sigma$ from $\N$ to $\N$. Another two important terminologies are the followings. We say that $\sum_{n=1}^\infty a_n$ \textbf{unconditionally converge} if for all permutation $\sigma:\N\rightarrow \N$, the series $\sum_{n=1}^\infty a_{\sigma(n)}$ converge to the same number. We say $\sum_{n=1}^\infty a_n$ \textbf{conditionally converge} if it converge but not unconditionally.\\
+
+In our treatment, Riemann Rearrangement Theorem will be split into 4 parts. The summary is at \myref{Theorem}{t4}. The first part (\myref{Theorem}{2}) states that the limit an absolutely convergent series remain the same under any permutations. The proof for the first part (\myref{Theorem}{2}) may seem technical, but the essence is quite easy to remember. Just "see" that 
+\begin{align*}
+  \abso{\sum_{k=1}^\infty a_{\sigma (k)}-L}&\leq \abso{\sum_{i<M}a_i -L + \sum_{i\geq M}a_i}\\
+&\leq \abso{\sum_{i<M}a_i-L }+\sum_{i\geq M} \abso{a_i} \to 0 \text{ as $M\to 0$ }
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{2}
+\textbf{(Riemann Rearrangement Theorem, Part 1)}  
+\begin{align*}
+\sum_{k=1}^\infty a_k \text{ absolutely converge }\implies  \sum_{k=1}^\infty a_k \text{ unconditionally converge }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Suppose $\sum_{k=1}^\infty \abso{x_k}$ converge. Let $\sum_{k=1}^\infty x_k=L$. Fix permutation $\sigma :\N\rightarrow \N$. We wish to prove 
+\begin{align*}
+  \vi{\sum_{k=1}^\infty x_{\sigma(k)}=L}
+\end{align*}
+Fix $\epsilon $. We reduce the problem into  
+ \begin{align*}
+   \vi{\text{ finding $N$ such that }\forall n>N, \abso{\sum_{k=1}^n x_{\sigma (k)}- L} <\epsilon }
+\end{align*}
+Because both $\sum_{k=1}^\infty x_k$ and $\sum_{k=1}^\infty \abso{x_k}$ converge by premise. We know there exists $M$ such that 
+\begin{align}
+\label{e5}
+  \forall n>M, \abso{\sum_{k=1}^n x_k -L}<\frac{\epsilon}{2}\text{ and } \sum_{k=n}^\infty \abso{x_k}<\frac{\epsilon}{2}
+\end{align}
+Let 
+\begin{align*}
+I=\sigma^{-1}\big(\set{1,\dots ,M} \big)\text{ and }N=\max I
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+To prove our claim, fix $n>N$. We wish to show 
+ \begin{align*}
+   \vi{\abso{\sum_{k=1}^n x_{\sigma (k)}-L}<\epsilon }
+\end{align*}
+Let $I_n=\set{1,\dots , n}$. Observe that 
+\begin{align}
+\label{e6}
+\abso{\sum_{k=1}^n x_{\sigma(k)}-L}&= \abso{\sum_{k \in I_n \setminus I} x_{\sigma (k)}+ \sum_{k \in I} x_{\sigma (k)} - L }
+\end{align}
+Notice that $k \not \in I \implies  \sigma (k)>M$. Then by definition of $M$  (\myref{Equation}{e5}), we have
+\begin{align}
+  \label{e7}
+\abso{\sum_{k \in I_n \setminus I} x_{\sigma (k)} }\leq \sum_{k \in I_n \setminus  I} \abso{x_{\sigma(k)}}\leq \sum_{j>M}^\infty \abso{x_j}< \frac{\epsilon}{2}
+\end{align}
+Notice that $\sigma [I]=\set{1,\dots , M}$. Then also by definition of $M$  (\myref{Equation}{e5}), we have 
+\begin{align}
+\label{e8}
+\abso{\sum_{k \in I}x_{\sigma(k)}- L}= \abso{\sum_{j=1}^M x_j-L}< \frac{\epsilon}{2}
+\end{align}
+Then by inequalities \myref{Equation}{e6}, \myref{Equation}{e7} and \myref{Equation}{e8}, we now have 
+\begin{align*}
+\abso{\sum_{k=1}^n a_{\sigma(k)}-L} &= \abso{\sum_{k \in I_n \setminus I}x_{\sigma(k)} + \sum_{k \in I} x_{\sigma(k)}-L}\\
+&\leq \abso{\sum_{k \in I_n \setminus I}x_{\sigma(k)}}+\abso{\sum_{k \in I} x_{\sigma(k)}-L} \\
+&< \frac{\epsilon }{2}+\frac{\epsilon}{2}=\epsilon \vdone 
+\end{align*}
+\end{proof}
+\begin{mdframed}
+The second, third and forth parts (\myref{Theorem}{t1}, \myref{Theorem}{t2} and \myref{Theorem}{t3}), respectively states that if a series converge but not absolutely, then the limit value can be changed to any real number, infinite, negative infinite and even jumping-ly diverges.\\
+
+The detail of the proof is very tedious and cumbersome, while the essence is easy to understand. The only two tools for proving \myref{Theorem}{t1}, \myref{Theorem}{t2} and \myref{Corollary}{t3}, is \myref{Lemma}{l1} and the fact $\sum a_k\to L \implies a_k\to 0$. If any part of the proof can be considered interesting, I believe it lies in that of \myref{Lemma}{l1}, where one split the series $\sum a_k$ into two $\sum a_k^+,\sum a_k^-$, and shows that they must both diverge. 
+\end{mdframed}
+\begin{lemma}
+\label{l1}
+\textbf{(Intrinsic Structure of Series that Converge but not Absolutely)} Let $f^+:\N\rightarrow \N$ and $f^-:\N\rightarrow \N$ satisfy that $\set{a_{f^+(n)}}$ contain all and only positive terms of $\set{a_n}$ and $\set{a_{f^-(n)}}$ contain all and only negative terms. If $\sum_{k=1}^\infty a_k$ converge but not absolutely, then for each $\alpha \inr^+$ and $n\inn$, there exists  $u_n>n$ and $t_n>n$ such that 
+\begin{align*}
+\sum_{n\leq k\leq u_n} a_{f^+(k)}>\alpha \text{ and }\sum_{n\leq k\leq t_n}a_{f^-(k)}<-\alpha 
+\end{align*}
+\end{lemma}
+\begin{proof}
+Let $a_n^+=\max \set{0,a_n}$ and $a_n^-=\min \set{0,a_n}$. It is easy to check $\forall n\inn, a_n=a_n^++a_n^-$. Because $\sum_{k=1}^\infty a_k$ converge but not absolutely, we know 
+\begin{align}
+\label{e9}
+\begin{cases}
+  \sum_{k=1}^\infty a_k^+\to\infty\\
+  \sum_{k=1}^\infty a_k^-\to-\infty
+\end{cases}
+\end{align}
+This is true because if both of them converge then $\sum_{k=1}^\infty \abso{a_k}$ converges and if only one of them converge them $\sum_{k=1}^\infty a_k$ diverges.\\
+
+
+Because of  \myref{Equation}{e9}, we know 
+\begin{align*}
+\begin{cases}
+  \sum_{k=1}^\infty a_{f^+(k)}\to \infty\\
+  \sum_{k=1}^\infty a_{f^-(k)}\to -\infty
+\end{cases}
+\end{align*}
+The result then follow, since 
+\begin{align*}
+\forall n\inn, \sum_{k\geq n}a_{f^+(k)}\nearrow \infty \text{ and }\sum_{k\geq n}a_{f^-(k)}\searrow -\infty
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{t1}
+\textbf{(Riemann Rearrangement Theorem, Part 2)} If $\sum_{k=1}^\infty a_k$ converge but not absolutely, then there exists permutations $\sigma_{\infty}, \sigma_{-\infty}:\N\rightarrow \N$ such that $\sum_{k=1}^\infty a_{\sigma_\infty(k)}\to\infty$ and $\sum_{k=1}^\infty a_{\sigma_{-\infty}(k)}\to-\infty$. 
+\end{theorem}
+\begin{proof}
+We wish
+\begin{align*}
+\vi{\text{ to construct $\sigma_{\infty}:\N\rightarrow \N$ such that  $\sum_{k=1}^\infty a_{\sigma_{\infty}(k)}\to\infty$}}
+\end{align*}
+Using \myref{Lemma}{l1}, construct $\sigma_{\infty}:\N\rightarrow \N$ as follows. Let $p_n$ be a sequence of natural number such that for each $n\inn$, $p_{n+1}$ is the smallest natural number such that 
+\begin{align}
+\label{e10}
+\sum_{k=p_n+1}^{p_{n+1}} a_{f^+(k)}> 3\text{ and }p_1=0
+\end{align}
+Similarly, let $q_n$ be a sequence of natural number such that for each $n\inn,q_{n+1}$ is the smallest natural number such that 
+\begin{align}
+\label{e11}
+\sum_{k=q_n+1}^{q_{n+1}}a_{f^-(k)}<-1\text{ and }q_1=0
+\end{align}
+Notice that the definition of $p_n$ and  $q_n$ (\myref{Equation}{e10}, \myref{Equation}{e11}) are done recursively. Now, recursively define $\sigma_{\infty}$ to follow the order
+\begin{align*}
+&f^+(p_1+1),\dots,f^+(p_2),f^-(q_1+1),\dots ,f^-(q_2)\\
+  \longrightarrow &  f^+(p_2+1),\dots ,f^+(p_3),f^-(q_2+1),\dots ,f^-(q_3),f^+(p_3+1),\dots 
+\end{align*}
+If there exists  $k\inn$ such that $a_k=0$, which is not in the range $f^+[\N]\cup f^-[\N]$, we can merge these zero term into our $\sigma_{\infty}$ by putting them in terms of even order. This way, our $\sigma_{\infty}$ then become bijecetive, a permutation.\\
+
+We claim 
+\begin{align*}
+  \vi{\text{ such }\sigma_{\infty}\text{ works }}
+\end{align*}
+Recall the definition of $p_n$ (\myref{Equation}{e10}) is that for each  $n\inn,p_{n+1}$ is the smallest natural number such that
+\begin{align*}
+\sum_{k=p_{n}+1}^{p_{n+1}}a_{f^+(k)}>3 
+\end{align*}
+Also recall the similarly defined $q_n$. This tell us 
+\begin{align*}
+\sum_{k=p_n+q_n+1}^{p_{n+1}+q_{n+1}}a_{\sigma_{\infty}(k)}\to 2\text{ as $n\to \infty$ }
+\end{align*}
+where 
+\begin{align*}
+\sum_{k=p_n+q_n+1}^{p_{n+1}+q_n}a_{\sigma_\infty(k)}\to 3\text{ and }\sum_{k=p_{n+1}+q_n+1}^{p_{n+1}+q_{n+1}}a_{\sigma_\infty(k)}\to -1\text{ as $n \to \infty$ }
+\end{align*}
+With this, it is easy to verify $\sum_{k=1}^\infty a_{\sigma_{\infty}(k)} \to \infty\vdone$. The construction of $\sigma_{-\infty}$ and the proof for its validity is done similarly. 
+\end{proof}
+\begin{theorem}
+\label{t2}
+\textbf{(Riemann Rearrangement Theorem, Part 3)} If $\sum_{k=1}^\infty a_k$ converges but not absolutely, then for all $[L,M]\subseteq \R$, there exists a permutation $\sigma:\N\rightarrow \N$ such that $\liminf_{n\to\infty} \sum_{k=1}^n a_{\sigma(k)}=L\text{ and }\limsup_{n\to\infty} \sum_{k=1}^n a_{\sigma(k)}=M$.
+\end{theorem}
+\begin{proof}
+We wish 
+\begin{align*}
+\vi{\text{ to construct a working $\sigma$ }}
+\end{align*}
+The construction of $\sigma$ is similar to that of $\sigma_{\infty}$ in \myref{Theorem}{t1}. WOLG, let $M>0$. Let $p_1=0$, and let  $p_2$ be the smallest natural number such that 
+ \begin{align*}
+\sum_{k=1}^{p_2}a_{f^+(k)}>M\text{ and }p_1=0
+\end{align*}
+Next, define $q_1=0$ and let $q_2$ be the smallest natural number such that 
+ \begin{align*}
+\sum_{k=1}^{p_2}a_{f^+(k)}+\sum_{k=1}^{q_2} a_{f^-(k)}<L
+\end{align*}
+Then, let $p_3$ be the smallest natural number such that 
+\begin{align*}
+\sum_{k=1}^{p_3}a_{f^+(k)}+\sum_{k=1}^{q_2}a_{f^-(k)}>M
+\end{align*}
+Recursively do such. We get two sequences $\set{p_n},\set{q_n}$ of natural number such that for all $n\inn,p_{n+1}$ is the smallest natural number such that 
+\begin{align*}
+\sum_{k=1}^{p_{n+1}} a_{f^+(k)} +\sum_{k=1}^{q_n}a_{f^-(k)}>M
+\end{align*}
+and for all $n\inn,q_{n+1}$ is the smallest natural number such that 
+\begin{align*}
+\sum_{k=1}^{p_{n+1}}a_{f^+(k)} + \sum_{k=1}^{q_{n+1}} a_{f^-(k)}<L
+\end{align*}
+Them, recursively define $\sigma$ to follow the order 
+\begin{align*}
+&f^+(p_1+1),\dots,f^+(p_2),f^-(q_1+1),\dots ,f^-(q_2)\\
+  \longrightarrow &  f^+(p_2+1),\dots ,f^+(p_3),f^-(q_2+1),\dots ,f^-(q_3),f^+(p_3+1),\dots 
+\end{align*}
+Again, merge in the zero terms like in   \myref{Theorem}{t1}. The proof for the claim  \vi{such $\sigma$ works } is easy to verify knowing $a_{\sigma(k)}\to 0\vdone$ 
+\end{proof}
+\begin{corollary}
+\label{t3}
+\textbf{(Riemann Rearrangement Theorem, Part 4)} If $\sum_{k=1}^\infty a_k$ converges but not absolutely, then for all $L \inr$, there exists a permutation $\sigma$ such that $\sum_{k=1}^\infty a_{\sigma(k)}=L$
+\end{corollary}
+\begin{theorem}
+\label{t4}
+\textbf{(Summary of Riemann Rearrangement Theorem)} If $\sum_{k=1}^\infty a_k$ converge, then 
+\begin{align*}
+\sum_{k=1}^\infty a_k\text{ absolutely converges }\iff  \sum_{k=1}^\infty a_k\text{ unconditionally converges }
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\longrightarrow)$\\
+
+This is \myref{Theorem}{2}.\\
+
+$(\longleftarrow)$\\
+
+The fact that the contraposition of this  statement is true is implied by any of \myref{Theorem}{t1}, \myref{Theorem}{t2} and \myref{Corollary}{t3}. 
+\end{proof}
+\section{Equivalent axiomazations}
+\begin{mdframed}
+In the first lecture of Topology, we learned that a topological space $(X,\tau)$ is a space $X$ with a topology  $\tau \subseteq \power{X}$ such that $\tau$ satisfy the following three axioms.
+\begin{align}
+\label{1.1}
+\begin{cases}
+X,\varnothing \in \tau\\
+\forall O,Y \in \tau, O \cap Y \in \tau\text{ (Closed under finite intersection) }\\
+\forall T \subseteq \power{\tau}, \bigcup T \in \tau\text{ (Closed under arbitrary union) }
+\end{cases}
+\end{align}
+It is only after the explicit listing of the above three of open sets, we then start defining "closed sets", "neighborhoods", "continuous functions", "compact sets" or "connected sets" based on open sets.\\
+
+Although this approach, axiomatization via open sets, is mathematically sufficient, in history, there are other axiomatization proved to be equivalent to the traditional axiomaization via open sets.\\
+
+In this section, we will give other three axiomatizations of topology, via neighborhood systems, via nets and via filters, and show they are equivalent with each other.\\
+
+In this note, a \textit{neighborhood system} is a function $\mathcal{N}:X\rightarrow \power{\power{X}}$. We shall first show that there exists an explicit one-to-one correspondence between collection of topologies on $X$ and collection of neighborhood systems that satisfy the following axioms.  
+\end{mdframed}
+\begin{axiom}
+\label{1.1.1}
+\textbf{(Axioms of neighborhood systems)} 
+\begin{align*}
+\begin{cases}
+\forall x\in X, \mathcal{N}(x)\neq \varnothing \text{ (Non empty) }\\
+\forall x\in X, \forall M \in \mathcal{N}(x), x \in M\text{ (Around) }\\
+\forall x \in X, \forall M\subseteq X, \exists N \in \mathcal{N}(x), N\subseteq M \implies M \in \mathcal{N}(x)\text{(Closed under superset)}\\
+\forall x \in X, \forall M,N \in \mathcal{N}(x), M \cap  N \in \mathcal{N}(x)\text{(Closed under finite intersection)}\\
+\forall x \in X, \forall M\in \mathcal{N}(x), \exists N \in \mathcal{N}(x), N \subseteq M \text{ and } \forall y \in N, M \in \mathcal{N}(y)\text{(Open neighborhood)}
+\end{cases}
+\end{align*}
+\end{axiom}
+\begin{mdframed}
+Suppose $C$ is the collection of topologies on $X$ and $D$ is the collection of neighborhood systems that satisfy \myref{Axioms}{1.1.1}. Now we wish to prove that the function $f:C\rightarrow D$
+\begin{align}
+\label{1.2}
+\tau \mapsto  \mathcal{N}_\tau\text{ where }\mathcal{N}_\tau (x)= \set{A \in \power{X}: \exists O \in \tau, x \in O \subseteq A}
+\end{align}
+is bijective. In order to prove this, we first have to prove that $f$ is well-defined, meaning for each topology $\tau$, the function $\mathcal{N}_\tau$ is indeed a neighborhood system that satisfy the above axioms. This is easy, which we will omit here. It remains that we have to prove two statements: $f$ is one-to-one, and  $f$ is onto.
+\end{mdframed}
+\begin{theorem}
+\label{1.1.2}
+\textbf{($f$ in \myref{Equation}{1.2} is one-to-one)} As titled. 
+\end{theorem}
+\begin{proof}
+Suppose $\tau$ and $\tau'$ are two different topologies on $X$. WOLG, suppose $O \in \tau \setminus \tau'$. By definition of $f$ (\myref{Equation}{1.2}), we know 
+\begin{align*}
+\forall x \in O, O \in \mathcal{N}_\tau (x)
+\end{align*}
+This means, to prove $\mathcal{N}_\tau \neq \mathcal{N}_{\tau'}$, we only have to prove the existence of some $x \in O$ such that $O \not\in \mathcal{N}_\tau (x)$. \As{$\forall x \in O, O \in \mathcal{N}_{\tau'}(x)$}. By definition of $f$ (\myref{Equation}{1.2}), we can deduce $\forall x \in O, \exists A_x \in \tau', x \in A_x \subseteq O$. It is easy to verify that $O= \bigcup_{x\in O} A_x$. Then by \myref{Axiom}{1.1} of open sets , we $O=\bigcup_{x \in O}A_x \in \tau'\tCaC$ to that $O \in \tau \setminus \tau'$. 
+\end{proof}
+\begin{mdframed}
+To prove $f$ is onto is a little bit complicated. 
+\end{mdframed}
+
+\begin{theorem}
+\label{1.1.3}
+\textbf{($f$ in \myref{Equation}{1.2} is onto)} As titled. 
+\end{theorem}
+\begin{proof}
+Define $g:D\rightarrow C$ by 
+\begin{align}
+\label{1.3}
+\mathcal{N} \mapsto \sigma_\mathcal{N} \text{ where }\sigma_{\mathcal{N}}=\set{O \in \power{X}: \forall  x\in O, O \in \mathcal{N}(x)} 
+\end{align}
+It is easy to check for each neighborhood system $\mathcal{N}:X \rightarrow \power{\power{X}}$ satisfying \myref{Axioms}{1.1.1}, the collection $\sigma_{\mathcal{N}}$ is a topology.\\
+
+Then, to prove $f$ is onto, it suffice to prove 
+\begin{align*}
+\forall \mathcal{N} \in D, \mathcal{N}=f(\sigma_\mathcal{N})
+\end{align*}
+In other words, we wish to prove 
+\begin{align*}
+  \vi{\forall \mathcal{N} \in D, \forall x \in X, \mathcal{N}(x)=\big(f(\sigma_\mathcal{N}) \big)(x)}
+\end{align*}
+By definition of $f$ (\myref{Equation}{1.2}), we know 
+\begin{align}
+\label{1.4}
+\big(f(\sigma_\mathcal{N}) \big)(x)=\set{A \in \power{X}:\exists O \in \sigma_\mathcal{N}, x \in O \subseteq A}
+\end{align}
+Suppose $A \in \big(f(\sigma_\mathcal{N}) \big)(x)$. Let $O \in \sigma_\mathcal{N}$ satisfy $x \in O \subseteq A$. By definition of $g$ (\myref{Equation}{1.3}), we know $O \in \mathcal{N}(x)$. Then because \myref{Axiom}{1.1.1} says that $\mathcal{N}(x)$ is closed under superset, we now see $A \in \mathcal{N}(x)$. We have proved $\big(f(\sigma_\mathcal{N}) \big)(x)\subseteq \mathcal{N}(x)$.\\
+
+Suppose $M \in \mathcal{N}(x)$. By the fifth axiom listed in \myref{Axiom}{1.1.1}, we know there exists some $N \in \mathcal{N}(x)$ such that $N \subseteq M$ and $\forall y \in N,M \in \mathcal{N}(y)$. Notice that the union of such $N$ is still a subset of  $M$ and  $M$ is a neighborhood of each point in the union. This means that there exists a maximum $N$ that satisfy 
+\begin{align*}
+\begin{cases}
+  N \subseteq M\\
+  \forall y \in N, M \in \mathcal{N}(y)
+\end{cases}
+\end{align*}
+We now prove  \blue{$N \in \sigma_\mathcal{N}$}. Arbitrarily pick $z \in N$, by definition of $N$ above, we can deduce $M \in \mathcal{N}(z)$. Then by the fifth axiom listed in \myref{Axiom}{1.1.1}, we know there exists some $N' \in \mathcal{N}(z)$ satisfying $N' \subseteq M$ and $\forall y \in N' ,M \in \mathcal{N}(y)$. Because $N$ by definition is the maximum of such neighborhood, we see $N'\subseteq N$. Then because \myref{Axiom}{1.1.1} says that $\mathcal{N}(z)$ is closed under superset, we see $N \in \mathcal{N}(z)$.\\
+
+We have shown $\forall z \in N, N \in \mathcal{N}(z)$. Then by definition of $g$  (\myref{Equation}{1.3}), we see $N \in \sigma_\mathcal{N}\bdone$.\\
+
+Then because $N \subseteq M$ by definition of $N$ and because $N \in \sigma_{\mathcal{N}}$, we see  $M \in \big(f(\sigma_\mathcal{N}) \big)(x)$, according to \myref{Equation}{1.4}. We have proved $\mathcal{N}(x)\subseteq \big(f(\sigma_\mathcal{N}) \big)(x)$$\vdone$
+\end{proof}
+\begin{mdframed}
+Before embarking on the axiomatization via nets, we first have to settle the terminologies. Recall that a set $D$ is \textbf{directed} if there exists an ordering $\leq $ on $D$ such that  $\leq $ is reflexive, transitive, and we have $\forall i,j \in D, \exists k \in D, i\leq k\text{ and }j\leq k$. By a \textbf{net}, we mean a function $w$ whose domain is directed. We say a subset $D'$ of a directed set is  \textbf{cofinal} if $\forall d \in D, \exists d' \in D', d \leq d'$. By a \textbf{subnet} of  $w:D\rightarrow X$, we mean a net  $v:E \rightarrow X$ such that there exists $h:E\rightarrow D$ such that
+\begin{align*}
+\begin{cases}
+\forall e,e'\in E , e\leq e' \implies h(e)\leq h(e')\text{(Monotone)}\\
+h[E]\text{ is cofinal }\\
+v=w \circ  h
+\end{cases}
+\end{align*}
+One can check that when $w$ is a sequence  $x_n$ and  $v$ is the sub-sequence  $x_{n_k}$, the corresponding $h$ is just $n_k$.\\
+
+By a \textbf{tail} $T_d$ of a directed set $D$, we mean  $T_d=\set{e \in D: d\leq e}$. We say \textbf{$w:D \rightarrow X$ is eventually in $A\subseteq X$} if $\exists d \in D, w[T_d] \subseteq A$. We say $w:D\rightarrow X$\textbf{ is frequently in $A\subseteq X$} if $\forall d\in D,\exists e \in T_d, w(e) \in A$. Given a topological space $(X,\tau)$, we say $w$  \textbf{converge} to a point $x$, if for all neighborhood $O$ around $x$ there exists $d \in D$ such that $w[T_d]\subseteq O$. Notice that if we wish to prove $w \to x$ we only have to verify for all open neighborhoods $O$ around $x$. Also notice that  $w$ can converge to multiple points. A trivial example is when two point are topologically indistinguishable.
+\end{mdframed}
+\section{archived}
+\begin{mdframed}
+If we are given a pair $(X,\mathcal{A})$ where $\mathcal{A}$ is a $\sigma$-algebra on $X$, we say $(X,\mathcal{A})$ is a \textbf{measurable space}. We call the elements of $\mathcal{A}$ \textbf{measurable sets}. Furthermore, suppose $X$ has a topology $\tau$. We say $(X,\sigma (\tau))$ is a \textbf{Borel space}, and we say $\sigma (\tau)$ is a \textbf{Borel $\sigma$-algebra}. Also, if we are given a family $\set{(X_i ,\mathcal{A}_i)}$ of measurable space, we say $\sigma (\prod \mathcal{A}_i)$ is the \textbf{product $\sigma$-algebra}.
+\end{mdframed}
+\begin{theorem}
+\textbf{(Product Borel $\sigma$-algebra and Borel $\sigma$-algebra of Product Space)} Given a family $\set{(X_i , \mathcal{A}_i)}_{i \in I}$ of Borel space, we have 
+\begin{align*}
+\sigma (\prod \mathcal{A}_i) \subseteq \sigma (\prod X_i)
+\end{align*}
+The equality hold true when $I$ is countable and $X_i$ are all second countable. 
+\end{theorem}
+\begin{mdframed}
+Suppose that we are given a Borel space $(X,\sigma (\tau))$. Let $S$ be a subset of  $X$, and let  $\tau_S$ be the subspace topology. It immediately comes the question, Is it true that 
+\begin{align*}
+\sigma (\tau_S)\subseteq \sigma (\tau)\text{ ? }
+\end{align*}
+where $\sigma (\tau_S)$ is the Borel $\sigma$-algebra of $S$. This is true when $S$ is open or closed in  $X$ (\myref{Theorem}{SBs}), but not true in general.  
+\end{mdframed}
+\begin{theorem}
+\label{SBs}
+\textbf{(Sub-Borel space)} Given a Borel space $(X,\tau,\mathcal{A})$ and an open or close $S \subseteq X$, denote the sub-space topology by  $\tau_S$, and let $\sigma (\tau_S)$ be the Borel $\sigma$-algebra of $S$.  We have
+\begin{align*}
+\sigma (\tau_S)\subseteq \sigma (\tau)
+\end{align*}
+\end{theorem}
+\begin{proof}
+If $S$ is open, then $\tau_S \subseteq \tau$. This implies $\tau_S \subseteq \sigma (\tau)$
+\end{proof}
 \end{document}
