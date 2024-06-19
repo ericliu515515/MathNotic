@@ -904,7 +904,7 @@ This implies $\sigma$-ring is also closed under countable intersection.
 \begin{align*}
 &X=\R^n
 \end{align*}
-$R$ is the set of all subsets of $X$ that can be expressed as a finite union of sets of the form $\prod_{k=1}^n [a_k,b_k]$ (\textbf{boxes}). The elements of $R$ is called the  \textbf{elementary sets}. It is clear that $R$ is closed under finite union. Observe that given any two elementary sets $\bigcup_{k=1}^n A_k,\bigcup_{k=1}^m B_k$, we have 
+$R$ is the set of all subsets of $X$ that can be expressed as a finite union of \textbf{boxes}, sets of the form $\prod_{k=1}^n I_k$, in which $I_k\subseteq \R$ is a bounded interval. The elements of $R$ is called the  \textbf{elementary sets}. It is clear that $R$ is closed under finite union. Observe that given any two elementary sets $\bigcup_{k=1}^n A_k,\bigcup_{k=1}^m B_k$, we have 
 \begin{align*}
 \Big(\bigcup_{i=1}^n A_i \Big)\setminus \Big(\bigcup_{j=1}^m B_j \Big)=\bigcup_{i=1}^n \bigcap_{j=1}^m A_i \setminus  B_j
 \end{align*}
@@ -927,22 +927,24 @@ Immediately, one can check that
 \end{align*}
 by showing every $\sigma$-algebra containing $R$ also contains  $\mathcal{A}$.
 \end{mdframed}
-\section{"Top down" V.S. "Buttom up" Definition of Borel Spaces}
-\section{Basic property of Measurable functions}
+\section{"top down" V.S. "buttom up" definition of Borel space; Borel hierarchy}
+\begin{theorem}
+\textbf{(Borel Hierarchy)}
+\end{theorem}
+\section{Property of measurable functions}
 \begin{mdframed}
-In this section, we give the general definition of measurable function, and show that 
+In this section, we give two equivalent general definition (\myref{Theorem}{EDm}) of measurable function and show
 \begin{enumerate}[label=(\alph*)]
-  \item An equivalent definition of measurable function, which greatly reduce the difficulty of checking measurability of functions. 
-  \item The (superior) limit of a sequence of measurable ($\R\cup \set{\pm \infty} $ or $\C\cup \set{\infty}$)-valued functions on general $(X,\Sigma_X)$ is measurable. 
-  \item Positive and negative part of a measurable $f:X\rightarrow [-\infty,\infty]$ are measurable. 
-  \item Every measurable $f:X\rightarrow [-\infty,\infty]$ can be approximated pointwise by simple functions.
+  \item Measurable $f:X\rightarrow \R\text{ or }\C$  is closed under addition and multiplication. (\myref{Theorem}{Btsa})
+  \item The (superior) limit of a sequence of measurable ($\R\cup \set{\pm \infty} $ or $\C\cup \set{\infty}$)-valued functions on general $(X,\Sigma_X)$ is measurable. (\myref{Theorem}{Slm})
+  \item Positive and negative part of a measurable $f:X\rightarrow [-\infty,\infty]$ are measurable. (\myref{Corollary}{PaN})
 \end{enumerate}
 \end{mdframed}
 \begin{mdframed}
 If we are given a function $f:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ such that for all $E\in \Sigma_Y$, we have $f^{-1}(E) \in \Sigma_X$, then we say $f$ is a  \textbf{measurable function}. Immediately, one can check that the composition of two measurable functions must be measurable. We now introduce an equivalent definition of measurable function, which makes checking if a function is measurable much easier.
 \end{mdframed}
 \begin{theorem}
-\label{EDB}
+\label{EDm}
 \textbf{(Equivalent Definition of measurable function)} If a function $f:(X,\Sigma_X)\rightarrow (Y,\sigma (T))$ satisfy 
 \begin{align*}
 f^{-1}(E)\in \Sigma_X\text{ for all $E \in T$ }
@@ -960,38 +962,16 @@ Define
 Check that $\mathcal{A}$ is a $\sigma$-algebra on $Y$. By premise, $T \subseteq \mathcal{A}$. It then follows from definition that $\sigma (T)\subseteq \mathcal{A}$. This conclude that $f$ is  $(\Sigma_X, \sigma(T))$-measurable. 
 \end{proof}
 \begin{mdframed}
-There are two important consequences of \myref{Theorem}{EDB}
+There are two important consequences of \myref{Theorem}{EDm}
 \begin{enumerate}[label=(\alph*)]
   \item If $X,Y$ are both Borel, then a continuous function  $f:X\rightarrow Y$ must also be a measurable function. 
-  \item If there exists $T$ such that  $\Sigma_Y=\sigma (T)$, then we only have to check that $f^{-1}(E)\in \Sigma_X$ for all $E \in T$ to show $f$ is measurable. In particular, if $Y=\R^n$, then  $T$ can be just the set of all boxes. In general, if $Y$ is a Borel space with a countable basis $\mathcal{U}$, then $T$ can just be $\mathcal{U}$.
+  \item If there exists $T$ such that  $\Sigma_Y=\sigma (T)$, then we only have to check that $f^{-1}(E)\in \Sigma_X$ for all $E \in T$ to show $f$ is measurable. In particular, if $Y=\R^n$, then  $T$ can be just the set of all open boxes.
 \end{enumerate}
-In particular, the second consequence (b) give the following Theorem. 
+These two consequences give the following Lemma, which later prove \myref{Theorem}{Btsa}, Theorem that make checking if $\C\text{ or }\R$-valued function is measurable easier.
 \end{mdframed}
-\begin{theorem}
-\textbf{(Superior limit of measurable $f_n:X\rightarrow [-\infty,\infty]$ is measurable)} Given a sequence $f_n:X\rightarrow [-\infty, \infty]$ of measurable functions
-\begin{align*}
-g\triangleq \sup f_n \text{ and }h\triangleq \limsup_{n\to\infty} f_n\text{ are both measurable }
-\end{align*}
-
-
-
-
-
-\end{theorem}
-\begin{proof}
-
-, we can deduce that $g\triangleq \sup f_n$ is measurable, since $g^{-1}(\alpha ,\infty]=\bigcup f^{-1}_n (\alpha ,\infty]$ for all $\alpha\inr$ and  $\mathcal{B}_{[-\infty,\infty]}=\sigma (\set{(\alpha , \infty]\subseteq [-\infty,\infty]:\alpha \inr})$. The same goes $\inf f_n$. It then follows from $\limsup_{n\to\infty} f_n= \inf_{n\geq 1} (\sup_{k\geq n}f_k)$, that $\limsup_{n\to\infty} f_n$ is measurable.\\
-
-\end{proof}
-\begin{corollary}
-\textbf{(Pointwise limit of measurable $f_n:X\rightarrow [-\infty,\infty]$ is measurable)} If the sequence $f_n:X\rightarrow [-\infty,\infty]$ pointwise converge to $f:X\rightarrow [-\infty,\infty]$,  then $f$ is measurable. 
-\end{corollary}
-\begin{proof}
-
-\end{proof}
-
 \begin{lemma}
-\textbf{(Computation Lemma)} (This need to be generalized!!!) Given two measurable function $u,v:(X,\Sigma_X)\rightarrow \R$ and a continuous function $\Phi:\R^2 \rightarrow (Y,\tau_Y)$, define $h:(X,\Sigma_X)\rightarrow (Y,\mathcal{B}_Y)$ by
+\label{CL}
+\textbf{(Computational Lemma)} Given two measurable function $u,v:(X,\Sigma_X)\rightarrow \R$ and a continuous function $\Phi:\R^2 \rightarrow (Y,\tau_Y)$, define $h:(X,\Sigma_X)\rightarrow (Y,\mathcal{B}_Y)$ by
 \begin{align*}
 h(x)\triangleq \Phi(u(x),v(x))
 \end{align*}
@@ -1005,7 +985,7 @@ Define $f:X\rightarrow \R^2$ by $f(x)\triangleq (u,v)(x)$. Because $h=\Phi \circ
 \begin{align*}
 \vi{f\text{ is measurable }}
 \end{align*}
-Fix an open-rectangle $I_1\times I_2 \subseteq \R^2$. We reduce the problem into proving 
+Fix an open-rectangle $I_1\times I_2 \subseteq \R^2$. Because $\mathcal{B}_{\R^2}$ can be generated by the set of all open rectangles, we can reduce the problem into proving 
 \begin{align*}
   \vi{f^{-1}(I_1\times I_2) \in \Sigma_X}
 \end{align*}
@@ -1015,19 +995,697 @@ f^{-1}(I_1\times I_2)=u^{-1}(I_1)\cap v^{-1}(I_2) \in \Sigma_X \vdone
 \end{align*}
 \end{proof}
 \begin{theorem}
+\label{Btsa}
 \textbf{(Basic tools to show a real/complex-valued function is measurable)} Given a measurable set $X$, and two real-valued function $u,v:X\rightarrow \R$
 \begin{enumerate}[label=(\alph*)]
-  \item  $u+iv:X\rightarrow \C$ is measurable if  $u,v$ are measurable.
-  \item If  $u+iv:X\rightarrow \C$ is measurable, then  $u,v,\abso{u+iv}$ are all measurable. 
-  \item If  $f,g:X\rightarrow \R\text{ or }\C$ is measurable, so are $f+g$ and $fg$.
-  \item If $f:X\rightarrow \C$ is measurable, then there exists $\alpha :X\rightarrow \C$ such that $\abso{\alpha }=1$ and $f=\alpha \abso{f}$ 
+  \item  $u+iv:X\rightarrow \C$ is measurable if and only if $u,v$ are measurable.
+  \item If  $f,g:X\rightarrow \R\text{ or }\C$ are measurable, so are $f+g,fg\text{ and }\abso{f}$.
+  \item If $f:X\rightarrow \R\text{ or }\C$ is measurable and $g:X\rightarrow \R\text{ or }\C$ isn't, then $f+g$ is not measurable.
+  \item If $f:X\rightarrow \C$ is measurable, then there exists $\alpha :X\rightarrow \C$ such that $\abso{\alpha }=1$ and $f=\alpha \abso{f}$
 \end{enumerate}
 \end{theorem}
-\section{Basic property of measure}
-\section{Risez-Representation Theorem}
+\begin{proof}
+(a) follows from \myref{Lemma}{CL} and noting $u=\text{Re}(u+iv),v=\text{Im}(u+iv)$, since Re,Im $:\C\rightarrow \R$ are continuous.\\
+
+(b) follows from the fact $\R,\C$ are topological field and \myref{Lemma}{CL}. \\
+
+It is clear that the set of all function from  $X$ to $\R\text{ or }\C$ form a group under addition. (b) shows that the set of measurable functions from a subgroup, thus giving (c).\\
+
+It remains to prove (d). Define 
+\begin{align*}
+E\triangleq \set{x \in X: f(x)=0}\text{ and }\phi(z)\triangleq  \frac{z}{\abso{z}}
+\end{align*}
+We claim 
+\begin{align*}
+  \vi{\alpha \triangleq \phi\circ (f+\textbf{1}_E)\text{ suffices }}
+\end{align*}
+Because $f$ is measurable, we know $E$ is measurable. This implies that $\textbf{1}_E:X\rightarrow \C$ is measurable. It follows that $f+\textbf{1}_E$ is $(X,\mathcal{B}_\C)$-measurable. Note that $f+\textbf{1}_E$ is never $0$ on $X$.\\
+
+
+Now by \myref{Theorem}{}, we see $f+\textbf{1}_E$ is $(X,\mathcal{B}_{\C^*})$-measurable. It then follows from the fact  $\phi:\C^*\rightarrow \C$ is continuous that $\alpha $ is $(X,\mathcal{B}_\C)$ measurable.\\
+
+Observe that $\alpha$ maps $E$ into $\set{1}$, and when $x\not\in E$, we have $\alpha (x)= \frac{f(x)}{\abso{f(x)}}$. $\vdone$
+\end{proof}
+\begin{mdframed}
+Note that \myref{Theorem}{Btsa} does not consider function whose range include $\infty$. This will be later addressed using approximation of simple functions.
+\end{mdframed}
+\begin{theorem}
+\label{Slm}
+\textbf{(Superior limit of measurable $f_n:X\rightarrow [-\infty,\infty]$ is measurable)} Given a sequence $f_n:X\rightarrow [-\infty, \infty]$ of measurable functions
+\begin{align*}
+g\triangleq \sup f_n \text{ and }f\triangleq \limsup_{n\to\infty} f_n\text{ are both measurable }
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is straightforward to check 
+\begin{align*}
+  g^{-1}(\alpha ,\infty] = \bigcup_n f_n^{-1} (\alpha ,\infty]
+\end{align*}
+It is straightforward to check
+\begin{align*}
+  \mathcal{B}_{[-\infty,\infty]}=\sigma \Big( \set{(\alpha ,\infty] \subseteq [-\infty,\infty]: \alpha \inr} \Big)
+\end{align*}
+These two facts and \myref{Theorem}{EDm} shows $g$ is measurable. The same arguments shows that $\inf g_k$ is measurable if $g_k$  are all measurable.\\
+
+It is straight forward to check 
+\begin{align*}
+f= \inf_{n\geq 1} \sup_{k\geq n} f_k
+\end{align*}
+It then follows $f$ is measurable.
+\end{proof}
+\begin{corollary}
+\label{Plm}
+\textbf{(Pointwise limit of measurable $f_n:X\rightarrow [-\infty,\infty]$ is measurable)} If the sequence $f_n:X\rightarrow [-\infty,\infty]$ pointwise converge to $f:X\rightarrow [-\infty,\infty]$,  then $f$ is measurable. 
+\end{corollary}
+\begin{corollary}
+\label{PaN}
+\textbf{(Positive and Negative parts of a measurable function are measurable)} If we are given measurable $f:X\rightarrow [-\infty,\infty]$, and we define the \textbf{positive and negative part} $f^+,f^-:X\rightarrow [0,\infty]$ \textbf{of} $f$ by 
+\begin{align*}
+f^+\triangleq \max \set{f,0}\text{ and }f^- \triangleq -\min \set{f,0}
+\end{align*}
+Then 
+\begin{align*}
+f^+\text{ and }f^-\text{ are measurable }
+\end{align*}
+\end{corollary}
+\begin{proof}
+Define  
+\begin{align*}
+h_n\triangleq \begin{cases}
+  f& \text{ if $n$ is odd }\\
+  0& \text{ if $n$ is even }
+\end{cases}
+\end{align*}
+then we have 
+\begin{align*}
+\limsup_{n\to\infty} h_n=f^+\text{ and }\liminf_{n\to\infty} h_n=-f^-
+\end{align*}
+Now, because $0$ is a measurable function, by \myref{Theorem}{Slm}, $f^+$ is measurable. Moreover, because $-1$ is a measurable function, by  \myref{Theorem}{Btsa}, $f^-$ is measurable.
+\end{proof}
+\section{Carathéodory's extension theorem}
+\begin{definition}
+\textbf{(Definition of pre-measure)} Given a $R$ ring of subsets of  $X$, we say  $\mu:R\rightarrow [0,\infty]$ is a \textbf{pre-measure} of $(X,R)$ if 
+\begin{enumerate}[label=(\alph*)]
+  \item $\mu(\varnothing)=0$ 
+  \item $\mu\big(\bigcup E_n\big)=\sum \mu (E_n)$ for each countable disjoint $\set{E_n}$ such that $\bigcup E_n \in R$. (countably additive, or $\sigma$-additive)
+\end{enumerate}
+\end{definition}
+\begin{mdframed}
+It is straightforward to check 
+\begin{enumerate}[label=(\alph*)]
+  \item $\mu (A_1 \cup  \cdots \cup  A_n)= \mu (A_1) + \cdots + \mu (A_n)$ if each $A_i$ are disjoint.
+  \item $A \subseteq B \implies \mu (A) \leq \mu (B)$
+\end{enumerate}
+\end{mdframed}
+\begin{theorem}
+\label{Bppm}
+\textbf{(Basic property of pre-measure)} Given an increasing sequence of measurable set $A_n$ 
+ \begin{align*}
+\mu (A_n)\nearrow \mu (A)
+\end{align*}
+where $A=\bigcup A_n$. If $A_n$ is decreasing, then 
+\begin{align*}
+\mu (A_n)\searrow \mu (A)
+\end{align*}
+where $A=\bigcap A_n$.
+\end{theorem}
+\begin{proof}
+If $A_n$ is increasing, fix $B_n\triangleq A_n\setminus A_{n-1}$ for each $n\geq 2$ and $B_1=A_1$. The proof then follows from checking 
+\begin{align*}
+\mu (A_n)= \sum_{k=1}^n \mu (B_k)\text{ and }\mu(A)=\sum_{k=1}^{\infty} \mu (B_k)
+\end{align*}
+The proof for another statement is similar.
+\end{proof}
+\begin{mdframed}
+Using the same trick $B_n\triangleq A_n \setminus (A_{n-1}\cup  \cdots \cup A_1)$, we have 
+\begin{align*}
+\mu (\bigcup_{n\inn} A_n) \leq \sum_{n\inn} \mu (A_n)\text{ for arbitrary $A_n$ }
+\end{align*}
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of outer measure)} Given a set $X$, by an  \textbf{outer measure}, we mean a function $\mu^*:2^X\rightarrow [0,\infty]$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $ \mu^* (\varnothing)=0$
+  \item Given arbitrary subset $A,B_1,B_2,\dots$ such  that  $A\subseteq \bigcup_{n} B_n$, we have $ \mu^* (A)\leq  \sum_n \mu^* (B_n)$ (countably subadditive)
+\end{enumerate}
+\end{definition}
+\begin{mdframed}
+Equivalently, one can replace countably sub-additive with 
+\begin{align*}
+A \subseteq B \implies \mu^*(A) \leq \mu^* (B)\text{ and } \mu^* \Big(\bigcup_n B_n \Big)\leq \sum_n \mu^*(B_n)
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Pre-measure induces outer measure)} Given a pre-measure $\mu$ on some ring $R$ of subsets of $X$, if we define $\mu^*:2^X\rightarrow [0,\infty]$ by
+\begin{align*}
+\mu^*(T)\triangleq \inf \bset{\sum_n \mu (S_n):T \subseteq \bigcup _n S_n\text{ and }S_1,S_2,\dots \in R}\text{ where $\inf \varnothing= \infty$ }
+\end{align*}
+Then 
+\begin{align*}
+\mu^*\text{ is an outer measure }
+\end{align*}
+\end{theorem}
+\begin{proof}
+  It is clear $\mu^*(\varnothing)=0\text{ and }A\subseteq B \implies \mu^*(A)\leq \mu^*(B)$. It remains to prove for arbitrary $B_n$ we have 
+\begin{align*}
+  \vi{\mu^* \Big(\bigcup_n B_n \Big)  \leq \sum_n \mu^* (B_n)}
+\end{align*}
+If  $\sum_n \mu^*(B_n)=\infty$, the proof is trivial. We from now suppose $\sum_n \mu^*(B_n)< \infty$.\\
+
+Fix $\epsilon $. We prove 
+\begin{align*}
+  \vi{\mu^*\Big(\bigcup _n B_n \Big)\leq \sum_n \mu^* (B_n)+\epsilon }
+\end{align*}
+Because $\mu^*(B_n)<\infty$ for each $n\inn$, we know for each $n\inn$ there exists an countable cover of $B_n$ consisting elements $S_{n,k}$ of  $R$ such that 
+\begin{align*}
+\sum_k \mu (S_{n,k}) \leq \mu^*(B_n)+\epsilon (2^{-n}) 
+\end{align*}
+It is clear that  $\set{S_{n,k}:n,k \inn}$ is a countable cover of $\bigcup_n B_n$, we now see 
+\begin{align*}
+  \mu^*\Big(\bigcup_n B_n \Big)&\leq \sum_n \sum_k \mu(S_{n,k})\\
+&\leq \sum_n \mu^*(B_n)+ \epsilon (2^{-n})= \sum_n \mu^*(B_n)+ \epsilon \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Note that 
+\begin{align*}
+\mu(A)=\mu^*(A)\text{ if $A\in R$ }
+\end{align*}
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of measure)} 
+\end{definition}
+\begin{theorem}
+\textbf{(Outer measure induce measure)} We say a set $A\in 2^X$ is measurable if 
+\begin{align*}
+\mu^*(A)=\mu^* (A \cap  E)+ \mu^* (A \setminus E)\text{ for all $E \in 2^X$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\textbf{(Measure induce complete measure)} 
+\end{theorem}
 \section{Lebesgue measure}
+\begin{mdframed}
+In this section, we develop the definition of Lebesgue measure.
+\end{mdframed}
+\section{Abstract integration} 
+\begin{mdframed}
+We say a function is a \textbf{simple function} if its range is of finite cardinality. Simple function is the cornerstone of the development of Lebesgue Integral Theory, as we shall see.\\
+
+Suppose $s$ is a simple function defined on some measurable $E\subseteq (X,\Sigma_X)$ with range $\set{c_1,\cdots ,c_n}\subseteq [0,\infty]$. Define 
+\begin{align*}
+E_j\triangleq \set{x \in X: s(x)=c_j}
+\end{align*}
+It is clear that $\set{E_j}$ is a finite disjoint decomposition of $E$, and $s$ is measurable if and only if all $E_j$ are measurable.\\
+
+We can write
+\begin{align*}
+s= \sum_{j=1}^n c_i \textbf{1}_{E_j}
+\end{align*}
+Then if $s$ is measurable, we can define
+\begin{align*}
+\int_E s d\mu \triangleq \sum_{j=1}^n c_j \mu (E_j)
+\end{align*}
+and if $s$ is defined on some larger domain while $s|_E$ is measurable, we can define 
+\begin{align*}
+\int_E s d\mu \triangleq \sum_{j=1}^n c_j\mu (E_j\cap E)
+\end{align*}
+Note that if $s$ is defined on some measurable $F$ containing  $E$ and  $s$ is measurable on $F$, then $s$ is surely measurable on $E$. It is straightforward to verify our definition so far is consistent.
+\end{mdframed}
 
 
+\begin{mdframed}
+We now expand our definitions to the class of all measurable functions range in $[0,\infty]$.\\
+
+Given a function $f$ range in $[0,\infty]$ and measurable on $E$, we define 
+\begin{align*}
+\int_E fd\mu \triangleq \sup_{s\leq f\text{ on }E} \int_E s d\mu
+\end{align*}
+If $f$ is defined on some large measurable domain $F$, we see that 
+ \begin{align*}
+\int_Efd\mu= \int_F f\textbf{1}_Ed\mu
+\end{align*}
+It is at this point one should verify our definition is so far consistent. That is, for each simple $s$, we have 
+\begin{align*}
+\int_Esd\mu=\sup_{s'\leq s\text{ on }E}\int_Es'd\mu
+\end{align*}
+The trick is to decompose each $E_j'$ into $\bigcup E_j'\cap E_i$. 
+\end{mdframed}
+
+\begin{mdframed}
+We now expand our definitions to the class of all measurable functions range in $[-\infty,\infty]$, but before such, we have to first introduce the idea of \textbf{Lebesgue integrable}. For either $s$ or  $f$, range in either $[0,\infty)$ or $[0,\infty]$, it is always possible that $\int_E s\text{ or }fd\mu=\infty$.\\ 
+
+If we have $\int_Efd\mu=\infty$, we say $f$ is \textbf{not Lebesgue integrable}, and if $\int_Efd\mu<\infty$, we say $f$ is \textbf{Lebesgue integrable on }$E$. Because $\R$ is complete in order, we know $f$ is either Lebesgue integrable or not Lebesgue integrable on $E$.\\
+
+Given a function range in $[-\infty,\infty]$ and measurable on $E$, if both $f^+,f^-$ are Lebesgue integrable on $E$, we say  $f$ is Lebesgue integrable on $E$, and write 
+\begin{align*}
+\int_E fd\mu= \int_E f^+d\mu- \int_E f^-d\mu
+\end{align*}
+If either  $f^+$ or  $f^-$ are not Lebesgue integrable on $E$, we say $f$ is not Lebesgue integrable on $E$.\\
+
+Notice that 
+\begin{align*}
+f\text{ is Lebesgue integrable on }E\iff \int_E \abso{f}d\mu<\infty
+\end{align*}
+It is clear that our definition is again so far consistent.
+\end{mdframed}
+\begin{mdframed}
+We now 
+\end{mdframed}
+
+\section{Basic property of abstract integration}
+\begin{mdframed}
+This section prove some basic properties of Lebesgue integral over general measure space $(X,\Sigma_X,\mu)$. From now when we use the notation $X$, it shall be understood $X$ is equipped with an $\sigma$-algebra $\Sigma_X$ and a measure $\mu$. We will prove 
+\begin{enumerate}[label=(\alph*)]
+  \item Lebesgue Monotone Convergence Theorem (\myref{Theorem}{LMCT})
+  \item Fatou's Lemma (\myref{Theorem}{Fatou})
+  \item Reverse Fatou's Lemma (\myref{Theorem}{RFL}) 
+  \item Dominated Convergence Theorem (\myref{Theorem}{LDCT})
+\end{enumerate}
+\end{mdframed}
+\begin{theorem}
+\label{LMCT}
+\textbf{(Lebesgue Monotone Convergence Theorem)} Given a sequence of measurable $f_n:X\rightarrow [0,\infty]$ such that $\set{f_n(x)}_{n\inn}$ is an increasing sequence for each $x\in X$, then 
+\begin{align*}
+\int_X fd\mu = \lim_{n\to \infty}\int_X f_nd\mu
+\end{align*}
+\end{theorem}
+\begin{proof}
+$f$ is measurable by \myref{Corollary}{Plm}. Because  $f_n \nearrow f$ on $X$, we know 
+\begin{align*}
+ \lim_{n\to \infty}\int_X f_nd\mu = \sup_n \int_X f_nd\mu \leq \int_X fd\mu 
+\end{align*}
+It remains to prove 
+\begin{align*}
+\vi{\int_X fd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
+\end{align*}
+Fix simple $0\leq s\leq f$ on $X$. We reduce the problem into proving 
+\begin{align*}
+  \vi{\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
+\end{align*}
+Fix $c \in (0,1)$. We reduce the problem into proving 
+\begin{align*}
+  \vi{c\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
+\end{align*}
+Define 
+\begin{align*}
+E_n \triangleq \set{x\in X: f_n(x)\geq cs(x)}
+\end{align*}
+$E_n$ are measurable because $f_n-cs$ are measurable. Now because $f_n$ are non-negative on  $X$, we have 
+\begin{align*}
+\int_X f_n d\mu \geq \int_{E_n}f_n d\mu \geq c \int_{E_n} sd\mu
+\end{align*}
+Taking limit, we see
+\begin{align*}
+\lim_{n\to \infty} \int_X f_n d\mu \geq \lim_{n\to \infty} c \int_{E_n}sd\mu 
+\end{align*}
+It is straightforward to check $E_n$ is increasing and $\bigcup E_n =X$. Then if we decompose $s=\sum_{j} c_j \textbf{1}_{F_j}$, by \myref{Theorem}{Bppm}, we can take limit 
+\begin{align*}
+\lim_{n\to \infty}\mu (F_j\cap E_n)=\mu (F_j)
+\end{align*}
+It then follows that 
+\begin{align*}
+\lim_{n\to \infty}\int_X f_nd\mu \geq \lim_{n\to \infty}c \int_{E_n}sd\mu= c\int_X sd\mu \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+It is worth pointing out in our proof for Lebesgue Monotone Convergence Theorem, instead of proving $\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu$, we proved $c\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu$. Multiplying $\int_X sd\mu$ with $c\in (0,1)$ is not just a random limit technique. Our action play a much more profound role. Consider the Example.
+\end{mdframed}
+\begin{Example}{\textbf{(Why we take $c\int_X sd\mu$ ?)}}{}
+\begin{align*}
+X=[0,1]\text{ and }f_n=1-\frac{1}{n}
+\end{align*}
+We can take $s=f$, and see $E_n=\varnothing$ for all $n$, which renders our proceeding proof invalid. 
+\end{Example}
+\begin{corollary}
+\textbf{(Monotone Convergence Theorem for general functions)} Given a sequence of measurable $f_n:X\rightarrow [0,\infty]$ such that
+\begin{enumerate}[label=(\alph*)]
+  \item $\set{f_n(x)}_{n\inn}$ is an increasing sequence on $N^c$
+  \item $f:X\rightarrow [0,\infty]$ is the limit of $f_n$ on $N^c$ 
+  \item $\mu (N)=0$
+  \item $\mu$ is complete
+\end{enumerate}
+We have 
+\begin{align*}
+\int_X fd\mu = \lim_{n\to \infty}\int_X f_nd\mu
+\end{align*}
+\end{corollary}
+\begin{proof}
+Let
+\begin{align*}
+g(x)\triangleq \begin{cases}
+  f(x)& \text{ if $x \in N^c$ }\\
+  0& \text{ if $x\in N$ }
+\end{cases}
+\end{align*}
+Note that 
+
+
+
+\begin{align*}
+\int_X fd\mu = \int_{N^c}fd\mu = \lim_{n\to \infty}\int_{N^c} fd\mu = \lim_{n\to \infty} \int_X fd\mu
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Fatou}
+\textbf{(Fatou's Lemma)} Given measurable $f_n:X\rightarrow [0,\infty]$ 
+\begin{align*}
+\int_X \liminf_{n\to\infty} f_nd\mu \leq \liminf_{n\to\infty} \int_X f_n d\mu
+\end{align*}
+\end{theorem}
+\begin{proof}
+Since $\inf_{k\geq n}f_k\leq f_n$ for each $n,x$, we see 
+ \begin{align*}
+\int_X \inf_{k\geq n}f_k d\mu \leq \int_X f_nd\mu\text{ for all $n$ }
+\end{align*}
+Because $\inf_{k\geq n}f_k\nearrow  \liminf_{m\to\infty} f_m$ as $n\to \infty$, by (\myref{Theorem}{LMCT}: Lebesgue Monotone Convergence Theorem), we can take limit 
+\begin{align*}
+\int_X \liminf_{n\to\infty} f_n d\mu = \lim_{n\to \infty}\int_X \inf_{k\geq n}f_k d\mu\leq \liminf_{n\to\infty} \int_X f_nd\mu
+\end{align*}
+\end{proof}
+\begin{Example}{\textbf{(Fatou's Lemma strict inequality)}}{}
+\begin{align*}
+f_{2k}(x)=\begin{cases}
+ 0& \text{ if $x\in [0,\frac{1}{2}]$ } \\
+ 1& \text{ if $x\in (\frac{1}{2},1]$ }
+\end{cases}\text{ and }f_{2k+1}(x)=\begin{cases}
+  1& \text{ if $x\in [0,\frac{1}{2})$ }\\
+  0& \text{ if $x\in [\frac{1}{2},1]$ }
+\end{cases}
+\end{align*}
+\end{Example}
+\begin{mdframed}
+  From now, we use $L^1(\mu)$ to denote the set of all function defined and $\mu$-Lebesgue-integrable on $X$, and we say a sequence of function  $f_n:X\rightarrow [0,\infty]$ is  \textbf{dominated} by $g$, if $g$ is a $[0,\infty]$-valued function defined on $X$ such that 
+\begin{align*}
+\sup_n \abso{f_n(x)} \leq g(x)\text{ for all $x\in X$ }
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{RFL}
+\textbf{(Reverse Fatou's Lemma)} Given measurable $f_n:X\rightarrow [0,\infty]$ dominated by some $g \in L^1(\mu)$ 
+\begin{align*}
+\limsup_{n\to\infty} \int_X f_nd\mu \leq \int_X \limsup_{n\to\infty} f_nd\mu
+\end{align*}
+\end{theorem}
+\begin{proof}
+By (\myref{Theorem}{Fatou}: Fatou Lemma)
+\begin{align*}
+\int_X \liminf_{n\to\infty} (g-f_n) d\mu \leq \liminf_{n\to\infty} \int_X (g-f_n)d\mu 
+\end{align*}
+Multiplying both side with $-1$, we have 
+\begin{align*}
+\limsup_{n\to\infty} \int_X (f_n-g)d\mu \leq \int_X \limsup_{n\to\infty} (f_n-g)d\mu
+\end{align*}
+Then adding both side the constant $\int_X gd\mu$, we reach to the conclusion.
+\end{proof}
+\begin{mdframed}
+Note that in our proof above, when we "pull" the negative sign out from $\liminf_{n\to\infty} $, it changed to $\limsup_{n\to\infty} $. This is a standard technique, which can be justified using the sub-sequence definition of limit superior.
+\end{mdframed}
+\begin{theorem}
+\label{LDCT}
+\textbf{(Dominate Convergence Theorem)} Given a sequence $f_n:X\rightarrow \C\cup \set{\infty}$ of measurable function such that 
+\begin{align*}
+f\triangleq \lim_{n\to \infty}f_n\text{ exists on $X$ }
+\end{align*}
+If there exists $g \in L^1(\mu)$ dominating $f_n$, then 
+\begin{align*}
+\lim_{n \to \infty} \int_X \abso{f_n-f}d\mu=0\text{ and }\int_X fd\mu = \lim_{n\to \infty} \int_X f_n d\mu\text{ exists in $\C\cup  \set{\infty}$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $f$ is measurable by \myref{Corollary}{Plm} and  $\abso{f}\leq g$ on $X$, $f \in L^1(\mu)$.\\
+
+We first prove 
+\begin{align*}
+  \vi{\lim_{n\to \infty}\int_X \abso{f_n-f}d\mu=0}
+\end{align*}
+We relax the problem into proving 
+\begin{align*}
+  \vi{\limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu=0}
+\end{align*}
+Note that $\abso{f_n-f}\leq 2g$. We can now apply (\myref{Theorem}{Fatou}: Fatou lemma) to $2g- \abso{f_n-f}$ and see 
+\begin{align*}
+\int_X 2gd\mu&=   \int_X \lim_{n\to \infty}(2g- \abso{f_n-f})d\mu \\
+&\leq \liminf_{n\to\infty} \int_X (2g-\abso{f_n-f})d\mu\\
+&= \int_X 2gd\mu + \liminf_{n\to\infty} \Big(- \int_X \abso{f_n-f}d\mu \Big)\\
+&=\int_X 2gd\mu - \limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu
+\end{align*}
+Then because $g \in L^1(\mu)$, we can subtract it and obtain 
+\begin{align*}
+\limsup_{n\to\infty}\int_X  \abso{f_n-f}d\mu=0 \vdone
+\end{align*}
+It then follows that 
+\begin{align*}
+  \limsup_{n\to\infty} \abso{\int_X (f_n-f)d\mu} \leq \limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu =0
+\end{align*}
+which implies 
+\begin{align*}
+\lim_{n\to \infty} \int_X (f_n-f)d\mu =0
+\end{align*}
+and because $f\in L^1(\mu)$, we have
+\begin{align*}
+\lim_{n\to \infty}\int_X f_nd\mu = \int_X fd\mu
+\end{align*}
+\end{proof}
+\begin{Example}{\textbf{(Counterexample for Dominate Convergence Theorem)}}{}
+\begin{align*}
+f_n(x)=\begin{cases}
+  \frac{1}{n}& \text{ if $\abso{x}<n$ }\\
+  0& \text{ if $\abso{x}\geq n$ }
+\end{cases}
+\end{align*}
+\end{Example}
+\section{Riesz–Markov–Kakutani representation theorem}
+\section{bounded variation}
+\begin{mdframed}
+This section prove some key properties of functions of bounded variations. These properties are worthy of discuss, as they make the set $BV\big([a,b] \big)$ of function of bounded variation on $[a,b]$ a natural candidate for the class of Riemann-Stieltjes integrator. The key properties include 
+\begin{enumerate}[label=(\alph*)]
+  \item Functions of bounded variation must be continuous almost everywhere. (\myref{Corollary}{Fmo})
+  \item Functions of bounded variation can be expressed as difference of two increasing functions. (\myref{Theorem}{Fob}) 
+  \item Functions of bounded variation can only have jump discontinuity. (\myref{Corollary}{Fobj})
+\end{enumerate}
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of variation and function of bounded variation)} Given a compact interval $[a,b]$, by a \textbf{partition} $P$ of $[a,b]$, we mean a finite set $\set{a=x_0<x_1 < \cdots < x_{n-1} < x_n =b}$ contain by $[a,b]$ and containing $a,b$. If  $f$ is a complex-valued function defined on $[a,b]$, we say the \textbf{total variation} $V_f(a,b)$ of $f$ on  $[a,b]$ is 
+\begin{align*}
+\sup_P \sum_{k=1}^n \abso{f(x_k)-f(x_{k-1})}
+\end{align*}
+We say $f$ is of \textbf{bounded variation} on $[a,b]$ if $V_f(a,b)<\infty$, and we denote the set of real-valued function from $[a,b]$ of bounded variation on $[a,b]$ by $BV\big([a,b] \big)$. 
+\end{definition}
+\begin{mdframed}
+It is straightforward to check 
+\begin{enumerate}[label=(\alph*)]
+  \item  $f \in BV\big([a,b] \big)$ must be bounded on $[a,b]$ 
+  \item real-valued $f$ monotone on $[a,b]$ is of bounded variation on $[a,b]$ 
+  \item $BV\big([a,b] \big)$ form a vector space over $\R$
+\end{enumerate}
+In fact, $BV\big([a,b] \big)$ also form a commutative algebra, as below proved.
+\end{mdframed}
+\begin{theorem}
+\textbf{(Bounded variation is closed under multiplication)} Given two real-valued (or more generally complex-valued) $f,g$  defined on $[a,b]$ 
+\begin{align*}
+V_{fg}(a,b)\leq AV_f(a,b)+BV_f(a,b)
+\end{align*}
+where 
+\begin{align*}
+A=\sup_{[a,b]}\abso{g}\text{ and }B=\sup_{[a,b]}\abso{f}
+\end{align*}
+\end{theorem}
+\begin{proof}
+For every partition $P$, we have 
+ \begin{align*}
+\sum_{k=1}^n \abso{fg(x_k)-fg(x_{k-1})}&= \sum_{k=1}^n \abso{(f(x_k)-f(x_{k-1}))g(x_k)+f(x_{k-1})g(x_k)-fg(x_{k-1})}\\
+&\leq \sum_{k=1}^n \abso{f(x_k)-f(x_{k-1})}\abso{g(x_k)}+ \sum_{k=1}^n \abso{f(x_{k-1})} \abso{g(x_k)-g(x_{k-1})}\\
+&\leq AV_f(a,b)+ BV_f(a,b)
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Note that the proof above only consider when $g,f$ are both bounded on  $[a,b]$. If not, the statement hold trivially. For the brevity of the proof of the next Theorem,  if we are given a partition $P=\set{a=x_0< \cdots <x_n=b}$ of $[a,b]$, we denote $\sum_{k=1}^n \abso{f(x_k)-f(x_{k-1})}$ by $\sum  (P)$. 
+\end{mdframed}
+\begin{theorem}
+\label{Apotv}
+\textbf{(Additive property of total variation)} Given a real-valued function $f$  defined $[a,b]$, and $c \in (a,b)$  
+\begin{align*}
+V_f(a,b)=V_f(a,c)+V_f(c,b)
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+\vi{V_f(a,b)\geq V_f(a,c)+V_f(c,b)}
+\end{align*}
+Note that it is possible $V_f(a,c)=\infty$. We only prove when $V_f(a,c)<\infty$, since the proof for the statement when $V_f(a,c)=\infty$ is similar. Fix $\epsilon $. We reduce the problem into proving 
+\begin{align*}
+  \vi{V_f(a,b)\geq V_f(a,c)+ V_f(c,b)- \epsilon }
+\end{align*}
+Let $Y,Z$ respectively be the set of all partitions of  $[a,c]$ and $[a,b]$. Fix $P_y \in Y$ and $P_z\in Z$ such that 
+\begin{align*}
+\sum (P_y) > V_f(a,c)- \frac{\epsilon }{2} \text{ and } \sum (P_z)> V_f(c,b)- \frac{\epsilon}{2}
+\end{align*}
+It is clear that $P_y\cup P_z$  is a partition of $[a,b]$. Observe
+\begin{align*}
+  V_f(a,b)\geq \sum (P_y \cup P_z) = \sum (P_y) + \sum (P_z) > V_f(a,c) + V_f(c,b)- \epsilon \vdone
+\end{align*}
+It remains to prove
+\begin{align*}
+  \blue{V_f(a,b)\leq V_f(a,c)+ V_f(c,b)}
+\end{align*}
+Fix a partition $P$ of $[a,b]$. We are required to prove 
+\begin{align*}
+\blue{\sum (P) < V_f(a,c)+ V_f(c,b)}
+\end{align*}
+Let $P_c = P \cup \set{c}$. Observe 
+\begin{align*}
+\sum (P) \leq \sum (P_c) \leq V_f(a,c) + V_f(c,b) \bdone
+\end{align*}
+
+\end{proof}
+\begin{corollary}
+\textbf{(Additive property of total variation)} Given a real-valued function $f$  defined $[a,b]$, and $c \in (a,b)$ 
+\begin{align*}
+f\in BV\big([a,b] \big)\iff f\in BV\big([a,c] \big)\text{ and }f\in BV\big([c,b] \big)
+\end{align*}
+\end{corollary}
+\begin{mdframed}
+Perhaps, the best property of bounded variation are the following.  
+\end{mdframed}
+\begin{theorem}
+\label{Fob}
+\textbf{(Function of bounded variation can be expressed as difference of two increasing functions)} Given real-valued $f$ defined on  $[a,b]$ 
+\begin{align*}
+f\in BV\big([a,b] \big)\iff \exists \text{ increasing }g,h:[a,b]\rightarrow \R, f=g-h
+\end{align*}
+\end{theorem}
+\begin{proof}
+From right to left is trivial. From left to right, we claim 
+\begin{align*}
+  \vi{g(x)\triangleq V_f(a,x)\text{ and }h(x)\triangleq V_f(a,x)-f(x)\text{ suffices }}
+\end{align*}
+It is clear that $V_f(a,x)$ is increasing. Fix $a\leq x\leq y\leq b$. We prove
+\begin{align*}
+  \vi{h(x)\leq h(y)}
+\end{align*}
+Use \myref{Theorem}{Apotv} 
+\begin{align*}
+  h(y)-h(x)&\geq V_f(a,y)-f(y) - V_f(a,x) + f(x)\\
+  &= \big(V_f(a,y)-V_f(a,x) \big)- \big(f(y)-f(x) \big)\\
+  &=V_f(x,y)-\big(f(y)-f(x) \big)\geq 0 \vdone
+\end{align*}
+\end{proof}
+\begin{corollary}
+\label{Fobj}
+\textbf{(Function of bounded variation can only have jump discontinuity)} Given $f:[a,b]\rightarrow \R$, if $f \in BV\big([a,b] \big)$, then $f$ can only have jump discontinuity.
+\end{corollary}
+\begin{corollary}
+\label{Fobi}
+\textbf{(Function of bounded variation can be expressed as difference of two strictly increasing functions)} Given real-valued $f$ defined on  $[a,b]$ 
+\begin{align*}
+f\in BV\big([a,b] \big)\iff \exists \text{ strictly increasing }g,h:[a,b]\rightarrow \R, f=g-h
+\end{align*}
+\end{corollary}
+\begin{proof}
+From right to left is again trivial. If $g(x)\triangleq V_f(a,x)$ and $h(x)\triangleq V_f(a,x)-f(x)$ is not strictly increasing, define $g'\triangleq g+(x-a)\text{ and }h'\triangleq h+(x-a)$. Such $g',h'$ suffice.
+\end{proof}
+\begin{mdframed}
+The reason we showed functions of bounded variation can be expressed as difference of two increasing functions is the following  (\myref{Theorem}{Fmo}). \myref{Theorem}{Fmo} make function of bounded variation continuous almost everywhere. This make functions of bounded variation a natural candidate of the class of Riemann-Stieltjes integrators, in the perspective of Lebesgue-Riemann Criterion. (\myref{Theorem}{})
+\end{mdframed}
+\begin{theorem}
+\label{Fmo}
+\textbf{(Function monotone on $[a,b]$ must be continuous almost everywhere on $[a,b]$)} If $f$ is monotone on $[a,b]$, then the set of discontinuities of $f$ is countable.
+\end{theorem}
+\begin{proof}
+WOLG, suppose $f$ is increasing on  $[a,b]$. Because $f$ is increasing on $[a,b]$, we know that every discontinuities of $f$ on  $[a,b]$ is a jump discontinuity. Define 
+\begin{align*}
+S_n\triangleq \set{x\in [a,b]: f(x+)-f(x-)>\frac{1}{n}}
+\end{align*}
+Then the set of discontinuity of $f$ is exactly  $\bigcup_n S_n$. Note that each $S_n$ must be finite, otherwise $f(b)=\infty$. This conclude the proof.
+\end{proof}
+\begin{corollary}
+\label{Fmo}
+\textbf{(Function of bounded variation on $[a,b]$ must be continuous almost everywhere on $[a,b]$)} If $f$ is of bounded variation on $[a,b]$, then the set of discontinuities of $f$ on $[a,b]$ is countable.
+\end{corollary}
+
+\begin{mdframed}
+If we only consider real-valued continuous function of bounded variation on $[a,b]$, the structure is even richer.
+\end{mdframed}
+\begin{theorem}
+\label{Cfobv}
+\textbf{(Continuous function of bounded variation)} Given $f:[a,b]\rightarrow \R$ such that $f\in BV\big([a,b]\big)$ . If we define $V:[a,b]\rightarrow \R$ by
+\begin{align*}
+V(x)\triangleq V_f(a,x)
+\end{align*}
+Then for each $x \in [a,b]$
+\begin{align*}
+V\text{ is continuous at }x\iff f\text{ is continuous at $x$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\longrightarrow)$\\
+
+\As{$f$ is discontinuous at  $x$}. WOLG, suppose that there exists $x_n\searrow x$ such that
+\begin{align*}
+  \lim_{n\to \infty} f(x_n)\inr\text{ and }c\triangleq \abso{\lim_{n\to \infty}f(x_n)-f(x)}>0
+\end{align*}
+Now, observe 
+\begin{align*}
+\abso{V(x_n)-V(x)}= \abso{V_f(x,x_n)}\geq \abso{f(x_n)-f(x)}
+\end{align*}
+This give us 
+\begin{align*}
+  \liminf_{n\to\infty} \abso{V(x_n)-V(x)}&\geq \liminf_{n\to\infty} \abso{f(x_n)-f(x)} \\
+  &=\lim_{n\to \infty} \abso{f(x_n)-f(x)}= \abso{\lim_{n\to \infty}f(x_n)-f(x)}=c>0 \tCaC
+\end{align*}
+
+$(\longleftarrow)$\\
+
+Fix $\epsilon $. Let $P=\set{x=x_0<x_1 <\cdots < x_n=b}$ be a partition of $[x,b]$ such that 
+\begin{align*}
+V_f(x,b) - \frac{\epsilon}{2} < \sum (P) 
+\end{align*}
+Let $\delta$ satisfy 
+\begin{align*}
+  \abso{f(y)-f(x)}< \frac{\epsilon}{4n}\text{ for all $y \in [x,x+\delta]$ }
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\text{ such }\delta\text{ satisfy }\abso{V(y)-V(x)}\leq \epsilon\text{ for all $y\in [x,x+\delta]$ }}
+\end{align*}
+Let $y\triangleq x+\delta$. Because $V$ is increasing on  $[a,b]$, we only have to prove 
+\begin{align*}
+  \vi{\abso{V(y)-V(x)}\leq  \epsilon }
+\end{align*}
+\myref{Theorem}{Apotv} allow us to reduce the problem into proving  
+\begin{align*}
+  \vi{V_f(x,y)\leq \epsilon }
+\end{align*}
+Denote $P\cup \set{y}$ by $P'$ and express  $P'=\set{x=x_0' < \cdots < x_r' }$. Express $y=x_m'$. Note that $m<r\leq n+1$ and observe
+\begin{align*}
+  V_f(x,b)- \frac{\epsilon}{2}< \sum (P)&\leq \sum (P')\\
+&= \sum_{k=1}^{m} \abso{f(x'_k)-f(x'_{k-1})} + \sum_{k=m+1}^{n} \abso{f(x'_k)-f(x'_{k-1})}\\
+&\leq \frac{m\epsilon }{2n}  + V_f(y,b)\leq \frac{\epsilon }{2}+ V_f(y,b)
+\end{align*}
+\myref{Theorem}{Apotv} now give us 
+\begin{align*}
+V_f(x,y)=V_f(x,b)-V_f(y,b)\leq \epsilon  \vdone
+\end{align*}
+Proof for $V(x-)=V(x)$ is similar, and when $x=a\text{ or }b$, some trivial modifications are needed.
+\end{proof}
+\begin{mdframed}
+Give very careful attention to the statement of \myref{Theorem}{Cfobv}. Note that we require to the domain of $f$ to be $[a,b]$. If the domain of $f$ contain  $a\text{ or }b$ as interior point, the statement isn't always true. 
+\end{mdframed}
+\begin{corollary}
+\textbf{(Continuous function of bounded variation can be expressed as difference of two continuous strictly increasing functions)} Given continuous real-valued $f$ defined on $[a,b]$ 
+\begin{align*}
+f\in BV\big([a,b] \big) \iff  \exists \text{ continuous strictly increasing }g,h:[a,b]\rightarrow \R, f=g-h
+\end{align*}
+\end{corollary}
+\begin{proof}
+From right to left is again trivial. If $g(x)\triangleq V_f(a,x)$ and $h(x)\triangleq V_f(a,x)-f(x)$ is not strictly increasing, define $g'\triangleq g+(x-a)\text{ and }h'\triangleq h+(x-a)$. Such $g',h'$ suffice.
+\end{proof}
+\section{Construction of Riemann-Stieltjes integral}
 \section{Cauchy-Riemann Equations}
 \section{Product, Quotient and Chain Rule}
 \begin{mdframed}
@@ -1921,6 +2579,14 @@ Notice that by Chain Rule,
 \end{align*}
 Then the result follows from Part 2 of Fundamental Theorem of Calculus (\myref{Theorem}{FTC2}). $\vdone$
 \end{proof}
+\begin{Example}{\textbf{(Discontinuous Derivative)}}{}
+\begin{align*}
+f(x)=\begin{cases}
+  \frac{x^2}{\sin x}& \text{ if $x\neq 0$ }\\
+  0& \text{ if $x=0$ }
+\end{cases}
+\end{align*}
+\end{Example}
 \section{Uniform Convergence on Integration and Differentiation}
 \begin{theorem}
 \label{RIFac}

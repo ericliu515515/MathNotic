@@ -4563,17 +4563,142 @@ v_1\cdot v_2 &=  d\phi_p \circ (d\phi_p)^{-1} v_1\cdot d\phi_p \circ (d\phi_p)^{
 &=(d\phi_p)^{-1}v_1 \cdot (d\phi_p)^{-1}v_2\\
 &=d(\phi^{-1})_qv_1 \cdot d(\phi^{-1})_q v_2
 \end{align*}
-This established that Isometry is a symmetric relation. Checking Isometry relation is also transitive is easy.\\
+This established that Isometry is a symmetric relation. Checking Isometry relation is also transitive is again straightforward. This established that Isometry is an equivalence relation.\\
 
-Note that given a diffeomorphism $\phi:S\rightarrow \overline{S}$, we have 
+We now can say that two regular surface $S,\overline{S}$ is \textbf{isometric} if there exists an isometry between them.
+\end{mdframed}
+\begin{theorem}
+\textbf{(Isometric if and only if first fundamental forms are equivalent)} Given a diffeomorphism $\phi:S\rightarrow \overline{S}$ 
 \begin{align*}
 \phi\text{ is an isometry }\iff I_p(w)=I_{\phi (p)}(d\phi_p w)\text{ for all }w \in T_pS
 \end{align*}
-The converse is true, since 
+\end{theorem}
+\begin{proof}
+From left to right is straight forward. From right to left, fix $p \in S$ and $w_1,w_2 \in T_pS$. Observe 
 \begin{align*}
-2\langle w_1,w_2\rangle = I_p(w_1+w_2)-I_p(w_1)-I_p(w_2)
+\langle w_1,w_2\rangle &= \frac{1}{2}\Big(I_p(w_1+w_2)-I_p(w_1)-I_p(w_2) \Big)\\
+&=\frac{1}{2}\Big(I_{\phi(p)} (d\phi_p (w_1+w_2))- I_{\phi(p)}(d\phi_p w_1)-I_{\phi(p)}(d\phi_p w_2)\Big)\\
+&=\frac{1}{2}\Big(I_{\phi(p)} (d\phi_p w_1+d\phi_p w_2)- I_{\phi(p)}(d\phi_p w_1)-I_{\phi(p)}(d\phi_p w_2)\Big)\\
+&=\langle d\phi_p w_1, d\phi_p w_2\rangle 
 \end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Existence of Local Isometry)} Given two regular charts $\textbf{x}, \overline{\textbf{x}}$ from $U$ to $S,\overline{S}$ such that 
+\begin{align*}
+E=\overline{E}\text{ and }F=\overline{F}\text{ and }G=\overline{G}\text{ on }U
+\end{align*}
+We have
+\begin{align*}
+\overline{\textbf{x}}\circ \textbf{x}^{-1}:\textbf{x}(U)\rightarrow \overline{\textbf{x}}(U)\text{ is an isometry }
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is straightforward to check $\overline{\textbf{x}}\circ \textbf{x}^{-1}:\textbf{x}(U)\rightarrow \overline{\textbf{x}}(U)$ is a diffeomorphism, trivially using the chart $\textbf{x},\overline{\textbf{x}}$.\\
+
+Suppose that we are given a curve $\alpha (t)\triangleq \textbf{x}(u(t),v(t))$. We wish to show 
+ \begin{align*}
+ \vi{I_\alpha (\alpha ')=I_{\phi (\alpha )}(d\phi_\alpha  \alpha ')}
+\end{align*}
+We know 
+\begin{align*}
+I_{\alpha }(\alpha ')=E (u')^2 + 2F(u')(v')+ G(v')^2
+\end{align*}
+Observe that 
+\begin{align*}
+\phi \circ \alpha (t)=\overline{\textbf{x}}(u(t),v(t))
+\end{align*}
+This implies 
+\begin{align*}
+I_{\phi (\alpha) }(d\phi_{\alpha }\alpha ')&=\overline{E}(u')^2 + 2\overline{F}(u')(v')+ \overline{G}(v')^2\\
+&=E(u')^2+2F(u')(v')+G(v')^2=I_\alpha (\alpha ') \vdone
+\end{align*}
+\end{proof}
+\begin{definition}
+\textbf{(Definition of Locally Isometric)} We say $S$  \textbf{is locally isometric} to $\overline{S}$ if for all $p\in S$, there exists an isometry from an open set containing  $p$ to  $\overline{S}$. We say $S,\overline{S}$ are \textbf{locally isomteric}, if $S,\overline{S}$ are locally isomteric to each other.
+\end{definition}
+\begin{mdframed}
+We now extend our discussion from length to angle.
 \end{mdframed}
+\begin{definition}
+\textbf{(Definition of Conformal Map)} A diffeomorphism $\phi:S\rightarrow \overline{S}$ is a conformal map if for all $p \in S$ and $v_1,v_2 \in T_pS$, we have 
+\begin{align*}
+\langle d\phi_p(v_1),d\phi_p(v_2)\rangle = \ld^2 (p) \langle v_1,v_2\rangle 
+\end{align*}
+where $\ld ^2 $ is a nowhere-zero differentiable function on $S$.
+\end{definition}
+\begin{mdframed}
+One can check that the inverse of a conformal map is still conformal by following computation. Fix $q\triangleq \phi(p)$ and $w_1\triangleq d\phi_p(v_1),w_2\triangleq d\phi_p(v_2)$. We have 
+\begin{align*}
+\langle d(\phi^{-1})_qw_1,d(\phi^{-1})_qw_2\rangle &= \langle (d\phi_p)^{-1}w_1, (d\phi_p)^{-1}w_2\rangle \\
+&=\langle v_1 , v_2\rangle \\
+&=\frac{\ld ^2}{\ld ^2} \langle v_1,v_2\rangle \\
+&=\frac{1}{\ld ^2} \langle d\phi_pv_1 , d\phi_p v_2\rangle \\
+&=\frac{1}{\ld ^2}\langle w_1,w_2\rangle 
+\end{align*}
+This established that conformal is a symmetric relation. Checking conformal relation is also transitive is again straightforward. This established that conformal is an equivalence relation.\\
+
+We now can say that two regular surface $S,\overline{S}$ are \textbf{conformal} if there exists an conformal map between them.
+\end{mdframed}
+\begin{theorem}
+\textbf{(Existence of Local Conformality)} Given $\textbf{x}:U\rightarrow S\text{ and }\overline{\textbf{x}}:U\rightarrow \overline{S}$ such that 
+\begin{align*}
+E=\ld^2 \overline{E}\text{ and }F=\ld ^2 \overline{F}\text{ and }G=\ld ^2 \overline{G}
+\end{align*}
+where $\ld^2$ is a nowhere-zero differentaible function on $U$. Then the map 
+ \begin{align*}
+\overline{\textbf{x}}\circ \textbf{x}^{-1}:\textbf{x}(U)\rightarrow \overline{\textbf{x}}(U)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $p \in \textbf{x}(U)$ and $v_1,v_2 \in T_pS$. Compute
+\begin{align*}
+\langle v_1,v_2\rangle &= \frac{1}{2}\Big(I_p(v_1+v_2)-I_p(v_1)-I_p(v_2)  \Big)
+\end{align*}
+Express 
+\begin{align*}
+v_1\triangleq c_{1}\textbf{x}_u+c_{2} \textbf{x}_v \text{ and }v_2\triangleq d_{1}\textbf{x}_u+d_{2}\textbf{x}_v
+\end{align*}
+Continue the computation 
+\begin{align*}
+\langle v_1,v_2\rangle &= \frac{1}{2}\Big( (c_1+d_1)^2 E+ (c_1+d_1)(c_2+d_2)2F + (c_1+d_1)^2 G - \cdots \Big)\\
+&=\frac{\ld ^2}{2}\Big( (c_1+d_1)^2 \overline{E}+ (c_1+d_1)(c_2+d_2)2\overline{F} + (c_1+d_1)^2 \overline{G} + \cdots \Big)\\
+&=\frac{1}{2}\Big(I_{\phi(p)}\big((c_1+d_1)\overline{\textbf{x}}_u+ (c_2+d_2)\overline{\textbf{x}}_v \big)- I_{\phi(p)}(c_1\overline{\textbf{x}}_u+c_2 \overline{\textbf{x}}_v)- I_{\phi (p)}(d_1\overline{\textbf{x}}_u+d_2\overline{\textbf{x}}_v) \Big)\\
+&=\frac{1}{2}\Big(I_{\phi(p)}(d\phi_p v_1+ d\phi_p v_2)-I_{\phi(p)}(d\phi_p v_1)-I_{\phi(p)}(d\phi_p v_2) \Big)\\
+&=\langle d\phi_pv_1, d\phi_p v_2\rangle 
+\end{align*}
+\end{proof}
+\begin{mdframed}
+A very important Theorem regarding isometry is as follow. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Isometry induce chart)} Given a regular surface $S$,  a chart $\textbf{x}:U\rightarrow S$, an isometry $\phi$ from an open $V\subseteq \textbf{x}(U)$ to another regular surface $\overline{S}$, the chart $\overline{\textbf{x}}:\textbf{x}^{-1}(V)\rightarrow \overline{S}$ defined by 
+\begin{align*}
+\overline{\textbf{x}}(u,v)\triangleq \phi \circ \textbf{x}(u,v)
+\end{align*}
+is regular and give us 
+\begin{align*}
+\overline{E}=E\text{ and }\overline{F}=F\text{ and }\overline{G}=G
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe 
+\begin{align*}
+  \overline{\textbf{x}}_u=d\phi_p (\textbf{x}_u)\text{ and }\overline{\textbf{x}}_v=d\phi_p (\textbf{x}_v)
+\end{align*}
+Because $d\phi_p$ is full rank ($\because \phi$ is differentiable) and $\textbf{x}_u,\textbf{x}_v$ are linearly independent, we see $\overline{\textbf{x}}_u,\overline{\textbf{x}}_u$ are also linearly independent. This shows that $\overline{\textbf{x}}$ is regular.\\
+
+Now because $\phi$ is an isometry, 
+\begin{align*}
+\overline{E}=\langle \overline{\textbf{x}}_u, \overline{\textbf{x}}_u \rangle = \langle d\phi_p \textbf{x}_u, d\phi_p \textbf{x}_u\rangle =\langle \textbf{x}_u, \textbf{x}_u\rangle =E
+\end{align*}
+The proof for rest of the statement is similar. 
+\end{proof}
+
+
+
+
+
+\section{Examples of Isometry and Conformal}
 \begin{Example}{\textbf{(Part of the Cylinder is Isometry to Rectangle)}}{}
 \begin{align*}
 U\triangleq \set{(u,v)\inr^2: u \in (0,2\pi)}
@@ -4618,7 +4743,7 @@ Observe that
 \end{align*}
 This implies 
 \begin{align*}
-I_{\phi \alpha }(d\phi_{\alpha }\alpha ')=\overline{E}(u')^2 + 2F(u'v')+ G(v')^2
+I_{\phi \alpha }(d\phi_{\alpha }\alpha ')=\overline{E}(u')^2 + 2\overline{F}(u')(v')+ \overline{G}(v')^2
 \end{align*}
 After checking that 
 \begin{align*}
@@ -4627,30 +4752,981 @@ F&=\overline{F}=0\\
 G&=\overline{G}=1 \vdone
 \end{align*}
 \end{Example}
+\section{Christoffel symbols} 
 \begin{mdframed}
-This give us our next Theorem.
+Suppose $S$ is an oriented regular surface. Given a local $\textbf{x}:U\rightarrow S$ with the same orientation, because $\set{\textbf{x}_u,\textbf{x}_v,N}$ are pointwise an orthogonal basis of $\R^3$, we know there exists real-valued functions $\Gamma^1_{11},\Gamma ^1_{12},\Gamma ^1_{21},\Gamma^1_{22},\Gamma^2_{11},\Gamma ^2_{12},\Gamma ^2_{21},\Gamma^2_{22},a_{11},a_{21},a_{12},a_{22}$  defined on $U$  such that we have pointwise
+\begin{align*}
+\textbf{x}_{uu}&= \Gamma^1_{11}\textbf{x}_u + \Gamma^2_{11}\textbf{x}_v + eN\\
+\textbf{x}_{uv}&=\Gamma ^1_{12}\textbf{x}_u + \Gamma ^2_{12}\textbf{x}_v + fN\\
+\textbf{x}_{vu}&=\Gamma^1_{21} \textbf{x}_u + \Gamma ^2_{21}\textbf{x}_v+ fN \\
+\textbf{x}_{vv}&=\Gamma ^1_{22} \textbf{x}_u + \Gamma^2_{22}\textbf{x}_v + gN\\
+N_u&=a_{11}\textbf{x}_u + a_{21}\textbf{x}_v\\
+N_v&=a_{12}\textbf{x}_u+ a_{22}\textbf{x}_v
+\end{align*}
+Because $\textbf{x}$ is smooth, we know $\textbf{x}_{uv}=\textbf{x}_{vu}$.This tell us 
+\begin{align*}
+\Gamma^1_{12}=\Gamma^1_{21}\text{ and }\Gamma^2_{12}=\Gamma ^2_{21}
+\end{align*}
+One can differentiate $\langle \textbf{x}_u , \textbf{x}_u\rangle $ with respect to $u$ and observe 
+\begin{align*}
+\Gamma^1_{11}E+ \Gamma^2_{11}F= \langle \textbf{x}_{uu},\textbf{x}_u\rangle = \frac{1}{2}E_u
+\end{align*}
+Similarly, one can deduce 
+\begin{align*}
+\begin{cases}
+  \Gamma^1_{11}E+\Gamma^2_{11}F&= \langle \textbf{x}_{uu},\textbf{x}_u\rangle =\frac{1}{2}E_u\\
+  \Gamma^1_{12}E+ \Gamma ^2_{12}F&=\langle \textbf{x}_{uv},\textbf{x}_u\rangle = \frac{1}{2}E_v\\
+ \Gamma^1_{21}F+\Gamma^2_{21}G &=\langle \textbf{x}_{vu},\textbf{x}_v\rangle = \frac{1}{2}G_u \\
+\Gamma^1_{22}F+ \Gamma^2_{22}G &=\langle \textbf{x}_{vv},\textbf{x}_v\rangle = \frac{1}{2}G_v
+\end{cases}
+\end{align*}
+Now, because 
+\begin{align*}
+F_u=\frac{\partial}{\partial u}\langle \textbf{x}_u, \textbf{x}_v\rangle = \langle \textbf{x}_{uu},\textbf{x}_v\rangle  + \langle \textbf{x}_u, \textbf{x}_{uv}\rangle = \langle \textbf{x}_{uu},\textbf{x}_v\rangle + \frac{1}{2}E_v
+\end{align*}
+We have 
+\begin{align}
+\Gamma ^1_{11}F+ \Gamma^2_{11}G=\langle \textbf{x}_{uu},\textbf{x}_v\rangle =F_u - \frac{1}{2}E_u
+\end{align}
+Again because 
+\begin{align*}
+F_v = \frac{\partial }{\partial _v}\langle \textbf{x}_u ,\textbf{x}_v\rangle = \langle \textbf{x}_{uv},\textbf{x}_v\rangle + \langle \textbf{x}_u,\textbf{x}_{vv}\rangle = \frac{1}{2}G_u + \langle \textbf{x}_u ,\textbf{x}_{vv}\rangle 
+\end{align*}
+We have 
+\begin{align}
+\Gamma^1_{22}E+ \Gamma^2_{22}F= \langle \textbf{x}_u , \textbf{x}_{vv}\rangle = F_v- \frac{1}{2}G_u
+\end{align}
+\end{mdframed}
+\begin{mdframed}
+In conclusion, we have the following three sets of equations  
+\begin{align*}
+&\begin{cases}
+E\Gamma^1_{11}+ F\Gamma ^2_{11}= \frac{1}{2}E_u \\
+F\Gamma^1_{11}+G\Gamma^2_{11}= F_u-\frac{1}{2}E_u
+\end{cases}\\
+&\begin{cases}
+  E\Gamma^1_{12}+ F\Gamma^2_{12}= \frac{1}{2}E_v\\
+  F\Gamma^1_{12}+ G\Gamma^2_{12} =\frac{1}{2}G_u
+\end{cases}\\
+&\begin{cases}
+  F\Gamma^1_{22}+ G\Gamma^2_{22} = \frac{1}{2}G_v\\
+  E\Gamma^1_{22}+ F\Gamma^2_{22}= F_v -\frac{1}{2}G_u
+\end{cases}
+\end{align*}
+Now, because $\sqrt{EG-F^2}= \abso{\textbf{x}_u \times \textbf{x}_v}>0$, we see the determinant  $EG-F^2\neq 0$. This implies that the unknowns $\Gamma^1_{11},\Gamma^2_{11},\Gamma^1_{12},\Gamma^2_{12},\Gamma^1_{22},\Gamma^2_{22}$ can all be solved for.
+\end{mdframed}
+\begin{theorem}
+\textbf{(Gauss Formula)} 
+\begin{align*}
+  K= \frac{(\Gamma ^2_{12})_u - (\Gamma^2_{11})_v + \Gamma^1_{12} \Gamma^2_{11} + \Gamma^2_{12}\Gamma^2_{21}- \Gamma^2_{11}\Gamma^2_{22}-\Gamma^1_{11}\Gamma^2_{12}}{-E}
+\end{align*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+\section{Vector Field}
+\begin{mdframed}
+In this section, $S$ is a regular surface with orientation $N$, $I\triangleq [0,l]$, $\alpha :I\rightarrow S$ is a smooth curve, and when $\alpha $ lies in coordinate chart $\textbf{x}:U\rightarrow S$, $\alpha $ is expressed 
+\begin{align*}
+\alpha (t)\triangleq \textbf{x}(u(t),v(t))
+\end{align*}
 \end{mdframed}
 \begin{definition}
-\textbf{(Definition of Local Isometry)} Note that a set open in a regular surface is again regular.\\
-
-A map $\phi$ from a set $V$ open in $S$  containing $p$ to $\overline{S}$ is a \textbf{local isometry} at $p$ if there exists $\overline{V}$ open in $\overline{S}$ such that 
+  \textbf{(Definition of Vector Field along $\alpha $)} A \textbf{vector field $w$ along $\alpha $} is a function $w:I\rightarrow \R^3$ such that 
 \begin{align*}
-\phi:V\rightarrow \overline{V}\text{ is an isometry }
+w(t)\in T_{\alpha (t)}S\text{ for all $t\in I$ }  
+\end{align*}
+\end{definition}
+\begin{mdframed}
+It is clear that $\set{w,N,N\times w}$ form an orthogonal basis for each $t\in I$. We then can write 
+\begin{align*}
+w'(t)=A(t)w+ B(t)N+C(t)N\times w
+\end{align*}
+and define the \textbf{covariant derivative} by
+\begin{align*}
+\frac{Dw}{dt}(t)\triangleq Aw+ CN\times w= w'- \langle w', N\rangle 
+\end{align*}
+If $w$ is unit, we see $A=0$, and we shall denote $C$ by $\Big[\frac{Dw}{dt} \Big]$  
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of Parallel Vector Field)} A vector field $w$ along $\alpha $ is said to be \textbf{parallel} if 
+\begin{align*}
+  \frac{Dw}{dt}(t)=0\text{ for all $t\in I$ }
+\end{align*}
+or, equivalently
+\begin{align*}
+w'(t)\perp T_{\alpha (t)}S\text{ for all $t\in I$ }
 \end{align*}
 \end{definition}
 \begin{theorem}
-\textbf{(Existence of Local Isometry)} If there exists regular chart $\textbf{x}, \overline{\textbf{x}}$ from $U$ into $S,\overline{S}$ such that 
-\begin{align*}
-E=\overline{E}\text{ and }F=\overline{F}\text{ and }G=\overline{G}\text{ on }U
-\end{align*}
-then 
-\begin{align*}
-\overline{\textbf{x}}\circ \textbf{x}^{-1}\text{ is a local isometry }
-\end{align*}
+\textbf{(Expected Property of Parallel Vector Field)} If $w,v$ are parallel vector fields along  $\alpha$, then the following real-valued functions 
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle w(t),v(t)\rangle $ 
+  \item $\abso{w(t)}$ 
+  \item $\abso{v(t)}$ 
+  \item $\frac{\langle w(t),v(t)\rangle }{\abso{w}\cdot \abso{v}}$ 
+\end{enumerate}
+are constants on $I$.
 \end{theorem}
-\begin{definition}
-\textbf{(Definition of )}
-\end{definition}
+\begin{proof}
+It is straightforward to check that we only have to prove $\langle w(t),v(t)\rangle $ is constant on $I$. Observe 
+\begin{align*}
+\Big(\langle w(t),v(t)\rangle  \Big)'&= \langle w'(t),v(t)\rangle  + \langle w(t),v'(t)\rangle 
+\end{align*}
+WOLG, it suffices to show 
+\begin{align*}
+\vi{\langle w'(t),v(t)\rangle =0\text{ on $I$ } }
+\end{align*}
+Because $w$ is parallel, by definition, $w'$ is orthogonal to  $T_pS$. The conclusion then follows from the fact $v \in T_pS$. $\vdone$
+\end{proof}
+\begin{lemma}
+Let $a,b$ be two $\R$-valued differentiable functions on  $I$ such that
+\begin{align*}
+  a^2+b^2=1\text{ on }I
+\end{align*}
+Let $t_0\in I,\phi_0\inr$ satisfy 
+\begin{align*}
+a(t_0)=\cos \phi_0\text{ and }b(t_0)=\sin \phi_0
+\end{align*}
+The differentiable function 
+\begin{align*}
+\phi \triangleq  \phi_0 + \int_{t_0}^t (ab'-ba')dt
+\end{align*}
+satisfy 
+\begin{align*}
+a(t)=\cos \phi (t)\text{ and }b(t)=\sin \phi (t)\text{ on }I
+\end{align*}
+\end{lemma}
+\begin{proof}
+It suffices to show 
+\begin{align*}
+  \vi{(a-\cos \phi)^2 + (b- \sin \phi)^2 =0\text{ on $I$ }}
+\end{align*}
+Because $\big((a-\cos \phi)^2 + (b- \sin \phi)^2 \big)\big|_{t=t_0}=0$, it suffices to show 
+\begin{align*}
+  \vi{ \Big((a-\cos \phi)^2 + (b- \sin \phi)^2 \Big)'=0\text{ on }I}
+\end{align*}
+Observe 
+\begin{align*}
+  (a-\cos \phi)^2+ (b-\sin  \phi)^2&=(a^2+b^2)+(\cos^2 \phi + \sin^2 \phi)- 2a \cos \phi -2b \sin \phi\\
+  &=2-2a \cos \phi -2b \sin \phi
+\end{align*}
+This reduce the problem into proving 
+\begin{align*}
+ \vi{(a\cos \phi+ b \sin \phi)'=0\text{ on }I}
+\end{align*}
+Observe 
+\begin{align*}
+  (a\cos \phi+ b \sin \phi)'&=a'\cos \phi + b' \sin \phi -a \phi' \sin \phi + b \phi' \cos \phi\\
+  &= (a'+b\phi')\cos \phi + (b'-a\phi')\sin \phi \\
+  &=(a'+ b(ab'-ba'))\cos \phi + (b'-a(ab'-ba')) \sin \phi
+\end{align*}
+This reduce the problem into proving 
+\begin{align*}
+\vi{a'+b(ab'-ba')=b'-a(ab'-ba')=0\text{ on }I}
+\end{align*}
+Note that 
+\begin{align*}
+2(aa'+bb')=(a^2+b^2)'=0\text{ on }I
+\end{align*}
+This give us 
+\begin{align*}
+aa'=-bb'
+\end{align*}
+We now see 
+\begin{align*}
+a'+b(ab'-ba')&=a'+abb'-a'b^2\\
+&=a'-a^2a'-a'b^2\\
+&=a'-a'=0
+\end{align*}
+We now see 
+\begin{align*}
+b'-a(ab'-ba')&=b'-a^2b'+aa'b\\
+&=b'-a^2b'-b^2b'\\
+&=b'-b'=0 \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Given two vectors $v,w\inr^3$, and let $\widehat{v}\triangleq \frac{v}{\abso{v}}, \widehat{w}\triangleq \frac{w}{\abso{w}}$. We can show that there exists $\phi$ such that 
+\begin{align*}
+\langle \widehat{v},\widehat{w}\rangle = \cos \phi \text{ and } \langle (\widehat{v}\times \widehat{w})\times \widehat{v}, \widehat{w}\rangle   = \sin \phi
+\end{align*}
+\end{mdframed}
+\begin{lemma}
 
+\end{lemma}
+
+\section{Real Geodesic}
+
+\begin{definition}
+\textbf{(Definition of Parametrized Geodesic)} Let $\alpha :I\rightarrow S$ be a smooth curve in $S$. By definition of tangent plane, $\alpha '$ is a vector field along $\alpha $. If $\alpha '$ is differentiable and parallel, then we say $\alpha $ is a \textbf{parametrized geodesic}. 
+\end{definition}
+\begin{mdframed}
+Note that $\alpha '$ is parallel if and only if $\alpha ''$ orthogonal to $T_pS$. Then if we are given the fact $\alpha $ is parametrized by arc-length, then $\alpha $ is a paremetrized geodesic if and only if $N_\alpha$ is parallel with $N$ on $I$. 
+\end{mdframed}
+\begin{mdframed}
+Let $n$ be the normal of $C$
+\begin{align*}
+&\kappa_C n=\frac{dT}{ds}=0T+ \kappa_n N + \kappa_g N\times T\text{ where $N$ is the normal of $S$ }\\
+&\implies  \kappa_C^2 = \kappa_n ^2 + \kappa_g ^2
+\end{align*}
+
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of Geodesic)} Let $C$ be a connected regular curve in $S$.  If for each $p \in C$, there exists an arc-length parametrization $\alpha:I\rightarrow C$ around $p$  such that $\alpha ''$ 
+\end{definition}
+\begin{mdframed}
+Given a curve $C$  (a subset) in $S$, we say  $C$ is a \textbf{geodesic} if $N_C$ and  $N_S$ are parallel, where  $N_C$ is the normal of  $C$ and  $N_S$ is the normal of  $S$. 
+\end{mdframed}
+\section{HW6}
+
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw61}
+\end{question}
+\begin{proof}
+We are given $f:\R^2 \rightarrow S^2$
+\begin{align*}
+f(x,y)= \frac{(2x,2y,x^2+y^2-1)}{x^2+y^2+1}
+\end{align*}
+We claim 
+\begin{align*}
+  \vi{df_{(x,y)}u\cdot df_{(x,y)}v= \frac{4(u\cdot v)}{(x^2+y^2+1)^2}\text{ for all $u,v \inr^2$ }}
+\end{align*}
+We reduce the problem into proving 
+\begin{align*}
+\begin{cases}
+  \vi{df_{(x,y)}e_1 \cdot df_{(x,y)}e_1 = \frac{4}{(x^2+y^2+1)^2}}\\
+  \vi{df_{(x,y)}e_1\cdot df_{(x,y)}e_2= 0}\\
+  \vi{df_{(x,y)}e_2\cdot df_{(x,y)}e_2= \frac{4}{(x^2+y^2+1)^2}}
+\end{cases}
+\end{align*}
+Compute 
+\begin{align*}
+df_{(x,y)}=\frac{1}{(x^2+y^2+1)^2} \begin{bmatrix}
+  2(y^2-x^2+1) & -4xy\\
+  -4xy & 2(x^2-y^2+1)\\
+  4x & 4y
+\end{bmatrix}
+\end{align*}
+The rest then follows from direct computation. $\vdone$\\
+
+Note that we actually miss the north pole. To prove that $S^2$ is locally conformal to  $\R^2$ at the north pole, we just have to do the same computation with
+\begin{align*}
+g(x,y)=  \frac{(2x,2y,1-x^2-y^2)}{x^2+y^2+1}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{hw62}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+  (\textbf{x}_1)_s&=\alpha_1' + v\alpha_1''\\
+  (\textbf{x}_1)_v&=\alpha_1'\\
+  (\textbf{x}_2)_s&=\alpha_2' + v\alpha_2''\\
+  (\textbf{x}_2)_v&=\alpha_2'
+\end{align*}
+Using the fact $\alpha'=T$ and $\alpha ''=\kappa N$  compute
+\begin{align*}
+E_1&=1+ v^2\kappa^2\text{ and }F_1=1\text{ and }G_1=1\\
+E_2&=1+ v^2\kappa^2\text{ and }F_2=1\text{ and }G_2=1
+\end{align*}
+This implies that $\textbf{x}_1\circ \textbf{x}_2^{-1}:\textbf{x}_2(V)\rightarrow \textbf{x}_1(V)$ is an isometry.
+\end{proof}
+
+\begin{question}{}{}
+\includegraphics[height=7cm,width=18cm]{hw63}
+\end{question}
+\begin{proof}
+Parametrize $\alpha $ by arc-length $s$ in an open neighborhood around $t_0$. We can now reparametrize $\textbf{x}(V)$ by 
+\begin{align*}
+\textbf{x}(s,v)=\alpha (s)+ v\alpha '(s)
+\end{align*}
+By Fundamental Theorem of Local Curves, we know there exists a smooth arc-length parametrized curve $\beta :I\rightarrow \R^3$ such that $\beta $ and $\alpha $ has the same curvature everywhere and has zero torsion everywhere. Because $\beta $ has zero torsion everywhere, we know $B_{\beta }'=0$ everywhere. In other words,  $B_\beta $ is constant on $I$. This implies  the range of $T_\beta $ is contained by a 2-dimensional subspace of $\R^3$. Let  $p=\beta (t_0)$, and let such subspace be $W$. We see that 
+\begin{align*}
+\beta (s)= \int_{t_0}^s T_{\beta }(s')ds' \in p+W
+\end{align*}
+This implies that $\beta $ is contained by the plane $p+W$.\\
+
+Define $\textbf{x}_2:V\rightarrow \R^3$ by
+\begin{align*}
+\textbf{x}_2(s,v)=\beta (s)+ v \beta '(s)
+\end{align*}
+Because $\beta '(s)\in W$, we see $\textbf{x}_2(V)$ lies in $p+W$. It now follows from the last question that  $\textbf{x}(V)$ is isometric $\textbf{x}_2(V)$. 
+\end{proof}
+
+\begin{question}{}{}
+\includegraphics[height=15cm,width=18cm]{hw64}
+\end{question}
+\begin{proof}
+We claim one of such $p_0$ is 
+ \begin{align*}
+\vi{p_0\triangleq G(0)}
+\end{align*}
+We reduce the problem into proving 
+\begin{align*}
+  \vi{F(p)\triangleq G(p)-G(0)\text{ is a linear isometry of $\R^3$ }}
+\end{align*}
+Note that 
+\begin{align*}
+F(0)=0\text{ and } \abso{F(p)}=\abso{G(p)-G(0)}= \abso{p}
+\end{align*}
+This by Mazur-Ulam Theorem implies $F$ is affine. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw65}
+\end{question}
+\begin{proof}
+We are given charts $\textbf{x},\overline{\textbf{x}}:I \times (0,2\pi)\rightarrow S$ 
+\begin{align*}
+\textbf{x}(t,\theta)&= \Big(\cos \theta f(t),\sin \theta f(t), g(t) \Big)\\
+\overline{\textbf{x}}(t,\theta)&=\Big(\cos (\theta + \theta_0)f, \sin (\theta+\theta_0)f,g \Big)
+\end{align*}
+It is clear that if we rotate $S$ about $z$-axis counterclockwise of $\theta_0$ degree, then the restriction of the action $\phi$ is exactly $\overline{\textbf{x}}\circ \textbf{x}^{-1}$. The problem is now reduced to proving 
+\begin{align*}
+E=\overline{E}\text{ and }F=\overline{F}\text{ and }G=\overline{G}
+\end{align*}
+Compute 
+\begin{align*}
+\textbf{x}_t&=\Big(\cos \theta f', \sin \theta f', g' \Big)\\
+\textbf{x}_\theta&=\Big( -\sin \theta f, \cos \theta f, 0 \Big)\\
+\overline{\textbf{x}}_t&=\Big(\cos (\theta+\theta_0)f', \sin (\theta+ \theta_0)f',g'  \Big)\\
+\overline{\textbf{x}}_\theta&=\Big( -\sin (\theta + \theta_0) f, \cos (\theta + \theta_0)f,0 \Big)
+\end{align*}
+This give us 
+\begin{align*}
+E&=(f')^2 +(g')^2\text{ and }F=0\text{ and }G=f^2\\
+\overline{E}&=(f')^2+(g')^2\text{ and }\overline{F}=0\text{ and }\overline{G}=f^2
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw66}
+\end{question}
+\begin{proof}
+$(\longleftarrow)$\\
+
+Fix $p \in S$. Let $e_1,e_2$ be an orthonormal basis of  $T_pS$. By premise,  
+\begin{align*}
+\langle d\phi_p e_1, d\phi_p e_2\rangle = 0
+\end{align*}
+Express 
+\begin{align*}
+\langle d\phi_p e_1, d\phi_p e_1\rangle &= \ld_1\\
+\langle d\phi_p e_2, d\phi_p e_2\rangle &=\ld _2
+\end{align*}
+Let 
+\begin{align*}
+v_1=e_1\text{ and }v_2=\cos \theta e_1 +\sin \theta e_2
+\end{align*}
+Then by premise 
+\begin{align*}
+\cos \theta = \frac{\ld _1 \cos \theta}{\sqrt{\ld _1} \sqrt{\cos^2 \theta \ld _1 + \sin^2 \theta  \ld _2}  }
+\end{align*}
+Note that the denominator will never be zero because $d\phi_p$ is full rank by premise. \\
+
+
+We can now deduce
+\begin{align*}
+\ld _1 = \cos ^2 \theta \ld _1 + \sin^2 \theta \ld _2
+\end{align*}
+This implies 
+\begin{align*}
+  (1-\cos ^2 \theta)\ld _1 = \sin^2 \theta \ld _2
+\end{align*}
+which implies $\ld _1 =\ld _2$. We now see that for all $c_1,c_2,d_1,d_2 \inr$, we have 
+\begin{align*}
+\langle c_1e_1+c_2e_2 , d_1e_1+d_2e_2\rangle &= c_1d_1+ c_2d_2\\
+&= \frac{1}{\ld _1} \langle d\phi_p (c_1e_1+c_2e_2), d\phi_p (d_1e_1+d_2e_2)\rangle 
+\end{align*}
+$(\longrightarrow)$\\
+
+Fix $p\in  S$. Let $e_1,e_2$ be an orthonormal basis of  $T_pS$. By premise, we see 
+ \begin{align*}
+\langle d\phi_p e_1,d\phi_pe_2\rangle &= \ld ^2 \langle e_1,e_2\rangle =0\\
+\langle d\phi_p e_1,d\phi_p e_1\rangle &=\ld ^2\langle e_1,e_1\rangle =\ld ^2\\
+\langle d\phi_p e_2,d\phi_p e_2\rangle &=\ld ^2\langle e_2,e_2\rangle = \ld ^2
+\end{align*}
+Express $v_1,v_2\in T_pS$ 
+\begin{align*}
+v_1\triangleq c_1e_1+c_2e_2\text{ and }v_2\triangleq d_1e_1+d_2e_2
+\end{align*}
+Using the equations set we have, we see
+\begin{align*}
+\abso{d\phi_p v_1}&= \abso{c_1 d\phi_p e_1+ c_2d\phi_p e_2}\\
+                  &=\sqrt{ \abso{c_1d\phi_p e_1}^2+ \abso{c_2d\phi_p e_2}^2}= \ld  \sqrt{c_1^2+ c_2^2}=\ld \abso{v_1} 
+\end{align*}
+Similarly, 
+\begin{align*}
+\abso{d\phi_p v_2}=\ld \abso{v_2}
+\end{align*}
+Observe 
+\begin{align*}
+\cos (v_1,v_2)&=\frac{\langle v_1,v_2 \rangle }{\abso{v_1}\abso{v_2}}\\
+&=\frac{\langle d\phi_p v_1, d\phi_p v_2\rangle }{\ld ^2\abso{v_1}\abso{v_2}}\\
+&=\frac{\langle d\phi_p v_1,d\phi_p v_2\rangle }{\abso{d\phi_p v_1}\abso{d\phi_p v_2}}= \cos (d\phi_p v_1, d\phi_p v_2)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw67}
+\end{question}
+\begin{proof}
+Because $\phi:\R^2\rightarrow \R^2$ satisfy Cauchy-Riemann equations, we can express 
+\begin{align*}
+[d\phi_p]= \begin{bmatrix}
+  \ld_1 & \ld_2 \\
+  -\ld _2 & \ld _1
+\end{bmatrix}\text{ where $u_x=\ld_1\text{ and }u_y=\ld_2$ }
+\end{align*}
+Because $\ld_1^2+\ld_2^2=u_x^2+u_y^2$ is differentiable and non-zero on $\R^2 \setminus Q$, we can reduce the problem into proving
+\begin{align*}
+  \vi{\langle d\phi_pv_1,d\phi_p v_2\rangle = (\ld _1^2+\ld _2^2)  \langle v_1,v_2\rangle \text{ for all }v_1,v_2 \inr^2}
+\end{align*}
+Let $e_1=(1,0)\text{ and }e_2=(0,1)$. We reduce the problem into proving 
+\begin{align*}
+\begin{cases}
+  \vi{\langle d\phi_p e_1,d\phi_p e_1\rangle = (\ld_1^2 +\ld _2^2)\langle e_1,e_1\rangle = \ld _1^2+\ld _2^2 }\\
+  \vi{\langle d\phi_p e_1, d\phi_p e_2\rangle = (\ld _1^2+ \ld _2^2)\langle e_1,e_2\rangle =0}\\
+  \vi{\langle d\phi_p e_2, d\phi_p e_2\rangle= (\ld _1^2+ \ld _2^2)\langle e_2,e_2\rangle = \ld _1^2 +\ld _2^2 }
+\end{cases}
+\end{align*}
+Compute 
+\begin{align*}
+\langle d\phi_p e_1,d\phi_p e_1\rangle = \abso{(\ld_1, -\ld _2)}^2= \ld _1^2+\ld _2^2
+\end{align*}
+Compute 
+\begin{align*}
+\langle d\phi_p e_2, d\phi_p e_2\rangle = \abso{(\ld _2,\ld _1)}^2 = \ld _1^2+ \ld _2^2
+\end{align*}
+Compute 
+\begin{align*}
+\langle d\phi_p e_1,d\phi_p e_2\rangle = \ld_1 \ld_2 - \ld_2 \ld _1=0 \vdone
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw68}
+\end{question}
+\begin{proof}
+We first show 
+\begin{align*}
+\vi{\text{ If }F=0\text{ then }K=\frac{-1}{2\sqrt{EG}}\Big[ \Big( \frac{E_v}{\sqrt{EG} } \Big)_v + \Big( \frac{G_u}{\sqrt{EG} } \Big)_u \Big]}
+\end{align*}
+Because $F=0$, we can compute 
+\begin{align*}
+\Gamma^1_{11}&= \frac{E_u}{2E}\\
+\Gamma^2_{11}&= \frac{E_v}{-2G}\\
+\Gamma^1_{12}&= \frac{E_v}{2E}\\
+\Gamma^2_{12}&= \frac{G_u}{2G}\\
+\Gamma^1_{22}&= \frac{G_u}{-2E}\\
+\Gamma^2_{22}&= \frac{G_v}{2G}
+\end{align*}
+We have the Gauss Formula 
+\begin{align*}
+  K&= \frac{(\Gamma ^2_{12})_u - (\Gamma^2_{11})_v + \Gamma^1_{12} \Gamma^2_{11} + \Gamma^2_{12}\Gamma^2_{21}- \Gamma^2_{11}\Gamma^2_{22}-\Gamma^1_{11}\Gamma^2_{12}}{-E}
+\end{align*}
+The rest then follows from expressing both $K$  and  $\frac{-1}{2\sqrt{EG}}\Big[\Big(\frac{E_v}{\sqrt{EG} } \Big)_v + \Big( \frac{G_u}{\sqrt{EG} } \Big)_u  \Big]$ in the form of $\frac{f}{g}, \frac{h}{k}$ where $f,g,h,k$ are some product of the 0-th, first and second derivatives of  $E,F,G$, and check $fk=gh$. $\vdone$\\
+
+
+Now, note that 
+\begin{align*}
+ (\ln \ld )_{u}= \frac{\ld_u}{\ld }\text{ and }(\ln \ld )_{v}=  \frac{\ld_v}{\ld}
+\end{align*}
+Using our formula, we see 
+\begin{align*}
+K&= \frac{-1}{2\sqrt{EG}}\Big[\Big(\frac{E_v}{\sqrt{EG} } \Big)_v + \Big( \frac{G_u}{\sqrt{EG} } \Big)_u  \Big]\\
+&=\frac{1}{-2\ld } \Big[ \Big( \frac{\ld_u}{\ld } \Big)_u + \Big( \frac{\ld _v}{\ld } \Big)_v \Big]\\
+&=\frac{1}{-2 \ld } \Big( (\ln \ld )_{uu}+ (\ln  \ld )_{vv} \Big)= \frac{1}{-2\ld } \Delta (\ln \ld )
+\end{align*}
+If $\ld = (u^2+v^2-c)^2$, we have 
+\begin{align*}
+K=4c
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw69}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\textbf{x}_u&= (\cos v, \sin v, \frac{1}{u})\text{ and }\textbf{x}_v=(-u \sin v,u \cos v ,0)\\
+\overline{\textbf{x}}_u&= (\cos v, \sin v, 0)\text{ and }\overline{\textbf{x}}_v=(-u \sin v,u \cos v,1)
+\end{align*}
+This give us 
+\begin{align*}
+E&=1+\frac{1}{u^2}\text{ and }F=0\text{ and }G=u^2\\
+\overline{E}&=1\text{ and }\overline{F}=0 \text{ and }\overline{G}=1+u^2
+\end{align*}
+The fact $E\neq \overline{E}$ implies that $\overline{\textbf{x}}\circ \textbf{x}^{-1}$ is not an isometry, since if $\phi\triangleq \overline{\textbf{x}}\circ \textbf{x}^{-1}$ is an isometry, then the local chart $\phi \circ \textbf{x}$ would have have the same coefficients as $\textbf{x}$, but $\phi\circ \textbf{x}=\overline{\textbf{x}}$.\\
+
+Now compute 
+\begin{align*}
+\textbf{x}_{uu}&= (0,0, -u^{-2})\text{ and }\textbf{x}_{uv}=(-\sin v, \cos v,0)\text{ and }\textbf{x}_{vv}=(-u \cos v, - u \sin v,0)\\
+\overline{\textbf{x}}_{uu}&=(0,0,0)\text{ and }\overline{\textbf{x}}_{uv}=(-\sin v, \cos v,0)\text{ and }\overline{\textbf{x}}_{vv}= (-u \cos v, -u \sin v,0)
+\end{align*}
+This give us 
+\begin{align*}
+g=\overline{g}=0
+\end{align*}
+and because $F=\overline{F}=0$, we can now deduce 
+\begin{align*}
+K=\overline{K}=0
+\end{align*}
+using $K=\frac{eg}{EG}$.
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw610}
+\end{question}
+\begin{proof}
+$E=G=1\text{ and }F=\cos \theta$ give us three linear system 
+\begin{align*}
+\begin{cases}
+  \Gamma^1_{11}+ (\cos \theta) \Gamma^2_{11}=0\\
+  (\cos \theta) \Gamma^1_{11} + \Gamma^2_{11}= \theta_u (- \sin \theta)
+\end{cases} \begin{cases}
+  \Gamma^1_{12}+ (\cos \theta) \Gamma^2_{12}=0 \\
+  (\cos \theta) \Gamma^1_{12}+ \Gamma^2_{12}= 0
+\end{cases} \begin{cases}
+ \Gamma^1_{22}+ (\cos \theta) \Gamma^2_{22}= \theta _v (-\sin \theta)  \\
+ (\cos \theta)\Gamma^1_{22} + \Gamma^2_{22}=0
+\end{cases}
+\end{align*}
+Solve them to get 
+\begin{align*}
+\begin{cases}
+  \Gamma^1_{11}= (\cot \theta)\theta_u \\
+  \Gamma^2_{11}=- (\csc \theta)\theta_u
+\end{cases} \begin{cases}
+  \Gamma^1_{12}=0\\
+  \Gamma^2_{12}=0
+\end{cases} \begin{cases}
+  \Gamma^1_{22}= (- \csc \theta)\theta _v\\
+  \Gamma^2_{22}=(\cot \theta )\theta_v
+\end{cases}
+\end{align*}
+Now, we use Gauss formula 
+\begin{align*}
+K&= \frac{(\Gamma ^2_{12})_u - (\Gamma^2_{11})_v + \Gamma^1_{12} \Gamma^2_{11} + \Gamma^2_{12}\Gamma^2_{21}- \Gamma^2_{11}\Gamma^2_{22}-\Gamma^1_{11}\Gamma^2_{12}}{-E}\\
+&= \big((-\csc \theta)\theta_u\big)_v + (\cot  \theta )(\csc \theta) \theta_u \theta_v\\
+&= -(\csc \theta) \theta_{uv} + - (\csc \theta)(\cot \theta) \theta_u \theta_v + (\cot \theta)(\csc \theta)\theta_u \theta_v  \\
+&= - (\csc \theta) \theta_{uv}= -\frac{\theta_{uv}}{\sin \theta}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw611}
+\end{question}
+\begin{proof}
+\textbf{(a)}
+We are given 
+\begin{align*}
+\textbf{x}(u,v)=(u,v,0)
+\end{align*}
+which implies 
+\begin{align*}
+E=G=1\text{ and }F=0
+\end{align*}
+This trivially give us 
+\begin{align*}
+\Gamma^{i}_{jk}=0\text{ for all $i,j,k$ }\text{ and }K=0
+\end{align*}
+\textbf{(b)} We are given 
+\begin{align*}
+\textbf{x}(u,v)=(v\cos u, v\sin u, 0 )
+\end{align*}
+which implies 
+\begin{align*}
+E=v^2\text{ and }F=0\text{ and }G=1
+\end{align*}
+Because $F=0$, the solving of the 2-dimensional linear equations is trivial
+ \begin{align*}
+\Gamma^1_{11}&= \frac{E_u}{2E}=0\\
+\Gamma^2_{11}&= \frac{-E_v}{2G}= -v\\
+\Gamma^1_{12}&= \frac{E_v}{2E}= \frac{1}{v}\\
+\Gamma^2_{12}&= \frac{G_u}{2G}=0\\
+\Gamma^1_{22}&= \frac{G_u}{-2E}=0\\
+\Gamma^2_{22}&= \frac{G_v}{2G}=0
+\end{align*}
+Then use Gauss Formula 
+\begin{align*}
+K&= \frac{(\Gamma^2_{12})_u - (\Gamma ^2_{11})_v + \Gamma ^1_{12}\Gamma ^2_{11}+\Gamma ^2_{12}\Gamma ^2_{12}-\Gamma^2_{11}\Gamma ^2_{22}-\Gamma ^1_{11}\Gamma ^2_{12}}{-E}\\
+&=\frac{1-1}{-v^2}=0
+\end{align*}
+\end{proof}
+\section{HW7}
+
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw71}
+\end{question}
+\begin{proof}
+\textbf{(a)} We are required to show 
+\begin{align*}
+  \vi{\tau\text{ is }0\text{ everywhere on $C$ }}
+\end{align*}
+Frenet Equations give us 
+\begin{align*}
+T'=\kappa_C N_C\text{ where $ \kappa_C,N_C$ are the curvature and the normal of $C$ }
+\end{align*}
+Because $C$ is a geodesic, we know  $N_C$ is parallel with  $N$, where  $N$ is the normal of  $S$. WOLG, we can let $N_C=N$. Now, because $C$ is a line of curvature, we know  
+ \begin{align*}
+N_C'=N'= dN(\alpha ')=\ld  T
+\end{align*}
+where $\ld $ is the principal curvature and $\alpha $ is some arc-length parametrization of $C$.\\
+
+Now by Frenet Equations, we have 
+\begin{align*}
+\ld T=N_C'=-\kappa_C T- \tau B 
+\end{align*}
+It then follows that $\tau=0$. $\vdone$\\
+
+\textbf{(b)} Let $\alpha $ be an arc-length parametrization of $C$. Because  $C$ is a geodesic, again WOLG, we can let $N_C=N$. Then by Frenet equations, we have 
+\begin{align*}
+dN(T)=N'=(N_C)'&= \kappa_C T+ \tau B\\
+&=\kappa_C T\hspace{0.5cm}(\tau\text{ is 0, since $C$ is plane curve })
+\end{align*}
+This implies that $\alpha '=T$ is an eigenvalue of $dN$, which implies  $C$ is a line of curvature. \\
+
+\textbf{(c)} Consider 
+\begin{align*}
+C\triangleq S^2\cap \set{(x,y,\sqrt{2})\inr^3: (x,y)\inr^2} 
+\end{align*}
+$C$ is a line of curvature, since every direction is principal direction on $S^2$.\\
+
+ $C$ is not a geodesic, since the only geodesic on $S^2$ is the great circles, while  $C$ isn't.\\
+
+To see that only great circles on $S^2$ are geodesics, one note that given  $p\in S$ and $w\in T_pS$, there exists only one geodesic passing through $p$ with direction $\frac{w}{\abso{w}}$.
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw72}
+\end{question}
+\begin{proof}
+\textbf{(a)} The plane can be characterized by $z=\tan \theta y$. Then $C$ can be characterized by 
+\begin{align*}
+\begin{cases}
+  x^2+y^2=1\\
+  z=(\tan \theta) y
+\end{cases}
+\end{align*}
+Clearly, we can parametrized $C$ by 
+\begin{align*}
+\alpha (t)=\Big(\cos t, \sin t, \tan \theta  \sin t \Big)
+\end{align*}
+Observe 
+\begin{align*}
+\alpha (t)= (\cos t) v+ (\sin t) w\text{ where }v=(1,0,0)\text{ and }w=(0,1,\tan \theta )
+\end{align*}
+This conclude that $C$ is an ellipse.\\
+
+\textbf{(b)} WOLG, we only have to compute $\kappa_g$ for $\alpha (0)$ and $\alpha (\frac{\pi}{2})$.\\
+
+Compute 
+\begin{align*}
+\begin{cases}
+  \alpha '(t)=\Big(-\sin t, \cos t , \tan \theta \cos t \Big)\\
+  \alpha ''(t)=\Big(-\cos t, -\sin t, -\tan \theta \sin t \Big)\\ 
+  \abso{\alpha ' \times \alpha ''}=\sec \theta \\
+  \kappa_C = \frac{\abso{\alpha '\times \alpha ''}}{\abso{\alpha '}^3}\\
+  \kappa_C(0)=\cos^2 \theta \text{ and }\kappa_C(\frac{\pi}{2})=\sec \theta\\
+  \alpha '(0)=(0,1,\tan \theta)=\sec \theta (0, \cos \theta , \sin \theta)\\
+  \alpha '(\frac{\pi}{2})=(-1,0,0)
+\end{cases}
+\end{align*}
+It is easily checked that the principal curvatures and directions at $\alpha (0)=(1,0,0)$ are 
+\begin{align*}
+1\text{ relative to $(0,1,0)$ and }0\text{ relative to $(0,0,1)$ }
+\end{align*}
+This implies $\kappa_n$ at $\alpha (0)$ is $\cos^2 \theta$, which implies $\abso{\kappa_g}=\sqrt{\kappa_C^2 - \kappa_n^2}=0$ at $\alpha (0)$.\\
+
+Similarly, it is easily checked that the principal curvatures and directions at $\alpha (\frac{\pi}{2})=(0,1,\tan \theta)$ are
+\begin{align*}
+1\text{ relative to }(1,0,0)\text{ and }0\text{ relative to }(0,0,1)
+\end{align*}
+This implies $\kappa_n$ at $\alpha (\frac{\pi}{2})$ is $1$, which implies  $\abso{\kappa_g}=\sqrt{\kappa_C^2 -\kappa_n^2}=\sqrt{\sec^2 \theta -1}=\tan \theta$.
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=15cm,width=18cm]{hw73}
+\end{question}
+\begin{proof}
+Because meridians are geodesic, we can speak of the following parametrization.\\
+
+Let $\alpha :[0,l]\rightarrow S$ be the geodesic parametrization from $p_1$ to $p_2$ along $C_1$, and let  $\overline{\alpha }:[0,l]\rightarrow S$ be the geodesic parametrization from $p_1$ to  $p_2$ along  $C_2$. Note that the angle between $\alpha '(0)$ and $(\overline{\alpha })'(0)$ is given $\phi$ by premise.\\ 
+
+WLOG, we now write 
+\begin{align*}
+w_0&=\cos \theta_0 e_1+ \sin \theta e_2\\
+\alpha '(0)&=\cos (\theta_0 + \psi_0)e_1+ \sin (\theta_0+\psi_0)e_2\\
+(\overline{\alpha })'(0)&=\cos (\theta_0 + \psi_0 + \phi_0)e_1+ \sin (\theta_0+ \psi_0+\phi_0)e_2
+\end{align*}
+where $e_1=(1,0,0),e_2=(0,1,0)$ and $p_1$ is the north pole.\\
+
+Because parallel transport along geodesics preserves the angle between the vector and the speed of the geodesic, we know 
+\begin{align*}
+\text{ the angle from }w_1\text{ to }\alpha '(l)\text{ is still $\psi_0$ }
+\end{align*}
+and 
+\begin{align*}
+\text{ the angle from }w_2\text{ to }(\overline{\alpha })'(l)\text{ is still }\psi_0+\phi_0
+\end{align*}
+It is clear that
+\begin{align*}
+\alpha '(l)&=-\alpha '(0)=\cos (\theta_0+ \psi_0 +\pi)e_1+ \sin (\theta_0+\psi_0+\pi)e_2\\
+(\overline{\alpha })'(l)&=-(\overline{\alpha })'(0)=\cos (\theta_0+\psi_0 +\phi_0+ \pi)e_1 + \sin (\theta_0 + \psi_0 + \phi_0 + \pi)e_2
+\end{align*}
+This give us 
+\begin{align*}
+w_1&= \cos (\theta_0 + 2\psi_0 + \pi)e_1+ \sin (\theta_0+2\psi_0+\pi)e_2\\
+w_2&=\cos (\theta_0 + 2\psi_0 + 2\phi_0 + \pi)e_1+\sin (\theta_0+2\psi_0+2\phi_0 + \pi)e_2
+\end{align*}
+Then the angle from $w_1$ to  $w_2$ is $2\phi_0$, where $\phi_0$ is the angle $C_1,C_2$ make at the north pole $p_1$.
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=5cm,width=18cm]{hw74}
+\end{question}
+\begin{proof}
+Let $\alpha $ be a geodesic parametrization of $C$ around $\alpha (0)=p$. The orthogonal projection $\beta $ of $\alpha $ onto $T_pS$ is 
+\begin{align*}
+\beta (s)=\alpha (s)+ \langle p-\alpha (s),N(p)\rangle N(p)
+\end{align*}
+where $N(p)$ is the normal of $S$ at  $p$. Compute 
+\begin{align*}
+\beta '(s)=\alpha '(s)- \langle \alpha '(s),N(p)\rangle N(p)
+\end{align*}
+Compute 
+\begin{align*}
+\beta ''(s)=\alpha ''(s)- \langle \alpha ''(s),N(p)\rangle N(p)
+\end{align*}
+This give us
+\begin{align*}
+\beta '(0)= \alpha '(0)\text{ and }\beta ''(0)= \frac{D\alpha '}{ds}(0)
+\end{align*}
+Then because $\abso{\beta '(0)}=\abso{\alpha '(0)}=1$, the curvature $\kappa$ of $\beta $ at $p$ is then 
+\begin{align*}
+  \kappa= \frac{\abso{\beta '(0)\times \beta ''(0)}}{\abso{\beta '(0)}^3}= \abso{\alpha '(0)\times \frac{D\alpha '}{ds}(0) }&= \abso{\alpha '(0)}\cdot \abso{\frac{D\alpha '}{ds}(0)} \sin \theta\\
+&=\abso{\frac{D\alpha '}{ds}(0)}\sin \theta
+\end{align*}
+where $\theta$ is the angle between $\alpha '(0)$ and $\frac{D\alpha '}{ds}(0)$. On the other hand, we know 
+\begin{align*}
+\kappa_g(p)&= \langle \frac{D\alpha '}{ds}(0), N(p)\times \alpha '(0) \rangle \\
+&=\abso{\frac{D\alpha '}{ds}(0)}\cdot \abso{N(p)\times \alpha '(0)}\cos \phi\\
+&=\abso{\frac{D\alpha '}{ds}(0)}\cos \phi
+\end{align*}
+where $\phi$ is the angle between $\frac{D\alpha '}{ds}(0)$ and $N(p)\times \alpha '(0)$.\\
+
+Note that $N\times \alpha '(0),\alpha '(0), \frac{D\alpha '}{ds}(0)$ are all in $T_pS$, and the angle from $\alpha '(0)$ to $N\times \alpha '(0)$ is $\frac{\pi}{2}$. This implies $\theta = \phi + \frac{\pi}{2}$, and conclude the result. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=15cm,width=18cm]{hw75}
+\end{question}
+\begin{proof}
+It is clear that $T,N,V=N\times T$ form an orthonormal basis. Write 
+\begin{align*}
+\begin{bmatrix}
+T'\\
+V'\\
+N'
+\end{bmatrix}= M \begin{bmatrix}
+T\\
+V\\
+N
+\end{bmatrix}
+\end{align*}
+where $M$ is a $3\times3$-matrix, and we are required to prove 
+\begin{enumerate}[label=(\alph*)]
+  \item $M_{k,k}=0$ for all $k$
+   \item $M_{i,j}=-M_{j,i}$ for all $i,j$
+\end{enumerate}
+Note that $M_{1,1}=T'\times T, M_{2,2}=V'\times V,M_{3,3}=N'\times N$. (a) follows from the fact $T,V,M$ are all unit.\\
+
+Because $T,V,M$ are orthogonal, we know 
+\begin{align*}
+  M_{1,2}=T'\cdot V&\text{ and }M_{2,1}=V'\cdot T\\
+  M_{1,3}=T'\cdot V&\text{ and }M_{3,1}=N'\cdot T\\
+  M_{2,3}=V'\cdot N&\text{ and }M_{3,2}=N'\cdot V
+\end{align*}
+(b) then follows from $T,V,M$ are orthogonal, and the fact $(w_1\cdot w_2)'=w_1'\cdot w_2+w_1\cdot w_2'$.\\
+
+\textbf{(a)} We know $\alpha (I)$ is a line of curvature if and only if $N'$ is parallel with  $T$ everywhere. It follows from $N'=-bT-cV$ that $c\equiv 0$ if and only if  $\alpha (I)$ is a line of curvature.\\
+
+\textbf{(b)} We know 
+\begin{align*}
+\kappa_\alpha  N_\alpha = \frac{dT}{ds} = aV+bN
+\end{align*}
+Then the normal curvature $\kappa_n$ is 
+\begin{align*}
+\kappa_n= \kappa_{\alpha }\langle N_{\alpha },N\rangle =b
+\end{align*}
+
+\textbf{(c)} Note that 
+\begin{align*}
+\frac{d\alpha '}{ds}=bN+ aN\times T
+\end{align*}
+This give us 
+\begin{align*}
+\frac{D\alpha '}{ds}=aN\times T=aN\times \alpha '
+\end{align*}
+which implies $a$ is the geodesic curvature. 
+\begin{question}{}{}
+\includegraphics[height=7cm,width=18cm]{hw999}
+\end{question}
+\begin{proof}
+Compute, using Frenet Equations
+\begin{align*}
+\textbf{x}_s&= T + v \tau N_{\alpha }\\
+\textbf{x}_v&= B
+\end{align*}
+This give us 
+\begin{align*}
+\textbf{x}_s \times \textbf{x}_v= -N_{\alpha }+v \tau T
+\end{align*}
+which give us 
+\begin{align*}
+N(s,0)=N_{\alpha }
+\end{align*}
+This implies $\alpha (I)$ has the same normal as $S$, which implies  $\alpha (I)$ is a geodesic.
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw7a}
+\end{question}
+\begin{proof}
+Because $S$ is not homeomorphic to a sphere, we know $\iint_S K d\sigma = 2\pi \chi(S)\leq 0$. Then the proof reduce to proving 
+\begin{align*}
+\vi{S\text{ is elliptic at some $p\in  S$ }}
+\end{align*}
+Let $q$ be an arbitrary point in $\R^3$. Note that the function $f:\R^3\rightarrow \R^+_0$ defined by
+\begin{align*}
+f(p)\triangleq \abso{p-q}
+\end{align*}
+is continuous. Then because  $S$ is compact, we know  $f$ attain a maximum $r_0$ at some $p\in S$. Denote the sphere centering $q$ with radius $r\inr^+$ by $S^2(r)$. Note that $S^2(r_0)=f^{-1}(r_0)$. This implies that $S$ is "contained" in  $S^2(r_0)$ and 
+\begin{align*}
+p \in S\cap S^2(r_0)
+\end{align*}
+Now, given an arbitrary normal section $C$ of $S$ at  $p$. By Section 1.7, Question 4, we see $C$ must have normal curvature greater than $r_0>0$ at $p$. (Note that if $r_0=0$, then  $S=\set{q}$, which is not a regular surface.) Because $C$ is arbitrary, we now see that the two principal curvature must be greater than  $r_0>0$. This implies $K>0$.  $\vdone$
+
+
+
+
+
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=10cm,width=18cm]{hw77}
+\end{question}
+\begin{proof}
+We are given the standard chart 
+\begin{align*}
+\textbf{x}(u,v)=\Big( (a+r\cos u)\cos v, (a+r\cos u)\sin v, r \sin u \Big)
+\end{align*}
+Some messy computation give us 
+\begin{align*}
+N(u,v)= \frac{\textbf{x}_u \times \textbf{x}_v}{\abso{\textbf{x}_u\times\textbf{x}_v}}=(\cos u \cos v, \cos u \sin v, \sin u)
+\end{align*}
+For each $\textbf{x}(u_0,v_0) \in T$, there exists a circle 
+\begin{align*}
+C=\set{\textbf{x}(u,v_0):u \in [0,2\pi]}
+\end{align*}
+containing $\textbf{x}(u_0,v_0)$, and one can check that $T$ is just the normal of such $C$.\\
+
+Observe 
+\begin{align*}
+\frac{d}{du}\textbf{x}(u,v_0)&=\Big(-r\sin u \cos v_0, -r \sin u \sin v_0, r \cos u \Big)\\
+\frac{d}{du}N(u,v_0)&=\Big(-\sin u \cos v_0, -\sin u \sin v_0, \cos u\Big)
+\end{align*}
+This then implies for all $\textbf{x}(u,v)\in S$, one of the principal curvature is $\frac{1}{r}$.\\
+
+Observe 
+\begin{align*}
+\frac{d}{dv}\textbf{x}(u_0,v)&=\Big( -(a+r\cos u_0)\sin v, (a+r \cos u_0) \cos v, 0 \Big)\\
+\frac{d}{dv}N(u_0,v)&= \Big( -\cos u_0 \sin v, \cos u_0 \cos v, 0 \Big)
+\end{align*}
+Then then implies for all $\textbf{x}(u,v)$, another principal curvature is $\frac{\cos u}{a+r \cos u}$. We now have 
+\begin{align*}
+K(u,v)= \frac{\cos u}{r(a+r \cos u)}
+\end{align*}
+Compute 
+\begin{align*}
+\textbf{x}_u&=(-r \sin u \cos v, -r \sin u \sin v, r \cos u)\\
+\textbf{x}_v&=(-(a+r\cos u)\sin v, (a+r \cos u)\cos v,0)\\
+E&=r^2\text{ and }F=0\text{ and }G=(a+r \cos u)^2\\
+EG-F^2&=r^2(a+r\cos u)^2
+\end{align*}
+Note the symmetry 
+\begin{align*}
+  K(\frac{\pi}{2}-t,v)&=- K(\frac{\pi}{2}+t,v)\\
+  K(\frac{-\pi}{2}-t,v)&=-K(\frac{-\pi}{2}+t,v) \\
+  (EG-F^2)(\frac{\pi}{2}-t,v)&=(EG-F^2)(\frac{\pi}{2}+t,v)\\
+  (EG-F^2)(\frac{-\pi}{2}-t,v)&=(EG-F^2)(\frac{-\pi}{2}+t,v)\text{ for all $t\in [0, \frac{\pi}{2}],v \in [0,2\pi]$ } 
+\end{align*}
+This give 
+\begin{align*}
+\iint_R Kd\sigma =\iint_{[0,2\pi]^2} K(u,v)\sqrt{EG-F^2} dudv =0
+\end{align*}
+It now follows from Gauss-Bonnet that $\chi(T)=0$. 
+\end{proof}
+\begin{question}{}{}
+\includegraphics[height=3cm,width=18cm]{hw79}
+\end{question}
+\begin{proof}
+\textbf{(a)} Given ellipsoid $S$ 
+\begin{align*}
+\frac{x^2}{a^2}+ \frac{y^2}{b^2}+ \frac{z^2}{c^2}=1
+\end{align*}
+We can map $S$ to  $S^2$ by 
+ \begin{align*}
+f(x,y,z)=(ax,by,cz)
+\end{align*}
+It is clear that $f:S\rightarrow S^2$ is continuous, one-to-one and onto, and admits an continuous inverse 
+\begin{align*}
+f^{-1}(x,y,z)= (\frac{x}{a},\frac{y}{b},\frac{c}{z})
+\end{align*}
+It is now established that $f$ is a homeomorphism between $S\text{ and }S^2$. Then we see ellipsoid have the same Euler-Poincare characteristic as $S^2$, i.e. 2.\\
+
+To see $\chi (S^2)=2$, one can use the triangulation $\set{T_1,\dots ,T_8}$, in which each $T_k$ is the intersection between one of the octant and $S^2$. We then have  $F=8$,  $E=12$, $V=6$, so $\chi (S^2)=8-12+6=2$.\\
+
+\textbf{(b)} Map $S$ to $S^2$ by 
+ \begin{align*}
+f(x,y,z)=(x,y^5,z^3)
+\end{align*}
+It is clear that $f$ continuous, one-to-one and onto, and admits a continuous inverse 
+\begin{align*}
+f^{-1}(x,y,z)=\Bigg(x,\begin{cases}
+  y^{\frac{1}{5}}& \text{ if $y\geq 0$ } \\
+  -(-y)^{\frac{1}{5}}& \text{ if $y<0$ }
+\end{cases}, \begin{cases}
+  z^{\frac{1}{3}}& \text{ if $z\geq 0$ }\\
+  -(-z)^{\frac{1}{3}}& \text{ if $z<0$ }
+\end{cases}\Bigg)
+\end{align*}
+It is now established that $f$ is a homeomorphism between $S$ and  $S^2$. Then we see $\chi (S)=\chi (S^2)=2$
+\end{proof}
+\section{fdlskjf}
+\begin{definition}
+  \textbf{(Isometry)} Given a diffeomorphishm  $\phi:S\rightarrow S^2$, we say $\phi$ is an \textbf{isometry} if for all $p\in  S$ and $w$ in  $T_pS$, we have 
+ \begin{align*}
+I_p(w)=I_{\phi(p)}(d\phi_p w)
+\end{align*}
+\end{definition}
+\begin{definition}
+  \textbf{(Conformal)} Given a diffeomorphishm  $\phi:S\rightarrow S^2$, we say $\phi$ is a \textbf{conformal mapping} if there exists a differentiable $\R$-valued function $\ld $ non-vanishing on $S$ such that for all $p\in  S$ and $w_1,w_2\in T_pS$, we have 
+  \begin{align*}
+  \langle w_1,w_2\rangle = \ld(p) \langle d\phi_p w_1, d\phi_p w_2\rangle 
+  \end{align*}
+\end{definition}
+\begin{definition}
+\textbf{(Vector Fields)} By an \textbf{vector field} along $\alpha :I\rightarrow S$, we mean a function $w:I\rightarrow \R^3$ such that 
+\begin{align*}
+w(t)\in T_{\alpha (t)}S\text{ for all $t\in I$ }
+\end{align*}
+\end{definition}
+\begin{definition}
+\textbf{(Covariant Derivative)} The corvariant derivaitve is the following function 
+\begin{align*}
+\frac{Dw}{dt}(t)\triangleq w'(t)-\langle w'(t),N(\alpha (t))\rangle N(\alpha (t))
+\end{align*}
+where $N$ is  the normal of $S$.
+\end{definition}
+\begin{definition}
+\textbf{(Algebraic Value)} If $w$ is unit, 
+\begin{align*}
+\Big[ \frac{Dw}{dt}(t) \Big]\triangleq  \langle w'(t), N \times w(t)\rangle 
+\end{align*}
+where $N$ is the normal of $S$
+\end{definition}
 \end{document}
 

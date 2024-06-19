@@ -3746,20 +3746,437 @@ The former implies $f(a,b)< \max_{(x,y)\in B_\epsilon (a,b)}f(x,y)$, and the lat
 \begin{question}{}{}
 \includegraphics[height=5cm,width=18cm]{hw6a6}
 \end{question}
+\begin{proof}
+We first show 
+\begin{align*}
+  \vi{\int_E f(x)dx \geq \sup \Big[ \sum_j \Big(\inf_{x \in E_j}f(x) \Big) \abso{E_j}\Big]}
+\end{align*}
+Fix a finite disjoint measurable decomposition $E_j$ of $E$.  We reduce the problem into proving 
+\begin{align*}
+  \vi{\int_E f(x)dx \geq \sum_j \Big(\inf_{x \in E_j}f(x)\Big)\abso{E_j}}
+\end{align*}
+Define 
+\begin{align*}
+s_0\triangleq \sum_j \Big(\inf_{x \in E_j}f(x) \Big)\textbf{1}_{E_j}
+\end{align*}
+Because $E_j$ are disjoint, we know 
+ \begin{align*}
+s_0(x)=\inf_{t \in E_j}f(t)\text{ if $x \in E_j$ }
+\end{align*}
+This implies $s_0$ is simple. Because $E_j$, are all measurable, we can deduce  $s_0$ is measurable. In conclusion, $s_0:E\rightarrow \R$ is a simple measurable function. \\
+
+Given arbitrary $x \in E$, we know $x$ must belong to one and only one of the decomposition. Express $x\in E_i$. This give us 
+\begin{align*}
+s_0(x)=\inf_{t \in E_i}f(t) \leq f(x)
+\end{align*}
+Because $x$ is arbitrary, we can conclude  $s\leq f$ on $E$.\\
+
+Now by definition of Lebesgue Integral, we see 
+\begin{align*}
+\sum_j \Big(\inf_{x \in E_j}f(x) \Big)\abso{E_j}=\int_E s_0dx\leq \int_E fdx \vdone
+\end{align*}
+
+
+
+We now show 
+\begin{align*}
+\blue{\int_E f(x)dx \leq  \sup \Big[ \sum_j \Big(\inf_{x \in E_j}f(x) \Big) \abso{E_j}\Big]}
+\end{align*}
+Fix an arbitrary measurable simple $s:E\rightarrow [0,\infty]$ such that $f\geq s$ on $E$. Because $s$ is arbitrary, by definition of Lebesgue Integral, we can reduce the problem into proving 
+\begin{align*}
+\blue{\int_E sdx \leq  \sup \Big[ \sum_j \Big(\inf_{x \in E_j}f(x) \Big) \abso{E_j}\Big]}
+\end{align*}
+Let $c_j$ be the set of range of $s$. For each $j$, define $E_j\triangleq \set{x\in E: s(x)=c_j}$. Because $s$ is measurable, we know  $E_j$ are measurable. Express $s$ in the form  
+\begin{align*}
+s= \sum_j c_j \textbf{1}_{E_j} 
+\end{align*}
+We claim 
+\begin{align*}
+\blue{\int_E sdx\leq \sum_j \Big( \inf_{x \in E_j}f(x) \Big) \abso{E_j}}
+\end{align*}
+In other words, we wish to prove 
+\begin{align*}
+  \blue{\sum_{j} c_j \abso{E_j}\leq \sum_j \Big(\inf_{x \in E_j}f(x) \Big)\abso{E_j}}
+\end{align*}
+Fix $j$. We reduce the problem into proving 
+\begin{align*}
+  \blue{c_j\leq \inf_{x \in E_j}f(x)}
+\end{align*}
+Because $s\leq f$ on $E$, we know
+\begin{align*}
+c_j=s(x)\leq f(x)\text{ for all $x \in E_j$ }
+\end{align*}
+This conclude $c_j\leq \inf_{x \in E_j}f(x)$. $\bdone$    
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=4cm,width=18cm]{hw6a7}
 \end{question}
+\begin{proof}
+Fix  
+ \begin{align*}
+f_n\triangleq \sum_{k=1}^{n}f_k\text{ and }f\triangleq \sum_{k=1}^{\infty}f_k
+\end{align*}
+Because $f_k$ are non-negative, we know $f_n$ are pointwise increasing. Clearly $f_n \to f$ pointwise. Note that $f_n$ are all measurable, since measurable functions are closed under addition.\\
+
+Now by Lebesgue monotone convergence Theorem, we have 
+\begin{align*}
+  \int_E  \Big(\sum_{k=1}^{\infty}f_k \Big)dx=\int_E fdx= \lim_{n\to \infty}\int_E f_ndx= \lim_{n\to \infty} \int_E \sum_{k=1}^n f_kdx&= \lim_{n\to \infty}\sum_{k=1}^n \int_E f_kdx\\
+&=\sum_{k=1}^{\infty} \int_E f_k(x)dx
+\end{align*}
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=4cm,width=18cm]{hw6a8}
 \end{question}
+\begin{proof}
+Note that if $\abso{E}=0$, then $\int_E fdx=0$, and we can just let $Z=E$. We suppose $\abso{E}>0$ from now.\\
 
+
+$(\longleftarrow)$\\
+
+
+Decompose $E$ into arbitrary disjoint finite measurable union $E_j$. Because the decomposition is arbitrary, using the result of the sixth question, we only have to prove 
+\begin{align*}
+  \vi{\sum_{j} (\inf_{E_j} f)\abso{E_j}=0}
+\end{align*}
+We reduce the problem into proving 
+\begin{align*}
+\vi{\forall j, \abso{E_j}>0 \implies \inf_{E_j}f=0}
+\end{align*}
+Fix $\abso{E_j}>0$. Notice that $f=0$ on $Z^c$. This allow us to reduce the problem into proving 
+\begin{align*}
+  \vi{\abso{E_j\cap Z^c}>0}
+\end{align*}
+Note that $\abso{Z^c}=\abso{E}-\abso{Z}=\abso{E}$. Observe 
+\begin{align*}
+  \abso{E}\geq \abso{E_j\cup Z^c}\geq \abso{Z^c}=\abso{E}
+\end{align*}
+This implies $\abso{E_j \cup Z^c}=\abso{E}$. This give us 
+ \begin{align*}
+\abso{E_j}+\abso{Z^c}- \abso{E_j\cap Z^c}= \abso{E_j\cup Z^c}=\abso{E}
+\end{align*}
+Now because $\abso{Z^c}=\abso{E}$, we can deduce 
+\begin{align*}
+\abso{E_j\cap Z^c}= \abso{E_j}>0 \vdone
+\end{align*}
+
+$(\longrightarrow)$\\
+
+Fix 
+\begin{align*}
+B_n\triangleq \set{x \in E: f(x)\geq \frac{1}{n}}
+\end{align*}
+Because  $f$ is measurable, we know  $B_n$ are measurable. Note that each $B_n$ must be of zero-measure, otherwise  $\int_E f\geq \int_{B_n}f\geq \frac{\abso{B_n}}{n}>0$.\\
+
+Now let 
+\begin{align*}
+Z\triangleq \bigcup_{n\inn} B_n
+\end{align*}
+Observe 
+\begin{align*}
+\abso{Z}\leq \sum_{n\inn} \abso{B_n}=0
+\end{align*}
+and observe 
+\begin{align*}
+x \in Z^c \implies \forall n\inn, f(x) \not\in B_n \implies \forall n\inn, 0\leq f(x) < \frac{1}{n}\implies f(x)=0
+\end{align*}
+
+
+
+
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=5cm,width=18cm]{hw6a9}
 \end{question}
+\begin{proof}
 
+Compute 
+\begin{align*}
+f_{2k}(x)=\begin{cases}
+  0& \text{ if $x\in [0,\frac{1}{2}]$ }\\
+  1& \text{ if $x\in (\frac{1}{2},1]$ }
+\end{cases}\text{ and }f_{2k-1}(x)=\begin{cases}
+  1& \text{ if $x\in [0,\frac{1}{2})$ }\\
+  0& \text{ if $x \in [\frac{1}{2},1]$ }
+\end{cases}
+\end{align*}
+Observe 
+\begin{align*}
+\text{ For all }x \in [0,\frac{1}{2}),\set{f_{2k}(x)}_{k\inn}=0\implies \liminf_{n\to\infty} f_n=0\text{ on $[0,\frac{1}{2})$ }
+\end{align*}
+Observe 
+\begin{align*}
+\set{f_k(x)}_{k\inn}=0\implies \liminf_{n\to\infty} f_n=0\text{ on $\set{\frac{1}{2}}$ }
+\end{align*}
+Observe 
+\begin{align*}
+  \text{ For all }x \in (\frac{1}{2},1],\set{f_{2k-1}(x)}_{k\inn}=0\implies \liminf_{n\to\infty} f_n=0\text{ on $(\frac{1}{2},1]$ }
+\end{align*}
+This now conclude 
+\begin{align*}
+\liminf_{n\to\infty} f_n=0\text{ on $[0,1]$ }
+\end{align*}
+Compute
+\begin{align*}
+\int_0^1 f_{2k}dx=\int_{\frac{1}{2}}^1 1dx=\frac{1}{2}
+\end{align*}
+Compute 
+\begin{align*}
+\int_0^1 f_{2k-1}dx= \int_0^{\frac{1}{2}}1dx=\frac{1}{2}
+\end{align*}
+This conclude $\int_0^1 f_ndx=\frac{1}{2}$ for all $n\inn$.
+\end{proof}
 \begin{question}{}{}
 \includegraphics[height=4cm,width=18cm]{hw6a10}
 \end{question}
+\begin{proof}
+Fix $\epsilon $. Let $N>\frac{1}{\epsilon }$. We now see that for each $n>N$, we have 
+\begin{align*}
+\sup_\R \abso{f}= \frac{1}{n}< \epsilon 
+\end{align*}
+This conclude that $f_n$ uniformly converge to  $\R$.\\
+
+Compute 
+\begin{align*}
+\int_{\R}f_n(x)dx=\int_{-n}^{n}\frac{1}{n}dx=2
+\end{align*}
+\end{proof}
+\section{Taylor's Formula}
+\begin{theorem}
+\textbf{(Taylor's Formula)} For each nice function  $g:[0,1]\rightarrow \R$ and $m \inn$, we have
+\begin{align*}
+g(1)-g(0)=\sum_{k=1}^{m-1} \frac{g^{(k)}(0)}{k!} + \frac{g^{(m)}(c)}{m!}\text{ for some $c \in (0,1)$ }
+\end{align*}
+and 
+\begin{align*}
+  g(1)-g(0)-\sum_{k=1}^{m-1} \frac{g^{(k)}(0)}{k!}= \int_0^1 \int_0^{t_1}\cdots \int_{0}^{t_{m-1}} g^{(m)}(t_{m})dt_{m}dt_{m-1}\cdots dt_1
+\end{align*}
+\end{theorem}
+\begin{proof}
+If $m=1$, then the proof is trivial by MVT and FTC.\\
+
+Suppose the Theorem hold true for  $m$, we prove the Theorem hold true for $m+1$.\\
+
+We first prove 
+\begin{align*}
+  \vi{g(1)-g(0)- \sum_{k=1}^{m} \frac{g^{(k)}(0)}{k!} =  \int_0^1 \int_0 ^{t_1}\cdots \int_0 ^{t_m} g^{(m+1)}(t_{m+1})dt_{m+1} \cdots dt_1} 
+\end{align*}
+By induction hypothesis, 
+\begin{align*}
+g(1)-g(0)-\sum_{k=1}^m \frac{g^{(k)}(0)}{k!}&= g(1)-g(0)-\sum_{k=1}^{m-1} \frac{g^{(k)}(0)}{k!}  - \frac{g^{(m)}(0)}{m!}\\
+&=\int_0^{1}\int_0^{t_1}\cdots \int_0^{t_{m-1}}g^{(m)}(t_{m})dt_{m}dt_{m-1}\cdots dt_1 - \frac{g^{(m)}(0)}{m!} \\
+&=\int_0^1 \int_0^{t_1} \cdots \int_0^{t_{m-1}}\big(g^{(m)}(t_m)- g^{(m)}(0) \big)dt_m dt_{m-1} \cdots dt_1\\
+&\overset{\text{FTC}}{=}\int_0^1 \int_0^{t_1}\cdots \int_0^{t_{m-1}}\int_0^{t_m} g^{(m+1)}(t_{m+1})dt_{m+1}dt_mdt_{m-1} \cdots dt_1 \vdone
+\end{align*}
+We now prove 
+\begin{align*}
+\blue{g(1)-g(0)- \sum_{k=1}^m \frac{g^{(k)}(0)}{k!}= \frac{g^{(m+1)}(c)}{(m+1)!}}
+\end{align*}
+By induction hypothesis, 
+\begin{align*}
+g(1)-g(0)-\sum_{k=1}^m \frac{g^{(k)}(0)}{k!} &= \int_0^1 \int_0^{t_1} \cdots \int_0^{t_m}g^{(m+1)}(t_{m+1})dt_{m+1}\cdots dt_1 \\
+&\overset{\text{Fubini}}{=} \int_0^1 \int_{t_{m+1}}^1 \int^{t_1}_{t_{m+1}}\cdots \int^1_{t_{m+1}} g^{(m+1)}(t_{m+1})dt_m \cdots dt_1 dt_{m+1} \\
+&=\int_0^1 g^{(m+1)}(t_{m+1}) \int^1_{t_{m+1}}\int^{t_1}_{t_{m+1}}\cdots \int^{t_{m-1}}_{t_{m+1}} dt_m\cdots dt_1 dt_{m+1} \\
+&= \int_0^1 g^{(m+1)}(t_{m+1}) F(t_{m+1})dt_{m+1}\\
+&\overset{\text{MVT}}{=}g^{(m+1)}(c) \int_0^1 F(t_{m+1})dt_{m+1}= \frac{g^{(m+1)}(c)}{(m+1)!} \bdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Taylor's Formula)} Given $f:\R^n\rightarrow \R$ such that $f \in \mathcal{C}^m(S)$ for some $S\overset{\text{open,convex}}{=}\R^n$, for each $a,b \in S$, if we define $g:[0,1]\rightarrow \R$ by 
+\begin{align*}
+g(t)\triangleq f(a+ (b-a)t)
+\end{align*}
+then there exists $\theta \in (0,1)$ such that 
+\begin{align*}
+f(b)-f(a) = \sum_{k=1}^{m-1} \frac{1}{k!}f^{(k)}(a;b-a)+ \frac{1}{m!}f^{(m)}(g(\theta); b-a)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe 
+\begin{align*}
+f(b)-f(a)&=g(1)-g(0)\\
+&=\sum_{k=1}^{m-1} \frac{1}{k!} g^{(k)}(0)+g^{m}(\theta)\text{ for some $\theta$ }
+\end{align*}
+The problem can now be reduced into proving 
+\begin{align*}
+g^{(k)}(t)=f^{(k)}(g(t);b-a)\text{ for all $k \in \set{1,\dots ,m}$ }
+\end{align*}
+We prove by induction, for base case, compute 
+\begin{align*}
+  g'(t)&=  \sum_{k=1}^n [(\partial_k f)(a+(b-a)t)] \cdot (b-a)_k  \\
+  &= f'(a;b-a)
+\end{align*}
+Suppose 
+\begin{align*}
+g^{(k)}(t)&=f^{(k)}(g(t);b-a)\\
+&=\sum_{j_1,\dots ,j_k \in \set{1,\dots ,n}} \Big[[(\partial_{j_1,\dots , j_k}f)\big(a+(b-a)\textbf{i})]\cdot \prod_{i=1}^k (b-a)_{j_i}   \Big]
+\end{align*}
+This give us 
+\begin{align*}
+g^{(k+1)}(t)&= \sum_{j_1\dots ,j_k \in \set{1,\dots , n}} \frac{d}{dt} \Big[[(\partial_{j_1,\dots , j_k}f)\big(a+(b-a)t\big)]\cdot \prod_{i=1}^k (b-a)_{j_i}    \Big]\\
+&= \sum_{j_1\dots ,j_k \in \set{1,\dots , n}} \Big[[\frac{d}{dt} (\partial_{j_1,\dots , j_k}f)\big(a+(b-a)t \big)]\cdot \prod_{i=1}^k (b-a)_{j_i}    \Big]\\
+&=\sum_{j_1\dots ,j_k \in \set{1,\dots , n}} \Big[[ \sum_{j_{k+1} \in \set{1,\dots ,n}} (\partial_{j_1,\dots , j_k,j_{k+1}}f)\big(a+(b-a)t \big)\cdot (b-a)_{j_{k+1}}]\cdot  \prod_{i=1}^k (b-a)_{j_i}    \Big]\\
+&=\sum_{j_1\dots ,j_k ,j_{k+1} \in \set{1,\dots , n}} \Big[[ (\partial_{j_1,\dots , j_k,j_{k+1}}f)\big(a+(b-a)t \big)]\cdot \prod_{i=1}^{k+1} (b-a)_{j_i}    \Big]\\
+&=f^{(k+1)}(g(t);b-a)
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Note that our definition is 
+\begin{align*}
+f^{(k)}(z;c)= \sum_{j_1,\dots ,j_k \in \set{1,\dots ,n}} \Big[ [\partial_{j_1,\dots ,j_k}f(z)]\cdot \prod_{i=1}^k (c)_{j_i} \Big]
+\end{align*}
+When  $k=1$, then 
+ \begin{align*}
+f^{1}(z;c)=\sum_{j=1}^n \partial_j f(z)\cdot c_j = \nabla f(z)\cdot c = df_z(c)
+\end{align*}
+\end{mdframed}
+\section{Fourier Stuff}
+\begin{definition}
+\textbf{(Definition of Trigonometric Polynomials)} By a trigonometric polynomials, we mean a function $P:\R\rightarrow \C$ of the form 
+\begin{align*}
+P(x)=a_0 + \sum_{n=1}^N (a_n \cos nx + b_n \sin nx)\text{ where $a_n,b_n$ are complex numbers }
+\end{align*}
+Note that 
+\begin{align*}
+P(x)=\sum_{-N}^N c_n e^{inx}\text{ where }c_n = \frac{a_n}{2}+ \frac{b_n}{2i}\text{ and }c_{-n} =\frac{a_n}{2}- \frac{b_n}{2i}\text{ for each $n\inn$ }
+\end{align*}
+\end{definition}
+\begin{definition}
+\textbf{(Definition of inner products and norms)} Given a function $f,g$ defined on $[-\pi,\pi]$, we say 
+\begin{align*}
+ \langle f,g\rangle \triangleq \frac{1}{2\pi}\int_{-\pi}^{\pi} f\overline{g}dx
+\end{align*}
+and 
+\begin{align*}
+\norm{f}_2\triangleq \sqrt{\langle f,f\rangle } 
+\end{align*}
+\end{definition}
+\begin{mdframed}
+It is clear that $\set{e^{inx}}_{n\inz}$ is orthonormal in $L^2(\mu)$. From now, we will write $\phi_n\triangleq  e^{inx}$.
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of Fourier coefficients)} For each $n\inz$, the $n$-th Fourier coefficients of $f$ is 
+\begin{align*}
+c_n\triangleq \frac{1}{2\pi} \int_{-\pi}^{\pi} f(x)e^{-inx}dx= \langle f,\phi_n\rangle 
+\end{align*}
+and we write 
+\begin{align*}
+s_N(f)=\sum_{-N}^N c_ne^{inx}=\sum_{-N}^{N}c_n\phi_n
+\end{align*}
+\end{definition}
+\begin{theorem}
+\textbf{(Special-case of Riesz-Fischer's Theorem)} If $f$ is Riemann-integrable on $[-\pi,\pi]$, then
+\begin{align*}
+ \lim_{N\to \infty}\norm{f-s_N}_2 = 0 
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\textbf{(Parseval's Identity)} Suppose $f,g$ are Riemann-integrable and $f \sim c_n$ and $g \sim \gamma _n$. We have 
+\begin{align*}
+\langle f,g\rangle = \frac{1}{2\pi}\int_{-\pi}^{\pi} f\overline{g}dx=\sum_{-\infty}^{\infty} c_n \overline{\gamma _n}
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\textbf{(Bounded Variation)} 
+\begin{align*}
+f(x)=\begin{cases}
+  x^2 \sin \frac{1}{x} & \text{ if $x\neq 0$ }\\
+  0& \text{ if $x=0$ }
+\end{cases}\text{ is of bounded variation on }[0,2\pi]
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe 
+\begin{align*}
+  \abso{f'(x)} &=\abso{2x \sin \frac{1}{x} - \cos \frac{1}{x}}\leq \abso{2x\sin \frac{1}{x}} + \abso{\cos \frac{1}{x}}\\
+&\leq \abso{2x}+ 1 \text{ is bounded on $(0,2\pi)$ }
+\end{align*}
+Then there exists positive $M$ such that $M>\abso{f'(x)}$ for all $x \in (0,2\pi)$. Now, consider 
+\begin{align*}
+g(x)\triangleq f(x)+Mx \text{ and }h(x)\triangleq Mx
+\end{align*}
+Observe
+\begin{align*}
+g'=f'+M>0\text{ on $(0,2\pi)$ }
+\end{align*}
+This implies $g$ is increasing on $[0,2\pi]$. It is clear that  $h$ is also increasing on $[0,2\pi]$. Then because 
+\begin{enumerate}[label=(\alph*)]
+  \item $f=g-h$ on $[0,2\pi]$
+  \item  $BV\big([0,2\pi]\big)$ is closed under addition 
+  \item Monotone functions are of bounded variation
+\end{enumerate}
+We see $f\in BV\big([0,2\pi] \big)$.
+\end{proof}
+\begin{theorem}
+\textbf{(Test)} 
+\begin{align*}
+\frac{\sin x}{x}\text{ is Riemann-integrable on $[a,\infty)$ for all $a\inr^+$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $\frac{\sin x}{x}$ is continuous on $(0,\infty)$, we know 
+\begin{align*}
+\int_{\pi}^{a} \frac{\sin x}{x}dx\inr\text{ for all $a\inr^+$ }
+\end{align*}
+This reduce the problem into proving 
+\begin{align*}
+  \vi{\int_{\pi}^{\infty} \frac{\sin x}{x}dx\inr}
+\end{align*}
+Suppose $x\in [k\pi,(k+1)\pi]$. It is clear that 
+\begin{align*}
+ \frac{\sin x}{x}\begin{cases}
+   \geq 0& \text{ if $k\text{ is even  }$ }\\
+   \leq 0& \text{ if $k$ is odd }
+ \end{cases}
+\end{align*}
+This give us 
+\begin{align*}
+\int_{\pi}^{\infty} \frac{\sin x}{x}dx&=\sum_{k=1}^{\infty} \abso{\int_{k\pi}^{(k+1)\pi} \frac{\sin x}{x}dx}(-1)^k \\
+&=\sum_{k=1}^{\infty} \int_{k\pi}^{(k+1)\pi} \abso{\frac{\sin x}{x}}dx(-1)^k \\
+\end{align*}
+Alternating Series Test now allow us to reduce the problem into proving 
+\begin{align*}
+  \vi{\int_{k\pi}^{(k+1)\pi} \abso{\frac{\sin x}{x}}dx\searrow 0\text{ as }k\to \infty}
+\end{align*}
+For each $k\inn$ and $x\in [k\pi,(k+1)\pi]$, we see 
+\begin{align*}
+ \abso{ \frac{\sin x}{x}}=  \frac{ \abso{\sin (x+\pi)}}{x}\geq \frac{\abso{\sin (x+\pi)}}{x+\pi}\geq \abso{\frac{\sin (x+\pi)}{x+\pi}}
+\end{align*}
+This implies 
+\begin{align*}
+\int_{k\pi}^{(k+1)\pi} \abso{\frac{\sin x}{x}}dx \geq \int_{(k+1)\pi}^{(k+1)\pi} \abso{\frac{\sin x}{x}}dx
+\end{align*}
+and reduce the problem into proving 
+\begin{align*}
+  \vi{\int_{k\pi}^{(k+1)\pi} \abso{\frac{\sin x}{x}}dx\to 0\text{ as }k\to 0}
+\end{align*}
+Observe 
+\begin{align*}
+  \int_{k\pi}^{(k+1)\pi} \abso{\frac{\sin x}{x}}dx&\leq  \int_{k\pi}^{(k+1)\pi} \frac{1}{x}dx \\
+&= \ln x\big|_{x=k\pi}^{(k+1)\pi}\\
+&=\ln (k+1)\pi - \ln k\pi = \ln \frac{k+1}{k}= \ln (1+\frac{1}{k})\to 0 \vdone
+\end{align*}
+
+
+\end{proof}
+\begin{theorem}
+\textbf{(Test)} For all $\alpha \inr$ and $\beta \inr^*$ 
+\begin{align*}
+  \abso{\frac{\cos (\alpha +\beta ) - \cos \alpha }{\beta } + \sin \alpha }\leq \abso{\beta }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+\frac{1}{\beta }\int_{\alpha }^{\alpha +\beta } (\sin \alpha -\sin t)dt&= \sin \alpha + \Big( \frac{\cos t}{\beta }  \Big)\Big|_{t=\alpha }^{\alpha +\beta }\\
+&= \frac{\cos (\alpha +\beta )- \cos \alpha }{\beta } + \sin \alpha 
+\end{align*}
+The problem is then reduced into proving 
+\begin{align*}
+  \vi{\abso{\int_{\alpha }^{\alpha +\beta } (\sin \alpha -\sin t)dt}\leq \abso{\beta ^2}}
+\end{align*}
+
+\end{proof}
+
 \chapter{ODE}
 \section{Solution 2}
 \begin{mdframed}
@@ -3812,6 +4229,192 @@ Summary of the information I gathered: 7 questions.
 \end{enumerate}
 
 \end{mdframed}
+\section{ODE2}
+\begin{theorem}
+\textbf{(Basic Laplace Transformation: Polynomial)} We have 
+\begin{align*}
+\mathcal{L}(t^n)= \frac{n!}{s^{n+1}}
+\end{align*}
+where $s>0$
+\end{theorem}
+\begin{proof}
+We use induction. Observe 
+\begin{align*}
+\mathcal{L}(1)=\int_{\R^+} e^{-ts}dt= \frac{e^{-ts}}{s}\Big|_{t=\infty}^{0}=\frac{1}{s}
+\end{align*}
+Observe for all $n\inn$
+\begin{align*}
+\mathcal{L}(t^n)&= \int_{\R^+} e^{-ts}t^ndt\overset{\text{i.b.p}}= \frac{n}{s}\int_{\R^+}e^{-ts}t^{n-1}dt=\frac{n}{s}\mathcal{L}(t^{n-1})
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Basic Laplace Transformation: exponential)} We have 
+\begin{align*}
+\mathcal{L}(e^{at})= \frac{1}{s-a}
+\end{align*}
+where $s>a$
+\end{theorem}
+\begin{proof}
+Observe 
+\begin{align*}
+\mathcal{L}(e^{at})=\int_{\R^+}e^{t(a-s)}dt= \frac{e^{t(a-s)}}{a-s}\Big|_{t=0}^{\infty}= \frac{1}{s-a}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Basic Laplace transformation: trigonometric)} We have 
+\begin{align*}
+\mathcal{L}(\cos at)= \frac{s}{s^2+a^2} \text{ and }\mathcal{L}(\sin at)= \frac{a}{s^2+a^2}
+\end{align*}
+where $s>0$
+\end{theorem}
+\begin{proof}
+Observe 
+\begin{align*}
+\int_{\R^+} e^{t(-s+ia)}dt= \int_{\R^+} e^{-ts}\cos at+ ie^{-ts}\sin at dt= \mathcal{L}(\cos at)+  i \mathcal{L}(\sin at)
+\end{align*}
+Compute 
+\begin{align*}
+\int_{\R^+}e^{t(-s+ia)}dt= \frac{e^{t(-s+ia)}}{-s+ia}\Big|_{t=0}^{\infty}= \frac{1}{s-ia}= \frac{s+ia}{s^2+a^2}
+\end{align*}
+This conclude the desired result.
+\end{proof}
+\begin{theorem}
+\textbf{(Basic property of Laplace Transformation)} Given nice $f$, we have
+\begin{align*}
+\mathcal{L}(f')=s\mathcal{L}(f)-f(0) 
+\end{align*}
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+\mathcal{L}(f')&=\int_{\R^+} e^{-st}f'(t)dt\\
+&= e^{-st}f(t)\Big|_{t=0}^{\infty} + s\int_{\R^+} e^{-st}f(t)dt \\
+&=s\mathcal{L}(f)-f(0)
+\end{align*}
+\end{proof}
+\begin{corollary}
+For all $n\inn$
+\begin{align*}
+  \mathcal{L}(f^{(n)})&=s^n \mathcal{L}(f)- \sum_{k=1}^{n} s^{(n-k)} f^{(k-1)}(0)\\
+  &=s^n \mathcal{L}(f)-s^{n-1}f(0)- s^{n-2}f'(0) - \cdots - f^{(n-1)}(0)
+\end{align*}
+\end{corollary}
+\begin{theorem}
+\textbf{(Inverse Laplace)} 
+\begin{align*}
+\mathcal{L}(u_c(t) f(t-c))= e^{-cs} \mathcal{L}(f)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe
+\begin{align*}
+\mathcal{L}(u_c(t)f(t-c))&=\int_c^{\infty} e^{-ts}f(t-c)dt \\
+&=\int_0^{\infty} e^{-s(u+c)}f(u)du\hspace{0.5cm} (\because u=t-c) \\
+&=e^{-sc} \mathcal{L}(f)
+\end{align*}
+\end{proof}
+\begin{corollary}
+\textbf{(Inverse Laplace)} If 
+\begin{align*}
+F=Ge^{-cs}
+\end{align*}
+then
+\begin{align*}
+f=u_c(t)g(t-c)
+\end{align*}
+\end{corollary}
+\begin{theorem}
+\textbf{(Inverse Laplace)} 
+\begin{align*}
+\mathcal{L}(e^{ct}f(t))(s)= \mathcal{L}(f)(s-c)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe
+\begin{align*}
+\mathcal{L}(e^{ct}f(t))(s)&= \int_0^{\infty} e^{t(c-s)}f(t)dt\\
+&=\mathcal{L}(f)(s-c)
+\end{align*}
+\end{proof}
+\begin{corollary}
+\textbf{(Inverse Laplace)} If 
+\begin{align*}
+F(s)=G(s-c)
+\end{align*}
+then 
+\begin{align*}
+f(t)=e^{ct}g(t)
+\end{align*}
+\end{corollary}
+\begin{mdframed}
+Summary of the trick 
+\begin{align*}
+  F=Ge^{-cs} &\iff  f(t)=u_c(t)g(t-c)\\
+  F(s)=G(s-c) &\iff  f(t)=e^{ct}g(t) 
+\end{align*}
+The table: for all $n \inz_0^+$
+\begin{align*}
+\mathcal{L}(t^n)&= \frac{n!}{s^{n+1}}\text{ and }\mathcal{L}(e^{at})= \frac{1}{s-a}\\
+\mathcal{L}(\cos at)&= \frac{s}{s^2+a^2} \text{ and }\mathcal{L}(\sin at)= \frac{a}{s^2+a^2}
+\end{align*}
+The formula 
+\begin{align*}
+\mathcal{L}(y^{(n)})=s^n \mathcal{L}(y) - s^{n-1}y(0) - s^{n-2}y^{(1)}(0) - \cdots - s y ^{(n-1)}(0) - y^{(n-1)}(0)
+\end{align*}
+The formula 
+\begin{align*}
+h=f * g \iff H= FG
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Forcing Functions)} Solve 
+\begin{align*}
+\begin{cases}
+ 2y''+y'+2y= u_5-u_{20} \\
+ y(0)=0,y'(0)=0
+\end{cases}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Taking Laplace transformation 
+\begin{align*}
+   \frac{e^{-5s}-e^{-20s}}{s}&=(2s^2+s+2) \mathcal{L}(y)
+\end{align*}
+This give us 
+\begin{align*}
+\mathcal{L}(y)&= (e^{-5s}+e^{-20s})\frac{1}{s(2s^2+s+2)}\\
+              &=(e^{-5s}+e^{-20s})\Big( \frac{1}{2s} + \frac{-2s-1}{2(2s^2+s+2)} \Big)\\
+              &=(e^{-5s}+e^{-20s})\Big(G(s)+ H(s) \Big)\text{ where }G(s)=\frac{1}{2s}\text{ and }H(s)= \frac{-s -\frac{1}{2}}{2s^2+s+2}
+\end{align*}
+and if we let 
+\begin{align*}
+\mathcal{L}(f_1)=(e^{-5s}+e^{-20s})G(s)\text{ and }\mathcal{L}(f_2)=(e^{-5s}+e^{-20s})H(s)
+\end{align*}
+we would have $y=f_1+f_2$. We now reduce the problem into finding $f_1,f_2$.\\
+
+It is easily deduced that 
+\begin{align*}
+\begin{cases}
+f_1(t)=u_5(t)g(t-5)+u_{20}(t)g(t-20)\\
+f_2(t)=u_5(t)h(t-5)+u_{20}(t)h(t-20)
+\end{cases}
+\end{align*}
+We now reduce the problem into finding $g$ and  $h$. It is easily seen that $g(t)=\frac{1}{2}$. It remains to find $h$.\\
+
+Write 
+\begin{align*}
+H(s)&= \frac{\frac{-s}{2}- \frac{1}{4}}{(s+\frac{1}{4})^2+ \frac{15}{16}}\\
+&= \frac{\frac{-1}{2}(s+\frac{1}{4})+ \frac{-1}{8}}{(s+\frac{1}{4})^2 + \frac{15}{16}}\\
+&=A(s+\frac{1}{4})\text{ where }A(s)= \frac{\frac{-1}{2}s+ \frac{-1}{8}}{s^2+\frac{15}{16}}
+\end{align*}
+Because $h(t)=e^{\frac{-1}{4}t} a(t)$, it remains to find $a$.\\
+
+By the table, we have 
+\begin{align*}
+a(t)=  (\frac{-1}{2})\cos (\frac{\sqrt{15}t}{4})+  (\frac{-1}{2\sqrt{15} })\sin (\frac{\sqrt{15}t}{4})
+\end{align*}
+
+\end{proof}
 \chapter{Geometry Archived}
 \section{Prerequiste}
 \begin{mdframed}
@@ -4628,5 +5231,89 @@ where $\sigma (\tau_S)$ is the Borel $\sigma$-algebra of $S$. This is true when 
 \end{theorem}
 \begin{proof}
 If $S$ is open, then $\tau_S \subseteq \tau$. This implies $\tau_S \subseteq \sigma (\tau)$
+\end{proof}
+\section{measurable archived}
+
+\begin{theorem}
+\textbf{(Measurable $f:X\rightarrow [0,\infty]$ is pointwise limit of monotone sequence of real-valued measurable simple function)} Given $f:X\rightarrow [-\infty,\infty]$, there exists a sequence $s_n:X\rightarrow \R$ of simple functions such that 
+\begin{align*}
+s_n\to f\text{ pointwise }
+\end{align*}
+If $f$ is measurable, then $s_n$ can be taken to be measurable. If  $f$ is non-negative, then $s_n$ can be taken to be increasing.
+\end{theorem}
+\begin{proof}
+Because $f=f^+-f^-$, WOLG, we  can assume $f$ is non-negative.\\
+
+Fix 
+\begin{align*}
+\delta_n \triangleq 2^{-n}
+\end{align*}
+For each $n\inn$ and $t\inr$, we know there exists a unique $k(n,t)\inr$ such that 
+\begin{align*}
+k\delta_n \leq t < (k+1)\delta_n
+\end{align*}
+Define $\phi_n: [0,\infty]\rightarrow \R$ by 
+\begin{align*}
+\phi_n(t)\triangleq \begin{cases}
+ k\delta_n & \text{ if $t \in [0,n)$ } \\
+ n& \text{ if $t\in [n,\infty]$ }
+\end{cases}
+\end{align*}
+We claim 
+\begin{align*}
+\vi{s_n\triangleq \phi_n\circ f\text{ suffices }}
+\end{align*}
+It is straightforward to check $\phi_n$ are measurable and simple. It then follows that $s_n$ are simple, and $s_n$ are measurable if  $f$ is. Because $\phi_n (f(x))=s_n(x)$, we can now reduce the problem into proving 
+\begin{align*}
+\vi{\text{ For all $t \in [0,\infty]$, we have }\phi_n(t)\nearrow t\text{ as $n\to \infty$ }}
+\end{align*}
+If $t=\infty$, then $\phi_n(t)=n\nearrow \infty=t$ as $n\to \infty$. Fix $t\inr_0^+$. We reduce the problem into proving 
+\begin{align*}
+  \vi{\phi_n(t)\nearrow t}
+\end{align*}
+For large enough $n$, we have
+\begin{align*}
+\abso{\phi_n(t)-t}\leq \delta_n \to 0
+\end{align*}
+We can now reduce the problem into proving 
+\begin{align*}
+\vi{\phi_n(t)\text{ increase as }n\to \infty}
+\end{align*}
+Fix $m \inz_0^+$ such that  $m\leq t< m+1$. Observe that 
+\begin{align*}
+\phi_n(t)=\begin{cases}
+  k_n \delta_n & \text{ if $n>m$ }\\
+  n& \text{ if $0\leq n\leq m$ }
+\end{cases}
+\end{align*}
+It is now clear that 
+\begin{align*}
+1=\phi_1(t)\leq \phi_2(t)\leq \cdots \leq \phi_m(t)=m
+\end{align*}
+It remains to prove 
+\begin{align*}
+\vi{\phi_m(t)\leq \phi_{m+1}(t)\leq \cdots }
+\end{align*}
+Observe that for each $n$
+\begin{align*}
+k_n= \max \set{j\inz_0^+: j\leq 2^nt }
+\end{align*}
+This give us 
+\begin{align*}
+\phi_m(t)=m= (m2^{m+1}) \delta_{m+1}\leq k_{m+1} \delta_{m+1}=\phi_{m+1}(t)
+\end{align*}
+Fix $n\inn$, by induction, we can now reduce the problem into proving 
+\begin{align*}
+\vi{\phi_{m+n}(t)\leq \phi_{m+n+1}(t)}
+\end{align*}
+which is just proving 
+\begin{align*}
+\vi{2k_{m+n}\leq k_{m+n+1}}
+\end{align*}
+Using definition of $k_n$
+\begin{align*}
+2k_{m+n}\leq 2^{m+n+1}t 
+\end{align*}
+The proof now follows from the definition of $k_{m+n+1}$. $\vdone$
 \end{proof}
 \end{document}
