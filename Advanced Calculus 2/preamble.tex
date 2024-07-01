@@ -25,6 +25,25 @@
     \oldsection
 }
 
+% Abstract Design
+
+\usepackage{lipsum}
+
+\renewenvironment{abstract}
+ {% Start of environment
+  \quotation
+  \small
+  \noindent
+  \rule{\linewidth}{.5pt} % Draw the rule to match the linewidth
+  \par\smallskip
+  {\centering\bfseries\abstractname\par}\medskip
+ }
+ {% End of environment
+  \par\noindent
+  \rule{\linewidth}{.5pt} % Ensure the closing rule also matches
+  \endquotation
+ }
+
 % Mathematics
 \usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
 \usepackage{xfrac}
