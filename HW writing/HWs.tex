@@ -1,0 +1,118 @@
+\documentclass{report}
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\title{\Huge{HWs}}
+\author{\huge{Eric Liu}}
+\date{}
+\begin{document}
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\tableofcontents
+\pagebreak
+
+\chapter{HW for General Analysis}
+\section{HW1}
+\begin{theorem}
+$\R^n$ is complete.
+\end{theorem}
+\begin{proof}
+Let $\textbf{x}_k$ be an arbitrary Cauchy sequence in $\R^n$. We are required to show  $\textbf{x}_k$ converge in $\R^n$. For each $k$, denote  $\textbf{x}_k$ by $(x_{(1,k)},\dots ,x_{(n,k)})$. We claim that for each $i \in \set{1,\dots ,n}$
+\begin{align*}
+x_{(i,k)}\text{ is a Cauchy sequence }
+\end{align*}
+Fix $i$ and $\epsilon >0$. To show $x_{(i,k)}$ is a Cauchy sequence, we are required to find $N\inn$ such that for all $r,m\geq N$ we have 
+\begin{align*}
+\abso{x_{(i,r)}-x_{(i,m)}}\leq \epsilon 
+\end{align*}
+Because $\textbf{x}_k$ is a Cauchy sequence in $\R^n$, we know there exists  $N\inn$ such that for all $r,m\geq N$, we have 
+\begin{align*}
+\abso{\textbf{x}_r-\textbf{x}_m}< \epsilon 
+\end{align*}
+Fix such $N$ and arbitrary $r,m\geq M$. Observe 
+\begin{align*}
+\abso{x_{(i,r)}-x_{(i,m)}}\leq \sqrt{\sum_{j=1}^n \abso{x_{(j,r)}-x_{(j,m)}}^2}= \abso{\textbf{x}_r - \textbf{x}_m}< \epsilon 
+\end{align*}
+We have proved that for each $i\in \set{1,\dots ,n}$, the real sequence $x_{(i,k)}$ is Cauchy. We now claim that for each $i \in \set{1,\dots, n}$, we have 
+\begin{align*}
+  \limsup_{r\to\infty} x_{(i,r)}\inr \text{ and }\lim_{k\to \infty}x_{(i,k)}= \limsup_{r\to\infty} x_{(i,r)}
+\end{align*}
+Again fix $i$. Because $x_{(i,k)}$ is a Cauchy sequence, we know there exists some $N$ such that for all $r,m\geq N$, we have 
+ \begin{align*}
+\abso{x_{(i,r)}-x_{(i,m)}}<1
+\end{align*}
+This implies that for all $r\geq N$, we have 
+\begin{align}
+x_{(i,r)}< x_{(i,N)}+1 \label{ran1}
+\end{align}
+\myref{Equation}{ran1} then tell us 
+\begin{align*}
+x_{(i,N)}+1\text{ is an upper bound of }\set{x_{(i,r)}:r\geq N}
+\end{align*}
+Then by definition of $\sup $, we have
+\begin{align*}
+\sup \set{x_{(i,r)}:r\geq N} \leq x_{(i,N)}+1 \inr
+\end{align*}
+This then implies $\limsup_{r\to\infty} x_{(i,r)}\inr$. We now prove 
+\begin{align}
+\label{ran2}
+\lim_{k\to \infty}x_{(i,k)}= \limsup_{r\to\infty} x_{(i,r)}
+\end{align}
+Fix $\epsilon >0$. We are required to find $N$ such that
+\begin{align*}
+\forall k\geq N, \abso{x_{(i,k)}-\limsup_{r\to\infty}x_{(i,r)}} \leq \epsilon 
+\end{align*}
+Because $\set{x_{(i,k)}}_{k\inn}$ is a Cauchy sequence, we can let $N_0$ satisfy 
+\begin{align*}
+\forall k,m\geq N_0, \abso{x_{(i,k)}-x_{(i,m)}}<\frac{\epsilon}{2}
+\end{align*}
+Because $\sup \set{x_{(i,k)}:k\geq N'}\searrow \limsup_{r\to\infty} x_{(i,r)}$ as $N'\to \infty$, we know there exists $N_1>N_0$ such that 
+ \begin{align*}
+\limsup_{r\to\infty} x_{(i,r)}-\frac{\epsilon}{2} <\sup \set{x_{(i,k)}:k\geq N_0}\leq \limsup_{r\to\infty}  x_{(i,r)} + \frac{\epsilon}{2} 
+\end{align*}
+Then because $\limsup_{r\to\infty} x_{(i,r)}-\frac{\epsilon}{2}$ is strictly smaller than the smallest upper bound of $\set{x_{(i,k)}:k\geq N_1}$, we see $\limsup_{n\to\infty} x_{(i,r)}-\frac{\epsilon}{2}$ is not an upper bound of $\set{x_{(i,k)}:k\geq N_1}$. This implies the existence of some $N$ such that  $N\geq N_1$ and
+\begin{align*}
+\limsup_{r\to\infty} x_{(i,r)}-\frac{\epsilon}{2}< x_{(i,N)}\leq \limsup_{r\to\infty}x_{(i,r)} + \frac{\epsilon}{2}
+\end{align*}
+Now observe that for all $k\geq N$, because $N\geq N_1\geq N_0$ 
+\begin{align*}
+  \limsup_{r\to\infty} x_{(i,r)} - \epsilon <x_{(i,N)}-\frac{\epsilon}{2}<x_{(i,k)}< x_{(i,N)}+\frac{\epsilon}{2} \leq \limsup_{r\to\infty} x_{(i,r)} + \epsilon   
+\end{align*}
+This implies for all $k\geq N$, we have 
+\begin{align*}
+\abso{x_{(i,k)}-\limsup_{r\to\infty} x_{(i,r)}}\leq \epsilon 
+\end{align*}
+We have just proved \myref{Equation}{ran2}. Lastly, to close out the proof, we show 
+\begin{align}
+\label{ran3}
+\lim_{k\to \infty}\textbf{x}_k = \Big(\lim_{k\to \infty}x_{(1,k)},\dots ,\lim_{k\to \infty}x_{(n,k)}\Big)
+\end{align}
+Fix $\epsilon >0$. For each $i \in \set{1,\dots ,n}$, let $N_i$ satisfy 
+ \begin{align*}
+  \forall r\geq N_i ,\abso{x_{(i,r)}- \lim_{k\to \infty}x_{(i,k)}}\leq  \frac{\epsilon }{\sqrt{n} }
+\end{align*}
+Observe that for all $r\geq \max_{i\in \set{1,\dots,n}} N_i$, we have 
+\begin{align*}
+\abso{\textbf{x}_r - \Big(\lim_{k\to \infty}x_{(1,k)},\dots ,\lim_{k\to \infty}x_{(n,k)} \Big)}&=\sqrt{\sum_{i=1}^n \abso{x_{(i,r)}- \lim_{k\to \infty}x_{(i,k)}}^2} \\
+&\leq \sqrt{\sum_{i=1}^n \frac{\epsilon^2}{n}}=\epsilon 
+\end{align*}
+We have proved \myref{Equation}{ran2}.
+
+
+
+
+
+
+
+
+
+
+
+\end{proof}
+\begin{theorem}
+\textbf{($\Q$ is dense in $\R$)}
+\end{theorem}
+\end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  11 JUN 2024 17:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  11 SEP 2024 13:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -983,17 +983,19 @@ Library (tcolorbox): 'tcbposter.code.tex' version '6.0.1'
  (/usr/local/texlive/2023/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2021/07/05 v2.14 TOC entries
 \ttl@leftsep=\dimen328
-)) (./macros.tex) (./letterfonts.tex) (./Miscellaneous Facts.aux
+)) (./macros.tex) (./letterfonts.tex) (./Miscellaneous Facts.aux)
+Runaway argument?
+{5C3337365C3337375C3030304F5C303030705C303030655C303030725C303030615C\ETC.
+./Miscellaneous Facts.tex:10: File ended while scanning use of \BKM@entry.
+<inserted text> 
+                \par 
+l.10 \begin{document}
+                     
+I suspect you have forgotten a `}', causing me
+to read past where you wanted me to stop.
+I'll try to recover; but if the error is serious,
+you'd better type `E' or `X' now and fix your file.
 
-LaTeX Warning: Label `1.1.1' multiply defined.
-
-
-LaTeX Warning: Label `1.1.2' multiply defined.
-
-
-LaTeX Warning: Label `1.1.3' multiply defined.
-
-)
 \openout1 = `"Miscellaneous Facts.aux"'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -1014,7 +1016,6 @@ LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
-
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1145,84 +1146,40 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/sc' in size <34.83209> not available
 
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-(./Miscellaneous Facts.toc
+(./Miscellaneous Facts.toc)
+\tf@toc=\write4
+\openout4 = `"Miscellaneous Facts.toc"'.
 
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <20.16003> not available
-(Font)              size <20.74> substituted on input line 1.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/m/sc' in size <20.16003> not available
-(Font)              size <20.74> substituted on input line 1.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/bx/sc' in size <20.16003> not available
-(Font)              size <20.74> substituted on input line 1.
-
-Missing character: There is no ; in font nullfont!
-
-LaTeX Font Warning: Font shape `T1/cmr/m/sc' in size <16.79996> not available
-(Font)              size <17.28> substituted on input line 1.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/bx/sc' in size <16.79996> not available
-(Font)              size <17.28> substituted on input line 1.
-
-
-LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <12.77509> not available
-(Font)              size <12> substituted on input line 2.
-
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.21 ...rline {5.8}Operator Norm}{91}{section.5.8}
-                                                  % [1
+l.17 
+      [1
 
 ]
-Overfull \hbox (0.36497pt too wide) detected at line 23
-\T1/cmr/m/n/14.4 5.10 
- []
-
-
-Overfull \hbox (0.36497pt too wide) detected at line 24
-\T1/cmr/m/n/14.4 5.11 
- []
-
-
-Overfull \hbox (0.36497pt too wide) detected at line 25
-\T1/cmr/m/n/14.4 5.12 
- []
-
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-)
-\tf@toc=\write4
-\openout4 = `"Miscellaneous Facts.toc"'.
-
- [2]
 Chapter 1.
 
 LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <29.03607> not available
 (Font)              size <29.86> substituted on input line 18.
 
 
+LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 19.
+
+
 LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <20.16003> not available
 (Font)              size <20.74> substituted on input line 19.
 
 LaTeX Font Info:    Calculating math sizes for size <14> on input line 22.
-[3
+[2
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 78--80
 
  []
 
-[4]
+[3]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 144.
@@ -1237,7 +1194,7 @@ Package mdframed Warning: You got a bad break
 Package mdframed Info: You first box width is to small
  mdframed fixed it
 (mdframed)              on input line 148.
-[5]
+[4]
 
 Package mdframed Warning: You got a bad break
 (mdframed)                because the last split box is empty
@@ -1261,12 +1218,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 250--251
 
  []
 
-<drawing.pdf, id=210, 597.50786pt x 845.04686pt>
+<drawing.pdf, id=97, 597.50786pt x 845.04686pt>
 File: drawing.pdf Graphic file (type pdf)
 <use drawing.pdf>
 Package pdftex.def Info: drawing.pdf  used on input line 254.
 (pdftex.def)             Requested size: 284.53032pt x 284.52695pt.
-[6] [7] [8 <./drawing.pdf>] [9]
+[5] [6] [7 <./drawing.pdf>] [8]
 Runaway argument?
  
 ./Miscellaneous Facts.tex:296: Paragraph ended before \align* was complete.
@@ -1389,34 +1346,34 @@ l.297 \end{align*}
 The `$' that I just saw supposedly matches a previous `$$'.
 So I shall assume that you typed `$$' both times.
 
-[10
+[9
 
 ]
 Chapter 2.
-[11
+[10
 
 ]
 Chapter 3.
-[12
+[11
 
-] [13
+] [12
 
-] [14]
+] [13]
 Underfull \hbox (badness 10000) in paragraph at lines 486--488
 
  []
 
-[15
+[14
 
-] [16] [17
+] [15] [16
 
 ]
 Chapter 4.
-[18
+[17
 
 ]
 Chapter 5.
-<HW1.7.png, id=338, 959.585pt x 292.09125pt>
+<HW1.7.png, id=234, 959.585pt x 292.09125pt>
 File: HW1.7.png Graphic file (type png)
 <use HW1.7.png>
 Package pdftex.def Info: HW1.7.png  used on input line 562.
@@ -1426,10 +1383,10 @@ Overfull \hbox (1.42323pt too wide) in paragraph at lines 562--563
 [][] 
  []
 
-[19
+[18
 
  <./HW1.7.png>]
-<HW1.6.png, id=347, 967.615pt x 232.87pt>
+<HW1.6.png, id=245, 967.615pt x 232.87pt>
 File: HW1.6.png Graphic file (type png)
 <use HW1.6.png>
 Package pdftex.def Info: HW1.6.png  used on input line 587.
@@ -1444,8 +1401,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 612--615
 
  []
 
-[20 <./HW1.6.png>]
-<HW1.5.png, id=354, 957.5775pt x 206.7725pt>
+[19 <./HW1.6.png>]
+<HW1.5.png, id=252, 957.5775pt x 206.7725pt>
 File: HW1.5.png Graphic file (type png)
 <use HW1.5.png>
 Package pdftex.def Info: HW1.5.png  used on input line 631.
@@ -1465,7 +1422,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 651--653
 
  []
 
-<HW1.4.png, id=355, 969.6225pt x 182.6825pt>
+<HW1.4.png, id=253, 969.6225pt x 182.6825pt>
 File: HW1.4.png Graphic file (type png)
 <use HW1.4.png>
 Package pdftex.def Info: HW1.4.png  used on input line 657.
@@ -1475,8 +1432,8 @@ Overfull \hbox (1.43938pt too wide) in paragraph at lines 657--658
 [][] 
  []
 
-[21 <./HW1.5.png>] [22 <./HW1.4.png>]
-<HW1.3.png, id=368, 967.615pt x 239.89626pt>
+[20 <./HW1.5.png>] [21 <./HW1.4.png>]
+<HW1.3.png, id=266, 967.615pt x 239.89626pt>
 File: HW1.3.png Graphic file (type png)
 <use HW1.3.png>
 Package pdftex.def Info: HW1.3.png  used on input line 716.
@@ -1489,12 +1446,12 @@ Overfull \hbox (1.44205pt too wide) in paragraph at lines 716--717
 
 Package tcolorbox Warning: Discard zero height first box part due to break problems (possible loss of zero height content) on input line 717.
 
-[23]
+[22]
 Underfull \hbox (badness 10000) in paragraph at lines 734--736
 
  []
 
-<HW1.2.png, id=377, 965.6075pt x 111.41624pt>
+<HW1.2.png, id=275, 965.6075pt x 111.41624pt>
 File: HW1.2.png Graphic file (type png)
 <use HW1.2.png>
 Package pdftex.def Info: HW1.2.png  used on input line 743.
@@ -1504,8 +1461,8 @@ Overfull \hbox (1.44029pt too wide) in paragraph at lines 743--744
 [][] 
  []
 
-[24 <./HW1.3.png>]
-<HW1.1.png, id=386, 960.58875pt x 91.34125pt>
+[23 <./HW1.3.png>]
+<HW1.1.png, id=283, 960.58875pt x 91.34125pt>
 File: HW1.1.png Graphic file (type png)
 <use HW1.1.png>
 Package pdftex.def Info: HW1.1.png  used on input line 751.
@@ -1520,8 +1477,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 765--767
 
  []
 
-[25 <./HW1.2.png> <./HW1.1.png>]
-<HW1.8.png, id=396, 963.6pt x 448.67625pt>
+[24 <./HW1.2.png> <./HW1.1.png>]
+<HW1.8.png, id=294, 963.6pt x 448.67625pt>
 File: HW1.8.png Graphic file (type png)
 <use HW1.8.png>
 Package pdftex.def Info: HW1.8.png  used on input line 790.
@@ -1536,16 +1493,16 @@ Underfull \hbox (badness 10000) in paragraph at lines 812--814
 
  []
 
-[26 <./HW1.8.png>] [27]
+[25 <./HW1.8.png>] [26]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 839.
 
 
-LaTeX Warning: Hyper reference `27CaB' on page 28 undefined on input line 839.
+LaTeX Warning: Hyper reference `27CaB' on page 27 undefined on input line 839.
 
 
-LaTeX Warning: Reference `27CaB' on page 28 undefined on input line 839.
+LaTeX Warning: Reference `27CaB' on page 27 undefined on input line 839.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 850--851
@@ -1558,14 +1515,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 856--857
  []
 
 
-LaTeX Warning: Hyper reference `27CaB' on page 28 undefined on input line 859.
+LaTeX Warning: Hyper reference `27CaB' on page 27 undefined on input line 859.
 
 
-LaTeX Warning: Reference `27CaB' on page 28 undefined on input line 859.
+LaTeX Warning: Reference `27CaB' on page 27 undefined on input line 859.
 
-[28
+[27
 
-] [29]
+] [28]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 941.
@@ -1575,15 +1532,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 951--952
  []
 
 
-LaTeX Warning: Hyper reference `27CaB' on page 30 undefined on input line 957.
+LaTeX Warning: Hyper reference `27CaB' on page 29 undefined on input line 957.
 
 
-LaTeX Warning: Reference `27CaB' on page 30 undefined on input line 957.
+LaTeX Warning: Reference `27CaB' on page 29 undefined on input line 957.
 
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 966.
-[30]
+[29]
 Underfull \hbox (badness 10000) in paragraph at lines 975--976
 
  []
@@ -1593,7 +1550,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1010--1012
 
  []
 
-[31]
+[30]
 Underfull \hbox (badness 10000) in paragraph at lines 1046--1048
 
  []
@@ -1608,7 +1565,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1069--1070
 
  []
 
-[32]
+[31]
 Underfull \hbox (badness 10000) in paragraph at lines 1071--1072
 
  []
@@ -1643,7 +1600,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[33] [34] [35]
+[32] [33] [34]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 1164.
@@ -1696,24 +1653,24 @@ Package mdframed Info: mdframed detected package amsthm
  changed the theorem header of amsthm
 (mdframed)              on input line 1206.
 
-LaTeX Warning: Hyper reference `' on page 36 undefined on input line 1206.
+LaTeX Warning: Hyper reference `' on page 35 undefined on input line 1206.
 
 
-LaTeX Warning: Reference `' on page 36 undefined on input line 1206.
+LaTeX Warning: Reference `' on page 35 undefined on input line 1206.
 
-[36
+[35
 
 ]
 Overfull \hbox (4.78252pt too wide) detected at line 1274
 []
  []
 
-[37]
+[36]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 1277.
- [38]
-<ahw23.png, id=537, 954.56625pt x 150.5625pt>
+ [37]
+<ahw23.png, id=438, 954.56625pt x 150.5625pt>
 File: ahw23.png Graphic file (type png)
 <use ahw23.png>
 Package pdftex.def Info: ahw23.png  used on input line 1286.
@@ -1723,10 +1680,10 @@ Overfull \hbox (1.41011pt too wide) in paragraph at lines 1286--1287
 [][] 
  []
 
-[39
+[38
 
  <./ahw23.png>]
-<ahw22.png, id=544, 949.5475pt x 451.6875pt>
+<ahw22.png, id=446, 949.5475pt x 451.6875pt>
 File: ahw22.png Graphic file (type png)
 <use ahw22.png>
 Package pdftex.def Info: ahw22.png  used on input line 1336.
@@ -1739,7 +1696,7 @@ Overfull \hbox (1.44139pt too wide) in paragraph at lines 1336--1337
 
 Package tcolorbox Warning: Discard zero height first box part due to break problems (possible loss of zero height content) on input line 1337.
 
-[40]
+[39]
 Underfull \hbox (badness 10000) in paragraph at lines 1339--1340
 
  []
@@ -1749,7 +1706,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1351--1353
 
  []
 
-[41
+[40
 
 pdfTeX warning: pdflatex: pop empty color page stack 0
  <./ahw22.png>]
@@ -1762,13 +1719,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 1392--1394
 
  []
 
-[42] [43]
+[41] [42]
 Underfull \hbox (badness 10000) in paragraph at lines 1438--1440
 
  []
 
-[44]
-<ahw29.png, id=568, 976.64874pt x 208.78pt>
+[43]
+<ahw29.png, id=470, 976.64874pt x 208.78pt>
 File: ahw29.png Graphic file (type png)
 <use ahw29.png>
 Package pdftex.def Info: ahw29.png  used on input line 1453.
@@ -1778,13 +1735,13 @@ Overfull \hbox (1.42511pt too wide) in paragraph at lines 1453--1454
 [][] 
  []
 
-[45 <./ahw29.png>]
-<ahw28.png, id=575, 973.6375pt x 477.785pt>
+[44 <./ahw29.png>]
+<ahw28.png, id=477, 973.6375pt x 477.785pt>
 File: ahw28.png Graphic file (type png)
 <use ahw28.png>
 Package pdftex.def Info: ahw28.png  used on input line 1507.
 (pdftex.def)             Requested size: 512.14787pt x 284.52254pt.
-<ahw27.png, id=576, 940.51375pt x 206.7725pt>
+<ahw27.png, id=478, 940.51375pt x 206.7725pt>
 File: ahw27.png Graphic file (type png)
 <use ahw27.png>
 Package pdftex.def Info: ahw27.png  used on input line 1508.
@@ -1802,7 +1759,7 @@ Overfull \hbox (1.41942pt too wide) in paragraph at lines 1507--1509
 
 Package tcolorbox Warning: Discard zero height first box part due to break problems (possible loss of zero height content) on input line 1509.
 
-[46] [47
+[45] [46
 
 pdfTeX warning: pdflatex: pop empty color page stack 0
  <./ahw28.png> <./ahw27.png>]
@@ -1815,7 +1772,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1532--1534
 
  []
 
-[48]
+[47]
 Underfull \hbox (badness 10000) in paragraph at lines 1552--1554
 
  []
@@ -1825,13 +1782,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 1560--1562
 
  []
 
-[49]
+[48]
 Underfull \hbox (badness 10000) in paragraph at lines 1577--1579
 
  []
 
-[50]
-<ahw26.png, id=602, 958.58125pt x 241.90375pt>
+[49]
+<ahw26.png, id=504, 958.58125pt x 241.90375pt>
 File: ahw26.png Graphic file (type png)
 <use ahw26.png>
 Package pdftex.def Info: ahw26.png  used on input line 1607.
@@ -1844,11 +1801,11 @@ Overfull \hbox (1.4287pt too wide) in paragraph at lines 1607--1608
 
 Package tcolorbox Warning: Discard zero height first box part due to break problems (possible loss of zero height content) on input line 1608.
 
-[51] [52
+[50] [51
 
 pdfTeX warning: pdflatex: pop empty color page stack 0
  <./ahw26.png>]
-<ahw25.png, id=621, 970.62625pt x 228.855pt>
+<ahw25.png, id=522, 970.62625pt x 228.855pt>
 File: ahw25.png Graphic file (type png)
 <use ahw25.png>
 Package pdftex.def Info: ahw25.png  used on input line 1664.
@@ -1861,12 +1818,12 @@ Overfull \hbox (1.4512pt too wide) in paragraph at lines 1664--1665
 
 Package tcolorbox Warning: Discard zero height first box part due to break problems (possible loss of zero height content) on input line 1665.
 
-[53]
+[52]
 Underfull \hbox (badness 10000) in paragraph at lines 1667--1669
 
  []
 
-<ahw24.png, id=627, 960.58875pt x 91.34125pt>
+<ahw24.png, id=528, 960.58875pt x 91.34125pt>
 File: ahw24.png Graphic file (type png)
 <use ahw24.png>
 Package pdftex.def Info: ahw24.png  used on input line 1674.
@@ -1876,11 +1833,11 @@ Overfull \hbox (1.43127pt too wide) in paragraph at lines 1674--1675
 [][] 
  []
 
-[54
+[53
 
 pdfTeX warning: pdflatex: pop empty color page stack 0
  <./ahw25.png> <./ahw24.png>]
-<ahw21.png, id=638, 959.585pt x 129.48375pt>
+<ahw21.png, id=538, 959.585pt x 129.48375pt>
 File: ahw21.png Graphic file (type png)
 <use ahw21.png>
 Package pdftex.def Info: ahw21.png  used on input line 1690.
@@ -1895,27 +1852,27 @@ Underfull \hbox (badness 10000) in paragraph at lines 1702--1704
 
  []
 
-[55 <./ahw21.png>] [56
+[54 <./ahw21.png>] [55
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 1778.
- [57] [58]
+ [56] [57]
 
-LaTeX Warning: Hyper reference `MVT' on page 59 undefined on input line 1851.
+LaTeX Warning: Hyper reference `MVT' on page 58 undefined on input line 1851.
 
 
-LaTeX Warning: Reference `MVT' on page 59 undefined on input line 1851.
+LaTeX Warning: Reference `MVT' on page 58 undefined on input line 1851.
+
+[58]
+
+LaTeX Warning: Hyper reference `MVT' on page 59 undefined on input line 1910.
+
+
+LaTeX Warning: Reference `MVT' on page 59 undefined on input line 1910.
 
 [59]
-
-LaTeX Warning: Hyper reference `MVT' on page 60 undefined on input line 1910.
-
-
-LaTeX Warning: Reference `MVT' on page 60 undefined on input line 1910.
-
-[60]
 Overfull \hbox (37.30482pt too wide) in paragraph at lines 1933--1935
 \T1/cmr/m/n/14.4 Then (No-tice that the sec-ond equal-ity be-low hold true be-cause we have known $[][] [][] \OML/cmm/m/it/14.4 ^^^[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 t\OT1/cmr/m/n/14.4 )$
  []
@@ -1923,13 +1880,13 @@ Overfull \hbox (37.30482pt too wide) in paragraph at lines 1933--1935
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 1947.
-[61]
+[60]
 Underfull \hbox (badness 10000) in paragraph at lines 1969--1971
 
  []
 
-[62] [63]
-<hw3q1.png, id=714, 1208.515pt x 339.2675pt>
+[61] [62]
+<hw3q1.png, id=617, 1208.515pt x 339.2675pt>
 File: hw3q1.png Graphic file (type png)
 <use hw3q1.png>
 Package pdftex.def Info: hw3q1.png  used on input line 2012.
@@ -1939,10 +1896,10 @@ Overfull \hbox (1.419pt too wide) in paragraph at lines 2012--2013
 [][] 
  []
 
-[64
+[63
 
- <./hw3q1.png>] [65]
-<hw3q2.png, id=728, 1127.21124pt x 137.51375pt>
+ <./hw3q1.png>] [64]
+<hw3q2.png, id=632, 1127.21124pt x 137.51375pt>
 File: hw3q2.png Graphic file (type png)
 <use hw3q2.png>
 Package pdftex.def Info: hw3q2.png  used on input line 2087.
@@ -1952,7 +1909,7 @@ Overfull \hbox (1.41527pt too wide) in paragraph at lines 2087--2088
 [][] 
  []
 
-<hw3q3.png, id=730, 1114.1625pt x 143.53625pt>
+<hw3q3.png, id=634, 1114.1625pt x 143.53625pt>
 File: hw3q3.png Graphic file (type png)
 <use hw3q3.png>
 Package pdftex.def Info: hw3q3.png  used on input line 2117.
@@ -1962,8 +1919,8 @@ Overfull \hbox (1.43689pt too wide) in paragraph at lines 2117--2118
 [][] 
  []
 
-[66 <./hw3q2.png>]
-<hw3q4.png, id=739, 1126.2075pt x 276.03125pt>
+[65 <./hw3q2.png>]
+<hw3q4.png, id=641, 1126.2075pt x 276.03125pt>
 File: hw3q4.png Graphic file (type png)
 <use hw3q4.png>
 Package pdftex.def Info: hw3q4.png  used on input line 2135.
@@ -1973,8 +1930,8 @@ Overfull \hbox (1.4232pt too wide) in paragraph at lines 2135--2136
 [][] 
  []
 
-[67 <./hw3q3.png> <./hw3q4.png>] [68] [69] [70] [71]
-<hw3q5.png, id=775, 1133.23375pt x 149.55875pt>
+[66 <./hw3q3.png> <./hw3q4.png>] [67] [68] [69] [70]
+<hw3q5.png, id=678, 1133.23375pt x 149.55875pt>
 File: hw3q5.png Graphic file (type png)
 <use hw3q5.png>
 Package pdftex.def Info: hw3q5.png  used on input line 2301.
@@ -1984,12 +1941,12 @@ Overfull \hbox (1.43675pt too wide) in paragraph at lines 2301--2302
 [][] 
  []
 
-[72 <./hw3q5.png>]
+[71 <./hw3q5.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 2319--2321
 
  []
 
-[73]
+[72]
 Underfull \hbox (badness 10000) in paragraph at lines 2351--2352
 
  []
@@ -1999,7 +1956,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 2353--2354
 
  []
 
-<hw3q6.png, id=790, 1121.18875pt x 142.5325pt>
+<hw3q6.png, id=694, 1121.18875pt x 142.5325pt>
 File: hw3q6.png Graphic file (type png)
 <use hw3q6.png>
 Package pdftex.def Info: hw3q6.png  used on input line 2365.
@@ -2009,12 +1966,12 @@ Overfull \hbox (1.43335pt too wide) in paragraph at lines 2365--2366
 [][] 
  []
 
-[74 <./hw3q6.png>]
+[73 <./hw3q6.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 2378--2380
 
  []
 
-<hw3q7.png, id=807, 1132.23pt x 170.6375pt>
+<hw3q7.png, id=711, 1132.23pt x 170.6375pt>
 File: hw3q7.png Graphic file (type png)
 <use hw3q7.png>
 Package pdftex.def Info: hw3q7.png  used on input line 2394.
@@ -2024,8 +1981,8 @@ Overfull \hbox (1.4323pt too wide) in paragraph at lines 2394--2395
 [][] 
  []
 
-[75 <./hw3q7.png>]
-<hw3q8.png, id=814, 1097.09875pt x 60.225pt>
+[74 <./hw3q7.png>]
+<hw3q8.png, id=718, 1097.09875pt x 60.225pt>
 File: hw3q8.png Graphic file (type png)
 <use hw3q8.png>
 Package pdftex.def Info: hw3q8.png  used on input line 2410.
@@ -2035,8 +1992,8 @@ Overfull \hbox (1.42743pt too wide) in paragraph at lines 2410--2411
 [][] 
  []
 
-[76 <./hw3q8.png>] [77]
-<ahw4q1.png, id=825, 949.5475pt x 89.33376pt>
+[75 <./hw3q8.png>] [76]
+<ahw4q1.png, id=729, 949.5475pt x 89.33376pt>
 File: ahw4q1.png Graphic file (type png)
 <use ahw4q1.png>
 Package pdftex.def Info: ahw4q1.png  used on input line 2452.
@@ -2051,14 +2008,14 @@ Underfull \hbox (badness 10000) in paragraph at lines 2478--2480
 
  []
 
-[78
+[77
 
- <./ahw4q1.png>] [79]
+ <./ahw4q1.png>] [78]
 Overfull \hbox (25.35577pt too wide) detected at line 2552
 []
  []
 
-<ahw4q2.png, id=838, 957.5775pt x 75.28125pt>
+<ahw4q2.png, id=743, 957.5775pt x 75.28125pt>
 File: ahw4q2.png Graphic file (type png)
 <use ahw4q2.png>
 Package pdftex.def Info: ahw4q2.png  used on input line 2560.
@@ -2068,7 +2025,13 @@ Overfull \hbox (1.41843pt too wide) in paragraph at lines 2560--2561
 [][] 
  []
 
-<ahw4q3.png, id=840, 956.57375pt x 376.40625pt>
+
+LaTeX Warning: Hyper reference `LOB' on page 79 undefined on input line 2563.
+
+
+LaTeX Warning: Reference `LOB' on page 79 undefined on input line 2563.
+
+<ahw4q3.png, id=744, 956.57375pt x 376.40625pt>
 File: ahw4q3.png Graphic file (type png)
 <use ahw4q3.png>
 Package pdftex.def Info: ahw4q3.png  used on input line 2566.
@@ -2078,13 +2041,13 @@ Overfull \hbox (1.42163pt too wide) in paragraph at lines 2566--2567
 [][] 
  []
 
-[80 <./ahw4q2.png>]
+[79 <./ahw4q2.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 2569--2570
 
  []
 
-[81 <./ahw4q3.png>] [82]
-<ahw4q4.png, id=858, 962.59625pt x 184.69pt>
+[80 <./ahw4q3.png>] [81]
+<ahw4q4.png, id=761, 962.59625pt x 184.69pt>
 File: ahw4q4.png Graphic file (type png)
 <use ahw4q4.png>
 Package pdftex.def Info: ahw4q4.png  used on input line 2640.
@@ -2104,8 +2067,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 2658--2660
 
  []
 
-[83 <./ahw4q4.png>]
-<ahw4q5.png, id=865, 934.49126pt x 195.73125pt>
+[82 <./ahw4q4.png>]
+<ahw4q5.png, id=768, 934.49126pt x 195.73125pt>
 File: ahw4q5.png Graphic file (type png)
 <use ahw4q5.png>
 Package pdftex.def Info: ahw4q5.png  used on input line 2715.
@@ -2115,8 +2078,8 @@ Overfull \hbox (1.44806pt too wide) in paragraph at lines 2715--2716
 [][] 
  []
 
-[84] [85 <./ahw4q5.png>]
-<ahw4q6.png, id=878, 946.53625pt x 49.18375pt>
+[83] [84 <./ahw4q5.png>]
+<ahw4q6.png, id=781, 946.53625pt x 49.18375pt>
 File: ahw4q6.png Graphic file (type png)
 <use ahw4q6.png>
 Package pdftex.def Info: ahw4q6.png  used on input line 2766.
@@ -2131,12 +2094,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 2806--2808
 
  []
 
-[86 <./ahw4q6.png>]
+[85 <./ahw4q6.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 2850--2852
 
  []
 
-<ahw4q7.png, id=885, 956.57375pt x 85.31876pt>
+<ahw4q7.png, id=788, 956.57375pt x 85.31876pt>
 File: ahw4q7.png Graphic file (type png)
 <use ahw4q7.png>
 Package pdftex.def Info: ahw4q7.png  used on input line 2856.
@@ -2146,13 +2109,20 @@ Overfull \hbox (1.42163pt too wide) in paragraph at lines 2856--2857
 [][] 
  []
 
-[87]
+[86]
 Underfull \hbox (badness 10000) in paragraph at lines 2862--2864
 
  []
 
-[88 <./ahw4q7.png>] [89]
-<ahw4q8.png, id=903, 963.6pt x 159.59625pt>
+[87 <./ahw4q7.png>]
+
+LaTeX Warning: Hyper reference `LmoF' on page 88 undefined on input line 2899.
+
+
+LaTeX Warning: Reference `LmoF' on page 88 undefined on input line 2899.
+
+[88]
+<ahw4q8.png, id=803, 963.6pt x 159.59625pt>
 File: ahw4q8.png Graphic file (type png)
 <use ahw4q8.png>
 Package pdftex.def Info: ahw4q8.png  used on input line 2933.
@@ -2162,7 +2132,13 @@ Overfull \hbox (1.43414pt too wide) in paragraph at lines 2933--2934
 [][] 
  []
 
-[90 <./ahw4q8.png>]
+
+LaTeX Warning: Hyper reference `ANoF' on page 89 undefined on input line 2936.
+
+
+LaTeX Warning: Reference `ANoF' on page 89 undefined on input line 2936.
+
+[89 <./ahw4q8.png>]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 2940.
@@ -2175,6 +2151,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 2940--2941
 Underfull \hbox (badness 10000) in paragraph at lines 2949--2951
 
  []
+
+
+LaTeX Warning: Hyper reference `LOB' on page 90 undefined on input line 2953.
+
+
+LaTeX Warning: Reference `LOB' on page 90 undefined on input line 2953.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 2970--2972
@@ -2203,7 +2185,7 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[91
+[90
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
@@ -2214,7 +2196,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 2994--2996
 
  []
 
-[92]
+
+LaTeX Warning: Hyper reference `ANoF' on page 91 undefined on input line 3005.
+
+
+LaTeX Warning: Reference `ANoF' on page 91 undefined on input line 3005.
+
+
+LaTeX Warning: Hyper reference `LmoF' on page 91 undefined on input line 3005.
+
+
+LaTeX Warning: Reference `LmoF' on page 91 undefined on input line 3005.
+
+[91]
 ./Miscellaneous Facts.tex:3030: Undefined control sequence.
 <argument>  \norm {x}= \bnorm 
                               {\sum \alpha _ie_i} \leq \sum \abso {\alpha _i...
@@ -2274,10 +2268,34 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[93]
+
+LaTeX Warning: Hyper reference `ANoF' on page 92 undefined on input line 3071.
+
+
+LaTeX Warning: Reference `ANoF' on page 92 undefined on input line 3071.
+
+[92]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3088.
+
+
+LaTeX Warning: Hyper reference `LOB' on page 93 undefined on input line 3088.
+
+
+LaTeX Warning: Reference `LOB' on page 93 undefined on input line 3088.
+
+
+LaTeX Warning: Hyper reference `LmoF' on page 93 undefined on input line 3088.
+
+
+LaTeX Warning: Reference `LmoF' on page 93 undefined on input line 3088.
+
+
+Overfull \hbox (1.62923pt too wide) in paragraph at lines 3088--3094
+[]\T1/cmr/m/n/14.4 As a corol-lary of The-o-rem [] and The-o-rem [], we now see that, if $\OMS/cmsy/m/n/14.4 X$ \T1/cmr/m/n/14.4 is finite-dimensional,
+ []
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 3095--3096
 
@@ -2288,7 +2306,13 @@ Overfull \hbox (3.3275pt too wide) in paragraph at lines 3097--3098
 []\T1/cmr/m/n/14.4 Naturally, our def-i-ni-tion of bound-ed-ness of lin-ear op-er-a-tor de-rive us a norm on $\OML/cmm/m/it/14.4 BL\OT1/cmr/m/n/14.4 (\OMS/cmsy/m/n/14.4 X\OML/cmm/m/it/14.4 ; \OMS/cmsy/m/n/14.4 Y\OT1/cmr/m/n/14.4 )$\T1/cmr/m/n/14.4 ,
  []
 
-[94]
+
+LaTeX Warning: Hyper reference `tnop' on page 93 undefined on input line 3105.
+
+
+LaTeX Warning: Reference `tnop' on page 93 undefined on input line 3105.
+
+[93]
 ./Miscellaneous Facts.tex:3115: Undefined control sequence.
 <argument> ... x\neq 0\in \mathcal {X}}\\ &=\bset 
                                                   {M\inr ^+ : M \geq \sup _{...
@@ -2314,11 +2338,41 @@ and I'll forget about whatever was undefined.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 3122.
+
+LaTeX Warning: Hyper reference `equivdefopnorm1' on page 94 undefined on input line 3129.
+
+
+LaTeX Warning: Reference `equivdefopnorm1' on page 94 undefined on input line 3129.
+
+
+LaTeX Warning: Hyper reference `equivdefopnorm' on page 94 undefined on input line 3130.
+
+
+LaTeX Warning: Reference `equivdefopnorm' on page 94 undefined on input line 3130.
+
+
+LaTeX Warning: Hyper reference `equivdefopnorm' on page 94 undefined on input line 3131.
+
+
+LaTeX Warning: Reference `equivdefopnorm' on page 94 undefined on input line 3131.
+
+
+LaTeX Warning: Hyper reference `equivdefopnorm1' on page 94 undefined on input line 3133.
+
+
+LaTeX Warning: Reference `equivdefopnorm1' on page 94 undefined on input line 3133.
+
+
+LaTeX Warning: Hyper reference `equivdefopnorm1' on page 94 undefined on input line 3141.
+
+
+LaTeX Warning: Reference `equivdefopnorm1' on page 94 undefined on input line 3141.
+
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 3145.
-[95] [96]
-<ahw5q1.png, id=964, 749.80125pt x 153.57375pt>
+[94] [95]
+<ahw5q1.png, id=852, 749.80125pt x 153.57375pt>
 File: ahw5q1.png Graphic file (type png)
 <use ahw5q1.png>
 Package pdftex.def Info: ahw5q1.png  used on input line 3148.
@@ -2328,7 +2382,7 @@ Overfull \hbox (1.45357pt too wide) in paragraph at lines 3148--3149
 [][] 
  []
 
-<ahw5q2.png, id=965, 759.83875pt x 245.91875pt>
+<ahw5q2.png, id=853, 759.83875pt x 245.91875pt>
 File: ahw5q2.png Graphic file (type png)
 <use ahw5q2.png>
 Package pdftex.def Info: ahw5q2.png  used on input line 3191.
@@ -2338,10 +2392,23 @@ Overfull \hbox (1.43471pt too wide) in paragraph at lines 3191--3192
 [][] 
  []
 
-[97
+[96
 
- <./ahw5q1.png>] [98 <./ahw5q2.png>]
-<ahw5q3.png, id=982, 749.80125pt x 73.27374pt>
+ <./ahw5q1.png>]
+
+LaTeX Warning: Hyper reference `defdi' on page 97 undefined on input line 3199.
+
+
+LaTeX Warning: Reference `defdi' on page 97 undefined on input line 3199.
+
+
+LaTeX Warning: Hyper reference `goaldib' on page 97 undefined on input line 3216.
+
+
+LaTeX Warning: Reference `goaldib' on page 97 undefined on input line 3216.
+
+[97 <./ahw5q2.png>]
+<ahw5q3.png, id=870, 749.80125pt x 73.27374pt>
 File: ahw5q3.png Graphic file (type png)
 <use ahw5q3.png>
 Package pdftex.def Info: ahw5q3.png  used on input line 3219.
@@ -2351,7 +2418,7 @@ Overfull \hbox (1.45357pt too wide) in paragraph at lines 3219--3220
 [][] 
  []
 
-<ahw5q4.png, id=983, 773.89125pt x 193.72375pt>
+<ahw5q4.png, id=871, 773.89125pt x 193.72375pt>
 File: ahw5q4.png Graphic file (type png)
 <use ahw5q4.png>
 Package pdftex.def Info: ahw5q4.png  used on input line 3250.
@@ -2361,7 +2428,7 @@ Overfull \hbox (1.42435pt too wide) in paragraph at lines 3250--3251
 [][] 
  []
 
-[99 <./ahw5q3.png>]
+[98 <./ahw5q3.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 3260--3262
 
  []
@@ -2371,7 +2438,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3274--3276
 
  []
 
-[100 <./ahw5q4.png>]
+[99 <./ahw5q4.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 3292--3294
 
  []
@@ -2391,7 +2458,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3307--3308
 
  []
 
-<ahw5q5.png, id=996, 760.8425pt x 311.1625pt>
+<ahw5q5.png, id=884, 760.8425pt x 311.1625pt>
 File: ahw5q5.png Graphic file (type png)
 <use ahw5q5.png>
 Package pdftex.def Info: ahw5q5.png  used on input line 3316.
@@ -2404,7 +2471,7 @@ Overfull \hbox (1.43793pt too wide) in paragraph at lines 3316--3317
 
 Package tcolorbox Warning: Discard zero height first box part due to break problems (possible loss of zero height content) on input line 3317.
 
-[101]
+[100]
 Underfull \hbox (badness 10000) in paragraph at lines 3319--3320
 
  []
@@ -2414,7 +2481,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3338--3340
 
  []
 
-<ahw5q6.png, id=1001, 766.865pt x 291.0875pt>
+<ahw5q6.png, id=889, 766.865pt x 291.0875pt>
 File: ahw5q6.png Graphic file (type png)
 <use ahw5q6.png>
 Package pdftex.def Info: ahw5q6.png  used on input line 3352.
@@ -2424,7 +2491,7 @@ Overfull \hbox (1.45503pt too wide) in paragraph at lines 3352--3353
 [][] 
  []
 
-[102
+[101
 
 pdfTeX warning: pdflatex: pop empty color page stack 0
  <./ahw5q5.png>]
@@ -2437,8 +2504,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 3380--3382
 
  []
 
-[103 <./ahw5q6.png>] [104]
-<hw6a1.png, id=1019, 963.6pt x 153.57375pt>
+[102 <./ahw5q6.png>] [103]
+<hw6a1.png, id=907, 963.6pt x 153.57375pt>
 File: hw6a1.png Graphic file (type png)
 <use hw6a1.png>
 Package pdftex.def Info: hw6a1.png  used on input line 3398.
@@ -2453,7 +2520,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3407--3409
 
  []
 
-<hw6a2.png, id=1020, 968.61874pt x 235.88126pt>
+<hw6a2.png, id=908, 968.61874pt x 235.88126pt>
 File: hw6a2.png Graphic file (type png)
 <use hw6a2.png>
 Package pdftex.def Info: hw6a2.png  used on input line 3438.
@@ -2463,14 +2530,14 @@ Overfull \hbox (1.44125pt too wide) in paragraph at lines 3438--3439
 [][] 
  []
 
-[105
+[104
 
  <./hw6a1.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 3447--3449
 
  []
 
-<hw6a3.png, id=1027, 965.6075pt x 198.7425pt>
+<hw6a3.png, id=916, 965.6075pt x 198.7425pt>
 File: hw6a3.png Graphic file (type png)
 <use hw6a3.png>
 Package pdftex.def Info: hw6a3.png  used on input line 3477.
@@ -2483,8 +2550,8 @@ Overfull \hbox (1.44029pt too wide) in paragraph at lines 3477--3478
 
 Package tcolorbox Warning: Discard zero height first box part due to break problems (possible loss of zero height content) on input line 3478.
 
-[106 <./hw6a2.png>]
-<hw6a4.png, id=1035, 967.615pt x 224.84pt>
+[105 <./hw6a2.png>]
+<hw6a4.png, id=923, 967.615pt x 224.84pt>
 File: hw6a4.png Graphic file (type png)
 <use hw6a4.png>
 Package pdftex.def Info: hw6a4.png  used on input line 3511.
@@ -2494,11 +2561,11 @@ Overfull \hbox (1.44205pt too wide) in paragraph at lines 3511--3512
 [][] 
  []
 
-[107
+[106
 
 pdfTeX warning: pdflatex: pop empty color page stack 0
  <./hw6a3.png> <./hw6a4.png>]
-<hw6a5.png, id=1044, 963.6pt x 277.035pt>
+<hw6a5.png, id=932, 963.6pt x 277.035pt>
 File: hw6a5.png Graphic file (type png)
 <use hw6a5.png>
 Package pdftex.def Info: hw6a5.png  used on input line 3537.
@@ -2513,7 +2580,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3546--3548
 
  []
 
-[108 <./hw6a5.png>] [109]
+[107 <./hw6a5.png>] [108]
 Underfull \hbox (badness 10000) in paragraph at lines 3638--3640
 
  []
@@ -2523,12 +2590,43 @@ Underfull \hbox (badness 10000) in paragraph at lines 3641--3642
 
  []
 
-[110] [111]
+[109]
+
+LaTeX Warning: Hyper reference `5102' on page 110 undefined on input line 3671.
+
+
+LaTeX Warning: Reference `5102' on page 110 undefined on input line 3671.
+
+
+LaTeX Warning: Hyper reference `5103' on page 110 undefined on input line 3671.
+
+
+LaTeX Warning: Reference `5103' on page 110 undefined on input line 3671.
+
+
+LaTeX Warning: Hyper reference `5102' on page 110 undefined on input line 3698.
+
+
+LaTeX Warning: Reference `5102' on page 110 undefined on input line 3698.
+
+
+LaTeX Warning: Hyper reference `5103' on page 110 undefined on input line 3698.
+
+
+LaTeX Warning: Reference `5103' on page 110 undefined on input line 3698.
+
+[110]
 Underfull \hbox (badness 10000) in paragraph at lines 3723--3725
 
  []
 
-<hw6a6.png, id=1076, 956.57375pt x 277.035pt>
+
+LaTeX Warning: Hyper reference `5103' on page 111 undefined on input line 3726.
+
+
+LaTeX Warning: Reference `5103' on page 111 undefined on input line 3726.
+
+<hw6a6.png, id=959, 956.57375pt x 277.035pt>
 File: hw6a6.png Graphic file (type png)
 <use hw6a6.png>
 Package pdftex.def Info: hw6a6.png  used on input line 3747.
@@ -2541,7 +2639,7 @@ Overfull \hbox (1.42163pt too wide) in paragraph at lines 3747--3748
 
 Package tcolorbox Warning: Discard zero height first box part due to break problems (possible loss of zero height content) on input line 3748.
 
-[112]
+[111]
 Underfull \hbox (badness 10000) in paragraph at lines 3765--3767
 
  []
@@ -2551,11 +2649,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 3771--3773
 
  []
 
-[113
+[112
 
 pdfTeX warning: pdflatex: pop empty color page stack 0
  <./hw6a6.png>]
-<hw6a7.png, id=1087, 936.49875pt x 166.6225pt>
+<hw6a7.png, id=970, 936.49875pt x 166.6225pt>
 File: hw6a7.png Graphic file (type png)
 <use hw6a7.png>
 Package pdftex.def Info: hw6a7.png  used on input line 3812.
@@ -2565,12 +2663,12 @@ Overfull \hbox (1.44801pt too wide) in paragraph at lines 3812--3813
 [][] 
  []
 
-[114]
+[113]
 Underfull \hbox (badness 10000) in paragraph at lines 3818--3820
 
  []
 
-<hw6a8.png, id=1093, 907.39pt x 136.51pt>
+<hw6a8.png, id=975, 907.39pt x 136.51pt>
 File: hw6a8.png Graphic file (type png)
 <use hw6a8.png>
 Package pdftex.def Info: hw6a8.png  used on input line 3828.
@@ -2590,7 +2688,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3834--3835
 
  []
 
-[115 <./hw6a7.png> <./hw6a8.png>]
+[114 <./hw6a7.png> <./hw6a8.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 3862--3863
 
  []
@@ -2600,7 +2698,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 3867--3869
 
  []
 
-<hw6a9.png, id=1102, 960.58875pt x 247.92625pt>
+<hw6a9.png, id=985, 960.58875pt x 247.92625pt>
 File: hw6a9.png Graphic file (type png)
 <use hw6a9.png>
 Package pdftex.def Info: hw6a9.png  used on input line 3888.
@@ -2610,8 +2708,8 @@ Overfull \hbox (1.43127pt too wide) in paragraph at lines 3888--3889
 [][] 
  []
 
-[116]
-<hw6a10.png, id=1107, 974.64125pt x 154.5775pt>
+[115]
+<hw6a10.png, id=990, 974.64125pt x 154.5775pt>
 File: hw6a10.png Graphic file (type png)
 <use hw6a10.png>
 Package pdftex.def Info: hw6a10.png  used on input line 3929.
@@ -2621,12 +2719,12 @@ Overfull \hbox (1.42828pt too wide) in paragraph at lines 3929--3930
 [][] 
  []
 
-[117 <./hw6a9.png>]
+[116 <./hw6a9.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 3935--3937
 
  []
 
-[118 <./hw6a10.png>]
+[117 <./hw6a10.png>]
 Underfull \hbox (badness 10000) in paragraph at lines 3955--3956
 
  []
@@ -2641,13 +2739,13 @@ Overfull \hbox (22.72096pt too wide) detected at line 3969
 []
  []
 
-[119
+[118
 
-] [120]
+] [119]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4023.
- [121]
+ [120]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4054.
@@ -2656,26 +2754,26 @@ Overfull \hbox (13.2949pt too wide) in paragraph at lines 4067--4068
 [][]\T1/cmr/bx/n/14.4 Theorem 5.12.4. [](Special-case of Riesz-Fischer's The-o-rem) \T1/cmr/m/n/14.4 If $\OML/cmm/m/it/14.4 f$ \T1/cmr/m/n/14.4 is Riemann-integrable
  []
 
-[122
+[121
 
-] [123] [124] [125]
+] [122] [123] [124]
 Chapter 6.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4183.
-[126
+[125
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4224.
- [127] [128
+ [126] [127
 
-] [129]
+] [128]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4350.
- [130]
+ [129]
 Underfull \hbox (badness 10000) in paragraph at lines 4392--4394
 
  []
@@ -2690,7 +2788,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4409--4411
 
  []
 
-[131]
+[130]
 Chapter 7.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
@@ -2706,7 +2804,7 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 4454.
-[132
+[131
 
 ]
 Package mdframed Info: mdframed detected package amsthm 
@@ -2732,18 +2830,18 @@ Underfull \hbox (badness 10000) in paragraph at lines 4504--4505
 
  []
 
-[133]
+[132]
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 4514.
- [134]
+ [133]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4516.
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 4560.
- [135] [136]
+ [134] [135]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4614.
@@ -2758,7 +2856,7 @@ Package mdframed Warning: You got a bad break
 Package mdframed Info: You first box width is to small
  mdframed fixed it
 (mdframed)              on input line 4618.
-[137]
+[136]
 
 Package mdframed Warning: You got a bad break
 (mdframed)                because the last split box is empty
@@ -2778,7 +2876,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4671--4673
  []
 
 Package mdframed Info: Not enough space on this page on input line 4684.
-[138]
+[137]
 Package mdframed Info: Not enough space on this page on input line 4684.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
@@ -2796,7 +2894,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 4716--4718
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 4720.
-[139] [140]
+[138] [139]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4723.
@@ -2818,27 +2916,33 @@ Underfull \hbox (badness 10000) in paragraph at lines 4798--4800
 
  []
 
-[141
+[140
 
-] [142]
+] [141]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4807.
- [143]
+ [142]
 Chapter 8.
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4818.
+
+LaTeX Warning: Hyper reference `1' on page 143 undefined on input line 4818.
+
+
+LaTeX Warning: Reference `1' on page 143 undefined on input line 4818.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 4818--4819
 
  []
 
 
-LaTeX Warning: Hyper reference `s1' on page 144 undefined on input line 4820.
+LaTeX Warning: Hyper reference `s1' on page 143 undefined on input line 4820.
 
 
-LaTeX Warning: Reference `s1' on page 144 undefined on input line 4820.
+LaTeX Warning: Reference `s1' on page 143 undefined on input line 4820.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 4820--4821
@@ -2855,7 +2959,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 4835--4836
 
  []
 
-[144
+
+LaTeX Warning: Hyper reference `t4' on page 143 undefined on input line 4837.
+
+
+LaTeX Warning: Reference `t4' on page 143 undefined on input line 4837.
+
+[143
 
 ]
 ./Miscellaneous Facts.tex:4878: Undefined control sequence.
@@ -2880,7 +2990,31 @@ misspelled it (e.g., `\hobx'), type `I' and the correct
 spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
-[145]
+[144]
+
+LaTeX Warning: Hyper reference `e1' on page 145 undefined on input line 4889.
+
+
+LaTeX Warning: Reference `e1' on page 145 undefined on input line 4889.
+
+
+LaTeX Warning: Hyper reference `e2' on page 145 undefined on input line 4894.
+
+
+LaTeX Warning: Reference `e2' on page 145 undefined on input line 4894.
+
+
+LaTeX Warning: Hyper reference `e3' on page 145 undefined on input line 4894.
+
+
+LaTeX Warning: Reference `e3' on page 145 undefined on input line 4894.
+
+
+LaTeX Warning: Hyper reference `e4' on page 145 undefined on input line 4894.
+
+
+LaTeX Warning: Reference `e4' on page 145 undefined on input line 4894.
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4900.
@@ -2889,36 +3023,183 @@ Underfull \hbox (badness 10000) in paragraph at lines 4900--4901
 
  []
 
-[146] [147]
+
+LaTeX Warning: Hyper reference `t4' on page 145 undefined on input line 4902.
+
+
+LaTeX Warning: Reference `t4' on page 145 undefined on input line 4902.
+
+
+LaTeX Warning: Hyper reference `2' on page 145 undefined on input line 4902.
+
+
+LaTeX Warning: Reference `2' on page 145 undefined on input line 4902.
+
+
+LaTeX Warning: Hyper reference `2' on page 145 undefined on input line 4902.
+
+
+LaTeX Warning: Reference `2' on page 145 undefined on input line 4902.
+
+[145]
+
+LaTeX Warning: Hyper reference `e5' on page 146 undefined on input line 4946.
+
+
+LaTeX Warning: Reference `e5' on page 146 undefined on input line 4946.
+
+[146]
+
+LaTeX Warning: Hyper reference `e5' on page 147 undefined on input line 4951.
+
+
+LaTeX Warning: Reference `e5' on page 147 undefined on input line 4951.
+
+
+LaTeX Warning: Hyper reference `e6' on page 147 undefined on input line 4956.
+
+
+LaTeX Warning: Reference `e6' on page 147 undefined on input line 4956.
+
+
+LaTeX Warning: Hyper reference `e7' on page 147 undefined on input line 4956.
+
+
+LaTeX Warning: Reference `e7' on page 147 undefined on input line 4956.
+
+
+LaTeX Warning: Hyper reference `e8' on page 147 undefined on input line 4956.
+
+
+LaTeX Warning: Reference `e8' on page 147 undefined on input line 4956.
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 4964.
+
+LaTeX Warning: Hyper reference `t1' on page 147 undefined on input line 4964.
+
+
+LaTeX Warning: Reference `t1' on page 147 undefined on input line 4964.
+
+
+LaTeX Warning: Hyper reference `t2' on page 147 undefined on input line 4964.
+
+
+LaTeX Warning: Reference `t2' on page 147 undefined on input line 4964.
+
+
+LaTeX Warning: Hyper reference `t3' on page 147 undefined on input line 4964.
+
+
+LaTeX Warning: Reference `t3' on page 147 undefined on input line 4964.
+
 
 Underfull \hbox (badness 10000) in paragraph at lines 4964--4965
 
  []
 
-[148]
+
+LaTeX Warning: Hyper reference `t1' on page 147 undefined on input line 4966.
+
+
+LaTeX Warning: Reference `t1' on page 147 undefined on input line 4966.
+
+
+LaTeX Warning: Hyper reference `t2' on page 147 undefined on input line 4966.
+
+
+LaTeX Warning: Reference `t2' on page 147 undefined on input line 4966.
+
+
+LaTeX Warning: Hyper reference `t3' on page 147 undefined on input line 4966.
+
+
+LaTeX Warning: Reference `t3' on page 147 undefined on input line 4966.
+
+
+LaTeX Warning: Hyper reference `l1' on page 147 undefined on input line 4966.
+
+
+LaTeX Warning: Reference `l1' on page 147 undefined on input line 4966.
+
+
+LaTeX Warning: Hyper reference `l1' on page 147 undefined on input line 4966.
+
+
+LaTeX Warning: Reference `l1' on page 147 undefined on input line 4966.
+
+[147]
 Underfull \hbox (badness 10000) in paragraph at lines 4983--4985
 
  []
+
+
+LaTeX Warning: Hyper reference `e9' on page 148 undefined on input line 4987.
+
+
+LaTeX Warning: Reference `e9' on page 148 undefined on input line 4987.
 
 
 Overfull \hbox (8.87448pt too wide) in paragraph at lines 5001--5002
 \T1/cmr/m/n/14.4 but not ab-so-lutely, then there ex-ists per-mu-ta-tions $\OML/cmm/m/it/14.4 ^^[[]; ^^[[] \OT1/cmr/m/n/14.4 : \U/msb/m/n/14 N \OMS/cmsy/m/n/14.4 ! \U/msb/m/n/14 N$ \T1/cmr/m/n/14.4 such that $[][] \OML/cmm/m/it/14.4 a[] \OMS/cmsy/m/n/14.4 !
  []
 
-[149]
+
+LaTeX Warning: Hyper reference `l1' on page 148 undefined on input line 5008.
+
+
+LaTeX Warning: Reference `l1' on page 148 undefined on input line 5008.
+
+
+LaTeX Warning: Hyper reference `e10' on page 148 undefined on input line 5018.
+
+
+LaTeX Warning: Reference `e10' on page 148 undefined on input line 5018.
+
+
+LaTeX Warning: Hyper reference `e11' on page 148 undefined on input line 5018.
+
+
+LaTeX Warning: Reference `e11' on page 148 undefined on input line 5018.
+
+[148]
 Underfull \hbox (badness 10000) in paragraph at lines 5022--5024
 
  []
 
-[150]
+
+LaTeX Warning: Hyper reference `e10' on page 149 undefined on input line 5029.
+
+
+LaTeX Warning: Reference `e10' on page 149 undefined on input line 5029.
+
+
+LaTeX Warning: Hyper reference `t1' on page 149 undefined on input line 5052.
+
+
+LaTeX Warning: Reference `t1' on page 149 undefined on input line 5052.
+
+[149]
+
+LaTeX Warning: Hyper reference `t1' on page 150 undefined on input line 5077.
+
+
+LaTeX Warning: Reference `t1' on page 150 undefined on input line 5077.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 5091--5092
 
  []
 
-[151]
+[150]
+
+LaTeX Warning: Hyper reference `2' on page 151 undefined on input line 5093.
+
+
+LaTeX Warning: Reference `2' on page 151 undefined on input line 5093.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 5093--5094
 
  []
@@ -2928,7 +3209,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 5095--5096
 
  []
 
-[152]
+
+LaTeX Warning: Hyper reference `t1' on page 151 undefined on input line 5097.
+
+
+LaTeX Warning: Reference `t1' on page 151 undefined on input line 5097.
+
+
+LaTeX Warning: Hyper reference `t2' on page 151 undefined on input line 5097.
+
+
+LaTeX Warning: Reference `t2' on page 151 undefined on input line 5097.
+
+
+LaTeX Warning: Hyper reference `t3' on page 151 undefined on input line 5097.
+
+
+LaTeX Warning: Reference `t3' on page 151 undefined on input line 5097.
+
+[151]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 5101.
@@ -2958,16 +3257,58 @@ Package mdframed Info: mdframed detected package amsthm
 Package mdframed Info: Box was splittet wrong
  starting loop to iterate the splitting point
 (mdframed)              on input line 5138.
-[153
+[152
 
 ]
+
+LaTeX Warning: Hyper reference `1.2' on page 153 undefined on input line 5141.
+
+
+LaTeX Warning: Reference `1.2' on page 153 undefined on input line 5141.
+
+
+LaTeX Warning: Hyper reference `1.2' on page 153 undefined on input line 5144.
+
+
+LaTeX Warning: Reference `1.2' on page 153 undefined on input line 5144.
+
+
+LaTeX Warning: Hyper reference `1.2' on page 153 undefined on input line 5148.
+
+
+LaTeX Warning: Reference `1.2' on page 153 undefined on input line 5148.
+
+
+LaTeX Warning: Hyper reference `1.1' on page 153 undefined on input line 5148.
+
+
+LaTeX Warning: Reference `1.1' on page 153 undefined on input line 5148.
+
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 5151.
 
+LaTeX Warning: Hyper reference `1.2' on page 153 undefined on input line 5156.
+
+
+LaTeX Warning: Reference `1.2' on page 153 undefined on input line 5156.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 5163--5165
 
  []
+
+
+LaTeX Warning: Hyper reference `1.2' on page 153 undefined on input line 5174.
+
+
+LaTeX Warning: Reference `1.2' on page 153 undefined on input line 5174.
+
+
+LaTeX Warning: Hyper reference `1.3' on page 153 undefined on input line 5179.
+
+
+LaTeX Warning: Reference `1.3' on page 153 undefined on input line 5179.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 5178--5180
@@ -2979,10 +3320,23 @@ Underfull \hbox (badness 10000) in paragraph at lines 5187--5189
 
  []
 
-[154]
+[153]
+
+LaTeX Warning: Hyper reference `1.3' on page 154 undefined on input line 5190.
+
+
+LaTeX Warning: Reference `1.3' on page 154 undefined on input line 5190.
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 5190--5191
 
  []
+
+
+LaTeX Warning: Hyper reference `1.4' on page 154 undefined on input line 5192.
+
+
+LaTeX Warning: Reference `1.4' on page 154 undefined on input line 5192.
 
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
@@ -2992,7 +3346,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 5202--5204
 
  []
 
-[155]
+[154]
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 5209.
@@ -3004,16 +3358,35 @@ Overfull \hbox (1.5139pt too wide) in paragraph at lines 5212--5213
 Package mdframed Info: mdframed detected package amsthm 
  changed the theorem header of amsthm
 (mdframed)              on input line 5219.
-[156
+
+LaTeX Warning: Hyper reference `SBs' on page 155 undefined on input line 5223.
+
+
+LaTeX Warning: Reference `SBs' on page 155 undefined on input line 5223.
+
+[155
 
 ]
 Underfull \hbox (badness 10000) in paragraph at lines 5245--5246
 
  []
 
-[157
+[156
 
-] [158] (./Miscellaneous Facts.aux)
+] [157]
+Package mdframed Info: mdframed detected package amsthm 
+ changed the theorem header of amsthm
+(mdframed)              on input line 5341.
+
+Underfull \hbox (badness 10000) in paragraph at lines 5344--5346
+
+ []
+
+[158
+
+] [159
+
+] (./Miscellaneous Facts.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.99791pt have occurred.
@@ -3022,22 +3395,22 @@ LaTeX Font Warning: Size substitutions with differences
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 35688 strings out of 476025
- 719646 string characters out of 5790017
+ 35677 strings out of 476025
+ 719382 string characters out of 5790017
  1892388 words of memory out of 5000000
- 54930 multiletter control sequences out of 15000+600000
- 539963 words of font info for 101 fonts, out of 8000000 for 9000
+ 54917 multiletter control sequences out of 15000+600000
+ 536467 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  91i,20n,99p,983b,1426s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc3583.pfb>
-Output written on "Miscellaneous Facts.pdf" (159 pages, 3366620 bytes).
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc3583.pfb>
+Output written on "Miscellaneous Facts.pdf" (160 pages, 3325137 bytes).
 PDF statistics:
- 1783 PDF objects out of 2073 (max. 8388607)
- 1386 compressed objects within 14 object streams
- 537 named destinations out of 1000 (max. 500000)
- 703 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1643 PDF objects out of 1728 (max. 8388607)
+ 1288 compressed objects within 13 object streams
+ 544 named destinations out of 1000 (max. 500000)
+ 719 words of extra memory for PDF output out of 10000 (max. 10000000)
 

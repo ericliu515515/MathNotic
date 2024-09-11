@@ -4873,7 +4873,7 @@ We partition $I$ into
 \begin{align*}
 \begin{cases}
   A=\bset{i \in I : \exists j \in J,  [x_{i-1},x_i]\subseteq [x_{j-1}^*,x_j^*]}\\
-  B=I \setminus  A
+  B=I \setminus  A 
 \end{cases}
 \end{align*}
 We now have 
@@ -5316,4 +5316,52 @@ Using definition of $k_n$
 \end{align*}
 The proof now follows from the definition of $k_{m+n+1}$. $\vdone$
 \end{proof}
+
+\begin{theorem}
+\label{Bppm}
+\textbf{(Basic property of pre-measure)} Given an increasing sequence of measurable set $A_n$ 
+ \begin{align*}
+\mu (A_n)\nearrow \mu (A)
+\end{align*}
+where $A=\bigcup A_n$. If $A_n$ is decreasing, then 
+\begin{align*}
+\mu (A_n)\searrow \mu (A)
+\end{align*}
+where $A=\bigcap A_n$.
+\end{theorem}
+\begin{proof}
+If $A_n$ is increasing, fix $B_n\triangleq A_n\setminus A_{n-1}$ for each $n\geq 2$ and $B_1=A_1$. The proof then follows from checking 
+\begin{align*}
+\mu (A_n)= \sum_{k=1}^n \mu (B_k)\text{ and }\mu(A)=\sum_{k=1}^{\infty} \mu (B_k)
+\end{align*}
+The proof for another statement is similar.
+\end{proof}
+\section{RPS}
+\begin{mdframed}
+Two player $\alpha ,\beta $ are playing rock-paper-scissor. Let $\Lambda \triangleq \set{R,P,S}$, and let $\power{\Lambda }$ denote the power set of $\Lambda $. Define the relation $\geq $ on $\Lambda $ by
+\begin{align*}
+R>P>S>R
+\end{align*}
+Note that $R,P,S$ respectively represent rock, paper and scissor. Let $M$ be the set of all probability measure on the measurable $(\Lambda ,\power{\Lambda })$.\\
+
+Note that given two probability measure $\mu,\mu'\in M$ on $(\Lambda ,\power{\Lambda })$, we can define a probability pre-measure $\nu_{(\mu,\mu')}^{\text{pre}}:\Lambda ^2 \rightarrow [0,1]$ by 
+\begin{align*}
+\nu \big((A,B) \big)= \mu (\set{A}) \cdot\mu' (\set{B})    
+\end{align*}
+Denote the extension of $\nu^{\text{pre}}_{(\mu,\mu')}:\Lambda^2 \rightarrow [0,1]$ onto $\power{\Lambda^2}$ by $\nu_{(\mu,\mu')}:\power{\Lambda }\rightarrow [0,1]$. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(The "unbeatable" strategy for Rock-Paper-Scissor is uniform random)} Let $\mu,\mu'\in M$ and $\Omega\triangleq \set{W,L}$ where $\mu$ satisfy 
+\begin{align*}
+\mu (\set{R})=\mu (\set{P})= \mu (\set{S})=\frac{1}{3}
+\end{align*}
+
+\end{theorem}
+\section{General Analysis HW1}
+\begin{theorem}
+\textbf{($\R^n$ is complete)} 
+\end{theorem}
+\begin{theorem}
+\textbf{($\Q$ is dense in $\R$)}
+\end{theorem}
 \end{document}
