@@ -191,6 +191,58 @@ Check straightforward.
 \begin{proof}
 From (a) to  (b), one find $B'$ by noting  $B \in \mathscr{T}'$ and utilizing the definition of basis. From (b) to (a), one show $O\in \mathscr{T }$ belongs to $\mathscr{T }'$ by taking $O=\bigcup_{x\in O} B'_x$.
 \end{proof}
+\section{Quotient Topology and Topological Group}
+\begin{abstract}
+  This section introduce quotient topology and topological space; and prove that \customref{Quotient Group of Topological Group}{quotient group of a topological group when equipped with the quotient topology is again a topological group}.  
+\end{abstract}
+\begin{mdframed}
+Let $\sim $ be an equivalence relation on some topological space $X$, and let $\pi:X\rightarrow Y\triangleq X\setminus \sim$ be the projection map, we can define the \textbf{quotient topology} on $Y$ by  
+\begin{align*}
+U\subseteq Y\text{ is open }\overset{\triangle}{\iff }\pi^{-1}(U)\subseteq X\text{ is open }
+\end{align*}
+It is easily checked that 
+\begin{enumerate}[label=(\alph*)]
+  \item Quotient topology is indeed a topology and $\pi:X\rightarrow Y$ is open.  
+  \item Quotient topology is the largest (finest) topology on $Y$ such that $\pi:X\rightarrow Y$ is continuous.
+\end{enumerate}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Quotient Preserve Connectedness and Compactness)} 
+\begin{align*}
+  X\text{ is connected }&\implies X\setminus \sim \text{ is connected }\\
+X\text{ is path-connected }&\implies X\setminus \sim \text{ is path-connected }\\
+X\text{ is compact }&\implies X\setminus \sim \text{ is compact }
+\end{align*}
+\end{theorem}
+\begin{proof}
+These all follows from the fact $\pi:X\rightarrow X\setminus \sim $ is continuous.
+\end{proof}
+\begin{mdframed}
+Notably, quotient does not preserve separation axioms. Consider the following examples.
+\end{mdframed}
+\begin{Example}{\textbf{(Quotient does NOT preserve Second Countable)}}{}
+\begin{align*}
+X\triangleq \R\text{ and }x\sim y \overset{\triangle}{\iff }x=y\text{ or }x,y\inz
+\end{align*}
+Let $Y\triangleq X\setminus \sim $. We show that $Y$ is not even first countable at $[0]$. Let $U_n\subseteq Y$ be an arbitrary sequence of open-neighborhood of $[0]$. It is easily checked that for each $n\inn$, there exists $\epsilon _{n,k}$ such that 
+\begin{align*}
+\pi \Big[ \bigcup_{k\inz} (k-\epsilon_{n,k},k+\epsilon_{n,k}) \Big] \subseteq U_n
+\end{align*}
+Define $\delta_k\triangleq \frac{\epsilon_{k,k}}{2}$ and 
+\begin{align*}
+V=\pi \Big[\bigcup_{k\inz} (k-\delta_k,k+\delta_k) \Big] 
+\end{align*}
+It is easily checked that $V$ is an open neighborhood of  $[0]$ contained in no $U_n$.
+\end{Example}
+\begin{Example}{\textbf{(Quotient does NOT preserve Hausdorff)}}{}
+\begin{align*}
+X=\R\text{ and }Y=\set{(-\infty,0),[0,\infty)}
+\end{align*}
+\end{Example}
+\begin{theorem}
+\label{Quotient Group of Topological Group}
+\textbf{(Quotient Group of Topological Group)}
+\end{theorem}
 \chapter{Metric Space}
 \section{Completion}
 \section{Bounded and Totally Bounded}
@@ -1025,46 +1077,250 @@ Banach Fixed Point Theorem is one of the most important Theorem in Mathematics. 
 This 
 \end{abstract}
 \begin{theorem}
-\textbf{(Summation by Part)}
-\end{theorem}
-\begin{theorem}
-\textbf{(Dirichlet's Test)}
-\end{theorem}
-
-
-\begin{theorem}
-\textbf{(Abel's Test)}
-\end{theorem}
-\begin{mdframed}
-
-\end{mdframed}
-\begin{theorem}
-\textbf{(Absolutely Convergent Series Unconditionally Converge)}
-\end{theorem}
-\begin{theorem}
-\textbf{(Riemann Rearrangement Theorem)}
-\end{theorem}
-\begin{theorem}
-\textbf{(Fubini's Theorem for Double Series)}
-\end{theorem}
-\begin{mdframed}
-
-\end{mdframed}
-\begin{theorem}
-\textbf{(Geometric Series)} 
+\label{WM-t}
+\textbf{(Weierstrass M-test)} Given sequences $f_n:X\rightarrow \C$, and suppose 
 \begin{align*}
-\abso{z}<1 \implies \sum_{n=0}^{\infty} \frac{1}{z^n}= \frac{1}{1-z}
+\forall n\inn,\forall x\in X, \abso{f_n(x)}\leq M_n
+\end{align*}
+Then 
+\begin{align*}
+\sum_{n=1}^\infty M_n\text{ converge }\implies \sum_{n=1}^\infty f_n\text{ uniformly converge }
+\end{align*} 
+\end{theorem}
+\begin{proof}
+The proof follows from noting 
+\begin{align*}
+  \forall x\in X, \abso{\sum_{k=m}^n f_k(x)}\leq \sum_{k=m}^n \abso{f_k(x)}\leq \sum_{k=m}^n M_k
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Note that in our proof of  \customref{WM-t}{Weierstrass M-test}, we reduce the proof for uniform convergence into uniform Cauchy, which is a technique we shall also use later in \customref{Abel's Test for Uniform Convergence}{Abel's Test for Uniform Convergence}.
+\end{mdframed}
+\begin{theorem}
+\label{Summation by Part}
+\textbf{(Summation by Part)} 
+\begin{align*}
+  f_ng_n-f_mg_m&=\sum_{k=m}^{n-1}f_k \Delta g_k + g_k \Delta f_k+ \Delta f_k \Delta g_k \\
+  &=\sum_{k=m}^{n-1}f_k \Delta g_k + g_{k+1}\Delta f_k
 \end{align*}
 \end{theorem}
-\begin{theorem}
-\textbf{(Ratio and Root Test)}
-\end{theorem}
-\begin{theorem}
-\textbf{(Root Test is Stronger Than Ratio Test)}
-\end{theorem}
+\begin{proof}
+The proof follows induction which is based on 
+\begin{align*}
+f_mg_m+ f_m\Delta g_m+ g_m \Delta f_m +\Delta f_m \Delta g_m=f_{m+1}g_{m+1}
+\end{align*} 
+\end{proof}
 \begin{mdframed}
-
+Note that \customref{Summation by Part}{summation by part} is a result hold in all fields. We now introduce two tests that directly rely on \customref{Summation by Part}{summation by part}. 
 \end{mdframed}
+
+\begin{theorem}
+\label{Dirichlet's Test}
+\textbf{(Dirichlet's Test)} Suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $a_n\to 0$ monotonically. 
+  \item $\sum_{n=1}^N z_n$ is bounded.
+\end{enumerate}
+We have 
+\begin{align*}
+\sum a_nz_n\text{ converge }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $Z_n\triangleq \sum_{n=1}^N z_n$ and let $M$ bound  $\abso{Z_n}$. Using \customref{Summation by Part}{summation by part} by letting $f_k=a_k$ and $g_k=Z_{k-1}$, we have
+\begin{align*}
+  \abso{\sum_{k=m}^{n}a_kz_k}&= \abso{a_{n+1}Z_n- a_mZ_{m-1}- \sum_{k=m}^n Z_k(a_{k+1}-a_k)}\\
+                             &\leq \abso{a_{n+1}Z_n}+ \abso{a_mZ_{m-1}}+ \abso{\sum_{k=m}^n Z_k (a_{k+1}-a_k)}\\
+  (\because a_n\text{ is monotone })\hspace{1cm}&\leq M\Big(\abso{a_{n+1}}+\abso{a_{m}}+\abso{a_{n+1}-a_m} \Big)\hspace{5cm}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Abel's Test for Uniform Convergence}
+\textbf{(Abel's Test for Uniform Convergence)} Suppose $g_n:X\rightarrow \R$ is a uniformly bounded pointwise monotone sequence. Then given a sequence $f_n:X\rightarrow \R$, 
+\begin{align*}
+\sum f_n\text{ uniformly converge }\implies \sum f_ng_n\text{ uniformly converge }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $R_n\triangleq \sum_{k=n}^{\infty}f_k$. Let $M$ uniformly bound $g_n$. Because $R_n\to 0$ uniformly, we can let $N$ satisfy 
+ \begin{align*}
+\forall n\geq N, \forall x\in X,\abso{R_n(x)}<\frac{\epsilon}{6M} 
+\end{align*}
+Then for all $n,m\geq N$, using \customref{Summation by Part}{summation by part}, we have
+\begin{align*}
+  \abso{\sum_{k=m}^{n}f_kg_k}&=\abso{\sum_{k=m}^n g_k\Delta R_k }\\
+  &\leq \abso{R_{n+1}g_{n+1}}+ \abso{R_{m+1}g_{m+1}}+ \sum_{k=m}^n\abso{ R_{k+1}\Delta g_k} \\
+  (\because g_n\text{ is pointwise monotone })\hspace{1cm}&\leq \abso{R_{n+1}g_{n+1}}+ \abso{R_{m+1}g_{m+1}}+ \frac{\epsilon }{6M} \abso{g_{n+1}-g_m}\leq \epsilon 
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Although the proofs of \customref{Dirichlet's Test}{Dirichlet's Test} and \customref{Abel's Test for Uniform Convergence}{Abel's Test for Uniform Convergence} are quite similar, one should note that the "ways" \customref{Summation by Part}{summation by part} is applied are slightly different, as one use $R_n\triangleq \sum_{k=n}^{\infty}f_k$ instead of $\sum_{k=1}^n f_k$, like $Z_n\triangleq \sum_{j=1}^n z_j$. \\
+
+Using \customref{Dirichlet's Test}{Dirichlet's Test}, one have the famous \textbf{alternating series test}. Another notable corollary of \customref{Dirichlet's Test}{Dirichlet's Test} is \customref{Abel's Test for Complex Series}{Abel's Test for Complex Series}. 
+\end{mdframed}
+\begin{theorem}
+\label{Abel's Test for Complex Series}
+\textbf{(Abel's Test for Complex Series)} Suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $\sum z_n$ converge. 
+  \item $b_n$ is a bounded monotone sequence.
+\end{enumerate}
+We have 
+\begin{align*}
+\sum z_nb_n\text{ converge }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Denote $B\triangleq \lim_{n\to \infty}b_n$. By \customref{Dirichlet's Test}{Dirichlet's Test}, we know $\sum z_n(b_n-B)$ converge. The proof now follows form noting 
+\begin{align*}
+\sum z_nb_n= \sum z_n(b_n-B)+ B \sum  z_n
+\end{align*}
+\end{proof}
+\begin{mdframed}
+We now introduce the idea of absolute convergence, which we shall use throughout the remaining of the section.\\
+
+By a \textbf{permutation} $\sigma:E\rightarrow E$ on some set $E$, we merely mean  $\sigma$ is a bijective function. We say $\sum z_n$ \textbf{absolutely converge} if $\sum \abso{z_n}$ converge, and say $\sum z_n$ \textbf{unconditionally converge} if for all permutation $\sigma:\N\rightarrow \N$, the series $\sum z_{\sigma (n)}$ converge and converge to the same value.
+\end{mdframed}
+\begin{theorem}
+\label{ACSUC}
+\textbf{(Absolutely Convergent Series Unconditionally Converge)} 
+\begin{align*}
+\sum z_n\text{ absolutely converge }\implies \sum z_n\text{ unconditionally converge }
+\end{align*}
+\end{theorem}
+\begin{proof}
+The fact $\sum z_n$ converge  follows from noting 
+\begin{align*}
+  \abso{\sum_{k=n}^mz_k}\leq \sum_{k=n}^m \abso{z_k}\leq \sum_{k=n}^{\infty} \abso{z_k}
+\end{align*}
+Now, fix $\epsilon $ and permutation $\sigma$. Let $N_1$ and $N_2$ satisfy 
+\begin{align*}   
+\sum_{n=N_1}^{\infty}\abso{z_n}<\frac{\epsilon}{2}\text{ and }\abso{\sum_{n=N}^{\infty}z_n}<\frac{\epsilon}{2}\text{ for all $N>N_2$ }
+\end{align*}
+Let $M\triangleq \max \set{N_1,N_2}$. Observe that for all  $N> \max_{1\leq r\leq M} \sigma^{-1}(r)$, we have 
+\begin{align*}
+\abso{\sum z_n - \sum_{n=1}^N z_{\sigma (n)}}\leq \abso{\sum_{n=M+1}^{\infty} z_n }+ \sum_{n=M+1}^{\infty} \abso{z_n}<\epsilon 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{RRT}
+\textbf{(Riemann Rearrangement Theorem)} If $\sum a_n$ converge but not absolutely, then for each $L\in\overline{\R}$, there exists a permutation $\sigma$ such that 
+\begin{align*}
+\sum a_{\sigma (n)}=L
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $a_n^+\text{ and }a_n^-$ by 
+\begin{align*}
+a_n^+\triangleq \max \set{a_n,0}\text{ and }a_n^-\triangleq \min \set{a_n,0}
+\end{align*}
+Because 
+\begin{align*}
+\sum (a_n^++a_n^-)\text{ converge but }\sum (a_n^+-a_n^-)=\infty
+\end{align*}
+We know 
+\begin{align*}
+\sum a_n^+=\sum (-a_n^-)=\infty
+\end{align*}
+WOLG, (why?), fix $L\in\R$ and suppose $a_n\neq 0$ for all $n$. Let $A=B=L$, and let two increasing sequence $\sigma^+,\sigma^-:\N\rightarrow \N$ satisfy 
+\begin{align*}
+  \sigma^+(k+1)&=\min \set{n\inn:a_n>0\text{ and }n>\sigma^+(k)}
+\end{align*}
+and similar for $\sigma^-$. Now, recursively define $p_k,q_k$ by 
+\begin{align}
+  \text{ $p_1$ is the smallest number such that  }&\sum_{n=1}^{p_1} a_{\sigma ^+(n)}\geq A\label{ba1}\\
+  q_1\text{ is the smallest number such that }&\sum_{n=1}^{p_1}a_{\sigma^+(n)}+\sum_{n=1}^{q_1}a_{\sigma^-(n)}\leq B \label{ba2}\\
+  p_{k+1}\text{ is the smallest number such that }&\sum_{n=1}^{p_{k+1}}a_{\sigma^+(n)}+\sum_{n=1}^{q_k}a_{\sigma^-(n)}\geq A\label{ba3}\\
+  q_{k+1}\text{ is the smallest number such that }&\sum_{n=1}^{p_{k+1}}a_{\sigma^+(n)}+\sum_{n=1}^{q_{k+1}}a_{\sigma^-(n)}\leq B\label{ba4}
+\end{align}
+We then define $\sigma$ by 
+\begin{align*}
+  \sigma^+(1),\dots ,\sigma^+(p_1),\sigma^-(1),\dots ,\sigma^-(q_1),\sigma^+(p_1+1),\dots ,\sigma^+(p_2),\sigma^-(q_1+1),\dots ,\sigma^-(q_2),\dots 
+\end{align*}
+It then follows from 
+\begin{align*}
+  \abso{\sum_{n=1}^{p}a_{\sigma^+}(n)+\sum_{n=1}^{q_k}a_{\sigma^-}(n)-L}\leq \min \set{a_{\sigma^+(p_{k+1})},\abso{a_{\sigma^-(q_k)}}}\text{ for all  }p_k\leq p\leq p_{k+1}
+\end{align*}
+and $a_n\to 0$ that $\sum a_{\sigma (n)}=L$.
+\end{proof}
+
+\begin{mdframed}
+Note that the method we deploy in the proof of \customref{RRT}{Riemann Rearrangement Theorem} can be used to control the sequence to have arbitrary large set of subsequential limits by modifying the number of $A,B$ in  \customref{ba1}{Equation (4.1), (4.2), (4.3) and (4.4)}.\\
+
+Using \customref{RRT}{Riemann Rearrangement Theorem} and equation
+\begin{align*}
+\max_{1\leq r\leq d}\abso{x_n}\leq \abso{\textbf{x}}\leq \sum_{r=1}^d \abso{x_r}
+\end{align*}
+we can now generalize and strengthen \myref{Theorem}{ACSUC} to 
+\begin{align*}
+  \sum \textbf{x}_n \text{ absolutely converge }&\iff  \sum_n x_{n,r}\text{ absolutely converge for all }r\\
+  &\iff \sum_n x_{n,r}\text{ unconditionally converge for all }r\\
+  &\iff \sum \textbf{x}_n\text{ unconditionally converge }
+\end{align*}
+With this in mind, we can now well state the \customref{FTfDS}{Fubini's Theorem for Double Series}.
+\end{mdframed}
+\begin{theorem}
+\label{FTfDS}
+\textbf{(Fubini's Theorem for Double Series)} If 
+\begin{align*}
+\sum_n \sum_k \abso{z_{n,k}}\text{ converge } 
+\end{align*}
+Then 
+\begin{align*}
+\sum_{n,k}\abso{z_{n,k}}\text{ converge and }\sum_{n,k}z_{n,k}=\sum_n \sum_k z_{n,k} =\sum_k \sum_n z_{n,k}
+\end{align*}
+\end{theorem}
+\begin{proof}
+The fact $\sum z_{n,k}$ absolutely converge follow from 
+\begin{align*}
+\sum_{n=1}^N \sum_{k=1}^N \abso{z_{n,k}}\leq \sum_n \sum_k \abso{z_{n,k}}\text{ for all }N
+\end{align*}
+WOLG, it remains to prove 
+\begin{align*}
+\vi{\sum_{n,k}z_{n,k}=\sum_n \sum_k z_{n,k}}
+\end{align*}
+Because $\sum_n \sum_k \abso{z_{n,k}}$ converge, we can reduce the problem into proving the same statement for nonnegative series $a_{n,k}$. (why?)
+\begin{align*}
+  \vi{\sum_n \sum_k \abso{a_{n,k}}\text{ converge }\implies \sum_{n,k}a_{n,k}=\sum_n \sum_k a_{n,k}}
+\end{align*}
+Because 
+\begin{align*}
+\sum_{n=1}^N \sum_{k=1}^N a_{n,k} \leq  \sum_{n=1}^N \sum_{k} a_{n,k}\leq \sum_n \sum_k a_{n,k}\text{ for all }N
+\end{align*}
+we see 
+\begin{align*}
+\sum_{n,k}a_{n,k}\leq \sum_n \sum_k a_{n,k}
+\end{align*}
+It remains to prove 
+\begin{align*}
+  \vi{\sum_{n,k}a_{n,k}\geq \sum_{n} \sum_k a_{n,k}}
+\end{align*}
+Fix  $N\text{ and }\epsilon $. We reduce the problem into proving 
+\begin{align*}
+  \vi{\sum_{n,k}a_{n,k} \geq \sum_{n=1}^N \sum_{k} a_{n,k} - \epsilon}
+\end{align*}
+Let $K$ satisfy 
+ \begin{align*}
+\text{ For all $1\leq n\leq N$, }\sum_{k=K+1}^\infty a_{n,k} < \frac{\epsilon}{N} 
+\end{align*}
+It then follows 
+\begin{align*}
+\sum_{n,k} a_{n,k}\geq \sum_{n=1}^N \sum_{k=1}^K a_{n,k}\geq \sum_{n=1}^N \sum_k a_{n,k}-\epsilon  \vdone
+\end{align*}
+
+\end{proof}
+\begin{Example}{\textbf{(Counter-Example for Fubini's Theorem for Double Series)}}{}
+\begin{align*}
+a_{n,k}\triangleq \begin{cases}
+  1& \text{ if $n=k$ }\\
+  -1& \text{ if $n=k+1$ }\\
+  0& \text{ if otherwise }
+\end{cases}
+\end{align*}
+\begin{align*}
+\sum \abso{a_{n,k}}=\infty \text{ and }\sum_n \sum_k a_{n,k}=1\text{ and }\sum_k \sum_n a_{n,k}=0
+\end{align*}
+\end{Example}
 \begin{theorem}
 \label{Merten Cau}
 \textbf{(Merten's Theorem for Cauchy Product)} Suppose 
@@ -1079,42 +1335,153 @@ Then we have
 \sum_{n=0}^{\infty}c_n=AB
 \end{align*}
 \end{theorem}
+\begin{proof}
+We prove 
+\begin{align*}
+  \vi{\abso{B\sum_{n=0}^N a_n- \sum_{n=0}^Nc_n}\to 0\text{ as }N\to \infty}
+\end{align*}
+Compute 
+\begin{align*}
+B\sum_{n=0}^N a_n - \sum_{n=0}^N c_n&=\sum_{n=0}^N a_n (B-\sum_{k=0}^{N-n}b_k)\\
+&=\sum_{n=0}^N a_n \sum_{k=N-n+1}^{\infty}b_k
+\end{align*}
+Because $\sum_{k=n}^{\infty}b_k\to 0$ as $n\to \infty$, we know there exists $M$ such that 
+\begin{align*}
+\label{me1}
+\abso{\sum_{k=n}^{\infty}b_k}<M\text{ for all }n
+\end{align*}
+Let $N_0$ satisfy 
+ \begin{align*}
+\sum_{n=N_0+1}^{\infty} \abso{a_n}< \frac{\epsilon }{2M}
+\end{align*}
+Let $N_1>N_0$ satisfy 
+ \begin{align*}
+  \label{me2}
+   \abso{\sum_{k=N-N_0+1}^{\infty}b_k}<\frac{\epsilon}{2(N_0+1)\sum_n \abso{a_n}} \text{ for all }N>N_1
+\end{align*}
+Now observe that for all $N>N_1$
+\begin{align*}
+  \abso{\sum_{n=0}^N a_n \Big(\sum_{k=N-n+1}^\infty b_k \Big)}\leq \sum_{n=0}^{N_0} \abso{a_n} \abso{\sum_{k=N-n+1}^{\infty}b_k}+ \sum_{n=N_0+1}^{N} \abso{a_n} \abso{\sum_{k=N-n+1}^{\infty}b_k}<\epsilon \vdone 
+\end{align*}
+\end{proof}
 \begin{mdframed}
-
+We first define the \textbf{limit superior} by 
+\begin{align*}
+\limsup_{n\to\infty} a_n\triangleq \lim_{n\to \infty} (\sup_{k\geq n}a_k)
+\end{align*}
+Note that $\limsup_{n\to\infty} a_n$ must exists because $(\sup_{k\geq n}a_k)_n$ is a decreasing sequence. 
 \end{mdframed}
 \begin{theorem}
-\label{WM-t}
-\textbf{(Weierstrass M-test)} Given sequences $f_n:X\rightarrow \C$, and suppose 
-\begin{align}
-\label{K9}
-\forall n\inn,\forall x\in X, \abso{f_n(x)}\leq M_n
-\end{align}
-Then 
+\textbf{(Equivalent Definition for Limit Superior)}
+If we let $E$ be the set of subsequential limits of $a_n$
+ \begin{align*}
+E\triangleq \set{L\in\overline{\R}:L=\lim_{k\to \infty}a_{n_k}\text{ for some }n_k}
+\end{align*}
+The set $E$ is non-empty and 
 \begin{align*}
-\sum_{n=1}^\infty M_n\text{ converge }\implies \sum_{n=1}^\infty f_n\text{ uniformly converge }
-\end{align*} 
+\max E=\limsup_{n\to\infty} a_n
+\end{align*}
 \end{theorem}
 \begin{proof}
-Because $(\C,\norm{\cdot }_2)$  is complete, by \myref{Corollary}{SoB}, we only wish to prove 
+Let $n_1\triangleq 1$. Recursively, because
 \begin{align*}
-\vi{ \bset{\sum_{k=1}^n f_k}_{n\inn}\text{ is uniformly Cauchy }} 
+\sup_{j\geq n_k}a_k\geq \limsup_{n\to\infty} a_n>\limsup_{n\to\infty} a_n - \frac{1}{k}\text{ for each }k
 \end{align*}
-Fix $\epsilon $. We wish 
- \begin{align*}
-   \vi{\text{ to find $N$ such that  }\forall n,m>N, \forall  x\in X, \abso{\sum_{k=n}^m f_k(x)}< \epsilon}
-\end{align*}
-Because $\sum_{n=1}^\infty M_n$ converge, we know there exists $N$ such that 
+We can let $n_{k+1}$ be the smallest number such that 
 \begin{align*}
-\forall n,m>N, \sum_{k=n}^m M_k<\epsilon 
+a_{n_{k+1}}>\limsup_{n\to\infty} a_n - \frac{1}{k}
 \end{align*}
-We claim
+It is straightforward to check $a_{n_k}\to \limsup_{n\to\infty} a_n$ as $k\to \infty$. Note that no subsequence can converge to $\limsup_{n\to\infty} a_n+\epsilon $ because there exists $N$ such that  $\sup_{k\geq N}a_k<\limsup_{n\to\infty} a_n+\epsilon $. 
+\end{proof}
+\begin{mdframed}
+  We can now state the \textbf{limit comparison test} as follows. Given a positive sequence $b_n$, 
 \begin{align*}
-\text{ such $N$ works }
+  \limsup_{n\to\infty} \frac{\abso{z_n}}{b_n}\inr \text{ and }\sum b_n\text{ converge }&\implies \sum z_n\text{ absolutely converge } \\
+ \liminf_{n\to\infty} \frac{b_n}{\abso{z_n}}>0\text{ and }\sum z_n \text{ diverge }&\implies \sum b_n\text{ diverge }
 \end{align*}
-By \myref{Premise}{K9}, we have 
+\end{mdframed}
+\begin{theorem}
+\label{geometric series}
+\textbf{(Geometric Series)} 
 \begin{align*}
-  \forall n,m>N, \forall x \in X, \abso{\sum_{k=n}^m f_k(x)}\leq \sum_{k=n}^m \abso{f_k(x)}\leq \sum_{k=n}^m M_k <\epsilon 
+\abso{z}< 1 \implies \sum_{n=0}^{\infty} z^n= \frac{1}{1-z}
 \end{align*}
+\end{theorem}
+\begin{proof}
+The proof follows from noting  
+\begin{align*}
+  (1-z)\sum_{n=0}^N z^n=1-z^{N+1}\to 1\text{ as }N\to \infty
+\end{align*}
+\end{proof}
+
+\begin{theorem}
+\textbf{(Ratio and Root Test)} 
+\begin{align*}
+  \limsup_{n\to\infty} \sqrt[n]{\abso{z_n}}<1 \text{ or }\limsup_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}<1&\implies \sum z_n\text{ absolutely converge }\\
+  \liminf_{n\to\infty} \sqrt[n]{\abso{z_n}}>1\text{ or }\liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}>1 &\implies \sum  z_n\text{ diverge }
+\end{align*}
+\end{theorem}
+\begin{proof}
+The convergent part follows from comparison to an appropriate geometric series and the diverge part follows from noting $\abso{z_n}$ does not converge to $0$.
+\end{proof}
+\begin{theorem}
+\textbf{(Root Test is Stronger Than Ratio Test)}
+\begin{align*}
+\liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}\leq \liminf_{n\to\infty} \sqrt[n]{\abso{z_n}} \leq \limsup_{n\to\infty} \sqrt[n]{\abso{z_n}} \leq \limsup_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $ and WOLG suppose $\liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}>0$. We prove 
+\begin{align*}
+  \vi{\liminf_{n\to\infty} \sqrt[n]{\abso{z_n}}\geq \liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}-\epsilon  }
+\end{align*}
+Let $\alpha \inr $ satisfy 
+\begin{align*}
+\liminf_{n\to\infty}  \abso{\frac{z_{n+1}}{z_n}}-\epsilon <\alpha < \liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}
+\end{align*}
+Let $N$ satisfy  
+\begin{align*}
+\text{ For all }n\geq N,\abso{\frac{z_{n+1}}{z_n}}>\alpha  
+\end{align*}
+We then see 
+\begin{align*}
+  \sqrt[N+n]{\abso{z_{N+n}}}\geq \sqrt[N+n]{\abso{z_N}\alpha^n}=\alpha \Big(\frac{\abso{z_N}^{\frac{1}{N+n}}}{\alpha ^{\frac{N}{N+n}}} \Big)\to \alpha \text{ as }n\to \infty \vdone
+\end{align*}
+The proof for the other side is similar.
+\end{proof}
+\begin{mdframed}
+Lastly, we prove \customref{Cauchy's Condensation Test}{Cauchy's Condensation Test}, whose existence is almost solely for investigating \customref{p-Series}{p-Series}.
+\end{mdframed}
+\begin{theorem}
+\label{Cauchy's Condensation Test}
+\textbf{(Cauchy's Condensation Test)} Suppose $a_n\searrow 0$. We have 
+\begin{align*}
+\sum_{n=0}^{\infty} 2^na_{2^n}\text{ converge }\iff \sum_{n=1}^{\infty}a_n\text{ converge }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe that for all $N\inn$ 
+\begin{align*}
+\sum_{n=0}^N 2^n a_{2^n}\geq \sum_{n=0}^N \sum_{k=1}^{2^n} a_{2^n+k-1} =\sum_{n=1}^{2^{N+1}-1}a_n
+\end{align*}
+and
+\begin{align*}
+ 2\sum_{n=1}^{2^N-1} a_n= 2\sum_{n=1}^N \sum_{k=0}^{2^{n-1}-1}a_{2^{n-1}+k}\geq 2\sum_{n=1}^N 2^{n-1} a_{2^n}=\sum_{n=1}^N 2^na_{2^n}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{p-Series}
+\textbf{(p-Series)}
+\begin{align*}
+\sum_{n=1}^{\infty} \frac{1}{n^p}\text{ converge }\iff p>1
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe that
+\begin{align*}
+\sum_{n=0}^{\infty} 2^n \frac{1}{(2^n)^p}=\sum_{n=0}^{\infty}(2^{1-p})^n
+\end{align*}
+The result then follows from  \customref{Cauchy's Condensation Test}{Cauchy's Condensation Test} and \customref{geometric series}{geometric series}. 
 \end{proof}
 \section{Operator Norm}
 \begin{abstract}
@@ -1278,13 +1645,13 @@ Before we show that our definition is indeed a norm, we first give some equivale
 \end{align*}
 \end{theorem}
 \begin{proof}
-Define $J=\set{M\inr^+:\forall x \in \mathcal{X},\norm{Tx}\leq M\norm{x}}$ and observe 
+Define $J\triangleq \set{M\inr^+:\forall x \in \mathcal{X},\norm{Tx}\leq M\norm{x}}$ and observe 
 \begin{align*}
 J&=\set{M\inr^+:M\geq \frac{\norm{Tx}}{\norm{x}},\forall x\neq 0\in \mathcal{X}}
 \end{align*}
 This let us conclude 
 \begin{align*}
-\norm{T}_\text{op}=\inf J=\sup_{x \in \mathcal{X},x\neq 0} \frac{\norm{Tx}}{\norm{x}}
+\sup_{x \in \mathcal{X},x\neq 0} \frac{\norm{Tx}}{\norm{x}}=\min  J= \norm{T}_{\text{op}}
 \end{align*}
 \end{proof}
 \begin{mdframed}
@@ -1743,7 +2110,114 @@ Let $\abso{y-x}<\delta$. We see
 
 
 \end{proof}
-\section{Smoothness of $f:\R^n\rightarrow \R^m$}
+
+\section{Product Rule and Chain Rule}
+\begin{abstract}
+This section prove  \customref{CR}{Chain Rule} 
+\end{abstract}
+\begin{mdframed}
+Although 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Product Rule)} Given two function  $f,g:\R^d\rightarrow \R$ differentiable at $x$, we have 
+\begin{align*}
+\nabla (fg)(x)= g(x) \nabla f(x)+ f(x)\nabla g(x)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Note that 
+\begin{align*}
+  \lim_{h\to 0}f(x+h)\Big[\frac{g(x+h)-g(x)-\nabla g(x)\cdot h}{\abso{h}} \Big]&= 0 \\
+  \text{ and }\lim_{h\to 0} g(x)\Big[ \frac{f(x+h)-f(x)-\nabla f(x)\cdot h}{\abso{h}}\Big]=0
+\end{align*}
+Adding these two equations together, we have 
+\begin{align*}
+\lim_{h\to 0}  \frac{f(x+h)g(x+h)-f(x)g(x)-[g(x)\nabla f(x)+f(x)\nabla g(x)]\cdot h}{\abso{h}}=0
+\end{align*}
+\end{proof}
+\begin{mdframed}
+We now deduce for $f,g:\R^d\rightarrow \R^n$ that 
+\begin{align*}
+\nabla (f\cdot g)=\nabla \Big(\sum_{j=1}^n f_j\cdot g_j\Big)=\sum_{j=1}^n \nabla (f_j\cdot g_j)&=\sum_{j=1}^n g_j(x)\nabla f_j(x)+f_j(x)\nabla g_j(x)\\
+                                                                                                                 &=(df_x)^t(g(x))+(dg_x)^t(f(x))
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+We now prove the Chain Rule for function between normed space. 
+\end{mdframed}
+\begin{theorem}
+\label{CR}
+\textbf{(Chain Rule)} Given three normed space $\mathcal{X},\mathcal{Y},\mathcal{Z}$, a point $x \in \mathcal{X}$, a function $g$ that map an open set $U\subseteq \mathcal{Y}$ containing $f(x)$ into $\mathcal{Z}$, a function $f$ that map an open-neighborhood around $x$ into $U$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is differentiable at $x$
+   \item $g$ is differentiable at $f(x)$
+\end{enumerate}
+we have 
+\begin{align*}
+d(g\circ f)_x=dg_{f(x)}\circ df_{x}
+\end{align*}
+\end{theorem}
+\begin{proof}
+For brevity, we use $F\triangleq g\circ f$. We wish to prove 
+\begin{align*}
+\vi{\lim_{h\to 0}\frac{\norm{F(x+h)-F(x)-dg_{f(x)}df_x(h)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
+\end{align*}
+Fix $k\triangleq f(x+h)-f(x)$. Observe 
+\begin{align*}
+ F(x+h)-F(x)-dg_{f(x)}df_x(h)=\Big(g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) \Big) + dg_{f(x)}\big(k-df_x(h)\big)
+\end{align*}
+This now implies 
+\begin{align*}
+&\frac{\norm{F(x+h)-F(x)-dg_{f(x)}df_x(h)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}\text{ is smaller than }
+\end{align*}
+\begin{align*}
+\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z+ \norm{dg_{f(x)}\big(k-df_x(h)\big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}} 
+\end{align*}
+This let us reduce the problem into proving 
+\begin{align*}
+  &\olive{ \lim_{h\to 0}\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0}\\
+  \text{ and }&\blue{\lim_{h\to 0} \frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
+\end{align*}
+We first prove 
+\begin{align*}
+\olive{ \lim_{h\to 0}\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0}
+\end{align*}
+Note that if $\norm{k}_\mathcal{Y}=0$, we have 
+\begin{align*}
+\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0
+\end{align*}
+Now, observe that 
+\begin{align*}
+\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} = \frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{k}_\mathcal{Y}}\cdot \frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}} 
+\end{align*}
+Because $h \to 0 \implies k\to 0$, we can now reduce the problem into proving 
+\begin{align*}
+\olive{\limsup_{h\to 0} \frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\text{ exists }}
+\end{align*}
+Observe 
+\begin{align*}
+\frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}}&= \frac{\norm{f(x+h)-f(x)-df_x(h)+df_x(h)}_\mathcal{X}}{\norm{h}_\mathcal{X}}\\
+&\leq \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}+\frac{\norm{df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\\
+&\leq \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}} + \norm{df_x}_\text{op} \odone
+\end{align*}
+We now prove 
+\begin{align*}
+\blue{\lim_{h\to 0} \frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
+\end{align*}
+Note that if $f(x+h)-f(x)-df_x(h)=0$, then $\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}=0$. Now, observe 
+\begin{align*}
+\frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}&= \frac{\norm{dg_{f(x)}\big(f(x+h)-f(x)-df_x(h) \big)}_\mathcal{Z}}{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}\cdot \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\\
+&\leq \norm{dg_{f(x)}}_\text{op}\cdot \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\to 0 \bdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Our general version of \customref{CR}{Chain Rule}, together with the \customref{DiJ}{matrix representation of derivative}, in fact give us a special type of chain rule, i.e. 
+\begin{align*}
+  \frac{\partial }{\partial x}u(y,z)= \frac{\partial u}{\partial y}\frac{\partial y}{\partial x}+ \frac{\partial u}{\partial z}\frac{ \partial z}{\partial x}
+\end{align*}
+which one can manually check. 
+\end{mdframed}
+\section{Smoothness}
 \begin{mdframed}
 Given the set of all real-valued functions on an open set $E$ of $\R^n$, we can define the differentaible class by saying a function $f:E\rightarrow \R$ is of class $C^k$ if 
 \begin{align*}
@@ -1883,77 +2357,12 @@ We can now apply \myref{Theorem}{SoMPD} to $g$ and have
 \partial_{ij}f(p)=\partial_{12}g(x_0,y_0)=\partial_{21}g(x_0,y_0)=\partial_{ji}f(p)\vdone
 \end{align*}
 \end{proof}
-
-
-\section{Product Rule for real-valued function and Chain Rule}
 \begin{mdframed}
-We now prove the Chain Rule for function between normed space. 
+
 \end{mdframed}
 \begin{theorem}
-\label{CR}
-\textbf{(Chain Rule)} Given three normed space $\mathcal{X},\mathcal{Y},\mathcal{Z}$, a point $x \in \mathcal{X}$, a function $g$ that map an open set $U\subseteq \mathcal{Y}$ containing $f(x)$ into $\mathcal{Z}$, a function $f$ that map an open-neighborhood around $x$ into $U$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $f$ is differentiable at $x$
-   \item $g$ is differentiable at $f(x)$
-\end{enumerate}
-we have 
-\begin{align*}
-d(g\circ f)_x=dg_{f(x)}\circ df_{x}
-\end{align*}
+\textbf{(Composition of Smooth Map is Smooth)}
 \end{theorem}
-\begin{proof}
-For brevity, we use $F\triangleq g\circ f$. We wish to prove 
-\begin{align*}
-\vi{\lim_{h\to 0}\frac{\norm{F(x+h)-F(x)-dg_{f(x)}df_x(h)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
-\end{align*}
-Fix $k\triangleq f(x+h)-f(x)$. Observe 
-\begin{align*}
- F(x+h)-F(x)-dg_{f(x)}df_x(h)=\Big(g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) \Big) + dg_{f(x)}\big(k-df_x(h)\big)
-\end{align*}
-This now implies 
-\begin{align*}
-&\frac{\norm{F(x+h)-F(x)-dg_{f(x)}df_x(h)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}\text{ is smaller than }
-\end{align*}
-\begin{align*}
-\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z+ \norm{dg_{f(x)}\big(k-df_x(h)\big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}} 
-\end{align*}
-This let us reduce the problem into proving 
-\begin{align*}
-  &\olive{ \lim_{h\to 0}\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0}\\
-  \text{ and }&\blue{\lim_{h\to 0} \frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
-\end{align*}
-We first prove 
-\begin{align*}
-\olive{ \lim_{h\to 0}\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0}
-\end{align*}
-Note that if $\norm{k}_\mathcal{Y}=0$, we have 
-\begin{align*}
-\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} =0
-\end{align*}
-Now, observe that 
-\begin{align*}
-\frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{h}_\mathcal{X}} = \frac{\norm{g\big(f(x)+k\big)-g\big(f(x)\big)- dg_{f(x)}(k) }_Z }{\norm{k}_\mathcal{Y}}\cdot \frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}} 
-\end{align*}
-Because $h \to 0 \implies k\to 0$, we can now reduce the problem into proving 
-\begin{align*}
-\olive{\limsup_{h\to 0} \frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\text{ exists }}
-\end{align*}
-Observe 
-\begin{align*}
-\frac{\norm{k}_\mathcal{Y}}{\norm{h}_\mathcal{X}}&= \frac{\norm{f(x+h)-f(x)-df_x(h)+df_x(h)}_\mathcal{X}}{\norm{h}_\mathcal{X}}\\
-&\leq \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}+\frac{\norm{df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\\
-&\leq \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}} + \norm{df_x}_\text{op} \odone
-\end{align*}
-We now prove 
-\begin{align*}
-\blue{\lim_{h\to 0} \frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}=0}
-\end{align*}
-Note that if $f(x+h)-f(x)-df_x(h)=0$, then $\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}=0$. Now, observe 
-\begin{align*}
-\frac{\norm{dg_{f(x)}\big(k-df_x(h) \big)}_\mathcal{Z}}{\norm{h}_\mathcal{X}}&= \frac{\norm{dg_{f(x)}\big(f(x+h)-f(x)-df_x(h) \big)}_\mathcal{Z}}{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}\cdot \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\\
-&\leq \norm{dg_{f(x)}}_\text{op}\cdot \frac{\norm{f(x+h)-f(x)-df_x(h)}_\mathcal{Y}}{\norm{h}_\mathcal{X}}\to 0 \bdone
-\end{align*}
-\end{proof}
 \section{Holomorphic Functions}
 \section{Uniform Convergence and Differentiation}
 
@@ -2238,6 +2647,18 @@ It shall be quite clear that if $f,g$ are both analytic at  $a\inr$ with radius 
 We now investigate deeper into real analytic functions. We first prove that real analytic functions are smooth, that is,  $C^{\omega}(I)\subseteq C^{\infty}(I)$ on open $I\subseteq \R$. 
 \end{mdframed}
 \begin{theorem}
+\textbf{(Abel's Test for Power Series)} Suppose $a_n\to0$ monotonically. 
+\begin{align*}
+  \text{ The power series $\sum a_nz^n$ at least converge on $\overline{D_1(0)}\setminus \set{1}$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proof follows from \customref{Dirichlet's Test}{Dirichlet's Test} and noting for each fixed $z\in \overline{D_1(0)}\setminus \set{1}$ we have 
+\begin{align*}
+\abso{\sum_{n=0}^N z^n}= \abso{\frac{1-z^{N+1}}{1-z}}\leq \frac{2}{\abso{1-z}}\text{ for all }N
+\end{align*}
+\end{proof}
+\begin{theorem}
 \label{AfaS}
 \textbf{(Analytic functions are Smooth)} Given a power series $(a,c_n)$ of convergence radius $R$, if we define $f:D_R(a)\rightarrow \C$ by
 \begin{align*}
@@ -2503,118 +2924,894 @@ Check both side do equal on $(-1,1)$ by direct computation. Apply Abel's Theorem
 \end{mdframed}
 
 \chapter{Measure Theory}
-\section{$\sigma$-algebra} 
-\section{Carathéodory's extension theorem}
-\begin{definition}
-\textbf{(Definition of pre-measure)} Given a $R$ ring of subsets of  $X$, we say  $\mu:R\rightarrow [0,\infty]$ is a \textbf{pre-measure} of $(X,R)$ if 
-\begin{enumerate}[label=(\alph*)]
-  \item $\mu(\varnothing)=0$ 
-  \item $\mu\big(\bigcup E_n\big)=\sum \mu (E_n)$ for each countable disjoint $\set{E_n}$ such that $\bigcup E_n \in R$. (countably additive, or $\sigma$-additive)
-\end{enumerate}
-\end{definition}
+
+\section{Sigma-Algebra} 
+\begin{abstract}
+In this section, we first discuss properties of $\sigma$-algebra and some of its substructure for better understanding of a slightly generalized version of \customref{caratheodory_extension_theorem}{Carathéodory's extension theorem}. Note that in this section, the terms 'ring', 'field', or 'algebra' do not refer to algebraic structures like the integer ring. 
+\end{abstract}
 \begin{mdframed}
-It is straightforward to check 
+Given a set $X$ and an non-empty set $R$ of subsets of $X$, we say  $R$ is a \textbf{semi-ring}, if for each $A,B \in R$, we have 
 \begin{enumerate}[label=(\alph*)]
-  \item $\mu (A_1 \cup  \cdots \cup  A_n)= \mu (A_1) + \cdots + \mu (A_n)$ if each $A_i$ are disjoint.
-  \item $A \subseteq B \implies \mu (A) \leq \mu (B)$
+  \item $A\cap B \in R$ (closed under finite intersection)
+  \item  $A\setminus B=\bigsqcup_{i=1}^n K_i$ for some disjoint $K_1,\dots ,K_n \in R$. (relative complements can be written as finite disjoint union)
+\end{enumerate}
+and we say $R$ is a \textbf{ring}, if for each $A,B \in R$, we have 
+\begin{enumerate}[label=(\alph*)]
+  \item $A\cup B \in R$ (closed under finite union)
+  \item $A\setminus  B \in R$ (closed under relative complement)
+\end{enumerate}
+One should check 
+\begin{enumerate}[label=(\alph*)]
+\label{c_ring}
+  \item Semi-ring always contain the empty set.
+\item Since $A\cap B=A\setminus (A\setminus B)$, \underline{closure under relative complement} implies \underline{closure under} \underline{finite intersection}. Thus, a ring, or any collection closed under relative complement, is always a semi-ring.
+\item Note that $A\cup B=(A\setminus B)\sqcup (A\cap B) \sqcup  (B\setminus A)$. This implies we can replace  \underline{closure under finite union} with \underline{closure under finite disjoint union} as definition for ring. 
+  \item Given a family $S$ of subsets of $X$, there exists smallest ring  $R(S)$ containing $S$. Such ring $R(S)$ is called \textbf{the ring generated by $S$}. 
 \end{enumerate}
 \end{mdframed}
 \begin{theorem}
-\label{Bppm}
-\textbf{(Basic property of pre-measure)} Given an increasing sequence of measurable set $A_n$ 
- \begin{align*}
-\mu (A_n)\nearrow \mu (A)
-\end{align*}
-where $A=\bigcup A_n$. If $A_n$ is decreasing, then 
+\label{RGbS}
+\textbf{(Ring Generated by Semi-Ring)} If $S$ is a semi-ring, then 
 \begin{align*}
-\mu (A_n)\searrow \mu (A)
+R(S)&=\set{A:A\text{ is the union of some finite pair-wise disjoint sub-family $S'$ of $S $}}\\
+&=\set{A:A\text{ is the union of some finite sub-family $S'$ of $S$ }}
 \end{align*}
-where $A=\bigcap A_n$.
 \end{theorem}
 \begin{proof}
-If $A_n$ is increasing, fix $B_n\triangleq A_n\setminus A_{n-1}$ for each $n\geq 2$ and $B_1=A_1$. The proof then follows from checking 
+  Let $R\triangleq \set{A:A\text{ is the union of some finite pair-wise disjoint sub-family $S'$ of $S$}}$. $R'\triangleq \set{A:A\text{ is the union of some finite sub-family $S'$ of $S$ }}$. We first prove  \vi{$R=R(S)$}.\\
+
+
+  Clearly, the problem can be reduced into proving \vi{$R$ is a ring}. Because $R$ is clearly closed under finite disjoint union, by \customref{c_ring}{property (c) of the ring}, we can reduce the problem into proving \vi{$R$ is closed under relative complement}.\\
+
+We first show \olive{$R$ is closed under finite intersection}. Given $\bigsqcup E_i,\bigsqcup F_j \in R$, we see 
 \begin{align*}
-\mu (A_n)= \sum_{k=1}^n \mu (B_k)\text{ and }\mu(A)=\sum_{k=1}^{\infty} \mu (B_k)
+  \Big(\bigsqcup_i E_i\Big)\cap \Big(\bigsqcup_j F_j\Big)=\bigsqcup_{i,j} E_i\cap F_j \in R \odone
 \end{align*}
-The proof for another statement is similar.
+
+Now observe
+\begin{align*}
+\Big(\bigsqcup_i E_i \Big)\setminus \Big(\bigsqcup_j F_j \Big)&=\bigcap_j \Big(\bigsqcup_i (E_i\setminus F_j) \Big)\\
+&=\bigcap_j A_j  \text{ for some $A_j \in R$ }\vdone
+\end{align*}
+We now prove \blue{$R=R'$}. It is clear that $R\subseteq R'$. We only have to prove  \blue{$R'\subseteq R$}. This is trivially true, since any finite sub-family $S'$ of $S$ is a finite sub-family of $R$ and  $R$ is closed under finite union. $\bdone$
 \end{proof}
 \begin{mdframed}
-Using the same trick $B_n\triangleq A_n \setminus (A_{n-1}\cup  \cdots \cup A_1)$, we have 
+We now give definition to the most important structure in this section. Given a family $\Sigma$ of subsets of $X$,  we say $\Sigma$ is a \textbf{$\sigma$-algebra} (or sometimes \textbf{$\sigma$-field}) on $X$ and say $(X,\Sigma)$ is a \textbf{measurable space}, if $\Sigma$ is ring and for each sequence $(A_n)_{n\inn}$ of elements of $\Sigma$ we have
+\begin{enumerate}[label=(\alph*)]
+  \item $X \in \Sigma$
+  \item  $\bigcup_{n\inn} A_n \in \Sigma$ (Closed under countable union)
+\end{enumerate}
+Similarly, one should check 
+\begin{enumerate}[label=(\alph*)]
+\label{pop_sig}
+\item Because $\bigcap_{n=1}^{\infty}A_n = A_1 \setminus (\bigcup_{n=2}^{\infty}(A_1\setminus A_n))$, we see  $\sigma$-algebra is \underline{closed under countable} \underline{intersection}. 
+\item Because $\bigcup_{n=1}^{\infty}A_n = \bigsqcup_{n=1}^{\infty} (A_n \setminus (\bigcup_{k=n+1}^{\infty} A_k))$, we can replace \underline{closure under countable} \underline{union} with \underline{closure under countable disjoint union}.  
+\item Because $\bigcup_{n\inn}A_n = \bigcup_{n\inn} (\bigcup_{k=1}^n A_k)$, we can replace \underline{closure under countable union} with the condition \underline{for all  $(A_n)\subseteq \Sigma$ such that $\forall n,A_n \subseteq A_{n+1}$, we have $\bigcup_n A_n \in \Sigma$}.
+\item Given a family $S$ of subsets of $X$, there exists smallest sigma-algebra $\sigma(S)$ containing $S$. Such $\sigma$-algebra $\sigma(S)$ is called \textbf{the sigma-algebra generated by $S$}.
+\end{enumerate}
+Now, given a family $S$ of subsets of $X$, there in fact exists an explicit expression of $\sigma (S)$, albeit infamous. Let $\omega_1$ be the smallest uncountable ordinal, and let $\mathbf{\Sigma}^0_1\triangleq S$. For each ordinal $\alpha <\omega_1$, we recursively define $\mathbf{\Pi}^0_\alpha \triangleq  \set{X\setminus A: A \in \mathbf{\Sigma}^0_\alpha}$ and $\mathbf{\Sigma}^0_\alpha \triangleq \set{\bigcup_{n\inn}A_n: (A_n)\subseteq \bigcup_{1\leq \gamma <\alpha }\mathbf{\Pi}^0_\gamma }$. One can use transfinite induction to check that $\sigma (S)= \bigcup_{\alpha <\omega_1}\mathbf{\Sigma}^0_\alpha$.
+\end{mdframed}
+\section{Carathéodory's Extension Theorem}
+\label{caratheodory_extension_theorem}
+\begin{abstract}
+In this section, we introduce a general process to construct measure on $X$. The process involve first inducing an outer measure from a pre-measure on some weaker structure $S$, and then restricting the outer measure onto a subfamily that contain exactly all the subset that "sharply cut" all the other subsets of $X$. The subfamily, as we shall prove, is a sigma-algebra. This extending-restricting process is known mostly by the name of Carathéodory Extension Theorem, and the rigorous  definition of "sharply cut" is known by the name of Carathéodory criterion. The selected 'some weaker structure' $S$, which we begin out extension from, is a semi-ring. Although as long as $S$ contain the empty set, the process works, in the sense that one can generate a measure with pre-measure $\mu:S\rightarrow [0,\infty]$, to have the generated measure agree with  $\mu$ on $S$, some necessary condition needs to be satisfied, and the axioms of semi-ring, not equivalent to some other popular choices that also suffice, e.g., ring or quasi-semi-ring, suffices to be a set of necessary conditions.\\
+
+Note that in this section, if we write $\mu (A)$ without specifying whether $A$ is in the domain of  $\mu$, we mean that the statement always hold true as long as $A$ is in the domain of $\mu$, and note that the difference between the term \textbf{measure space} and measurable space lies in that the latter is not equipped with a measure yet. 
+\end{abstract}
+\begin{mdframed}
+Given a collection $S$ of subsets of  $X$ containing the empty set, we say  $\mu:S\rightarrow [0,\infty]$ is a \textbf{pre-measure} (or \textbf{content}) on $(X,S)$ if 
+\begin{enumerate}[label=(\alph*)] 
+  \item $\mu(\varnothing)=0$ (null empty set) 
+  \item $A \subseteq B \implies \mu (A) \leq \mu (B)$ (monotone)
+  \item $\mu\big(\bigsqcup_{n\inn} E_n \big)=\sum_{n\inn} \mu (E_n)$ (countably additive, or $\sigma$-additive)
+\end{enumerate}
+and say $\mu$ is a \textbf{measure} if $S$ is a $\sigma$-algebra on $X$. Note that if $S$ is closed under relative complement, e.g., $S$ is a ring or any stronger structure, then monotone is implied by countable additive. Now, with the hints given below, one can check straightforward that if $S$ is a semi-ring, we have 
+\begin{enumerate}[label=(\alph*)]
+\label{pop_meas}
+  \item $\mu (A_1 \sqcup   \cdots \sqcup   A_n)= \mu (A_1) + \cdots + \mu (A_n)$ (finitely additive)
+  \item $\mu \big(\bigcup_{n \in J} A_n\big)\leq \sum_{n\in J} \mu (A_n)$, for each finite or countable $J$.   \item $A_n \nearrow A \implies \mu (A_n)\nearrow \mu \big(A\big)$.  
+  \item $A_n\searrow A\text{ and }\mu (A_1)<\infty \text{ and }S\text{ is a $\sigma$-algebra }\implies \mu (A_n)\searrow \mu \big(A\big)$  
+\end{enumerate}
+Hints: Properties (b) and (c) are proved by letting $B_n\triangleq A_n \setminus (A_{n-1}\cup \cdots \cup  A_1)$; and property (d) is proved by letting $B_n\triangleq A_1 \setminus A_n,\forall n\inn$ and the equation 
 \begin{align*}
-\mu (\bigcup_{n\inn} A_n) \leq \sum_{n\inn} \mu (A_n)\text{ for arbitrary $A_n$ }
+\mu (A_1)-\lim_{n\to \infty} \mu (A_n)&=\lim_{n\to \infty}\mu (A_1)-\mu (A_n)\\
+&=\lim_{n\to \infty} \mu (B_n)\\
+(\text{property (c) is used here})\hspace{0.5cm}&=\mu (\bigcup_{n=1}^{\infty}B_n)=\mu (A_1 \setminus \bigcap_{n=1}^{\infty}A_n)=\mu (A_1)- \mu (\bigcap_{n=1}^{\infty}A_n)
 \end{align*}
+Note that our proof for property (d) require $A_1$ to be of finite measure in last step. 
+\end{mdframed}
+\begin{mdframed}
+Now, suppose $S$ is a semi-ring and $\mu:S\rightarrow [0,\infty]$ is a pre-measure on $(X,S)$. This section address the question: Is there a unique extension of $\mu$ onto $\sigma (S)$? The answer is indeed affirmative: The extension always exists, and if $\mu$ is $\sigma$-finite, the extension is unique. 
+While extensions of pre-measures can be constructed from structures weaker than a semi-ring, we focus on semi-rings here, as they are the starting points in common applications, e.g., Lebesgue-Stieltjes measure.\\
+
+We first extend $\mu$ from $S$ onto $R(S)$. Since each element of $R(S)$ is a union of some finite pair-wise disjoint sub-family of $S$, as \customref{RGbS}{we proved before}, for each $A=\bigsqcup_{j=1}^{n_a}A_j \in R(S)$, we can assign $\mu(A)\triangleq \sum_{j=1}^{n_a}\mu (A_j)$. Such assignment is well-defined, as one can check using  
+\begin{align*}
+\bigsqcup_{j=1}^{n_a}A_j = \bigsqcup _{k=1}^{n_b}B_k \implies A=\bigsqcup_{j,k} A_j \cap B_k \text{ where }A_j\cap B_k \in S 
+\end{align*}
+At this point, one should check $\mu$ remains countably additive after the extension. This can be proved using the same trick and the fact \customref{ACSUC}{absolutely convergent series unconditionally converge}.\\
+
+We now give definition to \textbf{outer measure}, and shows that \customref{Piom}{given any pre-measure $\mu$ on some semi-ring $S$ of subsets of $X$, there exists outer measure  $\mu^*$ on $X$ such that  $\mu^*\text{ and }\mu$ agrees on $S$}.
 \end{mdframed}
 \begin{definition}
-\textbf{(Definition of outer measure)} Given a set $X$, by an  \textbf{outer measure}, we mean a function $\mu^*:2^X\rightarrow [0,\infty]$ such that 
+\textbf{(Definition of outer measure)} Given a set $X$, by an  \textbf{outer measure}, we mean a function $\nu :2^X\rightarrow [0,\infty]$ such that 
 \begin{enumerate}[label=(\alph*)]
-  \item $ \mu^* (\varnothing)=0$
-  \item Given arbitrary subset $A,B_1,B_2,\dots$ such  that  $A\subseteq \bigcup_{n} B_n$, we have $ \mu^* (A)\leq  \sum_n \mu^* (B_n)$ (countably subadditive)
+  \item $ \nu  (\varnothing)=0$ (null empty set)
+  \item $A\subseteq \bigcup_{n\inn} A_n\implies \nu  (A)\leq  \sum \nu (A_n)$ (countably subadditive)
 \end{enumerate}
 \end{definition}
 \begin{mdframed}
-Equivalently, one can replace countably sub-additive with 
-\begin{align*}
-A \subseteq B \implies \mu^*(A) \leq \mu^* (B)\text{ and } \mu^* \Big(\bigcup_n B_n \Big)\leq \sum_n \mu^*(B_n)
-\end{align*}
+Equivalently, one can replace countably subadditive with the following two axioms   
+\begin{enumerate}[label=(\alph*)]
+  \item $A \subseteq B \implies \nu (A) \leq \nu  (B)$  (monotone)
+  \item $\nu  (\bigcup_{n\inn} A_n )\leq \sum \nu (A_n)$  
+\end{enumerate}
+
 \end{mdframed}
 \begin{theorem}
-\textbf{(Pre-measure induces outer measure)} Given a pre-measure $\mu$ on some ring $R$ of subsets of $X$, if we define $\mu^*:2^X\rightarrow [0,\infty]$ by
+\label{Piom}
+\textbf{(Pre-measure on semi-ring induces outer measure)} Given a pre-measure $\mu$ on some semi-ring $S$ of subsets of $X$, if we define $\mu^*:2^X\rightarrow [0,\infty]$ by
 \begin{align*}
-\mu^*(T)\triangleq \inf \bset{\sum_n \mu (S_n):T \subseteq \bigcup _n S_n\text{ and }S_1,S_2,\dots \in R}\text{ where $\inf \varnothing= \infty$ }
+\mu^*(E)\triangleq \inf \bset{\sum_n \mu (T_n):E \subseteq \bigcup _n T_n\text{ and }T_1,T_2,\dots \in S}\text{ where $\inf \varnothing= \infty$ }
 \end{align*}
 Then 
 \begin{align*}
-\mu^*\text{ is an outer measure }
+\mu^*\text{ is an outer measure agreeing with $\mu$ on $S$}
 \end{align*}
 \end{theorem}
 \begin{proof}
-  It is clear $\mu^*(\varnothing)=0\text{ and }A\subseteq B \implies \mu^*(A)\leq \mu^*(B)$. It remains to prove for arbitrary $B_n$ we have 
+  It is clear $\mu^*(\varnothing)=0\text{ and }A\subseteq B \implies \mu^*(A)\leq \mu^*(B)$. It remains to prove that for arbitrary $B_n$ we have 
 \begin{align*}
   \vi{\mu^* \Big(\bigcup_n B_n \Big)  \leq \sum_n \mu^* (B_n)}
 \end{align*}
-If  $\sum_n \mu^*(B_n)=\infty$, the proof is trivial. We from now suppose $\sum_n \mu^*(B_n)< \infty$.\\
-
-Fix $\epsilon $. We prove 
+If  $\sum_n \mu^*(B_n)=\infty$, the proof is trivial. We from now suppose $\sum_n \mu^*(B_n)< \infty$. Fix $\epsilon $. We prove 
 \begin{align*}
   \vi{\mu^*\Big(\bigcup _n B_n \Big)\leq \sum_n \mu^* (B_n)+\epsilon }
 \end{align*}
-Because $\mu^*(B_n)<\infty$ for each $n\inn$, we know for each $n\inn$ there exists an countable cover of $B_n$ consisting elements $S_{n,k}$ of  $R$ such that 
+Because $\mu^*(B_n)<\infty$ for each $n\inn$, we know for each $n\inn$ there exists an countable cover $(S_{n,k})_{k\inn}\subseteq R$ of $B_n$ such that 
 \begin{align*}
 \sum_k \mu (S_{n,k}) \leq \mu^*(B_n)+\epsilon (2^{-n}) 
 \end{align*}
-It is clear that  $\set{S_{n,k}:n,k \inn}$ is a countable cover of $\bigcup_n B_n$, we now see 
+It is clear that  $\set{T_{n,k}:n,k \inn}$ is a countable cover of $\bigcup_n B_n$, we now see 
 \begin{align*}
-  \mu^*\Big(\bigcup_n B_n \Big)&\leq \sum_n \sum_k \mu(S_{n,k})\\
+  \mu^*\Big(\bigcup_n B_n \Big)\leq \sum_{n,k} \mu (T_{n,k})&\leq \sum_n \sum_k \mu(T_{n,k})\\
 &\leq \sum_n \mu^*(B_n)+ \epsilon (2^{-n})= \sum_n \mu^*(B_n)+ \epsilon \vdone
+\end{align*}
+Note that the expression $\sum_{n,k} \mu (T_{n,k})$ make sense because of the \customref{RRT}{Riemann Rearrangement Theorem}, and $\sum_{n,k}\mu (T_{n,k})\leq \sum_{n} \sum_{k} \mu (T_{n,k})$ should be proved using a limit argument with the diagonal enumeration on $(n,k)$. The fact $\mu^*(T)=\mu (T),\forall T \in S$ follows from \customref{pop_meas}{property (c) of measure} with the trick that, provided $(T_n)$ is a cover of $T$, $(T\cap \bigcup_{n=1}^N T_n)\nearrow T$ as $N\to \infty$ in the sense of set. Note that it is only here we use the hypothesis that $\mu$ is a pre-measure and $S$ is a semi-ring.   
+\end{proof}
+\begin{mdframed}
+  So far, we have proved that given a semi-ring $S$ and a pre-measure $\mu:S\rightarrow [0,\infty]$, there exist some outer measure agree with $\mu$ on $S$. One may wish to ask if such outer measure, an extension of the pre-measure $\mu$, is unique? The answer is negative even in the most trivial case, as the \customref{Nou}{example below} shows. In fact, the outer measure induced in \myref{Theorem}{Piom} is called the \textbf{maximal outer extension}, in the sense that if $\nu$ is an outer measure agreeing with  $\mu$ on $S$, then  $\nu(E)\leq \mu^*(E),\forall E\subseteq X$, as one can check straightforwardly. Also, one can check that it make no difference if we first extend $\mu$ from $S$ onto  $R(S)$ or not, before we extend $\mu$ to the maximal outer measure $\mu^*$. 
+\end{mdframed}
+\begin{Example}{\textbf{(Non-uniqueness of outer extension)}}{}
+\label{Nou}
+\begin{align*}
+X\triangleq \set{1,2}\text{ and }R\triangleq \set{\varnothing,X}
+\end{align*}
+Define the pre-measure $\mu:R\rightarrow [0,\infty]$ and an outer measure $\nu:\power{X}\rightarrow [0,\infty]$ agreeing with $\mu$ on $S$ by 
+\begin{align*}
+\mu (A)\triangleq \begin{cases}
+  0& \text{ if $A=\varnothing$ }\\
+  1& \text{ if $A=X$ }
+\end{cases}\text{ and }\nu(A)\triangleq \begin{cases}
+  \mu (A)& \text{ if $A\in R$ }\\
+  \frac{1}{2}& \text{ if $A\not\in R$ }
+\end{cases}
+\end{align*}
+One can check that the maximal outer extension $\mu^*$ disagree with $\nu$ on $\power{X}\setminus R$.
+\end{Example}
+\begin{mdframed}
+It is important to note that the final step, \myref{Theorem}{Omi}, inducing measure from outer measure, is a general Theorem and operate independently of \myref{Theorem}{Piom}. This distinction is crucial because many constructions of measures, such as the Hausdorff measure, begin by defining an outer measure explicitly, rather than inducing it from a weaker structure like a semi-ring.
+\end{mdframed}
+\begin{theorem}
+\label{Omi}
+\textbf{(Outer measure induce measure)} Given an outer measure $\mu^*$ on $X$, if we let 
+\begin{align*}
+  \mathcal{A}\triangleq \set{A \subseteq X:\mu^*(E)=\mu^*(E\cap A)+ \mu^*(E\setminus A)\text{ for all $E\subseteq X$ }} 
+\end{align*}
+then $\mathcal{A}$ is a sigma-algebra on $X$ and  $\mu^*|_{\mathcal{A}}:\mathcal{A}\rightarrow [0,\infty]$ is a measure. 
+\end{theorem}
+\begin{proof}
+Because of the following facts 
+\begin{enumerate}[label=(\alph*)]
+  \item $A\setminus B=A\cap B^c$
+  \item $A\cup B=(A^c \cap B^c)^c$ 
+  \item \customref{pop_sig}{property (c) of sigma-algebra}
+\end{enumerate}
+we can reduce the problem into proving the following propositions 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathcal{A}$ is closed under complement. 
+  \item $X\in \mathcal{A}$.
+  \item $\mathcal{A}$ is closed under finite intersection. 
+  \item $\mu^*|_{\mathcal{A}}$ is countably additive. (Thus at least form a pre-measure)
+  \item $\mathcal{A}$ is closed under countable disjoint union. 
+\end{enumerate}
+We will prove the propositions sequentially, as the proof of each subsequent proposition may rely on the proofs of the preceding ones. The first two are straightforward to check. We now prove $\vi{\mathcal{A}\text{ is closed under finite intersection}}$. Fix $A,B \in \mathcal{A}\text{ and }E\subseteq X$, we wish to show 
+\begin{align*}
+\vi{\mu^*(E)=\mu^*(E\cap A\cap B)+\mu^*\big(E\setminus (A\cap B)\big)}
+\end{align*}
+Because $B \in \mathcal{A}$, we can "sharply cut $E\setminus (A\cap B)$ by $B$"; that is 
+ \begin{align}
+\label{sharp}
+\mu^*(E\setminus (A\cap B))=\mu^*\big((E\cap B)\setminus A\big)+\mu^*(E\setminus B)
+\end{align}
+\myref{Equation}{sharp} together with $A,B \in \mathcal{A}$ then give us 
+\begin{align*}
+\mu^*(E\cap A\cap B)+\mu^*\big(E\setminus (A\cap B)\big)&=\mu^*(E\cap A\cap B)+\mu^*\big((E\cap B)\setminus A \big)+ \mu^*(E\setminus B)\\
+&=\mu^*(E\cap B)+\mu^*(E\setminus B)=\mu^*(E)\vdone
+\end{align*}
+We now prove the \olive{claim: For each pairwise disjoint sequence $(A_n)\subseteq \mathcal{A}$ and $E\subseteq X$, we have the equality} 
+\begin{align*}
+\olive{\mu^*\Big(E\cap \bigsqcup_n A_n \Big)=\sum_n \mu^*(E\cap A_n)}
+\end{align*}
+The countably subadditivty of $\mu^*$ trivially implies the inequality  
+\begin{align*}
+\mu^*\Big(E\cap \bigsqcup_n A_n\Big)\leq \sum_n \mu^*(E\cap A_n)
+\end{align*}
+Using induction and the fact $(A_n)\subseteq \mathcal{A}$, we see that 
+\begin{align*}
+\mu^*(E\cap \bigsqcup_n A_n)= \sum_{n=1}^N \mu^*(E\cap A_n) + \mu^*\Big(E\cap \bigsqcup_{n=N+1}^{\infty}A_n \Big)\text{ for all $N \inn$ }
+\end{align*}
+Then since $\mu^*$ has codomain $[0,\infty]$, we see 
+\begin{align*}
+\mu^*(E\cap \bigsqcup_n A_n)\geq \sum_{n=1}^N \mu^*(E\cap A_n)\text{ for all $N \inn$ }
+\end{align*}
+This implies the desired inequality $\mu^*(E\cap \bigsqcup_n A_n)\geq \sum_{n=1}^{\infty}\mu^*(E\cap A_n)$. $\odone$\\
+
+Using $E\triangleq \bigsqcup_n A_n$, one see our \olive{claim} implies that $\mu^*|_{\mathcal{A}}$ is countably additive. Lastly, we prove $\blue{\mathcal{A}\text{ is closed under countable disjoint union}}$. Fix a pairwise disjoint sequence $(A_n)\subseteq \mathcal{A}$ and $E\subseteq X$. We wish to prove
+\begin{align*}
+\blue{\mu^*(E)\geq \mu^*(E\cap \bigsqcup_n A_n)+\mu^*(E\setminus \bigsqcup_n A_n)}
+\end{align*}
+ Using induction and the fact $(A_n)\subseteq \mathcal{A}$, we see that 
+\begin{align*}
+\mu^*(E\cap \bigsqcup_{n=1}^N A_n)=\sum_{n=1}^N \mu^*(E\cap A_n)\text{ for all $N\inn$ }
+\end{align*}
+Then our \olive{claim} give us 
+\begin{align}
+\label{mue}
+\mu^*(E\cap \bigsqcup_{n=1}^NA_n) \to \mu^*(E\cap \bigsqcup_n A_n)\text{ as $N \to \infty$ }
+\end{align}
+Now, because of the identity $F\cup G=(F^c\cap G^c)^c$, proposition (i) and (iii) have shown $\mathcal{A}$ is closed under finite union. This implies $\bigsqcup_{n=1}^N A_n\in \mathcal{A}$ for all $N\inn$, which, together with monotone of $\mu^*$, give 
+\begin{align}
+  \mu^*(E\cap \bigsqcup_{n=1}^N A_n)+\mu^*(E\setminus \bigsqcup_n A_n)&\leq \mu^*(E\cap \bigsqcup_{n=1}^{N}A_n)+ \mu^*(E\setminus \bigsqcup_{n=1}^N A_n)\notag\\
+&\leq \mu^*(E) \text{ for all $N\inn$ }\label{mue2}
+\end{align}
+\myref{Equation}{mue} and \myref{Equation}{mue2} gives the desired inequality. $\bdone$
+\end{proof}
+\begin{mdframed}
+\myref{Theorem}{Piom} together with \myref{Theorem}{Omi} shows that for each pre-measure $\mu$ on semi-ring $S$, we can induce a measure $\mu^*|_{\mathcal{A}}$ agreeing with $\mu$ on $S$. Although this result is correct, it doesn't show $S \subseteq \mathcal{A}$, which is necessary to refer to $\mu^*|_{\mathcal{A}}$ as an extension. However, it is straightforward to verify that $S \subseteq \mathcal{A}$ using the definition of a semi-ring and the property that $\mu^*(T) = \mu(T)$ for all $T \in S$.\\
+
+Moving forward, here are some additional concepts we will utilize in subsequent sections: Given a measurable space $(X,\Sigma,\mu)$, we define a measurable set $N \in \Sigma$ as a \textbf{null set} if $\mu(N) = 0$. Moreover, we say that $\mu$ is a \textbf{complete measure} if every subset of a null set is also measurable. It is important to note that every measure induced by an outer measure is complete, as one can readily verify.
+\end{mdframed}
+\begin{mdframed}
+Lastly, we wish to ask: Given a sigma-algebra $\Sigma$ containing $S$ and contained by $\mathcal{A}$, under what condition, is Carathéodory the only extension of $\mu$ onto $\Sigma$ ? \\
+
+This question turns out to have direct connection with the notion named '$\sigma$-finite'. Given a pre-measure space $(X,S,\mu)$, we say $\mu$ is \textbf{$\sigma$-finite} if there exists a countable cover $(A_n)\subseteq S$ of $E$ such that  $\mu (A_n)<\infty$ for all $n\inn$. It is clear that   \begin{enumerate}[label=(\alph*)]  
+  \item $\mu$ is $\sigma$-finite only if $S$ form a cover of $X$. 
+  \item If $\mu:S\rightarrow [0,\infty]$ is $\sigma$-finite and $\nu $ is a pre-measure defined on a class larger than $S$, such that $\nu $ agree with $\mu$ on $S$, then  $\nu $ is also $\sigma$-finite.
+\end{enumerate}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Uniqueness of Extension)} Suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $(X,S,\mu)$ is a pre-measure space, and $S$ is a semi-ring.
+  \item $\mathcal{A}$ is the induced sigma-algebra in \myref{Theorem}{Omi}  
+  \item $\Sigma\subseteq \mathcal{A}$ is a sigma-algebra containing $S$  
+  \item $\nu :\Sigma \rightarrow [0,\infty]$ is a measure agreeing with $\mu$ on $S$
+\end{enumerate}
+We have 
+\begin{align}
+\label{vmu1}
+\nu (A)\leq \mu^*(A)\text{ for all $A\in \Sigma$ }
+\end{align}
+and, if $\mu$ is $\sigma$-finite, we have
+\begin{align}
+\label{vmu2}
+\nu (A)=\mu^*(A)\text{ for all $A \in \Sigma$  }
+\end{align}
+\end{theorem}
+\begin{proof}
+The \myref{inequality}{vmu1} follows from the greatest-lower-bound definition of induced outer-measure,  \customref{pop_meas}{property (b) of measure} and monotone of measure.\\
+
+From now on, we suppose $\mu$ is $\sigma$-finite. Before we prove \myref{Equation}{vmu2}, we first prove the \olive{claim: for each  $A\in \Sigma$, there exists a pairwise disjoint sequence $(D_n)\subseteq R(S)\subseteq \Sigma$ such that $A\subseteq \bigsqcup_n D_n$ and $\nu (D_n)=\mu^*(D_n)<\infty$ for all $n\inn$}.\\
+
+Because $\mu$ is $\sigma$-finite, there exists a sequence $(A_n)\subseteq S$ such that $A\subseteq \bigcup_n A_n$ and $\mu (A_n)<\infty,\forall n\inn$. Define $D_1\triangleq A_1$ and  $D_n\triangleq A_n \setminus (A_1 \cup  \cdots \cup A_{n-1})$ for all  $n>2$. Noting the
+\customref{RGbS}{structure of $R(S)$}, it is clear that $D_n$ is a pairwise disjoint sequence  in $R(S)$. It is also clear that $A\subseteq \bigcup A_n = \bigsqcup  D_n$. Fix $n\inn$. It remains to prove 
+\begin{align*}
+\olive{\nu  (D_n)=\mu^*(D_n)<\infty}
+\end{align*}
+The inequality $\mu^*(D_n)<\infty$ follows from $\mu^*(D_n)\leq \mu (A_n)<\infty$, and the equation $\nu (D_n)=\mu^*(D_n)$ follows from $R(S)\subseteq \Sigma$ and $R(S)\subseteq \mathcal{A}$. $\odone$\\  
+
+Note that for all $n\inn$, $A\cap D_n \in \Sigma \subseteq \mathcal{A}$. Now, since 
+\begin{align*}
+\nu  (A)=\sum_{n=1}^{\infty} \nu (A\cap D_n)\text{ and }\mu^*(A)=\sum_{n=1}^{\infty} \mu^*(A\cap D_n)
+\end{align*}
+To prove \myref{Equation}{vmu2}, it only remains to prove $\vi{\nu  (A\cap D_n)=\mu^*(A\cap D_n),\forall n\inn}$.\\
+
+Because $\nu $ is a measure and $A\cap D_n \in \mathcal{A}$, we have the equations set 
+\begin{align}
+\begin{cases}
+  \nu  (A\cap D_n)=\nu  (D_n)-\nu  (D_n\setminus A)\\  
+\mu^*(A\cap D_n)=\mu^*(D_n)-\mu^*(D_n\setminus A)
+\end{cases}
+\end{align}
+The proof then follows from the facts 
+\begin{enumerate}[label=(\alph*)]
+  \item $\nu (D_n)=\mu^*(D_n)<\infty$ 
+  \item $\nu  (A\cap D_n)\leq \mu^*(A\cap D_n)\text{ and }\nu (D_n\setminus A)\leq \mu^*(D_n\setminus A)$ $\vdone$
+\end{enumerate}
+Note that fact (b) can be checked straightforwardly. 
+\end{proof}
+\section{Equivalent Definition of Lebesgue Measure}
+\begin{abstract}
+
+\end{abstract}
+\section{Product, Quotient and Chain Rule}
+\begin{mdframed}
+This section concern mostly the computation of actual value of the derivative and integral of function. With this in mind, we first prove the product and quotient rules for derivative of $\R$ to  $\R$ functions taught in most Calculus 1 classes. The proofs for the laws are easy, as it require no ingenious idea but ability to manipulate the limit symbol. However, without philosophical comments, we left an graph for geometric intuition for product rule. There are also graphs for geometric intuition for quotient rule on Internet, but we won't put it here as it require more than subtle work to understand the graph.    
+\includegraphics[height=7cm,width=10cm]{product rule.png}
+\end{mdframed}
+\label{11}
+\begin{theorem}
+\textbf{(Product Rule and Quotient Rule for Real to Real Function)} Suppose $f$ and $g$ is differentiable at  $x$, and $g'(x)\neq 0$. We have 
+\label{3}
+\begin{enumerate}[label=(\alph*)]
+  \item $(fg)'(x)=f'(x)g(x)+f(x)g'(x)$ (Product Rule)
+  \item $(\frac{f}{g})'(x)=\frac{f'(x)g(x)-f(x)g'(x)}{\big(g(x) \big)^2}$ (Quotient Rule)
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+  (fg)'(x)&=\lim_{h\to_0} \frac{f(x+h)g(x+h)-f(x)g(x)}{h}\\
+          &=\lim_{h\to 0} \frac{f(x+h)g(x+h)-f(x)g(x+h)+f(x)g(x+h)-f(x)g(x)}{h}\\
+          &=\lim_{h\to0} \big(g(x+h) \big) \frac{f(x+h)-f(x)}{h} + \big(f(x) \big) \frac{g(x+h)-g(x)}{h}\\
+          &=g(x)f'(x)+f(x)g'(x)
+\end{align*}
+Compute 
+\begin{align*}
+  (\frac{f}{g})'(x)&=\lim_{h\to0} \frac{\frac{f(x+h)}{g(x+h)}-\frac{f(x)}{g(x)}}{h}\\
+  &=\lim_{h\to0} \frac{f(x+h)g(x)-f(x)g(x+h)}{h g(x+h)g(x)}\\
+  &=\lim_{h\to0}\big(\frac{1}{g(x+h)g(x)} \big)\cdot \big(\frac{f(x+h)g(x)-f(x)g(x)+f(x)g(x)-f(x)g(x+h)}{h} \big)\\
+  &=\lim_{h\to 0} \Big(\frac{1}{g(x+h)g(x)} \Big) \cdot \Big(\big(g(x) \big) \frac{f(x+h)-f(x)}{h} +\big(f(x) \big) \frac{g(x)-g(x+h)}{h}\Big)\\
+  &=\Big(\frac{1}{\big(g(x) \big)^2} \Big)\cdot \Big(\big(g(x)f'(x) \big)-f(x)g'(x) \Big)=\frac{f'(x)g(x)-f(x)g'(x)}{\big(g(x) \big)^2}
 \end{align*}
 \end{proof}
 \begin{mdframed}
-Note that 
-\begin{align*}
-\mu(A)=\mu^*(A)\text{ if $A\in R$ }
-\end{align*}
+  Even a year has past, I can still remember what happened in the first class of Vector Analysis last year. The professor asked: "What is derivative?". A lot of answers emerge, from extremely formal and abstract like $\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}$ to those following geometric intuition like tangent line. Everyone gave a correct answer, but none of them philosophically satisfy the requirement of the question from the professor. Then, he stated: "Derivative is exactly linear approximation", and stated on black board the most general definition:
+
+
 \end{mdframed}
 \begin{definition}
-\textbf{(Definition of measure)} 
-\end{definition}
-\begin{theorem}
-\textbf{(Outer measure induce measure)} We say a set $A\in 2^X$ is measurable if 
+\label{4}
+  \textbf{(Definition of Differential)} Given two normed space $V,W$ and an open subset $U\subseteq V$,  we say a function $f:U\rightarrow W$ is \textbf{differentiable at $x$} if there exists a bounded linear operator $A:V\rightarrow W$ such that 
 \begin{align*}
-\mu^*(A)=\mu^* (A \cap  E)+ \mu^* (A \setminus E)\text{ for all $E \in 2^X$ }
+\lim_{ h\to 0} \frac{\norm{f(x+h)-f(x)-A(h)}_W}{\norm{h}_V}=0
+\end{align*}
+and we say the bounded linear map $A$ is the \textbf{(total) derivative} of $f$ at  $x$. 
+\end{definition}
+\begin{mdframed}
+If one put the key words "proof for chain rule" in Google search box, just like the situation in my classes, lots of rigorous proof emerge, but none of them is philosophical satisfying. For this reason, I shall give a proof of chain rule for real to real function based on the concept of linear approximation.\\
+
+In Baby Rudin, derivative of a real to real function $f$ is defined by 
+\begin{align*}
+f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}
+\end{align*}
+Immediately from this definition, we can derive a linear approximation $P$ of $f$ at $a$ by setting 
+\begin{align*}
+P(x)=f(a)+f'(a)(x-a)
+\end{align*}
+Then, we see if we set $R(x)=f(x)-P(x)$ as the error (or the remainder) of the approximation, then trivially we have the behavior
+\begin{align*}
+R(x)\to 0\text{ as $x\to a$ }
+\end{align*}
+what behavior of $R(x)$ that give $P$ the name approximation is 
+\begin{align*}
+\frac{R(x)}{x-a}\to 0\text{ as }x\to a
+\end{align*}
+The difference between the two behaviors is symbolically apparent, yet without geometric help, it may be difficult to precisely describe how insignificant the first behavior is compared to the second behavior. For this, observe that any function $g$ that converge to  $f(a)$ at $a$ satisfy the first behavior, yet only a few satisfy the second. One can easily verify that the only linear $\R$ to  $\R$ function that satisfy the second behavior is  $P(x)=f(a)+f'(a)(x-a)$. Geometrically, this means that $R(x)=o(f'(x)dx)$ as $x \to a$.
+\label{12}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Chain Rule for $\R$ to $\R$ function)} Suppose $g$ is differentiable at  $a$ and  $f$ is differentiable at  $g(a)$. We have 
+\begin{align*}
+  (f\circ g)'(a)=f'(g(a))g'(a)
 \end{align*}
 \end{theorem}
 \begin{proof}
+Define the remainders $R_{f(g(a))}(x)$ and $R_{g(a)}(x)$ by 
+\begin{align*}
+\begin{cases}
+R_{f(g(a))}(x)=f(x)-f(g(a))-f'(g(a))(x-g(a))\\
+R_{g(a)}(x)=g(x)-g(a)-g'(a)(x-a)
+\end{cases}
+\end{align*}
+Compute 
+\begin{align}
+\label{3.13}
+  (f\circ g)'(a)&=\lim_{ x\to a}\frac{f(g(x))-f(g(a))}{x-a}\\
+  &=\lim_{x\to a}\frac{R_{f(g(a))}(g(x))+f'(g(a))(g(x)-g(a))}{x-a}
+\end{align}
+Notice that because $x \to a \implies g(x)\to g(a)$, we have 
+\begin{align}
+\label{3.12}
+\lim_{x\to a} \frac{R_{f(g(a))}(g(x))}{x-a}=\lim_{ x\to a} \frac{R_{f(g(a))}(g(x))}{g(x)-g(a)}\cdot \frac{g(x)-g(a)}{x-a}=0\cdot g'(x)=0
+\end{align}
+Notice that the above deduction (\myref{Equation}{3.12}) is quite informal for two reasons: First, it may happen that $g(x)=g(a)$ locally. Second, for some reader it may require a mini proof to verify that $\frac{R_{f(g(a))}(g(x))}{g(x)-g(a)}\to 0$ as $x\to a$. These two obstacles for advanced readers should be insignificant.\\
+
+Getting back to \myref{Equation}{3.13}, by \myref{Equation}{3.12}, we now see 
+\begin{align*}
+  (f\circ g)'(a)=\lim_{x\to a}\frac{f'(g(a))(g(x)-g(a))}{x-a}=f'(g(a))g'(a)
+\end{align*}
+which finish the proof.
+\end{proof}
+\begin{theorem}
+\textbf{(First Mean Value Theorem for Definite Integral)} Given a function $f:[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is continuous on $(a,b)$
+\end{enumerate}
+There exists $\xi \in (a,b)$ such that 
+\begin{align*}
+\int_a^b f(x)dx = f(\xi)\cdot (b-a)
+\end{align*}
+\end{theorem}
+\begin{proof}
+We wish 
+\begin{align*}
+\vi{\text{ to find  }\xi \in (a,b)\text{ such that }f(\xi)=\frac{\int_a^b f(x)dx}{b-a}}
+\end{align*}
+Define $\tilde{f}:[a,b]\rightarrow \R$ on $[a,b]$ by 
+\begin{align}
+\label{M1}
+\tilde{f}(x)=\begin{cases}
+  f(x)& \text{ if $x \in (a,b)$ }\\
+  \lim_{t\to a}f(t)& \text{ if $x=a$ }\\
+  \lim_{t\to b}f(t)& \text{ if $x=b$ }
+\end{cases}
+\end{align}
+Then, because $\int_a^b f(x)dx=\int_a^b \tilde{f}(x)dx $, we reduce our problem into  
+\begin{align*}
+\vi{\text{ finding $\xi\in(a,b)$ such that $\tilde{f} (\xi)= \frac{\int_a^b \tilde{f}(x)dx }{b-a}$ }}
+\end{align*}
+Because $\tilde{f} $ is continuous on $[a,b]$ by definition \myref{Equation}{M1}, by EVT, we know we there exists $\alpha,\beta  \in [a,b]$ such that 
+\begin{align}
+\label{M4}
+\tilde{f} (\alpha )=\inf_{x \in [a,b]}\tilde{f}(x)\text{ and } \tilde{f}(\beta ) =\sup_{x \in[a,b]}\tilde{f}(x) 
+\end{align}
+WOLG, suppose $\alpha \leq \beta $. Deduce 
+\begin{align*}
+\tilde{f}(\alpha )= \inf_{x \in [a,b]}\tilde{f}(x)\leq \frac{\int_a^b \tilde{f}(x)dx }{b-a} \leq \sup_{x \in [a,b]}\tilde{f}(x) =\tilde{f}(\beta ) 
+\end{align*}
+by IVT, we then know there exists $\xi\in [\alpha ,\beta ]$ such that 
+\begin{align}
+\label{M3}
+\exists \xi\in [\alpha ,\beta ], \tilde{f}(\xi)=\frac{\int_a^b \tilde{f}(x)dx }{b-a} 
+\end{align}
+If $a<\alpha $ and $\beta <b$, our proof is done.\\
+
+
+If not, notice that if $\tilde{f}(\alpha )=\tilde{f}(\beta )$, then by definition of $\alpha ,\beta $ (\myref{Equation}{M4}), the proof is trivial since $\tilde{f}$ is a constant, so we only have to consider when $\tilde{f}(\alpha )<\tilde{f}(\beta )  $, and we wish to show
+\begin{align*}
+\vi{\xi \text{ can not happen at $a$ nor $b$ }}
+\end{align*}
+\As{$\xi=a $, WOLG}. Because $\xi \in [\alpha ,\beta ]$, we know $\alpha =a$. Because $\tilde{f}(\beta )>\tilde{f}(\alpha )  $, we can find $\delta $ such that 
+\begin{align}
+\label{M5}
+\inf_{x \in [\beta  -\delta, \beta  ]}\tilde{f}(x)\geq \frac{\tilde{f}(\alpha )+2\tilde{f}(\beta )  }{3}
+\end{align}
+We then from \myref{Equation}{M3} see that 
+\begin{align}
+\label{M6}
+\int_a^b \tilde{f}(x)dx=\tilde{f}(\xi)(b-a)=\tilde{f}(\alpha ) (b-a)
+\end{align}
+Also, we see from definition of $\alpha $ (\myref{Equation}{M4}) and \myref{Equation}{M5} that 
+\begin{align}
+\int_a^b \tilde{f}(x)dx&=\int_a^{\beta -\delta} \tilde{f}(x)dx + \int_{\beta -\delta}^{\beta  } \tilde{f}(x)dx+\int_{\beta }^{b}\tilde{f}(x)dx \\
+&\geq (b -\delta -a) \tilde{f}(\alpha ) + \delta \cdot  \big( \frac{\tilde{f}(\alpha )+2\tilde{f}(\beta )  }{3}\big)\\
+&> (b -\delta -a) \tilde{f}(\alpha ) + \delta \cdot  \big( \frac{\tilde{f}(\alpha )+\tilde{f}(\beta )  }{2}\big)\\
+&=\tilde{f}(\alpha ) \big(b-a-\frac{\delta}{2} \big) + \tilde{f}(\beta ) \cdot \big( \frac{\delta}{2}\big)
+ \label{M7}
+\end{align}
+Now, from \myref{Equation}{M6} and \myref{Equation}{M7}, we can deduce  
+\begin{align*}
+\tilde{f}(\alpha )(b-a)> \tilde{f}(\alpha )(b-a-\frac{\delta}{2}) +\tilde{f}(\beta ) \cdot \big(\frac{\delta}{2} \big)
+\end{align*}
+Then we can deduce
+\begin{align*}
+\tilde{f}(\alpha )\cdot \big(\frac{\delta}{2} \big)>\tilde{f}(\beta )\cdot \big(\frac{\delta}{2} \big) \tCaC \vdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Second Mean Value Theorem for Definite Integral)} Given functions $G,\phi :[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $G$ is monotonic
+  \item $\phi$ is Riemann-Integrable
+\end{enumerate}
+Let $G(a^+)=\lim_{t\to a^+}G(t)$ and $G(b^-)=\lim_{t\to b^-}G(t)$. Then there exists $\xi \in (a,b)$ such that 
+\begin{align*}
+\int_a^b G(t)\phi (t)dt= G(a^+)\int_a^{\xi} \phi(t)dt+G(b^-)\int_\xi^{b}\phi (t)dt
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $f$ on  $[a,b]$ by 
+\begin{align*}
+f(x)=G(a^+)\int_a^x \phi(t)dt+G(b^-)\int_x^b \phi(t)dt
+\end{align*}
+We then reduce the problem into 
+\begin{align*}
+\vi{\text{ finding }\xi \in (a,b)\text{ such that }\int_a^b G(t)\phi (t)dt=f(\xi)}
+\end{align*}
+By \myref{Theorem}{FTC1}, we know $f$ is continuous on  $[a,b]$. Then by IVT, we can reduce the problem into 
+\begin{align*}
+\vi{\text{ finding an interval $[c,d]\subseteq (a,b)$ such that }\int_a^b G(t)\phi (t)}\text{ is between $f(c) $ and $f(d)$ }
+\end{align*}
+
+
+Observe that 
+\begin{align*}
+f(a)=G(b^-)\int_a^b \phi(t)dt\text{ and }f(b)=G(a^+)\int_a^b \phi(t)dt 
+\end{align*}
+
+
+
+
+\end{proof} 
+\chapter{Riemann Calculus}
+\section{Riemann-Stieltjes Integral}
+\section{Uniform Convergence and Riemann Integration}
+\begin{theorem}
+\label{RIFac}
+\textbf{(Riemann-Integration and Uniform Convergence)} Given a function $\alpha :[a,b]\rightarrow \R$ and a sequence of functions $f_n:[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ increase on $[a,b]$ 
+  \item $\int_a^b f_nd\alpha $ exists for all $n\inn$ 
+  \item $f_n \to f $ uniformly on $[a,b]$ 
+\end{enumerate}
+Then 
+\begin{align*}
+  \lim_{n\to \infty}\int_a^b f_n d\alpha \text{ exists and }\int_a^b fd\alpha =\lim_{n\to \infty}\int_a^b f_nd\alpha 
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+\vi{\int_a^b fd\alpha \text{ exists }}
+\end{align*}
+Fix $\epsilon $. We wish to prove 
+\begin{align*}
+\vi{\overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha < \epsilon }
+\end{align*}
+Let $\epsilon _n = \norm{f_n-f}_\infty$. Because $f_n \to f$ uniformly, we know 
+\begin{align*}
+\text{ there exists $n\inn$ such that $\epsilon _n=\norm{f_n-f}_\infty < \frac{\epsilon }{2\big[\alpha (b)-\alpha (a) \big]}$ }
+\end{align*}
+Because $\alpha $ increase, by definition of $\epsilon _n$, we see 
+\begin{align*}
+\int_a^b (f_n-\epsilon _n)d\alpha \leq \underline{\int_a^b}fd\alpha \leq \overline{\int_a^b}fd\alpha \leq \int_a^b (f_n+\epsilon_n) d\alpha  
+\end{align*}
+Because $\epsilon _n <\frac{\epsilon}{2\big[\alpha (b)-\alpha (a) \big]}$, we now see 
+\begin{align*}
+  \overline{\int_a^b}fd\alpha -\underline{\int_a^b}fd\alpha &\leq \int_a^b (f_n+\epsilon _n)d\alpha -\int_a^b (f_n-\epsilon _n)d\alpha \\
+&=\int_a^b (2\epsilon _n)d\alpha<2 \epsilon_n \cdot \big[\alpha (b)-\alpha (a) \big] = \epsilon \vdone
+\end{align*}
+We now prove 
+\begin{align*}
+  \blue{\int_a^b f_n d\alpha \to \int_a^b fd\alpha \text{ as $n \to \infty $ }}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\blue{\text{ to find $N$ such that }\forall n>N,\abso{\int_a^b f_nd\alpha-\int_a^b fd\alpha }<\epsilon  }
+\end{align*}
+Recall the definition $\epsilon_n= \norm{f_n-f}_\infty$. Because $\epsilon _n \to 0$, we know 
+\begin{align}
+\label{CuU1}
+\text{ there exists $N$ such that }\forall n>N, \epsilon_n < \frac{\epsilon }{\alpha (b)-\alpha (a)}
+\end{align}
+We claim 
+\begin{align*}
+\blue{\text{ such $N$ works }}
+\end{align*}
+Fix $n>N$. From \myref{Equation}{CuU1}, we see
+ \begin{align*}
+  \abso{\int_a^b f_nd\alpha -\int_a^b fd\alpha }&=\abso{\int_a^b (f_n-f)d\alpha }\\
+  &\leq \int_a^b \abso{f_n-f}d\alpha \\
+  &\leq \int_a^b \epsilon_n d\alpha =\epsilon_n \big[\alpha (b)-\alpha (a) \big]<\epsilon \bdone
+\end{align*}
+
+
+\end{proof}
+
+
+
+\section{Riemann-Stieltjes on Computation}
+\begin{theorem}
+\label{CoV}
+\textbf{(Change of Variable)} Given two functions $g,\beta  :[A,B]\rightarrow \R$, a function $\phi: [A,B]\rightarrow [a,b]$ and two functions $f,\alpha :[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $g = f \circ  \phi $ for all $x \in [a,b]$
+  \item $\beta = \alpha  \circ \phi $ for all $x \in [a,b]$ 
+  \item $\alpha , \beta  $ increase respectively on $[a,b]$ and $[A,B]$ 
+  \item $\phi:[A,B]\rightarrow [a,b]$ is a homeomorphism 
+  \item $\int_a^b fd\alpha $ exist
+\end{enumerate}
+Then 
+\begin{align*}
+\int_A^B g d\beta  =\int_a^b fd\alpha \text{   (This implies $\int_A^B gd\beta $ exists)}
+\end{align*}
+\end{theorem}          
+\begin{proof}
+Fix $\epsilon $. We only wish 
+\begin{align*}
+  \vi{\text{ to find a partition $Q$ of  $[A,B]$ &such that $U(Q,g,\beta )-L(Q,g,\beta )<\epsilon  $  }}\\
+  \vi{\text{ and such that $\int_a^b fd\alpha \in \Big[L(Q,g,\beta ),U(Q,g,\beta ) \Big]$  }}
+\end{align*}
+Because $\int_a^b fd\alpha $ exists, we know 
+\begin{align}
+\label{CR1}
+\text{ there exists a partition $P$ of  $[a,b]$ such that }U(P,f,\alpha )-L(P,f,\alpha )<\epsilon 
+\end{align}
+where, of course, $\int_a^b fd\alpha  \in \Big[L(P,f,\alpha ),U(P,f,\alpha )\Big]$.\\
+
+Let $P=\set{a=x_0,x_1,\dots ,x_n=b}$. Because $\phi$ is a homeomorphism, we can let $\phi$ be strictly increasing WOLG.\\ 
+
+Define a partition $Q$ on  $[A,B]$ by 
+\begin{align*}
+Q=\phi^{-1}[P]=\set{A=\phi^{-1}(x_0),\phi^{-1}(x_1),\dots ,\phi^{-1}(x_n)=B}
+\end{align*}
+Now, because $\beta =\alpha \circ  \phi$ and $g=f\circ \phi$  for all $x\in [a,b]$ by premise, and because $\phi$ is a homeomorphism, we have 
+\begin{align}
+  U(Q,g,\beta )&=\sum_{k=1}^n \big[  \sup_{t \in [\phi^{-1}(x_{k-1}),\phi^{-1}(x_k)]} g(t)\big] \big[\beta (\phi^{-1}(x_{k})) - \beta  (\phi^{-1}(x_{k-1}))\big]\notag\\
+  &=\sum_{k=1}^n  \big[  \sup_{t \in [\phi^{-1}(x_{k-1}),\phi^{-1}(x_k)]} f \circ  \phi (t)\big] \big[\alpha \circ \phi  \big(\phi^{-1}(x_{k})\big) - \alpha \circ \phi \big(\phi^{-1}(x_{k-1})\big)\big]\notag\\
+  &=\sum_{k=1}^n \big[\sup_{t \in [x_{k-1},x_k]}f(t) \big] \big(\alpha (x_k)-\alpha (x_{k-1}) \big)=U(P,f,\alpha )
+\label{CR2}
+\end{align}
+Similarly, we can deduce $L(Q,g,\beta )=L(P,f,\alpha )$. Now, from \myref{Equation}{CR2} and by definition of $P$ (\myref{Equation}{CR1}), we see 
+\begin{align*}
+&U(Q,g,\beta )-L(Q,g,\beta )=U(P,f,\alpha )-L(P,f,\alpha )<\epsilon \\
+  \text{ and }&\int_a^b fd\alpha \in \Big[L(P,f,\alpha ),U(P,f,\alpha ) \Big]=\Big[ L(Q,g,\beta ),U(Q,g,\beta ) \Big]\vdone
+\end{align*}
+
+
 
 \end{proof}
 \begin{theorem}
-\textbf{(Measure induce complete measure)} 
+\label{RRSI}
+\textbf{(Reduction of Riemann-Stieltjes Integral: Part 1)} Given two functions $f,\alpha :[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ increase on $[a,b]$ 
+  \item $\alpha $ is differentiable on $(a,b)$ 
+  \item $\lim_{x\to b^-}\frac{\alpha (x)-\alpha (b)}{x-b}$ exists and $\lim_{x\to a^+}\frac{\alpha (x)-\alpha (a)}{x-a}$ exists
+  \item $\alpha '$ is properly Riemann-Integrable on $[a,b]$  
+  \item $f$ is bounded on  $[a,b]$
+\end{enumerate}
+Then 
+\begin{align*}
+\int_a^b fd\alpha \text{ exists }\iff  \int_a^b f(x)\alpha '(x)dx\text{ exists and they equal to each other if exists}
+\end{align*}
 \end{theorem}
-\section{Lebesgue measure}
-\begin{mdframed}
-In this section, we develop the definition of Lebesgue measure.
-\end{mdframed}
-\section{Riesz–Markov–Kakutani representation theorem}
-\section{bounded variation}
+\begin{proof}
+We wish to prove 
+\begin{align*}  \vi{\overline{\int_a^b}fd\alpha = \overline{\int_a^b} f(x)\alpha '(x)dx}
+\end{align*}
+Fix $\epsilon $. We reduce the problem into proving 
+\begin{align*}  \vi{\abso{\overline{\int_a^b}fd\alpha -\overline{\int_a^b}f(x)\alpha '(x)dx}<\epsilon }
+\end{align*}
+Then, because for all partition $P$ of  $[a,b]$, we have 
+\begin{align*}  &\abso{\overline{\int_a^b}fd\alpha - \overline{\int_a^b}f(x)\alpha '(x)dx}\\
+  &\leq \abso{\overline{\int_a^b} fd\alpha -U(P,f,\alpha )}-\Bigg|U(P,f,\alpha )-U(P,f\alpha' )\Bigg|-\abso{U(P,f\alpha' )- \overline{\int_a^b} f(x)\alpha '(x)dx}
+\end{align*}
+We only wish 
+\begin{align*}
+\vi{\text{  to find $P$ such that}}&\vi{\abso{\overline{\int_a^b}fd\alpha - U(P,f,\alpha )}<\frac{\epsilon}{3}}\\
+\vi{\text{ and }}&\vi{\Bigg|U(P,f,\alpha )-U(P,f\alpha' )\Bigg|<\frac{\epsilon}{3}\text{ and }\abso{\overline{\int_a^b}f(x)\alpha '(x)dx- U(P,f\alpha ')}<\frac{\epsilon}{3}}
+\end{align*} 
+Because $f$ is bounded on  $[a,b]$, we can let $M=\sup_{x \in [a,b]} \abso{f(x)}$. Because $\int_a^b \alpha' (x)dx$ exists, we can let $P$ satisfy 
+ \begin{align}
+\label{CR3}
+U(P,\alpha ')-L(P,\alpha ')<\frac{\epsilon }{4M}
+\end{align}
+By definition of Riemann Upper sum, we can further refine $P$ to let $P$ satisfy 
+\begin{align*}
+\abso{\overline{\int_a^b}fd\alpha -U(P,f,\alpha )}<\frac{\epsilon}{3}\text{ and }\abso{\overline{\int_a^b}f(x)\alpha '(x)dx- U(P,f\alpha ')}<\frac{\epsilon}{3}
+\end{align*}
+It is clear that the statement concerning $P$  (\myref{Equation}{CR3}) remain valid after refinement of $P$. Fix such $P$. We now have reduced the problem into proving 
+\begin{align*}
+  \vi{\abso{U(P,f,\alpha )-U(P,f\alpha ')}<\frac{\epsilon}{3}}
+\end{align*}
+Express $P$ in the form $P=\set{a=x_0,x_1,\dots ,x_n=b}$. By MVT (\myref{Theorem}{MVT}), we know for all $k \in \set{1,\dots ,n}$ there exists $t_k \in [x_{k-1},x_k]$ such that
+\begin{align}
+\label{CR4}
+\Delta \alpha_k=  \alpha' (t_k)\Delta x_k
+\end{align}
+Then, because $U(P,\alpha ')-L(P,\alpha )'<\frac{\epsilon}{3M}$ (\myref{Equation}{CR3}), we now see 
+\begin{align}
+  \label{CR5}
+\sum_{k=1}^n \abso{\alpha '(s_k)-\alpha '(t_k)} \Delta x_k<\frac{\epsilon}{3M} \text{ if $s_k \in [x_{k-1},x_k]$ for all $k \in \set{1,\dots , n}$ }
+\end{align}
+Then from \myref{Equation}{CR4}, definition of $M$ and \myref{Equation}{CR5}, we have 
+\begin{align*}
+\abso{\sum_{k=1}^n f(s_k)\Delta \alpha_k - \sum_{k=1}^n f(s_k)\alpha '(s_k)\Delta x_k}&=\abso{\sum_{k=1}^n f(s_k)\big(\alpha '(s_k)-\alpha '(t_k) \big)\Delta x_k}\\
+&\leq \sum_{k=1}^n \abso{f(s_k)}\cdot \abso{\alpha '(s_k)-\alpha '(t_k)}\Delta x_k\\
+&\leq M \sum_{k=1}^n \abso{\alpha '(s_k)-\alpha '(t_k)}\Delta x_k \\
+&<\frac{\epsilon}{4}
+\end{align*}
+Then because $\sum_{k=1}^m f(s_k)\alpha '(s_k)\Delta x_k\leq  U(P,f\alpha ')$, we now have 
+\begin{align}
+\label{CR6}
+\sum_{k=1}^n f(s_k)\Delta \alpha_k < U(P,f\alpha ')+\frac{\epsilon}{4}
+\end{align}
+Because \myref{Equation}{CR6} hold true for all choices of  $s_k$, we have 
+\begin{align*}
+U(P,f,\alpha )<  U(P,f\alpha ')+\frac{\epsilon}{3}
+\end{align*}
+Similarly, we can deduce 
+\begin{align*}
+U(P,f\alpha ')<U(P,f,\alpha )+\frac{\epsilon}{3}\vdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Substitution Law)} Given a function $\phi: [a,b]\rightarrow [A,B]$ and a function $f:[A,B]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\phi$ is a homoeomorphism. 
+  \item $\phi$ is differentiable on $(a,b)$ 
+  \item $\int_a^b \phi' (x)dx$ exists.  
+  \item $f$ is integrable on  $[A,B]$
+\end{enumerate}
+We have 
+\begin{align*}
+\int_a^b f\big(\phi (x) \big)\phi' (x)dx=\int_A^B f(u)du
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $f\circ \phi$ and  $\phi'$ is integrable on $[a,b]$, by reduction of Riemann-Stieljes Integral (\myref{Tehroem}{RRSI}), we know 
+\begin{align*}
+\int_a^b \big(f\circ \phi)(x)  \phi'(x)dx= \int_a^b \big(f\circ \phi \big)(x)d \phi
+\end{align*}
+Let $\alpha (x)=x$. Let $\beta = \alpha \circ  \phi$. Define $g=f \circ  \phi $. By Change of Variable (\myref{Theorem}{CoV}), we now have  
+\begin{align*}
+\int_a^b \big(f \circ  \phi \big)(x)d \phi =\int_a^b g(x)d\beta = \int_A^B f(x)dx
+\end{align*}
+\end{proof}
+\section{FTC}
+\begin{theorem}
+  \label{FTC1}
+\textbf{(Fundamental Theorem of Calculus: Part 1)} Suppose a function $f:[a,\infty )\rightarrow \R$ satisfy
+\begin{align*}
+f\text{ is $\underline{\text{proper-Riemann integrable}}$ on $[a,b]$  for all $b>a$}
+\end{align*}
+If we set $F:[a,\infty) \to \R$ 
+\begin{align*}
+F(x)=\int_a^x f(t)dt
+\end{align*}
+Then 
+\begin{enumerate}[label=(\alph*)]
+  \item $F$ is continuous on $[a,\infty )$
+  \item $F$ is differentiable at  $x_0 \in [a,\infty )$  where $F'(x_0)=f(x_0)$ if $f$ is continuous at $x_0$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $ and $[a,b]$. We only wish  
+\begin{align*}
+\vi{\text{ to prove }F\text{ is continuous on $[a,b]$ }}
+\end{align*}
+To prove $F$ is continuous on  $[a,b]$, we only wish 
+\begin{align*}
+\vi{\text{ to find $\delta$ such that $\forall [x,y]\subseteq [a,b], \abso{x-y}<\delta \implies \abso{F(x)-F(y)}<\epsilon $}}
+\end{align*}
+Because $f $ is proper-Riemann-Integrable on $[a,b]$, we know $f$ is bounded on  $[a,b]$. Let $M$ be an upper bound of  $\abso{f}$ on $[a,b]$. We claim 
+\begin{align*}
+\vi{\text{ $\delta=\frac{\epsilon}{M}$ works }} 
+\end{align*}
+Because $y-x <\delta=\frac{\epsilon}{M}$, we have
+\begin{align*}
+  \abso{F(x)-F(y)}&=\abso{\int_x^y f(t)dt}\\
+  &\leq \int_x^y \abso{f(t)}dt\\
+  &\leq (y-x)<\epsilon \vdone
+\end{align*}
+Now, to prove $F'(x_0)=f(x_0)$, we wish 
+\begin{align*}
+  \blue{\text{ to prove $\lim_{x\to x_0} \frac{F(x)-F(x_0)}{x-x_0}= f(x_0)$ }}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\blue{\text{ to find $\delta$ such that $\abso{x-x_0}<\delta \implies \abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}<\epsilon $ }}
+\end{align*}
+Because $f$ is continuous at $x_0$, we know  
+\begin{align}
+\label{F1}
+\exists \delta, \abso{x-x_0}<\delta \implies \abso{f(x)-f(x_0)}<\epsilon 
+\end{align}
+We claim 
+\begin{align*}
+\blue{\text{ such $\delta$ in}}\text{ \myref{Equation}{F1} }\blue{\text{works}}
+\end{align*}
+WOLG, let $x>x_0$. Deduce 
+\begin{align*}
+\abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}&=\abso{\frac{\int_{x_0}^x f(t)dt}{x-x_0}-f(x_0)}\\                  &=\abso{\frac{\int_{x_0}^x \big[f(t)-f(x_0) \big]dt}{x-x_0}}\\
+&\leq \frac{\int_{x_0}^x \abso{f(t)-f(x_0)}dt}{\abso{x-x_0}}\\
+&\leq \frac{\int_{x_0}^x \epsilon dt}{\abso{x-x_0}}=\epsilon \bdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{FTC2}
+\textbf{(Fundamental Theorem of Calculus: Part 2, Leibniz Rule)} Suppose two functions $f,F:[a,\infty )\rightarrow \R$ satisfy 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is proper Riemann-Integrable on $[a,b]$ for all $b>a$ 
+\item $F'(x)=f(x)$ for all $x \in (a, \infty)$ 
+\item $F$ is continuous on  $[a,\infty)$
+\end{enumerate}
+Then for all $b>a$, 
+\begin{align*}
+\int_a^b f(x)dx=F(b)-F(a)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to show that $\abso{\Big( F(b)-F(a)\Big)-\int_a^b f(x)dx}<\epsilon $ }}
+\end{align*}
+Because $f$ is proper Riemann-Integrable on $[a,b]$, we know there exists a partition $P=\set{a=x_0,x_1,\dots , x_n=b}$ of  $[a,b]$ such that 
+\begin{align}
+\label{FP}
+U(P,f)-L(P,f)<\epsilon 
+\end{align}
+Because $f=F'$ on  $(a,b)$, for each $k \in \set{1,\dots ,n}$, by MVT (\myref{Theorem}{MVT}), we know 
+\begin{align*}
+\exists t_k \in (x_{k-1},x_k), \frac{F(x_k)-F(x_{k-1})}{x_k-x_{k-1}}=f(t_k)
+\end{align*}
+This let us deduce
+\begin{align*}
+F(b)-F(a)=\sum_{k=1}^n F(x_k)-F(x_{k-1})=\sum_{k=1}^n f(t_k) \Delta x_k
+\end{align*}
+Now, we have 
+\begin{align*}
+  \int_a^b f(x)dx\text{ and }F(b)-F(a)\text{ are both in }\big[ L(P,f),U(P,f) \big]
+\end{align*}
+Then by \myref{Equation}{FP}, we can deduce 
+\begin{align*}
+\abso{F(b)-F(a)- \int_a^b f(x)dx}<\epsilon \vdone
+\end{align*}
+
+
+
+
+\end{proof}
+\begin{theorem}
+\textbf{(Integral By Part)} Given four function $f,g,F,G:[a,b]\rightarrow \R$ such that 
+
+\begin{enumerate}[label=(\alph*)]
+  \item $F'(x)=f(x)\text{ and }G'(x)=g(x)$ for all $x\in (a,b)$ 
+  \item $f,g$ are properly Riemann-Integrable on  $[a,b]$ 
+  \item $F,G$ are continuous on  $[a,b]$
+\end{enumerate}
+We have
+\begin{align}
+\label{FI}
+\int_a^b F(x)g(x)dx=FG\Big|^b_a-\int_a^b f(x)G(x)dx
+\end{align}
+\end{theorem}
+\begin{proof}
+To prove \myref{Equation}{FI}, we only with 
+\begin{align*}
+\vi{\text{ to prove }\int_a^b F(x)g(x)dx+\int_a^b f(x)G(x)dx=FG\Big|_a^b}
+\end{align*}
+We can reduce the problem 
+\begin{align*}
+\vi{\text{ into proving }\int_a^b \big( Fg+fG \big) dx=FG\Big|_a^b}
+\end{align*}
+Notice that by Chain Rule,  
+\begin{align*}
+\big(FG \big)'(x)=F(x)g(x)+f(x)G(x)\text{ for all $x \in (a,b)$ }
+\end{align*}
+Then the result follows from Part 2 of Fundamental Theorem of Calculus (\myref{Theorem}{FTC2}). $\vdone$
+\end{proof}
+\begin{Example}{\textbf{(Discontinuous Derivative)}}{}
+\begin{align*}
+f(x)=\begin{cases}
+  \frac{x^2}{\sin x}& \text{ if $x\neq 0$ }\\
+  0& \text{ if $x=0$ }
+\end{cases}
+\end{align*}
+\end{Example}
+\section{Bounded Variation}
 \begin{mdframed}
 This section prove some key properties of functions of bounded variations. These properties are worthy of discuss, as they make the set $BV\big([a,b] \big)$ of function of bounded variation on $[a,b]$ a natural candidate for the class of Riemann-Stieltjes integrator. The key properties include 
 \begin{enumerate}[label=(\alph*)]
@@ -2840,864 +4037,6 @@ f\in BV\big([a,b] \big) \iff  \exists \text{ continuous strictly increasing }g,h
 \begin{proof}
 From right to left is again trivial. If $g(x)\triangleq V_f(a,x)$ and $h(x)\triangleq V_f(a,x)-f(x)$ is not strictly increasing, define $g'\triangleq g+(x-a)\text{ and }h'\triangleq h+(x-a)$. Such $g',h'$ suffice.
 \end{proof}
-\section{Construction of Riemann-Stieltjes integral}
-\section{Product, Quotient and Chain Rule}
-\begin{mdframed}
-This section concern mostly the computation of actual value of the derivative and integral of function. With this in mind, we first prove the product and quotient rules for derivative of $\R$ to  $\R$ functions taught in most Calculus 1 classes. The proofs for the laws are easy, as it require no ingenious idea but ability to manipulate the limit symbol. However, without philosophical comments, we left an graph for geometric intuition for product rule. There are also graphs for geometric intuition for quotient rule on Internet, but we won't put it here as it require more than subtle work to understand the graph.    
-\includegraphics[height=7cm,width=10cm]{product rule.png}
-\end{mdframed}
-\label{11}
-\begin{theorem}
-\textbf{(Product Rule and Quotient Rule for Real to Real Function)} Suppose $f$ and $g$ is differentiable at  $x$, and $g'(x)\neq 0$. We have 
-\label{3}
-\begin{enumerate}[label=(\alph*)]
-  \item $(fg)'(x)=f'(x)g(x)+f(x)g'(x)$ (Product Rule)
-  \item $(\frac{f}{g})'(x)=\frac{f'(x)g(x)-f(x)g'(x)}{\big(g(x) \big)^2}$ (Quotient Rule)
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-Compute 
-\begin{align*}
-  (fg)'(x)&=\lim_{h\to_0} \frac{f(x+h)g(x+h)-f(x)g(x)}{h}\\
-          &=\lim_{h\to 0} \frac{f(x+h)g(x+h)-f(x)g(x+h)+f(x)g(x+h)-f(x)g(x)}{h}\\
-          &=\lim_{h\to0} \big(g(x+h) \big) \frac{f(x+h)-f(x)}{h} + \big(f(x) \big) \frac{g(x+h)-g(x)}{h}\\
-          &=g(x)f'(x)+f(x)g'(x)
-\end{align*}
-Compute 
-\begin{align*}
-  (\frac{f}{g})'(x)&=\lim_{h\to0} \frac{\frac{f(x+h)}{g(x+h)}-\frac{f(x)}{g(x)}}{h}\\
-  &=\lim_{h\to0} \frac{f(x+h)g(x)-f(x)g(x+h)}{h g(x+h)g(x)}\\
-  &=\lim_{h\to0}\big(\frac{1}{g(x+h)g(x)} \big)\cdot \big(\frac{f(x+h)g(x)-f(x)g(x)+f(x)g(x)-f(x)g(x+h)}{h} \big)\\
-  &=\lim_{h\to 0} \Big(\frac{1}{g(x+h)g(x)} \Big) \cdot \Big(\big(g(x) \big) \frac{f(x+h)-f(x)}{h} +\big(f(x) \big) \frac{g(x)-g(x+h)}{h}\Big)\\
-  &=\Big(\frac{1}{\big(g(x) \big)^2} \Big)\cdot \Big(\big(g(x)f'(x) \big)-f(x)g'(x) \Big)=\frac{f'(x)g(x)-f(x)g'(x)}{\big(g(x) \big)^2}
-\end{align*}
-\end{proof}
-\begin{mdframed}
-  Even a year has past, I can still remember what happened in the first class of Vector Analysis last year. The professor asked: "What is derivative?". A lot of answers emerge, from extremely formal and abstract like $\lim_{h\to 0}\frac{f(x+h)-f(x)}{h}$ to those following geometric intuition like tangent line. Everyone gave a correct answer, but none of them philosophically satisfy the requirement of the question from the professor. Then, he stated: "Derivative is exactly linear approximation", and stated on black board the most general definition:
-
-
-\end{mdframed}
-\begin{definition}
-\label{4}
-  \textbf{(Definition of Differential)} Given two normed space $V,W$ and an open subset $U\subseteq V$,  we say a function $f:U\rightarrow W$ is \textbf{differentiable at $x$} if there exists a bounded linear operator $A:V\rightarrow W$ such that 
-\begin{align*}
-\lim_{ h\to 0} \frac{\norm{f(x+h)-f(x)-A(h)}_W}{\norm{h}_V}=0
-\end{align*}
-and we say the bounded linear map $A$ is the \textbf{(total) derivative} of $f$ at  $x$. 
-\end{definition}
-\begin{mdframed}
-If one put the key words "proof for chain rule" in Google search box, just like the situation in my classes, lots of rigorous proof emerge, but none of them is philosophical satisfying. For this reason, I shall give a proof of chain rule for real to real function based on the concept of linear approximation.\\
-
-In Baby Rudin, derivative of a real to real function $f$ is defined by 
-\begin{align*}
-f'(a)=\lim_{h\to 0}\frac{f(a+h)-f(a)}{h}
-\end{align*}
-Immediately from this definition, we can derive a linear approximation $P$ of $f$ at $a$ by setting 
-\begin{align*}
-P(x)=f(a)+f'(a)(x-a)
-\end{align*}
-Then, we see if we set $R(x)=f(x)-P(x)$ as the error (or the remainder) of the approximation, then trivially we have the behavior
-\begin{align*}
-R(x)\to 0\text{ as $x\to a$ }
-\end{align*}
-what behavior of $R(x)$ that give $P$ the name approximation is 
-\begin{align*}
-\frac{R(x)}{x-a}\to 0\text{ as }x\to a
-\end{align*}
-The difference between the two behaviors is symbolically apparent, yet without geometric help, it may be difficult to precisely describe how insignificant the first behavior is compared to the second behavior. For this, observe that any function $g$ that converge to  $f(a)$ at $a$ satisfy the first behavior, yet only a few satisfy the second. One can easily verify that the only linear $\R$ to  $\R$ function that satisfy the second behavior is  $P(x)=f(a)+f'(a)(x-a)$. Geometrically, this means that $R(x)=o(f'(x)dx)$ as $x \to a$.
-\label{12}
-\end{mdframed}
-\begin{theorem}
-\textbf{(Chain Rule for $\R$ to $\R$ function)} Suppose $g$ is differentiable at  $a$ and  $f$ is differentiable at  $g(a)$. We have 
-\begin{align*}
-  (f\circ g)'(a)=f'(g(a))g'(a)
-\end{align*}
-\end{theorem}
-\begin{proof}
-Define the remainders $R_{f(g(a))}(x)$ and $R_{g(a)}(x)$ by 
-\begin{align*}
-\begin{cases}
-R_{f(g(a))}(x)=f(x)-f(g(a))-f'(g(a))(x-g(a))\\
-R_{g(a)}(x)=g(x)-g(a)-g'(a)(x-a)
-\end{cases}
-\end{align*}
-Compute 
-\begin{align}
-\label{3.13}
-  (f\circ g)'(a)&=\lim_{ x\to a}\frac{f(g(x))-f(g(a))}{x-a}\\
-  &=\lim_{x\to a}\frac{R_{f(g(a))}(g(x))+f'(g(a))(g(x)-g(a))}{x-a}
-\end{align}
-Notice that because $x \to a \implies g(x)\to g(a)$, we have 
-\begin{align}
-\label{3.12}
-\lim_{x\to a} \frac{R_{f(g(a))}(g(x))}{x-a}=\lim_{ x\to a} \frac{R_{f(g(a))}(g(x))}{g(x)-g(a)}\cdot \frac{g(x)-g(a)}{x-a}=0\cdot g'(x)=0
-\end{align}
-Notice that the above deduction (\myref{Equation}{3.12}) is quite informal for two reasons: First, it may happen that $g(x)=g(a)$ locally. Second, for some reader it may require a mini proof to verify that $\frac{R_{f(g(a))}(g(x))}{g(x)-g(a)}\to 0$ as $x\to a$. These two obstacles for advanced readers should be insignificant.\\
-
-Getting back to \myref{Equation}{3.13}, by \myref{Equation}{3.12}, we now see 
-\begin{align*}
-  (f\circ g)'(a)=\lim_{x\to a}\frac{f'(g(a))(g(x)-g(a))}{x-a}=f'(g(a))g'(a)
-\end{align*}
-which finish the proof.
-\end{proof}
-\begin{theorem}
-\textbf{(First Mean Value Theorem for Definite Integral)} Given a function $f:[a,b]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $f$ is continuous on $(a,b)$
-\end{enumerate}
-There exists $\xi \in (a,b)$ such that 
-\begin{align*}
-\int_a^b f(x)dx = f(\xi)\cdot (b-a)
-\end{align*}
-\end{theorem}
-\begin{proof}
-We wish 
-\begin{align*}
-\vi{\text{ to find  }\xi \in (a,b)\text{ such that }f(\xi)=\frac{\int_a^b f(x)dx}{b-a}}
-\end{align*}
-Define $\tilde{f}:[a,b]\rightarrow \R$ on $[a,b]$ by 
-\begin{align}
-\label{M1}
-\tilde{f}(x)=\begin{cases}
-  f(x)& \text{ if $x \in (a,b)$ }\\
-  \lim_{t\to a}f(t)& \text{ if $x=a$ }\\
-  \lim_{t\to b}f(t)& \text{ if $x=b$ }
-\end{cases}
-\end{align}
-Then, because $\int_a^b f(x)dx=\int_a^b \tilde{f}(x)dx $, we reduce our problem into  
-\begin{align*}
-\vi{\text{ finding $\xi\in(a,b)$ such that $\tilde{f} (\xi)= \frac{\int_a^b \tilde{f}(x)dx }{b-a}$ }}
-\end{align*}
-Because $\tilde{f} $ is continuous on $[a,b]$ by definition \myref{Equation}{M1}, by EVT, we know we there exists $\alpha,\beta  \in [a,b]$ such that 
-\begin{align}
-\label{M4}
-\tilde{f} (\alpha )=\inf_{x \in [a,b]}\tilde{f}(x)\text{ and } \tilde{f}(\beta ) =\sup_{x \in[a,b]}\tilde{f}(x) 
-\end{align}
-WOLG, suppose $\alpha \leq \beta $. Deduce 
-\begin{align*}
-\tilde{f}(\alpha )= \inf_{x \in [a,b]}\tilde{f}(x)\leq \frac{\int_a^b \tilde{f}(x)dx }{b-a} \leq \sup_{x \in [a,b]}\tilde{f}(x) =\tilde{f}(\beta ) 
-\end{align*}
-by IVT, we then know there exists $\xi\in [\alpha ,\beta ]$ such that 
-\begin{align}
-\label{M3}
-\exists \xi\in [\alpha ,\beta ], \tilde{f}(\xi)=\frac{\int_a^b \tilde{f}(x)dx }{b-a} 
-\end{align}
-If $a<\alpha $ and $\beta <b$, our proof is done.\\
-
-
-If not, notice that if $\tilde{f}(\alpha )=\tilde{f}(\beta )$, then by definition of $\alpha ,\beta $ (\myref{Equation}{M4}), the proof is trivial since $\tilde{f}$ is a constant, so we only have to consider when $\tilde{f}(\alpha )<\tilde{f}(\beta )  $, and we wish to show
-\begin{align*}
-\vi{\xi \text{ can not happen at $a$ nor $b$ }}
-\end{align*}
-\As{$\xi=a $, WOLG}. Because $\xi \in [\alpha ,\beta ]$, we know $\alpha =a$. Because $\tilde{f}(\beta )>\tilde{f}(\alpha )  $, we can find $\delta $ such that 
-\begin{align}
-\label{M5}
-\inf_{x \in [\beta  -\delta, \beta  ]}\tilde{f}(x)\geq \frac{\tilde{f}(\alpha )+2\tilde{f}(\beta )  }{3}
-\end{align}
-We then from \myref{Equation}{M3} see that 
-\begin{align}
-\label{M6}
-\int_a^b \tilde{f}(x)dx=\tilde{f}(\xi)(b-a)=\tilde{f}(\alpha ) (b-a)
-\end{align}
-Also, we see from definition of $\alpha $ (\myref{Equation}{M4}) and \myref{Equation}{M5} that 
-\begin{align}
-\int_a^b \tilde{f}(x)dx&=\int_a^{\beta -\delta} \tilde{f}(x)dx + \int_{\beta -\delta}^{\beta  } \tilde{f}(x)dx+\int_{\beta }^{b}\tilde{f}(x)dx \\
-&\geq (b -\delta -a) \tilde{f}(\alpha ) + \delta \cdot  \big( \frac{\tilde{f}(\alpha )+2\tilde{f}(\beta )  }{3}\big)\\
-&> (b -\delta -a) \tilde{f}(\alpha ) + \delta \cdot  \big( \frac{\tilde{f}(\alpha )+\tilde{f}(\beta )  }{2}\big)\\
-&=\tilde{f}(\alpha ) \big(b-a-\frac{\delta}{2} \big) + \tilde{f}(\beta ) \cdot \big( \frac{\delta}{2}\big)
- \label{M7}
-\end{align}
-Now, from \myref{Equation}{M6} and \myref{Equation}{M7}, we can deduce  
-\begin{align*}
-\tilde{f}(\alpha )(b-a)> \tilde{f}(\alpha )(b-a-\frac{\delta}{2}) +\tilde{f}(\beta ) \cdot \big(\frac{\delta}{2} \big)
-\end{align*}
-Then we can deduce
-\begin{align*}
-\tilde{f}(\alpha )\cdot \big(\frac{\delta}{2} \big)>\tilde{f}(\beta )\cdot \big(\frac{\delta}{2} \big) \tCaC \vdone
-\end{align*}
-\end{proof}
-\begin{theorem}
-\textbf{(Second Mean Value Theorem for Definite Integral)} Given functions $G,\phi :[a,b]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $G$ is monotonic
-  \item $\phi$ is Riemann-Integrable
-\end{enumerate}
-Let $G(a^+)=\lim_{t\to a^+}G(t)$ and $G(b^-)=\lim_{t\to b^-}G(t)$. Then there exists $\xi \in (a,b)$ such that 
-\begin{align*}
-\int_a^b G(t)\phi (t)dt= G(a^+)\int_a^{\xi} \phi(t)dt+G(b^-)\int_\xi^{b}\phi (t)dt
-\end{align*}
-\end{theorem}
-\begin{proof}
-Define $f$ on  $[a,b]$ by 
-\begin{align*}
-f(x)=G(a^+)\int_a^x \phi(t)dt+G(b^-)\int_x^b \phi(t)dt
-\end{align*}
-We then reduce the problem into 
-\begin{align*}
-\vi{\text{ finding }\xi \in (a,b)\text{ such that }\int_a^b G(t)\phi (t)dt=f(\xi)}
-\end{align*}
-By \myref{Theorem}{FTC1}, we know $f$ is continuous on  $[a,b]$. Then by IVT, we can reduce the problem into 
-\begin{align*}
-\vi{\text{ finding an interval $[c,d]\subseteq (a,b)$ such that }\int_a^b G(t)\phi (t)}\text{ is between $f(c) $ and $f(d)$ }
-\end{align*}
-
-
-Observe that 
-\begin{align*}
-f(a)=G(b^-)\int_a^b \phi(t)dt\text{ and }f(b)=G(a^+)\int_a^b \phi(t)dt 
-\end{align*}
-
-
-
-
-\end{proof} 
-\section{Uniform Convergence and Riemann Integration}
-\begin{theorem}
-\label{RIFac}
-\textbf{(Riemann-Integration and Uniform Convergence)} Given a function $\alpha :[a,b]\rightarrow \R$ and a sequence of functions $f_n:[a,b]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\alpha $ increase on $[a,b]$ 
-  \item $\int_a^b f_nd\alpha $ exists for all $n\inn$ 
-  \item $f_n \to f $ uniformly on $[a,b]$ 
-\end{enumerate}
-Then 
-\begin{align*}
-  \lim_{n\to \infty}\int_a^b f_n d\alpha \text{ exists and }\int_a^b fd\alpha =\lim_{n\to \infty}\int_a^b f_nd\alpha 
-\end{align*}
-\end{theorem}
-\begin{proof}
-We first prove 
-\begin{align*}
-\vi{\int_a^b fd\alpha \text{ exists }}
-\end{align*}
-Fix $\epsilon $. We wish to prove 
-\begin{align*}
-\vi{\overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha < \epsilon }
-\end{align*}
-Let $\epsilon _n = \norm{f_n-f}_\infty$. Because $f_n \to f$ uniformly, we know 
-\begin{align*}
-\text{ there exists $n\inn$ such that $\epsilon _n=\norm{f_n-f}_\infty < \frac{\epsilon }{2\big[\alpha (b)-\alpha (a) \big]}$ }
-\end{align*}
-Because $\alpha $ increase, by definition of $\epsilon _n$, we see 
-\begin{align*}
-\int_a^b (f_n-\epsilon _n)d\alpha \leq \underline{\int_a^b}fd\alpha \leq \overline{\int_a^b}fd\alpha \leq \int_a^b (f_n+\epsilon_n) d\alpha  
-\end{align*}
-Because $\epsilon _n <\frac{\epsilon}{2\big[\alpha (b)-\alpha (a) \big]}$, we now see 
-\begin{align*}
-  \overline{\int_a^b}fd\alpha -\underline{\int_a^b}fd\alpha &\leq \int_a^b (f_n+\epsilon _n)d\alpha -\int_a^b (f_n-\epsilon _n)d\alpha \\
-&=\int_a^b (2\epsilon _n)d\alpha<2 \epsilon_n \cdot \big[\alpha (b)-\alpha (a) \big] = \epsilon \vdone
-\end{align*}
-We now prove 
-\begin{align*}
-  \blue{\int_a^b f_n d\alpha \to \int_a^b fd\alpha \text{ as $n \to \infty $ }}
-\end{align*}
-Fix $\epsilon $. We wish 
-\begin{align*}
-\blue{\text{ to find $N$ such that }\forall n>N,\abso{\int_a^b f_nd\alpha-\int_a^b fd\alpha }<\epsilon  }
-\end{align*}
-Recall the definition $\epsilon_n= \norm{f_n-f}_\infty$. Because $\epsilon _n \to 0$, we know 
-\begin{align}
-\label{CuU1}
-\text{ there exists $N$ such that }\forall n>N, \epsilon_n < \frac{\epsilon }{\alpha (b)-\alpha (a)}
-\end{align}
-We claim 
-\begin{align*}
-\blue{\text{ such $N$ works }}
-\end{align*}
-Fix $n>N$. From \myref{Equation}{CuU1}, we see
- \begin{align*}
-  \abso{\int_a^b f_nd\alpha -\int_a^b fd\alpha }&=\abso{\int_a^b (f_n-f)d\alpha }\\
-  &\leq \int_a^b \abso{f_n-f}d\alpha \\
-  &\leq \int_a^b \epsilon_n d\alpha =\epsilon_n \big[\alpha (b)-\alpha (a) \big]<\epsilon \bdone
-\end{align*}
-
-
-\end{proof}
-
-
-
-\section{Riemann-Stieltjes on Computation}
-\begin{theorem}
-\label{CoV}
-\textbf{(Change of Variable)} Given two functions $g,\beta  :[A,B]\rightarrow \R$, a function $\phi: [A,B]\rightarrow [a,b]$ and two functions $f,\alpha :[a,b]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $g = f \circ  \phi $ for all $x \in [a,b]$
-  \item $\beta = \alpha  \circ \phi $ for all $x \in [a,b]$ 
-  \item $\alpha , \beta  $ increase respectively on $[a,b]$ and $[A,B]$ 
-  \item $\phi:[A,B]\rightarrow [a,b]$ is a homeomorphism 
-  \item $\int_a^b fd\alpha $ exist
-\end{enumerate}
-Then 
-\begin{align*}
-\int_A^B g d\beta  =\int_a^b fd\alpha \text{   (This implies $\int_A^B gd\beta $ exists)}
-\end{align*}
-\end{theorem}          
-\begin{proof}
-Fix $\epsilon $. We only wish 
-\begin{align*}
-  \vi{\text{ to find a partition $Q$ of  $[A,B]$ &such that $U(Q,g,\beta )-L(Q,g,\beta )<\epsilon  $  }}\\
-  \vi{\text{ and such that $\int_a^b fd\alpha \in \Big[L(Q,g,\beta ),U(Q,g,\beta ) \Big]$  }}
-\end{align*}
-Because $\int_a^b fd\alpha $ exists, we know 
-\begin{align}
-\label{CR1}
-\text{ there exists a partition $P$ of  $[a,b]$ such that }U(P,f,\alpha )-L(P,f,\alpha )<\epsilon 
-\end{align}
-where, of course, $\int_a^b fd\alpha  \in \Big[L(P,f,\alpha ),U(P,f,\alpha )\Big]$.\\
-
-Let $P=\set{a=x_0,x_1,\dots ,x_n=b}$. Because $\phi$ is a homeomorphism, we can let $\phi$ be strictly increasing WOLG.\\ 
-
-Define a partition $Q$ on  $[A,B]$ by 
-\begin{align*}
-Q=\phi^{-1}[P]=\set{A=\phi^{-1}(x_0),\phi^{-1}(x_1),\dots ,\phi^{-1}(x_n)=B}
-\end{align*}
-Now, because $\beta =\alpha \circ  \phi$ and $g=f\circ \phi$  for all $x\in [a,b]$ by premise, and because $\phi$ is a homeomorphism, we have 
-\begin{align}
-  U(Q,g,\beta )&=\sum_{k=1}^n \big[  \sup_{t \in [\phi^{-1}(x_{k-1}),\phi^{-1}(x_k)]} g(t)\big] \big[\beta (\phi^{-1}(x_{k})) - \beta  (\phi^{-1}(x_{k-1}))\big]\notag\\
-  &=\sum_{k=1}^n  \big[  \sup_{t \in [\phi^{-1}(x_{k-1}),\phi^{-1}(x_k)]} f \circ  \phi (t)\big] \big[\alpha \circ \phi  \big(\phi^{-1}(x_{k})\big) - \alpha \circ \phi \big(\phi^{-1}(x_{k-1})\big)\big]\notag\\
-  &=\sum_{k=1}^n \big[\sup_{t \in [x_{k-1},x_k]}f(t) \big] \big(\alpha (x_k)-\alpha (x_{k-1}) \big)=U(P,f,\alpha )
-\label{CR2}
-\end{align}
-Similarly, we can deduce $L(Q,g,\beta )=L(P,f,\alpha )$. Now, from \myref{Equation}{CR2} and by definition of $P$ (\myref{Equation}{CR1}), we see 
-\begin{align*}
-&U(Q,g,\beta )-L(Q,g,\beta )=U(P,f,\alpha )-L(P,f,\alpha )<\epsilon \\
-  \text{ and }&\int_a^b fd\alpha \in \Big[L(P,f,\alpha ),U(P,f,\alpha ) \Big]=\Big[ L(Q,g,\beta ),U(Q,g,\beta ) \Big]\vdone
-\end{align*}
-
-
-
-\end{proof}
-\begin{theorem}
-\label{RRSI}
-\textbf{(Reduction of Riemann-Stieltjes Integral: Part 1)} Given two functions $f,\alpha :[a,b]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\alpha $ increase on $[a,b]$ 
-  \item $\alpha $ is differentiable on $(a,b)$ 
-  \item $\lim_{x\to b^-}\frac{\alpha (x)-\alpha (b)}{x-b}$ exists and $\lim_{x\to a^+}\frac{\alpha (x)-\alpha (a)}{x-a}$ exists
-  \item $\alpha '$ is properly Riemann-Integrable on $[a,b]$  
-  \item $f$ is bounded on  $[a,b]$
-\end{enumerate}
-Then 
-\begin{align*}
-\int_a^b fd\alpha \text{ exists }\iff  \int_a^b f(x)\alpha '(x)dx\text{ exists and they equal to each other if exists}
-\end{align*}
-\end{theorem}
-\begin{proof}
-We wish to prove 
-\begin{align*}  \vi{\overline{\int_a^b}fd\alpha = \overline{\int_a^b} f(x)\alpha '(x)dx}
-\end{align*}
-Fix $\epsilon $. We reduce the problem into proving 
-\begin{align*}  \vi{\abso{\overline{\int_a^b}fd\alpha -\overline{\int_a^b}f(x)\alpha '(x)dx}<\epsilon }
-\end{align*}
-Then, because for all partition $P$ of  $[a,b]$, we have 
-\begin{align*}  &\abso{\overline{\int_a^b}fd\alpha - \overline{\int_a^b}f(x)\alpha '(x)dx}\\
-  &\leq \abso{\overline{\int_a^b} fd\alpha -U(P,f,\alpha )}-\Bigg|U(P,f,\alpha )-U(P,f\alpha' )\Bigg|-\abso{U(P,f\alpha' )- \overline{\int_a^b} f(x)\alpha '(x)dx}
-\end{align*}
-We only wish 
-\begin{align*}
-\vi{\text{  to find $P$ such that}}&\vi{\abso{\overline{\int_a^b}fd\alpha - U(P,f,\alpha )}<\frac{\epsilon}{3}}\\
-\vi{\text{ and }}&\vi{\Bigg|U(P,f,\alpha )-U(P,f\alpha' )\Bigg|<\frac{\epsilon}{3}\text{ and }\abso{\overline{\int_a^b}f(x)\alpha '(x)dx- U(P,f\alpha ')}<\frac{\epsilon}{3}}
-\end{align*} 
-Because $f$ is bounded on  $[a,b]$, we can let $M=\sup_{x \in [a,b]} \abso{f(x)}$. Because $\int_a^b \alpha' (x)dx$ exists, we can let $P$ satisfy 
- \begin{align}
-\label{CR3}
-U(P,\alpha ')-L(P,\alpha ')<\frac{\epsilon }{4M}
-\end{align}
-By definition of Riemann Upper sum, we can further refine $P$ to let $P$ satisfy 
-\begin{align*}
-\abso{\overline{\int_a^b}fd\alpha -U(P,f,\alpha )}<\frac{\epsilon}{3}\text{ and }\abso{\overline{\int_a^b}f(x)\alpha '(x)dx- U(P,f\alpha ')}<\frac{\epsilon}{3}
-\end{align*}
-It is clear that the statement concerning $P$  (\myref{Equation}{CR3}) remain valid after refinement of $P$. Fix such $P$. We now have reduced the problem into proving 
-\begin{align*}
-  \vi{\abso{U(P,f,\alpha )-U(P,f\alpha ')}<\frac{\epsilon}{3}}
-\end{align*}
-Express $P$ in the form $P=\set{a=x_0,x_1,\dots ,x_n=b}$. By MVT (\myref{Theorem}{MVT}), we know for all $k \in \set{1,\dots ,n}$ there exists $t_k \in [x_{k-1},x_k]$ such that
-\begin{align}
-\label{CR4}
-\Delta \alpha_k=  \alpha' (t_k)\Delta x_k
-\end{align}
-Then, because $U(P,\alpha ')-L(P,\alpha )'<\frac{\epsilon}{3M}$ (\myref{Equation}{CR3}), we now see 
-\begin{align}
-  \label{CR5}
-\sum_{k=1}^n \abso{\alpha '(s_k)-\alpha '(t_k)} \Delta x_k<\frac{\epsilon}{3M} \text{ if $s_k \in [x_{k-1},x_k]$ for all $k \in \set{1,\dots , n}$ }
-\end{align}
-Then from \myref{Equation}{CR4}, definition of $M$ and \myref{Equation}{CR5}, we have 
-\begin{align*}
-\abso{\sum_{k=1}^n f(s_k)\Delta \alpha_k - \sum_{k=1}^n f(s_k)\alpha '(s_k)\Delta x_k}&=\abso{\sum_{k=1}^n f(s_k)\big(\alpha '(s_k)-\alpha '(t_k) \big)\Delta x_k}\\
-&\leq \sum_{k=1}^n \abso{f(s_k)}\cdot \abso{\alpha '(s_k)-\alpha '(t_k)}\Delta x_k\\
-&\leq M \sum_{k=1}^n \abso{\alpha '(s_k)-\alpha '(t_k)}\Delta x_k \\
-&<\frac{\epsilon}{4}
-\end{align*}
-Then because $\sum_{k=1}^m f(s_k)\alpha '(s_k)\Delta x_k\leq  U(P,f\alpha ')$, we now have 
-\begin{align}
-\label{CR6}
-\sum_{k=1}^n f(s_k)\Delta \alpha_k < U(P,f\alpha ')+\frac{\epsilon}{4}
-\end{align}
-Because \myref{Equation}{CR6} hold true for all choices of  $s_k$, we have 
-\begin{align*}
-U(P,f,\alpha )<  U(P,f\alpha ')+\frac{\epsilon}{3}
-\end{align*}
-Similarly, we can deduce 
-\begin{align*}
-U(P,f\alpha ')<U(P,f,\alpha )+\frac{\epsilon}{3}\vdone
-\end{align*}
-\end{proof}
-\begin{theorem}
-\textbf{(Substitution Law)} Given a function $\phi: [a,b]\rightarrow [A,B]$ and a function $f:[A,B]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\phi$ is a homoeomorphism. 
-  \item $\phi$ is differentiable on $(a,b)$ 
-  \item $\int_a^b \phi' (x)dx$ exists.  
-  \item $f$ is integrable on  $[A,B]$
-\end{enumerate}
-We have 
-\begin{align*}
-\int_a^b f\big(\phi (x) \big)\phi' (x)dx=\int_A^B f(u)du
-\end{align*}
-\end{theorem}
-\begin{proof}
-Because $f\circ \phi$ and  $\phi'$ is integrable on $[a,b]$, by reduction of Riemann-Stieljes Integral (\myref{Tehroem}{RRSI}), we know 
-\begin{align*}
-\int_a^b \big(f\circ \phi)(x)  \phi'(x)dx= \int_a^b \big(f\circ \phi \big)(x)d \phi
-\end{align*}
-Let $\alpha (x)=x$. Let $\beta = \alpha \circ  \phi$. Define $g=f \circ  \phi $. By Change of Variable (\myref{Theorem}{CoV}), we now have  
-\begin{align*}
-\int_a^b \big(f \circ  \phi \big)(x)d \phi =\int_a^b g(x)d\beta = \int_A^B f(x)dx
-\end{align*}
-\end{proof}
-\section{Weierstrass approximation Theorem: $[a,b]\rightarrow \R$}
-\begin{theorem}
-\label{Bernoulli's Inequality}
-\textbf{(Bernoulli's Inequality)} Given $r,x \in\R$, suppose 
-\begin{enumerate}[label=(\alph*)]
-  \item $r\geq 1$ 
-  \item $x\geq -1$
-\end{enumerate}
-Then
-\begin{align*}
-  (1+x)^r\geq 1+rx
-\end{align*}
-\end{theorem}
-\begin{proof}
-Fix $r\geq 1$. We wish 
-\begin{align*}
-\vi{\text{ to prove }(1+x)^r\geq 1+rx\text{ for all  }x \geq -1}
-\end{align*}
-Define $f:[-1,\infty)\rightarrow \R$ by 
- \begin{align}
-\label{Bere1}
-f(x)=(1+x)^r-(1+rx)
-\end{align}
-We reduced the problem into  
-\begin{align*}
-\vi{\text{ proving }f(x)\geq 0\text{ for all } x\geq -1}
-\end{align*}
-Because $r\geq 1$ by premise, by definition of $f(x)$  (\myref{Equation}{Bere1}), we see that 
-\begin{align*}
-f(0)=0\text{, and }f(-1)=r-1\geq 0
-\end{align*}
-Notice that by definition of $f$  (\myref{Equation}{Bere1}),  $f(x)$ is clearly differentiable on $(-1,\infty)$.\\
-
-Then, by MVT (\myref{Theorem}{MVT}), to prove $f(x)\geq 0$ on $(-1,\infty)$, we only wish 
-\begin{align*}
-\vi{\text{ to prove }f'(x)\geq 0\text{ for all }x> 0\text{ and }f'(x)\leq 0\text{ for all $x \in (-1,0)$ }}
-\end{align*}
-Compute $f'$
- \begin{align*}
-f'(x)&=r(1+x)^{r-1}-r\\
-&=r\Big((1+x)^{r-1}-1 \Big)
-\end{align*}
-Because $r\geq 1$, we can deduce 
-\begin{align*}
-x>0 \implies (1+x)^{r-1}\geq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\geq 0
-\end{align*}
-and deduce 
-\begin{align*}
-x \in (-1,0) \implies 1+x \in (0,1) \implies (1+x)^{r-1}\leq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\leq  0
-\end{align*}
-$\vdone$
-\end{proof}
-\begin{mdframed}
-In this section, notation  $\mathcal{C}\big([a,b] \big)$ means the set of \textbf{real-valued continuous function on $[a,b]$}.
-\end{mdframed}
-\begin{theorem}
-\textbf{(Weierstrass approximation Theorem: $[a,b]\rightarrow \R$)} Let $\R[x]\big|_{[a,b]}$ be the space of polynomials on $[a,b]$ with real coefficient. We have 
-\begin{align*}
-\text{ $\R[x]\big|_{[a,b]}$ is dense in $\Big(\mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty} \Big)$ }
-\end{align*}
-\end{theorem}
-\begin{proof}
-WOLG, we can let $[a,b]=[0,1]$. The reason we can assume such is explained at last. Now, let $f:[0,1]\rightarrow \R$ be a continuous function. Fix $\epsilon $. We only wish 
-\begin{align*}
-\vi{\text{ to find $P \in \R[x]\big|_{[0,1]}$ such that $\norm{f-P}_{\infty}<\epsilon $}}
-\end{align*}
-Define $\tilde{f} \in \mathcal{C}\big([0,1] \big)$ by 
-\begin{align}
-  \label{tse1}
-\tilde{f}(x)= f(x)-f(0)-x \big[f(1)-f(0) \big] 
-\end{align}
-It is easy to check $\tilde{f}$ is continuous. We first prove that 
-\begin{align*}
-\blue{\big( \tilde{f}(x)-f(x)\big)\in \R[x]\big|_{[0,1]}  }
-\end{align*}
-By definition of $\tilde{f} $ (\myref{Equation}{tse1}), we see 
-\begin{align*}
-\tilde{f}(x)-f(x)=(f(0)-f(1))x- f(0)\in \R[x]\big|_{[0,1]}\bdone
-\end{align*}
-This reduce our problem into 
-\begin{align*}
-\vi{\text{ finding }P\in \R[x]\big|_{[0,1]}\text{ such that $\norm{\tilde{f}-P}_{\infty}<\epsilon $ }}
-\end{align*}
-Notice that by definition of $\tilde{f}$ (\myref{Equation}{tse1}), we have 
-\begin{align*}
-\tilde{f}(0)=0=\tilde{f}(1) 
-\end{align*}
-Then, we can expand the definition of $\tilde{f} $  by
-\begin{align}
-\label{tse2}  
-\tilde{f}(x)=\begin{cases}
-  \tilde{f} (x)& \text{ if $x\in [0,1]$ }\\
-  0& \text{ if $x \not \in [0,1]$ }
-\end{cases}
-\end{align}
-This makes $\tilde{f}$ uniformly continuous on $\R$, since  $\tilde{f}$ is uniformly continuous on $[0,1]$ and $[0,1]^c$. Now, for each $n\inn$, define $Q_n \in \R[x]$ by 
-\begin{align}
-\label{tse3}
-Q_n=c_n(1-x^2)^n\text{ where $c_n$ is chosen to satisfy }\int_{-1}^1 Q_n(x)dx=1
-\end{align}
-Define $P_n:[0,1]\rightarrow \R$ by 
-\begin{align*}
-P_n(x)=\int_{-1}^1 \tilde{f} (x+t)Q_n(t)dt
-\end{align*}
-We now prove 
-\begin{align*}
-\olive{P_n \in \R[x]\big|_{[0,1]}}
-\end{align*}
-Because $\tilde{f}(x)=0$ for all $x \not \in (0,1)$ by definition of $\tilde{f} $ (\myref{Equation}{tse2}), we see that 
-\begin{align}
-\label{tse4}
-P_n(x)=\int_{-x}^{1-x}\tilde{f}(x+t)Q_n(t)dt \text{ for all }x \in [0,1]
-\end{align}
-Fix $x \in [0,1]$. Now, by change of variable, we see 
-\begin{align*}
-P_n(x)=\int_{-x}^{1-x} \tilde{f}(x+t)Q_n(t)dt=\int_{0}^1 \tilde{f}(u)Q_n(u-x)du  
-\end{align*}
-Because $Q_n$ is a polynomial by definition (\myref{Equation}{tse3}), we can express $Q_n(u-x)$ by 
-\begin{align*}
-Q_n(u-x)=\sum_{k=0}^{m} a_k x^k\text{ for some $\set{a_0,\dots ,a_m}$ depending on $u$}
-\end{align*}
-Then we see 
-\begin{align*}
-  P_n(x)=\int_0^1 \tilde{f}(u)Q_n(u-x)du= \sum_{k=0}^m x^k \Big( 
-\int_0^1 \tilde{f}(u) a_kdu
-  \Big)  
-\end{align*}
-This shows that $P_n \inr[x]\big|_{[0,1]}$
-
-$\odone$\\
-
-
-Now, because $\tilde{f}$ is uniformly continuous on $\R$, we can fix $\delta<1$ such that 
-\begin{align}
-\label{tse5}
-\forall x,y \inr, \abso{x-y}<\delta \implies \abso{\tilde{f}(x)-\tilde{f}(y)  }<\frac{\epsilon}{2}
-\end{align}
-By definition of $\tilde{f}$ (\myref{Equation}{tse2}), we know $\tilde{f} $ is a bounded function. Then we can set $M$ by 
-\begin{align*}
-M=\sup_{x \inr} \abso{f(x)}
-\end{align*}
-Let $n$ satisfy 
- \begin{align}
-  \label{tse5}
-4M \sqrt{n} (1-\delta^2)^n < \frac{\epsilon}{2} 
-\end{align}
-Such $n$ exists, because  $\delta<1 \implies  \sqrt{n}(1-\delta^2)^n \to 0 $. We claim 
-\begin{align*}
-\vi{\text{ $P_n$ satisfy $\norm{\tilde{f}-P_n}_{\infty}<\epsilon $}}
-\end{align*}
-We first prove 
-\begin{align*}
-\blue{c_n< \sqrt{n} }
-\end{align*}
-By Bernoulli's Inequality (\myref{Theorem}{Bernoulli's Inequality}). Compute 
-\begin{align*}
-1=\int_{-1}^1 Q_n(x)dx&=  c_n\int_{-1}^1 (1-x^2)^n dx \\
-&=2c_n\int_0^1 (1-x^2)^n dx\\
-&\geq 2c_n\int_0^{\frac{1}{\sqrt{n} }}(1-x^2)^n dx\\
-&\geq 2c_n \int_0^{\frac{1}{\sqrt{n} }} 1-nx^2dx=c_n\big(\frac{4}{3\sqrt{n} } \big)> c_n (\frac{1}{\sqrt{n} })
-\end{align*}
-
-
-This implies 
-\begin{align*}
-\sqrt{n}>c_n \bdone
-\end{align*}
-Because $\sqrt{n}>c_n $, by definition of $Q_n$  (\myref{Equation}{tse3}), we have 
-\begin{align*}
-Q_n(x)<\sqrt{n}(1-x^2)^n \leq \sqrt{n}(1-\delta^2)^n \text{ for all $x$ such that  $\delta \leq \abso{x}\leq 1$ }
-\end{align*}
-Fix $x \in [0,1]$. Finally, because 
-\begin{enumerate}[label=(\alph*)]
-  \item $\int_{-1}^1 Q_n(x)dx=1$ by definition of  $Q_n$  (\myref{Equation}{tse3})
-  \item $Q_n(x)=c_n(1-x^2)^n\geq 0$ for all $x \in [-1,1]$ 
-  \item $\abso{\tilde{f}(x+t)-\tilde{f}(x)}<\frac{\epsilon}{2} $ for all $t$ such that $\abso{t}<\delta $, by definition of $\delta $ (\myref{Equation}{tse5})
-  \item $Q_n(x)\leq \sqrt{n}(1-\delta^2)^n $ for all $x$ such that  $\delta\leq \abso{x}\leq 1$
-  \item $4M\sqrt{n}(1-\delta^2)^n<\frac{\epsilon}{2} $ by definition of $n$  (\myref{Equation}{tse5})
-\end{enumerate}
-we have
-\begin{align*}
-\abso{P_n(x)-\tilde{f}(x)}&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)}\\
-&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)\int_{-1}^1 Q_n(t)dt }\\
-&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt -\int_{-1}^1 \tilde{f}(x)Q_n(t)dt}\\
-&=\abso{\int_{-1}^1 \big[\tilde{f}(x+t)-\tilde{f}(x)   \big]Q_n(t)dt}\\
-&\leq \int_{-1}^1 \abso{\big[ \tilde{f}(x+t)-\tilde{f}(x)\big]Q_n(t)}dt\\
-&=\int_{-1}^1 \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt\\
-&\leq \int_{-1}^{-\delta} 2MQ_n(t)dt +\int_{-\delta}^{\delta} \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt+\int_{\delta}^1 2M Q_n(t)dt\\
-&\leq 2M\Big(\int_{-1}^{-\delta}Q_n(t)dt+\int_{\delta}^1 Q_n(t)dt  \Big)+ \int_{-\delta}^\delta \big(\frac{\epsilon}{2} \big)Q_n(t)dt\\
-&\leq 4M(1-\delta) \sqrt{n}(1-\delta^2)^n+ \frac{\epsilon}{2} \\
-&\leq 4M\sqrt{n}(1-\delta^2)^n+\frac{\epsilon}{2} <\epsilon  
-\end{align*}
-Because $x$ is arbitrarily picked from  $[0,1]$, we now have $\norm{P_n-\tilde{f} }_{\infty}<\epsilon \vdone$\\
-
-Lastly, we show 
-\begin{align*}
-\olive{\text{ our result can be transplanted to arbitrary $\mathcal{C}\big([a,b] \big)$ }}
-\end{align*}
-Let $[a,b]$ be arbitrary. Fix $\epsilon $ and $f \in \mathcal{C}\big([a,b] \big)$. We wish 
-\begin{align*}
-\olive{\text{ to find $P \in \R[x]\big|_{[a,b]}$ such that $\norm{f-P}_\infty\leq \epsilon $ }}
-\end{align*}
-Define $g:[0,1]\rightarrow \R$ by 
-\begin{align}
-g(x)\triangleq f(a+(b-a)x)
-\end{align}
-We know there exists $P_n:[0,1]\rightarrow \R$ such that 
-\begin{align*}
-\norm{P_n-g}_{\infty}<\epsilon 
-\end{align*}
-Define $H_n:[a,b]\rightarrow \R$ by 
-\begin{align*}
-H_n(x)=P_n\big(\frac{x-a}{b-a} \big)
-\end{align*}
-Because $P_n$ is a real polynomial on  $[0,1]$, we know $H_n$ is a real polynomial on $[a,b]$. We now claim 
-\begin{align*}
-  \olive{\text{ such $H_n\text{ works }$ }}
-\end{align*}
-Fix $x \in [a,b]$. Observe 
-\begin{align*}
-\big|f(x)-H_n(x)\big|&=\abso{f(x)-P_n\big(\frac{x-a}{b-a} \big)}\\
-&=\abso{g\big(\frac{x-a}{b-a} \big)-P_n\big(\frac{x-a}{b-a} \big)}< \epsilon \odone
-\end{align*}
-\end{proof}
-\begin{mdframed}
-It is at now, we will show that every real-valued continuous functions on $[a,b]$ can be approximated by polynomials with rational coefficient. This fact enable our computer to more easily approximate real-valued continuous function on $[a,b]$.\\
-
-Note that since $\mathcal{C}\big([a,b] \big)$ is a separable metric space, we can show that $\mathcal{C}\big([a,b] \big)$ has cardinality of at most continuum $\mathfrak{c}$ . 
-\end{mdframed}
-\begin{theorem}
-\textbf{(The space $\Q[x]|_{[a,b]}$ is dense in $\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)$, thus $\mathcal{C}\big([a,b] \big)$ is separable)} 
-\begin{align*}
-\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)\text{ is separable }
-\end{align*}
-\end{theorem}
-\begin{proof}
-Because $\Q[x]\big|_{[a,b]}$ is countable, to show $\mathcal{C}\big([a,b] \big)$ is separable, we only wish to show 
-\begin{align*}
-\vi{\Q [x]\big|_{[a,b]}\text{ is dense in }\mathcal{C}\big([a,b] \big)}
-\end{align*}
-Because $\R[x]\big|_{[a,b]}$ is dense in $\mathcal{C}\big([a,b] \big)$, we reduce our problem into proving 
-\begin{align*}
-\vi{\Q[x]\big|_{[a,b]}\text{ is dense in }\R[x]\big|_{[a,b]}}
-\end{align*}
-Fix $\epsilon \text{ and } P \in \R[x]\big|_{[a,b]}$. We must
-\begin{align*}
-\vi{\text{ find $Q \in \Q[x]\big|_{[a,b]}$ such that $\norm{Q-P}_\infty \leq \epsilon $}}
-\end{align*}
-Express $P(x)=\sum_{k=0}^n r_kx^k$. Let $M> \max \set{\abso{a},\abso{b}}$. Because $\Q$ is dense in $\R$, we know there exists $c_k \inq$ such that  $\abso{c_k-r_k}< \frac{\epsilon }{(n+1)M^n}$. We claim 
-\begin{align*}
-\vi{Q(x)=\sum_{k=0}^n c_kx^k\text{ works }}
-\end{align*}
-Fix $x \in [a,b]$. See
-\begin{align*}
-\abso{P(x)-Q(x)}&=\abso{\sum_{k=0}^n (c_k-r_k)x^k}\\
-&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot \abso{x}^k\\
-&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot M^k\\
-&\leq (M^n)\sum_{k=0}^n \abso{c_k-r_k}\\
-&< M^n (n+1)\big( \frac{\epsilon }{(n+1)M^n}\big)=\epsilon \vdone
-\end{align*}
-\end{proof}
-\section{The Stone-Weierstrass Theorem}
-\begin{mdframed}
-Recall that a \textbf{vector space over a field $\F$} is a set $V$ equipped with \textbf{vector addition} $+:V\times V\to V$  and \textbf{scalar multiplication}  such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $(V,+)$ is an abelian group. 
-  \item Scalar multiplication is compatible with field multiplication:   $\Big((ab)v=a(bv) \Big)$
-  \item Scalar multiplication is distributive: $\Big((a+b)v=av+bv\text{ and }a(v+w)=av+aw \Big)$
-\end{enumerate}
-
-There are many ways to define the term \textbf{algebra over a field $\F$}. One can exhaust all the laws an algebra should obey. In short, an \textbf{algebra over a field $\F$} (or \textbf{$\F$-algebra}) is a set $(A,+,\cdot )$ equipped scalar multiplication over $\F$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item Multiplication $\cdot $ is $\underline{\text{distributive}}$ with respect to $+$  
-  \item $(A,+)$ and scalar multiplication form a vector space. 
-   \item Scalar multiplication and vector multiplication $\cdot $ is compatible: $\Big((av)\cdot (bw)=ab(v\cdot w) \Big)$
-\end{enumerate}
-Given an arbitrary set $E$ and a field $\F$, let $A$ be the set of all functions from  $E$ to $\F$. The following is a list of some algebra 
-\begin{enumerate}[label=(\alph*)]
-  \item $(\R^3,\text{cross product})$  over $\R$ 
-  \item $(\C,\text{complex multiplication})$ over $\C$ 
-  \item $(\Q[x],\text{function multiplication})$ over $\Q$
-  \item $(\text{Functions from }E\text{ to }\F,\text{function multiplication})$ over $\F$
-  \item $(\text{Continuous functions from $(E,\tau)$ to $\C$ },\text{function multiplication})$ over $\C$  
-  \item $(\text{Linear transformation from $V$ to $V$, composition})$ over $\F$ where  $V$ is over $\F$
-  \item $\big(M_n(\F),\text{matrix multiplication}\big)$ over $\F$
-\end{enumerate}
-Note that $B=(\text{continuous functions from }\C\text{ to }\C,\text{composition})$ over $\C$ is not an algebra, even though $B$ is both a vector space and a ring. ($\because$ scalar multiplication and multiplication are not compatible).\\
-
-It is at here we shall introduce some general terminologies. Given an arbitrary set $E$, a field  $\F$ and a point $x \in E$, we say a family $\mathcal{F}$ of functions  from $E$ to  $\F$  \textbf{vanish at $x$} if for all $f \in \mathcal{F}$, we have $f(x)=0$. We say $\mathcal{F}$ \textbf{separate points} in $E$ if for all  $x_2\neq x_1 \in E$, there exists $f\in \mathcal{F}$ such that $f(x_2)\neq f(x_1)$. 
-\end{mdframed}
-
-\section{FTC}
-\begin{theorem}
-  \label{FTC1}
-\textbf{(Fundamental Theorem of Calculus: Part 1)} Suppose a function $f:[a,\infty )\rightarrow \R$ satisfy
-\begin{align*}
-f\text{ is $\underline{\text{proper-Riemann integrable}}$ on $[a,b]$  for all $b>a$}
-\end{align*}
-If we set $F:[a,\infty) \to \R$ 
-\begin{align*}
-F(x)=\int_a^x f(t)dt
-\end{align*}
-Then 
-\begin{enumerate}[label=(\alph*)]
-  \item $F$ is continuous on $[a,\infty )$
-  \item $F$ is differentiable at  $x_0 \in [a,\infty )$  where $F'(x_0)=f(x_0)$ if $f$ is continuous at $x_0$
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-Fix $\epsilon $ and $[a,b]$. We only wish  
-\begin{align*}
-\vi{\text{ to prove }F\text{ is continuous on $[a,b]$ }}
-\end{align*}
-To prove $F$ is continuous on  $[a,b]$, we only wish 
-\begin{align*}
-\vi{\text{ to find $\delta$ such that $\forall [x,y]\subseteq [a,b], \abso{x-y}<\delta \implies \abso{F(x)-F(y)}<\epsilon $}}
-\end{align*}
-Because $f $ is proper-Riemann-Integrable on $[a,b]$, we know $f$ is bounded on  $[a,b]$. Let $M$ be an upper bound of  $\abso{f}$ on $[a,b]$. We claim 
-\begin{align*}
-\vi{\text{ $\delta=\frac{\epsilon}{M}$ works }} 
-\end{align*}
-Because $y-x <\delta=\frac{\epsilon}{M}$, we have
-\begin{align*}
-  \abso{F(x)-F(y)}&=\abso{\int_x^y f(t)dt}\\
-  &\leq \int_x^y \abso{f(t)}dt\\
-  &\leq (y-x)<\epsilon \vdone
-\end{align*}
-Now, to prove $F'(x_0)=f(x_0)$, we wish 
-\begin{align*}
-  \blue{\text{ to prove $\lim_{x\to x_0} \frac{F(x)-F(x_0)}{x-x_0}= f(x_0)$ }}
-\end{align*}
-Fix $\epsilon $. We wish 
-\begin{align*}
-\blue{\text{ to find $\delta$ such that $\abso{x-x_0}<\delta \implies \abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}<\epsilon $ }}
-\end{align*}
-Because $f$ is continuous at $x_0$, we know  
-\begin{align}
-\label{F1}
-\exists \delta, \abso{x-x_0}<\delta \implies \abso{f(x)-f(x_0)}<\epsilon 
-\end{align}
-We claim 
-\begin{align*}
-\blue{\text{ such $\delta$ in}}\text{ \myref{Equation}{F1} }\blue{\text{works}}
-\end{align*}
-WOLG, let $x>x_0$. Deduce 
-\begin{align*}
-\abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}&=\abso{\frac{\int_{x_0}^x f(t)dt}{x-x_0}-f(x_0)}\\                  &=\abso{\frac{\int_{x_0}^x \big[f(t)-f(x_0) \big]dt}{x-x_0}}\\
-&\leq \frac{\int_{x_0}^x \abso{f(t)-f(x_0)}dt}{\abso{x-x_0}}\\
-&\leq \frac{\int_{x_0}^x \epsilon dt}{\abso{x-x_0}}=\epsilon \bdone
-\end{align*}
-\end{proof}
-\begin{theorem}
-\label{FTC2}
-\textbf{(Fundamental Theorem of Calculus: Part 2, Leibniz Rule)} Suppose two functions $f,F:[a,\infty )\rightarrow \R$ satisfy 
-\begin{enumerate}[label=(\alph*)]
-  \item $f$ is proper Riemann-Integrable on $[a,b]$ for all $b>a$ 
-\item $F'(x)=f(x)$ for all $x \in (a, \infty)$ 
-\item $F$ is continuous on  $[a,\infty)$
-\end{enumerate}
-Then for all $b>a$, 
-\begin{align*}
-\int_a^b f(x)dx=F(b)-F(a)
-\end{align*}
-\end{theorem}
-\begin{proof}
-Fix $\epsilon $. We wish 
-\begin{align*}
-\vi{\text{ to show that $\abso{\Big( F(b)-F(a)\Big)-\int_a^b f(x)dx}<\epsilon $ }}
-\end{align*}
-Because $f$ is proper Riemann-Integrable on $[a,b]$, we know there exists a partition $P=\set{a=x_0,x_1,\dots , x_n=b}$ of  $[a,b]$ such that 
-\begin{align}
-\label{FP}
-U(P,f)-L(P,f)<\epsilon 
-\end{align}
-Because $f=F'$ on  $(a,b)$, for each $k \in \set{1,\dots ,n}$, by MVT (\myref{Theorem}{MVT}), we know 
-\begin{align*}
-\exists t_k \in (x_{k-1},x_k), \frac{F(x_k)-F(x_{k-1})}{x_k-x_{k-1}}=f(t_k)
-\end{align*}
-This let us deduce
-\begin{align*}
-F(b)-F(a)=\sum_{k=1}^n F(x_k)-F(x_{k-1})=\sum_{k=1}^n f(t_k) \Delta x_k
-\end{align*}
-Now, we have 
-\begin{align*}
-  \int_a^b f(x)dx\text{ and }F(b)-F(a)\text{ are both in }\big[ L(P,f),U(P,f) \big]
-\end{align*}
-Then by \myref{Equation}{FP}, we can deduce 
-\begin{align*}
-\abso{F(b)-F(a)- \int_a^b f(x)dx}<\epsilon \vdone
-\end{align*}
-
-
-
-
-\end{proof}
-\begin{theorem}
-\textbf{(Integral By Part)} Given four function $f,g,F,G:[a,b]\rightarrow \R$ such that 
-
-\begin{enumerate}[label=(\alph*)]
-  \item $F'(x)=f(x)\text{ and }G'(x)=g(x)$ for all $x\in (a,b)$ 
-  \item $f,g$ are properly Riemann-Integrable on  $[a,b]$ 
-  \item $F,G$ are continuous on  $[a,b]$
-\end{enumerate}
-We have
-\begin{align}
-\label{FI}
-\int_a^b F(x)g(x)dx=FG\Big|^b_a-\int_a^b f(x)G(x)dx
-\end{align}
-\end{theorem}
-\begin{proof}
-To prove \myref{Equation}{FI}, we only with 
-\begin{align*}
-\vi{\text{ to prove }\int_a^b F(x)g(x)dx+\int_a^b f(x)G(x)dx=FG\Big|_a^b}
-\end{align*}
-We can reduce the problem 
-\begin{align*}
-\vi{\text{ into proving }\int_a^b \big( Fg+fG \big) dx=FG\Big|_a^b}
-\end{align*}
-Notice that by Chain Rule,  
-\begin{align*}
-\big(FG \big)'(x)=F(x)g(x)+f(x)G(x)\text{ for all $x \in (a,b)$ }
-\end{align*}
-Then the result follows from Part 2 of Fundamental Theorem of Calculus (\myref{Theorem}{FTC2}). $\vdone$
-\end{proof}
-\begin{Example}{\textbf{(Discontinuous Derivative)}}{}
-\begin{align*}
-f(x)=\begin{cases}
-  \frac{x^2}{\sin x}& \text{ if $x\neq 0$ }\\
-  0& \text{ if $x=0$ }
-\end{cases}
-\end{align*}
-\end{Example}
-\chapter{Riemann Calculus}
 \chapter{Complex Analysis}
 \chapter{Lebesgue Calculus}
 \section{Basic Property of Measurable Functions}
@@ -4121,6 +4460,297 @@ f_n(x)=\begin{cases}
 \end{Example}
 \section{Equivalent Definitions of Lebesgue Measurable Functions and Integral}
 \chapter{Harmonic Analysis}
+\section{Weierstrass approximation Theorem: $[a,b]\rightarrow \R$}
+\begin{theorem}
+\label{Bernoulli's Inequality}
+\textbf{(Bernoulli's Inequality)} Given $r,x \in\R$, suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $r\geq 1$ 
+  \item $x\geq -1$
+\end{enumerate}
+Then
+\begin{align*}
+  (1+x)^r\geq 1+rx
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $r\geq 1$. We wish 
+\begin{align*}
+\vi{\text{ to prove }(1+x)^r\geq 1+rx\text{ for all  }x \geq -1}
+\end{align*}
+Define $f:[-1,\infty)\rightarrow \R$ by 
+ \begin{align}
+\label{Bere1}
+f(x)=(1+x)^r-(1+rx)
+\end{align}
+We reduced the problem into  
+\begin{align*}
+\vi{\text{ proving }f(x)\geq 0\text{ for all } x\geq -1}
+\end{align*}
+Because $r\geq 1$ by premise, by definition of $f(x)$  (\myref{Equation}{Bere1}), we see that 
+\begin{align*}
+f(0)=0\text{, and }f(-1)=r-1\geq 0
+\end{align*}
+Notice that by definition of $f$  (\myref{Equation}{Bere1}),  $f(x)$ is clearly differentiable on $(-1,\infty)$.\\
+
+Then, by MVT (\myref{Theorem}{MVT}), to prove $f(x)\geq 0$ on $(-1,\infty)$, we only wish 
+\begin{align*}
+\vi{\text{ to prove }f'(x)\geq 0\text{ for all }x> 0\text{ and }f'(x)\leq 0\text{ for all $x \in (-1,0)$ }}
+\end{align*}
+Compute $f'$
+ \begin{align*}
+f'(x)&=r(1+x)^{r-1}-r\\
+&=r\Big((1+x)^{r-1}-1 \Big)
+\end{align*}
+Because $r\geq 1$, we can deduce 
+\begin{align*}
+x>0 \implies (1+x)^{r-1}\geq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\geq 0
+\end{align*}
+and deduce 
+\begin{align*}
+x \in (-1,0) \implies 1+x \in (0,1) \implies (1+x)^{r-1}\leq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\leq  0
+\end{align*}
+$\vdone$
+\end{proof}
+\begin{mdframed}
+In this section, notation  $\mathcal{C}\big([a,b] \big)$ means the set of \textbf{real-valued continuous function on $[a,b]$}.
+\end{mdframed}
+\begin{theorem}
+\textbf{(Weierstrass approximation Theorem: $[a,b]\rightarrow \R$)} Let $\R[x]\big|_{[a,b]}$ be the space of polynomials on $[a,b]$ with real coefficient. We have 
+\begin{align*}
+\text{ $\R[x]\big|_{[a,b]}$ is dense in $\Big(\mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty} \Big)$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+WOLG, we can let $[a,b]=[0,1]$. The reason we can assume such is explained at last. Now, let $f:[0,1]\rightarrow \R$ be a continuous function. Fix $\epsilon $. We only wish 
+\begin{align*}
+\vi{\text{ to find $P \in \R[x]\big|_{[0,1]}$ such that $\norm{f-P}_{\infty}<\epsilon $}}
+\end{align*}
+Define $\tilde{f} \in \mathcal{C}\big([0,1] \big)$ by 
+\begin{align}
+  \label{tse1}
+\tilde{f}(x)= f(x)-f(0)-x \big[f(1)-f(0) \big] 
+\end{align}
+It is easy to check $\tilde{f}$ is continuous. We first prove that 
+\begin{align*}
+\blue{\big( \tilde{f}(x)-f(x)\big)\in \R[x]\big|_{[0,1]}  }
+\end{align*}
+By definition of $\tilde{f} $ (\myref{Equation}{tse1}), we see 
+\begin{align*}
+\tilde{f}(x)-f(x)=(f(0)-f(1))x- f(0)\in \R[x]\big|_{[0,1]}\bdone
+\end{align*}
+This reduce our problem into 
+\begin{align*}
+\vi{\text{ finding }P\in \R[x]\big|_{[0,1]}\text{ such that $\norm{\tilde{f}-P}_{\infty}<\epsilon $ }}
+\end{align*}
+Notice that by definition of $\tilde{f}$ (\myref{Equation}{tse1}), we have 
+\begin{align*}
+\tilde{f}(0)=0=\tilde{f}(1) 
+\end{align*}
+Then, we can expand the definition of $\tilde{f} $  by
+\begin{align}
+\label{tse2}  
+\tilde{f}(x)=\begin{cases}
+  \tilde{f} (x)& \text{ if $x\in [0,1]$ }\\
+  0& \text{ if $x \not \in [0,1]$ }
+\end{cases}
+\end{align}
+This makes $\tilde{f}$ uniformly continuous on $\R$, since  $\tilde{f}$ is uniformly continuous on $[0,1]$ and $[0,1]^c$. Now, for each $n\inn$, define $Q_n \in \R[x]$ by 
+\begin{align}
+\label{tse3}
+Q_n=c_n(1-x^2)^n\text{ where $c_n$ is chosen to satisfy }\int_{-1}^1 Q_n(x)dx=1
+\end{align}
+Define $P_n:[0,1]\rightarrow \R$ by 
+\begin{align*}
+P_n(x)=\int_{-1}^1 \tilde{f} (x+t)Q_n(t)dt
+\end{align*}
+We now prove 
+\begin{align*}
+\olive{P_n \in \R[x]\big|_{[0,1]}}
+\end{align*}
+Because $\tilde{f}(x)=0$ for all $x \not \in (0,1)$ by definition of $\tilde{f} $ (\myref{Equation}{tse2}), we see that 
+\begin{align}
+\label{tse4}
+P_n(x)=\int_{-x}^{1-x}\tilde{f}(x+t)Q_n(t)dt \text{ for all }x \in [0,1]
+\end{align}
+Fix $x \in [0,1]$. Now, by change of variable, we see 
+\begin{align*}
+P_n(x)=\int_{-x}^{1-x} \tilde{f}(x+t)Q_n(t)dt=\int_{0}^1 \tilde{f}(u)Q_n(u-x)du  
+\end{align*}
+Because $Q_n$ is a polynomial by definition (\myref{Equation}{tse3}), we can express $Q_n(u-x)$ by 
+\begin{align*}
+Q_n(u-x)=\sum_{k=0}^{m} a_k x^k\text{ for some $\set{a_0,\dots ,a_m}$ depending on $u$}
+\end{align*}
+Then we see 
+\begin{align*}
+  P_n(x)=\int_0^1 \tilde{f}(u)Q_n(u-x)du= \sum_{k=0}^m x^k \Big( 
+\int_0^1 \tilde{f}(u) a_kdu
+  \Big)  
+\end{align*}
+This shows that $P_n \inr[x]\big|_{[0,1]}$
+
+$\odone$\\
+
+
+Now, because $\tilde{f}$ is uniformly continuous on $\R$, we can fix $\delta<1$ such that 
+\begin{align}
+\label{tse5}
+\forall x,y \inr, \abso{x-y}<\delta \implies \abso{\tilde{f}(x)-\tilde{f}(y)  }<\frac{\epsilon}{2}
+\end{align}
+By definition of $\tilde{f}$ (\myref{Equation}{tse2}), we know $\tilde{f} $ is a bounded function. Then we can set $M$ by 
+\begin{align*}
+M=\sup_{x \inr} \abso{f(x)}
+\end{align*}
+Let $n$ satisfy 
+ \begin{align}
+  \label{tse5}
+4M \sqrt{n} (1-\delta^2)^n < \frac{\epsilon}{2} 
+\end{align}
+Such $n$ exists, because  $\delta<1 \implies  \sqrt{n}(1-\delta^2)^n \to 0 $. We claim 
+\begin{align*}
+\vi{\text{ $P_n$ satisfy $\norm{\tilde{f}-P_n}_{\infty}<\epsilon $}}
+\end{align*}
+We first prove 
+\begin{align*}
+\blue{c_n< \sqrt{n} }
+\end{align*}
+By Bernoulli's Inequality (\myref{Theorem}{Bernoulli's Inequality}). Compute 
+\begin{align*}
+1=\int_{-1}^1 Q_n(x)dx&=  c_n\int_{-1}^1 (1-x^2)^n dx \\
+&=2c_n\int_0^1 (1-x^2)^n dx\\
+&\geq 2c_n\int_0^{\frac{1}{\sqrt{n} }}(1-x^2)^n dx\\
+&\geq 2c_n \int_0^{\frac{1}{\sqrt{n} }} 1-nx^2dx=c_n\big(\frac{4}{3\sqrt{n} } \big)> c_n (\frac{1}{\sqrt{n} })
+\end{align*}
+
+
+This implies 
+\begin{align*}
+\sqrt{n}>c_n \bdone
+\end{align*}
+Because $\sqrt{n}>c_n $, by definition of $Q_n$  (\myref{Equation}{tse3}), we have 
+\begin{align*}
+Q_n(x)<\sqrt{n}(1-x^2)^n \leq \sqrt{n}(1-\delta^2)^n \text{ for all $x$ such that  $\delta \leq \abso{x}\leq 1$ }
+\end{align*}
+Fix $x \in [0,1]$. Finally, because 
+\begin{enumerate}[label=(\alph*)]
+  \item $\int_{-1}^1 Q_n(x)dx=1$ by definition of  $Q_n$  (\myref{Equation}{tse3})
+  \item $Q_n(x)=c_n(1-x^2)^n\geq 0$ for all $x \in [-1,1]$ 
+  \item $\abso{\tilde{f}(x+t)-\tilde{f}(x)}<\frac{\epsilon}{2} $ for all $t$ such that $\abso{t}<\delta $, by definition of $\delta $ (\myref{Equation}{tse5})
+  \item $Q_n(x)\leq \sqrt{n}(1-\delta^2)^n $ for all $x$ such that  $\delta\leq \abso{x}\leq 1$
+  \item $4M\sqrt{n}(1-\delta^2)^n<\frac{\epsilon}{2} $ by definition of $n$  (\myref{Equation}{tse5})
+\end{enumerate}
+we have
+\begin{align*}
+\abso{P_n(x)-\tilde{f}(x)}&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)}\\
+&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)\int_{-1}^1 Q_n(t)dt }\\
+&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt -\int_{-1}^1 \tilde{f}(x)Q_n(t)dt}\\
+&=\abso{\int_{-1}^1 \big[\tilde{f}(x+t)-\tilde{f}(x)   \big]Q_n(t)dt}\\
+&\leq \int_{-1}^1 \abso{\big[ \tilde{f}(x+t)-\tilde{f}(x)\big]Q_n(t)}dt\\
+&=\int_{-1}^1 \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt\\
+&\leq \int_{-1}^{-\delta} 2MQ_n(t)dt +\int_{-\delta}^{\delta} \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt+\int_{\delta}^1 2M Q_n(t)dt\\
+&\leq 2M\Big(\int_{-1}^{-\delta}Q_n(t)dt+\int_{\delta}^1 Q_n(t)dt  \Big)+ \int_{-\delta}^\delta \big(\frac{\epsilon}{2} \big)Q_n(t)dt\\
+&\leq 4M(1-\delta) \sqrt{n}(1-\delta^2)^n+ \frac{\epsilon}{2} \\
+&\leq 4M\sqrt{n}(1-\delta^2)^n+\frac{\epsilon}{2} <\epsilon  
+\end{align*}
+Because $x$ is arbitrarily picked from  $[0,1]$, we now have $\norm{P_n-\tilde{f} }_{\infty}<\epsilon \vdone$\\
+
+Lastly, we show 
+\begin{align*}
+\olive{\text{ our result can be transplanted to arbitrary $\mathcal{C}\big([a,b] \big)$ }}
+\end{align*}
+Let $[a,b]$ be arbitrary. Fix $\epsilon $ and $f \in \mathcal{C}\big([a,b] \big)$. We wish 
+\begin{align*}
+\olive{\text{ to find $P \in \R[x]\big|_{[a,b]}$ such that $\norm{f-P}_\infty\leq \epsilon $ }}
+\end{align*}
+Define $g:[0,1]\rightarrow \R$ by 
+\begin{align}
+g(x)\triangleq f(a+(b-a)x)
+\end{align}
+We know there exists $P_n:[0,1]\rightarrow \R$ such that 
+\begin{align*}
+\norm{P_n-g}_{\infty}<\epsilon 
+\end{align*}
+Define $H_n:[a,b]\rightarrow \R$ by 
+\begin{align*}
+H_n(x)=P_n\big(\frac{x-a}{b-a} \big)
+\end{align*}
+Because $P_n$ is a real polynomial on  $[0,1]$, we know $H_n$ is a real polynomial on $[a,b]$. We now claim 
+\begin{align*}
+  \olive{\text{ such $H_n\text{ works }$ }}
+\end{align*}
+Fix $x \in [a,b]$. Observe 
+\begin{align*}
+\big|f(x)-H_n(x)\big|&=\abso{f(x)-P_n\big(\frac{x-a}{b-a} \big)}\\
+&=\abso{g\big(\frac{x-a}{b-a} \big)-P_n\big(\frac{x-a}{b-a} \big)}< \epsilon \odone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+It is at now, we will show that every real-valued continuous functions on $[a,b]$ can be approximated by polynomials with rational coefficient. This fact enable our computer to more easily approximate real-valued continuous function on $[a,b]$.\\
+
+Note that since $\mathcal{C}\big([a,b] \big)$ is a separable metric space, we can show that $\mathcal{C}\big([a,b] \big)$ has cardinality of at most continuum $\mathfrak{c}$ . 
+\end{mdframed}
+\begin{theorem}
+\textbf{(The space $\Q[x]|_{[a,b]}$ is dense in $\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)$, thus $\mathcal{C}\big([a,b] \big)$ is separable)} 
+\begin{align*}
+\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)\text{ is separable }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $\Q[x]\big|_{[a,b]}$ is countable, to show $\mathcal{C}\big([a,b] \big)$ is separable, we only wish to show 
+\begin{align*}
+\vi{\Q [x]\big|_{[a,b]}\text{ is dense in }\mathcal{C}\big([a,b] \big)}
+\end{align*}
+Because $\R[x]\big|_{[a,b]}$ is dense in $\mathcal{C}\big([a,b] \big)$, we reduce our problem into proving 
+\begin{align*}
+\vi{\Q[x]\big|_{[a,b]}\text{ is dense in }\R[x]\big|_{[a,b]}}
+\end{align*}
+Fix $\epsilon \text{ and } P \in \R[x]\big|_{[a,b]}$. We must
+\begin{align*}
+\vi{\text{ find $Q \in \Q[x]\big|_{[a,b]}$ such that $\norm{Q-P}_\infty \leq \epsilon $}}
+\end{align*}
+Express $P(x)=\sum_{k=0}^n r_kx^k$. Let $M> \max \set{\abso{a},\abso{b}}$. Because $\Q$ is dense in $\R$, we know there exists $c_k \inq$ such that  $\abso{c_k-r_k}< \frac{\epsilon }{(n+1)M^n}$. We claim 
+\begin{align*}
+\vi{Q(x)=\sum_{k=0}^n c_kx^k\text{ works }}
+\end{align*}
+Fix $x \in [a,b]$. See
+\begin{align*}
+\abso{P(x)-Q(x)}&=\abso{\sum_{k=0}^n (c_k-r_k)x^k}\\
+&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot \abso{x}^k\\
+&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot M^k\\
+&\leq (M^n)\sum_{k=0}^n \abso{c_k-r_k}\\
+&< M^n (n+1)\big( \frac{\epsilon }{(n+1)M^n}\big)=\epsilon \vdone
+\end{align*}
+\end{proof}
+\section{The Stone-Weierstrass Theorem}
+\begin{mdframed}
+Recall that a \textbf{vector space over a field $\F$} is a set $V$ equipped with \textbf{vector addition} $+:V\times V\to V$  and \textbf{scalar multiplication}  such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $(V,+)$ is an abelian group. 
+  \item Scalar multiplication is compatible with field multiplication:   $\Big((ab)v=a(bv) \Big)$
+  \item Scalar multiplication is distributive: $\Big((a+b)v=av+bv\text{ and }a(v+w)=av+aw \Big)$
+\end{enumerate}
+
+There are many ways to define the term \textbf{algebra over a field $\F$}. One can exhaust all the laws an algebra should obey. In short, an \textbf{algebra over a field $\F$} (or \textbf{$\F$-algebra}) is a set $(A,+,\cdot )$ equipped scalar multiplication over $\F$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item Multiplication $\cdot $ is $\underline{\text{distributive}}$ with respect to $+$  
+  \item $(A,+)$ and scalar multiplication form a vector space. 
+   \item Scalar multiplication and vector multiplication $\cdot $ is compatible: $\Big((av)\cdot (bw)=ab(v\cdot w) \Big)$
+\end{enumerate}
+Given an arbitrary set $E$ and a field $\F$, let $A$ be the set of all functions from  $E$ to $\F$. The following is a list of some algebra 
+\begin{enumerate}[label=(\alph*)]
+  \item $(\R^3,\text{cross product})$  over $\R$ 
+  \item $(\C,\text{complex multiplication})$ over $\C$ 
+  \item $(\Q[x],\text{function multiplication})$ over $\Q$
+  \item $(\text{Functions from }E\text{ to }\F,\text{function multiplication})$ over $\F$
+  \item $(\text{Continuous functions from $(E,\tau)$ to $\C$ },\text{function multiplication})$ over $\C$  
+  \item $(\text{Linear transformation from $V$ to $V$, composition})$ over $\F$ where  $V$ is over $\F$
+  \item $\big(M_n(\F),\text{matrix multiplication}\big)$ over $\F$
+\end{enumerate}
+Note that $B=(\text{continuous functions from }\C\text{ to }\C,\text{composition})$ over $\C$ is not an algebra, even though $B$ is both a vector space and a ring. ($\because$ scalar multiplication and multiplication are not compatible).\\
+
+It is at here we shall introduce some general terminologies. Given an arbitrary set $E$, a field  $\F$ and a point $x \in E$, we say a family $\mathcal{F}$ of functions  from $E$ to  $\F$  \textbf{vanish at $x$} if for all $f \in \mathcal{F}$, we have $f(x)=0$. We say $\mathcal{F}$ \textbf{separate points} in $E$ if for all  $x_2\neq x_1 \in E$, there exists $f\in \mathcal{F}$ such that $f(x_2)\neq f(x_1)$. 
+\end{mdframed}
+
 \chapter{Calculus in Euclidean Space}
 \section{Inverse Function Theorem}
 \begin{mdframed}
@@ -4918,6 +5548,144 @@ Then, the space of $n$-tuple is clearly not a concrete Euclidean space, and clea
 \end{mdframed}
 \textbf{(SVD)}
 
+\chapter{Differential Geometry}
+\section{Invariance of Domain}
+\begin{theorem}
+\textbf{(Invariance of Domain)} If $U$ is an open subset of $\R^n$ and  $f:U\rightarrow \R^n$ is one-to-one and continuous, then 
+\begin{align*}
+f(U)\text{ is open and }f\text{ is a homeomorphism between }U\text{ and }f(U)
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\textbf{(Invariance of Dimension)} If $U$ is a non-empty open subset of $\R^n$ and  $V$ is a non-empty subset of $\R^m$ homeomorphic to  $U$, then  $n=m$.
+\end{theorem}
+\section{Differentiable Manifold}
+\begin{abstract}
+This section give an example of a differentiable manifold.
+\end{abstract}
+\begin{mdframed}
+Given a topological space $(X,\mathscr{T })$ and fix $n$, if $:U\rightarrow \R^n$ is a homeomorphism between some subspace $U$ of $X$ and some open subspace of $\R^n$, we say $(\Phi,U)$ is a \textbf{chart} on $X$, and if there exists a collection $A=\set{(\Phi_i, U_i)}_{i \in I}$ of chart cover the whole $X$, we say $A$ is an  \textbf{atlas} and  $X$ is  \textbf{locally Euclidean}. An atlas $A$ is said to be a \textbf{differentiable atlas}, if for each two charts $(\Phi_i,U_i),(\Phi_j,U_j)$ in $A$, 
+\begin{align*}
+\text{ The function }\Phi_i\circ \Phi_j^{-1}:\Phi_j(U_i\cap U_j)\to \Phi_i(U_i\cap U_j)\text{ is a smooth diffeomorphism }
+\end{align*}
+It is easily checked that for each two chart $\Phi_i,\Phi_j$, the \textbf{transition map} $\Phi_i\circ \Phi_j^{-1}$ is a homeomorphism. Now, if the union of two differentiable atlas $A_1,A_2$ is again differentiable, we say $A_1,A_2$ are \textbf{compatible}. With some effort, one can check that compatibility is an equivalence relation on the collection of all possible atlas on $X$. Thus, it make sense for us to define the \textbf{smooth structure}, i.e., a maximal differentiable atlas on $X$. We now give definition to the term \textbf{topological manifold}, which we will use throughout this chapter.  
+\end{mdframed}
+\begin{definition}
+\textbf{(Definition of Topological Manifold)} We say a Topological space $X$ is a \textbf{topological manifold} if 
+\begin{enumerate}[label=(\alph*)]
+  \item $X$ is locally Euclidean. 
+  \item $X$ is Hausdorff. 
+  \item $X$ is second countable.
+\end{enumerate}
+\end{definition}
+\begin{mdframed}
+Immediately, one should check that all three conditions are necessary: There are locally Euclidean space that is not Hausdorff, \customref{Bug-Eyed Line}{Bug-Eyed Line} for example. There also are locally Euclidean space that is not second countable, \customref{Long Line}{Long Line} for example. Immediately, since subspace topology preserve Hausdorff and second countable, we see every open subset of $\R^n$ is trivially a topological manifold. Now, by a \textbf{smooth manifold}, we merely mean a manifold equipped with a differentiable atlas. Here, we give an example of a non-trivial smooth manifold.  
+\end{mdframed}
+\begin{mdframed}
+Define an equivalence relation on $\R^{n+1}\setminus \set{\textbf{0}}$ by 
+\begin{align*}
+\textbf{x}\sim \textbf{y}\overset{\triangle}{\iff }\textbf{y}=\ld \textbf{x}\text{ for some $\ld \inr^*$ } 
+\end{align*}
+Let $\R\P ^n\triangleq (\R^{n+1}\setminus \set{\textbf{0}})\setminus \sim $ be the quotient space. Also, define an equivalence relation on $\S^n\triangleq \set{\textbf{x}\inr^{n+1}:\abso{x}=1}$ by 
+\begin{align*}
+\textbf{x}\sim \textbf{y}\overset{\triangle}{\iff } \textbf{x}=\textbf{y}\text{ or }\textbf{x}=-\textbf{y}
+\end{align*}
+and let $\P^n\triangleq \S^n\setminus \sim $ be the quotient space. We denote the quotient map by $q:\S^n\rightarrow \P^n$ and $\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \R\P^n$. Note that $\S^n\subseteq \R^{n+1}\setminus \set{\textbf{0}}$, 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Equivalent Definitions of Real Projective Space)} 
+\begin{align*}
+\R\P^n\text{ and }\P^n\text{ are homeomorphic }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $\phi:\P^n\rightarrow \R\P^n$ by 
+\begin{align*}
+\set{\textbf{x},-\textbf{x}}\mapsto \set{\ld  \textbf{x}:\ld \inr^*}
+\end{align*}
+It is straightforward to check that $\phi$ is well-defined and bijective.  
+
+
+Observe  
+\begin{enumerate}[label=(\alph*)]
+  \item $\pi|_{\S^n}:\S^n\rightarrow \R\P^n;\pi \circ \textbf{id}$ is continuous 
+  \item $q=\phi^{-1}\circ \pi|_{\S^n}$
+\end{enumerate}
+We first prove 
+\begin{align*}
+  \vi{\phi:\P^n\rightarrow \R\P^n\text{ is continuous }}
+\end{align*}
+Fix open $U\subseteq \R\P^n$. Because $\pi|_{\S^n}$ is continuous, we know 
+\begin{align*}
+\pi|_{\S^n}^{-1}(U)\text{ is open }
+\end{align*}
+We can manually check that 
+\begin{align*}
+\phi^{-1}(U)=q(\pi|_{\S^n}^{-1}(U)) 
+\end{align*}
+Then by definition of quotient map $q$, we see 
+\begin{align*}
+\phi^{-1}(U)=q(\pi|_{\S^n}^{-1} (U))\text{ is open }\vdone
+\end{align*}
+We now prove 
+ \begin{align*}
+\blue{\phi:\P^n\rightarrow \R\P^n\text{ is open }}
+\end{align*}
+Fix open $U\subseteq \P^n$. Because of proposition  (a), to show $\phi (U)$ is open, we only have to show
+\begin{align*}
+  \pi|_{\S^n}^{-1}(\phi (U))\text{ is open }
+\end{align*}
+Then see 
+\begin{align*}
+\pi |^{-1}_{\S^n}(\phi (U))= (\phi^{-1}\circ \pi |_{\S^n})(U)=q(U)\text{ is open } \bdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{($\P^n$ is Hausdroff)} 
+\begin{align*}
+\P^n\text{ is Hausdroff }
+\end{align*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{mdframed}
+Let 
+\begin{align*}
+V_i\triangleq \set{\textbf{x}\inr^{n+1}:\textbf{x}^i \neq 0}\text{ for each }1\leq i\leq n+1
+\end{align*}
+By definition, it is clear that 
+\begin{align*}
+\text{ either }\bigcup [\textbf{x}]\subseteq V_i\text{ or }\bigcup [\textbf{x}]\subseteq V_i^c
+\end{align*}
+Then if we define $\phi_i:V_i\rightarrow \R^n$ by
+\begin{align*}
+\phi_i(\textbf{x})\triangleq \Big(\frac{\textbf{x}^1}{\textbf{x}^i},\dots ,\frac{\textbf{x}^{i-1}}{\textbf{x}^i},\frac{\textbf{x}^{i+1}}{\textbf{x}^i},\dots,\frac{\textbf{x}^{n+1}}{\textbf{x}^i} \Big)
+\end{align*}
+because $\textbf{x}\sim \textbf{y}\text{ and }\textbf{x}\in V_i\implies \phi_i(\textbf{x})=\phi_i(\textbf{y})$, we can well induce a map 
+\begin{align*}
+\Phi_i:U_i\triangleq \pi (V_i)\rightarrow \R^n; [\textbf{x}]\mapsto \phi_i(\textbf{x})
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Real Projective Space with a differentiable atlas)} We have
+\begin{align*}
+  \R\P^n\text{ with atlas }\set{(U_i,\Phi_i):1\leq i\leq n+1}\text{ is a differentiable manifold }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $V_i$ is clearly open and $U_i=\pi(V_i)$, we know $U_i$ is open. Because $V_i$ cover  $\R^{n+1}\setminus \set{\textbf{0}}$, we know $U_i$ also cover  $\R\P^n$. Each $U_i$ is second-countable  (Homeomorphic to $V_i\overset{\text{open}}{\subseteq}\R^n$) implies $\R\P^n$ is second-countable. It remains to show  the atlas is differentiable.\\
+
+Fix $(\textbf{x}_1,\dots ,\textbf{x}_{n})\in \Phi_i(U_i\cap U_j)$. We compute 
+\begin{align*}
+\Phi_j\circ \Phi_i^{-1} (\textbf{x}^1,\dots ,\textbf{x}^{n} )&=\Phi_j \Big( [(\textbf{x}^1,\dots ,\textbf{x}^{i-1},1,\textbf{x}^i,\textbf{x}^{i+1},\dots, \textbf{x}^n)] \Big) \\
+&= \begin{cases}
+  (\frac{\textbf{x}^1}{\textbf{x}^j},\dots , \frac{\textbf{x}^{j-1}}{\textbf{x}^j},\frac{\textbf{x}^{j+1}}{\textbf{x}^j},\dots ,\frac{\textbf{x}^{i-1}}{\textbf{x}^j},\frac{1}{\textbf{x}^j},\frac{\textbf{x}^i}{\textbf{x}^j},\dots ,\frac{\textbf{x}^n}{\textbf{x}^j})& \text{ if $j<i$ }\\
+  (\frac{\textbf{x}^1}{\textbf{x}^{j-1}},\dots , \frac{\textbf{x}^{i-1}}{\textbf{x}^{j-1}},\frac{1}{\textbf{x}^{j-1}},\frac{\textbf{x}^i}{\textbf{x}^{j-1}},\dots , \frac{\textbf{x}^{j-2}}{\textbf{x}^{j-1}}, \frac{\textbf{x}^j}{\textbf{x}^{j-1}}, \dots,\frac{\textbf{x}^n}{\textbf{x}^{j-1}})& \text{ if $j>i$ }
+\end{cases}
+\end{align*}
+\end{proof}
+
 \chapter{Beauty}
 \section{Fundamental Theorem of Algebra}
 \begin{theorem}
@@ -5113,7 +5881,9 @@ Using induction, it is now easy to see
 \chapter{and the Beast}
 \section{Topologist's Sine Curve}
 \section{Long Line}
-\section{Bugged Eye Line}
+\label{Long Line}
+\section{Bug-Eyed Line}
+\label{Bug-Eyed Line}
 \section{Weierstrass Function}
 \section{Fabius Function}
 \section{Vitali Set}

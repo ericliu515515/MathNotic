@@ -115,4 +115,92 @@ We have proved \myref{Equation}{ran2}.
 \begin{theorem}
 \textbf{($\Q$ is dense in $\R$)}
 \end{theorem}
+\chapter{Complex Analysis HW}
+\section{HW1}
+\begin{theorem}
+\begin{align*}
+  (1+i)^n, \frac{(1+i)^n}{n},\frac{n!}{(1+i)^n}\text{ all diverge as }n\to \infty
+\end{align*}
+\begin{proof}
+Note that 
+\begin{align*}
+\abso{(1+i)^n}=2^{\frac{n}{2}}\to \infty\text{ as }n\to \infty
+\end{align*}
+This implies $(1+i)$ is unbounded, thus diverge.\\
+
+Note that 
+\begin{align*}
+\abso{\frac{(1+i)^n}{n}}=\frac{(\sqrt{2})^n}{n}
+\end{align*}
+Observe 
+\begin{align*}
+\frac{(\sqrt{2})^n}{n}= \frac{[(\sqrt{2}-1)+1]^n}{n}&=\frac{\sum_{k=0}^n \binom{n}{k}(\sqrt{2}-1)^k}{n}\\
+&\geq \frac{\binom{n}{2}(\sqrt{2}-1 )^2}{n}=(n-1) [\frac{(\sqrt{2}-1 )^2}{2}]\to \infty\text{ as }n\to \infty
+\end{align*}
+This implies $\frac{(1+i)^n}{n}$ is unbounded, thus diverge. \\
+
+Note that 
+\begin{align*}
+\abso{\frac{n!}{(1+i)^n}}= \frac{n!}{(\sqrt{2})^n}
+\end{align*}
+Note that for all $k\geq 8$, we have 
+\begin{align*}
+\frac{k}{\sqrt{2}}\geq \frac{\sqrt{8}}{\sqrt{2}}=2
+\end{align*}
+This implies 
+\begin{align*}
+  \frac{n!}{(\sqrt{2})^n}=\prod_{k=1}^n \frac{k}{\sqrt{2}}= \frac{7!}{(\sqrt{2})^7}\prod_{k=8}^n \frac{k}{\sqrt{2}}\geq \frac{7!}{(\sqrt{2})^7}\prod_{k=8}^n 2\geq \frac{7!2^{n-8+1}}{(\sqrt{2})^7}\to \infty
+\end{align*}
+which implies $\frac{n!}{(1+i)^n}$ is unbounded, thus diverge.
+\end{proof}
+\end{theorem}
+\begin{theorem}
+  \begin{align*}
+  n!z^n\text{ converge }\iff z=0
+  \end{align*}
+\end{theorem}
+\begin{proof}
+If $z=0$, then  $n!z^n=0$ for all  $n$, which implies  $n!z^n\to 0$. Now, suppose $z\neq 0$. Let $M\inn$ satisfy $\abso{z}>\frac{1}{M}$. Observe 
+\begin{align*}
+\abso{n!z^n}=\abso{\prod_{k=1}^n kz}=\abso{\prod_{k=1}^{2M-1} kz } \abso{\prod_{k=2M}^{n} kz }\geq \abso{\prod_{k=1}^{2M-1}kz}\abso{\prod_{k=2M}^n 2Mz}\geq \abso{\prod_{k=1}^{2M-1}kz}2^{n-2M+1}\to \infty
+\end{align*}
+This implies $n!z^n$ is unbounded, thus diverge.
+\end{proof}
+\begin{theorem}
+  \begin{align*}
+  u_n\to u\implies v_n\triangleq \sum_{k=1}^n \frac{u_k}{n}\to u
+  \end{align*}
+\end{theorem}
+\begin{proof}
+Because 
+\begin{align*}
+\sum_{k=1}^n \frac{u_k}{n}=\sum_{k\leq \sqrt{n}}\frac{u_k}{n}+ \sum_{\sqrt{n}<k\leq n}\frac{u_k}{n}
+\end{align*}
+It suffices to prove 
+\begin{align*}
+\vi{\sum_{k\leq \sqrt{n} }\frac{u_k}{n}\to 0}\text{ and }\blue{\sum_{\sqrt{n}<k\leq n}\frac{u_k}{n}\to u}\text{ as }n\to \infty
+\end{align*}
+Because $u_n$ converge, we can let  $M$ bound  $\abso{u_n}$. Observe 
+\begin{align*}
+\abso{\sum_{k\leq \sqrt{n} } \frac{u_k}{n}}\leq \sum_{k\leq \sqrt{n}} \abso{\frac{u_k}{n}}\leq \sum_{k\leq \sqrt{n}} \frac{M}{n}\leq \frac{M\sqrt{n} }{n}=\frac{M}{\sqrt{n}}\to 0\text{ as }n\to 0\vdone
+\end{align*}
+Because 
+\begin{align*}
+\sum_{\sqrt{n}<k\leq n} \frac{u_k}{n}= \frac{n-\lceil \sqrt{n}\rceil +1 }{n}\sum_{\sqrt{n}<k\leq n} \frac{u_k}{n-\lceil \sqrt{n}  \rceil+1}
+\end{align*}
+and 
+\begin{align*}
+  \lim_{n\to \infty} \frac{n- \lceil \sqrt{n}\rceil +1 }{n}=1
+\end{align*}
+We can reduce the problem into proving 
+\begin{align*}
+  \blue{\lim_{n\to \infty}\sum_{\sqrt{n}<k\leq n} \frac{u_k}{n- \lceil \sqrt{n}\rceil +1 }=u}
+\end{align*}
+Fix $\epsilon $. Let $N$ satisfy that for all  $n\geq N$, we have $\abso{u_n-u}<\epsilon $. Then for all $n \geq N^2$, we have 
+\begin{align*}
+  \abso{\Big(\sum_{\sqrt{n}<k \leq n } \frac{u_k}{n-\lceil \sqrt{n}\rceil +1 } \Big)- u}  &=\abso{\sum_{\sqrt{n}<k\leq n } \frac{u_k-u}{n-\lceil \sqrt{n}\rceil +1 } }\\
+  &\leq \sum_{\sqrt{n}<k\leq n} \frac{\abso{u_k-u}}{n-\lceil \sqrt{n}\rceil +1  }\\
+  &\leq \sum_{\sqrt{n}<k\leq n} \frac{\epsilon }{n-\lceil \sqrt{n}\rceil +1  }=\epsilon \bdone
+\end{align*}
+\end{proof}
 \end{document}
