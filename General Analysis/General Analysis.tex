@@ -250,6 +250,23 @@ The proof follows from noting
 \end{align*}
 \end{proof}
 \begin{theorem}
+\label{Hausdorff and Quotient}
+  \textbf{(Hausdorff and Quotient)} If $\pi:X\rightarrow Y$ is an open mapping, and we define
+\begin{align*}
+R_\pi\triangleq \set{(x,y)\in X^2 : \pi (x)=\pi (y)} 
+\end{align*}
+Then
+\begin{align*}
+R_\pi\text{ is closed }\iff Y\text{ is Hausdorff }
+\end{align*}
+\end{theorem}
+\begin{proof}
+  Suppose $R_\pi$ is closed. Fix some $x,y$ such that $\pi (x)\neq \pi (y)$. Because $R_\pi$ is closed, we know there exists open neighborhood $U_x,U_y$ such that $U_x \times U_y \subseteq (R_\pi)^c$. It is clear that $\pi (U_x),\pi (U_y)$ are respectively open neighborhood of $\pi (x)$ and $\pi (y)$. To see $\pi (U_x)$ and $\pi (U_y)$ are disjoint, \red{assume} that $\pi (a)\in \pi (U_x)\cap \pi (U_y)$. Let $a_x\in U_x$ and $a_y\in U_y$ satisfy $\pi (a_x)=\pi (a)=\pi (a_y)$, which is impossible because $(a_x,a_y)\in (R_\pi)^c$. \CaC\\
+
+
+Suppose $Y$ is Hausdorff. Fix some  $x,y$ such that  $\pi (x)\neq \pi (y)$. Let $U_x,U_y$ be open neighborhoods of  $\pi (x),\pi (y)$ separating them. Observe that $(x,y)\in \pi^{-1}(U_x)\times \pi^{-1}(U_y)\subseteq (R_\pi)^c$
+\end{proof}
+\begin{theorem}
 \label{Quotient Group of Topological Group}
 \textbf{(Quotient Group of Topological Group)}
 \end{theorem}
@@ -1425,6 +1442,7 @@ The proof follows from noting
 \end{proof}
 
 \begin{theorem}
+\label{Ratio and Root Test}
 \textbf{(Ratio and Root Test)} 
 \begin{align*}
   \limsup_{n\to\infty} \sqrt[n]{\abso{z_n}}<1 \text{ or }\limsup_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}<1&\implies \sum z_n\text{ absolutely converge }\\
@@ -2587,7 +2605,7 @@ f'(x)=\lim_{t\to x}\phi (t)&=\lim_{t\to x}\lim_{n\to \infty}\phi_n(t)\\
 \end{align*}
 \end{proof}
 \begin{theorem}
-\label{UCaD}
+\label{UCaH}
 \textbf{(Uniform Convergence and Holomorphic)} Given a real number $r$ and some sequence of function $f_n:\overline{D_r(z_0)}\rightarrow \C$ such that 
 \begin{enumerate}[label=(\alph*)]
   \item $f'_n$ uniformly converge on  $D_r(z_0)$
@@ -2615,10 +2633,10 @@ Fix $\epsilon $. We wish
 \end{align*}
 Because $f_n(v)$ converge, and $f'_n$ uniformly converge, we know there exists $N$ such that 
  \begin{align}
-\label{UCD1}
+\label{UCD3}
 \begin{cases}
  \abso{f_n(v)-f_m(v)}<\frac{\epsilon}{2} \\
-\norm{f_n'-f_m'}_\infty <\frac{\epsilon }{4r}
+\norm{f_n'-f_m'}_\infty <\frac{\epsilon }{8r}
 \end{cases}\text{ for all $n,m>N$ }
 \end{align}
 We claim 
@@ -2629,60 +2647,84 @@ Fix $z \in \overline{D_r(z_0)}$ and $n,m>N$. We first show
 \begin{align*}
 \olive{\abso{\big(f_n-f_m\big)(z)-\big(f_n-f_m \big)(z_0)}\leq \frac{\epsilon}{2}}
 \end{align*}
-Denote $f_n-f_m:\overline{D_r(z_0)}\rightarrow \C$ by $g$. Because $\overline{D_r(z_0)}$ is convex, we can define $h:[0,1]\rightarrow \R$ by
+Denote $f_n-f_m:\overline{D_r(z_0)}\rightarrow \C$ by $g$. Because 
+\begin{align*}
+\abso{g(z)-g(z_0)}\leq \abso{\text{Re}\Big(g(z)-g(z_0) \Big)}+ \abso{\text{Im}\Big(g(z)-g(z_0)\Big)}
+\end{align*}
+WOLG, we only have to prove 
+\begin{align*}
+\olive{\abso{\text{Re}\Big(g(z)-g(z_0) \Big)}\leq \frac{\epsilon}{4}}
+\end{align*}
+Because $\overline{D_r(z_0)}$ is convex, we can define $h:[0,1]\rightarrow \R$ by
 \begin{align*}
 h(t)\triangleq \text{Re}\Big(g(tz+(1-t)z_0) \Big)
 \end{align*}
-By \customref{CR}{Chain Rule} and \customref{DiJ}{matrix representation of derivative}, we see that for all $t\in [0,1]$ 
+By \customref{CR}{Chain Rule} and \customref{DiJ}{matrix representation of derivative}, we see that for all $t\in (0,1)$ 
 \begin{align*}
   h'(t)= ac-bd&\text{ where }z_0-z=a+b i \\
 &\text{ and } g'(tz+(1-t)(z_0))=c+di
 \end{align*}
-Now by \customref{MVT}{MVT} and \myref{Equation}{UCD1}, we can deduce 
+Because $\abso{a+b i}\leq r$ and $\abso{c+di}\leq \frac{\epsilon}{8r}$ by  \myref{Equation}{UCD3}, if we use  \customref{MVT}{MVT}, we see that 
 \begin{align*}
-  lkdfsj
+ \abso{\text{Re}\Big(g(z)-g(z_0) \Big)}=\abso{h(1)-h(0)}&=\abso{h(t)}\text{ for some $t\in (0,1)$ }\\
+ &=\abso{ac}+\abso{bd}\leq \frac{\epsilon }{4}\odone
 \end{align*}
-Now, by \myref{Equation}{UCD1}, we have 
+Now, by \myref{Equation}{UCD3}, we have 
 \begin{align*}
-  \abso{\big(f_n-f_m \big)(x)}&\leq \abso{\big(f_n-f_m \big)(x)-\big(f_n-f_m \big)(x_0)}+\abso{\big(f_n-f_m \big)(x_0)}\\
+  \abso{\big(f_n-f_m \big)(z)}&\leq \abso{\big(f_n-f_m \big)(z)-\big(f_n-f_m \big)(v)}+\abso{\big(f_n-f_m \big)(v)}\\
 &<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
 \end{align*}
-Let $f:[a,b]\rightarrow \R$ be the limit of $f_n$. It remains to prove
+Let $f:\overline{D_r(z_0)}\rightarrow \C$ be the limit of $f_n$. It remains to prove
 \begin{align}
-\label{UCAC2}
-\blue{f'(x)=\lim_{n\to \infty}f_n'(x)\text{ on }(a,b)}
+\label{UCAC4}
+\blue{f'(z)=\lim_{n\to \infty}f_n'(z)\text{ on }D_r(z_0)}
 \end{align}
-Fix $x\in (a,b)$ and define $\phi ,\phi_n:[a,b]\setminus x\rightarrow \R$ by 
+Fix $z\in D_r(z_0)$ and define $\phi ,\phi_n:\overline{D_r(z_0)}\setminus z\rightarrow \R$ by 
 \begin{align*}
-\phi (t)\triangleq \frac{f(t)-f(x)}{t-x}\text{ and }\phi_n(t)\triangleq \frac{f_n(t)-f_n(x)}{t-x}
+\phi (u)\triangleq \frac{f(u)-f(z)}{u-z}\text{ and }\phi_n(u)\triangleq \frac{f_n(u)-f_n(z)}{u-z}
 \end{align*}
-It is clear that $\phi_n\to \phi$ pointwise on $[a,b]\setminus x$. We now show 
+It is clear that $\phi_n\to \phi$ pointwise on $\overline{D_r(z_0)}\setminus z$. We now show 
 \begin{align*}
-\olive{\phi_n\to \phi\text{ uniformly on }[a,b]\setminus x}
+\olive{\phi_n\to \phi\text{ uniformly on }\overline{D_r(z_0)}\setminus z}
 \end{align*}
 Fix $\epsilon $. We have
 \begin{align*}
-  \olive{\text{ to find $N$ such that  $\abso{\phi_n(t)-\phi _m(t)}\leq \epsilon $ for all $n,m>N$ and  $t\in [a,b]\setminus x$ }}
+  \olive{\text{ to find $N$ such that  $\abso{\phi_n(t)-\phi _m(t)}\leq \epsilon $ for all $n,m>N$ and  $t\in \overline{D_r(z_0)}\setminus z$ }}
 \end{align*}
-Because $f_n'$ uniformly converge on  $(a,b)$, we know there exists $N$ such that 
+Because $f_n'$ uniformly converge on  $D_r(z_0)$, we know there exists $N$ such that 
  \begin{align}
-\label{CUaC1}
-\norm{f_n'-f_m'}_\infty\leq \epsilon \text{ for all $n,m>N$ }
+\label{CUaC2}
+\norm{f_n'-f_m'}_\infty\leq \frac{\epsilon}{4} \text{ for all $n,m>N$ }
 \end{align}
 We claim 
 \begin{align*}
 \olive{\text{ such }N\text{ works }}
 \end{align*}
-Fix $n,m>N$ and $t \in [a,b]\setminus x$. We wish to prove 
+Fix $n,m>N$ and $u \in \overline{D_r(z_0)}$. We wish to prove 
 \begin{align*}
-\olive{\abso{\phi_n(t)-\phi_m(t)}\leq \epsilon }
+\olive{\abso{\phi_n(u)-\phi_m(u)}\leq \epsilon }
 \end{align*}
-Because $(f_n-f_m)'=f_n'-f'_m$, by \customref{MVT}{MVT} and \myref{Equation}{CUaC1}, we can deduce 
+Denote $f_n-f_m:\overline{D_r(z_0)}\rightarrow \C$ by $g$. Because 
 \begin{align*}
-  \abso{\phi_n(t)-\phi_m(t)}&\leq \abso{\frac{f_n(t)-f_n(x)}{t-x}-\frac{f_m(t)-f_m(x)}{t-x}}\\
-                            &=\abso{\frac{\big(f_n-f_m\big)(t)-\big(f_n-f_m\big)(x)}{t-x}}\\
- &=\abso{\big(f'_n-f'_m\big)(t_0)}\text{ for some $t_0$ between $t,x$  }\\
-&\leq \epsilon \odone
+\abso{\phi_n(u)-\phi_m(u)}=\abso{\frac{g(u)-g(z)}{u-z}}\leq \frac{\abso{\text{Re}\Big(g(u)-g(z) \Big)}}{\abso{u-z}}+ \frac{\abso{\text{Re}\Big(g(u)-g(z) \Big)}}{\abso{u-z}}
+\end{align*}
+WOLG, we only have to prove 
+\begin{align*}
+\olive{\frac{\abso{\text{Re}\Big(g(u)-g(z) \Big)}}{\abso{u-z}}\leq \frac{\epsilon}{2}}
+\end{align*}
+Again, define $h:[0,1]\rightarrow \R$ by 
+\begin{align*}
+h(t)\triangleq \text{Re}\Big(g(tu+(1-t)z_0) \Big)
+\end{align*}
+Then by \customref{CR}{Chain Rule} and \customref{DiJ}{matrix representation of derivative}, we see that for all $t\in (0,1)$ 
+\begin{align*}
+  h'(t)= ac-bd&\text{ where }u-z=a+b i \\
+&\text{ and } g'(tu+(1-t)(z))=c+di
+\end{align*}
+Now, by \customref{MVT}{MVT} and \myref{Equation}{CUaC2}, we can deduce 
+\begin{align*}
+  \frac{\abso{\text{Re}\Big(g(u)-g(z) \Big)}}{\abso{u-z}}=\frac{\abso{h(1)-h(0)}}{\abso{u-z}}&=\frac{\abso{h'(t)}}{\abso{a+b i}}\text{ for some }t \in (0,1)\\
+&= \frac{\abso{ac}+\abso{bd}}{\abso{a+b i}}\leq \abso{c}+\abso{d}\leq \frac{\epsilon}{2} \odone
 \end{align*}
 Note that 
 \begin{align*}
@@ -2695,21 +2737,43 @@ f'(x)=\lim_{t\to x}\phi (t)&=\lim_{t\to x}\lim_{n\to \infty}\phi_n(t)\\
 \end{align*}
 \end{proof}
 \section{Analytic Functions}
+\begin{abstract}
+
+\end{abstract}
 \begin{mdframed}
-In this section, by a  \textbf{real power series}, we mean a pair $(a,c_n)$ where $a \inr$ is called the \textbf{center} of power series, and $c_n\inr$ are the coefficients sequence. By \textbf{radius of convergence}, we mean a unique  $R \in \R^+_0 \cup  \infty$ such that 
+In this section, by a  \textbf{power series}, we mean a pair $(z_0,c_n)$ where $z_0 \inc$ is called the \textbf{center} of power series, and $c_n\inz$ are the coefficients sequence. By \textbf{radius of convergence}, we mean a unique  $R \in \R^+_0 \cup  \infty$ such that 
  \begin{align*}
-\sum_{n=0}^\infty c_n(x-a)^n
+\sum_{n=0}^\infty c_n(z-z_0)^n
 \begin{cases}
-  \text{ converge absolutely }& \text{ if  }\abso{x-a}<R\\
-  \text{ diverge }& \text{ if  }\abso{x-a}>R\\
+  \text{ converge absolutely }& \text{ if  }\abso{z-z_0}<R\\
+  \text{ diverge }& \text{ if  }\abso{z-z_0}>R\\
 \end{cases}
 \end{align*}
-Such $R$ always exist (and is unique, this fact can be checked without computing the actual value of $R$) and is exactly 
+Such $R$ always exist (and is unique, the uniqueness can be checked without computing the actual value of $R$) and is exactly 
 \begin{align}
 \label{Cauchy-Hadamard}
 R=\frac{1}{\limsup_{n\to\infty} \sqrt[n]{c_n} }
 \end{align}
-This result is called \textbf{Cauchy-Hadamard Theorem}. It can be directly proved by applying Root Test to $\sum c_n(z-a)^n$. For this, we say $(a-R,a+R)$ is the \textbf{interval of convergence}. Note that Cauchy-Hadamard Theorem does not tell us whether a power series converges at points of boundary of disk of convergence. It require extra works to determine if the power series converge at endpoints. Following is an example of such discussion.   
+This result is called \textbf{Cauchy-Hadamard Theorem} and is proved by applying \customref{Ratio and Root Test}{Root Test} to $\sum c_n(z-z_0)^n$. Note that Cauchy-Hadamard Theorem does not tell us whether a power series converges at points of boundary of disk of convergence. It require extra works to determine if the power series converge at boundary. 
+\end{mdframed}
+\begin{theorem}
+\label{Abel's Test for Power Series}
+\textbf{(Abel's Test for Power Series)} Suppose $a_n\to0$ monotonically and $\sum a_nz^n$ has radius of convergence $R$ . 
+\begin{align*}
+  \text{ The power series $\sum a_nz^n$ at least converge on $\overline{D_R(0)}\setminus \set{R}$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Note that 
+\begin{align*}
+\sum \frac{a_n}{R^n}z^n\text{ has radius of convergence }R
+\end{align*}
+Fix $z\in \overline{D_R(0)}\setminus \set{R}$. Note that 
+\begin{align*}
+\abso{\sum_{n=0}\frac{z^n}{R^n}}= \abso{\frac{1-(\frac{z}{R})^{N+1}}{1-\frac{z}{R}}} \leq \frac{2}{\abso{1-\frac{z}{R}}}\text{ for all }N
+\end{align*}
+It then follows from  \customref{Dirichlet's Test}{Dirichlet's Test} that $\sum a_n (\frac{z}{R})^n$ converge.
+\end{proof}
 \begin{Example}{\textbf{(Discussion of Convergence on Boundary)}}{}
 \begin{align*}
 f_q(z)=\sum_{n=0}^\infty n^q z^n \text{ provided $q\inr$ }
@@ -2722,98 +2786,94 @@ It is clear that  $f_q$ has convergence radius  $1$ for all  $q\inr$. For bounda
   0 \leq q \implies f_q \text{ diverge on }S^1
 \end{cases}
 \end{align*}
-At $z=1$, the discussion is just p-series. On $S^1\setminus \set{1}$, the discussion use Dirichlet's Test, where boundedness of $\sum^n_{k=0} z^k$ is proved by geometric formula.  
-\begin{align*}
-\abso{\sum_{k=1}^n z^k}&=\abso{\sum_{k=1}^n e^{ik\theta}}=\frac{\abso{e^{i\theta}-e^{i(n+1)\theta}}}{\abso{1-e^{i\theta}}}\leq \frac{2}{\abso{1-e^{i\theta}}}
-\end{align*}
+Note that
+\begin{enumerate}[label=(\alph*)]
+  \item At $z=1$, the discussion is just \customref{p-Series}{p-Series}.  
+  \item $n^q\searrow 0$ if and only if  $q<0$; and if  $n^q\searrow 0$, then the series converge by  \customref{Abel's Test for Power Series}{Abel's Test for Power Series}.  
+  \item If $q\geq 0$, $n^qz^n$ does not converge to  $0$ on  $S^1\setminus \set{1}$
+\end{enumerate}
 \end{Example}
-Notice that the fact $\sum c_n(z-a)^n$ absolutely converge in $(a-R,a+R)$ implies the convergence is uniform on all $[a-R+\epsilon ,a+R-\epsilon ]$ by M-Test. However, on $(a-R,a+R)$, the convergence is not always uniform. 
-\begin{Example}{\textbf{(Failure of Uniform Convergence on $(a-R,a+R)$)}}{}
+
+\begin{mdframed}
+Notice that the fact $\sum c_n(z-z_0)^n$ absolutely converge in $D_R(z_0)$ implies the convergence is uniform on all $\overline{D_{R-\epsilon }(z_0)}$ by \customref{WM-t}{M-Test}. However, on $D_R(z_0)$, the convergence is not always uniform. 
+\begin{Example}{\textbf{(Failure of Uniform Convergence on $D_R(z_0)$)}}{}
 \begin{align*}
 f(z)=\sum_{n=0}^\infty z^n
 \end{align*}
-Note $R=1$. Use Geometric Series Formula to show $f(x)=\frac{1}{1-x}$ on $(-1,1)$. It is then clear that $f$ is unbounded on  $(-1,1)$ while all partial sums $\sum_{k=0}^n z^k$ is bounded on $(-1,1)$. 
+Note $R=1$. Use \customref{geometric series}{Geometric Series Formula} to show $f(z)=\frac{1}{1-z}$ on $D_1(0)$. It is then clear that $f$ is unbounded on  $D_1(0)$ while all partial sums $\sum_{k=0}^n z^k$ is bounded on $D_1(0)$. 
 \end{Example}
-We now introduce some terminologies. We say a real function $f$ is \textbf{real analytic at} $a\inr$ if there exists a power series $(a,c_n)$ such that $f$ agrees with $\sum_{n=0}^\infty c_n(z-a)^n$ on $(a-R,a+R)$ for some $R$  (of course, such $R$ must not be strictly greater than the radius of convergence of $(a,c_n)$).\\
 
-It shall be quite clear that if $f,g$ are both analytic at  $a\inr$ with radius $R_f\leq R_g$, then $f+g$ and $fg$ are both analytic at  $a$ with radius at least $R_f$. (the fact $fg$ is analytic at $a$ with radius at least $R_f$ is an immediate consequence of  Merten's Theorem)\\
+We now introduce some terminologies. We say a complex function $f$ is \textbf{analytic at} $z_0\inc$ if there exists a power series $(z_0,c_n)$ such that $f$ agrees with $\sum_{n=0}^\infty c_n(z-z_0)^n$ on $D_R(z_0)$ for some $R$  (of course, such $R$ must not be strictly greater than the radius of convergence of $(a,c_n)$).\\
 
-We now investigate deeper into real analytic functions. We first prove that real analytic functions are smooth, that is,  $C^{\omega}(I)\subseteq C^{\infty}(I)$ on open $I\subseteq \R$. 
+It shall be quite clear that if $f,g$ are both analytic at  $z\inc$ with radius $R_f\leq R_g$, then $f+g$ and $fg$ are both analytic at  $z$ with radius at least $R_f$. (the fact $fg$ is analytic at $z$ with radius at least $R_f$ is an immediate consequence of  \customref{Merten Cau}{Merten's Theorem for Cauchy Product}). We now investigate deeper into analytic functions. We first prove that \customref{AfaS}{analytic functions are smooth}.  
 \end{mdframed}
 \begin{theorem}
-\textbf{(Abel's Test for Power Series)} Suppose $a_n\to0$ monotonically. 
-\begin{align*}
-  \text{ The power series $\sum a_nz^n$ at least converge on $\overline{D_1(0)}\setminus \set{1}$ }
-\end{align*}
-\end{theorem}
-\begin{proof}
-The proof follows from \customref{Dirichlet's Test}{Dirichlet's Test} and noting for each fixed $z\in \overline{D_1(0)}\setminus \set{1}$ we have 
-\begin{align*}
-\abso{\sum_{n=0}^N z^n}= \abso{\frac{1-z^{N+1}}{1-z}}\leq \frac{2}{\abso{1-z}}\text{ for all }N
-\end{align*}
-\end{proof}
-\begin{theorem}
 \label{AfaS}
-\textbf{(Analytic functions are Smooth)} Given a power series $(a,c_n)$ of convergence radius $R$, if we define $f:D_R(a)\rightarrow \C$ by
+\textbf{(Term by Term Differentiation)} Given a power series $(z_0,c_n)$ of convergence radius $R$, if we define $f:D_R(z_0)\rightarrow \C$ by
 \begin{align*}
-f(z)=\sum _{n=0}^{\infty}c_n(z-a)^n 
+f(z)\triangleq \sum _{n=0}^{\infty}c_n(z-z_0)^n 
 \end{align*}
-Then 
-\begin{enumerate}[label=(\alph*)]
-  \item $f$ is of class $C^{\infty}$ on $D_R(a)$ 
-  \item $f^{(k)}(z)=\sum_{n=k}^{\infty}\frac{n!}{(n-k)!}c_n(z-a)^{n-k}$
-\end{enumerate}
+Then $f$ is holomorphic on $D_{R}(z_0)$ and its derivative is also a power series with radius of convergence at least $R$.
+ \begin{align*}
+f'(z)= \sum_{n=0}^{\infty}(n+1)c_{n+1}(z-z_0)^n
+\end{align*}
 \end{theorem}
 \begin{proof}
-We prove by induction. Base case $k=0$ is trivial. Fix $k\geq 0$. Suppose we have 
+We first prove that 
 \begin{align*}
-f^{(k)}(z)=\sum_{n=k}^{\infty} \frac{n!}{(n-k)!}c_n(z-a)^{n-k}\text{ on $D_R(a)$ }
-\end{align*}
-We are required to prove 
-\begin{align*}
-\vi{f^{(k+1)}(z)=\sum_{n=k+1}^\infty \frac{n!}{(n-k-1)!}c_n(z-a)^{n-k-1}\text{ on }D_R(a)}
-\end{align*} 
-Set $f_m$ 
- \begin{align*}
-f_m(z)\triangleq \sum_{n=k}^{k+m} \frac{n!}{(n-k)!}c_n(z-a)^{n-k}
-\end{align*}
-We have 
-\begin{align}
-\label{PS1}
-f_m \to f^{(k)}\text{ pointwise on $D_R(a)$ and }f'_m (z)= \sum_{n=k+1}^{k+m}\frac{n!}{(n-k-1)!}c_n(z-a)^{n-k-1}
-\end{align}
-We abstract our problem into proving 
-\begin{align*}
-  \vi{f'_m \to f^{(k+1)}\text{ pointwise on $D_R(a)$ }}
-\end{align*}
-Fix $z_0 \in D_R(a)$. We only wish to prove 
-\begin{align*}
-\vi{(f^{(k)})'(z_0)=\lim_{m\to \infty}f'_m(z_0)}
-\end{align*}
-Fix $\epsilon $ such that $\abso{z_0-a}< R-\epsilon $. By \myref{Equation}{PS1}, using \myref{Theorem}{UCaD} (Uniform Convergence and Differentiaiton). We only have to prove 
-\begin{align*}
-  \vi{f'_m\text{ uniformly converge on $\overline{D}_{R-\epsilon }$ }}
+\vi{\text{ The power series }\sum_{n=0}^{\infty}(n+1)c_{n+1}(z-z_0)^n\text{ has radius of convergence at least }R}
 \end{align*}
 Note that 
 \begin{align*}
-f'_m(z)=\sum_{n=0}^{m-1} \frac{(n+k+1)!}{n!}c_{n+k+1}(z-a)^n
+  \sum_{n=0}^{\infty}(n+1)c_{n+1}(z-z_0)^n=\sum_{n=1}^{\infty}nc_n(z-z_0)^{n-1}
 \end{align*}
-so we can compute the radius of convergence for $f'_m$
+Fix $z \in D_R(z_0)$. We are required to prove 
 \begin{align*}
-\limsup_{n\to\infty} \sqrt[n]{\frac{(n+k+1)!}{n!}\abso{c_{n+k+1}}}&=\limsup_{n\to\infty} \sqrt[n]{\abso{c_{n+k+1}}} \\
-&=\limsup_{n\to\infty} \sqrt[n]{\abso{c_n}}=R 
+  \vi{\sum_{n=1}^{\infty} n \abso{c_n(z-z_0)^{n-1}}\text{ converge }}
 \end{align*}
-Together by Cauchy-Hadamrd (absolute convergent on $a+R-\epsilon $) and M-test show that 
+Let $r<R$ satisfy $z\in D_r(z_0)$. \customref{Cauchy-Hadamard}{Cauchy-Hadamard} tell us that 
 \begin{align*}
-\sum_{n=0}^\infty \frac{(n+k+1)!}{n!}c_{n+k+1}(z-a)^n \text{ uniformly converge on $\overline{D}_{R-\epsilon }(a)$ }\vdone
+\sum_{n=0}^{\infty} c_nr^n\text{ absolutely converge }
 \end{align*}
+which implies 
+\begin{align*}
+K\triangleq \sum_{n=0}^{\infty}\abso{c_n}r^{n-1}=\frac{\sum_{n=0}^{\infty}\abso{c_n}r^n}{r}\inr
+\end{align*}
+Now observe 
+\begin{align*}
+\sum_{n=1}^{\infty}n\abso{c_n(z-z_0)^{n-1}}&=\sum_{n=1}^{\infty} \abso{\frac{z-z_0}{r}}^{n-1}n\abso{c_n}r^{n-1}\\
+&\leq K\sum_{n=1}^{\infty} nq^{n-1}\text{ where }q= \abso{\frac{z-z_0}{r}}<1
+\end{align*}
+The proof then follows from noting $\sum_{n=1}^{\infty} nq^{n-1}$ converge by \customref{Ratio and Root Test}{Root Test}. $\vdone$\\
+
+We now prove 
+\begin{align*}
+\blue{f'(z)=\sum_{n=0}^{\infty}(n+1)c_{n+1}(z-z_0)^n\text{ on }D_R(z_0)}
+\end{align*}
+Define $f_m:D_R(z_0)\rightarrow \C$ by
+ \begin{align*}
+f_m(z)\triangleq \sum_{n=0}^{m} c_n(z-z_0)^n
+\end{align*}
+Observe 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_m\to f$ pointwise on $D_R(a)$ 
+  \item $f'_m(z)=\sum_{n=0}^{m-1}(n+1)c_{n+1}(z-z_0)^n$ for all $m$
+\end{enumerate}
+Fix $z\in D_R(z_0)$. Proposition (b) allow us to reduce the problem into proving
+\begin{align}
+\label{an1}
+  \blue{f'(z)=\lim_{m\to \infty}f'_m(z)\text{ on $D_R(a)$ }}
+\end{align}
+Let $z\in D_r(z_0)$ where $r<R$. With proposition (a) in mind, to show \myref{Equation}{an1}, by \myref{Theorem}{UCaH}, we only have to prove $f'_m$ uniformly converge on $D_r(z_0)$, which follows from \customref{WM-t}{M-Test} and the fact that \vi{$\sum_{n=0}^{\infty}(n+1)c_{n+1}(z-z_0)^n$ absolutely converge on $D_R(z_0)$}. $\bdone$ 
 \end{proof}
 \begin{mdframed}
+
+
+
 Now by \myref{Theorem}{AfaS}, if we are given a real function $f$ analytic at $a$, the power series representation $(a,c_n):\sum_{n=0}^\infty c_n(z-a)^n=f$ must be unique, since $f$ is proved to be infinitely differentiable at $a$ and proved to satisfy $c_k=\frac{f^{(k)}(a)}{k!}$.\\
 
 Notice that the arguments above are all based on the hypothesis that $f$ is analytic, and that smoothness does not imply analytic. See the following examples.
 \end{mdframed}
-\begin{mdframed}
 \begin{Example}{\textbf{(Smooth but not Analytic Function)}}{}
 \begin{align*}
 f(x)=\begin{cases}
@@ -2842,6 +2902,7 @@ f(x)=\begin{cases}
 \end{align*}
 Use the same trick (but more advanced) to show $f$ is smooth, and note that $f$ is not analytic at $\pm 1$. 
 \end{Example}
+\begin{mdframed}
 \end{mdframed}
 \begin{mdframed}
 Now, it comes an interesting question. Given a real function $f$ analytic at $a$ with radius  $R$, and suppose $b \in (a-R,a+R)$.
@@ -5748,11 +5809,11 @@ Define an equivalence relation on $\R^{n+1}\setminus \set{\textbf{0}}$ by
 \begin{align*}
 \textbf{x}\sim \textbf{y}\overset{\triangle}{\iff }\textbf{y}=\ld \textbf{x}\text{ for some $\ld \inr^*$ } 
 \end{align*}
-Let $\R\P ^n\triangleq (\R^{n+1}\setminus \set{\textbf{0}})\setminus \sim $ be the quotient space. Also, define an equivalence relation on $\S^n\triangleq \set{\textbf{x}\inr^{n+1}:\abso{x}=1}$ by 
+Let $\RP ^n\triangleq (\R^{n+1}\setminus \set{\textbf{0}})\setminus \sim $ be the quotient space. Also, define an equivalence relation on $S^n\triangleq \set{\textbf{x}\inr^{n+1}:\abso{\textbf{x}}=1}$ by 
 \begin{align*}
 \textbf{x}\sim \textbf{y}\overset{\triangle}{\iff } \textbf{x}=\textbf{y}\text{ or }\textbf{x}=-\textbf{y}
 \end{align*}
-and let $\P^n\triangleq \S^n\setminus \sim $ be the quotient space. We denote the quotient map by $q:\S^n\rightarrow \P^n$ and $\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \R\P^n$. Note that $\S^n\subseteq \R^{n+1}\setminus \set{\textbf{0}}$, 
+and let $\P^n\triangleq S^n\setminus \sim $ be the quotient space. We denote the quotient map by $q:\S^n\rightarrow \P^n$ and $\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \R\P^n$. Note that $S^n\subseteq \R^{n+1}\setminus \set{\textbf{0}}$, 
 \end{mdframed}
 \begin{theorem}
 \label{RPnhom}
@@ -5882,10 +5943,27 @@ Fix $(\textbf{x}_1,\dots ,\textbf{x}_{n})\in \Phi_i(U_i\cap U_j)$. We compute
   (\frac{\textbf{x}^1}{\textbf{x}^{j-1}},\dots , \frac{\textbf{x}^{i-1}}{\textbf{x}^{j-1}},\frac{1}{\textbf{x}^{j-1}},\frac{\textbf{x}^i}{\textbf{x}^{j-1}},\dots , \frac{\textbf{x}^{j-2}}{\textbf{x}^{j-1}}, \frac{\textbf{x}^j}{\textbf{x}^{j-1}}, \dots,\frac{\textbf{x}^n}{\textbf{x}^{j-1}})& \text{ if $j>i$ }
 \end{cases}
 \end{align*}
-This implies our atlas is indeed differentiable. Lastly, $\R P^n$ is Hausdorff follows from  \customref{P^n is Hausdorff}{$\P^n$ is Hausdorff} and \customref{RPnhom}{$\R P^n$ is homeomorphic to $\P^n$}. \\
+This implies our atlas is indeed differentiable. \\
 
+Before we prove $\RP^n$ is Hausdorff, we first prove that  \olive{$\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \RP^n$ is an open mapping}. Let $U\subseteq \R^{n+1}\setminus \set{\textbf{0}}$ be open. Observe that 
+\begin{align*}
+\pi^{-1}(\pi(U))= \set{t\textbf{x}\inr^{n+1}:t\neq 0\text{ and }\textbf{x}\in U}
+\end{align*}
+Fix $t_0\textbf{x}\in \pi^{-1}(\pi (U))$. Let $B_\epsilon (\textbf{x})\subseteq U$. Observe that
+\begin{align*}
+B_{\abso{t_0}\epsilon }(t_0\textbf{x})\subseteq t_0B_\epsilon (\textbf{x})\subseteq t_0U\subseteq \pi^{-1}(\pi (U))
+\end{align*}
+This implies $\pi ^{-1}(\pi (U))$ is open.  $\odone$ \\
 
-
+Now, \customref{Hausdorff and Quotient}{because $\pi$ is open, to show $\RP^n$ is Hausdorff, we only have to show}
+ \begin{align*}
+R_\pi \triangleq \set{(\textbf{x},\textbf{y})\in (\R^{n+1}\setminus \set{\textbf{0}})^2:\pi (\textbf{x})= \pi (\textbf{y})}\text{ is closed }
+\end{align*}
+Define $f:(\R^{n+1}\setminus \set{\textbf{0}})^2\rightarrow \R$ by 
+\begin{align*}
+f(\textbf{x},\textbf{y})\triangleq \sum_{i\neq j} (\textbf{x}^i\textbf{y}^j-\textbf{x}^j \textbf{y}^i)^2
+\end{align*}
+Note that $f$ is clearly continuous and $f^{-1}(0)=R_\pi$, which finish the proof.
 \end{proof}
 
 \chapter{Beauty}
