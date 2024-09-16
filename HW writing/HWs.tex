@@ -14,7 +14,7 @@
 \tableofcontents
 \pagebreak
 
-\chapter{HW for General Analysis}
+\chapter{General Analysis HW}
 \section{HW1}
 \begin{theorem}
 $\R^n$ is complete.
@@ -99,7 +99,7 @@ Observe that for all $r\geq \max_{i\in \set{1,\dots,n}} N_i$, we have
 \abso{\textbf{x}_r - \Big(\lim_{k\to \infty}x_{(1,k)},\dots ,\lim_{k\to \infty}x_{(n,k)} \Big)}&=\sqrt{\sum_{i=1}^n \abso{x_{(i,r)}- \lim_{k\to \infty}x_{(i,k)}}^2} \\
 &\leq \sqrt{\sum_{i=1}^n \frac{\epsilon^2}{n}}=\epsilon 
 \end{align*}
-We have proved \myref{Equation}{ran2}.
+We have proved \myref{Equation}{ran3}.
 
 
 
@@ -115,6 +115,17 @@ We have proved \myref{Equation}{ran2}.
 \begin{theorem}
 \textbf{($\Q$ is dense in $\R$)}
 \end{theorem}
+\begin{proof}
+Fix $x\inr$ and $\epsilon >0$. To show $\Q$ is dense in  $\R$, we have to find $q\inq$ such that $\abso{x-q}<\epsilon $.\\
+
+Let $m\inn$ satisfy $\frac{1}{m}<\epsilon $. Let $n$ be the largest integer such that $n\leq mx$. Because $n$ is the largest integer such that $n\leq mx$, we know $mx-n<1$, otherwise we can deduce $n+1\leq mx$, which is impossible, since $n+1$ is an integer and $n$ is the largest integer such that $n\leq mx$. We now see that 
+\begin{align*}
+\frac{n}{m}\inq \text{ and }\abso{x-\frac{n}{m}}=\frac{mx-n}{m}< \frac{1}{m}<\epsilon 
+\end{align*}
+
+
+
+\end{proof}
 \chapter{Complex Analysis HW}
 \section{HW1}
 \begin{theorem}
@@ -202,5 +213,88 @@ Fix $\epsilon $. Let $N$ satisfy that for all  $n\geq N$, we have $\abso{u_n-u}<
   &\leq \sum_{\sqrt{n}<k\leq n} \frac{\abso{u_k-u}}{n-\lceil \sqrt{n}\rceil +1  }\\
   &\leq \sum_{\sqrt{n}<k\leq n} \frac{\epsilon }{n-\lceil \sqrt{n}\rceil +1  }=\epsilon \bdone
 \end{align*}
+\end{proof}
+\chapter{PDE intro HW}
+\section{HW1}
+\begin{theorem}
+\begin{align*}
+\text{ Show }u\mapsto u_x+uu_y\text{ is non-linear }
+\end{align*}
+\end{theorem}
+\begin{proof}
+See that 
+\begin{align}
+\label{he1}
+2u\mapsto 2u_x+4uu_y\neq 2(u_x+uu_y)
+\end{align}
+\end{proof}
+\begin{theorem}
+\begin{align*}
+\text{ Solve }(1+x^2)u_x+u_y=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+The characteristic curve has the derivative 
+\begin{align*}
+\frac{dy}{dx}=\frac{1}{1+x^2}
+\end{align*}
+The solution to this ODE is 
+\begin{align*}
+y=\arctan x + C
+\end{align*}
+We now see that the solution to the PDE in \myref{Equation}{he1} is 
+\begin{align*}
+u=f\big((\arctan x)-y\big)\text{ where }f:\R\rightarrow \R\text{ is an arbitrary smooth function }
+\end{align*}
+A characteristic curve is as followed.
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering       
+\includegraphics[height=8cm,width=15cm]{pdehw1}
+   \end{minipage}
+\end{center}
+\end{proof}
+\begin{theorem}
+\begin{align}
+\label{he2}
+\text{ Solve }au_x+b u_y +cu=0
+\end{align}
+\end{theorem}
+\begin{proof}
+Fix 
+\begin{align*}
+\begin{cases}
+  x'\triangleq ax+by \\
+  y'\triangleq bx-ay
+\end{cases}
+\end{align*}
+This map is clearly a diffeomorphism. Compute 
+\begin{align*}
+  \begin{cases}
+    u_x= \frac{\partial u}{\partial x'}\frac{\partial x'}{\partial x}+\frac{\partial u}{\partial y'}\frac{\partial y'}{\partial x}=au_{x'}+bu_{y'}\\
+    u_y=\frac{\partial u}{\partial x'}\frac{\partial x'}{\partial y}+\frac{\partial u}{\partial y'}\frac{\partial y'}{\partial y}=bu_{x'}-au_{y'}
+  \end{cases}
+\end{align*}
+Plugging it back into the PDE in \myref{Equation}{he2}, we have 
+\begin{align}
+\label{he3}
+cu+ (a^2+b^2)u_{x'}=0
+\end{align}
+If $c=a^2+b^2=0$, then all smooth functions are solution. If $a^2+b^2=0$ but $c\neq 0$, then clearly the only solution is $u=\tilde{0} $. If $a^2+b^2\neq 0$ but $c=0$, then $u_{x'}=\tilde{0}$, which implies $u=f(y')$ where $y'=bx-ay$ and  $f$ can be arbitrary smooth function.\\
+
+Now, suppose $a^2+b^2\neq 0\neq c$, note that the PDE in \myref{Equation}{he3} is just an ODE of the form 
+\begin{align*}
+y+\frac{a^2+b^2}{c}y'=0
+\end{align*}
+The general solution to this ODE is 
+\begin{align*}
+y=Ce^{\frac{-ct}{a^2+b^2}}
+\end{align*}
+In other words, the general solution of the PDE in \myref{Equation}{he3} is 
+\begin{align*}
+u=C e^{\frac{-cx'}{a^2+b^2}}=Ce^{\frac{-c(ax+by)}{a^2+b^2}}
+\end{align*}
+
+
 \end{proof}
 \end{document}

@@ -202,7 +202,7 @@ U\subseteq Y\text{ is open }\overset{\triangle}{\iff }\pi^{-1}(U)\subseteq X\tex
 \end{align*}
 It is easily checked that 
 \begin{enumerate}[label=(\alph*)]
-  \item Quotient topology is indeed a topology and $\pi:X\rightarrow Y$ is open.  
+  \item Quotient topology is indeed a topology.  
   \item Quotient topology is the largest (finest) topology on $Y$ such that $\pi:X\rightarrow Y$ is continuous.
 \end{enumerate}
 \end{mdframed}
@@ -240,6 +240,16 @@ X=\R\text{ and }Y=\set{(-\infty,0),[0,\infty)}
 \end{align*}
 \end{Example}
 \begin{theorem}
+\label{Basis and Quotient}
+\textbf{(Basis and Quotient)} Given a basis $\mathcal{B}$ of $X$, if  $\pi:X\rightarrow Y$ is an open mapping, then $\pi (\mathcal{B})$ is a basis of $Y$.
+\end{theorem}
+\begin{proof}
+The proof follows from noting 
+\begin{align*}
+\pi^{-1}(E)=\bigcup B_i \implies E=\bigcup \pi (B_i)
+\end{align*}
+\end{proof}
+\begin{theorem}
 \label{Quotient Group of Topological Group}
 \textbf{(Quotient Group of Topological Group)}
 \end{theorem}
@@ -265,7 +275,7 @@ An important consequence of (\myref{Corollary}{SoB}: space of bounded functions 
 \label{COLO}
 \textbf{(Change Order of Limit Operations: Part 1)} Given a double sequence $a_{n,k}$ whose codomain is $(Y,d)$. Suppose
 \begin{enumerate}[label=(\alph*)]
-  \item $a_{n,k}\to a_{\bullet,k}$ uniformly as $n\to \infty$ 
+  \item $a_{n,k}\to a_{\bullet,}$ uniformly as $n\to \infty$ 
   \item $a_{n,k}\to A_n$ pointwise as  $k\to \infty$.
   \item $A_n \to A$ 
 \end{enumerate}
@@ -1576,7 +1586,7 @@ Note that reverse triangle inequality give us
 Then we can check that 
 \begin{enumerate}[label=(\alph*)]
   \item  $\norm{\cdot}:\Big(V,\norm{\cdot}_\infty \Big)\rightarrow \R$ is Lipschitz continuous because of \myref{Equation}{Lip1}.
-  \item $S\triangleq \set{y\in V:\norm{y}_\infty=1}$ is sequentially compact and non-empty. 
+  \item $S\triangleq \set{y\in V:\norm{y}_\infty=1}$ is sequentially compact in $\norm{\cdot}$ and non-empty. 
 \end{enumerate}
 Now, by EVT, we know $\min _{y \in S}\norm{y}$ exists. Note that $\min_{y \in S}\norm{y}>0$, since $0 \not\in S$. We claim 
 \begin{align*}
@@ -2364,15 +2374,96 @@ We can now apply \myref{Theorem}{SoMPD} to $g$ and have
 \textbf{(Composition of Smooth Map is Smooth)}
 \end{theorem}
 \section{Holomorphic Functions}
-\section{Uniform Convergence and Differentiation}
-
+\begin{abstract}
+This is a short section introducing the idea of holomorphic and prove some basic properties of holomorphic functions, i.e., \customref{Cauchy Riemann Criteria}{Cauchy Riemann Criteria} and \customref{Product and Quotient Rule for Holomorphic Function}{Product and Quotient Rule for Holomorphic Function}. 
+\end{abstract}
 \begin{mdframed}
-Before the next Theorem, let's see three examples why this time we don't (can't) use the hypothesis: $f_n \to f$ uniformly. 
+Given a complex-valued function $f$ defined on some open subset of  $\C$ containing  $z$, we say  $f$ is \textbf{holomorphic at $z$} if there exists some complex number denoted by $f'(z)$ such that 
+\begin{align*}
+\frac{f(z+h)-f(z)-f'(z)h}{h}\to 0\text{ as }h\to 0;h\inc
+\end{align*}
+Immediately, one can see that a holomorphic function is differentiable when viewed as a function between $\R^2$ with derivative 
+\begin{align}
+\label{cd}
+  \begin{bmatrix}
+    a & -b \\
+    b & a
+  \end{bmatrix}\text{ where }f'(z)=a+b i
+\end{align}
+With the form of derivative in mind, one may conjecture that holomorphic is a 'stricter' condition than merely differentiable when regarded as function between $\R^2$. This is exactly true. Consider the following example.
+\end{mdframed}
+\begin{Example}{\textbf{(A not holomorphic function)}}{}
+\begin{align*}
+f(z)\triangleq \overline{z}
+\end{align*}
+This is a linear function with matrix representation 
+\begin{align*}
+\begin{bmatrix}
+  1&0 \\
+  0& -1
+\end{bmatrix}
+\end{align*}
+which doesn't fit the necessary form in \myref{Equation}{cd}.
+\end{Example}
+\begin{theorem}
+\label{Cauchy Riemann Criteria}
+\textbf{(Cauchy Riemann Criteria)} Given a complex-valued function $f$ defined on some open subset $U$ of $\C$ containing  $z$, if we write 
+ \begin{align*}
+f(x+yi)=u(x,y)+iv(x,y)
+\end{align*}
+where $u,v:U\rightarrow \R$, then the following two statements are equivalent.
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is holomorphic at  $z$. 
+  \item $u,v$ are differentiable at  $z$ and 
+\begin{align*}
+    \frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}\text{ and }\frac{\partial u}{\partial y}=\frac{-\partial v}{\partial x}\text{ at }z
+\end{align*}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) to (b) is an immediate result of \customref{CR}{Chain Rule} and \customref{DiJ}{matrix representation of $f'(z)$}. Suppose  (b) is true. Let $h=h_1+ih_2$ and $z=x+yi$. Because $u,v$ are differentiable at  $(x,y)$, by the \customref{DiJ}{matrix representation of derivative}, we have 
+\begin{align*}
+\frac{f(z+h)-f(z)}{h}&= \frac{u(x+h_1,y+h_2)-u(x,y)}{h_1+ih_2}+ i \frac{v(x+h_1,y+h_2)-v(x,y)}{h_1+ih_2}\\
+&=\frac{h_1u_x+h_2u_y+ih_1v_x+ih_2v_y+o(\abso{h})}{h_1+ih_2}\\
+&=\frac{(h_1+ih_2)u_x+i(h_1+ih_2)v_x+o(\abso{h})}{h_1+ih_2}\\
+&=u_x+iv_x+\frac{o(\abso{h})}{h_1+ih_2}\to u_x+iv_x
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Product and Quotient Rule for Holomorphic Function}
+\textbf{(Product and Quotient Rule for Holomorphic Function)} Given two function $f,g$ holomorphic at  $z$, we have 
+ \begin{align*}
+   (fg)'(z)= f'(z)g(z)+f(z)g'(z)
+\end{align*}
+and if $g(z)\neq 0$, we also have 
+\begin{align*}
+\Big(\frac{f}{g}\Big)'(z)=\frac{f'(z)g(z)-f(z)g'(z)}{(g(z))^2}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe
+\begin{align*}
+  &\frac{f(z+h)g(z+h)-f(z)g(z)}{h}\\
+  =&f(z+h)\Big[\frac{g(z+h)-g(z)}{h} \Big] +g(z) \Big[\frac{f(z+h)-f(z)}{h} \Big]\to f'(z)g(z)+f(z)g'(z)
+\end{align*}
+and 
+\begin{align*}
+\frac{\frac{f(z+h)}{g(z+h)}-\frac{f(z)}{g(z)}}{h}&= \frac{f(z+h)g(z)-f(z)g(z+h)}{g(z+h)g(z)h}\\
+&=\frac{1}{g(z+h)g(z)}\Big[ g(z)\Big(\frac{f(z+h)-f(z)}{h}\Big)-f(z)\Big(\frac{g(z+h)-g(z)}{h} \Big) \Big]\\
+&\to \frac{f'(z)g(z)-f(z)g'(z)}{(g(z))^2}
+\end{align*}
+\end{proof}
+\section{Uniform Convergence and Differentiation}
+\begin{abstract}
+This is a section discussing the relationship between uniform convergence and differentiation, which heavily rely on the usage of \customref{MVT}{MVT}, and is used to prove \customref{AfaS}{Analytic function is smooth}. 
+\end{abstract}
+\begin{mdframed}
+Before stating \myref{Theorem}{UCaD}, let's see three examples why we don't (can't) use the hypothesis: $f_n \to f$ uniformly in our statement of \myref{Theorem}{UCaD} 
 \begin{Example}{\textbf{(Differentiable functions are NOT closed under uniform convergence)}}{}
 \begin{align*}
 X=[-1,1]\text{ and }f(x)=\abso{x}
 \end{align*}
-By Weierstrass approximation Theorem, there is a sequence of polynomials (differentiable) that uniformly converge to $f$, which is not differntiable at  $0$. 
+By \customref{WaT}{Weierstrass approximation Theorem}, there is a sequence of polynomials (differentiable) that uniformly converge to $f$, which is not differentiable at  $0$. 
 \end{Example}
 \begin{Example}{\textbf{(Derivative won't necessarily converge to the right place)}}{}
 \begin{align*}
@@ -2392,11 +2483,11 @@ Compute
 f=\tilde{0} \text{ and }f'_n(0)=1
 \end{align*}
 \end{Example}
-Informally speaking, these examples together with the fact integral are closed under uniform convergence (\myref{Theorem}{RIFac}) should give you some ideas that differentiation and integration although are operations inverse to each other, are NOT symmetric. There is a certain hierarchy on continuous functions on a fixed compact interval. Thus, we have the next Theorem in its form. Note that in application, the next Theorem only require us to prove $f'_n$ uniformly converge, and doesn't require us to prove to where does it converge. 
+Informally speaking, these examples together with the fact \customref{RIFac}{Riemann integral are closed under uniform convergence} should give you some ideas that differentiation and integration although are operations inverse to each other, are NOT symmetric. There is a certain hierarchy on continuous functions on a fixed compact interval. Thus, we have the next Theorem in its form. Note that in application, the next Theorem only require us to prove $f'_n$ uniformly converge, and doesn't require us to prove to where does it converge. 
 \end{mdframed}
 \begin{theorem}
 \label{UCaD}
-\textbf{(Uniform Convergence and Differentiation)} Given a sequence of function $f_n:[a,b]\rightarrow \R$ such that 
+\textbf{(Uniform Convergence and Differentiation)} Given a bounded interval $[a,b]$ and some sequence of function $f_n:[a,b]\rightarrow \R$ such that 
 \begin{enumerate}[label=(\alph*)]
   \item $f'_n$ uniformly converge on  $(a,b)$
   \item $f_n$ are continuous on  $[a,b]$
@@ -2433,171 +2524,174 @@ We claim
 \begin{align*}
 \vi{\text{ such $N$ works }}
 \end{align*}
-Fix $x \in [a,b]$ and $n,m>N$. We need
+Fix $x \in [a,b]$ and $n,m>N$. We first show
 \begin{align*}
-  \vi{\text{ to show }\abso{f_n(x)-f_m(x)}\leq \epsilon}
+\olive{\abso{\big(f_n-f_m\big)(x)-\big(f_n-f_m \big)(x_0)}\leq \frac{\epsilon}{2}}
 \end{align*}
-We first prove
+Because $(f_n-f_m)'=f_n'-f_m'$, by \customref{MVT}{MVT} and \myref{Equation}{UCD1}, we can deduce 
 \begin{align*}
-\olive{\abso{f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)}\leq \frac{\epsilon}{2}}
-\end{align*}
-Because $(f_n-f_m)'=f_n'-f_m'$, by MVT (\myref{Theorem}{MVT}) and \myref{Equation}{UCD1}, we can deduce 
-\begin{align*}
- \abso{f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)}&=\abso{(f_n-f_m)(x)-(f_n-f_m)(x_0)}\\
- &=\Big|\big[(f_n-f_m)'(t)\big](x-x_0)\Big|\text{ for some $t$ between $x,x_0$ }\\
+ \abso{\big(f_n-f_m\big)(x)-\big(f_n-f_m \big)(x_0)}&=\Big|\big[(f_n-f_m)'(t)\big](x-x_0)\Big|\text{ for some $t$ between $x,x_0$ }\\
  &< \frac{\epsilon}{2(b-a)}\cdot \abso{x-x_0}\\
  &\leq \frac{\epsilon }{2(b-a)}\cdot (b-a)=\frac{\epsilon}{2}\hspace{0.3cm}\big(\because x,x_0  \in [a,b]\big)\odone
 \end{align*}
 Now, by \myref{Equation}{UCD1}, we have 
 \begin{align*}
-  \abso{f_n(x)-f_m(x)}&\leq \abso{f_n(x)-f_m(x)-f_n(x_0)+f_m(x_0)}+\abso{f_n(x_0)-f_m(x_0)}\\
+  \abso{\big(f_n-f_m \big)(x)}&\leq \abso{\big(f_n-f_m \big)(x)-\big(f_n-f_m \big)(x_0)}+\abso{\big(f_n-f_m \big)(x_0)}\\
 &<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
 \end{align*}
-We claim 
+Let $f:[a,b]\rightarrow \R$ be the limit of $f_n$. It remains to prove
 \begin{align}
 \label{UCAC2}
-\blue{f(x)\triangleq \lim_{n\to \infty}f_n(x)\text{ satisfy }f'(x)=\lim_{n\to \infty}f'_n(x)\text{ on $(a,b)$ }}
+\blue{f'(x)=\lim_{n\to \infty}f_n'(x)\text{ on }(a,b)}
 \end{align}
-We first show 
+Fix $x\in (a,b)$ and define $\phi ,\phi_n:[a,b]\setminus x\rightarrow \R$ by 
 \begin{align*}
-\olive{f\text{ is differentiable on $(a,b)$ }}
+\phi (t)\triangleq \frac{f(t)-f(x)}{t-x}\text{ and }\phi_n(t)\triangleq \frac{f_n(t)-f_n(x)}{t-x}
 \end{align*}
-Fix $x \in (a,b)$. We wish to prove
+It is clear that $\phi_n\to \phi$ pointwise on $[a,b]\setminus x$. We now show 
 \begin{align*}
-  \olive{{\lim_{t\to x}\frac{f(t)-f(x)}{t-x}\text{ exists }}}
+\olive{\phi_n\to \phi\text{ uniformly on }[a,b]\setminus x}
 \end{align*}
-Define $\phi :[a,b]\setminus x\rightarrow \R$ by 
-\begin{align*}
-\phi (t)\triangleq \frac{f(t)-f(x)}{t-x}
-\end{align*}
-We reduce our problem into proving 
-\begin{align*}
-  \olive{\lim_{t\to x}\phi (t)\text{ exists }}
-\end{align*}
-Set $\phi_n:[a,b]\setminus x\rightarrow \R$ by 
-\begin{align*}
-\phi_n(t)\triangleq \frac{f_n(t)-f_n(x)}{t-x}
-\end{align*}
-We first show  
-\begin{align}
-\label{UCACu}
-  \vi{\phi_n\text{ uniformly converge on }[a,b]\setminus x}
-\end{align}
 Fix $\epsilon $. We have
 \begin{align*}
-  \vi{\text{ to find $N$ such that  $\abso{\phi_n(t)-\phi _m(t)}\leq \epsilon $ for all $n,m>N$ and  $t\in [a,b]\setminus x$ }}
+  \olive{\text{ to find $N$ such that  $\abso{\phi_n(t)-\phi _m(t)}\leq \epsilon $ for all $n,m>N$ and  $t\in [a,b]\setminus x$ }}
 \end{align*}
-Because $f_n'$ uniformly converge on  $[a,b]$, we know there exists $N$ such that 
+Because $f_n'$ uniformly converge on  $(a,b)$, we know there exists $N$ such that 
  \begin{align}
 \label{CUaC1}
 \norm{f_n'-f_m'}_\infty\leq \epsilon \text{ for all $n,m>N$ }
 \end{align}
 We claim 
 \begin{align*}
-\vi{\text{ such }N\text{ works }}
+\olive{\text{ such }N\text{ works }}
 \end{align*}
 Fix $n,m>N$ and $t \in [a,b]\setminus x$. We wish to prove 
 \begin{align*}
-\vi{\abso{\phi_n(t)-\phi_m(t)}\leq \epsilon }
+\olive{\abso{\phi_n(t)-\phi_m(t)}\leq \epsilon }
 \end{align*}
-Because $(f_n-f_m)'=f_n'-f'_m$, by MVT (\myref{Theorem}{MVT}) and \myref{Equation}{CUaC1}, we can deduce 
+Because $(f_n-f_m)'=f_n'-f'_m$, by \customref{MVT}{MVT} and \myref{Equation}{CUaC1}, we can deduce 
 \begin{align*}
   \abso{\phi_n(t)-\phi_m(t)}&\leq \abso{\frac{f_n(t)-f_n(x)}{t-x}-\frac{f_m(t)-f_m(x)}{t-x}}\\
                             &=\abso{\frac{\big(f_n-f_m\big)(t)-\big(f_n-f_m\big)(x)}{t-x}}\\
  &=\abso{\big(f'_n-f'_m\big)(t_0)}\text{ for some $t_0$ between $t,x$  }\\
-&\leq \epsilon \vdone
+&\leq \epsilon \odone
 \end{align*}
-We now show 
-\begin{align}
-\label{UCACP}
-\brown{\phi_n \to \phi\text{ pointwise on $[a,b]\setminus x$}}
-\end{align}
-Because $f_n \to f$ on $[a,b]$ by definition (\myref{Equation}{UCAC2}), (the convergence is in fact uniform as we have shown. This doesn't matter here tho), for each $t \in [a,b]\setminus x$, we can deduce
+Note that 
 \begin{align*}
-\lim_{n\to \infty} \phi_n(t)&=\lim_{n\to \infty}\frac{f_n(t)-f_n(x)}{t-x}=\frac{f(t)-f(x)}{t-x}=\phi (t)\bodone
+\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)=\lim_{n\to \infty}f'(x)\text{ exists }
 \end{align*}
-Now, by \myref{Equation}{UCACu} and \myref{Equation}{UCACP}, we know 
+We can now \customref{COLO}{exchange the limit} and see that the derivative of $f$ at $x$ exists. 
 \begin{align*}
-\phi_n \to \phi \text{ uniformly on $[a,b]\setminus x$ }
+f'(x)=\lim_{t\to x}\phi (t)&=\lim_{t\to x}\lim_{n\to \infty}\phi_n(t)\\
+&=\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)=\lim_{n\to \infty}f'_n(x) \bdone
 \end{align*}
-Notice that because $f_n'(x)$ converge, we know
-\begin{align*}
-\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)=\lim_{n\to \infty}f'_n(x)\text{ exists }
-\end{align*}
-Then (Notice that the second equality below hold true because we have known $\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)$ exists), we can finally deduce 
-\begin{align*}
-\lim_{t\to x}\phi (t)&=\lim_{t\to x}\lim_{n\to \infty}\phi_n(t)\\
-&=\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)\\
-&=\lim_{n\to \infty}f'_n(x)\text{ exists }\odone
-\end{align*}
-Now, notice that $f'(x)=\lim_{t\to x}\phi (t)$, so in fact, we have just proved $f'_n \to f'\odone \bdone$
-
-
-
 \end{proof}
-\begin{mdframed}
-As Rudin remarked, a much shorter (and much more intuitive) proof can be given, if we require $f'$ to be continuous on  $[a,b]$. 
-\end{mdframed}
 \begin{theorem}
-\textbf{(Uniform Convergence and Differentiation: Weaker Version)} Given a sequence of function $f_n:[a,b]\rightarrow \R$ such that 
+\label{UCaD}
+\textbf{(Uniform Convergence and Holomorphic)} Given a real number $r$ and some sequence of function $f_n:\overline{D_r(z_0)}\rightarrow \C$ such that 
 \begin{enumerate}[label=(\alph*)]
-  \item $f'_n$ uniformly converge on  $[a,b]$
-  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
-  \item $f_n$ are of class $C^1$ on $[a,b]$ 
+  \item $f'_n$ uniformly converge on  $D_r(z_0)$
+  \item $f_n$ are continuous on  $\overline{D_r(z_0)}$
+  \item $f_n(v)\to L$ for some $v \in \overline{D_r(z_0)}$
 \end{enumerate}
-
 Then 
 \begin{enumerate}[label=(\alph*)]
-  \item $f_n$ uniformly converge on  $[a,b]$ 
+  \item $f_n$ uniformly converge on  $\overline{D_r(z_0)}$ 
   \item and
 \begin{align*}
-\frac{d}{dx}\Big(\lim_{n\to \infty}f_n(x) \Big)\Big|_{x=x_0}=\lim_{n\to \infty}f_n'(x_0)\text{ on $(a,b)$ }
+\Big(\lim_{n\to \infty}f_n \Big)'(z)=\lim_{n\to \infty}f_n'(z)\text{ on $D_r(z_0)$ }
 \end{align*}
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-We claim 
+We first prove 
+\begin{align}
+\label{fnun}
+\vi{f_n\text{ uniformly converge on $\overline{D_r(z_0)}$}}
+\end{align}
+Fix $\epsilon $. We wish  
 \begin{align*}
-  \vi{f(x)=\lim_{n\to \infty}\int_{x_0}^x f'_n(t)dt+L\text{ works }} 
+  \vi{\text{ to find $N$ such that $\norm{f_n-f_m}_\infty \leq \epsilon $ for all $n,m>N$}}
 \end{align*}
-Note that $\lim_{n\to \infty}\int_{x_0}^x f'_n(t)dt$ exists because $f'_n$ uniformly converge  (\myref{Theorem}{RIFac}).\\
-
-Because $f'_n$ uniformly converge and are continuous on $[a,b]$, by ULT, we know
- \begin{align*}
-\int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt+L\text{ exists }
-\end{align*}
-and know 
-\begin{align*}
-f(x)=\int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt + L 
-\end{align*}
-By FTC, we see
- \begin{align*}
-f'(x)=\lim_{n\to \infty}f'_n(x)\text{ on }(a,b)
-\end{align*}
-Such convergence is uniform by premise. To finish the proof, we now only have to prove 
-\begin{align*}
-\vi{f_n\to f\text{ uniformly on }[a,b]}
-\end{align*}
-Fix $\epsilon $. We wish 
-\begin{align*}
-\vi{\text{ to find $N$ such that  $\abso{f_n(x)-f(x)}\leq \epsilon $ for all $n>N$ and  $x \in [a,b]$}}
-\end{align*}
-Because $f'_n \to f'$ uniformly, and $f_n(x_0) \to L=f(x_0)$ (Check $L=f(x_0)$), we know there exists $N$ such that 
- \begin{align*}
+Because $f_n(v)$ converge, and $f'_n$ uniformly converge, we know there exists $N$ such that 
+ \begin{align}
+\label{UCD1}
 \begin{cases}
-  \norm{f'_n-f'}_\infty < \frac{\epsilon }{2(b-a)}\\
-  \abso{f_n(x_0)-f(x_0)}<\frac{\epsilon}{2}
-\end{cases}\text{ for all $n>N$ }
-\end{align*}
+ \abso{f_n(v)-f_m(v)}<\frac{\epsilon}{2} \\
+\norm{f_n'-f_m'}_\infty <\frac{\epsilon }{4r}
+\end{cases}\text{ for all $n,m>N$ }
+\end{align}
 We claim 
 \begin{align*}
 \vi{\text{ such $N$ works }}
 \end{align*}
-Fix $n>N$ and  $x\in [a,b]$. Observe 
+Fix $z \in \overline{D_r(z_0)}$ and $n,m>N$. We first show
 \begin{align*}
-\abso{f(x)-f_n(x)}&= \abso{\int_{x_0}^x \big(f'(t)-f'_n(t) \big)dt+f(x_0)-f_n(x_0)}\\
-&\leq \int_{x_0}^x \abso{f'(t)-f'_n(t)}dt+ \abso{f(x_0)-f_n(x_0)}\\
-&\leq \frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
+\olive{\abso{\big(f_n-f_m\big)(z)-\big(f_n-f_m \big)(z_0)}\leq \frac{\epsilon}{2}}
+\end{align*}
+Denote $f_n-f_m:\overline{D_r(z_0)}\rightarrow \C$ by $g$. Because $\overline{D_r(z_0)}$ is convex, we can define $h:[0,1]\rightarrow \R$ by
+\begin{align*}
+h(t)\triangleq \text{Re}\Big(g(tz+(1-t)z_0) \Big)
+\end{align*}
+By \customref{CR}{Chain Rule} and \customref{DiJ}{matrix representation of derivative}, we see that for all $t\in [0,1]$ 
+\begin{align*}
+  h'(t)= ac-bd&\text{ where }z_0-z=a+b i \\
+&\text{ and } g'(tz+(1-t)(z_0))=c+di
+\end{align*}
+Now by \customref{MVT}{MVT} and \myref{Equation}{UCD1}, we can deduce 
+\begin{align*}
+  lkdfsj
+\end{align*}
+Now, by \myref{Equation}{UCD1}, we have 
+\begin{align*}
+  \abso{\big(f_n-f_m \big)(x)}&\leq \abso{\big(f_n-f_m \big)(x)-\big(f_n-f_m \big)(x_0)}+\abso{\big(f_n-f_m \big)(x_0)}\\
+&<\frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
+\end{align*}
+Let $f:[a,b]\rightarrow \R$ be the limit of $f_n$. It remains to prove
+\begin{align}
+\label{UCAC2}
+\blue{f'(x)=\lim_{n\to \infty}f_n'(x)\text{ on }(a,b)}
+\end{align}
+Fix $x\in (a,b)$ and define $\phi ,\phi_n:[a,b]\setminus x\rightarrow \R$ by 
+\begin{align*}
+\phi (t)\triangleq \frac{f(t)-f(x)}{t-x}\text{ and }\phi_n(t)\triangleq \frac{f_n(t)-f_n(x)}{t-x}
+\end{align*}
+It is clear that $\phi_n\to \phi$ pointwise on $[a,b]\setminus x$. We now show 
+\begin{align*}
+\olive{\phi_n\to \phi\text{ uniformly on }[a,b]\setminus x}
+\end{align*}
+Fix $\epsilon $. We have
+\begin{align*}
+  \olive{\text{ to find $N$ such that  $\abso{\phi_n(t)-\phi _m(t)}\leq \epsilon $ for all $n,m>N$ and  $t\in [a,b]\setminus x$ }}
+\end{align*}
+Because $f_n'$ uniformly converge on  $(a,b)$, we know there exists $N$ such that 
+ \begin{align}
+\label{CUaC1}
+\norm{f_n'-f_m'}_\infty\leq \epsilon \text{ for all $n,m>N$ }
+\end{align}
+We claim 
+\begin{align*}
+\olive{\text{ such }N\text{ works }}
+\end{align*}
+Fix $n,m>N$ and $t \in [a,b]\setminus x$. We wish to prove 
+\begin{align*}
+\olive{\abso{\phi_n(t)-\phi_m(t)}\leq \epsilon }
+\end{align*}
+Because $(f_n-f_m)'=f_n'-f'_m$, by \customref{MVT}{MVT} and \myref{Equation}{CUaC1}, we can deduce 
+\begin{align*}
+  \abso{\phi_n(t)-\phi_m(t)}&\leq \abso{\frac{f_n(t)-f_n(x)}{t-x}-\frac{f_m(t)-f_m(x)}{t-x}}\\
+                            &=\abso{\frac{\big(f_n-f_m\big)(t)-\big(f_n-f_m\big)(x)}{t-x}}\\
+ &=\abso{\big(f'_n-f'_m\big)(t_0)}\text{ for some $t_0$ between $t,x$  }\\
+&\leq \epsilon \odone
+\end{align*}
+Note that 
+\begin{align*}
+\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)=\lim_{n\to \infty}f'(x)\text{ exists }
+\end{align*}
+We can now \customref{COLO}{exchange the limit} and see that the derivative of $f$ at $x$ exists. 
+\begin{align*}
+f'(x)=\lim_{t\to x}\phi (t)&=\lim_{t\to x}\lim_{n\to \infty}\phi_n(t)\\
+&=\lim_{n\to \infty}\lim_{t\to x}\phi_n(t)=\lim_{n\to \infty}f'_n(x) \bdone
 \end{align*}
 \end{proof}
 \section{Analytic Functions}
@@ -3456,70 +3550,6 @@ f(a)=G(b^-)\int_a^b \phi(t)dt\text{ and }f(b)=G(a^+)\int_a^b \phi(t)dt
 \end{proof} 
 \chapter{Riemann Calculus}
 \section{Riemann-Stieltjes Integral}
-\section{Uniform Convergence and Riemann Integration}
-\begin{theorem}
-\label{RIFac}
-\textbf{(Riemann-Integration and Uniform Convergence)} Given a function $\alpha :[a,b]\rightarrow \R$ and a sequence of functions $f_n:[a,b]\rightarrow \R$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\alpha $ increase on $[a,b]$ 
-  \item $\int_a^b f_nd\alpha $ exists for all $n\inn$ 
-  \item $f_n \to f $ uniformly on $[a,b]$ 
-\end{enumerate}
-Then 
-\begin{align*}
-  \lim_{n\to \infty}\int_a^b f_n d\alpha \text{ exists and }\int_a^b fd\alpha =\lim_{n\to \infty}\int_a^b f_nd\alpha 
-\end{align*}
-\end{theorem}
-\begin{proof}
-We first prove 
-\begin{align*}
-\vi{\int_a^b fd\alpha \text{ exists }}
-\end{align*}
-Fix $\epsilon $. We wish to prove 
-\begin{align*}
-\vi{\overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha < \epsilon }
-\end{align*}
-Let $\epsilon _n = \norm{f_n-f}_\infty$. Because $f_n \to f$ uniformly, we know 
-\begin{align*}
-\text{ there exists $n\inn$ such that $\epsilon _n=\norm{f_n-f}_\infty < \frac{\epsilon }{2\big[\alpha (b)-\alpha (a) \big]}$ }
-\end{align*}
-Because $\alpha $ increase, by definition of $\epsilon _n$, we see 
-\begin{align*}
-\int_a^b (f_n-\epsilon _n)d\alpha \leq \underline{\int_a^b}fd\alpha \leq \overline{\int_a^b}fd\alpha \leq \int_a^b (f_n+\epsilon_n) d\alpha  
-\end{align*}
-Because $\epsilon _n <\frac{\epsilon}{2\big[\alpha (b)-\alpha (a) \big]}$, we now see 
-\begin{align*}
-  \overline{\int_a^b}fd\alpha -\underline{\int_a^b}fd\alpha &\leq \int_a^b (f_n+\epsilon _n)d\alpha -\int_a^b (f_n-\epsilon _n)d\alpha \\
-&=\int_a^b (2\epsilon _n)d\alpha<2 \epsilon_n \cdot \big[\alpha (b)-\alpha (a) \big] = \epsilon \vdone
-\end{align*}
-We now prove 
-\begin{align*}
-  \blue{\int_a^b f_n d\alpha \to \int_a^b fd\alpha \text{ as $n \to \infty $ }}
-\end{align*}
-Fix $\epsilon $. We wish 
-\begin{align*}
-\blue{\text{ to find $N$ such that }\forall n>N,\abso{\int_a^b f_nd\alpha-\int_a^b fd\alpha }<\epsilon  }
-\end{align*}
-Recall the definition $\epsilon_n= \norm{f_n-f}_\infty$. Because $\epsilon _n \to 0$, we know 
-\begin{align}
-\label{CuU1}
-\text{ there exists $N$ such that }\forall n>N, \epsilon_n < \frac{\epsilon }{\alpha (b)-\alpha (a)}
-\end{align}
-We claim 
-\begin{align*}
-\blue{\text{ such $N$ works }}
-\end{align*}
-Fix $n>N$. From \myref{Equation}{CuU1}, we see
- \begin{align*}
-  \abso{\int_a^b f_nd\alpha -\int_a^b fd\alpha }&=\abso{\int_a^b (f_n-f)d\alpha }\\
-  &\leq \int_a^b \abso{f_n-f}d\alpha \\
-  &\leq \int_a^b \epsilon_n d\alpha =\epsilon_n \big[\alpha (b)-\alpha (a) \big]<\epsilon \bdone
-\end{align*}
-
-
-\end{proof}
-
-
 
 \section{Riemann-Stieltjes on Computation}
 \begin{theorem}
@@ -3811,6 +3841,7 @@ f(x)=\begin{cases}
 \end{cases}
 \end{align*}
 \end{Example}
+
 \section{Bounded Variation}
 \begin{mdframed}
 This section prove some key properties of functions of bounded variations. These properties are worthy of discuss, as they make the set $BV\big([a,b] \big)$ of function of bounded variation on $[a,b]$ a natural candidate for the class of Riemann-Stieltjes integrator. The key properties include 
@@ -4037,6 +4068,136 @@ f\in BV\big([a,b] \big) \iff  \exists \text{ continuous strictly increasing }g,h
 \begin{proof}
 From right to left is again trivial. If $g(x)\triangleq V_f(a,x)$ and $h(x)\triangleq V_f(a,x)-f(x)$ is not strictly increasing, define $g'\triangleq g+(x-a)\text{ and }h'\triangleq h+(x-a)$. Such $g',h'$ suffice.
 \end{proof}
+\section{Uniform Convergence and Riemann Integration}
+\begin{theorem}
+\label{RIFac}
+\textbf{(Riemann-Integration and Uniform Convergence)} Given a function $\alpha :[a,b]\rightarrow \R$ and a sequence of functions $f_n:[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\alpha $ increase on $[a,b]$ 
+  \item $\int_a^b f_nd\alpha $ exists for all $n\inn$ 
+  \item $f_n \to f $ uniformly on $[a,b]$ 
+\end{enumerate}
+Then 
+\begin{align*}
+  \lim_{n\to \infty}\int_a^b f_n d\alpha \text{ exists and }\int_a^b fd\alpha =\lim_{n\to \infty}\int_a^b f_nd\alpha 
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+\vi{\int_a^b fd\alpha \text{ exists }}
+\end{align*}
+Fix $\epsilon $. We wish to prove 
+\begin{align*}
+\vi{\overline{\int_a^b}fd\alpha - \underline{\int_a^b}fd\alpha < \epsilon }
+\end{align*}
+Let $\epsilon _n = \norm{f_n-f}_\infty$. Because $f_n \to f$ uniformly, we know 
+\begin{align*}
+\text{ there exists $n\inn$ such that $\epsilon _n=\norm{f_n-f}_\infty < \frac{\epsilon }{2\big[\alpha (b)-\alpha (a) \big]}$ }
+\end{align*}
+Because $\alpha $ increase, by definition of $\epsilon _n$, we see 
+\begin{align*}
+\int_a^b (f_n-\epsilon _n)d\alpha \leq \underline{\int_a^b}fd\alpha \leq \overline{\int_a^b}fd\alpha \leq \int_a^b (f_n+\epsilon_n) d\alpha  
+\end{align*}
+Because $\epsilon _n <\frac{\epsilon}{2\big[\alpha (b)-\alpha (a) \big]}$, we now see 
+\begin{align*}
+  \overline{\int_a^b}fd\alpha -\underline{\int_a^b}fd\alpha &\leq \int_a^b (f_n+\epsilon _n)d\alpha -\int_a^b (f_n-\epsilon _n)d\alpha \\
+&=\int_a^b (2\epsilon _n)d\alpha<2 \epsilon_n \cdot \big[\alpha (b)-\alpha (a) \big] = \epsilon \vdone
+\end{align*}
+We now prove 
+\begin{align*}
+  \blue{\int_a^b f_n d\alpha \to \int_a^b fd\alpha \text{ as $n \to \infty $ }}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\blue{\text{ to find $N$ such that }\forall n>N,\abso{\int_a^b f_nd\alpha-\int_a^b fd\alpha }<\epsilon  }
+\end{align*}
+Recall the definition $\epsilon_n= \norm{f_n-f}_\infty$. Because $\epsilon _n \to 0$, we know 
+\begin{align}
+\label{CuU1}
+\text{ there exists $N$ such that }\forall n>N, \epsilon_n < \frac{\epsilon }{\alpha (b)-\alpha (a)}
+\end{align}
+We claim 
+\begin{align*}
+\blue{\text{ such $N$ works }}
+\end{align*}
+Fix $n>N$. From \myref{Equation}{CuU1}, we see
+ \begin{align*}
+  \abso{\int_a^b f_nd\alpha -\int_a^b fd\alpha }&=\abso{\int_a^b (f_n-f)d\alpha }\\
+  &\leq \int_a^b \abso{f_n-f}d\alpha \\
+  &\leq \int_a^b \epsilon_n d\alpha =\epsilon_n \big[\alpha (b)-\alpha (a) \big]<\epsilon \bdone
+\end{align*}
+
+
+\end{proof}
+
+\begin{mdframed}
+As Rudin remarked, a much shorter (and much more intuitive) proof can be given, if we require $f'$ to be continuous on  $[a,b]$. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Uniform Convergence and Differentiation: Weaker Version)} Given a sequence of function $f_n:[a,b]\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f'_n$ uniformly converge on  $[a,b]$
+  \item $f_n(x_0)\to L$ for some $x_0 \in [a,b]$
+  \item $f_n$ are of class $C^1$ on $[a,b]$ 
+\end{enumerate}
+
+Then 
+\begin{enumerate}[label=(\alph*)]
+  \item $f_n$ uniformly converge on  $[a,b]$ 
+  \item and
+\begin{align*}
+\frac{d}{dx}\Big(\lim_{n\to \infty}f_n(x) \Big)\Big|_{x=x_0}=\lim_{n\to \infty}f_n'(x_0)\text{ on $(a,b)$ }
+\end{align*}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We claim 
+\begin{align*}
+  \vi{f(x)=\lim_{n\to \infty}\int_{x_0}^x f'_n(t)dt+L\text{ works }} 
+\end{align*}
+Note that $\lim_{n\to \infty}\int_{x_0}^x f'_n(t)dt$ exists because $f'_n$ uniformly converge  (\myref{Theorem}{RIFac}).\\
+
+Because $f'_n$ uniformly converge and are continuous on $[a,b]$, by ULT, we know
+ \begin{align*}
+\int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt+L\text{ exists }
+\end{align*}
+and know 
+\begin{align*}
+f(x)=\int_{x_0}^x \lim_{n\to \infty}f'_n(t)dt + L 
+\end{align*}
+By FTC, we see
+ \begin{align*}
+f'(x)=\lim_{n\to \infty}f'_n(x)\text{ on }(a,b)
+\end{align*}
+Such convergence is uniform by premise. To finish the proof, we now only have to prove 
+\begin{align*}
+\vi{f_n\to f\text{ uniformly on }[a,b]}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to find $N$ such that  $\abso{f_n(x)-f(x)}\leq \epsilon $ for all $n>N$ and  $x \in [a,b]$}}
+\end{align*}
+Because $f'_n \to f'$ uniformly, and $f_n(x_0) \to L=f(x_0)$ (Check $L=f(x_0)$), we know there exists $N$ such that 
+ \begin{align*}
+\begin{cases}
+  \norm{f'_n-f'}_\infty < \frac{\epsilon }{2(b-a)}\\
+  \abso{f_n(x_0)-f(x_0)}<\frac{\epsilon}{2}
+\end{cases}\text{ for all $n>N$ }
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\text{ such $N$ works }}
+\end{align*}
+Fix $n>N$ and  $x\in [a,b]$. Observe 
+\begin{align*}
+\abso{f(x)-f_n(x)}&= \abso{\int_{x_0}^x \big(f'(t)-f'_n(t) \big)dt+f(x_0)-f_n(x_0)}\\
+&\leq \int_{x_0}^x \abso{f'(t)-f'_n(t)}dt+ \abso{f(x_0)-f_n(x_0)}\\
+&\leq \frac{\epsilon}{2}+\frac{\epsilon}{2}=\epsilon \vdone
+\end{align*}
+\end{proof}
+
+
 \chapter{Complex Analysis}
 \chapter{Lebesgue Calculus}
 \section{Basic Property of Measurable Functions}
@@ -4516,6 +4677,7 @@ $\vdone$
 In this section, notation  $\mathcal{C}\big([a,b] \big)$ means the set of \textbf{real-valued continuous function on $[a,b]$}.
 \end{mdframed}
 \begin{theorem}
+\label{WaT}
 \textbf{(Weierstrass approximation Theorem: $[a,b]\rightarrow \R$)} Let $\R[x]\big|_{[a,b]}$ be the space of polynomials on $[a,b]$ with real coefficient. We have 
 \begin{align*}
 \text{ $\R[x]\big|_{[a,b]}$ is dense in $\Big(\mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty} \Big)$ }
@@ -5593,6 +5755,7 @@ Let $\R\P ^n\triangleq (\R^{n+1}\setminus \set{\textbf{0}})\setminus \sim $ be t
 and let $\P^n\triangleq \S^n\setminus \sim $ be the quotient space. We denote the quotient map by $q:\S^n\rightarrow \P^n$ and $\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \R\P^n$. Note that $\S^n\subseteq \R^{n+1}\setminus \set{\textbf{0}}$, 
 \end{mdframed}
 \begin{theorem}
+\label{RPnhom}
 \textbf{(Equivalent Definitions of Real Projective Space)} 
 \begin{align*}
 \R\P^n\text{ and }\P^n\text{ are homeomorphic }
@@ -5641,9 +5804,10 @@ Then see
 \end{align*}
 \end{proof}
 \begin{theorem}
-\textbf{($\P^n$ is Hausdroff)} 
+\label{P^n is Hausdorff}
+\textbf{($P^n$ is Hausdorff)} 
 \begin{align*}
-\P^n\text{ is Hausdroff }
+P^n\text{ is Hausdorff }
 \end{align*}
 \end{theorem}
 \begin{proof}
@@ -5664,17 +5828,51 @@ Then if we define $\phi_i:V_i\rightarrow \R^n$ by
 \end{align*}
 because $\textbf{x}\sim \textbf{y}\text{ and }\textbf{x}\in V_i\implies \phi_i(\textbf{x})=\phi_i(\textbf{y})$, we can well induce a map 
 \begin{align*}
-\Phi_i:U_i\triangleq \pi (V_i)\rightarrow \R^n; [\textbf{x}]\mapsto \phi_i(\textbf{x})
+\Phi_i:U_i\triangleq \pi (V_i)\subseteq \R P^n\rightarrow \R^n; [\textbf{x}]\mapsto \phi_i(\textbf{x})
+\end{align*}
+Note that one has the equation 
+\begin{align*}
+\Phi_i(\pi (\textbf{x}))= \phi_i(\textbf{x})\text{ for all }\textbf{x}\in V_i
 \end{align*}
 \end{mdframed}
 \begin{theorem}
 \textbf{(Real Projective Space with a differentiable atlas)} We have
 \begin{align*}
-  \R\P^n\text{ with atlas }\set{(U_i,\Phi_i):1\leq i\leq n+1}\text{ is a differentiable manifold }
+  \R P^n\text{ with atlas }\set{(U_i,\Phi_i):1\leq i\leq n+1}\text{ is a differentiable manifold }
 \end{align*}
 \end{theorem}
 \begin{proof}
-Because $V_i$ is clearly open and $U_i=\pi(V_i)$, we know $U_i$ is open. Because $V_i$ cover  $\R^{n+1}\setminus \set{\textbf{0}}$, we know $U_i$ also cover  $\R\P^n$. Each $U_i$ is second-countable  (Homeomorphic to $V_i\overset{\text{open}}{\subseteq}\R^n$) implies $\R\P^n$ is second-countable. It remains to show  the atlas is differentiable.\\
+We are required to prove 
+\begin{enumerate}[label=(\alph*)] 
+  \item $(U_i,\Phi_i)$ are all charts. 
+  \item $\set{(U_i,\Phi_i):1\leq i\leq n+1}$ form a differentiable atlas. 
+\item $\R P^n$ is Hausdorff.
+\item $\R P^n$ is second-countable. 
+\end{enumerate}
+ Because $\pi^{-1}(U_i)=V_i$ and $V_i$ is clearly open in $\R^{n+1}\setminus \set{\textbf{0}}$, we know $U_i\subseteq \R P^n$ is open. Note that clearly,   $\Phi_i(U_i)=\R^n$. To show $(U_i,\Phi_i)$ is a chart, it remains to show that $\Phi_i$ is a homeomorphism between $U_i$ and  $\R^n$.  It is straightforward to check $\Phi_i$ is one-to-one on $U_i$. This implies $\Phi_i$ is a bijective between $U_i$ and  $\R^n$. \\
+
+
+Fix open $E\subseteq \R^n$. We see 
+\begin{align*}
+  \pi^{-1}(\Phi_i^{-1}(E))=\phi_i^{-1}(E)
+\end{align*}
+Then because $\phi_i:V_i\rightarrow \R^n$ is clearly continuous, we see $\phi_i^{-1}(E)$ is open in $\R^{n+1}\setminus \set{\textbf{0}}$, and it follows from definition of quotient topology  $\Phi_i^{-1}(E)\subseteq \R P^n$ is open. Then because $U_i$ is open in  $\R P^n$, we see $\Phi_i^{-1}(E)$ is open in $U_i$. We have proved  $\Phi_i:U_i\rightarrow \R^n$ is continuous.\\
+
+
+Define $\Psi_i: \R^n\rightarrow V_i$ by 
+\begin{align*}
+\Psi (\textbf{x}^1,\dots ,\textbf{x}^n)= (\textbf{x}^1,\dots ,\textbf{x}^{i-1},1,\textbf{x}^i,\dots ,\textbf{x}^n)
+\end{align*}
+
+
+
+Observe that for all $\textbf{x}\in \Phi_i(U_i)$, we have
+\begin{align*}
+\Phi_i^{-1}(\textbf{x})= \pi(\Psi_i (\textbf{x}))
+\end{align*}
+It then follows from $\Psi_i:\R^n\rightarrow V_i$ and $\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \R P^n$ are continuous that $\Phi_i^{-1}:\R^n\rightarrow \R P^n$ is continuous.\\
+
+We have proved that $(\Psi_i,U_i)$ are all charts. Now, because $V_i$ clearly cover $\R^{n+1}$, we know $U_i$ also cover  $\R P^n$. We have proved $\set{(U_i,\Phi):1\leq i\leq n+1}$ form an atlas. The fact $\R P^n$ is second-countable follows. \\
 
 Fix $(\textbf{x}_1,\dots ,\textbf{x}_{n})\in \Phi_i(U_i\cap U_j)$. We compute 
 \begin{align*}
@@ -5684,6 +5882,10 @@ Fix $(\textbf{x}_1,\dots ,\textbf{x}_{n})\in \Phi_i(U_i\cap U_j)$. We compute
   (\frac{\textbf{x}^1}{\textbf{x}^{j-1}},\dots , \frac{\textbf{x}^{i-1}}{\textbf{x}^{j-1}},\frac{1}{\textbf{x}^{j-1}},\frac{\textbf{x}^i}{\textbf{x}^{j-1}},\dots , \frac{\textbf{x}^{j-2}}{\textbf{x}^{j-1}}, \frac{\textbf{x}^j}{\textbf{x}^{j-1}}, \dots,\frac{\textbf{x}^n}{\textbf{x}^{j-1}})& \text{ if $j>i$ }
 \end{cases}
 \end{align*}
+This implies our atlas is indeed differentiable. Lastly, $\R P^n$ is Hausdorff follows from  \customref{P^n is Hausdorff}{$\P^n$ is Hausdorff} and \customref{RPnhom}{$\R P^n$ is homeomorphic to $\P^n$}. \\
+
+
+
 \end{proof}
 
 \chapter{Beauty}
@@ -5884,6 +6086,32 @@ Using induction, it is now easy to see
 \label{Long Line}
 \section{Bug-Eyed Line}
 \label{Bug-Eyed Line}
+\begin{abstract}
+This section introduce Bug-Eyed Line, which is a second-countable locally Euclidean space that is not Hausdorff.
+\end{abstract}
+\begin{mdframed}
+Let $a,b$ be distinct real numbers and let $\R'$ be the quotient space of $\R\times \set{a,b}$ where 
+\begin{align*}
+  (x,a)\sim (x,b)\text{ for all $x\neq 0$ }
+\end{align*}
+The space $\R'$ is commonly referred as the  \textbf{Bug-Eyed Line}. Now by definition of quotient topology, given a subset $E$ of  $\R'$, $E $ is open if and only if 
+\begin{align*}
+  \set{x\inr:[(x,a)]\in E}\text{ and }\set{x\inr:[(x,b)]\in E}\text{ are both open in }\R
+\end{align*}
+With this in mind, it is clear that $\R'$ is not Hausdorff, since  $[(0,a)]$ and $[(0,b)]$ can not be distinguished, and it is straightforward to check $\R'$ is locally Euclidean.\\
+
+
+Now, suppose we write some subset $A$ of $\R\times \set{a,b}$ in the form  
+\begin{align*}
+\set{(x,a):x \in A_1}\cup  \set{(x,b):x \in A_2}
+\end{align*}
+We can deduce
+\begin{align*}
+\pi^{-1}(\pi (A))=\bset{(x,a): x\in A_1 \cup (A_2\setminus \set{0})}\cup  \bset{(x,b):x \in A_2 \cup  (A_1\setminus \set{0})}
+\end{align*}
+It is then clear that $\pi$ is an open mapping, thus \customref{Basis and Quotient}{$\R'$ is second countable}.
+\end{mdframed}
+
 \section{Weierstrass Function}
 \section{Fabius Function}
 \section{Vitali Set}
