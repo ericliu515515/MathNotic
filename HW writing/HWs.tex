@@ -16,9 +16,9 @@
 
 \chapter{General Analysis HW}
 \section{HW1}
-\begin{theorem}
-$\R^n$ is complete.
-\end{theorem}
+\begin{question}{}{}
+Show $\R^n$ is complete.
+\end{question}
 \begin{proof}
 Let $\textbf{x}_k$ be an arbitrary Cauchy sequence in $\R^n$. We are required to show  $\textbf{x}_k$ converge in $\R^n$. For each $k$, denote  $\textbf{x}_k$ by $(x_{(1,k)},\dots ,x_{(n,k)})$. We claim that for each $i \in \set{1,\dots ,n}$
 \begin{align*}
@@ -112,9 +112,9 @@ We have proved \myref{Equation}{ran3}.
 
 
 \end{proof}
-\begin{theorem}
-\textbf{($\Q$ is dense in $\R$)}
-\end{theorem}
+\begin{question}{}{}
+Show $\Q$ is dense in $\R$. 
+\end{question}
 \begin{proof}
 Fix $x\inr$ and $\epsilon >0$. To show $\Q$ is dense in  $\R$, we have to find $q\inq$ such that $\abso{x-q}<\epsilon $.\\
 
@@ -126,6 +126,452 @@ Let $m\inn$ satisfy $\frac{1}{m}<\epsilon $. Let $n$ be the largest integer such
 
 
 \end{proof}
+\begin{theorem}
+\textbf{(Distance Formula)} Given two subsets $A,B$ of a metric space, we have 
+\begin{align*}
+d(A,B)= \inf_{b \in B}d(A,b)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix arbitrary $b \in B$. It is clear that 
+\begin{align*}
+d(A,B)\leq d(A,b)
+\end{align*}
+It then follows $d(A,B)\leq \inf_{b \in B}d(A,b)$. Fix arbitrary $a \in A$ and $b_0 \in B$. Observe that 
+\begin{align*}
+d(a,b_0)\geq  d(A,b_0) \geq \inf_{b \in B}d(A,b)
+\end{align*}
+It then follows $\inf_{b \in B}d(A,b)\leq d(A,B)$. 
+\end{proof}
+\begin{question}{}{}
+Let $E_1,E_2$ be non-empty sets in  $\R^n$ with $E_1$ closed and  $E_2$ compact. Show that there are points  $x_1\in E_1$ and $x_2 \in E_2$ such that 
+\begin{align*}
+d(E_1,E_2)=\abso{x_1-x_2}
+\end{align*}
+Deduce that $d(E_1,E_2)$ is positive if such $E_1,E_2$ are disjoint. 
+\end{question}
+
+\begin{proof}
+Because 
+\begin{enumerate}[label=(\alph*)]
+  \item $f(x)\triangleq d (E_1,x)$ is a continuous function on $\R^n$. 
+  \item $E_2$ is compact. 
+\end{enumerate}
+It now follows by EVT there exists some  $x_2 \in E_2$ such that 
+\begin{align*}
+d(E_1,x_2)=\min_{x \in E_2} d(E_1,x)=\inf_{x \in E_2}d(E_1,x)=d(E_1,E_2)
+\end{align*}
+where the last equality is proved above. We can now reduce the problem into finding $x_1$ in $E_1$ such that  
+\begin{align*}
+  \vi{d(x_1,x_2)=d(E_1,x_2)}
+\end{align*}
+For each $n\inn$, let $t_n$ satisfy 
+ \begin{align*}
+t_n \in E_1\text{ and }d(t_n,x_2)< d(E_1,x_2) + \frac{1}{n}
+\end{align*}
+Clearly, $t_n$ is a bounded sequence. Then by Bolzano-Weierstrass Theorem, there exists a convergence subsequence $t_{n_k}$. Now, because $E_1$ is closed, we know 
+\begin{align*}
+x_1\triangleq \lim_{k\to \infty}t_{n_k} \in E_1
+\end{align*}
+It then follows from the function $f(x)\triangleq d(x,x_2)$ being continuous on $\R^n$ such that 
+ \begin{align*}
+d(x_1,x_2)=\lim_{k\to \infty}d(t_{n,k},x_2)=d(E_1,x_2)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Prove that the distance between two nonempty, compact, disjoint sets in $\R^n$ is positive. 
+\end{question}
+\begin{proof}
+The proof follows from the result in last question while acknowledging compact is closed. 
+\end{proof}
+\begin{question}{}{}
+Prove that if $f$ is continuous on $[a,b]$, then $f$ is Riemann-integrable on$[a,b]$. 
+\end{question}
+\begin{proof}
+Let $\overline{\int_a^b}fdx$ and $\underline{\int_a^b}fdx$ respectively denote the upper and lower Darboux sums. We prove that 
+\begin{align*}
+\overline{\int_a^b}fdx=\underline{\int_a^b}fdx
+\end{align*}
+Fix $\epsilon $. We reduce the problem into proving the existence of some partition $\set{a=x_0,x_1,\dots ,x_n=b}$ such that  
+\begin{align*}
+  \sum_{i=1}^n \Big[M_i-m_i \Big](x_i-x_{i-1}) \leq \epsilon 
+\end{align*}
+where 
+\begin{align*}
+M_i\triangleq \sup_{t \in [x_{i-1},x_i]}f(t)\text{ and }m_i \triangleq \inf_{t \in [x_{i-1},x_i]}f(t)
+\end{align*}
+Because $f$ is continuous on the compact interval $[a,b]$, we know $f$ is uniformly continuous on $[a,b]$. Let $\delta$ satisfy 
+\begin{align*}
+\abso{x-y}< \delta \text{ and }x,y \in [a,b] \implies \abso{f(x)-f(y)}< \frac{\epsilon }{b-a}
+\end{align*}
+Let $n$ satisfy $\frac{b-a }{n}<\delta$. We claim the partition 
+\begin{align*}
+\set{a=x_0,x_1,\dots ,x_n=b}\text{ where }x_i\triangleq a+\frac{i(b-a)}{n}\text{ suffices }
+\end{align*}
+Now, by EVT, we know that for each $i$, there exists some  $t_{i,M},t_{i,m} \in [x_{i-1},x_i]$ such that 
+\begin{align*}
+f(t_{i,m})=m_i\text{ and }f(t_{i,M})=M_i
+\end{align*}
+Then because 
+\begin{align*}
+\abso{t_{i,m}-t_{i,M}}\leq x_i-x_{i-1}\leq \frac{b-a}{n}<\delta 
+\end{align*}
+We know $M_i-m_i< \frac{\epsilon}{b-a}$. This now give us 
+\begin{align*}
+  \sum_{i=1}^n \Big[M_i-m_i \Big](x_i-x_{i-1})&< \sum_{i=1}^n \frac{\epsilon }{(b-a)}(x_i-x_{i-1})\\
+  &= \frac{\epsilon }{b-a}\sum_{i=1}^n (x_i-x_{i-1})\\
+  &=\frac{\epsilon}{b-a}(b-a)=\epsilon 
+\end{align*}
+
+
+
+\end{proof}
+\begin{question}{}{}
+Find $\limsup_{n\to\infty} E_n$ and $\liminf_{n\to\infty} E_n$ where 
+\begin{align*}
+E_n\triangleq \begin{cases}
+  [\frac{-1}{n},1]& \text{ if $n$ is odd }\\
+  [-1,\frac{1}{n}]& \text{ if $n$ is even }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Fix arbitrary $n\inn$. Let $p,q\geq n$ respectively be odd and even. We see 
+\begin{align*}
+[0,1]\subseteq E_p \text{ and }[-1,0]\subseteq E_q
+\end{align*}
+This now implies 
+\begin{align*}
+[-1,1]\subseteq \bigcup_{k\geq n}E_k 
+\end{align*}
+Then because $n$ is arbitrary, it follows 
+ \begin{align*}
+\limsup_{n\to\infty} E_n=\bigcap_{n=1}^{\infty}\bigcup_{k\geq n} E_k = [-1,1]
+\end{align*}
+Again, fix arbitrary $n\inn$ and $\epsilon >0$. Let $p,q$ respectively be even and odd integers greater than  $\max \set{n,\frac{1}{\epsilon }}$. We now see 
+\begin{align*}
+\epsilon \not\in[-1 , \frac{1}{p}]=E_p\text{ and }-\epsilon  \not\in  [\frac{-1}{q},1]=E_q
+\end{align*}
+Because $\epsilon $ is arbitrary and clearly $0 \in E_k$  for all $k$,  we now see 
+\begin{align*}
+\bigcap_{k\geq n} E_k= \set{0}
+\end{align*}
+Then because $n$ is arbitrary, we see 
+\begin{align*}
+\liminf_{n\to\infty} E_n = \bigcup_{n=1}^{\infty}\bigcap_{k\geq n}E_k=\set{0}
+\end{align*}
+
+
+\end{proof}
+\begin{question}{}{}
+Show that 
+\begin{align*}
+  (\limsup_{n\to\infty} E_n)^c =\liminf_{n\to\infty} (E_n)^c
+\end{align*}
+and 
+\begin{align*}
+E_n\searrow E\text{ or }E_n\nearrow E \implies \limsup_{n\to\infty} E_n=\liminf_{n\to\infty} E_n=E
+\end{align*}
+\end{question}
+\begin{proof}
+Fix arbitrary $x\in (\limsup_{n\to\infty} E_n)^c$. We can deduce 
+\begin{align*}
+\exists n, x \not\in \bigcup_{k\geq n}E_k
+\end{align*}
+This implies 
+\begin{align*}
+\exists n, x\in \bigcap_{k\geq  n}E_k^c
+\end{align*}
+Then we see 
+\begin{align*}
+x \in \bigcup_{n=1}^{\infty} \bigcap_{k\geq n} E_k^c= \liminf_{n\to\infty} E_n^c
+\end{align*}
+We have proved $(\limsup_{n\to\infty} E_n)^c \subseteq \liminf_{n\to\infty} E_n^c$. We now prove the converse. Fix arbitrary $x\in \liminf_{n\to\infty} E_n^c$. We can deduce
+\begin{align*}
+\exists  n, x\in \bigcap_{k\geq n }E_k^c
+\end{align*}
+This implies 
+\begin{align*}
+\exists n, x\not\in \bigcup_{k\geq n}E_k
+\end{align*}
+Then we see 
+\begin{align*}
+x \not\in \bigcap_{n=1}^{\infty} \bigcup_{k\geq n }E_k = \limsup_{n\to\infty} E_n
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Equivalent Definition for Limit Superior)}
+If we let $E$ be the set of subsequential limits of $a_n$
+ \begin{align*}
+E\triangleq \set{L\in\overline{\R}:L=\lim_{k\to \infty}a_{n_k}\text{ for some }n_k}
+\end{align*}
+The set $E$ is non-empty and 
+\begin{align*}
+\max E=\limsup_{n\to\infty} a_n
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $n_1\triangleq 1$. Recursively, because
+\begin{align*}
+\sup_{j\geq n_k}a_k\geq \limsup_{n\to\infty} a_n>\limsup_{n\to\infty} a_n - \frac{1}{k}\text{ for each }k
+\end{align*}
+We can let $n_{k+1}$ be the smallest number such that 
+\begin{align*}
+a_{n_{k+1}}>\limsup_{n\to\infty} a_n - \frac{1}{k}
+\end{align*}
+It is straightforward to check $a_{n_k}\to \limsup_{n\to\infty} a_n$ as $k\to \infty$. Note that no subsequence can converge to $\limsup_{n\to\infty} a_n+\epsilon $ because there exists $N$ such that  $\sup_{k\geq N}a_k<\limsup_{n\to\infty} a_n+\epsilon $. 
+\end{proof}
+\begin{question}{}{}
+Show that 
+\begin{align*}
+\limsup_{n\to\infty} (-a_n)=- \liminf_{n\to\infty}  a_n
+\end{align*}
+\end{question}
+\begin{proof}
+Note that $-a_{n_k}$ converge if and only if $a_{n_k}$ converge. Then if we respectively define $E$ and $E^-$ to be the set of subsequential limits of  $a_n$ and  $-a_n$, we see 
+ \begin{align*}
+E^-= \set{-L\inr : L \in E }
+\end{align*}
+We now see 
+\begin{align*}
+\limsup_{n\to\infty} (-a_n)=\max E^-= -\min E =- \liminf_{n\to\infty} a_n
+\end{align*}
+
+\end{proof}
+\begin{question}{}{}
+Show that 
+\begin{align}
+\label{pb}
+\limsup_{n\to\infty} (a_n+b_n)\leq \limsup_{n\to\infty} a_n+\limsup_{n\to\infty}  b_n
+\end{align}
+\end{question}
+\begin{proof}
+Fix arbitrary $\epsilon $. Let $N_a,N_b$ respectively satisfy 
+ \begin{align*}
+ \sup_{n\geq N_a}a_n\leq \limsup_{n\to\infty} a_n + \frac{\epsilon}{2}\text{ and }\sup_{n \geq N_b}b_n \leq \limsup_{n\to\infty} b_n + \frac{\epsilon}{2}
+\end{align*}
+Let $N\triangleq \max \set{N_a,N_b}$. We now see that 
+\begin{align*}
+\limsup_{n\to\infty} (a_n+b_n)\leq \sup_{n \geq N} (a_n+b_n)\leq \limsup_{n\to\infty} a_n + \limsup_{n\to\infty} b_n + \epsilon 
+\end{align*}
+The result then follows from $\epsilon $ being arbitrary.  
+\end{proof}
+\begin{question}{}{}
+\begin{align}
+\label{pc}
+a_n,b_n\text{ is bounded non-negative }\implies \limsup_{n\to\infty} (a_nb_n)\leq (\limsup_{n\to\infty} a_n)(\limsup_{n\to\infty} b_n)
+\end{align}
+\end{question}
+\begin{proof}
+There are three cases we should consider 
+\begin{enumerate}[label=(\alph*)]
+  \item Both  $\limsup_{n\to\infty} a_n$ and $\limsup_{n\to\infty} b_n$ equal $0$. 
+  \item Between $\limsup_{n\to\infty} a_n$ and $\limsup_{n\to\infty} b_n$ , only one of them equals $0$.  
+  \item Neither  $\limsup_{n\to\infty} a_n$ nor $\limsup_{n\to\infty} b_n$ equals to $0$. 
+\end{enumerate}
+In the first case, because $a_n,b_n$ are both non-negative, we can deduce 
+\begin{align*}
+\lim_{n\to \infty}a_n=\lim_{n\to \infty}b_n=0
+\end{align*}
+which implies 
+\begin{align*}
+\limsup_{n\to\infty} (a_nb_n)=\lim_{n\to \infty}a_nb_n=0=\lim_{n\to \infty}a_n \lim_{n\to \infty}b_n
+\end{align*}
+For second case, WOLG, suppose $\limsup_{n\to\infty} a_n=0$. Fix arbitrary $\epsilon $. We can let $N$ satisfy 
+ \begin{align*}
+\sup_{n\geq N} a_n < \frac{\epsilon }{\sup_{n\inn}b_n}
+\end{align*}
+Since for all $n \geq N$, we have 
+\begin{align*}
+a_nb_n \leq \frac{b_n\epsilon }{\sup_{k\inn}b_k}\leq \epsilon 
+\end{align*}
+
+We now see 
+\begin{align*}
+\limsup_{n\to\infty} (a_nb_n)\leq \sup_{n\geq N}a_nb_n \leq \epsilon 
+\end{align*}
+The result 
+\begin{align*}
+\limsup_{n\to\infty} a_nb_n=0=\limsup_{n\to\infty} a_n \limsup_{n\to\infty} b_n
+\end{align*}
+then follows from $\epsilon $ being arbitrary. \\
+
+Lastly, for the last case, let $N_a,N_b$ respectively satisfy 
+ \begin{align*}
+\sup_{n\geq N_a} a_n\leq \limsup_{n\to\infty} a_n \sqrt{1+\epsilon } \text{ and }\sup_{n \geq  N_b}b_n\leq \limsup_{n\to\infty} b_n \sqrt{1+\epsilon }  
+\end{align*}
+Let $N\triangleq \max \set{N_a,N_b}$, because for each  $n\geq N$, we have 
+\begin{align*}
+a_nb_n\leq (\sup_{k\geq N_a} a_k)(\sup_{k\geq N_b}b_k) \leq (1+\epsilon  )(\limsup_{n\to\infty} a_n)(\limsup_{n\to\infty} b_n)
+\end{align*}
+It then follows that 
+\begin{align*}
+\limsup_{n\to\infty} (a_nb_n)\leq \sup_{n\geq N}(a_nb_n)\leq (1+\epsilon )(\limsup_{n\to\infty} a_n)(\limsup_{n\to\infty}  b_n)
+\end{align*}
+The result then follows from $\epsilon $ being arbitrary.
+\end{proof}
+
+\begin{question}{}{}
+Show that if either $a_n$ or $b_n$ converge, the equalities in \myref{Equation}{pb} and  \myref{Equation}{pc} both hold true. 
+\end{question}
+\begin{proof}
+WOLG, suppose $\lim_{n\to \infty}a_n=L\inr$. We then see 
+\begin{align*}
+  (a_{n_k}+b_{n_k})\text{ converge }\iff b_{n,k}\text{ converge }
+\end{align*}
+Let $E_{a,b}$ and $E_b$ respectively be the set of subsequential limits of $(a_n+b_n)$ and $b_n$. We now have 
+\begin{align*}
+E_{a,b}=\set{L+L_b \inr : L_b \in E_b}
+\end{align*}
+This give us 
+\begin{align*}
+\limsup_{n\to\infty} (a_n+b_n)=\max E_{a,b}= L+ \max E_b= \limsup_{n\to\infty} a_n +\limsup_{n\to\infty} b_n
+\end{align*}
+Now, additionally, suppose $a_n,b_n$ are both bounded and nonnegative. Again because 
+\begin{align*}
+a_{n_k}b_{n,k}\text{ converge }\iff b_{n,k}\text{ converge }
+\end{align*}
+We see 
+\begin{align*}
+E_{a,b}=\set{L(L_b)\inr: L_b \in E_b}
+\end{align*}
+This give us 
+\begin{align*}
+\limsup_{n\to\infty} (a_nb_n)=\max E_{a,b}=L \max E_b= (\limsup_{n\to\infty} a_n)(\limsup_{n\to\infty} b_n)
+\end{align*}
+
+\end{proof}
+\begin{question}{}{}
+Give example for which inequality in \myref{Equation}{pb} and \myref{Equation}{pc} are not equalities. 
+\end{question}
+\begin{proof}
+If 
+\begin{align*}
+a_n\triangleq \begin{cases}
+  1& \text{ if $n$ is odd }\\
+  -1& \text{ if $n$ is even }
+\end{cases}\text{ and }b_n\triangleq \begin{cases}
+  -1& \text{ if $n$ is odd }\\
+  1& \text{ if $n$ is even }
+\end{cases}
+\end{align*}
+we have 
+\begin{align*}
+\limsup_{n\to\infty} (a_n+b_n)=0<2=\limsup_{n\to\infty} a_n+\limsup_{n\to\infty} b_n
+\end{align*}
+Let $L>1$ and 
+\begin{align*}
+a_n\triangleq \begin{cases}
+  L-\frac{1}{k}& \text{ if $n=2k-1$ }\\
+  (L-\frac{1}{k})^{-1}& \text{ if $n=2k$ }
+\end{cases} \text{ and }b_n\triangleq \begin{cases}
+(L-\frac{1}{k})^{-1}& \text{ if $n=2k-1$ }\\
+(L-\frac{1}{k})& \text{ if $n=2k$ }
+\end{cases}
+\end{align*}
+We have 
+\begin{align*}
+\limsup_{n\to\infty} a_nb_n=1< L^2= \limsup_{n\to\infty} a_n \limsup_{n\to\infty}  b_n
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Give an example of a decreasing sequence of nonempty closed sets in $\R^n$ whose intersection is empty. 
+\end{question}
+\begin{proof}
+\begin{align*}
+F_n\triangleq  [n,\infty)\text{ suffices }
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Given an example of two disjoint, nonempty closed sets in $E_1$ and  $E_2$ in  $\R^n$ for which  $d(E_1,E_2)=0$.
+\end{question}
+\begin{proof}
+Let 
+\begin{align*}
+E_1\triangleq  \set{n-\frac{1}{n}\inr: n\inn \text{ and }n\geq 2 }\text{ and }E_2\triangleq \set{n-\frac{1}{2n}\inr: n\inn\text{ and }n\geq 2}
+\end{align*}
+To see $E_1\cap E_2=\varnothing$, suppose $n-\frac{1}{n}=k-\frac{1}{2k}$ where $n,k$ are two natural numbers greater than $2$. We then see $\frac{1}{n}- \frac{1}{2k}=n-k$, which is impossible, since 
+\begin{align*}
+\abso{\frac{1}{n}-\frac{1}{2k}}< \max \set{\frac{1}{2k},\frac{1}{n}}<1
+\end{align*}
+The fact $E_1,E_2$ are closed follows from both of them being totally disconnected. Now observe that for all $\epsilon $, there exists large enough $n$ such that 
+\begin{align*}
+  (n+\frac{1}{n})-(n+\frac{1}{2n})<\frac{1}{n}< \epsilon 
+\end{align*}
+This implies $d(E_1,E_2)=0$.
+\end{proof}
+\begin{question}{}{}
+If $f$ is defined and uniformly continuous on $E$, show there is a function  $\overline{f}$ defined and continuous on $\overline{E}$ such that $\overline{f}=f$ on $E$.
+\end{question}
+\begin{proof}
+Define $\overline{f}$ on $E$ by $\overline{f}=f$. For each $x \in \overline{E}\setminus E$, associate $x$ with a sequence $t_{n,x}$ in $E$ converging to  $x$.  We now claim that for each $x\in \overline{E}\setminus E$ the limit 
+\begin{align*}
+\lim_{n\to \infty}f(t_{n,x})\text{ converge in $\R$ }
+\end{align*}
+Fix $\epsilon $. Because $f$ is uniformly continuous on $E$, we know there exists  $\delta$ such that 
+\begin{align*}
+a,b \in E \text{ and } \abso{a-b}\leq \delta \implies \abso{f(a)-f(b)}< \epsilon 
+\end{align*}
+Because $t_{n,x}$ converge, we know $t_{n,x}$ is Cauchy, then we know there exists $N$ such that $\abso{t_{n,x}-t_{m,x}}<\delta$ for all $n,m>N$, we then see that for all $n,m>N$, we have 
+ \begin{align*}
+\abso{f(t_{n,x})-f(t_{m,x})}<\epsilon 
+\end{align*}
+This implies $\set{f(t_{n,x})}_{n\inn}$ is a Cauchy sequence in $\R$, thus converge in $\R$.  \\
+
+Define 
+\begin{align*}
+\overline{f}(x)\triangleq \lim_{n\to \infty}f(t_{n,x})\text{ for all }x\in \overline{E}\setminus E
+\end{align*}
+We are required to show $\overline{f}$ is also continuous on $\overline{E}\setminus E$. Fix $\epsilon \text{ and }x \in \overline{E}\setminus E$. Let $\delta$ satisfy 
+\begin{align*}
+a,b \in E\text{ and }\abso{a-b}\leq \delta \implies \abso{f(a)-f(b)}<\frac{\epsilon}{3}
+\end{align*}
+We claim 
+\begin{align*}
+\sup_{t \in B_{\frac{\delta}{2}}(x)\cap \overline{E}} \abso{\overline{f}(t)-\overline{f}(x)}\leq \epsilon 
+\end{align*}
+Fix $t\in B_{\frac{\delta}{2}}(x)\cap \overline{E}$. There are two possibilities 
+\begin{enumerate}[label=(\alph*)]
+  \item $t\in E$
+  \item $t \in \overline{E}\setminus E$
+\end{enumerate}
+If $t\in E$, let $n$ satisfy 
+ \begin{align*}
+\abso{f(t_{n,x})-\overline{f}(x)}<\frac{\epsilon}{3}\text{ and }\abso{t_{n,x}-x}< \frac{\delta}{2}
+\end{align*}
+Because 
+\begin{align*}
+\abso{t_{n,x}-t}\leq \abso{t_{n,x}-x}+ \abso{t-x}<\delta
+\end{align*}
+we can deduce $\abso{f(t_{n,x})-f(t)}<\frac{\epsilon}{3}$. This now give us 
+\begin{align*}
+\abso{f(t)-\overline{f}(x)}\leq \abso{f(t_{n,x})-f(t)}+ \abso{f(t_{n,x})-\overline{f}(x)}<\epsilon 
+\end{align*}
+If $t \in \overline{E}\setminus E$. Write $y=t$ and let  $t_{n,y}$ be the associated sequence in $E$. Because $y \in B_{\frac{\delta}{2}}(x)$, we know there exists $t_{n,y}$ such that 
+\begin{align*}
+t_{n,y} \in B_{\frac{\delta}{2}}(x)\text{ and }\abso{f(t_{n,y})-\overline{f}(y)}< \frac{\epsilon}{3}
+\end{align*}
+Again, let $m$ satisfy 
+\begin{align*}
+t_{m,x} \in B_{\frac{\delta}{2}}(x)\text{ and }\abso{f(t_{m,x})-\overline{f}(x)}<\frac{\epsilon}{3}
+\end{align*}
+We know $\abso{t_{n,y}-t_{m,x}}\leq \delta $ because they both belong to $B_{\frac{\delta}{2}}(x)$. We can now deduce 
+\begin{align*}
+\abso{\overline{f}(y)-\overline{f}(x)}= \abso{\overline{f}(y)-f(t_{n,y})}+\abso{f(t_{n,y})-f(t_{m,x})}+ \abso{f(t_{m,x})-\overline{f}(x)}<\epsilon 
+\end{align*}
+which finish the proof.
+\end{proof}
+\begin{question}{}{}
+If $f$ is defined and uniformly continuous on a bounded set $E$, show that $f$ is bounded on $E$.
+\end{question}
+\begin{proof}
+By last question, we can extend $f$ to a continuous $\overline{f}$ onto $\overline{E}$. Now because $\overline{E}$ is compact and $\abso{\overline{f}}$ is continuous on $\overline{E}$, by EVT, there exists  $a\in \overline{E}$ such that 
+\begin{align*}
+\sup_{x\in E}\abso{f(x)}\leq \max_{x\in \overline{E}}\abso{f(x)}=f(a)
+\end{align*}
+\end{proof}
+
+\section{Brunn-Minkowski Inequality}
 \chapter{Complex Analysis HW}
 \section{HW1}
 \begin{theorem}
