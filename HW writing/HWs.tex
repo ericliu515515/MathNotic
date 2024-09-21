@@ -570,7 +570,36 @@ By last question, we can extend $f$ to a continuous $\overline{f}$ onto $\overli
 \sup_{x\in E}\abso{f(x)}\leq \max_{x\in \overline{E}}\abso{f(x)}=f(a)
 \end{align*}
 \end{proof}
-
+\section{HW2}
+\begin{question}{}{}
+Construct a two-dimensional Cantor set in the unit square $[0,1]^2$ as follows. Subdivide the square into nine equal parts and keep only the four closed corner squares, removing the remaining region (which form a cross). Then repeat this process in a suitably scaled version for the remaining squares, ad infinitum. Show that the resulting set is perfect, has plane measure zero, and equals $C\times C$. 
+\end{question}
+\begin{question}{}{}
+Construct a subset of $[0,1]$ in the same manner as the Cantor set, except that at the $k$th stage, each interval removed has length  $\delta 3^{-k},0<\delta <1$. Show that the resulting set is perfect, has measure $1-\delta$, and contains no intervals.
+\end{question}
+\begin{question}{}{}
+If $E_k$ is a sequence of sets with  $\sum \abso{E_k}_e < \infty$, show that $\limsup_{n\to\infty} $ has measure zero.
+\end{question}
+\begin{question}{}{}
+If $E_1$ and  $E_2$ are measurable subset of  $\R^2$ and  $\abso{E_1\times E_2}=\abso{E_1}\abso{E_2}$
+\end{question}
+\begin{question}{}{}
+Give an example that shows that the image of a measurable set under a continuous transformation may not be measurable. See also Exercise $10$ of Chapter 7. 
+\end{question}
+\begin{question}{}{}
+Show that there exists disjoint $E_1,E_2,\dots $ such that $\abso{\bigcup E_k}_e< \sum \abso{E_k}_e$ with strict inequality. 
+\end{question}
+\begin{question}{}{}
+Show that there exists decreasing sequence $E_k$ of sets such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $E_k\searrow E$.
+  \item $\abso{E_k}_e<\infty$.
+  \item $\lim_{k\to \infty}\abso{E_k}_e> \abso{E}_e$
+\end{enumerate}
+\end{question}
+\begin{question}{}{}
+Let $Z$ be a subset of $\R$ with measure zero. Show that the set $\set{x^2:x\in Z}$ also has measure zero.
+\end{question}
 \section{Brunn-Minkowski Inequality}
 \chapter{Complex Analysis HW}
 \section{HW1}
@@ -743,4 +772,236 @@ u=C e^{\frac{-cx'}{a^2+b^2}}=Ce^{\frac{-c(ax+by)}{a^2+b^2}}
 
 
 \end{proof}
+\section{HW2}
+\begin{question}{}{}
+Consider hear flow in a long circular cylinder where the temperature depends only on $t$ and on the distance $r$ to the axis of the cylinder. Here $r=\sqrt{x^2+y^2}$ is the cylindrical coordinate. From the three dimensional hear equation derive the equation $u_t=k (u_{rr}+\frac{u_r}{r})$
+\end{question}
+\begin{proof}
+Write the three dimensional hear equation by 
+\begin{align*}
+u_t= k \Delta u
+\end{align*}
+Note that the Laplacian $\Delta u$ when written in cylindrical coordinate is 
+\begin{align*}
+\Delta u= u_{rr} + \frac{u_r}{r} +\frac{u_{\theta \theta}}{r^2} + u_{zz}
+\end{align*}
+Because the premise says that $u$ is constant in $z$ and  $\theta$, we know $u_{\theta \theta}=u_{zz}=0$
+\begin{align*}
+\Delta u = u_{rr}+ \frac{u_r}{r}
+\end{align*}
+This give us 
+\begin{align*}
+u_t= k (u_{rr}+ \frac{u_r}{r})
+\end{align*}
+\end{proof}
+\chapter{Differential Geometry HW} 
+\section{HW1} 
+\begin{abstract}
+In this HW, we give precise definition to $\P^n$  and $\RP^n$, and we rigorously show
+\begin{enumerate}[label=(\alph*)]
+  \item $\RP^n$  has a smooth structure. 
+  \item $\P^n$ is homeomorphic to $\RP^n$ 
+   \item $\P^n$ has a smooth structure.
+\end{enumerate}
+Note that in this PDF, brown text is always a clickable hyperlink reference. 
+\end{abstract}
+\begin{mdframed}
+Define an equivalence relation on $\R^{n+1}\setminus \set{\textbf{0}}$ by 
+\begin{align*}
+\textbf{x}\sim \textbf{y}\overset{\triangle}{\iff }\textbf{y}=\ld \textbf{x}\text{ for some $\ld \inr^*$ } 
+\end{align*}
+Let $\RP ^n\triangleq (\R^{n+1}\setminus \set{\textbf{0}})\setminus \sim $ be the quotient space and let  
+\begin{align*}
+V_i\triangleq \set{\textbf{x}\inr^{n+1}:\textbf{x}^i \neq 0}\text{ for each }1\leq i\leq n+1
+\end{align*}
+By definition, it is clear that 
+\begin{align*}
+\text{ either }\pi^{-1}(\pi (\textbf{x}))\subseteq V_i\text{ or }\pi^{-1}(\pi (\textbf{x}))\subseteq V_i^c
+\end{align*}
+Then if we define $\phi_i:V_i\rightarrow \R^n$ by
+\begin{align*}
+\phi_i(\textbf{x})\triangleq \Big(\frac{\textbf{x}^1}{\textbf{x}^i},\dots ,\frac{\textbf{x}^{i-1}}{\textbf{x}^i},\frac{\textbf{x}^{i+1}}{\textbf{x}^i},\dots,\frac{\textbf{x}^{n+1}}{\textbf{x}^i} \Big)
+\end{align*}
+because $\pi (\textbf{x})=\pi(\textbf{y})\implies \phi_i(\textbf{x})=\phi_i(\textbf{y})$, we can well induce a map 
+\begin{align*}
+\Phi_i:U_i\triangleq \pi (V_i)\subseteq \R P^n\rightarrow \R^n; \pi (\textbf{x})\mapsto \phi_i(\textbf{x})
+\end{align*}
+Note that one has the equation 
+\begin{align*}
+\Phi_i(\pi (\textbf{x}))= \phi_i(\textbf{x})\text{ for all }\textbf{x}\in V_i
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Real Projective Space with a differentiable atlas)} We have
+\begin{align*}
+  \R P^n\text{ with atlas }\set{(U_i,\Phi_i):1\leq i\leq n+1}\text{ is a differentiable manifold }
+\end{align*}
+\end{theorem}
+\begin{proof}
+We are required to prove 
+\begin{enumerate}[label=(\alph*)] 
+  \item $(U_i,\Phi_i)$ are all charts. 
+  \item $\set{(U_i,\Phi_i):1\leq i\leq n+1}$ form a differentiable atlas. 
+\item $\R P^n$ is Hausdorff.
+\item $\R P^n$ is second-countable. 
+\end{enumerate}
+ Because $\pi^{-1}(U_i)=V_i$ and $V_i$ is clearly open in $\R^{n+1}\setminus \set{\textbf{0}}$, we know $U_i\subseteq \R P^n$ is open. Note that clearly,   $\Phi_i(U_i)=\R^n$. To show $(U_i,\Phi_i)$ is a chart, it remains to show that $\Phi_i$ is a homeomorphism between $U_i$ and  $\R^n$.  It is straightforward to check $\Phi_i$ is one-to-one on $U_i$. This implies $\Phi_i$ is a bijective between $U_i$ and  $\R^n$. \\
+
+
+Fix open $E\subseteq \R^n$. We see 
+\begin{align*}
+  \pi^{-1}(\Phi_i^{-1}(E))=\phi_i^{-1}(E)
+\end{align*}
+Then because $\phi_i:V_i\rightarrow \R^n$ is clearly continuous, we see $\phi_i^{-1}(E)$ is open in $\R^{n+1}\setminus \set{\textbf{0}}$, and it follows from definition of quotient topology  $\Phi_i^{-1}(E)\subseteq \R P^n$ is open. Then because $U_i$ is open in  $\R P^n$, we see $\Phi_i^{-1}(E)$ is open in $U_i$. We have proved  $\Phi_i:U_i\rightarrow \R^n$ is continuous.\\
+
+
+Define $\Psi_i: \R^n\rightarrow V_i$ by 
+\begin{align*}
+\Psi (\textbf{x}^1,\dots ,\textbf{x}^n)= (\textbf{x}^1,\dots ,\textbf{x}^{i-1},1,\textbf{x}^i,\dots ,\textbf{x}^n)
+\end{align*}
+
+
+
+Observe that for all $\textbf{x}\in \Phi_i(U_i)$, we have
+\begin{align*}
+\Phi_i^{-1}(\textbf{x})= \pi(\Psi_i (\textbf{x}))
+\end{align*}
+It then follows from $\Psi_i:\R^n\rightarrow V_i$ and $\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \R P^n$ are continuous that $\Phi_i^{-1}:\R^n\rightarrow \R P^n$ is continuous.\\
+
+We have proved that $(\Psi_i,U_i)$ are all charts. Now, because $V_i$ clearly cover $\R^{n+1}$, we know $U_i$ also cover  $\R P^n$. We have proved $\set{(U_i,\Phi):1\leq i\leq n+1}$ form an atlas. The fact $\R P^n$ is second-countable follows. \\
+
+Fix $(\textbf{x}_1,\dots ,\textbf{x}_{n})\in \Phi_i(U_i\cap U_j)$. We compute 
+\begin{align*}
+\Phi_j\circ \Phi_i^{-1} (\textbf{x}^1,\dots ,\textbf{x}^{n} )&=\Phi_j \Big( [(\textbf{x}^1,\dots ,\textbf{x}^{i-1},1,\textbf{x}^i,\textbf{x}^{i+1},\dots, \textbf{x}^n)] \Big) \\
+&= \begin{cases}
+  (\frac{\textbf{x}^1}{\textbf{x}^j},\dots , \frac{\textbf{x}^{j-1}}{\textbf{x}^j},\frac{\textbf{x}^{j+1}}{\textbf{x}^j},\dots ,\frac{\textbf{x}^{i-1}}{\textbf{x}^j},\frac{1}{\textbf{x}^j},\frac{\textbf{x}^i}{\textbf{x}^j},\dots ,\frac{\textbf{x}^n}{\textbf{x}^j})& \text{ if $j<i$ }\\
+  (\frac{\textbf{x}^1}{\textbf{x}^{j-1}},\dots , \frac{\textbf{x}^{i-1}}{\textbf{x}^{j-1}},\frac{1}{\textbf{x}^{j-1}},\frac{\textbf{x}^i}{\textbf{x}^{j-1}},\dots , \frac{\textbf{x}^{j-2}}{\textbf{x}^{j-1}}, \frac{\textbf{x}^j}{\textbf{x}^{j-1}}, \dots,\frac{\textbf{x}^n}{\textbf{x}^{j-1}})& \text{ if $j>i$ }
+\end{cases}
+\end{align*}
+This implies our atlas is indeed differentiable. \\
+
+Before we prove $\RP^n$ is Hausdorff, we first prove that  \olive{$\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \RP^n$ is an open mapping}. Let $U\subseteq \R^{n+1}\setminus \set{\textbf{0}}$ be open. Observe that 
+\begin{align*}
+\pi^{-1}(\pi(U))= \set{t\textbf{x}\inr^{n+1}:t\neq 0\text{ and }\textbf{x}\in U}
+\end{align*}
+Fix $t_0\textbf{x}\in \pi^{-1}(\pi (U))$. Let $B_\epsilon (\textbf{x})\subseteq U$. Observe that
+\begin{align*}
+B_{\abso{t_0}\epsilon }(t_0\textbf{x})\subseteq t_0B_\epsilon (\textbf{x})\subseteq t_0U\subseteq \pi^{-1}(\pi (U))
+\end{align*}
+This implies $\pi ^{-1}(\pi (U))$ is open.  $\odone$ \\
+
+Now, \customref{Hausdorff and Quotient}{because $\pi$ is open, to show $\RP^n$ is Hausdorff, we only have to show}
+ \begin{align*}
+R_\pi \triangleq \set{(\textbf{x},\textbf{y})\in (\R^{n+1}\setminus \set{\textbf{0}})^2:\pi (\textbf{x})= \pi (\textbf{y})}\text{ is closed }
+\end{align*}
+Define $f:(\R^{n+1}\setminus \set{\textbf{0}})^2\rightarrow \R$ by 
+\begin{align*}
+f(\textbf{x},\textbf{y})\triangleq \sum_{i\neq j} (\textbf{x}^i\textbf{y}^j-\textbf{x}^j \textbf{y}^i)^2
+\end{align*}
+Note that $f$ is clearly continuous and $f^{-1}(0)=R_\pi$, which finish the proof.
+\end{proof}
+\begin{mdframed}
+Alternatively, we can characterize $\R P^n$ by identifying the antipodal pints on $S^n\triangleq \set{\textbf{x}\inr^{n+1}:\abso{\textbf{x}}=1}$ as one point 
+\begin{align*}
+\textbf{x}\sim \textbf{y}\overset{\triangle}{\iff } \textbf{x}=\textbf{y}\text{ or }\textbf{x}=-\textbf{y}
+\end{align*}
+and let $\P^n\triangleq S^n\setminus \sim $ be the quotient space.
+\end{mdframed}
+\begin{theorem}
+\label{RPnhom}
+\textbf{(Equivalent Definitions of Real Projective Space)} 
+\begin{align*}
+\RP^n\text{ and }\P^n\text{ are homeomorphic }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $F:\P^n\rightarrow \RP^n$ by 
+\begin{align*}
+\set{\textbf{x},-\textbf{x}}\mapsto \set{\ld  \textbf{x}:\ld \inr^*}
+\end{align*}
+It is straightforward to check that $F$ is well-defined and bijective. Define $f:S^n \rightarrow \R P^n$ by 
+\begin{align*}
+f= \pi \circ \textbf{id}
+\end{align*}
+where $\textbf{id}:S^n \rightarrow \R^{n+1}\setminus \set{\textbf{0}}$ and $\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \R P^n$ are continuous. Check that  
+\begin{align*}
+f=F\circ p
+\end{align*}
+where $p:S^n\rightarrow \P^n$ is the quotient mapping. It now follows from the \customref{quotient property}{universal property} that $F$ is continuous, and since $\P^n$ is compact and  $\R P^n$ is Hausdorff,  it also follows that  \customref{HbC}{$F$ is a homeomorphism between $\R P^n$ and  $\P^n$}. 
+\end{proof}
+\begin{mdframed}
+Knowing that $F:\P^n\rightarrow \RP^n$ is a homeomorphism and $\RP^n$ is a smooth manifold, we see that  $\P^n$ is Hausdorff and second-countable, and if we define the atlas 
+\begin{align*}
+  \set{(F^{-1}(U_i), \Phi_i \circ F):1\leq i\leq n+1}
+\end{align*}
+We see this atlas is indeed smooth, since 
+\begin{align*}
+  (\Phi_i\circ F)\circ (\Phi_j \circ F)^{-1}=\Phi_i \circ \Phi_j^{-1}
+\end{align*}
+\end{mdframed}
+
+\section{Appendix}
+\begin{theorem}
+\label{HbC}
+\textbf{(Homeomorphism between Compact Space and Hausdorff Space)} Suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $X$ is compact.  
+  \item $Y$ is Hausdorff.  
+  \item $f:X\rightarrow Y$ is a continuous bijective function. 
+\end{enumerate}
+Then 
+\begin{align*}
+f\text{ is a homeomorphism between }X\text{ and }Y
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because closed subset of compact set is compact and continuous function send compact set to compact set, we see for each closed $E\subseteq X$, $f(E)\subseteq Y$ is compact. The result then follows from \customref{Compact Subspace of Hausdorff Space is Closed}{$f(E)\subseteq Y$ being closed since $Y$ is Hausdorff}. 
+\end{proof}
+\begin{theorem}
+\label{Hausdorff and Quotient}
+  \textbf{(Hausdorff and Quotient)} If $\pi:X\rightarrow Y$ is an open mapping, and we define
+\begin{align*}
+R_\pi\triangleq \set{(x,y)\in X^2 : \pi (x)=\pi (y)} 
+\end{align*}
+Then
+\begin{align*}
+R_\pi\text{ is closed }\iff Y\text{ is Hausdorff }
+\end{align*}
+\end{theorem}
+\begin{proof}
+  Suppose $R_\pi$ is closed. Fix some $x,y$ such that $\pi (x)\neq \pi (y)$. Because $R_\pi$ is closed, we know there exists open neighborhood $U_x,U_y$ such that $U_x \times U_y \subseteq (R_\pi)^c$. It is clear that $\pi (U_x),\pi (U_y)$ are respectively open neighborhood of $\pi (x)$ and $\pi (y)$. To see $\pi (U_x)$ and $\pi (U_y)$ are disjoint, \red{assume} that $\pi (a)\in \pi (U_x)\cap \pi (U_y)$. Let $a_x\in U_x$ and $a_y\in U_y$ satisfy $\pi (a_x)=\pi (a)=\pi (a_y)$, which is impossible because $(a_x,a_y)\in (R_\pi)^c$. \CaC\\
+
+
+Suppose $Y$ is Hausdorff. Fix some  $x,y$ such that  $\pi (x)\neq \pi (y)$. Let $U_x,U_y$ be open neighborhoods of  $\pi (x),\pi (y)$ separating them. Observe that $(x,y)\in \pi^{-1}(U_x)\times \pi^{-1}(U_y)\subseteq (R_\pi)^c$
+\end{proof}
+
+\section{Example: $S^1,\R\setminus \Z$ diffeomorphism } 
+\begin{mdframed}
+Equip $S^1\triangleq \set{(x,y)\inr^2: \abso{(x,y)}=1}$ with the standard four projection chart smooth atlas  as one of them being
+\begin{align*}
+V\triangleq  \set{(x,y)\inr^2: y>0}\text{ and }\phi_V: V\rightarrow \R; (x,y)\mapsto  x
+\end{align*}
+Let $p:\R\rightarrow \R\setminus \Z$  be the quotient map and let 
+\begin{align*}
+U_0\triangleq p\Big((0,1)\Big)\text{ and }U_1\triangleq p\Big((\frac{-1}{2},\frac{1}{2})\Big)
+\end{align*}
+which are both open as one can readily check. Define $\phi_0:U_0\rightarrow (0,1)$ by 
+\begin{align*}
+\phi_0 (p(t))\triangleq t_0\text{ where $t_0\in (0,1)$ and $p(t_0)=p(t)$ }
+\end{align*}
+and $\phi_1:U_1\rightarrow (-\frac{1}{2},\frac{1}{2})$ by
+\begin{align*}
+\phi_1(p(t))\triangleq t_0\text{ where }t_0 \in (-\frac{1}{2},\frac{1}{2})\text{ and }p(t_0)=p(t)
+\end{align*}
+Clearly, the function $G:\R\setminus \Z\rightarrow S^1$ well-defined by $G(p(x))\triangleq (\cos 2\pi x, \sin 2\pi x)$ is a homeomorphism, as one can check that 
+\begin{enumerate}[label=(\alph*)]
+  \item $G$ is a continuous bijection. (Using Universal property of quotient map)
+  \item $\R\setminus \Z$ is compact. (by finite sub-cover definition)
+  \item $S^1$ is Hausdorff.
+\end{enumerate}
+We now compute that $\phi_V\circ G\circ \phi_0^{-1}$ is defined on whole $(0,1)$, and is exactly 
+\begin{align*}
+\phi_V\circ G\circ \phi_0^{-1}(t)\triangleq \cos 2\pi t\text{ smooth }
+\end{align*}
+\end{mdframed}
 \end{document}
