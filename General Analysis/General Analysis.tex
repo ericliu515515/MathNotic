@@ -3414,7 +3414,9 @@ We first extend $\mu$ from $S$ onto $R(S)$. Since each element of $R(S)$ is a un
 \begin{align*}
 \bigsqcup_{j=1}^{n_a}A_j = \bigsqcup _{k=1}^{n_b}B_k \implies A=\bigsqcup_{j,k} A_j \cap B_k \text{ where }A_j\cap B_k \in S 
 \end{align*}
-At this point, one should check $\mu$ remains countably additive after the extension. This can be proved using the same trick and the fact \customref{ACSUC}{absolutely convergent series unconditionally converge}.\\
+At this point, one should check $\mu$ remains countably additive after the extension onto $R(S)$ by dissecting $A=\bigsqcup A_n \in R(S)$ into a countable disjoint union of element in $S$. \\
+
+
 
 We now give definition to \textbf{outer measure}, and shows that \customref{Piom}{given any pre-measure $\mu$ on some semi-ring $S$ of subsets of $X$, there exists outer measure  $\mu^*$ on $X$ such that  $\mu^*\text{ and }\mu$ agrees on $S$}.
 \end{mdframed}
@@ -3441,7 +3443,7 @@ Equivalently, one can replace countably subadditive with the following two axiom
 \end{align*}
 Then 
 \begin{align*}
-\mu^*\text{ is an outer measure agreeing with $\mu$ on $S$}
+  \mu^*\text{ is an outer measure agreeing with $\mu$ on $R(S)$}
 \end{align*}
 \end{theorem}
 \begin{proof}
@@ -3453,19 +3455,22 @@ If  $\sum_n \mu^*(B_n)=\infty$, the proof is trivial. We from now suppose $\sum_
 \begin{align*}
   \vi{\mu^*\Big(\bigcup _n B_n \Big)\leq \sum_n \mu^* (B_n)+\epsilon }
 \end{align*}
-Because $\mu^*(B_n)<\infty$ for each $n\inn$, we know for each $n\inn$ there exists an countable cover $(S_{n,k})_{k\inn}\subseteq R$ of $B_n$ such that 
+Because $\mu^*(B_n)<\infty$ for each $n\inn$, we know for each $n\inn$ there exists an countable cover $(T_{n,k})_{k\inn}\subseteq R$ of $B_n$ such that 
 \begin{align*}
-\sum_k \mu (S_{n,k}) \leq \mu^*(B_n)+\epsilon (2^{-n}) 
+\sum_k \mu (T_{n,k}) \leq \mu^*(B_n)+\epsilon (2^{-n}) 
 \end{align*}
 It is clear that  $\set{T_{n,k}:n,k \inn}$ is a countable cover of $\bigcup_n B_n$, we now see 
 \begin{align*}
-  \mu^*\Big(\bigcup_n B_n \Big)\leq \sum_{n,k} \mu (T_{n,k})&\leq \sum_n \sum_k \mu(T_{n,k})\\
+  \mu^*\Big(\bigcup_n B_n \Big)\leq  \sum_{n,k} \mu (T_{n,k})&= \sum_n \sum_k \mu(T_{n,k})\hspace{0.5cm}(\because \text{\customref{FTfDS}{Fubini's Theorem for Double Series}})\\
 &\leq \sum_n \mu^*(B_n)+ \epsilon (2^{-n})= \sum_n \mu^*(B_n)+ \epsilon \vdone
 \end{align*}
-Note that the expression $\sum_{n,k} \mu (T_{n,k})$ make sense because of the \customref{RRT}{Riemann Rearrangement Theorem}, and $\sum_{n,k}\mu (T_{n,k})\leq \sum_{n} \sum_{k} \mu (T_{n,k})$ should be proved using a limit argument with the diagonal enumeration on $(n,k)$. The fact $\mu^*(T)=\mu (T),\forall T \in S$ follows from \customref{pop_meas}{property (c) of measure} with the trick that, provided $(T_n)$ is a cover of $T$, $(T\cap \bigcup_{n=1}^N T_n)\nearrow T$ as $N\to \infty$ in the sense of set. Note that it is only here we use the hypothesis that $\mu$ is a pre-measure and $S$ is a semi-ring.   
+At this point, one should check that even if we first extend $\mu$ onto $R(S)$ before doing the same procedure, we would still have the same outer measure. Now, because for each $T \in R(S)$, we clearly have $\mu^*(T)\leq \mu (T)$, to finish the proof it only remains to see for each cover $T_n \subseteq R(S)$ of $T$, we have
+\begin{align*}
+\mu (T)=\sum_n \mu (T\cap T_n)\leq \sum_n \mu (T_n)
+\end{align*}
 \end{proof}
 \begin{mdframed}
-  So far, we have proved that given a semi-ring $S$ and a pre-measure $\mu:S\rightarrow [0,\infty]$, there exist some outer measure agree with $\mu$ on $S$. One may wish to ask if such outer measure, an extension of the pre-measure $\mu$, is unique? The answer is negative even in the most trivial case, as the \customref{Nou}{example below} shows. In fact, the outer measure induced in \myref{Theorem}{Piom} is called the \textbf{maximal outer extension}, in the sense that if $\nu$ is an outer measure agreeing with  $\mu$ on $S$, then  $\nu(E)\leq \mu^*(E),\forall E\subseteq X$, as one can check straightforwardly. Also, one can check that it make no difference if we first extend $\mu$ from $S$ onto  $R(S)$ or not, before we extend $\mu$ to the maximal outer measure $\mu^*$. 
+  So far, we have proved that given a semi-ring $S$ and a pre-measure $\mu:S\rightarrow [0,\infty]$, there exist some outer measure agree with $\mu$ on $R(S)$. One may wish to ask if such outer measure, an extension of the pre-measure $\mu$, is unique? The answer is negative even in the most trivial case, as the \customref{Nou}{example below} shows. In fact, the outer measure induced in \myref{Theorem}{Piom} is called the \textbf{maximal outer extension}, in the sense that if $\nu$ is an outer measure agreeing with  $\mu$ on $R(S)$, then  $\nu(E)\leq \mu^*(E),\forall E\subseteq X$, as one can check straightforwardly. Also, one can check that it make no difference if we first extend $\mu$ from $S$ onto  $R(S)$ or not, before we extend $\mu$ to the maximal outer measure $\mu^*$. 
 \end{mdframed}
 \begin{Example}{\textbf{(Non-uniqueness of outer extension)}}{}
 \label{Nou}
@@ -3649,11 +3654,12 @@ One fix arbitrary $N$ and cut  $\prod_{j=1}^d [a_j,b_j)$ into finite amount of g
 \end{align*}
 To check 
 \begin{align}
+\label{58}
 \mu \Big(\prod_{j=1}^d [a_j,b_j) \Big)\leq \sum_{n=1}^{\infty} \mu \Big(\prod _{j=1}^d [a_{j,n},b_{j,n}) \Big)
 \end{align}
 One fix $\epsilon$ and have each $\epsilon _n$ satisfy 
 \begin{align*}
-  \mu \Big(\prod_{j=1}^n [a_{j,n}-\epsilon_n , b_{j,n}+\epsilon_n) \Big) \leq (1+\epsilon )\mu  \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
+  \mu \Big(\prod_{j=1}^d [a_{j,n}-\epsilon_n , b_{j,n}+\epsilon_n) \Big) \leq (1+\epsilon )\mu  \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
 \end{align*}
 Then because  
 \begin{align*}
@@ -3665,8 +3671,9 @@ there exists finite subset $I \subseteq \N$ such that
 \end{align*}
 This then give us 
 \begin{align*}
-\mu \Big(\prod_{j=1}^n [a_j,b_j)\Big)\leq \sum_{n \in I}\mu \Big(\prod_{j=1}^d [a_{j,n}-\epsilon _n, b_{j,n}+\epsilon _n) \Big) \leq (1+\epsilon )\sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
+\mu \Big(\prod_{j=1}^d [a_j,b_j)\Big)\leq \sum_{n \in I}\mu \Big(\prod_{j=1}^d [a_{j,n}-\epsilon _n, b_{j,n}+\epsilon _n) \Big) \leq (1+\epsilon )\sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
 \end{align*}
+which give us \myref{Equation}{58}.  
 \end{mdframed}
 \chapter{Riemann Calculus}
 \section{Riemann-Stieltjes Integral}

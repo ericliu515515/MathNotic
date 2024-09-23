@@ -578,11 +578,87 @@ Construct a two-dimensional Cantor set in the unit square $[0,1]^2$ as follows. 
 Construct a subset of $[0,1]$ in the same manner as the Cantor set, except that at the $k$th stage, each interval removed has length  $\delta 3^{-k},0<\delta <1$. Show that the resulting set is perfect, has measure $1-\delta$, and contains no intervals.
 \end{question}
 \begin{question}{}{}
-If $E_k$ is a sequence of sets with  $\sum \abso{E_k}_e < \infty$, show that $\limsup_{n\to\infty} $ has measure zero.
+If $E_k$ is a sequence of sets with  $\sum \abso{E_k}_e < \infty$, show that $\limsup_{n\to\infty} E_n$ has measure zero.
 \end{question}
+\begin{proof}
+Note that  
+\begin{align*}
+\sum_{k=N}^{\infty} \abso{E_k}_e = \Big(\sum_{k=1}^{\infty} \abso{E_k}_e - \sum_{k=1}^{N-1} \abso{E_k}_e \Big) \to 0\text{ as }N \to \infty
+\end{align*}
+and note for all $N$ we have 
+\begin{align*}
+\bigcap_{n=1}^{\infty} \bigcup_{k=n}^{\infty} E_k \subseteq \bigcup_{k=N}^{\infty} E_k
+\end{align*}
+Then for arbitrary $\epsilon $, if we let $N$ satisfy $\sum_{k=N}^{\infty} \abso{E_k}_e < \epsilon $, we see that 
+\begin{align*}
+\abso{\limsup_{n\to\infty} E_n}_e= \abso{\bigcap_{n=1}^{\infty}\bigcup_{k=n}^{\infty}E_k}_e\leq \abso{\bigcup_{k=N}^{\infty}E_k}_e\leq \sum_{k=N}^{\infty} \abso{E_k}_e < \epsilon 
+\end{align*}
+
+\end{proof}
+\begin{theorem}
+\textbf{(Product of Finite Measure Set)} If $E_1\text{ and }E_2$ are measurable subset of $\R $ and $\abso{E_1},\abso{E_2}<\infty$, then $E_1\times E_2$ is measurable in $\R^2$ and 
+ \begin{align*}
+\abso{E_1\times E_2} = \abso{E_1} \abso{E_2}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. We are required to find open set $O\subseteq \R^2$ such that 
+\begin{align}
+\label{e1e2}
+E_1 \times E_2 \subseteq O\text{ and } \abso{O \setminus (E_1 \times E_2)}_e \leq  \epsilon 
+\end{align}
+  Let $O_1,O_2$ be two open subset of $\R$ respectively containing $E_1,E_2$ and satisfy the following four conditions 
+\begin{enumerate}[label=(\alph*)]
+  \item $\abso{O_2}< \abso{E_2} + 1$ 
+  \item $\abso{O_1}< \abso{E_1}+1 $
+\end{enumerate}
+\begin{align*}
+\abso{O_1\setminus E_1}\leq \frac{\epsilon }{2(\abso{E_2}+1)}\text{ and }\abso{O_2 \setminus E_2}\leq \frac{\epsilon }{2(\abso{E_1}+1)}
+\end{align*}
+
+We claim 
+\begin{align*}
+\vi{O\triangleq O_1\times O_2 \text{ suffices for \myref{Equation}{e1e2} }}
+\end{align*}
+Observe that 
+\begin{align*}
+\Big(O_1 \times O_2 \Big) \setminus \Big(E_1 \times E_2  \Big) = \Big((O_1 \setminus E_1) \times O_2 \Big)  \sqcup \Big( E_1 \times (O_2 \setminus E_2) \Big)
+\end{align*}
+\end{proof}
 \begin{question}{}{}
-If $E_1$ and  $E_2$ are measurable subset of  $\R^2$ and  $\abso{E_1\times E_2}=\abso{E_1}\abso{E_2}$
+If $E_1$ and  $E_2$ are measurable subset of  $\R$, then $E_1\times E_2$ is a measurable subset of $\R^2$ and  $\abso{E_1\times E_2}=\abso{E_1}\abso{E_2}$
 \end{question}
+\begin{proof}
+Define 
+\begin{align*}
+A_n\triangleq \set{x\inr: n\leq x< n+1}
+\end{align*}
+Because 
+\begin{align*}
+E_1= \bigcup_{n\inz} E_1 \cap A_n\text{ and }E_2=\bigcup_{k\inz} E_2 \cap A_k
+\end{align*}
+We can deduce
+\begin{align*}
+E_1 \times E_2 = \bigcup_{n,k\inz} (E_1 \cap A_n)\times (E_2 \cap A_k)
+\end{align*}
+and deduce 
+\begin{align*}
+\abso{E_1}= \sum_{n\inz} \abso{E_1\cap A_n}\text{ and }\abso{E_2}=\sum_{k\inz} \abso{E_2\cap A_k}
+\end{align*}
+which give us 
+\begin{align*}
+\abso{E_1}\abso{E_2}=\sum_{n,k\inz} \abso{E_1\cap A_n} \abso{E_2\cap A_k}
+\end{align*}
+We then can reduce the problem into proving for all $n,k\inz$
+\begin{align*}
+  H\triangleq (E_1\cap A_n) \times (E_2\cap A_k)\text{ is measurable and }\abso{H}= \abso{E_1 \cap A_n} \abso{E_2 \cap A_k}
+\end{align*}
+
+
+
+
+
+\end{proof}
 \begin{question}{}{}
 Give an example that shows that the image of a measurable set under a continuous transformation may not be measurable. See also Exercise $10$ of Chapter 7. 
 \end{question}
