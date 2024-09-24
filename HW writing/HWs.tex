@@ -572,11 +572,37 @@ By last question, we can extend $f$ to a continuous $\overline{f}$ onto $\overli
 \end{proof}
 \section{HW2}
 \begin{question}{}{}
-Construct a two-dimensional Cantor set in the unit square $[0,1]^2$ as follows. Subdivide the square into nine equal parts and keep only the four closed corner squares, removing the remaining region (which form a cross). Then repeat this process in a suitably scaled version for the remaining squares, ad infinitum. Show that the resulting set is perfect, has plane measure zero, and equals $C\times C$. 
+Construct a two-dimensional Cantor set in the unit square $[0,1]^2$ as follows. Subdivide the square into nine equal parts and keep only the four closed corner squares, removing the remaining region (which form a cross). Then repeat this process in a suitably scaled version for the remaining squares, ad infinitum. Show that the resulting set is perfect, has plane measure zero, and equals $\mathcal{C}\times \mathcal{C}$. 
 \end{question}
+\begin{proof}
+Let $\mathcal{C}'_n \subseteq \R^2$ be the result after the $n$th stage of removal, and let $\mathcal{C}_n \subseteq \R$ be the result after the $n$th stage of removal in the construction of the classical ternary Cantor set. It is clear that 
+\begin{align*}
+\mathcal{C}'_n= \mathcal{C}_n \times \mathcal{C}_n\text{ for all $n$ }
+\end{align*}
+It then follows 
+\begin{align*}
+\bigcap_n \mathcal{C}'_n= \bigcap_n \mathcal{C}_n \times \mathcal{C}_n = \mathcal{C}\times \mathcal{C}
+\end{align*}
+The fact that $\mathcal{C}\times \mathcal{C}$ has plane measure zero follows from \myref{Lemma}{zme}. Fix  $(a,b)\in \mathcal{C}\times \mathcal{C}$. Because $\mathcal{C}$ is perfect, there exists some $b'\in \mathcal{C}$ such that 
+\begin{align*}
+0<\abso{b'-b}< \epsilon 
+\end{align*}
+To see that $\mathcal{C}'$ is perfect, one see that  
+\begin{align*}
+  (a,b)\neq (a,b')\text{ and }  (a,b')\in \mathcal{C}'\times \mathcal{C}'\text{ and }\abso{(a,b)-(a,b')}=\abso{b'-b}<\epsilon 
+\end{align*}
+
+\end{proof}
 \begin{question}{}{}
 Construct a subset of $[0,1]$ in the same manner as the Cantor set, except that at the $k$th stage, each interval removed has length  $\delta 3^{-k},0<\delta <1$. Show that the resulting set is perfect, has measure $1-\delta$, and contains no intervals.
 \end{question}
+\begin{proof}
+Let $\mathcal{C}'_n \subseteq \R$ be the result after the $n$th stage of removal according to the description.  Clearly, each $\mathcal{C}'_n$ has $2^n$ amount of connected component, we then can compute the length of $\mathcal{C}'\triangleq \bigcap \mathcal{C}'_n$ to be 
+\begin{align*}
+1-\sum_{k=1}^{\infty} 2^{k-1}\delta 3^{-k}= 1- \frac{\frac{\delta}{3}}{1-\frac{2}{3}}=1-\delta
+\end{align*}
+Since each $\mathcal{C}'_n$ has $2^n$ amount of connected component of equal length and $\mathcal{C}'_n \subseteq [0,1]$, we know the length of each connected component of $\mathcal{C}'_n$ must not be greater than $\frac{1}{2^n}$. It then follows that no interval $[a,a+h]$ can be contained by all $\mathcal{C}'_n$ because if $[a,a+h]$ is a subset of some connected component of $\mathcal{C}'_k$ of some $k$, then the measure $h=\abso{[a,a+h]}$ must be smaller than $\frac{1}{2^k}$, which is false when $k$ is large enough. 
+\end{proof}
 \begin{question}{}{}
 If $E_k$ is a sequence of sets with  $\sum \abso{E_k}_e < \infty$, show that $\limsup_{n\to\infty} E_n$ has measure zero.
 \end{question}
@@ -595,35 +621,83 @@ Then for arbitrary $\epsilon $, if we let $N$ satisfy $\sum_{k=N}^{\infty} \abso
 \end{align*}
 
 \end{proof}
+\begin{lemma}
+\label{zme}
+Given two subsets $Z_1,Z_2$ of  $\R$,  if $\abso{Z_1}=0$, then $\abso{Z_1 \times Z_2}=0$. 
+\end{lemma}
+\begin{proof}  
+Let $A_n\triangleq [n,n+1)$. Because 
+\begin{align*}
+Z_1 \times Z_2 = \bigsqcup _{n\inz} Z_1 \times (A_n \cap  Z_2)
+\end{align*}
+To show $\abso{Z_1 \times Z_2}=0$, we only have to $\abso{Z_1 \times (A_n \cap Z_2)}=0$ for all $n\inz$. In other words, we can WOLG suppose $Z_2$ is bounded.\\ 
+
+Now, fix $\epsilon $. We are required to find an countable closed cube cover $Q_n\times C_n$ for $Z_1 \times Z_2$ such that $\sum_n \abso{Q_n\times C_n}< \epsilon $. Let $C_n=C$ for all $n$ where  $C$ is a compact interval containing $Z_2$, and let  $Q_n$ be a countable compact interval cover for  $Z_1$ such that $\sum \abso{Q_n}< \frac{\epsilon }{\abso{C}}$. It then follows $\sum_n \abso{Q_n\times C_n}= \sum_n \abso{Q_n}\abso{C}< \epsilon $. 
+\end{proof}
 \begin{theorem}
+\label{PoFM}
 \textbf{(Product of Finite Measure Set)} If $E_1\text{ and }E_2$ are measurable subset of $\R $ and $\abso{E_1},\abso{E_2}<\infty$, then $E_1\times E_2$ is measurable in $\R^2$ and 
  \begin{align*}
 \abso{E_1\times E_2} = \abso{E_1} \abso{E_2}
 \end{align*}
 \end{theorem}
 \begin{proof}
-Fix $\epsilon $. We are required to find open set $O\subseteq \R^2$ such that 
-\begin{align}
-\label{e1e2}
-E_1 \times E_2 \subseteq O\text{ and } \abso{O \setminus (E_1 \times E_2)}_e \leq  \epsilon 
-\end{align}
-  Let $O_1,O_2$ be two open subset of $\R$ respectively containing $E_1,E_2$ and satisfy the following four conditions 
-\begin{enumerate}[label=(\alph*)]
-  \item $\abso{O_2}< \abso{E_2} + 1$ 
-  \item $\abso{O_1}< \abso{E_1}+1 $
-\end{enumerate}
+Write $E_1\triangleq H_1\sqcup Z_1$ and $E_2 \triangleq H_2 \sqcup Z_2$ where $H_1,H_2\in F_\sigma$ and $\abso{H_1}=\abso{E_1}$ and $\abso{H_2}=\abso{E_2}$. Now observe 
 \begin{align*}
-\abso{O_1\setminus E_1}\leq \frac{\epsilon }{2(\abso{E_2}+1)}\text{ and }\abso{O_2 \setminus E_2}\leq \frac{\epsilon }{2(\abso{E_1}+1)}
+E_1 \times E_2 = (H_1 \times H_2)\cup   (Z_1 \times E_2) \cup   (E_1 \times Z_2)
+\end{align*}
+Note that if we write $H_1=\bigcap F_{1,n}$ and $H_2 = \bigcap F_{2,n}$, we see $H_1 \times H_2 = \bigcap F_{1,n}\times F_{2,n} \in F_{\sigma}$ in $\R^2$, it now follows from \myref{Lemma}{zme} that $E_1 \times E_2$ is measurable.  \\
+
+
+
+
+
+
+
+
+
+Now, let $S_n$ be a decreasing sequence of open set containing  $E_1$ such that  $\abso{S_n\setminus E_1}< \frac{1}{n}$, and let $T_n$ be a decreasing sequence of open set containing $E_2$ such that $\abso{T_n \setminus E_2}< \frac{1}{n}$. In other words, 
+\begin{align*}
+E_1 = S \setminus  Z_1 \text{ and }E_2 = T \setminus  Z_2 \text{ where }\begin{cases}
+  S\triangleq \bigcap S_n\\
+  T\triangleq \bigcap T_n \\
+  \abso{Z_1}=\abso{Z_2}=0
+\end{cases}
+\end{align*}
+We now have 
+\begin{align*}
+S \times T= (E_1 \times E_2) \cup (Z_1 \times  E_2)  \cup  (E_1\times Z_2)
+\end{align*}
+This then implies $\abso{S\times T}=\abso{S\times T}_e\leq \abso{E_1\times E_2}_e+ \abso{Z_1 \times E_2}_e + \abso{E_1 \times Z_2}_e= \abso{E_1 \times E_2}$, where the last inequality follows from \myref{Lemma}{zme}. The reverse inequality is clear, since $E_1 \times E_2 \subseteq S \times T$. We have proved $\abso{E_1 \times E_2}=\abso{S \times T}$. \\
+
+
+
+
+
+
+Now, for each $n$, write 
+ \begin{align*}
+S_n= \bigcup_{k \inn} I_{k,S_n} \text{ and } T_n= \bigcup_{k\inn} I_{k,T_n}
+\end{align*}
+where $(I_{k,S_n})_k$ and $(I_{k,T_n})_k$ are non-overlapping compact interval. It then follows that 
+\begin{align*}
+  \abso{S_n \times T_n} =  \sum_{i,j} \abso{I_{i,S_n} \times I_{j,T_n}}= \sum_{i,j} \abso{I_{i,S_n}}\times \abso{I_{j,T_n}}= \sum_i \abso{I_{i,S_n}} \sum_j \abso{I_{j,T_n}}= \abso{S_n} \abso{T_n}
+\end{align*}
+Write $S\triangleq \bigcap_{n\inn} S_n$ and $T\triangleq \bigcap_{n\inn}T_n$. Because
+\begin{enumerate}[label=(\alph*)]
+  \item Each  $S_n \times T_n$ is open.   
+  \item $\abso{S_n\times T_n}= \abso{S_n}\abso{T_n}$ is bounded ($\because \abso{S_n}\searrow \abso{E_1}<\infty$). 
+  \item $S_n \times T_n \searrow S \times T$
+\end{enumerate}
+We can now deduce 
+\begin{align*}
+\abso{E_1 \times E_2}= \abso{S \times T}&= \lim_{n\to \infty} \abso{S_n \times T_n} \\
+&=\lim_{n\to \infty} \abso{S_n} \abso{T_n} \\
+&=\abso{E_1} \abso{E_2}
 \end{align*}
 
-We claim 
-\begin{align*}
-\vi{O\triangleq O_1\times O_2 \text{ suffices for \myref{Equation}{e1e2} }}
-\end{align*}
-Observe that 
-\begin{align*}
-\Big(O_1 \times O_2 \Big) \setminus \Big(E_1 \times E_2  \Big) = \Big((O_1 \setminus E_1) \times O_2 \Big)  \sqcup \Big( E_1 \times (O_2 \setminus E_2) \Big)
-\end{align*}
+
+
 \end{proof}
 \begin{question}{}{}
 If $E_1$ and  $E_2$ are measurable subset of  $\R$, then $E_1\times E_2$ is a measurable subset of $\R^2$ and  $\abso{E_1\times E_2}=\abso{E_1}\abso{E_2}$
@@ -641,30 +715,42 @@ We can deduce
 \begin{align*}
 E_1 \times E_2 = \bigcup_{n,k\inz} (E_1 \cap A_n)\times (E_2 \cap A_k)
 \end{align*}
-and deduce 
+Note that \myref{Theorem}{PoFM} tell us $(E_1 \cap A_n) \times (E_2 \cap A_k)$ is measurable, which implies $E_1\times E_2$ is measurable. \myref{Theorem}{PoFM} also tell us  $\abso{(E_1\cap A_n)\times (E_2 \cap A_k)}= \abso{E_1 \cap A_n}\abso{E_2 \cap A_k}$, which allow us to deduce 
 \begin{align*}
-\abso{E_1}= \sum_{n\inz} \abso{E_1\cap A_n}\text{ and }\abso{E_2}=\sum_{k\inz} \abso{E_2\cap A_k}
+\abso{E_1 \times E_2}= \sum_{n,k\inz} \abso{(E_1 \cap A_n ) \times (E_2 \cap A_k)}&= \sum_{n,k\inz} \abso{E_1 \cap A_n} \abso{E_2 \cap A_k} \\
+&=\sum_{n\inz} \abso{E_1 \cap A_n} \sum_{k\inz} \abso{E_2 \cap A_k}= \abso{E_1} \abso{E_2}
 \end{align*}
-which give us 
-\begin{align*}
-\abso{E_1}\abso{E_2}=\sum_{n,k\inz} \abso{E_1\cap A_n} \abso{E_2\cap A_k}
-\end{align*}
-We then can reduce the problem into proving for all $n,k\inz$
-\begin{align*}
-  H\triangleq (E_1\cap A_n) \times (E_2\cap A_k)\text{ is measurable and }\abso{H}= \abso{E_1 \cap A_n} \abso{E_2 \cap A_k}
-\end{align*}
-
-
-
-
-
 \end{proof}
 \begin{question}{}{}
 Give an example that shows that the image of a measurable set under a continuous transformation may not be measurable. See also Exercise $10$ of Chapter 7. 
 \end{question}
+\begin{proof}
+Consider the Cantor-Lebesgue function denoted by $f:[0,1]\rightarrow [0,1]$ and denote the classical ternary Cantor set by $\mathcal{C}$. Let  $V$ be a Vitali set contained by  $[0,1]$. Because $f(\mathcal{C})=[0,1]$, we know there exists $E\subseteq \mathcal{C}$ such that $f(E)=V$. Such $E$ is measurable since $\abso{E}_e\leq \abso{\mathcal{C}}=0$, yet its continuous image $V=f(E)$ is by definition non-measurable. 
+\end{proof}
 \begin{question}{}{}
 Show that there exists disjoint $E_1,E_2,\dots $ such that $\abso{\bigcup E_k}_e< \sum \abso{E_k}_e$ with strict inequality. 
 \end{question}
+\begin{proof}
+Let  $V$ be a Vitali Set contained by $[0,1]$. Enumerate $[0,1]\cap \Q$ by $x_n$. Define 
+ \begin{align*}
+E_n\triangleq \set{v+x_n\inr: v\in V}\text{ for all }n
+\end{align*}
+The sequence $E_n$ is disjoint, since if  $p \in E_n \cap E_m$, then there exists some pair $v_n,v_m$ belong to  $V$ such that 
+ \begin{align}
+\label{vnxn}
+v_n+x_n=p=v_m+x_m
+\end{align}
+which is impossible, since \myref{Equation}{vnxn} implies that $v_n\neq v_m$ and $v_n,v_m$ are of difference of a rational number.  \\
+
+Now, note that for arbitrary $n$ and  $v\in V$, because $v \in V \subseteq [0,1]$ and $x_n \in [0,1]$, we have $v+x_n\in [0,2]$. This implies 
+\begin{align*}
+\bigsqcup _n E_n \subseteq [0,2]\text{ and }\abso{\bigsqcup _n E_n}_e \leq 2
+\end{align*}
+Because $V$ is non-measurable by definition, we know $\abso{V}_e>0$, and since outer measure is translation invariant, we can now deduce 
+\begin{align*}
+\sum_n \abso{E_n}_e= \sum_n \abso{V}_e =\infty >2 \geq \abso{\bigsqcup_n E_n}_e
+\end{align*}
+\end{proof}
 \begin{question}{}{}
 Show that there exists decreasing sequence $E_k$ of sets such that 
 \begin{enumerate}[label=(\alph*)]
@@ -673,9 +759,55 @@ Show that there exists decreasing sequence $E_k$ of sets such that
   \item $\lim_{k\to \infty}\abso{E_k}_e> \abso{E}_e$
 \end{enumerate}
 \end{question}
+\begin{proof}
+Let $V$ be a Vitali Set contained by  $[0,1]$. Enumerate $[0,1]\cap \Q$ by $x_n$. Define 
+\begin{align*}
+V+x_n \triangleq \set{v+x_n\inr: v\in V}
+\end{align*}
+In last question, we have proved that $V+x_n$ is pairwise disjoint. Define for all $n\inn$
+\begin{align*}
+E_n\triangleq \bigsqcup_{k\geq n}V+x_k  
+\end{align*}
+Observe that 
+\begin{align*}
+E_k \searrow \bigcap E_n =\varnothing 
+\end{align*}
+which implies $\abso{\bigcap E_n}_e=0$, but 
+\begin{align*}
+\lim_{n\to \infty} \abso{E_n}_e =\lim_{n\to \infty} \abso{\bigsqcup_{k\geq n}V+x_k}\geq \lim_{n\to \infty} \abso{V+x_n}=\abso{V}>0
+\end{align*}
+\end{proof}
 \begin{question}{}{}
 Let $Z$ be a subset of $\R$ with measure zero. Show that the set $\set{x^2:x\in Z}$ also has measure zero.
 \end{question}
+\begin{proof}
+Fix $Z_n\triangleq Z\cap [-n,n]$. Since 
+\begin{align*}
+\abso{\set{x^2:x \in Z}}\leq \sum_{n=1}^{\infty} \abso{\set{x^2:x\in Z_n}}_e
+\end{align*}
+We only have to prove 
+\begin{align*}
+  \abso{\set{x^2 : x \in Z_n}}_e =0\text{ for all }n
+\end{align*}
+Fix $\epsilon ,n$. Let $I_k$ be a compact interval cover of  $Z_n$ such that $\sum \abso{I_k} < \frac{\epsilon }{2n}$. We shall suppose $I_k \subseteq [-n,n]$, since if not, we can just let $I_k'\triangleq I_k \cap [-n,n]$.\\
+
+Now, define 
+\begin{align*}
+I_k^2\triangleq \set{x^2 : x\in I_k}
+\end{align*}
+Clearly, $I_k^2$ are all compact intervals, and if we write  $I_k \triangleq [a_k,b_k]$, we have the following inequalities 
+\begin{align*}
+\begin{cases}
+  0 \leq a_k\leq b_k \implies  \abso{I_k^2}=b_k^2-a_k^2= \abso{I_k}(b_k+a_k)\leq 2n \abso{I_k}  \\
+  a_k\leq  0 \leq b_k \implies  \abso{I_k^2} = \max \set{a_k^2,b_k^2}\leq (b_k-a_k)^2= \abso{I_k}(b_k-a_k)\leq 2n \abso{I_k} \\
+  a_k \leq b_k \leq 0\implies \abso{I_k^2}= a_k^2 - b_k^2 = \abso{I_k}(-a_k-b_k)\leq 2n\abso{I_k}
+\end{cases}
+\end{align*}
+Note that $\set{I_k^2}_{k\inn}$ is a compact interval cover  of $\set{x^2:x\in Z_n}$, we now see 
+\begin{align*}
+\abso{\set{x^2:x\in Z_n}}_e \leq \sum_k \abso{I_k^2} \leq 2n \sum \abso{I_k}< \epsilon 
+\end{align*}
+\end{proof}
 \section{Brunn-Minkowski Inequality}
 \chapter{Complex Analysis HW}
 \section{HW1}

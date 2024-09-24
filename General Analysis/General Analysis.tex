@@ -3673,8 +3673,47 @@ This then give us
 \begin{align*}
 \mu \Big(\prod_{j=1}^d [a_j,b_j)\Big)\leq \sum_{n \in I}\mu \Big(\prod_{j=1}^d [a_{j,n}-\epsilon _n, b_{j,n}+\epsilon _n) \Big) \leq (1+\epsilon )\sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
 \end{align*}
-which give us \myref{Equation}{58}.  
+which give us \myref{Equation}{58}. Having proved that the volume function $\mu : S\rightarrow [0,\infty]$ is a pre-measure, we can \customref{Piom}{induce a outer measure on $\R^d$ by }
+\begin{align*}
+\abso{E}_e \triangleq \inf \bset{ \mu (T_n) : E \subseteq \bigcup_ n T_n \text{ and }T_1,T_2,\dots  \in S}
+\end{align*}
+and \customref{Omi}{restrict the outer measure into a measure by letting the collection $\mathcal{L}(\R^d)$ of Lebesgue measurable set to be} 
+\begin{align*}
+\mathcal{L}(\R^d)\triangleq \set{A \subseteq \R^d: \forall E \subseteq \R^d, \abso{E}_e= \abso{E\cap A}_e + \abso{E\cap A^c}_e}
+\end{align*}
+Notably, if we define the class $K_n$ of half-open dyadic cubes by 
+\begin{align*}
+K_n \triangleq \bset{\prod_{j=1}^{d} [\frac{m_j}{2^n}, \frac{m_j+1}{2^n})\subseteq \R^d: m_j \inz \text{ for all }j}
+\end{align*}
+We see that for each $p$ in some open set $U$, there exists some small enough half-open dyadic cube $Q\in K_n$ (for some $n$) such that $p \in Q \subseteq U$. Then, since the collection $\bigcup K_n$ of half-open dyadic cubes is countable, we see $U$ is in the sigma-algebra  $\mathcal{L}(\R^d)$. 
 \end{mdframed}
+\begin{theorem}
+\textbf{(Equivalent Definition of Lebesgue Measurability)} The following statements are equivalent. 
+\begin{enumerate}[label=(\alph*)]
+  \item $E\in \mathcal{L}(\R^d)$. 
+  \item For all $\epsilon $, there exists some open $O$ containing $E$ such that  $\abso{O\setminus E}_e< \epsilon $. 
+  \item For all $\epsilon $, there exists some closed $F$ contained by $E$ such that $\abso{E\setminus F}_e<\epsilon $. 
+  \item $E= H \setminus Z$ for some null $Z$ and some $H \in G_\delta$ with same measure as  $E$. 
+  \item $E=H \cup Z$ for some null $Z$ and some $H\in F_\sigma$ with same measure as $E$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Since $\R^d$ is  $\sigma$-finite, to prove from (a) to (b), we can WOLG suppose $\abso{E}<\infty$; the proof then follows from the definition of $\abso{E}_e$, the trick of enlarging the cover to appropriate size and that open set is measurable. The proof for $(\text{b})\implies (\text{d})\implies (\text{a})$ is straightforward. The proof for $(\text{b})\implies (\text{c})$ is observation of $O \setminus E^c= E\setminus O^c$, and the proof for  $(\text{c})\implies (\text{e})\implies (\text{a})$ is again straightforward.
+\end{proof}
+\begin{mdframed}
+It is worth pointing out that every open set can be expressed as a countable disjoint union of half-open dyadic cubes by an algorithmic construction, since if we write  
+\begin{align*}
+U_1\triangleq \bigsqcup_n Q_{n,1}\text{ and }U_2 \triangleq \bigsqcup_n Q_{n,2}
+\end{align*}
+we have 
+\begin{align*}
+\abso{U_1\times U_2}=\left|\bigsqcup_{n,k}Q_{n,1}\times Q_{k,2}\right|=\sum_{n,k} \abso{Q_{n,1}} \abso{Q_{k,2}}= \sum_n \abso{Q_{n,1}}\sum_{k} \abso{Q_{k,2}}= \abso{U_1}\abso{U_2}
+\end{align*}
+which in tern tell us that the product of measurable set is indeed measurable. (proved using an open set approximation from outside and the fact $\R^d$ is  $\sigma$-finite) \\
+
+
+\end{mdframed}
+
 \chapter{Riemann Calculus}
 \section{Riemann-Stieltjes Integral}
 
@@ -6232,8 +6271,127 @@ It is then clear that $\pi$ is an open mapping, thus \customref{Basis and Quotie
 \section{Weierstrass Function}
 \section{Fabius Function}
 \section{Vitali Set}
+\label{Vitali Set}
+\begin{abstract}
+This section construct the Vitali Set in $\R^d$ for reference.
+\end{abstract}
+\begin{mdframed}
+Fix $p>m>0\inr$. Define an equivalence relation in $[0,m]^d$ by 
+\begin{align*}
+\textbf{x}\sim  \textbf{y}\overset{\triangle}{\iff }\textbf{x}-\textbf{y}\inq^d
+\end{align*}
+Using axiom of choice, we can let $E\subseteq [0,m]^d$ contain exactly one element in each equivalence class. Enumerate $([0,p]\cap \Q)^d$ by $\textbf{z}_n$. For each $n\inn$, define 
+\begin{align*}
+E+\textbf{z}_n \triangleq \set{\textbf{x}+\textbf{z}_n\inr^d: \textbf{x}\in E}
+\end{align*}
+It is straightforward to check from definition of $E$ that 
+\begin{enumerate}[label=(\alph*)]
+  \item $E+\textbf{z}_n$ are pairwise disjoint. 
+  \item $[0,m]^d \subseteq \bigsqcup_n (E+\textbf{z}_n)\subseteq [0,m+p]^d$. 
+\end{enumerate}
+Now, if $E$ is really measurable, we see that 
+\begin{align}
+\label{con}
+0<m^d\leq \sum_n \abso{E}\leq (m+p)^d
+\end{align}
+since 
+\begin{align*}
+\abso{\bigsqcup  E+\textbf{z}_n}= \sum_n \abso{E+\textbf{z}_n}=\sum_n \abso{E}
+\end{align*}
+Observing that \myref{Equation}{con} is impossible implies $E$ is not measurable.
+\end{mdframed}
+
 \section{Cantor Set}
+\label{Cantor Set}
+\begin{abstract}
+This section construct the classical ternary Cantor set and some of its variant, and prove they are uncountable and perfect. 
+\end{abstract}
+\begin{mdframed}
+By the term \textbf{Classical Ternary Cantor Set} $\mathcal{C}$, one usually mean
+\begin{align*}
+\mathcal{C}\triangleq \bigcap_{n\inn}\mathcal{C}_n
+\end{align*}
+where $\mathcal{C}_0 \triangleq [0,1]$, and $\mathcal{C}_{k+1}$ is the result of deleting the open middle third of each connected component -- which are clearly compact -- of $\mathcal{C}_k$. Immediately, one can see that  
+\begin{enumerate}[label=(\alph*)]
+  \item $\mathcal{C}_n$ has $2^n$ amount of connected components, which are all compact with the length of  $\frac{1}{3^n}$.
+  \item $\mathcal{C}$ has zero measure, since $\abso{\mathcal{C}_{n+1}}=\abso{\mathcal{C}_n} - \frac{2^n}{3^{n+1}}$. 
+  \item $\mathcal{C}$ is totally disconnected, since if $a,b \in \mathcal{C}$ are connected then $[a,b]\subseteq \mathcal{C}$, which is impossible by proposition (a). 
+  \item $\mathcal{C}$ is perfect, since for each $\epsilon $ and $x\in\mathcal{C}$, there exists large enough $n$ such that the length of each connected component of $\mathcal{C}_n$ is smaller than $\epsilon $, and the end point of the connected component -- in which $x$ lies -- that isn't $x$ would belong to $\mathcal{C}$ and be $\epsilon $-close to $x$.  
+  \item The endpoints $\set{x\in \mathcal{C}:x\text{ is the endpoint of some connected component of some }\mathcal{C}_n }$ are countable and dense in $\mathcal{C}$. 
+\end{enumerate} 
+With some tedious effort, one can see that $x\in\mathcal{C}$ if and only if 
+\begin{align*}
+x=\sum_{n=1}^{\infty} \frac{a_n}{3^n}\text{ for some }a_n \in \set{0,2}
+\end{align*}
+With base $3$ representation, one can use a diagonal argument to show $\mathcal{C}$ is uncountable. Another approach to show $\mathcal{C}$ is uncountable is to show \customref{NSP}{non-singleton perfect sets in $\R^n$ are uncountable}.
+\end{mdframed}
+\begin{theorem}
+\label{NSP}
+\textbf{(Non-Singleton Perfect Set in $\R^n$ is Uncountable)} Given a perfect set $E\subseteq \R^n$, if $E$ contain more than one element, then  $E$ must be uncountable.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{mdframed}
+Notably, a variant of the Cantor set includes the \textbf{Fat Cantor Set}, which is constructed similarly to the classical ternary Cantor set, except that the removed open middle intervals at $n$stage is each of length $\delta^n$, where $0 < \delta < 3$. Note that the construction cannot be done if $\delta > 3$ and that the Fat Cantor Sets all have positive measure, are perfect and totally disconnected.  
+\end{mdframed}
 \section{Cantor-Lebesgue Function}
+\begin{abstract}
+This section construct the Cantor-Lebesgue Function for reference.
+\end{abstract}
+\begin{mdframed}
+Consider the \customref{Cantor Set}{Classical Ternary Cantor Set $\mathcal{C}$}. Let 
+\begin{align*}
+\mathcal{D}_n \triangleq [0,1]\setminus \mathcal{C}_n\text{ for all }n
+\end{align*}
+For example,
+\begin{align*}
+\mathcal{D}_1=(\frac{1}{3},\frac{2}{3})\text{ and }\mathcal{D}_2= (\frac{1}{9},\frac{2}{9})\cup (\frac{1}{3},\frac{1}{2})\cup  (\frac{7}{9},\frac{8}{9})
+\end{align*}
+Because $\mathcal{C}_n$ has $2^n$ amount of connected components, we know  $\mathcal{D}_n$ has $2^n-1$ amount of connected components. Order these connected components by  $\set{I^n_j: 1\leq j\leq 2^n-1}$. We now define a sequence of function $f_n:[0,1]\rightarrow [0,1]$ by letting 
+\begin{align*}
+f_n(x)\triangleq \begin{cases}
+0& \text{ if $x=0$ }\\
+\frac{j}{2^n}& \text{ if $x\in \overline{I_j^n}$ }\\
+1& \text{ if $x=1$ }
+\end{cases}
+\end{align*}
+where $f_n$ is linear on  $\overline{\mathcal{D}_n}$. 
+\end{mdframed}
+
+
+
+\begin{mdframed}
+For each $x\in [0,1]$ there exists a (not always unique) base 3 representation 
+\begin{align*}
+x=\sum_{n=1}^{\infty} \frac{a_n}{3^n}\text{ for some }a_n \in \set{0,1,2}
+\end{align*}
+The Cantor-Lebesgue Function $f:[0,1]\rightarrow [0,1]$ is defined as follows. Given $x= \sum_{n=1}^{\infty} \frac{a_n}{3^n}\in [0,1]$, if there exists some smallest $n$ such that $a_n=1$, define 
+\begin{align*}
+b_k\triangleq \begin{cases}
+  0& \text{ if $k<n$ and $a_k=0$ }\\
+  1& \text{ if $k<n$ and  $a_k=2$ } \\
+  1& \text{ if $k=n$ }\\
+  0& \text{ if $k>n$ }
+\end{cases}
+\end{align*}
+It $1\not\in \set{a_n: n\inn}$, then we simply define 
+\begin{align*}
+b_n\triangleq \begin{cases}
+  0& \text{ if $a_n=0$ }\\
+ 1& \text{ if $a_n=2$ } 
+\end{cases}
+\end{align*}
+We then define 
+\begin{align*}
+f(x)\triangleq \sum_{n=1}^{\infty} \frac{b_n}{2^n}
+\end{align*}
+Note that if the base 3 representation of $x\in (0,1)$ has the trailing  $0$ or $2$, then the representation must not be unique, yet the procedure described above does give the same value $f(x)$ while the base 2 representation can be different. Some tedious effort can now be applied to show that 
+\begin{enumerate}[label=(\alph*)]
+  \item $f(\mathcal{C})=[0,1]$ where \customref{Cantor Set}{$\mathcal{C}$ is the classical ternary set}.  
+  \item $f:[0,1]\rightarrow [0,1]$ is increasing on $[0,1]$.
+\end{enumerate}
+\end{mdframed}
 \section{Volterra's Function}
 \section{Peano Space-filling Curve}
 
