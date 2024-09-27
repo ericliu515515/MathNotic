@@ -235,12 +235,12 @@ At this point, one should check the compatibility between the definitions of sub
 \end{abstract}
 \begin{mdframed}
 We now give definitions to three notions so important that they drive us to study Topology in the first place. Given a topological space $(X, \mathscr{T})$, we say nonempty $E \subseteq X$ is
-
 \begin{enumerate}[label=(\alph*)]
     \item \textbf{connected} if $E$ can not be written as $E = A \cup B$ so that $\overline{A} \cap B = A \cap \overline{B} = \varnothing$ and $A \neq \varnothing \neq B$.
     \item \textbf{path-connected} if for each $p, q \in E$, there exists a continuous function $f : [0, 1] \to E$ such that $f(0) = p, f(1) = q$.
     \item \textbf{compact} if every open cover has a finite subcover.
 \end{enumerate}
+\label{topological properties}
 These three properties are often called \textbf{topological properties}, since they are invariant under continuous function, the "morphism" between topological space. Put more precisely, If $E \subseteq X$ satisfy a topological property and $f : X \to Y$ is continuous, then $f(E)$ also satisfy the topological property.\\
 
 Immediately, one should again check the "natural" behaviors of subspace topology: Whether a set $E$ is connected, path-connected, or compact is independent of the choices of ambient space. In other words, given $E \subseteq X$, $E$ is connected, path-connected or compact in $(X, \mathscr{T})$ if and only if $E$ is connected, path-connected or compact in $(E, \mathscr{T}_E)$.
@@ -336,6 +336,9 @@ Lastly, we prove
     \item It is clear that $X$ is not closed in $Y$. Now observe that $\pi_Y$ maps the closed set $C$ to the open set $X \subseteq Y$. \CaC $\vdone$
 \end{enumerate}
 \end{proof}
+\begin{mdframed}
+Notably, one can easily check that closed subspace of compact space must be compact. 
+\end{mdframed}
 \begin{theorem}
 \label{Compact Subspace of Hausdorff Space is Closed}
 \textbf{(Compact Subspace of Hausdorff Space is Closed)} If $E$ is a compact subspace of Hausdorff space $X$, then $E$ is closed in  $X$. 
@@ -1659,6 +1662,12 @@ We then see
 \end{align*}
 The proof for the other side is similar.
 \end{proof}
+\begin{theorem}
+\textbf{(Trick for Root Test)}
+\begin{align*}
+\limsup_{n\to\infty} \abso{c_{n+1}}^{\frac{1}{n}}=\limsup_{n\to\infty} \abso{c_n}^{\frac{1}{n}}
+\end{align*}
+\end{theorem}
 \begin{mdframed}
 Lastly, we prove \customref{Cauchy's Condensation Test}{Cauchy's Condensation Test}, whose existence is almost solely for investigating \customref{p-Series}{p-Series}.
 \end{mdframed}
@@ -1978,18 +1987,25 @@ This is how you compute $\nabla f(x)$ when you have to.
 \end{mdframed}
 \section{MVT}
 \begin{abstract}
-  This is a short section introducing MVT. It is proved here because it will be used in \customref{Section of DT}{next section}. 
+  This section introduce \customref{CMVT}{Cauchy's MVT} and \customref{MVT}{MVT}, which will be heavily used later to prove multiple important and  common results, e.g., \customref{L'Hospital Rule}{L'Hospital Rule}, \customref{DT}{Differentiability Theorem}, \customref{SoMPD}{The criterion for commutation of partial derivative} and \customref{FTC2}{part 2 of FTC}. For how important MVT is in the development of Theory of Calculus, it is worth pointing out that, fundamentally, \customref{MVT}{MVT} relies on the order of the real numbers, as usage of \customref{LEoDF}{property of function differentiable at extremum} in the proof of \customref{CMVT}{Cauchy's MVT} suggest.
 \end{abstract}
+\begin{theorem}
+\label{LEoDF}
+\textbf{(Local Extremum of Differentiable Function must have zero derivative)} If $f:(x-\epsilon ,x+\epsilon )\rightarrow \R$ is differentiable at $x$ and attain maximum or minimum at  $x$, then  $f'(x)=0$. 
+\end{theorem}
+\begin{proof}
+WOLG, suppose $f$ attain maximum at  $x$. We see that the value of $\frac{f(x+h)-f(x)}{h}$ is non-negative when $h<0$ and non-positive when  $h>0$. This suggest that  $f'(x)=0$.
+\end{proof}
+\begin{mdframed}
+Below is a graph to help visualize \customref{CMVT}{Cauchy's MVT}.
 \begin{center}
    \begin{minipage}{0.9\linewidth}  
        \centering       
 \includegraphics[height=7cm,width=10cm]{CMVT.png}
    \end{minipage}
 \end{center}
-\hspace{3cm}
-\begin{theorem}
-\textbf{()}
-\end{theorem}
+We now prove \customref{CMVT}{Cauchy's MVT}. 
+\end{mdframed}
 \begin{theorem}
 \label{CMVT}
 \textbf{(Cauchy's MVT)} Given a function $f:[a,b]\to \R$ such that  
@@ -2007,15 +2023,15 @@ Define $h$ on  $(a,b)$ by
 \begin{align*}
 h(x)\triangleq \big[f(b)-f(a)\big]g'(x)-\big[g(b)-g(a)\big]f'(x)
 \end{align*}
-We reduced our problem into finding $x \in (a,b)$ such that 
+We reduced our problem into 
 \begin{align*}
-\vi{h(x)=0}
+  \vi{\text{ finding $x \in (a,b)$ such that } h(x)=0}
 \end{align*}
-Because $f,g$ are both differentiable on  $(a,b)$, we know there exists an anti-derivative $H$ of  $h$ on  $(a,b)$ such that
+Because $f,g$ are both differentiable on  $(a,b)$, we know there exists an anti-derivative $H$ on  $(a,b)$, which have the form 
 \begin{align*}
 H(x)=\big[f(b) -f(a)\big]g(x)-\big[g(b)-g(a) \big]f(x)
 \end{align*}
-This let us reduce our problem into 
+\myref{Theorem}{LEoDF} now allow us to reduce the problem into 
 \begin{align*}
   \vi{\text{ finding a local extremum of $H$ on  $(a,b)$ }}
 \end{align*}
@@ -2023,7 +2039,7 @@ Because $f,g$ are both continuous  on  $[a,b]$, we know $H$ is continuous on $[a
  \begin{align*}
 \exists x \in [a,b] , H(x)=\max_{t \in [a,b]}H(t)\text{ and }\exists y \in [a,b], H(y)=\min_{t \in [a,b]}H(t)
 \end{align*}
-If such $x,y$ is in $(a,b)$, we are done. If not, says that $x,y$ both are on end points $a$ or  $b$. Compute that 
+If any of such $x,y$ is in $(a,b)$, we are done. If not, says that $x,y$ both are on end points $a$ or  $b$. Compute that 
 \begin{align*}
 H(a)=f(b)g(a)-g(b)f(a)=H(b)
 \end{align*}
@@ -2058,7 +2074,6 @@ f(x)=\begin{cases}
 \end{cases}
 \end{align*}
 \end{mdframed}
-\section{L'Hospital Rule}
 \section{Differentiability Theorem}
 \label{Chapter of DT}
 \begin{abstract}
@@ -2272,7 +2287,7 @@ Now observe
 &=\frac{\abso{\big(\sum_{k=1}^nf_j(x+v_k)-f_j(x+v_{k-1}) \big)- \sum_{k=1}^n \partial_k f_j(x)h_k   }}{\abso{y-x}}\\
 &=\frac{\abso{\sum_{k=1}^n f_j(x+v_k)-f_j(x+v_{k-1})-\partial_k f_j(x)h_k}}{\abso{y-x}}\\
 &=\frac{\abso{\sum_{k=1}^n f_j(x+v_{k-1}+h_ke_k)-f_j(x+v_{k-1})-\partial_k f_j(x)h_k}}{\abso{y-x}}\\
-&=\frac{\abso{\sum_{k=1}^n \partial_k f_j(x+v_{k-1}+t_ke_k)h_k-\partial_k f_j(x)h_k}}{\abso{y-x}}\\
+(\text{ For some $e_k\in (0,1)$ by \customref{MVT}{MVT}})\hspace{0.5cm}&=\frac{\abso{\sum_{k=1}^n \partial_k f_j(x+v_{k-1}+t_ke_k)h_k-\partial_k f_j(x)h_k}}{\abso{y-x}}\\
 &\leq \frac{\sum_{k=1}^n \abso{\big(\partial_k f_j(x+v_{k-1}+t_ke_k)-\partial_k f_j(x) \big)h_k}}{\abso{y-x}}\\
 &< \frac{\sum_{k=1}^n \frac{\epsilon }{n} \abso{h_k}}{\abso{y-x}}\leq \epsilon \vdone
 \end{align*}
@@ -2486,7 +2501,7 @@ u'(t)=\partial_1 f(t,b+k)-\partial_1 f(t,b)
 Then we have
 \begin{align*}
 \Delta (h,k)&=u(a+h)-u(a)\\
-&=hu'(x)\text{ for some $x\in (a,a+h)$ by MVT (\myref{Corollary}{MVT}) }\\
+            &=hu'(x)\text{ for some $x\in (a,a+h)$ by \customref{MVT}{MVT}}\\
 &=h\big(\partial_1 f(x,b+k)-\partial_1 f(x,b) \big)
 \end{align*}
 Define $v(t)$ by 
@@ -2988,46 +3003,45 @@ Note $R=1$. Use \customref{geometric series}{Geometric Series Formula} to show $
 
 We now introduce some terminologies. We say a complex function $f$ is \textbf{analytic at} $z_0\inc$ if there exists a power series $(z_0,c_n)$ such that $f$ agrees with $\sum_{n=0}^\infty c_n(z-z_0)^n$ on $D_R(z_0)$ for some $R$  (of course, such $R$ must not be strictly greater than the radius of convergence of $(a,c_n)$).\\
 
-It shall be quite clear that if $f,g$ are both analytic at  $z\inc$ with radius $R_f\leq R_g$, then $f+g$ and $fg$ are both analytic at  $z$ with radius at least $R_f$. (the fact $fg$ is analytic at $z$ with radius at least $R_f$ is an immediate consequence of  \customref{Merten Cau}{Merten's Theorem for Cauchy Product}). We now investigate deeper into analytic functions. We first prove that \customref{AfaS}{analytic functions are smooth}.  
+It shall be quite clear that if $f,g$ are both analytic at  $z\inc$ with radius $R_f\leq R_g$, then $f+g$ is analytic at  $z$ with radius at least $R_f$. We now investigate deeper into analytic functions. We first prove that \customref{AfaS}{analytic functions are smooth}.  
 \end{mdframed}
 \begin{theorem}
 \label{AfaS}
-\textbf{(Term by Term Differentiation)} Given a power series $(z_0,c_n)$ of convergence radius $R$, if we define $f:D_R(z_0)\rightarrow \C$ by
+\textbf{(Term by Term Differentiation)} Given a power series $(z_0,c_n)$ of convergence radius $R>0$, if we define $f:D_R(z_0)\rightarrow \C$ by
 \begin{align*}
 f(z)\triangleq \sum _{n=0}^{\infty}c_n(z-z_0)^n 
 \end{align*}
-Then $f$ is holomorphic on $D_{R}(z_0)$ and its derivative is also a power series with radius of convergence at least $R$.
+Then $f$ is holomorphic on $D_{R}(z_0)$ and its derivative at $z_0$ is also a power series with radius of convergence at least $R$  
  \begin{align*}
 f'(z)= \sum_{n=0}^{\infty}(n+1)c_{n+1}(z-z_0)^n
 \end{align*}
 \end{theorem}
 \begin{proof}
-We first prove that 
+We first show that 
 \begin{align*}
 \vi{\text{ The power series }\sum_{n=0}^{\infty}(n+1)c_{n+1}(z-z_0)^n\text{ has radius of convergence at least }R}
 \end{align*}
-Note that 
+Because $(n+1)^{\frac{1}{n}}\to 1$, we know 
 \begin{align*}
-  \sum_{n=0}^{\infty}(n+1)c_{n+1}(z-z_0)^n=\sum_{n=1}^{\infty}nc_n(z-z_0)^{n-1}
+  \limsup_{n\to\infty} \big( (n+1)\abso{c_{n+1}} \big)^{\frac{1}{n}}&=\limsup_{n\to\infty}  \abso{c_{n+1}}^{\frac{1}{n}} \\
+  &=\limsup_{n\to\infty} \abso{c_{n+1}}^{\frac{1}{n+1}} \abso{c_{n+1}}^{\frac{1}{n(n+1)}}
 \end{align*}
-Fix $z \in D_R(z_0)$. We are required to prove 
+Note that since $\limsup_{n\to\infty} \abso{c_n}^{\frac{1}{n}}=\frac{1}{R}<\infty$, we can deduce 
 \begin{align*}
-  \vi{\sum_{n=1}^{\infty} n \abso{c_n(z-z_0)^{n-1}}\text{ converge }}
+\limsup_{n\to\infty} \abso{c_{n+1}}^{\frac{1}{n(n+1)}}\leq 1
 \end{align*}
-Let $r<R$ satisfy $z\in D_r(z_0)$. \customref{Cauchy-Hadamard}{Cauchy-Hadamard} tell us that 
+This then tell us 
 \begin{align*}
-\sum_{n=0}^{\infty} c_nr^n\text{ absolutely converge }
+\limsup_{n\to\infty} \big((n+1)\abso{c_{n+1}} \big)^{\frac{1}{n}}\leq \limsup_{n\to\infty} \abso{c_{n+1}}^{\frac{1}{n+1}}=\frac{1}{R}\vdone
 \end{align*}
-which implies 
-\begin{align*}
-K\triangleq \sum_{n=0}^{\infty}\abso{c_n}r^{n-1}=\frac{\sum_{n=0}^{\infty}\abso{c_n}r^n}{r}\inr
-\end{align*}
-Now observe 
-\begin{align*}
-\sum_{n=1}^{\infty}n\abso{c_n(z-z_0)^{n-1}}&=\sum_{n=1}^{\infty} \abso{\frac{z-z_0}{r}}^{n-1}n\abso{c_n}r^{n-1}\\
-&\leq K\sum_{n=1}^{\infty} nq^{n-1}\text{ where }q= \abso{\frac{z-z_0}{r}}<1
-\end{align*}
-The proof then follows from noting $\sum_{n=1}^{\infty} nq^{n-1}$ converge by \customref{Ratio and Root Test}{Root Test}. $\vdone$\\
+
+
+
+
+
+
+
+
 
 We now prove 
 \begin{align*}
@@ -3050,12 +3064,19 @@ Fix $z\in D_R(z_0)$. Proposition (b) allow us to reduce the problem into proving
 Let $z\in D_r(z_0)$ where $r<R$. With proposition (a) in mind, to show \myref{Equation}{an1}, by \myref{Theorem}{UCaH}, we only have to prove $f'_m$ uniformly converge on $D_r(z_0)$, which follows from \customref{WM-t}{M-Test} and the fact that \vi{$\sum_{n=0}^{\infty}(n+1)c_{n+1}(z-z_0)^n$ absolutely converge on $D_R(z_0)$}. $\bdone$ 
 \end{proof}
 \begin{mdframed}
-
-
-
-Now by \myref{Theorem}{AfaS}, if we are given a real function $f$ analytic at $a$, the power series representation $(a,c_n):\sum_{n=0}^\infty c_n(z-a)^n=f$ must be unique, since $f$ is proved to be infinitely differentiable at $a$ and proved to satisfy $c_k=\frac{f^{(k)}(a)}{k!}$.\\
-
-Notice that the arguments above are all based on the hypothesis that $f$ is analytic, and that smoothness does not imply analytic. See the following examples.
+Now by repeatedly applying \myref{Theorem}{AfaS}, we see 
+\begin{align*}
+f^{(k)}(z)&=\sum_{n=0}^{\infty} (n+k) \cdots (n+1)c_{n+k}(z-z_0)^n
+\end{align*}
+This then give us 
+\begin{align}
+\label{ckf}
+c_k =\frac{f^{(k)}(z_0)}{k!}\text{ for all }k \inz_0^+ 
+\end{align}
+and 
+\begin{align*}
+f(z)=f(z_0)+ 
+\end{align*}
 \end{mdframed}
 \begin{Example}{\textbf{(Smooth but not Analytic Function)}}{}
 \begin{align*}
@@ -3086,25 +3107,23 @@ f(x)=\begin{cases}
 Use the same trick (but more advanced) to show $f$ is smooth, and note that $f$ is not analytic at $\pm 1$. 
 \end{Example}
 \begin{mdframed}
-\end{mdframed}
-\begin{mdframed}
-Now, it comes an interesting question. Given a real function $f$ analytic at $a$ with radius  $R$, and suppose $b \in (a-R,a+R)$.
+Now, it comes an interesting question. Given a complex-valued function $f$ analytic at $z_0$ with radius  $R$, and suppose $z_1\in D_R(z_0)$.
 \begin{enumerate}[label=(\alph*)]
-  \item Is $f$ also analytic at $b$?
-   \item What do we know about the radius of convergence of $f$ at $b$?
-   \item Suppose $f$ is indeed analytic at $b$. It is trivial to see that the power series $(a,c_{a;n})$ and $(b,c_{b;n})$ must agree on the common convergence interval, and because $f$ is given, we by \myref{Theorem}{AfaS}, have already known the value of $c_{b;n}$. Can we verify that the power series  $(a,c_{a;n})$ and $(a,c_{b;n})$ do indeed agree with each other on the common convergence interval?
+  \item Is $f$ also analytic at $z_1$?
+   \item What do we know about the radius of convergence of $f$ at $z_1$?
+   \item Suppose $f$ is indeed analytic at $z_1$. It is trivial to see that the power series $(z_0,c_{0;n})$ and $(z_1,c_{1;n})$ must agree in the intersection of their convergence disks, and because $f$ is given, we by \myref{Theorem}{AfaS} and \myref{Equation}{ckf}, have already known the value of $c_{1;n}$. Can we verify that the power series  $(z_0,c_{0;n})$ and $(z_1,c_{1;n})$ do indeed agree with each other on the common convergence interval?
 \end{enumerate}
-\myref{Theorem}{TT} (Taylor's Theorem) give satisfying answers to these problems. 
+\customref{TT}{Taylor's Theorem} give satisfying answers to these problems. 
 \end{mdframed}
 \begin{theorem}
 \label{TT}
-  \textbf{(Taylor's Theorem)} Given a real function $f$ analytic at $a$ with radius $R$, and suppose $b\in (a-R,a+R)$. Then 
+  \textbf{(Taylor's Theorem)} Given a function $f$ analytic at $z_0$ with radius $R$, and suppose $z_1\in D_R(z_0)$. Then 
 \begin{align*}
-f(x)=\sum_{k=0}^\infty \frac{f^{(k)}(b)}{k!}(x-b)^k\text{ on $\abso{x-b}<R-\abso{b-a}$ }
+f(z)=\sum_{k=0}^\infty \frac{f^{(k)}(z_1)}{k!}(z-z_1)^k\text{ on $D_{R- \abso{z_1-z_0}}(z_1)$ }
 \end{align*}
 \end{theorem}
 \begin{proof}
-WOLG, let $a=0$. Suppose $x$ satisfy $\abso{x-b}<R-\abso{b}$. Compute 
+WOLG, let $z_0=0$. Suppose $z$ satisfy $\abso{z-z_1}<R-\abso{z_1}$. Compute 
  \begin{align*}
 f(x)&=\sum_{k=0}^{\infty}\frac{f^{(k)}(a)}{k!}x^k\\
 &=\sum_{k=0}^{\infty}\frac{f^{(k)}(a)}{k!}(x-b+b)^k\\
@@ -3377,6 +3396,80 @@ Similarly, one should check
 \end{enumerate}
 Now, given a family $S$ of subsets of $X$, there in fact exists an explicit expression of $\sigma (S)$, albeit infamous. Let $\omega_1$ be the smallest uncountable ordinal, and let $\mathbf{\Sigma}^0_1\triangleq S$. For each ordinal $\alpha <\omega_1$, we recursively define $\mathbf{\Pi}^0_\alpha \triangleq  \set{X\setminus A: A \in \mathbf{\Sigma}^0_\alpha}$ and $\mathbf{\Sigma}^0_\alpha \triangleq \set{\bigcup_{n\inn}A_n: (A_n)\subseteq \bigcup_{1\leq \gamma <\alpha }\mathbf{\Pi}^0_\gamma }$. One can use transfinite induction to check that $\sigma (S)= \bigcup_{\alpha <\omega_1}\mathbf{\Sigma}^0_\alpha$.
 \end{mdframed}
+\section{L'Hospital Rule}
+\begin{abstract}
+  This section state and prove the \customref{L'Hospital Rule}{L'Hospital Rule}, and provide examples to show the necessity of each hypotheses of L'Hospital Rule. Note that although \customref{L'Hospital Rule}{L'Hospital Rule} is not really directly used in most results in Theory of Calculus, it is used in the proof of \customref{Taylor's Theorem}{Taylor's Theorem}. 
+\end{abstract}
+\begin{theorem}
+\label{L'Hospital Rule}
+\textbf{(L'Hospital Rule)} Let $I \subseteq \R$ be an open interval containing $c$ and let $f,g:I\rightarrow \R$ be two function continuous on $I$ and differentiable on $I$ everywhere except possibly at  $c$, where 
+\begin{align*}
+g'(x)\neq  0\text{ for all }x\in I \setminus \set{c}
+\end{align*}
+If $\frac{f}{g}$ is indeterminate form, i.e. 
+\begin{align*}
+\lim_{x\to c}f(x)=\lim_{x\to c}g(x)=L\text{ where $L \in \set{0,\infty,-\infty}$ }
+\end{align*}
+and 
+\begin{align*}
+\lim_{x\to c} \frac{f'(x)}{g'(x)}\inr
+\end{align*}
+Then we have 
+\begin{align}
+\label{result L}
+\lim_{x\to c}\frac{f(x)}{g(x)}= \lim_{x\to c}\frac{f'(x)}{g'(x)}
+\end{align}
+\end{theorem}
+\begin{proof}
+Suppose $I=(a,b)$. Note that since $g'(x)\neq 0$ on $(c,b)$, by  \customref{MVT}{MVT}, we know there exists at most one $x \in (c,b)$ such that $g(x)=0$. With similar argument for $(a,c)$, we see that 
+\begin{align*}
+g(x)\neq 0\text{ on }(c-\epsilon ,c+\epsilon )\setminus \set{c}\text{ for some }\epsilon 
+\end{align*}
+We now see that the expression $\lim_{x\to c}\frac{f(x)}{g(x)}$ is at least well-defined, and WOLG, we can suppose $g(x)\neq 0$ on $I \setminus \set{c}$. Define $m,M:I\setminus \set{c}\rightarrow \R$ by 
+\begin{align*}
+m(x)\triangleq \inf \frac{f'(t)}{g'(t)}\text{ and }M(x)\triangleq \sup \frac{f'(t)}{g'(t)}\text{ where }t\text{ ranges over values between $x$ and  $c$ }
+\end{align*}
+Because the value $\frac{f'(t)}{g'(t)}$ converge at $c$, we can deduce
+ \begin{align}
+  \label{sq1}
+\lim_{x\to c}m(x)=\lim_{x\to c}M(x)=\lim_{x\to c} \frac{f'(x)}{g'(x)}
+\end{align}
+We now prove  
+\begin{align*}
+  \vi{\text{ the case when }\lim_{x\to c}f(x)=\lim_{x\to c}g(x)=0}
+\end{align*}
+Fix $x \in I \setminus \set{c}$, and WOLG suppose $x<c$. By \customref{CMVT}{Cauchy's MVT}, we know that 
+\begin{align*}
+m(x)\leq \frac{f(x)-f(y)}{g(x)-g(y)}\leq M(x)\text{ for all $y \in (x,c)$ }
+\end{align*}
+Note that $g(x)\neq g(y)$ by \customref{MVT}{MVT}, since $g'\neq 0$ on $I \setminus \set{c}$. It now follows from 
+\begin{align*}
+\lim_{y\to c^-} \frac{f(x)-f(y)}{g(x)-g(y)}= \frac{f(x)}{g(x)}
+\end{align*}
+that 
+\begin{align*}
+m(x)\leq \frac{f(x)}{g(x)}\leq M(x)
+\end{align*}
+The proof of \myref{Equation}{result L} then follows from \myref{Equation}{sq1}. $\vdone$  \\
+
+
+We now prove 
+\begin{align*}
+\blue{\text{ the case when }\lim_{x\to c}f(x)=\lim_{x\to c}g(x)=\infty}
+\end{align*}
+Again, fix $x \in I \setminus \set{c}$, and WOLG suppose $x<c$. By  \customref{CMVT}{Cauchy's MVT}, we know that 
+\begin{align*}
+m(x)\leq \frac{f(y)-f(x)}{g(y)-g(x)}\leq M(x)\text{ for all }y \in (x,c)
+\end{align*}
+Note that $g(x)\neq g(y)$ by \customref{MVT}{MVT}, since $g'\neq 0$ on $I \setminus \set{c}$. It now follows 
+\begin{align*}
+\frac{f(y)-f(x)}{g(y)-g(x)}=\frac{\frac{f(y)}{g(y)} - \frac{f(x)}{g(y)}}{1- \frac{g(x)}{g(y)}}\to \lim_{x\to c} \frac{f(x)}{g(x)}\text{ as }y\to c^-
+\end{align*}
+The proof of \myref{Equation}{result L} then follows form \myref{Equation}{sq1}. $\bdone$
+\end{proof}
+\begin{mdframed}
+We now introduce some examples to demonstrate the necessity of our hypotheses. 
+\end{mdframed}
 \section{Carathéodory's Extension Theorem}
 \label{caratheodory_extension_theorem}
 \begin{abstract}
@@ -3466,7 +3559,7 @@ It is clear that  $\set{T_{n,k}:n,k \inn}$ is a countable cover of $\bigcup_n B_
 \end{align*}
 At this point, one should check that even if we first extend $\mu$ onto $R(S)$ before doing the same procedure, we would still have the same outer measure. Now, because for each $T \in R(S)$, we clearly have $\mu^*(T)\leq \mu (T)$, to finish the proof it only remains to see for each cover $T_n \subseteq R(S)$ of $T$, we have
 \begin{align*}
-\mu (T)=\sum_n \mu (T\cap T_n)\leq \sum_n \mu (T_n)
+\mu (T)\leq \sum_n \mu (T\cap T_n)\leq \sum_n \mu (T_n)
 \end{align*}
 \end{proof}
 \begin{mdframed}
@@ -3701,7 +3794,8 @@ We see that for each $p$ in some open set $U$, there exists some small enough ha
 Since $\R^d$ is  $\sigma$-finite, to prove from (a) to (b), we can WOLG suppose $\abso{E}<\infty$; the proof then follows from the definition of $\abso{E}_e$, the trick of enlarging the cover to appropriate size and that open set is measurable. The proof for $(\text{b})\implies (\text{d})\implies (\text{a})$ is straightforward. The proof for $(\text{b})\implies (\text{c})$ is observation of $O \setminus E^c= E\setminus O^c$, and the proof for  $(\text{c})\implies (\text{e})\implies (\text{a})$ is again straightforward.
 \end{proof}
 \begin{mdframed}
-It is worth pointing out that every open set can be expressed as a countable disjoint union of half-open dyadic cubes by an algorithmic construction, since if we write  
+\label{dyadic cube}
+It is worth pointing out that every open set can be expressed as a countable disjoint union of half-open dyadic cubes by an algorithmic construction. This implies that if we write  
 \begin{align*}
 U_1\triangleq \bigsqcup_n Q_{n,1}\text{ and }U_2 \triangleq \bigsqcup_n Q_{n,2}
 \end{align*}
@@ -3711,11 +3805,49 @@ we have
 \end{align*}
 which in tern tell us that the product of measurable set is indeed measurable. (proved using an open set approximation from outside and the fact $\R^d$ is  $\sigma$-finite) \\
 
-
+Note that there do exist \customref{Vitali Set}{a non Lebesgue measurable set called Vitali Set} and \customref{Cantor-Lebesgue Function}{Cantor Lebesgue Function, a continuous function,  can map a measurable set to a non-measurable set}. One popular criterion for a function between Euclidean Spaces to preserve Lebesgue measurability is Lipschitz. 
 \end{mdframed}
+\begin{theorem}
+\textbf{(Lipschitz Continuity Preserve Lebesgue Measurability)} If $E\in \mathcal{L}(\R^d)$ and $f:\R^d\rightarrow \R^m$ is $K$-Lipschitz, then  $f(E)\in \mathcal{L}(\R^m)$ .
+\end{theorem}
+\begin{proof}
+  Write $E=H\cup Z$ where $H\in F_\sigma$ and $Z$ is null. Because $f(E)=f(H)\cup f(Z)$, to show $f(E)$ is measurable, we can reduce the problem into proving \vi{$f$ maps $F_\sigma$ into $F_\sigma$} and \blue{$f$ maps null set to null set}.\\
+
+By splitting $\R^d$ into a countable union of compact set 
+ \begin{align*}
+\R^d = \bigcup_{n\inn} \overline{B_n (\textbf{0})}
+\end{align*}
+We see that each closed set in $\R^d$ can be expressed as a countable union of compact sets. Then because \customref{topological properties}{continuous function preserve compactness}, we see $f$ must map closed set into class $F_\sigma$ and thus map class $F_\sigma$ into $F_\sigma$. $\vdone$\\
+
+Fix $\epsilon $. Because $f:\R^d\rightarrow \R^m$ is $K$-Lipschitz, we know all its components  $f_1,\dots ,f_m:\R^d \rightarrow \R$  are also $K$-Lipschitz. Because $Z$ is measurable and \customref{dyadic cube}{open set can be expressed as a disjoint countable union of dyadic half-open cubes}, we can let $T_n \subseteq S$ be a countable cover of $Z$ consisting of dyadic half-open cubes such that 
+\begin{align*}
+\sum_n \abso{T_n}< \frac{\epsilon }{K^m d^{\frac{m}{2}}}
+\end{align*}
+Now, note that for each half-open cube $T_n$, if we write 
+\begin{align*}
+T_n=\prod_{j=1}^d [a_j,a_j+h)
+\end{align*}
+We clearly have 
+\begin{align*}
+\operatorname{diam}T_n= h \sqrt{d} \text{ and }\abso{T_n}=h^d
+\end{align*}
+This give us the relationship between diameter and volume of a cube by 
+\begin{align*}
+\operatorname{diam}T_n=  \abso{T_n}^{\frac{1}{d}}d^{\frac{1}{2}}
+\end{align*}
+Because $f_k:\R^d \rightarrow \R$ are all $K$-Lipschitz, we know $f_k(T_n)$ can be contained by an interval of length $K(\operatorname{diam}T_n)$. This then tell us that $f(T_n)$ can be contained by closed cube of side length $K(\operatorname{diam}T_n)$, and give us the estimation  
+\begin{align*}
+\abso{f(T_n)}_e\leq K^m(\operatorname{diam}T_n)^m = K^m d^{\frac{m}{2}} \abso{T_n}^{\frac{m}{d}}\leq K^m d^{\frac{m}{2}}\abso{T_n}^m  \leq K^m d^{\frac{m}{2}} \abso{T_n}
+\end{align*}
+Where the last inequality hold true since we can WOLG suppose $\abso{T_n}\leq 1$. We now see that 
+\begin{align*}
+\abso{f(Z)}_e \leq \sum_n \abso{f(T_n)}_e \leq K^md^{\frac{m}{2}}\sum_n \abso{T_n}< \epsilon \bdone
+\end{align*}
+\end{proof}
+
 
 \chapter{Riemann Calculus}
-\section{Riemann-Stieltjes Integral}
+\section{Riemann-Stieltjes Integral}`
 
 \section{Riemann-Stieltjes on Computation}
 \begin{theorem}
@@ -3949,7 +4081,7 @@ Because $f$ is proper Riemann-Integrable on $[a,b]$, we know there exists a part
 \label{FP}
 U(P,f)-L(P,f)<\epsilon 
 \end{align}
-Because $f=F'$ on  $(a,b)$, for each $k \in \set{1,\dots ,n}$, by MVT (\myref{Theorem}{MVT}), we know 
+Because $f=F'$ on  $(a,b)$, for each $k \in \set{1,\dots ,n}$, by \customref{MVT}{MVT} , we know 
 \begin{align*}
 \exists t_k \in (x_{k-1},x_k), \frac{F(x_k)-F(x_{k-1})}{x_k-x_{k-1}}=f(t_k)
 \end{align*}
@@ -4469,12 +4601,76 @@ Observe that
 \begin{align*}
 f(a)=G(b^-)\int_a^b \phi(t)dt\text{ and }f(b)=G(a^+)\int_a^b \phi(t)dt 
 \end{align*}
-
-
-
-
 \end{proof} 
-
+\section{Taylor's Theorem}
+\label{Taylor's Theorem}
+\begin{abstract}
+This section prove Taylor's Theorem in both single and multi variables, and give some explicit formulas for the remainder terms. In this section, $k$ is a fixed integer greater than $1$, $I\subseteq \R$ is an open interval containing $a$ and $U\subseteq \R^n$ is an open set containing $\textbf{a}$  
+\end{abstract}
+\begin{theorem}
+\textbf{(Single Variable Taylor's Theorem)} If real function $f:I\rightarrow \R$ is $k$ time differentiable at  $a$ and if we write 
+\begin{align*}
+f(x)= f(a)+ f'(a)(x-a)+\frac{f''(a)}{2!}(x-a)^2+\cdots + \frac{f^{(k)}(a)}{k!}(x-a)^{k}+ R_k(x)
+\end{align*}
+then the approximation error $R_k(x)$ satisfy 
+\begin{align*}
+R_k(x)=o(\abso{x-a}^k)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Denote $P_k:I\rightarrow \R$ 
+\begin{align*}
+P_k(x)\triangleq f(a)+f'(a)(x-a)+\cdots + \frac{f^{(k)}(a)}{k!}(x-a)^k
+\end{align*}
+The proof then follows from applying \customref{L'Hospital Rule}{L'Hospital Rule} to have 
+\begin{align*}
+\lim_{x\to a} \frac{f(x)-P_k(x)}{(x-a)^k}=0 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Schlömilch form of the Remainders)} If $f:I\rightarrow \R$ is $k+1$ times  differentiable on $I$, then for all positive integer $p$, the approximation error  $R_k:I\rightarrow \R$ can be written in the Schlömilch form  
+\begin{align*}
+R_k(x)= \frac{f^{(k+1)}(\xi)}{k!}(x-\xi)^{k+1-p} \frac{(x-a)^p}{p}\text{ for some }\xi\text{ between $x,a$ }
+\end{align*}
+\end{theorem}
+\begin{corollary}
+\textbf{(Lagrange and Cauchy form of the Remainders)} If $f:I\rightarrow \R$ is  $k+1$ times differentiable on $I$, then for all positive integer $p$, the approximation error  $R_k:I\rightarrow \R$ can be written in the Lagrange form  
+\begin{align*}
+R_k(x)= \frac{f^{(k+1)}(\xi)}{(k+1)!}(x-a)^{k+1}\text{ for some }\xi\text{ between }x,a
+\end{align*}
+or the Cauchy form 
+\begin{align*}
+R_k(x)= \frac{f^{(k+1)}(\xi)}{k!}(x-\xi)^{k} (x-a)\text{ for some }\xi\text{ between }x,a
+\end{align*}
+\end{corollary}
+\begin{mdframed}
+Notably, the remainder can also be written in form of integral. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Integral form of the Remainder)} If $f:I\rightarrow \R$ is $C^{k+1}$ on $I$, then the approximation error $R_k:I\rightarrow \R$ can be written in the integral form 
+\begin{align*}
+R_k(x)=\int_a^x \frac{f^{(k+1)}(t)}{k!}(x-t)^k dt
+\end{align*}
+\end{theorem}
+\begin{mdframed}
+We now consider when $f$ is multi-variables. We first introduce the multi-index notation. Given $\alpha = (\alpha_1,\dots ,\alpha _n)\inn^n$ and $\textbf{x}\inr^n$, we write 
+\begin{align*}
+  \abso{\alpha }&\triangleq  \alpha_1 + \cdots + \alpha_n  \\
+  \alpha !&\triangleq \alpha_1 !\cdots \alpha_n! \\
+  \textbf{x}^\alpha & \triangleq x_1^{\alpha_1}\cdots x_n ^{\alpha_n}
+\end{align*}
+Suppose $f:U\rightarrow \R$ is $C^{k+1}$ on  $U$. One shall note that the notation 
+\begin{align*}
+D^{\alpha }f\triangleq  \frac{\partial ^{\abso{\alpha }}f}{(\partial x_1)^{\alpha _1}\cdots (\partial x_n)^{\alpha_n}} \text{ for all }\abso{\alpha }\leq k+1
+\end{align*}
+is well-defined. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Multi Variables Taylor's Theorem)} If real-valued function $f:U\rightarrow \R$ is $C^{k+1}$ on $U$, then we can write 
+\begin{align*}
+f(\textbf{x})=\sum_{\abso{\alpha }\leq k} \frac{D^{\alpha }f(\textbf{a})}{k!}
+\end{align*}
+\end{theorem}
 
 \chapter{Complex Analysis}
 \chapter{Lebesgue Calculus}
@@ -5998,9 +6194,9 @@ f(U)\text{ is open and }f\text{ is a homeomorphism between }U\text{ and }f(U)
 \begin{theorem}
 \textbf{(Invariance of Dimension)} If $U$ is a non-empty open subset of $\R^n$ and  $V$ is a non-empty subset of $\R^m$ homeomorphic to  $U$, then  $n=m$.
 \end{theorem}
-\section{Differentiable Manifold}
+\section{Smooth Manifold}
 \begin{abstract}
-This section give an example of a differentiable manifold.
+This is a short section that  introduce and specify the term smooth manifold.
 \end{abstract}
 \begin{mdframed}
 Given a topological space $(X,\mathscr{T })$ and fix $n$, if $:U\rightarrow \R^n$ is a homeomorphism between some subspace $U$ of $X$ and some open subspace of $\R^n$, we say $(\Phi,U)$ is a \textbf{chart} on $X$, and if there exists a collection $A=\set{(\Phi_i, U_i)}_{i \in I}$ of chart cover the whole $X$, we say $A$ is an  \textbf{atlas} and  $X$ is  \textbf{locally Euclidean}. An atlas $A$ is said to be a \textbf{smooth atlas}, if for each two charts $(\Phi_i,U_i),(\Phi_j,U_j)$ in $A$, 
@@ -6029,8 +6225,74 @@ Note that $F$ is required to be continuous at $p$ in the first place to guarante
   \item For all charts $(U,\phi),(V,\psi)$ at $p,F(p)$, the function $\psi \circ F\circ \phi ^{-1}:\phi(F^{-1}(V)\cap U )\subseteq \R^m\rightarrow \psi  (V )\subseteq \R^n$ is smooth at $p$. 
   \item If $G:N\rightarrow R$ is another map smooth at $F(p)$, then $G\circ F:M\rightarrow R$ is smooth at $p$.  
 \end{enumerate}
-When $F$ is a $\R^n$-valued function on $M$, we define the smoothness of  $F$ by considering  $\R^n$ as a manifold with the standard atlas  $\set{(\R^n,\textbf{id})}$. Now, let $C^{\infty}(M,\R^n)$ be the set of smooth function from $M$ to $\R^n$. We know  $C^{\infty}(M,\R^n)$ form an algebra as one can check.
+When $F$ is a $\R^n$-valued function on $M$, we define the smoothness of  $F$ by considering  $\R^n$ as a manifold with the standard atlas  $\set{(\R^n,\textbf{id})}$. 
 \end{mdframed}
+\begin{mdframed}
+Now, let $C^{\infty}(M,\R^n)$ be the set of smooth function from $M$ to $\R^n$. We know  $C^{\infty}(M,\R^n)$ form an algebra as one can check.
+\end{mdframed}
+\section{Equivalent Definitions for Tangent Space}
+\begin{abstract}
+In this section and from now on, $C^{\infty}(M)$ denote the space of all smooth real-valued function defined on $M$. 
+\end{abstract}
+\begin{mdframed}
+Given a point $p$ in  $M$, we define the  \textbf{tangent space $T_pM$ of $M$ at $p$} to be the space of linear functional $D:C^{\infty}(M)\rightarrow \R$ that satisfy the product rule at $p$ 
+ \begin{align*}
+   D(fg)=D(f) g(p)+ f(p)D(g)\text{ for all }f,g\in C^{\infty}(M)
+\end{align*}
+It is clear that tangent space form a vector space when endowed with pointwise scalar multiplication and addition. If $M$ is a $n$-dimensional manifold, we of course expect that $T_pM$ to be also $n$-dimensional. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Dimension of $T_p\R^n$ is $n$)} For all $p\inr^n$, the vector space $T_p\R^n$ has  $n$-dimension. 
+\end{theorem}
+\begin{proof}
+Define a function $\phi:\R^n\to T_p(\R^n)$ by 
+\begin{align*}
+\textbf{x}\mapsto D_\textbf{x}\text{ where }D_\textbf{x}(f)= \textbf{x}\cdot \nabla f(p)
+\end{align*}
+It is straightforward to check that $\phi$ is well defined and a linear transformation. It remains to prove $\phi$ is bijective. \\
+
+
+Let $D_\textbf{y}=0$, to show \vi{$\phi$ is one-to-one}, we are required to show $\textbf{y}=0$. For each $j \in \set{1,\dots, n}$, define a smooth function $f_j:\R^n\rightarrow \R$ by
+\begin{align}
+\label{fjxj}
+f_j(\textbf{x})\triangleq \textbf{x}^j
+\end{align}
+We then see that for all $y\inr^n$
+\begin{align*}
+D_\textbf{y}(f_j)=\textbf{y}\cdot \textbf{e}_j= \textbf{y}^j
+\end{align*}
+Then if $D_\textbf{y}=0$, we must have $\textbf{y}=0$. $\vdone$ \\
+
+We now show \blue{$\phi$ is onto}. Fix $w\in T_p(\R^n)$ and define $\textbf{v}\inr^n$ by 
+\begin{align*}
+\textbf{v}^j \triangleq w(f_j)
+\end{align*}
+where $f_j$ is defined in  \myref{Equation}{fjxj}. We claim \blue{$w=D_\textbf{v}$}. 
+
+
+
+
+
+
+\end{proof}
+\begin{mdframed}
+We now define the derivative  $dF_p:T_pM\rightarrow T_{F(p)}N$ of a smooth map $F:M\rightarrow N$ at $p\in  M$ between smooth manifold. 
+\begin{align*}
+  (dF_p(w))f\triangleq w(f\circ F)
+\end{align*}
+It is straightforward to check
+\begin{enumerate}[label=(\alph*)]
+  \item $dF_p(w) \in T_{F(p)}N$. 
+  \item  $dF_p$ is linear.  
+  \item $d(G\circ F)_p = dG_{F(p)}\circ dF_p:T_pM \rightarrow T_{G\circ F(p)}R$. 
+  \item $d\textbf{id}_p$ is the identity map on $T_pM$. 
+  \item If $F:M\rightarrow N$ is a diffeomorphism, then  $dF_p:T_pM \rightarrow T_{F(p)}(N)$ is an isomorphism of vector space and $(dF_p)^{-1}=dF^{-1}_{F(p)}$
+\end{enumerate}
+
+\end{mdframed}
+\begin{theorem}
+\textbf{(Dimension of $T_pM$ is the same as $M$)}
+\end{theorem}
 \section{Lie Group}
 \begin{mdframed}
 By a \textbf{Lie group}, we mean a smooth manifold equipped with a group structure such that the inversion and group addition are both smooth map, or equivalently, that 
@@ -6280,25 +6542,25 @@ Fix $p>m>0\inr$. Define an equivalence relation in $[0,m]^d$ by
 \begin{align*}
 \textbf{x}\sim  \textbf{y}\overset{\triangle}{\iff }\textbf{x}-\textbf{y}\inq^d
 \end{align*}
-Using axiom of choice, we can let $E\subseteq [0,m]^d$ contain exactly one element in each equivalence class. Enumerate $([0,p]\cap \Q)^d$ by $\textbf{z}_n$. For each $n\inn$, define 
+Using axiom of choice, we can let $V\subseteq [0,m]^d$ contain exactly one element in each equivalence class. Enumerate $([0,p]\cap \Q)^d$ by $\textbf{z}_n$. For each $n\inn$, define 
 \begin{align*}
-E+\textbf{z}_n \triangleq \set{\textbf{x}+\textbf{z}_n\inr^d: \textbf{x}\in E}
+V+\textbf{z}_n \triangleq \set{\textbf{x}+\textbf{z}_n\inr^d: \textbf{x}\in V}
 \end{align*}
-It is straightforward to check from definition of $E$ that 
+It is straightforward to check from definition of $V$ that 
 \begin{enumerate}[label=(\alph*)]
-  \item $E+\textbf{z}_n$ are pairwise disjoint. 
-  \item $[0,m]^d \subseteq \bigsqcup_n (E+\textbf{z}_n)\subseteq [0,m+p]^d$. 
+  \item $V+\textbf{z}_n$ are pairwise disjoint. 
+  \item $[0,m]^d \subseteq \bigsqcup_n (V+\textbf{z}_n)\subseteq [0,m+p]^d$. 
 \end{enumerate}
-Now, if $E$ is really measurable, we see that 
+Now, if $V$ is really measurable, we see that 
 \begin{align}
 \label{con}
-0<m^d\leq \sum_n \abso{E}\leq (m+p)^d
+0<m^d\leq \sum_n \abso{V}\leq (m+p)^d
 \end{align}
 since 
 \begin{align*}
-\abso{\bigsqcup  E+\textbf{z}_n}= \sum_n \abso{E+\textbf{z}_n}=\sum_n \abso{E}
+\abso{\bigsqcup_n  V+\textbf{z}_n}= \sum_n \abso{V+\textbf{z}_n}=\sum_n \abso{V}
 \end{align*}
-Observing that \myref{Equation}{con} is impossible implies $E$ is not measurable.
+Observing that \myref{Equation}{con} is impossible implies $V$ is not measurable.
 \end{mdframed}
 
 \section{Cantor Set}
@@ -6336,6 +6598,7 @@ With base $3$ representation, one can use a diagonal argument to show $\mathcal{
 Notably, a variant of the Cantor set includes the \textbf{Fat Cantor Set}, which is constructed similarly to the classical ternary Cantor set, except that the removed open middle intervals at $n$stage is each of length $\delta^n$, where $0 < \delta < 3$. Note that the construction cannot be done if $\delta > 3$ and that the Fat Cantor Sets all have positive measure, are perfect and totally disconnected.  
 \end{mdframed}
 \section{Cantor-Lebesgue Function}
+\label{Cantor-Lebesgue Function}
 \begin{abstract}
 This section construct the Cantor-Lebesgue Function for reference.
 \end{abstract}

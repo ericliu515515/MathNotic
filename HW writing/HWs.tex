@@ -621,6 +621,25 @@ Then for arbitrary $\epsilon $, if we let $N$ satisfy $\sum_{k=N}^{\infty} \abso
 \end{align*}
 
 \end{proof}
+\begin{question}{}{}
+If $E_1,E_2$ are measurable, show that 
+\begin{align*}
+\abso{E_1\cup E_2}+ \abso{E_1 \cap E_2}=\abso{E_1}+\abso{E_2}
+\end{align*}
+\end{question}
+\begin{proof}
+Observe the following expression of each set in disjoint union
+\begin{enumerate}[label=(\alph*)]
+  \item $E_1=(E_1\setminus E_2)\sqcup (E_1\cap E_2)$ 
+  \item $E_2=(E_2\setminus E_1)\sqcup (E_1\cap E_2)$ 
+  \item $E_1\cup E_2=(E_1\setminus E_2)\sqcup (E_1\cap E_2)\sqcup (E_2\setminus E_1)$
+\end{enumerate}
+It now follows 
+\begin{align*}
+\abso{E_1\cup E_2}+ \abso{E_1 \cap E_2}&= \abso{E_1\setminus E_2}+\abso{E_1\cap E_2}+\abso{E_1\cap E_2}+\abso{E_2\setminus E_1}\\
+&=\abso{E_1}+ \abso{E_2}
+\end{align*}
+\end{proof}
 \begin{lemma}
 \label{zme}
 Given two subsets $Z_1,Z_2$ of  $\R$,  if $\abso{Z_1}=0$, then $\abso{Z_1 \times Z_2}=0$. 
@@ -1002,6 +1021,123 @@ This give us
 u_t= k (u_{rr}+ \frac{u_r}{r})
 \end{align*}
 \end{proof}
+\section{1.4 Initial and Boundary Condition}
+\begin{question}{}{}
+Find a solution of 
+\begin{align*}
+\begin{cases}
+  u_t=u_{xx}\\
+  u(x,0)=x^2
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Clearly $u=x^2+2t$ suffices.
+\end{proof}
+\section{1.5 Well Posed Problems}
+\begin{question}{}{}
+Consider the ODE
+\begin{align*}
+\begin{cases}
+  u''+u=0\\
+  u(0)=0\text{ and }u(L)=0
+\end{cases} 
+\end{align*}
+Is the solution unique? Does the answer depend on $L$? 
+\end{question}
+\begin{proof}
+We know the general solution space is exactly spanned by $\cos x$ and $\sin x$. Because 
+\begin{enumerate}[label=(\alph*)]
+  \item $u(0)=0$.
+  \item $\sin 0=0$
+  \item $\cos 0=1$
+\end{enumerate}
+we know the solution of our original ODE must be of the form 
+\begin{align*}
+u(x)=C \sin x
+\end{align*}
+This implies that the solution is unique if and only if $2\pi \not\equiv L$ (mod $2\pi$)
+\end{proof}
+\begin{question}{}{}
+Consider the ODE 
+\begin{align*}
+\begin{cases}
+  u''+u'=f \\
+  u'(0)=u(0)=\frac{1}{2}(u'(l)+u(l))
+\end{cases}
+\end{align*}
+where $f$ is given. 
+\begin{enumerate}[label=(\alph*)]
+  \item Is the solution unique? 
+  \item Does a solution necessarily exist, or is there a condition that $f$ must satisfy for existence? 
+\end{enumerate}
+\end{question}
+\begin{question}{}{}
+Consider the Neumann problem 
+\begin{align*}
+\nabla u=f(x,y,z)\text{ in }D\text{ and } \frac{\partial u}{\partial n}=0\text{ on }\operatorname{bdy}D
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item What can we add to any solution to get another solution? 
+  \item Use the divergence Theorem and the PDE to show that 
+  \begin{align*}
+  \iiint_D f(x,y,z)dxdydz=0
+  \end{align*}
+  is a necessary condition for the Neumann problem to have a solution. 
+\end{enumerate}
+\end{question}
+\begin{question}{}{}
+Consider the equation 
+\begin{align*}
+u_x+yu_y=0 
+\end{align*}
+with the boundary condition $u(x,0)=\phi (x)$. 
+\begin{enumerate}[label=(\alph*)]
+  \item $\phi (x)=x \implies $ no solution exists
+  \item $\phi (x)=1 \implies $ multiple solutions exist.
+\end{enumerate}
+\end{question}
+\section{Types of Second-Order Equations} 
+\begin{mdframed}
+Consider the constant coefficient Linear PDE 
+\begin{align*}
+u_{xx}+2a_{12}u_{xy}+a_{22}u_{yy}+a_1u_x+a_2u_y+a_0u=0 
+\end{align*}
+Ignoring the term with order less than $2$, we have 
+\begin{align*}
+u_{xx}+2a_{12}u_{xy}+a_{22}u_{yy}=0 
+\end{align*}
+Or equivalently 
+\begin{align*}
+  (\partial_x + a_{12}\partial_y)^2 u + ( a_{22}-a_{12}^2)\partial_{yy} u =0 
+\end{align*}
+Now, if we set  
+\begin{align*}
+x\triangleq \xi \text{ and }y\triangleq a_{12}\xi + (\abso{a_{22}-a_{12}^2})^{\frac{1}{2}}\eta 
+\end{align*}
+We see that if $a_{22}-a_{12}^2>0$, then 
+\begin{align*}
+\begin{cases}
+  a_{22}-a_{12}^2>0 \implies u_{\xi \xi}+u_{\eta \eta  }=0 \hspace{0.5cm}(\text{Elliptic})\\
+  a_{22}-a_{12}^2=0 \implies u_{\xi \xi}=0\hspace{0.5cm}(\text{Parabolic})\\
+  a_{22}-a_{12}^2 < 0 \implies u_{\xi \xi}-u_{\eta \eta  }=0\hspace{0.5cm}(\text{Hyperbolic})
+\end{cases}
+\end{align*}
+\end{mdframed}
+\begin{question}{}{}
+What is the type of each of the following equations. 
+\begin{enumerate}[label=(\alph*)]
+  \item $u_{xx}-u_{xy}+u_{yy}+\cdots +u =0$. 
+  \item $9u_{xx}+6u_{xy}+u_{yy}+u_x=0$
+\end{enumerate}
+\end{question}
+\begin{question}{}{}
+Find the regions in the $xy$ plane where the equation 
+ \begin{align*}
+   (1+x)u_{xx}+2xyu_{xy}-y^2u_{yy}=0
+\end{align*}
+is elliptic, hyperbolic, or parabolic. Sketch them. 
+\end{question}
 \chapter{Differential Geometry HW} 
 \section{HW1} 
 \begin{abstract}
