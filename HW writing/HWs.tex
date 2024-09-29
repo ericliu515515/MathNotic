@@ -828,6 +828,130 @@ Note that $\set{I_k^2}_{k\inn}$ is a compact interval cover  of $\set{x^2:x\in Z
 \end{align*}
 \end{proof}
 \section{Brunn-Minkowski Inequality}
+\begin{abstract}
+This HW assignment require us to prove Brunn-Minkowski Inequality for rectangles, whose proof relies on the AM-GM inequality.   
+\end{abstract}
+\begin{theorem}
+\textbf{(Brunn-Minkowski Inequality for Rectangles)} Suppose $A,B \subseteq \R^n$ are two compact subset of $\R^n$. If we define their \textbf{Minkowski Sum} $A+B$ to be 
+ \begin{align*}
+A+B\triangleq \set{a+b \inr^n:a\in A\text{ and }b \in B}
+\end{align*}
+then we have the following inequality 
+\begin{align*}
+\abso{A}^{\frac{1}{n}}+\abso{B}^{\frac{1}{n}}\leq \abso{A+B}^{\frac{1}{n}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Suppose 
+\begin{align*}
+A=\prod_{j=1}^n [a_j,a_j+h_{a;j}]\text{ and }B=\prod_{j=1}^n [b_j,b_j+h_{b;j}]
+\end{align*}
+We first claim 
+\begin{align}
+\label{A+B}
+\vi{A+B=\prod_{j=1}^n [a_j+b_j,a_j+b_j+ h_{a;j}+h_{b;j}]}
+\end{align}
+Fix arbitrary $x \in A+B$. By definition, we know there exists some $p \in A$ and $q \in B$ such that  $x=p+q$.  Since $p \in A$ and $q\in B$, we have 
+ \begin{align*}
+a_j\leq p_j\leq a_j+h_{a;j}\text{ and }b_j\leq q_j\leq b_j+h_{b;j}\text{ for all $j\in \set{1,\dots ,n}$ }
+\end{align*}
+It then follows that 
+\begin{align*}
+a_j+b_j \leq p_j + q_j \leq a_j+b_j+h_{a;j}+h_{b;j} \text{ for all }j \in \set{1,\dots ,n}
+\end{align*}
+Then because $x=p+q$, we know 
+ \begin{align*}
+x_j=p_j+q_j \in [a_j+b_j,a_j+b_j+h_{a;j}+h_{b;j}]\text{ for all }j \in \set{1,\dots , n}
+\end{align*}
+This implies 
+\begin{align*}
+x\in \prod_{j=1}^n [a_j+b_j,a_j+b_j + h_{a;j}+h_{b;j}]
+\end{align*}
+Because $x$ is arbitrary selected from $A+B$, we have in fact proved 
+ \begin{align*}
+A+B \subseteq \prod_{j=1}^n [a_j+b_j,a_j+b_j+h_{a;j}+h_{b;j}]
+\end{align*}
+We now fix arbitrary $x \in \prod_{j=1}^n [a_j+b_j,a_j+b_j+h_{a;j}+h_{b;j}]$. For each $j \in \set{1,\dots ,n}$, define 
+\begin{align*}
+y_j\triangleq \begin{cases}
+  a_j+h_{a;j}& \text{ if $x_j\geq a_j+b_j+h_{a;j}$ }\\
+            x_j-b_j & \text{ if $x_j<a_j+b_j+h_{a;j}$}
+\end{cases}\text{ and }z_j\triangleq x_j- y_j
+\end{align*}
+Fix arbitrary $j \in \set{1,\dots ,n}$. If $x_j<a_j+b_j+h_{a;j}$, by definition of $y_j$, we have 
+ \begin{align*}
+y_j =x_j-b_j < (a_j+b_j+h_{a;j})-b-j= a_j+h_{a;j}
+\end{align*}
+and since $x_j\geq a_j+b_j$, we also have  
+\begin{align*}
+y_j=x_j-b_j\geq a_j
+\end{align*}
+We have proved that 
+\begin{align*}
+x_j<a_j+b_j+h_{a;j} \implies y_j \in [a_j,a_j+h_{a;j}]
+\end{align*}
+Note that 
+\begin{align*}
+x_j\geq a_j+b_j+h_{a;j}\implies y_j=a_j+h_{a;j}\in [a_j,a_j+h_{a;j}]
+\end{align*}
+We now have 
+\begin{align*}
+y_j \in [a_j,a_j+h_{a;j}]
+\end{align*}
+Again, if $x_j\geq a_j+b_j+h_{a;j}$, by definition 
+\begin{align*}
+b_j\leq x_j-a_j-h_{a;j}=x_j-y_j=z_j
+\end{align*}
+and since $x_j \leq a_j+b_j+h_{a;j}+h_{b;j}$, we also have 
+\begin{align*}
+z_j=x_j-a_j-h_{a;j}\leq b_j+h_{b;j}
+\end{align*}
+We have proved that 
+\begin{align*}
+x_j \geq a_j+b_j+h_{a;j} \implies z_j \in [b_j,b_j+h_{b;j}]
+\end{align*}
+Note that 
+\begin{align*}
+x_j<a_j+b_j+h_{a;j}\implies z_j=x_j-y_j=x_j-(x_j-b_j)=b_j \in [b_j,b_j+h_{b;j}]
+\end{align*}
+In conclusion, we have proved $y_j\in [a_j,a_j+h_{a;j}]$ and $z_j \in [b_j,b_j+h_{b;j}]$ for all $j\in \set{1,\dots ,n}$, since $j$ is arbitrary selected from $\set{1,\dots ,n}$. It now follows from $A=\prod_{j=1}^n [a_j,a_j+h_{a;j}],B=\prod_{j=1}^n [b_j,b_j+h_{b;j}]$ if we define $y\triangleq (y_1,\dots ,y_n),z\triangleq (z_1,\dots ,z_n)$, then we have
+\begin{align*}
+y\in A\text{ and }z \in B\text{ and }x=y+z \in A+B
+\end{align*}
+We have proved 
+\begin{align*}
+\prod_{j=1}^n [a_j+b_j,a_j+b_j+h_{a;j}+h_{b;j}]\subseteq A+B
+\end{align*}
+Thus \myref{Equation}{A+B} is proved. \\
+
+Now, by direct computation, we know that 
+\begin{align*}
+\abso{A+B}=\prod_{j=1}^n (h_{a;j}+h_{b;j})\text{ and }\abso{A}=\prod_{j=1}^n h_{a;j}\text{ and }\abso{B}=\prod_{j=1}^n h_{b;j}
+\end{align*}
+This then give us 
+\begin{enumerate}[label=(\alph*)]
+  \item $\abso{A+B}^{\frac{1}{n}}=(\prod_{j=1}^n h_{a;j}+h_{b;j})^{\frac{1}{n}}$.
+  \item $\abso{A}^{\frac{1}{n}}=(\prod_{j=1}^n h_{a;j})^{\frac{1}{n}}$.
+  \item $\abso{B}^{\frac{1}{n}}=(\prod_{j=1}^n h_{b;j})^{\frac{1}{n}}$.
+\end{enumerate}
+It is clear that to prove $\abso{A}^{\frac{1}{n}}+\abso{B}^{\frac{1}{n}}\leq \abso{A+B}^{\frac{1}{n}}$, we only have to prove 
+\begin{align*}
+\frac{\abso{A}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}+ \frac{\abso{B}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}\leq 1
+\end{align*}
+Note that by AM-GM inequality, we have 
+\begin{align*}
+\frac{\abso{A}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}=\Big(\prod_{j=1}^n \frac{h_{a;j}}{h_{a;j}+h_{b;j}}\Big)^{\frac{1}{n}}\leq \frac{1}{n}\sum_{j=1}^n \frac{h_{a;j}}{h_{a;j}+h_{b;j}}
+\end{align*}
+Similarly by AM-GM inequality, we have
+\begin{align*}
+\frac{\abso{B}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}=\Big(\prod_{j=1}^n \frac{h_{b;j}}{h_{a;j}+h_{b;j}}\Big)^{\frac{1}{n}}\leq \frac{1}{n}\sum_{j=1}^n \frac{h_{b;j}}{h_{a;j}+h_{b;j}}
+\end{align*}
+We then can deduce 
+\begin{align*}
+\frac{\abso{A}^{\frac{1}{n}}+\abso{B}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}\leq \frac{1}{n}\sum_{j=1}^n \frac{h_{a;j}+h_{b;j}}{h_{a;j}+h_{b;j}}=1
+\end{align*}
+Our proof is finished.
+\end{proof}
 \chapter{Complex Analysis HW}
 \section{HW1}
 \begin{theorem}
@@ -914,6 +1038,65 @@ Fix $\epsilon $. Let $N$ satisfy that for all  $n\geq N$, we have $\abso{u_n-u}<
   \abso{\Big(\sum_{\sqrt{n}<k \leq n } \frac{u_k}{n-\lceil \sqrt{n}\rceil +1 } \Big)- u}  &=\abso{\sum_{\sqrt{n}<k\leq n } \frac{u_k-u}{n-\lceil \sqrt{n}\rceil +1 } }\\
   &\leq \sum_{\sqrt{n}<k\leq n} \frac{\abso{u_k-u}}{n-\lceil \sqrt{n}\rceil +1  }\\
   &\leq \sum_{\sqrt{n}<k\leq n} \frac{\epsilon }{n-\lceil \sqrt{n}\rceil +1  }=\epsilon \bdone
+\end{align*}
+\end{proof}
+\section{Exercise 1}
+\begin{mdframed}
+
+Let $R$ be a complex algebra with $1_A$ and $a \in R$. Given a complex polynomial 
+\[ 
+f(Z) = a_0 + a_1 Z + \cdots + a_n Z^n,
+\]
+we define the evaluation of $f$ at $a$ by
+\[
+f(a) = a_0 1_A + a_1 a + \cdots + a_n a^n.
+\]
+\end{mdframed}
+\begin{question}{}{}
+Let $R = \mathbb{C}$ and $a = 1 + i$. Given $f(Z) = Z^3$. Evaluate $f(a)$.
+\end{question}
+\begin{proof}
+   $f(a)=(1+i)^3=2i(1+i)=-2+2i$ 
+\end{proof}
+\begin{question}{}{}
+Let $R = M_{2 \times 2}(\mathbb{C})$ be the algebra of $2 \times 2$ complex matrices. Take 
+    \[
+    a = \begin{bmatrix} 1 & -1 \\ 1 & 1 \end{bmatrix}
+    \]
+    and $g(Z) = 3 + 2Z$. Evaluate $g(a)$.
+    
+\end{question}
+\begin{proof}
+
+  \begin{align*}
+  g(a)=\begin{bmatrix}
+    3 & 0\\
+    0 & 3 
+  \end{bmatrix} + \begin{bmatrix}
+    2 & -2 \\
+    2 & 2
+  \end{bmatrix}= \begin{bmatrix}
+    5 & -2 \\
+    2 & 5
+  \end{bmatrix}
+  \end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $R$ be the algebra of complex valued periodic functions of period $2\pi$, i.e., $a \in R$ is a continuous function $a : \mathbb{R} \to \mathbb{C}$ so that $a(x + 2\pi) = a(x)$. Let $e(x) = \cos x + i \sin x$ and 
+    \[
+    h(Z) = 1 + Z + Z^2 + \cdots + Z^9.
+    \]
+    Find $h(e)$.
+\end{question}
+\begin{proof}
+Note that 
+\begin{align*}
+  (\cos x+ i \sin x)(\cos y+i \sin y)&= (\cos x \cos y- \sin x \sin y)+i (\sin x \cos y + \cos x \sin y)\\
+  &=\cos (x+y)+ i \sin (x+y)
+\end{align*}
+This give us 
+\begin{align*}
+h(e)=\sum_{k=0}^{9} \cos (kx)+ i \sin (kx) 
 \end{align*}
 \end{proof}
 \chapter{PDE intro HW}
@@ -1021,6 +1204,196 @@ This give us
 u_t= k (u_{rr}+ \frac{u_r}{r})
 \end{align*}
 \end{proof}
+\section{1.2 First Order Linear Equations}
+\begin{mdframed}
+\textbf{(Principle of Geometric Method)} Given a first order homogeneous linear PDE with the form  
+\begin{align*}
+u_x+g(x,y)u_y=0
+\end{align*}
+We know if a curve $\gamma (x)= (x,y)$ satisfy 
+\begin{align*}
+\gamma '(x)= c_x(1,g(x,y))\text{ for some $c_x$ }
+\end{align*} 
+Then 
+\begin{align*}
+  (u\circ \gamma )'(x)=0\text{ for all $x$ }
+\end{align*}
+Since 
+\begin{align*}
+\gamma '(x)=(1, \frac{dy}{dx})
+\end{align*}
+To find $\gamma $, we only wish to solve 
+\begin{align*}
+\frac{dy}{dx}=g(x,y)
+\end{align*}
+\end{mdframed}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+  (1+x^2)u_x+u_y=0
+\end{align*}
+\end{question}
+\begin{proof}
+The ODE 
+\begin{align*}
+\frac{dy}{dx}=\frac{1}{1+x^2}
+\end{align*}
+has general solution $y=\arctan x + C$, so 
+\begin{align*}
+u(x,y)=f(y-\arctan x)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+  yu_x+xu_y=0\\
+  u(0,y)=e^{-y^2}
+\end{cases}
+\end{align*}
+In which region of the $xy$ plane is the solution uniquely determined? 
+\end{question}
+\begin{proof}
+We are required to solve the ODE 
+\begin{align*}
+\frac{dy}{dx}= \frac{x}{y}
+\end{align*}
+Separating the variables and integrate 
+\begin{align*}
+\int yy' dx= \int xdx  \implies \frac{y^2}{2}= \frac{x^2}{2}+C
+\end{align*}
+This now implies 
+\begin{align*}
+u(x,y)=f(y^2-x^2)
+\end{align*}
+Initial Condition then give us 
+\begin{align*}
+u=e^{x^2-y^2}
+\end{align*}
+
+\end{proof}
+\begin{question}{}{}
+Solve the equation 
+\begin{align*}
+u_x+u_y=1
+\end{align*}
+\end{question}
+\begin{proof}
+Clearly $u=\frac{x}{2}+\frac{y}{2}$ is a solution. We now solve the PDE 
+\begin{align*}
+v_x+v_y=0
+\end{align*}
+Solving the ODE 
+\begin{align*}
+\frac{dy}{dx}=1
+\end{align*}
+we have 
+\begin{align*}
+y=x+C
+\end{align*}
+Thus the general solution is 
+\begin{align*}
+u=\frac{x}{2}+\frac{y}{2}+ f(y-x)
+\end{align*}
+
+
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+  u_x+u_y+u = e^{x+2y}\\
+  u(x,0)=0
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Let $\gamma (x)=x+C$, we have 
+\begin{align*}
+  (u\circ \gamma )'+(u\circ \gamma )= e^{3x+2C}
+\end{align*}
+We now solve the ODE 
+\begin{align*}
+y'+y=e^{3x+2C}
+\end{align*}
+The particular solution is clearly 
+\begin{align*}
+y=\frac{1}{4}e^{3x+2C}
+\end{align*}
+Thus the general solution is 
+\begin{align*}
+y=\frac{e^{3x+2C}}{4}+ \tilde{C}e^{-x} 
+\end{align*}
+We then now know 
+\begin{align}
+\label{uo}
+  (u\circ \gamma )(x)= \frac{e^{3x+2C}}{4}+\tilde{C}e^{-x} 
+\end{align}
+In other words, 
+\begin{align*}
+u(x,x+C)= \frac{e^{3x+2C}}{4}+ \tilde{C}e^{-x} 
+\end{align*}
+Putting in the initial conditions, we have
+\begin{align*}
+0=u(-C,0)= \frac{e^{-C}}{4}+ \tilde{C}e^C 
+\end{align*}
+This implies 
+\begin{align*}
+\tilde{C}=\frac{-e^{-2C}}{4} 
+\end{align*}
+Putting the back into \myref{Equation}{uo}, we have 
+\begin{align*}
+u(x,x+C)= \frac{e^{3x+2C}- e^{-x-2C}}{4}
+\end{align*}
+So 
+\begin{align*}
+u(x,y)=\frac{e^{3x+2(y-x)}-e^{-x-2(y-x)}}{4}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Use the coordinate method to solve the equation 
+\begin{align*}
+u_x+2u_y+(2x-y)u=2x^2 + 3xy -2y^2
+\end{align*}
+\end{question}
+\begin{proof}
+Let 
+\begin{align*}
+\begin{cases}
+  \xi\triangleq 2x-y \\
+  \eta  \triangleq x+2y 
+\end{cases}
+\end{align*}
+We see 
+\begin{align*}
+\begin{cases}
+  u_{\xi}=\frac{2}{5}u_x -\frac{1}{5}u_y\\
+  u_{\eta }= \frac{1}{5}u_x + \frac{2}{5}u_y
+\end{cases}
+\end{align*}
+We then can rewrite 
+\begin{align}
+\label{5ua}
+5 u_\eta + \xi u= \xi \eta 
+\end{align}
+which clearly have particular solution 
+\begin{align*}
+u=\eta - \frac{5}{\xi} 
+\end{align*}
+To solve the linear homogeneous PDE 
+\begin{align*}
+5u_{\eta}+ \xi u =0
+\end{align*}
+Observe that for all fixed $\xi$, the PDE is just an ODE whose solution is exactly $u=C_\xi e^{\frac{-\xi \eta }{5}}$. We now know the general solution for \myref{PDE}{5ua} is exactly 
+\begin{align*}
+u=\eta - \frac{5}{\xi} +f(\xi) e^{\frac{-\xi \eta }{5}} 
+\end{align*}
+Then 
+\begin{align*}
+u= x+2y - \frac{5}{2x-y}+ e^{\frac{-(2x-y)(x+2y)}{5}} f(2x-y)
+\end{align*}
+
+\end{proof}
 \section{1.4 Initial and Boundary Condition}
 \begin{question}{}{}
 Find a solution of 
@@ -1072,10 +1445,22 @@ where $f$ is given.
   \item Does a solution necessarily exist, or is there a condition that $f$ must satisfy for existence? 
 \end{enumerate}
 \end{question}
+\begin{proof}
+The solution space of linear homogeneous ODE $u''+u'=0$  is spanned by $e^{-x}$ and constant. If we add in the initial condition  $u'(0)=u(0)$, then the solution space become the subspace spanned by $e^{-x}-2$. One can check that if $u \in\operatorname{span}(e^{-x}-2)$, then 
+\begin{align*}
+u(0)=\frac{1}{2}(u'(l)+u(l))\text{ for all $l\inr$ }
+\end{align*}
+We now know the solution of the original ODE is not unique, since any solution added by $e^{-x}-2$ is again a solution. \\
+
+Integrating both side on $[0,l]$, we see that given the boundary conditions, $f$ must satisfy 
+\begin{align*}
+\int_0^l f(x)dx=0
+\end{align*}
+\end{proof}
 \begin{question}{}{}
 Consider the Neumann problem 
 \begin{align*}
-\nabla u=f(x,y,z)\text{ in }D\text{ and } \frac{\partial u}{\partial n}=0\text{ on }\operatorname{bdy}D
+\Delta u=f(x,y,z)\text{ in }D\text{ and } \frac{\partial u}{\partial n}=0\text{ on }\operatorname{bdy}D
 \end{align*}
 \begin{enumerate}[label=(\alph*)]
   \item What can we add to any solution to get another solution? 
@@ -1086,6 +1471,12 @@ Consider the Neumann problem
   is a necessary condition for the Neumann problem to have a solution. 
 \end{enumerate}
 \end{question}
+\begin{proof}
+Clearly, constants suffices, and observe 
+\begin{align*}
+\iiint_D fdxdydx=\iiint_D \Delta u dxdydz= \iiint_D \nabla \cdot (\nabla u)dxdydz = \iint_{\operatorname{bdy}D} \nabla u \cdot \textbf{n}dS= 0
+\end{align*}
+\end{proof}
 \begin{question}{}{}
 Consider the equation 
 \begin{align*}
@@ -1097,6 +1488,17 @@ with the boundary condition $u(x,0)=\phi (x)$.
   \item $\phi (x)=1 \implies $ multiple solutions exist.
 \end{enumerate}
 \end{question}
+\begin{proof}
+Using the geometric method, we see the characteristic curve is exactly $y=\tilde{C}e^x$. Thus the general solution is of the form 
+\begin{align*}
+u(x,y)=f(e^{-x}y)
+\end{align*}
+The boundary condition implies 
+\begin{align*}
+\phi (x)=u(x,0)=f(0)
+\end{align*}
+The result then follows. 
+\end{proof}
 \section{Types of Second-Order Equations} 
 \begin{mdframed}
 Consider the constant coefficient Linear PDE 
@@ -1115,13 +1517,21 @@ Now, if we set
 \begin{align*}
 x\triangleq \xi \text{ and }y\triangleq a_{12}\xi + (\abso{a_{22}-a_{12}^2})^{\frac{1}{2}}\eta 
 \end{align*}
-We see that if $a_{22}-a_{12}^2>0$, then 
+we see that 
 \begin{align*}
 \begin{cases}
   a_{22}-a_{12}^2>0 \implies u_{\xi \xi}+u_{\eta \eta  }=0 \hspace{0.5cm}(\text{Elliptic})\\
   a_{22}-a_{12}^2=0 \implies u_{\xi \xi}=0\hspace{0.5cm}(\text{Parabolic})\\
   a_{22}-a_{12}^2 < 0 \implies u_{\xi \xi}-u_{\eta \eta  }=0\hspace{0.5cm}(\text{Hyperbolic})
 \end{cases}
+\end{align*}
+More generally, if we are given 
+\begin{align*}
+a_{11}u_{xx}+2a_{12}u_{xy}+a_{22}u_{yy}=0
+\end{align*}
+then the discriminant is exactly 
+\begin{align*}
+a_{11}a_{22}-a_{12}^2
 \end{align*}
 \end{mdframed}
 \begin{question}{}{}
@@ -1138,6 +1548,95 @@ Find the regions in the $xy$ plane where the equation
 \end{align*}
 is elliptic, hyperbolic, or parabolic. Sketch them. 
 \end{question}
+\begin{proof}
+The discriminant is exactly 
+\begin{align*}
+  (xy)^2- (1+x)(-y^2)&=x^2y^2+xy^2+y^2\\
+  &=y^2 (x^2+x+1)\\
+  &=y^2[(x+\frac{1}{2})^2+ \frac{3}{4}]
+\end{align*}
+It then follows that the equation is parabolic if and only if $y=0$, and hyperbolic if and only if  $y\neq 0$. 
+
+\end{proof}
+\begin{question}{}{}
+Reduce the elliptic equation 
+\begin{align*}
+u_{xx}+3u_{yy}-2u_x+24u_y+5u=0
+\end{align*}
+to the form 
+\begin{align*}
+v_{xx}+v_{yy}+cv=0
+\end{align*}
+by a change of dependent variable 
+\begin{align*}
+u\triangleq ve^{\alpha x+\beta  y}
+\end{align*}
+then a change of scale 
+\begin{align*}
+y'=\gamma y
+\end{align*}
+\end{question}
+\begin{question}{}{}
+Consider the equation $3u_y+u_{xy}=0$.
+\begin{enumerate}[label=(\alph*)]
+  \item What is its type? 
+  \item Find the general solution. (Hint: Substitute $v=u_y$).
+  \item With the auxiliary conditions $u(x,0)=e^{-3x}$ and $u_{y}(x,0)=0$, does a solution exist? Is it unique? 
+\end{enumerate}
+\end{question}
+\section{PDE HW 3}
+\begin{question}{}{}
+Find a solution of 
+\begin{align*}
+\begin{cases}
+  u_t=u_{xx}\\
+  u(x,0)=x^2
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Clearly $u=x^2+2t$ suffices.
+\end{proof}
+\begin{question}{}{}
+Consider the ODE
+\begin{align*}
+\begin{cases}
+  u''+u=0\\
+  u(0)=0\text{ and }u(L)=0
+\end{cases} 
+\end{align*}
+Is the solution unique? Does the answer depend on $L$? 
+\end{question}
+\begin{proof}
+We know the general solution space is exactly spanned by $\cos x$ and $\sin x$. Because 
+\begin{enumerate}[label=(\alph*)]
+  \item $u(0)=0$.
+  \item $\sin 0=0$
+  \item $\cos 0=1$
+\end{enumerate}
+we know the solution of our original ODE must be of the form 
+\begin{align*}
+u(x)=C \sin x
+\end{align*}
+This implies that the solution is unique if and only if $2\pi \not\equiv L$ (mod $2\pi$)
+\end{proof}
+\begin{question}{}{}
+Find the regions in the $xy$ plane where the equation 
+ \begin{align*}
+   (1+x)u_{xx}+2xyu_{xy}-y^2u_{yy}=0
+\end{align*}
+is elliptic, hyperbolic, or parabolic. Sketch them. 
+\end{question}
+\begin{proof}
+The discriminant is exactly 
+\begin{align*}
+  (xy)^2- (1+x)(-y^2)&=x^2y^2+xy^2+y^2\\
+  &=y^2 (x^2+x+1)\\
+  &=y^2[(x+\frac{1}{2})^2+ \frac{3}{4}]
+\end{align*}
+It then follows that the equation is parabolic if and only if $y=0$, and hyperbolic if and only if  $y\neq 0$. 
+
+\end{proof}
 \chapter{Differential Geometry HW} 
 \section{HW1} 
 \begin{abstract}

@@ -4666,11 +4666,19 @@ D^{\alpha }f\triangleq  \frac{\partial ^{\abso{\alpha }}f}{(\partial x_1)^{\alph
 is well-defined. 
 \end{mdframed}
 \begin{theorem}
+\label{Multi Taylor}
 \textbf{(Multi Variables Taylor's Theorem)} If real-valued function $f:U\rightarrow \R$ is $C^{k+1}$ on $U$, then we can write 
 \begin{align*}
-f(\textbf{x})=\sum_{\abso{\alpha }\leq k} \frac{D^{\alpha }f(\textbf{a})}{k!}
+f(\textbf{x})=\sum_{\abso{\alpha }\leq k} \frac{D^{\alpha }f(\textbf{a})}{\alpha !}(\textbf{x}-\textbf{a})^{\alpha }+ \sum_{\abso{\beta }=k+1} R_\beta (\textbf{x})(\textbf{x}-\textbf{a})^{\beta }
+\end{align*}
+where 
+\begin{align*}
+R_\beta (\textbf{x})\triangleq \frac{\abso{\beta }}{\beta !}\int_0^1 (1-t)^{\abso{\beta } -1}D^{\beta }f(\textbf{a}+t (\textbf{x}-\textbf{a}))dt 
 \end{align*}
 \end{theorem}
+\begin{proof}
+
+\end{proof}
 
 \chapter{Complex Analysis}
 \chapter{Lebesgue Calculus}
@@ -6235,64 +6243,165 @@ Now, let $C^{\infty}(M,\R^n)$ be the set of smooth function from $M$ to $\R^n$. 
 In this section and from now on, $C^{\infty}(M)$ denote the space of all smooth real-valued function defined on $M$. 
 \end{abstract}
 \begin{mdframed}
+We first develop some important tools we shall heavily used later. Let $K$ be closed in $M$. We say  $f:K\rightarrow \R$ is smooth if there exists some open $U\subseteq M$ containing $K$ and smooth  $\tilde{f}:U\rightarrow \R$ such that $\tilde{f}\equiv f$ on $K$. 
+\end{mdframed}
+\begin{lemma}
+\label{EoSB}
+\textbf{(Existence of Smooth Bump Function)} Given some $U$ open in $M$ and some $K$ closed in $M$ and contained by  $U$, there exists a smooth function  $\psi : M\rightarrow [0,1]$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\psi \equiv 1$ on $K$. 
+  \item $\operatorname{supp}\psi \subseteq U$
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+\begin{corollary}
+\label{EoSF}
+\textbf{(Extension of Smooth Function)} Suppose $K$ is closed in $M$ and   $f:K\rightarrow \R$ is smooth. Let $U$ be open in  $M$ and containing  $K$, and let $g\in C^{\infty}(U)$ satisfy $g|_K=f$. There exists a smooth function $\tilde{f} :M\rightarrow \R$ such that $\tilde{f} |_K=f$ and $\operatorname{supp}\tilde{f}\subseteq U$. 
+\end{corollary}
+\begin{proof}
+\myref{Lemma}{EoSB} give us a smooth function $\psi \in C^{\infty}(M)$ such that $\psi \equiv 1$ on $K$ and  $\operatorname{supp}\psi \subseteq U$. We simply define 
+\begin{align*}
+\tilde{f}(p)\triangleq \begin{cases}
+  \psi(p) g (p)& \text{ if $p\in  U$ }\\
+  0& \text{ if $p\not\in U$ }
+\end{cases} 
+\end{align*}
+It is straightforward to check $\tilde{f}|_K=f$. To see $\operatorname{supp}\tilde{f} \subseteq U$, check $\operatorname{supp}\tilde{f} \subseteq \operatorname{supp}\psi$. It is clear that $\tilde{f}$ is smooth at all $p \in U$. It remains to show $\tilde{f}$ is smooth at all  $p\not\in U$. Fix $p\not\in U$. Because $p\not\in \operatorname{supp}\psi$, we know that $\tilde{f}\equiv 0$ on some open neighborhood around $p$. 
+\end{proof}
+\begin{mdframed}
 Given a point $p$ in  $M$, we define the  \textbf{tangent space $T_pM$ of $M$ at $p$} to be the space of linear functional $D:C^{\infty}(M)\rightarrow \R$ that satisfy the product rule at $p$ 
  \begin{align*}
    D(fg)=D(f) g(p)+ f(p)D(g)\text{ for all }f,g\in C^{\infty}(M)
 \end{align*}
-It is clear that tangent space form a vector space when endowed with pointwise scalar multiplication and addition. If $M$ is a $n$-dimensional manifold, we of course expect that $T_pM$ to be also $n$-dimensional. 
+It is clear that tangent space form a vector space when endowed with pointwise scalar multiplication and addition. Note that 
+\begin{align*}
+D(1)=D(1^2)=D(1)+D(1)
+\end{align*}
+This implies that for all $D \in T_pM$, if  $f\in C^{\infty}(M)$ is constant, then $D(f)=0$. 
 \end{mdframed}
 \begin{theorem}
-\textbf{(Dimension of $T_p\R^n$ is $n$)} For all $p\inr^n$, the vector space $T_p\R^n$ has  $n$-dimension. 
+\label{Dtprn}
+\textbf{(Dimension of $T_\textbf{p}\R^n$ is $n$)} For all $\textbf{p}\inr^n$, the vector space $T_\textbf{p}\R^n$ is $n$-dimensional. 
 \end{theorem}
 \begin{proof}
-Define a function $\phi:\R^n\to T_p(\R^n)$ by 
+Define a function $\phi:\R^n\to T_\textbf{p}(\R^n)$ by 
 \begin{align*}
-\textbf{x}\mapsto D_\textbf{x}\text{ where }D_\textbf{x}(f)= \textbf{x}\cdot \nabla f(p)
+\textbf{x}\mapsto D_\textbf{x}\text{ where }D_\textbf{x}(f)= \textbf{x}\cdot \nabla f(\textbf{p})
 \end{align*}
-It is straightforward to check that $\phi$ is well defined and a linear transformation. It remains to prove $\phi$ is bijective. \\
-
-
-Let $D_\textbf{y}=0$, to show \vi{$\phi$ is one-to-one}, we are required to show $\textbf{y}=0$. For each $j \in \set{1,\dots, n}$, define a smooth function $f_j:\R^n\rightarrow \R$ by
+It is straightforward to check that $\phi$ is well defined and a linear transformation. It remains to prove $\phi$ is bijective. Let $D_\textbf{y}=0$, to show \vi{$\phi$ is one-to-one}, we are required to show $\textbf{y}=0$. For each $j \in \set{1,\dots, n}$, define a smooth function $g_j:\R^n\rightarrow \R$ by
 \begin{align}
 \label{fjxj}
-f_j(\textbf{x})\triangleq \textbf{x}^j
+g_j(\textbf{x})\triangleq \textbf{x}^j
 \end{align}
-We then see that for all $y\inr^n$
+We then see that for all $\textbf{y}\inr^n$
 \begin{align*}
-D_\textbf{y}(f_j)=\textbf{y}\cdot \textbf{e}_j= \textbf{y}^j
+D_\textbf{y}(g_j)=\textbf{y}\cdot \textbf{e}_j= \textbf{y}^j
 \end{align*}
 Then if $D_\textbf{y}=0$, we must have $\textbf{y}=0$. $\vdone$ \\
 
 We now show \blue{$\phi$ is onto}. Fix $w\in T_p(\R^n)$ and define $\textbf{v}\inr^n$ by 
 \begin{align*}
-\textbf{v}^j \triangleq w(f_j)
+\textbf{v}^j \triangleq w(g_j)
 \end{align*}
-where $f_j$ is defined in  \myref{Equation}{fjxj}. We claim \blue{$w=D_\textbf{v}$}. 
-
-
-
+where $g_j$ is defined in  \myref{Equation}{fjxj}. We claim \blue{$w=D_\textbf{v}$}. Fix $f \in C^{\infty}(\R^n)$. By \customref{Multi Taylor}{Multi Variables Taylor Theorem}, we know 
+\begin{align}
+  f(\textbf{x})=f(\textbf{p})&+ \sum_{i=1}^n \frac{\partial f}{\partial \textbf{x}^i}(\textbf{p})(\textbf{x}^i - \textbf{p}^i)\notag
+ \\ 
+ & +\sum_{i,j=1}^n \textbf{2}_{i\neq j}(\textbf{x}^i-\textbf{p}^i)(\textbf{x}^j-\textbf{p}^j)\int_0^1 (1-t) \frac{\partial f}{\partial \textbf{x}^i \partial \textbf{x}^j}(\textbf{p}+t (\textbf{x}-\textbf{p}))dt \label{vp}
+\end{align}
+where $\textbf{2}_{i\neq j}$ is constant $2$ if $i\neq j$ and constant $1$ if  $i=j$. Now, putting both side into $w$, by product rule we can cancel \myref{term}{vp}, so
+ \begin{align*}
+w(f)= \sum_{i=1}^n \frac{\partial f}{\partial \textbf{x}^i}(\textbf{p})w(g_i)= \sum_{i=1}^n \frac{\partial f}{\partial \textbf{x}^i}(\textbf{p})\textbf{v}^i= D_\textbf{v}(f) \bdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+As pointed out by the proof of \myref{Theorem}{Dtprn}, for each $D_\textbf{x}\in T_\textbf{p}\R^n$, the value of $D_\textbf{x}(f)$ is determined locally at $\textbf{p}$ by $f$. The same behavior happens in the general case. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Tangent Vector care only about local behavior)} Suppose $v \in T_pM$. If $f,g \in C^{\infty}(M)$ agree on some open neighborhood around $p$, then  $v(f)=v(g)$. 
+\end{theorem}
+\begin{proof}
+Let $h\triangleq f-g \in C^{\infty}(M)$. We know $h\equiv 0$ on some open neighborhood around $p$. This implies 
+ \begin{align*}
+\operatorname{supp}(h)\subseteq M \setminus \set{p}\subseteq M
+\end{align*}
+By \myref{Lemma}{EoSB}, there exists some bump function $\psi : M \rightarrow [0,1]$ such that $\psi \equiv 1$ on $\operatorname{supp}(h)$ and $\operatorname{supp}(\psi)\subseteq M \setminus \set{p}$. Since $\operatorname{supp}(\psi )\subseteq M \setminus \set{p}$, we know $\psi (p)=h(p)=0$, and since $\psi \equiv 1$ on $\operatorname{supp}(h)$, we also know $\psi h=h$. This let us deduce 
+\begin{align*}
+v(h)=v(\psi h)=v(\psi)h(p)+\psi (p) v(h)=0  
+\end{align*}
 
 
 
 \end{proof}
 \begin{mdframed}
-We now define the derivative  $dF_p:T_pM\rightarrow T_{F(p)}N$ of a smooth map $F:M\rightarrow N$ at $p\in  M$ between smooth manifold. 
+We now define the derivative  $F_{*,p}:T_pM\rightarrow T_{F(p)}N$ of a smooth map $F:M\rightarrow N$ at $p\in  M$ between smooth manifold. 
 \begin{align*}
-  (dF_p(w))f\triangleq w(f\circ F)
+  (F_{*,p}(w))(f)\triangleq w(f\circ F)
 \end{align*}
-It is straightforward to check
+It is straightforward to check that given another smooth manifold $R$ and smooth map  $G:N\rightarrow R$ we have
 \begin{enumerate}[label=(\alph*)]
-  \item $dF_p(w) \in T_{F(p)}N$. 
-  \item  $dF_p$ is linear.  
-  \item $d(G\circ F)_p = dG_{F(p)}\circ dF_p:T_pM \rightarrow T_{G\circ F(p)}R$. 
-  \item $d\textbf{id}_p$ is the identity map on $T_pM$. 
-  \item If $F:M\rightarrow N$ is a diffeomorphism, then  $dF_p:T_pM \rightarrow T_{F(p)}(N)$ is an isomorphism of vector space and $(dF_p)^{-1}=dF^{-1}_{F(p)}$
+  \item $F_{*,p}(w) \in T_{F(p)}N$. 
+  \item  $F_{*,p}$ is linear.  
+  \item $(G\circ F)_{*,p}=G_{*,F(p)}\circ F_{*,p}:T_pM\rightarrow T_{G\circ F(p)}R$. 
+  \item If $\textbf{id}:M\rightarrow M$ is the identity function on $M$, then $\textbf{id}_{*,p}$ is the identity map on $T_pM$. 
+  \item If $F:M\rightarrow N$ is a diffeomorphism, then  $F_{*,p}:T_pM \rightarrow T_{F(p)}(N)$ is an isomorphism of vector space and $(F_{*,p})^{-1}=(F^{-1})_{*,F(p)}$
 \end{enumerate}
 
 \end{mdframed}
 \begin{theorem}
-\textbf{(Dimension of $T_pM$ is the same as $M$)}
+\label{TSop}
+\textbf{(Tangent Space of points in open restriction)} Given some open subset $U \subseteq M$ and inclusion map $\iota:U\rightarrow M $, for all $p \in U$, the map $\iota_{*,p}:T_pU\rightarrow T_pM$ is a vector space isomorphism.  
 \end{theorem}
+\begin{proof}
+  We first prove that \vi{$\iota_{*,p}$ is one-to-one}. Fix $v \in T_pU$ such that $\iota_{*,p}(v)=0$ and $f\in C^{\infty}(U)$. We are required to show \vi{$v(f)=0$}. Because $U$ is locally Euclidean, we know there exists some open  $B\subseteq U$ containing $p$ and $\overline{B}\subseteq U$. By \myref{Corollary}{EoSF}, we know there exists $\tilde{f}\in C^{\infty}(M)$ such that $\tilde{f}\equiv f$ on $\overline{B}$. We can now deduce 
+  \begin{align*}
+  v(f)=v(\tilde{f}|_U )=v(\tilde{f}\circ \iota  )=\iota_{*,p}(v)(\tilde{f}) =0 \vdone
+  \end{align*}
+  We now prove $\blue{\iota_{*,p}\text{ is onto}}$. Fix $w\in T_pM$, and again some open $B\subseteq U$ containing $p$ and  $\overline{B}\subseteq U$. Define $v\in T_pU$ by 
+\begin{align*}
+v(f)\triangleq w(\tilde{f})
+\end{align*}
+where $\tilde{f}\in C^{\infty}(M)$ satisfy $\tilde{f}\equiv f$ on $\overline{B}$. Because for all $g\in C^{\infty}(M)$, $g \equiv g \circ \iota $ on $\overline{B}$, we know 
+\begin{align*}
+\iota_{*,p}(v)(g)=v(g\circ \iota)= w(g) \bdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Dimension of $T_pM$ is the same as $M$)} If $M$ is an  $n$-dimensional smooth manifold, then  $T_pM$ is an  $n$-dimensional vector space.  
+\end{theorem}
+\begin{proof}
+Let $(U,\phi)$ be a chart containing $p$. \myref{Theorem}{TSop} tell us that $T_pU$ and  $T_pM$ are isomorphism, and since  $\phi;U\rightarrow \phi (U)$ is a diffeomorphism between smooth manifolds $U, \phi (U)$, we know $T_pU$ is isomorphic to  $T_{\phi (p)}\phi (U)$ which is isomorphic to $T_p\R^n$ again by  \myref{Theorem}{TSop}. 
+\end{proof}
+\begin{mdframed}
+
+With all the tools we have gathered, we can now see that if we are given a chart $(U,\phi)$ containing $p$, and we define  for each $i \in \set{1,\dots ,n}$ the functional $\frac{\partial }{\partial \textbf{x}^i}|_p:C^{\infty}(M)\rightarrow \R$ by 
+\begin{align*}
+\frac{\partial }{\partial \textbf{x}^i}\Big|_p (f) \triangleq \frac{\partial (f\circ \phi^{-1})}{\partial \textbf{x}^i}(\phi (p))
+\end{align*}
+then since 
+\begin{align*}
+\phi_{*,p}\Big(\frac{\partial }{\partial \textbf{x}^i}\Big|_p\Big)(g)= \frac{\partial }{\partial \textbf{x}^i}\Big|_p(g\circ \phi)= \frac{\partial g}{\partial \textbf{x}^i}(\phi (p))
+\end{align*}
+We see  
+ \begin{align*}
+   \bset{\phi_{*,p}\Big(\frac{\partial }{\partial \textbf{x}^i}\Big|_p \Big):1\leq i\leq n}\text{ form a basis for }T_{\phi (p)}\phi (U)
+\end{align*}
+and thus 
+\begin{align*}
+\bset{\frac{\partial }{\partial \textbf{x}^i}\Big|_p: 1\leq i \leq n}\text{ form a basis for  }T_pM
+\end{align*}
+\end{mdframed}
+\begin{Example}{\textbf{(Loring Tu Example)}}{}
+\begin{align*}
+F:\R^2 \rightarrow \R^3 ;F(x,y)\triangleq  (x,y,xy)=(u,v,w)
+\end{align*}
+We have 
+\begin{align*}
+F_{*,(x,y)}(\frac{\partial }{\partial x})= \frac{\partial }{\partial u}+ y\frac{\partial }{\partial w}
+\end{align*}
+\end{Example}
 \section{Lie Group}
 \begin{mdframed}
 By a \textbf{Lie group}, we mean a smooth manifold equipped with a group structure such that the inversion and group addition are both smooth map, or equivalently, that 
