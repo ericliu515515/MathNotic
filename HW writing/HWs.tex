@@ -829,128 +829,125 @@ Note that $\set{I_k^2}_{k\inn}$ is a compact interval cover  of $\set{x^2:x\in Z
 \end{proof}
 \section{Brunn-Minkowski Inequality}
 \begin{abstract}
-This HW assignment require us to prove Brunn-Minkowski Inequality for rectangles, whose proof relies on the AM-GM inequality.   
+This HW assignment require us to prove Brunn-Minkowski Inequality.   
 \end{abstract}
-\begin{theorem}
-\textbf{(Brunn-Minkowski Inequality for Rectangles)} Suppose $A,B \subseteq \R^n$ are two compact subset of $\R^n$. If we define their \textbf{Minkowski Sum} $A+B$ to be 
- \begin{align*}
-A+B\triangleq \set{a+b \inr^n:a\in A\text{ and }b \in B}
-\end{align*}
-then we have the following inequality 
+\begin{mdframed}
+We first introduce some notation. Given two sets $A,B\subseteq \R^d$ and a point $p\inr^d$, we write 
 \begin{align*}
-\abso{A}^{\frac{1}{n}}+\abso{B}^{\frac{1}{n}}\leq \abso{A+B}^{\frac{1}{n}}
+A+p\triangleq \set{a+p\inr^d: a \in A}
+\end{align*}
+and write 
+\begin{align*}
+A+B \triangleq \set{a+b \inr^d: a\in A\text{ and }b \in  B}
+\end{align*}
+Note that elementary set theory tell us 
+\begin{align}
+\label{trans}
+  (A+p)+(B+q)=(A+B)+(p+q)
+\end{align}
+
+\end{mdframed}
+\begin{theorem}
+\label{Brunn-Minkowski Inequality for Bricks}
+\textbf{(Brunn-Minkowski Inequality for Bricks)} Suppose $A,B$ are two  \textbf{bricks}, i.e., $A$ is of the form $\prod_{j=1}^d[x_j,y_j]$ and so is $B$, then we have 
+\begin{align*}
+\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
 \end{align*}
 \end{theorem}
 \begin{proof}
-Suppose 
+Because Lebesgue measure is translation invariant, by  \myref{Equation}{trans}, we can WOLG suppose 
 \begin{align*}
-A=\prod_{j=1}^n [a_j,a_j+h_{a;j}]\text{ and }B=\prod_{j=1}^n [b_j,b_j+h_{b;j}]
+A=\prod_{j=1}^d [0,a_j]\text{ and }B=\prod_{j=1}^d [0,b_j]
 \end{align*}
-We first claim 
-\begin{align}
-\label{A+B}
-\vi{A+B=\prod_{j=1}^n [a_j+b_j,a_j+b_j+ h_{a;j}+h_{b;j}]}
-\end{align}
-Fix arbitrary $x \in A+B$. By definition, we know there exists some $p \in A$ and $q \in B$ such that  $x=p+q$.  Since $p \in A$ and $q\in B$, we have 
- \begin{align*}
-a_j\leq p_j\leq a_j+h_{a;j}\text{ and }b_j\leq q_j\leq b_j+h_{b;j}\text{ for all $j\in \set{1,\dots ,n}$ }
-\end{align*}
-It then follows that 
+It is clear that 
 \begin{align*}
-a_j+b_j \leq p_j + q_j \leq a_j+b_j+h_{a;j}+h_{b;j} \text{ for all }j \in \set{1,\dots ,n}
+A+B= \prod_{j=1}^d [0,a_j+b_j]
 \end{align*}
-Then because $x=p+q$, we know 
- \begin{align*}
-x_j=p_j+q_j \in [a_j+b_j,a_j+b_j+h_{a;j}+h_{b;j}]\text{ for all }j \in \set{1,\dots , n}
-\end{align*}
-This implies 
-\begin{align*}
-x\in \prod_{j=1}^n [a_j+b_j,a_j+b_j + h_{a;j}+h_{b;j}]
-\end{align*}
-Because $x$ is arbitrary selected from $A+B$, we have in fact proved 
- \begin{align*}
-A+B \subseteq \prod_{j=1}^n [a_j+b_j,a_j+b_j+h_{a;j}+h_{b;j}]
-\end{align*}
-We now fix arbitrary $x \in \prod_{j=1}^n [a_j+b_j,a_j+b_j+h_{a;j}+h_{b;j}]$. For each $j \in \set{1,\dots ,n}$, define 
-\begin{align*}
-y_j\triangleq \begin{cases}
-  a_j+h_{a;j}& \text{ if $x_j\geq a_j+b_j+h_{a;j}$ }\\
-            x_j-b_j & \text{ if $x_j<a_j+b_j+h_{a;j}$}
-\end{cases}\text{ and }z_j\triangleq x_j- y_j
-\end{align*}
-Fix arbitrary $j \in \set{1,\dots ,n}$. If $x_j<a_j+b_j+h_{a;j}$, by definition of $y_j$, we have 
- \begin{align*}
-y_j =x_j-b_j < (a_j+b_j+h_{a;j})-b-j= a_j+h_{a;j}
-\end{align*}
-and since $x_j\geq a_j+b_j$, we also have  
-\begin{align*}
-y_j=x_j-b_j\geq a_j
-\end{align*}
-We have proved that 
-\begin{align*}
-x_j<a_j+b_j+h_{a;j} \implies y_j \in [a_j,a_j+h_{a;j}]
-\end{align*}
-Note that 
-\begin{align*}
-x_j\geq a_j+b_j+h_{a;j}\implies y_j=a_j+h_{a;j}\in [a_j,a_j+h_{a;j}]
-\end{align*}
-We now have 
-\begin{align*}
-y_j \in [a_j,a_j+h_{a;j}]
-\end{align*}
-Again, if $x_j\geq a_j+b_j+h_{a;j}$, by definition 
-\begin{align*}
-b_j\leq x_j-a_j-h_{a;j}=x_j-y_j=z_j
-\end{align*}
-and since $x_j \leq a_j+b_j+h_{a;j}+h_{b;j}$, we also have 
-\begin{align*}
-z_j=x_j-a_j-h_{a;j}\leq b_j+h_{b;j}
-\end{align*}
-We have proved that 
-\begin{align*}
-x_j \geq a_j+b_j+h_{a;j} \implies z_j \in [b_j,b_j+h_{b;j}]
-\end{align*}
-Note that 
-\begin{align*}
-x_j<a_j+b_j+h_{a;j}\implies z_j=x_j-y_j=x_j-(x_j-b_j)=b_j \in [b_j,b_j+h_{b;j}]
-\end{align*}
-In conclusion, we have proved $y_j\in [a_j,a_j+h_{a;j}]$ and $z_j \in [b_j,b_j+h_{b;j}]$ for all $j\in \set{1,\dots ,n}$, since $j$ is arbitrary selected from $\set{1,\dots ,n}$. It now follows from $A=\prod_{j=1}^n [a_j,a_j+h_{a;j}],B=\prod_{j=1}^n [b_j,b_j+h_{b;j}]$ if we define $y\triangleq (y_1,\dots ,y_n),z\triangleq (z_1,\dots ,z_n)$, then we have
-\begin{align*}
-y\in A\text{ and }z \in B\text{ and }x=y+z \in A+B
-\end{align*}
-We have proved 
-\begin{align*}
-\prod_{j=1}^n [a_j+b_j,a_j+b_j+h_{a;j}+h_{b;j}]\subseteq A+B
-\end{align*}
-Thus \myref{Equation}{A+B} is proved. \\
-
 Now, by direct computation, we know that 
 \begin{align*}
-\abso{A+B}=\prod_{j=1}^n (h_{a;j}+h_{b;j})\text{ and }\abso{A}=\prod_{j=1}^n h_{a;j}\text{ and }\abso{B}=\prod_{j=1}^n h_{b;j}
-\end{align*}
-This then give us 
-\begin{enumerate}[label=(\alph*)]
-  \item $\abso{A+B}^{\frac{1}{n}}=(\prod_{j=1}^n h_{a;j}+h_{b;j})^{\frac{1}{n}}$.
-  \item $\abso{A}^{\frac{1}{n}}=(\prod_{j=1}^n h_{a;j})^{\frac{1}{n}}$.
-  \item $\abso{B}^{\frac{1}{n}}=(\prod_{j=1}^n h_{b;j})^{\frac{1}{n}}$.
-\end{enumerate}
-It is clear that to prove $\abso{A}^{\frac{1}{n}}+\abso{B}^{\frac{1}{n}}\leq \abso{A+B}^{\frac{1}{n}}$, we only have to prove 
-\begin{align*}
-\frac{\abso{A}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}+ \frac{\abso{B}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}\leq 1
+\abso{A+B}=\prod_{j=1}^d (a_j+b_j)\text{ and }\abso{A}=\prod_{j=1}^d a_j\text{ and }\abso{B}=\prod_{j=1}^d b_j
 \end{align*}
 Note that by AM-GM inequality, we have 
 \begin{align*}
-\frac{\abso{A}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}=\Big(\prod_{j=1}^n \frac{h_{a;j}}{h_{a;j}+h_{b;j}}\Big)^{\frac{1}{n}}\leq \frac{1}{n}\sum_{j=1}^n \frac{h_{a;j}}{h_{a;j}+h_{b;j}}
+\frac{\abso{A}^{\frac{1}{d}}}{\abso{A+B}^{\frac{1}{d}}}=\Big(\prod_{j=1}^n \frac{a_j}{a_j+b_j}\Big)^{\frac{1}{n}}\leq \frac{1}{d}\sum_{j=1}^d \frac{a_j}{a_j+b_j}
 \end{align*}
 Similarly by AM-GM inequality, we have
 \begin{align*}
-\frac{\abso{B}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}=\Big(\prod_{j=1}^n \frac{h_{b;j}}{h_{a;j}+h_{b;j}}\Big)^{\frac{1}{n}}\leq \frac{1}{n}\sum_{j=1}^n \frac{h_{b;j}}{h_{a;j}+h_{b;j}}
+\frac{\abso{B}^{\frac{1}{d}}}{\abso{A+B}^{\frac{1}{d}}}=\Big(\prod_{j=1}^n \frac{b_j}{a_j+b_j}\Big)^{\frac{1}{n}}\leq \frac{1}{d}\sum_{j=1}^d \frac{b_j}{a_j+b_j}
 \end{align*}
-We then can deduce 
+Adding two inequalities together, now have 
 \begin{align*}
-\frac{\abso{A}^{\frac{1}{n}}+\abso{B}^{\frac{1}{n}}}{\abso{A+B}^{\frac{1}{n}}}\leq \frac{1}{n}\sum_{j=1}^n \frac{h_{a;j}+h_{b;j}}{h_{a;j}+h_{b;j}}=1
+\frac{\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}}{\abso{A+B}^{\frac{1}{d}}}\leq \frac{1}{d}\sum_{j=1}^d \frac{a_j+b_j}{a_j+b_j}=1
 \end{align*}
-Our proof is finished.
+The result then follows from multiplying both side with $\abso{A+B}^{\frac{1}{d}}$. 
+\end{proof}
+\begin{theorem}
+\textbf{(Brunn-Minkowski Inequality for finite union of non-overlapping of bricks)} Suppose $A$ is a union of a finite collection of non-overlapping brick and so is $B$. We have 
+ \begin{align*}
+\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+  We prove by induction on the sum $k$ of the amount of bricks consisting $A$ and the amount of bricks consisting $B$. The base case $k=2$ have been proved by \myref{Theorem}{Brunn-Minkowski Inequality for Bricks}. Suppose the proposition hold true when $k\leq r$. Let $k=r+1$. Because the bricks consisting of $A$ are non-overlapping, by a translation  (and renaming axis if necessary), we can suppose 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+      $A^+\triangleq A\cap \set{\textbf{x}\inr^d: x_1\geq 0}$ is a union of a collection of non-overlapping bricks with amount at least one fewer than $A$. 
+   \end{minipage}
+\end{center}
+This is true since if we write $A=A_1\cup \cdots \cup A_m$, then by translation and remaining axis, we can suppose $A_1$ lies in only one of the closed subspaces $\set{\textbf{x}\inr^d:x_1\geq 0},\set{\textbf{x}\inr^d:x_1\leq 0}$ and $A_2$ lies in another, and since for all $n\geq 3$, $A_n \cap \set{\textbf{x}\inr^d: x_1\geq 0}$ is either also a brick or empty. With similar reason, we now see 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+      $A^-\triangleq A\cap \set{\textbf{x}\inr^d: x_1\leq 0}$ is a union of a collection of non-overlapping bricks with amount at least one fewer than $A$. 
+   \end{minipage}
+\end{center}
+Now, note that $h:\R\rightarrow \R$ defined by
+\begin{align*}
+h(t)\triangleq  \abso{\Big(B+(t,0,\dots ,0) \Big)\cap \set{\textbf{x}\inr^d: x_1\geq 0}}
+\end{align*}
+is clearly a continuous function. ($h$ can be expressed as a finite sum of continuous function $\sum_{k=1}h_k^p$ if $B$ consist of $p$-amount of bricks)\\
+
+We then can translate $B$ to let $B$ satisfy 
+ \begin{align}
+  \label{rai}
+\frac{\abso{A^+}}{\abso{A}}= \frac{\abso{B^+}}{\abso{B}}\text{ where }B^+ \triangleq B \cap \set{\textbf{x}\inr^d: x_1\geq 0}
+\end{align}
+Define $B^-\triangleq B\cap \set{\textbf{x}\inr^d:x_1\leq 0}$. With similar reason stated above, we know $B^+$ and  $B^-$ are both union of collection of non-overlapping bricks with amount not greater than  $B$. \\
+
+At this point, one should note that the sum of the amount of bricks consisting $A^+$ (resp. $A^-$) and the amount bricks consisting $B^+$ (resp. $B^-$) is at least one fewer than the sum $r+1$ of the sum of the amount of bricks consisting $A$ and the amount bricks consisting $B$. Then because the proposition hold true when $k\leq r$, we now have
+\begin{align*}
+\abso{A^+}^{\frac{1}{d}}+ \abso{B^+}^{\frac{1}{d}}\leq \abso{A^++B^+}^{\frac{1}{d}}\text{ and }\abso{A^-}^{\frac{1}{d}}+ \abso{B^-}^{\frac{1}{d}}\leq \abso{A^-+B^-}^{\frac{1}{d}}
+\end{align*}
+Note that for each $\textbf{x}$ in the interior of $A^++B^+$, we must have  $x_1>0$, and for each  $\textbf{y}$ in the interior of $A^-+B^-$, we must have  $y_1<0$. This implies that  $(A^++B^+)$ and $(A^-+B^-)$ are non-overlapping. Now, because 
+\begin{align*}
+A+B =(A^++B^+)\cup (A^-+B^-)
+\end{align*}
+if we define $\rho \triangleq \frac{\abso{A^+}}{\abso{A}}$, from \myref{Equation}{rai} we can finally deduce 
+\begin{align*}
+\abso{A+B}&= \abso{A^++B^+}+ \abso{A^-+B^-}\\
+&\geq \Big(\abso{A^+}^{\frac{1}{d}} + \abso{B^+}^{\frac{1}{d}} \Big)^{d} + \Big(\abso{A^-}^{\frac{1}{d}}+\abso{B^-}^{\frac{1}{d}}  \Big)^d \\ 
+(\because \frac{\abso{A^-}}{\abso{A}}=\frac{\abso{B^-}}{\abso{B}}=1-\rho)\hspace{0.5cm}&=\Big((\rho \abso{A})^{\frac{1}{d}}+ (\rho \abso{B})^{\frac{1}{d}} \Big)^d + \Big(((1-\rho)\abso{A})^{\frac{1}{d}}+ ((1-\rho)\abso{B})^{\frac{1}{d}} \Big)^d \\
+&=\Big(\rho^{\frac{1}{d}} (\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}) \Big)^d + \Big((1-\rho)^{\frac{1}{d}}(\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}) \Big)^{d}\\
+&=(\rho + 1-\rho)(\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}})^d\\
+&=(\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}})^d
+\end{align*}
+This then give us the desired 
+\begin{align*}
+\abso{A+B}^{\frac{1}{d}}\geq \abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \end{proof}
 \chapter{Complex Analysis HW}
 \section{HW1}
@@ -1099,111 +1096,258 @@ This give us
 h(e)=\sum_{k=0}^{9} \cos (kx)+ i \sin (kx) 
 \end{align*}
 \end{proof}
-\chapter{PDE intro HW}
-\section{HW1}
-\begin{theorem}
-\begin{align*}
-\text{ Show }u\mapsto u_x+uu_y\text{ is non-linear }
-\end{align*}
-\end{theorem}
-\begin{proof}
-See that 
-\begin{align}
-\label{he1}
-2u\mapsto 2u_x+4uu_y\neq 2(u_x+uu_y)
-\end{align}
-\end{proof}
-\begin{theorem}
-\begin{align*}
-\text{ Solve }(1+x^2)u_x+u_y=0
-\end{align*}
-\end{theorem}
-\begin{proof}
-The characteristic curve has the derivative 
-\begin{align*}
-\frac{dy}{dx}=\frac{1}{1+x^2}
-\end{align*}
-The solution to this ODE is 
-\begin{align*}
-y=\arctan x + C
-\end{align*}
-We now see that the solution to the PDE in \myref{Equation}{he1} is 
-\begin{align*}
-u=f\big((\arctan x)-y\big)\text{ where }f:\R\rightarrow \R\text{ is an arbitrary smooth function }
-\end{align*}
-A characteristic curve is as followed.
-\begin{center}
-   \begin{minipage}{0.9\linewidth}  
-       \centering       
-\includegraphics[height=8cm,width=15cm]{pdehw1}
-   \end{minipage}
-\end{center}
-\end{proof}
-\begin{theorem}
-\begin{align}
-\label{he2}
-\text{ Solve }au_x+b u_y +cu=0
-\end{align}
-\end{theorem}
-\begin{proof}
-Fix 
-\begin{align*}
-\begin{cases}
-  x'\triangleq ax+by \\
-  y'\triangleq bx-ay
-\end{cases}
-\end{align*}
-This map is clearly a diffeomorphism. Compute 
-\begin{align*}
-  \begin{cases}
-    u_x= \frac{\partial u}{\partial x'}\frac{\partial x'}{\partial x}+\frac{\partial u}{\partial y'}\frac{\partial y'}{\partial x}=au_{x'}+bu_{y'}\\
-    u_y=\frac{\partial u}{\partial x'}\frac{\partial x'}{\partial y}+\frac{\partial u}{\partial y'}\frac{\partial y'}{\partial y}=bu_{x'}-au_{y'}
-  \end{cases}
-\end{align*}
-Plugging it back into the PDE in \myref{Equation}{he2}, we have 
-\begin{align}
-\label{he3}
-cu+ (a^2+b^2)u_{x'}=0
-\end{align}
-If $c=a^2+b^2=0$, then all smooth functions are solution. If $a^2+b^2=0$ but $c\neq 0$, then clearly the only solution is $u=\tilde{0} $. If $a^2+b^2\neq 0$ but $c=0$, then $u_{x'}=\tilde{0}$, which implies $u=f(y')$ where $y'=bx-ay$ and  $f$ can be arbitrary smooth function.\\
-
-Now, suppose $a^2+b^2\neq 0\neq c$, note that the PDE in \myref{Equation}{he3} is just an ODE of the form 
-\begin{align*}
-y+\frac{a^2+b^2}{c}y'=0
-\end{align*}
-The general solution to this ODE is 
-\begin{align*}
-y=Ce^{\frac{-ct}{a^2+b^2}}
-\end{align*}
-In other words, the general solution of the PDE in \myref{Equation}{he3} is 
-\begin{align*}
-u=C e^{\frac{-cx'}{a^2+b^2}}=Ce^{\frac{-c(ax+by)}{a^2+b^2}}
-\end{align*}
-
-
-\end{proof}
 \section{HW2}
+\begin{theorem}
+\label{Root Test is Stronger Than Ratio Test}
+\textbf{(Root Test is Stronger Than Ratio Test)}
+\begin{align*}
+\liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}\leq \liminf_{n\to\infty} \sqrt[n]{\abso{z_n}} \leq \limsup_{n\to\infty} \sqrt[n]{\abso{z_n}} \leq \limsup_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $ and WOLG suppose $\liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}>0$. We prove 
+\begin{align*}
+  \vi{\liminf_{n\to\infty} \sqrt[n]{\abso{z_n}}\geq \liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}-\epsilon  }
+\end{align*}
+Let $\alpha \inr $ satisfy 
+\begin{align*}
+\liminf_{n\to\infty}  \abso{\frac{z_{n+1}}{z_n}}-\epsilon <\alpha < \liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}
+\end{align*}
+Let $N$ satisfy  
+\begin{align*}
+\text{ For all }n\geq N,\abso{\frac{z_{n+1}}{z_n}}>\alpha  
+\end{align*}
+We then see 
+\begin{align*}
+  \sqrt[N+n]{\abso{z_{N+n}}}\geq \sqrt[N+n]{\abso{z_N}\alpha^n}=\alpha \Big(\frac{\abso{z_N}^{\frac{1}{N+n}}}{\alpha ^{\frac{N}{N+n}}} \Big)\to \alpha \text{ as }n\to \infty \vdone
+\end{align*}
+The proof for the other side is similar.
+\end{proof}
 \begin{question}{}{}
-Consider hear flow in a long circular cylinder where the temperature depends only on $t$ and on the distance $r$ to the axis of the cylinder. Here $r=\sqrt{x^2+y^2}$ is the cylindrical coordinate. From the three dimensional hear equation derive the equation $u_t=k (u_{rr}+\frac{u_r}{r})$
+Find the radius of convergence of the following series:
+\begin{enumerate}[label=(\alph*)]
+  \item $\sum \frac{z^n}{n}$.
+  \item $\sum \frac{z^n}{n!}$.
+  \item $\sum n!z^n$.
+  \item $\sum n^kz^n$ where $k$ is a positive integer. 
+  \item $\sum z^{n!}$. 
+\end{enumerate}
 \end{question}
 \begin{proof}
-Write the three dimensional hear equation by 
+We know 
+\begin{align}
+\label{n1n}
+n^{\frac{1}{n}}=e^{\frac{\ln n}{n}}\to 1\text{ as }n \to \infty
+\end{align}
+\myref{Equation}{n1n} implies  $n^{\frac{-1}{n}}\to 1$ as $n\to \infty$ and that $\sum \frac{z^n}{n}$ has radius of convergence $1$. \myref{Equation}{n1n} also implies $n^{\frac{k}{n}}\to 1$ and $\sum n^kz^n$ has radius of convergence $1$. \\
+
+We know 
 \begin{align*}
-u_t= k \Delta u
+\lim_{n\to \infty} \frac{(n+1)!}{n!}=\infty
 \end{align*}
-Note that the Laplacian $\Delta u$ when written in cylindrical coordinate is 
+Then  \myref{Theorem}{Root Test is Stronger Than Ratio Test} tell us 
+\begin{align}
+\label{j0z}
+\lim_{n\to \infty} (n!)^{\frac{1}{n}}=\infty 
+\end{align}
+which implies that $\sum n!z^n$ has radius of convergence $0$ and  $\sum \frac{z^n}{n!}$ has radius of convergence $\infty$. Note that 
 \begin{align*}
-\Delta u= u_{rr} + \frac{u_r}{r} +\frac{u_{\theta \theta}}{r^2} + u_{zz}
+\sum z^{n!}=\sum a_nz^n\text{ where }a_n=\begin{cases}
+  1& \text{ if $n=k!$ for some  $k$ }\\
+  0& \text{ otherwise }
+\end{cases}
 \end{align*}
-Because the premise says that $u$ is constant in $z$ and  $\theta$, we know $u_{\theta \theta}=u_{zz}=0$
+It is then clear that 
 \begin{align*}
-\Delta u = u_{rr}+ \frac{u_r}{r}
+\limsup_{n\to\infty} (a_n)^{\frac{1}{n}}=1
 \end{align*}
-This give us 
+and the radius is $1$. 
+\end{proof}
+\begin{question}{}{}
+The $0$th order Bessel function  $J_0(z)$ is defined by the power series 
 \begin{align*}
-u_t= k (u_{rr}+ \frac{u_r}{r})
+J_0(z)=\sum_{n=0}^{\infty} (-1)^n \frac{1}{(n!)^2} \frac{z^n}{2n}
+\end{align*}
+Find its radius of convergence.
+\end{question}
+\begin{proof}
+\myref{Equation}{n1n} and \myref{Equation}{j0z} tell us 
+\begin{align*}
+\lim_{n\to \infty} (2n(n!)^2)^{\frac{1}{n}}=\infty 
+\end{align*}
+which implies that the radius of convergence of $J_0(z)$ is $\infty$. 
+\end{proof}
+\begin{theorem}
+\label{Abel's Test for Power Series}
+\textbf{(Abel's Test for Power Series)} Suppose $a_n\to0$ monotonically and $\sum a_nz^n$ has radius of convergence $R$ . 
+\begin{align*}
+  \text{ The power series $\sum a_nz^n$ at least converge on $\overline{D_R(0)}\setminus \set{R}$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Note that 
+\begin{align*}
+\sum \frac{a_n}{R^n}z^n\text{ has radius of convergence }R
+\end{align*}
+Fix $z\in \overline{D_R(0)}\setminus \set{R}$. Note that 
+\begin{align*}
+\abso{\sum_{n=0}\frac{z^n}{R^n}}= \abso{\frac{1-(\frac{z}{R})^{N+1}}{1-\frac{z}{R}}} \leq \frac{2}{\abso{1-\frac{z}{R}}}\text{ for all }N
+\end{align*}
+It then follows from  \customref{Dirichlet's Test}{Dirichlet's Test} that $\sum a_n (\frac{z}{R})^n$ converge.
+\end{proof}
+\begin{question}{}{}
+Suppose that $\sum a_nz^n$ has radius of convergence $R$ and let $C$ be the circle $\set{z\inc:\abso{z}=R}$. Prove or disprove 
+\begin{enumerate}[label=(\alph*)]
+  \item If $\sum a_nz^n$ converge at every point on $C$, except possibly one, then it converges absolutely every where on  $C$
+\end{enumerate}
+\end{question}
+\begin{proof}
+  Consider $a_n\triangleq \frac{1}{n}$ for all $n\inn$ and $a_0\triangleq 1$. Then $\sum a_nz^n$ has convergence radius $1$.  Since $a_n\searrow 0$, it follows from  \myref{Theorem}{Abel's Test for Power Series}, $\sum a_nz^n$ converge everywhere on $C\setminus \set{1}$. Observe that when  $z=1$, the series is just harmonic series, which diverge.  
+\end{proof}
+\begin{question}{}{}
+If $\sum a_nz^n$ has radius of convergence $R$, find the radius of convergence of 
+\begin{enumerate}[label=(\alph*)]
+  \item $\sum n^3 a_nz^n$. 
+  \item $\sum a_nz^{3n}$.
+  \item $\sum a_n^3 z^n$
+\end{enumerate}
+\end{question}
+\begin{proof}
+Since $(n^3)^{\frac{1}{n}}\to 1$, we know $\sum n^3a_nz^n$ also had radius of convergence $R$. We claim that the series $\sum a_nz^{3n}$ has convergence radius $R^{\frac{1}{3}}$. If $\abso{z}<R^{\frac{1}{3}}$, then $\abso{z^3}< R$ and thus 
+\begin{align*}
+\sum a_n(z^3)^n\text{ converge }
+\end{align*}
+and if $\abso{z}>R^{\frac{1}{3}}$, then $\abso{z^3}>R$ and 
+\begin{align*}
+\sum a_n(z^3)^n\text{ diverge }
+\end{align*}
+We have proved that $\sum  a_nz^{3n}$ has convergence radius $R^{\frac{1}{3}}$. \\
+
+Note that given a sub-sequence $\abso{a_{n_k}}^{\frac{1}{n_k}}$, 
+\begin{align*}
+  \abso{a_{n_k}}^{\frac{1}{n_k}}\text{ converge in extended reals if and only if }\abso{a_{n_k}}^{\frac{3}{n_k}}\text{ converge in extended reals }
+\end{align*}
+and if the former converge to $L$, then the latter converge to  $L^3$. It now follows that 
+ \begin{align*}
+   \limsup_{n\to\infty} \abso{a_n^3}= (\limsup_{n\to\infty} \abso{a_n})^3 = \frac{1}{R^3}
+\end{align*}
+It now follows that $\sum a_n^3 z^n$ has convergence radius $R^3$. 
+\end{proof}
+\begin{theorem}
+\label{Summation by Part}
+\textbf{(Summation by Part)} 
+\begin{align*}
+  f_ng_n-f_mg_m&=\sum_{k=m}^{n-1}f_k \Delta g_k + g_k \Delta f_k+ \Delta f_k \Delta g_k \\
+  &=\sum_{k=m}^{n-1}f_k \Delta g_k + g_{k+1}\Delta f_k
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proof follows induction which is based on 
+\begin{align*}
+f_mg_m+ f_m\Delta g_m+ g_m \Delta f_m +\Delta f_m \Delta g_m=f_{m+1}g_{m+1}
+\end{align*} 
+\end{proof}
+\begin{question}{}{}
+Prove that, for $z\neq 1$
+\begin{align*}
+\sum_{n=1}^k \frac{z^n}{n}= \frac{z}{1-z}\Big( \sum_{n=1}^{k-1}\frac{1}{n(n+1)} - \sum_{n=1}^{k-1} \frac{z^n}{n(n+1)} + \frac{1-z^k}{k} \Big)
+\end{align*}
+Show that the series $\sum \frac{z^n}{n}$ and $\sum \frac{z^n}{n(n+1)}$ have radius of convergence $1$; that the latter series converge everywhere on  $\abso{z}=1$, while the former converges everywhere on $\abso{z}=1$ except $z=1$. 
+\end{question}
+\begin{proof}
+We prove by induction. The base case $k=1$ is trivial. Suppose the equality hold when  $k=m$. The difference of the left hand side is clearly  $\frac{z^{m+1}}{m+1}$, and the difference of the right hand side is 
+\begin{align*}
+&\frac{z}{1-z}(\frac{1}{m(m+1)}-\frac{z^m}{m(m+1)}+ \frac{1-z^{m+1}}{m+1}- \frac{1-z^m}{m})\\
+&= \frac{z}{1-z} \cdot \frac{1-z^m + m- mz^{m+1}+(m+1)z^m-(m+1)}{m(m+1)} \\
+&=\frac{z}{1-z}\cdot \frac{-mz^{m+1}+mz^{m}}{m(m+1)}= \frac{z(z^m-z^{m+1})}{(1-z )(m+1)}=\frac{z^{m+1}}{m+1}
+\end{align*}
+The fact that both series have radius of convergence $1$ follows from  $n^{\frac{1}{n}}\to 1$. Both of them converge on $\overline{D_1(0)}\setminus \set{1}$ by \myref{Theorem}{Abel's Test for Power Series}. The former clearly diverge at $z=1$, since it would be a harmonic series, and the latter converge at $z=1$ by comparison test with  $\frac{1}{n(n+1)}\leq \frac{1}{n^2}$ for all $n\inn$. 
+\end{proof}
+\begin{question}{}{}
+Suppose that the power series $\sum a_nz^n$ has a recurring sequence of coefficients; that is $a_{n+k}=a_n$ for some fixed positive integer $k$ and all $n$. Prove that the series converge for  $\abso{z}<1$ to a rational function $ \frac{p(z)}{q(z)}$ where $p,q$ are polynomials, and the roots of  $q$ are all on the unit circle. What happens if $a_{n+k}=\frac{a_n}{k}$ instead? 
+\end{question}
+\begin{proof}
+Let 
+\begin{align*}
+L^-\triangleq \min \set{\abso{a_0},\dots ,\abso{a_{k-1}}}\text{ and }L^+\triangleq \max \set{\abso{a_0},\dots ,\abso{a_{k-1}}}
+\end{align*}
+We see that 
+\begin{align*}
+1=\liminf_{n\to\infty} (L^-)^{\frac{1}{n}}\leq \lim_{n\to \infty} \abso{a_n}^{\frac{1}{n}}\leq \limsup_{n\to\infty} (L^+)^{\frac{1}{n}}=1
+\end{align*}
+It then follows that $\sum a_nz^n$ has convergence radius $1$. Now observe that for $\abso{z}<1$, we have 
+\begin{align*}
+z^k \sum_{n=0}^{\infty}a_nz^n=\sum_{n=k}^{\infty}a_nz^n=\sum_{n=0}^{\infty}a_nz^n - \sum_{n=0}^{k-1}a_nz^n
+\end{align*}
+This now implies 
+\begin{align*}
+\sum_{n=0}^{\infty}a_nz^n= \frac{\sum_{n=0}^{k-1}a_nz^n}{1-z^k}
+\end{align*}
+Since $q(z)=1-z^k$, clearly the roots are all on the unit circle. Suppose now $b_n\triangleq a_n$ for all $n<k$ and  $b_{n+k}\triangleq \frac{b_n}{k}$ for all $n\geq k$. We then have 
+\begin{align*}
+  b_n= \frac{a_n}{k^{q(n)}}\text{ where }q\text{ is the largest integer such that }qk\leq n
+\end{align*}
+Note that $n-q(n)$ is always smaller than $k$. It then follows that 
+ \begin{align*}
+   (k^{q(n)})^{\frac{1}{n}}= k^{\frac{q(n)}{n}}= k \cdot k^{\frac{q(n)-n}{n}}\to k
+\end{align*}
+We then see that 
+\begin{align*}
+\limsup_{n\to\infty} \abso{b_n}^{\frac{1}{n}}= \frac{\limsup_{n\to\infty} \abso{a_n}^{\frac{1}{n}}}{k}=\frac{1}{k}
+\end{align*}
+It then follows that $\sum b_nz^n$ has convergence radius $k$. Now observe that for $\abso{z}<k$, we have 
+\begin{align*}
+z^k \sum_{n=0}^{\infty}b_nz^n = \sum_{n=0}^{\infty}b_nz^{n+k}=\frac{1}{k}\sum_{n=k}^{\infty} b_nz^{n}=\frac{1}{k}\Big(\sum_{n=0}^{\infty}b_nz^n - \sum_{n=0}^{k-1}b_nz^n \Big)
+\end{align*}
+This now implies 
+\begin{align*}
+\sum_{n=0}^{\infty}b_nz_n= \frac{\sum_{n=0}^{k-1}b_nz^n}{k(\frac{1}{k}-z^k)}
 \end{align*}
 \end{proof}
+\section{Exercises 2}
+\begin{mdframed}
+Let $(M,d)$ be a metric space, $x \in M $ and $F$ a subset of $M$. 
+\end{mdframed}
+\begin{question}{}{}
+Prove that the following statements are equivalent
+\begin{enumerate}[label=(\alph*)]
+  \item There exists a sequence $\set{x_n}$ in $F$ with $x_n\neq x$ so that $\lim_{n\to \infty}x_n=x$. 
+  \item For any $\epsilon $, the intersection of $B'_\epsilon  (x)\triangleq \set{y\in M:0<d(x,y)<\epsilon }$ and $F$ are non-empty. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+If (a) is true, then for all $\epsilon $ there exists some $x_n\in F$ such that $d(x_n,x)<\epsilon $. Because $x_n\neq x$, we know that $0<d(x_n,x)$. This now implies $x_n \in B'_\epsilon (x)\cap F$. \\
+
+If (b) is true, then for all $n$, we simply select a point in  $x_n \in B'_{\frac{1}{n}} (x)\cap F$. After such selection, we see that $x_n\neq x$ and for all $\epsilon $, if $n>\frac{1}{\epsilon }$, then $x_n\in B'_\epsilon (x)\cap F$. 
+\end{proof}
+\begin{question}{}{}
+Prove that the following statements are equivalent 
+\begin{enumerate}[label=(\alph*)]
+  \item $F$ contain all its limit point.
+  \item $U=M\setminus F$ is open.
+\end{enumerate}
+\end{question}
+\begin{proof}
+If (a) is true, then for all $p\in  U$, we know that $p$ is not a limit point of $F$, then from the first question, we know that there exists  $\epsilon $ such that $B'_\epsilon (x)\cap F=\varnothing$. Because $x\in U=M\setminus F$ also does not belong $x$, we also know that  $B_\epsilon (x)\cap F=\varnothing$. This then implies that $B_\epsilon (x)\subseteq U$, since $U=M\setminus F$. We have proved that $U$ is open.   \\
+
+If (b) is true, then for arbitrary $p\not\in F$, we know there exists some $\epsilon $ such that $B_\epsilon (x)$ is disjoint with $F$. Because  $B'_\epsilon (x)$ is a subset of $B_\epsilon (x)$, we can deduce that $B_\epsilon (x)\cap F=\varnothing$, which from the first question implies that $p$ is not a limit point of $F$. Because $p$ is arbitrary selected from $M\setminus F$, we have proved that none of the points in $M \setminus F$ is a limit point of $F$. This implies that if  $F$ has any limit point, then $F$ must contain that limit point.
+\end{proof}
+\begin{question}{}{}
+Prove the following statements 
+\begin{enumerate}[label=(\alph*)]
+  \item $M$ and $\varnothing$ are closed. 
+  \item The intersection of any family of closed subsets of $M$ is closed.  
+  \item The union of finitely many closed subsets of $M$ is closed.
+\end{enumerate}
+\end{question}
+\begin{proof}
+It is clear that $M$ is open and trivially true that $\varnothing$ is open. It then follows from the second question that $M$ and  $\varnothing$ are both closed. \\
+
+Let $(F_\alpha )$ be a collection of closed subsets of $M$. Arbitrary select a limit point $x$ of  $\bigcap  F_\alpha $. Let $\set{x_n}$ be a sequence in $\bigcap F_\alpha $ with $x_n\neq x$ so that $\lim_{n\to \infty}x_n=x$. Arbitrary select $\beta $. Note that $\set{x_n}$ is also a sequence in $F_\beta  $ that converge to  $x$ with $x_n\neq x$. This now implies that $x$ is a limit point of $F_\beta  $. Then because $F_\beta  $ is closed, we see that $x\in F_\beta$. Now, since  $\beta $ is arbitrary selected, we see $x\in \bigcap_\alpha F_\alpha $. Because $x$ is arbitrary, we have proved $\bigcap F_\alpha $ contained all its limit points.\\
+
+Let $\set{F_1,\dots ,F_N}$ be a collection of closed subsets of $M$.  Let $x$ be an arbitrary limit point of $\bigcup_{n=1}^N F_n$. Let $\set{x_n}$ be a sequence in $\bigcup_{n=1}^N F_n$ with $x_n\neq x$ converging to $x$. It is clear that there must exists some $j \in \set{1,\dots ,N}$  such that $F_j$ contain infinite terms of $\set{x_n}$, i.e., there exists a subsequence $x_{n_k}$ such that $x_{n_k} \in F_j$ for all $k$. Because  $\lim_{k\to \infty}x_{n_k}=\lim_{n\to \infty}x_n=x$, we now see that $x$ is a limit point of  $F_j$. It then follows from  $F_j$ being closed that $x\in F_j \subseteq\bigcup_{n=1}^N F_n$. Because $x$ is arbitrary, we have proved that $\bigcup_{n=1}^N F_n$ is closed.
+\end{proof}
+\chapter{PDE intro HW}
 \section{1.2 First Order Linear Equations}
 \begin{mdframed}
 \textbf{(Principle of Geometric Method)} Given a first order homogeneous linear PDE with the form  
@@ -1454,7 +1598,8 @@ We now know the solution of the original ODE is not unique, since any solution a
 
 Integrating both side on $[0,l]$, we see that given the boundary conditions, $f$ must satisfy 
 \begin{align*}
-\int_0^l f(x)dx=0
+\int_0^l f(x)dx&=\int_0^l u''+u'dx\\
+&=u(l)+u'(l)-u(0)-u'(0)=0
 \end{align*}
 \end{proof}
 \begin{question}{}{}
@@ -1499,7 +1644,7 @@ The boundary condition implies
 \end{align*}
 The result then follows. 
 \end{proof}
-\section{Types of Second-Order Equations} 
+\section{1.6 Types of Second-Order Equations} 
 \begin{mdframed}
 Consider the constant coefficient Linear PDE 
 \begin{align*}
@@ -1541,6 +1686,9 @@ What is the type of each of the following equations.
   \item $9u_{xx}+6u_{xy}+u_{yy}+u_x=0$
 \end{enumerate}
 \end{question}
+\begin{proof}
+The discriminant for (a) and (b) are respectively  $\frac{3}{4}$ are $0$, thus elliptic and parabolic. 
+\end{proof}
 \begin{question}{}{}
 Find the regions in the $xy$ plane where the equation 
  \begin{align*}
@@ -1576,6 +1724,23 @@ then a change of scale
 y'=\gamma y
 \end{align*}
 \end{question}
+\begin{proof}
+The original elliptic equation can be written in the form 
+\begin{align*}
+e^{\alpha x+ \beta  y}\Big[ v_{xx}+2\alpha v_x+ \alpha^2 v +3 (v_{yy}+2\beta  v_y + \beta ^2 v) -2(v_x + \alpha v)+24 (v_y+\beta v)+5v \Big]=0
+\end{align*}
+which implies 
+\begin{align*}
+v_{xx}+3v_{yy}+(2\alpha -2)v_x+ (6 \beta  +24)v_y + (\alpha ^2 +3\beta ^2 -2\alpha +24 \beta  +5)v=0 
+\end{align*}
+Letting $\alpha \triangleq 1$ and $\beta  \triangleq -4$, we see 
+\begin{align*}
+v_{xx}+3v_{yy}+ \tilde{c}v =0 
+\end{align*}
+Letting $y\triangleq \sqrt{3}y' $, we then see 
+\begin{align*}
+v_{xx}+v_{y'y'}+\tilde{c}v=0 
+\end{align*}
 \begin{question}{}{}
 Consider the equation $3u_y+u_{xy}=0$.
 \begin{enumerate}[label=(\alph*)]
@@ -1584,6 +1749,763 @@ Consider the equation $3u_y+u_{xy}=0$.
   \item With the auxiliary conditions $u(x,0)=e^{-3x}$ and $u_{y}(x,0)=0$, does a solution exist? Is it unique? 
 \end{enumerate}
 \end{question}
+\begin{proof}
+Since the discriminant is exactly $\frac{-1}{4}$, the type is hyperbolic. Letting $v\triangleq u_y$, we see 
+\begin{align*}
+3v+v_x=0
+\end{align*}
+This PDE on each horizontal line is an ODE and thus have the solution 
+\begin{align*}
+u_y=v=f(y)e^{-3x}
+\end{align*}
+Then $u$ must be of the form 
+\begin{align*}
+u=F(y)e^{-3x}+ g(x)
+\end{align*}
+Applying the initial condition $u_y(x,0)=0$, we see 
+\begin{align*}
+f(0)e^{-3x}=u_y(x,0)=0
+\end{align*}
+which implies $f(0)=0$. Now apply another initial condition $u(x,0)=e^{-3x}$. 
+\begin{align*}
+F(0)e^{-3x}+g(x)=u(x,0)=e^{-3x}
+\end{align*}
+We then see the solutions exist and are not unique, since 
+\begin{align*}
+\begin{cases}
+  F(y)=1\\
+  g(x)=0
+\end{cases}\text{ and }\begin{cases}
+  F(y)=y^2\\
+  g(x)=e^{-3x}
+\end{cases}
+\end{align*}
+are both solutions. 
+\end{proof}
+\section{2.1 The Wave Equation}
+\begin{abstract}
+In this section, $c\inr^*$. 
+\end{abstract}
+\begin{theorem}
+\textbf{(General Solution of The Wave Equation)} The general solution of the wave equation 
+\begin{align*}
+u_{tt}=c^2u_{xx}
+\end{align*}
+is of the form 
+\begin{align*}
+u=f(x+ct)+g(x-ct)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe that 
+\begin{align*}
+0=u_{tt}-c^2u_{xx}=(\partial_t + c\partial_x)(\partial_t - c\partial_x)u
+\end{align*}
+If we let $v=u_t-cu_x$, then we must have $v_t+cv_x=0$. We know the general solution of $v$ is $v=g(x-ct)$. We have reduce the problem into solving  
+\begin{align}
+\label{ime}
+u_t-cu_x=g(x-ct)
+\end{align}
+Now observe that for all $w:\R\rightarrow \R$
+\begin{align*}
+  (\partial_t - c \partial_x)\big(w(x-ct) \big)=2cw'(x-ct)
+\end{align*}
+We then see the particular solution for \myref{Equation}{ime} is 
+\begin{align*}
+u= \frac{1}{2c}G(x-ct)
+\end{align*}
+and the general solution is then 
+\begin{align*}
+u=f(x+ct)+\frac{1}{2c}G(x-ct)
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(IVP for The Wave Equation)} The Initial Value Problem 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx} \\
+  u(x,0)=\phi (x)\\
+  u_t(x,0)=\psi (x)
+\end{cases}
+\end{align*}
+has exactly one solution 
+\begin{align*}
+u(x,t)=\frac{1}{2}[ \phi (x+ct)+\phi (x-ct)]+ \frac{1}{2c}\int_{x-ct}^{x+ct}\psi (s)ds
+\end{align*}
+\end{theorem}
+\begin{proof}
+Write $u(x,t)=f(x+ct)+g(x-ct)$. By initial condition, we know 
+\begin{align*}
+f(x)+g(x)=\phi (x)\text{ and }f'(x)-g'(x)= \frac{\psi (x)}{c}
+\end{align*}
+Differentiating the former, we also have 
+\begin{align*}
+f'(x)+g'(x)=\phi' (x)
+\end{align*}
+This then give us 
+\begin{align*}
+f'(x)= \frac{\phi '(x)}{2} + \frac{\psi (x)}{2c}\text{ and }g'(x)= \frac{\phi '(x)}{2}- \frac{\psi (x)}{2c}
+\end{align*}
+It now follows that 
+\begin{align*}
+f(s)=\frac{\phi (s)}{2}+ \frac{1}{2c}\int_0^s \psi (x)dx +A \text{ and }g(s)= \frac{\phi (s)}{2} - \frac{1}{2c} \int_0^s \psi (x)dx + B
+\end{align*}
+Note that since $f(x)+g(x)=\phi (x)$, we know $B=-A$. \\
+
+We now have 
+\begin{align*}
+u(x,t)&=f(x+ct)+g(x-ct)\\
+&=\frac{\phi (x+ct)+\phi (x-ct)}{2}+ \frac{1}{2c} \int^{x+ct}_{x-ct}\psi (x)dx
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx} \\
+  u(x,0)=e^x \\
+  u_t(x,0)= \sin x 
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Let 
+\begin{align*}
+u\triangleq f(x+ct)+g(x-ct)
+\end{align*}
+Plugging the initial conditions, we know 
+\begin{align*}
+\begin{cases}
+ f(x)+g(x)=e^x \\
+ f'(x)-g'(x)= \frac{\sin x}{c} 
+\end{cases}
+\end{align*}
+This give us 
+\begin{align*}
+f'(x)= \frac{e^x+ \frac{\sin x}{c}}{2}\text{ and }g'(x)= \frac{e^x - \frac{\sin x}{c}}{2}
+\end{align*}
+Then by FTC, we have
+\begin{align*}
+\begin{cases}
+  f(x)= \frac{e^x-\frac{\cos x}{c}}{2}+f(0)- \frac{1}{2} +\frac{1}{2c} \\
+  g(x)= \frac{e^x + \frac{\cos x}{c}}{2} +g(0) - \frac{1}{2}- \frac{1}{2c}
+\end{cases}
+\end{align*}
+Note that $f(0)+g(0)=e^0=1$, which cancel the constant terms in $u$, i.e.
+\begin{align*}
+u&=f(x+ct)+g(x-ct)\\
+&=\frac{e^{x+ct}+ e^{x-ct} + \frac{-\cos (x+ct)+ \cos (x+ct)}{c}}{2}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+If both $\phi$ and $\psi$ are odd functions of $x$, show that the solution of  $u(x,t)$ of the wave equation is also odd in $x$ for all $t$. 
+\end{question}
+\begin{proof}
+Suppose 
+\begin{align*}
+u=f(x+ct)+g(x-ct)
+\end{align*}
+We have  
+\begin{align*}
+\begin{cases}
+  f+g=\phi \\
+  f'-g'= \frac{\psi }{c}
+\end{cases}
+\end{align*}
+This give us 
+\begin{align*}
+f'= \frac{\phi ' + \frac{\psi}{c}}{2}\text{ and }g'= \frac{\phi' - \frac{\psi}{c}}{2}
+\end{align*}
+and 
+\begin{align*}
+\begin{cases}
+f(x)= \frac{1}{2}\int_0^x (\phi' + \frac{\psi}{c})ds +f(0)\\
+g(x)= \frac{1}{2}\int_0^x (\phi' - \frac{\psi}{c})ds +g(0)
+\end{cases}
+\end{align*}
+that is 
+\begin{align*}
+\begin{cases}
+  f(x)=f(0)+ \frac{1}{2}\Big[\phi (x)-\phi (0) \Big]+ \frac{1}{2c}\int_0^x \psi (s)ds \\
+  g(x)=g(0)+ \frac{1}{2}\Big[ \phi (x)- \phi (0) \Big]- \frac{1}{2c}\int_0^x \psi (s)ds
+\end{cases}
+\end{align*}
+Noting $f+g=\phi$, we now have 
+\begin{align*}
+u(x,t)&=f(x+ct)+g(x-ct) \\
+&=\frac{\phi (x+ct)+ \phi (x-ct)}{2}+ \frac{1}{2c}\int^{x+ct}_{x-ct}\psi (s)ds
+\end{align*}
+and 
+\begin{align*}
+u(-x,t)&=\frac{\phi (-x+ct)+ \phi (-x-ct)}{2} + \frac{1}{2c}\int^{-x+ct}_{-x-ct}\psi (s)ds \\
+&= \frac{-\phi (x-ct)-\phi (x+ct)}{2} -\frac{1}{2c}\int_{x+ct}^{x-ct}\psi (-u)du \hspace{0.5cm}(\because u=-s)\\
+&=\frac{-\phi (x-ct)-\phi (x+ct)}{2} +\frac{1}{2c}\int_{x+ct}^{x-ct}\psi (u)du \hspace{0.5cm}(\because \psi\text{ is odd }) \\
+&=\frac{-\phi (x-ct)-\phi (x+ct)}{2} -\frac{1}{2c}\int^{x+ct}_{x-ct}\psi (u)du = -u(x,t)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+A spherical wave is a solution of the three-dimensional wave equation of the form $u(r,t)$, where $r$ is the distance to the origin (the spherical coordinate). The wave equation takes the form 
+\begin{align*}
+u_{tt}=c^2 \Big(u_{rr}+ \frac{2}{r}u_r \Big)
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Change variables $v=ru$ to get the equation for $v:v_{tt}=c^2v_{rr}$. 
+  \item Solve for $v$ and thereby solve the spherical wave equation. 
+  \item Solve it with the initial condition $u(r,0)=\phi (r),u_t(r,0)= \psi (r)$, taking both $\phi (r)$ and $\psi (r)$ to be even functions of $r$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+If we let $v=ru$, then 
+ \begin{align*}
+v_{tt}=ru_{tt}\text{ and }v_{rr}=ru_{rr}+2u_r
+\end{align*}
+This then give us 
+\begin{align*}
+v_{tt}=ru_{tt}=rc^2\Big(u_{rr}+\frac{2}{r}u_r \Big)=c^2(ru_{rr}+2u_r)=c^2v_{rr}
+\end{align*}
+The general solution of $v$ is 
+\begin{align*}
+v=f(r+ct)+g(r-ct)
+\end{align*}
+and thus 
+\begin{align*}
+u(r,t)= \frac{f(ct+r)+g(r-ct)}{r}
+\end{align*}
+Plugging the initial conditions, we have 
+\begin{align*}
+\frac{f(r)+g(r)}{r}=u(r,0)=\phi (r)\text{ and }\frac{c[f'(r)-g'(r)]}{r}=u_t(r,0)=\psi (r)
+\end{align*}
+In other words, 
+\begin{align*}
+\begin{cases}
+  f(r)+g(r)=r\phi (r)\\
+  f'(r)-g'(r)=\frac{r \psi (r)}{c}
+\end{cases}
+\end{align*}
+Differentiating the first equation, we have  
+\begin{align*}
+  f'(r)+g'(r)= \phi (r)+r\phi'(r)
+\end{align*}
+We now can solve $f',g'$ 
+\begin{align*}
+f'(r)= \frac{\phi (r)+r\phi '(r)+ \frac{r\psi (r)}{c}}{2}\text{ and }g'(r)= \frac{\phi (r)+r\phi'(r)- \frac{r\psi (r)}{c}}{2}
+\end{align*}
+We now have 
+\begin{align*}
+f(r)&= f(1)+\int_1^{r} f'(s)ds   \\
+&=f(1)+ \Big[\frac{s \phi (s)}{2} \Big] \Big|_{s=1}^{r} + \frac{1}{2c}\int_1^r s \psi (s)ds
+\end{align*}
+and 
+\begin{align*}
+g(r)&=g(1)+ \int_1^r g'(s)ds \\
+&=g(1)+ \Big[ \frac{s \phi (s)}{2} \Big]\Big|_{s=1}^r -\frac{1}{2c}\int_1^r s\psi (s)ds
+\end{align*}
+Noting that $f(1)+g(1)=1\phi (1)$, we can cancel these terms and get 
+\begin{align*}
+u(r,t)&= \frac{f(r+ct)+g(r-ct)}{r} \\
+&= \frac{(r+ct)\phi (r+ct)+ (r-ct)\phi (r-ct)}{2r}+ \frac{1}{2cr}\int_1^{r+ct}s \phi (s)ds - \frac{1}{2cr}\int_1^{r-ct}s\phi (s)ds\\
+&=\frac{(r+ct)\phi (r+ct)+ (r-ct)\phi (r-ct)}{2r}+ \frac{1}{2cr}\int_{r-ct}^{r+ct}s \phi (s)ds 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+u_{xx}+u_{xt}-20u_{tt}=0 \\
+u(x,0)=\phi (x) \\
+u_t(x,0)= \psi (x)
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+The PDE can be write in the form of 
+\begin{align*}
+  (\partial_x + 5\partial_t) (\partial_x - 4 \partial _t)u=0
+\end{align*}
+which have the general solution 
+\begin{align*}
+u(x,t)=f(5x-t)+g(4x+t)
+\end{align*}
+We now see 
+\begin{align*}
+f(5x)+g(4x)=\phi (x)\text{ and }-f'(5x)+g'(4x)=\psi (x)
+\end{align*}
+This then give us 
+\begin{align*}
+f'(5x)=\frac{(\phi' - 4\psi)(x)}{9}\text{ and }g'(4x)= \frac{(\phi '+5\psi )(x)}{9}
+\end{align*}
+and thus 
+\begin{align*}
+f(x)&=f(0)+ \int_0^x f'(s)ds\\
+&=f(0)+\int_0^x \frac{(\phi' -4\psi)(\frac{s}{5})}{9}ds \\
+&=f(0)+ \frac{5}{9}\Big[\phi (\frac{x}{5})-\phi (0) \Big] - \frac{4}{9}\int_0^x \psi (\frac{s}{5})ds
+\end{align*}
+and similarly 
+\begin{align*}
+g(x)&=g(0)+\int_0^x g'(s)ds \\
+&=g(0)+ \int_0^x \frac{(\phi ' +5 \psi )(\frac{s}{4})}{9}ds \\
+&=g(0)+ \frac{4}{9}\Big[ \phi (\frac{x}{4})- \phi (0) \Big]+\frac{5}{9} \int_0^x \psi (\frac{s}{4})ds
+\end{align*}
+Noting that $f(0)+g(0)=u(0,0)=\psi (0)$, we now have
+\begin{align*}
+u(x,t)&=f(5x-t)+g(4x+t) \\
+&=\frac{5\phi (\frac{5x-t}{5})+4 \phi (\frac{4x+t}{4})}{9} - \frac{4}{9}\int_0^{5x-t}\psi (\frac{s}{5})ds + \frac{5}{9}\int_0^{4x+t}\psi (\frac{s}{4})ds
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Find the general solution of 
+\begin{align*}
+3u_{tt}+10u_{xt}+3u_{xx}=\sin (x+t)
+\end{align*}
+\end{question}
+\begin{proof}
+Clearly, we can rewrite the equation to be 
+\begin{align*}
+  (3\partial_x + \partial_t )(\partial_x + 3\partial_t)u=\sin (x+t)
+\end{align*}
+If we let $v=u_x+3u_t$, then  we have 
+\begin{align*}
+3v_x+v_t= \sin (x+t)
+\end{align*}
+Define 
+\begin{align*}
+\gamma (x)\triangleq  (x, \frac{x}{3}+c)
+\end{align*}
+We then see 
+\begin{align*}
+  (v\circ \gamma )'(x)= \frac{\sin (x+ \frac{x}{3}+c)}{3}
+\end{align*}
+which implies 
+\begin{align*}
+v(x, \frac{x}{3}+c) = v\circ \gamma  (x)= \frac{\cos (\frac{4x}{3}+c)}{-4}+ C_c
+\end{align*}
+and thus 
+\begin{align*}
+v(x,t)&= \frac{\cos (\frac{4x}{3}+ t- \frac{x}{3})}{-4}+f(t-\frac{x}{3})\\
+&= \frac{\cos (x+t)}{-4}+f(3t-x)
+\end{align*}
+It remains to solve 
+\begin{align*}
+u_x+ 3u_t= \frac{\cos (x+t)}{-4}+ f(3t-x)
+\end{align*}
+Now define 
+\begin{align*}
+\gamma  (x)\triangleq  (x,3x+c)
+\end{align*}
+We then see 
+\begin{align*}
+  (u\circ \gamma )'(x)= \frac{\cos (4x+c)}{-4} + f(8x+3c)
+\end{align*}
+which implies 
+\begin{align*}
+u(x,3x+c)= \frac{\sin (4x+c)}{-16}+\frac{F(8x+3c)}{8}+u(0,c)+f(c)
+\end{align*}
+and thus 
+\begin{align*}
+u(x,t)= \frac{\sin (x+t)}{-16}+ \tilde{F}(-x+3t)+ g(t-3x)
+\end{align*}
+where $g$ is the initial condition. 
+\end{proof}
+\section{2.2 Causality and Energy}
+\begin{question}{}{}
+Show that the wave equation has the following invariant properties 
+\begin{enumerate}[label=(\alph*)]
+  \item Any translate $u(x-y,t)$ where $y$ is fixed, is also a solution. 
+  \item Any derivative, say $u_x$, is also a solution. 
+  \item The dilated function $u(ax,at)$ is also a solution.
+\end{enumerate}
+\end{question}
+\begin{proof}
+The first property follows from direct computation, the second property follows from $0_x=0$ and the third property follows from  observing $v\triangleq u(ax,at)$ satisfy $v_{tt}=a^2u_{tt}=a^2c^2u_{xx}=v_{xx}$. 
+\end{proof}
+\begin{question}{}{}
+If $u(x,t)$ satisfy the wave equation $u_{tt}=u_{xx}$, prove the identity 
+\begin{align*}
+u(x+h,t+k)+u(x-h,t-k)=u(x+k,t+h)+u(x-k,t-h)
+\end{align*}
+\end{question}
+\begin{proof}
+Define $\phi,\psi :\R\rightarrow \R$ by 
+\begin{align*}
+\phi (x)\triangleq u(x,0)\text{ and }\psi (x)\triangleq u_t(x,0)
+\end{align*}
+We then know that 
+\begin{align*}
+u(x,t)&= \frac{\phi (x+t)+ \phi (x-t)}{2}+ \frac{1}{2}\int^{x+t}_{x-t}\psi (s)ds\\
+&\triangleq \frac{A(x,t)+B(x,t)+C(x,t)}{2}
+\end{align*}
+where 
+\begin{align*}
+\begin{cases}
+  A(x,t)\triangleq \phi (x+t)\\
+  B(x,t)\triangleq \phi (x-t)\\
+  C(x,t)\triangleq \int_{x-t}^{x+t}\psi (s)ds
+\end{cases}
+\end{align*}
+The proof then follows from 
+\begin{align*}
+  A(x+h,t+k)=A(x+k,t+h)&\text{ and }A(x-h,t-k)=A(x-k,t-h)\\
+B(x+h,t+k)=B(x-k,t-h)&\text{ and }B(x-h,t-k)=B(x+k,t+h)\\
+C(x+h,t+k)=C(x+k,t+h)&\text{ and }C(x-h,t-k)=C(x-k,t-h)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Suppose that we have the PDE of damped string 
+\begin{align*}
+  \begin{cases}    
+\rho u_{tt}-T u_{xx}+ru_t=0\text{ where }r>0\\
+u(x,0)=0 \text{ if }\abso{x}>N
+  \end{cases}
+\end{align*}
+Show that if we define the energy $E(t)$ of this system by 
+\begin{align*}
+E(t)=\int_{-\infty}^{\infty} (\rho u_t^2 + Tu_x^2)dx
+\end{align*}
+Then the energy decrease as time goes. 
+\end{question}
+\begin{proof}
+Because $u$ is smooth, we have 
+\begin{align*}
+E'(t)&=\int_{-\infty}^{\infty} (\rho u_t^2+Tu_x^2)_tdx\\
+&=\int_{-\infty}^{\infty} (2\rho u_tu_{tt}+2Tu_xu_{xt})dx\\
+&=\int_{-\infty}^{\infty} [2u_t(Tu_{xx}-ru_t)+2Tu_xu_{xt}]dx\\
+&=\int_{-\infty}^{\infty} [2T(u_tu_x)_x-2ru_t^2]dx \\
+&=2Tu_tt_x\Big|_{x=0}^{\infty} - \int_{-\infty}^{\infty} 2ru_t^2\\
+&=- \int_{-\infty}^{\infty} 2ru_t^2\leq  0
+\end{align*}
+\end{proof}
+
+\section{2.3 The Diffusion Equation}
+\begin{mdframed}
+In this section, we shall first set 
+\begin{align*}
+\Omega \triangleq (0,l)\text{ and }\Gamma \triangleq \Omega \times \set{0}\cup  \partial \Omega \times [0,T]
+\end{align*}
+and write  
+\begin{align*}
+\Omega_T\triangleq \Omega \times (0,T)
+\end{align*}
+We suppose $u:\overline{\Omega_T}\rightarrow \R$ satisfy 
+\begin{align*}
+  u \in C^2(\Omega \times (0,T])
+\end{align*}
+If $u$ achieve a maximum on $\Omega \times (0,T]$, then at that point $u$ must have 
+\begin{align*}
+u_t\geq 0\text{ and }u_{xx}\leq 0
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Weak Maximum Principle)} If 
+\begin{align}
+\label{utk}
+  u_t-ku_{xx}\leq  0\text{ on }\Omega \times (0,T]
+\end{align}
+then $u$ must achieve its maximum at  $\Gamma $.  
+\end{theorem}
+\begin{proof}
+Because $\Gamma $ is compact, we know there exists a maximum $M$ of $u$ on $\Gamma $. Fix $\epsilon $ and define $v:\overline{\Omega_T}\rightarrow \R$
+\begin{align*}
+v(x,t)\triangleq u(x,t)+ \epsilon x^2
+\end{align*}
+Because 
+\begin{align*}
+u(x,t) \leq \max_{\overline{\Omega_T}}v - \epsilon x^2\text{ for all }(x,t)\in \overline{\Omega_T}
+\end{align*}
+we can reduce the problem into proving 
+\begin{align*}
+\vi{\max_{\overline{\Omega_T}}v\leq M+\epsilon l^2\text{ for all }p \in F}
+\end{align*}
+From \myref{Equation}{utk}, we can deduce
+\begin{align*}
+v_t-kv_{xx}=u_t-ku_{xx}-2k\epsilon  <0
+\end{align*}
+Because $v$ is continuous, we know $v$ attain its maximum at some point. Now, with diffusion inequality, we can deduce 
+\begin{enumerate}[label=(\alph*)]
+  \item The maximum of $v$ must not be in $\Omega_T$, otherwise at that point $v_t=0$ and  $v_{xx}\leq 0$ yield a contradiction. 
+  \item The maximum of $v$ must also not be in the top edge $\partial \Omega_T \setminus \Gamma $, otherwise $v_t\geq 0$ and $v_{xx}\leq 0$ yield a contradiction. 
+\end{enumerate}
+We have proved that $v$ can only attain maximum at some point $(x_0,t_0)\in F_0$, and it follows that 
+\begin{align*}
+\max_{(x,t) \in F}v(x,t)=v(x_0,t_0)=u(x_0,t_0)+\epsilon  x_0^2 \leq M+ \epsilon l^2  \vdone
+\end{align*}
+\end{proof}
+\begin{corollary}
+\textbf{(Weak Minimum Principle)} The minimum of $u$ must also happen on $F_0$.  
+\end{corollary}
+\begin{mdframed}
+Now, consider the Dirichlet's problem 
+\begin{align}
+\label{Dirichlet's problem}
+\begin{cases}
+u_t-ku_{xx}=f(x,t)\text{ for }0<x<l\text{ and }t>0 \\
+u(x,0)=\phi (x)\text{ for $0\leq x\leq l$ }\\
+u(0,t)=g(t)\text{ and }u(l,t)=h(t)\text{ for $t\geq 0$ }
+\end{cases}
+\end{align}
+Note that for all $T$, because the difference $w$ of two solution  $u_1,u_2$ for Dirichlet's function must satisfy 
+\begin{align*}
+\begin{cases}
+  w_t=kw_{xx}\text{ on }\overline{\Omega_T}\setminus  \Gamma \\
+  w(x,0)=w(0,t)=0\text{ for any }0\leq x\leq l\text{ and }0\leq t\leq T
+\end{cases}
+\end{align*}
+By minimum and maximum principle we can deduce $w=0$ on  $\Omega$, and thus  $u_1=u_2$ on  $F$. It then follows that  $u_1=u_2$ on  $[0,l]\times [0,\infty)$. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Uniqueness for the Dirichlet's problem for the diffusion equation with Energy Method)} If $u_1,u_2:[0,l]\times [0,\infty)$ are both solution of the Dirichlet's problem, then  $u_1=u_2$. 
+\end{theorem}
+\begin{proof}
+Define $w:[0,l]\times [0,\infty)\rightarrow \R$ by $w=u_1-u_2$. Multiplying $w$ with $(w_t-kw_{xx})$, we see that for all $x\in (0,l)$ and $t> 0$, 
+\begin{align*}
+0=(w_t-kw_{xx})w= \Big(\frac{w^2}{2}\Big)_t + (-kw_xw)_x + kw_x^2
+\end{align*}
+Because $w(0,t)=w(l,t)=0$ for all $t$, it follows that for all $t>0$ 
+\begin{align*}
+0&=\int_0^l \Big[\Big(\frac{w^2}{2}\Big)_t + (-kw_xw)_x + kw_x^2\Big]dx  \\
+ &=\int_0^l \Big[\Big(\frac{w^2}{2}\Big)_t + kw_x^2\Big]dx
+\end{align*}
+which implies   
+\begin{align*}
+I'(t)\leq 0\text{ if we define }I:[0,\infty)\rightarrow \R\text{ by }I(t)\triangleq \int_0^l \Big(\frac{w^2}{2} \Big)dx 
+\end{align*}
+Because $I(0)=0$ by definition and $I(t)$ are integrals of non-negative functions, we can deduce $I$ is identically $0$. The desired result $w(x,t)=0$ for all $x,t \in [0,l]\times [0,\infty)$ then follows. 
+\end{proof}
+\begin{mdframed}
+Now, consider \customref{Dirichlet's problem}{Dirichlet's problem} with different initial conditions $\phi_1,\phi_2: [0,l]\rightarrow \R$, and suppose $u_1,u_2:[0,l]\times [0,\infty)$ are corresponding solutions. The maximum and minimum principle give us a $L^\infty$ estimation for stability 
+\begin{align*}
+\max_{[0,l]\times [0,\infty)} \abso{u_1-u_2}\leq \max_{[0,l]}\abso{\phi_1-\phi_2}
+\end{align*}
+While the energy method give us a $L^2$ estimation for  stability: For all $t\geq 0$,  
+\begin{align*}
+\int_0^l \Big(\frac{w^2(x,t)}{2} \Big)dx =I(t)\leq I(0)=\int_0^l \Big(\frac{w^2(x,0)}{2} \Big)= \int_0^l \frac{(\phi_1-\phi_2)^2}{2}dx
+\end{align*}
+\end{mdframed}
+\begin{question}{}{}
+Consider the diffusion equation  
+\begin{align*}
+\begin{cases}  
+u_t=u_{xx}\text{ on }(0,1)\times (0,\infty)\\
+u(0,t)=u(1,t)=0 \text{ for all }t>0\\
+u(x,0)=1-x^2
+\end{cases}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $u(x,t)>0$ for all $(x,t)\in (0,1)\times (0,\infty)$. 
+  \item Define $\mu : (0,\infty)\rightarrow \R$ by $\mu(t)\triangleq \max_{x\in [0,1]} u(x,t)$. Show that $\mu$ is a decreasing function. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+The proof of (a) follows from a loose application of the strong minimum principle. \\
+
+The proof of (b) follows from noting $v(x,t)\triangleq u(x,t+t_0):[0,1]\times [0,\infty)$ also is a solution of the diffusion equation and application of maximum principle on $v$.
+\end{proof}
+\begin{question}{}{}
+Consider the Dirichlet's problem 
+\begin{align*}
+\begin{cases}  
+u_t=u_{xx}\text{ on }(0,1)\times (0,\infty)\\
+u(0,t)=u(1,t)=0 \text{ for all }t\geq 0\\
+u(x,0)=4x(1-x)
+\end{cases}
+\end{align*}
+Show that 
+\begin{enumerate}[label=(\alph*)]
+  \item $0<u(x,t)<1$ for all $t>0$ and  $0<x<1$.  
+  \item $u(x,t)=u(1-x,t)$ for all $t\geq 0$ and $0\leq x\leq 1$. 
+  \item Use the energy method to show that $\int_0^1 u^2dx$ is a strictly decreasing function of $t$.
+\end{enumerate}
+\end{question}
+\begin{proof}
+  (a) follows from application of strong maximum and minimum principle. (b) follows from uniqueness of Dirichlet's problem and the observation that $u(1-x,t)$ is also a solution. \\
+
+The energy method give us 
+\begin{align*}
+\frac{d}{dt}\int_0^1 \frac{u^2}{4}dx = - \int_0^1 u_x^2dx \leq 0\text{ for all }t>0
+\end{align*}
+and (c) follows.
+\end{proof}
+\begin{question}{}{}
+Verify that 
+\begin{align*}
+u=-2xt-x^2\text{ is a solution of }u_t=xu_{xx}
+\end{align*}
+and find the location of maximum of $t$ in the close rectangle $\set{-2\leq x\leq 2,0\leq t\leq 1}$. 
+\end{question}
+\begin{proof}
+Write 
+\begin{align*}
+u=-(x+t)^2+t^2
+\end{align*}
+It follows that the maximum occurs at $t=-x=1$. 
+\end{proof}
+\begin{question}{}{}
+Prove the comparison principle for the diffusion equation: If $u$ and  $v$ are two solutions and 
+ \begin{align*}
+u\leq v\text{ for }t=0,x=0,x=l
+\end{align*}
+then 
+\begin{align*}
+u\leq v\text{ on }[0,l]\times [0,\infty)
+\end{align*}
+\end{question}
+\begin{proof}
+This follows from application of the minimum principle on $v-x$. 
+\end{proof}
+\begin{question}{}{}
+Suppose 
+\begin{align*}
+\begin{cases}
+u_t-ku_{xx}=f\\
+v_t-kv_{xx}=g
+\end{cases}\text{ and }f\leq g
+\end{align*}
+and suppose 
+\begin{align*}
+u\leq v\text{ at }x=0,x=l\text{ and }t=0
+\end{align*}
+Prove that 
+\begin{align*}
+u\leq v\text{ on }[0,l]\times[0,\infty)
+\end{align*}
+\end{question}
+\begin{proof}
+Let $w\triangleq u-v:\overline{\Omega_T}\rightarrow \R$. It is clear that 
+\begin{align*}
+w_t-kw_{xx}\leq 0\text{ on }\overline{\Omega_T}\setminus \Gamma 
+\end{align*}
+It then follows that $w$ attain its maximum on $\Gamma $, which must not be greater than $0$. 
+\end{proof}
+\section{Diffusion on the whole line}
+\begin{mdframed}
+In this section, we consider diffusion for $\Omega \triangleq \R$ and $u:\Omega \times [0,\infty]\rightarrow \R$ satisfying  
+\begin{align*}
+u_t=ku_{xx}\text{ on }\Omega \times (0,\infty)
+\end{align*}
+and initial condition 
+\begin{align*}
+u(x,0)=\phi (x)
+\end{align*}
+Let's define $\operatorname{erf}:\R\rightarrow \R$ by 
+\begin{align*}
+\operatorname{erf}(x)\triangleq  \frac{2}{\sqrt{\pi}}\int_0^x e^{-p^2}dp
+\end{align*}
+and if a function $S(x,t)$ 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Solution of the Diffusion)} A solution to 
+\begin{align*}
+u_t=ku_{xx}
+\end{align*}
+is 
+\begin{align*}
+u(x,t)\triangleq \frac{\operatorname{erf}(\frac{x}{\sqrt{4kt}})}{2}
+\end{align*}
+\end{theorem}
+\chapter{PDE HW}
+\section{PDE HW 1}
+\begin{theorem}
+\begin{align*}
+\text{ Show }u\mapsto u_x+uu_y\text{ is non-linear }
+\end{align*}
+\end{theorem}
+\begin{proof}
+See that 
+\begin{align}
+\label{he1}
+2u\mapsto 2u_x+4uu_y\neq 2(u_x+uu_y)
+\end{align}
+\end{proof}
+\begin{theorem}
+\begin{align*}
+\text{ Solve }(1+x^2)u_x+u_y=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+The characteristic curve has the derivative 
+\begin{align*}
+\frac{dy}{dx}=\frac{1}{1+x^2}
+\end{align*}
+The solution to this ODE is 
+\begin{align*}
+y=\arctan x + C
+\end{align*}
+We now see that the solution to the PDE in \myref{Equation}{he1} is 
+\begin{align*}
+u=f\big((\arctan x)-y\big)\text{ where }f:\R\rightarrow \R\text{ is an arbitrary smooth function }
+\end{align*}
+A characteristic curve is as followed.
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering       
+\includegraphics[height=8cm,width=15cm]{pdehw1}
+   \end{minipage}
+\end{center}
+\end{proof}
+\begin{theorem}
+\begin{align}
+\label{he2}
+\text{ Solve }au_x+b u_y +cu=0
+\end{align}
+\end{theorem}
+\begin{proof}
+Fix 
+\begin{align*}
+\begin{cases}
+  x'\triangleq ax+by \\
+  y'\triangleq bx-ay
+\end{cases}
+\end{align*}
+This map is clearly a diffeomorphism. Compute 
+\begin{align*}
+  \begin{cases}
+    u_x= \frac{\partial u}{\partial x'}\frac{\partial x'}{\partial x}+\frac{\partial u}{\partial y'}\frac{\partial y'}{\partial x}=au_{x'}+bu_{y'}\\
+    u_y=\frac{\partial u}{\partial x'}\frac{\partial x'}{\partial y}+\frac{\partial u}{\partial y'}\frac{\partial y'}{\partial y}=bu_{x'}-au_{y'}
+  \end{cases}
+\end{align*}
+Plugging it back into the PDE in \myref{Equation}{he2}, we have 
+\begin{align}
+\label{he3}
+cu+ (a^2+b^2)u_{x'}=0
+\end{align}
+If $c=a^2+b^2=0$, then all smooth functions are solution. If $a^2+b^2=0$ but $c\neq 0$, then clearly the only solution is $u=\tilde{0} $. If $a^2+b^2\neq 0$ but $c=0$, then $u_{x'}=\tilde{0}$, which implies $u=f(y')$ where $y'=bx-ay$ and  $f$ can be arbitrary smooth function.\\
+
+Now, suppose $a^2+b^2\neq 0\neq c$, note that the PDE in \myref{Equation}{he3} is just an ODE of the form 
+\begin{align*}
+y+\frac{a^2+b^2}{c}y'=0
+\end{align*}
+The general solution to this ODE is 
+\begin{align*}
+y=Ce^{\frac{-ct}{a^2+b^2}}
+\end{align*}
+In other words, the general solution of the PDE in \myref{Equation}{he3} is 
+\begin{align*}
+u=C e^{\frac{-cx'}{a^2+b^2}}=Ce^{\frac{-c(ax+by)}{a^2+b^2}}
+\end{align*}
+
+
+\end{proof}
+\section{PDE HW 2}
+\begin{question}{}{}
+Consider hear flow in a long circular cylinder where the temperature depends only on $t$ and on the distance $r$ to the axis of the cylinder. Here $r=\sqrt{x^2+y^2}$ is the cylindrical coordinate. From the three dimensional hear equation derive the equation $u_t=k (u_{rr}+\frac{u_r}{r})$
+\end{question}
+\begin{proof}
+Write the three dimensional hear equation by 
+\begin{align*}
+u_t= k \Delta u
+\end{align*}
+Note that the Laplacian $\Delta u$ when written in cylindrical coordinate is 
+\begin{align*}
+\Delta u= u_{rr} + \frac{u_r}{r} +\frac{u_{\theta \theta}}{r^2} + u_{zz}
+\end{align*}
+Because the premise says that $u$ is constant in $z$ and  $\theta$, we know $u_{\theta \theta}=u_{zz}=0$
+\begin{align*}
+\Delta u = u_{rr}+ \frac{u_r}{r}
+\end{align*}
+This give us 
+\begin{align*}
+u_t= k (u_{rr}+ \frac{u_r}{r})
+\end{align*}
+\end{proof}
 \section{PDE HW 3}
 \begin{question}{}{}
 Find a solution of 
@@ -1598,27 +2520,31 @@ Find a solution of
 Clearly $u=x^2+2t$ suffices.
 \end{proof}
 \begin{question}{}{}
-Consider the ODE
+Consider the ODE 
 \begin{align*}
 \begin{cases}
-  u''+u=0\\
-  u(0)=0\text{ and }u(L)=0
-\end{cases} 
+  u''+u'=f \\
+  u'(0)=u(0)=\frac{1}{2}(u'(l)+u(l))
+\end{cases}
 \end{align*}
-Is the solution unique? Does the answer depend on $L$? 
+where $f$ is given. 
+\begin{enumerate}[label=(\alph*)]
+  \item Is the solution unique? 
+  \item Does a solution necessarily exist, or is there a condition that $f$ must satisfy for existence? 
+\end{enumerate}
 \end{question}
 \begin{proof}
-We know the general solution space is exactly spanned by $\cos x$ and $\sin x$. Because 
-\begin{enumerate}[label=(\alph*)]
-  \item $u(0)=0$.
-  \item $\sin 0=0$
-  \item $\cos 0=1$
-\end{enumerate}
-we know the solution of our original ODE must be of the form 
+The solution space of linear homogeneous ODE $u''+u'=0$  is spanned by $e^{-x}$ and constant. If we add in the initial condition  $u'(0)=u(0)$, then the solution space become the subspace spanned by $e^{-x}-2$. One can check that if $u \in\operatorname{span}(e^{-x}-2)$, then 
 \begin{align*}
-u(x)=C \sin x
+u(0)=\frac{1}{2}(u'(l)+u(l))\text{ for all $l\inr$ }
 \end{align*}
-This implies that the solution is unique if and only if $2\pi \not\equiv L$ (mod $2\pi$)
+We now know the solution of the original ODE is not unique, since any solution added by $e^{-x}-2$ is again a solution. \\
+
+Integrating both side on $[0,l]$, we see that given the boundary conditions, $f$ must satisfy 
+\begin{align*}
+\int_0^l f(x)dx&=\int_0^l u''+u'dx\\
+&=u(l)+u'(l)-u(0)-u'(0)=0
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Find the regions in the $xy$ plane where the equation 
@@ -1636,6 +2562,91 @@ The discriminant is exactly
 \end{align*}
 It then follows that the equation is parabolic if and only if $y=0$, and hyperbolic if and only if  $y\neq 0$. 
 
+\end{proof}
+\section{PDE HW 4}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx} \\
+  u(x,0)=e^x \\
+  u_t(x,0)= \sin x 
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Let 
+\begin{align*}
+u\triangleq f(x+ct)+g(x-ct)
+\end{align*}
+Plugging the initial conditions, we know 
+\begin{align*}
+\begin{cases}
+ f(x)+g(x)=e^x \\
+ f'(x)-g'(x)= \frac{\sin x}{c} 
+\end{cases}
+\end{align*}
+This give us 
+\begin{align*}
+f'(x)= \frac{e^x+ \frac{\sin x}{c}}{2}\text{ and }g'(x)= \frac{e^x - \frac{\sin x}{c}}{2}
+\end{align*}
+Then by FTC, we have
+\begin{align*}
+\begin{cases}
+  f(x)= \frac{e^x-\frac{\cos x}{c}}{2}+f(0)- \frac{1}{2} +\frac{1}{2c} \\
+  g(x)= \frac{e^x + \frac{\cos x}{c}}{2} +g(0) - \frac{1}{2}- \frac{1}{2c}
+\end{cases}
+\end{align*}
+Note that $f(0)+g(0)=e^0=1$, which cancel the constant terms in $u$, i.e.
+\begin{align*}
+u&=f(x+ct)+g(x-ct)\\
+&=\frac{e^{x+ct}+ e^{x-ct} + \frac{-\cos (x+ct)+ \cos (x-ct)}{c}}{2}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+u_{xx}+u_{xt}-20u_{tt}=0 \\
+u(x,0)=\phi (x) \\
+u_t(x,0)= \psi (x)
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+The PDE can be write in the form of 
+\begin{align*}
+  (\partial_x + 5\partial_t) (\partial_x - 4 \partial _t)u=0
+\end{align*}
+which have the general solution 
+\begin{align*}
+u(x,t)=f(5x-t)+g(4x+t)
+\end{align*}
+We now see 
+\begin{align*}
+f(5x)+g(4x)=\phi (x)\text{ and }-f'(5x)+g'(4x)=\psi (x)
+\end{align*}
+This then give us 
+\begin{align*}
+f'(5x)=\frac{(\phi' - 4\psi)(x)}{9}\text{ and }g'(4x)= \frac{(\phi '+5\psi )(x)}{9}
+\end{align*}
+and thus 
+\begin{align*}
+f(x)&=f(0)+ \int_0^x f'(s)ds\\
+&=f(0)+\int_0^x \frac{(\phi' -4\psi)(\frac{s}{5})}{9}ds \\
+&=f(0)+ \frac{5}{9}\Big[\phi (\frac{x}{5})-\phi (0) \Big] - \frac{4}{9}\int_0^x \psi (\frac{s}{5})ds
+\end{align*}
+and similarly 
+\begin{align*}
+g(x)&=g(0)+\int_0^x g'(s)ds \\
+&=g(0)+ \int_0^x \frac{(\phi ' +5 \psi )(\frac{s}{4})}{9}ds \\
+&=g(0)+ \frac{4}{9}\Big[ \phi (\frac{x}{4})- \phi (0) \Big]+\frac{5}{9} \int_0^x \psi (\frac{s}{4})ds
+\end{align*}
+Noting that $f(0)+g(0)=u(0,0)=\psi (0)$, we now have
+\begin{align*}
+u(x,t)&=f(5x-t)+g(4x+t) \\
+&=\frac{5\phi (\frac{5x-t}{5})+4 \phi (\frac{4x+t}{4})}{9} - \frac{4}{9}\int_0^{5x-t}\psi (\frac{s}{5})ds + \frac{5}{9}\int_0^{4x+t}\psi (\frac{s}{4})ds
+\end{align*}
 \end{proof}
 \chapter{Differential Geometry HW} 
 \section{HW1} 
