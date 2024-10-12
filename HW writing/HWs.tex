@@ -2375,32 +2375,113 @@ w_t-kw_{xx}\leq 0\text{ on }\overline{\Omega_T}\setminus \Gamma
 \end{align*}
 It then follows that $w$ attain its maximum on $\Gamma $, which must not be greater than $0$. 
 \end{proof}
-\section{Diffusion on the whole line}
+\section{2.4 Diffusion on the whole line}
 \begin{mdframed}
-In this section, we consider diffusion for $\Omega \triangleq \R$ and $u:\Omega \times [0,\infty]\rightarrow \R$ satisfying  
+In this section, we are concerned with solving the following initial value problem 
 \begin{align*}
-u_t=ku_{xx}\text{ on }\Omega \times (0,\infty)
+\begin{cases}
+  u_t=ku_{xx}\text{ on }\R \times (0,\infty)\\
+  \lim_{t\to 0}u(x,t)=\phi (x)\text{ for all specified $x$ } 
+\end{cases}
 \end{align*}
-and initial condition 
-\begin{align*}
-u(x,0)=\phi (x)
-\end{align*}
-Let's define $\operatorname{erf}:\R\rightarrow \R$ by 
+We shall mostly express our answer with function $\operatorname{erf}:\R\rightarrow \R$  
 \begin{align*}
 \operatorname{erf}(x)\triangleq  \frac{2}{\sqrt{\pi}}\int_0^x e^{-p^2}dp
 \end{align*}
-and if a function $S(x,t)$ 
 \end{mdframed}
 \begin{theorem}
-\textbf{(Solution of the Diffusion)} A solution to 
+\textbf{(Solution of Dirac Initial Condition)} If $\phi$ is defined to be 
 \begin{align*}
-u_t=ku_{xx}
+\phi (x)\triangleq \begin{cases}
+  1& \text{ if }x>0 \\
+  0& \text{ if $x<0$ }
+\end{cases}
 \end{align*}
-is 
-\begin{align*}
-u(x,t)\triangleq \frac{\operatorname{erf}(\frac{x}{\sqrt{4kt}})}{2}
-\end{align*}
+then a solution is 
+\begin{align}
+\label{sou}
+Q(x,t)= \frac{1}{2}+ \frac{\operatorname{erf}(\frac{x}{\sqrt{4kt}})}{2}
+\end{align}
 \end{theorem}
+\begin{proof}
+Note that our version of diffusion equation admits dilated solutions. This inspire us to guess 
+\begin{align*}
+Q(x,t)\triangleq g \Big( \frac{x}{\sqrt{4kt} } \Big)
+\end{align*}
+Direct computation yields
+\begin{align*}
+Q_t= \frac{-x}{2\sqrt{4k}t^{\frac{3}{2}}}g'\Big( \frac{x}{\sqrt{4kt} } \Big)\text{ and }Q_{xx}=g''\Big(\frac{x}{\sqrt{4kt} } \Big) \frac{1}{4kt}
+\end{align*}
+If we let $p= \frac{x}{\sqrt{4kt} }$, we now have 
+\begin{align*}
+Q_t=\frac{-pg'(p)}{2t}\text{ and }Q_{xx}=\frac{g''(p)}{4kt} 
+\end{align*}
+Plugging this back to diffusion equation and canceling the common terms, we have
+\begin{align*}
+\frac{g''(p)}{2}+ pg'(p)=0
+\end{align*}
+The general solution to this ODE is 
+\begin{align*}
+g(p)=c_1\operatorname{erf}(p)+c_2
+\end{align*}
+In other words,
+\begin{align*}
+Q(x,t)=c_1 \operatorname{erf}(\frac{x}{\sqrt{4kt}})+ c_2
+\end{align*}
+Plugging this back to the initial condition, we see 
+\begin{align*}
+Q(x,t)= \frac{1+ \operatorname{erf}(\frac{x}{\sqrt{4kt} })}{2}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Differentiating \myref{Equation}{sou} with respect to $x$, we have another solution
+\begin{align*}
+S(x,t)\triangleq  \frac{1}{2 \sqrt{\pi kt} }e^{- \frac{x^2}{4kt}}
+\end{align*}
+Solution $S$ is often called the \textbf{fundamental solution}, since for all initial condition $\phi$ that have compact support, we gain a solution to the initial value problem by 
+\begin{align*}
+u(x,t)\triangleq (S*\phi)(x,t)
+\end{align*}
+where 
+\begin{align*}
+  (S*\phi )(x,t)=\int_{\R} S(x-y,t)\phi (y)dy
+\end{align*}
+This is true because if we define $F(x,y,t)=Q(x-y,t)$, we have
+\begin{align*}
+u(x,t)&=\int_{\R} F_x(x,y,t)\phi (y)dy\\
+&=\int_{\R} -F_y(x,y,t)\phi (y)dy\\
+&= -F(x,y,t)\phi (y)|_{y=-\infty}^{\infty}+\int_{\R} F(x,y,t)\phi '(y)dy \\
+&=\int_{\R} Q(x-y,t)\phi '(y)dy
+\end{align*}
+and thus 
+\begin{align*}
+\text{ For all }x,\lim_{t\to 0}u(x,t)&=\int_{\R} \lim_{t\to 0}Q(x-y,t)\phi '(y)dy \\
+&= \int_{-\infty}^x \phi '(y) dy =\phi (x)
+\end{align*}
+\end{mdframed}
+\begin{question}{}{}
+Solve the diffusion equation with the initial condition 
+\begin{align*}
+\phi (x)\triangleq \begin{cases}
+ 1& \text{ if $\abso{x}<l$ }\\
+ 0& \text{ if $\abso{x}>l$ } 
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Define 
+\begin{align*}
+F(x,y,t)\triangleq Q(x-y,t)
+\end{align*}
+The solution is exactly 
+\begin{align*}
+u(x,t)&= (S*\phi )(x,t)\\
+&=\int_{\R}S(x-y,t)\phi (y)dy \\
+&=\int_{l}^{l} S(x-y,t)dy \\
+&=\int_{l}^{l}F_x(x,y,t)dy \\
+&=\int_{-l}^{l}-F_y(x,y,t)dy=F(x,y,t)\Big|_{y=l}^{-l}=Q(x+l,t)-Q(x-l,t)=\frac{\operatorname{erf}(\frac{x+l}{\sqrt{4kt}})-\operatorname{erf}(\frac{x-l}{\sqrt{4kt}})}{2}
+\end{align*}
+\end{proof}
 \chapter{PDE HW}
 \section{PDE HW 1}
 \begin{theorem}
