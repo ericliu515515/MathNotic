@@ -267,6 +267,8 @@ Three things to note here
     \item If $E$ is connected and $E \subseteq F \subseteq \operatorname{cl}(E)$, then $F$ is connected. Use \customref{Equivalent Definitions of Connected}{the fifth equivalent definitions for connected} to prove this. Path-connectedness doesn't have the same property this time. Consider the "fattened" Topologist’s sine curve $\set{(x, y) \in \mathbb{R}^2 : \left| y - \sin \frac{1}{x} \right| < x}$. It’s closure can be easily proved to be $\set{(x, y) \in \mathbb{R}^2 : \left| y - \sin \frac{1}{x} \right| \leq x} \cup \set{(0, y) \in \mathbb{R}^2 : y \in [-1, 1]}$.
     \item Path-connectedness is strictly stronger than connectedness. This can be proved using a proof of contradiction and supremum. Two famous counterexamples of the converse are \customref{Topologist's Sine Curve}{Topologist's Sine Curve} and \customref{Long Line}{Long line}.
 \end{enumerate}
+\label{local-path}
+Although path-connectedness is strictly stronger than connectedness, there exists a quite general condition that implies the converse. We say a topological space $X$ is  \textbf{locally path-connected} if for each $p$ and open set $U$ containing $p$, there exists a path-connected open set  $V$ containing $p$ and contained by $U$. Following our definition, we see that if $X$ is both connected and locally path-connected, then $X$ must be path-connected, since any path-connected component of $X$ (due to $X$ being locally path-connected) must be clopen in $X$. 
 \end{mdframed}
 \section{Compact}
 \begin{abstract}
@@ -557,6 +559,37 @@ to be continuous.
 \section{Completion}
 \section{Bounded and Totally Bounded}
 \section{Compactness}
+\begin{lemma}
+\label{Lebesgue's Number Lemma}
+\textbf{(Lebesgue's Number Lemma)} If $\mathcal{U}$ is an open cover of a compact subset $K$, then there exists some $\delta>0$, called \textbf{Lebesgue's number of the cover $\mathcal{U}$}, such that every subset of $K$  with diameter strictly less than $\delta$ is contained by some element of $\mathcal{U}$.  
+\end{lemma}
+\begin{proof}
+Because $K$ is compact, there exists some finite sub-cover $\set{U_1,\dots ,U_n}$ of $K$. Note that if there exists $U_j$ containing $K$, then the proof is trivial because every $\delta$ suffice to be the Lebesgue's number of $\mathcal{U}$. We from now suppose no $U_j$ contain  $K$. Now, if we define  $f:K\rightarrow \R$ by 
+\begin{align*}
+f(x)\triangleq \frac{1}{n}\sum_{j=1}^n d(x,K \setminus U_j)
+\end{align*}
+We see 
+\begin{align*}
+\delta \triangleq \min_{x\in K}f(x)>0
+\end{align*}
+To see that $\delta$ suffices, first observe that for each subset $E$ of $K$ with diameter strictly less than $\delta$, we have 
+ \begin{align*}
+E\subseteq B_\delta (p)\text{ for all }p \in E
+\end{align*}
+and because 
+\begin{align*}
+\frac{1}{n}\sum_{j=1}^n d(p,K\setminus U_j)\geq \delta
+\end{align*}
+there exists some $j$ such that 
+\begin{align*}
+d(p,K\setminus U_j)\geq \delta
+\end{align*}
+which implies 
+\begin{align*}
+B_\delta (p)\cap  K\setminus U_j = \varnothing
+\end{align*}
+and thus $E\subseteq U_j$. 
+\end{proof}
 \section{Limit Interchange}
 \begin{mdframed}
 In this section, we 
@@ -1391,6 +1424,197 @@ f(U)\text{ is open and }f\text{ is a homeomorphism between }U\text{ and }f(U)
 \begin{theorem}
 \textbf{(Invariance of Dimension)} If $U$ is a non-empty open subset of $\R^n$ and  $V$ is a non-empty subset of $\R^m$ homeomorphic to  $U$, then  $n=m$.
 \end{theorem}
+\chapter{Linear algebra done wrong}
+\section{Linear Algebra}
+\begin{mdframed}
+This section contains
+\begin{enumerate}[label=(\alph*)]
+  \item definition and basic properties of the term \textbf{norm}
+  \item definition and basic properties of the term \textbf{inner product}
+  \item definition and basic properties of the term \textbf{positive semi-definite Hermitian form}
+  \item full statement and proof of \textbf{Cauchy Schwarz Inequality} for both inner product space and positive semi-definite Hermitian form  
+  \item statement and proof of \textbf{SVD} (singular value decomposition). 
+\end{enumerate}
+\end{mdframed}
+\textbf{(Norm Axiom Part)}
+\begin{mdframed}
+Recall that by a \textbf{normed space} $V$, we mean a vector space over a sub-field $\F$ of $\C$ equipped with  $\norm{\cdot}:V\to \R_0^+$ satisfying the following $\underline{\text{axioms}}$: 
+\begin{enumerate}[label=(\alph*)]
+  \item $\norm{x}=0 \implies x=0$ (positive-definiteness)
+  \item $\norm{sx}=\abso{s}\cdot \norm{x}$ for all $s \in \F$ and $x\in V$ (absolute-homogenity)
+  \item $\norm{x+y}\leq \norm{x}+\norm{y}$ for all $x,y \in V$ (triangle inequality)
+\end{enumerate}
+Observe
+\begin{align*}
+\norm{0}=\norm{0+x}\leq \norm{0}+\norm{x}\text{ for all $x\in V$ }
+\end{align*}
+This shows that $\norm{x}\geq 0$ for all $x\in V$. Also observe 
+\begin{align*}
+\norm{0}=\norm{0(x)}=\abso{0}\cdot \norm{x}=0
+\end{align*}
+
+We can now rewrite the normed space axioms into
+\begin{enumerate}[label=(\alph*)]
+  \item $\norm{x}=0\iff x=0$ (positive-definiteness)
+  \item $\norm{sx}=\abso{s}\cdot \norm{x}$ for all $s \in \F$ and $x\in V$ (absolute-homogeneity)
+  \item $\norm{x+y}\leq \norm{x}+\norm{y}$ for all $x,y \in V$ (triangle inequality)
+  \item $\norm{x}\geq 0$ for all $x \in V$ (non-negativity)
+\end{enumerate}
+\end{mdframed}
+\textbf{(Inner Product Axiom Part)}
+\begin{mdframed}
+Recall that by an \textbf{inner product space} $V$, we mean a vector space over  $\R$ or $\C$ equipped with  $\langle \cdot,\cdot\rangle : V^2 \rightarrow \R\text{ or }\C$ satisfying the following $\underline{\text{axioms}}$
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle x,x\rangle >0$ for all $x\neq 0$ (Positive-definiteness)
+  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (Conjugate symmetry)
+  \item $\langle x+y,z\rangle =\langle x,z\rangle +\langle y,z\rangle $ and $\langle cx,z\rangle=c\langle x,z\rangle $ (Linearity in the first argument)
+\end{enumerate}
+Note that conjugate symmetry let us deduce
+\begin{align*}
+\langle x,x\rangle =\overline{\langle x,x\rangle }\implies \langle x,x\rangle \inr
+\end{align*}
+Also, one can easily use linearity in first argument to deduce 
+\begin{align*}
+\langle 0,0\rangle =2\langle 0,0\rangle \implies \langle 0,0\rangle =0
+\end{align*}
+This now let us rewrite the inner product space over $\C$ axioms into 
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity) 
+  \item $\langle x,x\rangle =0 \iff x=0$ (positive-definiteness)
+  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (conjugate symmetry)
+  \item $\langle cx+y,z\rangle =c\langle x,z\rangle +\langle y,z\rangle $ and $\langle x,cy+z\rangle =\overline{c}\langle x,y\rangle +\langle x,z\rangle $ (Linearity)
+\end{enumerate}
+Note that using $c=1$ and $y=0$, ($\because \langle 0,z\rangle =0\langle x,z\rangle=0 $) one can check that the latter expression of linearity implies the first expression.
+\end{mdframed}
+\begin{mdframed}
+If the scalar field is $\R$, then conjugate symmetry is just symmetry and we also have linearity in the second argument.\\
+
+This now let us rewrite the inner product space over $\R$ axioms into 
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity) 
+  \item $\langle x,x\rangle =0 \iff x=0$ (positive-definiteness)
+  \item $\langle x,y\rangle =\langle y,x\rangle $ (symmetry)
+  \item Linearity in both arguments
+\end{enumerate}
+\end{mdframed}
+\begin{mdframed}
+If we do not require $\langle \cdot,\cdot\rangle $ to be positive-definite, but only non-negative, i.e. $\langle x,x\rangle \geq 0$ for all $x\in V$, then we have a \textbf{positive semi-definite Hermitian form}. Formally speaking, a positive semi-definite Hermitian form $\langle\cdot,\cdot \rangle :V^2 \rightarrow \R\text{ or }\C$ satisfy the following axioms
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity)
+  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (conjugate symmetry)
+  \item $\langle x+y,z\rangle =\langle x,z\rangle +\langle y,z\rangle $ and $\langle cx,z\rangle=c\langle x,z\rangle $ (Linearity in the first argument)
+\end{enumerate}
+\begin{Example}{\textbf{(Example of Positive semi-definite Hermitian form)}}{}
+\begin{align*}
+\text{ arbitrary }V\text{ over $\R$ or  $\C$ }\hspace{0.5cm}\langle x,y\rangle \triangleq 0\text{ for all $x,y$ }\hspace{1cm}
+\end{align*}
+\end{Example}
+\end{mdframed}
+\textbf{(Norm Induce Part)}
+\begin{mdframed}
+Given a vector space $V$ over $\R$ or  $\C$, one can check that if  $V$ is equipped with an inner product  $\langle \cdot,\cdot\rangle :V^2\rightarrow \R\text{ or }\C$, then we can induce a norm on $V$ by 
+\begin{align*}
+\hspace{3cm}\norm{x}\triangleq \sqrt{\langle x,x\rangle }\hspace{1.5cm}(x \in V)
+\end{align*}
+Note that 
+\begin{align*}
+\norm{x}=0\iff \langle x,x\rangle =0 
+\end{align*}
+This implies that if $\langle \cdot,\cdot\rangle $ is an inner product (satisfy positive-definiteness), then $\norm{\cdot}$ is also positive-definite. And if $\langle \cdot,\cdot\rangle $ is not positive-definite, then there exists  $x\neq 0\in V$ such that $\norm{x}=0$, which make $\norm{\cdot}$ a \textbf{semi-norm}.\\
+
+Absolute homogeneity follows from the linearity of inner product.\\
+
+To check triangle inequality, we first have to prove Cauchy-Schwarz inequality.
+\end{mdframed}
+\begin{theorem}
+\label{BPoP}
+\textbf{(Basic Property of Positive semi-definite Hermitian form)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle:V^2 \rightarrow \R\text{ or }\C $ and $x,y \in V$, we have 
+\begin{align*}
+\langle x,x\rangle =0 \implies \langle x,y\rangle =0
+\end{align*}
+\end{theorem}
+\begin{proof}
+\As{$\langle x,y\rangle\neq 0 $}. Fix $t> \frac{\norm{y}^2 }{2\abso{\langle x,y\rangle }^2}$. Compute 
+\begin{align*}
+\norm{y-t\langle y,x\rangle x}^2 &= \norm{y}^2 + \norm{(-t)\langle y,x\rangle x }^2  + \langle -t\langle y,x\rangle x,y \rangle + \langle y,-t\langle y,x\rangle x\rangle \\
+&=\norm{y}^2 + t^2 \abso{\langle x,y\rangle }^2 \norm{x}^2 -t \langle y,x\rangle \langle x,y\rangle - t \langle x,y\rangle \langle y,x\rangle  \\
+&= \norm{y}^2- 2t \abso{\langle x,y\rangle }^2 <0 \tCaC
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Cauchy-Schwarz Inequality)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle :V^2\rightarrow \C$ on vector space $V$ over $\C$, we have 
+\begin{enumerate}[label=(\alph*)]
+  \item $\abso{\langle x,y\rangle}\leq  \norm{x}\cdot\norm{y}\hspace{0.5cm}(x,y \in V)$ 
+  \item the equality hold true if $x,y$ are linearly dependent
+  \item the equality hold true if and only if $x,y$ are linearly dependent (provided $\langle \cdot,\cdot\rangle $ is an inner product)
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+  \vi{\hspace{3cm}\abso{\langle x,y\rangle }\leq \norm{x}\cdot\norm{y}\hspace{1.5cm}(x,y \in V)}
+\end{align*}
+Fix $x,y \in V$. \myref{Theorem}{BPoP} tell us $\norm{x}=0 \implies  \langle x,y\rangle =0$. Then we can reduce the problem into proving 
+\begin{align*}
+\vi{\frac{\abso{\langle x,y\rangle }^2}{\norm{x}^2}\leq\norm{y}^2  }
+\end{align*}
+Set $z\triangleq y-\frac{\langle y,x\rangle }{\norm{x}^2}x$. We then have 
+\begin{align*}
+\langle z,x\rangle =\langle y-\frac{\langle y,x\rangle }{\norm{x}^2}x,x \rangle =\langle y,x\rangle - \frac{\langle y,x\rangle }{\norm{x}^2}\langle x,x\rangle =0
+\end{align*}
+Then from $y=z+\frac{\langle y,x\rangle }{\norm{x}^2}x$, we can now deduce
+\begin{align*}
+\langle y,y\rangle &= \langle z+\frac{\langle y,x\rangle }{\norm{x}^2}x,z+ \frac{\langle y,x\rangle }{\norm{x}^2}x\rangle  \\
+&=\langle z,z\rangle + \abso{\frac{\langle y,x\rangle }{\langle x,x\rangle }}^2 \langle x,x\rangle \\
+&=\langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }
+\end{align*}
+Because $\langle z,z\rangle\geq 0 $, we now have
+\begin{align*}
+\langle y,y\rangle = \langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\geq  \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\vdone
+\end{align*}
+The equality hold true if and only if $\langle z,z\rangle =0$. This explains the other two statements regarding the equality. 
+\end{proof}
+\begin{mdframed}
+The proof is clearly geometrical. If one wish to remember the proof, one should see the trick we use is exactly 
+\begin{align*}
+z\triangleq y-\abso{y}(\cos \theta )\hat{x}\text{ is the projection of $y$ onto $x^{\perp}$ }
+\end{align*}
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       \includegraphics[height=5cm,width=12cm]{CSp.jpeg}
+   \end{minipage}
+\end{center}
+Then all we do rest is just expanding $\abso{y}^2=\abso{z+\tilde{x}}^2$, where $\tilde{x}=y-z=\abso{y}(\cos \theta)\hat{x}$, which give the answer and is easy to compute since $z\cdot \tilde{x}=0$.\\
+
+Now, with Cauchy-Schwarz Inequality, we can check the triangle inequality 
+\begin{align*}
+  \norm{x+y}^2&=\langle x+y,x+y\rangle \\
+&=\langle x,x\rangle +\langle x,y\rangle +\langle y,x\rangle +\langle y,y\rangle \\
+&= \langle x,x\rangle + \langle y,y\rangle +2\text{ Re }\langle x,y\rangle \\
+&\leq \norm{x}^2 + \norm{y}^2 + 2\abso{\langle x,y\rangle }\\
+&\leq \norm{x}^2 + \norm{y}^2 + 2\norm{x}\cdot \norm{y}=\Big(\norm{x}+\norm{y}\Big)^2
+\end{align*}
+\end{mdframed}
+\textbf{(Euclidean Space Abstract Part)} 
+\begin{mdframed}
+  By a \textbf{concrete Euclidean Space}, we mean some space of $n$-tuple  $(x_1,\dots ,x_n)$ over $\R$, equipped with inner product  $\langle \cdot,\cdot\rangle_E$ defined by 
+\begin{align*}
+  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle_E= \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
+\end{align*}
+By an \textbf{Euclidean Space}, we simply mean a finite dimensional vector space $V$ over $\R$,  equipped with an inner product $\langle \cdot,\cdot\rangle $ such that there exists a concrete Euclidean space $E$ and an isomorphism  $\phi:V\to E$ such that 
+\begin{align*}
+\hspace{3cm}\langle x,y\rangle= \langle \phi (x),\phi (y)\rangle_E \hspace{1.5cm}(x,y \in V)
+\end{align*}
+Note that if you define $\langle \cdot,\cdot\rangle $ on the space of $n$-tuples $(x_1,\dots ,x_n)$ over $\R$ by 
+\begin{align*}
+  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle=2 \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
+\end{align*}
+Then, the space of $n$-tuple is clearly not a concrete Euclidean space, and clearly an Euclidean space. 
+
+\end{mdframed}
+\textbf{(SVD)}
+
 \chapter{Differential Calculus}
 \section{Operator Norm}
 \begin{abstract}
@@ -3225,7 +3449,7 @@ Fix $z \in T$. Because $f,g$ are analytic at $z$ and  $f^{(k)}(z)=g^{(k)}(z)$ fo
 \begin{align*}
 T= \bigcap_{k\geq 0} \set{z \in D:(f-g)^{(k)}(z)=0}
 \end{align*}
-and $(f-g)^{(k)}$ is continuous on $D$. 
+and $(f-g)^{(k)}$ is continuous on $D$. $\vdone$
 \end{proof}
 \section{Abel's Theorem and its application}
 \begin{mdframed}
@@ -3484,6 +3708,7 @@ Similarly, one should check
 \item Because $\bigcup_{n\inn}A_n = \bigcup_{n\inn} (\bigcup_{k=1}^n A_k)$, we can replace \underline{closure under countable union} with the condition \underline{for all  $(A_n)\subseteq \Sigma$ such that $\forall n,A_n \subseteq A_{n+1}$, we have $\bigcup_n A_n \in \Sigma$}.
 \item Given a family $S$ of subsets of $X$, there exists smallest sigma-algebra $\sigma(S)$ containing $S$. Such $\sigma$-algebra $\sigma(S)$ is called \textbf{the sigma-algebra generated by $S$}.
 \end{enumerate}
+\label{consig}
 Now, given a family $S$ of subsets of $X$, there in fact exists an explicit expression of $\sigma (S)$, albeit infamous. Let $\omega_1$ be the smallest uncountable ordinal, and let $\mathbf{\Sigma}^0_1\triangleq S$. For each ordinal $\alpha <\omega_1$, we recursively define $\mathbf{\Pi}^0_\alpha \triangleq  \set{X\setminus A: A \in \mathbf{\Sigma}^0_\alpha}$ and $\mathbf{\Sigma}^0_\alpha \triangleq \set{\bigcup_{n\inn}A_n: (A_n)\subseteq \bigcup_{1\leq \gamma <\alpha }\mathbf{\Pi}^0_\gamma }$. One can use transfinite induction to check that $\sigma (S)= \bigcup_{\alpha <\omega_1}\mathbf{\Sigma}^0_\alpha$.
 \end{mdframed}
 \section{Carathéodory's Extension Theorem}
@@ -3740,9 +3965,9 @@ The proof then follows from the facts
 \end{enumerate}
 Note that fact (b) can be checked straightforwardly. 
 \end{proof}
-\section{Equivalent Definition of Lebesgue Measure}
+\section{Lebesgue Measure}
 \begin{abstract}
-
+This section demonstrate a construction of Lebesgue measure with usage of \customref{caratheodory_extension_theorem}{Carathéodory’s Extension Theorem}. For discussion of non Lebesgue measurable set, see \customref{Vitali Set}{Vitali set}, and to see that continuous function may not preserve Lebesgue measurability, see \customref{Cantor-Lebesgue Function}{Cantor-Lebesgue function}.  
 \end{abstract}
 \begin{mdframed}
 It is clear that the collection $S$ of half-open interval $\prod [a_j,b_j)$ form a semi-ring. If we define a volume function $\mu : S\rightarrow [0,\infty]$ on  $S$ by 
@@ -3782,7 +4007,7 @@ This then give us
 \begin{align*}
 \mu \Big(\prod_{j=1}^d [a_j,b_j)\Big)\leq \sum_{n \in I}\mu \Big(\prod_{j=1}^d [a_{j,n}-\epsilon _n, b_{j,n}+\epsilon _n) \Big) \leq (1+\epsilon )\sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
 \end{align*}
-which give us \myref{Equation}{58}. Having proved that the volume function $\mu : S\rightarrow [0,\infty]$ is a pre-measure, we can \customref{Piom}{induce a outer measure on $\R^d$ by }
+which give us \myref{Equation}{58}. Having proved that the volume function $\mu : S\rightarrow [0,\infty]$ is a pre-measure, we can \customref{Piom}{induce an outer measure on $\R^d$ by }
 \begin{align*}
 \abso{E}_e \triangleq \inf \bset{ \mu (T_n) : E \subseteq \bigcup_ n T_n \text{ and }T_1,T_2,\dots  \in S}
 \end{align*}
@@ -3811,7 +4036,16 @@ We see that for each $p$ in some open set $U$, there exists some small enough ha
 Since $\R^d$ is  $\sigma$-finite, to prove from (a) to (b), we can WOLG suppose $\abso{E}<\infty$; the proof then follows from the definition of $\abso{E}_e$, the trick of enlarging the cover to appropriate size and that open set is measurable. The proof for $(\text{b})\implies (\text{d})\implies (\text{a})$ is straightforward. The proof for $(\text{b})\implies (\text{c})$ is observation of $O \setminus E^c= E\setminus O^c$, and the proof for  $(\text{c})\implies (\text{e})\implies (\text{a})$ is again straightforward.
 \end{proof}
 \begin{mdframed}
+  Given a topological space $X$, we say the smallest sigma-algebra containing the topology is the  \textbf{Borel sigma-algebra}, and we refer to element of the Borel sigma-algebra as \textbf{Borel sets}. In the case of $\R^d$, the Borel sigma-algebra is in fact quite "dense", in the sense that every set can be approximated by some Borel sets from outside. More precisely, we can associate every set $E\subseteq \R^d$ a set $H$ in the class of  $G_\delta$ containing $E$ such that $\abso{E}_e=\abso{H}$. To see this is true, observe that if $\abso{E}_e=\infty$, then $H=\R^d$ suffices, and if  $\abso{E}_e<\infty$, then we can use definition of outer measure to construct some open set $O$ containing $E$ such that $\abso{O}\leq \abso{E}_e + \frac{1}{n} $.  Note that this of course does not implies every set of finite outer measure is measurable, sine our inequality is 
+  \begin{align*}
+  \abso{O}\leq \abso{E}_e + \abso{O\setminus E}_e
+  \end{align*}
+  With this approximation in mind, we can generalize \customref{pop_meas}{the third property of measurable set} to 
+\begin{align*}
+E_n \nearrow E \implies \abso{E_n}_e\nearrow \abso{E}_e\text{ for arbitrary $E_n,E$ in $\R^d$ }
+\end{align*}
 \label{dyadic cube}
+
 It is worth pointing out that every open set can be expressed as a countable disjoint union of half-open dyadic cubes by an algorithmic construction. This implies that if we write  
 \begin{align*}
 U_1\triangleq \bigsqcup_n Q_{n,1}\text{ and }U_2 \triangleq \bigsqcup_n Q_{n,2}
@@ -3820,9 +4054,17 @@ we have
 \begin{align*}
 \abso{U_1\times U_2}=\left|\bigsqcup_{n,k}Q_{n,1}\times Q_{k,2}\right|=\sum_{n,k} \abso{Q_{n,1}} \abso{Q_{k,2}}= \sum_n \abso{Q_{n,1}}\sum_{k} \abso{Q_{k,2}}= \abso{U_1}\abso{U_2}
 \end{align*}
-which in tern tell us that the product of measurable set is indeed measurable. (proved using an open set approximation from outside and the fact $\R^d$ is  $\sigma$-finite) \\
+This with \customref{Equivalent Definition of Lebesgue Measurability}{open set approximation definition of Lebesgue measurability}  and the fact $\R^d$ is  $\sigma$-finite tell us that the product of measurable set is indeed measurable. \\
 
-Although most of the sets in Euclidean space we encounter in daily mathematics is measurable, It is worth pointing out there do exist \customref{Vitali Set}{a non Lebesgue measurable set, called the Vitali Set}. 
+Another property of Lebesgue measure people often use is that Lebesgue measure is both \textbf{an inner regular measure} and \textbf{an outer regular measure}. By a measure $\mu$ being outer regular, we mean the measure $\mu$ is defined on some topological space $X$ and for all measurable $A$, we have 
+ \begin{align*}
+\mu (A)= \inf \set{\mu (G):A\subseteq G\text{ and }G\text{ is open and measurable }}
+\end{align*}
+and by a measure $\mu$ being inner regular, we mean the measure $\mu$ is defined on some topological space $X$ and for all measurable  $A$, we have 
+ \begin{align*}
+\mu (A)= \sup \set{\mu (K):K \subseteq A\text{ and }K\text{ is compact and measurable }}
+\end{align*}
+
 \end{mdframed}
 \begin{theorem}
 \textbf{(Lipschitz Continuity Preserve Lebesgue Measurability)} If $E\in \mathcal{L}(\R^d)$ and $f:\R^d\rightarrow \R^m$ is $K$-Lipschitz, where $d\leq m$, then  $f(E)\in \mathcal{L}(\R^m)$ .
@@ -3862,39 +4104,382 @@ where the last inequality hold true because $d\leq m$ and WOLG we can suppose $\
 \end{align*}
 \end{proof}
 \begin{mdframed}
-Although Lipschitz function from $\R^d$ to  $\R^m$ preserve Lebesgue measurability when $d\leq m$, the proposition does not hold true when $d>m$.  Simple counter example can be constructed with projection $\pi:\R^2\rightarrow \R$ and the set $V \times \set{0}$ where $V$ is the \customref{Vitali Set}{Vitali set}. Also, it is worth pointing out that there do exists continuous function between $\R$ \customref{Cantor-Lebesgue Function}{, called the Cantor-Lebesgue function, that maps measurable set to non-measurable set}.
-\end{mdframed}
-\begin{theorem}
-\textbf{(Volume of Parallelepiped)} Given  $A \in M_d(\R)$ and $E\triangleq [0,1]^d$, we have 
-\begin{align*}
-\abso{A(E)}= \abso{\operatorname{det}(A)}
-\end{align*}
-\end{theorem}
-\begin{proof}
+Although Lipschitz function from $\R^d$ to  $\R^m$ preserve Lebesgue measurability when $d\leq m$, the proposition does not hold true when $d>m$.  Simple counter example can be constructed with projection $\pi:\R^2\rightarrow \R$ and the set $V \times \set{0}$ where $V$ is the \customref{Vitali Set}{Vitali set}. \\
 
-\end{proof}
-\begin{mdframed}
   Ii is worth pointing out that our development of Theory of Lebesgue measure mostly depend on the abstract  \customref{caratheodory_extension_theorem}{Carathéodory’s Extension Theorem}, which is indeed quite unorthodox. If one wish to instead develop the Theory of Lebesgue measurability starting at \customref{Equivalent Definition of Lebesgue Measurability}{the second definition of Lebesgue measurability}, one may follows the following steps 
 \begin{enumerate}[label=(\roman*)] 
 \item Prove that the outer measure is countably subadditive using \customref{Piom}{$\epsilon 2^{-k}$ trick}.
-\item Prove that null set is measurable.  
-  \item Prove that compact set is measurable. 
-  \item Prove that the class of measurable set is closed under countable union. (This step is independent of the second step) 
-  \item Prove that closed set is measurable by expressing the closed set is a countable union of compact sets.
-  \item Prove that complement $E^c$ of measurable set $E$ is measurable by expressing $E^c$ as a countable union of closed set and a null set.
+\item Prove that compact interval is measurable and have the expected measure. The former is proved by finding a small enough open interval and cover the difference naively, and the latter is proved by Hiene-Borel. 
+  \item Prove that the class of measurable set is closed under countable union.  (This step is independent of step 2)
+  \item Conclude that finite union of non-overlapping compact interval is measurable, and prove that it have the expected measure by Hiene-Borel. 
 \end{enumerate}
-At this point, one can easily show that the collection of measurable sets form a sigma-algebra without usage of outer measure. It remains to show that the measure is countably additive. 
-\begin{enumerate}[label=(\roman*)]
+With these knowledge, we then can 
+\begin{enumerate}[label=(\alph*)]
   \item Prove that disjoint compact sets have positive distance. 
-  \item Prove that $d(E_1,E_2)>0 \implies \abso{E_1\cup E_2}_e = \abso{E_1}_e + \abso{E_2}_e$. 
+  \item Prove that $d(E_1,E_2)>0 \implies \abso{E_1\cup E_2}_e = \abso{E_1}_e + \abso{E_2}_e$.   
+  \item Prove that compact set is measurable by expressing the difference $G\setminus F$  of the small enough open set $G$ containing compact $F$ to be a countable union of non-overlapping compact intervals.
+  \item Prove that closed set is measurable by expressing the closed set is a countable union of compact sets.
+\end{enumerate}
+and 
+\begin{enumerate}[label=(\roman*)]
+\item Prove that null set is measurable.  
+  \item Prove that complement $E^c$ of measurable set $E$ is measurable by expressing $E^c$ as a countable union of closed set and a null set.
   \item Prove the \customref{Equivalent Definition of Lebesgue Measurability}{third equivalent definition of Lebesgue measurability}.  
-  \item Prove that if measurable $E_n$ are bounded and disjoint then $\abso{\bigcup E_n}= \sum \abso{E_n}$ using the first three steps. 
+  \item Use \customref{Equivalent Definition of Lebesgue Measurability}{third equivalent definition of Lebesgue measurability} to conclude that if measurable $E_n$ are bounded and disjoint then $\abso{\bigcup E_n}= \sum \abso{E_n}$. 
   \item Generalize the forth step to $E_n$ that may not be bounded. 
 \end{enumerate}
 \end{mdframed}
 
 \chapter{Riemann Calculus}
-\section{Riemann-Stieltjes Integral}`
+\section{Bounded Variation}
+\begin{abstract}
+This section prove some key properties of functions of bounded variations. These properties are worthy of discuss, as they make the set $BV\big([a,b] \big)$ of functions of bounded variation on $[a,b]$ a natural candidate for the class of Riemann-Stieltjes integrator. The key properties include 
+\begin{enumerate}[label=(\alph*)]
+  \item \customref{Fob}{Functions of bounded variation can be expressed as difference of two strictly increasing functions}.  
+\end{enumerate}
+\end{abstract}
+\begin{mdframed}
+ Given a compact interval $[a,b]$, by a \textbf{partition} $P$ of $[a,b]$, we mean a set of the form $P=\set{a=x_0<x_1 < \cdots  < x_{N_P} =b}$. If $f$ is a complex-valued function defined on $[a,b]$, we define the \textbf{total variation} $V_f(a,b)$ of $f$ on  $[a,b]$ to be 
+\begin{align*}
+V_f(a,b)\triangleq \sup_P \sum_{n=1}^{N_P} \abso{f(x_n)-f(x_{n-1})}
+\end{align*}
+We say $f$ is of \textbf{bounded variation} on $[a,b]$ if $V_f(a,b)<\infty$, and we denote the set of real-valued function from $[a,b]$ of bounded variation on $[a,b]$ by $BV\big([a,b] \big)$.  It is straightforward to check 
+\begin{enumerate}[label=(\alph*)]
+  \item  $f \in BV\big([a,b] \big)$ must be bounded on $[a,b]$. 
+  \item Real-valued $f$ monotone on $[a,b]$ is of bounded variation on $[a,b]$. 
+  \item $BV\big([a,b] \big)$ form a vector space over $\R$. 
+\end{enumerate}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Bounded variation is closed under multiplication)} Given two real-valued (or more generally complex-valued) $f,g$  defined on $[a,b]$ 
+\begin{align*}
+V_{fg}(a,b)\leq AV_f(a,b)+BV_f(a,b)
+\end{align*}
+where 
+\begin{align*}
+A= \sup_{x \in [a,b]}\abso{g(x)}\text{ and }B=\sup_{x\in [a,b]}\abso{f(x)}
+\end{align*}
+\end{theorem}
+\begin{proof}
+For every partition $P$, we have 
+ \begin{align*}
+   \sum_{n=1}^{N_P} \abso{fg(x_n)-fg(x_{n-1})}&= \sum_{n=1}^{N_P} \Big| [f(x_n)-f(x_{n-1})]g(x_n)+f(x_{n-1})[g(x_n)-g(x_{n-1})]\Big|\\
+&\leq \sum_{n=1}^{N_P} \abso{f(x_n)-f(x_{n-1})}\abso{g(x_n)}+ \sum_{n=1}^{N_P} \abso{f(x_{n-1})} \abso{g(x_n)-g(x_{n-1})}\\
+&\leq AV_f(a,b)+ BV_f(a,b)
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Note that the proof above only consider when $g,f$ are both bounded on  $[a,b]$. If not, the statement hold trivially. For the brevity of the proof of the next Theorem,  if we are given a partition $P=\set{a=x_0< \cdots <x_n=b}$ of $[a,b]$, we denote
+\begin{align*}
+\sum  (P)\triangleq \sum_{k=1}^n\abso{f(x_k)-f(x_{k-1})}
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{Apotv}
+\textbf{(Additive property of total variation)} Given a real-valued function $f$  defined $[a,b]$, and $c \in (a,b)$  
+\begin{align*}
+V_f(a,b)=V_f(a,c)+V_f(c,b)
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+\vi{V_f(a,c)+V_f(c,b)\leq V_f(a,b)}
+\end{align*}
+Since the proof is trivial when $V_f(a,c)=\infty$, we WOLG suppose $V_f(a,c)<\infty$. Fix $\epsilon $. We reduce the problem into proving 
+\begin{align*}
+  \vi{V_f(a,c)+V_f(c,b)-\epsilon  \leq V_f(a,b)}
+\end{align*}
+By definition, there exists partitions $P_y,P_z$ respectively for $[a,c].[c,b]$ such that 
+\begin{align*}
+\sum (P_y) > V_f(a,c)- \frac{\epsilon }{2} \text{ and } \sum (P_z)> V_f(c,b)- \frac{\epsilon}{2}
+\end{align*}
+It is clear that $P_y\cup P_z$  is a partition of $[a,b]$. Observe
+\begin{align*}
+  V_f(a,b)\geq \sum (P_y \cup P_z) = \sum (P_y) + \sum (P_z) > V_f(a,c) + V_f(c,b)- \epsilon \vdone
+\end{align*}
+It remains to prove
+\begin{align*}
+  \blue{V_f(a,b)\leq V_f(a,c)+ V_f(c,b)}
+\end{align*}
+The proof follows from noting that if $P$ is a partition of  $[a,b]$, then we can get another partition $P_c$ of  $[a,b]$ by $P_c \triangleq  P \cup \set{c}$ and have 
+\begin{align*}
+\sum (P) \leq \sum (P_c) \leq V_f(a,c) + V_f(c,b) \bdone
+\end{align*}
+\end{proof}
+\begin{corollary}
+\textbf{(Additive property of total variation)} Given a real-valued function $f$  defined $[a,b]$, and $c \in (a,b)$ 
+\begin{align*}
+f\in BV\big([a,b] \big)\iff f\in BV\big([a,c] \big)\text{ and }f\in BV\big([c,b] \big)
+\end{align*}
+\end{corollary}
+\begin{mdframed}
+Following from  \customref{Apotv}{Additive property of total variation}, we see that if $f$ is of bounded variation on  $[a,b]$ and $[b,c]$, then $f$ is of bounded variation on $[a,c]$.  Perhaps, the best property of bounded variation are the following.  
+\end{mdframed}
+\begin{theorem}
+\label{Fob}
+\textbf{(Function of bounded variation can be expressed as difference of two increasing functions)} Given real-valued $f$ defined on  $[a,b]$, $f$ is of bounded variation on $[a,b]$ if and only if there exists strictly increasing function $g,h:[a,b]\rightarrow \R$ such that $f=g-h$.  
+\end{theorem}
+\begin{proof}
+The proof follows from usage of \customref{Apotv}{Additive property of total variation} and letting  
+\begin{align*}
+  g(x)\triangleq V_f(a,x)+(x-a)\text{ and }h(x)\triangleq V_f(a,x)-f(x)+(x-a)
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Now, since monotone function can only have countable amount of discontinuity (Prove this by associating each jump discontinuity with a rational number between the left and the right limits), we see that function of bounded variation, also, can only have countable amount of discontinuity. This suggest that if $\alpha :[a,b]\rightarrow \R$ is of bounded variation, then $\alpha $ must be continuous almost everywhere. \\
+
+If we only consider real-valued continuous function of bounded variation on $[a,b]$, we have a stronger version of \myref{Theorem}{Fob}. 
+\end{mdframed}
+\begin{theorem}
+\label{Cfobv}
+\textbf{(Continuous function of bounded variation)} Given $f:[a,b]\rightarrow \R$ such that $f\in BV\big([a,b]\big)$, If we define $V:[a,b]\rightarrow \R$ by
+\begin{align*}
+V(x)\triangleq V_f(a,x)
+\end{align*}
+Then for each $x \in [a,b]$
+\begin{align*}
+V\text{ is continuous at }x\iff f\text{ is continuous at $x$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\longrightarrow)$\\
+
+\As{$f$ is discontinuous at  $x$}. Because $f$ is bounded on  $[a,b]$, we can let $x_n \to x$ satisfy 
+\begin{align*}
+  \lim_{n\to \infty} f(x_n)-f(x)\inr^*
+\end{align*}
+By definition and \customref{Apotv}{additive property of total variation}, we can deduce  
+\begin{align*}
+  \liminf_{n\to\infty} \abso{V(x_n)-V(x)}&\geq \liminf_{n\to\infty} \abso{f(x_n)-f(x)} \\
+  &=\lim_{n\to \infty} \abso{f(x_n)-f(x)}>0 \tCaC
+\end{align*}
+
+$(\longleftarrow)$\\
+
+Fix $x$. We first prove 
+\begin{align*}
+\vi{V(x+)=V(x)}
+\end{align*}
+Fix $\epsilon $. Let $P=\set{x=x_0<x_1 <\cdots < x_{N_P}=b}$ be a partition of $[x,b]$ such that 
+\begin{align*}
+V_f(x,b) - \frac{\epsilon}{2} < \sum (P) 
+\end{align*}
+Because $f$ is continuous at $x$, we can let $\delta$ satisfy 
+\begin{align*}
+  \abso{f(y)-f(x)}< \frac{\epsilon}{4N_P}\text{ for all $y \in [x,x+\delta]$ }
+\end{align*}
+Because $V$ is increasing on  $[a,b]$, \customref{Apotv}{additive property of total variaion} allow us to reduce the problem into proving 
+\begin{align*}
+  \vi{V_f(x,x+\delta)\leq \epsilon }
+\end{align*}
+Denote $P'\triangleq  P\cup \set{x+\delta}$ and express  $P'=\set{x=x_0' < \cdots x'_m =x+\delta < \cdots < x_{N_{P'}}' }$. Note that $m<N_{P'}\leq N_P$ and observe
+\begin{align*}
+  V_f(x,b)- \frac{\epsilon}{2}< \sum (P)&\leq \sum (P')\\
+&= \sum_{n=1}^{m} \abso{f(x'_n)-f(x'_{n-1})} + \sum_{n=m+1}^{N_{P'}} \abso{f(x'_n)-f(x'_{n-1})}\\
+&\leq \frac{m\epsilon }{2N_P}  + V_f(x+\delta,b)\leq \frac{\epsilon }{2}+ V_f(x+\delta ,b)
+\end{align*}
+\customref{Apotv}{Additive property of total variation} now give us 
+\begin{align*}
+V_f(x,x+\delta)=V_f(x,b)-V_f(x+\delta,b)\leq \epsilon  \vdone
+\end{align*}
+Proof for $V(x-)=V(x)$ is similar, and when $x=a\text{ or }b$, some trivial modifications are needed.
+\end{proof}
+\begin{mdframed}
+Give very careful attention to the statement of \myref{Theorem}{Cfobv}. Note that we require to the domain of $f$ to be $[a,b]$. If the domain of $f$ contain  $a\text{ or }b$ as interior point, the statement isn't always true. 
+\end{mdframed}
+\section{Riemann-Stieltjes Integral}
+\begin{abstract}
+This section construct the Riemann-Stieltjes integral for increasing integrator in the form of Darboux integral for further reference. Note that in this section, $\Delta \alpha _n\triangleq \alpha (x_n)-\alpha (x_{n-1})$. 
+\end{abstract}
+\begin{mdframed}
+Given an bounded interval $I$, whose left and right end points are respectively $a,b$, and function  $f,\alpha :I\rightarrow \R$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item Their images $f(I),\alpha (I)$ are both bounded. 
+  \item $\alpha $ is increasing on $I$. 
+\end{enumerate}
+We define the \textbf{upper Darboux sum $\overline{\int_a^b}fd\alpha$ of $f$ on $I$ with respect to $\alpha $} by 
+\begin{align*}
+\overline{\int_a^b}fd\alpha \triangleq  \inf_P \Big(\sum_{n=1}^{N_P} [\sup_{[x_{n-1},x_n]} f] \Delta \alpha _n \Big)
+\end{align*}
+where the infimum runs over all the partition of $[a,b]$. Note that if $I$ doesn't include $a,b$, then we simply define  $\alpha (a)\triangleq \alpha (a+)$ and $\alpha (b)\triangleq \alpha (b-)$. The \textbf{lower Darboux sum} $\underline{\int_a^b}fd\alpha $ are defined similarly as 
+\begin{align*}
+\underline{\int_a^b}fd\alpha \triangleq  \sup_P \Big(\sum_{n=1}^{N_P} [\inf_{[x_{n-1},x_n]} f] \Delta \alpha _n \Big)
+\end{align*}
+Because at this point we require the integrator to be increasing function, we can easily see that the lower Darboux sum is always not greater than the upper Darboux sum. We say \textbf{$f$ is proper Riemann Integrable on $I$ with respect to the integrator $\alpha $} if they are equal as a real number. Now, because 
+\begin{align*}
+\sup(f+g)\leq \sup (f)+\sup (g) 
+\end{align*}
+We see 
+\begin{align*}
+\overline{\int_a^b}(f+g)d\alpha  \leq \overline{\int_a^b}fd\alpha + \overline{\int_a^b}gd\alpha 
+\end{align*}
+It then follows that if $f,g$ are both proper Riemann integrable on  $I$ with respect to  $\alpha $, then $f+g$ is also proper integrable on $I$ with respect to $\alpha $ and 
+\begin{align*}
+\int_a^b (f+g)d\alpha = \int_a^b fd\alpha + \int_a^b gd\alpha 
+\end{align*}
+Also, since 
+\begin{align*}
+\sup  (cf)=\begin{cases}
+  c\sup (f) & \text{ if $c\geq 0$ }\\
+  c\inf (f)& \text{ if $c\leq 0$ }
+\end{cases}
+\end{align*}
+we see that 
+\begin{align*}
+  c\geq 0 &\implies  \overline{\int_a^b}(cf)d\alpha = c\overline{\int_a^b}fd\alpha   \\
+  \text{ and }c\leq 0&\implies  \overline{\int_a^b}(cf)d\alpha = c\underline{\int_a^b}fd\alpha  
+\end{align*}
+It then follows that if $f$ is proper Riemann integrable on $I$ with respect to $\alpha $, then $cf$ is also proper integrable on  $I$ with respect to  $\alpha $. We have proved that the functions that is proper Riemann integrable on $I$  with respect to $\alpha $ forms a vector space over $\R$. Also, since if $a\leq b\leq c$ and if  $f,\alpha $ is bounded on  $(a,c)$, one can deduce 
+\begin{align*}
+\overline{\int_a^c}fd\alpha \leq \overline{\int_a^b}fd\alpha  + \overline{\int_b^c}fd\alpha 
+\end{align*}
+we see that if $f$ is proper Riemann integrable on both  $(a,b)$ and $(b,c)$, then $f$ is proper Riemann integrable on $(a,c)$ and 
+\begin{align*}
+\int_a^c fd\alpha = \int_a^b fd\alpha + \int_b^c fd\alpha 
+\end{align*}
+This inspire us to define 
+\begin{align*}
+\int_b^a fd\alpha \triangleq -\int_a^b fd\alpha 
+\end{align*}
+so that we have 
+\begin{align*}
+\int_a^bfd\alpha +\int_b^a fd\alpha = 0= \int_a^a fd\alpha 
+\end{align*}
+Lastly, if $J$ is another interval contained in  $I$, and  $f$ is proper Riemann integrable on $I$ with respect to $\alpha$, then one can deduce $f$ is also Riemann integrable on $J$ by noting that if  $P',P$ are two partition of $I$  and $P\subseteq P'$, then 
+\begin{align*}
+  \sum_{n=1}^{N_{P'}} [\sup_{[x_{n-1},x_n]} f] \Delta \alpha _n \leq \sum_{n=1}^{N_P} [\sup_{[x_{n-1},x_n]} f] \Delta \alpha _n 
+\end{align*}
+With all these basic properties in mind, we are now ready to present the most famous \customref{FTC}{Fundamental Theorem of Calculus}. 
+\end{mdframed}
+\begin{theorem}
+  \label{FTC1}
+  \textbf{(Fundamental Theorem of Calculus: Part 1)} If $f$ is proper Riemann integrable on $(a,b)$, and we define $F:[a,b]\rightarrow \R$ by 
+\begin{align*}
+F(x)\triangleq \int_a^x f(t)dt
+\end{align*}
+then $F$ is continuous on  $[a,b]$. Moreover, provided $x \in (a,b)$ and 
+\begin{align*}
+\lim_{t\to x^-} f(t)=\lim_{t\to x^+} f(t)\text{ exists }
+\end{align*}
+then $F$ is differentiable at $x$.
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. Because $f$ is proper Riemann integrable on $(a,b)$, we know there exists some $M\inr$ such that 
+ \begin{align*}
+M> \sup_{x\in (a,b)}\abso{f(x)} 
+\end{align*}
+Then for each $x,y \in [a,b]$ such that $\abso{y-x}< \frac{\epsilon }{M}$, we have
+\begin{align*}
+  \abso{F(x)-F(y)}&=\abso{\int_x^y f(t)dt}\\
+  &\leq \int_x^y \abso{f(t)}dt<\epsilon \vdone
+\end{align*}
+Now, to prove $F'(x_0)=f(x_0)$, we wish 
+\begin{align*}
+  \blue{\text{ to prove $\lim_{x\to x_0} \frac{F(x)-F(x_0)}{x-x_0}= f(x_0)$ }}
+\end{align*}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\blue{\text{ to find $\delta$ such that $\abso{x-x_0}<\delta \implies \abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}<\epsilon $ }}
+\end{align*}
+Because $f$ is continuous at $x_0$, we know  
+\begin{align}
+\label{F1}
+\exists \delta, \abso{x-x_0}<\delta \implies \abso{f(x)-f(x_0)}<\epsilon 
+\end{align}
+We claim 
+\begin{align*}
+\blue{\text{ such $\delta$ in}}\text{ \myref{Equation}{F1} }\blue{\text{works}}
+\end{align*}
+WOLG, let $x>x_0$. Deduce 
+\begin{align*}
+\abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}&=\abso{\frac{\int_{x_0}^x f(t)dt}{x-x_0}-f(x_0)}\\                  &=\abso{\frac{\int_{x_0}^x \big[f(t)-f(x_0) \big]dt}{x-x_0}}\\
+&\leq \frac{\int_{x_0}^x \abso{f(t)-f(x_0)}dt}{\abso{x-x_0}}\\
+&\leq \frac{\int_{x_0}^x \epsilon dt}{\abso{x-x_0}}=\epsilon \bdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{FTC2}
+\textbf{(Fundamental Theorem of Calculus: Part 2, Leibniz Rule)} Suppose two functions $f,F:[a,\infty )\rightarrow \R$ satisfy 
+\begin{enumerate}[label=(\alph*)]
+  \item $f$ is proper Riemann-Integrable on $[a,b]$ for all $b>a$ 
+\item $F'(x)=f(x)$ for all $x \in (a, \infty)$ 
+\item $F$ is continuous on  $[a,\infty)$
+\end{enumerate}
+Then for all $b>a$, 
+\begin{align*}
+\int_a^b f(x)dx=F(b)-F(a)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to show that $\abso{\Big( F(b)-F(a)\Big)-\int_a^b f(x)dx}<\epsilon $ }}
+\end{align*}
+Because $f$ is proper Riemann-Integrable on $[a,b]$, we know there exists a partition $P=\set{a=x_0,x_1,\dots , x_n=b}$ of  $[a,b]$ such that 
+\begin{align}
+\label{FP}
+U(P,f)-L(P,f)<\epsilon 
+\end{align}
+Because $f=F'$ on  $(a,b)$, for each $k \in \set{1,\dots ,n}$, by \customref{MVT}{MVT} , we know 
+\begin{align*}
+\exists t_k \in (x_{k-1},x_k), \frac{F(x_k)-F(x_{k-1})}{x_k-x_{k-1}}=f(t_k)
+\end{align*}
+This let us deduce
+\begin{align*}
+F(b)-F(a)=\sum_{k=1}^n F(x_k)-F(x_{k-1})=\sum_{k=1}^n f(t_k) \Delta x_k
+\end{align*}
+Now, we have 
+\begin{align*}
+  \int_a^b f(x)dx\text{ and }F(b)-F(a)\text{ are both in }\big[ L(P,f),U(P,f) \big]
+\end{align*}
+Then by \myref{Equation}{FP}, we can deduce 
+\begin{align*}
+\abso{F(b)-F(a)- \int_a^b f(x)dx}<\epsilon \vdone
+\end{align*}
+
+
+
+
+\end{proof}
+\begin{theorem}
+\textbf{(Integral By Part)} Given four function $f,g,F,G:[a,b]\rightarrow \R$ such that 
+
+\begin{enumerate}[label=(\alph*)]
+  \item $F'(x)=f(x)\text{ and }G'(x)=g(x)$ for all $x\in (a,b)$ 
+  \item $f,g$ are properly Riemann-Integrable on  $[a,b]$ 
+  \item $F,G$ are continuous on  $[a,b]$
+\end{enumerate}
+We have
+\begin{align}
+\label{FI}
+\int_a^b F(x)g(x)dx=FG\Big|^b_a-\int_a^b f(x)G(x)dx
+\end{align}
+\end{theorem}
+\begin{proof}
+To prove \myref{Equation}{FI}, we only with 
+\begin{align*}
+\vi{\text{ to prove }\int_a^b F(x)g(x)dx+\int_a^b f(x)G(x)dx=FG\Big|_a^b}
+\end{align*}
+We can reduce the problem 
+\begin{align*}
+\vi{\text{ into proving }\int_a^b \big( Fg+fG \big) dx=FG\Big|_a^b}
+\end{align*}
+Notice that by Chain Rule,  
+\begin{align*}
+\big(FG \big)'(x)=F(x)g(x)+f(x)G(x)\text{ for all $x \in (a,b)$ }
+\end{align*}
+Then the result follows from Part 2 of Fundamental Theorem of Calculus (\myref{Theorem}{FTC2}). $\vdone$
+\end{proof}
+\begin{Example}{\textbf{(Discontinuous Derivative)}}{}
+\begin{align*}
+f(x)=\begin{cases}
+  \frac{x^2}{\sin x}& \text{ if $x\neq 0$ }\\
+  0& \text{ if $x=0$ }
+\end{cases}
+\end{align*}
+\end{Example}
+
 
 \section{Riemann-Stieltjes on Computation}
 \begin{theorem}
@@ -4044,374 +4629,6 @@ Let $\alpha (x)=x$. Let $\beta = \alpha \circ  \phi$. Define $g=f \circ  \phi $.
 \begin{align*}
 \int_a^b \big(f \circ  \phi \big)(x)d \phi =\int_a^b g(x)d\beta = \int_A^B f(x)dx
 \end{align*}
-\end{proof}
-\section{FTC}
-\begin{theorem}
-  \label{FTC1}
-\textbf{(Fundamental Theorem of Calculus: Part 1)} Suppose a function $f:[a,\infty )\rightarrow \R$ satisfy
-\begin{align*}
-f\text{ is $\underline{\text{proper-Riemann integrable}}$ on $[a,b]$  for all $b>a$}
-\end{align*}
-If we set $F:[a,\infty) \to \R$ 
-\begin{align*}
-F(x)=\int_a^x f(t)dt
-\end{align*}
-Then 
-\begin{enumerate}[label=(\alph*)]
-  \item $F$ is continuous on $[a,\infty )$
-  \item $F$ is differentiable at  $x_0 \in [a,\infty )$  where $F'(x_0)=f(x_0)$ if $f$ is continuous at $x_0$
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-Fix $\epsilon $ and $[a,b]$. We only wish  
-\begin{align*}
-\vi{\text{ to prove }F\text{ is continuous on $[a,b]$ }}
-\end{align*}
-To prove $F$ is continuous on  $[a,b]$, we only wish 
-\begin{align*}
-\vi{\text{ to find $\delta$ such that $\forall [x,y]\subseteq [a,b], \abso{x-y}<\delta \implies \abso{F(x)-F(y)}<\epsilon $}}
-\end{align*}
-Because $f $ is proper-Riemann-Integrable on $[a,b]$, we know $f$ is bounded on  $[a,b]$. Let $M$ be an upper bound of  $\abso{f}$ on $[a,b]$. We claim 
-\begin{align*}
-\vi{\text{ $\delta=\frac{\epsilon}{M}$ works }} 
-\end{align*}
-Because $y-x <\delta=\frac{\epsilon}{M}$, we have
-\begin{align*}
-  \abso{F(x)-F(y)}&=\abso{\int_x^y f(t)dt}\\
-  &\leq \int_x^y \abso{f(t)}dt\\
-  &\leq (y-x)<\epsilon \vdone
-\end{align*}
-Now, to prove $F'(x_0)=f(x_0)$, we wish 
-\begin{align*}
-  \blue{\text{ to prove $\lim_{x\to x_0} \frac{F(x)-F(x_0)}{x-x_0}= f(x_0)$ }}
-\end{align*}
-Fix $\epsilon $. We wish 
-\begin{align*}
-\blue{\text{ to find $\delta$ such that $\abso{x-x_0}<\delta \implies \abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}<\epsilon $ }}
-\end{align*}
-Because $f$ is continuous at $x_0$, we know  
-\begin{align}
-\label{F1}
-\exists \delta, \abso{x-x_0}<\delta \implies \abso{f(x)-f(x_0)}<\epsilon 
-\end{align}
-We claim 
-\begin{align*}
-\blue{\text{ such $\delta$ in}}\text{ \myref{Equation}{F1} }\blue{\text{works}}
-\end{align*}
-WOLG, let $x>x_0$. Deduce 
-\begin{align*}
-\abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}&=\abso{\frac{\int_{x_0}^x f(t)dt}{x-x_0}-f(x_0)}\\                  &=\abso{\frac{\int_{x_0}^x \big[f(t)-f(x_0) \big]dt}{x-x_0}}\\
-&\leq \frac{\int_{x_0}^x \abso{f(t)-f(x_0)}dt}{\abso{x-x_0}}\\
-&\leq \frac{\int_{x_0}^x \epsilon dt}{\abso{x-x_0}}=\epsilon \bdone
-\end{align*}
-\end{proof}
-\begin{theorem}
-\label{FTC2}
-\textbf{(Fundamental Theorem of Calculus: Part 2, Leibniz Rule)} Suppose two functions $f,F:[a,\infty )\rightarrow \R$ satisfy 
-\begin{enumerate}[label=(\alph*)]
-  \item $f$ is proper Riemann-Integrable on $[a,b]$ for all $b>a$ 
-\item $F'(x)=f(x)$ for all $x \in (a, \infty)$ 
-\item $F$ is continuous on  $[a,\infty)$
-\end{enumerate}
-Then for all $b>a$, 
-\begin{align*}
-\int_a^b f(x)dx=F(b)-F(a)
-\end{align*}
-\end{theorem}
-\begin{proof}
-Fix $\epsilon $. We wish 
-\begin{align*}
-\vi{\text{ to show that $\abso{\Big( F(b)-F(a)\Big)-\int_a^b f(x)dx}<\epsilon $ }}
-\end{align*}
-Because $f$ is proper Riemann-Integrable on $[a,b]$, we know there exists a partition $P=\set{a=x_0,x_1,\dots , x_n=b}$ of  $[a,b]$ such that 
-\begin{align}
-\label{FP}
-U(P,f)-L(P,f)<\epsilon 
-\end{align}
-Because $f=F'$ on  $(a,b)$, for each $k \in \set{1,\dots ,n}$, by \customref{MVT}{MVT} , we know 
-\begin{align*}
-\exists t_k \in (x_{k-1},x_k), \frac{F(x_k)-F(x_{k-1})}{x_k-x_{k-1}}=f(t_k)
-\end{align*}
-This let us deduce
-\begin{align*}
-F(b)-F(a)=\sum_{k=1}^n F(x_k)-F(x_{k-1})=\sum_{k=1}^n f(t_k) \Delta x_k
-\end{align*}
-Now, we have 
-\begin{align*}
-  \int_a^b f(x)dx\text{ and }F(b)-F(a)\text{ are both in }\big[ L(P,f),U(P,f) \big]
-\end{align*}
-Then by \myref{Equation}{FP}, we can deduce 
-\begin{align*}
-\abso{F(b)-F(a)- \int_a^b f(x)dx}<\epsilon \vdone
-\end{align*}
-
-
-
-
-\end{proof}
-\begin{theorem}
-\textbf{(Integral By Part)} Given four function $f,g,F,G:[a,b]\rightarrow \R$ such that 
-
-\begin{enumerate}[label=(\alph*)]
-  \item $F'(x)=f(x)\text{ and }G'(x)=g(x)$ for all $x\in (a,b)$ 
-  \item $f,g$ are properly Riemann-Integrable on  $[a,b]$ 
-  \item $F,G$ are continuous on  $[a,b]$
-\end{enumerate}
-We have
-\begin{align}
-\label{FI}
-\int_a^b F(x)g(x)dx=FG\Big|^b_a-\int_a^b f(x)G(x)dx
-\end{align}
-\end{theorem}
-\begin{proof}
-To prove \myref{Equation}{FI}, we only with 
-\begin{align*}
-\vi{\text{ to prove }\int_a^b F(x)g(x)dx+\int_a^b f(x)G(x)dx=FG\Big|_a^b}
-\end{align*}
-We can reduce the problem 
-\begin{align*}
-\vi{\text{ into proving }\int_a^b \big( Fg+fG \big) dx=FG\Big|_a^b}
-\end{align*}
-Notice that by Chain Rule,  
-\begin{align*}
-\big(FG \big)'(x)=F(x)g(x)+f(x)G(x)\text{ for all $x \in (a,b)$ }
-\end{align*}
-Then the result follows from Part 2 of Fundamental Theorem of Calculus (\myref{Theorem}{FTC2}). $\vdone$
-\end{proof}
-\begin{Example}{\textbf{(Discontinuous Derivative)}}{}
-\begin{align*}
-f(x)=\begin{cases}
-  \frac{x^2}{\sin x}& \text{ if $x\neq 0$ }\\
-  0& \text{ if $x=0$ }
-\end{cases}
-\end{align*}
-\end{Example}
-
-\section{Bounded Variation}
-\begin{mdframed}
-This section prove some key properties of functions of bounded variations. These properties are worthy of discuss, as they make the set $BV\big([a,b] \big)$ of function of bounded variation on $[a,b]$ a natural candidate for the class of Riemann-Stieltjes integrator. The key properties include 
-\begin{enumerate}[label=(\alph*)]
-  \item Functions of bounded variation must be continuous almost everywhere. (\myref{Corollary}{Fmo})
-  \item Functions of bounded variation can be expressed as difference of two increasing functions. (\myref{Theorem}{Fob}) 
-  \item Functions of bounded variation can only have jump discontinuity. (\myref{Corollary}{Fobj})
-\end{enumerate}
-\end{mdframed}
-\begin{definition}
-\textbf{(Definition of variation and function of bounded variation)} Given a compact interval $[a,b]$, by a \textbf{partition} $P$ of $[a,b]$, we mean a finite set $\set{a=x_0<x_1 < \cdots < x_{n-1} < x_n =b}$ contain by $[a,b]$ and containing $a,b$. If  $f$ is a complex-valued function defined on $[a,b]$, we say the \textbf{total variation} $V_f(a,b)$ of $f$ on  $[a,b]$ is 
-\begin{align*}
-\sup_P \sum_{k=1}^n \abso{f(x_k)-f(x_{k-1})}
-\end{align*}
-We say $f$ is of \textbf{bounded variation} on $[a,b]$ if $V_f(a,b)<\infty$, and we denote the set of real-valued function from $[a,b]$ of bounded variation on $[a,b]$ by $BV\big([a,b] \big)$. 
-\end{definition}
-\begin{mdframed}
-It is straightforward to check 
-\begin{enumerate}[label=(\alph*)]
-  \item  $f \in BV\big([a,b] \big)$ must be bounded on $[a,b]$ 
-  \item real-valued $f$ monotone on $[a,b]$ is of bounded variation on $[a,b]$ 
-  \item $BV\big([a,b] \big)$ form a vector space over $\R$
-\end{enumerate}
-In fact, $BV\big([a,b] \big)$ also form a commutative algebra, as below proved.
-\end{mdframed}
-\begin{theorem}
-\textbf{(Bounded variation is closed under multiplication)} Given two real-valued (or more generally complex-valued) $f,g$  defined on $[a,b]$ 
-\begin{align*}
-V_{fg}(a,b)\leq AV_f(a,b)+BV_f(a,b)
-\end{align*}
-where 
-\begin{align*}
-A=\sup_{[a,b]}\abso{g}\text{ and }B=\sup_{[a,b]}\abso{f}
-\end{align*}
-\end{theorem}
-\begin{proof}
-For every partition $P$, we have 
- \begin{align*}
-\sum_{k=1}^n \abso{fg(x_k)-fg(x_{k-1})}&= \sum_{k=1}^n \abso{(f(x_k)-f(x_{k-1}))g(x_k)+f(x_{k-1})g(x_k)-fg(x_{k-1})}\\
-&\leq \sum_{k=1}^n \abso{f(x_k)-f(x_{k-1})}\abso{g(x_k)}+ \sum_{k=1}^n \abso{f(x_{k-1})} \abso{g(x_k)-g(x_{k-1})}\\
-&\leq AV_f(a,b)+ BV_f(a,b)
-\end{align*}
-\end{proof}
-\begin{mdframed}
-Note that the proof above only consider when $g,f$ are both bounded on  $[a,b]$. If not, the statement hold trivially. For the brevity of the proof of the next Theorem,  if we are given a partition $P=\set{a=x_0< \cdots <x_n=b}$ of $[a,b]$, we denote $\sum_{k=1}^n \abso{f(x_k)-f(x_{k-1})}$ by $\sum  (P)$. 
-\end{mdframed}
-\begin{theorem}
-\label{Apotv}
-\textbf{(Additive property of total variation)} Given a real-valued function $f$  defined $[a,b]$, and $c \in (a,b)$  
-\begin{align*}
-V_f(a,b)=V_f(a,c)+V_f(c,b)
-\end{align*}
-\end{theorem}
-\begin{proof}
-We first prove 
-\begin{align*}
-\vi{V_f(a,b)\geq V_f(a,c)+V_f(c,b)}
-\end{align*}
-Note that it is possible $V_f(a,c)=\infty$. We only prove when $V_f(a,c)<\infty$, since the proof for the statement when $V_f(a,c)=\infty$ is similar. Fix $\epsilon $. We reduce the problem into proving 
-\begin{align*}
-  \vi{V_f(a,b)\geq V_f(a,c)+ V_f(c,b)- \epsilon }
-\end{align*}
-Let $Y,Z$ respectively be the set of all partitions of  $[a,c]$ and $[a,b]$. Fix $P_y \in Y$ and $P_z\in Z$ such that 
-\begin{align*}
-\sum (P_y) > V_f(a,c)- \frac{\epsilon }{2} \text{ and } \sum (P_z)> V_f(c,b)- \frac{\epsilon}{2}
-\end{align*}
-It is clear that $P_y\cup P_z$  is a partition of $[a,b]$. Observe
-\begin{align*}
-  V_f(a,b)\geq \sum (P_y \cup P_z) = \sum (P_y) + \sum (P_z) > V_f(a,c) + V_f(c,b)- \epsilon \vdone
-\end{align*}
-It remains to prove
-\begin{align*}
-  \blue{V_f(a,b)\leq V_f(a,c)+ V_f(c,b)}
-\end{align*}
-Fix a partition $P$ of $[a,b]$. We are required to prove 
-\begin{align*}
-\blue{\sum (P) < V_f(a,c)+ V_f(c,b)}
-\end{align*}
-Let $P_c = P \cup \set{c}$. Observe 
-\begin{align*}
-\sum (P) \leq \sum (P_c) \leq V_f(a,c) + V_f(c,b) \bdone
-\end{align*}
-
-\end{proof}
-\begin{corollary}
-\textbf{(Additive property of total variation)} Given a real-valued function $f$  defined $[a,b]$, and $c \in (a,b)$ 
-\begin{align*}
-f\in BV\big([a,b] \big)\iff f\in BV\big([a,c] \big)\text{ and }f\in BV\big([c,b] \big)
-\end{align*}
-\end{corollary}
-\begin{mdframed}
-Perhaps, the best property of bounded variation are the following.  
-\end{mdframed}
-\begin{theorem}
-\label{Fob}
-\textbf{(Function of bounded variation can be expressed as difference of two increasing functions)} Given real-valued $f$ defined on  $[a,b]$ 
-\begin{align*}
-f\in BV\big([a,b] \big)\iff \exists \text{ increasing }g,h:[a,b]\rightarrow \R, f=g-h
-\end{align*}
-\end{theorem}
-\begin{proof}
-From right to left is trivial. From left to right, we claim 
-\begin{align*}
-  \vi{g(x)\triangleq V_f(a,x)\text{ and }h(x)\triangleq V_f(a,x)-f(x)\text{ suffices }}
-\end{align*}
-It is clear that $V_f(a,x)$ is increasing. Fix $a\leq x\leq y\leq b$. We prove
-\begin{align*}
-  \vi{h(x)\leq h(y)}
-\end{align*}
-Use \myref{Theorem}{Apotv} 
-\begin{align*}
-  h(y)-h(x)&\geq V_f(a,y)-f(y) - V_f(a,x) + f(x)\\
-  &= \big(V_f(a,y)-V_f(a,x) \big)- \big(f(y)-f(x) \big)\\
-  &=V_f(x,y)-\big(f(y)-f(x) \big)\geq 0 \vdone
-\end{align*}
-\end{proof}
-\begin{corollary}
-\label{Fobj}
-\textbf{(Function of bounded variation can only have jump discontinuity)} Given $f:[a,b]\rightarrow \R$, if $f \in BV\big([a,b] \big)$, then $f$ can only have jump discontinuity.
-\end{corollary}
-\begin{corollary}
-\label{Fobi}
-\textbf{(Function of bounded variation can be expressed as difference of two strictly increasing functions)} Given real-valued $f$ defined on  $[a,b]$ 
-\begin{align*}
-f\in BV\big([a,b] \big)\iff \exists \text{ strictly increasing }g,h:[a,b]\rightarrow \R, f=g-h
-\end{align*}
-\end{corollary}
-\begin{proof}
-From right to left is again trivial. If $g(x)\triangleq V_f(a,x)$ and $h(x)\triangleq V_f(a,x)-f(x)$ is not strictly increasing, define $g'\triangleq g+(x-a)\text{ and }h'\triangleq h+(x-a)$. Such $g',h'$ suffice.
-\end{proof}
-\begin{mdframed}
-The reason we showed functions of bounded variation can be expressed as difference of two increasing functions is the following  (\myref{Theorem}{Fmo}). \myref{Theorem}{Fmo} make function of bounded variation continuous almost everywhere. This make functions of bounded variation a natural candidate of the class of Riemann-Stieltjes integrators, in the perspective of Lebesgue-Riemann Criterion. (\myref{Theorem}{})
-\end{mdframed}
-\begin{theorem}
-\label{Fmo}
-\textbf{(Function monotone on $[a,b]$ must be continuous almost everywhere on $[a,b]$)} If $f$ is monotone on $[a,b]$, then the set of discontinuities of $f$ is countable.
-\end{theorem}
-\begin{proof}
-WOLG, suppose $f$ is increasing on  $[a,b]$. Because $f$ is increasing on $[a,b]$, we know that every discontinuities of $f$ on  $[a,b]$ is a jump discontinuity. Define 
-\begin{align*}
-S_n\triangleq \set{x\in [a,b]: f(x+)-f(x-)>\frac{1}{n}}
-\end{align*}
-Then the set of discontinuity of $f$ is exactly  $\bigcup_n S_n$. Note that each $S_n$ must be finite, otherwise $f(b)=\infty$. This conclude the proof.
-\end{proof}
-\begin{corollary}
-\label{Fmo}
-\textbf{(Function of bounded variation on $[a,b]$ must be continuous almost everywhere on $[a,b]$)} If $f$ is of bounded variation on $[a,b]$, then the set of discontinuities of $f$ on $[a,b]$ is countable.
-\end{corollary}
-
-\begin{mdframed}
-If we only consider real-valued continuous function of bounded variation on $[a,b]$, the structure is even richer.
-\end{mdframed}
-\begin{theorem}
-\label{Cfobv}
-\textbf{(Continuous function of bounded variation)} Given $f:[a,b]\rightarrow \R$ such that $f\in BV\big([a,b]\big)$ . If we define $V:[a,b]\rightarrow \R$ by
-\begin{align*}
-V(x)\triangleq V_f(a,x)
-\end{align*}
-Then for each $x \in [a,b]$
-\begin{align*}
-V\text{ is continuous at }x\iff f\text{ is continuous at $x$ }
-\end{align*}
-\end{theorem}
-\begin{proof}
-$(\longrightarrow)$\\
-
-\As{$f$ is discontinuous at  $x$}. WOLG, suppose that there exists $x_n\searrow x$ such that
-\begin{align*}
-  \lim_{n\to \infty} f(x_n)\inr\text{ and }c\triangleq \abso{\lim_{n\to \infty}f(x_n)-f(x)}>0
-\end{align*}
-Now, observe 
-\begin{align*}
-\abso{V(x_n)-V(x)}= \abso{V_f(x,x_n)}\geq \abso{f(x_n)-f(x)}
-\end{align*}
-This give us 
-\begin{align*}
-  \liminf_{n\to\infty} \abso{V(x_n)-V(x)}&\geq \liminf_{n\to\infty} \abso{f(x_n)-f(x)} \\
-  &=\lim_{n\to \infty} \abso{f(x_n)-f(x)}= \abso{\lim_{n\to \infty}f(x_n)-f(x)}=c>0 \tCaC
-\end{align*}
-
-$(\longleftarrow)$\\
-
-Fix $\epsilon $. Let $P=\set{x=x_0<x_1 <\cdots < x_n=b}$ be a partition of $[x,b]$ such that 
-\begin{align*}
-V_f(x,b) - \frac{\epsilon}{2} < \sum (P) 
-\end{align*}
-Let $\delta$ satisfy 
-\begin{align*}
-  \abso{f(y)-f(x)}< \frac{\epsilon}{4n}\text{ for all $y \in [x,x+\delta]$ }
-\end{align*}
-We claim 
-\begin{align*}
-\vi{\text{ such }\delta\text{ satisfy }\abso{V(y)-V(x)}\leq \epsilon\text{ for all $y\in [x,x+\delta]$ }}
-\end{align*}
-Let $y\triangleq x+\delta$. Because $V$ is increasing on  $[a,b]$, we only have to prove 
-\begin{align*}
-  \vi{\abso{V(y)-V(x)}\leq  \epsilon }
-\end{align*}
-\myref{Theorem}{Apotv} allow us to reduce the problem into proving  
-\begin{align*}
-  \vi{V_f(x,y)\leq \epsilon }
-\end{align*}
-Denote $P\cup \set{y}$ by $P'$ and express  $P'=\set{x=x_0' < \cdots < x_r' }$. Express $y=x_m'$. Note that $m<r\leq n+1$ and observe
-\begin{align*}
-  V_f(x,b)- \frac{\epsilon}{2}< \sum (P)&\leq \sum (P')\\
-&= \sum_{k=1}^{m} \abso{f(x'_k)-f(x'_{k-1})} + \sum_{k=m+1}^{n} \abso{f(x'_k)-f(x'_{k-1})}\\
-&\leq \frac{m\epsilon }{2n}  + V_f(y,b)\leq \frac{\epsilon }{2}+ V_f(y,b)
-\end{align*}
-\myref{Theorem}{Apotv} now give us 
-\begin{align*}
-V_f(x,y)=V_f(x,b)-V_f(y,b)\leq \epsilon  \vdone
-\end{align*}
-Proof for $V(x-)=V(x)$ is similar, and when $x=a\text{ or }b$, some trivial modifications are needed.
-\end{proof}
-\begin{mdframed}
-Give very careful attention to the statement of \myref{Theorem}{Cfobv}. Note that we require to the domain of $f$ to be $[a,b]$. If the domain of $f$ contain  $a\text{ or }b$ as interior point, the statement isn't always true. 
-\end{mdframed}
-\begin{corollary}
-\textbf{(Continuous function of bounded variation can be expressed as difference of two continuous strictly increasing functions)} Given continuous real-valued $f$ defined on $[a,b]$ 
-\begin{align*}
-f\in BV\big([a,b] \big) \iff  \exists \text{ continuous strictly increasing }g,h:[a,b]\rightarrow \R, f=g-h
-\end{align*}
-\end{corollary}
-\begin{proof}
-From right to left is again trivial. If $g(x)\triangleq V_f(a,x)$ and $h(x)\triangleq V_f(a,x)-f(x)$ is not strictly increasing, define $g'\triangleq g+(x-a)\text{ and }h'\triangleq h+(x-a)$. Such $g',h'$ suffice.
 \end{proof}
 \section{Uniform Convergence and Riemann Integration}
 \begin{theorem}
@@ -4726,722 +4943,6 @@ R_\beta (\textbf{x})\triangleq \frac{\abso{\beta }}{\beta !}\int_0^1 (1-t)^{\abs
 \begin{proof}
 
 \end{proof}
-
-\chapter{Complex Analysis}
-\chapter{Lebesgue Calculus}
-\section{Basic Property of Measurable Functions}
-\begin{mdframed}
-In this section, we give two equivalent general definition (\myref{Theorem}{EDm}) of measurable function and show
-\begin{enumerate}[label=(\alph*)]
-  \item Measurable $f:X\rightarrow \R\text{ or }\C$  is closed under addition and multiplication. (\myref{Theorem}{Btsa})
-  \item The (superior) limit of a sequence of measurable ($\R\cup \set{\pm \infty} $ or $\C\cup \set{\infty}$)-valued functions on general $(X,\Sigma_X)$ is measurable. (\myref{Theorem}{Slm})
-  \item Positive and negative part of a measurable $f:X\rightarrow [-\infty,\infty]$ are measurable. (\myref{Corollary}{PaN})
-\end{enumerate}
-\end{mdframed}
-\begin{mdframed}
-If we are given a function $f:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ such that for all $E\in \Sigma_Y$, we have $f^{-1}(E) \in \Sigma_X$, then we say $f$ is a  \textbf{measurable function}. Immediately, one can check that the composition of two measurable functions must be measurable. We now introduce an equivalent definition of measurable function, which makes checking if a function is measurable much easier.
-\end{mdframed}
-\begin{theorem}
-\label{EDm}
-\textbf{(Equivalent Definition of measurable function)} If a function $f:(X,\Sigma_X)\rightarrow (Y,\sigma (T))$ satisfy 
-\begin{align*}
-f^{-1}(E)\in \Sigma_X\text{ for all $E \in T$ }
-\end{align*}
-then 
-\begin{align*}
-f\text{ is measurable }
-\end{align*}
-\end{theorem}
-\begin{proof}
-Define 
-\begin{align*}
-\mathcal{A}\triangleq \set{E \subseteq Y: f^{-1}(E)\in \Sigma_X}
-\end{align*}
-Check that $\mathcal{A}$ is a $\sigma$-algebra on $Y$. By premise, $T \subseteq \mathcal{A}$. It then follows from definition that $\sigma (T)\subseteq \mathcal{A}$. This conclude that $f$ is  $(\Sigma_X, \sigma(T))$-measurable. 
-\end{proof}
-\begin{mdframed}
-There are two important consequences of \myref{Theorem}{EDm}
-\begin{enumerate}[label=(\alph*)]
-  \item If $X,Y$ are both Borel, then a continuous function  $f:X\rightarrow Y$ must also be a measurable function. 
-  \item If there exists $T$ such that  $\Sigma_Y=\sigma (T)$, then we only have to check that $f^{-1}(E)\in \Sigma_X$ for all $E \in T$ to show $f$ is measurable. In particular, if $Y=\R^n$, then  $T$ can be just the set of all open boxes.
-\end{enumerate}
-These two consequences give the following Lemma, which later prove \myref{Theorem}{Btsa}, Theorem that make checking if $\C\text{ or }\R$-valued function is measurable easier.
-\end{mdframed}
-\begin{lemma}
-\label{CL}
-\textbf{(Computational Lemma)} Given two measurable function $u,v:(X,\Sigma_X)\rightarrow \R$ and a continuous function $\Phi:\R^2 \rightarrow (Y,\tau_Y)$, define $h:(X,\Sigma_X)\rightarrow (Y,\mathcal{B}_Y)$ by
-\begin{align*}
-h(x)\triangleq \Phi(u(x),v(x))
-\end{align*}
-We can deduce
-\begin{align*}
-h:(X,\Sigma_X)\rightarrow (Y,\mathcal{B}_Y)\text{ is measurable }
-\end{align*}
-\end{lemma}
-\begin{proof}
-Define $f:X\rightarrow \R^2$ by $f(x)\triangleq (u,v)(x)$. Because $h=\Phi \circ f$, we can reduce the problem into proving
-\begin{align*}
-\vi{f\text{ is measurable }}
-\end{align*}
-Fix an open-rectangle $I_1\times I_2 \subseteq \R^2$. Because $\mathcal{B}_{\R^2}$ can be generated by the set of all open rectangles, we can reduce the problem into proving 
-\begin{align*}
-  \vi{f^{-1}(I_1\times I_2) \in \Sigma_X}
-\end{align*}
-Because $u,v$ are measurable, we know
-\begin{align*}
-f^{-1}(I_1\times I_2)=u^{-1}(I_1)\cap v^{-1}(I_2) \in \Sigma_X \vdone
-\end{align*}
-\end{proof}
-\begin{theorem}
-\label{Btsa}
-\textbf{(Basic tools to show a real/complex-valued function is measurable)} Given a measurable set $X$, and two real-valued function $u,v:X\rightarrow \R$
-\begin{enumerate}[label=(\alph*)]
-  \item  $u+iv:X\rightarrow \C$ is measurable if and only if $u,v$ are measurable.
-  \item If  $f,g:X\rightarrow \R\text{ or }\C$ are measurable, so are $f+g,fg\text{ and }\abso{f}$.
-  \item If $f:X\rightarrow \R\text{ or }\C$ is measurable and $g:X\rightarrow \R\text{ or }\C$ isn't, then $f+g$ is not measurable.
-  \item If $f:X\rightarrow \C$ is measurable, then there exists $\alpha :X\rightarrow \C$ such that $\abso{\alpha }=1$ and $f=\alpha \abso{f}$
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-(a) follows from \myref{Lemma}{CL} and noting $u=\text{Re}(u+iv),v=\text{Im}(u+iv)$, since Re,Im $:\C\rightarrow \R$ are continuous.\\
-
-(b) follows from the fact $\R,\C$ are topological field and \myref{Lemma}{CL}. \\
-
-It is clear that the set of all function from  $X$ to $\R\text{ or }\C$ form a group under addition. (b) shows that the set of measurable functions from a subgroup, thus giving (c).\\
-
-It remains to prove (d). Define 
-\begin{align*}
-E\triangleq \set{x \in X: f(x)=0}\text{ and }\phi(z)\triangleq  \frac{z}{\abso{z}}
-\end{align*}
-We claim 
-\begin{align*}
-  \vi{\alpha \triangleq \phi\circ (f+\textbf{1}_E)\text{ suffices }}
-\end{align*}
-Because $f$ is measurable, we know $E$ is measurable. This implies that $\textbf{1}_E:X\rightarrow \C$ is measurable. It follows that $f+\textbf{1}_E$ is $(X,\mathcal{B}_\C)$-measurable. Note that $f+\textbf{1}_E$ is never $0$ on $X$.\\
-
-
-Now by \myref{Theorem}{}, we see $f+\textbf{1}_E$ is $(X,\mathcal{B}_{\C^*})$-measurable. It then follows from the fact  $\phi:\C^*\rightarrow \C$ is continuous that $\alpha $ is $(X,\mathcal{B}_\C)$ measurable.\\
-
-Observe that $\alpha$ maps $E$ into $\set{1}$, and when $x\not\in E$, we have $\alpha (x)= \frac{f(x)}{\abso{f(x)}}$. $\vdone$
-\end{proof}
-\begin{mdframed}
-Note that \myref{Theorem}{Btsa} does not consider function whose range include $\infty$. This will be later addressed using approximation of simple functions.
-\end{mdframed}
-\begin{theorem}
-\label{Slm}
-\textbf{(Superior limit of measurable $f_n:X\rightarrow [-\infty,\infty]$ is measurable)} Given a sequence $f_n:X\rightarrow [-\infty, \infty]$ of measurable functions
-\begin{align*}
-g\triangleq \sup f_n \text{ and }f\triangleq \limsup_{n\to\infty} f_n\text{ are both measurable }
-\end{align*}
-\end{theorem}
-\begin{proof}
-It is straightforward to check 
-\begin{align*}
-  g^{-1}(\alpha ,\infty] = \bigcup_n f_n^{-1} (\alpha ,\infty]
-\end{align*}
-It is straightforward to check
-\begin{align*}
-  \mathcal{B}_{[-\infty,\infty]}=\sigma \Big( \set{(\alpha ,\infty] \subseteq [-\infty,\infty]: \alpha \inr} \Big)
-\end{align*}
-These two facts and \myref{Theorem}{EDm} shows $g$ is measurable. The same arguments shows that $\inf g_k$ is measurable if $g_k$  are all measurable.\\
-
-It is straight forward to check 
-\begin{align*}
-f= \inf_{n\geq 1} \sup_{k\geq n} f_k
-\end{align*}
-It then follows $f$ is measurable.
-\end{proof}
-\begin{corollary}
-\label{Plm}
-\textbf{(Pointwise limit of measurable $f_n:X\rightarrow [-\infty,\infty]$ is measurable)} If the sequence $f_n:X\rightarrow [-\infty,\infty]$ pointwise converge to $f:X\rightarrow [-\infty,\infty]$,  then $f$ is measurable. 
-\end{corollary}
-\begin{corollary}
-\label{PaN}
-\textbf{(Positive and Negative parts of a measurable function are measurable)} If we are given measurable $f:X\rightarrow [-\infty,\infty]$, and we define the \textbf{positive and negative part} $f^+,f^-:X\rightarrow [0,\infty]$ \textbf{of} $f$ by 
-\begin{align*}
-f^+\triangleq \max \set{f,0}\text{ and }f^- \triangleq -\min \set{f,0}
-\end{align*}
-Then 
-\begin{align*}
-f^+\text{ and }f^-\text{ are measurable }
-\end{align*}
-\end{corollary}
-\begin{proof}
-Define  
-\begin{align*}
-h_n\triangleq \begin{cases}
-  f& \text{ if $n$ is odd }\\
-  0& \text{ if $n$ is even }
-\end{cases}
-\end{align*}
-then we have 
-\begin{align*}
-\limsup_{n\to\infty} h_n=f^+\text{ and }\liminf_{n\to\infty} h_n=-f^-
-\end{align*}
-Now, because $0$ is a measurable function, by \myref{Theorem}{Slm}, $f^+$ is measurable. Moreover, because $-1$ is a measurable function, by  \myref{Theorem}{Btsa}, $f^-$ is measurable.
-\end{proof}
-\section{Egorov's and Lusin's Theorem}
-\section{Abstract integration} 
-\begin{mdframed}
-We say a function is a \textbf{simple function} if its range is of finite cardinality. Simple function is the cornerstone of the development of Lebesgue Integral Theory, as we shall see.\\
-
-Suppose $s$ is a simple function defined on some measurable $E\subseteq (X,\Sigma_X)$ with range $\set{c_1,\cdots ,c_n}\subseteq [0,\infty]$. Define 
-\begin{align*}
-E_j\triangleq \set{x \in X: s(x)=c_j}
-\end{align*}
-It is clear that $\set{E_j}$ is a finite disjoint decomposition of $E$, and $s$ is measurable if and only if all $E_j$ are measurable.\\
-
-We can write
-\begin{align*}
-s= \sum_{j=1}^n c_i \textbf{1}_{E_j}
-\end{align*}
-Then if $s$ is measurable, we can define
-\begin{align*}
-\int_E s d\mu \triangleq \sum_{j=1}^n c_j \mu (E_j)
-\end{align*}
-and if $s$ is defined on some larger domain while $s|_E$ is measurable, we can define 
-\begin{align*}
-\int_E s d\mu \triangleq \sum_{j=1}^n c_j\mu (E_j\cap E)
-\end{align*}
-Note that if $s$ is defined on some measurable $F$ containing  $E$ and  $s$ is measurable on $F$, then $s$ is surely measurable on $E$. It is straightforward to verify our definition so far is consistent.
-\end{mdframed}
-
-
-\begin{mdframed}
-We now expand our definitions to the class of all measurable functions range in $[0,\infty]$.\\
-
-Given a function $f$ range in $[0,\infty]$ and measurable on $E$, we define 
-\begin{align*}
-\int_E fd\mu \triangleq \sup_{s\leq f\text{ on }E} \int_E s d\mu
-\end{align*}
-If $f$ is defined on some large measurable domain $F$, we see that 
- \begin{align*}
-\int_Efd\mu= \int_F f\textbf{1}_Ed\mu
-\end{align*}
-It is at this point one should verify our definition is so far consistent. That is, for each simple $s$, we have 
-\begin{align*}
-\int_Esd\mu=\sup_{s'\leq s\text{ on }E}\int_Es'd\mu
-\end{align*}
-The trick is to decompose each $E_j'$ into $\bigcup E_j'\cap E_i$. 
-\end{mdframed}
-
-\begin{mdframed}
-We now expand our definitions to the class of all measurable functions range in $[-\infty,\infty]$, but before such, we have to first introduce the idea of \textbf{Lebesgue integrable}. For either $s$ or  $f$, range in either $[0,\infty)$ or $[0,\infty]$, it is always possible that $\int_E s\text{ or }fd\mu=\infty$.\\ 
-
-If we have $\int_Efd\mu=\infty$, we say $f$ is \textbf{not Lebesgue integrable}, and if $\int_Efd\mu<\infty$, we say $f$ is \textbf{Lebesgue integrable on }$E$. Because $\R$ is complete in order, we know $f$ is either Lebesgue integrable or not Lebesgue integrable on $E$.\\
-
-Given a function range in $[-\infty,\infty]$ and measurable on $E$, if both $f^+,f^-$ are Lebesgue integrable on $E$, we say  $f$ is Lebesgue integrable on $E$, and write 
-\begin{align*}
-\int_E fd\mu= \int_E f^+d\mu- \int_E f^-d\mu
-\end{align*}
-If either  $f^+$ or  $f^-$ are not Lebesgue integrable on $E$, we say $f$ is not Lebesgue integrable on $E$.\\
-
-Notice that 
-\begin{align*}
-f\text{ is Lebesgue integrable on }E\iff \int_E \abso{f}d\mu<\infty
-\end{align*}
-It is clear that our definition is again so far consistent.
-\end{mdframed}
-\begin{mdframed}
-We now 
-\end{mdframed}
-
-\section{Basic property of abstract integration}
-\begin{mdframed}
-This section prove some basic properties of Lebesgue integral over general measure space $(X,\Sigma_X,\mu)$. From now when we use the notation $X$, it shall be understood $X$ is equipped with an $\sigma$-algebra $\Sigma_X$ and a measure $\mu$. We will prove 
-\begin{enumerate}[label=(\alph*)]
-  \item Lebesgue Monotone Convergence Theorem (\myref{Theorem}{LMCT})
-  \item Fatou's Lemma (\myref{Theorem}{Fatou})
-  \item Reverse Fatou's Lemma (\myref{Theorem}{RFL}) 
-  \item Dominated Convergence Theorem (\myref{Theorem}{LDCT})
-\end{enumerate}
-\end{mdframed}
-\begin{theorem}
-\label{LMCT}
-\textbf{(Lebesgue Monotone Convergence Theorem)} Given a sequence of measurable $f_n:X\rightarrow [0,\infty]$ such that $\set{f_n(x)}_{n\inn}$ is an increasing sequence for each $x\in X$, then 
-\begin{align*}
-\int_X fd\mu = \lim_{n\to \infty}\int_X f_nd\mu
-\end{align*}
-\end{theorem}
-\begin{proof}
-$f$ is measurable by \myref{Corollary}{Plm}. Because  $f_n \nearrow f$ on $X$, we know 
-\begin{align*}
- \lim_{n\to \infty}\int_X f_nd\mu = \sup_n \int_X f_nd\mu \leq \int_X fd\mu 
-\end{align*}
-It remains to prove 
-\begin{align*}
-\vi{\int_X fd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
-\end{align*}
-Fix simple $0\leq s\leq f$ on $X$. We reduce the problem into proving 
-\begin{align*}
-  \vi{\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
-\end{align*}
-Fix $c \in (0,1)$. We reduce the problem into proving 
-\begin{align*}
-  \vi{c\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
-\end{align*}
-Define 
-\begin{align*}
-E_n \triangleq \set{x\in X: f_n(x)\geq cs(x)}
-\end{align*}
-$E_n$ are measurable because $f_n-cs$ are measurable. Now because $f_n$ are non-negative on  $X$, we have 
-\begin{align*}
-\int_X f_n d\mu \geq \int_{E_n}f_n d\mu \geq c \int_{E_n} sd\mu
-\end{align*}
-Taking limit, we see
-\begin{align*}
-\lim_{n\to \infty} \int_X f_n d\mu \geq \lim_{n\to \infty} c \int_{E_n}sd\mu 
-\end{align*}
-It is straightforward to check $E_n$ is increasing and $\bigcup E_n =X$. Then if we decompose $s=\sum_{j} c_j \textbf{1}_{F_j}$, by \myref{Theorem}{Bppm}, we can take limit 
-\begin{align*}
-\lim_{n\to \infty}\mu (F_j\cap E_n)=\mu (F_j)
-\end{align*}
-It then follows that 
-\begin{align*}
-\lim_{n\to \infty}\int_X f_nd\mu \geq \lim_{n\to \infty}c \int_{E_n}sd\mu= c\int_X sd\mu \vdone
-\end{align*}
-\end{proof}
-\begin{mdframed}
-It is worth pointing out in our proof for Lebesgue Monotone Convergence Theorem, instead of proving $\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu$, we proved $c\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu$. Multiplying $\int_X sd\mu$ with $c\in (0,1)$ is not just a random limit technique. Our action play a much more profound role. Consider the Example.
-\end{mdframed}
-\begin{Example}{\textbf{(Why we take $c\int_X sd\mu$ ?)}}{}
-\begin{align*}
-X=[0,1]\text{ and }f_n=1-\frac{1}{n}
-\end{align*}
-We can take $s=f$, and see $E_n=\varnothing$ for all $n$, which renders our proceeding proof invalid. 
-\end{Example}
-\begin{corollary}
-\textbf{(Monotone Convergence Theorem for general functions)} Given a sequence of measurable $f_n:X\rightarrow [0,\infty]$ such that
-\begin{enumerate}[label=(\alph*)]
-  \item $\set{f_n(x)}_{n\inn}$ is an increasing sequence on $N^c$
-  \item $f:X\rightarrow [0,\infty]$ is the limit of $f_n$ on $N^c$ 
-  \item $\mu (N)=0$
-  \item $\mu$ is complete
-\end{enumerate}
-We have 
-\begin{align*}
-\int_X fd\mu = \lim_{n\to \infty}\int_X f_nd\mu
-\end{align*}
-\end{corollary}
-\begin{proof}
-Let
-\begin{align*}
-g(x)\triangleq \begin{cases}
-  f(x)& \text{ if $x \in N^c$ }\\
-  0& \text{ if $x\in N$ }
-\end{cases}
-\end{align*}
-Note that 
-
-
-
-\begin{align*}
-\int_X fd\mu = \int_{N^c}fd\mu = \lim_{n\to \infty}\int_{N^c} fd\mu = \lim_{n\to \infty} \int_X fd\mu
-\end{align*}
-\end{proof}
-\begin{theorem}
-\label{Fatou}
-\textbf{(Fatou's Lemma)} Given measurable $f_n:X\rightarrow [0,\infty]$ 
-\begin{align*}
-\int_X \liminf_{n\to\infty} f_nd\mu \leq \liminf_{n\to\infty} \int_X f_n d\mu
-\end{align*}
-\end{theorem}
-\begin{proof}
-Since $\inf_{k\geq n}f_k\leq f_n$ for each $n,x$, we see 
- \begin{align*}
-\int_X \inf_{k\geq n}f_k d\mu \leq \int_X f_nd\mu\text{ for all $n$ }
-\end{align*}
-Because $\inf_{k\geq n}f_k\nearrow  \liminf_{m\to\infty} f_m$ as $n\to \infty$, by (\myref{Theorem}{LMCT}: Lebesgue Monotone Convergence Theorem), we can take limit 
-\begin{align*}
-\int_X \liminf_{n\to\infty} f_n d\mu = \lim_{n\to \infty}\int_X \inf_{k\geq n}f_k d\mu\leq \liminf_{n\to\infty} \int_X f_nd\mu
-\end{align*}
-\end{proof}
-\begin{Example}{\textbf{(Fatou's Lemma strict inequality)}}{}
-\begin{align*}
-f_{2k}(x)=\begin{cases}
- 0& \text{ if $x\in [0,\frac{1}{2}]$ } \\
- 1& \text{ if $x\in (\frac{1}{2},1]$ }
-\end{cases}\text{ and }f_{2k+1}(x)=\begin{cases}
-  1& \text{ if $x\in [0,\frac{1}{2})$ }\\
-  0& \text{ if $x\in [\frac{1}{2},1]$ }
-\end{cases}
-\end{align*}
-\end{Example}
-\begin{mdframed}
-  From now, we use $L^1(\mu)$ to denote the set of all function defined and $\mu$-Lebesgue-integrable on $X$, and we say a sequence of function  $f_n:X\rightarrow [0,\infty]$ is  \textbf{dominated} by $g$, if $g$ is a $[0,\infty]$-valued function defined on $X$ such that 
-\begin{align*}
-\sup_n \abso{f_n(x)} \leq g(x)\text{ for all $x\in X$ }
-\end{align*}
-\end{mdframed}
-\begin{theorem}
-\label{RFL}
-\textbf{(Reverse Fatou's Lemma)} Given measurable $f_n:X\rightarrow [0,\infty]$ dominated by some $g \in L^1(\mu)$ 
-\begin{align*}
-\limsup_{n\to\infty} \int_X f_nd\mu \leq \int_X \limsup_{n\to\infty} f_nd\mu
-\end{align*}
-\end{theorem}
-\begin{proof}
-By (\myref{Theorem}{Fatou}: Fatou Lemma)
-\begin{align*}
-\int_X \liminf_{n\to\infty} (g-f_n) d\mu \leq \liminf_{n\to\infty} \int_X (g-f_n)d\mu 
-\end{align*}
-Multiplying both side with $-1$, we have 
-\begin{align*}
-\limsup_{n\to\infty} \int_X (f_n-g)d\mu \leq \int_X \limsup_{n\to\infty} (f_n-g)d\mu
-\end{align*}
-Then adding both side the constant $\int_X gd\mu$, we reach to the conclusion.
-\end{proof}
-\begin{mdframed}
-Note that in our proof above, when we "pull" the negative sign out from $\liminf_{n\to\infty} $, it changed to $\limsup_{n\to\infty} $. This is a standard technique, which can be justified using the sub-sequence definition of limit superior.
-\end{mdframed}
-\begin{theorem}
-\label{LDCT}
-\textbf{(Dominate Convergence Theorem)} Given a sequence $f_n:X\rightarrow \C\cup \set{\infty}$ of measurable function such that 
-\begin{align*}
-f\triangleq \lim_{n\to \infty}f_n\text{ exists on $X$ }
-\end{align*}
-If there exists $g \in L^1(\mu)$ dominating $f_n$, then 
-\begin{align*}
-\lim_{n \to \infty} \int_X \abso{f_n-f}d\mu=0\text{ and }\int_X fd\mu = \lim_{n\to \infty} \int_X f_n d\mu\text{ exists in $\C\cup  \set{\infty}$ }
-\end{align*}
-\end{theorem}
-\begin{proof}
-Because $f$ is measurable by \myref{Corollary}{Plm} and  $\abso{f}\leq g$ on $X$, $f \in L^1(\mu)$.\\
-
-We first prove 
-\begin{align*}
-  \vi{\lim_{n\to \infty}\int_X \abso{f_n-f}d\mu=0}
-\end{align*}
-We relax the problem into proving 
-\begin{align*}
-  \vi{\limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu=0}
-\end{align*}
-Note that $\abso{f_n-f}\leq 2g$. We can now apply (\myref{Theorem}{Fatou}: Fatou lemma) to $2g- \abso{f_n-f}$ and see 
-\begin{align*}
-\int_X 2gd\mu&=   \int_X \lim_{n\to \infty}(2g- \abso{f_n-f})d\mu \\
-&\leq \liminf_{n\to\infty} \int_X (2g-\abso{f_n-f})d\mu\\
-&= \int_X 2gd\mu + \liminf_{n\to\infty} \Big(- \int_X \abso{f_n-f}d\mu \Big)\\
-&=\int_X 2gd\mu - \limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu
-\end{align*}
-Then because $g \in L^1(\mu)$, we can subtract it and obtain 
-\begin{align*}
-\limsup_{n\to\infty}\int_X  \abso{f_n-f}d\mu=0 \vdone
-\end{align*}
-It then follows that 
-\begin{align*}
-  \limsup_{n\to\infty} \abso{\int_X (f_n-f)d\mu} \leq \limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu =0
-\end{align*}
-which implies 
-\begin{align*}
-\lim_{n\to \infty} \int_X (f_n-f)d\mu =0
-\end{align*}
-and because $f\in L^1(\mu)$, we have
-\begin{align*}
-\lim_{n\to \infty}\int_X f_nd\mu = \int_X fd\mu
-\end{align*}
-\end{proof}
-\begin{Example}{\textbf{(Counterexample for Dominate Convergence Theorem)}}{}
-\begin{align*}
-f_n(x)=\begin{cases}
-  \frac{1}{n}& \text{ if $\abso{x}<n$ }\\
-  0& \text{ if $\abso{x}\geq n$ }
-\end{cases}
-\end{align*}
-\end{Example}
-\section{Equivalent Definitions of Lebesgue Measurable Functions and Integral}
-\chapter{Harmonic Analysis}
-\section{Weierstrass approximation Theorem: $[a,b]\rightarrow \R$}
-\begin{theorem}
-\label{Bernoulli's Inequality}
-\textbf{(Bernoulli's Inequality)} Given $r,x \in\R$, suppose 
-\begin{enumerate}[label=(\alph*)]
-  \item $r\geq 1$ 
-  \item $x\geq -1$
-\end{enumerate}
-Then
-\begin{align*}
-  (1+x)^r\geq 1+rx
-\end{align*}
-\end{theorem}
-\begin{proof}
-Fix $r\geq 1$. We wish 
-\begin{align*}
-\vi{\text{ to prove }(1+x)^r\geq 1+rx\text{ for all  }x \geq -1}
-\end{align*}
-Define $f:[-1,\infty)\rightarrow \R$ by 
- \begin{align}
-\label{Bere1}
-f(x)=(1+x)^r-(1+rx)
-\end{align}
-We reduced the problem into  
-\begin{align*}
-\vi{\text{ proving }f(x)\geq 0\text{ for all } x\geq -1}
-\end{align*}
-Because $r\geq 1$ by premise, by definition of $f(x)$  (\myref{Equation}{Bere1}), we see that 
-\begin{align*}
-f(0)=0\text{, and }f(-1)=r-1\geq 0
-\end{align*}
-Notice that by definition of $f$  (\myref{Equation}{Bere1}),  $f(x)$ is clearly differentiable on $(-1,\infty)$.\\
-
-Then, by MVT (\myref{Theorem}{MVT}), to prove $f(x)\geq 0$ on $(-1,\infty)$, we only wish 
-\begin{align*}
-\vi{\text{ to prove }f'(x)\geq 0\text{ for all }x> 0\text{ and }f'(x)\leq 0\text{ for all $x \in (-1,0)$ }}
-\end{align*}
-Compute $f'$
- \begin{align*}
-f'(x)&=r(1+x)^{r-1}-r\\
-&=r\Big((1+x)^{r-1}-1 \Big)
-\end{align*}
-Because $r\geq 1$, we can deduce 
-\begin{align*}
-x>0 \implies (1+x)^{r-1}\geq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\geq 0
-\end{align*}
-and deduce 
-\begin{align*}
-x \in (-1,0) \implies 1+x \in (0,1) \implies (1+x)^{r-1}\leq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\leq  0
-\end{align*}
-$\vdone$
-\end{proof}
-\begin{mdframed}
-In this section, notation  $\mathcal{C}\big([a,b] \big)$ means the set of \textbf{real-valued continuous function on $[a,b]$}.
-\end{mdframed}
-\begin{theorem}
-\label{WaT}
-\textbf{(Weierstrass approximation Theorem: $[a,b]\rightarrow \R$)} Let $\R[x]\big|_{[a,b]}$ be the space of polynomials on $[a,b]$ with real coefficient. We have 
-\begin{align*}
-\text{ $\R[x]\big|_{[a,b]}$ is dense in $\Big(\mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty} \Big)$ }
-\end{align*}
-\end{theorem}
-\begin{proof}
-WOLG, we can let $[a,b]=[0,1]$. The reason we can assume such is explained at last. Now, let $f:[0,1]\rightarrow \R$ be a continuous function. Fix $\epsilon $. We only wish 
-\begin{align*}
-\vi{\text{ to find $P \in \R[x]\big|_{[0,1]}$ such that $\norm{f-P}_{\infty}<\epsilon $}}
-\end{align*}
-Define $\tilde{f} \in \mathcal{C}\big([0,1] \big)$ by 
-\begin{align}
-  \label{tse1}
-\tilde{f}(x)= f(x)-f(0)-x \big[f(1)-f(0) \big] 
-\end{align}
-It is easy to check $\tilde{f}$ is continuous. We first prove that 
-\begin{align*}
-\blue{\big( \tilde{f}(x)-f(x)\big)\in \R[x]\big|_{[0,1]}  }
-\end{align*}
-By definition of $\tilde{f} $ (\myref{Equation}{tse1}), we see 
-\begin{align*}
-\tilde{f}(x)-f(x)=(f(0)-f(1))x- f(0)\in \R[x]\big|_{[0,1]}\bdone
-\end{align*}
-This reduce our problem into 
-\begin{align*}
-\vi{\text{ finding }P\in \R[x]\big|_{[0,1]}\text{ such that $\norm{\tilde{f}-P}_{\infty}<\epsilon $ }}
-\end{align*}
-Notice that by definition of $\tilde{f}$ (\myref{Equation}{tse1}), we have 
-\begin{align*}
-\tilde{f}(0)=0=\tilde{f}(1) 
-\end{align*}
-Then, we can expand the definition of $\tilde{f} $  by
-\begin{align}
-\label{tse2}  
-\tilde{f}(x)=\begin{cases}
-  \tilde{f} (x)& \text{ if $x\in [0,1]$ }\\
-  0& \text{ if $x \not \in [0,1]$ }
-\end{cases}
-\end{align}
-This makes $\tilde{f}$ uniformly continuous on $\R$, since  $\tilde{f}$ is uniformly continuous on $[0,1]$ and $[0,1]^c$. Now, for each $n\inn$, define $Q_n \in \R[x]$ by 
-\begin{align}
-\label{tse3}
-Q_n=c_n(1-x^2)^n\text{ where $c_n$ is chosen to satisfy }\int_{-1}^1 Q_n(x)dx=1
-\end{align}
-Define $P_n:[0,1]\rightarrow \R$ by 
-\begin{align*}
-P_n(x)=\int_{-1}^1 \tilde{f} (x+t)Q_n(t)dt
-\end{align*}
-We now prove 
-\begin{align*}
-\olive{P_n \in \R[x]\big|_{[0,1]}}
-\end{align*}
-Because $\tilde{f}(x)=0$ for all $x \not \in (0,1)$ by definition of $\tilde{f} $ (\myref{Equation}{tse2}), we see that 
-\begin{align}
-\label{tse4}
-P_n(x)=\int_{-x}^{1-x}\tilde{f}(x+t)Q_n(t)dt \text{ for all }x \in [0,1]
-\end{align}
-Fix $x \in [0,1]$. Now, by change of variable, we see 
-\begin{align*}
-P_n(x)=\int_{-x}^{1-x} \tilde{f}(x+t)Q_n(t)dt=\int_{0}^1 \tilde{f}(u)Q_n(u-x)du  
-\end{align*}
-Because $Q_n$ is a polynomial by definition (\myref{Equation}{tse3}), we can express $Q_n(u-x)$ by 
-\begin{align*}
-Q_n(u-x)=\sum_{k=0}^{m} a_k x^k\text{ for some $\set{a_0,\dots ,a_m}$ depending on $u$}
-\end{align*}
-Then we see 
-\begin{align*}
-  P_n(x)=\int_0^1 \tilde{f}(u)Q_n(u-x)du= \sum_{k=0}^m x^k \Big( 
-\int_0^1 \tilde{f}(u) a_kdu
-  \Big)  
-\end{align*}
-This shows that $P_n \inr[x]\big|_{[0,1]}$
-
-$\odone$\\
-
-
-Now, because $\tilde{f}$ is uniformly continuous on $\R$, we can fix $\delta<1$ such that 
-\begin{align}
-\label{tse5}
-\forall x,y \inr, \abso{x-y}<\delta \implies \abso{\tilde{f}(x)-\tilde{f}(y)  }<\frac{\epsilon}{2}
-\end{align}
-By definition of $\tilde{f}$ (\myref{Equation}{tse2}), we know $\tilde{f} $ is a bounded function. Then we can set $M$ by 
-\begin{align*}
-M=\sup_{x \inr} \abso{f(x)}
-\end{align*}
-Let $n$ satisfy 
- \begin{align}
-  \label{tse5}
-4M \sqrt{n} (1-\delta^2)^n < \frac{\epsilon}{2} 
-\end{align}
-Such $n$ exists, because  $\delta<1 \implies  \sqrt{n}(1-\delta^2)^n \to 0 $. We claim 
-\begin{align*}
-\vi{\text{ $P_n$ satisfy $\norm{\tilde{f}-P_n}_{\infty}<\epsilon $}}
-\end{align*}
-We first prove 
-\begin{align*}
-\blue{c_n< \sqrt{n} }
-\end{align*}
-By Bernoulli's Inequality (\myref{Theorem}{Bernoulli's Inequality}). Compute 
-\begin{align*}
-1=\int_{-1}^1 Q_n(x)dx&=  c_n\int_{-1}^1 (1-x^2)^n dx \\
-&=2c_n\int_0^1 (1-x^2)^n dx\\
-&\geq 2c_n\int_0^{\frac{1}{\sqrt{n} }}(1-x^2)^n dx\\
-&\geq 2c_n \int_0^{\frac{1}{\sqrt{n} }} 1-nx^2dx=c_n\big(\frac{4}{3\sqrt{n} } \big)> c_n (\frac{1}{\sqrt{n} })
-\end{align*}
-
-
-This implies 
-\begin{align*}
-\sqrt{n}>c_n \bdone
-\end{align*}
-Because $\sqrt{n}>c_n $, by definition of $Q_n$  (\myref{Equation}{tse3}), we have 
-\begin{align*}
-Q_n(x)<\sqrt{n}(1-x^2)^n \leq \sqrt{n}(1-\delta^2)^n \text{ for all $x$ such that  $\delta \leq \abso{x}\leq 1$ }
-\end{align*}
-Fix $x \in [0,1]$. Finally, because 
-\begin{enumerate}[label=(\alph*)]
-  \item $\int_{-1}^1 Q_n(x)dx=1$ by definition of  $Q_n$  (\myref{Equation}{tse3})
-  \item $Q_n(x)=c_n(1-x^2)^n\geq 0$ for all $x \in [-1,1]$ 
-  \item $\abso{\tilde{f}(x+t)-\tilde{f}(x)}<\frac{\epsilon}{2} $ for all $t$ such that $\abso{t}<\delta $, by definition of $\delta $ (\myref{Equation}{tse5})
-  \item $Q_n(x)\leq \sqrt{n}(1-\delta^2)^n $ for all $x$ such that  $\delta\leq \abso{x}\leq 1$
-  \item $4M\sqrt{n}(1-\delta^2)^n<\frac{\epsilon}{2} $ by definition of $n$  (\myref{Equation}{tse5})
-\end{enumerate}
-we have
-\begin{align*}
-\abso{P_n(x)-\tilde{f}(x)}&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)}\\
-&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)\int_{-1}^1 Q_n(t)dt }\\
-&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt -\int_{-1}^1 \tilde{f}(x)Q_n(t)dt}\\
-&=\abso{\int_{-1}^1 \big[\tilde{f}(x+t)-\tilde{f}(x)   \big]Q_n(t)dt}\\
-&\leq \int_{-1}^1 \abso{\big[ \tilde{f}(x+t)-\tilde{f}(x)\big]Q_n(t)}dt\\
-&=\int_{-1}^1 \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt\\
-&\leq \int_{-1}^{-\delta} 2MQ_n(t)dt +\int_{-\delta}^{\delta} \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt+\int_{\delta}^1 2M Q_n(t)dt\\
-&\leq 2M\Big(\int_{-1}^{-\delta}Q_n(t)dt+\int_{\delta}^1 Q_n(t)dt  \Big)+ \int_{-\delta}^\delta \big(\frac{\epsilon}{2} \big)Q_n(t)dt\\
-&\leq 4M(1-\delta) \sqrt{n}(1-\delta^2)^n+ \frac{\epsilon}{2} \\
-&\leq 4M\sqrt{n}(1-\delta^2)^n+\frac{\epsilon}{2} <\epsilon  
-\end{align*}
-Because $x$ is arbitrarily picked from  $[0,1]$, we now have $\norm{P_n-\tilde{f} }_{\infty}<\epsilon \vdone$\\
-
-Lastly, we show 
-\begin{align*}
-\olive{\text{ our result can be transplanted to arbitrary $\mathcal{C}\big([a,b] \big)$ }}
-\end{align*}
-Let $[a,b]$ be arbitrary. Fix $\epsilon $ and $f \in \mathcal{C}\big([a,b] \big)$. We wish 
-\begin{align*}
-\olive{\text{ to find $P \in \R[x]\big|_{[a,b]}$ such that $\norm{f-P}_\infty\leq \epsilon $ }}
-\end{align*}
-Define $g:[0,1]\rightarrow \R$ by 
-\begin{align}
-g(x)\triangleq f(a+(b-a)x)
-\end{align}
-We know there exists $P_n:[0,1]\rightarrow \R$ such that 
-\begin{align*}
-\norm{P_n-g}_{\infty}<\epsilon 
-\end{align*}
-Define $H_n:[a,b]\rightarrow \R$ by 
-\begin{align*}
-H_n(x)=P_n\big(\frac{x-a}{b-a} \big)
-\end{align*}
-Because $P_n$ is a real polynomial on  $[0,1]$, we know $H_n$ is a real polynomial on $[a,b]$. We now claim 
-\begin{align*}
-  \olive{\text{ such $H_n\text{ works }$ }}
-\end{align*}
-Fix $x \in [a,b]$. Observe 
-\begin{align*}
-\big|f(x)-H_n(x)\big|&=\abso{f(x)-P_n\big(\frac{x-a}{b-a} \big)}\\
-&=\abso{g\big(\frac{x-a}{b-a} \big)-P_n\big(\frac{x-a}{b-a} \big)}< \epsilon \odone
-\end{align*}
-\end{proof}
-\begin{mdframed}
-It is at now, we will show that every real-valued continuous functions on $[a,b]$ can be approximated by polynomials with rational coefficient. This fact enable our computer to more easily approximate real-valued continuous function on $[a,b]$.\\
-
-Note that since $\mathcal{C}\big([a,b] \big)$ is a separable metric space, we can show that $\mathcal{C}\big([a,b] \big)$ has cardinality of at most continuum $\mathfrak{c}$ . 
-\end{mdframed}
-\begin{theorem}
-\textbf{(The space $\Q[x]|_{[a,b]}$ is dense in $\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)$, thus $\mathcal{C}\big([a,b] \big)$ is separable)} 
-\begin{align*}
-\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)\text{ is separable }
-\end{align*}
-\end{theorem}
-\begin{proof}
-Because $\Q[x]\big|_{[a,b]}$ is countable, to show $\mathcal{C}\big([a,b] \big)$ is separable, we only wish to show 
-\begin{align*}
-\vi{\Q [x]\big|_{[a,b]}\text{ is dense in }\mathcal{C}\big([a,b] \big)}
-\end{align*}
-Because $\R[x]\big|_{[a,b]}$ is dense in $\mathcal{C}\big([a,b] \big)$, we reduce our problem into proving 
-\begin{align*}
-\vi{\Q[x]\big|_{[a,b]}\text{ is dense in }\R[x]\big|_{[a,b]}}
-\end{align*}
-Fix $\epsilon \text{ and } P \in \R[x]\big|_{[a,b]}$. We must
-\begin{align*}
-\vi{\text{ find $Q \in \Q[x]\big|_{[a,b]}$ such that $\norm{Q-P}_\infty \leq \epsilon $}}
-\end{align*}
-Express $P(x)=\sum_{k=0}^n r_kx^k$. Let $M> \max \set{\abso{a},\abso{b}}$. Because $\Q$ is dense in $\R$, we know there exists $c_k \inq$ such that  $\abso{c_k-r_k}< \frac{\epsilon }{(n+1)M^n}$. We claim 
-\begin{align*}
-\vi{Q(x)=\sum_{k=0}^n c_kx^k\text{ works }}
-\end{align*}
-Fix $x \in [a,b]$. See
-\begin{align*}
-\abso{P(x)-Q(x)}&=\abso{\sum_{k=0}^n (c_k-r_k)x^k}\\
-&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot \abso{x}^k\\
-&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot M^k\\
-&\leq (M^n)\sum_{k=0}^n \abso{c_k-r_k}\\
-&< M^n (n+1)\big( \frac{\epsilon }{(n+1)M^n}\big)=\epsilon \vdone
-\end{align*}
-\end{proof}
-\section{The Stone-Weierstrass Theorem}
-\begin{mdframed}
-Recall that a \textbf{vector space over a field $\F$} is a set $V$ equipped with \textbf{vector addition} $+:V\times V\to V$  and \textbf{scalar multiplication}  such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $(V,+)$ is an abelian group. 
-  \item Scalar multiplication is compatible with field multiplication:   $\Big((ab)v=a(bv) \Big)$
-  \item Scalar multiplication is distributive: $\Big((a+b)v=av+bv\text{ and }a(v+w)=av+aw \Big)$
-\end{enumerate}
-
-There are many ways to define the term \textbf{algebra over a field $\F$}. One can exhaust all the laws an algebra should obey. In short, an \textbf{algebra over a field $\F$} (or \textbf{$\F$-algebra}) is a vector space $V$ equipped with a vector multiplication such that  
-\begin{enumerate}[label=(\roman*)]
-  \item Multiplication is $\underline{\text{distributive}}$ to addition. 
-   \item Scalar and vector multiplications are compatible: $(av)\cdot (bw)=ab(v\cdot w)$
-\end{enumerate}
-Given an arbitrary set $E$ and a field $\F$, let $A$ be the set of all functions from  $E$ to $\F$. The following is a list of some algebra 
-\begin{enumerate}[label=(\alph*)]
-  \item $(\R^3,\text{cross product})$  over $\R$ 
-  \item $(\C,\text{complex multiplication})$ over $\C$ 
-  \item $(\Q[x],\text{function multiplication})$ over $\Q$
-  \item $(\text{Functions from }E\text{ to }\F,\text{function multiplication})$ over $\F$
-  \item $(\text{Continuous functions from $(E,\tau)$ to $\C$ },\text{function multiplication})$ over $\C$  
-  \item $(\text{Linear transformation from $V$ to $V$, composition})$ over $\F$ where  $V$ is over $\F$
-  \item $\big(M_n(\F),\text{matrix multiplication}\big)$ over $\F$
-\end{enumerate}
-Note that $B=(\text{continuous functions from }\C\text{ to }\C,\text{composition})$ over $\C$ is not an algebra, even though $B$ is both a vector space and a ring. ($\because$ scalar multiplication and multiplication are not compatible).\\
-
-It is at here we shall introduce some general terminologies. Given an arbitrary set $E$, a field  $\F$ and a point $x \in E$, we say a family $\mathcal{F}$ of functions  from $E$ to  $\F$  \textbf{vanish at $x$} if for all $f \in \mathcal{F}$, we have $f(x)=0$. We say $\mathcal{F}$ \textbf{separate points} in $E$ if for all  $x_2\neq x_1 \in E$, there exists $f\in \mathcal{F}$ such that $f(x_2)\neq f(x_1)$. 
-\end{mdframed}
-
-\chapter{Calculus in Euclidean Space}
 \section{Inverse Function Theorem}
 \begin{mdframed}
 Interestingly, if $f:\Big(\R,\norm{\cdot}_2 \Big)\rightarrow \Big(\R^n , \norm{\cdot}_2\Big)$ is a curve in $\R^n$ 
@@ -5557,11 +5058,11 @@ The rest of the proof boiled down to a fixed point argument  (\myref{Theorem}{BF
   \item $df_a$ is invertible 
    \item $f$ is continuously differentiable at  $a$
 \end{enumerate}
-Then there exists open $U \subseteq E$ containing $a$ such that
+Then there exists open convex $U \subseteq E$ containing $a$ such that
 \begin{enumerate}[label=(\alph*)]
   \item $f$ is one-to-one in $U$
    \item $f(U)$ is open 
-    \item The inverse of $f|_U$ is differentaible at $f(a)$. 
+    \item The inverse of $f|_U$ is differentiable at $f(a)$. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -6048,196 +5549,694 @@ We now have
 \end{Example}
 
 
-\section{Appendix: Linear Algebra}
-\begin{mdframed}
-This section contains
-\begin{enumerate}[label=(\alph*)]
-  \item definition and basic properties of the term \textbf{norm}
-  \item definition and basic properties of the term \textbf{inner product}
-  \item definition and basic properties of the term \textbf{positive semi-definite Hermitian form}
-  \item full statement and proof of \textbf{Cauchy Schwarz Inequality} for both inner product space and positive semi-definite Hermitian form  
-  \item statement and proof of \textbf{SVD} (singular value decomposition). 
-\end{enumerate}
-\end{mdframed}
-\textbf{(Norm Axiom Part)}
-\begin{mdframed}
-Recall that by a \textbf{normed space} $V$, we mean a vector space over a sub-field $\F$ of $\C$ equipped with  $\norm{\cdot}:V\to \R_0^+$ satisfying the following $\underline{\text{axioms}}$: 
-\begin{enumerate}[label=(\alph*)]
-  \item $\norm{x}=0 \implies x=0$ (positive-definiteness)
-  \item $\norm{sx}=\abso{s}\cdot \norm{x}$ for all $s \in \F$ and $x\in V$ (absolute-homogenity)
-  \item $\norm{x+y}\leq \norm{x}+\norm{y}$ for all $x,y \in V$ (triangle inequality)
-\end{enumerate}
-Observe
-\begin{align*}
-\norm{0}=\norm{0+x}\leq \norm{0}+\norm{x}\text{ for all $x\in V$ }
-\end{align*}
-This shows that $\norm{x}\geq 0$ for all $x\in V$. Also observe 
-\begin{align*}
-\norm{0}=\norm{0(x)}=\abso{0}\cdot \norm{x}=0
-\end{align*}
 
-We can now rewrite the normed space axioms into
-\begin{enumerate}[label=(\alph*)]
-  \item $\norm{x}=0\iff x=0$ (positive-definiteness)
-  \item $\norm{sx}=\abso{s}\cdot \norm{x}$ for all $s \in \F$ and $x\in V$ (absolute-homogeneity)
-  \item $\norm{x+y}\leq \norm{x}+\norm{y}$ for all $x,y \in V$ (triangle inequality)
-  \item $\norm{x}\geq 0$ for all $x \in V$ (non-negativity)
-\end{enumerate}
-\end{mdframed}
-\textbf{(Inner Product Axiom Part)}
+\chapter{Lebesgue Calculus}
+\section{Basic Property of Measurable Functions}
+\begin{abstract}
+In this section, we define the term measurable function and discuss some basic arithmetic properties of the measurable functions. 
+\end{abstract}
 \begin{mdframed}
-Recall that by an \textbf{inner product space} $V$, we mean a vector space over  $\R$ or $\C$ equipped with  $\langle \cdot,\cdot\rangle : V^2 \rightarrow \R\text{ or }\C$ satisfying the following $\underline{\text{axioms}}$
-\begin{enumerate}[label=(\alph*)]
-  \item $\langle x,x\rangle >0$ for all $x\neq 0$ (Positive-definiteness)
-  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (Conjugate symmetry)
-  \item $\langle x+y,z\rangle =\langle x,z\rangle +\langle y,z\rangle $ and $\langle cx,z\rangle=c\langle x,z\rangle $ (Linearity in the first argument)
-\end{enumerate}
-Note that conjugate symmetry let us deduce
-\begin{align*}
-\langle x,x\rangle =\overline{\langle x,x\rangle }\implies \langle x,x\rangle \inr
-\end{align*}
-Also, one can easily use linearity in first argument to deduce 
-\begin{align*}
-\langle 0,0\rangle =2\langle 0,0\rangle \implies \langle 0,0\rangle =0
-\end{align*}
-This now let us rewrite the inner product space over $\C$ axioms into 
-\begin{enumerate}[label=(\alph*)]
-  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity) 
-  \item $\langle x,x\rangle =0 \iff x=0$ (positive-definiteness)
-  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (conjugate symmetry)
-  \item $\langle cx+y,z\rangle =c\langle x,z\rangle +\langle y,z\rangle $ and $\langle x,cy+z\rangle =\overline{c}\langle x,y\rangle +\langle x,z\rangle $ (Linearity)
-\end{enumerate}
-Note that using $c=1$ and $y=0$, ($\because \langle 0,z\rangle =0\langle x,z\rangle=0 $) one can check that the latter expression of linearity implies the first expression.
+  In the most general setting, if we are given a function $f:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ between two measurable space, then we say the $f$ is a \textbf{measurable function} if every pre-image of measurable set is again measurable. Immediately, one can check that in this setting, the composition of two measurable functions must be measurable.
 \end{mdframed}
+\begin{theorem}
+\label{EDm}
+\textbf{(Criteria of function measurability)} If a function $f:(X,\Sigma_X)\rightarrow (Y,\sigma (T))$ satisfy 
+\begin{align*}
+f^{-1}(E)\in \Sigma_X\text{ for all $E \in T$ }
+\end{align*}
+then 
+\begin{align*}
+f\text{ is measurable }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define 
+\begin{align*}
+\mathcal{A}\triangleq \set{E \subseteq Y: f^{-1}(E)\in \Sigma_X}
+\end{align*}
+Check that $\mathcal{A}$ is a $\sigma$-algebra on $Y$. By premise, $T \subseteq \mathcal{A}$. It then follows from definition that $\sigma (T)\subseteq \mathcal{A}$. This conclude that $f$ is  $(\Sigma_X, \sigma(T))$-measurable. 
+\end{proof}
 \begin{mdframed}
-If the scalar field is $\R$, then conjugate symmetry is just symmetry and we also have linearity in the second argument.\\
+When $Y$ is a topological space, if there are no explicit specification of $\Sigma_Y$, as a consensus, we take $\Sigma_Y$ to be the Borel sigma algebra. This default consensus have good property if one take account of the Borel hierarchy. If $F$ is some Borel measurable subspace of $Y$, then the Borel sigma algebra $\Sigma_F$ on $F$ is contained by the Borel sigma algebra $\Sigma_Y$ on $Y$ by a proof of transfinite induction on the Borel hierarchy of  $\Sigma_F$. This implies that if $f:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ is measurable, and $f$ only take value in $F$, then $f$ is still measurable when considered as a function $f:(X,\Sigma_X)\rightarrow (F,\Sigma_F)$ between $X$ and  $F$. \\
 
-This now let us rewrite the inner product space over $\R$ axioms into 
+Although $\Sigma_Y$ is by default the Borel sigma algebra, when $X=\R^d$ and  $\Sigma_X$ is also not explicit specified, the sigma algebra $\Sigma_X$ is by default the Lebesgue sigma algebra $\Sigma_X\triangleq \mathcal{L}(\R^d)$, for obvious reason that we are building the Theory of measurable function for the Theory of Lebesgue integration. Take $Y$ to be some topological space, and suppose $f$ is define on some subset of $X$ and has codomain $Y$. If  $E\subseteq X$ is some Lebesgue measurable set, we say  $f$ is \textbf{measurable on $E$} if $f$ is defined on $E$ and  $f|_E:(E,\Sigma_E)\rightarrow (Y,\Sigma_Y)$ is measurable where $\Sigma_E$ is the sub-sigma algebra of the Lebesgue sigma algebra $\mathcal{L}(\R^d)$ defined by $\Sigma_E\triangleq \set{H\cap E:H \in \mathcal{L}(\R^d)}$. Note that the priori $E$ is Lebesgue measurable implies that $\Sigma_E\subseteq \mathcal{L}(\R^d)$. \\
+
+
+
+With this definition and the fact null sets are measurable, we immediately see that if  $g $ is defined on $E$, $f$ is measurable on  $E$, and  $g=f$ \textbf{almost everywhere on $E$}, i.e., $\abso{\set{x\in E:f(x)\neq g(x)}}=0$, then $g$ is also measurable on $E$. \\
+
+
+
+
+In addition to this almost everywhere property, if $f$ is extended-real-valued, then because 
+\begin{align*}
+  \set{f\geq  a}= \bigcup_n \set{f > a-\frac{1}{n}}
+\end{align*}
+where the notation $\set{f>a}$ simply mean $\set{f>a}\triangleq \set{x\in E: f(x)>a}$, and because open set in $\overline{\R}$ can be expressed as disjoint union of some countable collection of open interval, with \myref{Theorem}{EDm} we can equivalently define function to be Lebesgue measurable on $E$ if and only if 
+\begin{align*}
+\set{f>a}\text{ is Lebesgue measurable for all }a\inr
+\end{align*}
+Beside this important simplification of the definition of function measurability, we also see from \myref{Theorem}{EDm} that if $X,Y$ are both Borel, then a continuous function  $f:X\rightarrow Y$ must also be a measurable function. These proposition give the following Lemma, which later prove \myref{Theorem}{Btsa}, by replacing the codomain $Y$ with $\R$ or $\C$. 
+\end{mdframed}
+\begin{lemma}
+\label{CL}
+\textbf{(Computational Lemma)} Given a second-countable topological space $Y$, two functions $u,v:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ and a continuous function $\Phi:Y^2 \rightarrow Y$, if we define $h:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ by
+\begin{align*}
+h(x)\triangleq \Phi(u(x),v(x))
+\end{align*}
+then  
+\begin{align*}
+h:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)\text{ is measurable }
+\end{align*}
+\end{lemma}
+\begin{proof}
+Define $f:X\rightarrow Y^2$ by 
+\begin{align*}
+f(x)=\big(u(x),v(x) \big)
+\end{align*}
+Because $h:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ is the composition of $f:(X,\Sigma_X)\rightarrow (Y^2 ,\Sigma_{Y^2})$ and $\Phi:(Y^2 ,\Sigma_{Y^2})\rightarrow (Y,\Sigma_{Y})$ is continuous, we can reduce the problem into proving
+\begin{align*}
+\vi{f\text{ is $(\Sigma_X,\Sigma_{Y^2})$-measurable }}
+\end{align*}
+Let $\mathcal{B}$ be a countable basis of $Y$. It is clear that $\Sigma_{Y^2}=\sigma (\mathcal{B}^2)$. Now if we fix $I_1\times I_2 \in \mathcal{B}^2$, the proof follows from \myref{Theorem}{EDm} and noting 
+\begin{align*}
+f^{-1}(I_1\times I_2)=u^{-1}(I_1)\cap v^{-1}(I_2) \in \Sigma_X \vdone
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Btsa}
+\textbf{(Arithmetic properties of measurable real and complex valued function)} Given two real-valued function $u,v:(X,\Sigma_X)\rightarrow \R$
 \begin{enumerate}[label=(\alph*)]
-  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity) 
-  \item $\langle x,x\rangle =0 \iff x=0$ (positive-definiteness)
-  \item $\langle x,y\rangle =\langle y,x\rangle $ (symmetry)
-  \item Linearity in both arguments
+  \item  $u+iv:X\rightarrow \C$ is measurable if and only if $u,v$ are measurable.
+  \item If  $f,g:X\rightarrow \R\text{ or }\C$ are measurable, so are $f+g,fg\text{ and }\abso{f}$.
+  \item If $f:X\rightarrow \R\text{ or }\C$ is measurable and $g:X\rightarrow \R\text{ or }\C$ isn't, then $f+g$ is not measurable.
 \end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) and (b) follows from \myref{Lemma}{CL}, noting $u=\operatorname{Re}(u+iv),v=\operatorname{Im}(u+iv)$ and the fact $\R,\C$ are topological fields. It is clear that the set of all function from  $X$ to $\R\text{ or }\C$ form a group under addition. (b) shows that the set of measurable functions from a subgroup, thus giving (c).
+\end{proof}
+\begin{mdframed}
+Note that \myref{Theorem}{Btsa} does not consider function whose range includes $\pm \infty$. 
+\end{mdframed}
+\begin{theorem}
+\label{Slm}
+\textbf{(Superior limit of measurable $f_n:X\rightarrow [-\infty,\infty]$ is measurable)} Given a sequence $f_n:X\rightarrow [-\infty, \infty]$ of measurable functions
+\begin{align*}
+g\triangleq \sup f_n \text{ and }f\triangleq \limsup_{n\to\infty} f_n\text{ are both measurable }
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proofs follows from noting 
+\begin{align*}
+\set{g>a}=\bigcup_n \set{f_n>a}\text{ for all $a\inr$ }
+\end{align*}
+and noting $\limsup_{n\to\infty} f_n= \inf_{n\geq 1} (\sup_{k\geq n} f_k)$. 
+\end{proof}
+\begin{mdframed}
+Immediately, following from \myref{Theorem}{Slm}, we see that if $f$ is a pointwise limit of some sequence of measurable function $(f_n)$, then $f$ is also a measurable function. In addition to the pointwise limit, if $f:X\rightarrow [-\infty,\infty]$ is measurable, then both its positive and negative parts  $f^+,f^-:X\rightarrow [0,\infty]$ 
+\begin{align*}
+f^+(x)\triangleq \max \set{f(x),0}\text{ and }f^-(x)\triangleq  - \min  \set{f(x),0}
+\end{align*}
+are measurable, since 
+\begin{align*}
+f^+=\limsup_{n\to\infty} h_n\text{ and }f^-=-\liminf_{n\to\infty} h_n
+\end{align*}
+where $h_n:X\rightarrow [-\infty,\infty]$ is defined by 
+\begin{align*}
+h_n(x)\triangleq \begin{cases}
+  f(x)& \text{ if $n$ is odd }\\
+  0& \text{ if $n$ is even }
+\end{cases}
+\end{align*}
+In view of Lebesgue integration, perhaps the most important property of measurable function is that we can approximate them using simple functions. 
+\end{mdframed}
+\section{Egorov's and Lusin's Theorem}
+\section{Abstract integration} 
+\begin{mdframed}
+We say a function is a \textbf{simple function} if its range is of finite cardinality. Simple function is the cornerstone of the development of Lebesgue Integral Theory, as we shall see.\\
+
+Suppose $s$ is a simple function defined on some measurable $E\subseteq (X,\Sigma_X)$ with range $\set{c_1,\cdots ,c_n}\subseteq [0,\infty]$. Define 
+\begin{align*}
+E_j\triangleq \set{x \in X: s(x)=c_j}
+\end{align*}
+It is clear that $\set{E_j}$ is a finite disjoint decomposition of $E$, and $s$ is measurable if and only if all $E_j$ are measurable.\\
+
+We can write
+\begin{align*}
+s= \sum_{j=1}^n c_i \textbf{1}_{E_j}
+\end{align*}
+Then if $s$ is measurable, we can define
+\begin{align*}
+\int_E s d\mu \triangleq \sum_{j=1}^n c_j \mu (E_j)
+\end{align*}
+and if $s$ is defined on some larger domain while $s|_E$ is measurable, we can define 
+\begin{align*}
+\int_E s d\mu \triangleq \sum_{j=1}^n c_j\mu (E_j\cap E)
+\end{align*}
+Note that if $s$ is defined on some measurable $F$ containing  $E$ and  $s$ is measurable on $F$, then $s$ is surely measurable on $E$. It is straightforward to verify our definition so far is consistent.
+\end{mdframed}
+
+
+\begin{mdframed}
+We now expand our definitions to the class of all measurable functions range in $[0,\infty]$.\\
+
+Given a function $f$ range in $[0,\infty]$ and measurable on $E$, we define 
+\begin{align*}
+\int_E fd\mu \triangleq \sup_{s\leq f\text{ on }E} \int_E s d\mu
+\end{align*}
+If $f$ is defined on some large measurable domain $F$, we see that 
+ \begin{align*}
+\int_Efd\mu= \int_F f\textbf{1}_Ed\mu
+\end{align*}
+It is at this point one should verify our definition is so far consistent. That is, for each simple $s$, we have 
+\begin{align*}
+\int_Esd\mu=\sup_{s'\leq s\text{ on }E}\int_Es'd\mu
+\end{align*}
+The trick is to decompose each $E_j'$ into $\bigcup E_j'\cap E_i$. 
+\end{mdframed}
+
+\begin{mdframed}
+We now expand our definitions to the class of all measurable functions range in $[-\infty,\infty]$, but before such, we have to first introduce the idea of \textbf{Lebesgue integrable}. For either $s$ or  $f$, range in either $[0,\infty)$ or $[0,\infty]$, it is always possible that $\int_E s\text{ or }fd\mu=\infty$.\\ 
+
+If we have $\int_Efd\mu=\infty$, we say $f$ is \textbf{not Lebesgue integrable}, and if $\int_Efd\mu<\infty$, we say $f$ is \textbf{Lebesgue integrable on }$E$. Because $\R$ is complete in order, we know $f$ is either Lebesgue integrable or not Lebesgue integrable on $E$.\\
+
+Given a function range in $[-\infty,\infty]$ and measurable on $E$, if both $f^+,f^-$ are Lebesgue integrable on $E$, we say  $f$ is Lebesgue integrable on $E$, and write 
+\begin{align*}
+\int_E fd\mu= \int_E f^+d\mu- \int_E f^-d\mu
+\end{align*}
+If either  $f^+$ or  $f^-$ are not Lebesgue integrable on $E$, we say $f$ is not Lebesgue integrable on $E$.\\
+
+Notice that 
+\begin{align*}
+f\text{ is Lebesgue integrable on }E\iff \int_E \abso{f}d\mu<\infty
+\end{align*}
+It is clear that our definition is again so far consistent.
 \end{mdframed}
 \begin{mdframed}
-If we do not require $\langle \cdot,\cdot\rangle $ to be positive-definite, but only non-negative, i.e. $\langle x,x\rangle \geq 0$ for all $x\in V$, then we have a \textbf{positive semi-definite Hermitian form}. Formally speaking, a positive semi-definite Hermitian form $\langle\cdot,\cdot \rangle :V^2 \rightarrow \R\text{ or }\C$ satisfy the following axioms
+We now 
+\end{mdframed}
+
+\section{Basic property of abstract integration}
+\begin{mdframed}
+This section prove some basic properties of Lebesgue integral over general measure space $(X,\Sigma_X,\mu)$. From now when we use the notation $X$, it shall be understood $X$ is equipped with an $\sigma$-algebra $\Sigma_X$ and a measure $\mu$. We will prove 
 \begin{enumerate}[label=(\alph*)]
-  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity)
-  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (conjugate symmetry)
-  \item $\langle x+y,z\rangle =\langle x,z\rangle +\langle y,z\rangle $ and $\langle cx,z\rangle=c\langle x,z\rangle $ (Linearity in the first argument)
+  \item Lebesgue Monotone Convergence Theorem (\myref{Theorem}{LMCT})
+  \item Fatou's Lemma (\myref{Theorem}{Fatou})
+  \item Reverse Fatou's Lemma (\myref{Theorem}{RFL}) 
+  \item Dominated Convergence Theorem (\myref{Theorem}{LDCT})
 \end{enumerate}
-\begin{Example}{\textbf{(Example of Positive semi-definite Hermitian form)}}{}
+\end{mdframed}
+\begin{theorem}
+\label{LMCT}
+\textbf{(Lebesgue Monotone Convergence Theorem)} Given a sequence of measurable $f_n:X\rightarrow [0,\infty]$ such that $\set{f_n(x)}_{n\inn}$ is an increasing sequence for each $x\in X$, then 
 \begin{align*}
-\text{ arbitrary }V\text{ over $\R$ or  $\C$ }\hspace{0.5cm}\langle x,y\rangle \triangleq 0\text{ for all $x,y$ }\hspace{1cm}
+\int_X fd\mu = \lim_{n\to \infty}\int_X f_nd\mu
 \end{align*}
+\end{theorem}
+\begin{proof}
+$f$ is measurable by \myref{Corollary}{Plm}. Because  $f_n \nearrow f$ on $X$, we know 
+\begin{align*}
+ \lim_{n\to \infty}\int_X f_nd\mu = \sup_n \int_X f_nd\mu \leq \int_X fd\mu 
+\end{align*}
+It remains to prove 
+\begin{align*}
+\vi{\int_X fd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
+\end{align*}
+Fix simple $0\leq s\leq f$ on $X$. We reduce the problem into proving 
+\begin{align*}
+  \vi{\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
+\end{align*}
+Fix $c \in (0,1)$. We reduce the problem into proving 
+\begin{align*}
+  \vi{c\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
+\end{align*}
+Define 
+\begin{align*}
+E_n \triangleq \set{x\in X: f_n(x)\geq cs(x)}
+\end{align*}
+$E_n$ are measurable because $f_n-cs$ are measurable. Now because $f_n$ are non-negative on  $X$, we have 
+\begin{align*}
+\int_X f_n d\mu \geq \int_{E_n}f_n d\mu \geq c \int_{E_n} sd\mu
+\end{align*}
+Taking limit, we see
+\begin{align*}
+\lim_{n\to \infty} \int_X f_n d\mu \geq \lim_{n\to \infty} c \int_{E_n}sd\mu 
+\end{align*}
+It is straightforward to check $E_n$ is increasing and $\bigcup E_n =X$. Then if we decompose $s=\sum_{j} c_j \textbf{1}_{F_j}$, by \myref{Theorem}{Bppm}, we can take limit 
+\begin{align*}
+\lim_{n\to \infty}\mu (F_j\cap E_n)=\mu (F_j)
+\end{align*}
+It then follows that 
+\begin{align*}
+\lim_{n\to \infty}\int_X f_nd\mu \geq \lim_{n\to \infty}c \int_{E_n}sd\mu= c\int_X sd\mu \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+It is worth pointing out in our proof for Lebesgue Monotone Convergence Theorem, instead of proving $\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu$, we proved $c\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu$. Multiplying $\int_X sd\mu$ with $c\in (0,1)$ is not just a random limit technique. Our action play a much more profound role. Consider the Example.
+\end{mdframed}
+\begin{Example}{\textbf{(Why we take $c\int_X sd\mu$ ?)}}{}
+\begin{align*}
+X=[0,1]\text{ and }f_n=1-\frac{1}{n}
+\end{align*}
+We can take $s=f$, and see $E_n=\varnothing$ for all $n$, which renders our proceeding proof invalid. 
 \end{Example}
-\end{mdframed}
-\textbf{(Norm Induce Part)}
-\begin{mdframed}
-Given a vector space $V$ over $\R$ or  $\C$, one can check that if  $V$ is equipped with an inner product  $\langle \cdot,\cdot\rangle :V^2\rightarrow \R\text{ or }\C$, then we can induce a norm on $V$ by 
+\begin{corollary}
+\textbf{(Monotone Convergence Theorem for general functions)} Given a sequence of measurable $f_n:X\rightarrow [0,\infty]$ such that
+\begin{enumerate}[label=(\alph*)]
+  \item $\set{f_n(x)}_{n\inn}$ is an increasing sequence on $N^c$
+  \item $f:X\rightarrow [0,\infty]$ is the limit of $f_n$ on $N^c$ 
+  \item $\mu (N)=0$
+  \item $\mu$ is complete
+\end{enumerate}
+We have 
 \begin{align*}
-\hspace{3cm}\norm{x}\triangleq \sqrt{\langle x,x\rangle }\hspace{1.5cm}(x \in V)
+\int_X fd\mu = \lim_{n\to \infty}\int_X f_nd\mu
+\end{align*}
+\end{corollary}
+\begin{proof}
+Let
+\begin{align*}
+g(x)\triangleq \begin{cases}
+  f(x)& \text{ if $x \in N^c$ }\\
+  0& \text{ if $x\in N$ }
+\end{cases}
 \end{align*}
 Note that 
-\begin{align*}
-\norm{x}=0\iff \langle x,x\rangle =0 
-\end{align*}
-This implies that if $\langle \cdot,\cdot\rangle $ is an inner product (satisfy positive-definiteness), then $\norm{\cdot}$ is also positive-definite. And if $\langle \cdot,\cdot\rangle $ is not positive-definite, then there exists  $x\neq 0\in V$ such that $\norm{x}=0$, which make $\norm{\cdot}$ a \textbf{semi-norm}.\\
 
-Absolute homogeneity follows from the linearity of inner product.\\
 
-To check triangle inequality, we first have to prove Cauchy-Schwarz inequality.
-\end{mdframed}
-\begin{theorem}
-\label{BPoP}
-\textbf{(Basic Property of Positive semi-definite Hermitian form)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle:V^2 \rightarrow \R\text{ or }\C $ and $x,y \in V$, we have 
+
 \begin{align*}
-\langle x,x\rangle =0 \implies \langle x,y\rangle =0
-\end{align*}
-\end{theorem}
-\begin{proof}
-\As{$\langle x,y\rangle\neq 0 $}. Fix $t> \frac{\norm{y}^2 }{2\abso{\langle x,y\rangle }^2}$. Compute 
-\begin{align*}
-\norm{y-t\langle y,x\rangle x}^2 &= \norm{y}^2 + \norm{(-t)\langle y,x\rangle x }^2  + \langle -t\langle y,x\rangle x,y \rangle + \langle y,-t\langle y,x\rangle x\rangle \\
-&=\norm{y}^2 + t^2 \abso{\langle x,y\rangle }^2 \norm{x}^2 -t \langle y,x\rangle \langle x,y\rangle - t \langle x,y\rangle \langle y,x\rangle  \\
-&= \norm{y}^2- 2t \abso{\langle x,y\rangle }^2 <0 \tCaC
+\int_X fd\mu = \int_{N^c}fd\mu = \lim_{n\to \infty}\int_{N^c} fd\mu = \lim_{n\to \infty} \int_X fd\mu
 \end{align*}
 \end{proof}
 \begin{theorem}
-\textbf{(Cauchy-Schwarz Inequality)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle :V^2\rightarrow \C$ on vector space $V$ over $\C$, we have 
-\begin{enumerate}[label=(\alph*)]
-  \item $\abso{\langle x,y\rangle}\leq  \norm{x}\cdot\norm{y}\hspace{0.5cm}(x,y \in V)$ 
-  \item the equality hold true if $x,y$ are linearly dependent
-  \item the equality hold true if and only if $x,y$ are linearly dependent (provided $\langle \cdot,\cdot\rangle $ is an inner product)
-\end{enumerate}
+\label{Fatou}
+\textbf{(Fatou's Lemma)} Given measurable $f_n:X\rightarrow [0,\infty]$ 
+\begin{align*}
+\int_X \liminf_{n\to\infty} f_nd\mu \leq \liminf_{n\to\infty} \int_X f_n d\mu
+\end{align*}
 \end{theorem}
 \begin{proof}
+Since $\inf_{k\geq n}f_k\leq f_n$ for each $n,x$, we see 
+ \begin{align*}
+\int_X \inf_{k\geq n}f_k d\mu \leq \int_X f_nd\mu\text{ for all $n$ }
+\end{align*}
+Because $\inf_{k\geq n}f_k\nearrow  \liminf_{m\to\infty} f_m$ as $n\to \infty$, by (\myref{Theorem}{LMCT}: Lebesgue Monotone Convergence Theorem), we can take limit 
+\begin{align*}
+\int_X \liminf_{n\to\infty} f_n d\mu = \lim_{n\to \infty}\int_X \inf_{k\geq n}f_k d\mu\leq \liminf_{n\to\infty} \int_X f_nd\mu
+\end{align*}
+\end{proof}
+\begin{Example}{\textbf{(Fatou's Lemma strict inequality)}}{}
+\begin{align*}
+f_{2k}(x)=\begin{cases}
+ 0& \text{ if $x\in [0,\frac{1}{2}]$ } \\
+ 1& \text{ if $x\in (\frac{1}{2},1]$ }
+\end{cases}\text{ and }f_{2k+1}(x)=\begin{cases}
+  1& \text{ if $x\in [0,\frac{1}{2})$ }\\
+  0& \text{ if $x\in [\frac{1}{2},1]$ }
+\end{cases}
+\end{align*}
+\end{Example}
+\begin{mdframed}
+  From now, we use $L^1(\mu)$ to denote the set of all function defined and $\mu$-Lebesgue-integrable on $X$, and we say a sequence of function  $f_n:X\rightarrow [0,\infty]$ is  \textbf{dominated} by $g$, if $g$ is a $[0,\infty]$-valued function defined on $X$ such that 
+\begin{align*}
+\sup_n \abso{f_n(x)} \leq g(x)\text{ for all $x\in X$ }
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{RFL}
+\textbf{(Reverse Fatou's Lemma)} Given measurable $f_n:X\rightarrow [0,\infty]$ dominated by some $g \in L^1(\mu)$ 
+\begin{align*}
+\limsup_{n\to\infty} \int_X f_nd\mu \leq \int_X \limsup_{n\to\infty} f_nd\mu
+\end{align*}
+\end{theorem}
+\begin{proof}
+By (\myref{Theorem}{Fatou}: Fatou Lemma)
+\begin{align*}
+\int_X \liminf_{n\to\infty} (g-f_n) d\mu \leq \liminf_{n\to\infty} \int_X (g-f_n)d\mu 
+\end{align*}
+Multiplying both side with $-1$, we have 
+\begin{align*}
+\limsup_{n\to\infty} \int_X (f_n-g)d\mu \leq \int_X \limsup_{n\to\infty} (f_n-g)d\mu
+\end{align*}
+Then adding both side the constant $\int_X gd\mu$, we reach to the conclusion.
+\end{proof}
+\begin{mdframed}
+Note that in our proof above, when we "pull" the negative sign out from $\liminf_{n\to\infty} $, it changed to $\limsup_{n\to\infty} $. This is a standard technique, which can be justified using the sub-sequence definition of limit superior.
+\end{mdframed}
+\begin{theorem}
+\label{LDCT}
+\textbf{(Dominate Convergence Theorem)} Given a sequence $f_n:X\rightarrow \C\cup \set{\infty}$ of measurable function such that 
+\begin{align*}
+f\triangleq \lim_{n\to \infty}f_n\text{ exists on $X$ }
+\end{align*}
+If there exists $g \in L^1(\mu)$ dominating $f_n$, then 
+\begin{align*}
+\lim_{n \to \infty} \int_X \abso{f_n-f}d\mu=0\text{ and }\int_X fd\mu = \lim_{n\to \infty} \int_X f_n d\mu\text{ exists in $\C\cup  \set{\infty}$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $f$ is measurable by \myref{Corollary}{Plm} and  $\abso{f}\leq g$ on $X$, $f \in L^1(\mu)$.\\
+
 We first prove 
 \begin{align*}
-  \vi{\hspace{3cm}\abso{\langle x,y\rangle }\leq \norm{x}\cdot\norm{y}\hspace{1.5cm}(x,y \in V)}
+  \vi{\lim_{n\to \infty}\int_X \abso{f_n-f}d\mu=0}
 \end{align*}
-Fix $x,y \in V$. \myref{Theorem}{BPoP} tell us $\norm{x}=0 \implies  \langle x,y\rangle =0$. Then we can reduce the problem into proving 
+We relax the problem into proving 
 \begin{align*}
-\vi{\frac{\abso{\langle x,y\rangle }^2}{\norm{x}^2}\leq\norm{y}^2  }
+  \vi{\limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu=0}
 \end{align*}
-Set $z\triangleq y-\frac{\langle y,x\rangle }{\norm{x}^2}x$. We then have 
+Note that $\abso{f_n-f}\leq 2g$. We can now apply (\myref{Theorem}{Fatou}: Fatou lemma) to $2g- \abso{f_n-f}$ and see 
 \begin{align*}
-\langle z,x\rangle =\langle y-\frac{\langle y,x\rangle }{\norm{x}^2}x,x \rangle =\langle y,x\rangle - \frac{\langle y,x\rangle }{\norm{x}^2}\langle x,x\rangle =0
+\int_X 2gd\mu&=   \int_X \lim_{n\to \infty}(2g- \abso{f_n-f})d\mu \\
+&\leq \liminf_{n\to\infty} \int_X (2g-\abso{f_n-f})d\mu\\
+&= \int_X 2gd\mu + \liminf_{n\to\infty} \Big(- \int_X \abso{f_n-f}d\mu \Big)\\
+&=\int_X 2gd\mu - \limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu
 \end{align*}
-Then from $y=z+\frac{\langle y,x\rangle }{\norm{x}^2}x$, we can now deduce
+Then because $g \in L^1(\mu)$, we can subtract it and obtain 
 \begin{align*}
-\langle y,y\rangle &= \langle z+\frac{\langle y,x\rangle }{\norm{x}^2}x,z+ \frac{\langle y,x\rangle }{\norm{x}^2}x\rangle  \\
-&=\langle z,z\rangle + \abso{\frac{\langle y,x\rangle }{\langle x,x\rangle }}^2 \langle x,x\rangle \\
-&=\langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }
+\limsup_{n\to\infty}\int_X  \abso{f_n-f}d\mu=0 \vdone
 \end{align*}
-Because $\langle z,z\rangle\geq 0 $, we now have
+It then follows that 
 \begin{align*}
-\langle y,y\rangle = \langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\geq  \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\vdone
+  \limsup_{n\to\infty} \abso{\int_X (f_n-f)d\mu} \leq \limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu =0
 \end{align*}
-The equality hold true if and only if $\langle z,z\rangle =0$. This explains the other two statements regarding the equality. 
+which implies 
+\begin{align*}
+\lim_{n\to \infty} \int_X (f_n-f)d\mu =0
+\end{align*}
+and because $f\in L^1(\mu)$, we have
+\begin{align*}
+\lim_{n\to \infty}\int_X f_nd\mu = \int_X fd\mu
+\end{align*}
+\end{proof}
+\begin{Example}{\textbf{(Counterexample for Dominate Convergence Theorem)}}{}
+\begin{align*}
+f_n(x)=\begin{cases}
+  \frac{1}{n}& \text{ if $\abso{x}<n$ }\\
+  0& \text{ if $\abso{x}\geq n$ }
+\end{cases}
+\end{align*}
+\end{Example}
+\section{Equivalent Definitions of Lebesgue Measurable Functions and Integral}
+\section{Change of Variables Formula}
+\begin{theorem}
+  \textbf{(Linear Transformation and Lebesgue Measure)} Given a vector space homomorphism $T:\R^d\rightarrow \R^d$ and a Lebesgue measurable set $E\subseteq \R^d$, we have 
+\begin{align*}
+\abso{T(E)} = \abso{\operatorname{det}(T)}\cdot \abso{E}  
+\end{align*}
+\end{theorem}
+\chapter{Harmonic Analysis}
+\section{Weierstrass approximation Theorem: $[a,b]\rightarrow \R$}
+\begin{theorem}
+\label{Bernoulli's Inequality}
+\textbf{(Bernoulli's Inequality)} Given $r,x \in\R$, suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $r\geq 1$ 
+  \item $x\geq -1$
+\end{enumerate}
+Then
+\begin{align*}
+  (1+x)^r\geq 1+rx
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $r\geq 1$. We wish 
+\begin{align*}
+\vi{\text{ to prove }(1+x)^r\geq 1+rx\text{ for all  }x \geq -1}
+\end{align*}
+Define $f:[-1,\infty)\rightarrow \R$ by 
+ \begin{align}
+\label{Bere1}
+f(x)=(1+x)^r-(1+rx)
+\end{align}
+We reduced the problem into  
+\begin{align*}
+\vi{\text{ proving }f(x)\geq 0\text{ for all } x\geq -1}
+\end{align*}
+Because $r\geq 1$ by premise, by definition of $f(x)$  (\myref{Equation}{Bere1}), we see that 
+\begin{align*}
+f(0)=0\text{, and }f(-1)=r-1\geq 0
+\end{align*}
+Notice that by definition of $f$  (\myref{Equation}{Bere1}),  $f(x)$ is clearly differentiable on $(-1,\infty)$.\\
+
+Then, by MVT (\myref{Theorem}{MVT}), to prove $f(x)\geq 0$ on $(-1,\infty)$, we only wish 
+\begin{align*}
+\vi{\text{ to prove }f'(x)\geq 0\text{ for all }x> 0\text{ and }f'(x)\leq 0\text{ for all $x \in (-1,0)$ }}
+\end{align*}
+Compute $f'$
+ \begin{align*}
+f'(x)&=r(1+x)^{r-1}-r\\
+&=r\Big((1+x)^{r-1}-1 \Big)
+\end{align*}
+Because $r\geq 1$, we can deduce 
+\begin{align*}
+x>0 \implies (1+x)^{r-1}\geq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\geq 0
+\end{align*}
+and deduce 
+\begin{align*}
+x \in (-1,0) \implies 1+x \in (0,1) \implies (1+x)^{r-1}\leq 1 \implies f'(x)=r\Big((1+x)^{r-1}-1 \Big)\leq  0
+\end{align*}
+$\vdone$
 \end{proof}
 \begin{mdframed}
-The proof is clearly geometrical. If one wish to remember the proof, one should see the trick we use is exactly 
-\begin{align*}
-z\triangleq y-\abso{y}(\cos \theta )\hat{x}\text{ is the projection of $y$ onto $x^{\perp}$ }
-\end{align*}
-\begin{center}
-   \begin{minipage}{0.9\linewidth}  
-       \centering
-       \includegraphics[height=5cm,width=12cm]{CSp.jpeg}
-   \end{minipage}
-\end{center}
-Then all we do rest is just expanding $\abso{y}^2=\abso{z+\tilde{x}}^2$, where $\tilde{x}=y-z=\abso{y}(\cos \theta)\hat{x}$, which give the answer and is easy to compute since $z\cdot \tilde{x}=0$.\\
-
-Now, with Cauchy-Schwarz Inequality, we can check the triangle inequality 
-\begin{align*}
-  \norm{x+y}^2&=\langle x+y,x+y\rangle \\
-&=\langle x,x\rangle +\langle x,y\rangle +\langle y,x\rangle +\langle y,y\rangle \\
-&= \langle x,x\rangle + \langle y,y\rangle +2\text{ Re }\langle x,y\rangle \\
-&\leq \norm{x}^2 + \norm{y}^2 + 2\abso{\langle x,y\rangle }\\
-&\leq \norm{x}^2 + \norm{y}^2 + 2\norm{x}\cdot \norm{y}=\Big(\norm{x}+\norm{y}\Big)^2
-\end{align*}
+In this section, notation  $\mathcal{C}\big([a,b] \big)$ means the set of \textbf{real-valued continuous function on $[a,b]$}.
 \end{mdframed}
-\textbf{(Euclidean Space Abstract Part)} 
+\begin{theorem}
+\label{WaT}
+\textbf{(Weierstrass approximation Theorem: $[a,b]\rightarrow \R$)} Let $\R[x]\big|_{[a,b]}$ be the space of polynomials on $[a,b]$ with real coefficient. We have 
+\begin{align*}
+\text{ $\R[x]\big|_{[a,b]}$ is dense in $\Big(\mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty} \Big)$ }
+\end{align*}
+\end{theorem}
+\begin{proof}
+WOLG, we can let $[a,b]=[0,1]$. The reason we can assume such is explained at last. Now, let $f:[0,1]\rightarrow \R$ be a continuous function. Fix $\epsilon $. We only wish 
+\begin{align*}
+\vi{\text{ to find $P \in \R[x]\big|_{[0,1]}$ such that $\norm{f-P}_{\infty}<\epsilon $}}
+\end{align*}
+Define $\tilde{f} \in \mathcal{C}\big([0,1] \big)$ by 
+\begin{align}
+  \label{tse1}
+\tilde{f}(x)= f(x)-f(0)-x \big[f(1)-f(0) \big] 
+\end{align}
+It is easy to check $\tilde{f}$ is continuous. We first prove that 
+\begin{align*}
+\blue{\big( \tilde{f}(x)-f(x)\big)\in \R[x]\big|_{[0,1]}  }
+\end{align*}
+By definition of $\tilde{f} $ (\myref{Equation}{tse1}), we see 
+\begin{align*}
+\tilde{f}(x)-f(x)=(f(0)-f(1))x- f(0)\in \R[x]\big|_{[0,1]}\bdone
+\end{align*}
+This reduce our problem into 
+\begin{align*}
+\vi{\text{ finding }P\in \R[x]\big|_{[0,1]}\text{ such that $\norm{\tilde{f}-P}_{\infty}<\epsilon $ }}
+\end{align*}
+Notice that by definition of $\tilde{f}$ (\myref{Equation}{tse1}), we have 
+\begin{align*}
+\tilde{f}(0)=0=\tilde{f}(1) 
+\end{align*}
+Then, we can expand the definition of $\tilde{f} $  by
+\begin{align}
+\label{tse2}  
+\tilde{f}(x)=\begin{cases}
+  \tilde{f} (x)& \text{ if $x\in [0,1]$ }\\
+  0& \text{ if $x \not \in [0,1]$ }
+\end{cases}
+\end{align}
+This makes $\tilde{f}$ uniformly continuous on $\R$, since  $\tilde{f}$ is uniformly continuous on $[0,1]$ and $[0,1]^c$. Now, for each $n\inn$, define $Q_n \in \R[x]$ by 
+\begin{align}
+\label{tse3}
+Q_n=c_n(1-x^2)^n\text{ where $c_n$ is chosen to satisfy }\int_{-1}^1 Q_n(x)dx=1
+\end{align}
+Define $P_n:[0,1]\rightarrow \R$ by 
+\begin{align*}
+P_n(x)=\int_{-1}^1 \tilde{f} (x+t)Q_n(t)dt
+\end{align*}
+We now prove 
+\begin{align*}
+\olive{P_n \in \R[x]\big|_{[0,1]}}
+\end{align*}
+Because $\tilde{f}(x)=0$ for all $x \not \in (0,1)$ by definition of $\tilde{f} $ (\myref{Equation}{tse2}), we see that 
+\begin{align}
+\label{tse4}
+P_n(x)=\int_{-x}^{1-x}\tilde{f}(x+t)Q_n(t)dt \text{ for all }x \in [0,1]
+\end{align}
+Fix $x \in [0,1]$. Now, by change of variable, we see 
+\begin{align*}
+P_n(x)=\int_{-x}^{1-x} \tilde{f}(x+t)Q_n(t)dt=\int_{0}^1 \tilde{f}(u)Q_n(u-x)du  
+\end{align*}
+Because $Q_n$ is a polynomial by definition (\myref{Equation}{tse3}), we can express $Q_n(u-x)$ by 
+\begin{align*}
+Q_n(u-x)=\sum_{k=0}^{m} a_k x^k\text{ for some $\set{a_0,\dots ,a_m}$ depending on $u$}
+\end{align*}
+Then we see 
+\begin{align*}
+  P_n(x)=\int_0^1 \tilde{f}(u)Q_n(u-x)du= \sum_{k=0}^m x^k \Big( 
+\int_0^1 \tilde{f}(u) a_kdu
+  \Big)  
+\end{align*}
+This shows that $P_n \inr[x]\big|_{[0,1]}$
+
+$\odone$\\
+
+
+Now, because $\tilde{f}$ is uniformly continuous on $\R$, we can fix $\delta<1$ such that 
+\begin{align}
+\label{tse5}
+\forall x,y \inr, \abso{x-y}<\delta \implies \abso{\tilde{f}(x)-\tilde{f}(y)  }<\frac{\epsilon}{2}
+\end{align}
+By definition of $\tilde{f}$ (\myref{Equation}{tse2}), we know $\tilde{f} $ is a bounded function. Then we can set $M$ by 
+\begin{align*}
+M=\sup_{x \inr} \abso{f(x)}
+\end{align*}
+Let $n$ satisfy 
+ \begin{align}
+  \label{tse5}
+4M \sqrt{n} (1-\delta^2)^n < \frac{\epsilon}{2} 
+\end{align}
+Such $n$ exists, because  $\delta<1 \implies  \sqrt{n}(1-\delta^2)^n \to 0 $. We claim 
+\begin{align*}
+\vi{\text{ $P_n$ satisfy $\norm{\tilde{f}-P_n}_{\infty}<\epsilon $}}
+\end{align*}
+We first prove 
+\begin{align*}
+\blue{c_n< \sqrt{n} }
+\end{align*}
+By Bernoulli's Inequality (\myref{Theorem}{Bernoulli's Inequality}). Compute 
+\begin{align*}
+1=\int_{-1}^1 Q_n(x)dx&=  c_n\int_{-1}^1 (1-x^2)^n dx \\
+&=2c_n\int_0^1 (1-x^2)^n dx\\
+&\geq 2c_n\int_0^{\frac{1}{\sqrt{n} }}(1-x^2)^n dx\\
+&\geq 2c_n \int_0^{\frac{1}{\sqrt{n} }} 1-nx^2dx=c_n\big(\frac{4}{3\sqrt{n} } \big)> c_n (\frac{1}{\sqrt{n} })
+\end{align*}
+
+
+This implies 
+\begin{align*}
+\sqrt{n}>c_n \bdone
+\end{align*}
+Because $\sqrt{n}>c_n $, by definition of $Q_n$  (\myref{Equation}{tse3}), we have 
+\begin{align*}
+Q_n(x)<\sqrt{n}(1-x^2)^n \leq \sqrt{n}(1-\delta^2)^n \text{ for all $x$ such that  $\delta \leq \abso{x}\leq 1$ }
+\end{align*}
+Fix $x \in [0,1]$. Finally, because 
+\begin{enumerate}[label=(\alph*)]
+  \item $\int_{-1}^1 Q_n(x)dx=1$ by definition of  $Q_n$  (\myref{Equation}{tse3})
+  \item $Q_n(x)=c_n(1-x^2)^n\geq 0$ for all $x \in [-1,1]$ 
+  \item $\abso{\tilde{f}(x+t)-\tilde{f}(x)}<\frac{\epsilon}{2} $ for all $t$ such that $\abso{t}<\delta $, by definition of $\delta $ (\myref{Equation}{tse5})
+  \item $Q_n(x)\leq \sqrt{n}(1-\delta^2)^n $ for all $x$ such that  $\delta\leq \abso{x}\leq 1$
+  \item $4M\sqrt{n}(1-\delta^2)^n<\frac{\epsilon}{2} $ by definition of $n$  (\myref{Equation}{tse5})
+\end{enumerate}
+we have
+\begin{align*}
+\abso{P_n(x)-\tilde{f}(x)}&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)}\\
+&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt- \tilde{f}(x)\int_{-1}^1 Q_n(t)dt }\\
+&=\abso{\int_{-1}^1 \tilde{f}(x+t)Q_n(t)dt -\int_{-1}^1 \tilde{f}(x)Q_n(t)dt}\\
+&=\abso{\int_{-1}^1 \big[\tilde{f}(x+t)-\tilde{f}(x)   \big]Q_n(t)dt}\\
+&\leq \int_{-1}^1 \abso{\big[ \tilde{f}(x+t)-\tilde{f}(x)\big]Q_n(t)}dt\\
+&=\int_{-1}^1 \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt\\
+&\leq \int_{-1}^{-\delta} 2MQ_n(t)dt +\int_{-\delta}^{\delta} \abso{\tilde{f}(x+t)-\tilde{f}(x)  }Q_n(t)dt+\int_{\delta}^1 2M Q_n(t)dt\\
+&\leq 2M\Big(\int_{-1}^{-\delta}Q_n(t)dt+\int_{\delta}^1 Q_n(t)dt  \Big)+ \int_{-\delta}^\delta \big(\frac{\epsilon}{2} \big)Q_n(t)dt\\
+&\leq 4M(1-\delta) \sqrt{n}(1-\delta^2)^n+ \frac{\epsilon}{2} \\
+&\leq 4M\sqrt{n}(1-\delta^2)^n+\frac{\epsilon}{2} <\epsilon  
+\end{align*}
+Because $x$ is arbitrarily picked from  $[0,1]$, we now have $\norm{P_n-\tilde{f} }_{\infty}<\epsilon \vdone$\\
+
+Lastly, we show 
+\begin{align*}
+\olive{\text{ our result can be transplanted to arbitrary $\mathcal{C}\big([a,b] \big)$ }}
+\end{align*}
+Let $[a,b]$ be arbitrary. Fix $\epsilon $ and $f \in \mathcal{C}\big([a,b] \big)$. We wish 
+\begin{align*}
+\olive{\text{ to find $P \in \R[x]\big|_{[a,b]}$ such that $\norm{f-P}_\infty\leq \epsilon $ }}
+\end{align*}
+Define $g:[0,1]\rightarrow \R$ by 
+\begin{align}
+g(x)\triangleq f(a+(b-a)x)
+\end{align}
+We know there exists $P_n:[0,1]\rightarrow \R$ such that 
+\begin{align*}
+\norm{P_n-g}_{\infty}<\epsilon 
+\end{align*}
+Define $H_n:[a,b]\rightarrow \R$ by 
+\begin{align*}
+H_n(x)=P_n\big(\frac{x-a}{b-a} \big)
+\end{align*}
+Because $P_n$ is a real polynomial on  $[0,1]$, we know $H_n$ is a real polynomial on $[a,b]$. We now claim 
+\begin{align*}
+  \olive{\text{ such $H_n\text{ works }$ }}
+\end{align*}
+Fix $x \in [a,b]$. Observe 
+\begin{align*}
+\big|f(x)-H_n(x)\big|&=\abso{f(x)-P_n\big(\frac{x-a}{b-a} \big)}\\
+&=\abso{g\big(\frac{x-a}{b-a} \big)-P_n\big(\frac{x-a}{b-a} \big)}< \epsilon \odone
+\end{align*}
+\end{proof}
 \begin{mdframed}
-  By a \textbf{concrete Euclidean Space}, we mean some space of $n$-tuple  $(x_1,\dots ,x_n)$ over $\R$, equipped with inner product  $\langle \cdot,\cdot\rangle_E$ defined by 
-\begin{align*}
-  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle_E= \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
-\end{align*}
-By an \textbf{Euclidean Space}, we simply mean a finite dimensional vector space $V$ over $\R$,  equipped with an inner product $\langle \cdot,\cdot\rangle $ such that there exists a concrete Euclidean space $E$ and an isomorphism  $\phi:V\to E$ such that 
-\begin{align*}
-\hspace{3cm}\langle x,y\rangle= \langle \phi (x),\phi (y)\rangle_E \hspace{1.5cm}(x,y \in V)
-\end{align*}
-Note that if you define $\langle \cdot,\cdot\rangle $ on the space of $n$-tuples $(x_1,\dots ,x_n)$ over $\R$ by 
-\begin{align*}
-  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle=2 \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
-\end{align*}
-Then, the space of $n$-tuple is clearly not a concrete Euclidean space, and clearly an Euclidean space. 
+It is at now, we will show that every real-valued continuous functions on $[a,b]$ can be approximated by polynomials with rational coefficient. This fact enable our computer to more easily approximate real-valued continuous function on $[a,b]$.\\
 
+Note that since $\mathcal{C}\big([a,b] \big)$ is a separable metric space, we can show that $\mathcal{C}\big([a,b] \big)$ has cardinality of at most continuum $\mathfrak{c}$ . 
 \end{mdframed}
-\textbf{(SVD)}
+\begin{theorem}
+\textbf{(The space $\Q[x]|_{[a,b]}$ is dense in $\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)$, thus $\mathcal{C}\big([a,b] \big)$ is separable)} 
+\begin{align*}
+\Big( \mathcal{C}\big([a,b] \big),\norm{\cdot}_{\infty}\Big)\text{ is separable }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $\Q[x]\big|_{[a,b]}$ is countable, to show $\mathcal{C}\big([a,b] \big)$ is separable, we only wish to show 
+\begin{align*}
+\vi{\Q [x]\big|_{[a,b]}\text{ is dense in }\mathcal{C}\big([a,b] \big)}
+\end{align*}
+Because $\R[x]\big|_{[a,b]}$ is dense in $\mathcal{C}\big([a,b] \big)$, we reduce our problem into proving 
+\begin{align*}
+\vi{\Q[x]\big|_{[a,b]}\text{ is dense in }\R[x]\big|_{[a,b]}}
+\end{align*}
+Fix $\epsilon \text{ and } P \in \R[x]\big|_{[a,b]}$. We must
+\begin{align*}
+\vi{\text{ find $Q \in \Q[x]\big|_{[a,b]}$ such that $\norm{Q-P}_\infty \leq \epsilon $}}
+\end{align*}
+Express $P(x)=\sum_{k=0}^n r_kx^k$. Let $M> \max \set{\abso{a},\abso{b}}$. Because $\Q$ is dense in $\R$, we know there exists $c_k \inq$ such that  $\abso{c_k-r_k}< \frac{\epsilon }{(n+1)M^n}$. We claim 
+\begin{align*}
+\vi{Q(x)=\sum_{k=0}^n c_kx^k\text{ works }}
+\end{align*}
+Fix $x \in [a,b]$. See
+\begin{align*}
+\abso{P(x)-Q(x)}&=\abso{\sum_{k=0}^n (c_k-r_k)x^k}\\
+&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot \abso{x}^k\\
+&\leq \sum_{k=0}^n \abso{c_k-r_k}\cdot M^k\\
+&\leq (M^n)\sum_{k=0}^n \abso{c_k-r_k}\\
+&< M^n (n+1)\big( \frac{\epsilon }{(n+1)M^n}\big)=\epsilon \vdone
+\end{align*}
+\end{proof}
+\section{The Stone-Weierstrass Theorem}
+\begin{mdframed}
+Recall that a \textbf{vector space over a field $\F$} is a set $V$ equipped with \textbf{vector addition} $+:V\times V\to V$  and \textbf{scalar multiplication}  such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $(V,+)$ is an abelian group. 
+  \item Scalar multiplication is compatible with field multiplication:   $\Big((ab)v=a(bv) \Big)$
+  \item Scalar multiplication is distributive: $\Big((a+b)v=av+bv\text{ and }a(v+w)=av+aw \Big)$
+\end{enumerate}
 
+There are many ways to define the term \textbf{algebra over a field $\F$}. One can exhaust all the laws an algebra should obey. In short, an \textbf{algebra over a field $\F$} (or \textbf{$\F$-algebra}) is a vector space $V$ equipped with a vector multiplication such that  
+\begin{enumerate}[label=(\roman*)]
+  \item Multiplication is $\underline{\text{distributive}}$ to addition. 
+   \item Scalar and vector multiplications are compatible: $(av)\cdot (bw)=ab(v\cdot w)$
+\end{enumerate}
+Given an arbitrary set $E$ and a field $\F$, let $A$ be the set of all functions from  $E$ to $\F$. The following is a list of some algebra 
+\begin{enumerate}[label=(\alph*)]
+  \item $(\R^3,\text{cross product})$  over $\R$ 
+  \item $(\C,\text{complex multiplication})$ over $\C$ 
+  \item $(\Q[x],\text{function multiplication})$ over $\Q$
+  \item $(\text{Functions from }E\text{ to }\F,\text{function multiplication})$ over $\F$
+  \item $(\text{Continuous functions from $(E,\tau)$ to $\C$ },\text{function multiplication})$ over $\C$  
+  \item $(\text{Linear transformation from $V$ to $V$, composition})$ over $\F$ where  $V$ is over $\F$
+  \item $\big(M_n(\F),\text{matrix multiplication}\big)$ over $\F$
+\end{enumerate}
+Note that $B=(\text{continuous functions from }\C\text{ to }\C,\text{composition})$ over $\C$ is not an algebra, even though $B$ is both a vector space and a ring. ($\because$ scalar multiplication and multiplication are not compatible).\\
+
+It is at here we shall introduce some general terminologies. Given an arbitrary set $E$, a field  $\F$ and a point $x \in E$, we say a family $\mathcal{F}$ of functions  from $E$ to  $\F$  \textbf{vanish at $x$} if for all $f \in \mathcal{F}$, we have $f(x)=0$. We say $\mathcal{F}$ \textbf{separate points} in $E$ if for all  $x_2\neq x_1 \in E$, there exists $f\in \mathcal{F}$ such that $f(x_2)\neq f(x_1)$. 
+\end{mdframed}
 \chapter{Differential Geometry}
 \label{Differentail Geometry}
 \section{Smooth Manifold}
@@ -6334,9 +6333,10 @@ f(x)\triangleq \begin{cases}
    \end{minipage}
 \end{center}
 and  $g:\R\rightarrow \R$ defined by 
-\begin{align*}
+\begin{align}
+\label{gsm}
 g(x)\triangleq \frac{f(x)}{f(x)+f(1-x)}
-\end{align*}
+\end{align}
 \begin{center}
    \begin{minipage}{0.9\linewidth}  
        \centering
@@ -6419,14 +6419,14 @@ Because $(B_n)$ is locally finite and $g_n$ is only positive on $B_n$, we see th
 \end{proof}
 \begin{corollary}
 \label{EoSB}
-\textbf{(Existence of Smooth Bump Function)} Given some  $U$ open in $M$ and some $K$ closed in $M$ and contained by  $U$, there exists a smooth function  $\psi : M\rightarrow [0,1]$ such that 
+\textbf{(Existence of smooth function)} Given some  $U$ open in $M$ and some $K$ closed in $M$ and contained by  $U$, there exists a smooth function  $\psi : M\rightarrow [0,1]$ such that 
 \begin{enumerate}[label=(\alph*)]
   \item $\psi \equiv 1$ on $K$. 
   \item $\operatorname{supp}\psi \subseteq U$
 \end{enumerate}
 \end{corollary}
 \begin{mdframed}
-We first develop some important tools we shall heavily used later. Let $K$ be closed in $M$. We say  $f:K\rightarrow \R$ is smooth if there exists some open $U\subseteq M$ containing $K$ and smooth  $\tilde{f}:U\rightarrow \R$ such that $\tilde{f}\equiv f$ on $K$. 
+We first develop some important tools we shall heavily used later. If $f$ is said to be  \textbf{smooth on some $E$} that isn't open, we mean $f$ is smoothly defined on some open subset containing $E$.  
 \end{mdframed}
 \begin{corollary}
 \label{EoSF}
@@ -6441,6 +6441,30 @@ We first develop some important tools we shall heavily used later. Let $K$ be cl
 \end{cases} 
 \end{align*}
 It is straightforward to check $\tilde{f}|_K=f$. To see $\operatorname{supp}\tilde{f} \subseteq U$, check $\operatorname{supp}\tilde{f} \subseteq \operatorname{supp}\psi$. It is clear that $\tilde{f}$ is smooth at all $p \in U$. It remains to show $\tilde{f}$ is smooth at all  $p\not\in U$. Fix $p\not\in U$. Because $p\not\in \operatorname{supp}\psi$, we know that $\tilde{f}\equiv 0$ on some open neighborhood around $p$. 
+\end{proof}
+\begin{mdframed}
+Before we state the next Theorem, we shall point out that since topological manifolds are locally Euclidean, they are locally connected, and thus \customref{local-path}{the connected components of a topological manifold are identical to the path-connected components}.  
+\end{mdframed}
+\begin{theorem}
+\textbf{(Existence of Smooth Curve)} If $p,q$ are in the same connected component of smooth manifold $M$, then there exists a smooth curve $\gamma :[0,1]\rightarrow M$ joining $p,q$. By $\gamma $ being smooth, we mean $\gamma $ is smooth on $(0,1)$. 
+\end{theorem}
+\begin{proof}
+  We first show that \olive{there exists a piece-wise smooth curve $\alpha:[0,1]\rightarrow M$ joining $p,q$}. Let $\gamma_0:[0,1]\rightarrow M$ be a curve joining $p,q$. We know there exist a collection of chart  $(U_\alpha ,\phi_\alpha )$ covering the image of $\gamma_0$ such that $U_\alpha $ are homeomorphically mapped to an open ball in $\R^n$ by  $\phi_\alpha $. Now, because image of $\gamma _0$ is compact, we can suppose the collection $(U_j,\phi_j)_{j=1}^N$ is finite. Note that $\gamma _0^{-1}(U_j)$ form an open cover for the metric space $[0,1]$. It then follows from \customref{Lebesgue's Number Lemma}{Lebesgue's Number Lemma} that there exists $n\inn$ such that  \begin{align*}
+\text{ For all $k\in \set{1,\dots ,n}$ there exists some $j_k$ such that }\gamma_0([\frac{k-1}{n},\frac{k}{n}])\subseteq U_{j_k}  
+\end{align*}
+Because $\phi_j(U_j)$ is an open ball in $\R^d$, we can now join  $\gamma_0 (\frac{k-1}{n}),\gamma _0 (\frac{k}{n})$ with a straight line in $\phi_{{j_k}}(U_{j_k})$. In other words, for each $k$, we define $\gamma _k:[0,1]\rightarrow M$ 
+\begin{align*}
+  \gamma_k (t)\triangleq \phi_{j_k}^{-1}\Big[\phi_{j_k}\Big(\gamma_0 (\frac{k-1}{n})\Big)+ t[\phi_{j_k}\Big(\gamma_0 (\frac{k}{n}) \Big) - \phi_{j_k}\Big(\gamma_0 (\frac{k-1}{n}) \Big)] \Big]
+\end{align*}
+and 
+\begin{align*}
+\alpha (t)\triangleq \gamma_k (nt-k)\text{ if }t\in [\frac{k-1}{n}, \frac{k}{n}] \odone
+\end{align*}
+Lastly, we construct $\gamma $ by adjusting the "speed" of $\alpha $ so that it is also smooth at each $\gamma_0 (\frac{k}{n})$ for $1\leq k\leq n-1$. For this, we use the smooth function $g:\R\rightarrow \R$ we defined earlier in \myref{Equation}{gsm} and define 
+\begin{align*}
+\gamma (t)\triangleq \gamma_k (g(nt-k))\text{ if }t\in [\frac{k-1}{n}, \frac{k}{n}] 
+\end{align*}
+To see $\gamma $ is indeed smooth, note that $[ \frac{k-1}{n}-\epsilon , \frac{k}{n}+ \epsilon ]$ is contained by  $\gamma_0^{-1}(U_{j_k})$ and the curve $\phi_{j_k}\circ \gamma : [\frac{k-1}{n}-\epsilon , \frac{k}{n}+\epsilon ]\rightarrow \R^d$ is smooth for each $n$. 
 \end{proof}
 \section{Tangent Space}
 \begin{abstract}
@@ -6535,11 +6559,7 @@ It is straightforward to check that given another smooth manifold $R$ and smooth
 \begin{align*}
 \operatorname{cl}_{\R^n}(B_\epsilon (\phi (p)))\subseteq \phi (V)  
 \end{align*}
-Let $A\triangleq  \phi ^{-1}(B_\epsilon (\phi (p)))$. Since $\operatorname{cl}_{\R^n}(B_\epsilon (\phi (p)))$ is compact, and compact subspace is closed in Hausdorff space, we now see 
-\begin{align*}
-\operatorname{cl}_M(A)\subseteq \phi^{-1}(\operatorname{cl}_{\R^n}(B_\epsilon (\phi (p))))\subseteq U
-\end{align*} 
-By \myref{Corollary}{EoSF}, we know there exists $\tilde{f}\in C^{\infty}(M)$ such that $\tilde{f}\equiv f$ on $\operatorname{cl}_M(A)$. We can now deduce 
+If we define  $A\triangleq  \phi ^{-1}(B_\epsilon (\phi (p)))$, we know $\overline{A}\subseteq U$ because $M$ is Hausdorff.  Now by \myref{Corollary}{EoSF}, we know there exists $\tilde{f}\in C^{\infty}(M)$ such that $\tilde{f}\equiv f$ on $\overline{A}$. We can now deduce 
   \begin{align*}
   v(f)=v(\tilde{f}|_U )=v(\tilde{f}\circ \iota  )=\iota_{*,p}(v)(\tilde{f}) =0 \vdone
   \end{align*}
@@ -6561,31 +6581,372 @@ Let $(U,\phi)$ be a chart containing $p$. \myref{Theorem}{TSop} tell us that $T_
 \begin{mdframed}
 
 With all the tools we have gathered, we can now see that if we are given a chart $(U,\phi)$ containing $p$, and we define  for each $i \in \set{1,\dots ,n}$ the functional $\frac{\partial }{\partial \textbf{x}^i}|_p:C^{\infty}(M)\rightarrow \R$ by 
-\begin{align*}
+\begin{align}
+\label{tsbasis}
 \frac{\partial }{\partial \textbf{x}^i}\Big|_p (f) \triangleq \frac{\partial (f\circ \phi^{-1})}{\partial \textbf{x}^i}(\phi (p))
-\end{align*}
-then since 
+\end{align}
+then 
 \begin{align*}
-\phi_{*,p}\Big(\frac{\partial }{\partial \textbf{x}^i}\Big|_p\Big)(g)= \frac{\partial }{\partial \textbf{x}^i}\Big|_p(g\circ \phi)= \frac{\partial g}{\partial \textbf{x}^i}(\phi (p))
+  \frac{\partial }{\partial \textbf{x}^i}\Big|_p\text{ form a basis for  }T_pM
 \end{align*}
-We see  
- \begin{align*}
-   \bset{\phi_{*,p}\Big(\frac{\partial }{\partial \textbf{x}^i}\Big|_p \Big):1\leq i\leq n}\text{ form a basis for }T_{\phi (p)}\phi (U)
-\end{align*}
-and thus 
+Now, if we define for each $C^1$ curve $\gamma:(-\epsilon , \epsilon )\rightarrow M$ such that $\gamma  (0)=p$, its \textbf{velocity vector $\gamma '(0) \in T_{\gamma (0)}M$} by 
 \begin{align*}
-\bset{\frac{\partial }{\partial \textbf{x}^i}\Big|_p: 1\leq i \leq n}\text{ form a basis for  }T_pM
+\gamma '(0)(f)\triangleq (f\circ \gamma )'(0)
+\end{align*}
+we see that every tangent vector $v \in T_p M$ can be identified as a velocity vector of some smooth curve 
+\begin{align*}
+\gamma (t)\triangleq \phi^{-1}(v^1t,\dots ,v^nt)\text{ where }v= \sum v^i \frac{\partial }{\partial \textbf{x}^i}\Big|_p
+\end{align*}
+Moreover, we see that smooth map $F:M\rightarrow N$ preserve velocity in the sense that 
+\begin{align*}
+F_{*,p}(\gamma '(0))= (F\circ \gamma )'(0)
+\end{align*}
+This give an expected result. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Constant function)} If at each point $p\in  M$, the derivative $F_{*,p}$ of the smooth map $F:M\rightarrow N$ is null, then $F$ is constant on each path-connected component of $M$. 
+\end{theorem}
+\begin{proof}
+Fix $p,q$ in the same connected component of  $M$, and let  $\gamma :[0,1]\rightarrow M$ be a smooth curve joining them and lying inside the connected component. \As{$F(p)\neq F(q)$}. Let $(V,\psi)$ be a chart centering $F(p)$ and let $B$ be a regular coordinate ball (with respect to $(V,\psi)$) centering  $F(p)$ such that $F(q)\not\in \overline{B}$, and let $f\in C^\infty (N)$ be a non-negative smooth function positive on and only on $B$. Because $F_{*,p}$ are null, we can deduce
+\begin{align*}
+  (f\circ F\circ \gamma )'(t)=(F\circ \gamma )'(t)(f)=0\text{ for all }t\in (0,1)
+\end{align*}
+It then follows that $f(F(p))=f(F(q))$. \CaC 
+\end{proof}
+\section{Inverse Function Theorem and Rank Theorem} 
+\begin{abstract}
+In this section, we prove the \customref{Inverse Function Theorem for Manifolds}{Inverse Function Theorem for Manifolds} with \customref{IFT}{Inverse Function Theorem for Euclidean Spaces} and prove  \customref{Rank Theorem for Manifolds}{Rank Theorem for Manifolds} with \customref{Inverse Function Theorem for Manifolds}{Inverse Function Theorem for Manifolds}. 
+\end{abstract}
+\begin{mdframed}
+Given a function $F:M\rightarrow N$ differentiable at some point $p\in  M$, we define \textbf{the rank of $F$ at $p$} to be the rank of the linear map $F_{*,p}:T_pM\rightarrow T_{F(p)}N$. Let $(V,\psi)$ be a  chart containing $F(p)$ and $(U,\phi)$ be a chart containing $p$ while  $F(U)\subseteq V$. To find the rank of $F_{*,p}$, we are required to compute the matrix representation $[F_{*,p}]$ with respect to the basis $ \frac{\partial }{\partial \textbf{x}^i}|_p  $ and  $\frac{\partial }{\partial \textbf{y}^j}|_{F(p)}$. To compute $[F_{*,p}]$, we first define $\widehat{F}:\phi (U)\rightarrow \psi (V)$ and $\widehat{p}\inr^m$ by 
+\begin{align*}
+\widehat{F}(\textbf{x})\triangleq \psi \circ F \circ \phi ^{-1}(\textbf{x})\text{ and }\widehat{p}\triangleq \phi (p)
+\end{align*}
+Immediately, we see that 
+\begin{align}
+\label{cri}
+F= \psi^{-1}\circ \widehat{F}\circ \phi 
+\end{align}
+This immediate result \myref{Equation}{cri} is in fact very critical, since as shall show, it is easy to compute $[\widehat{F}_{*,\widehat{p}}]$ with respect to the basis $\frac{\partial }{\partial \widehat{\textbf{x}}^i}|_{\widehat{p}}$ and $\frac{\partial }{\partial \widehat{\textbf{y}}^j}|_{\widehat{F}(\widehat{p})}$, and we by definition also have the relationship 
+\begin{align}
+\label{rel}
+  \phi_{*,p}\Big( \frac{\partial }{\partial \textbf{x}^i}\Big|_p \Big)= \frac{\partial }{\partial \widehat{\textbf{x}}^i}\Big|_{\widehat{p}}\text{ and } (\psi^{-1})_{*,\widehat{F}(\widehat{p})} \Big( \frac{\partial }{\partial \widehat{\textbf{y}}^j}\Big|_{\widehat{F}(\widehat{p})} \Big)  = \frac{\partial }{\partial \textbf{y}^j} \Big|_{F(p)}
+\end{align}
+Fix smooth $f\in C^{\infty}(\R^n)$. By applying  \customref{CR}{ordinary chain rule} on $f\circ \widehat{F}$ and observing \customref{DiJ}{matrix representation of $df$ and $d \widehat{F}$}, we can compute $[\widehat{F}_{*,\widehat{p}}]$ with respect to $\frac{\partial }{\partial \widehat{\textbf{x}}^i}|_{\widehat{p}}$ and $\frac{\partial }{\partial \widehat{\textbf{y}}^j}|_{\widehat{F}(\widehat{p})}$ 
+\begin{align*}
+\widehat{F}_{*,\widehat{p}} \Big( \frac{\partial }{\partial \widehat{\textbf{x}}^i} \Big|_{\widehat{p}} \Big)(f)= \frac{\partial  (f\circ \widehat{F})}{\partial \widehat{\textbf{x}}^i}(\widehat{p})&= \sum_j \frac{\partial f}{\partial \widehat{\textbf{y}}^j} (\widehat{F}(\widehat{p})) \frac{\partial \widehat{F}^j}{\partial \widehat{\textbf{x}}^i}(\widehat{p}) \\
+ &=\sum_j \frac{\partial \widehat{F}^j}{\partial \widehat{\textbf{x}}^i}(\widehat{p}) \Big[\frac{\partial }{\partial \widehat{\textbf{y}}^j}\Big|_{\widehat{F}(\widehat{p})}(f)\Big]
+\end{align*}
+This in general means that 
+\begin{align*}
+\widehat{F}_{*,p}\Big( \frac{\partial }{\partial \widehat{\textbf{x}}^i}\Big|_{\widehat{p}} \Big)= \sum_j \frac{\partial \widehat{F}^j}{\partial \widehat{\textbf{x}}^i}(\widehat{p}) \frac{\partial }{\partial \widehat{\textbf{y}}^j}\Big|_{\widehat{F}(\widehat{p})}
+\end{align*}
+Then with the relationship in \myref{Equation}{rel} and \myref{Equation}{cri}, we finally have 
+\begin{align*}
+F_{*,p}\Big( \frac{\partial }{\partial \textbf{x}^i}\Big|_p \Big) &= (\psi^{-1})_{*,\widehat{F}(\widehat{p})}\circ \widehat{F}_{*,\widehat{p}} \circ \phi_{*,p} \Big( \frac{\partial }{\partial \textbf{x}^i}\Big|_p \Big) \\
+&=(\psi^{-1})_{*,\widehat{F}(\widehat{p})} \Big( \sum_j \frac{\partial \widehat{F}^j}{\partial \widehat{\textbf{x}}^i}(\widehat{p}) \frac{\partial }{\partial \widehat{\textbf{y}}^j}\Big|_{\widehat{F}(\widehat{p})}  \Big) \\
+&=\sum_j \frac{\partial \widehat{F}^j}{\partial \widehat{\textbf{x}}^i}(\widehat{p}) (\psi^{-1})_{*,\widehat{F}(\widehat{p})} \Big( \frac{\partial }{\partial \widehat{\textbf{y}}^j} \Big|_{\widehat{F}(\widehat{p})} \Big) \\
+&=\sum_j \frac{\partial \widehat{F}^j}{\partial \widehat{\textbf{x}}^i}(\widehat{p}) \frac{\partial }{\partial \textbf{y}^j}\Big|_{F(p)} 
+\end{align*}
+which means 
+\begin{align*}
+[F_{*,p}]= [d\widehat{F}_{\widehat{p}}]
+\end{align*}
+With this in mind and noting that in the space of  $n\times m$ real matrix, the set of real matrices of full rank is open, we see that if $F$ is smooth and $F_{*,p}$ is full rank, then there exists an open neighborhood $U$ around $p$ for which  $F_{*,q}$ is full rank if $q\in U$.  \\
+
+Now, given a function $F:M\rightarrow N$, we say $F$ is \textbf{locally a smooth diffeomorphism at $p\in M$} if there exists some open-neighborhood $U$ around $p$ such that $F(U)$ is open in $N$ and $F|_U:U\rightarrow F(U)$ is a smooth diffeomorphism between $U$ and $F(U)$, and we say $F$ is a \textbf{local  smooth diffeomorphism} if $F$ is locally a smooth diffeomorphism at $p$ for all $p\in  M$. 
+\end{mdframed}
+\begin{theorem}
+\label{Inverse Function Theorem for Manifolds}
+\textbf{(Inverse Function Theorem for Manifolds)} Suppose $M$ and $N$ are smooth manifold, and  $F:M\rightarrow N$ is some smooth map. If for some $p\in  M$, $F_{*,p}$ is invertible, then $F$ is locally a smooth diffeomorphism at $p$. 
+\end{theorem}
+\begin{proof}
+Let  $(V,\psi)$ be a chart centering $F(p)$ and $(U,\phi)$ be a chart centering $p$ such that  $F(U)\subseteq V$. If we define $\widehat{F}:\phi (U)\rightarrow \psi (V)$ by 
+\begin{align*}
+\widehat{F}\triangleq \psi \circ F\circ \phi^{-1}
+\end{align*}
+we see that there exists some open set $\widehat{U}\subseteq \phi (U)$ containing  $\phi (p)$ such that $dF_\textbf{x}$ is invertible for all $\textbf{x}\in \widehat{U}$. Because $\widehat{F}$ is smooth, we then can apply \customref{IFT}{Ordinary Inverse Function Theorem} to have some $B_{\delta}(\textbf{0})\subseteq \widehat{U}$ such that $\widehat{F}|_{B_\delta(\textbf{0})}$ is a smooth diffeomorphism. It then follows that $F$ is a smooth diffeomorphism on  $\phi (B_\delta (\textbf{0}))$
+\end{proof}
+\begin{mdframed}
+We say $F$ is a \textbf{smooth immersion} if $F$ is smooth and on each $p\in  M$ the differential $F_{*,p}$ is injective, and we say $F$ is a \textbf{smooth submersion} if $F$ is smooth and on each $p\in  M$ if $F$ is surjective. With \customref{Inverse Function Theorem for Manifolds}{Inverse Function Theorem for Manifolds}  in mind, we see that given smooth $F:M\rightarrow N$ 
+\begin{align*}
+F\text{ is a local diffeomorphism }\iff F\text{ are both immersion and submersion }
 \end{align*}
 \end{mdframed}
-\begin{Example}{\textbf{(Loring Tu Example)}}{}
+\begin{theorem}
+\label{Rank Theorem for Manifolds}
+\textbf{(Constant Rank Theorem for manifolds)} Given a smooth map $F:M\rightarrow N$ with constant rank $r$, for each  $p\in  M$, there exists some chart $(V,\psi)$  centering $F(p)$ and $(U,\phi)$ centering $p$ such that  $F(U)\subseteq V$ and $F$ has the coordinate representation of the form 
 \begin{align*}
-F:\R^2 \rightarrow \R^3 ;F(x,y)\triangleq  (x,y,xy)=(u,v,w)
+\widehat{F}(\textbf{x}^1,\dots ,\textbf{x}^r,\textbf{x}^{r+1},\dots ,\textbf{x}^m)=(\textbf{x}^1, \dots ,\textbf{x}^r, 0,\dots ,0)
 \end{align*}
-We have 
+\end{theorem}
+\begin{proof}
+Because the Theorem is local, we may write  $F:U\subseteq \R^m\rightarrow V\subseteq \R^n$ by 
 \begin{align*}
-F_{*,(x,y)}(\frac{\partial }{\partial x})= \frac{\partial }{\partial u}+ y\frac{\partial }{\partial w}
+F(\textbf{x},\textbf{y})\triangleq (Q(\textbf{x},\textbf{y}),R(\textbf{x},\textbf{y}))
 \end{align*}
-\end{Example}
+where $Q:U\rightarrow \R^r,R:U\rightarrow \R^{n-r}$ maps $(\textbf{0},\textbf{0})$ to $\textbf{0}$. Since $F$ is of rank  $r$, we may assume   
+\begin{align*}
+\text{ The matrices }\begin{bmatrix}
+  \frac{\partial Q^1}{\partial \textbf{x}^1}(\textbf{v})& \cdots & \frac{\partial Q^1}{\partial \textbf{x}^r}(\textbf{v}) \\
+  \vdots & \ddots & \vdots \\
+  \frac{\partial Q^r}{\partial \textbf{x}^1}(\textbf{v})& \cdots & \frac{\partial Q^r}{\partial  \textbf{x}^r}(\textbf{v})
+\end{bmatrix}\text{ are invertible for all }\textbf{v}\in U
+\end{align*}
+Then if we define $\phi:U\rightarrow \R^m$ by 
+\begin{align*}
+\phi (\textbf{x},\textbf{y})\triangleq (Q(\textbf{x},\textbf{y}),\textbf{y})
+\end{align*}
+we see that 
+\begin{align*}
+[d\phi_\textbf{v}]= \begin{bmatrix}
+  \frac{\partial Q^1}{\partial \textbf{x}^1}(\textbf{v}) & \cdots & \frac{\partial Q^1}{\partial \textbf{x}^r}(\textbf{v}) & \frac{\partial Q^1}{\partial \textbf{y}^1} (\textbf{v}) & \cdots & \frac{\partial Q^1}{\partial \textbf{y}^{m-r}}(\textbf{v}) \\
+  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+  \frac{\partial Q^r}{\partial \textbf{x}^1}(\textbf{v}) & \cdots & \frac{\partial Q^r}{\partial  \textbf{x}^r}(\textbf{v}) & \frac{\partial Q^r}{\partial \textbf{y}^1} (\textbf{v}) & \cdots & \frac{\partial Q^r}{\partial \textbf{y}^{m-r}}(\textbf{v}) \\
+  0 & \cdots & 0 & 1 & \cdots & 0\\
+  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+  0 & \cdots & 0 & 0 &\cdots & 1 
+\end{bmatrix}\text{ is invertible for all }\textbf{v}\in U
+\end{align*}
+It then follows from \customref{IFT}{Ordinary Inverse Function Theorem} such that there exists $U_0\subseteq U$ containing $(\textbf{0},\textbf{0})$ such that $\phi$ maps $U_0$ smooth-diffeomorphically to some open cube $\widehat{U_0}\subseteq \R^m$. \\
+
+ It is clear for all $(\textbf{x},\textbf{y})\in \widehat{U_0}$, we have  
+\begin{align*}
+  (\phi|_{U_0})^{-1}(\textbf{x},\textbf{y})= (A(\textbf{x},\textbf{y}),\textbf{y})
+\end{align*}
+ where $A$ is some function that maps $\widehat{U_0}$ into $\R^r$. Now by definition of $\phi$, we can compute 
+\begin{align*}
+  (\textbf{x},\textbf{y})=\phi (A(\textbf{x},\textbf{y}),\textbf{y})= (Q(A(\textbf{x},\textbf{y}),\textbf{y}),\textbf{y})
+\end{align*}
+for all $(\textbf{x},\textbf{y})\in \widehat{U_0}$. This then let us compute
+\begin{align*}
+ Q(A(\textbf{x},\textbf{y}),\textbf{y})=\textbf{x} 
+\end{align*}
+for all $(\textbf{x},\textbf{y})\in \widehat{U_0}$, which implies  
+\begin{align*}
+F\circ \phi^{-1}(\textbf{x},\textbf{y})=F (A(\textbf{x},\textbf{y}),\textbf{y})= (\textbf{x},\tilde{R}(\textbf{x},\textbf{y}))
+\end{align*}
+for all $(\textbf{x},\textbf{y})\in \widehat{U_0}$ where $\tilde{R}(\textbf{x},\textbf{y})\triangleq R(A(\textbf{x},\textbf{y}),\textbf{y})$ maps $\widehat{U_0}\subseteq \R^m\text{ into }\R^{n-r}$. Now, because $\phi^{-1}:\widehat{U_0}\rightarrow U_0 \subseteq \R^m$ is full rank and $F$ is of rank  $r\leq m$, we see $F\circ \phi^{-1}:\widehat{U_0}\rightarrow \R^n$ if also of rank $r$. Then from observing that the differential of  $F\circ \phi ^{-1}$ is of the form 
+\begin{align*}
+[d(F\circ \phi^{-1})_{\textbf{v}}]=\begin{bmatrix} 
+  1 & \cdots & 0 & 0 & \cdots & 0 \\
+  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+  0 & \cdots & 1 & 0 & \cdots & 0  \\
+  \frac{\partial \tilde{R}^1 }{\partial \textbf{x}^1}(\textbf{v}) & \cdots & \frac{\partial \tilde{R}^1 }{\partial  \textbf{x}^r}(\textbf{v}) & \frac{\partial \tilde{R}^1 }{\partial  \textbf{y}^1}(\textbf{v}) & \cdots &\frac{\partial \tilde{R}^1 }{\partial  \textbf{y}^{m-r}}(\textbf{v}) \\
+  \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+  \frac{\partial \tilde{R}^{n-r} }{\partial \textbf{x}^1}(\textbf{v}) & \cdots & \frac{\partial \tilde{R}^{n-r} }{\partial  \textbf{x}^r}(\textbf{v}) & \frac{\partial \tilde{R}^{n-r} }{\partial  \textbf{y}^1}(\textbf{v}) & \cdots & \frac{\partial \tilde{R}^{n-r} }{\partial  \textbf{y}^{m-r}}(\textbf{v}) \\
+ \end{bmatrix}
+\end{align*}
+We can deduce 
+\begin{align*}
+\frac{\partial \tilde{R}^j }{\partial \textbf{y}^i}(\textbf{v})=0\text{ for all }\textbf{v}\in \widehat{U_0}\text{ and }i \in \set{1,\dots ,m-r},j \in \set{1,\dots ,n-r}
+\end{align*}
+This then let us write (by \customref{MVT}{MVT}) 
+\begin{align}
+\label{Foc}
+F\circ \phi^{-1}(\textbf{x},\textbf{y})=(\textbf{x},S(\textbf{x}))
+\end{align}
+ for all $(\textbf{x},\textbf{y})\in \widehat{U_0}$ where $S(\textbf{x})\triangleq R(\textbf{x},\textbf{0})$. Lastly, we define $V_0\subseteq V$ by 
+\begin{align*}
+V_0 \triangleq \set{(\textbf{z},\textbf{w})\in V: (\textbf{z},\textbf{0})\in \widehat{U_0}} 
+\end{align*}
+Since $(\textbf{z},\textbf{w})\mapsto  (\textbf{z},\textbf{0})$ is a continuous map from $\R^n$ to  $\R^m$ and  $\set{(\textbf{x},\textbf{0})\inr^m:\textbf{x}\inr^r}$ is open, we see that $V_0$ is also open, which clearly contain  $(\textbf{0},\textbf{0})$.\\
+
+Recall that $\widehat{U_0}$ is an open cube in $\R^m$; Thus from \myref{Equation}{Foc}, we can deduce
+ \begin{align*}
+F\circ \phi^{-1}(\widehat{U_0} ) \subseteq V_0
+\end{align*}
+and if we define $\psi:V_0\rightarrow \R^n$ by 
+\begin{align*}
+\psi (\textbf{z},\textbf{w})\triangleq (\textbf{z},\textbf{w}-S(\textbf{z}))
+\end{align*}
+we see $\psi$ has an explicit inverse
+\begin{align*}
+\psi^{-1}(\textbf{s},\textbf{t})= (\textbf{s},\textbf{t}+ S(\textbf{s}))
+\end{align*}
+We have established that $(V_0,\psi)$ is a smooth chart, and for all $(\textbf{x},\textbf{y})\in \widehat{U_0}$
+\begin{align*}
+\psi \circ F \circ \phi^{-1} (\textbf{x},\textbf{y})= (\textbf{x},\textbf{0})
+\end{align*}
+\end{proof}
+\section{Submanifold}
+\begin{abstract}
+
+\end{abstract}
+\begin{mdframed}
+ By an \textbf{immersed smooth submanifold} $S$ of smooth manifold $M$, we mean a subset  $S$, endowed with a topology and a smooth structure such that the inclusion map  $\diota : S\rightarrow M$ is a smooth immersion. If we say the immersed smooth submanifold $S$ is an \textbf{embedded smooth submanifold}, we mean that the inclusion map $\diota : S \rightarrow M $ is moreover a \textbf{smooth embedding}, i.e., not only does $\diota $ have to be a smooth immersion, but $\diota  $ also have to be a topological embedding. It is clear by definition that if $S$ is an embedded smooth manifold, then the topology on $S$ must be the subspace topology.\\
+
+  Given a subset $S$ of some smooth manifold  $M$, there exists a nice sufficient condition called  \textbf{local $k$-slice condition} for $S$ so that  $S$ can have a smooth structure that make $S$ an embedded submanifold of  $M$. We say $S$ satisfy the local $k$-slice condition if there exists a smooth atlas consisting of \textbf{$k$-slice charts $(U,\phi)$ with respect to $S$}, i.e., charts for $M$ such that  
+\begin{align*}
+\phi (U \cap S)= \phi (U)\cap (\R^k \times \set{\textbf{0}})
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Local $k$-slice condition for embedded submanifolds)} If  $S$ satisfy the local  $k$-slice condition, then $S$ have a smooth structure such that $S$ is a smooth embedded submanifold. 
+\end{theorem}
+\begin{proof}
+Give $S$ the subspace topology. For each $k$-slice chart  $(U,\phi)$, we can define a chart $(U\cap S,\pi \circ \phi)$ for $S$ where  $\pi:\R^m \rightarrow \R^k$ is the projection defined by 
+\begin{align*}
+\pi (\textbf{x}^1,\dots ,\textbf{x}^m)\triangleq (\textbf{x}^1,\dots ,\textbf{x}^k)
+\end{align*}
+Some tedious effort shows that $(U\cap S,\pi \circ \phi )$ is indeed a chart. Because $S$ is given the subspace topology, clearly the inclusion map  $\diota $ is a topological embedding. To see that $\diota$ is also a smooth immersion, observe that for each adapted chart $(U\cap S,\pi \circ \phi)$, we have
+\begin{align*}
+\diota (U \cap S)\subseteq U 
+\end{align*}
+and for all $(\textbf{x}^1,\dots ,\textbf{x}^k)\in \pi \circ  \phi (U \cap S)$ 
+\begin{align*}
+\phi \circ \diota \circ (\pi \circ \phi)^{-1}(\textbf{x}^1,\dots ,\textbf{x}^k)=  (\textbf{x}^1,\dots ,\textbf{x}^k, 0,\dots ,0)
+\end{align*}
+This shows that $\diota $ is indeed also a smooth immersion.  
+\end{proof}
+\begin{mdframed}
+As the next Theorem shows, the term smooth embedding is in fact very strong. 
+\end{mdframed}
+\begin{theorem}
+\label{Ios}
+\textbf{(Image of smooth embedding is always a smooth embedded submanifold)} If $F:M\rightarrow N$ is a smooth embedding, then the topology and smooth structure of $F(M)$ inherited from $M$ makes  $F(M)$ a smooth embedded manifold of $N$.  
+\end{theorem}
+\begin{proof}
+Because $F$ is by definition a topological embedding, it is clear that $F(M)$ is endowed with the subspace topology. Fix $p \in F(M)$. Because $F$ is a smooth immersion, by  \customref{Rank Theorem for Manifolds}{Constant Rank Theorem for manifolds}, we know there exists some chart  $(U,\phi)$ for $M$ centering $F^{-1}(p)$ and some chart $(V,\psi)$ for $N$ centering  $p$ such that  $F(U)\subseteq V$ and 
+\begin{align*}
+\widehat{F}(\textbf{x}^1,\dots ,\textbf{x}^m)=(\textbf{x}^1,\dots ,\textbf{x}^m ,0,\dots ,0)
+\end{align*}
+Because $F(U)$ is open in $F(M)$, we know there exists open $V'\subseteq N$ such that 
+\begin{align*}
+F(U)=V' \cap F(M)
+\end{align*}
+We now can check that $(V\cap V', \psi|_{V\cap V'})$ is a slice chart centering $p$. 
+\end{proof}
+\begin{mdframed}
+Note that in \myref{Theorem}{Ios}, we have in fact proved that smooth embedded submanifold always satisfy local $k$-slice condition. 
+
+
+\end{mdframed}
+\begin{theorem}
+\label{Constant Rank Level Set Theorem}
+\textbf{(Constant Rank Level Set Theorem)} If smooth $F:M\rightarrow N$ is of constant rank $k$, then level sets  $F^{-1}(q)$ for each $q\in N$ is an embedded submanifold of $M$ of  dimension $m-k$. 
+\end{theorem}
+\begin{proof}
+Fix $p \in F^{-1}(q)$. By \customref{Rank Theorem for Manifolds}{Constant Rank Theorem for Manifold}, there exist some chart $(U,\phi),(V,\psi)$  centering $p,q$ such that  $F(U)\subseteq V$ and for all $(\textbf{x}^1,\dots ,\textbf{x}^m)\in \phi (U)$
+\begin{align}
+\label{psf}
+\psi \circ F \circ \phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^m)= (\textbf{x}^1,\dots ,\textbf{x}^k,0,\dots ,0)
+\end{align}
+We now prove that $(U,\phi)$ is a  $m-k$-slice chart with respect to $F^{-1}(q)$. Let $s \in F^{-1}(q)\cap U$. Compute 
+\begin{align*}
+\psi \circ F(s)=\psi (q)=\textbf{0}
+\end{align*}
+Then since
+\begin{align*}
+\textbf{0}=\psi \circ F (s)= \psi \circ F \circ  \phi ^{-1}(\phi (s))
+\end{align*}
+from \myref{Equation}{psf}, we can deduce the first $k$ component of  $\phi (s)$ must be $0$. We have proved 
+ \begin{align}
+  \label{ucp}
+   \phi (U\cap F^{-1}(q))\subseteq \phi (U)\cap (\set{\textbf{0}}\times \R^{m-k})
+\end{align}
+On the other hand, if $s \in U$ and $\phi (s)\in \set{\textbf{0}}\times \R^{m-k}$, then if we write 
+\begin{align*}
+\phi (s)=(0,\dots ,0,\textbf{x}^{k+1},\dots ,\textbf{x}^m)
+\end{align*}
+we have from \myref{Equation}{psf} that 
+\begin{align*}
+\psi \circ F (s)=\textbf{0}
+\end{align*}
+which give us $F(s)=q$. It then follows that $\phi (s)\in \phi (U \cap F^{-1}(q))$, proving the converse of \myref{Equation}{ucp}. 
+\end{proof}
+\begin{mdframed}
+  We now generalize \customref{Constant Rank Level Set Theorem}{Constant Rank Level Set Theorem} to general smooth map. Given some smooth map $F:M\rightarrow N$, we say $p \in M$ is a \textbf{regular point} if $F_{*,p}$ is surjective; otherwise, we say $p$ is a  \textbf{critical point}. Given  $q \in N$, if $F^{-1}(q)$ contain only regular point, then we say $q$ is a \textbf{regular value}; otherwise, we say $q \in N$ is a \textbf{critical value}. If $q \in N$ is some regular value, we say $F^{-1}(q)$ is a \textbf{regular level set}. 
+\end{mdframed}
+\begin{theorem}
+\label{Regular Level Set Theorem}
+\textbf{(Regular Level Set Theorem)} Given smooth map $F:M\rightarrow N$, if $q\in N$ is some regular point, the regular level set $F^{-1}(q)$ is a smooth embedded submanifold of $M$ with dimension  $m-n$. 
+\end{theorem}
+\begin{proof}
+  Let $U\subseteq M$  be the collection of regular points.  Because the set of full rank matrix is open in  $M_{n\times m}(\R)$ and $F$ is smooth, we can deduce  $U$ is open. Therefore, from \customref{Constant Rank Level Set Theorem}{Constant Rank Level Set Theorem}, we can deduce that $F^{-1}(q)$ is an embedded smooth submanifold of $U$. Some tedious effort and the fact \customref{TSop}{that $\diota_{*,p}:T_pU \rightarrow T_pM $ is a vector space isomorphism} now shows that $F^{-1}(q)$ is also an embedded smooth manifold of $M$. 
+\end{proof}
+\begin{mdframed}
+Note that in \customref{Regular Level Set Theorem}{Regular Level Set Theorem}, because $F$ in priori has a regular point, we have the assumption that  $m\geq n$. As a corollary of the \customref{Regular Level Set Theorem}{Regular Level Set Theorem}, we see that  $S^n$ is regular level set  $f^{-1}(1)$ of the smooth map $f:\R^{n+1}\rightarrow \R$ defined by 
+\begin{align*}
+f(\textbf{x})\triangleq \abso{\textbf{x}}^2
+\end{align*}
+It then follows that $S^n$ is an embedded smooth submanifold of  $\R^{n+1}$.\\
+
+Although \customref{Regular Level Set Theorem}{regular level set Theorem} shows that regular level set is always a smooth embedded submanifold, one should note that that critical level sets can sometimes also be an embedded submanifold. Consider smooth $f:\R^2 \rightarrow \R$ defined by 
+\begin{align*}
+f(x,y)=y^2
+\end{align*}
+The level set $f^{-1}(0)$ is critical everywhere but still an embedded submanifold.\\
+
+We now go back to consider immersion. As it turned out, immersed submanifold can also be treated as the image of some injective smooth immersion. 
+\end{mdframed}
+\begin{theorem}
+\label{Iosi}
+\textbf{(Image of smooth immersion is always a smooth immersed submanifold)} Given some injective smooth immersion $F:M\rightarrow N$, the image $F(M)$ can be endowed with a topology and a smooth structure such that $F(M)$ is a smooth immersed submanifold of $N$. 
+\end{theorem}
+\begin{proof}
+Because $F$ is injective,  we can simply give $F(M)$ the topology of $M$. For all charts $(U,\phi)$ for $M$, we can induce a chart $(F(U),\phi \circ F^{-1})$ for $F(M)$. It is clear that this indeed give a smooth structure. To see $F(M)$ is now an immersed smooth submanifold, observe that $F^{-1}:F(M)\rightarrow M$ is a smooth diffeomorphism and the inclusion map $\diota:F(M)\rightarrow N $ is the just composition of the smooth immersion  $F$ and $F^{-1}$. 
+\end{proof}
+\begin{mdframed}
+Although there exists similarity between immersion and embedding, the latter is still strictly powerful. Consider the curve $\beta :(- \pi ,\pi)\rightarrow \R^2 $ 
+\begin{align*}
+\beta  (t)\triangleq (\sin 2t, \sin t)
+\end{align*}
+This is a smooth injective immersion, yet not a smooth embedding, since image of $\beta $ is clearly compact but $(-\pi, \pi)$ isn't shows that $\beta ^{-1}$ is not continuous. In other words, image of  $\beta $ is a smooth immersed submanifold of $\R^2$ by \myref{Theorem}{Iosi} but not a smooth embedded submanifold of $\R^2$.\\
+
+We now shows that immersion is in fact at every point locally an embedding.  
+\end{mdframed}
+\begin{theorem}
+\label{Local Embedding Theorem}
+\textbf{(Local Embedding Theorem)} Given smooth map $F:M\rightarrow N$, $F$ is a smooth immersion if and only if for all  $p \in M$, there exists neighborhood $U$ of  $p$ in  $M$ such that  $F|_U$ is a smooth embedding. 
+\end{theorem}
+\begin{proof}
+The if part is clear. Suppose $F$ is a smooth immersion. By \customref{Rank Theorem for Manifolds}{constant rank theorem}, there exist some charts $(U,\phi),(V,\psi)$ centering $p,F(p)$ such that $F(U)\subseteq V$ and  
+\begin{align*}
+\psi \circ F \circ \phi^{-1}(\textbf{x}^1, \dots ,\textbf{x}^m)=(\textbf{x}^1,\dots ,\textbf{x}^m,0,\dots ,0)
+\end{align*}
+It then follows that $F$ is injective on  $U$. To see that  $U$ and  $F(U)$ has the same topology, just observe that we have the following diagram
+\[\begin{tikzcd}
+    U &&&& {F(U)} \\
+    \\
+    {\varphi(U)} && {} && {\psi \circ F(U)}
+    \arrow[leftrightarrow, from=1-1, to=3-1]
+    \arrow[leftrightarrow, from=1-5, to=3-5]
+    \arrow["{\text{obvious homeomorphism }}"', leftrightarrow, from=3-1, to=3-5]
+\end{tikzcd}\]
+\end{proof}
+\begin{mdframed}
+With \customref{Local Embedding Theorem}{local embedding Theorem}, we now see that for each $p$ in some smooth  immersed submanifold $S$ of  $M$, there exists some neighborhood  $U$ in $S$ of $p$ such that  $\diota |_U:U\rightarrow M$ is a smooth embedding; thus $U$ an embedded smooth submanifold of $M$.\\
+
+It is easy to see that if $S$ is an immersed smooth submanifold of  $M$ and  $F:M\rightarrow N$ is a smooth map, then the restriction $F|_S$ is also a smooth map. However, it require  the fact that immersed smooth submanifold is locally an embedded submanifold to see that when we restrict the codomain of $F$, the smooth map  $F$ is still smooth.  
+\end{mdframed}
+\begin{theorem}
+\textbf{(Smooth map is still smooth after restriction of codomain)} Given a smooth map $F:M\rightarrow N$ and an immersed smooth submanifold $S$ of $N$ such that $F(M)\subseteq S$, if $F:M\rightarrow S$ is continuous, then $F:M\rightarrow S$ is still smooth.
+\end{theorem}
+\begin{proof}
+Fix $p \in M$ and let $q\triangleq F(p)$. We know there exists some neighborhood $U$ of $q$ in  $S$ such that  $U$ is an embedded smooth submanifold of  $N$. Then there exists some  $s$-slice chart $(V,\phi)$ for $N$ centering $q$, which give a chart $(U\cap V,\pi \circ  \phi)$ for $U$ centering $q$. Because $F:M\rightarrow N$ is a smooth map, there exists some chart $(W,\psi)$ for $M$ centering  $p$ such that  $F(W)\subseteq V$ and 
+\begin{align*}
+\phi \circ F \circ \psi^{-1}:\psi (W)\rightarrow \R^n\text{ is smooth }
+\end{align*}
+Because $F:M\rightarrow S$ is continuous and $U\cap V$ is open in $U$ which is open in  $S$, we know there exists some open set $W_0 \subseteq W$ centering $p$ such that 
+ \begin{align*}
+F(W_0)\subseteq U \cap V
+\end{align*}
+Then if we consider the chart  $(W_0,\psi),(U\cap V, \pi \circ \phi)$ for $M,S$, because 
+ \begin{align*}
+   \pi\circ \phi \circ F \circ \psi^{-1}:\psi (W)\rightarrow \R^s\text{ is clearly smooth }
+\end{align*}
+we see $F:M\rightarrow S$ is smooth at $p$. 
+\end{proof}
+\begin{mdframed}
+Lastly, we discuss the property of tangent space $T_pS$ of smooth immersed submanifold  $S$ of  $M$. Because  $\diota:S\rightarrow M $ is a smooth immersion, $\diota_{*,p}:T_pS \rightarrow T_pM$ is always an injective vector space homomorphism, we often identify $T_pS$ as a subspace of  $T_pM$. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Equivalent Characterization of Tangent Subspace of Immersed Submanifold)} Given an immersed smooth submanifold $S$ of  $M$ and  $p \in S$, a vector $v \in T_pM$ belong to $T_pS$ if and only if there exists some smooth curve  $\alpha :(-\epsilon ,\epsilon )\rightarrow M$ such that the image of  $\alpha $ is contained by $S$,  $\alpha (0)=p$ and $\alpha '(0)=v$. 
+\end{theorem}
+\begin{proof}
+Fix $v\in T_pM$ and $w \in T_pS$ such that $\diota_{*,p}(w)=v$. By definition, there exists some smooth curve $\alpha :(-\epsilon , \epsilon )\rightarrow S$ centering $p$ such that  $\alpha '(0)=w$
+\end{proo}
 \section{Lie Group}
 \begin{mdframed}
 By a \textbf{Lie group}, we mean a smooth manifold equipped with a group structure such that the inversion and group addition are both smooth map, or equivalently, that 
@@ -6594,6 +6955,7 @@ M^2\rightarrow  M; (g,h)\mapsto gh^{-1}
 \end{align*}
 is smooth. 
 \end{mdframed}
+\chapter{Complex Analysis}
 \chapter{Beauty}
 \label{Beauty}
 \section{Fundamental Theorem of Algebra}
@@ -6602,7 +6964,7 @@ is smooth.
 \end{theorem}
 \section{Euler's Formula}
 \begin{abstract}
-This section give a precise definition to exponential function and trigonometric functions, prove \customref{Euler's Formula}{Euler's Formula} and prove some of their basic properties seen in the real case. In this section, $v,v$ are complex numbers, and $x,y$ are real numbers.   
+This section give a precise definition to exponential function and trigonometric functions, prove \customref{Euler's Formula}{Euler's Formula} and prove some of their basic properties seen in the real case. In this section, $z,v$ are complex numbers, and $x,y$ are real numbers.   
 \end{abstract}
 \begin{mdframed}
 Suppose that we define 
@@ -6657,6 +7019,57 @@ Now, we can conclude
 &=\sum_{n=0}^{\infty}\frac{(-1)^{n}}{(2n)!}z^{2n} +  i\cdot  \frac{(-1)^{n}}{(2n+1)!}z^{2n+1} =\exp (iz)
 \end{align*}
 \end{proof}
+\section{Trigonometric Functions}
+\begin{mdframed}
+Following from \customref{Euler's Formula}{Euler's Formula}, we have the \textbf{angle identities} 
+\begin{align*}
+\cos (z+w)&= \cos (z)\cos (w)- \sin (z)\sin (w) \\
+\sin (z+w)&= \cos (z)\sin (w)+ \sin (z)\cos (w)
+\end{align*}
+Observing from definitions that $\cos$ is even an $\sin$ is odd in the sense that 
+\begin{align*}
+\cos (-z)=\cos (z)\text{ and }\sin (-z)=-\sin (z)
+\end{align*}
+we also have the following angle identities 
+\begin{align*}
+\cos (x-y)&= \cos (x)\cos (y)+\sin (x)\sin (y) \\
+\sin (x-y)&= \sin (x)\cos (y)-\cos (x)\sin (y)
+\end{align*}
+Besides the angles identities, we also have the usual fact 
+\begin{align*}
+\cos^2(z)+\sin^2(z)= (\cos (z)+i \sin (z))(\cos (z)-i \sin (z))=e^{iz}e^{-iz}=1
+\end{align*}
+Now, if we restrict our attention to the real line, following from our definition for $\cos$, by direct computation and some induction, we see 
+\begin{align*}
+\cos (0)=1\text{ and }\cos (2)<0
+\end{align*}
+It then follows from IVT such that 
+\begin{align*}
+\set{t\inr^+: \cos (t)=0}\text{ is non empty }
+\end{align*}
+We then can define
+\begin{align*}
+\frac{\pi}{2} \triangleq \inf \set{k\inr^+:\cos (k)=0}
+\end{align*}
+From continuity of $\cos$, we see that $\cos (\frac{\pi}{2})=0$. It then follows from the greatest lower bound definition of $\frac{\pi}{2}$, IVT and the fact that $\cos (0)=1>0$ that 
+\begin{align*}
+\cos (x)>0\text{ for all }0<x< \frac{\pi}{2}
+\end{align*}
+Then since $\sin '(x)=\cos (x)$, by \customref{MVT}{MVT}, we see $\sin$ strictly increase on $[0,\frac{\pi}{2}]$. It then follows from 
+\begin{align*}
+\sin^2 (\frac{\pi}{2})+ \cos^2 (\frac{\pi}{2})=1\text{ and }\sin (0)=0
+\end{align*}
+that $\sin (\frac{\pi}{2})=1$. With $\cos (\frac{\pi}{2})=0\text{ and }\sin (\frac{\pi}{2})=1$ in mind, we can use angle identity to deduce the value of $\sin,\cos$ at $\pi$
+\begin{align*}
+\cos (\pi)=-1\text{ and }\sin (\pi)=0
+\end{align*}
+It now follows from the angle identities that \textbf{trigonometric functions have the period $2\pi$} 
+\begin{align*}
+\cos (z+\pi)&= - \cos (z)\text{ and }\cos (z+2\pi)= \cos (z)\\
+\sin (z+\pi)&=-\sin (z)\text{ and }\sin (z+2\pi)= \sin (z)
+\end{align*}
+The rest of the monotone behaviors of trigonometric function on  $\R$ then follows. 
+\end{mdframed}
 \section{Equivalent Definitions of Exponential Functions}
 \begin{abstract}
 This section give several equivalent definitions of the exponential function. 
@@ -6723,7 +7136,6 @@ Using induction, it is now easy to see
 \begin{theorem}
 \textbf{(Second Characterization)}
 \end{theorem}
-\section{Equivalent Definitions of Trigonometric Functions}
 \section{Equivalent Definitions of Gamma and Beta Functions}
 \section{Prime Number Theorem}
 
@@ -6791,9 +7203,28 @@ since
 \begin{align*}
 \abso{\bigsqcup_n  V+\textbf{z}_n}= \sum_n \abso{V+\textbf{z}_n}=\sum_n \abso{V}
 \end{align*}
-Observing that \myref{Equation}{con} is impossible implies $V$ is not measurable.
-\end{mdframed}
+Now, one simply observe that  \myref{Equation}{con} is impossible. It then follows that $V$ is not measurable.\\
 
+The above argument is often referred to as \textbf{Vitali argument}, and can give stronger result. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Positive outer measure set always contain non measurable set)} Given $A\subseteq \R^d$, if every subset of $A$ is measurable, then $A$ is null.  
+\end{theorem}
+\begin{proof}
+Again define an equivalence relation in $\R^d$ by 
+\begin{align*}
+\textbf{x}\sim  \textbf{y}\overset{\triangle}{\iff }\textbf{x}-\textbf{y}\inq^d
+\end{align*}
+and again using axiom of choice, we can let $V$ contain exactly one element in each equivalence class. It is clear that 
+\begin{align*}
+\R^d=\bigsqcup _{\textbf{q}\inq^d}V_{\textbf{q}}\text{ where }V_{\textbf{q}}\triangleq \set{\textbf{x}+\textbf{q}\inr^d: \textbf{x}\in V}
+\end{align*}
+Thus we have 
+\begin{align*}
+A=\bigsqcup _{\textbf{q}\inq^d} A\cap V_{\textbf{q}}
+\end{align*}
+Note that $A\cap V_{\textbf{q}}$ is totally disconnected. Because totally disconnected compact set must be a finite collection of points, which is null, it then follows from inner regularity of Lebesgue measure that if $A\cap V_{\textbf{q}}$ is measurable, then $A\cap V_{\textbf{q}}$ is null. Then by a proof of contradiction, we must have some $\textbf{q}$ such that $A\cap V_{\textbf{q}}$ is not measurable.
+\end{proof}
 \section{Cantor Set}
 \label{Cantor Set}
 \begin{abstract}

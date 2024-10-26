@@ -1347,6 +1347,81 @@ Let $(F_\alpha )$ be a collection of closed subsets of $M$. Arbitrary select a l
 
 Let $\set{F_1,\dots ,F_N}$ be a collection of closed subsets of $M$.  Let $x$ be an arbitrary limit point of $\bigcup_{n=1}^N F_n$. Let $\set{x_n}$ be a sequence in $\bigcup_{n=1}^N F_n$ with $x_n\neq x$ converging to $x$. It is clear that there must exists some $j \in \set{1,\dots ,N}$  such that $F_j$ contain infinite terms of $\set{x_n}$, i.e., there exists a subsequence $x_{n_k}$ such that $x_{n_k} \in F_j$ for all $k$. Because  $\lim_{k\to \infty}x_{n_k}=\lim_{n\to \infty}x_n=x$, we now see that $x$ is a limit point of  $F_j$. It then follows from  $F_j$ being closed that $x\in F_j \subseteq\bigcup_{n=1}^N F_n$. Because $x$ is arbitrary, we have proved that $\bigcup_{n=1}^N F_n$ is closed.
 \end{proof}
+\section{Exercise 3}
+\begin{question}{}{}
+Provide a counterexample to the following statement: Suppose 
+\begin{align*}
+f(z)=u(x,y)+iv(x,y)
+\end{align*}
+is defined in a neighborhood of $z_0=a+ib$. If the partial derivatives of  $u$ and $v$ exist at $(a,b)$ and satisfy the Cauchy-Riemann equations $u_x(a,b)=v_y(a,b)$ and $u_y(a,b)=-v_x(a,b)$, then $f$ is holomorphic at $z_0$. 
+\end{question}
+\begin{proof}
+WOLG, let $a=b=0$ and define 
+\begin{align*}
+u(x,y)\triangleq \begin{cases}
+x& \text{ if $y=0$ }\\
+y& \text{ if $x=0$ }\\
+0& \text{ if otherwise }
+\end{cases}\text{ and }v(x,y)\triangleq \begin{cases}
+-x& \text{ if $y=0$ }\\
+y& \text{ if $x=0$ }\\
+0& \text{ if otherwise }
+\end{cases}
+\end{align*}
+It is clear that 
+\begin{align*}
+u_x=1=v_y\text{ and }u_y=1=-v_x\text{ at }(0,0)
+\end{align*}
+but
+\begin{align*}
+\lim_{t\to 0;t\inr} \frac{f(t)-f(0)}{t-0}= \lim_{t\to 0;t\inr } \frac{t-it}{t}=1-i
+\end{align*}
+together with 
+\begin{align*}
+\lim_{t\to 0;t\inr} \frac{f(t+it)-f(0)}{t+it}= \lim_{t\to 0;t\inr}\frac{0}{t+it}=0 
+\end{align*}
+shows that $f$ is not holomorphic at $(0,0)$.  
+\end{proof}
+\begin{question}{}{}
+Let $f:[a,b]\rightarrow \R$ be a continuous function. Suppose that $f$ is differentiable at $(a,b)$ and that $f'(x)=0$ for all $x\in (a,b)$. Prove that $f$ is a constant function. 
+\end{question}
+\begin{proof}
+\As{$f(x)\neq f(y)$ for some $x\neq y \in [a,b]$}. By MVT, we then see there exists some $t$ between  $x,y$  (thus $t\in (a,b)$) such that $f'(t)=\frac{f(y)-f(x)}{y-x}\neq 0$, which is impossible. \CaC 
+\end{proof}
+\begin{question}{}{}
+Let $B=B_R(x_0)$ be the open ball in $\R^n$ centered at  $x_0$ with radius  $R>0$. Prove that if  $f:B\rightarrow \R$ is a differentiable function such that $\nabla f=0$ on $B$, then  $f$ is a constant function. 
+\end{question}
+\begin{proof}
+Let $\textbf{x},\textbf{y}$ be two points in $B$. We are required to show $f(\textbf{x})=f(\textbf{y})$. Define $g:[0,1]\rightarrow B$ by 
+\begin{align*}
+g(t)\triangleq f(\textbf{x}+t(\textbf{y}-\textbf{x}))
+\end{align*}
+Note that $g$ is well-defined since $B$ is convex. Because $f$ is differentiable, we have 
+\begin{align*}
+g'(t)=\nabla f (\textbf{x}+y (\textbf{y}-\textbf{x})) \cdot (\textbf{y}-\textbf{x})=0 
+\end{align*}
+It then follows from the last question that 
+\begin{align*}
+f(\textbf{y})=g(1)=g(0)=f(\textbf{x})
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $U$ be an open subset of $\R^n$. A function  $f:U\rightarrow \R$ is called \textbf{locally constant} if, for each $x\in U$, there exists an open neighborhood  $W$ of $x$ such that $W \subseteq U$ and $f:W\rightarrow \R$ is constant on $W$. Prove that $f$ is locally constant function if and only if $\nabla f=0$ on $U$. 
+\end{question}
+\begin{proof}
+The if part follows from the last question by taking some small enough $r$ such that  $B_r(x)\subseteq W$. We now prove the only if part. Fix arbitrary $x \in U$. Because $f$ is locally constant at $x$, we know there exists some  $B_r(x)$ such that $f$ is constant on $B_r(x)$. Therefore, we can let $c\inr$ satisfy 
+\begin{align*}
+f(y)=c \text{ for all } y\in B_r(x) 
+\end{align*}
+To see $\nabla f(x)=0$, just observe that for arbitrary axis $\textbf{j}$
+\begin{align*}
+f_{\textbf{j}}(x)=\lim_{t\to 0} \frac{f(x+t\textbf{j})-f(x)}{t}=0
+\end{align*}
+since $f(x+t\textbf{j})=c=f(x)$ as long as $\abso{t}<r$. Because $\textbf{j}$ is arbitrary, it then follows that $\nabla f(x)=0$, and because $x$ is arbitrary selected from $U$, we have proved  $\nabla f$ is $0$ on  $U$.
+\end{proof}
+\begin{question}{}{}
+Let $D$ be an open, connected subset of $\R^n$. Prove that if  $f:D\rightarrow \R$ is a locally constant function, then $f$ is a constant function. 
+\end{question}
 \chapter{PDE intro HW}
 \section{1.2 First Order Linear Equations}
 \begin{mdframed}
@@ -1552,6 +1627,16 @@ Find a solution of
 Clearly $u=x^2+2t$ suffices.
 \end{proof}
 \section{1.5 Well Posed Problems}
+\begin{mdframed}
+Given a vector field $F:\R^3\rightarrow \R^3$, Divergence Theorem shows
+\begin{align*}
+\iiint_D \nabla \cdot F dV =\iint_{\operatorname{bdy}D} F\cdot \textbf{n}dS
+\end{align*}
+Then if $F$ is the gradient of some scalar field   $f:\R^3\rightarrow \R$, we have 
+\begin{align*}
+\iiint_D \Delta f dV=\iint_{\operatorname{bdy}D} \frac{\partial f}{\partial \textbf{n}}dS
+\end{align*}
+\end{mdframed}
 \begin{question}{}{}
 Consider the ODE
 \begin{align*}
@@ -1741,6 +1826,7 @@ Letting $y\triangleq \sqrt{3}y' $, we then see
 \begin{align*}
 v_{xx}+v_{y'y'}+\tilde{c}v=0 
 \end{align*}
+\end{proof}
 \begin{question}{}{}
 Consider the equation $3u_y+u_{xy}=0$.
 \begin{enumerate}[label=(\alph*)]
@@ -2377,7 +2463,7 @@ It then follows that $w$ attain its maximum on $\Gamma $, which must not be grea
 \end{proof}
 \section{2.4 Diffusion on the whole line}
 \begin{mdframed}
-In this section, we are concerned with solving the following initial value problem 
+In this section, we are concerned with solving the following initial value problem (\textbf{Cauchy problem}) 
 \begin{align*}
 \begin{cases}
   u_t=ku_{xx}\text{ on }\R \times (0,\infty)\\
@@ -2477,11 +2563,272 @@ The solution is exactly
 \begin{align*}
 u(x,t)&= (S*\phi )(x,t)\\
 &=\int_{\R}S(x-y,t)\phi (y)dy \\
-&=\int_{l}^{l} S(x-y,t)dy \\
-&=\int_{l}^{l}F_x(x,y,t)dy \\
+&=\int_{-l}^{l} S(x-y,t)dy \\
+&=\int_{-l}^{l}F_x(x,y,t)dy \\
 &=\int_{-l}^{l}-F_y(x,y,t)dy=F(x,y,t)\Big|_{y=l}^{-l}=Q(x+l,t)-Q(x-l,t)=\frac{\operatorname{erf}(\frac{x+l}{\sqrt{4kt}})-\operatorname{erf}(\frac{x-l}{\sqrt{4kt}})}{2}
 \end{align*}
 \end{proof}
+\begin{question}{}{}
+Solve the diffusion equation with the initial condition 
+\begin{align*}
+  \phi (x)\triangleq \begin{cases}
+    e^{-x}&\text{ for }x>0 \\
+    0&\text{ for }x<0
+  \end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Define 
+ \begin{align*}
+F(x,y,t)\triangleq Q(x-y,t)
+\end{align*}
+The solution is exactly 
+\begin{align*}
+u(x,t)&=(S*\phi)(x,t)\\
+&=\int_{\R}S(x-y,t)\phi (y)dy\\
+&=\int_0^{\infty}e^{-y}S(x-y,t)dy\\
+&=\frac{1}{2\sqrt{t\pi k} }\int_0^{\infty} e^{\frac{-(x-y)^2}{4kt}-y} dy  \\
+&=\frac{1}{2\sqrt{t \pi k}}\int_0^{\infty} e^{\frac{-(y-(x-2kt))^2+ (x-2kt)^2-x^2}{4kt}}dy \\
+&=\frac{e^{kt-x}}{2\sqrt{t \pi k} }\int_0^{\infty} e^{\frac{-(y-(x-2kt))^2}{4kt}}dy \\
+&=\frac{e^{kt-x}}{\sqrt{ \pi } }\int_{\frac{2kt-x}{2\sqrt{kt}}}^{\infty} e^{-s^2}ds\hspace{0.5cm}(\because s= \frac{y-(x-2kt)}{2\sqrt{kt} }) \\
+&=\frac{e^{kt-x}}{\sqrt{ \pi } }\Big( \frac{\sqrt{\pi} }{2}- \frac{\sqrt{\pi} }{2}\operatorname{erf}(\frac{2kt-x}{2\sqrt{kt} }) \Big)\\
+&=\frac{e^{kt-x}}{2}\Big[1-\operatorname{erf}\Big(\frac{2kt-x}{2\sqrt{kt}} \Big) \Big]
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Show that for any fixed $\delta>0$ 
+\begin{align*}
+\max_{\delta \leq \abso{x}<\infty}S(x,t)\to 0\text{ as }t \to 0
+\end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $\phi (x)$ be a continuous function such that  $\abso{\phi (x)}\leq Ce^{ax^2}$. Show that formula 
+\begin{align*}
+u(x,t)= \frac{1}{\sqrt{4 \pi kt} }\int_{-\infty}^{\infty} e^{\frac{-(x-y)^2}{4kt}}\phi (y)dy
+\end{align*}
+for diffusion equation make sense for $0<t<\frac{1}{4ak}$ but not necessarily for larger $t$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Prove the uniqueness of the diffusion problem with Neumann boundary conditions:
+\begin{align*}
+&u_t-ku_{xx}=f(x,t)\text{ for }0<x<l,t>0 \\
+&u(x,0)=\phi (x)\\
+& u_x(0,t)=g(t) \text{ and }u_x(l,t)=h(t)
+\end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Solve the diffusion equation with constant dissipation: 
+\begin{align*}
+&u_t-ku_{xx}+bu=0\text{ for $-\infty < x< \infty$ } \\
+&u(x,0)=\phi (x)
+\end{align*}
+where $b>0$ is a constant. (Hint: Make the change of variables $u(x,t)=e^{-bt}v(x,t)$)
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Solve the diffusion equation with variable dissipation : 
+\begin{align*}
+&u_t-ku_{xx}+bt^2 u=0\text{ for }-\infty < x< \infty \\
+&u(x,0)=\phi (x)
+\end{align*}
+where $b>0$ is a constant.  (Hint: Make the change of variables $u(x,t)=e^{\frac{-bt^3}{3}}v(x,t)$)
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Solve the hear equation with convection: 
+\begin{align*}
+&u_t-ku_{xx}+Vu_x=0\text{ for }-\infty < x< \infty\\
+&u(x,0)=\phi (x)
+\end{align*}
+(Hint: Go to a moving frame of reference by substituting $y=x-Vt$ )
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Show that $S_x(x,y,t)\triangleq S(x,t)S(y,t)$ satisfy the diffusion equation $S_t=k(S_{xx}+S_{yy})$. \\
+
+Deduce that $S_2(x,y,t)$ is the source function for two-dimensional diffusion. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{3.1 Diffusion on the half line}
+\begin{mdframed}
+  Consider the following \textbf{Dirichlet problem}
+\begin{align*}
+\begin{cases}
+  v_t-kv_{xx}=0 \text{ for }0<x<\infty, 0<t<\infty\\
+  \lim_{t\to 0}v(x,t)=\phi (x)\text{ for }0<x<\infty \\
+  v(0,t)=0\text{ for }0<t<\infty 
+\end{cases}
+\end{align*}
+where $\phi:\R^+\rightarrow \R$. Define $\phi_{\operatorname{odd}}:\R\rightarrow \R$ by 
+\begin{align*}
+\phi_{\operatorname{odd}}(x)\triangleq \begin{cases}
+    \phi (x)& \text{ if $x>0$ }\\
+    0& \text{ if $x=0$ }\\
+    -\phi (x)& \text{ if $x<0$ }
+  \end{cases}
+\end{align*}
+It then follows that $\phi_{\operatorname{odd}}$ is an odd function, and we can solve the Cauchy problem with respect to this initial condition $\phi_{\operatorname{odd}}$ and have the solution 
+\begin{align*}
+u(x,t)\triangleq \int_{-\infty}^{\infty} S(x-y,t)\phi_{\operatorname{odd}}(y)dy
+\end{align*}
+Now, because 
+\begin{align*}
+S(x,t)= \frac{1}{2\sqrt{\pi kt} }e^{\frac{-x^2}{4kt}}\text{ is clearly even in $x$ }
+\end{align*}
+We can deduce 
+\begin{align*}
+u(-x,t)&=\int_{-\infty}^{\infty}S(-x-y,t)\phi_{\operatorname{odd}}(y)dy \\
+&=- \int_{-\infty}^{\infty}S(-x-y,t)\phi_{\operatorname{odd}}(-y)dy \\
+&=-\int_{-\infty}^{\infty}S(x+y,t)\phi_{\operatorname{odd}}(-y)dy \\
+&=\int_{\infty}^{-\infty}S(x-z)\phi_{\operatorname{odd}}(z)dz=-u(x,t)\hspace{0.5cm}(\because z=-y)
+\end{align*}
+In other words, we have deduced that $u$ is an odd function in $x$. It then follows that  $u(0,t)=-u(-0,t)=0$. Then we see that the restriction $v\triangleq u|_{(\R^+)^2}$ form a solution of the Dirichlet problem. In particular, we can express $v$ in a form without usage of $\phi_{\operatorname{odd}}$ if we consider 
+\begin{align*}
+u(x,t)&=\int_{-\infty}^{\infty}S(x-y,t)\phi_{\operatorname{odd}}(y)dy\\
+&=\int_{0}^{\infty}S(x-y,t)\phi (y)dy + \int_{-\infty}^0S(x-y,t)(-\phi (-y))dy\\
+&=\int_0^{\infty} [S(x-y,t)-S(x+y,t)]\phi (y)dy \\
+&=\frac{1}{\sqrt{4\pi kt}}\int_0^{\infty} [e^{\frac{-(x-y)^2}{4kt}}- e^{\frac{-(x+y)^2}{4kt}}]\phi (y)dy 
+\end{align*}
+
+\end{mdframed}
+\begin{mdframed}
+
+Now, consider the following \textbf{Neumann problem}
+\begin{align*}
+\begin{cases}
+  w_t-kw_{xx}=0\text{ for }0<x<\infty,0<t<\infty\\
+  \lim_{t\to 0}w(x,t)=\phi (x)\text{ for }0\leq x<\infty\\
+  w_x(0,t)=0\text{ for }0<t<\infty
+\end{cases}
+\end{align*}
+where $\phi:\R^+\rightarrow \R$. Define $\phi_{\operatorname{even}}:\R\rightarrow \R$ by   
+\begin{align*}
+\phi_{\operatorname{even}}(x)\triangleq \begin{cases}
+  \phi (x)& \text{ if $x\geq 0$ }\\
+  \phi (-x)& \text{ if $x\leq 0$ }
+\end{cases}
+\end{align*}
+It then follows that $\phi_{\operatorname{even}}$ is an even function, and we can solve the Cauchy problem with respect to this initial condition $\phi_{\operatorname{even}}$ and have the solution 
+\begin{align*}
+u(x,t)\triangleq \int_{-\infty}^{\infty}S(x-y,t)\phi_{\operatorname{even}}(y)dy
+\end{align*}
+Again because $S$ is even in $x$, we can deduce 
+ \begin{align*}
+u(-x,t)&=\int_{-\infty}^{\infty}S(-x-y,t)\phi_{\operatorname{even}}(y)dy \\
+&=\int_{-\infty}^{\infty}S(-x-y,t)\phi_{\operatorname{even}}(-y)dy \\
+(\because z=-y)\hspace{0.5cm}&=-\int_{\infty}^{-\infty} S(-x+z,t)\phi_{\operatorname{even}}(z)dz=u(x,t)
+\end{align*}
+Now, we have proved that $u$ is even in $x$. This then give $u_x(0,t)=0$, and solve the \textbf{Neumann problem} by letting $w\triangleq u|_{(\R^+)^2}$
+\end{mdframed}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+&u_t=ku_{xx}\\
+&u(x,0)=e^{-x}\\
+&u(0,t)=0
+\end{align*}
+on the half line $0<x<\infty$
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+&u_t=ku_{xx}\\
+&u(x,0)=0 \\
+&u(0,t)=1
+\end{align*}
+on the half line $0<x<\infty$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Consider the following problem with a Robin boundary condition: 
+\begin{align*}
+&u_t=ku_{xx}\text{ on the half line }0<x<\infty \\
+&u(x,0)=x\\
+&u_x(0,t)-2u(0,t)=0
+\end{align*}
+Define $f:\R\rightarrow \R$ by
+\begin{align*}
+f(x)\triangleq \begin{cases}
+  x& \text{ if $x\geq 0$ }\\
+  x+1-e^{2x}& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+and let 
+\begin{align*}
+v(x,t)\triangleq  \frac{1}{\sqrt{4 \pi kt}} \int_{-\infty}^{\infty} e^{\frac{-(x-y)^2}{4kt}}f(y)dy 
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item What PDE and initial condition does $v(x,t)$ satisfy for $-\infty < x< \infty$? 
+  \item Let $w=v_x-2v$. What PDE and initial condition does  $w(x,t)$ satisfy $-\infty < x< \infty$? 
+  \item Show that $f'(x)-2f(x)$ is an odd function. 
+  \item Show that $w$ is an odd function of $x$.  
+  \item Deduce that $u$ satisfy the Robin condition. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Generalize the method of the last exercises to the case of general initial data $\phi (x)$ and arbitrary constant coefficient for $u(0,t)$ in the boundary condition. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{3.2 Reflection of waves}
+\begin{mdframed}
+We now consider the \textbf{Dirichlet's problem for wave on the half line $(0,\infty)$} 
+\begin{align*}
+&\text{ DE: }v_{tt}-c^2v_{xx}=0\text{ for }0<x<\infty,-\infty <t<\infty \\
+&\text{ IC: }v(x,0)=\phi (x),v_t(x,0)=\psi (x)\text{ for }0<x<\infty \\
+&\text{ BC: }v(0,t)=0\text{ for }-\infty < t< \infty
+\end{align*}
+One can check that if we again extend $\phi,\psi:\R^+\rightarrow \R$ to odd function $\phi_{\operatorname{odd}},\psi_{\operatorname{odd}}:\R\rightarrow \R$
+\begin{align*}
+\phi_{\operatorname{odd}}(x)\triangleq \begin{cases}
+  \phi(x)& \text{ if $x>0$ }\\
+  0& \text{ if $x=0$ }\\
+  -\phi (-x)& \text{ if $x<0$ }
+\end{cases}\text{ and }\psi_{\operatorname{odd}}(x)\triangleq \begin{cases}
+  \psi(x)& \text{ if $x>0$ }\\
+  0& \text{ if $x=0$ }\\
+  -\psi (-x)& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+and solve the \textbf{Cauchy's problem for wave on the whole line} with respect to them 
+\begin{align*}
+u(x,t)\triangleq \frac{\phi_{\operatorname{odd}} (x+ct)+\phi_{\operatorname{odd}} (x-ct)}{2}+ \frac{1}{2c}\int^{x+ct}_{x-ct}\psi_{\operatorname{odd}}(y)dy
+\end{align*}
+then its restriction $v\triangleq u|_{[0,\infty)\times \R}$ is again a solution to the Dirichlet's problem for wave on the half line, where the boundary condition follows from $u$ being odd in $x$ as easily checked. \\
+
+Consider also the Neumann problem 
+\begin{align*}
+&\text{ DE: }v_{tt}-c^2v_{xx}=0\text{ for }0<x<\infty,-\infty <t<\infty \\
+&\text{ IC: }v(x,0)=\phi (x),v_t(x,0)=\psi (x)\text{ for }0<x<\infty \\
+&\text{ BC: }v_x(0,t)=0\text{ for }-\infty < t< \infty
+\end{align*}
+\end{mdframed}
 \chapter{PDE HW}
 \section{PDE HW 1}
 \begin{theorem}
@@ -2738,7 +3085,7 @@ In this HW, we give precise definition to $\P^n$  and $\RP^n$, and we rigorously
   \item $\P^n$ is homeomorphic to $\RP^n$ 
    \item $\P^n$ has a smooth structure.
 \end{enumerate}
-Note that in this PDF, brown text is always a clickable hyperlink reference. 
+We also solved  \customref{othq}{the other two questions}. Note that in this PDF, brown text is always a clickable hyperlink reference.  
 \end{abstract}
 \begin{mdframed}
 Define an equivalence relation on $\R^{n+1}\setminus \set{\textbf{0}}$ by 
@@ -2874,8 +3221,73 @@ We see this atlas is indeed smooth, since
   (\Phi_i\circ F)\circ (\Phi_j \circ F)^{-1}=\Phi_i \circ \Phi_j^{-1}
 \end{align*}
 \end{mdframed}
+\begin{question}{}{}
+\label{othq}
+Let $X$ be a set equipped with
+\begin{enumerate}[label=(\alph*)]
+  \item a collection $(U_\alpha )_{\alpha  \in I}$ of subsets that covers $X$. 
+  \item a collection of bijection $\phi_\alpha  : U_\alpha \rightarrow \phi_\alpha (U_\alpha )$ that maps $U_\alpha $ to an open subset $\phi _\alpha (U_\alpha )$ of $\R^n$. 
+  \item For each $\alpha ,\beta \in I $, the set $\phi_\alpha (U_\alpha \cap U_\beta )$ is open. 
+  \item For each $\alpha ,\beta \in I, \phi_\beta \circ \phi_\alpha ^{-1}:\phi_\alpha (U_\beta  \cap U_\alpha )\rightarrow \phi_\beta (U_\alpha ,U_\beta )$ is smooth. 
+\end{enumerate}
+Give $X$ a topology so that  $X$ is a smooth manifold.
+\end{question}
+\begin{proof}
+If we define $E\subseteq X$ is open if and only if 
+\begin{align*}
+\phi_\alpha  (U_\alpha \cap E)\text{ is open for all $\alpha $ } \end{align*} we see that given arbitrary collection of open sets $(E_j)_{j \in J}$, we have 
+\begin{align*}
+  \phi_\alpha (U_\alpha \cap \bigcup_{j \in J}E_j)=\bigcup_{j \in J}\phi_\alpha (U_\alpha \cap E_j)\text{ for all }\alpha \in I
+\end{align*}
+thus open sets are closed under union, and given two open sets $E_1,E_2$,  we have 
+\begin{align*}
+  \phi_\alpha (U_\alpha \cap E_1\cap E_2) \subseteq \phi_\alpha (U_\alpha \cap E_1)\cap \phi_\alpha (U_\alpha \cap E_2)\text{ for all $\alpha  \in I$ } 
+\end{align*}
+Note that if $\textbf{x}\in \phi_\alpha (U_\alpha \cap E_1)\cap \phi_\alpha (U_\alpha \cap E_2)$, then there exists $p_1 \in U_\alpha \cap E_1$ and $p_2\in U_\alpha \cap E_2$ such that $\phi_\alpha (p_1)=\phi_\alpha (p_2)=\textbf{x}$. Because $\phi_\alpha $ is one-to-one, we can deduce $p_1=p_2 \in E_2$, it then follows 
+ \begin{align*}
+\textbf{x}=\phi (p_1)\in \phi_\alpha (U_\alpha \cap E_1\cap E_2)
+\end{align*}
+We now see 
+\begin{align*}
+ \phi_\alpha (U_\alpha \cap E_1)\cap \phi_\alpha (U_\alpha \cap E_2)\subseteq \phi_\alpha (U_\alpha \cap E_1\cap E_2) \text{ for all $\alpha  \in I$ } 
+\end{align*}
+We have proved that our topology on $X$ is well-defined. \\
 
-\section{Appendix}
+Note that $U_\alpha $ is open in $X$ follows from premise (c). Thus, if some $E \subseteq U_\alpha $ is open in $U_\alpha $, then $E$ is open in $X$ and  $\phi_\alpha (E)=\phi_\alpha (U_\alpha \cap E)$ is open. We have proved that $\phi_\alpha :U_\alpha \rightarrow \phi_\alpha (U_\alpha )$ is an open mapping. The fact that $\phi_\alpha :U_\alpha \rightarrow \phi_\alpha (U_\alpha )$ is continuous trivially follows from 
+\begin{enumerate}[label=(\alph*)]
+  \item $U_\alpha $ is open in $X$. 
+  \item our definition of topology on $X$.  
+  \item $\phi_\alpha :U_\alpha \rightarrow \phi_\alpha (U_\alpha )$ is a bijection.  
+\end{enumerate}
+We have proved that $(U_\alpha ,\phi_\alpha )$ are indeed charts. The fact that they form a smooth atlas follows from premise (a) and (d). 
+\end{proof}
+\begin{question}{}{}
+Let $\mathbb{R}$ be the real line with the differentiable structure given by the maximal atlas of the chart $(\mathbb{R}, \varphi = \textbf{id} : \mathbb{R} \to \mathbb{R})$, where $\text{id}$ is the identity map, and let $\mathbb{R}'$ be the real line with the differentiable structure given by the maximal atlas of the chart $(\mathbb{R}', \psi : \mathbb{R}' \to \mathbb{R})$, where $\psi(x) = x^{1/3}$.
+    \begin{enumerate}
+        \item[(a)] Show that these two differentiable structures are distinct.
+        \item[(b)] Show that there is a diffeomorphism between $\mathbb{R}$ and $\mathbb{R}'$. (Hint: The identity map $\mathbb{R} \to \mathbb{R}$ is not the desired diffeomorphism.)
+    \end{enumerate}
+\end{question}
+\begin{proof}
+To see these two smooth structure are distinct. Observe  
+\begin{align*}
+\textbf{id}^{-1}\circ \psi :\R\rightarrow \R;x\mapsto  x^{\frac{1}{3}}\text{ is not smooth at }0
+\end{align*}
+We claim $\phi: \R\mapsto  \R'$ defined by 
+\begin{align*}
+\phi (x)\triangleq x^3\text{ is a diffeomorphism }
+\end{align*}
+It is clear that $\phi$ is a homeomorphism. To see $\phi$ is a smooth mapping from $\R$ to $\R'$, observe that 
+\begin{align*}
+\psi\circ \phi\circ \textbf{id}^{-1}(x)=x
+\end{align*}
+To see $\phi^{-1}$ is a smooth mapping from $\R'$ to  $\R$, observe that 
+ \begin{align*}
+ \textbf{id}\circ \phi \circ \psi^{-1}(x)=x
+\end{align*}
+We have proved that $\phi$ is a diffeomorphism between $\R$ and  $\R'$. 
+\end{proof}
+\section{Appendix} 
 \begin{theorem}
 \label{HbC}
 \textbf{(Homeomorphism between Compact Space and Hausdorff Space)} Suppose 
