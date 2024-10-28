@@ -444,7 +444,7 @@ If $\mathcal{B}_{(n,m)}$ is nonempty, pick one $B_{(n,m)}\in \mathcal{B}_{n,m}$.
 \end{proof}
 \begin{theorem}
 \label{Basic Property of Second Countable Space}
-\textbf{(Basic Property of Second Countable Space)} Open cover of second countable space always have a countable subcover. 
+\textbf{(Second countable space is Lindelöf)} Open cover of second countable space always have a countable subcover. 
 \end{theorem}
 \begin{proof}
 Let $X$ be a space with basis  $(B_n)$ and some open cover  $\mathcal{S}$. For each $n$, let $S_n$ be an element of  $\mathcal{S}$ containing $B_n$ if possible. To see that  $(S_n)$ form a cover, fix $x$ and some $S \in \mathcal{S}$ containing $x$. Because $(B_n)$ is a basis, there exists some $B_m$ such that  $x \in B_m \subseteq S$. This implies the existence of $S_m$, which contain $x$.  
@@ -6241,7 +6241,11 @@ It is at here we shall introduce some general terminologies. Given an arbitrary 
 \label{Differentail Geometry}
 \section{Smooth Manifold}
 \begin{abstract}
-This section prove that \customref{Smooth manifolds always admit smooth partition of unity}{smooth manifolds always admit smooth partition of unity} and some of its corollaries which are heavily used throughout the preceding sections.  
+This main goal of this section is to 
+\begin{enumerate}[label=(\alph*)]
+  \item introduce the idea of smooth manifolds. 
+  \item prove that \customref{Smooth manifolds always admit smooth partition of unity}{smooth manifolds always admit smooth partition of unity}. 
+\end{enumerate}
 \end{abstract}
 \begin{mdframed}
 Given a topological space $(X,\mathscr{T })$ and fix $n$, if $:U\rightarrow \R^n$ is a homeomorphism between some open subspace $U$ of $X$ and some open subspace of $\R^n$, we say $(\Phi,U)$ is a \textbf{chart} on $X$, and if there exists a collection $A=\set{(\Phi_i, U_i)}_{i \in I}$ of chart cover the whole $X$, we say $A$ is an  \textbf{atlas} and  $X$ is  \textbf{locally Euclidean}.  We now give definition to the term \textbf{topological manifold}, which we will use throughout this chapter.  
@@ -6255,7 +6259,7 @@ Given a topological space $(X,\mathscr{T })$ and fix $n$, if $:U\rightarrow \R^n
 \end{enumerate}
 \end{definition}
 \begin{mdframed}
-Immediately, one should check that all three conditions are necessary: There are locally Euclidean space that is not Hausdorff, \customref{Bug-Eyed Line}{Bug-Eyed Line} for example. There also are locally Euclidean space that is not second countable, \customref{Long Line}{Long Line} for example. Also, one can check that any open subspace or finite products of topological manifold is still topological manifold. To have a better understanding why we require more than locally Euclidean in our definition of topological manifold, we first introduce some more topological notions. Given a collection of subsets $(E_\alpha )$ of some topological space $X$, we say $(E_\alpha )$ is \textbf{locally finite} if for each $p \in X$, there exists some neighborhood of $p$ intersecting with only finitely many of $E_\alpha $. Given an open cover $(E_\alpha )$ of topological space $M$, we say a family of continuous function  $\psi_\alpha :M\rightarrow \R$ is a \textbf{partition of unity subordinate to (or dominated by) $(E_\alpha )$} if 
+Immediately, one should check that all three conditions are necessary: There are locally Euclidean space that is not Hausdorff, \customref{Bug-Eyed Line}{Bug-Eyed Line} for example. There also are locally Euclidean space that is not second countable, \customref{Long Line}{Long Line} for example. Also, one can check that any open subspace or finite products of topological manifold is still topological manifold. To have a better understanding why we require more than locally Euclidean in our definition of topological manifol, we first introduce some more topological notions. Given a collection of subsets $(E_\alpha )$ of some topological space $X$, we say $(E_\alpha )$ is \textbf{locally finite} if for each $p \in X$, there exists some neighborhood of $p$ intersecting with only finitely many of $E_\alpha $. Given an open cover $(E_\alpha )$ of topological space $M$, we say a family of continuous function  $\psi_\alpha :M\rightarrow \R$ is a \textbf{partition of unity subordinate to (or dominated by) $(E_\alpha )$} if 
 \begin{enumerate}[label=(\roman*)]
   \item $0\leq \psi_\alpha  (x)\leq 1$ for all $\alpha \in A,x\in M$. 
   \item $\operatorname{supp}\psi_\alpha  \subseteq X_\alpha $ for all $\alpha $. 
@@ -6365,15 +6369,15 @@ We see that $h$ is a smooth function and
 h(x)=\begin{cases}
   1& \text{ if $\abso{x}\leq 1$ }\\
   0& \text{ if $\abso{x}\geq 2$ }
-\end{cases}\text{ and }h(x)\in (0,1)\text{ if } 1\leq \abso{x}\leq 2
+\end{cases}\text{ and }h(x)\in (0,1)\text{ if } 1< \abso{x}< 2
 \end{align*}
-A $n$-dimensional generalization of this smooth function $h$ is  $H:\R^n\rightarrow \R$ 
+A $n$-dimensional generalization of this smooth function $h$ is  $H:\R^n\rightarrow \R$ defined by 
 \begin{align*}
 H(\textbf{x})\triangleq  h\Big(\frac{\abso{\textbf{x}}}{r}\Big)
 \end{align*}
 which is a non-negative smooth function such that 
 \begin{align*}
-H(\textbf{x})>0\text{ if and only if }\abso{x}< 2r
+H(\textbf{x})>0\text{ if and only if }\abso{\textbf{x}}< 2r
 \end{align*}
 \end{mdframed}
 \begin{theorem}
@@ -6381,11 +6385,11 @@ H(\textbf{x})>0\text{ if and only if }\abso{x}< 2r
 \textbf{(Smooth manifolds always admit smooth partition of unity)} Given a smooth manifold $M$ and some open cover  $(U_\alpha )$ of $M$, there exists some smooth partition of unity  $(\psi_\alpha )$ subordinate to $(U_\alpha )$. 
 \end{theorem}
 \begin{proof}
-For each $U_\alpha $ and each chart $(V,\phi)$ contained by $U_\alpha $, if we let $\mathcal{B}_{\alpha ,V}$ be the collection of the pre-images of the open balls $B_r(x)$ in $\phi (V)$ that satisfy $\exists r'>r:B_{r'}(x)\subseteq \phi (V)$, we know that $\mathcal{B}_{\alpha ,V}$ form a basis of $V$. It follows that there exists a basis $\mathcal{B}_\alpha $ of $U_\alpha $ of the form $\mathcal{B}_\alpha \triangleq \bigcup_{(V,\phi)\subseteq U_\alpha }\mathcal{B}_{\alpha ,V}$ and a basis $\mathcal{B}$ of $M$ of the form  $\mathcal{B}\triangleq \bigcup_{\alpha}\mathcal{B}_\alpha $. By \myref{Theorem}{Topological Manifold are Paracompact}, we know there exists a countable locally finite open refinement $(B_n)$ of $U_\alpha $ consisting of element of $\mathcal{B}$.\\
+For each $U_\alpha $ and each chart $(V,\phi)$ contained by $U_\alpha $, if we let $\mathcal{B}_{\alpha ,V}$ be the collection of the pre-images of the open balls $B_r(x)$ in $\phi (V)$ that satisfy $\exists r'>r:B_{r'}(x)\subseteq \phi (V)$, we know that $\mathcal{B}_{\alpha ,V}$ form a basis of $V$. It follows that there exists a basis $\mathcal{B}_\alpha $ for $U_\alpha $ of the form $\mathcal{B}_\alpha \triangleq \bigcup_{(V,\phi)\subseteq U_\alpha }\mathcal{B}_{\alpha ,V}$ and a basis $\mathcal{B}$ for $M$ of the form  $\mathcal{B}\triangleq \bigcup_{\alpha}\mathcal{B}_\alpha $. By \myref{Theorem}{Topological Manifold are Paracompact}, we know there exists a countable locally finite open refinement $(B_n)$ of $U_\alpha $ consisting of element of $\mathcal{B}$.\\
 
 Now, for each $n$, there exists corresponding chart $(V,\phi)$ and $r,r'$ such that  
  \begin{align*}
-   \phi (B_n)=B_r(x)\subseteq B_{r'}(x)\subseteq \phi (V)
+   \phi (B_n)=B_r(x)\text{ and }\overline{B_r(x)}\subseteq B_{r'}(x)\subseteq \phi (V)
 \end{align*}
 This with some tedious effort guarantee that  
 \begin{align*}
@@ -6404,9 +6408,7 @@ Since $V$ and  $M \setminus \overline{B_n}$ are both open and $f_n$ are both smo
 \begin{align*}
 f(x)\triangleq \sum_{n\inn}f_n(x)\text{ is well defined }
 \end{align*}
-and that $f$ is positive on whole $M$  because each $f_n$ is positive on $B_n$ and $(B_n)$ cover the whole $M$. Note that $f$ is also smooth on $M$ since for each $x$, there exists an open-neighborhood around $x$ on which $f$ is just a finite sum of $f_n$. \\ 
-
-We now can define for each $n$ a smooth function  $g_n:M\rightarrow \R$ by 
+and that $f$ is positive on whole $M$  because each $f_n$ is positive on $B_n$ and $(B_n)$ cover the whole $M$. Note that $f$ is also smooth on $M$ since for each $x$, there exists an open-neighborhood around $x$ on which $f$ is just a finite sum of $f_n$. We now can define for each $n$ a smooth function  $g_n:M\rightarrow \R$ by 
 \begin{align*}
 g_n(x)\triangleq \frac{f_n(x)}{f(x)}
 \end{align*}
@@ -6425,22 +6427,19 @@ Because $(B_n)$ is locally finite and $g_n$ is only positive on $B_n$, we see th
   \item $\operatorname{supp}\psi \subseteq U$
 \end{enumerate}
 \end{corollary}
-\begin{mdframed}
-We first develop some important tools we shall heavily used later. If $f$ is said to be  \textbf{smooth on some $E$} that isn't open, we mean $f$ is smoothly defined on some open subset containing $E$.  
-\end{mdframed}
 \begin{corollary}
 \label{EoSF}
-\textbf{(Extension of Smooth Function)} Suppose $K$ is closed in $M$ and   $f:K\rightarrow \R$ is smooth. Let $U$ be open in  $M$ and containing  $K$, and let $g\in C^{\infty}(U)$ satisfy $g|_K=f$. There exists a smooth function $\tilde{f} :M\rightarrow \R$ such that $\tilde{f} |_K=f$ and $\operatorname{supp}\tilde{f}\subseteq U$. 
+\textbf{(Extension of Smooth Function)} Suppose $K$ is closed in $M$, and $U$ is open in  $M$ while containing  $K$. For all $f\in C^{\infty}(U)$, there exists $\tilde{f}\in C^{\infty}(M)$ such that $\tilde{f}|_K=f$ and $\operatorname{supp}\tilde{f}\subseteq U$. 
 \end{corollary}
 \begin{proof}
 \myref{Corollary}{EoSB} give us a smooth function $\psi \in C^{\infty}(M)$ such that $\psi \equiv 1$ on $K$ and  $\operatorname{supp}\psi \subseteq U$. We simply define 
 \begin{align*}
 \tilde{f}(p)\triangleq \begin{cases}
-  \psi(p) g (p)& \text{ if $p\in  U$ }\\
+  \psi(p) f (p)& \text{ if $p\in  U$ }\\
   0& \text{ if $p\not\in U$ }
 \end{cases} 
 \end{align*}
-It is straightforward to check $\tilde{f}|_K=f$. To see $\operatorname{supp}\tilde{f} \subseteq U$, check $\operatorname{supp}\tilde{f} \subseteq \operatorname{supp}\psi$. It is clear that $\tilde{f}$ is smooth at all $p \in U$. It remains to show $\tilde{f}$ is smooth at all  $p\not\in U$. Fix $p\not\in U$. Because $p\not\in \operatorname{supp}\psi$, we know that $\tilde{f}\equiv 0$ on some open neighborhood around $p$. 
+It is clear that $\tilde{f}|_K=f$. To see $\operatorname{supp}\tilde{f} \subseteq U$, check $\operatorname{supp}\tilde{f} \subseteq \operatorname{supp}\psi$. It is clear that $\tilde{f}$ is smooth on $U$. To see $\tilde{f}$ is smooth at all $p\not\in U$, observe that $\tilde{f}\equiv 0$ on some neighborhood around $p$. 
 \end{proof}
 \begin{mdframed}
 Before we state the next Theorem, we shall point out that since topological manifolds are locally Euclidean, they are locally connected, and thus \customref{local-path}{the connected components of a topological manifold are identical to the path-connected components}.  
@@ -6520,6 +6519,7 @@ w(f)= \sum_{i=1}^n \frac{\partial f}{\partial \textbf{x}^i}(\textbf{p})w(g_i)= \
 As pointed out by the proof of \myref{Theorem}{Dtprn}, for each $D_\textbf{x}\in T_\textbf{p}\R^n$, the value of $D_\textbf{x}(f)$ is determined locally at $\textbf{p}$ by $f$. The same behavior happens in the general case. 
 \end{mdframed}
 \begin{theorem}
+\label{Tangent Vector care only about local behavior}
 \textbf{(Tangent Vector care only about local behavior)} Suppose $v \in T_pM$. If $f,g \in C^{\infty}(M)$ agree on some open neighborhood around $p$, then  $v(f)=v(g)$. 
 \end{theorem}
 \begin{proof}
@@ -6527,7 +6527,7 @@ Let $h\triangleq f-g \in C^{\infty}(M)$. We know $h\equiv 0$ on some open neighb
  \begin{align*}
 \operatorname{supp}(h)\subseteq M \setminus \set{p}\subseteq M
 \end{align*}
-By \myref{Lemma}{EoSB}, there exists some bump function $\psi : M \rightarrow [0,1]$ such that $\psi \equiv 1$ on $\operatorname{supp}(h)$ and $\operatorname{supp}(\psi)\subseteq M \setminus \set{p}$. Since $\operatorname{supp}(\psi )\subseteq M \setminus \set{p}$, we know $\psi (p)=h(p)=0$, and since $\psi \equiv 1$ on $\operatorname{supp}(h)$, we also know $\psi h=h$. This let us deduce 
+By \myref{Corollary}{EoSB}, there exists some smooth function $\psi : M \rightarrow [0,1]$ such that $\psi \equiv 1$ on $\operatorname{supp}(h)$ and $\operatorname{supp}(\psi)\subseteq M \setminus \set{p}$. Since $\operatorname{supp}(\psi )\subseteq M \setminus \set{p}$, we know $\psi (p)=h(p)=0$, and since $\psi \equiv 1$ on $\operatorname{supp}(h)$, we also know $\psi h=h$. This let us deduce 
 \begin{align*}
 v(h)=v(\psi h)=v(\psi)h(p)+\psi (p) v(h)=0  
 \end{align*}
@@ -6552,43 +6552,52 @@ It is straightforward to check that given another smooth manifold $R$ and smooth
 \end{mdframed}
 \begin{theorem}
 \label{TSop}
-\textbf{(Tangent Space of points in open restriction)} Given some open subset $U \subseteq M$ and inclusion map $\iota:U\rightarrow M $, for all $p \in U$, the map $\iota_{*,p}:T_pU\rightarrow T_pM$ is a vector space isomorphism.  
+\textbf{(Tangent Space of points in open restriction)} Given some open subset $U \subseteq M$ and inclusion map $\diota  :U\rightarrow M $, for all $p \in U$, the map $\diota _{*,p}:T_pU\rightarrow T_pM$ is a vector space isomorphism.  
 \end{theorem}
 \begin{proof}
-  We first prove that \vi{$\iota_{*,p}$ is one-to-one}. Fix $v \in T_pU$ such that $\iota_{*,p}(v)=0$ and $f\in C^{\infty}(U)$. We are required to show \vi{$v(f)=0$}. Let $(V,\phi)$ be a chart contained in $U$ and containing $p$, and let  $\epsilon $ satisfy 
+  We first prove that \vi{$\diota _{*,p}$ is one-to-one}. Fix $v \in T_pU$ such that $\diota_{*,p}(v)=0$.  We are required to show \vi{$v=0$}. Fix $f\in C^{\infty}(U)$. Let $(V,\phi)$ be a chart contained in $U$ and centering $p$, and let  $\epsilon $ satisfy 
 \begin{align*}
-\operatorname{cl}_{\R^n}(B_\epsilon (\phi (p)))\subseteq \phi (V)  
+  \overline{B_\epsilon (\phi (p))}\subseteq \phi (V)  
 \end{align*}
-If we define  $A\triangleq  \phi ^{-1}(B_\epsilon (\phi (p)))$, we know $\overline{A}\subseteq U$ because $M$ is Hausdorff.  Now by \myref{Corollary}{EoSF}, we know there exists $\tilde{f}\in C^{\infty}(M)$ such that $\tilde{f}\equiv f$ on $\overline{A}$. We can now deduce 
+Define  $K\triangleq  \overline{\phi ^{-1}(B_\epsilon (\phi (p)))}$. By \myref{Corollary}{EoSF}, we know there exists $\tilde{f}\in C^{\infty}(M)$ such that $\tilde{f}\equiv f$ on $K$. Then because \customref{Tangent Vector care only about local behavior}{tangent vector care only about local behavior}, we can now deduce 
   \begin{align*}
-  v(f)=v(\tilde{f}|_U )=v(\tilde{f}\circ \iota  )=\iota_{*,p}(v)(\tilde{f}) =0 \vdone
+  v(f)=v(\tilde{f}|_U )=v(\tilde{f}\circ \diota   )=\iota_{*,p}(v)(\tilde{f}) =0 \vdone
   \end{align*}
-  We now prove $\blue{\iota_{*,p}\text{ is onto}}$. Fix $w\in T_pM$, and again the same $A\triangleq \phi^{-1}(B_\epsilon (\phi (p)))$. Define $v\in T_pU$ by 
+  We now prove $\blue{\iota_{*,p}\text{ is onto}}$. Fix $w\in T_pM$, and again  $K\triangleq \overline{\phi^{-1}(B_\epsilon (\phi (p)))}$. Define $v\in T_pU$ by 
 \begin{align*}
 v(f)\triangleq w(\tilde{f})
 \end{align*}
-where $\tilde{f}\in C^{\infty}(M)$ satisfy $\tilde{f}\equiv f$ on $\operatorname{cl}_M(B)$. Because for all $g\in C^{\infty}(M)$, $g \equiv g \circ \iota $ on $\operatorname{cl}_M(B)$, we know 
+where $\tilde{f}\in C^{\infty}(M)$ satisfy $\tilde{f}\equiv f$ on $K$. Because for all $g\in C^{\infty}(M)$, $g \equiv g \circ \diota  $ on $K$, we know 
 \begin{align*}
-\iota_{*,p}(v)(g)=v(g\circ \iota)= w(g) \bdone
+\iota_{*,p}(v)(g)=v(g\circ \diota )= w(g) \bdone
 \end{align*}
 \end{proof}
-\begin{theorem}
-\textbf{(Dimension of $T_pM$ is the same as $M$)} If $M$ is an  $n$-dimensional smooth manifold, then  $T_pM$ is an  $n$-dimensional vector space.  
-\end{theorem}
-\begin{proof}
-Let $(U,\phi)$ be a chart containing $p$. \myref{Theorem}{TSop} tell us that $T_pU$ and  $T_pM$ are isomorphic, and since  $\phi:U\rightarrow \phi (U)$ is a diffeomorphism between smooth manifolds $U, \phi (U)$, we know $T_pU$ is isomorphic to  $T_{\phi (p)}\phi (U)$ which is isomorphic to $T_p\R^n$ again by  \myref{Theorem}{TSop}. 
-\end{proof}
 \begin{mdframed}
-
-With all the tools we have gathered, we can now see that if we are given a chart $(U,\phi)$ containing $p$, and we define  for each $i \in \set{1,\dots ,n}$ the functional $\frac{\partial }{\partial \textbf{x}^i}|_p:C^{\infty}(M)\rightarrow \R$ by 
+Given a chart $(U,\phi)$ containing $p$, we often define $\frac{\partial }{\partial \textbf{x}^i}|_p\in T_pM$ by
 \begin{align}
 \label{tsbasis}
 \frac{\partial }{\partial \textbf{x}^i}\Big|_p (f) \triangleq \frac{\partial (f\circ \phi^{-1})}{\partial \textbf{x}^i}(\phi (p))
 \end{align}
-then 
+By \myref{Theorem}{TSop}, we have the following diagram 
+\[\begin{tikzcd}
+	{T_pM} &&& {T_{\varphi (p)}\R^m} \\
+	\\
+	{T_pU} & {} && {T_{\varphi(p)}\varphi(U)}
+	\arrow["{\dot{\iota}_{*,\varphi(p)}}"', leftrightarrow, from=1-4, to=3-4]
+	\arrow["{\dot{\iota}_{*,p}}"', leftrightarrow, from=3-1, to=1-1]
+	\arrow["{\varphi_{*,p}}", leftrightarrow, from=3-1, to=3-4]
+\end{tikzcd}\]
+Then since $\frac{\partial}{\partial \textbf{x}^i}|_{\phi (p)}$ form a basis for $T_p\R^m$ by the proof of  \myref{Theorem}{Dtprn}, we see $\frac{\partial }{\partial \textbf{x}^i}|_p$ form a basis for $T_pM$. Note that our notation give us the convenient 
 \begin{align*}
-  \frac{\partial }{\partial \textbf{x}^i}\Big|_p\text{ form a basis for  }T_pM
+\frac{\partial }{\partial \textbf{x}^i}\Big|_p= \sum_j \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i} \frac{\partial  }{\partial \tilde{\textbf{x}}^j }\Big|_p
 \end{align*}
+when we are given another chart containing $p$.  (Verify this by some tedious effort) \\
+
+
+
+
+
+
 Now, if we define for each $C^1$ curve $\gamma:(-\epsilon , \epsilon )\rightarrow M$ such that $\gamma  (0)=p$, its \textbf{velocity vector $\gamma '(0) \in T_{\gamma (0)}M$} by 
 \begin{align*}
 \gamma '(0)(f)\triangleq (f\circ \gamma )'(0)
@@ -6771,7 +6780,7 @@ We have established that $(V_0,\psi)$ is a smooth chart, and for all $(\textbf{x
 \end{proof}
 \section{Submanifold}
 \begin{abstract}
-
+This section discuss submanifolds. Note that in this section, smooth manifold $S,M,N$ always have the dimension $s,m,n$. 
 \end{abstract}
 \begin{mdframed}
  By an \textbf{immersed smooth submanifold} $S$ of smooth manifold $M$, we mean a subset  $S$, endowed with a topology and a smooth structure such that the inclusion map  $\diota : S\rightarrow M$ is a smooth immersion. If we say the immersed smooth submanifold $S$ is an \textbf{embedded smooth submanifold}, we mean that the inclusion map $\diota : S \rightarrow M $ is moreover a \textbf{smooth embedding}, i.e., not only does $\diota $ have to be a smooth immersion, but $\diota  $ also have to be a topological embedding. It is clear by definition that if $S$ is an embedded smooth manifold, then the topology on $S$ must be the subspace topology.\\
@@ -6939,14 +6948,104 @@ Then if we consider the chart  $(W_0,\psi),(U\cap V, \pi \circ \phi)$ for $M,S$,
 we see $F:M\rightarrow S$ is smooth at $p$. 
 \end{proof}
 \begin{mdframed}
-Lastly, we discuss the property of tangent space $T_pS$ of smooth immersed submanifold  $S$ of  $M$. Because  $\diota:S\rightarrow M $ is a smooth immersion, $\diota_{*,p}:T_pS \rightarrow T_pM$ is always an injective vector space homomorphism, we often identify $T_pS$ as a subspace of  $T_pM$. 
+Lastly, we discuss the property of tangent space $T_pS$ of smooth immersed submanifold  $S$ of  $M$. Because the fact $\diota:S\rightarrow M $ is a smooth immersion shows that $\diota_{*,p}:T_pS \rightarrow T_pM$ is always an injective vector space homomorphism, we often identify $T_pS$ as a subspace of  $T_pM$. 
 \end{mdframed}
 \begin{theorem}
-\textbf{(Equivalent Characterization of Tangent Subspace of Immersed Submanifold)} Given an immersed smooth submanifold $S$ of  $M$ and  $p \in S$, a vector $v \in T_pM$ belong to $T_pS$ if and only if there exists some smooth curve  $\alpha :(-\epsilon ,\epsilon )\rightarrow M$ such that the image of  $\alpha $ is contained by $S$,  $\alpha (0)=p$ and $\alpha '(0)=v$. 
+\textbf{(Velocity Characterization of Tangent Subspace of Immersed Submanifold)} Given an immersed smooth submanifold $S$ of  $M$ and  $p \in S$, a vector $v \in T_pM$ belong to $T_pS$ if and only if there exists some smooth curve  $\alpha :(-\epsilon ,\epsilon )\rightarrow S$ such that $\alpha (0)=p$ and in $M$, $\alpha '(0)=v$. 
 \end{theorem}
 \begin{proof}
-Fix $v\in T_pM$ and $w \in T_pS$ such that $\diota_{*,p}(w)=v$. By definition, there exists some smooth curve $\alpha :(-\epsilon , \epsilon )\rightarrow S$ centering $p$ such that  $\alpha '(0)=w$
-\end{proo}
+The proof lies in observing that for all $f\in C^{\infty}(M)$ and smooth curve $\alpha :(-\epsilon  ,\epsilon )\rightarrow S$ centering $S$, we have 
+\begin{align*}
+\diota_{*,p}(\alpha '(0))(f) =(f\circ \diota \circ  \alpha)'(0)=(f\circ \alpha )'(0)  
+\end{align*}
+where the $\alpha '(0)$ in the first quantity is in $S$. 
+\end{proof}
+\begin{theorem}
+\textbf{(Equivalent Characterization of Tangent Subspace of Embedded Submanifold)} Given a smooth embedded submanifold $S$ of  $M$, we have 
+ \begin{align*}
+\diota_{*,p}(T_pS)=\set{v \in T_pM: vf=0\text{ whenever }f\in C^{\infty}(M)\text{ and }f|_S=0}  
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $v\in \diota_{*,p}(T_pS)$ and $f\inC^{\infty}(M)$ such that $f|_S=0$. Let $w\in T_pS$ be $\diota_{*,p}(w)=v $. Observe that 
+\begin{align*}
+v(f)=\diota_{*,p}(w)(f)= w(f\circ \diota)=0
+\end{align*}
+since $f\circ \diota\in C^{\infty}(S)$ is constant. We have proved the $\subseteq$ side of the inequality. \\
+
+Fix $v \in T_pM$ that satisfy $v(f)=0$ for all $f\in C^{\infty}(M)$ such that $f|_S=0$. Because $S$ is a smooth embedded submanifold of  $M$, we can let $(U,\phi)$ be the $s$-slice chart centering $p$ for  $M$ with respect to  $S$. We now have the chart $(U\cap S,\pi \circ \phi),(U,\phi)$ for $S,M$. This then give us 
+\begin{align*}
+\phi \circ \diota \circ (\pi \circ \phi )^{-1}(\textbf{x}^1,\dots ,\textbf{x}^s)=(\textbf{x}^1,\dots ,\textbf{x}^s ,0,\dots ,0)
+\end{align*}
+This then implies that $\diota_{*,p}$ sent each $\frac{\partial }{\partial \textbf{x}^i}\big|_p$, where $1\leq i\leq s$, to $\frac{\partial }{\partial \textbf{x}^i}\big|_p$. In other words, if we write 
+\begin{align*}
+  v=\sum_{i=1}^m v^i \frac{\partial }{\partial \textbf{x}^i}\Big|_p
+\end{align*}
+then $v\in \diota_{*,p}(T_pS)$ if and only if for all $i>s$, we have  $v^i=0$.\\
+
+Let $\Psi:M\rightarrow S$ be a smooth function supported in $U$ and take value  $1$ on certain neighborhood of  $p$. Fix some $i>k$, if we define $f:M\rightarrow \R$ by 
+ \begin{align*}
+f(p)\triangleq \begin{cases}
+  \Psi (p) x^i& \text{ if }p \in U \\
+  0& \text{ if $p\in M \setminus \operatorname{supp}\Psi$}
+\end{cases}
+\end{align*}
+the function $f$ is well defined, smooth, and take value $0$ on $S$. This then give us 
+\begin{align*}
+0=vf=\sum_{j=1}^m v^j \frac{\partial f}{\partial \textbf{x}^j}\Big|_p=v^i 
+\end{align*}
+where the last inequality hold true since $\Psi$ is constant on certain neighborhood of $p$. 
+\end{proof}
+\begin{mdframed}
+Lastly, we pointed out that if $F:M\rightarrow N$ is a smooth map with constant rank, then all its level set $S\triangleq F^{-1}(c)$  has the property that 
+\begin{align*}
+\diota_{*,p}(T_pS)= \operatorname{Ker}F_{*,p} 
+\end{align*}
+since $F\circ \diota:S\rightarrow N$ is a constant function and $T_pS$ by  \customref{Constant Rank Level Set Theorem}{constant rank level set Theorem} have dimension $m-k$. 
+\end{mdframed}
+\section{Bundle}
+\begin{abstract}
+
+\end{abstract}
+\begin{mdframed}
+Given a smooth manifold $M$ and a countable collection of chart $(U_n, \phi_n) $ that cover $M$, if we write 
+ \begin{align*}
+TM\triangleq \coprod _{p \in M} T_pM\triangleq \bset{(p,v): p \in M\text{ and }v \in T_pM}
+\end{align*}
+and let $\pi:TM\rightarrow M$ be the projection map 
+\begin{align*}
+\pi (p,v)\triangleq p
+\end{align*}
+then for each $n$ we can define a bijective function  $\Phi_n:\pi^{-1}(U_n)\rightarrow \R^{2m}$ by 
+\begin{align*}
+  \Phi_n (p,v)\triangleq  (\phi (p), v^1,\dots ,v^m)\text{ where }v=\sum_{i=1}^m v^i \frac{\partial }{\partial \textbf{x}^i}\Big|_p
+\end{align*}
+This then let us define $E\subseteq M$ to be open if and only if $\Phi_n (E\cap \pi^{-1}(U_n))$ is open in $\R^m$ for all  $n$. Note that  the topology is well defined because $\Phi_n$ are all one-to-one. Moreover, we see that $\pi^{-1}(U_n)$ are open since for all $k\inn$
+\begin{align*}
+\Phi_k (\pi^{-1}(U_n)\cap \pi^{-1}(U_k))= \phi_k(U_n \cap U_k)\times \R^m\text{ is open in }\R^{2m}
+\end{align*}
+It then follows from the definition of our topology that $\Phi_n:\pi^{-1}(U_n)\rightarrow \Phi_n(\pi^{-1}(U_n))$ is a homeomorphism, since subsets of $\pi^{-1}(U_n)$ is open in $\pi^{-1}(U_n)$ if and only if it is open in $M$. We have proved that $(U_n,\phi_n)$ form an atlas. \\
+
+To see that the atlas $(U_n,\Phi_n)$ is smooth, observe that 
+\begin{align*}
+\Phi_\beta \circ \Phi^{-1}_\alpha (\textbf{x}^1,\dots ,\textbf{x}^m ,\textbf{y}^1,\dots ,\textbf{y}^m)&= \Phi_\beta (\phi_\alpha ^{-1}(\textbf{x}^1,\dots ,\textbf{x}^m),\sum_{i=1}^m \textbf{y}^i \frac{\partial }{\partial \textbf{x}^i}\Big|_p)\\
+&=\Phi_\beta \Big(\phi_\alpha ^{-1}(\textbf{x}^1,\dots ,\textbf{x}^m),\sum_{i=1}^m \textbf{y}^i \sum_{j=1}^m \frac{\partial \tilde{\textbf{x}}^j}{\partial  \textbf{x}^i}\Big|_p \frac{\partial }{\partial \tilde{\textbf{x}}^j}\Big|_p\Big)\\
+&=\Big(\phi_\beta  \circ \phi^{-1}_\alpha (\textbf{x}^1,\dots ,\textbf{x}^m),\sum_{i=1}^m \textbf{y}^i \frac{\partial \tilde{\textbf{x}} ^1 }{\partial \textbf{x}^i}\Big|_p, \dots , \sum_{i=1}^m \textbf{y}^i \frac{\partial \tilde{\textbf{x}}^m }{\partial \textbf{x}^i}\Big|_p  \Big)
+\end{align*}
+is smooth. To show that $TM$ with the smooth atlas  $(\pi^{-1}(U_n),\Phi_n)$ is a smooth manifold, it remains to show $TM$ is second countable and Hausdorff. Note that $TM$ is second countable since  $\pi^{-1}(U_n)$ is an open cover of $TM$ consisting of second countable space. Lastly, to see $TM$ is Hausdorff, observe that if $v_p,v_q$ is not in the same fiber, then we can separate them with $\pi^{-1}(U_p),\pi^{-1}(U_q)$ where $U_p\cap U_q=\varnothing$, and if they are in the same fiber, we can separate them in the second component.  
+\end{mdframed}
+\begin{mdframed}
+A \textbf{smooth real vector bundle of rank $k$ over the smooth manifold $M$} is a smooth manifold $E$ together with the surjective smooth map  $\pi : E\rightarrow M$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item Each fiber $\pi^{-1}(p)$ has a real $k$-dimensional vector space structure. 
+  \item For all $p \in M$, there exists some neighborhood $U$ of  $p$ and a diffeomorphism  $\Phi:\pi^{-1}(U)\rightarrow U\times \R^k$ such that $\Phi$ map the fiber $\pi^{-1}(p)$ vector space isomorphiscally to $\set{p}\times \R^k$. 
+\end{enumerate}
+Note that we often call $E$ the  \textbf{total space} and $M$ the  \textbf{base space}. The neighborhood $U$ and the smooth diffeomorphism $\Phi:\pi^{-1}(U)\rightarrow U\times \R^k$ is often called the \textbf{smooth local trivialization}, and if there exists a global smooth trivialization, we say $(E,M,\pi:E\rightarrow M)$ is a \textbf{trivial bundle}. It is clear that tangent bundle $TM$ is a smooth real vector bundle of rank  $m$ over the smooth manifold  $M$ where the induced chart  $\Phi_m :\pi^{-1}(U_n)\rightarrow \R^{2m}$ are smooth local trivialization. If we are given a smooth right inverse  $\sigma:M\rightarrow E$ of $\pi$
+\begin{align*}
+\pi \circ \sigma (p)=p\text{ for all }p \in M
+\end{align*}
+we say $\sigma$ is a \textbf{smooth section of the bundle $\pi:E\rightarrow M$}. 
+\end{mdframed}
 \section{Lie Group}
 \begin{mdframed}
 By a \textbf{Lie group}, we mean a smooth manifold equipped with a group structure such that the inversion and group addition are both smooth map, or equivalently, that 

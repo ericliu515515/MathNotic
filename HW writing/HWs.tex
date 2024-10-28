@@ -827,6 +827,52 @@ Note that $\set{I_k^2}_{k\inn}$ is a compact interval cover  of $\set{x^2:x\in Z
 \abso{\set{x^2:x\in Z_n}}_e \leq \sum_k \abso{I_k^2} \leq 2n \sum \abso{I_k}< \epsilon 
 \end{align*}
 \end{proof}
+\section{HW3}
+\begin{question}{}{}
+Let $f$ be a simple function, taking its distinct values on disjoint sets $E_1,\dot , E_N$. Show that $f$ is measurable if and only if $E_1,\dots ,E_N$ are measurable. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $f$ be defined and measurable on $\R^n$. If  $T$ is a nonsingular linear transformation of $\R^n$, show that  $f(T\textbf{x})$ is measurable. (If $E_1=\set{\textbf{x}:f(\textbf{x})>a}$, and $E_2=\set{\textbf{x}:f(T\textbf{x})>a}$, show that $E_2=T^{-1}E_1$) 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Give an example to show that $\phi \circ f$ may not be measurable if $\phi,f:\R\rightarrow \R$ are measurable and finite. (Let $F$ be the Cantor-Lebesgue function and let  $f$ be its inverse suitably defined. Let $\phi$ be the characteristic function of a set of measure zero whose image under $F$ is not measurable.) Show that the same may be true even if $f$ is continuous. (Let $g(x)=x+F(x)$ and consider $f=g^{-1}$) 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}[label=(\alph*)]
+  \item Show that the limit of a decreasing (increasing) sequence of functions upper (lower) semicontinuous at $\textbf{x}_0$ is upper (lower) semicontinuous at $\textbf{x}_0$. In particular, the limit of a decreasing (increasing) sequence of functions continuous at $\textbf{x}_0$ is upper (lower) semicontinuous at $\textbf{x}_0$. 
+  \item Let $f$ be upper semicontinuous and less than $\infty$ on $[a,b]$. Show that there exists continuous $f_k$ on  $[a,b]$ such that $f_k\searrow f$.  (First show that there exist continuous $f_k$ on  $[a,b]$ such that $f_k\searrow f$) 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $f_k$ be a sequence of measurable function defined on a measurable set  $E$ with finite measure. If  $\abso{f_k(\textbf{x})}\leq M_{\textbf{x}}<\infty$ for all $k$ and for each  $\textbf{x} \in E$, show that given $\epsilon >0$, there exists closed $F\subseteq E$ and finite $M$ such that  $\abso{E-F}< \epsilon $ and $\abso{f_k(\textbf{x})}\leq M$ for all $k$ and  $\textbf{x}\in F$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+If $f$ is measurable on $E$, define  $\omega_f(a)\triangleq \abso{f>a}$ for $a \inr$. If $f_k\nearrow f$, show  $\omega_{f_k}\nearrow \omega_f$.  If $f_k \overset{m}{\to}f$, show that $\omega_{f_k}\to \omega_f$ at each point of continuity of $\omega_f$. (For the second part, show that if $f_k\overset{m}{\to}f$, then $\limsup_{k\to\infty}\omega_{f_k}(a)\leq \omega_f (a-\epsilon )$ and $\liminf_{k\to\infty} \omega_{f_k}(a)\geq \omega_f(a+\epsilon ) $ for all $\epsilon >0$). 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+If $f$ is measurable and finite almost everywhere on $[a,b]$, show that given $\epsilon >0$, there ix a continuous $g$ on $[a,b]$ such that $\abso{f\neq g}< \epsilon $. Formulate and prove a similar result in $\R^n$ by combining Lusin's Theorem with the Tietze extension Theorem. 
+\end{question}
+\begin{proof}
+
+\end{proof}
 \section{Brunn-Minkowski Inequality}
 \begin{abstract}
 This HW assignment require us to prove Brunn-Minkowski Inequality.   
@@ -849,7 +895,7 @@ Note that elementary set theory tell us
 \end{mdframed}
 \begin{theorem}
 \label{Brunn-Minkowski Inequality for Bricks}
-\textbf{(Brunn-Minkowski Inequality for Bricks)} Suppose $A,B$ are two  \textbf{bricks}, i.e., $A$ is of the form $\prod_{j=1}^d[x_j,y_j]$ and so is $B$, then we have 
+\textbf{(Brunn-Minkowski Inequality for Bricks)} Suppose $A,B$ are two  \textbf{bricks}, i.e., $A$ is of the form $\prod_{j=1}^d[x_j,y_j]$, and so is $B$. We have 
 \begin{align*}
 \abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
 \end{align*}
@@ -882,42 +928,38 @@ Adding two inequalities together, now have
 The result then follows from multiplying both side with $\abso{A+B}^{\frac{1}{d}}$. 
 \end{proof}
 \begin{theorem}
+\label{BMIb}
 \textbf{(Brunn-Minkowski Inequality for finite union of non-overlapping of bricks)} Suppose $A$ is a union of a finite collection of non-overlapping brick and so is $B$. We have 
  \begin{align*}
 \abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
 \end{align*}
 \end{theorem}
 \begin{proof}
-  We prove by induction on the sum $k$ of the amount of bricks consisting $A$ and the amount of bricks consisting $B$. The base case $k=2$ have been proved by \myref{Theorem}{Brunn-Minkowski Inequality for Bricks}. Suppose the proposition hold true when $k\leq r$. Let $k=r+1$. Because the bricks consisting of $A$ are non-overlapping, by a translation  (and renaming axis if necessary), we can suppose 
+  We prove by induction on the sum $k$ of the amount of bricks consisting $A$ and the amount of bricks consisting $B$. The base case $k=2$ have been proved by \myref{Theorem}{Brunn-Minkowski Inequality for Bricks}. Suppose the proposition hold true when $k\leq r$. Let $k=r+1$. Because the bricks consisting of $A$ are non-overlapping, by a translation  (and renaming axis if necessary), we can suppose the following proposition.
 \begin{center}
    \begin{minipage}{0.9\linewidth}  
-      $A^+\triangleq A\cap \set{\textbf{x}\inr^d: x_1\geq 0}$ is a union of a collection of non-overlapping bricks with amount at least one fewer than $A$. 
+     $\vspace{0.05cm}$\\
+     Proposition 1: Both $A^+\triangleq A\cap \set{\textbf{x}\inr^d: \textbf{x}_1\geq 0}$ and $A^-\triangleq A\cap \set{\textbf{x}\inr^d: \textbf{x}_1\leq 0}$ are union of collection of non-overlapping bricks, with each collection containing at least one fewer brick than $A$. \label{pp1}\\ 
    \end{minipage}
 \end{center}
-This is true since if we write $A=A_1\cup \cdots \cup A_m$, then by translation and remaining axis, we can suppose $A_1$ lies in only one of the closed subspaces $\set{\textbf{x}\inr^d:x_1\geq 0},\set{\textbf{x}\inr^d:x_1\leq 0}$ and $A_2$ lies in another, and since for all $n\geq 3$, $A_n \cap \set{\textbf{x}\inr^d: x_1\geq 0}$ is either also a brick or empty. With similar reason, we now see 
-\begin{center}
-   \begin{minipage}{0.9\linewidth}  
-      $A^-\triangleq A\cap \set{\textbf{x}\inr^d: x_1\leq 0}$ is a union of a collection of non-overlapping bricks with amount at least one fewer than $A$. 
-   \end{minipage}
-\end{center}
+
+\customref{pp1}{Proposition 1} hold because if we write $A=A_1\cup \cdots \cup A_m$ where $A_1,\dots , A_m$ are non-overlapping bricks, then by translation and remaining axis, we can suppose $A_1,A_2$ lie in distinct closed subspace, either $\set{\textbf{x}\inr^d:\textbf{x}_1\geq 0}$ or $\set{\textbf{x}\inr^d:\textbf{x}_1\leq 0}$, while for all $n\geq 3$, $A_n \cap \set{\textbf{x}\inr^d: \textbf{x}_1\geq 0}$ is either empty or also a brick.\\
+
+
 Now, note that $h:\R\rightarrow \R$ defined by
 \begin{align*}
-h(t)\triangleq  \abso{\Big(B+(t,0,\dots ,0) \Big)\cap \set{\textbf{x}\inr^d: x_1\geq 0}}
+h(t)\triangleq  \abso{\Big(B+(t,0,\dots ,0) \Big)\cap \set{\textbf{x}\inr^d: \textbf{x}_1\geq 0}}
 \end{align*}
-is clearly a continuous function. ($h$ can be expressed as a finite sum of continuous function $\sum_{k=1}h_k^p$ if $B$ consist of $p$-amount of bricks)\\
-
-We then can translate $B$ to let $B$ satisfy 
+is clearly a continuous function. (If $B$ consists of  $p$ bricks, then  $h$ can be written as a finite sum of continuous function with compact support, $\sum_{k=1}^p h_k$) Then by IVT, we can translate $B$ to let $B$ satisfy 
  \begin{align}
   \label{rai}
 \frac{\abso{A^+}}{\abso{A}}= \frac{\abso{B^+}}{\abso{B}}\text{ where }B^+ \triangleq B \cap \set{\textbf{x}\inr^d: x_1\geq 0}
 \end{align}
-Define $B^-\triangleq B\cap \set{\textbf{x}\inr^d:x_1\leq 0}$. With similar reason stated above, we know $B^+$ and  $B^-$ are both union of collection of non-overlapping bricks with amount not greater than  $B$. \\
-
-At this point, one should note that the sum of the amount of bricks consisting $A^+$ (resp. $A^-$) and the amount bricks consisting $B^+$ (resp. $B^-$) is at least one fewer than the sum $r+1$ of the sum of the amount of bricks consisting $A$ and the amount bricks consisting $B$. Then because the proposition hold true when $k\leq r$, we now have
+Define $B^-\triangleq B\cap \set{\textbf{x}\inr^d:\textbf{x}_1\leq 0}$. With reason similar to that of \customref{pp1}{Proposition 1}, we know $B^+$ and  $B^-$ are both union of collection of non-overlapping bricks, with each collection containing bricks no more than  $B$. Therefore, with \customref{pp1}{Proposition 1}, we can deduce that the sum of the amount of bricks consisting $A^+$ (resp. $A^-$) and the amount bricks consisting $B^+$ (resp. $B^-$) is at least one fewer than $r+1$. Then because the proposition hold true for $k\leq r$, we now have
 \begin{align*}
 \abso{A^+}^{\frac{1}{d}}+ \abso{B^+}^{\frac{1}{d}}\leq \abso{A^++B^+}^{\frac{1}{d}}\text{ and }\abso{A^-}^{\frac{1}{d}}+ \abso{B^-}^{\frac{1}{d}}\leq \abso{A^-+B^-}^{\frac{1}{d}}
 \end{align*}
-Note that for each $\textbf{x}$ in the interior of $A^++B^+$, we must have  $x_1>0$, and for each  $\textbf{y}$ in the interior of $A^-+B^-$, we must have  $y_1<0$. This implies that  $(A^++B^+)$ and $(A^-+B^-)$ are non-overlapping. Now, because 
+Note that for each $\textbf{x}$ in the interior of $A^++B^+$, we must have  $\textbf{x}_1>0$, and for each  $\textbf{y}$ in the interior of $A^-+B^-$, we must have  $\textbf{y}_1<0$. This implies that  $(A^++B^+)$ and $(A^-+B^-)$ are non-overlapping. Now, because 
 \begin{align*}
 A+B =(A^++B^+)\cup (A^-+B^-)
 \end{align*}
@@ -930,24 +972,66 @@ if we define $\rho \triangleq \frac{\abso{A^+}}{\abso{A}}$, from \myref{Equation
 &=(\rho + 1-\rho)(\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}})^d\\
 &=(\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}})^d
 \end{align*}
-This then give us the desired 
+This then give us the desired inequality  
 \begin{align*}
 \abso{A+B}^{\frac{1}{d}}\geq \abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}
 \end{align*}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+\end{proof}
+\begin{theorem}
+\textbf{(Brunn-Minkowski Inequality for bounded open set)} Suppose $A,B$ are both bounded open subset of  $\R^d$. We have 
+ \begin{align*}
+\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Note that  $A+B$ is also open since it is a union of the open sets:
+\begin{align*}
+A+B=\bigcup_{\textbf{b}\in B}A+\textbf{b}\text{ }
+\end{align*}
+It then follows that $A+B$ is Lebesgue measurable, so it makes sense for us to write  $\abso{A+B}$. By a proposition taught in class, we can let 
+\begin{align*}
+A=\bigcup_{n\inn}K_{n,a}\text{ and }B=\bigcup_{n\inn}K_{n,b}
+\end{align*}
+Fix arbitrary $\textbf{x}\in A+B$. Let $\textbf{a} \in A,\textbf{b}\in B$ satisfy $\textbf{x}=\textbf{a}+\textbf{b}$. Because $A=\bigcup K_{n,a}$ and $B=\bigcup K_{n,b}$, we know there exists $j_a,j_b \inn$ such that $\textbf{a} \in K_{j_a,a}$ and $\textbf{b} \in K_{j_b,b}$. WOLG, suppose $j_a\geq j_b$. Now, because 
+\begin{align*}
+  \textbf{x}=\textbf{a}+\textbf{b}\in \Big(\bigcup_{n=1}^{j_a} K_{n,a} \Big) + \Big(\bigcup_{n=1}^{j_a}K_{n,b} \Big)
+\end{align*}
+and $\textbf{x}$ is arbitrary selected from $A+B$, we have proved
+\begin{align*}
+  \Big(\bigcup_{n=1}^N K_{n,a} \Big) + \Big(\bigcup_{n=1}^N K_{n,b} \Big) \nearrow A+B\text{ as }N \to \infty
+\end{align*}
+This together with \myref{Theorem}{BMIb} then give us the desired inequality  
+\begin{align*}
+\abso{A+B}^{\frac{1}{d}}&=\Bigg( \lim_{N\to \infty} \abso{\Big(\bigcup_{n=1}^N K_{n,a} \Big) + \Big( \bigcup_{n=1}^N K_{n,b}  \Big)}  \Bigg)^{\frac{1}{d}} \\
+&=\lim_{N\to \infty} \abso{\Big(\bigcup_{n=1}^N K_{n,a} \Big) + \Big( \bigcup_{n=1}^N K_{n,b}  \Big)}^{\frac{1}{d}}\\
+&\geq \lim_{N\to \infty} \abso{\bigcup_{n=1}^N K_{n,a}}^{\frac{1}{d}}+ \abso{\bigcup_{n=1}^N K_{n,b}}^{\frac{1}{d}}\\
+&=\Big(\lim_{N\to \infty} \abso{\bigcup_{n=1}^N K_{n,a}} \Big)^{\frac{1}{d}}+ \Big(\lim_{N\to \infty} \abso{\bigcup_{n=1}^N K_{n,b}} \Big)^{\frac{1}{d}}\\
+&=\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Brunn-Minkowski Inequality for compact set)} Suppose $A,B$ are both compact subset of  $\R^d$. We have 
+ \begin{align*}
+\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq  \abso{A+B}^{\frac{1}{d}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+For each $\epsilon >0$, define 
+\begin{align*}
+A_{\epsilon }\triangleq \set{\textbf{x}\inr^d: d(\textbf{x},A)<\epsilon }\text{ and }B_{\epsilon }\triangleq \set{\textbf{x}\inr^d: d(\textbf{x},B)<\epsilon }
+\end{align*}
+ To see $A_\epsilon $ is open, observe that if $\textbf{x}\in A_{\epsilon }$, then for all $\textbf{y}$ in the open ball $d(\textbf{x},\textbf{y})<\frac{\epsilon -d(\textbf{x},A)}{2}$, we can pick some $\textbf{z} \in A$ satisfying $d(\textbf{x},\textbf{z})< d(\textbf{x},A) + \frac{\epsilon}{2}$ to have
+\begin{align*}
+  d(\textbf{y},A)&\leq d(\textbf{y},\textbf{z})\\
+  &\leq d(\textbf{x},\textbf{z})+d(\textbf{x},\textbf{y})\\
+  &\leq d(\textbf{x},\textbf{z})+ \frac{\epsilon -d(\textbf{x},A)}{2}\\
+  &\leq d(\textbf{x},\textbf{z})-d(\textbf{x},A)+ \frac{\epsilon }{2}<\epsilon \text{ implying }\textbf{y} \in A_\epsilon 
+\end{align*}
+Similar argument shows that $B_{\epsilon }$ are open. To see $A_\epsilon \searrow A$, note that for all $\textbf{x}\not\in A$, because $d(\textbf{z},\textbf{x})$ is a function continuous in the variable $\textbf{z}$ and $A$ is compact, by EVT we have 
+ \begin{align*}
+d(\textbf{x},A)=d(\textbf{x},\textbf{z})>0\text{ for some $\textbf{z}\in A$ }
+\end{align*}
+Note that the inequality hold because $\textbf{z}\in A \implies \textbf{x}\neq \textbf{z} $. Similar argument shows that $B_\epsilon \searrow B$. It now follows from  
 \end{proof}
 \chapter{Complex Analysis HW}
 \section{HW1}
@@ -2602,7 +2686,11 @@ Show that for any fixed $\delta>0$
 \end{align*}
 \end{question}
 \begin{proof}
-
+Note that for all fixed $t>0$, 
+ \begin{align*}
+\max_{\delta \leq \abso{x}<\infty } S(x,t)=\max_{\delta \leq \abso{x}<\infty } \frac{1}{2\sqrt{kt \pi} } e^{\frac{-x^2}{4kt}}= \frac{1}{2\sqrt{kt \pi} } e^{\frac{-\delta^2}{4kt}} 
+\end{align*}
+The proof then follows from noting $e^{\frac{-1}{t}}=o(\sqrt{t})$. 
 \end{proof}
 \begin{question}{}{}
 Let $\phi (x)$ be a continuous function such that  $\abso{\phi (x)}\leq Ce^{ax^2}$. Show that formula 
@@ -2612,6 +2700,19 @@ u(x,t)= \frac{1}{\sqrt{4 \pi kt} }\int_{-\infty}^{\infty} e^{\frac{-(x-y)^2}{4kt
 for diffusion equation make sense for $0<t<\frac{1}{4ak}$ but not necessarily for larger $t$. 
 \end{question}
 \begin{proof}
+Because $\phi$ is continuous, we know  
+\begin{align*}
+e^{\frac{-(x-y)^2}{4kt}}\phi (y)\text{ is at least measurable in $y$ on $\R$}
+\end{align*}
+We now see that if $0<t<\frac{1}{4ak}$, then 
+\begin{align*}
+\int_{\R} e^{\frac{-(x-y)^2}{4kt}}\phi (y)dy\leq  C\int_{\R} e^{ay^2+b(x-y)^2}dy < \infty\text{ where }b<-a
+\end{align*}
+If $t\geq  \frac{1}{4ak}$, and we take $\phi = Ce^{ay^2}$, then we have 
+\begin{align*}
+\int_{\R} e^{\frac{-(x-y)^2}{4kt}}\phi (y)dy= C\int_\R e^{ay^2+b(x-y)^2}dy =\infty
+\end{align*}
+because $b\geq -a$. 
 
 \end{proof}
 \begin{question}{}{}
@@ -2623,7 +2724,7 @@ Prove the uniqueness of the diffusion problem with Neumann boundary conditions:
 \end{align*}
 \end{question}
 \begin{proof}
-
+The proof follows from energy method.
 \end{proof}
 \begin{question}{}{}
 Solve the diffusion equation with constant dissipation: 
@@ -2634,7 +2735,26 @@ Solve the diffusion equation with constant dissipation:
 where $b>0$ is a constant. (Hint: Make the change of variables $u(x,t)=e^{-bt}v(x,t)$)
 \end{question}
 \begin{proof}
-
+If we make the change of variables $v(x,t)\triangleq e^{bt}u(x,t)$, then 
+\begin{align*}
+v_t=e^{bt}(u_t+bu)\text{ and }v_{xx}=e^{bt}u_{xx}
+\end{align*}
+It then follows that 
+\begin{align*}
+v_t-kv_{xx}=e^{bt}(u_t+bu-ku_{xx})=0 
+\end{align*}
+The initial condition for $v$ is 
+\begin{align*}
+v(x,0)=u(x,0)=\phi (x)
+\end{align*}
+Then we know 
+\begin{align*}
+v(x,t)= \int_\R S(x-y,t)\phi (y)dy 
+\end{align*}
+It then follows that 
+\begin{align*}
+u(x,t)=e^{-bt}\int_{\R}S(x-y,t)\phi (y)dy
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Solve the diffusion equation with variable dissipation : 
@@ -2645,10 +2765,29 @@ Solve the diffusion equation with variable dissipation :
 where $b>0$ is a constant.  (Hint: Make the change of variables $u(x,t)=e^{\frac{-bt^3}{3}}v(x,t)$)
 \end{question}
 \begin{proof}
-
+If we make the change of variables $v(x,t)\triangleq e^{\frac{bt^3}{3}}u(x,t)$, then 
+\begin{align*}
+v_t= e^{\frac{bt^3}{3}}(bt^2u+ u_t)\text{ and }v_{xx}=e^{\frac{bt^3}{3}}(u_{xx})
+\end{align*}
+It then follows that 
+\begin{align*}
+v_t-kv_{xx}=e^{\frac{bt^3}{3}}(u_t-ku_{xx}+bt^2u)=0
+\end{align*}
+The initial condition for $v$ is 
+ \begin{align*}
+v(x,0)=u(x,0)=\phi (x)
+\end{align*}
+It then follows 
+\begin{align*}
+v(x,t)=\int_{\R} S(x-y,t)\phi (y)dy
+\end{align*}
+and 
+\begin{align*}
+u(x,t)=e^{\frac{-bt^3}{3}} \int_{\R} S(x-y,t)\phi (y)dy
+\end{align*}
 \end{proof}
 \begin{question}{}{}
-Solve the hear equation with convection: 
+Solve the heat equation with convection: 
 \begin{align*}
 &u_t-ku_{xx}+Vu_x=0\text{ for }-\infty < x< \infty\\
 &u(x,0)=\phi (x)
@@ -2656,15 +2795,52 @@ Solve the hear equation with convection:
 (Hint: Go to a moving frame of reference by substituting $y=x-Vt$ )
 \end{question}
 \begin{proof}
-
+If we define $v(x,t)\triangleq u(x+Vt,t)$, then 
+\begin{align*}
+v_u=u_t+Vu_x\text{ and }v_{xx}=u_{xx}
+\end{align*}
+It then follows that 
+\begin{align*}
+v_t-kv_{xx}=u_t-ku_{xx}+Vu_x=0
+\end{align*}
+Note that $v$ has the initial condition 
+ \begin{align*}
+v(x,0)=u(x,0)=\phi (x)
+\end{align*}
+So we have
+\begin{align*}
+v(x,t)=\int_{\R}S(x-y,t)\phi (y)dy 
+\end{align*}
+It then follows 
+\begin{align*}
+u(x,t)=u(x-Vt+Vt,t)=v(x-Vt,t)=\int_{\R}S(x-Vt-y,t)\phi (y)dy
+\end{align*}
 \end{proof}
 \begin{question}{}{}
-Show that $S_x(x,y,t)\triangleq S(x,t)S(y,t)$ satisfy the diffusion equation $S_t=k(S_{xx}+S_{yy})$. \\
+Show that $S_2(x,y,t)\triangleq S(x,t)S(y,t)$ satisfy the diffusion equation $S_t=k(S_{xx}+S_{yy})$. \\
 
 Deduce that $S_2(x,y,t)$ is the source function for two-dimensional diffusion. 
 \end{question}
 \begin{proof}
-
+We have 
+\begin{align*}
+  (S_2)_t(x,y,t)=S_t(x,t)S(y,t)+S(x,t)S_t(y,t)
+\end{align*}
+and 
+\begin{align*}
+  (S_2)_{xx}=S_{xx}(x,t)S(y,t)\text{ and }(S_2)_{yy}=S(x,t)S_{yy}(y,t)
+\end{align*}
+This then give us 
+\begin{align*}
+  (S_2)_t-k(S_2)_{xx}-k(S_2)_{yy}=S(y,t)[S_t(x,t)-S_{xx}(x,t)]+ S(x,t)[S_t(y,t)-S_{yy}(y,t)]=0 
+\end{align*}
+To see that $S_2$ is indeed fundamental solution, observe 
+ \begin{align*}
+\iint_{\R^2}S_2(x-r,y-s,0)\phi (r,s)drds&= \iint_{\R^2}S(x-r,0)S(y-s,0)\phi (r,s)drds\\
+&=\int_{\R}S(x-r,0)\int_{\R}S(y-s,0)\phi (r,s)dsdr\\
+&=\int_{\R}S(x-r,0) \phi (r,y)dr\\
+&=\phi (x,y)
+\end{align*}
 \end{proof}
 \section{3.1 Diffusion on the half line}
 \begin{mdframed}
@@ -2695,9 +2871,8 @@ S(x,t)= \frac{1}{2\sqrt{\pi kt} }e^{\frac{-x^2}{4kt}}\text{ is clearly even in $
 We can deduce 
 \begin{align*}
 u(-x,t)&=\int_{-\infty}^{\infty}S(-x-y,t)\phi_{\operatorname{odd}}(y)dy \\
-&=- \int_{-\infty}^{\infty}S(-x-y,t)\phi_{\operatorname{odd}}(-y)dy \\
-&=-\int_{-\infty}^{\infty}S(x+y,t)\phi_{\operatorname{odd}}(-y)dy \\
-&=\int_{\infty}^{-\infty}S(x-z)\phi_{\operatorname{odd}}(z)dz=-u(x,t)\hspace{0.5cm}(\because z=-y)
+&=- \int_{-\infty}^{\infty}S(x+y,t)\phi_{\operatorname{odd}}(-y)dy \hspace{0.5cm}(\because S\text{ is even and }\phi_{\operatorname{odd}\text{ is odd }})\\
+&=-\int_{-\infty}^{\infty}S(x-r)\phi_{\operatorname{odd}}(r)dr=-u(x,t)\hspace{0.5cm}(\because r=-y)
 \end{align*}
 In other words, we have deduced that $u$ is an odd function in $x$. It then follows that  $u(0,t)=-u(-0,t)=0$. Then we see that the restriction $v\triangleq u|_{(\R^+)^2}$ form a solution of the Dirichlet problem. In particular, we can express $v$ in a form without usage of $\phi_{\operatorname{odd}}$ if we consider 
 \begin{align*}
@@ -2735,7 +2910,13 @@ u(-x,t)&=\int_{-\infty}^{\infty}S(-x-y,t)\phi_{\operatorname{even}}(y)dy \\
 &=\int_{-\infty}^{\infty}S(-x-y,t)\phi_{\operatorname{even}}(-y)dy \\
 (\because z=-y)\hspace{0.5cm}&=-\int_{\infty}^{-\infty} S(-x+z,t)\phi_{\operatorname{even}}(z)dz=u(x,t)
 \end{align*}
-Now, we have proved that $u$ is even in $x$. This then give $u_x(0,t)=0$, and solve the \textbf{Neumann problem} by letting $w\triangleq u|_{(\R^+)^2}$
+Now, we have proved that $u$ is even in $x$. This then give $u_x(0,t)=0$, and solve the \textbf{Neumann problem} by letting $w\triangleq u|_{(\R^+)^2}$. In particular, we can express $u$ in a form without usage of  $\phi_{\operatorname{even}}$ if we consider 
+\begin{align*}
+u(x,t)&=\int_{-\infty}^{\infty} S(x-y,t)\phi_{\operatorname{even}}(y)dy \\
+&=\int_{0}^{\infty}S(x-y,t)\phi (y)dy + \int^{0}_{-\infty} S(x-y,t)\phi (-y)dy \\
+&= \int_0^{\infty} [S(x-y,t)+S(x+y,t)]\phi (y)dy \\
+&=\frac{1}{\sqrt{4 \pi kt} }\int_0^{\infty} [e^{\frac{-(x-y)^2}{\sqrt{ 4k t} }}+ e^{\frac{-(x+y)^2}{\sqrt{ 4 kt} }}] \phi (y)dy
+\end{align*}
 \end{mdframed}
 \begin{question}{}{}
 Solve 
@@ -2747,7 +2928,18 @@ Solve
 on the half line $0<x<\infty$
 \end{question}
 \begin{proof}
-
+Extend the initial condition to 
+\begin{align*}
+\phi_{\operatorname{odd}}(x)\triangleq \begin{cases}
+  e^{-x}& \text{ if $x>0$ }\\
+  0& \text{ if $x=0$ }\\
+  -e^{x}& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+We then solve 
+\begin{align*}
+u(x,t)=\frac{1}{2\sqrt{\pi kt} }\int_{\R} e^{\frac{-(x-y)^2}{4kt}}\phi_{\operatorname{odd}}(y)dy
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Solve 
@@ -2759,7 +2951,22 @@ Solve
 on the half line $0<x<\infty$. 
 \end{question}
 \begin{proof}
-
+It is clear that if a function $v(x,t)$ satisfy the diffusion equation and the initial and boundary condition 
+\begin{align*}
+v(x,0)=-1\text{ and }v(0,t)=0
+\end{align*}
+then $u\triangleq v+1$ is a desired solution. Note that $v$ is just 
+\begin{align*}
+v(x,t)=\int_{\R}S(x-y,t)\phi_{\operatorname{odd}} (y)dy
+\end{align*}
+where 
+\begin{align*}
+\phi_{\operatorname{odd}}(y)=\begin{cases}
+ -1& \text{ if $y>0$ }\\
+ 0& \text{ if $y=0$ }\\
+ 1& \text{ if $y<0$ } 
+\end{cases}
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Consider the following problem with a Robin boundary condition: 
@@ -2784,17 +2991,53 @@ v(x,t)\triangleq  \frac{1}{\sqrt{4 \pi kt}} \int_{-\infty}^{\infty} e^{\frac{-(x
   \item Let $w=v_x-2v$. What PDE and initial condition does  $w(x,t)$ satisfy $-\infty < x< \infty$? 
   \item Show that $f'(x)-2f(x)$ is an odd function. 
   \item Show that $w$ is an odd function of $x$.  
-  \item Deduce that $u$ satisfy the Robin condition. 
+  \item Deduce that $v$ satisfy the Robin condition. 
 \end{enumerate}
 \end{question}
 \begin{proof}
-
+$v$ satisfy the initial condition:  $v(x,0)=f(x)$, and $w$ satisfy the initial conditions 
+\begin{align*}
+w(x,0+)=v_x(x,0+)-2v(x,0+)=f'(x)-2f(x) 
+\end{align*}
+Note that the initial condition for $w$ is  $\phi (x)=f'(x)-2f(x)$ is odd. It then follows that 
+\begin{align*}
+w(x,t)=\int_{\R} S(x-y,t)\phi (y)dy\text{ is odd in }x
+\end{align*}
+To see $v$ satisfy the Robin condition, observe 
+ \begin{align*}
+v_x(0,t)-2v(0,t)=w(0,t)=0
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Generalize the method of the last exercises to the case of general initial data $\phi (x)$ and arbitrary constant coefficient for $u(0,t)$ in the boundary condition. 
 \end{question}
 \begin{proof}
-
+We are required to solve 
+\begin{align*}
+&u_t=ku_{xx}\text{ on the half line }0<x<\infty\\
+&u(x,0)=\phi (x)\\
+&u_x(0,t)-cu(0,t)=0\text{ where }c\text{ is some non-zero constant }
+\end{align*}
+If function $f:\R^*\rightarrow \R$ satisfy 
+\begin{enumerate}[label=(\alph*)]
+  \item $f(x)\triangleq \phi (x)\text{ for }x>0$
+  \item $f'(x)-cf(x)\text{ is odd for $x\neq 0$}$
+\end{enumerate}
+then the function 
+\begin{align*}
+u(x,t)\triangleq \int_{\R} S(x-y,t)f(y)dy
+\end{align*}
+suffice both initial condition and boundary condition. To see that $u$ satisfy the boundary condition, observe that $u_x-hu$ is a solution to the diffusion equation with initial condition 
+ \begin{align*}
+   (u_x-cu)(x,0)&=\lim_{h\to 0}\frac{u(x+h,0)-u(x,0)}{h}-cu(x,0)\\
+   &= \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}-cf(x)\\
+   &=f'(x)-cf(x)
+\end{align*}
+which with Theorem of uniqueness of solution implies 
+\begin{align*}
+  (u_x-cu)(x,t)=\int_{\R}S(x-y,t) [f'(y)-cf(y)]dy
+\end{align*}
+It then follows from $f'-cf$ is odd that  $(u_x-cu)$ is odd in $x$, and thus $(u_x-cu)(0,t)=0$. 
 \end{proof}
 \section{3.2 Reflection of waves}
 \begin{mdframed}
