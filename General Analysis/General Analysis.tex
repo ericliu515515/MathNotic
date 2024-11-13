@@ -4293,7 +4293,7 @@ Give very careful attention to the statement of \myref{Theorem}{Cfobv}. Note tha
 This section construct the Riemann-Stieltjes integral for increasing integrator in the form of Darboux integral for further reference. Note that in this section, $\Delta \alpha _n\triangleq \alpha (x_n)-\alpha (x_{n-1})$. 
 \end{abstract}
 \begin{mdframed}
-Given an bounded interval $I$, whose left and right end points are respectively $a,b$, and function  $f,\alpha :I\rightarrow \R$ such that 
+Given some bounded interval $I$ with left and right end points are respectively $a,b$ and some function $f,\alpha :I\rightarrow \R$ such that 
 \begin{enumerate}[label=(\alph*)]
   \item Their images $f(I),\alpha (I)$ are both bounded. 
   \item $\alpha $ is increasing on $I$. 
@@ -4350,7 +4350,7 @@ Lastly, if $J$ is another interval contained in  $I$, and  $f$ is proper Riemann
 \begin{align*}
   \sum_{n=1}^{N_{P'}} [\sup_{[x_{n-1},x_n]} f] \Delta \alpha _n \leq \sum_{n=1}^{N_P} [\sup_{[x_{n-1},x_n]} f] \Delta \alpha _n 
 \end{align*}
-With all these basic properties in mind, we are now ready to present the most famous \customref{FTC}{Fundamental Theorem of Calculus}. 
+With all these basic properties in mind, we are now ready to present the most famous \customref{FTC1}{Fundamental Theorem of Calculus}. 
 \end{mdframed}
 \begin{theorem}
   \label{FTC1}
@@ -4358,63 +4358,45 @@ With all these basic properties in mind, we are now ready to present the most fa
 \begin{align*}
 F(x)\triangleq \int_a^x f(t)dt
 \end{align*}
-then $F$ is continuous on  $[a,b]$. Moreover, provided $x \in (a,b)$ and 
-\begin{align*}
-\lim_{t\to x^-} f(t)=\lim_{t\to x^+} f(t)\text{ exists }
-\end{align*}
-then $F$ is differentiable at $x$.
+then $F$ is continuous on  $[a,b]$. Moreover, if $f$ is continuous at some $x\in (a,b)$, then $F'(x)=f(x)$.
 \end{theorem}
 \begin{proof}
-Fix $\epsilon $. Because $f$ is proper Riemann integrable on $(a,b)$, we know there exists some $M\inr$ such that 
+  We first prove that \vi{$F:[a,b]\rightarrow \R$ is uniform continuous}. Fix $\epsilon $. Because $f$ is proper Riemann integrable on $(a,b)$, we know there exists some $M\inr$ such that 
  \begin{align*}
 M> \sup_{x\in (a,b)}\abso{f(x)} 
 \end{align*}
-Then for each $x,y \in [a,b]$ such that $\abso{y-x}< \frac{\epsilon }{M}$, we have
+Then for each $x,y \in [a,b]$ such that $\abso{y-x}< \frac{\epsilon }{M}$, we see
 \begin{align*}
-  \abso{F(x)-F(y)}&=\abso{\int_x^y f(t)dt}\\
-  &\leq \int_x^y \abso{f(t)}dt<\epsilon \vdone
+  \abso{F(x)-F(y)}=\abso{\int_x^y f(t)dt}\leq \int_x^y \abso{f(t)}dt<\epsilon \vdone
 \end{align*}
-Now, to prove $F'(x_0)=f(x_0)$, we wish 
+We now prove 
 \begin{align*}
-  \blue{\text{ to prove $\lim_{x\to x_0} \frac{F(x)-F(x_0)}{x-x_0}= f(x_0)$ }}
+  \blue{f\text{ is continuous at }x \in (a,b)\implies F'(x)=f(x)}
 \end{align*}
-Fix $\epsilon $. We wish 
+Fix $\epsilon $. Because $f$ is continuous at $x$, there exists $\delta $ such that  
 \begin{align*}
-\blue{\text{ to find $\delta$ such that $\abso{x-x_0}<\delta \implies \abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}<\epsilon $ }}
+\abso{t-x}<\delta \implies \abso{f(t)-f(x)}<\epsilon 
 \end{align*}
-Because $f$ is continuous at $x_0$, we know  
-\begin{align}
-\label{F1}
-\exists \delta, \abso{x-x_0}<\delta \implies \abso{f(x)-f(x_0)}<\epsilon 
-\end{align}
-We claim 
+Now, observe that for all $t\in (x,x+\delta )$ 
 \begin{align*}
-\blue{\text{ such $\delta$ in}}\text{ \myref{Equation}{F1} }\blue{\text{works}}
-\end{align*}
-WOLG, let $x>x_0$. Deduce 
-\begin{align*}
-\abso{\frac{F(x)-F(x_0)}{x-x_0}-f(x_0)}&=\abso{\frac{\int_{x_0}^x f(t)dt}{x-x_0}-f(x_0)}\\                  &=\abso{\frac{\int_{x_0}^x \big[f(t)-f(x_0) \big]dt}{x-x_0}}\\
-&\leq \frac{\int_{x_0}^x \abso{f(t)-f(x_0)}dt}{\abso{x-x_0}}\\
-&\leq \frac{\int_{x_0}^x \epsilon dt}{\abso{x-x_0}}=\epsilon \bdone
+\abso{\frac{F(t)-F(x)}{t-x}-f(x)}&=\abso{\frac{\int_{x}^t f(s)ds}{t-x}-f(x)}\\                  &=\abso{\frac{\int_{x}^t \big[f(s)-f(x) \big]ds}{t-x}}\\
+&\leq \frac{\int_{x}^t \abso{f(s)-f(x)}ds}{\abso{t-x}}\leq \epsilon \bdone
 \end{align*}
 \end{proof}
+\begin{mdframed}
+If one wish to discuss the one-sided derivative of $F$ on endpoints $a,b$, one may employ the same argument we use, under the hypothesis that the one sided limit $f(a+),f(b-)$ exists. 
+\end{mdframed}
 \begin{theorem}
 \label{FTC2}
-\textbf{(Fundamental Theorem of Calculus: Part 2, Leibniz Rule)} Suppose two functions $f,F:[a,\infty )\rightarrow \R$ satisfy 
-\begin{enumerate}[label=(\alph*)]
-  \item $f$ is proper Riemann-Integrable on $[a,b]$ for all $b>a$ 
-\item $F'(x)=f(x)$ for all $x \in (a, \infty)$ 
-\item $F$ is continuous on  $[a,\infty)$
-\end{enumerate}
-Then for all $b>a$, 
+\textbf{(Fundamental Theorem of Calculus: Part 2)} Given some function $f$ defined and proper Riemann-integrable on  $(a,b)$, if $F:[a,b]\rightarrow \R$ is continuous and satisfy $F'(x)=f(x)$  for all $x\in (a,b)$, then 
 \begin{align*}
 \int_a^b f(x)dx=F(b)-F(a)
 \end{align*}
 \end{theorem}
 \begin{proof}
-Fix $\epsilon $. We wish 
+Fix $\epsilon $. We show 
 \begin{align*}
-\vi{\text{ to show that $\abso{\Big( F(b)-F(a)\Big)-\int_a^b f(x)dx}<\epsilon $ }}
+\vi{\text{ $\abso{F(b)-F(a)-\int_a^b f(x)dx}<\epsilon $ }}
 \end{align*}
 Because $f$ is proper Riemann-Integrable on $[a,b]$, we know there exists a partition $P=\set{a=x_0,x_1,\dots , x_n=b}$ of  $[a,b]$ such that 
 \begin{align}
@@ -4442,35 +4424,9 @@ Then by \myref{Equation}{FP}, we can deduce
 
 
 \end{proof}
-\begin{theorem}
-\textbf{(Integral By Part)} Given four function $f,g,F,G:[a,b]\rightarrow \R$ such that 
-
-\begin{enumerate}[label=(\alph*)]
-  \item $F'(x)=f(x)\text{ and }G'(x)=g(x)$ for all $x\in (a,b)$ 
-  \item $f,g$ are properly Riemann-Integrable on  $[a,b]$ 
-  \item $F,G$ are continuous on  $[a,b]$
-\end{enumerate}
-We have
-\begin{align}
-\label{FI}
-\int_a^b F(x)g(x)dx=FG\Big|^b_a-\int_a^b f(x)G(x)dx
-\end{align}
-\end{theorem}
-\begin{proof}
-To prove \myref{Equation}{FI}, we only with 
-\begin{align*}
-\vi{\text{ to prove }\int_a^b F(x)g(x)dx+\int_a^b f(x)G(x)dx=FG\Big|_a^b}
-\end{align*}
-We can reduce the problem 
-\begin{align*}
-\vi{\text{ into proving }\int_a^b \big( Fg+fG \big) dx=FG\Big|_a^b}
-\end{align*}
-Notice that by Chain Rule,  
-\begin{align*}
-\big(FG \big)'(x)=F(x)g(x)+f(x)G(x)\text{ for all $x \in (a,b)$ }
-\end{align*}
-Then the result follows from Part 2 of Fundamental Theorem of Calculus (\myref{Theorem}{FTC2}). $\vdone$
-\end{proof}
+\begin{mdframed}
+It shall be pointed out that Fundamental Theorem of Calculus is a Theorem for function proper Riemann-Integrable, a very strict condition. 
+\end{mdframed}
 \begin{Example}{\textbf{(Discontinuous Derivative)}}{}
 \begin{align*}
 f(x)=\begin{cases}
@@ -4943,6 +4899,34 @@ R_\beta (\textbf{x})\triangleq \frac{\abso{\beta }}{\beta !}\int_0^1 (1-t)^{\abs
 \begin{proof}
 
 \end{proof}
+\section{Picard-Lindelof Theorem}
+\begin{theorem}
+\label{Picard-Lindelof Theorem}
+\textbf{(Picard Lindelof Theorem)} Given some 
+\begin{enumerate}[label=(\alph*)]
+  \item open $U\subseteq \R^n$. 
+  \item open interval $I\subseteq \R$. 
+  \item a vector field $V:I \times U\rightarrow \R^n$,  
+\end{enumerate}
+If $V$ is continuous in  $I$ and  $K$-Lipschitz continuous in  $U$ for all  $t \in I$, then for all $t_0\in I$ and $y_0 \in U$, there exists some $\gamma :(t_0- \epsilon ,t_0+\epsilon )\rightarrow U$ such that 
+\begin{align*}
+\gamma'(t)=V(t,\gamma (t))\text{ and }\gamma (t_0)=y_0
+\end{align*}
+Moreover, if $\tilde{\epsilon }\leq \epsilon  $ and $\alpha:(t_0-\tilde{\epsilon }  ,t_0+\tilde{\epsilon }  )\rightarrow U$ also satisfy 
+\begin{align*}
+\alpha '(t)=V(t,\alpha (t))\text{ and }\alpha (t_0)=y_0
+\end{align*}
+then 
+\begin{align*}
+\alpha (t)=\gamma (t)\text{ for all }t\in (t_0-\tilde{\epsilon },t_0+\tilde{\epsilon })
+\end{align*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{mdframed}
+
+\end{mdframed}
 \section{Inverse Function Theorem}
 \begin{mdframed}
 Interestingly, if $f:\Big(\R,\norm{\cdot}_2 \Big)\rightarrow \Big(\R^n , \norm{\cdot}_2\Big)$ is a curve in $\R^n$ 
@@ -5553,7 +5537,7 @@ We now have
 \chapter{Lebesgue Calculus}
 \section{Basic Property of Measurable Functions}
 \begin{abstract}
-In this section, we define the term measurable function and discuss some basic arithmetic properties of the measurable functions. 
+In this section, we discuss the usage of the term 'measurable function', and prove some basic properties for later usage. 
 \end{abstract}
 \begin{mdframed}
   In the most general setting, if we are given a function $f:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ between two measurable space, then we say the $f$ is a \textbf{measurable function} if every pre-image of measurable set is again measurable. Immediately, one can check that in this setting, the composition of two measurable functions must be measurable.
@@ -5650,7 +5634,6 @@ The proofs follows from noting
 \begin{align*}
 \set{g>a}=\bigcup_n \set{f_n>a}\text{ for all $a\inr$ }
 \end{align*}
-and noting $\limsup_{n\to\infty} f_n= \inf_{n\geq 1} (\sup_{k\geq n} f_k)$. 
 \end{proof}
 \begin{mdframed}
 Immediately, following from \myref{Theorem}{Slm}, we see that if $f$ is a pointwise limit of some sequence of measurable function $(f_n)$, then $f$ is also a measurable function. In addition to the pointwise limit, if $f:X\rightarrow [-\infty,\infty]$ is measurable, then both its positive and negative parts  $f^+,f^-:X\rightarrow [0,\infty]$ 
@@ -5668,9 +5651,125 @@ h_n(x)\triangleq \begin{cases}
   0& \text{ if $n$ is even }
 \end{cases}
 \end{align*}
-In view of Lebesgue integration, perhaps the most important property of measurable function is that we can approximate them using simple functions. 
+In view of Lebesgue integration, perhaps the most important property of measurable function is that we can approximate them using measurable simple functions. By the term \textbf{simple function}, we merely mean function whose range is a set of finite elements. 
 \end{mdframed}
-\section{Egorov's and Lusin's Theorem}
+\begin{theorem}
+\label{Approximation of nonnegative function by increasing simple function}
+\textbf{(Approximation of nonnegative function by increasing simple function)} Let $E$ be a subset of  $\R^d$. For each non negative function  $f:E\rightarrow [0,\infty]$, there exists an increasing sequence of simple function $f_n:E\rightarrow [0,\infty]$ such that $f_n \to f$. Moreover, if $f$ is measurable, we can require $f_n$ to be also measurable.
+\end{theorem}
+\begin{proof}
+Because  $f$ is non-negative, we can well define $f_n:E\rightarrow [0,\infty]$ by 
+\begin{align*}
+f_n(x)\triangleq \begin{cases}
+  \frac{k-1}{2^n}& \text{ if there exists some $k\in \set{1,\dots ,n2^n}$ such that }\frac{k-1}{2^n}\leq f(x)< \frac{k}{2^n}\\
+  n& \text{ if $f(x)\geq n$ }
+\end{cases}
+\end{align*}
+Some tedious effort follows to show that $f_n\nearrow f$ and  when  $f$ is measurable, $f_n$ are measurable. 
+\end{proof}
+\begin{mdframed}
+Crucially, we can generalize \myref{Theorem}{Approximation of nonnegative function by increasing simple function} to extended value function $f:E\rightarrow [-\infty,\infty]$ by splitting $f$ into $f=f^+-f^-$ and have 
+ \begin{align*}
+f_n^+-f_n^- \to f
+\end{align*}
+Note that $f_n^+,f_n^-$ are both of finite value. Then  \myref{Theorem}{Btsa} shows that $f_n\triangleq f_n^+-f_n^-$ is also measurable if $f$ is measurable. Tedious efforts shows that $f_n$ is also simple function, since it is the result of addition of two simple function.  
+\end{mdframed}
+\section{Sequence of Measurable Function}
+\begin{abstract}
+In this section $Z$ always stands for some null set.
+\end{abstract}
+\begin{mdframed}
+We shall first prove a key Theorem that converge 
+\end{mdframed}
+\begin{theorem}
+\label{Docae}
+\textbf{(Depiction of converge almost everywhere)} Given some
+\begin{enumerate}[label=(\alph*)]
+  \item $E\subseteq \R^d$ of finite measure.  
+  \item A sequence $f_n:E\rightarrow [-\infty,\infty]$ of functions measurable on $E$ converge almost everywhere to some $f:E\rightarrow \R$. 
+\end{enumerate}
+For all $\epsilon ,\eta>0 $, there exists some closed $F\subseteq E$ and integer $N$ such that
+\begin{align*}
+  \abso{E\setminus F}<\eta\text{  and } \abso{f(\textbf{x})-f_n(\textbf{x})}<\epsilon \text{ for all }\textbf{x} \in F,n>N.  
+\end{align*}
+\end{theorem}
+\begin{proof}
+For each $n$, define 
+\begin{align*}
+E_n \triangleq \bigcap_{k>n}\set{\abso{f-f_k}<\epsilon }
+\end{align*}
+It is clear that $E_n$ is an increasing sequence of measurable set. Let $f_n \to f$ on $E\setminus Z$. Because  $f$ is finite, we have  $E_n\nearrow E\setminus Z$. This then give us $\abso{E_n}\nearrow \abso{E\setminus Z}=\abso{E}$. Because $E$ is of finite measure, there exists $N$ such that  $\abso{E\setminus E_{N}}< \frac{\eta }{2}$. Let $F$ be a closed subset of  $E_{N}$ such that $\abso{E_{N}\setminus F}< \frac{\eta }{2}$. It is clear that $F$ and  $N$ suffices.
+\end{proof}
+\begin{mdframed}
+We first prove Egorov's Theorem. Although the statement might be daunting, Egorov's Theorem basically says that if sequence of function converges almost everywhere to a finite limit, then the sequence "nearly" uniform converge to its limit. 
+\end{mdframed}
+\begin{theorem}
+\label{Egorov's Theorem}
+\textbf{(Egorov's Theorem)} Given some 
+\begin{enumerate}[label=(\alph*)]
+  \item $E\subseteq \R^d$ of finite measure. 
+  \item A sequence $f_n:E\rightarrow [-\infty,\infty]$ of functions measurable on $E$ converge almost everywhere to some  $f:E\rightarrow \R$. 
+\end{enumerate}
+For all $\epsilon $, there exists some closed set $F\subseteq E$ such that $\abso{E\setminus F}<\epsilon $ and $f_n$ converge uniformly to  $f$ on  $F$.  
+\end{theorem}
+\begin{proof}
+By \myref{Theorem}{Docae}, for all $m \inn$, we can let $F_m\subseteq E$ and integer $N_m$ satisfy 
+ \begin{align*}
+\abso{E\setminus F_m}< \epsilon 2^{-m}\text{ and }\abso{f-f_n}<\frac{1}{m}\text{ on }F_m\text{ for all }n>N_m
+\end{align*}
+Define $F\triangleq \bigcap F_m$. It is clear that $F$ is closed and  $f_n$ converge uniformly on  $F$. To see $F$ suffices, observe 
+\begin{align*}
+\abso{E\setminus F}=\abso{E\setminus \bigcap F_m}= \abso{\bigcup E\setminus F_m}\leq \sum \abso{E\setminus F_m}\leq  \sum \abso{E\setminus F_m}<\epsilon 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Lusin's Theorem)} Given some real-valued function $f:E\rightarrow \R$ defined on some measurable set $E\subseteq \R^d$, $f$ is measurable on  $E$ if and only if for all  $\epsilon $, there exists closed set $F\subseteq E$ such that $\abso{E\setminus F}<\epsilon $ and $f|_F:F\rightarrow \R$ is continuous. 
+\end{theorem}
+\begin{proof}
+We first prove the only if part, particularly the case of $\abso{E}<\infty$. Let $f_n:E\rightarrow \R$ be a sequence of simple measurable function that converge to  $f$. Fix $\epsilon $. By \customref{Egorov's Theorem}{Egorov's Theorem}, there exists closed $F_0\subseteq E$ on which $f_n$ uniformly converge and  $\abso{E\setminus F_0}< \frac{\epsilon}{2}$. Let $f_n$ take values  $a_{n,1},\dots ,a_{n,K}$ on $E_{n,1},\dots ,E_{n,K}$. Let closed $F_{n,k}\subseteq E_{n,k}$ satisfy $\abso{E_{n,k} \setminus F_{n,k}}< \frac{\epsilon }{K2^{n+1}}$ and define $F_n\triangleq \bigcup_{k=1}^K F_{n,k}$. We claim $F\triangleq F_0\cap \bigcap_{n=1}^{\infty}F_n$ suffices.\\
+
+Observe 
+\begin{align*}
+\abso{E\setminus F}\leq \abso{\bigcup_{n=0}^{\infty} E\setminus F_n}\leq  \sum_{n=0}^{\infty} \abso{E\setminus F_n}< \sum_{n=0}^{\infty} \frac{\epsilon }{2^{n+1}}=\epsilon 
+\end{align*}
+For each $n\inn$, because $F_{n,1},\dots ,F_{n,K}$ are disjoint closed sets, we know they are exactly the connected components of  $F_n$. This tell us that $f_n$ is constant on each connected component of $F_n$. It follows that  $f_n|_{F_n}:F_n\rightarrow \R$ is continuous, which implies $f_n|_F$ are continuous. To see $f|_F:F\rightarrow \R$ is continuous, just observe that $f_n$ uniformly converge to $f$ on  $F\subseteq F_0$.  \\
+
+We now prove the case of $\abso{E}=\infty$. Consider  $E_n\triangleq E \cap \set{\textbf{x}\inr^d:n-1 \leq \abso{x}<n}$. It follows that $E$ is the disjoint union of  $E_n$, and each  $E_n$ is of finite measure. It is easy to see that  $E_n$ are measurable and $f$ is  also measurable on $E_n$. Then from our earlier result, we can select closed $F_n\subseteq E_n$ such that $\abso{E_n\setminus F_n}< \frac{\epsilon}{2^n}$ and $f|_{F_n}:F_n\rightarrow \R$ is continuous. We claim $F\triangleq \bigsqcup_{n=1}^{\infty}F_n$ suffices. Tedious effort shows that $F$ is indeed closed and $F_n$ are connected components of  $F$. The proof then follows from noting 
+\begin{align*}
+\abso{E\setminus F}= \abso{\bigcup_{n=1}^{\infty} E_n\setminus F_n}\leq \sum_{n=1}^{\infty} \abso{E_n\setminus F_n}=\epsilon 
+\end{align*}
+Lastly, we prove the if part. For each $n\inn$, let closed $F_n \subseteq E$ satisfy $\abso{E\setminus F_n}< \frac{1}{n}$ and $f|_{F_n}:F_n\rightarrow \R$ is continuous. By our selection, $Z\triangleq E\setminus (\bigcup F_n)$ is null. Now for all $a\inr$, we see
+\begin{align*}
+\set{\textbf{x}\in E: f(\textbf{x})>a}=\bigcup_{n=1} \set{\textbf{x}\in F_n:f(\textbf{x})>a}\cup \set{\textbf{x}\in Z:f(\textbf{x})>a}
+\end{align*}
+which is measurable, since $f$ is measurable  (continuous) on each $F_n$ and  $\set{\textbf{x}\in Z:f(\textbf{x})>a}$ is null.
+\end{proof}
+\begin{mdframed}
+Given some measurable subset $E\subseteq \R^d$, a sequence of function $f_n:E\rightarrow [-\infty, \infty]$ finite almost everywhere and measurable on $E$, and another function $f:E\rightarrow [-\infty, \infty]$ measurable on $E$, we say $f_n$  \textbf{converge in measure on $E$ to $f$} and write 
+\begin{align*}
+f_n \overset{m}{\to}f\text{ on }E
+\end{align*}
+if for all $\epsilon $
+\begin{align*}
+\abso{\set{ \abso{f-f_n}>\epsilon }}\to 0\text{ as }n\to \infty
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Pointwise convergence almost everywhere on domain of finite measure implies convergence in measure)} Let $f\text{ and }f_n$ be measurable and finite almost everywhere on $E$. If  $f_n \to f$ almost everywhere on $E$ and  $\abso{E}<\infty$, then $f_n\overset{m}{\to}f$ on $E$. 
+\end{theorem}
+\begin{proof}
+Let $H$ be subset of  $E$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\abso{H}=\abso{E}$.
+  \item $f$ is finite on $H$.
+  \item $f_n \to f$ on $H$.  
+\end{enumerate}
+Fix $\epsilon,\eta  $. We are required to find $N$ such that 
+\begin{align*}
+\abso{\set{\abso{f-f_n}>\epsilon }}< \eta\text{ for all }n>N 
+\end{align*}
+
+\end{proof}
 \section{Abstract integration} 
 \begin{mdframed}
 We say a function is a \textbf{simple function} if its range is of finite cardinality. Simple function is the cornerstone of the development of Lebesgue Integral Theory, as we shall see.\\
@@ -7003,7 +7102,7 @@ Lastly, we pointed out that if $F:M\rightarrow N$ is a smooth map with constant 
 \end{align*}
 since $F\circ \diota:S\rightarrow N$ is a constant function and $T_pS$ by  \customref{Constant Rank Level Set Theorem}{constant rank level set Theorem} have dimension $m-k$. 
 \end{mdframed}
-\section{Bundle}
+\section{Vector Field}
 \begin{abstract}
 
 \end{abstract}
@@ -7017,9 +7116,10 @@ and let $\pi:TM\rightarrow M$ be the projection map
 \pi (p,v)\triangleq p
 \end{align*}
 then for each $n$ we can define a bijective function  $\Phi_n:\pi^{-1}(U_n)\rightarrow \R^{2m}$ by 
-\begin{align*}
+\begin{align}
+\label{tch}
   \Phi_n (p,v)\triangleq  (\phi (p), v^1,\dots ,v^m)\text{ where }v=\sum_{i=1}^m v^i \frac{\partial }{\partial \textbf{x}^i}\Big|_p
-\end{align*}
+\end{align}
 This then let us define $E\subseteq M$ to be open if and only if $\Phi_n (E\cap \pi^{-1}(U_n))$ is open in $\R^m$ for all  $n$. Note that  the topology is well defined because $\Phi_n$ are all one-to-one. Moreover, we see that $\pi^{-1}(U_n)$ are open since for all $k\inn$
 \begin{align*}
 \Phi_k (\pi^{-1}(U_n)\cap \pi^{-1}(U_k))= \phi_k(U_n \cap U_k)\times \R^m\text{ is open in }\R^{2m}
@@ -7032,19 +7132,378 @@ To see that the atlas $(U_n,\Phi_n)$ is smooth, observe that
 &=\Phi_\beta \Big(\phi_\alpha ^{-1}(\textbf{x}^1,\dots ,\textbf{x}^m),\sum_{i=1}^m \textbf{y}^i \sum_{j=1}^m \frac{\partial \tilde{\textbf{x}}^j}{\partial  \textbf{x}^i}\Big|_p \frac{\partial }{\partial \tilde{\textbf{x}}^j}\Big|_p\Big)\\
 &=\Big(\phi_\beta  \circ \phi^{-1}_\alpha (\textbf{x}^1,\dots ,\textbf{x}^m),\sum_{i=1}^m \textbf{y}^i \frac{\partial \tilde{\textbf{x}} ^1 }{\partial \textbf{x}^i}\Big|_p, \dots , \sum_{i=1}^m \textbf{y}^i \frac{\partial \tilde{\textbf{x}}^m }{\partial \textbf{x}^i}\Big|_p  \Big)
 \end{align*}
-is smooth. To show that $TM$ with the smooth atlas  $(\pi^{-1}(U_n),\Phi_n)$ is a smooth manifold, it remains to show $TM$ is second countable and Hausdorff. Note that $TM$ is second countable since  $\pi^{-1}(U_n)$ is an open cover of $TM$ consisting of second countable space. Lastly, to see $TM$ is Hausdorff, observe that if $v_p,v_q$ is not in the same fiber, then we can separate them with $\pi^{-1}(U_p),\pi^{-1}(U_q)$ where $U_p\cap U_q=\varnothing$, and if they are in the same fiber, we can separate them in the second component.  
-\end{mdframed}
-\begin{mdframed}
-A \textbf{smooth real vector bundle of rank $k$ over the smooth manifold $M$} is a smooth manifold $E$ together with the surjective smooth map  $\pi : E\rightarrow M$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item Each fiber $\pi^{-1}(p)$ has a real $k$-dimensional vector space structure. 
-  \item For all $p \in M$, there exists some neighborhood $U$ of  $p$ and a diffeomorphism  $\Phi:\pi^{-1}(U)\rightarrow U\times \R^k$ such that $\Phi$ map the fiber $\pi^{-1}(p)$ vector space isomorphiscally to $\set{p}\times \R^k$. 
-\end{enumerate}
-Note that we often call $E$ the  \textbf{total space} and $M$ the  \textbf{base space}. The neighborhood $U$ and the smooth diffeomorphism $\Phi:\pi^{-1}(U)\rightarrow U\times \R^k$ is often called the \textbf{smooth local trivialization}, and if there exists a global smooth trivialization, we say $(E,M,\pi:E\rightarrow M)$ is a \textbf{trivial bundle}. It is clear that tangent bundle $TM$ is a smooth real vector bundle of rank  $m$ over the smooth manifold  $M$ where the induced chart  $\Phi_m :\pi^{-1}(U_n)\rightarrow \R^{2m}$ are smooth local trivialization. If we are given a smooth right inverse  $\sigma:M\rightarrow E$ of $\pi$
+is smooth. To show that $TM$ with the smooth atlas  $(\pi^{-1}(U_n),\Phi_n)$ is a smooth manifold, it remains to show $TM$ is second countable and Hausdorff. Note that $TM$ is second countable since  $\pi^{-1}(U_n)$ is an open cover of $TM$ consisting of second countable space. Lastly, to see $TM$ is Hausdorff, observe that if $v_p,v_q$ is not in the same fiber, then we can separate them with $\pi^{-1}(U_p),\pi^{-1}(U_q)$ where $U_p\cap U_q=\varnothing$, and if they are in the same fiber, we can separate them in the second component. \\
+
+
+
+With $TM$ given a smooth structure, immediately, for each smooth map $F:M\rightarrow N$, we can define its global differential $F_*:TM\rightarrow TN$ by 
 \begin{align*}
-\pi \circ \sigma (p)=p\text{ for all }p \in M
+F_*(p,v)\triangleq \Big(F(p),F_{*,p}(v) \Big)
 \end{align*}
-we say $\sigma$ is a \textbf{smooth section of the bundle $\pi:E\rightarrow M$}. 
+which is smooth since for induced chart $(\pi ^{-1}(U),\Phi_{\phi})$ and $(\pi^{-1}(V),\Phi_{\psi})$ such that $F(U)\subseteq V$ we have $F_*(\pi^{-1}(U))\subseteq \pi^{-1}(V)$ and 
+\begin{align*}
+\Phi_\psi \circ F \circ \Phi_{\phi}^{-1} (\textbf{x}^1,\dots ,\textbf{x}^m,v^1,\dots ,v^m)= (\tilde{\textbf{x}}^1,\dots ,\tilde{\textbf{x}}^n, \sum_{j=1}^m \frac{\partial \widehat{F}^1}{ \partial \textbf{x}^j} (p)v^j, \dots , \sum_{j=1}^m \frac{\partial  \widehat{F}^n}{\partial \textbf{x}^j}(p)v^j  )
+\end{align*}
+Moreover, we can now talk about the smoothness of the \textbf{vector field $X$ on  $M$}, i.e., function $X:M\rightarrow TM$ such that $X(p)=(p,X_p)$ for some $X_p \in T_pM$. Immediately, given a chart $(U,\phi)$ and inducing a chart $(\pi^{-1}(U),\Phi)$ for $TM$ as in \myref{Equation}{tch}, we see 
+\begin{align*}
+\Phi \circ X \circ \phi^{-1}(\textbf{x}^1,\dots, \textbf{x}^m)=(\textbf{x}^1,\dots , \textbf{x}^m , X^1(\textbf{x}),\dots ,X^m(\textbf{x}))
+\end{align*}
+where $\sum_j X^j(p)=X_p$ for all $p \in U$. This then shows that $X:M\rightarrow TM$ is smooth on $U$ if and only if $X^1,\dots ,X^m$  are smooth on $U$. In particular, fixing some $p\in  M$ and $v \in T_pM$, we can construct a smooth vector field $X$ on  $M$ such that  $X_p=v$ by first fixing some chart  $(U,\phi)$ centering $p$, and let $\rho: M\rightarrow \R$ be a smooth function such that $\rho\equiv 1$ on $\phi^{-1}(\overline{B_r(\textbf{0})})$ and $\operatorname{supp}\rho \subseteq U$, and define 
+\begin{align*}
+X_q\triangleq \begin{cases}
+   \rho (q) \sum_i v^i \frac{\partial }{\partial \textbf{x}^i}\Big|_q& \text{ if $q\in  U$ }\\
+   0& \text{ if $q \in M \setminus \operatorname{supp}\rho$ }
+\end{cases}
+\end{align*}
+where functions $\rho$ comes from \myref{Corollary}{EoSB}.  Moreover, we see that if we define addition and $\R$-scalar  multiplication on the space of smooth vector field $\mathfrak{X}(M)$ on $M$ by 
+ \begin{align*}
+   (X+Y)_p\triangleq X_p+Y_p \text{ and } (aX)_p\triangleq a(X_p)
+\end{align*}
+then $\mathfrak{X}(M)$ forms a vector space over $\R$. In addition to forming a vector space, some tedious efforts shows that $\mathfrak{X}(M)$ form a module over $C^{\infty}(M)$, if we define the scalar multiplication by 
+\begin{align*}
+  (fX)(p)=(p,f(p)X_p)
+\end{align*}
+In essence, vector field can be viewed as a way to "differentiate" scalar-valued function $f\in C^{\infty}(M)$. We define $Xf:M\rightarrow \R$ to be 
+\begin{align*}
+Xf(p)\triangleq X_pf
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{SCfv}
+\textbf{(Smooth Criteria for vector field)} Given a vector field $X:M\rightarrow TM$, $X$ is smooth if and only if  $Xf:M\rightarrow \R$ is smooth for all $f\in C^{\infty}(\R)$
+\end{theorem}
+\begin{proof}
+The only if part follows from noting the local expression  
+ \begin{align*}
+Xf(p)=\sum_{j=1}^m X^j (p) \frac{\partial f}{\partial \textbf{x}^j}(p)
+\end{align*}
+is clearly smooth. We now prove the if part. Fix $p\in  M$ and some chart $(U,\phi)$ centering $p$. Again let $\overline{B_r(\textbf{0})}\subseteq B_{r'}(\textbf{0})\subseteq \phi (U)$, and use \myref{Corollary}{EoSB} to construct a smooth function $\rho : M\rightarrow \R$ such that $\rho\equiv 1$ on $\phi ^{-1}(\overline{B_r(\textbf{0})})$  and $\operatorname{supp}\rho \subseteq U$. For each $j\in \set{1,\dots,m}$, we can now define $\tilde{x}^j\in C^{\infty}(M)$ by 
+\begin{align*}
+\tilde{x}^j(q)\triangleq \begin{cases}
+  \rho (q)\textbf{x}^j & \text{ if $q \in U$ }\\
+  0& \text{ if $q\in M \setminus \operatorname{supp}\rho $ }
+\end{cases} 
+\end{align*}
+Compute that for all $q\in \phi^{-1}(B_r(\textbf{0}))$
+\begin{align*}
+X\tilde{x}^j(q)= \sum_{i=1}^m X^i(q) \frac{\partial }{\partial \textbf{x}^i}\Big|_q \tilde{x}^j = X^j(q)
+\end{align*}
+Then by premise, $X^j$ is smooth on  $B_r(\textbf{0})$. The result then follows from the same procedure on different $j$ and charts. 
+\end{proof}
+\begin{mdframed}
+At this point, one should check that given some vector field $X:M\rightarrow TM$, we can treat $X$ as a  \textbf{derivation}, since $X$ can be treated as a linear transformation from   $C^{\infty}(M)$ to itself that satisfy 
+\begin{align*}
+X(fg)=fXg+gXf
+\end{align*}
+In particular, not only all vector fields can be treated as derivations, all derivations can also be identified as smooth vector field. 
+\end{mdframed}
+\begin{theorem}
+\label{VfiD}
+\textbf{(Vector field is Derivation)} A map $D:C^{\infty}(M)\rightarrow C^{\infty}(M)$ is a derivation if and only if for some smooth vector field $X$, $Df=Xf$  for all $f\in C^{\infty}(M)$. 
+\end{theorem}
+\begin{proof}
+We have proved the if part. Now fix some derivation $D:C^{\infty}(M)\rightarrow C^{\infty}(M)$. For each $p\in  M$, we can define a tangent vector  $D_p\in T_pM$ by 
+\begin{align*}
+D_pf\triangleq (Df)(p)
+\end{align*}
+This then give us a vector field $X:M\rightarrow TM$ such that $Df=Xf$ for all  $f\in C^{\infty}(M)$. The fact that $X$ is smooth follows from  \myref{Theorem}{SCfv}. 
+\end{proof}
+\begin{mdframed}
+  We now prove the Theorem that give us the pushforward of vector field. Given a smooth map $F:M\rightarrow N$, and two vector field $X,Y$ on  $M,N$, we say  $X,Y$ are  \textbf{$F$-related} if $Y_{F(p)}=F_{*,p}(X_p)$ for all $p \in M$. 
+\end{mdframed}
+\begin{theorem}
+\label{SVFP}
+\textbf{(Smooth Vector Field Pushforward)} Given a diffeomorphism $F:M\rightarrow N$. For every $X \in \mathfrak{X}(M)$, there exists a unique smooth vector field $Y$ on  $N$ that is  $F$-related to  $X$. 
+\end{theorem}
+\begin{proof}
+Because $F$ is onto, obviously the vector field  $Y$ on  $N$ that is  $F$-related to  $X$ can only be
+\begin{align*}
+Y_q\triangleq F_{*,F^{-1}(q)}(X_{F^{-1}(q)})
+\end{align*}
+Note that $Y$ is well defined because  $F$ is one-to-one. To see $Y:N\rightarrow TN$ is indeed smooth, just observe that $Y$ is the composition of the following smooth map
+ % https://q.uiver.app/#q=WzAsNCxbMSwwLCJNIl0sWzAsMCwiTiJdLFsyLDAsIlRNIl0sWzMsMCwiVE4iXSxbMSwwLCJGXnstMX0iXSxbMCwyLCJYIl0sWzIsMywiRl8qIl1d
+\[\begin{tikzcd}
+	N & M & TM & TN
+	\arrow["{F^{-1}}", from=1-1, to=1-2]
+	\arrow["X", from=1-2, to=1-3]
+	\arrow["{F_*}", from=1-3, to=1-4]
+\end{tikzcd}\]
+\end{proof}
+\begin{theorem}
+\label{Cfr}
+\textbf{(Criteria for $F$-related)} Given a smooth map $F:M\rightarrow N$ and two smooth vector fields $X\in \mathfrak{X}(M),Y\in \mathfrak{X}(N)$, they are $F$-related if and only if for all  $f \in C^{\infty}(N)$ we have 
+\begin{align*}
+X(f \circ F)=Yf \circ F
+\end{align*}
+\end{theorem}
+\begin{proof}
+Observe that for all $p \in M$
+\begin{align*}
+  (X(f \circ F))(p)=X_p (f\circ F)=F_{*,p}(X_p)f\text{ and }Yf\circ F(p)=Y_{F(p)}f
+\end{align*}
+The result then follows. 
+\end{proof}
+\begin{mdframed}
+We now discuss ways of combining two smooth vector field to obtain another smooth vector field. Given $X,Y \in \mathfrak{X}(M)$, we define \textbf{Lie bracket} $[X,Y]:C^{\infty}(M)\rightarrow C^{\infty}(M)$ \textbf{of $X,Y$} by 
+\begin{align*}
+[X,Y]f\triangleq XYf-YXf
+\end{align*}
+which is clearly well-defined. Moreover, by some trivial computation, one see that  $[X,Y]$ form a derivation, thus \customref{VfiD}{can be treated as a smooth vector field}. With more trivial computation, we see that Lie bracket satisfy 
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{Bilinearity}: For all $a,b \inr$ 
+    \begin{align*}
+    [aX+bY,Z]&=a[X,Z]+b[Y,Z]\\
+    [X,aY+bZ]&= a[X,Y]+b[X,Z]
+    \end{align*} 
+    \item \textbf{Alternating property}: 
+    \begin{align*}
+    [X,X]=0
+    \end{align*} 
+    \item \textbf{Jacobi Identity}: 
+    \begin{align*}
+    [X,[Y,Z]]+[Y,[Z,X]]+[Z,[X,Y]]=0
+    \end{align*} 
+    \item \textbf{Anti-symmetry}:
+      \begin{align*}
+      [X,Y]=-[Y,X]
+      \end{align*} 
+      \item For $f,g\in C^{\infty}(M)$, 
+        \begin{align*}
+        [fX,gY]=fg[X,Y]+(fXg)Y-(gYf)X
+        \end{align*}
+\end{enumerate}
+In particular, we see that Lie bracket can be pushforward.  
+\end{mdframed}
+\begin{theorem}
+\textbf{(Naturality of the Lie Bracket)} Given a smooth map $F:M\rightarrow N$  and two pairs of smooth vector field $X_1,X_2\in \mathfrak{X}(M),Y_1,Y_2 \in \mathfrak{X}(N)$, if $X_1,X_2$ are respectively  $F$-related to  $Y_1,Y_2$, then  $[X_1,X_2]$ is also $F$-related to  $[Y_1,Y_2]$. 
+\end{theorem}
+\begin{proof}
+Use \myref{Theorem}{Cfr} to compute for all $f\in C^{\infty}(N)$
+\begin{align*}
+  X_1X_2(f \circ F)=X_1(Y_2f \circ F)= Y_1Y_2f \circ F 
+\end{align*}
+In other words, $X_1X_2$ is  $F$-related with  $Y_1Y_2$. The result then follows from linearity of $F_*$ and similar argument for $X_2X_1,Y_2Y_1$.  
+\end{proof}
+\begin{mdframed}
+Note that given two smooth vector field $X,Y \in \mathfrak{X}(M)$ and some chart $(U,\textbf{x})$, if we write 
+\begin{align*}
+X=\sum_{i=1}^n X^i(\textbf{x}) \frac{\partial }{\partial \textbf{x}^i} \text{ and }Y=\sum_{j=1}^n Y^j(\textbf{x}) \frac{\partial }{\partial \textbf{x}^j}
+\end{align*}
+there exists an explicit formula for $[X,Y]$ 
+\begin{align*}
+  [X,Y]f(\textbf{x})&= \sum_{i=1}^n X^i(\textbf{x}) \frac{\partial }{\partial \textbf{x}^i} \sum_{j=1}^n Y^j \frac{\partial f}{\partial \textbf{x}^j}- \sum_{j=1}^n Y^j(\textbf{x}) \frac{\partial }{\partial \textbf{x}^j}\sum_{i=1}^n X^i \frac{\partial f}{\partial \textbf{x}^i} \\
+  &=\sum_{i,j}X^i \Big(\frac{\partial Y^j}{\partial \textbf{x}^i} \frac{\partial f}{\partial \textbf{x}^j}+ Y^j \frac{\partial^2 f}{\partial \textbf{x}^i \partial \textbf{x}^j} \Big)-\sum_{i,j}Y^j \Big(\frac{\partial X^i}{\partial \textbf{x}^j} \frac{\partial f}{\partial \textbf{x}^i} + X^i \frac{\partial^2 f}{\partial \textbf{x}^j\partial \textbf{x}^i} \Big) \\
+  &=\sum_{i,j} \Big(X^i \frac{\partial Y^j}{\partial \textbf{x}^i}- Y^i \frac{\partial X^j}{\partial \textbf{x}^i} \Big) \frac{\partial f}{\partial \textbf{x}^j}(\textbf{x})
+\end{align*}
+In other words, 
+\begin{align*}
+[X,Y]=\sum_{i,j} \Big(X^i \frac{\partial Y^j}{\partial \textbf{x}^i}- Y^i \frac{\partial X^j}{\partial \textbf{x}^i}  \Big) \frac{\partial }{\partial \textbf{x}^j}
+\end{align*}
+\end{mdframed}
+\section{Integral Curve and Flow}
+\begin{abstract}
+Note that in this section, $I,J$ always stand for open intervals and integral is always defined on some open interval. 
+\end{abstract}
+\begin{mdframed}
+Given some smooth manifold $M$, and some smooth map $\theta :\R \times M\rightarrow M$, we say $\theta$ is a \textbf{smooth global flow}, or an \textbf{1-parameter group of diffeomorphism}, if when we define for all $t\inr$ a function $\theta_t:M\rightarrow M$ by
+\begin{align*}
+\theta_t(p)\triangleq \theta (t,p)
+\end{align*}
+we have the following properties 
+\begin{enumerate}[label=(\roman*)]
+  \item $\theta_t:M\rightarrow M$ is smooth diffeomorphism for all $t\inr$. 
+  \item $\theta_0=\textbf{id}$. 
+  \item For all $t,s \inr,\theta_{t+s}=\theta_t \circ \theta_s$. 
+\end{enumerate}
+Immediately we see where does the name 1-parameter group of diffeomorphism comes from: The set  $\set{\theta_t: t\inr}$ clearly form a group with function composition. Moreover, we see that for each $p\in  M$, $\theta_t(p)$, when treated as a function in $t$, is a smooth curve in $M$, since we have the following commutative diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG1hdGhiYntSfVxcdGltZXMgTSJdLFsyLDAsIk0iXSxbMCwyLCJcXG1hdGhiYntSfSJdLFswLDEsIlxcdGhldGEiXSxbMiwwLCJGIl0sWzIsMSwiXFx0aGV0YV90KHApIiwyXV0=
+\[\begin{tikzcd}
+	{\mathbb{R}\times M} && M \\
+	\\
+	{\mathbb{R}}
+	\arrow["\theta", from=1-1, to=1-3]
+	\arrow["F", from=3-1, to=1-1]
+	\arrow["{\theta_t(p)}"', from=3-1, to=1-3]
+\end{tikzcd}\]
+where $F(t)\triangleq (t,p)$. With this fact in mind and some tedious effort, we can induce a vector field $X$ by defining 
+\begin{align}
+\label{indf}
+X_pf\triangleq \frac{df(\theta_t(p))}{dt}\Big|_{t=0}
+\end{align}
+To see $X$ is smooth, we see that if we write locally  
+\begin{align*}
+\theta_t(\textbf{x})=(\textbf{y}^1(t,\textbf{x}),\dots ,\textbf{y}^n(t,\textbf{x}))
+\end{align*}
+by \customref{CR}{Chain Rule} we have
+\begin{align*}
+X_{\textbf{x}}f&= \frac{\partial f(\textbf{y}^1(t,\textbf{x}),\dots ,\textbf{y}^n(t,\textbf{x}))}{\partial t}\Big|_{t=0}\\
+&= \sum_{i=1}^n \frac{\partial f}{\partial \textbf{y}^i}(\textbf{x}) \frac{\partial \textbf{y}^i}{\partial t}(t,\textbf{x})\Big|_{t=0}
+\end{align*}
+This then give us 
+\begin{align*}
+Xf(\textbf{x})= \sum  \frac{\partial \textbf{y}^i}{\partial t}(0,\textbf{x}) \frac{\partial f}{\partial \textbf{y}^i} 
+\end{align*}
+It follows from $\textbf{y}$ being smooth that $Xf$ is smooth. We have shown smooth global flow induce smooth vector field by means of \myref{Equation}{indf}. We now show that on compact manifold, we can conversely induce smooth global flow from smooth vector filed.\\
+
+If we say  $\gamma :I\rightarrow M$ is an \textbf{integral curve with respect to some vector field $X$}, we mean that $\gamma '(t)=X_{\gamma (t)}$ for all $t \in I$, and if we say $\gamma $ centers $p$, we mean  $0 \in I$ and $\gamma (0)=p$. Immediately, we see from \customref{Picard-Lindelof Theorem}{Picard-Lindelof Theorem} that for all $p$, there always exists some integral curve centering  $p$. Moreover, given two integral curve $\gamma_1,\gamma_2:I_1,I_2\rightarrow M$ centering $p$, if we let  $J\triangleq I_1\cap I_2$ and 
+\begin{align*}
+S\triangleq \set{t \in J:\gamma _1(t)=\gamma_2(t)}
+\end{align*}
+By continuity we see $S$ is closed in  $J$, and by \customref{Picard-Lindelof Theorem}{Picard-Lindelof Theorem} we see $S$ is also open in $I$. It then follows from  $J$ being also an open interval that  $S=J$. In other words,  $\gamma_1,\gamma _2$ agree on $J$. This then implies the existence of some integral curve $\gamma:I\rightarrow M$ centering $p$ such that every integral curve $\gamma_1:I_1\rightarrow M$ centering $p$ satisfy  $I_1 \subseteq I$ and 
+\begin{align*}
+\gamma (t)=\gamma_1(t)\text{ for all }t\in I_1
+\end{align*}
+We call this curve the \textbf{maximal integral curve centering $p$}. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Smooth vector field induce smooth global flow on smooth compact manifold)} If $M$ is compact and  $X \in \mathfrak{X}(M)$, then for each $p\in  M$, the maximal integral curve centering $p$ is defined on the whole  $\R$ and if we define $\theta:\R\times M\rightarrow M$ by 
+\begin{align*}
+\theta (t,p)\triangleq \alpha _p(t)\text{ where }\alpha _p\text{ is the maximal integral curve centering $p$ }
+\end{align*}
+then $\theta$ form a smooth global flow.
+\end{theorem}
+\begin{proof}
+Let $\alpha_p:I_p\rightarrow M$ be the maximal integral curve centering $p$. Our definition for $\theta$ is now only on 
+\begin{align*}
+\bigcup_{p\in M} I_p \times \set{p}\subseteq \R\times M
+\end{align*}
+Let $I_p$ be the domain of the maximal integral curve centering $p$. Clearly, for all $p \in M$ there exists some open set $U_p$ containing $\phi(I_p,p)$. Because $M$ is compact, we may select some finite open cover $U_{p_1},\dots ,U_{p_N}$. Define 
+\begin{align*}
+I\triangleq \bigcap_{i=1}^N I_{p_i}
+\end{align*}
+It is clear that $0 \in I$. It then follows that $I$ is an non-empty open interval. 
+
+
+
+
+
+
+Now observe that for all $s\in I_p$ if we let 
+\begin{align*}
+I\triangleq \set{t\inr:t+s \in I_p}
+\end{align*}
+and define $\gamma :I\rightarrow M$ by 
+\begin{align*}
+\gamma (t)\triangleq \theta_{t+s}(p)
+\end{align*}
+then $\gamma $ is an integral curve centering $\theta_s(p)$. This implies $I \subseteq I_{\theta (s,p)}$ and 
+\begin{align*}
+\theta_t \circ \theta_s (p)=\theta_{t+s}(p)\text{ for all }t \in I
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Now, suppose $\theta$ is a smooth global flow induced by smooth vector field $X$. Given some scalar function $f \in C^{\infty}(M)$, we see that if we define the \textbf{Lie derivative $\mathcal{L}_Xf\inC^{\infty}(M)$ of $f$ with respect to  $X$} by 
+\begin{align*}
+\mathcal{L}_Xf(p)\triangleq \frac{d}{dt}\Big|_{t=0}(f\circ \theta_t)(p)
+\end{align*}
+we have 
+\begin{align*}
+\mathcal{L}_Xf(p)&=(f\circ \alpha )'(0)\text{ where }\alpha (t)\triangleq \theta_t(p)\\
+&=\alpha '(0)f \\
+&=X_pf
+\end{align*}
+In other words, 
+\begin{align*}
+\mathcal{L}_Xf=Xf
+\end{align*}
+Given some tangent vector valued function, i.e., some smooth vector filed $Y \in \mathfrak{X}(M)$, we can similarly define the \textbf{Lie derivative $\mathcal{L}_XY\in \mathfrak{X}(M)$ of $Y$ with respect to  $X$} by 
+\begin{align*}
+  (\mathcal{L}_XY)_pf\triangleq \lim_{t\to 0} \frac{(\theta_{-t})_{*,\theta_t(p)}(Y_{\theta_t(p)})f-Y_pf}{t} 
+\end{align*}
+We shall prove that $\mathcal{L}_XY$ is well defined. 
+
+
+
+\end{mdframed}
+\begin{theorem}
+\textbf{(Existence of Lie derivative)} If $X,Y\in \mathfrak{X}(M)$, then 
+ \begin{align*}
+\mathcal{L}_XY=[X,Y]
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first define \textbf{pushforward $\widehat{Y}_t \in \mathfrak{X}(M)$} of $Y$ for all $t\inr$ by \customref{SVFP}{letting $\widehat{Y}_t$ to be the unique smooth vector field on $M$ so that  $\widehat{Y}_t,Y$ is $\theta_{t}$-related, or equivalently,  $Y,\widehat{Y}_t$ is $\theta_{-t}$-related}. Explicitly, we may write 
+\begin{align*}
+  Y_{\theta_t(p)}=(\theta_t)_{*,p}(\widehat{Y}_t)_p
+\end{align*}
+We can now rewrite 
+\begin{align*}
+(\mathcal{L}_XY)_pf&= \lim_{t\to 0} \frac{(\theta_{-t})_{*,\theta_t(p)}(Y_{\theta_t(p)})f-Y_pf}{t} \\
+&= \lim_{t\to 0} \frac{(\widehat{Y}_t)_pf-Y_pf}{t} \\
+&=\lim_{t\to 0} \frac{(\widehat{Y}_t-\widehat{Y}_0)_pf}{t} 
+\end{align*}
+
+
+
+Using \myref{Theorem}{Cfr}, we may compute, for all $p\in M$, 
+\begin{align*}
+\frac{d }{dt}\Big|_{t=0}(\widehat{Y}_t)(f\circ \theta_t)(p)= \frac{d }{d t}\Big|_{t=0}Yf\circ \theta_t (p)=X_p(Yf)
+\end{align*}
+On the other hands, we may also compute with some limit argument that  
+\begin{align*}
+  \frac{d}{dt}\Big|_{t=0}(\widehat{Y}_t)(f\circ \theta_t)(p)&=\lim_{t\to 0} \frac{(\widehat{Y}_t)(f\circ \theta_t)(p)-(\widehat{Y}_0)(f\circ \theta_t)(p)+(\widehat{Y}_0)(f\circ \theta_t)(p)-(\widehat{Y}_0)(f\circ \theta_0)(p)}{t}\\
+&=\lim_{t\to 0}  \frac{(\widehat{Y}_t-\widehat{Y}_0)_p(f\circ \theta_t)}{t} + \lim_{t\to 0} \frac{Y_p(f\circ \theta_t)-Y_p(f\circ \theta_0)}{t} \\
+&=(\mathcal{L}_XY)_pf+ \lim_{t\to 0} \frac{Y_p(f\circ \theta_t-f)}{t} \\
+&=(\mathcal{L}_XY)_pf+ Y_p(\lim_{t\to 0} \frac{(f\circ \theta_t-f)}{t}) \\
+&= (\mathcal{L}_XY)_pf+ Y_p(Xf)
+\end{align*}
+We have deduced
+\begin{align*}
+  (\mathcal{L}_XY)_pf+Y_p(Xf)=X_p(Yf)
+\end{align*}
+which is just 
+\begin{align*}
+\mathcal{L}_XY=[X,Y]
+\end{align*}
+\end{proof}
+\section{Differential Form}
+\begin{abstract}
+
+\end{abstract}
+\begin{mdframed}
+For each $p \in M$, we use $T^*_pM\triangleq (T_pM)^*$ to denote the dual space of $T_pM$ and we use $\ld ^i$ to denote the dual basis of $\frac{\partial }{\partial \textbf{x}^i}$ when given local coordinate. Let $\omega \in T_p^*M$ and write 
+\begin{align*}
+\omega = \sum_i \omega^i \ld^i = \sum_j \tilde{\omega}^j \tilde{\ld}^j   
+\end{align*}
+We may compute 
+\begin{align*}
+  \omega_i= \omega \Big( \frac{\partial }{\partial \textbf{x}^i}\Big|_p \Big)= \omega \Big( \sum_j \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i}(p) \frac{\partial }{\partial \tilde{\textbf{x}}^j }\Big|_p \Big)= \sum_j \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i} (p)\tilde{\omega}^j 
+\end{align*}
+In other words, 
+\begin{align*}
+\ld ^i= \sum_{j} \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i} \tilde{\ld }^j 
+\end{align*}
+Again, we define the \textbf{cotangent bundle} $T^*M$ to be 
+\begin{align*}
+T^*M\triangleq \coprod_{p \in M}T_p^*M
+\end{align*}
+We now see that given the natural charts 
+\begin{align*}
+\Phi (p,\sum_i \xi^i\ld^i )= \Big(\phi (p),\xi^1,\dots ,\xi^n \Big)
+\end{align*}
+when we give $T^*M$ the topology and the smooth structure the way we give to  $TM$, the atlas is indeed smooth, since 
+ \begin{align*}
+\tilde{\Phi}\circ \Phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^n,\xi^1,\dots ,\xi^n)&= \tilde{\Phi}\Big(\phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^n), \sum_{i} \xi^i \ld^i \Big) \\
+&= \tilde{\Phi}\Big(\phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^n), \sum_{i} \xi^i \sum_j  \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i}\tilde{\ld}^j  \Big) \\
+&=\Big(\tilde{\textbf{x}}^1,\dots, \tilde{\textbf{x}}^n, \sum_i \frac{\partial \tilde{\textbf{x}}^1 }{\partial \textbf{x}^i} (\textbf{x})\xi^i ,\dots , \sum_i  \frac{\partial \tilde{\textbf{x}}^n }{\partial \textbf{x}^i} (\textbf{x})\xi^i \Big)
+\end{align*}
+Given a section $\omega:M\rightarrow  T^*M$ of the cotangent bundle $T^*M$, we say  $\omega$ is a \textbf{covector field} or a \textbf{1-form}, and we may now discuss the smoothness of $\omega$. Note that the natural charts show that $\omega$ is smooth if and only if $\omega^i$ are all smooth where 
+\begin{align*}
+\omega= \sum_i \omega^i \ld^i
+\end{align*}
+Given $X \in \mathfrak{X}(M)$, we may also define $\omega X:M\rightarrow \R$ by 
+\begin{align*}
+\omega X(p)\triangleq \omega_p X_p= \sum_{i=1} \omega^i X^i(p)
+\end{align*}
+An argument similar to that of \myref{Theorem}{SCfv} shows that $\omega$ is smooth if $\omega X \in C^{\infty}(M)$ for all $X\in \mathfrak{X}(M)$. We denote the space of 1-forms by $\Omega (M)$. We see that $\Omega (M)$ form a module over $C^{\infty}(M)$ if we define $f\omega: M\rightarrow T^*M$ 
+\begin{align*}
+f\omega (p)=f(p)\omega_p
+\end{align*}
+Note that for all $f\inC^{\infty}(M)$, we may associate $f$ with $df \in \Omega (M)$ by defining 
+\begin{align*}
+dfX\triangleq Xf
+\end{align*}
+Not that for convenience, we often use $df_p$ to denote  $df(p)\in T_p^*M$. 
 \end{mdframed}
 \section{Lie Group}
 \begin{mdframed}
@@ -7054,7 +7513,49 @@ M^2\rightarrow  M; (g,h)\mapsto gh^{-1}
 \end{align*}
 is smooth. 
 \end{mdframed}
+
 \chapter{Complex Analysis}
+\section{Cauchy Integral Theorem}
+\begin{abstract}
+Note that in this section, when we talk about derivative of function defined on subset of real line, we do consider one-sided derivative, i.e., for $\gamma :[a,b]$ to be $C^1$, the limit of $\frac{\gamma (a+h)-\gamma  (a)}{h}$ as $h\searrow 0$ must exist. 
+\end{abstract}
+\begin{mdframed}
+Let $[a,b]\subseteq \R$ be some compact interval. We say $\gamma :[a,b]\rightarrow \C$ is a \textbf{contour} if 
+\begin{enumerate}[label=(\alph*)]
+  \item $\gamma (x)\neq \gamma (y)$ unless $x=a\text{ and }y=b$. 
+  \item There exists some partition $\set{a=c_0<\cdots <c_N=b}$ such that $\gamma|_{[c_n,c_{n+1}]}:[c_n,c_{n+1}]\rightarrow \C$ is $C^1$ wish non-vanishing derivative $(\gamma |_{[c_n,c_{n+1}]})':[c_n,c_{n+1}]\rightarrow \C^*$.  
+\end{enumerate}
+Immediately, we can draw some geometric properties of contours. If $\gamma :[a,b]\rightarrow \C$ is a contour, then its reversal $\gamma ^-:[a,b]\rightarrow \C$ which is defined by 
+\begin{align*}
+\gamma^-(t)\triangleq \gamma (b+a-t)
+\end{align*}
+is also a contour, and, moreover, they have the same \textbf{length}, i.e., 
+\begin{align*}
+\int_a^b \abso{\gamma (t)}dt = \int_a^b \abso{\gamma ^-(t)}dt
+\end{align*}
+Now, given some contour $\gamma :[a,b]\rightarrow \C$ and some continuous complex-valued function $f$ defined on the image $\gamma ([a,b])$, we can define its \textbf{contour integral} by 
+\begin{align*}
+\int_\gamma f(z)dz \triangleq \int_a^b f(\gamma  (t))\gamma  '(t)dt
+\end{align*}
+Similar to the real case, we have the estimation  
+\begin{align*}
+\abso{\int_{\gamma}fdz}\leq LM
+\end{align*}
+where $L$ is the length of  $\gamma $ and $M$ is the maximum of  $\abso{f}$ on $\gamma $. We can also generalize \customref{FTC2}{Part 2 of Fundamental Theorem of Calculus} to contour integral: If $D\subseteq \C$ is open, $f:D\rightarrow \C$ is continuous, and $F:D\rightarrow \C$ satisfy $F'(z)=f(z)$ for all $z\in D$, then for all contour $\gamma :[a,b]\rightarrow D$, we have 
+\begin{align*}
+\int_{\gamma }f=F(\gamma (b))-F(\gamma (a))
+\end{align*}
+We are now ready to prove Cauchy's Integral Theorem for triangle.  
+\end{mdframed}
+\begin{theorem}
+\textbf{(Cauchy's Theorem for triangles)} If $D\subseteq \C$ is open, $f:D\rightarrow \C$ is holomorphic and the closed triangle $T$ lies in $D$, we have  
+\begin{align*}
+\int_{\partial  T}f=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $c\triangleq \abso{\int_{\partial  T}f}$. \As{$c>0$}. 
+\end{proof}
 \chapter{Beauty}
 \label{Beauty}
 \section{Fundamental Theorem of Algebra}

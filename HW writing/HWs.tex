@@ -15,6 +15,236 @@
 \pagebreak
 
 \chapter{General Analysis HW}
+\section{Brunn-Minkowski Inequality}
+\begin{abstract}
+This HW assignment require us to prove Brunn-Minkowski Inequality. Note that in this HW, we use bold face $\textbf{x},\textbf{y},\textbf{z}$ to denote elements of $\R^d$, and  we use the notation $(\textbf{x}_1,\dots ,\textbf{x}_d)=\textbf{x}$. Also, we shall suppose throughout this HW, WOLG, $\abso{A}>0$ and $\abso{A},\abso{B}<\infty$, otherwise the proof is trivial. 
+\end{abstract}
+\begin{mdframed}
+We first introduce some notation. Given two sets $A,B\subseteq \R^d$ and a point $p\inr^d$, we write 
+\begin{align*}
+A+p\triangleq \set{a+p\inr^d: a \in A}
+\end{align*}
+and write 
+\begin{align*}
+A+B \triangleq \set{a+b \inr^d: a\in A\text{ and }b \in  B}
+\end{align*}
+Note that elementary set theory tell us 
+\begin{align}
+\label{trans}
+  (A+p)+(B+q)=(A+B)+(p+q)
+\end{align}
+
+\end{mdframed}
+\begin{theorem}
+\label{Brunn-Minkowski Inequality for Bricks}
+\textbf{(Brunn-Minkowski Inequality for Bricks)} Suppose $A,B$ are two  \textbf{bricks}, i.e., $A$ is of the form $\prod_{j=1}^d[x_j,y_j]$, and so is $B$. We have 
+\begin{align*}
+\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because Lebesgue measure is translation invariant, by  \myref{Equation}{trans}, we can WOLG suppose 
+\begin{align*}
+A=\prod_{j=1}^d [0,a_j]\text{ and }B=\prod_{j=1}^d [0,b_j]
+\end{align*}
+It is clear that 
+\begin{align*}
+A+B= \prod_{j=1}^d [0,a_j+b_j]
+\end{align*}
+Now, by direct computation, we know that 
+\begin{align*}
+\abso{A+B}=\prod_{j=1}^d (a_j+b_j)\text{ and }\abso{A}=\prod_{j=1}^d a_j\text{ and }\abso{B}=\prod_{j=1}^d b_j
+\end{align*}
+Note that by AM-GM inequality, we have 
+\begin{align*}
+\frac{\abso{A}^{\frac{1}{d}}}{\abso{A+B}^{\frac{1}{d}}}=\Big(\prod_{j=1}^n \frac{a_j}{a_j+b_j}\Big)^{\frac{1}{n}}\leq \frac{1}{d}\sum_{j=1}^d \frac{a_j}{a_j+b_j}
+\end{align*}
+Similarly by AM-GM inequality, we have
+\begin{align*}
+\frac{\abso{B}^{\frac{1}{d}}}{\abso{A+B}^{\frac{1}{d}}}=\Big(\prod_{j=1}^n \frac{b_j}{a_j+b_j}\Big)^{\frac{1}{n}}\leq \frac{1}{d}\sum_{j=1}^d \frac{b_j}{a_j+b_j}
+\end{align*}
+Adding two inequalities together, now have 
+\begin{align*}
+\frac{\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}}{\abso{A+B}^{\frac{1}{d}}}\leq \frac{1}{d}\sum_{j=1}^d \frac{a_j+b_j}{a_j+b_j}=1
+\end{align*}
+The result then follows from multiplying both side with $\abso{A+B}^{\frac{1}{d}}$. 
+\end{proof}
+\begin{theorem}
+\label{BMIb}
+\textbf{(Brunn-Minkowski Inequality for finite union of non-overlapping of bricks)} Suppose $A$ is a union of a finite collection of non-overlapping brick and so is $B$. We have 
+ \begin{align*}
+\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+  We prove by induction on the sum $k$ of the amount of bricks consisting $A$ and the amount of bricks consisting $B$. The base case $k=2$ have been proved by \myref{Theorem}{Brunn-Minkowski Inequality for Bricks}. Suppose the proposition hold true when $k\leq r$. Let $k=r+1$. Because the bricks consisting of $A$ are non-overlapping, by a translation  (and renaming axis if necessary), we can suppose the following proposition.
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+     $\vspace{0.05cm}$\\
+     Proposition 1: Both $A^+\triangleq A\cap \set{\textbf{x}\inr^d: \textbf{x}_1\geq 0}$ and $A^-\triangleq A\cap \set{\textbf{x}\inr^d: \textbf{x}_1\leq 0}$ are union of collection of non-overlapping bricks, with each collection containing at least one fewer brick than $A$. \label{pp1}\\ 
+   \end{minipage}
+\end{center}
+
+\customref{pp1}{Proposition 1} hold because if we write $A=A_1\cup \cdots \cup A_m$ where $A_1,\dots , A_m$ are non-overlapping bricks, then by translation and remaining axis, we can suppose $A_1,A_2$ lie in distinct closed subspace, either $\set{\textbf{x}\inr^d:\textbf{x}_1\geq 0}$ or $\set{\textbf{x}\inr^d:\textbf{x}_1\leq 0}$, while for all $n\geq 3$, $A_n \cap \set{\textbf{x}\inr^d: \textbf{x}_1\geq 0}$ is either empty or also a brick.\\
+
+
+Now, note that $h:\R\rightarrow \R$ defined by
+\begin{align*}
+h(t)\triangleq  \abso{\Big(B+(t,0,\dots ,0) \Big)\cap \set{\textbf{x}\inr^d: \textbf{x}_1\geq 0}}
+\end{align*}
+is clearly a continuous function. (If $B$ consists of  $p$ bricks, then  $h$ can be written as a finite sum of continuous function with compact support, $\sum_{k=1}^p h_k$) Then by IVT, we can translate $B$ to let $B$ satisfy 
+ \begin{align}
+  \label{rai}
+\frac{\abso{A^+}}{\abso{A}}= \frac{\abso{B^+}}{\abso{B}}\text{ where }B^+ \triangleq B \cap \set{\textbf{x}\inr^d: x_1\geq 0}
+\end{align}
+Define $B^-\triangleq B\cap \set{\textbf{x}\inr^d:\textbf{x}_1\leq 0}$. With reason similar to that of \customref{pp1}{Proposition 1}, we know $B^+$ and  $B^-$ are both union of collection of non-overlapping bricks, with each collection containing bricks no more than  $B$. Therefore, with \customref{pp1}{Proposition 1}, we can deduce that the sum of the amount of bricks consisting $A^+$ (resp. $A^-$) and the amount bricks consisting $B^+$ (resp. $B^-$) is at least one fewer than $r+1$. Then because the proposition hold true for $k\leq r$, we now have
+\begin{align*}
+\abso{A^+}^{\frac{1}{d}}+ \abso{B^+}^{\frac{1}{d}}\leq \abso{A^++B^+}^{\frac{1}{d}}\text{ and }\abso{A^-}^{\frac{1}{d}}+ \abso{B^-}^{\frac{1}{d}}\leq \abso{A^-+B^-}^{\frac{1}{d}}
+\end{align*}
+Note that for each $\textbf{x}$ in the interior of $A^++B^+$, we must have  $\textbf{x}_1>0$, and for each  $\textbf{y}$ in the interior of $A^-+B^-$, we must have  $\textbf{y}_1<0$. This implies that  $(A^++B^+)$ and $(A^-+B^-)$ are non-overlapping. Now, because 
+\begin{align*}
+A+B =(A^++B^+)\cup (A^-+B^-)
+\end{align*}
+if we define $\rho \triangleq \frac{\abso{A^+}}{\abso{A}}$, from \myref{Equation}{rai} we can finally deduce 
+\begin{align*}
+\abso{A+B}&= \abso{A^++B^+}+ \abso{A^-+B^-}\\
+&\geq \Big(\abso{A^+}^{\frac{1}{d}} + \abso{B^+}^{\frac{1}{d}} \Big)^{d} + \Big(\abso{A^-}^{\frac{1}{d}}+\abso{B^-}^{\frac{1}{d}}  \Big)^d \\ 
+(\because \frac{\abso{A^-}}{\abso{A}}=\frac{\abso{B^-}}{\abso{B}}=1-\rho)\hspace{0.5cm}&=\Big((\rho \abso{A})^{\frac{1}{d}}+ (\rho \abso{B})^{\frac{1}{d}} \Big)^d + \Big(((1-\rho)\abso{A})^{\frac{1}{d}}+ ((1-\rho)\abso{B})^{\frac{1}{d}} \Big)^d \\
+&=(\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}})^d
+\end{align*}
+This then give us the desired inequality  
+\begin{align*}
+\abso{A+B}^{\frac{1}{d}}\geq \abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{BMIo}
+\textbf{(Brunn-Minkowski Inequality for bounded open set)} Suppose $A,B$ are both bounded open subset of  $\R^d$. We have 
+ \begin{align*}
+\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Note that  $A+B$ is also open since it is a union of the open sets:
+\begin{align*}
+A+B=\bigcup_{\textbf{b}\in B}A+\textbf{b}\text{ }
+\end{align*}
+It then follows that $A+B$ is Lebesgue measurable, so it makes sense for us to write  $\abso{A+B}$. By a proposition taught in class, we can let 
+\begin{align*}
+A=\bigcup_{n\inn}K_{n,a}\text{ and }B=\bigcup_{n\inn}K_{n,b}
+\end{align*}
+Fix arbitrary $\textbf{x}\in A+B$. Let $\textbf{a} \in A,\textbf{b}\in B$ satisfy $\textbf{x}=\textbf{a}+\textbf{b}$. Because $A=\bigcup K_{n,a}$ and $B=\bigcup K_{n,b}$, we know there exists $j_a,j_b \inn$ such that $\textbf{a} \in K_{j_a,a}$ and $\textbf{b} \in K_{j_b,b}$. WOLG, suppose $j_a\geq j_b$. Now, because 
+\begin{align*}
+  \textbf{x}=\textbf{a}+\textbf{b}\in \Big(\bigcup_{n=1}^{j_a} K_{n,a} \Big) + \Big(\bigcup_{n=1}^{j_a}K_{n,b} \Big)
+\end{align*}
+and $\textbf{x}$ is arbitrary selected from $A+B$, we have proved
+\begin{align*}
+  \Big(\bigcup_{n=1}^N K_{n,a} \Big) + \Big(\bigcup_{n=1}^N K_{n,b} \Big) \nearrow A+B\text{ as }N \to \infty
+\end{align*}
+This together with \myref{Theorem}{BMIb} then give us the desired inequality  
+\begin{align*}
+\abso{A+B}^{\frac{1}{d}}&=\lim_{N\to \infty} \abso{\Big(\bigcup_{n=1}^N K_{n,a} \Big) + \Big( \bigcup_{n=1}^N K_{n,b}  \Big)}^{\frac{1}{d}}\\
+&\geq \lim_{N\to \infty} \abso{\bigcup_{n=1}^N K_{n,a}}^{\frac{1}{d}}+ \abso{\bigcup_{n=1}^N K_{n,b}}^{\frac{1}{d}}\\
+&=\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{BMIc}
+\textbf{(Brunn-Minkowski Inequality for compact set)} Suppose $A,B$ are both compact subset of  $\R^d$. We have 
+ \begin{align*}
+\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq  \abso{A+B}^{\frac{1}{d}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+For each $\epsilon >0$, define 
+\begin{align*}
+A_{\epsilon }\triangleq \set{\textbf{x}\inr^d: d(\textbf{x},A)<\epsilon }\text{ and }B_{\epsilon }\triangleq \set{\textbf{x}\inr^d: d(\textbf{x},B)<\epsilon }
+\end{align*}
+ To see $A_\epsilon $ is open, observe that if $\textbf{x}\in A_{\epsilon }$, then for all $\textbf{y}$ in the open ball $d(\textbf{x},\textbf{y})<\frac{\epsilon -d(\textbf{x},A)}{2}$, we can pick some $\textbf{z} \in A$ satisfying $d(\textbf{x},\textbf{z})< d(\textbf{x},A) + \frac{\epsilon}{2}$ to have
+\begin{align*}
+  d(\textbf{y},A)&\leq d(\textbf{y},\textbf{z})\\
+  &\leq d(\textbf{x},\textbf{z})+d(\textbf{x},\textbf{y})\\
+  &\leq d(\textbf{x},\textbf{z})+ \frac{\epsilon -d(\textbf{x},A)}{2}\\
+  &\leq d(\textbf{x},\textbf{z})-d(\textbf{x},A)+ \frac{\epsilon }{2}<\epsilon \text{ implying }\textbf{y} \in A_\epsilon 
+\end{align*}
+Similar argument shows that $B_{\epsilon }$ are open. To see $A_\epsilon \searrow A$, note that for all $\textbf{x}\not\in A$, because $d(\textbf{z},\textbf{x})$ is a function continuous in the variable $\textbf{z}$ and $A$ is compact, by EVT we have 
+ \begin{align*}
+d(\textbf{x},A)=d(\textbf{x},\textbf{z})>0\text{ for some $\textbf{z}\in A$ }
+\end{align*}
+Note that the inequality hold because $\textbf{z}\in A \implies \textbf{x}\neq \textbf{z} $. Similar argument shows that $B_\epsilon \searrow B$. We now prove 
+\begin{align}
+\label{A+B}
+A+B=\bigcap_{\epsilon >0}A_\epsilon +B_\epsilon  
+\end{align}
+It is clear that 
+\begin{align}
+\label{a+b}
+A+B\subseteq \bigcap_{\epsilon >0}A_\epsilon +B_\epsilon 
+\end{align}
+Fix arbitrary $\textbf{z}\in \bigcap_{\epsilon >0}A_\epsilon +B_\epsilon $. For all $n\inn$, by definition there exists $\textbf{a}_n \in A_{\frac{1}{n}} $ and $\textbf{b}_n \in B_{\frac{1}{n}} $ such that $\textbf{z}=\textbf{a}_n+\textbf{b}_n$. Bolzano-Weierstrass Theorem tell us that there exists convergent subsequence $\textbf{a}_{n_k}$. Applying Bolzano-Weierstrass Theorem again, we see that there exists convergent subsequence $\textbf{b}_{n_{k_j}}$. It is clear that $\textbf{a}_{n_{k_j}}$ also converge. For brevity, we denote them simply by $\textbf{a}_{n_k}$ and $\textbf{b}_{n_k}$, and we denote their limit by 
+\begin{align*}
+\textbf{a}=\lim_{k\to \infty}\textbf{a}_{n_k}\text{ and }\textbf{b}=\lim_{k\to \infty}\textbf{b}_{n_k}
+\end{align*}
+We now shows that 
+\begin{align}
+ \textbf{a}\in A
+\end{align}
+\As{$a \not\in A$ for a contradiction}. By EVT, $d(\textbf{a},A)=d(\textbf{a},\textbf{a}')$ for some $\textbf{a}'\in A$. Note that $d(\textbf{a},\textbf{a}')>0$ because $\textbf{a}\not\in A\implies \textbf{a}\neq \textbf{a}'$. We have shown $d(\textbf{a},A)>0$. Let $K$ satisfy $d(\textbf{a},\textbf{a}_{n_k})< \frac{d(\textbf{a},A)}{2}$ for all $k>K$. Select $m>K$ so that  $\frac{1}{n_m}< \frac{d(\textbf{a},A)}{2}$. Then because $d(\textbf{a}_{n_m},A)< \frac{1}{n_m}< \frac{d(\textbf{a},A)}{2}$, we can select $\textbf{a}'' \in A$ such that $d(\textbf{a}_{n_m},\textbf{a}'')< \frac{d(\textbf{a},A)}{2}$. This then give us 
+\begin{align*}
+d(\textbf{a},A)\leq d(\textbf{a},\textbf{a}'')\leq d(\textbf{a},\textbf{a}_{n_m})+ d(\textbf{a}_{n_m},\textbf{a}'')< \frac{d(\textbf{a},A)}{2}+ \frac{d(\textbf{a},A)}{2}
+\end{align*}
+which is clearly impossible. We have proved $\textbf{a} \in A$. Similar arguments shows that $\textbf{b} \in B$. Now, since $\textbf{z}=\textbf{a}_{n_k}+\textbf{b}_{n_k}$ for all $k$, we see 
+\begin{align*}
+\textbf{z}=\lim_{k\to \infty}\textbf{a}_{n_k}+\textbf{b}_{n_k}=\lim_{k\to \infty}\textbf{a}_{n_k}+\lim_{k\to \infty}\textbf{b}_{n_k}=\textbf{a}+\textbf{b} \in A+B
+\end{align*}
+Because $\textbf{z}$ is arbitrarily selected from $\bigcap_{\epsilon >0}A_\epsilon +B_\epsilon $. We have in fact proved 
+\begin{align*}
+\bigcap_{\epsilon >0}A_\epsilon +B_\epsilon  \subseteq A+B
+\end{align*}
+which together with \myref{Equation}{a+b} implies \myref{Equation}{A+B}. With \myref{Equation}{A+B} established, we can now apply  \myref{Theorem}{BMIo} to have the desired inequality 
+\begin{align*}
+  \abso{A+B}^{\frac{1}{d}}&=\Big(\lim_{\epsilon \to 0} \abso{A_\epsilon +B_\epsilon}  \Big)^{\frac{1}{d}}\\
+  &=\lim_{\epsilon \to 0}\abso{A_\epsilon +B_\epsilon }^{\frac{1}{d}}\\
+  &\geq \lim_{\epsilon \to 0}\abso{A_\epsilon }^{\frac{1}{d}}+ \abso{B_\epsilon }^{\frac{1}{d}}= \abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Before we proceed to the develop the remaining Brunn-Minkowski Inequality, we first have to prove that Lebesgue measure is  \textbf{inner regular}. 
+\end{mdframed}
+\begin{theorem}
+\label{Lmi}
+\textbf{(Lebesgue measure is inner regular)} If $A\subseteq \R^d$ is Lebesgue measurable, then 
+\begin{align*}
+\abso{A}=\sup \set{\abso{K}:K\subseteq A\text{ is compact }}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $A$ is measurable, we know $A\cap \overline{B_n(\textbf{0})}$ is measurable for all $n\inn$. Therefore, for all $n\inn$, $(A\cap \overline{B_n(\textbf{0})})^c$ is measurable. Then by definition, there exists open $O_n$ containing $(A\cap \overline{B_n(\textbf{0})})^c$,  such that $\abso{O_n\setminus (A\cap B_n(\textbf{0}))^c }< \frac{1}{n}$. Now, for each $n\inn$, define closed set $K_n\triangleq O_n^c$. We then have 
+\begin{align*}
+  K_n \subseteq A\cap \overline{B_n(\textbf{0})}
+\end{align*}
+and 
+\begin{align*}
+  (A\cap \overline{B_n(\textbf{0})}) \setminus K_n= A\cap \overline{B_n(\textbf{0})}\cap O_n=O_n \setminus (A\cap B_n(\textbf{0}))^c
+\end{align*}
+This then give us 
+\begin{align*}
+\abso{(A\cap  \overline{B_n(\textbf{0})})\setminus K_n}=\abso{O_n\setminus (A\cap B_n(\textbf{0}))^c }< \frac{1}{n}
+\end{align*}
+Note that because $K_n \subseteq B_n(\textbf{0})$ is bounded and closed, by Hiene-Borel, we know $K_n$ is compact. Lastly, to close out the proof, we are required to show $\abso{K_n}\to \abso{A}$ as $n \to \infty$. Note that $\abso{A\cap B_n(\textbf{0})}\nearrow \abso{A}$ as $n\to \infty$  because $A\cap B_n(\textbf{0})\nearrow A$ as $n\to \infty$. Then because $\abso{A\cap B_n(\textbf{0})}\geq \abso{K_n}\geq \abso{A\cap B_n(\textbf{0})}- \frac{1}{n}$, we see that $\abso{K_n}\to \abso{A}$ by squeeze Theorem. 
+\end{proof}
+\begin{theorem}
+\textbf{(Brunn-Minkowski Inequality for measurable set)} Suppose $A,B$ are measurable subset of  $\R^d$ and $A+B$ is also measurable. We have 
+ \begin{align*}
+\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because \customref{lmi}{Lebesgue measure is inner regular} and $A,B$ are of finite measure, for each $n\inn$, we can let $A_n,B_n$ each be compact subset of  $A,B$ such that $\abso{A}-\abso{A_n}<\frac{1}{n}$  and $\abso{B}-\abso{B_n}<\frac{1}{n}$. It then follows from \myref{Theorem}{BMIc} that 
+\begin{align*}
+\abso{A+B}^{\frac{1}{d}}\geq \lim_{n\to \infty}\abso{A_n+B_n}^{\frac{1}{d}}\geq \lim_{n\to \infty} \abso{A_n}^{\frac{1}{d}}+ \abso{B_n}^{\frac{1}{d}}=\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}
+\end{align*}
+\end{proof}
 \section{HW1}
 \begin{question}{}{}
 Show $\R^n$ is complete.
@@ -829,22 +1059,94 @@ Note that $\set{I_k^2}_{k\inn}$ is a compact interval cover  of $\set{x^2:x\in Z
 \end{proof}
 \section{HW3}
 \begin{question}{}{}
-Let $f$ be a simple function, taking its distinct values on disjoint sets $E_1,\dot , E_N$. Show that $f$ is measurable if and only if $E_1,\dots ,E_N$ are measurable. 
+Let $f$ be a simple function, taking its distinct values on disjoint sets $E_1,\dots , E_N$. Show that $f$ is measurable if and only if $E_1,\dots ,E_N$ are measurable. 
 \end{question}
 \begin{proof}
-
+WOLG, let $f$ take value  $a_n$  on  $E_n$ and
+\begin{align*}
+a_1<a_2<\cdots < a_N
+\end{align*}
+If $E_1,\dots ,E_N$ are all measurable, we see that for each $a\inr $  
+\begin{align*}
+\set{f\geq a}=\set{f\geq a_n}=E_n \sqcup \cdots \sqcup E_N\text{ is measurable  }
+\end{align*}
+where $n$ is the smallest integer such that  $a_n\geq a$. We have prove the if part. To see the only if part hold true, observe that for all $n\in \set{1,\dots ,N-1}$ 
+\begin{align*}
+E_n=\set{f\geq a_n}\setminus \set{f\geq a_{n+1}}\text{ is measurable }
+\end{align*}
+and 
+\begin{align*}
+E_N=\set{f\geq a_N}\text{ is measurable }
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Let $f$ be defined and measurable on $\R^n$. If  $T$ is a nonsingular linear transformation of $\R^n$, show that  $f(T\textbf{x})$ is measurable. (If $E_1=\set{\textbf{x}:f(\textbf{x})>a}$, and $E_2=\set{\textbf{x}:f(T\textbf{x})>a}$, show that $E_2=T^{-1}E_1$) 
 \end{question}
 \begin{proof}
-
+Fix $a\inr$. We are required to show 
+\begin{align*}
+\set{\textbf{x}:f(T\textbf{x})>a}\text{ is measurable }
+\end{align*}
+Because $f$ is measurable, we know $\set{\textbf{x}:f(\textbf{x})>a}$ is measurable. The proof then follows from noting 
+\begin{align*}
+\set{\textbf{x}:f(T\textbf{x})>a}= T^{-1}\Big(\set{\textbf{x}:f(\textbf{x})>a} \Big)
+\end{align*}
+and the fact that $T^{-1}:\R^n\rightarrow \R^n$ as a linear transformation preserve measurability. 
 \end{proof}
 \begin{question}{}{}
 Give an example to show that $\phi \circ f$ may not be measurable if $\phi,f:\R\rightarrow \R$ are measurable and finite. (Let $F$ be the Cantor-Lebesgue function and let  $f$ be its inverse suitably defined. Let $\phi$ be the characteristic function of a set of measure zero whose image under $F$ is not measurable.) Show that the same may be true even if $f$ is continuous. (Let $g(x)=x+F(x)$ and consider $f=g^{-1}$) 
 \end{question}
 \begin{proof}
+  Let $F:[0,1]\rightarrow [0,1]$ be the Cantor-Lebesgue function, $\mathcal{C}\subseteq [0,1]$ be the classical ternary Cantor set. Note that $F(\mathcal{C})=[0,1]$. By axiom of choice, we can let $\mathcal{C}'$ be some subset of $\mathcal{C}$ such that $F|_{\mathcal{C}'}:\mathcal{C}'\rightarrow [0,1]$ is a bijection. We can now define $f:\R\rightarrow \R$ by
+\begin{align*}
+f(x)\triangleq \begin{cases}
+  (F|_{\mathcal{C}'})^{-1}(x)& \text{ if $x\in [0,1]$ } \\
+  x& \text{ if $x\not\in [0,1]$ }
+\end{cases}  
+\end{align*}
+$f:\R\rightarrow \R$ is measurable because $f$ is increasing. Let $V$ be a non-measurable set contained by  $[0,1]$, and let $E\triangleq f(V)$. Define $\phi:\R\rightarrow \R$ by 
+\begin{align*}
+\phi(x)\triangleq \begin{cases}
+  1& \text{ if $x \in E$ }\\
+  0& \text{ otherwise }
+\end{cases}
+\end{align*}
+Note that $E$ is measurable because
+ \begin{align*}
+   V\subseteq [0,1]&\implies E=f(V)= (F|_{\mathcal{C}'})^{-1}(V)\subseteq \mathcal{C}' 
+\end{align*}
+It then follows that $\phi:\R\rightarrow \R$ is measurable. Lastly, to see $\phi \circ f:\R\rightarrow \R$ is not measurable, observe that 
+\begin{align*}
+  (\phi \circ f)^{-1}(\set{1})=f^{-1}(E)=V\text{ is not measurable }
+\end{align*}
+where the last inequality follows since $f|_{V}: V\rightarrow E$ is a bijection. \\
 
+For the second part. Define $g:[0,1]\rightarrow [0,2]$ by 
+\begin{align*}
+g(x)\triangleq x +F(x)
+\end{align*}
+Because $F:[0,1]\rightarrow [0,1]$ is increasing, we may deduce 
+\begin{align*}
+x<y \text{ and }x,y\in [0,1]\implies x+F(x)<y+F(y)
+\end{align*}
+This implies $g$ is strictly increasing. Note that $g$ is continuous because $g$ is the addition of two continuous function, and note that $g(0)=0,g(1)=2$. This allow us to deduce $g:[0,1]\rightarrow [0,2]$ is a bijection. Now, observe that $[0,1]\setminus \mathcal{C}$ is a countable union of disjoint open interval. For each connected components $I \subseteq [0,1]\setminus \mathcal{C}$, because $F$ maps $I$ to some constant, we see $g(I)$ is also an interval with the same length $\abso{g(I)}=I$. Then from $\abso{[0,1]\setminus \mathcal{C}}=1$, we can deduce $\abso{g([0,1]\setminus \mathcal{C})}=1$, which implies $g(\mathcal{C})=1$. We then can let $V$ be some non-measurable set contained by  $g(\mathcal{C})$. Define $h:\R\rightarrow \R$ by 
+\begin{align*}
+h(x)\triangleq \begin{cases}
+  g^{-1}(x)& \text{ if $x\in [0,2]$ }\\
+  \frac{x}{2}& \text{ if $x\not\in [0,2]$ }
+\end{cases}
+\end{align*}
+$h:\R\rightarrow \R$ is measurable because it is increasing. Let $E\triangleq h(V)$. We see $E\subseteq \mathcal{C}$, which implies $E$ is measurable, so when we define $\phi:\R\rightarrow \R$ by 
+\begin{align*}
+\phi (x)\triangleq \begin{cases}
+  1& \text{ if $x\in E$ }\\
+  0& \text{ if $x\not \in E$ }
+\end{cases}
+\end{align*}
+we see $\phi:\R\rightarrow \R$ is also measurable. Lastly, to see $\phi \circ h:\R\rightarrow \R$ is not measurable, observe 
+\begin{align*}
+  (\phi \circ h)^{-1}(\set{1})=h^{-1}(E)=V
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 \begin{enumerate}[label=(\alph*)]
@@ -859,10 +1161,29 @@ Give an example to show that $\phi \circ f$ may not be measurable if $\phi,f:\R\
 Let $f_k$ be a sequence of measurable function defined on a measurable set  $E$ with finite measure. If  $\abso{f_k(\textbf{x})}\leq M_{\textbf{x}}<\infty$ for all $k$ and for each  $\textbf{x} \in E$, show that given $\epsilon >0$, there exists closed $F\subseteq E$ and finite $M$ such that  $\abso{E-F}< \epsilon $ and $\abso{f_k(\textbf{x})}\leq M$ for all $k$ and  $\textbf{x}\in F$. 
 \end{question}
 \begin{proof}
-
+Define for all $n\inn$
+\begin{align*}
+E_n \triangleq \bigcap_{k=1}^{\infty} \set{ f_k \leq n}
+\end{align*}
+Because $f_k$ are measurable on $E$, we know $E_n$ are measurable. Because for all $\textbf{x} \in E, \sup_{n\inn}\abso{f_n(\textbf{x})}< \infty$, we see that $E_n \nearrow E$. Then because $E$ is of finite measure, we know there exists some  $N$ such that 
+\begin{align*}
+\abso{E\setminus E_N}< \frac{\epsilon}{2}
+\end{align*}
+Because $E_N$ is measurable, we know there exists some closed $F\subseteq E_N$ such that 
+\begin{align*}
+\abso{E_N\setminus F}< \frac{\epsilon}{2}
+\end{align*}
+It then follows that 
+\begin{align*}
+\abso{E\setminus F}< \epsilon 
+\end{align*}
+and for all $\textbf{x} \in F$, 
+\begin{align*}
+\textbf{x} \in F \implies  \textbf{x}\in E_N\implies \abso{f_k(\textbf{x})}<N\text{ for all }k\inn
+\end{align*}
 \end{proof}
 \begin{question}{}{}
-If $f$ is measurable on $E$, define  $\omega_f(a)\triangleq \abso{f>a}$ for $a \inr$. If $f_k\nearrow f$, show  $\omega_{f_k}\nearrow \omega_f$.  If $f_k \overset{m}{\to}f$, show that $\omega_{f_k}\to \omega_f$ at each point of continuity of $\omega_f$. (For the second part, show that if $f_k\overset{m}{\to}f$, then $\limsup_{k\to\infty}\omega_{f_k}(a)\leq \omega_f (a-\epsilon )$ and $\liminf_{k\to\infty} \omega_{f_k}(a)\geq \omega_f(a+\epsilon ) $ for all $\epsilon >0$). 
+If $f$ is measurable on $E$, define  $\omega_f(a)\triangleq \abso{\set{f>a}}$ for $a \inr$. If $f_k\nearrow f$, show  $\omega_{f_k}\nearrow \omega_f$.  If $f_k \overset{m}{\to}f$, show that $\omega_{f_k}\to \omega_f$ at each point of continuity of $\omega_f$. (For the second part, show that if $f_k\overset{m}{\to}f$, then $\limsup_{k\to\infty}\omega_{f_k}(a)\leq \omega_f (a-\epsilon )$ and $\liminf_{k\to\infty} \omega_{f_k}(a)\geq \omega_f(a+\epsilon ) $ for all $\epsilon >0$). 
 \end{question}
 \begin{proof}
 
@@ -872,166 +1193,6 @@ If $f$ is measurable and finite almost everywhere on $[a,b]$, show that given $\
 \end{question}
 \begin{proof}
 
-\end{proof}
-\section{Brunn-Minkowski Inequality}
-\begin{abstract}
-This HW assignment require us to prove Brunn-Minkowski Inequality.   
-\end{abstract}
-\begin{mdframed}
-We first introduce some notation. Given two sets $A,B\subseteq \R^d$ and a point $p\inr^d$, we write 
-\begin{align*}
-A+p\triangleq \set{a+p\inr^d: a \in A}
-\end{align*}
-and write 
-\begin{align*}
-A+B \triangleq \set{a+b \inr^d: a\in A\text{ and }b \in  B}
-\end{align*}
-Note that elementary set theory tell us 
-\begin{align}
-\label{trans}
-  (A+p)+(B+q)=(A+B)+(p+q)
-\end{align}
-
-\end{mdframed}
-\begin{theorem}
-\label{Brunn-Minkowski Inequality for Bricks}
-\textbf{(Brunn-Minkowski Inequality for Bricks)} Suppose $A,B$ are two  \textbf{bricks}, i.e., $A$ is of the form $\prod_{j=1}^d[x_j,y_j]$, and so is $B$. We have 
-\begin{align*}
-\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
-\end{align*}
-\end{theorem}
-\begin{proof}
-Because Lebesgue measure is translation invariant, by  \myref{Equation}{trans}, we can WOLG suppose 
-\begin{align*}
-A=\prod_{j=1}^d [0,a_j]\text{ and }B=\prod_{j=1}^d [0,b_j]
-\end{align*}
-It is clear that 
-\begin{align*}
-A+B= \prod_{j=1}^d [0,a_j+b_j]
-\end{align*}
-Now, by direct computation, we know that 
-\begin{align*}
-\abso{A+B}=\prod_{j=1}^d (a_j+b_j)\text{ and }\abso{A}=\prod_{j=1}^d a_j\text{ and }\abso{B}=\prod_{j=1}^d b_j
-\end{align*}
-Note that by AM-GM inequality, we have 
-\begin{align*}
-\frac{\abso{A}^{\frac{1}{d}}}{\abso{A+B}^{\frac{1}{d}}}=\Big(\prod_{j=1}^n \frac{a_j}{a_j+b_j}\Big)^{\frac{1}{n}}\leq \frac{1}{d}\sum_{j=1}^d \frac{a_j}{a_j+b_j}
-\end{align*}
-Similarly by AM-GM inequality, we have
-\begin{align*}
-\frac{\abso{B}^{\frac{1}{d}}}{\abso{A+B}^{\frac{1}{d}}}=\Big(\prod_{j=1}^n \frac{b_j}{a_j+b_j}\Big)^{\frac{1}{n}}\leq \frac{1}{d}\sum_{j=1}^d \frac{b_j}{a_j+b_j}
-\end{align*}
-Adding two inequalities together, now have 
-\begin{align*}
-\frac{\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}}{\abso{A+B}^{\frac{1}{d}}}\leq \frac{1}{d}\sum_{j=1}^d \frac{a_j+b_j}{a_j+b_j}=1
-\end{align*}
-The result then follows from multiplying both side with $\abso{A+B}^{\frac{1}{d}}$. 
-\end{proof}
-\begin{theorem}
-\label{BMIb}
-\textbf{(Brunn-Minkowski Inequality for finite union of non-overlapping of bricks)} Suppose $A$ is a union of a finite collection of non-overlapping brick and so is $B$. We have 
- \begin{align*}
-\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
-\end{align*}
-\end{theorem}
-\begin{proof}
-  We prove by induction on the sum $k$ of the amount of bricks consisting $A$ and the amount of bricks consisting $B$. The base case $k=2$ have been proved by \myref{Theorem}{Brunn-Minkowski Inequality for Bricks}. Suppose the proposition hold true when $k\leq r$. Let $k=r+1$. Because the bricks consisting of $A$ are non-overlapping, by a translation  (and renaming axis if necessary), we can suppose the following proposition.
-\begin{center}
-   \begin{minipage}{0.9\linewidth}  
-     $\vspace{0.05cm}$\\
-     Proposition 1: Both $A^+\triangleq A\cap \set{\textbf{x}\inr^d: \textbf{x}_1\geq 0}$ and $A^-\triangleq A\cap \set{\textbf{x}\inr^d: \textbf{x}_1\leq 0}$ are union of collection of non-overlapping bricks, with each collection containing at least one fewer brick than $A$. \label{pp1}\\ 
-   \end{minipage}
-\end{center}
-
-\customref{pp1}{Proposition 1} hold because if we write $A=A_1\cup \cdots \cup A_m$ where $A_1,\dots , A_m$ are non-overlapping bricks, then by translation and remaining axis, we can suppose $A_1,A_2$ lie in distinct closed subspace, either $\set{\textbf{x}\inr^d:\textbf{x}_1\geq 0}$ or $\set{\textbf{x}\inr^d:\textbf{x}_1\leq 0}$, while for all $n\geq 3$, $A_n \cap \set{\textbf{x}\inr^d: \textbf{x}_1\geq 0}$ is either empty or also a brick.\\
-
-
-Now, note that $h:\R\rightarrow \R$ defined by
-\begin{align*}
-h(t)\triangleq  \abso{\Big(B+(t,0,\dots ,0) \Big)\cap \set{\textbf{x}\inr^d: \textbf{x}_1\geq 0}}
-\end{align*}
-is clearly a continuous function. (If $B$ consists of  $p$ bricks, then  $h$ can be written as a finite sum of continuous function with compact support, $\sum_{k=1}^p h_k$) Then by IVT, we can translate $B$ to let $B$ satisfy 
- \begin{align}
-  \label{rai}
-\frac{\abso{A^+}}{\abso{A}}= \frac{\abso{B^+}}{\abso{B}}\text{ where }B^+ \triangleq B \cap \set{\textbf{x}\inr^d: x_1\geq 0}
-\end{align}
-Define $B^-\triangleq B\cap \set{\textbf{x}\inr^d:\textbf{x}_1\leq 0}$. With reason similar to that of \customref{pp1}{Proposition 1}, we know $B^+$ and  $B^-$ are both union of collection of non-overlapping bricks, with each collection containing bricks no more than  $B$. Therefore, with \customref{pp1}{Proposition 1}, we can deduce that the sum of the amount of bricks consisting $A^+$ (resp. $A^-$) and the amount bricks consisting $B^+$ (resp. $B^-$) is at least one fewer than $r+1$. Then because the proposition hold true for $k\leq r$, we now have
-\begin{align*}
-\abso{A^+}^{\frac{1}{d}}+ \abso{B^+}^{\frac{1}{d}}\leq \abso{A^++B^+}^{\frac{1}{d}}\text{ and }\abso{A^-}^{\frac{1}{d}}+ \abso{B^-}^{\frac{1}{d}}\leq \abso{A^-+B^-}^{\frac{1}{d}}
-\end{align*}
-Note that for each $\textbf{x}$ in the interior of $A^++B^+$, we must have  $\textbf{x}_1>0$, and for each  $\textbf{y}$ in the interior of $A^-+B^-$, we must have  $\textbf{y}_1<0$. This implies that  $(A^++B^+)$ and $(A^-+B^-)$ are non-overlapping. Now, because 
-\begin{align*}
-A+B =(A^++B^+)\cup (A^-+B^-)
-\end{align*}
-if we define $\rho \triangleq \frac{\abso{A^+}}{\abso{A}}$, from \myref{Equation}{rai} we can finally deduce 
-\begin{align*}
-\abso{A+B}&= \abso{A^++B^+}+ \abso{A^-+B^-}\\
-&\geq \Big(\abso{A^+}^{\frac{1}{d}} + \abso{B^+}^{\frac{1}{d}} \Big)^{d} + \Big(\abso{A^-}^{\frac{1}{d}}+\abso{B^-}^{\frac{1}{d}}  \Big)^d \\ 
-(\because \frac{\abso{A^-}}{\abso{A}}=\frac{\abso{B^-}}{\abso{B}}=1-\rho)\hspace{0.5cm}&=\Big((\rho \abso{A})^{\frac{1}{d}}+ (\rho \abso{B})^{\frac{1}{d}} \Big)^d + \Big(((1-\rho)\abso{A})^{\frac{1}{d}}+ ((1-\rho)\abso{B})^{\frac{1}{d}} \Big)^d \\
-&=\Big(\rho^{\frac{1}{d}} (\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}) \Big)^d + \Big((1-\rho)^{\frac{1}{d}}(\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}) \Big)^{d}\\
-&=(\rho + 1-\rho)(\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}})^d\\
-&=(\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}})^d
-\end{align*}
-This then give us the desired inequality  
-\begin{align*}
-\abso{A+B}^{\frac{1}{d}}\geq \abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}
-\end{align*}
-\end{proof}
-\begin{theorem}
-\textbf{(Brunn-Minkowski Inequality for bounded open set)} Suppose $A,B$ are both bounded open subset of  $\R^d$. We have 
- \begin{align*}
-\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq \abso{A+B}^{\frac{1}{d}}
-\end{align*}
-\end{theorem}
-\begin{proof}
-Note that  $A+B$ is also open since it is a union of the open sets:
-\begin{align*}
-A+B=\bigcup_{\textbf{b}\in B}A+\textbf{b}\text{ }
-\end{align*}
-It then follows that $A+B$ is Lebesgue measurable, so it makes sense for us to write  $\abso{A+B}$. By a proposition taught in class, we can let 
-\begin{align*}
-A=\bigcup_{n\inn}K_{n,a}\text{ and }B=\bigcup_{n\inn}K_{n,b}
-\end{align*}
-Fix arbitrary $\textbf{x}\in A+B$. Let $\textbf{a} \in A,\textbf{b}\in B$ satisfy $\textbf{x}=\textbf{a}+\textbf{b}$. Because $A=\bigcup K_{n,a}$ and $B=\bigcup K_{n,b}$, we know there exists $j_a,j_b \inn$ such that $\textbf{a} \in K_{j_a,a}$ and $\textbf{b} \in K_{j_b,b}$. WOLG, suppose $j_a\geq j_b$. Now, because 
-\begin{align*}
-  \textbf{x}=\textbf{a}+\textbf{b}\in \Big(\bigcup_{n=1}^{j_a} K_{n,a} \Big) + \Big(\bigcup_{n=1}^{j_a}K_{n,b} \Big)
-\end{align*}
-and $\textbf{x}$ is arbitrary selected from $A+B$, we have proved
-\begin{align*}
-  \Big(\bigcup_{n=1}^N K_{n,a} \Big) + \Big(\bigcup_{n=1}^N K_{n,b} \Big) \nearrow A+B\text{ as }N \to \infty
-\end{align*}
-This together with \myref{Theorem}{BMIb} then give us the desired inequality  
-\begin{align*}
-\abso{A+B}^{\frac{1}{d}}&=\Bigg( \lim_{N\to \infty} \abso{\Big(\bigcup_{n=1}^N K_{n,a} \Big) + \Big( \bigcup_{n=1}^N K_{n,b}  \Big)}  \Bigg)^{\frac{1}{d}} \\
-&=\lim_{N\to \infty} \abso{\Big(\bigcup_{n=1}^N K_{n,a} \Big) + \Big( \bigcup_{n=1}^N K_{n,b}  \Big)}^{\frac{1}{d}}\\
-&\geq \lim_{N\to \infty} \abso{\bigcup_{n=1}^N K_{n,a}}^{\frac{1}{d}}+ \abso{\bigcup_{n=1}^N K_{n,b}}^{\frac{1}{d}}\\
-&=\Big(\lim_{N\to \infty} \abso{\bigcup_{n=1}^N K_{n,a}} \Big)^{\frac{1}{d}}+ \Big(\lim_{N\to \infty} \abso{\bigcup_{n=1}^N K_{n,b}} \Big)^{\frac{1}{d}}\\
-&=\abso{A}^{\frac{1}{d}}+\abso{B}^{\frac{1}{d}}
-\end{align*}
-\end{proof}
-\begin{theorem}
-\textbf{(Brunn-Minkowski Inequality for compact set)} Suppose $A,B$ are both compact subset of  $\R^d$. We have 
- \begin{align*}
-\abso{A}^{\frac{1}{d}}+ \abso{B}^{\frac{1}{d}}\leq  \abso{A+B}^{\frac{1}{d}}
-\end{align*}
-\end{theorem}
-\begin{proof}
-For each $\epsilon >0$, define 
-\begin{align*}
-A_{\epsilon }\triangleq \set{\textbf{x}\inr^d: d(\textbf{x},A)<\epsilon }\text{ and }B_{\epsilon }\triangleq \set{\textbf{x}\inr^d: d(\textbf{x},B)<\epsilon }
-\end{align*}
- To see $A_\epsilon $ is open, observe that if $\textbf{x}\in A_{\epsilon }$, then for all $\textbf{y}$ in the open ball $d(\textbf{x},\textbf{y})<\frac{\epsilon -d(\textbf{x},A)}{2}$, we can pick some $\textbf{z} \in A$ satisfying $d(\textbf{x},\textbf{z})< d(\textbf{x},A) + \frac{\epsilon}{2}$ to have
-\begin{align*}
-  d(\textbf{y},A)&\leq d(\textbf{y},\textbf{z})\\
-  &\leq d(\textbf{x},\textbf{z})+d(\textbf{x},\textbf{y})\\
-  &\leq d(\textbf{x},\textbf{z})+ \frac{\epsilon -d(\textbf{x},A)}{2}\\
-  &\leq d(\textbf{x},\textbf{z})-d(\textbf{x},A)+ \frac{\epsilon }{2}<\epsilon \text{ implying }\textbf{y} \in A_\epsilon 
-\end{align*}
-Similar argument shows that $B_{\epsilon }$ are open. To see $A_\epsilon \searrow A$, note that for all $\textbf{x}\not\in A$, because $d(\textbf{z},\textbf{x})$ is a function continuous in the variable $\textbf{z}$ and $A$ is compact, by EVT we have 
- \begin{align*}
-d(\textbf{x},A)=d(\textbf{x},\textbf{z})>0\text{ for some $\textbf{z}\in A$ }
-\end{align*}
-Note that the inequality hold because $\textbf{z}\in A \implies \textbf{x}\neq \textbf{z} $. Similar argument shows that $B_\epsilon \searrow B$. It now follows from  
 \end{proof}
 \chapter{Complex Analysis HW}
 \section{HW1}
@@ -1493,7 +1654,7 @@ f(\textbf{y})=g(1)=g(0)=f(\textbf{x})
 Let $U$ be an open subset of $\R^n$. A function  $f:U\rightarrow \R$ is called \textbf{locally constant} if, for each $x\in U$, there exists an open neighborhood  $W$ of $x$ such that $W \subseteq U$ and $f:W\rightarrow \R$ is constant on $W$. Prove that $f$ is locally constant function if and only if $\nabla f=0$ on $U$. 
 \end{question}
 \begin{proof}
-The if part follows from the last question by taking some small enough $r$ such that  $B_r(x)\subseteq W$. We now prove the only if part. Fix arbitrary $x \in U$. Because $f$ is locally constant at $x$, we know there exists some  $B_r(x)$ such that $f$ is constant on $B_r(x)$. Therefore, we can let $c\inr$ satisfy 
+The if part follows from the last question by taking some small enough $r$ such that  $B_r(x)\subseteq U$. We now prove the only if part. Fix arbitrary $x \in U$. Because $f$ is locally constant at $x$, we know there exists some  $B_r(x)$ such that $f$ is constant on $B_r(x)$. Therefore, we can let $c\inr$ satisfy 
 \begin{align*}
 f(y)=c \text{ for all } y\in B_r(x) 
 \end{align*}
@@ -1506,7 +1667,176 @@ since $f(x+t\textbf{j})=c=f(x)$ as long as $\abso{t}<r$. Because $\textbf{j}$ is
 \begin{question}{}{}
 Let $D$ be an open, connected subset of $\R^n$. Prove that if  $f:D\rightarrow \R$ is a locally constant function, then $f$ is a constant function. 
 \end{question}
-\chapter{PDE intro HW}
+\begin{proof}
+Observe that for all $p \in D$, $f$ is constant on some neighborhood around  $p$, thus continuous at  $p$. We have shown $f:D\rightarrow \R$ is continuous. Fix $p \in D$, and let $c\triangleq f(p)$. Because $\set{c}$ is closed in $\R$ and  $f:D\rightarrow \R$ is continuous, we know $f^{-1}(\set{c})$ is closed in $D$. We now show $f^{-1}(\set{c})$ is open in $D$. Fix arbitrary  $q \in f^{-1}(\set{c})$. Because $f:D\rightarrow \R$ is locally constant, we know there exists  some  $r$ such that $B_r(q)\subseteq D$ and $f$ sends  $B_r(q)$ to $f(q)=c$. It follows that $B_r(q)\subseteq f^{-1}(\set{c})$.   Because $q$ is arbitrary selected from $f^{-1}(\set{c})$, we have shown $f^{-1}(\set{c})$ is open in  $D$. \\
+
+In conclusion, we have shown $f^{-1}(\set{c})$ is both open and closed in $D$. It then follows from  $D$ being connected that  $f^{-1}(\set{c})=D\text{ or }\varnothing$. Because $p \in f^{-1}(\set{c})$, we can deduce $f^{-1}(\set{c})=D$, i.e., $f$ send all points in  $D$ to  $c$, a constant function. 
+\end{proof}
+\section{HW 3}
+\begin{question}{}{}
+Let $\C_{\pi}\triangleq \set{z\inc:z\not\inr^-_0}$. Prove that $\C_\pi$ is a domain. Define $r:\C_\pi\rightarrow \C$ by  $(r(z))^2=z$ and $\operatorname{Re}r(z)>0$. Prove that $r$ is continuous on $\C_\pi$ and $r'(z)=\frac{1}{2r(z)}$. 
+\end{question}
+\begin{proof}
+It is clear that $\C_\pi$ is non-empty and open. To see $\C_\pi$ is path-connected, observe that for all point $x+iy \inc_\pi$, we can join $x+iy$ with  $1$ linearly by defining $\gamma :[0,1]\rightarrow \C_\pi$ by  
+\begin{align*}
+\gamma (t)\triangleq 1+t(x+iy-1)
+\end{align*}
+We have proved $\C_\pi$ is a domain. Note that 
+\begin{align*}
+\C_\pi=\set{a+b i\inc: a>0\text{ and }b \in (-\pi, \p)}
+\end{align*}
+and the exact definition of $r:\C_\pi\rightarrow \C$ is 
+\begin{align*}
+r(e^{a+b i})\triangleq e^{\frac{a+b i}{2}}
+\end{align*}
+This implies $r$ is continuous. Compute
+ \begin{align*}
+1=\frac{d}{dz}z= \frac{d}{dz}(r(z))^2=2r(z)r'(z)
+\end{align*}
+This give us $r'(z)=\frac{1}{2 r(z)}$. 
+\end{proof}
+\begin{theorem}
+\label{CP}
+\textbf{(Conjugated Polynomial)} 
+\begin{align*}
+\overline{z^n}\text{ is holomorphic at $0$ for all }n>1
+\end{align*}
+\end{theorem}
+\begin{proof}
+If we write 
+\begin{align*}
+u+iv=\overline{(x+iy)^n}
+\end{align*}
+Because $n>1$, we see from binomial Theorem that $u \in \R[x,y]$ is a polynomial with two indeterminate $x,y$ whose terms all have degree greater than $1$. Thus, both  $\frac{\partial u}{\partial x},\frac{\partial u}{\partial y}$ are polynomial with two indeterminate $x,y$ whose terms all have degree greater than  $0$. This implies 
+\begin{align*}
+\frac{\partial u}{\partial x}(0)=\frac{\partial u}{\partial  y}(0)=0
+\end{align*}
+Similar arguments shows that 
+\begin{align*}
+\frac{\partial v}{\partial x}(0)=\frac{\partial v}{\partial y}(0)=0
+\end{align*}
+Because $u,v\inr[x,y]$ are real multivariate polynomial, they are obviously real differentiable. Finally, we can use Cauchy-Riemann criteria to conclude that $\overline{z^n}=u+iv$ is holomorphic at $0$.
+\end{proof}
+\begin{question}{}{}
+Let $f:\C\rightarrow \C$ be a polynomial. Prove that the function $g:\C\rightarrow \C$ defined by  
+\begin{align*}
+g(z)\triangleq \overline{f(\overline{z})}
+\end{align*}
+is holomorphic everywhere, but the function $h:\C\rightarrow \C$ defined by 
+\begin{align*}
+h(z)\triangleq \overline{f(z)}
+\end{align*}
+is holomorphic at $0$ if and only if $f'(0)=0$.
+\end{question}
+\begin{proof}
+We can write 
+\begin{align*}
+f(z)\triangleq \sum_{n=0}^N c_n z^n
+\end{align*}
+and compute 
+\begin{align*}
+g(z)= \sum_{n=0}^N \overline{c_n}z^n
+\end{align*}
+We have shown $g:\C\rightarrow \C$ is a polynomial. It follows that $g$ is holomorphic on $\C$. Compute 
+\begin{align*}
+h(z)=\sum_{n=2}^N \overline{c_nz^n}+\overline{c_1z}+\overline{c_0}\text{ and }f'(0)=c_1
+\end{align*}
+\myref{Theorem}{CP} shows that 
+\begin{align*}
+\sum_{n=2}^N \overline{c_nz^n}+\overline{c_0}\text{ is holomorphic at }0
+\end{align*}
+Note that $\overline{z}$ is not holomorphic at $0$ since if we write  $u+iv=\overline{z}$, then 
+\begin{align*}
+\frac{\partial u}{\partial x}=1\neq -1=\frac{\partial v}{\partial y}
+\end{align*}
+The claim "$h$ is holomorphic at  $0$ if and only if  $f'(0)=0$" then follows. 
+\end{proof}
+\begin{question}{}{}
+Define 
+\begin{enumerate}[label=(\alph*)]
+  \item $u,v:\R^2\rightarrow \R$ by 
+    \begin{align*}
+    u(x,y)=x^3-3xy^2\text{ and }v(x,y)=3x^2y-y^3
+    \end{align*} 
+    \item $u,v: \set{(x,y)\inr^2:x>0}\rightarrow \R$ by 
+      \begin{align*}
+      u(x,y)= \frac{\ln (x^2+y^2)}{2}\text{ and }v(x,y)= \sin^{-1}(\frac{y}{\sqrt{x^2+y^2}})
+      \end{align*}
+\end{enumerate}
+Verify the Cauchy-Riemann Equation for these functions and state a complex function shows real and imaginary parts are $u,v$. 
+\end{question}
+\begin{proof}
+For (a), compute 
+\begin{align*}
+\frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}=3x^2-2y^2\text{ and }\frac{\partial u}{\partial y}= -\frac{\partial v}{\partial x}=-6xy
+\end{align*}
+and observe 
+\begin{align*}
+u+iv=(x+iy)^3
+\end{align*}
+For (b), compute 
+\begin{align*}
+\frac{\partial u}{\partial x}= \frac{\partial v}{\partial y} = \frac{x}{x^2+y^2}\text{ and } \frac{\partial u}{\partial y}=-\frac{\partial v}{\partial x}= \frac{y}{x^2+y^2}
+\end{align*}
+and observe 
+\begin{align*}
+x+iy=e^{2u+iv}
+\end{align*}
+which implies the function map $z$ to  $\log (z)- \frac{\ln \abso{z}}{2}$. 
+\end{proof}
+\begin{question}{}{}
+Let $f(z)=\sqrt{\abso{xy}}$. Show that  $f$ satisfy the Cauchy-Riemann equation at $0$, yet  $f'(0)$ does not exists. Explain why. 
+\end{question}
+\begin{proof}
+Observe that 
+\begin{align*}
+f(x)=f(iy)=0\text{ for all }x,y\inr
+\end{align*}
+We then have Cauchy-Riemann equations  
+\begin{align*}
+\frac{\partial u}{\partial x}=\frac{\partial v}{\partial  y}= \frac{\partial u}{\partial y}= - \frac{\partial v}{\partial x}=0
+\end{align*}
+Then if $f$ is holomorphic at $0$, we should have  $f'(0)=0$, but we can compute 
+\begin{align*}
+\lim_{t\to 0;t\inr^+} \frac{f(t+ti)-f(0)}{t+ti}=\lim_{t\to 0;t\inr^+} \frac{t}{t+ti}=  \frac{1}{1+i}\neq 0
+\end{align*}
+which implies $f$ is not holomorphic at $0$. The reason that $f$ satisfy the Cauchy-Riemann equation yet isn't holomorphic is that its real part when treated as a function from $\R^2$ to $\R$ is not differentiable at $0$, as we have shown. (Note that $f=\operatorname{Re}f$) 
+\end{proof}
+\begin{question}{}{}
+Suppose that $f(z)=\sum a_nz^n$ is entire and satisfy 
+\begin{align*}
+f'=f\text{ and }f(0)=1
+\end{align*}
+Find $a_n$. Show that 
+\begin{align*}
+f(a+b)=f(a)f(b)\text{ for all }a,b \inc
+\end{align*}
+and compute $f(1)$ to five decimal points. 
+\end{question}
+\begin{proof}
+$f(0)=1$ implies $a_0=1$.  $f'=f$ implies  $(n+1)a_{n+1}=a_n$, which give us 
+\begin{align*}
+a_n= \frac{1}{n!}\text{ for all }n\geq 0
+\end{align*}
+Fix $a,b \inc$. Define $g:\C\rightarrow \C$ by 
+\begin{align*}
+g(z)\triangleq f(a+b-z)f(z)
+\end{align*}
+Compute 
+\begin{align*}
+g'(z)&=-f'(a+b-z)f(z)+f(a+b-z)f'(z)\\
+&=-f(a+b-z)f(z)+f(a+b-z)f(z)=0
+\end{align*}
+This implies $g$ is constant. We then can deduce 
+\begin{align*}
+f(a)f(b)=g(a)=g(0)=f(a+b)f(0)=f(a+b)
+\end{align*}
+We know 
+\begin{align*}
+f(1)=\sum_{n=0} \frac{1}{n!}=2.7182818.....
+\end{align*}
+\end{proof}
+\chapter{PDE intro}
 \section{1.2 First Order Linear Equations}
 \begin{mdframed}
 \textbf{(Principle of Geometric Method)} Given a first order homogeneous linear PDE with the form  
@@ -2842,21 +3172,21 @@ To see that $S_2$ is indeed fundamental solution, observe
 &=\phi (x,y)
 \end{align*}
 \end{proof}
+\chapter{PDE intro 2}
 \section{3.1 Diffusion on the half line}
 \begin{mdframed}
-  Consider the following \textbf{Dirichlet problem}
+  Consider the following \textbf{Dirichlet boundary condition problem}
 \begin{align*}
 \begin{cases}
-  v_t-kv_{xx}=0 \text{ for }0<x<\infty, 0<t<\infty\\
-  \lim_{t\to 0}v(x,t)=\phi (x)\text{ for }0<x<\infty \\
-  v(0,t)=0\text{ for }0<t<\infty 
+  v_t-kv_{xx}=0 \text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)} }\\
+  v(x,0)=\phi (x)\text{ \textbf{(IC)} }\\
+  v(0,t)=0\text{ \textbf{(Dirichlet BC)} }
 \end{cases}
 \end{align*}
-where $\phi:\R^+\rightarrow \R$. Define $\phi_{\operatorname{odd}}:\R\rightarrow \R$ by 
+Define $\phi_{\operatorname{odd}}:\R\rightarrow \R$ by 
 \begin{align*}
 \phi_{\operatorname{odd}}(x)\triangleq \begin{cases}
     \phi (x)& \text{ if $x>0$ }\\
-    0& \text{ if $x=0$ }\\
     -\phi (x)& \text{ if $x<0$ }
   \end{cases}
 \end{align*}
@@ -2874,7 +3204,7 @@ u(-x,t)&=\int_{-\infty}^{\infty}S(-x-y,t)\phi_{\operatorname{odd}}(y)dy \\
 &=- \int_{-\infty}^{\infty}S(x+y,t)\phi_{\operatorname{odd}}(-y)dy \hspace{0.5cm}(\because S\text{ is even and }\phi_{\operatorname{odd}\text{ is odd }})\\
 &=-\int_{-\infty}^{\infty}S(x-r)\phi_{\operatorname{odd}}(r)dr=-u(x,t)\hspace{0.5cm}(\because r=-y)
 \end{align*}
-In other words, we have deduced that $u$ is an odd function in $x$. It then follows that  $u(0,t)=-u(-0,t)=0$. Then we see that the restriction $v\triangleq u|_{(\R^+)^2}$ form a solution of the Dirichlet problem. In particular, we can express $v$ in a form without usage of $\phi_{\operatorname{odd}}$ if we consider 
+In other words, we have deduced that $u$ is an odd function in $x$. It then follows that  $u(0,t)=-u(-0,t)=0$. Then we see that the restriction $v\triangleq u|_{(\R^+)^2}$ form a solution of the Dirichlet boundary condition problem. In particular, we can express $v$ in a form without usage of $\phi_{\operatorname{odd}}$ if we consider 
 \begin{align*}
 u(x,t)&=\int_{-\infty}^{\infty}S(x-y,t)\phi_{\operatorname{odd}}(y)dy\\
 &=\int_{0}^{\infty}S(x-y,t)\phi (y)dy + \int_{-\infty}^0S(x-y,t)(-\phi (-y))dy\\
@@ -2885,19 +3215,19 @@ u(x,t)&=\int_{-\infty}^{\infty}S(x-y,t)\phi_{\operatorname{odd}}(y)dy\\
 \end{mdframed}
 \begin{mdframed}
 
-Now, consider the following \textbf{Neumann problem}
+Now, consider the following \textbf{Neumann boundary condition problem}
 \begin{align*}
 \begin{cases}
-  w_t-kw_{xx}=0\text{ for }0<x<\infty,0<t<\infty\\
-  \lim_{t\to 0}w(x,t)=\phi (x)\text{ for }0\leq x<\infty\\
-  w_x(0,t)=0\text{ for }0<t<\infty
+  w_t-kw_{xx}=0\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)} }\\
+  w(x,0)=\phi (x)\text{ \textbf{(IC)} }\\
+  w_x(0,t)=0\text{ \textbf{(Neumann BC)} }
 \end{cases}
 \end{align*}
-where $\phi:\R^+\rightarrow \R$. Define $\phi_{\operatorname{even}}:\R\rightarrow \R$ by   
+Define $\phi_{\operatorname{even}}:\R\rightarrow \R$ by   
 \begin{align*}
 \phi_{\operatorname{even}}(x)\triangleq \begin{cases}
-  \phi (x)& \text{ if $x\geq 0$ }\\
-  \phi (-x)& \text{ if $x\leq 0$ }
+  \phi (x)& \text{ if $x> 0$ }\\
+  \phi (-x)& \text{ if $x< 0$ }
 \end{cases}
 \end{align*}
 It then follows that $\phi_{\operatorname{even}}$ is an even function, and we can solve the Cauchy problem with respect to this initial condition $\phi_{\operatorname{even}}$ and have the solution 
@@ -2938,7 +3268,12 @@ Extend the initial condition to
 \end{align*}
 We then solve 
 \begin{align*}
-u(x,t)=\frac{1}{2\sqrt{\pi kt} }\int_{\R} e^{\frac{-(x-y)^2}{4kt}}\phi_{\operatorname{odd}}(y)dy
+u(x,t)&=\frac{1}{2\sqrt{\pi kt} }\int_{\R} e^{\frac{-(x-y)^2}{4kt}}\phi_{\operatorname{odd}}(y)dy\\
+&=\frac{1}{2 \sqrt{\pi kt} }\Big[\int_0^\infty e^{\frac{-(x-y)^2}{4kt}}e^{-y}dy - \int_{-\infty}^0 e^{\frac{-(x-y)^2}{4kt}}e^ydy  \Big] \\
+&=\frac{1}{2 \sqrt{\pi kt} }\Big[\int_0^{\infty}e^{\frac{-(y-(x-2kt))^2-4ktx+4k^2t^2}{4kt}}dy -\int^{0}_{-\infty}e^{\frac{-(y-(x+2kt))^2+4ktx+4k^2t^2}{4kt}}dy  \Big] \\
+&=\frac{1}{2 \sqrt{\pi kt} }\Big[e^{-x+kt}\int_0^{\infty}e^{\frac{-(y-(x-2kt))^2}{4kt}}dy -e^{x+kt}\int^{0}_{-\infty}e^{\frac{-(y-(x+2kt))^2}{4kt}}dy  \Big]  \\
+&=\frac{1}{\sqrt{\pi} }\Big[e^{-x+kt}\int_{\frac{2kt-x}{2\sqrt{kt} }}^{\infty}e^{-p^2}dp -e^{x+kt}\int_{-\infty}^{\frac{-2kt-x}{2\sqrt{kt} }}e^{-p^2}dp \Big]\\
+&=\frac{1}{\sqrt{\pi} }\Big[e^{-x+kt}\Big( \frac{\sqrt{\pi} }{2}- \frac{2}{\sqrt{\pi}}\operatorname{erf}(\frac{2kt-x}{2\sqrt{kt} })   \Big)-e^{x+kt}\Big( \frac{\sqrt{\pi} }{2}- \frac{2}{\sqrt{\pi} }\operatorname{erf}( \frac{2kt+x}{2\sqrt{kt}}) \Big) \Big]
 \end{align*}
 \end{proof}
 \begin{question}{}{}
@@ -3014,9 +3349,11 @@ Generalize the method of the last exercises to the case of general initial data 
 \begin{proof}
 We are required to solve 
 \begin{align*}
-&u_t=ku_{xx}\text{ on the half line }0<x<\infty\\
-&u(x,0)=\phi (x)\\
-&u_x(0,t)-cu(0,t)=0\text{ where }c\text{ is some non-zero constant }
+\begin{cases}
+  u_t-ku_{xx}=0\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)} }\\
+u(x,0)=\phi (x)\text{ \textbf{(IC)} }\\
+u_x(0,t)-cu(0,t)=0\text{ \textbf{(Robin BC)} where $c>0$ is some constant }
+\end{cases}
 \end{align*}
 If function $f:\R^*\rightarrow \R$ satisfy 
 \begin{enumerate}[label=(\alph*)]
@@ -3025,13 +3362,13 @@ If function $f:\R^*\rightarrow \R$ satisfy
 \end{enumerate}
 then the function 
 \begin{align*}
-u(x,t)\triangleq \int_{\R} S(x-y,t)f(y)dy
+u(x,t)\triangleq \int_{\R} S(x-y,t)f(y)dy\text{ for }x\inr
 \end{align*}
-suffice both initial condition and boundary condition. To see that $u$ satisfy the boundary condition, observe that $u_x-hu$ is a solution to the diffusion equation with initial condition 
+suffice initial condition. To see that $u$ satisfy the Robin boundary condition, observe that $u_x-cu$ is a solution to the diffusion equation with initial condition 
  \begin{align*}
    (u_x-cu)(x,0)&=\lim_{h\to 0}\frac{u(x+h,0)-u(x,0)}{h}-cu(x,0)\\
    &= \lim_{h\to 0} \frac{f(x+h)-f(x)}{h}-cf(x)\\
-   &=f'(x)-cf(x)
+   &=f'(x)-cf(x)\text{ for }x\inr
 \end{align*}
 which with Theorem of uniqueness of solution implies 
 \begin{align*}
@@ -3043,9 +3380,11 @@ It then follows from $f'-cf$ is odd that  $(u_x-cu)$ is odd in $x$, and thus $(u
 \begin{mdframed}
 We now consider the \textbf{Dirichlet's problem for wave on the half line $(0,\infty)$} 
 \begin{align*}
-&\text{ DE: }v_{tt}-c^2v_{xx}=0\text{ for }0<x<\infty,-\infty <t<\infty \\
-&\text{ IC: }v(x,0)=\phi (x),v_t(x,0)=\psi (x)\text{ for }0<x<\infty \\
-&\text{ BC: }v(0,t)=0\text{ for }-\infty < t< \infty
+\begin{cases}
+ v_{tt}-c^2v_{xx}=0\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)} } \\
+v(x,0)=\phi (x),v_t(x,0)=\psi (x)\text{ \textbf{(IC)} } \\
+v(0,t)=0\text{ \textbf{(BC)} }
+\end{cases}
 \end{align*}
 One can check that if we again extend $\phi,\psi:\R^+\rightarrow \R$ to odd function $\phi_{\operatorname{odd}},\psi_{\operatorname{odd}}:\R\rightarrow \R$
 \begin{align*}
@@ -3065,12 +3404,623 @@ u(x,t)\triangleq \frac{\phi_{\operatorname{odd}} (x+ct)+\phi_{\operatorname{odd}
 \end{align*}
 then its restriction $v\triangleq u|_{[0,\infty)\times \R}$ is again a solution to the Dirichlet's problem for wave on the half line, where the boundary condition follows from $u$ being odd in $x$ as easily checked. \\
 
-Consider also the Neumann problem 
+Consider also the \textbf{Neumann problem for wave on half line}
 \begin{align*}
-&\text{ DE: }v_{tt}-c^2v_{xx}=0\text{ for }0<x<\infty,-\infty <t<\infty \\
-&\text{ IC: }v(x,0)=\phi (x),v_t(x,0)=\psi (x)\text{ for }0<x<\infty \\
-&\text{ BC: }v_x(0,t)=0\text{ for }-\infty < t< \infty
+\begin{cases}
+  v_{tt}-c^2v_{xx}=0\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)} } \\
+v(x,0)=\phi (x),v_t(x,0)=\psi (x)\text{ \textbf{(IC)} } \\
+v_x(0,t)=0\text{ \textbf{(BC)} }
+\end{cases}
 \end{align*}
+\end{mdframed}
+\begin{question}{}{}
+Solve the Neumann problem for the wave equation on the half-line $0<x<\infty$. 
+\end{question}
+\begin{proof}
+Define 
+\begin{align*}
+\phi_{\operatorname{even}}(x)\triangleq \begin{cases}
+  \phi (x)& \text{ if $x>0$ }\\
+  \phi (-x)& \text{ if $x<0$ }
+\end{cases}\text{ and }\psi_{\operatorname{even}}(x)\triangleq \begin{cases}
+  \psi (x)& \text{ if $x>0$ }\\
+  \psi (-x)& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+and 
+\begin{align*}
+u(x,t)\triangleq \frac{\phi_{\operatorname{even}} (x+ct)+\phi_{\operatorname{even}}(x-ct)}{2}+ \frac{1}{2c}\int^{x+ct}_{x-ct}\psi_{\operatorname{even}}(s)ds
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+  u_{tt}=4u_{xx}\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)} }\\
+  u(x,0)=1,u_t(x,0)=0\text{ \textbf{(IC)} }\\
+  u(0,t)=0\text{ \textbf{(Dirichlet BC)} }
+\end{cases}
+\end{align*}
+using the reflection method. The solution has a singularity. Find its location. 
+\end{question}
+\begin{proof}
+Define 
+\begin{align*}
+\phi (x)\triangleq \begin{cases}
+  1& \text{ if $x>0$ }\\
+  -1& \text{ if $x<0$ }
+\end{cases}\text{ and }\psi (x)\triangleq 0
+\end{align*}
+We are required to solve the following Dirichlet's problem for wave equation 
+\begin{align*}
+u_{tt}=4u_{xx}\text{ for }-\infty < x< \infty \\
+u(x,0)=\phi (x)\text{ and }u_t(x)=\psi (x)
+\end{align*}
+The solution is exactly 
+\begin{align*}
+u(x,t)&=\frac{\phi(x+2t)+\phi (x-2t)}{2}+\int_{x-2t}^{x+2t} \psi (s)ds \\
+&=\frac{\phi (x+2t)+\phi (x-2t)}{2}\\
+&=\begin{cases}
+  1& \text{ if $x-2t>0$ }\\
+  0& \text{ if  }x+2t>0>x-2t\\
+  -1& \text{ if  }0>x+2t
+\end{cases}
+\end{align*}
+On the half line, the solution is 
+\begin{align*}
+u(x,t)=\begin{cases}
+  1& \text{ if $x-2t>0$ }\\
+  0& \text{ if $x-2t<0$ }
+\end{cases}
+\end{align*}
+So the singularity is exactly on the line $x-2t=0$ 
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}  
+u_{tt}=c^2u_{xx}\text{ for }x\in (0,\infty),t\in [0,\infty)\text{ \textbf{(Homogeneous DE)} }\\
+u(x,0)=0,u_t(x,0)=V\text{ \textbf{(IC)} }\\
+au_x(0,t)+u_t(0,t)=0\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Define 
+\begin{align*}
+v(x,t)\triangleq au_x(x,t)+u_t(x,t)
+\end{align*}
+Compute 
+\begin{align*}
+v(0,t)=0
+\end{align*}
+Compute 
+\begin{align*}
+v(x,0)&=au_x(x,0)+u_t(x,0) \\
+&=0+V=V
+\end{align*}
+Compute 
+\begin{align*}
+v_t(x,0)&=au_{xt}(x,0)+u_{tt}(x,0)\\
+&=a(u_{t}(x,0))_x+c^2u_{xx}(x,0)=0
+\end{align*}
+Then by reflection method, we see 
+\begin{align*}
+v(x,t)\triangleq \frac{\phi (x+ct)+\phi (x-ct)}{2}
+\end{align*}
+where 
+\begin{align*}
+\phi (x)\triangleq \begin{cases}
+  V& \text{ if $x>0$ }\\
+  -V& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+which implies 
+\begin{align*}
+v(x,t)=\begin{cases}
+  V& \text{ if $x-ct>0$ }\\
+  0& \text{ if $x+ct>0>x-ct$ }\\
+  -V& \text{ if $0>x+ct$ }
+\end{cases}
+\end{align*}
+We are now required to solve 
+\begin{align*}
+au_x+u_t=\begin{cases}
+  V& \text{ if $x-ct>0$ }\\
+  0& \text{ if $x-ct<0$ }
+\end{cases}
+\end{align*}
+on the first quadrant. Geometric method (If we require $u$ to be continuous on the singularity) then shows 
+\begin{align*}
+u(x,t)\triangleq \begin{cases}
+  Vt& \text{ if $x-ct>0$ }\\
+  \frac{V}{a-c}(at-x)& \text{ if $x-ct<0$ }
+\end{cases}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Find $u(\frac{2}{3},2),u(\frac{1}{4},\frac{7}{2})$ if
+\begin{align*}
+\begin{cases}
+  u_{tt}=u_{xx}\text{ for }x\in (0,1)\text{ \textbf{(Homogeneous DE)} }\\
+  u(x,0)=x^2(1-x),u_t(x,0)=(1-x)^2\text{ \textbf{(IC)} }\\
+  u(0,t)=u(1,t)=0\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Extend the IC "oddly". With some tedious effort, we see 
+\begin{align*}
+u(\frac{2}{3},2)=\frac{4}{27}\text{ and }u(\frac{1}{4},\frac{7}{2})= \frac{-1}{48}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+  u_{tt}=9u_{xx} \text{ for $x\in (0, \frac{\pi}{2})$ \textbf{(Homogeneous DE)}} \\
+  u(x,0)=\cos x,u_t(x,0)=0\text{ \textbf{(IC)} } \\
+  u_x(0,t)=0\text{ and }u(\frac{\pi}{2},t)=0\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Define 
+\begin{align*}
+\phi (x)\triangleq \cos x\text{ if }x\in (\frac{-\pi }{2},\pi )
+\end{align*}
+and let $\phi$ have period $\frac{3 \pi}{2}$. The solution is 
+\begin{align*}
+u= \frac{\phi (x+3t)+\phi (x-3t)}{2} 
+\end{align*}
+\end{proof}
+\section{3.3 Diffusion with a source}
+\begin{mdframed}
+If we consider the non homogeneous diffusion equation 
+\begin{align*}
+  &u_t-ku_{xx}=f(x,t)\text{ for }-\infty < x < \infty , t>0 \\
+  &u(x,0)=\phi (x)
+\end{align*}
+we have the following 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Diffusion with a source)} If $f,\phi :\R\rightarrow \R$ are smooth function tend to $0$ as  $\abso{x}\to \infty$, then 
+\begin{align*}
+u(x,t)=\int_\R S(x-y,t)\phi (y)dy + \int_0^t \int_{\R}S(x-y,t-s)f(y,s)dyds
+\end{align*}
+is a solution to the diffusion equation 
+\begin{align*}
+&u_t-ku_{xx}=f(x,t)\text{ for }-\infty < x< \infty,t>0 \\
+&u(x,0+)= \phi (x)\text{ for }-\infty < x < \infty 
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is clear that $u$ satisfy the initial condition, and its first term satisfy the homogeneous diffusion equation. We only have to show 
+\begin{align*}
+v(x,t)\triangleq \int_0^t \int_{\R} S(x-t,t-s)f(y,s)dyds\text{ satisfy }v_t-kv_{xx} =f(x,t)
+\end{align*}
+Now compute 
+\begin{align*}
+v_t(t,x)&= \frac{\partial }{\partial t}\Big( \int_0^t \int_{\R}S(x-y,t-s)f(y,s)dyds \Big) \\
+&=\int_{\R}S(x-y,0+)f(y,t)dy+\int_0^t \int_{\R}S_t(x-y,t-s) f(y,s)dyds \\
+&= f(x,t) + \int_0^t \int_{\R} k S_{xx}(x-y,t-s)f(y,s)dyds\\
+&=f(x,t)+ k \frac{\partial ^2}{(\partial x)^2} \int_0^t \int_{-\infty}^{\infty}S(x-y,t-s)f(y,s)dyds= f(x,t)+kv_{xx}(x,t)
+\end{align*}
+We have proved $v_t-kv_{xx}=f(x,t)$. (Note that the partial derivative with respect to $x$ in the third line is with respect to the first component while in the forth line is with respect to the actual  $x$)
+\end{proof}
+\begin{mdframed}
+For source on the half line 
+\begin{align*}
+&v_t-kv_{xx}=f(x,t)\text{ for }0<x<\infty, 0 < t< \infty \\
+&v(x,0+)=\phi (x)\text{ for }0<x<\infty \\
+&v(0+,t)=h(t)\text{ for }0<t<\infty
+\end{align*}
+If such $v$ exists and moreover we let $V(x,t)\triangleq v(x,t)-h(t)$, then we see $V$  satisfy 
+ \begin{align*}
+&V_t-kV_{xx}=f(x,t)-h'(t)\text{ for }0<x<\infty,0<t<\infty \\
+&V(x,0+)=\phi (x)- h(0)\text{ for }0<x<\infty \\
+&V(0+,t)=0\text{ for }0<t<\infty
+\end{align*}
+Such $V$ can be solved with a reflection.
+\end{mdframed}
+\begin{mdframed}
+Duhamel's principle basically says that if you differentiate a convolution $Z(t)$ between kernel $S$ and another function $Y(t)$, where $S$ is dependent on  $t$, then $Z'(t)=AZ(t)+Y(t)$ where $\frac{d}{dt}S=AS$. 
+\end{mdframed}
+\begin{question}{}{}
+Solve the inhomogeneous diffusion equation on the half-line with Dirichlet boundary condition: 
+\begin{align*}
+\begin{cases} 
+  u_t-ku_{xx}=f(x,t)\text{ for }x\in (0,\infty)\text{ \textbf{(Non-homogeneous DE)} }\\
+  u(x,0)= \phi (x)\text{ \textbf{(IC)} }\\
+  u(0,t)=0\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+using the method of reflection. 
+\end{question}
+\begin{proof}
+Define 
+\begin{align*}
+f_{\operatorname{odd}}(x,t)\triangleq \begin{cases}
+  f(x,t)& \text{ if $x>0$ }\\
+  -f(-x,t)& \text{ if $x<0$ }
+\end{cases}\text{ and }\phi_{\operatorname{odd}}(x)\triangleq \begin{cases}
+  \phi (x)& \text{ if $x>0$ }\\
+  -\phi (-x)& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+The formula 
+\begin{align*}
+u(x,t)=\int_{\R} S(x-y,t)\phi_{\operatorname{odd}} (y)dy+ \int_0^t \int_{\R}S(x-y,t-s)f_{\operatorname{odd}}(y,s)dyds
+\end{align*}
+then satisfy 
+\begin{align*}
+\begin{cases}
+  u_t-ku_{xx}=f_{\operatorname{odd}}(x,t)\text{ \textbf{(Non-homogeneous DE)} }\\
+  u(x,0)=\phi_{\operatorname{odd}} (x)\text{ \textbf{(IC)} }\\
+  u(x,t)=-u(-x,t)\text{ for all $x\inr^*$ \textbf{(BC for restriction)}}
+\end{cases}
+\end{align*}
+It then follows that the restriction of $u$ on the half line is a solution to the original problem. 
+\end{proof}
+\begin{question}{}{}
+Solve the completely inhomogeneous diffusion equation problem on the half-line 
+\begin{align*}
+  \begin{cases}
+    v_t-kv_{xx}=f(x,t)\text{ for $x\in (0,\infty)$ \textbf{(Non-homogeneous DE)}}  \\
+v(x,0)=\phi (x)\text{ \textbf{(IC)} }\\
+    v_x(0,t)=h(t) \text{ \textbf{(BC)} }
+  \end{cases}
+\end{align*}
+by carrying out the subtraction method begun in the text. 
+\end{question}
+\begin{proof}
+Define
+\begin{align*}
+w(x,t)\triangleq v(x,t)-xh(t)
+\end{align*}
+We see 
+\begin{align*}
+\begin{cases}
+  w_t-kw_{xx}=f(x,t)-xh'(t)\text{ for }x\in (0,\infty)\text{ \textbf{(Non-homogeneous DE)} }\\
+  w(x,0)=\phi (x)-xh(0)\text{ \textbf{(IC)} }\\
+  w_x(0,t)=0\text{ \textbf{(Good BC)} }
+\end{cases}
+\end{align*}
+Define 
+\begin{align*}
+g_{\operatorname{even}}\triangleq \begin{cases}
+  f(x,t)-xh'(t)& \text{ if $x>0$ }\\
+  f(-x,t)+xh'(t)& \text{ if $x<0$ }
+\end{cases}\text{ and }\psi_{\operatorname{even}}(x)\triangleq \begin{cases}
+  \phi (x)-xh(0)& \text{ if $x>0$ }\\
+  \phi (-x)+xh(0)& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+We then see 
+\begin{align*}
+w(x,t)=\int_{\R}S(x-y,t)\psi_{\operatorname{even}}(y)dy + \int_0^t \int_{\R} S(x-y,t-s)g_{\operatorname{even}}(y)dyds
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve the inhomogeneous Neumann diffusion problem on the half-line
+\begin{align*}
+\begin{cases}
+  w_t-kw_{xx}=0\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)}}\\
+  w_x(0,t)=h(t)\text{ \textbf{(Non-homogeneous BC)} }\\
+  w(x,0)= \phi (x) \text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+by the subtraction method indicated in the text.
+\end{question}
+\begin{proof}
+Suppose $w$ is a solution to our problem. If we define 
+\begin{align*}
+u(x,t)\triangleq w(x,t)-xh(t)\text{ for }x\in (0,\infty)
+\end{align*}
+We see that $u$ satisfy 
+\begin{align*}
+\begin{cases}
+  u_t-ku_{xx}=-xh'(t)\text{ for }x\in (0,\infty)\text{ \textbf{(Non-homogeneous DE)} }\\
+  u_x(0,t)=0\text{ \textbf{(Good BC)} }\\
+  u(x,0)=\phi (x)-xh(0)\text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+Define 
+\begin{align*}
+f_{\operatorname{even}}(x,t)\triangleq \begin{cases}
+  -xh'(t)& \text{ if $x>0$ }\\
+  xh'(t)& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+And define 
+\begin{align*}
+\phi_{\operatorname{even},*}\triangleq \begin{cases}
+  \phi (x)-xh(0)& \text{ if $x>0$ }\\
+  \phi (-x)+xh(0)& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+And define 
+\begin{align*}
+u_{\operatorname{even}}(x,t)\triangleq \int_{\R}S(x-y)\phi_{\operatorname{even,*}}(y)dy+\int_0^t \int_{\R}S(x-y,t-s)f_{\operatorname{even}}(y,s)dyds
+\end{align*}
+It then follows that $u_{\operatorname{even}}$ solve the non-homogeneous DE and IC. To see that $u_x(0,t)=0$, one simply observe that $u$ is even in  $x$. The solution to the original problem is then 
+\begin{align*}
+w(x,t)\triangleq u_{\operatorname{even}}(x,t)+xh(t)\text{ for }x\in (0,\infty)
+\end{align*}
+\end{proof}
+\section{3.4 Waves with a source}
+\begin{mdframed}
+We first offer a formula  
+\begin{align*}
+F(t)\triangleq \int_{s_0}^tf(t,s)ds \implies F'(t)= f(t,t)+ \int_{s_0}^t f_t(t,s)ds
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Waves with a source)} Consider the non-homogeneous wave equation  
+\begin{align*}
+&u_{tt}-c^2u_{xx}=f(x,t)\text{ for }-\infty < x< \infty\\
+&u(x,0)= \phi (x) \\
+&u_t(x,0)=\psi (x)
+\end{align*}
+The solution is 
+\begin{align*}
+u(x,t)= \frac{1}{2}[\phi (x+ct)+ \phi (x-ct)] + \frac{1}{2c}\int_{x-ct}^{x+ct}\psi (s)ds + \frac{1}{2c}\int_0^t \int_{x-c(t-s)}^{x+c(t-s)}f(y,s)dyds
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is easily checked that $u(x,0)=\phi (x)$. We now compute 
+\begin{align*}
+  u_t(x,t)&=\frac{1}{2}[\psi (x+ct)- \psi (x-ct)]\\
+  &+ \frac{1}{2c}\Big[\int^{x}_{x}f(y,t)dy+c\int_0^t f(x+c(t-s),s) -f((x-c(t-s)),s)ds \Big]
+\end{align*}
+which give us $u_t(x,0+)=\psi (x)$. 
+\end{proof}
+\begin{mdframed}
+Note that the solution immediately implies the stability in the following form 
+\begin{align*}
+\abso{(u_1-u_2)(x,t)}\leq \norm{\phi_1-\phi_2}_{\infty} + t \norm{\psi_1-\psi_2}_\infty +  \frac{1}{2c}\cdot \frac{2ct^2}{2}\cdot \norm{f_1-f_2}_{\infty ,T}
+\end{align*}
+where 
+\begin{align*}
+\norm{f_1-f_2}_{\infty,T}= \max_{0\leq  t\leq T,x\inr} \abso{(f_1-f_2)(x,t)}
+\end{align*}
+\end{mdframed}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+u_{tt}-c^2u_{xx}=xt\text{ \textbf{(Non-homogeneous DE)} } \\
+u(x,0)=0,u_t(x,0)=0\text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+\begin{align*}
+u&=\frac{1}{2c}\int_0^t \int^{x+c(t-s)}_{x-c(t-s)} ysdyds \\
+&= \frac{xt^3}{6}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+u_{tt}-c^2u_{xx}=e^{ax}\text{ \textbf{(Non-homogeneous DE)} } \\
+u(x,0)=0,u_t(x,0)=0\text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+\begin{align*}
+u&=\frac{1}{2c}\int_0^t \int^{x+c(t-s)}_{x-c(t-s)}e^{ay}dyds \\
+&=\frac{e^{a(x+ct)}-2e^{ax}+e^{a(x-ct)}}{2ac}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+u_{tt}-c^2u_{xx}=\cos x\text{ \textbf{(Non-homogeneous DE)} } \\
+u(x,0)=\sin x,u_t(x,0)=1+x\text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+\begin{align*}
+u&= \frac{\sin (x+ct)+\sin (x-ct)}{2}+ \frac{1}{2c}\int_{x-ct}^{x+ct} (1+s)ds + \frac{1}{2c}\int_0^t \int_{x-c(t-s)}^{x+c(t-s)}\cos y dyds \\
+&=\frac{\sin (x+ct)+\sin (x-ct)}{2}+(x+1)t + \frac{2\cos x- \cos (x+ct)-\cos (x-ct)}{2c^2}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Given the wave equation 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx}\text{ for $x\in (0,\infty)$ \textbf{(Homogeneous DE)} }\\
+  u(x,0)=0\text{ \textbf{(IC)} }\\
+  u(0,t)=h(t)\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+Show that the solution is 
+\begin{align*}
+u(x,t)\triangleq \begin{cases}
+  h(t- \frac{x}{c})& \text{ if $x<ct$ }\\
+  0& \text{ if $x\geq ct$ }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Check manually. 
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx}\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)} } \\
+  u(x,0)=x,u_t(x,0)=0\text{ \textbf{(IC)} }\\
+  u(0,t)=t^2\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+If we define 
+\begin{align*}
+w=u-t^2
+\end{align*}
+we see that $w$ satisfy 
+\begin{align*}
+\begin{cases}
+  w_{tt}-c^2w_{xx}=-2\text{ for }x\in (0,\infty)\text{ \textbf{(Non-homogeneous DE)} } \\
+  w(x,0)=x,w_t(x,0)=0\text{ \textbf{(IC)} }\\
+  w(0,t)=0\text{ \textbf{(Dirichlet BC)} }
+\end{cases}
+\end{align*}
+then if we define 
+\begin{align*}
+\phi_{\operatorname{odd}}(x)\triangleq x\text{ and }f_{\operatorname{odd}}(x,t)\triangleq \begin{cases}
+  -2& \text{ if $x>0$ }\\
+  2& \text{ if $x<0$ }
+\end{cases} 
+\end{align*}
+and 
+\begin{align*}
+  w(x,t)&\triangleq  \frac{\phi (x+ct)+ \phi (x-ct)}{2} + \frac{1}{2c}\int_0^t \int^{x+c(t-s)}_{x-c(t-s)} f_{\operatorname{odd}}(y,s)dyds  \\
+  &= x+  \begin{cases}
+   -t^2& \text{ if $x-ct>0$ }\\
+    \frac{x^2}{c^2}-\frac{2tx}{c}& \text{ if $x-ct<0$ }
+  \end{cases}
+\end{align*}
+Note that we only consider when $x\geq 0$. This then give us 
+\begin{align*}
+u(x,t)= \begin{cases}
+  x &\text{ if $x-ct>0$ }\\
+  x+ (t-\frac{x}{c})^2 &\text{ if $x-ct<0$ }
+\end{cases}
+\end{align*}
+\end{proof}
+\section{3.5 Diffusion Revisited}
+\section{Cheat Sheet}
+\begin{mdframed}
+The most fundamental wave equation is 
+\begin{align*}
+\begin{cases}
+  u_{tt}-c^2u_{xx}=f(x,t)\text{ for }x\inr\text{ \textbf{(Non-homogeneous DE)} } \\
+  u(x,0)=\phi (x),u_t(x,0)=\psi (x)\text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+The formula for this equation is 
+\begin{align}
+\label{wavee}
+u(x,t)\triangleq \frac{\phi (x+ct)-\phi (x-ct)}{2}+ \frac{1}{2c}\int^{x+ct}_{x-ct}\psi (s)ds+ \frac{1}{2c}\int_0^t \int^{x+c(t-s)}_{x-c(t-s)}f(y,s)dyds
+\end{align}
+It is easy to see that \myref{Formula}{wavee} agree with the formula we have for solving homogeneous wave equation. Sometimes, the question deforms, and ask you to solve  
+\begin{align*}
+\begin{cases}
+  u_{tt}-c^2u_{xx}=0\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)} }\\
+  u(x,0)=\phi (x),u_t(x,0)=\psi (x)\text{  \textbf{(IC)} }\\
+  u(0,t)=0\text{ or }u_t(0,t)=0\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+If the boundary condition is Dirichlet, i.e., $u(0,t)=0$, we simply extend $\phi\text{ and }\psi$ in odd fashion. If the boundary condition is Neumann, i.e., $u_t(0,t)=0$, we extend $\phi\text{ and }\psi$ in even fashion. 
+\end{mdframed}
+\begin{mdframed}
+The most fundamental diffusion equation is 
+\begin{align*}
+\begin{cases}
+  u_t-ku_{xx}=f(x,t)\text{ for }x\inr\text{ \textbf{(Non-homogeneous DE)} }\\
+ u(x,0)=\phi (x)\text{ \textbf{(IC)} } 
+\end{cases}
+\end{align*}
+The formula for this equation is 
+\begin{align*}
+u(x,t)\triangleq \int_{\R}S(x-y,t) \phi (y)dy+ \int_0^t \int_{\R}S(x-y,t-s)f(y,s)dyds
+\end{align*}
+Sometimes the question deform and ask you to solve 
+\begin{align*}
+\begin{cases}
+  u_t-ku_{xx}=f(x,t)\text{ for }x\in (0,\infty)\text{ \textbf{(Non-homogeneous DE)} }\\
+ u(x,0)=\phi (x)\text{ \textbf{(IC)} } \\
+ u(0,t)=0\text{ or }u_x(0,t)=0\text{ or }u_x(0,t)=h(t)\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+If BC is Dirichlet, we simply extend $f,\phi$ in odd fashion. If BC is Neumann, we simply extend $f,\phi$ in even fashion. If BC is  $u_x(0,t)=h(t)$, we define $w=u-xh(t)$, and do odd extension to solve $w$. 
+\end{mdframed}
+\begin{mdframed}
+j
+\end{mdframed}
+\chapter{PDE 3}
+\section{4.1 Separation of Variables, the Dirichlet Condition}
+\begin{mdframed}
+Consider the wave equation on some finite interval with Dirichlet boundary condition 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx}\text{ for }x\in (0,l)\text{ \textbf{(Homogeneous DE)} } \\
+  u(0,t)=u(l,t)=0\text{ \textbf{(Dirichlet BC)} }
+\end{cases}
+\end{align*}
+If we suppose 
+\begin{align*}
+u(x,t)=X(x)T(t)
+\end{align*}
+where $X:[0,l]\rightarrow \R,T:\R\rightarrow \R$, we see from the wave equation that 
+\begin{align*}
+T''(t)X(x)=c^2X''(x)T(t)
+\end{align*}
+WOLG, we can deduce 
+\begin{align*}
+\frac{X''}{X}=\frac{T''}{c^2T}=-\ld 
+\end{align*}
+where $\ld $ is a constant since $\frac{X''}{X}$ only depend on $x$ and  $\frac{T''}{c^2T}$ only depend on $t$. This then give us the ODEs 
+\begin{align*}
+\begin{cases}
+  X''+\ld  X=0 \\
+  X(0)=X(l)=0
+\end{cases}\text{ and }T''+c^2\ld  T=0 
+\end{align*}
+For $X$ to have a non-trivial solution, we see that  $\ld $ must be positive. We now know the solution of this ODE is 
+\begin{align*}
+T(t)\triangleq A\cos ( \frac{ cn \pi t}{l} )+B\sin ( \frac{cn \pi t}{l})\text{ and }X(x)\triangleq D\sin ( \frac{n \pi x}{l} )
+\end{align*}
+Some tedious effort can be used to verify that 
+\begin{align*}
+u(x,t)\triangleq \Big[ A\cos (\frac{c n \pi t}{l})+ B \sin ( \frac{c n \pi t}{l}) \Big]D \sin ( \frac{n \pi x}{l})
+\end{align*}
+indeed satisfy the wave equation. 
+\end{mdframed}
+\begin{mdframed}
+Now consider the heat equation on some finite interval with Dirichlet boundary condition 
+\begin{align*}
+\begin{cases}
+  u_{t}=ku_{xx}\text{ for }x\in (0,l)\text{ \textbf{(Homogeneous DE)} } \\
+  u(0,t)=u(l,t)=0\text{ \textbf{(Dirichlet BC)} }
+\end{cases}
+\end{align*}
+If we suppose 
+\begin{align*}
+u(x,t)=T(t)X(x)
+\end{align*}
+where $X:[0,l]\rightarrow \R,T:[0,\infty)\rightarrow \R$, we see from the heat equation that 
+\begin{align*}
+T'(t)X(x)=k T(t)X''(x)
+\end{align*}
+WOLG we can deduce 
+\begin{align*}
+\frac{X''(x)}{X(x)}= \frac{T'(t)}{kT(t)}=-\ld 
+\end{align*}
+which give us the following ODEs 
+\begin{align*}
+\begin{cases}
+  X''(x)+\ld  X(x)=0 \\
+  X(0)=X(l)=0
+\end{cases}\text{ and }T'(t)=-\ld  kT(t)
+\end{align*}
+If we wish $X$ to have a non-trivial solution, then we must require  $\ld >0$. We now can solve these ODEs to have 
+\begin{align*}
+T(t)=Ae^{-\ld  kt}\text{ and }X(x)= B\sin ( \frac{n \pi x}{l})
+\end{align*}
+Some tedious effort can now be used to show that 
+\begin{align*}
+u(x,t)=AB e^{-\ld  kt}\sin (\frac{n \pi x}{l})
+\end{align*}
+indeed satisfy the heat equation. 
 \end{mdframed}
 \chapter{PDE HW}
 \section{PDE HW 1}
@@ -3317,6 +4267,165 @@ Noting that $f(0)+g(0)=u(0,0)=\psi (0)$, we now have
 \begin{align*}
 u(x,t)&=f(5x-t)+g(4x+t) \\
 &=\frac{5\phi (\frac{5x-t}{5})+4 \phi (\frac{4x+t}{4})}{9} - \frac{4}{9}\int_0^{5x-t}\psi (\frac{s}{5})ds + \frac{5}{9}\int_0^{4x+t}\psi (\frac{s}{4})ds
+\end{align*}
+\end{proof}
+\section{PDE HW 5}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+&u_t=ku_{xx}\\
+&u(x,0+)=e^{-x}\\
+&u(0+,t)=0
+\end{align*}
+on the half line $0<x<\infty$
+\end{question}
+\begin{proof}
+Extend the initial condition to 
+\begin{align*}
+\phi_{\operatorname{odd}}(x)\triangleq \begin{cases}
+  e^{-x}& \text{ if $x>0$ }\\
+  0& \text{ if $x=0$ }\\
+  -e^{x}& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+We then solve 
+\begin{align*}
+u(x,t)&=\frac{1}{2\sqrt{\pi kt} }\int_{\R} e^{\frac{-(x-y)^2}{4kt}}\phi_{\operatorname{odd}}(y)dy\\
+&=\frac{1}{2 \sqrt{\pi kt} }\Big[\int_0^\infty e^{\frac{-(x-y)^2}{4kt}}e^{-y}dy - \int_{-\infty}^0 e^{\frac{-(x-y)^2}{4kt}}e^ydy  \Big] \\
+&=\frac{1}{2 \sqrt{\pi kt} }\Big[\int_0^{\infty}e^{\frac{-(y-(x-2kt))^2-4ktx+4k^2t^2}{4kt}}dy -\int^{0}_{-\infty}e^{\frac{-(y-(x+2kt))^2+4ktx+4k^2t^2}{4kt}}dy  \Big] \\
+&=\frac{1}{2 \sqrt{\pi kt} }\Big[e^{-x+kt}\int_0^{\infty}e^{\frac{-(y-(x-2kt))^2}{4kt}}dy -e^{x+kt}\int^{0}_{-\infty}e^{\frac{-(y-(x+2kt))^2}{4kt}}dy  \Big]  \\
+&=\frac{1}{\sqrt{\pi} }\Big[e^{-x+kt}\int_{\frac{2kt-x}{2\sqrt{kt} }}^{\infty}e^{-p^2}dp -e^{x+kt}\int_{-\infty}^{\frac{-2kt-x}{2\sqrt{kt} }}e^{-p^2}dp \Big]\\
+&=\frac{1}{\sqrt{\pi} }\Big[e^{-x+kt}\Big( \frac{\sqrt{\pi} }{2}- \frac{2}{\sqrt{\pi}}\operatorname{erf}(\frac{2kt-x}{2\sqrt{kt} })   \Big)-e^{x+kt}\Big( \frac{\sqrt{\pi} }{2}- \frac{2}{\sqrt{\pi} }\operatorname{erf}( \frac{2kt+x}{2\sqrt{kt}}) \Big) \Big]
+\end{align*}
+\end{proof}
+\section{PDE HW 6}
+\begin{question}{}{}
+Solve $u_{tt}=4u_{xx}$ for $0<x<\infty,u(0,t)=0,u(x,0)=1,u_t(x,0)=0$ using the reflection method. The solution has a singularity find its location. 
+\end{question}
+\begin{proof}
+Define 
+\begin{align*}
+\phi (x)\triangleq \begin{cases}
+  1& \text{ if $x>0$ }\\
+  -1& \text{ if $x<0$ }
+\end{cases}\text{ and }\psi (x)\triangleq 0
+\end{align*}
+We are required to solve the following Dirichlet's problem for wave equation 
+\begin{align*}
+u_{tt}=4u_{xx}\text{ for }-\infty < x< \infty \\
+u(x,0)=\phi (x)\text{ and }u_t(x)=\psi (x)
+\end{align*}
+The solution is exactly 
+\begin{align*}
+u(x,t)&=\frac{\phi(x+2t)+\phi (x-2t)}{2}+\int_{x-2t}^{x+2t} \psi (s)ds \\
+&=\frac{\phi (x+2t)+\phi (x-2t)}{2}\\
+&=\begin{cases}
+  1& \text{ if $x-2t>0$ }\\
+  0& \text{ if  }x+2t>0>x-2t\\
+  -1& \text{ if  }0>x+2t
+\end{cases}
+\end{align*}
+On the half line, the solution is 
+\begin{align*}
+u(x,t)=\begin{cases}
+  1& \text{ if $x-2t>0$ }\\
+  0& \text{ if $x-2t<0$ }
+\end{cases}
+\end{align*}
+So the singularity is exactly on the line $x-2t=0$ 
+\end{proof}
+\begin{question}{}{}
+Solve the inhomogeneous Neumann diffusion problem on the half-line
+\begin{align*}
+\begin{cases}
+  w_t-kw_{xx}=0\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)}}\\
+  w_x(0,t)=h(t)\text{ \textbf{(Non-homogeneous BC)} }\\
+  w(x,0)= \phi (x) \text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+by the subtraction method indicated in the text.
+\end{question}
+\begin{proof}
+Suppose $w$ is a solution to our problem. If we define 
+\begin{align*}
+u(x,t)\triangleq w(x,t)-xh(t)\text{ for }x\in (0,\infty)
+\end{align*}
+We see that $u$ satisfy 
+\begin{align*}
+\begin{cases}
+  u_t-ku_{xx}=-xh'(t)\text{ for }x\in (0,\infty)\text{ \textbf{(Non-homogeneous DE)} }\\
+  u_x(0,t)=0\text{ \textbf{(Good BC)} }\\
+  u(x,0)=\phi (x)-xh(0)\text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+Define 
+\begin{align*}
+f_{\operatorname{even}}(x,t)\triangleq \begin{cases}
+  -xh'(t)& \text{ if $x>0$ }\\
+  xh'(t)& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+And define 
+\begin{align*}
+\phi_{\operatorname{even},*}\triangleq \begin{cases}
+  \phi (x)-xh(0)& \text{ if $x>0$ }\\
+  \phi (-x)+xh(0)& \text{ if $x<0$ }
+\end{cases}
+\end{align*}
+And define 
+\begin{align*}
+u_{\operatorname{even}}(x,t)\triangleq \int_{\R}S(x-y)\phi_{\operatorname{even,*}}(y)dy+\int_0^t \int_{\R}S(x-y,t-s)f_{\operatorname{even}}(y,s)dyds
+\end{align*}
+It then follows that $u_{\operatorname{even}}$ solve the non-homogeneous DE and IC. To see that $u_x(0,t)=0$, one simply observe that $u$ is even in  $x$. The solution to the original problem is then 
+\begin{align*}
+w(x,t)\triangleq u_{\operatorname{even}}(x,t)+xh(t)\text{ for }x\in (0,\infty)
+\end{align*}
+\end{proof}
+\section{PDE HW7}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx}\text{ for }x\in (0,\infty)\text{ \textbf{(Homogeneous DE)} } \\
+  u(x,0)=x,u_t(x,0)=0\text{ \textbf{(IC)} }\\
+  u(0,t)=t^2\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+If we define 
+\begin{align*}
+w=u-t^2
+\end{align*}
+we see that $w$ satisfy 
+\begin{align*}
+\begin{cases}
+  w_{tt}-c^2w_{xx}=-2\text{ for }x\in (0,\infty)\text{ \textbf{(Non-homogeneous DE)} } \\
+  w(x,0)=x,w_t(x,0)=0\text{ \textbf{(IC)} }\\
+  w(0,t)=0\text{ \textbf{(Dirichlet BC)} }
+\end{cases}
+\end{align*}
+then if we define 
+\begin{align*}
+\phi_{\operatorname{odd}}(x)\triangleq x\text{ and }f_{\operatorname{odd}}(x,t)\triangleq \begin{cases}
+  -2& \text{ if $x>0$ }\\
+  2& \text{ if $x<0$ }
+\end{cases} 
+\end{align*}
+and 
+\begin{align*}
+  w(x,t)&\triangleq  \frac{\phi (x+ct)+ \phi (x-ct)}{2} + \frac{1}{2c}\int_0^t \int^{x+c(t-s)}_{x-c(t-s)} f_{\operatorname{odd}}(y,s)dyds  \\
+  &= x+  \begin{cases}
+   -t^2& \text{ if $x-ct>0$ }\\
+    \frac{x^2}{c^2}-\frac{2tx}{c}& \text{ if $x-ct<0$ }
+  \end{cases}
+\end{align*}
+Note that we only consider when $x\geq 0$. This then give us 
+\begin{align*}
+u(x,t)= \begin{cases}
+  x &\text{ if $x-ct>0$ }\\
+  x+ (t-\frac{x}{c})^2 &\text{ if $x-ct<0$ }
+\end{cases}
 \end{align*}
 \end{proof}
 \chapter{Differential Geometry HW} 
@@ -3593,5 +4702,151 @@ We now compute that $\phi_V\circ G\circ \phi_0^{-1}$ is defined on whole $(0,1)$
 \begin{align*}
 \phi_V\circ G\circ \phi_0^{-1}(t)\triangleq \cos 2\pi t\text{ smooth }
 \end{align*}
+\end{mdframed}
+\section{HW2}
+\begin{question}{}{}
+Let $F:\R^2 \rightarrow \R^3$ be the map 
+\begin{align*}
+F(x,y)\triangleq (x,y,xy)=(u,v,w)
+\end{align*}
+Let $p=(x,y)\inr^2$. Compute $F_*(\frac{\partial }{\partial x}|_p)$ as a linear combination of $\frac{\partial}{\partial u},\frac{\partial }{\partial v},\frac{\partial }{\partial w}$
+\end{question}
+\begin{proof}
+For all $f\in C^{\infty}(\R^3)$, we have 
+\begin{align*}
+\frac{\partial f\circ F}{\partial x}(x,y)= \frac{\partial f}{\partial u}( F(p)) + \frac{\partial f}{\partial w}(F(p))y
+\end{align*}
+This then give us 
+\begin{align*}
+F_*\Big(\frac{\partial }{\partial x}\Big|_{(x,y)}\Big)= \frac{\partial }{\partial u}+ y\frac{\partial }{\partial w}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+  Let $G$ be a lie group with multiplication map $\mu :G \times G\rightarrow G$ and identity element $e$. Show that differential  $\mu_{*,(e,e)}:T_{(e,e)}G\times G\rightarrow T_eG$ of $\mu$ at identity is 
+\begin{align*}
+  \mu_{*,(e,e)}(X_e,Y_e)=X_e+Y_e
+\end{align*}
+  Note that $T_{(p,q)}M\times N$ is isomorphic to $T_pM\oplus T_qN$ via the differential of two projection  $\pi_1:M\times N\rightarrow M$ and $\pi_2:M\times N\rightarrow N$. 
+\end{question}
+\begin{proof}
+We first justify the notation of writing tangent vectors in $T_{(e,e)}G\times G$ as $(X_e,Y_e)$, and the proof will follow. Consider the projection $\pi_1:G\times G\rightarrow G$ and $\pi_2:G\times G\rightarrow G$ 
+\begin{align*}
+\pi_1(g,h)\triangleq g\text{ and }\pi_2(g,h)\triangleq h  
+\end{align*}
+Consider charts $(U,\phi),(V,\psi)$ for $G$ centering  $e$. We can induce a chart $(U\times V,\Phi)$ for $G\times G$ centering $e$ by 
+ \begin{align*}
+\Phi (g,h)\triangleq (\phi (g),\psi(h))
+\end{align*}
+In local coordinate, we have 
+\begin{align*}
+\pi_1(\textbf{x}^1,\dots ,\textbf{x}^n,\textbf{y}^1,\dots ,\textbf{y}^n)=(\textbf{x}^1,\dots ,\textbf{x}^n)\text{ and }\pi_2(\textbf{x}^1,\dots ,\textbf{x}^n,\textbf{y}^1,\dots ,\textbf{y}^n)=(\textbf{y}^1,\dots ,\textbf{y}^n)
+\end{align*}
+In abuse of notation, this give us 
+\begin{align*}
+  (\pi_1)_*\Big(\sum_{i=1}^n v^i \frac{\partial }{\partial \textbf{x}^i}+ w^i \frac{\partial }{\partial \textbf{y}^i}\Big)= \sum_{i=1}^n v^i \frac{\partial }{\partial \textbf{x}^i}\text{ and }  (\pi_2)_*\Big(\sum_{i=1}^n v^i \frac{\partial }{\partial \textbf{x}^i}+ w^i \frac{\partial }{\partial \textbf{y}^i}\Big)= \sum_{i=1}^n w^i \frac{\partial }{\partial \textbf{y}^i}
+\end{align*}
+This then give us a vector space isomorphism between $T_{(e,e)}G\times G$ and $T_eG \oplus T_eG$, on which our notation stand. Now, let $\gamma  :(-\epsilon  ,\epsilon  )\rightarrow G$ be a smooth curve centering  $e$ such that  $\gamma '(0)=X_e$. Define another smooth curve $\alpha :(-\epsilon  ,\epsilon )\rightarrow G\times G$ in $G\times G$ by 
+\begin{align*}
+\alpha (t)\triangleq (\gamma (t),e)
+\end{align*}
+Because $\pi_2 \circ \alpha $ is constant and $\pi_1 \circ \alpha =\gamma  $, we now see 
+\begin{align*}
+  (\pi_1)_{*,(e,e)}(\alpha '(0))=(\pi_1 \circ \alpha )'(0)=\gamma  '(0) \text{ and } (\pi_2)_{*,(e,e)}(\alpha '(0))= 0
+\end{align*}
+This implies $\alpha '(0)=(X_e,0)$. Compute 
+\begin{align*}
+\mu \circ \alpha (t)=\gamma (t)+e=\gamma  (t)
+\end{align*}
+We now can deduce
+\begin{align*}
+\mu_{*,(e,e)}(X_e,0)=\mu_{*,(e,e)}(\alpha '(0))=(\mu \circ \alpha )'(0)=\gamma '(0)= X_e
+\end{align*}
+Similar procedure can be applied to show 
+\begin{align*}
+\mu_{*,(e,e)}(0,Y_e)=Y_e
+\end{align*}
+It now follows from linearity of  $\mu_{*,(e,e)}$ that 
+\begin{align*}
+\mu_{*,(e,e)}(X_e,Y_e)=X_e+Y_e
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+  Let $S^2=\set{(x,y,z)\inr^3:x^2+y^2+z^2=1}$ be the sphere in $\R^3$. Consider the function $h:S^2\rightarrow \R$ defined by 
+  \begin{align*}
+  h(x,y,z)\triangleq z
+  \end{align*}
+Find the critical points of $h$. 
+\end{question}
+\begin{proof}
+Consider the atlas $\set{(U,\phi),(V,\psi)}$ for $S^2$ where  $U=S^2 \setminus \set{(0,0,1)},V=S^2 \setminus  \set{(0,0,-1)}$ and 
+\begin{align*}
+\phi (x,y,z)\triangleq \Big(\frac{x}{1-z},\frac{y}{1-z}\Big)\text{ and }\psi (x,y,z)= \Big(\frac{x}{1+z},\frac{y}{1+z}\Big)
+\end{align*}
+Some algebra trick and tedious efforts shows that this indeed form a smooth atlas and gives us their inverse
+\begin{align*}
+  \phi^{-1}(u,v)&= \Big( \frac{2u}{u^2+v^2+1}, \frac{2v}{u^2+v^2+1}, \frac{u^2+v^2-1}{u^2+v^2+1} \Big) \\
+  \psi^{-1}(u,v)&= \Big( \frac{2u}{u^2+v^2+1}, \frac{2v}{u^2+v^2+1}, \frac{1-u^2-v^2}{u^2+v^2+1} \Big)
+\end{align*}
+Compute 
+\begin{align*}
+  [d(h\circ \phi^{-1})_{(u,v)}]&=\begin{bmatrix}
+    \frac{-4u}{(u^2+v^2+1)^2} & \frac{-4v}{(u^2+v^2+1)^2}
+  \end{bmatrix} \\
+  [d(h\circ \psi^{-1})_{(u,v)}]&=\begin{bmatrix}
+    \frac{4u}{(u^2+v^2+1)^2} & \frac{4v}{(u^2+v^2+1)^2} 
+  \end{bmatrix}
+\end{align*}
+This then shows the set of critical points is exactly 
+\begin{align*}
+\set{\phi^{-1}(0,0),\psi^{-1}(0,0)}=\set{(0,0,-1),(0,0,1)}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+A smooth map $f:M\rightarrow N$ is said to be  \textbf{a traversal to an embedded submanifold $S\subseteq N$} if for every point $p \in f^{-1}(S)$, we have 
+\begin{align*}
+f_{*,p}(T_pM)+T_{f(p)}S=T_{f(p)}N
+\end{align*}
+The goal of this exercise is to prove the Transversality Theorem: If a smooth map $f:M\rightarrow N$ is a traversal to an embedded submanifold $S$ of codimension $k$ in  $N$, then  $f^{-1}(S)$ is a regular submanifold of codimension $k$ in  $M$. Let  $p \in f^{-1}(S)$ and $(U,\textbf{x}^1,\dots ,\textbf{x}^n)$ be an adapted chart for $N$ centering $f(p)$ with respect to $S$. Define $g:U\rightarrow \R^k$ by 
+\begin{align*}
+g(\textbf{x}^1,\dots ,\textbf{x}^n)\triangleq (\textbf{x}^{n-k+1},\dots ,\textbf{x}^{n})
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $f^{-1}(U)\cap f^{-1}(S)=(g\circ f)^{-1}(\textbf{0})$. 
+  \item Show that $f^{-1}(U)\cap f^{-1}(S)$ is a regular level set of the function $g\circ f:f^{-1}(U)\rightarrow \R^{k}$. 
+  \item Prove the Transversality Theorem. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+At first, we shall point out that $g\circ f$ is a function defined only on  $f^{-1}(U)$. (a) follows trivially from the fact that $(U,\textbf{x}^1,\dots \textbf{x}^n)$ is an adapted chart.  We now prove (b). \\
+
+
+Fix arbitrary $p \in f^{-1}(U)\cap f^{-1}(S)$. Trivially, by definition of $g$, 
+\begin{align*}
+T_{f(p)}S \subseteq \operatorname{Ker}g_{*,f(p)}
+\end{align*}
+Explicit formula of $g$ shows that $g_{*,f(p)}$ is a vector space epimorphism that maps $T_{f(p)}N$ into $T_{g\circ f(p)}\R^k$, which implies that $\operatorname{Ker}g_{*,f(p)}$ has dimension $n-k$, same as $T_{f(p)}S$ and give us 
+\begin{align*}
+T_{f(p)}S = \operatorname{Ker}g_{*,f(p)}
+\end{align*}
+It now follows from  $f$ being a traversal and $g_{*,f(p)}$ being surjective that 
+ \begin{align*}
+   (g\circ f)_{*,p}(T_pM)=g_{*,f(p)}\circ f_{*,p}(T_pM)=\operatorname{Im}g_{*,f(p)}=T_{g\circ f(p)}\R^k
+\end{align*}
+We have shown that $g\circ f$ is regular at $p$. (b) then follows from $p$ is arbitrary selected from  $f^{-1}(U)\cap f^{-1}(S)$. \\
+
+Now, by Regular level set Theorem, we see that $f^{-1}(U)\cap f^{-1}(S)$ is an embedded submanifold of $f^{-1}(U)$ with codimension $k$. Because $f$ is continuous, we know  $f^{-1}(U)$ is open, thus an embedded submanifold of $M$ with dimension $m$. It now follows that  $f^{-1}(U)\cap f^{-1}(S)$ is an embedded submanifold of $M$ with codimension  $k$. We have proved the Transversality Theorem. 
+\end{proof}
+\section{Bundle}
+\begin{mdframed}
+A \textbf{smooth real vector bundle of rank $k$ over the smooth manifold $M$} is a smooth manifold $E$ together with the surjective smooth map  $\pi : E\rightarrow M$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item Each fiber $\pi^{-1}(p)$ has a real $k$-dimensional vector space structure. 
+  \item For all $p \in M$, there exists some neighborhood $U$ of  $p$ and a diffeomorphism  $\Phi:\pi^{-1}(U)\rightarrow U\times \R^k$ such that $\Phi$ map the fiber $\pi^{-1}(p)$ vector space isomorphiscally to $\set{p}\times \R^k$. 
+\end{enumerate}
+Note that we often call $E$ the  \textbf{total space} and $M$ the  \textbf{base space}. The neighborhood $U$ and the smooth diffeomorphism $\Phi:\pi^{-1}(U)\rightarrow U\times \R^k$ is often called the \textbf{smooth local trivialization}, and if there exists a global smooth trivialization, we say $(E,M,\pi:E\rightarrow M)$ is a \textbf{trivial bundle}. It is clear that tangent bundle $TM$ is a smooth real vector bundle of rank  $m$ over the smooth manifold  $M$ where the induced chart  $\Phi_m :\pi^{-1}(U_n)\rightarrow \R^{2m}$ are smooth local trivialization. If we are given a smooth right inverse  $\sigma:M\rightarrow E$ of $\pi$
+\begin{align*}
+\pi \circ \sigma (p)=p\text{ for all }p \in M
+\end{align*}
+we say $\sigma$ is a \textbf{smooth section of the bundle $\pi:E\rightarrow M$}. 
 \end{mdframed}
 \end{document}
