@@ -285,7 +285,8 @@ These three properties are often called \textbf{topological properties}, since t
 Immediately, one should again check the "natural" behaviors of subspace topology: Whether a set $E$ is connected, path-connected, or compact is independent of the choices of ambient space. In other words, given $E \subseteq X$, $E$ is connected, path-connected or compact in $(X, \mathscr{T})$ if and only if $E$ is connected, path-connected or compact in $(E, \mathscr{T}_E)$.
 \end{mdframed}
 \begin{theorem}
-\textbf{(Equivalent Definitions of Compact)} The following statements are equivalent
+\label{Equivalent Definitions of Compactness}
+\textbf{(Equivalent Definitions of Compactness)} The following statements are equivalent
 \begin{enumerate}[label=(\alph*)]
     \item $E$ is compact in $(X, \mathscr{T})$. 
     \item $E$ is compact in $(E, \mathscr{T}_E)$. 
@@ -589,6 +590,17 @@ which implies
 B_\delta (p)\cap  K\setminus U_j = \varnothing
 \end{align*}
 and thus $E\subseteq U_j$. 
+\end{proof}
+\begin{theorem}
+\label{DSoC}
+\textbf{(Decreasing Sequence of Compact Sets)} If $\Omega_1 \supseteq \Omega_2 \supseteq \cdots \supseteq \Omega_n \supseteq \cdots$ is a sequence of non-empty compact sets in metric space $M$ with property
+\begin{align*}
+\operatorname{diam}(\Omega_n) \to 0\text{ as }n\to \infty
+\end{align*}
+then $\bigcap \Omega_n$ contain exactly one point.   
+\end{theorem}
+\begin{proof}
+By premise, $\set{\Omega_n\subseteq \Omega_1:n\geq 2}$ is a collection of subsets of $\Omega_1$ closed in $\Omega_1$ satisfying finite intersection property. It then follows from \customref{Equivalent Definitions of Compactness}{one of the definition of compactness} that $\bigcap \Omega_n$ is non-empty. Because $\bigcap \Omega_n \subseteq \Omega_N$ for all $N\inn$, we see that  $\operatorname{diam}(\bigcap \Omega_n)=0$. It follows that $\bigcap \Omega_n$ contain exactly one point.    
 \end{proof}
 \section{Limit Interchange}
 \begin{mdframed}
@@ -1424,8 +1436,36 @@ f(U)\text{ is open and }f\text{ is a homeomorphism between }U\text{ and }f(U)
 \begin{theorem}
 \textbf{(Invariance of Dimension)} If $U$ is a non-empty open subset of $\R^n$ and  $V$ is a non-empty subset of $\R^m$ homeomorphic to  $U$, then  $n=m$.
 \end{theorem}
-\chapter{Linear algebra done wrong}
-\section{Linear Algebra}
+\chapter{Linear Algebra Done Outrageous}
+\section{Dual Space}
+\begin{abstract}
+
+\end{abstract}
+\begin{mdframed}
+  Given two finite dimensional vector space $V,W$ over $\R$, we define their \textbf{tensor product $V\otimes W$} as the dual space of the space of bilinear forms on $V\times W$. Given $v\in V,w\in W$, we also define their tensor product $v \otimes w$ to be 
+\begin{align*}
+v\otimes w(B)\triangleq B(v,w)  
+\end{align*}
+Immediately, we see that the tensor product of the vectors  $\otimes:V\times  W\rightarrow V \otimes W$ is bilinear. Moreover, if $(v_i),(w_j)$ are respectively basis of  $V,W$, then  $(v_i\otimes w_j)$ is also a basis of $V\otimes W$, in fact, the dual basis of the natural basis for the space of bilinear forms on $V\times W$. Also, we see that we have the \textbf{tensor product universal property} that if $B:V\times W\rightarrow U$ is a bilinear map, then there exists a unique linear map $\beta :V \otimes W\rightarrow U$ such that 
+\begin{align*}
+B(v,w)=\beta (v\otimes w)
+\end{align*}
+In other words, we have the commutative diagram
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJWXFx0aW1lcyBXIl0sWzAsMiwiViBcXG90aW1lcyBXIl0sWzIsMCwiVSJdLFswLDIsIkIiXSxbMSwyLCJcXGV4aXN0cyEgXFxiZXRhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMSwiKHYsdylcXG1hcHN0byB2XFxvdGltZXMgdyIsMl1d
+\[\begin{tikzcd}
+	{V\times W} && U \\
+	\\
+	{V \otimes W}
+	\arrow["B", from=1-1, to=1-3]
+	\arrow["{(v,w)\mapsto v\otimes w}"', from=1-1, to=3-1]
+	\arrow["{\exists! \beta}"', dashed, from=3-1, to=1-3]
+\end{tikzcd}\]
+\end{mdframed}
+\begin{mdframed}
+  Given some vector space $V / \F$, we define its \textbf{dual space $V^*$} to be $V^*\triangleq L(V,\F)$ equipped with pointwise addition and $\F$-multiplication. If $V$ is finite dimensional and $(e_i)$ is a basis of $V$, we can induce a \textbf{dual basis} $(\alpha_i)$ by $\alpha_ie_j\triangleq \delta^i_j$. 
+\end{mdframed}
+
+\section{Norm and Inner Product}
 \begin{mdframed}
 This section contains
 \begin{enumerate}[label=(\alph*)]
@@ -2450,16 +2490,16 @@ All second order partial derivatives exist, yet $f_{xy},f_{yx}$ does not commute
 \begin{mdframed}
 Now, if we define a function $f:U\subseteq \R^n\rightarrow \R^m$ on some open subset $U$ to be \textbf{smooth} if for all $j\in \set{1,\dots ,m}$, all partial derivatives of $f$ exists, we then see that the partial derivatives of smooth function always commute. Notably, one can check that if $f:U\subseteq \R^n\rightarrow \R^m$, and $g:V\subseteq \R^m\rightarrow \R^d$ are both smooth and $f(U)\subseteq V$, then $g\circ f:U\rightarrow \R^d$ is also smooth, using long tedious induction with \customref{Product Rule}{Product rule} and \customref{CR}{Chain rule}. 
 \end{mdframed}
-\section{Holomorphic Functions}
+\section{Complex Differentiation}
 \begin{abstract}
-This is a short section introducing the idea of holomorphic and prove some basic properties of holomorphic functions, i.e., \customref{Cauchy Riemann Criteria}{Cauchy Riemann Criteria} and \customref{Product and Quotient Rule for Holomorphic Function}{Product and Quotient Rule for Holomorphic Function}. 
+This is a short section introducing the idea of complex-differentiable function and prove some of their basic properties, i.e., \customref{Cauchy Riemann Criteria}{Cauchy Riemann Criteria} and \customref{Product and Quotient Rule for Holomorphic Function}{Product and Quotient Rule for Complex-differentiable Function}. 
 \end{abstract}
 \begin{mdframed}
-Given a complex-valued function $f$ defined on some open subset of  $\C$ containing  $z$, we say  $f$ is \textbf{holomorphic at $z$} if there exists some complex number denoted by $f'(z)$ such that 
+Given a complex-valued function $f$ defined on some open subset of  $\C$ containing  $z$, we say  $f$ is \textbf{complex-differentiable at $z$} if there exists some complex number denoted by $f'(z)$ such that 
 \begin{align*}
 \frac{f(z+h)-f(z)-f'(z)h}{h}\to 0\text{ as }h\to 0;h\inc
 \end{align*}
-Immediately, one can see that a holomorphic function is differentiable when viewed as a function between $\R^2$ with derivative 
+Immediately, one can see that a complex-differentiable function when viewed as a function between $\R^2$ is differentiable with derivative 
 \begin{align}
 \label{cd}
   \begin{bmatrix}
@@ -2467,9 +2507,9 @@ Immediately, one can see that a holomorphic function is differentiable when view
     b & a
   \end{bmatrix}\text{ where }f'(z)=a+b i
 \end{align}
-With the form of derivative in mind, one may conjecture that holomorphic is a 'stricter' condition than merely differentiable when regarded as function between $\R^2$. This is exactly true. Consider the following example.
+With the form of derivative in mind, one may conjecture that complex-differentiable is a 'stricter' condition than merely differentiable when regarded as function between $\R^2$. This is exactly true. Consider the following example.
 \end{mdframed}
-\begin{Example}{\textbf{(A not holomorphic function)}}{}
+\begin{Example}{\textbf{(A non complex-differentiable function)}}{}
 \begin{align*}
 f(z)\triangleq \overline{z}
 \end{align*}
@@ -2490,8 +2530,8 @@ f(x+yi)=u(x,y)+iv(x,y)
 \end{align*}
 where $u,v:U\rightarrow \R$, then the following two statements are equivalent.
 \begin{enumerate}[label=(\alph*)]
-  \item $f$ is holomorphic at  $z$. 
-  \item $u,v$ are differentiable at  $z$ and 
+  \item $f$ is complex differentiable at  $z$. 
+  \item $u,v$ are differentiable at  $z$ when $U$ is viewed as subsets of $\R^2$ and 
 \begin{align*}
     \frac{\partial u}{\partial x}=\frac{\partial v}{\partial y}\text{ and }\frac{\partial u}{\partial y}=\frac{-\partial v}{\partial x}\text{ at }z
 \end{align*}
@@ -2508,7 +2548,7 @@ where $u,v:U\rightarrow \R$, then the following two statements are equivalent.
 \end{proof}
 \begin{theorem}
 \label{Product and Quotient Rule for Holomorphic Function}
-\textbf{(Product and Quotient Rule for Holomorphic Function)} Given two function $f,g$ holomorphic at  $z$, we have 
+\textbf{(Product and Quotient Rule for Complex-differentiable  Function)} Given two function $f,g$ complex-differentiable at  $z$, we have 
  \begin{align*}
    (fg)'(z)= f'(z)g(z)+f(z)g'(z)
 \end{align*}
@@ -5584,28 +5624,20 @@ Beside this important simplification of the definition of function measurability
 \end{mdframed}
 \begin{lemma}
 \label{CL}
-\textbf{(Computational Lemma)} Given a second-countable topological space $Y$, two functions $u,v:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ and a continuous function $\Phi:Y^2 \rightarrow Y$, if we define $h:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ by
+\textbf{(Computational Lemma)} Given a second-countable topological space $Y$, two functions $u,v:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ and a continuous function $\Phi:Y^2 \rightarrow Y$, the function $h:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ defined by
 \begin{align*}
 h(x)\triangleq \Phi(u(x),v(x))
 \end{align*}
-then  
-\begin{align*}
-h:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)\text{ is measurable }
-\end{align*}
+is measurable. 
 \end{lemma}
 \begin{proof}
-Define $f:X\rightarrow Y^2$ by 
+  Define $f:(X,\Sigma_X)\rightarrow (Y^2,\Sigma_{Y^2})$ by 
 \begin{align*}
-f(x)=\big(u(x),v(x) \big)
+f(x)\triangleq \big(u(x),v(x) \big)
 \end{align*}
-Because $h:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ is the composition of $f:(X,\Sigma_X)\rightarrow (Y^2 ,\Sigma_{Y^2})$ and $\Phi:(Y^2 ,\Sigma_{Y^2})\rightarrow (Y,\Sigma_{Y})$ is continuous, we can reduce the problem into proving
+Because $\Phi$ is continuous and $h$ is the composition of $f$ and $\Phi$, we only have to prove $f$ is measurable. Let $\mathcal{B}$ be a countable basis of $Y$. It is clear that $\Sigma_{Y^2}=\sigma (\mathcal{B}^2)$. Now if we fix $I_1\times I_2 \in \mathcal{B}^2$, the proof follows from \myref{Theorem}{EDm} and noting 
 \begin{align*}
-\vi{f\text{ is $(\Sigma_X,\Sigma_{Y^2})$-measurable }}
-\end{align*}
-Let $\mathcal{B}$ be a countable basis of $Y$. It is clear that $\Sigma_{Y^2}=\sigma (\mathcal{B}^2)$. Now if we fix $I_1\times I_2 \in \mathcal{B}^2$, the proof follows from \myref{Theorem}{EDm} and noting 
-\begin{align*}
-f^{-1}(I_1\times I_2)=u^{-1}(I_1)\cap v^{-1}(I_2) \in \Sigma_X \vdone
-\end{align*}
+f^{-1}(I_1\times I_2)=u^{-1}(I_1)\cap v^{-1}(I_2) \in \Sigma_X \end{align*}
 \end{proof}
 \begin{theorem}
 \label{Btsa}
@@ -5620,7 +5652,7 @@ f^{-1}(I_1\times I_2)=u^{-1}(I_1)\cap v^{-1}(I_2) \in \Sigma_X \vdone
 (a) and (b) follows from \myref{Lemma}{CL}, noting $u=\operatorname{Re}(u+iv),v=\operatorname{Im}(u+iv)$ and the fact $\R,\C$ are topological fields. It is clear that the set of all function from  $X$ to $\R\text{ or }\C$ form a group under addition. (b) shows that the set of measurable functions from a subgroup, thus giving (c).
 \end{proof}
 \begin{mdframed}
-Note that \myref{Theorem}{Btsa} does not consider function whose range includes $\pm \infty$. 
+Note that \myref{Theorem}{Btsa} only consider function with finite values. 
 \end{mdframed}
 \begin{theorem}
 \label{Slm}
@@ -5655,17 +5687,17 @@ In view of Lebesgue integration, perhaps the most important property of measurab
 \end{mdframed}
 \begin{theorem}
 \label{Approximation of nonnegative function by increasing simple function}
-\textbf{(Approximation of nonnegative function by increasing simple function)} Let $E$ be a subset of  $\R^d$. For each non negative function  $f:E\rightarrow [0,\infty]$, there exists an increasing sequence of simple function $f_n:E\rightarrow [0,\infty]$ such that $f_n \to f$. Moreover, if $f$ is measurable, we can require $f_n$ to be also measurable.
+\textbf{(Approximation of nonnegative function by increasing simple function)} Let $E$ be a subset of  $\R^d$. For each non negative function  $f:E\rightarrow [0,\infty]$, there exists an increasing sequence of simple function $s_n:E\rightarrow \R_0^+$ such that $s_n \nearrow f$. Moreover, if $f$ is measurable, we can require $s_n$ to be also measurable.
 \end{theorem}
 \begin{proof}
-Because  $f$ is non-negative, we can well define $f_n:E\rightarrow [0,\infty]$ by 
+Because  $f$ is non-negative, we can well define $s_n:E\rightarrow \R_0^+$ by 
 \begin{align*}
-f_n(x)\triangleq \begin{cases}
+s_n(x)\triangleq \begin{cases}
   \frac{k-1}{2^n}& \text{ if there exists some $k\in \set{1,\dots ,n2^n}$ such that }\frac{k-1}{2^n}\leq f(x)< \frac{k}{2^n}\\
   n& \text{ if $f(x)\geq n$ }
 \end{cases}
 \end{align*}
-Some tedious effort follows to show that $f_n\nearrow f$ and  when  $f$ is measurable, $f_n$ are measurable. 
+Some tedious effort follows to show that $s_n\nearrow f$ and  when  $f$ is measurable, $s_n$ are measurable. 
 \end{proof}
 \begin{mdframed}
 Crucially, we can generalize \myref{Theorem}{Approximation of nonnegative function by increasing simple function} to extended value function $f:E\rightarrow [-\infty,\infty]$ by splitting $f$ into $f=f^+-f^-$ and have 
@@ -5679,11 +5711,11 @@ Note that $f_n^+,f_n^-$ are both of finite value. Then  \myref{Theorem}{Btsa} sh
 In this section $Z$ always stands for some null set.
 \end{abstract}
 \begin{mdframed}
-We shall first prove a key Theorem that converge 
+We first prove \customref{Docae}{an important estimation for almost everywhere convergence sequence on finite domain}, which we will later repeatedly use in this section. 
 \end{mdframed}
 \begin{theorem}
 \label{Docae}
-\textbf{(Depiction of converge almost everywhere)} Given some
+\textbf{(Estimation for almost everywhere convergence sequence on domain of finite measure)} Given some
 \begin{enumerate}[label=(\alph*)]
   \item $E\subseteq \R^d$ of finite measure.  
   \item A sequence $f_n:E\rightarrow [-\infty,\infty]$ of functions measurable on $E$ converge almost everywhere to some $f:E\rightarrow \R$. 
@@ -5701,7 +5733,30 @@ E_n \triangleq \bigcap_{k>n}\set{\abso{f-f_k}<\epsilon }
 It is clear that $E_n$ is an increasing sequence of measurable set. Let $f_n \to f$ on $E\setminus Z$. Because  $f$ is finite, we have  $E_n\nearrow E\setminus Z$. This then give us $\abso{E_n}\nearrow \abso{E\setminus Z}=\abso{E}$. Because $E$ is of finite measure, there exists $N$ such that  $\abso{E\setminus E_{N}}< \frac{\eta }{2}$. Let $F$ be a closed subset of  $E_{N}$ such that $\abso{E_{N}\setminus F}< \frac{\eta }{2}$. It is clear that $F$ and  $N$ suffices.
 \end{proof}
 \begin{mdframed}
-We first prove Egorov's Theorem. Although the statement might be daunting, Egorov's Theorem basically says that if sequence of function converges almost everywhere to a finite limit, then the sequence "nearly" uniform converge to its limit. 
+Given some measurable subset $E\subseteq \R^d$, a sequence of functions $f_n:E\rightarrow [-\infty,\infty]$ measurable on $E$, function $f:E\rightarrow \R$ measurable on $E$, we say $f_n$ \textbf{converge to $f$ on $E$ in measure} and write 
+\begin{align*}
+f_n \overset{m}{\to}f\text{ on }E
+\end{align*}
+if for all $\epsilon $, we have 
+\begin{align*}
+\abso{\set{\textbf{x}\in E: \abso{f(\textbf{x})-f_n(\textbf{x})}>\epsilon }}\to 0\text{ as }n\to \infty
+\end{align*}
+Immediately, using our \customref{Docae}{just proved estimation}, we see that if $f_n\to f$ almost everywhere on $E$ and $E$ is of finite measure, then $f_n$ also converge to $f$ in measure. This implies that on domain of finite measure, convergence in measure is weaker than almost everywhere convergence; In fact, convergence in measure is strictly weaker. Consider the following example
+\end{mdframed}
+\begin{Example}{\textbf{(Convergence in measure on finite domain yet does not converge almost everywhere)}}{}
+\begin{align*}
+I_1\triangleq [0,1]
+\end{align*}
+Let $I_2,I_3$ be the two halves of $[0,1]$, $I_4,I_5,I_6,I_7$ be the four quarters, and so on. Define  $f_n:[0,1]\rightarrow \R$ by $f_n\triangleq \textbf{1}_I_n$. We see $f_n$ diverge everywhere, but $f_n\overset{m}{\to}0$. 
+\end{Example}
+\begin{Example}{\textbf{(Converge almost everywhere may not converge in measure on domain of infinite measure)}}{}
+\begin{align*}
+f_n\triangleq \textbf{1}_{B_n(\textbf{0})}
+\end{align*}
+$f_n\to 1$ on $\R^d$, but $f_n$ does not converge to $1$ in measure.
+\end{Example}
+\begin{mdframed}
+We now prove Egorov's Theorem. Although the statement might be daunting, Egorov's Theorem basically says that if sequence of function converges almost everywhere to a finite limit, then the sequence "nearly" uniform converge to its limit. 
 \end{mdframed}
 \begin{theorem}
 \label{Egorov's Theorem}
@@ -5744,76 +5799,52 @@ Lastly, we prove the if part. For each $n\inn$, let closed $F_n \subseteq E$ sat
 \end{align*}
 which is measurable, since $f$ is measurable  (continuous) on each $F_n$ and  $\set{\textbf{x}\in Z:f(\textbf{x})>a}$ is null.
 \end{proof}
-\begin{mdframed}
-Given some measurable subset $E\subseteq \R^d$, a sequence of function $f_n:E\rightarrow [-\infty, \infty]$ finite almost everywhere and measurable on $E$, and another function $f:E\rightarrow [-\infty, \infty]$ measurable on $E$, we say $f_n$  \textbf{converge in measure on $E$ to $f$} and write 
-\begin{align*}
-f_n \overset{m}{\to}f\text{ on }E
-\end{align*}
-if for all $\epsilon $
-\begin{align*}
-\abso{\set{ \abso{f-f_n}>\epsilon }}\to 0\text{ as }n\to \infty
-\end{align*}
-\end{mdframed}
-\begin{theorem}
-\textbf{(Pointwise convergence almost everywhere on domain of finite measure implies convergence in measure)} Let $f\text{ and }f_n$ be measurable and finite almost everywhere on $E$. If  $f_n \to f$ almost everywhere on $E$ and  $\abso{E}<\infty$, then $f_n\overset{m}{\to}f$ on $E$. 
-\end{theorem}
-\begin{proof}
-Let $H$ be subset of  $E$ such that 
-\begin{enumerate}[label=(\alph*)]
-  \item $\abso{H}=\abso{E}$.
-  \item $f$ is finite on $H$.
-  \item $f_n \to f$ on $H$.  
-\end{enumerate}
-Fix $\epsilon,\eta  $. We are required to find $N$ such that 
-\begin{align*}
-\abso{\set{\abso{f-f_n}>\epsilon }}< \eta\text{ for all }n>N 
-\end{align*}
-
-\end{proof}
 \section{Abstract integration} 
+\begin{abstract}
+In this section, $X$ is always a measurable space with measure $\mu:\Sigma_X\rightarrow [0,\infty]$. 
+\end{abstract}
 \begin{mdframed}
-We say a function is a \textbf{simple function} if its range is of finite cardinality. Simple function is the cornerstone of the development of Lebesgue Integral Theory, as we shall see.\\
-
-Suppose $s$ is a simple function defined on some measurable $E\subseteq (X,\Sigma_X)$ with range $\set{c_1,\cdots ,c_n}\subseteq [0,\infty]$. Define 
+Suppose $s:E\rightarrow [0,\infty]$ is a simple function defined on some measurable $E\subseteq X$ taking values $c_1,\dots ,c_N$ on $E_1,\dots ,E_N$. It is clear that $E_n$ is a finite disjoint decomposition of $E$, and $s$ is measurable if and only if all $E_n$ are measurable. We can write
 \begin{align*}
-E_j\triangleq \set{x \in X: s(x)=c_j}
-\end{align*}
-It is clear that $\set{E_j}$ is a finite disjoint decomposition of $E$, and $s$ is measurable if and only if all $E_j$ are measurable.\\
-
-We can write
-\begin{align*}
-s= \sum_{j=1}^n c_i \textbf{1}_{E_j}
+s= \sum_{n=1}^N c_n \textbf{1}_{E_n}
 \end{align*}
 Then if $s$ is measurable, we can define
 \begin{align*}
-\int_E s d\mu \triangleq \sum_{j=1}^n c_j \mu (E_j)
+\int_E s d\mu \triangleq \sum_{n=1}^n c_n \mu (E_n)
 \end{align*}
-and if $s$ is defined on some larger domain while $s|_E$ is measurable, we can define 
+We now expand our definitions to non-negative measurable $f:E\rightarrow [0,\infty]$. Define  
 \begin{align*}
-\int_E s d\mu \triangleq \sum_{j=1}^n c_j\mu (E_j\cap E)
+  \int_E fd\mu \triangleq \sup \int_E sd\mu
 \end{align*}
-Note that if $s$ is defined on some measurable $F$ containing  $E$ and  $s$ is measurable on $F$, then $s$ is surely measurable on $E$. It is straightforward to verify our definition so far is consistent.
+where $s:E\rightarrow [0,\infty]$ runs through all measurable simple functions on $E$ such that $s(x)\leq f(x)$ for all $x\in E$. At this point, one may check that our definition so far is consistent. We now expand our definitions to the class of all measurable functions $f:E\rightarrow [-\infty,\infty]$ ranging in $[-\infty,\infty]$. Given some non-negative measurable $g:E\rightarrow [0,\infty]$, we say $g$ is \textbf{Lebesgue integrable on $E$} if $\int_E gd\mu<\infty$. Given some measurable $f:E\rightarrow [-\infty,\infty]$, we say $f$ is \textbf{Lebesgue integrable on $E$} if 
+\begin{align*}
+\int_Ef^+d\mu<\infty\text{ and }\int_Ef^-d\mu<\infty
+\end{align*}
+where $f^+(x)\triangleq \max \set{f(x),0}\text{ and }f^-(x)\triangleq \min \set{f(x),0}$, and if $f:E\rightarrow [-\infty,\infty]$ is Lebesgue integrable on $E$, we define 
+\begin{align*}
+\int_E fd\mu\triangleq  \int_E f^+d\mu - \int_E f^-d\mu
+\end{align*}
+Again, one may check that our definition is so far consistent.  Is shall be clear that function $f:E\rightarrow [-\infty,\infty]$ Lebesgue integrable on $E$ forms a vector space over  $\R$ and the integral operator is linear. If $f:E_1\sqcup  E_2\rightarrow [-\infty,\infty]$ is measurable, with some tedious effort, we have
+\begin{align*}
+\int_{E_1\cup E_2}fd\mu=\int_{E_1}fd\mu +\int_{E_2}d\mu
+\end{align*}
+whenever it make sense. 
 \end{mdframed}
-
-
+\begin{theorem}
+\textbf{(Lebesgue Monotone Convergence Theorem)} Let $E\subseteq X$ be measurable, $f_n:E\rightarrow [-\infty,\infty]$ be a sequence of measurable function, $f:E\rightarrow [-\infty,\infty]$ be a function 
+\begin{enumerate}[label=(\alph*)]
+  \item If $f_n\nearrow f$ almost everywhere on $E$ and there exists  $\phi \in L(E)$ such that $f_n\geq \phi$ almost everywhere on $E$ for all  $n\inn$, then $\int_E f_nd\mu\nearrow  \int_E fd\mu$. 
+\end{enumerate}
+\end{theorem}
 \begin{mdframed}
-We now expand our definitions to the class of all measurable functions range in $[0,\infty]$.\\
+ If $X=\R^d,\Sigma_X=\mathcal{L}(\R^d)$ and $\mu$ is the Lebesgue measure, one can equivalently define the Lebesgue integral of measurable $f:E\rightarrow [0,\infty]$ by 
+\begin{align*}
+\int_E fd\mu\triangleq \abso{R(f,E)}\text{ where } R(f,E)\triangleq \set{(\textbf{x},y)\inr^{d+1}: \textbf{x}\in E\text{ and }y \in [0,f(\textbf{x}))}
+\end{align*}
+To see that this definition make sense, i.e., $R(f,E)$ is Lebesgue measurable, consider \customref{Approximation of nonnegative function by increasing simple function}{a sequence of measurable simple function $s_n:E\rightarrow \R_0^+$ such that $s_n\nearrow f$ on  $E$}. Because Cartesian product of measurable set must be measurable, we know that $R(s_n,E)$ is measurable. It then follows from $R(s_n,E)\nearrow R(f,E)$ that $R(f,E)$ is also measurable. Tedious effort shows that two definitions gives the same values for simple functions $s_n$
 
-Given a function $f$ range in $[0,\infty]$ and measurable on $E$, we define 
-\begin{align*}
-\int_E fd\mu \triangleq \sup_{s\leq f\text{ on }E} \int_E s d\mu
-\end{align*}
-If $f$ is defined on some large measurable domain $F$, we see that 
- \begin{align*}
-\int_Efd\mu= \int_F f\textbf{1}_Ed\mu
-\end{align*}
-It is at this point one should verify our definition is so far consistent. That is, for each simple $s$, we have 
-\begin{align*}
-\int_Esd\mu=\sup_{s'\leq s\text{ on }E}\int_Es'd\mu
-\end{align*}
-The trick is to decompose each $E_j'$ into $\bigcup E_j'\cap E_i$. 
+
 \end{mdframed}
-
 \begin{mdframed}
 We now expand our definitions to the class of all measurable functions range in $[-\infty,\infty]$, but before such, we have to first introduce the idea of \textbf{Lebesgue integrable}. For either $s$ or  $f$, range in either $[0,\infty)$ or $[0,\infty]$, it is always possible that $\int_E s\text{ or }fd\mu=\infty$.\\ 
 
@@ -6037,7 +6068,6 @@ f_n(x)=\begin{cases}
 \end{cases}
 \end{align*}
 \end{Example}
-\section{Equivalent Definitions of Lebesgue Measurable Functions and Integral}
 \section{Change of Variables Formula}
 \begin{theorem}
   \textbf{(Linear Transformation and Lebesgue Measure)} Given a vector space homomorphism $T:\R^d\rightarrow \R^d$ and a Lebesgue measurable set $E\subseteq \R^d$, we have 
@@ -7503,7 +7533,58 @@ Note that for all $f\inC^{\infty}(M)$, we may associate $f$ with $df \in \Omega 
 \begin{align*}
 dfX\triangleq Xf
 \end{align*}
-Not that for convenience, we often use $df_p$ to denote  $df(p)\in T_p^*M$. 
+Note that for convenience, we often use $df_p$ to denote  $df(p)\in T_p^*M$, and with some tedious effort, one may deduce the local expression 
+\begin{align*}
+df=\sum_i \frac{\partial f}{\partial \textbf{x}^i}d\textbf{x}^i
+\end{align*}
+where $\textbf{x}^i:U\rightarrow \R$ is defined by 
+\begin{align*}
+\textbf{x}^i(\phi ^{-1}(\textbf{y}^1,\dots ,\textbf{y}^n))\triangleq \textbf{y}^i
+\end{align*}
+We may now prove some expected result.  
+\end{mdframed}
+\begin{theorem}
+\textbf{(Constant function and zero differential)} Given some connected manifold $M$ and  $f\in C^{\infty}(M)$ 
+\begin{align*}
+f\text{ is constant }\iff df=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+If $f $ is constant, then locally 
+\begin{align*}
+df=\sum_i \frac{\partial f}{\partial \textbf{x}^i}d\textbf{x}^i=0
+\end{align*}
+Now, suppose $df=0$. Fix $p \in M$. Because $f$ is continuous, we know $f^{-1}(\set{f(p)})$ is closed. Again, locally we have
+\begin{align*}
+0=df=\sum_i \frac{\partial f}{\partial \textbf{x}^i}d\textbf{x}^i
+\end{align*}
+which implies $f$ is constant on each chart $U$. This implies $f^{-1}(\set{f(p)})$ is open. It then follows from $M$ being connected that $f^{-1}(\set{f(p)})=M$.  
+\end{proof}
+\begin{mdframed}
+  Now, for each smooth map $F:M\rightarrow N$, $f\in C^{\infty}(N)$ and $\omega \in \Omega (N)$, we may define their \textbf{pullbacks} $F^*f\in C^{\infty}(M),F^*\omega\in \Omega (M)$ by
+\begin{align*}
+F^*f\triangleq f\circ F\text{ and }(F^*\omega)_p\triangleq (F_{*,p})^*(\omega_{F(p)})
+\end{align*}
+With this definition and some tedious effort, we see that pullbacks is compatible with differential in the sense that 
+\begin{align*}
+F^*(dh)=d(F^*h) 
+\end{align*}
+The definition tell us that pullbacks is linear 
+\begin{align*}
+F^*(c\omega_1+\omega_2)=cF^*\omega_1+F^*\omega_2
+\end{align*}
+and is compatible to the module 
+\begin{align*}
+F^*(g\alpha )=(F^*g)(F^*\alpha )
+\end{align*}
+This then shows that the pullbacks $F^*\omega$ of smooth 1-from on $N$ is indeed smooth since if we write $\omega= \sum_i \omega^i d\textbf{y}^i$ locally, we may write 
+ \begin{align*}
+F^*\omega &=F^* \Big(\sum_i \omega^i d\textbf{y}^i  \Big) \\
+&=\sum_i F^* \omega^i F^*d\textbf{y}^i \\
+&=\sum_i (\omega^i \circ F) d(F^* \textbf{y}^i)\\
+&=\sum_i (\omega^i \circ F)dF^i=\sum_{i,j} (\omega^i \circ F) \frac{\partial F^i}{\partial \textbf{x}^j}d\textbf{x}^j
+\end{align*}
+At this point, one can see that if $S\xhookrightarrow{\diota} M$ is an immersed submanifold, then the pullback $\diota^* \omega \in \Omega(S)$ of the 1-form $\omega \in \Omega(M)$ is just the restriction of $\omega$. 
 \end{mdframed}
 \section{Lie Group}
 \begin{mdframed}
@@ -7517,44 +7598,110 @@ is smooth.
 \chapter{Complex Analysis}
 \section{Cauchy Integral Theorem}
 \begin{abstract}
-Note that in this section, when we talk about derivative of function defined on subset of real line, we do consider one-sided derivative, i.e., for $\gamma :[a,b]$ to be $C^1$, the limit of $\frac{\gamma (a+h)-\gamma  (a)}{h}$ as $h\searrow 0$ must exist. 
+Note that in this section, when we talk about derivative of function defined on subset of real line, we do consider one-sided derivative, i.e., for $\gamma :[a,b]\rightarrow \C$ to be $C^1$, the limit of $\frac{\gamma (a+h)-\gamma  (a)}{h}$ as $h\searrow 0$ must exist. 
 \end{abstract}
 \begin{mdframed}
-Let $[a,b]\subseteq \R$ be some compact interval. We say $\gamma :[a,b]\rightarrow \C$ is a \textbf{contour} if 
+Let $[a,b]\subseteq \R$ be some compact interval. We say $\gamma :[a,b]\rightarrow \C$ is a \textbf{parametrization} if 
 \begin{enumerate}[label=(\alph*)]
   \item $\gamma (x)\neq \gamma (y)$ unless $x=a\text{ and }y=b$. 
-  \item There exists some partition $\set{a=c_0<\cdots <c_N=b}$ such that $\gamma|_{[c_n,c_{n+1}]}:[c_n,c_{n+1}]\rightarrow \C$ is $C^1$ wish non-vanishing derivative $(\gamma |_{[c_n,c_{n+1}]})':[c_n,c_{n+1}]\rightarrow \C^*$.  
+  \item There exists some partition $\set{a=c_0<\cdots <c_N=b}$ such that $\gamma|_{[c_n,c_{n+1}]}:[c_n,c_{n+1}]\rightarrow \C$ are $C^1$ wish non-vanishing derivative. 
 \end{enumerate}
-Immediately, we can draw some geometric properties of contours. If $\gamma :[a,b]\rightarrow \C$ is a contour, then its reversal $\gamma ^-:[a,b]\rightarrow \C$ which is defined by 
+A parametrization $\gamma :[a,b]\rightarrow \C$ is said to be \textbf{closed} if $\gamma(a)=\gamma (b)$. Two parametrizations $\gamma :[a,b]\rightarrow \C,\alpha :[c,d]\rightarrow \C$ are said to be \textbf{equivalent} if there exists some $C^1$ bijection  $s:[a,b]\rightarrow [c,d]$ such that 
 \begin{align*}
-\gamma^-(t)\triangleq \gamma (b+a-t)
+\gamma (t)= \alpha (s(t))\text{ and }s'(t)>0\text{ for all }t\in [a,b]
 \end{align*}
-is also a contour, and, moreover, they have the same \textbf{length}, i.e., 
-\begin{align*}
-\int_a^b \abso{\gamma (t)}dt = \int_a^b \abso{\gamma ^-(t)}dt
-\end{align*}
-Now, given some contour $\gamma :[a,b]\rightarrow \C$ and some continuous complex-valued function $f$ defined on the image $\gamma ([a,b])$, we can define its \textbf{contour integral} by 
+\customref{IFT}{Inverse Function Theorem} shows that our definition for parametrization equivalence is indeed an equivalence relation. We then can define \textbf{contour} to be the equivalence class of parametrizations. Immediately, we see that all parametrization of a contour have the same image and if any of them is closed, then all of them are closed. This allow us to talk about the image of a contour and if a contour is closed. If we define \textbf{length} for parametrization $\gamma :[a,b]\rightarrow \C$ to be $\int_a^b \gamma  '(t)dt$, then a \customref{CoV}{change of variables} shows that all parametrizations in $[\gamma ]$ have the same length as $\gamma $. This allow us to define the \textbf{length for contour}. Now, given some parametrization $\gamma :[a,b]\rightarrow \C$ and some continuous complex-valued function $f$ defined on the image $\gamma ([a,b])$, we can define its \textbf{contour integral} by 
 \begin{align*}
 \int_\gamma f(z)dz \triangleq \int_a^b f(\gamma  (t))\gamma  '(t)dt
 \end{align*}
-Similar to the real case, we have the estimation  
+Again the \customref{CoV}{change of variables} shows that our definition is well defined for contours. Similar to the real case, we have the estimation  
 \begin{align*}
 \abso{\int_{\gamma}fdz}\leq LM
 \end{align*}
 where $L$ is the length of  $\gamma $ and $M$ is the maximum of  $\abso{f}$ on $\gamma $. We can also generalize \customref{FTC2}{Part 2 of Fundamental Theorem of Calculus} to contour integral: If $D\subseteq \C$ is open, $f:D\rightarrow \C$ is continuous, and $F:D\rightarrow \C$ satisfy $F'(z)=f(z)$ for all $z\in D$, then for all contour $\gamma :[a,b]\rightarrow D$, we have 
 \begin{align*}
-\int_{\gamma }f=F(\gamma (b))-F(\gamma (a))
+\int_{\gamma }fdz=F(\gamma (b))-F(\gamma (a))
 \end{align*}
-We are now ready to prove Cauchy's Integral Theorem for triangle.  
+We are now ready to state \customref{CTft}{Cauchy's Integral Theorem for triangles}. Note that term "closed triangle" as a set include both its interior area and boundary. For example, a closed triangle can be 
+\begin{align*}
+\set{x+iy \inc: x\in [0,1]\text{ and }y\in [0,x]}
+\end{align*}
 \end{mdframed}
 \begin{theorem}
-\textbf{(Cauchy's Theorem for triangles)} If $D\subseteq \C$ is open, $f:D\rightarrow \C$ is holomorphic and the closed triangle $T$ lies in $D$, we have  
+\label{CTft}
+\textbf{(Cauchy's Integral Theorem for triangles)} If $D\subseteq \C$ is open, $f:D\rightarrow \C$ is holomorphic and $D$ contain some closed triangle  $T$, then 
 \begin{align*}
-\int_{\partial  T}f=0
+\int_{\partial  T}fdz=0
 \end{align*}
 \end{theorem}
 \begin{proof}
-Let $c\triangleq \abso{\int_{\partial  T}f}$. \As{$c>0$}. 
+Denote $T$ by $T^{(0)}$. Construct triangles $T_1^{(1)},T_2^{(1)},T_3^{(1)},T_4^{(1)}$ as in the figure below. \\
+
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering       
+\includegraphics[height=8cm,width=16cm]{triangle.png} 
+   \end{minipage}
+\end{center}
+
+Obviously, we may parametrize the boundaries of these triangles so that 
+\begin{align*}
+\int_{ \partial T^{(0)}}fdz= \sum_{n=1}^4 \int_{\partial T^{(1)}_n} fdz
+\end{align*}
+Taking absolute value on both side, we deduce 
+\begin{align*}
+  \abso{\int_{\partial  T^{(0)}}fdz }\leq 4 \abso{\int_{\partial  T^{(1)}_j}fdz}\text{ for some $j \in \set{1,2,3,4}$}
+\end{align*}
+Denote $T_j^{(1)}$ by $T^{(1)}$. Repeating this process, we obtain a decreasing sequence of triangles 
+\begin{align*}
+T^{(0)} \supseteq T^{(1)} \supseteq \cdots \supseteq T^{(n)} \supseteq \cdots 
+\end{align*} 
+with the property that
+\begin{align}
+\label{pe1}
+\abso{\int_{\partial  T^{(0)}}fdz}\leq 4^n \abso{\int_{\partial T^{(n)}}fdz}
+\end{align}
+Let $d^{(n)}\text{ and }p^{(n)}$ denote the diameter and perimeter of $T^{(n)}$ for all $n\inz_0^+$. Some tedious effort shows that 
+\begin{align}
+\label{pe2}
+d^{(n)}=2^{-n}d^{(0)}\text{ and }p^{(n)}=2^{-n}p^{(0)}
+\end{align}
+\myref{Theorem}{DSoC} implies 
+\begin{align*}
+\bigcap_{n\inn} T^{(n)}=\set{z_0}\text{ for some }z_0 \in D
+\end{align*}
+Because $f$ is holomorphic at  $z_0$, we may write $f:D\rightarrow \C$ by 
+\begin{align*}
+f(z)=f(z_0)+f'(z_0)(z-z_0)+o(z-z_0)(z-z_0)
+\end{align*}
+Clearly the first two terms have antiderivatives. Using \myref{Equation}{pe1} and \myref{Equation}{pe2}, we may now estimate 
+\begin{align*}
+ \abso{\int_{\partial T^{(0)}}f(z)dz}\leq  4^n\abso{\int_{\partial T^{(n)}} f(z)dz}&= 4^n\abso{\int_{\partial  T^{(n)}} o(z-z_0)(z-z_0)dz}\\
+  &\leq 4^np^{(n)}d^{(n)}\max_{ z\in \partial T^{(n)}}\abso{o(z-z_0)}\\
+  &= p^{(0)}d^{(0)} \max_{z \in \partial T^{(n)}} \abso{o(z-z_0)}\to 0\text{ as }n\to \infty
+\end{align*}
+\end{proof}
+\begin{mdframed}
+By $D\subseteq \C$ being \textbf{star-convex with center $z_*$}, we mean that for all $z \in D$, the contour $\gamma :[0,1]\rightarrow \C$ defined by 
+\begin{align*}
+\gamma (t)\triangleq z_*+t(z-z_*)
+\end{align*}
+satisfy $\gamma ([0,1])\subseteq D$. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Cauchy's Integral Theorem for closed contour in a star domain)} Suppose $D\subseteq \C$ is open and star-convex with centre  $z_*$. If $f:D\rightarrow \C$ is holomorphic, then $F:D\rightarrow \C$ defined by 
+\begin{align*}
+F(z)\triangleq \int_\gamma f(w)dw\text{ where }\gamma :[0,1]\rightarrow D\text{ is defined by }\gamma(t)\triangleq z_*+t(z-z_*)
+\end{align*}
+is an antiderivative of $f$. 
+\end{theorem}
+\begin{proof}
+Fix $z_0 \in D$. Because $D$ is open, there exists some open ball $B_\epsilon (z_0)$ small enough to be contained by $D$. For all $z\in B_\epsilon (z_0)$, the closed triangle $T$ specified by the vertices $\set{z_*,z,z_0}$ is contained by $D$, since all $p\in  T$ lies in some line segment joining $z_*$ and $w$ where $w$ is some point that lies in the line segment joining $z$ and  $z_0$.  We then can apply \customref{CTft}{Cauchy's Integral Theorem for triangles} to have the estimate 
+\begin{align*}
+  \abso{\frac{F(z)-F(z_0)}{z-z_0}-f(z_0)}&= \abso{\frac{\int_\gamma [f(w)-f(z_0)]dw}{z-z_0}}\\
+  &\leq \max_{w \in \gamma }\abso{f(w)-f(z_0)}\to 0\text{ as }z \to z_0
+\end{align*}
+where $\gamma$ is the line segment traveling from $z_0$ to  $z$.  
 \end{proof}
 \chapter{Beauty}
 \label{Beauty}

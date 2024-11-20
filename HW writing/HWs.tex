@@ -1155,7 +1155,57 @@ we see $\phi:\R\rightarrow \R$ is also measurable. Lastly, to see $\phi \circ h:
 \end{enumerate}
 \end{question}
 \begin{proof}
+\textbf{(a)} Let $f_n\searrow f$ and  $f_n$ be upper semicontinuous at  $\textbf{x}_0$. Fix $\epsilon $. Because $f_n (\textbf{x}_0) \searrow f(\textbf{x}_0)$, we know there exists some $N$ such that  $f_N(\textbf{x}_0)< f(\textbf{x}_0)+\epsilon $. Because $f\leq f_N$ everywhere and $f_N$ is upper semicontinuous at  $\textbf{x}_0$, we have
+\begin{align*}
+\limsup_{\textbf{x}\to \textbf{x}_0}f(\textbf{x})\leq \limsup_{\textbf{x}\to \textbf{x}_0}f_N(\textbf{x})\leq f_N(\textbf{x}_0)<f(\textbf{x}_0)+ \epsilon 
+\end{align*}
+Because $\epsilon $ can be arbitrary small, we have shown 
+\begin{align*}
+\limsup_{\textbf{x}\to \textbf{x}_0}f(\textbf{x})\leq f(\textbf{x}_0)
+\end{align*}
+i.e., $f$ is also upper semicontinuous. The second part of question (a) ask us to prove the same thing with stronger hypothesis that $f_n$ are continuous at  $\textbf{x}_0$, which implies $f_n$ are upper semicontinuous at $\textbf{x}_0$, so it immediately follows from what we have proved. \\
 
+\textbf{(b)} Define  $f_n:[a,b]\rightarrow [-\infty,\infty]$ by  
+\begin{align*}
+f_n(x)\triangleq \sup_{p \in [a,b]}\Big(f(p)-n\abso{x-p} \Big)
+\end{align*}
+Fix  $n$. We first show that $f_n:[a,b]\rightarrow [-\infty,\infty]$ is continuous. Fix $\epsilon $, and let $x,y\in [a,b]$ satisfy $\abso{x-y}< \frac{\epsilon}{n}$. For all $p\in [a,b]$, we may use reverse triangle inequality to show that 
+\begin{align*}
+\abso{\Big(f(p)-n \abso{x-p} \Big)- \Big( f(p)-n\abso{y-p} \Big)}= n \abso{\Big(\abso{x-p}-\abso{y-p} \Big)}\leq n \abso{x-y}< \epsilon 
+\end{align*}
+This implies 
+\begin{align*}
+f(p)-n\abso{ x-p}+\epsilon > f(p)-n \abso{y-p} >f(p)-n \abso{x-p}-\epsilon 
+\end{align*}
+Taking supremum on both side, we have  
+\begin{align*}
+f_n(x)+\epsilon =\sup_{p \in [a,b]} \Big(f(p)-n\abso{x-p} \Big)+\epsilon \geq \sup_{p\in [a,b]} \Big( f(p)-n\abso{y-p} \Big)=f_n(y)
+\end{align*}
+In summary, 
+\begin{align*}
+f_n(x)+\epsilon \geq f_n(y) \geq f_n(x)-\epsilon 
+\end{align*}
+Because  $\epsilon $ is arbitrary, we have shown $f_n$ is (uniform) continuous. We now show $f_n$ is decreasing. Fix $x\in [a,b]$ and $n<m$. Observe that for all $p \in [a,b]$ 
+\begin{align*}
+f(p)-m \abso{x-p}< f(p)-n \abso{x-p}
+\end{align*}
+Taking supremum on both side, we have 
+\begin{align*}
+f_m(x)=\sup_{p \in [a,b]}\Big(f(p)-m \abso{x-p} \Big) \leq \sup_{p \in [a,b]}\Big(f(p)-n \abso{x-p} \Big)=f_n(x)
+\end{align*}
+Because $x$ is arbitrary, this implies $f_n$ is indeed decreasing. Lastly, we show $f_n\to f$. Fix $x_0\in [a,b]$ and $\epsilon $. Because $f$ is finite and upper semicontinuous on $[a,b]$, we may let $M\inr $ be the upper bound of $f$ on $[a,b]$ and let $\delta$ satisfy 
+\begin{align*}
+\sup_{[x_0-\delta,x_0+\delta]}f(x)\leq f(x_0)+ \epsilon 
+\end{align*}
+Let $N> \frac{M-(f(x_0)+\epsilon )}{\delta}$. If $p \in [x_0-\delta,x_0+\delta]$, then $f(p)-N\abso{p-x_0}\leq f(p)\leq f(x_0)+\epsilon $. If $p\not\in [x_0-\delta,x_0+\delta]$, then 
+\begin{align*}
+f(p)- N \abso{p-x_0}\leq M-N \abso{p-x_0}<f(x_0)+\epsilon 
+\end{align*}
+Letting $p$ run through $[a,b]$, we now see 
+\begin{align*}
+f_N(x_0)=\sup_{p \in [a,b]}\Big(f(p)-N\abso{p-x_0} \Big)\leq f(x_0)+\epsilon 
+\end{align*}
+Because $\epsilon $ and $x_0$ are arbitrary, and $f_n$ is decreasing, we have shown  $f_n \to f$.
 \end{proof}
 \begin{question}{}{}
 Let $f_k$ be a sequence of measurable function defined on a measurable set  $E$ with finite measure. If  $\abso{f_k(\textbf{x})}\leq M_{\textbf{x}}<\infty$ for all $k$ and for each  $\textbf{x} \in E$, show that given $\epsilon >0$, there exists closed $F\subseteq E$ and finite $M$ such that  $\abso{E-F}< \epsilon $ and $\abso{f_k(\textbf{x})}\leq M$ for all $k$ and  $\textbf{x}\in F$. 
@@ -1186,14 +1236,73 @@ and for all $\textbf{x} \in F$,
 If $f$ is measurable on $E$, define  $\omega_f(a)\triangleq \abso{\set{f>a}}$ for $a \inr$. If $f_k\nearrow f$, show  $\omega_{f_k}\nearrow \omega_f$.  If $f_k \overset{m}{\to}f$, show that $\omega_{f_k}\to \omega_f$ at each point of continuity of $\omega_f$. (For the second part, show that if $f_k\overset{m}{\to}f$, then $\limsup_{k\to\infty}\omega_{f_k}(a)\leq \omega_f (a-\epsilon )$ and $\liminf_{k\to\infty} \omega_{f_k}(a)\geq \omega_f(a+\epsilon ) $ for all $\epsilon >0$). 
 \end{question}
 \begin{proof}
+Suppose $f_n\nearrow f$. We know that for all $a\inr$ 
+\begin{align*}
+\set{f_n>a}\nearrow \set{f>a}
+\end{align*}
+This implies 
+\begin{align*}
+\omega_{f_n}(a)=\abso{\set{f_n>a}}\nearrow \abso{\set{f>a}}=\omega_f(a)
+\end{align*}
+Because $a$ is arbitrary, we have shown $\omega_{f_n}\nearrow \omega_f$. \\
 
+Suppose $f_n\overset{m}{\to}f$. Fix $\epsilon $. Observe that for all $a\inr$ and $n\inn$
+\begin{align*}
+  \set{f_n >a}\subseteq \set{\abso{f_n-f}>\epsilon } \cup \set{f>a-\epsilon }
+\end{align*}
+Measuring both side, we get 
+\begin{align*}
+\omega_{f_n}(a)= \abso{\set{f_n>a}}\leq \abso{\set{\abso{f_n-f}>\epsilon }}+ \abso{\set{f>a-\epsilon }}= \abso{\set{\abso{f_n-f}<\epsilon }}+ \omega_f(a-\epsilon )
+\end{align*}
+Then because $f_n\overset{m}{\to}f$ implies $\abso{\set{\abso{f_n-f}<\epsilon }}\to 0$, if we take limit superior on both side, we get 
+ \begin{align*}
+\limsup_{n\to\infty} \omega_{f_n}(a)\leq \omega_f(a-\epsilon )
+\end{align*}
+Again, observe that for all $a\inr$ and $n\inn$ 
+\begin{align*}
+\set{f>a+\epsilon }\subseteq \set{\abso{f_n-f}>\epsilon }\cup  \set{f_n>a}
+\end{align*}
+Measuring both side, we get 
+\begin{align*}
+\omega_f(a+\epsilon )= \abso{\set{f>a+\epsilon }} \leq \abso{\set{\abso{f_n-f}>\epsilon }} + \abso{\set{f_n>a}}=\abso{\set{\abso{f_n-f}>\epsilon }} + \omega_{f_n}(a)
+\end{align*}
+Then because $f_n\overset{m}{\to}f$ implies $\abso{\set{\abso{f_n-f}<\epsilon }}\to 0$, if we take limit inferior on both side, we get 
+\begin{align*}
+ \omega_f(a+\epsilon )\leq \liminf_{n\to\infty} \omega_{f_n}(a)
+\end{align*}
+Now, if $\omega_f$ is continuous at $a$, we have 
+ \begin{align*}
+\omega_f(a+\epsilon )\searrow \omega_f(a)\text{ and }\omega_f(a-\epsilon )\nearrow \omega_f(a)\text{ as }\epsilon \searrow 0 
+\end{align*}
+This then implies 
+\begin{align*}
+\liminf_{n\to\infty} \omega_{f_n}(a)=\limsup_{n\to\infty} \omega_{f_n}(a)=\omega_f(a)
+\end{align*}
+as we wished.
 \end{proof}
 \begin{question}{}{}
-If $f$ is measurable and finite almost everywhere on $[a,b]$, show that given $\epsilon >0$, there ix a continuous $g$ on $[a,b]$ such that $\abso{f\neq g}< \epsilon $. Formulate and prove a similar result in $\R^n$ by combining Lusin's Theorem with the Tietze extension Theorem. 
+  If $f$ is measurable and finite almost everywhere on $[a,b]$, show that given $\epsilon >0$, there is a continuous $g$ on $[a,b]$ such that $\abso{\set{f\neq g}}< \epsilon $. Formulate and prove a similar result in $\R^n$ by combining Lusin's Theorem with the Tietze extension Theorem. 
 \end{question}
 \begin{proof}
-
+Let $E\triangleq \set{x\in [a,b]:f(x)\inr}$. $E$ is measurable because  $f$ is measurable on $[a,b]$. It is clear that $f$ is indeed measurable on $E$. By Lusin's Theorem, there exists some closed set $F\subseteq E$ such that  $\abso{E\setminus F}<\epsilon $ and $f|_F:F\rightarrow \R$ is continuous. Because $F$ is compact,  (bounded by $[a,b]$), Tietze extension Theorem give us some continuous $g:[a,b]\rightarrow \R$ such that  $g=f$ on $F$. It then follows that 
+\begin{align*}
+\set{f\neq g}\subseteq [a,b]\setminus F
+\end{align*}
+which give us the desired estimation 
+\begin{align*}
+\abso{\set{f\neq g}}\leq (b-a)-\abso{F}=\abso{E}-\abso{F}<\epsilon 
+\end{align*}
+We may formulate the same result by 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       If $f$ is measurable and finite almost everywhere on some compact $K \subseteq \R^d$, then for all $\epsilon $, there exists continuous $g$ on  $K$ such that  $\abso{\set{f\neq g}}<\epsilon $. 
+   \end{minipage}
+\end{center}
+and give exactly the same argument to prove it. 
 \end{proof}
+\section{HW4}
+
 \chapter{Complex Analysis HW}
 \section{HW1}
 \begin{theorem}
@@ -1683,7 +1792,7 @@ It is clear that $\C_\pi$ is non-empty and open. To see $\C_\pi$ is path-connect
 \end{align*}
 We have proved $\C_\pi$ is a domain. Note that 
 \begin{align*}
-\C_\pi=\set{a+b i\inc: a>0\text{ and }b \in (-\pi, \p)}
+\C_\pi=\set{a+b i\inc: a>0\text{ and }b \in (-\pi, \pi)}
 \end{align*}
 and the exact definition of $r:\C_\pi\rightarrow \C$ is 
 \begin{align*}
@@ -1705,7 +1814,7 @@ This give us $r'(z)=\frac{1}{2 r(z)}$.
 \begin{proof}
 If we write 
 \begin{align*}
-u+iv=\overline{(x+iy)^n}
+u+iv=\overline{(x+iy)^n}=(x-iy)^n
 \end{align*}
 Because $n>1$, we see from binomial Theorem that $u \in \R[x,y]$ is a polynomial with two indeterminate $x,y$ whose terms all have degree greater than $1$. Thus, both  $\frac{\partial u}{\partial x},\frac{\partial u}{\partial y}$ are polynomial with two indeterminate $x,y$ whose terms all have degree greater than  $0$. This implies 
 \begin{align*}
@@ -1782,7 +1891,7 @@ and observe
 \begin{align*}
 x+iy=e^{2u+iv}
 \end{align*}
-which implies the function map $z$ to  $\log (z)- \frac{\ln \abso{z}}{2}$. 
+which implies the function map $z$ to  $(\operatorname{Log}z)- \frac{\ln \abso{z}}{2}$. 
 \end{proof}
 \begin{question}{}{}
 Let $f(z)=\sqrt{\abso{xy}}$. Show that  $f$ satisfy the Cauchy-Riemann equation at $0$, yet  $f'(0)$ does not exists. Explain why. 
@@ -3975,7 +4084,7 @@ where $\ld $ is a constant since $\frac{X''}{X}$ only depend on $x$ and  $\frac{
   X(0)=X(l)=0
 \end{cases}\text{ and }T''+c^2\ld  T=0 
 \end{align*}
-For $X$ to have a non-trivial solution, we see that  $\ld $ must be positive. We now know the solution of this ODE is 
+For $X$ to have a non-trivial solution, we must have $\ld = (\frac{n \pi}{l})^2$. We now know the solution of this ODE is 
 \begin{align*}
 T(t)\triangleq A\cos ( \frac{ cn \pi t}{l} )+B\sin ( \frac{cn \pi t}{l})\text{ and }X(x)\triangleq D\sin ( \frac{n \pi x}{l} )
 \end{align*}
@@ -4012,16 +4121,298 @@ which give us the following ODEs
   X(0)=X(l)=0
 \end{cases}\text{ and }T'(t)=-\ld  kT(t)
 \end{align*}
-If we wish $X$ to have a non-trivial solution, then we must require  $\ld >0$. We now can solve these ODEs to have 
+If we wish $X$ to have a non-trivial solution, then we must require  $\ld = (\frac{n \pi}{l})^2$. We now can solve these ODEs to have 
 \begin{align*}
-T(t)=Ae^{-\ld  kt}\text{ and }X(x)= B\sin ( \frac{n \pi x}{l})
+T(t)=Ae^{ -(\frac{n \pi}{l})^2  kt}\text{ and }X(x)= B\sin ( \frac{n \pi x}{l})
 \end{align*}
 Some tedious effort can now be used to show that 
 \begin{align*}
-u(x,t)=AB e^{-\ld  kt}\sin (\frac{n \pi x}{l})
+u(x,t)=AB e^{ -(\frac{n \pi}{l})^2kt}\sin (\frac{n \pi x}{l})
 \end{align*}
 indeed satisfy the heat equation. 
 \end{mdframed}
+\begin{question}{}{}
+Consider waves in a resistant medium that satisfy the problem 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx}-ru_t\text{ for }0<x<l\text{ \textbf{(Homogeneous DE)} }\\
+  u(0,t)=u(l,t)=0\text{ \textbf{(Dirichlet BC)} }\\
+  u(x,0)=\phi (x),u_t(x,0)=\psi (x)\text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+where $r$ is a constant, $0<r<\frac{2\pi c}{l}$. Write down the series expansion of the solution.
+\end{question}
+\begin{question}{}{}
+Separate the variables for the equation 
+\begin{align*}
+\begin{cases}
+  tu_t=u_{xx}+2u\text{ \textbf{(Non-homogeneous DE)} }\\
+  u(0,t)=u(\pi ,t)=0\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+Shows that there are infinite number of solutions that satisfy the initial condition $u(x,0)=0$. So uniqueness is false for this question. 
+\end{question}
+\section{4.2 The Neumann Condition}
+\begin{question}{}{}
+Consider the equation 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx}\text{ for }0<x<l\text{ \textbf{(Homogeneous DE)} }\\
+  u_x(0,t)=0,u(l,t)=0\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Shows that the eigenfunctions are $\cos \frac{(n+ \frac{1}{2})\pi x}{l}$. 
+  \item Write the series expansion for a solution $u(x,t)$.
+\end{enumerate}
+\end{question}
+\begin{question}{}{}
+Solve the Schrodinger equation 
+\begin{align*}
+\begin{cases}
+  u_t=iku_{xx}\text{ for }0<x<l\text{ \textbf{(Homogeneous DE)} } \\
+  u_x(0,t)=u(l,t)=0\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+for real $k \in (0,l)$. 
+\end{question}
+\begin{proof}
+Again we do the separation of the variables 
+\begin{align*}
+u\triangleq T(t)X(x)
+\end{align*}
+Some tedious efforts shows that $u$ is a solution of this original question as long as $X,T$ satisfy the following ODE 
+\begin{align*}
+\begin{cases}
+  X''(x)+\ld  X(x)=0\\
+  X'(0)=X(l)=0
+\end{cases}\text{ and }T'(t)+\ld  ik T(t)=0
+\end{align*}
+where $\ld \inc$ is arbitrary constant. The solution of the second ODE is obviously 
+\begin{align*}
+T(t)\triangleq Ce^{-\ld  ik t}
+\end{align*}
+where $C\inc$ is arbitrary constant. It remains to find what values can $\ld $ take so that $X$ has non-trivial solutions.  If $\ld =0$, then to satisfy the ordinary differential equation, the solution must take the forms $X=C+Dx$, where $C,D\inc$ are arbitrary constant. Plugging the initial conditions, we see that $C=D=0$. In other words, if  $\ld =0$, then $X$ can only be trivial. If $\ld \neq 0$, ODE of $X$ suggest that  $X$ must take the form
+\begin{align*}
+X\triangleq Ae^{\gamma x}+Be^{-\gamma x}
+\end{align*}
+where $\gamma \inc$ satisfy $\gamma ^2=-\ld $. Plug in $X'(0)=0$, we see 
+\begin{align*}
+0=\gamma (A-B)
+\end{align*}
+which implies $A=B$. Plug in $X(l)=0$, we see 
+\begin{align*}
+0=A e^{\gamma  l}+B e^{- \gamma l}=A(e^{\gamma l}+e^{-\gamma l})
+\end{align*}
+Then for $X$ to be non-trivial, we must have  
+ \begin{align*}
+e^{\gamma l}+e^{-\gamma l} =0
+\end{align*}
+By periodicity property of exponential function, we then can deduce
+\begin{align*}
+\gamma = \frac{ i \pi(2n+1)}{l}\text{ and }\ld = \frac{(2n+1)^2\pi ^2}{l^2}
+\end{align*}
+It then follows from $X=Ae^{\gamma x}+Be^{-\gamma x}$ that 
+\begin{align*}
+X&= (A+B) \cos \Big(\frac{\pi (2n +1) x}{l}\Big)+ (A-B)i\sin \Big(\frac{ \pi (2n+1)x}{l}\Big)\\
+&=(A+B) \cos \Big(\frac{ \pi (2n+1) x}{l}\Big)\hspace{0.5cm}(\because A=B)
+\end{align*}
+\end{proof}
+
+
+\begin{question}{}{}
+Consider diffusion inside an enclosed circular tube. Let its length (circumference) be $2l$. Let  $x$ denote the arc length parameter where  $-l\leq x\leq l$. Then the concentration of the diffusing substance satisfies 
+\begin{align*}
+\begin{cases}
+  u_t=ku_{xx}\text{ for }-l \leq x\leq l \text{ \textbf{(Homogeneous DE)} }\\
+  u(-l,t)=u(l,t)\text{ and }u_x(-l,t)=u_x(l,t)\text{ \textbf{(BC)} } 
+\end{cases}
+\end{align*}
+These are called periodic boundary conditions. 
+\begin{enumerate}[label=(\alph*)]
+  \item Show that the eigenvalues are $\ld = (\frac{n \pi}{l})^2$ for $n\inz_0^+$.
+  \item Show that the concentration is 
+    \begin{align*}
+    u(x,t)= \frac{1}{2}A_0+ \sum_{n=1}^{\infty}\Big(A_n \cos \frac{n \pi x}{l}+ B_n \sin \frac{n \pi x}{l} \Big)e^{\frac{-n^2\pi ^2 kt}{l^2}}
+    \end{align*}
+\end{enumerate}
+\end{question}
+\section{4.3 Robin Condition}
+
+\begin{mdframed}
+Consider the diffusion equation on finite interval with robin conditions 
+\begin{align*}
+\begin{cases}
+  u_t=ku_{xx}\text{ for }0<x<l\text{ \textbf{(Homogeneous DE)} }\\
+  (u_x-a_0u)(0,t)=0\text{ and }(u_x+a_lu)(l,t)=0\text{ \textbf{(Robin BC)} }
+\end{cases}
+\end{align*}
+Some tedious effort shows that $u\triangleq T(t)X(x)$ is a solution of the original equation as long as $X,T$ satisfy the following ODE 
+ \begin{align*}
+\begin{cases}
+  X''(x)+\ld  X(x)=0\\
+  X'(0)-a_0X(0)=0 \\
+  X'(l)+a_lX(l)=0
+\end{cases}\text{ and }T'(t)+\ld  k T(t)=0
+\end{align*}
+Then $T$ must be
+\begin{align*}
+T(t)\triangleq  C e^{- \ld  kt }
+\end{align*}
+where $C\inc$ is arbitrary constant. It remains to find $\ld $ so that $X$ has a non-trivial solution. If $\ld =0$, then $X$ must be of the form
+\begin{align*}
+X(x)\triangleq A+Bx
+\end{align*}
+where $A,B \inc$ are constants. Initial conditions implies 
+\begin{align*}
+B-a_0A=0\text{ and }B+a_l(A+Bl)=0
+\end{align*}
+This then shows that $X$ has a nontrivial solution if and only if 
+\begin{align*}
+\begin{bmatrix}
+  -a_0 & 1 \\
+  a_l & la_l+1
+\end{bmatrix}\text{ is non-singular, i.e., }a_0+a_l=-a_0a_ll
+\end{align*}
+If $\ld \inc^*$, then $X$ must be of the form 
+\begin{align*}
+X(x)\triangleq A e^{\gamma x}+Be^{-\gamma x}
+\end{align*}
+where $A,B \inc$ are constants and $\gamma $ satisfy $\gamma ^2=-\ld $. Initial conditions at $x=0$ implies 
+\begin{align*}
+\gamma  (A-B)-a_0(A+B)=X'(0)-a_0X(0)=0
+\end{align*}
+which implies 
+\begin{align*}
+\gamma = \frac{a_0(A+B)}{A-B}\text{ and }\ld = \frac{-a_0^2(A+B)^2}{(A-B)^2}
+\end{align*}
+Initial conditions at $x=l$ implies 
+\begin{align*}
+e^{\gamma l}(\gamma A+a_lA)+e^{- \gamma l}(-\gamma B+a_lB)= X'(l)+a_lX(l)=0 
+\end{align*}
+In summary 
+ \begin{align*}
+\begin{bmatrix}
+  \gamma -a_0 & -\gamma -a_0 \\
+  e^{\gamma l}(\gamma +a_l) & e^{-\gamma l}(-\gamma +a_l)
+\end{bmatrix} \begin{bmatrix}
+A\\
+B
+\end{bmatrix}=0
+\end{align*}
+Then for $X$ to have non-trivial solution, we must have 
+\begin{align*}
+e^{-\gamma l}(-\gamma +a_l)(\gamma -a_0)+e^{\gamma l}(\gamma +a_l)(\gamma +a_0)=0
+\end{align*}
+\end{mdframed}
+\begin{question}{}{}
+Consider the eigenvalue problem with Robin BCs at both ends: 
+\begin{align*}
+\begin{cases}  
+X''+\ld X=0\\
+X'(0)-a_0X(0)=0\\
+X'(l)+a_lX(l)=0
+\end{cases}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Show that $\ld =0$ is an eigenvalue if and only if $a_0+a_l=-a_0a_ll$. 
+  \item Find the eigenfunctions corresponding to the zero eigenvalue. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Suppose $\ld =0$ is an eigenvalue. Then $X''+\ld X=0$ implies $X=C+Dx$ where  $C,D$ are constants and they can not both be zero. The initial conditions can now be rewritten as 
+\begin{align*}
+\begin{bmatrix}
+  -a_0 & 1 \\
+  a_l & la_l+1
+\end{bmatrix}\begin{bmatrix}
+C\\
+D
+\end{bmatrix}= \begin{bmatrix}
+0\\
+0
+\end{bmatrix}
+\end{align*}
+Then because $C,D$ can not both be zero, we see that the left matrix $\begin{bmatrix}
+  -a_0 & 1 \\
+  a_l & la_l+1
+\end{bmatrix}$ must be singular. Computing the determinant, we now have $a_0+a_l=-a_0a_ll$.\\
+
+Suppose $a_0+a_l=-a_0a_ll$. One can see that $1+a_0x$ spans the eigenspace. 
+\end{proof}
+\begin{question}{}{}
+On the interval $0\leq x\leq 1$ of length one, consider the eigenvalue problem 
+\begin{align*}
+\begin{cases}
+  X''+\ld X =0\\
+  X'(0)+X(0)=0 \\
+  X(1)=0
+\end{cases}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Find an eigenfunction with eigenvalue zero. 
+  \item Find an equation for the positive eigenvalues $\ld =\beta ^2$. 
+  \item Show graphically from part (b) that there are an infinite number of positive eigenvalues. 
+  \item Is there a negative eigenvalue? 
+\end{enumerate}
+\end{question}
+\begin{proof}
+If eigenvalue  $\ld =0$ is zero, then $X$ must take the form $C+Dx$, where  $C,D$ are constants that can not both be zero. The initial condition can now be rewritten as $C+D=0$. In other words, $x-1$ spans the eigenspace. \\
+
+If eigenvalue is positive $\ld =\beta ^2$ where $\beta >0$, then $X$ must take the form 
+\begin{align*}
+X=A\cos (\beta x)+B \sin (\beta x)
+\end{align*}
+The initial condition can now be rewritten as 
+\begin{align*}
+\begin{cases}
+  \beta  B + A=0 \\
+  A \cos\beta +B \sin \beta =0
+\end{cases}\text{ or } \begin{bmatrix}
+1 & \beta  \\
+\cos \beta  & \sin \beta 
+\end{bmatrix}\begin{bmatrix}
+A\\
+B
+\end{bmatrix}=0
+\end{align*}
+Then for $\ld $ to be an eigenvalue, we must have 
+\begin{align*}
+\sin \beta = \beta  \cos \beta  
+\end{align*}
+\includegraphics[height=8cm,width=18cm]{pdef}
+If eigenvalue is negative $\ld =-\beta ^2$ where $\beta >0$, then $X$ must take the form 
+ \begin{align*}
+X=A \cosh (\beta x)+B \sinh (\beta x)
+\end{align*}
+The initial condition can now be rewritten as 
+\begin{align*}
+\begin{cases}
+  \beta  B +A =0 \\
+  A \cosh (\beta )+B \sinh (\beta )=0
+\end{cases} \text{ or }\begin{bmatrix}
+1& \beta  \\
+\cosh (\beta ) & \sinh (\beta )
+\end{bmatrix}\begin{bmatrix}
+A\\
+B
+\end{bmatrix}=0
+\end{align*}
+This implies 
+\begin{align*}
+\beta = \tanh (\beta )
+\end{align*}
+This equation have no positive solution $\beta $, so there are no negative eigenvalues. 
+\end{proof}
+\begin{question}{}{}
+Let $a_0<0,a_l>-a_0\text{ and }a_0+a_l<-a_0a_ll$. Solve the wave equations on finite interval with robin conditions 
+\begin{align*}
+\begin{cases}
+  u_{tt}=c^2u_{xx}\text{ for }0<x<l\text{ \textbf{(Homogeneous DE)} }\\
+  (u_x-a_0u)(0,t)=0\text{ and }(u_x+a_lu)(l,t)=0\text{ \textbf{(Robin BC)} }
+\end{cases}
+\end{align*}
+\end{question}
 \chapter{PDE HW}
 \section{PDE HW 1}
 \begin{theorem}
@@ -4381,7 +4772,7 @@ It then follows that $u_{\operatorname{even}}$ solve the non-homogeneous DE and 
 w(x,t)\triangleq u_{\operatorname{even}}(x,t)+xh(t)\text{ for }x\in (0,\infty)
 \end{align*}
 \end{proof}
-\section{PDE HW7}
+\section{PDE HW 7}
 \begin{question}{}{}
 Solve 
 \begin{align*}
@@ -4426,6 +4817,59 @@ u(x,t)= \begin{cases}
   x &\text{ if $x-ct>0$ }\\
   x+ (t-\frac{x}{c})^2 &\text{ if $x-ct<0$ }
 \end{cases}
+\end{align*}
+\end{proof}
+\section{PDE HW 8}
+\begin{question}{}{}
+Solve the Schrodinger equation 
+\begin{align*}
+\begin{cases}
+  u_t=iku_{xx}\text{ for }0<x<l\text{ \textbf{(Homogeneous DE)} } \\
+  u_x(0,t)=u(l,t)=0\text{ \textbf{(BC)} }
+\end{cases}
+\end{align*}
+for real $k \in (0,l)$. 
+\end{question}
+\begin{proof}
+Again we do the separation of the variables 
+\begin{align*}
+u\triangleq T(t)X(x)
+\end{align*}
+Some tedious efforts shows that $u$ is a solution of this original question as long as $X,T$ satisfy the following ODE 
+\begin{align*}
+\begin{cases}
+  X''(x)+\ld  X(x)=0\\
+  X'(0)=X(l)=0
+\end{cases}\text{ and }T'(t)+\ld  ik T(t)=0
+\end{align*}
+where $\ld \inc$ is arbitrary constant. The solution of the second ODE is obviously 
+\begin{align*}
+T(t)\triangleq Ce^{-\ld  ik t}
+\end{align*}
+where $C\inc$ is arbitrary constant. It remains to find what values can $\ld $ take so that $X$ has non-trivial solutions.  If $\ld =0$, then to satisfy the ordinary differential equation, the solution must take the forms $X=C+Dx$, where $C,D\inc$ are arbitrary constant. Plugging the initial conditions, we see that $C=D=0$. In other words, if  $\ld =0$, then $X$ can only be trivial. If $\ld \neq 0$, ODE of $X$ suggest that  $X$ must take the form
+\begin{align*}
+X\triangleq Ae^{\gamma x}+Be^{-\gamma x}
+\end{align*}
+where $\gamma \inc$ satisfy $\gamma ^2=-\ld $. Plug in $X'(0)=0$, we see 
+\begin{align*}
+0=\gamma (A-B)
+\end{align*}
+which implies $A=B$. Plug in $X(l)=0$, we see 
+\begin{align*}
+0=A e^{\gamma  l}+B e^{- \gamma l}=A(e^{\gamma l}+e^{-\gamma l})
+\end{align*}
+Then for $X$ to be non-trivial, we must have  
+ \begin{align*}
+e^{\gamma l}+e^{-\gamma l} =0
+\end{align*}
+By periodicity property of exponential function, we then can deduce
+\begin{align*}
+\gamma = \frac{ i \pi(2n+1)}{l}\text{ and }\ld = \frac{(2n+1)^2\pi ^2}{l^2}
+\end{align*}
+It then follows from $X=Ae^{\gamma x}+Be^{-\gamma x}$ that 
+\begin{align*}
+X&= (A+B) \cos \Big(\frac{\pi (2n +1) x}{l}\Big)+ (A-B)i\sin \Big(\frac{ \pi (2n+1)x}{l}\Big)\\
+&=(A+B) \cos \Big(\frac{ \pi (2n+1) x}{l}\Big)\hspace{0.5cm}(\because A=B)
 \end{align*}
 \end{proof}
 \chapter{Differential Geometry HW} 
