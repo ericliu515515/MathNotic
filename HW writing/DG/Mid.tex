@@ -1,0 +1,386 @@
+\documentclass{report}
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\date{}
+\begin{document}
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\chapter{DG mid}
+\begin{question}{}{}
+Let $S^1\triangleq \set{(x,y)\inr^2:x^2+y^2=1}$ be the unit circle in $\R^2$. Let  $\R P^1$ be the real projective line. As usual, denote by $[x,y]$ the homogeneous coordinate on $\R P^1$. Show that the map  $F:S^1\rightarrow \R P^1$ defined by 
+\begin{align*}
+F(x,y)\triangleq \begin{cases}
+  [1-y,x]& \text{ if $y\neq 1$ }\\
+  [x,1+y]& \text{ if $y\neq -1$ }
+\end{cases}
+\end{align*}
+established a diffeomorphism. 
+\end{question}
+\begin{proof}
+Consider the atlas $\set{(U_N,\phi_N),(U_S,\phi_S)}$ for $S^1$  where $\phi_N:U_N\triangleq S^1\setminus \set{(0,1)}\rightarrow \R$ is defined by 
+\begin{align*}
+\phi_N(x,y)\triangleq  \frac{x}{1-y}
+\end{align*}
+and $\phi_S:U_S\triangleq S^1\setminus \set{(0,-1)}$ is defined by 
+\begin{align*}
+\phi_S(x,y)\triangleq \frac{x}{1+y}
+\end{align*}
+Note that $\phi_N(U_N)=\phi_S(U_S)=\R$. Tedious algebra shows that 
+\begin{align*}
+  \phi_N^{-1}(t)= \frac{(2t,t^2-1)}{t^2+1}\text{ and }\phi_S^{-1}(t)= \frac{(2t,1-t^2)}{t^2+1}\text{ for all }t\inr
+\end{align*}
+Consider the atlas $\set{(V_1,\phi_1),(V_2,\phi_2)}$ for $\R P^1$ where  $\phi_1: V_1\triangleq \set{[x,y]\inr P^1:x\neq 0}\rightarrow \R$ is defined by 
+\begin{align*}
+\phi_1 ([x,y])\triangleq \frac{y}{x}
+\end{align*}
+and $\phi_2: V_2\triangleq \set{[x,y]\inr P^2:y\neq 0}\rightarrow \R$ is defined by 
+\begin{align*}
+\phi_2 ([x,y])\triangleq  \frac{x}{y}
+\end{align*}
+Note that $\phi_1(V_1)=\phi_2(V_2)=\R$.\\
+
+Compute 
+\begin{align*}
+F\circ \phi_N^{-1}(t)=F\Big(\frac{2t}{t^2+1},\frac{t^2-1}{t^2+1}\Big)=[2,2t]
+\end{align*}
+This shows that $V_1=F(U_N)$ and 
+\begin{align}
+\label{mi1}
+\phi_1\circ F\circ \phi_N^{-1}(t)=t
+\end{align}
+which is clearly smooth. Compute 
+\begin{align*}
+F\circ \phi_S^{-1}(t)=F\Big(\frac{2t}{t^2+1}, \frac{1-t^2}{t^2+1} \Big)= [2t,2]
+\end{align*}
+This shows that $V_2=F(U_S)$ and 
+\begin{align}
+\label{mi2}
+\phi_2\circ F\circ \phi_S^{-1}(t)=t
+\end{align}
+which is again smooth. We have shown $F:S^1\rightarrow \R P^1$ is smooth. Note that \myref{Equation}{mi1} and \myref{Equation}{mi2} shows that not only $F$ is one-to-one (because $F$ is one-to-one on both $U_N,U_S$), but $F$ is also onto, since $\R P^1=V_1\cup V_2=F(U_N)\cup F(U_S)=F(U_N\cup U_S)$. We have shown $F$ is a bijection; Thus, we can talk about its inverse  $F^{-1}:\R P^1\rightarrow S^1$. Again from \myref{Equation}{mi1} and \myref{Equation}{mi2}, we have 
+\begin{align*}
+\begin{cases}
+  \phi_N\circ F^{-1}\circ \phi_1^{-1}(t)=(\phi_1 \circ F\circ \phi_N^{-1})^{-1}(t)=t  \\
+ \phi_S \circ F^{-1}\circ \phi_2^{-1}(t)=(\phi_2\circ F \circ \phi_S^{-1})^{-1}(t)=t 
+\end{cases}
+\end{align*}
+for all $t\inr$. This shows that $F^{-1}:\R P^1\rightarrow S^1$ is also smooth. We have shown $F$ is indeed a diffeomorphism. 
+\end{proof}
+\begin{question}{}{}
+Suppose $M,N$ are both smooth manifold with  $M$ connected, and  $F:M\rightarrow N$ is a smooth map such that $F_{*,p}$ is null for all $p\in  M$. Show that $F$ is a constant map. 
+\end{question}
+\begin{proof}
+Fix $p_0\in M$. Let $q_0\triangleq F(p_0)$. Because $N$ is Hausdorff, for each $q \in N\setminus \set{q_0}$, we may select some neighborhood $V_q$ around $q$ such that $q_0\not\in V_q$. This implies that $\set{q_0}$ is closed in $N$.  Then because $F$ is continuous  (smooth), we know that $F^{-1}(q_0)$ is closed in $M$. \\
+
+Let $p\in F^{-1}(q_0)$, $(V,\psi)$ be a chart for $N$ centering  $q_0$, and $(U,\phi)$ be a chart for $M$ centering  $p$ such that  $F(U)\subseteq V$ and $\phi (U)=B_r(\textbf{0})$ where $B_r(\textbf{0})\subseteq \R^m$ is an open ball. Because $F_*$ is null on $U$, we see that
+\begin{align}
+\label{mi3}
+d(\psi \circ F\circ \phi^{-1})_{\textbf{x}}=0\text{ for all }\textbf{x}\in \phi (U)
+\end{align}
+For all $\textbf{x}\in \phi (U)$, we may define $\gamma :[0,1]\rightarrow \phi(U)$ by $\gamma (t)\triangleq t\textbf{x}$ joining $\textbf{0},\textbf{x}$. Using ordinary chain rule and \myref{Equation}{mi3}, we see that 
+\begin{align*}
+(\psi \circ F\circ \phi ^{-1} \circ \gamma )'(t)=0\text{ for all }t\in (0,1)
+\end{align*}
+This implies 
+\begin{align*}
+  (\psi^i \circ F \circ \phi^{-1}\circ \gamma )'(t)=0\text{ for all }t\in (0,1)\text{ and }i\in \set{1,\dots, n}
+\end{align*}
+We then can use MVT to deduce 
+\begin{align*}
+\psi^i \circ F(p)&= \psi^i \circ F \circ \phi^{-1}\circ \gamma (0)\\
+&=\psi^i \circ F \circ \phi ^{-1}\circ \gamma (1)\\
+&=\psi^i \circ F \circ \phi^{-1} (\textbf{x})\text{ for all }i \in \set{1,\dots ,n}
+\end{align*}
+We have shown for all $\textbf{x}\in \phi (U)$, 
+\begin{align*}
+\psi \circ F(\textbf{x})=\psi \circ F(p)
+\end{align*}
+In other words, $F$ sends all points in $U$  to $F(p)=q_0$. This implies $U\subseteq F^{-1}(q_0)$. It follows from $U$ being a neighborhood of $p$ and  $p$ is arbitrarily picked from  $F^{-1}(q_0)$ that $F^{-1}(q_0)$ is open. \\
+
+We have shown $F^{-1}(q_0)$ is clopen. It follows form $M$ is connected that  $F^{-1}(q_0)$ is either empty or $M$. Note that  $F^{-1}(q_0)$ is non-empty because $F(p_0)=q_0$. It follows that $F^{-1}(q_0)=M$, i.e., $F$ is a constant map.   
+\end{proof}
+\begin{question}{}{}
+Consider the trace function $f:SL(2,\R)\rightarrow \R,A\mapsto  \operatorname{tr}(A)$. What are the regular level sets of $f$?  
+\end{question}
+\begin{proof}
+  Note that when we refer to $SL(2,\R)$, we are using the unique topology and smooth structure that make  $SL(2,\R)$ an embedded submanifold of $M_2(\R)$. Consider 
+\begin{align*}
+U_a\triangleq \bset{\begin{bmatrix}
+    a & b \\
+    c & d
+\end{bmatrix}\in SL(2,\R):a\neq 0}  \text{ and }U_b\triangleq \bset{\begin{bmatrix}
+    a & b \\
+    c & d
+\end{bmatrix}\in SL(2,\R):b\neq 0}
+\end{align*}
+It is clear that $U_a\cup U_b=SL(2,\R)$. Consider the chart $\phi_a:U_a\rightarrow \R^3,\phi_n:U_b\rightarrow \R^3$ 
+\begin{align*}
+\phi_a \Big( \begin{bmatrix}
+    a & b \\
+    c & \frac{1+bc}{a}
+\end{bmatrix} \Big)\triangleq  \begin{bmatrix}
+a \\
+b\\
+c
+\end{bmatrix}\text{ and }\phi_b\Big(\begin{bmatrix}
+    a & b \\
+    \frac{ad-1}{b} & d
+\end{bmatrix} \Big)\triangleq \begin{bmatrix}
+a \\
+b \\
+d
+\end{bmatrix}
+\end{align*}
+Compute 
+\begin{align*}
+\frac{\partial f\circ \phi_a^{-1}}{\partial a}= 1- \frac{1+bc}{a^2}, \frac{\partial f\circ \phi_a^{-1}}{\partial b}= \frac{c}{a} , \frac{\partial f\circ \phi_a^{-1}}{\partial c}= \frac{b}{a}
+\end{align*}
+This implies there are only two critical points in $U_a$ 
+\begin{align*}
+\begin{bmatrix}
+  -1 & 0 \\
+  0 & -1
+\end{bmatrix}\text{ and }\begin{bmatrix}
+  1 & 0 \\
+  0 & 1
+\end{bmatrix}
+\end{align*}
+Compute 
+\begin{align*}
+  \frac{\partial f \circ \phi_b^{-1}}{\partial a}=1 
+\end{align*}
+This implies that $U_b$ contain no critical points. The regular level sets then are  $f^{-1}(r)$ where $r\neq \pm 2$.
+\end{proof}
+\begin{question}{}{}
+Consider the map $F:\R P^2\rightarrow \R^5$ given by 
+\begin{align*}
+F\Big([x,y,z] \Big)\triangleq \Big( \frac{yz}{\sqrt{3} }, \frac{zx}{\sqrt{3} },\frac{xy}{\sqrt{3} },\frac{x^2-y^2}{2 \sqrt{3} }, \frac{x^2+y^2-2z^2}{6} \Big)\text{ for }(x,y,z)\in S^2
+\end{align*}
+Shows that $F$ is an immersion. Is  $F$ an embedding? 
+\end{question}
+\begin{proof}
+Consider the canonical atlas $(U_i,\Phi_i)$ for $\R P^2$ 
+\begin{align*}
+  U_i&\triangleq \set{[\textbf{x}]\inr P^2: \textbf{x}^i\neq 0 }\\
+  \Phi_1([\textbf{x}])&\triangleq \Big(\frac{\textbf{x}^2}{\textbf{x}^1}, \frac{\textbf{x}^3}{\textbf{x}^1}\Big),\Phi_2 ([\textbf{x}])\triangleq  \Big( \frac{\textbf{x}^1}{\textbf{x}^2}, \frac{\textbf{x}^3}{\textbf{x}^2} \Big), \Phi_3([\textbf{x}])\triangleq  \Big( \frac{\textbf{x}^1}{\textbf{x}^3}, \frac{\textbf{x}^2}{\textbf{x}^3} \Big)
+\end{align*}
+Tedious algebra shows that $\Phi_i(U_i)=\R^2$ and  
+\begin{align*}
+\begin{cases}
+ \Phi_1^{-1} (a,b)= [1,a,b]\\
+ \Phi_2^{-1}(a,b)=[a,1,b]\\
+ \Phi_3^{-1} (a,b)= [a,b,1] 
+\end{cases}
+\end{align*}
+In the first chart  
+\begin{align*}
+F\circ \Phi_1^{-1}(a,b)= \frac{(\frac{ab}{\sqrt{3} }, \frac{b}{\sqrt{3} }, \frac{a}{\sqrt{3} }, \frac{1-a^2}{2 \sqrt{3} }, \frac{1+a^2-2b^2}{6})}{a^2+b^2+1}
+\end{align*}
+\begin{align*}
+  \frac{\partial F}{\partial a}&= \frac{(a^2+b^2+1)( \frac{b}{\sqrt{3}} , 0 , \frac{1}{\sqrt{3}}, \frac{-2a}{2\sqrt{3}} , \frac{2a}{6} )-2a(\frac{ab}{\sqrt{3} }, \frac{b}{\sqrt{3} }, \frac{a}{\sqrt{3} }, \frac{1-a^2}{2 \sqrt{3} }, \frac{1+a^2-2b^2}{6}) }{(a^2+b^2+1)^2} \\
+  &= \frac{(\frac{b^3-a^2b+b}{\sqrt{3} }, \frac{-2ab}{\sqrt{3} }, \frac{b^2-a^2+1}{\sqrt{3} }, \frac{-2ab^2-4a}{2\sqrt{3} }, \frac{6ab^2}{6} )}{(a^2+b^2+1)^2} \\
+  \frac{\partial F}{\partial b}&=  \frac{(a^2+b^2+1)(\frac{a}{\sqrt{3} }, \frac{1}{\sqrt{3} },0,0, \frac{-4b}{6})- 2b(\frac{ab}{\sqrt{3} }, \frac{b}{\sqrt{3} }, \frac{a}{\sqrt{3} }, \frac{1-a^2}{2 \sqrt{3} }, \frac{1+a^2-2b^2}{6})}{(a^2+b^2+1)^2} \\
+  &=\frac{( \frac{a^3-ab^2+a}{\sqrt{3} }, \frac{a^2-b^2+1}{\sqrt{3} },\frac{-2ab}{\sqrt{3} },\frac{2a^2b-2b}{2\sqrt{3} }, \frac{-6b-6a^2b}{6})}{(a^2+b^2+1)^2}
+\end{align*} 
+Compute
+\begin{align}
+\label{mi4}
+\operatorname{det}\Big(\begin{bmatrix}
+  \frac{\partial F^2}{\partial a} & \frac{\partial F^2}{\partial b}\\
+  \frac{\partial F^3}{\partial a} & \frac{\partial F^3}{\partial b}
+\end{bmatrix} \Big)&= \frac{4a^2b^2- (1+(a^2-b^2))(1-(a^2-b^2))}{3(a^2+b^2+1)^4}= \frac{(a^2+b^2)^2-1}{3 (a^2+b^2+1)^4}\\
+ \label{mi5}  \operatorname{det}\Big(
+\begin{bmatrix} 
+  \frac{\partial F^3}{\partial a} & \frac{\partial  F^3}{\partial b}\\
+  \frac{\partial F^4}{\partial a} & \frac{\partial F^4}{\partial b}
+\end{bmatrix} \Big)&=\frac{(b^2-a^2+1)2b(a^2-1)-2ab(2ab^2+4a)}{6(a^2+b^2+1)^4}= \frac{2b(a^2+1)(-a^2-b^2-1)}{6(a^2+b^2+1)^4}
+\end{align}
+\myref{Equation}{mi4} shows that $F$ is immersion on  $\R^2 \setminus S^1$ and  \myref{Equation}{mi5} shows that $F$ is immersion on $\R^2 \setminus \set{b=0}$. Trivial computation shows that $F$ is also an immersion on  $(1,0)\text{ and }(-1,0)$. It follows that $F$ is an immersion on  $U_1$.  \\
+
+
+In the second chart, 
+\begin{align*}
+F\circ \Phi_2^{-1}(a,b)= \frac{( \frac{b}{\sqrt{3} }, \frac{ab}{\sqrt{3} }, \frac{a}{\sqrt{3} }, \frac{a^2-1}{2\sqrt{3} }, \frac{a^2+1-2b^2}{6})}{a^2+b^2+1}
+\end{align*}
+\begin{align*}
+\frac{\partial F}{\partial a}&= \frac{(a^2+b^2+1)(0, \frac{b}{\sqrt{3} }, \frac{1}{\sqrt{3} }, \frac{2a}{2\sqrt{3} }, \frac{2a}{6})-2a( \frac{b}{\sqrt{3} }, \frac{ab}{\sqrt{3} }, \frac{a}{\sqrt{3} }, \frac{a^2-1}{2\sqrt{3} }, \frac{a^2+1-2b^2}{6})}{(a^2+b^2+1)^2} \\
+&=\frac{(\frac{-2ab}{\sqrt{3} }, \frac{b^3-a^2b+b}{\sqrt{3} }, \frac{b^2-a^2+1}{\sqrt{3} }, \frac{2ab^2+4a}{2\sqrt{3} }, \frac{6ab^2}{6})}{(a^2+b^2+1)^2} \\
+ \frac{\partial F}{\partial b}&= \frac{(a^2+b^2+1)(\frac{1}{\sqrt{3} },\frac{a}{\sqrt{3} },0,0,\frac{-4b}{6})- 2b( \frac{b}{\sqrt{3} }, \frac{ab}{\sqrt{3} }, \frac{a}{\sqrt{3} }, \frac{a^2-1}{2\sqrt{3} }, \frac{a^2+1-2b^2}{6})}{(a^2+b^2+1)^2} \\
+ &= \frac{(\frac{a^2-b^2+1}{\sqrt{3} }, \frac{a^3-ab^2+a}{\sqrt{3} }, \frac{-2ab}{\sqrt{3} }, \frac{2b-2a^2b}{2\sqrt{3} },\frac{-6b-6a^2b}{6})}{(a^2+b^2+1)^2}
+\end{align*}
+Compute 
+\begin{align}
+\label{mi6}
+\operatorname{det}\Big( \begin{bmatrix}
+    \frac{\partial F^1}{\partial a} & \frac{\partial F^1}{\partial b} \\
+    \frac{\partial F^3}{\partial a} & \frac{\partial F^3}{\partial b}
+\end{bmatrix}  \Big)&=  \frac{4a^2b^2-(1+(a^2-b^2))(1-(a^2-b^2))}{3(a^2+b^2+1)^4}= \frac{(a^2+b^2)^2-1}{3(a^2+b^2+1)^4} \\
+\label{mi7} 
+\operatorname{det}\Big(\begin{bmatrix}
+    \frac{\partial F^3}{\partial a}& \frac{\partial F^3}{\partial b}\\
+    \frac{\partial F^4}{\partial a}& \frac{\partial F^4}{\partial b}
+\end{bmatrix} \Big)&= \frac{(b^2-a^2+1)2b(1-a^2)+2ab(2ab^2+4a)}{6(a^2+b^2+1)^4}= \frac{2b(a^2+1)(a^2+b^2+1)}{6(a^2+b^2+1)^4}
+\end{align}
+\myref{Equation}{mi6} shows that $F$ is immersion on  $\R^2 \setminus S^1$ and  \myref{Equation}{mi7} shows that $F$ is immersion on $\R^2 \setminus \set{b=0}$. Trivial computation shows that $F$ is also an immersion on  $(1,0)\text{ and }(-1,0)$. It follows that $F$ is an immersion on  $U_2$.  \\ 
+
+In the third chart, 
+\begin{align*}
+F\circ \Phi_3^{-1}(a,b)= \frac{(\frac{b}{\sqrt{3} }, \frac{a}{\sqrt{3} }, \frac{ab}{\sqrt{3} }, \frac{a^2-b^2}{2\sqrt{3} }, \frac{a^2+b^2-2}{6 })}{a^2+b^2+1}
+\end{align*}
+\begin{align*}
+\frac{\partial F}{\partial a}&= \frac{(a^2+b^2+1)(0,\frac{1}{\sqrt{3} }, \frac{b}{\sqrt{3} }, \frac{2a}{2\sqrt{3} }, \frac{2a}{6 })-2a(\frac{b}{\sqrt{3} }, \frac{a}{\sqrt{3} }, \frac{ab}{\sqrt{3} }, \frac{a^2-b^2}{2\sqrt{3} }, \frac{a^2+b^2-2}{6 })}{(a^2+b^2+1)^2} \\
+&=\frac{(\frac{-2ab}{\sqrt{3} }, \frac{-a^2+b^2+1}{\sqrt{3} },\frac{b^3-a^2b+b}{\sqrt{3} },\frac{4ab^2+6a}{2\sqrt{3} }, \frac{6a}{6})}{(a^2+b^2+1)^2} \\
+\frac{\partial F}{\partial b}&= \frac{(a^2+b^2+1)(\frac{1}{\sqrt{3} },0, \frac{a}{\sqrt{3} },\frac{-2b}{2\sqrt{3} }, \frac{2b}{6})-2b(\frac{b}{\sqrt{3} }, \frac{a}{\sqrt{3} }, \frac{ab}{\sqrt{3} }, \frac{a^2-b^2}{2\sqrt{3} }, \frac{a^2+b^2-2}{6 }) }{(a^2+b^2+1)^2} \\
+&=\frac{(\frac{a^2-b^2+1}{\sqrt{3} }, \frac{-2ab}{\sqrt{3} }, \frac{a^3-ab^2+a}{\sqrt{3} }, \frac{-4a^2b-2b}{2\sqrt{3} }, \frac{6b}{6})}{(a^2+b^2+1)^2}
+\end{align*}
+Compute 
+\begin{align}
+\label{mi8}
+\operatorname{det}\Big( \begin{bmatrix}
+    \frac{\partial F^1}{\partial a} & \frac{\partial F^1}{\partial b} \\
+    \frac{\partial F^5}{\partial a} & \frac{\partial F^5}{\partial b}
+\end{bmatrix} \Big)&= \frac{-2ab^2 -a(a^2-b^2+1)}{\sqrt{3} (a^2+b^2+1)^4}= \frac{-a(a^2+b^2+1)}{\sqrt{3}(a^2+b^2+1)^4 } \\
+\label{mi9}
+\operatorname{det}\Big(\begin{bmatrix}
+    \frac{\partial F^2}{\partial a} & \frac{\partial F^2}{\partial  b}\\
+    \frac{\partial F^5}{\partial a} & \frac{\partial F^5}{\partial b}
+\end{bmatrix} \Big)&= \frac{b(-a^2+b^2+1)+2a^2b}{\sqrt{3}(a^2+b^2+1)^2 }= \frac{b(a^2+b^2+1)}{\sqrt{3}(a^2+b^2+1)^4 }
+\end{align} 
+\myref{Equation}{mi8} and \myref{Equation}{mi9} shows that $F$ is immersion on $\R^2$ except possibly at  $0$. Trivial computation shows that  $F$ is also an immersion on $0$. It follows that $F$ is an immersion on  $U_3$. In summary, we have shown $F$ is an immersion by showing  $F_*$ is injective on all of its charts $U_1,U_2,U_3$ that covers $\R P^2$.\\
+
+By \myref{Theorem}{RPnhom}, we see that $\R P^2 \simeq \P^2$. This implies $\R P^2$ is compact because  $\P^2$ is a quotient space of the compact $S^3$. It is clear from our above computation that $F:\R P^2\rightarrow \R^5$ is continuous. We presented a proof in \myref{Theorem}{ono} that $F:\R P^2\rightarrow \R^5$ is one-to-one. It follows from \myref{Theorem}{HbC} that $F$ is a topological embedding. Then because $F$ is a smooth immersion, we see that  $F$ is also a smooth embedding.  
+\end{proof}
+\begin{question}{}{}
+Consider the following vector field on  $\R^3$ 
+ \begin{align*}
+X= \frac{\partial }{\partial x} \text{ and }Y=x \frac{\partial }{\partial z}+\frac{\partial }{\partial y}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Find $[X,Y]$. 
+  \item Suppose $f\in C^{\infty}(\R^3)$ satisfy $Xf=Yf=0$ at all points. Prove that  $f$ is a constant function. 
+\end{enumerate} 
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+[X,Y]f&= XYf -YXf\\
+&=X(x \frac{\partial f}{\partial z}+ \frac{\partial f}{\partial y})- Y(\frac{\partial f}{\partial x})\\
+&=\frac{\partial f}{\partial z}+x \frac{\partial f}{\partial x\partial z}+ \frac{\partial f}{\partial x\partial y}-x \frac{\partial f}{\partial x\partial z}-  \frac{\partial f}{\partial x \partial y} \\
+&=\frac{\partial f}{\partial z}
+\end{align*}
+If $Xf=Yf=0$, then 
+ \begin{align*}
+\frac{\partial f}{\partial z}= XYf-YXf=X0-Y0=0\text{ and }\frac{\partial f}{\partial x}= Xf=0
+\end{align*}
+Therefore,
+\begin{align*}
+  \frac{\partial f}{\partial y}=Yf- x \frac{\partial f}{\partial z}=0
+\end{align*}
+We have shown  $\frac{\partial f}{\partial x}=\frac{\partial f}{\partial y}=\frac{\partial f}{\partial z}=0$ at all points. Then for every $p,q\inr^3$, if we let $\gamma :[0,1]\rightarrow \R^3$ be the line linearly joining $p,q$, we see that 
+\begin{align*}
+f(p)-f(q)&=f\circ \gamma (1)-f\circ \gamma (0)\\
+&=\int_0^1 (f\circ \gamma )'(t)dt \\
+&=\int_0^1 df_{\gamma (t)}(\gamma '(t))dt =0
+\end{align*}
+It follows from $p,q$ being arbitrary that  $f$ is constant. 
+\end{proof}
+\section{Appendix}
+\begin{mdframed}
+Alternatively, we can characterize $\R P^n$ by identifying the antipodal pints on $S^n\triangleq \set{\textbf{x}\inr^{n+1}:\abso{\textbf{x}}=1}$ as one point 
+\begin{align*}
+\textbf{x}\sim \textbf{y}\overset{\triangle}{\iff } \textbf{x}=\textbf{y}\text{ or }\textbf{x}=-\textbf{y}
+\end{align*}
+and let $\P^n\triangleq S^n\setminus \sim $ be the quotient space.
+\end{mdframed}
+\begin{theorem}
+\label{RPnhom}
+\textbf{(Equivalent Definitions of Real Projective Space)} 
+\begin{align*}
+\RP^n\text{ and }\P^n\text{ are homeomorphic }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $F:\P^n\rightarrow \RP^n$ by 
+\begin{align*}
+\set{\textbf{x},-\textbf{x}}\mapsto \set{\ld  \textbf{x}:\ld \inr^*}
+\end{align*}
+It is straightforward to check that $F$ is well-defined and bijective. Define $f:S^n \rightarrow \R P^n$ by 
+\begin{align*}
+f= \pi \circ \textbf{id}
+\end{align*}
+where $\textbf{id}:S^n \rightarrow \R^{n+1}\setminus \set{\textbf{0}}$ and $\pi:\R^{n+1}\setminus \set{\textbf{0}}\rightarrow \R P^n$ are continuous. Check that  
+\begin{align*}
+f=F\circ p
+\end{align*}
+where $p:S^n\rightarrow \P^n$ is the quotient mapping. It now follows from the \customref{quotient property}{universal property} that $F$ is continuous, and since $\P^n$ is compact and  $\R P^n$ is Hausdorff,  it also follows that  \customref{HbC}{$F$ is a homeomorphism between $\R P^n$ and  $\P^n$}. 
+\end{proof}
+\begin{theorem}
+\label{ono}
+\textbf{(One-to-one of the specified function)} The map $F:\R P^2\rightarrow \R^5$ in question 4 is one-to-one. 
+\end{theorem}
+\begin{proof}
+Let $(x_1,y_1,z_1),(x_2,y_2,z_2)\in S^2$. Suppose 
+\begin{align*}
+F(x_1,y_1,z_1)=F(x_2,y_2,z_2)
+\end{align*}
+Observe that 
+\begin{align*}
+6F^5(x_1,y_1,z_1)&= x_1^2+y_1^2-2z_1^2 \\
+&=x_1^2+y_1^2+z_1^2-3z_1^2=1-3z_1^2
+\end{align*}
+Similarly we have 
+\begin{align*}
+6F^5(x_2,y_2,z_2)=1-3z_2^2
+\end{align*}
+This give us 
+\begin{align*}
+z_1^2 = \frac{1-6F^5(x_1,y_1,z_1)}{3}= \frac{1-6F^5(x_2,y_2,z_2)}{3}=z_2^2
+\end{align*}
+Therefore, 
+\begin{align*}
+\abso{z_1}=\abso{z_2}
+\end{align*}
+If $z_1=z_2\neq 0$, we may deduce  
+\begin{align*}
+x_1&= \frac{\sqrt{3} F^2(x_1,y_1,z_1)}{z_1}= \frac{\sqrt{3}F^2(x_2,y_2,z_2) }{z_2}= x_2\\
+y_1&= \frac{\sqrt{3} F^1(x_1,y_1,z_1)}{z_1}= \frac{\sqrt{3}F^1(x_2,y_2,z_2) }{z_2}= y_2
+\end{align*}
+which implies $[x_1,y_1,z_1]=[x_2,y_2,z_2]$. If $z_1=-z_2\neq 0$, we may deduce 
+ \begin{align*}
+x_1&= \frac{\sqrt{3}F^2 (x_1,y_1,z_1)}{z_1}= \frac{\sqrt{3}F^2(x_2,y_2,z_2) }{-z_2}= -x_2 \\
+y_1&= \frac{\sqrt{3}F^1 (x_1,y_1,z_1)}{z_1}= \frac{\sqrt{3}F^2(x_2,y_2,z_2) }{-z_2}= -y_2
+\end{align*}
+which implies $[x_1,y_1,z_1]=[x_2,y_2,z_2]$. If $\abso{z_1}=0$, we may deduce  
+\begin{align*}
+ x_1^2-y_1^2=2\sqrt{3}F^4(x_1,y_1,z_1)= 2\sqrt{3}F^4(x_2,y_2,z_2) =x_2^2-y_2^2
+\end{align*}
+This with the fact  $x_1^2+y_1^2=1=x_2^2+y_2^2\hspace{0.5cm}(\because (x_1,y_1,z_1),(x_2,y_2,z_2)\in S^2\text{ and }z_1=z_2=0)$ let us deduce 
+ \begin{align*}
+x_1^2=x_2^2\text{ and }y_1^2=y_2^2
+\end{align*}
+In other words,  $\abso{x_1}=\abso{x_2}$ and $\abso{y_1}=\abso{y_2}$. Lastly, observe 
+\begin{align*}
+x_1y_1=\sqrt{3}F^3(x_1,y_1,z_1)=\sqrt{3}F^3(x_2,y_2,z_2)=x_2y_2
+\end{align*}
+This shows that $(x_1,y_1,z_1)=(x_1,y_1,0)=\pm (x_2,y_2,0)= \pm (x_2,y_2,z_2)$, which implies $[x_1,y_1,z_1]=[x_2,y_2,z_2]$. 
+\end{proof}
+\begin{theorem}
+\label{HbC}
+\textbf{(Homeomorphism between Compact Space and Hausdorff Space)} Suppose 
+\begin{enumerate}[label=(\alph*)]
+  \item $X$ is compact.  
+  \item $Y$ is Hausdorff.  
+  \item $f:X\rightarrow Y$ is a continuous bijective function. 
+\end{enumerate}
+Then 
+\begin{align*}
+f\text{ is a homeomorphism between }X\text{ and }Y
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because closed subset of compact set is compact and continuous function send compact set to compact set, we see for each closed $E\subseteq X$, $f(E)\subseteq Y$ is compact. The result then follows from \customref{Compact Subspace of Hausdorff Space is Closed}{$f(E)\subseteq Y$ being closed since $Y$ is Hausdorff}. 
+\end{proof}
+\end{document}
