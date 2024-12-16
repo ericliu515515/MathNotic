@@ -1437,34 +1437,308 @@ f(U)\text{ is open and }f\text{ is a homeomorphism between }U\text{ and }f(U)
 \textbf{(Invariance of Dimension)} If $U$ is a non-empty open subset of $\R^n$ and  $V$ is a non-empty subset of $\R^m$ homeomorphic to  $U$, then  $n=m$.
 \end{theorem}
 \chapter{Linear Algebra Done Outrageous}
+\section{Determinant}
+\begin{mdframed}
+Let $N\triangleq \set{1,\dots,n}$. Given a permutation $\sigma \in S_n$, we say $\sigma$ is \textbf{even} and write $\operatorname{sgn}(\sigma)=1$ if  
+\begin{align*}
+\set{(x,y)\in N^2:x<y\text{ and }\sigma(x)>\sigma (y)}\text{ has even numbers of element }
+\end{align*}
+and say $\sigma$ is \textbf{odd} and write $\operatorname{sgn}(\sigma)=-1$ if otherwise. Given some matrix $A\in M(n,R)$, we define its determinant by 
+\begin{align*}
+\operatorname{det}(A)\triangleq  \sum_{\sigma \in S_n} \operatorname{sgn}(\sigma) A_{\sigma (1),1}\cdots A_{\sigma (n),n} 
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{Det}
+\textbf{(Determinant)} Let $\set{v_1,\dots ,v_n}$ be a basis for $V$ and  $\set{\omega_1,\dots ,\omega_n}$ be its dual basis. We have
+\begin{align*}
+\operatorname{sgn}\sigma = \operatorname{det}\Big(\begin{bmatrix}
+    \omega_1 v_{\sigma (1)} & \cdots & \omega_1 v_{\sigma (n)}\\
+    \vdots & \ddots & \vdots \\
+    \omega_n v_{\sigma (1)} & \cdots & \omega_n v_{\sigma (n)}  
+\end{bmatrix} \Big) 
+\end{align*}
+\end{theorem}
 \section{Dual Space}
+\begin{mdframed}
+Given a vector space $V$ over  $\R$, the map  $\alpha :U\rightarrow (U^\vee)^{\vee}$ defined by 
+\begin{align*}
+\alpha (x)(\rho)\triangleq \rho (x)
+\end{align*}
+is a vector space isomorphism. Given a linear map $A:V\rightarrow W$, we may define its \textbf{dual map} $A^\vee:W^{\vee}\rightarrow V^{\vee}$ by 
+\begin{align*}
+A^{\vee}(\xi)(v)\triangleq \xi \circ A(v) 
+\end{align*}
+\end{mdframed}
+\section{Tensor Algebra}
 \begin{abstract}
-
+In this section, by the term \textbf{ring}, we mean a ring with a multiplication identity, and by the term \textbf{real algebra}, we mean a real vector space equipped with a vector multiplication compatible with both scalar multiplication and addition. In this definition, for a real algebra $A$ to be a ring, $A$ must be associative.  By the term \textbf{ideal}, we mean a 2-sided ideal. If we say a multi-linear map $M:V^k\rightarrow Z$ is \textbf{alternating}, we mean that $M$ maps $(v_1,\dots ,v_n)$ to $0$ if two arguments coincide.
 \end{abstract}
 \begin{mdframed}
-  Given two finite dimensional vector space $V,W$ over $\R$, we define their \textbf{tensor product $V\otimes W$} as the dual space of the space of bilinear forms on $V\times W$. Given $v\in V,w\in W$, we also define their tensor product $v \otimes w$ to be 
+Given a finite collection $(V_1,\dots ,V_n)$ of finite dimensional real vector space, by the term \textbf{tensor product of $V_1,\dots ,V_n$}, we mean a real vector space  usually denoted by $V_1 \otimes \cdots \otimes  V_n$ and a multilinear map  $\otimes  : V_1 \times \cdots \times V_n \rightarrow V_1 \otimes  \cdots \otimes  V_n$ satisfying the universal property: If $B:V_1 \times \cdots \times V_n\rightarrow Z$ is a multilinear map, then there exists a unique linear map $\beta :V_1\otimes \cdots \otimes  V_n$ such that 
 \begin{align*}
-v\otimes w(B)\triangleq B(v,w)  
-\end{align*}
-Immediately, we see that the tensor product of the vectors  $\otimes:V\times  W\rightarrow V \otimes W$ is bilinear. Moreover, if $(v_i),(w_j)$ are respectively basis of  $V,W$, then  $(v_i\otimes w_j)$ is also a basis of $V\otimes W$, in fact, the dual basis of the natural basis for the space of bilinear forms on $V\times W$. Also, we see that we have the \textbf{tensor product universal property} that if $B:V\times W\rightarrow U$ is a bilinear map, then there exists a unique linear map $\beta :V \otimes W\rightarrow U$ such that 
-\begin{align*}
-B(v,w)=\beta (v\otimes w)
+B(v_1,\dots ,v_n)=\beta (v_1\otimes \cdots \otimes  v_n)
 \end{align*}
 In other words, we have the commutative diagram
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJWXFx0aW1lcyBXIl0sWzAsMiwiViBcXG90aW1lcyBXIl0sWzIsMCwiVSJdLFswLDIsIkIiXSxbMSwyLCJcXGV4aXN0cyEgXFxiZXRhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMSwiKHYsdylcXG1hcHN0byB2XFxvdGltZXMgdyIsMl1d
 \[\begin{tikzcd}
-	{V\times W} && U \\
+	{V_1\times \cdots \times V_n} && U \\
 	\\
-	{V \otimes W}
-	\arrow["B", from=1-1, to=1-3]
-	\arrow["{(v,w)\mapsto v\otimes w}"', from=1-1, to=3-1]
+	{V_1 \otimes \cdots \otimes   V_n}
+	\arrow["B", from=1-1, to=1-3] 
+	\arrow["{\otimes }"', from=1-1, to=3-1]
 	\arrow["{\exists! \beta}"', dashed, from=3-1, to=1-3]
 \end{tikzcd}\]
+This approach indeed define a pair of vector space and multilinear map uniquely up to isomorphism, in the sense of \myref{Theorem}{UoT}, where we define the isomorphism between tensor product. 
 \end{mdframed}
+\begin{theorem}
+\label{UoT}
+\textbf{(Uniqueness of Tensor product)} Given a finite collection $(V_1,\dots, V_n)$ of finite dimensional real vector space, if $V_1 \otimes \cdots \otimes  V_n ,V_1\otimes  '\cdots \otimes  ' V_n$ both satisfy the universal property, then there exists an linear isomorphism $T:V_1 \otimes  \cdots \otimes  V_n \rightarrow V_1 \otimes' \cdots \otimes  ' V_n $ such that 
+\begin{align*}
+T(v_1\otimes  \cdots \otimes  v_n)=v_1 \otimes  '\cdots \otimes  'v_n
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $V_1 \otimes  \cdots \otimes  V_n$ satisfies the universal property, there exists a linear map $T:V_1 \otimes  \cdots \otimes  V_n\rightarrow V_1 \otimes'  \cdots \otimes' V_n  $ such that  
+\begin{align*}
+\otimes' =T \circ \otimes  
+\end{align*}
+It remains to show $T$ is bijective. Similarly, because $V_1 \otimes ' \cdots \otimes'  V_n$ satisfies the universal property, there exists a linear map $T':V_1 \otimes'  \cdots \otimes'  V_n\rightarrow V_1 \otimes  \cdots \otimes V_n  $ such that 
+\begin{align*}
+\otimes = T' \circ \otimes  '
+\end{align*}
+Composing the two equations, we have 
+\begin{align*}
+\otimes '=T\circ T' \circ \otimes  '
+\end{align*}
+It then follows from uniqueness of the induced linear map in universal property that $T \circ T'=\textbf{id}:V_1 \otimes  ' \cdots \otimes  'V_n \rightarrow V_1 \otimes  ' \cdots \otimes  'V_n$. This implies $T$ is indeed bijective. 
+\end{proof}
 \begin{mdframed}
-  Given some vector space $V / \F$, we define its \textbf{dual space $V^*$} to be $V^*\triangleq L(V,\F)$ equipped with pointwise addition and $\F$-multiplication. If $V$ is finite dimensional and $(e_i)$ is a basis of $V$, we can induce a \textbf{dual basis} $(\alpha_i)$ by $\alpha_ie_j\triangleq \delta^i_j$. 
+We have shown that tensor products is unique up to isomorphism. A construction further shows that if $B_i$ are bases for $V_i$, then 
+ \begin{align*}
+\set{v_1 \otimes  \cdots \otimes v_n: v_i \in B_i\text{ for all }1\leq i\leq n  }\text{ form a basis for }V_1 \otimes  \cdots \otimes  V_n
+\end{align*}
 \end{mdframed}
+\begin{theorem}
+\textbf{(Associativity of the Tensor product)} Given three finite-dimensional real vector spaces $X,Y,Z$,  there exists a unique linear isomorphism $F:X\otimes  Y\otimes  Z\rightarrow (X\otimes  Y)\otimes  Z$ that satisfy 
+\begin{align*}
+F(x\otimes  y \otimes  z)=(x\otimes  y)\otimes  z
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $f:X\times Y \times Z\rightarrow (X\otimes  Y)\otimes Z$ by 
+\begin{align*}
+f(x,y,z)\triangleq (x \otimes  y)\otimes z
+\end{align*}
+It follows from the universal property that there exists a unique linear map $F:X\otimes  Y\otimes Z\rightarrow (X \otimes  Y)\otimes  Z $ such that 
+\begin{align*}
+F(x\otimes  y\otimes  z)=f(x,y,z)= (x \otimes y) \otimes z 
+\end{align*}
+It remains to show \vi{$F$ is bijective}.  For all $z\in Z$, define $h_z:X\times Y\rightarrow X \otimes  Y\otimes Z$ by 
+\begin{align*}
+h_z(x,y)\triangleq x\otimes  y\otimes  z
+\end{align*}
+If follows from the universal property that there exists a unique linear map $H_z:X\otimes  Y \rightarrow X \otimes  Y\otimes  Z$ such that 
+\begin{align*}
+H_z(x \otimes  y)=h_z(x,y)=x \otimes  y \otimes  z
+\end{align*}
+Define $h:(X\otimes  Y)\times Z\rightarrow X\otimes Y \otimes Z$ by 
+\begin{align*}
+h(v,z)\triangleq H_z(v)
+\end{align*}
+It is clear that $h$ in linear in  $(X\otimes  Y)$. We now show $h$ is linear in  $Z$, that is 
+ \begin{align*}
+   \olive{H_{c_1z_1+z_2}=c_1H_{z_1}+H_{z_2}}
+\end{align*}
+By definition, 
+\begin{align*}
+  (c_1H_{z_1}+H_{z_2})(x\otimes  y)&=c_1 x\otimes  y\otimes  z_1+ x\otimes  y \otimes  z_2\\
+  &= x\otimes  y\otimes  (c_1z_1+z_2)=h_{c_1z_1+z_2}(x,y)
+\end{align*}
+It then follows from the uniqueness part of the universal property that $H_{c_1z_1+z_2}=c_1H_{z_1}+H_{z_2}$. $\odone$  \\
 
+
+We have shown $h$ is indeed bilinear. It follows from the universal property that there exists a unique linear map $H:(X\otimes  Y)\otimes  Z\rightarrow X\otimes Y\otimes Z$ such that 
+\begin{align*}
+H((x\otimes y)\otimes z)=h(x\otimes  y,z)=H_z(x\otimes  y)=x\otimes  y\otimes  z
+\end{align*}
+Let $\otimes:X\times Y\times Z\rightarrow X\otimes  Y\otimes  Z$ denotes the tensor product, we now have 
+\begin{align*}
+\otimes = H \circ F \circ \otimes 
+\end{align*}
+It then follows from universal property that $H \circ F=\textbf{id}:X\otimes  Y\otimes  Z\rightarrow X\otimes  Y\otimes  Z$. This implies $F$ is indeed bijective. $\vdone$
+\end{proof}
+\begin{mdframed}
+Let $V$ be a finite-dimensional real vector space. By its  \textbf{tensor algebra}, we mean any real associative algebra $T(V)$ with an injective linear map $\diota:V\rightarrow T(V)$ that satisfies the universal property: If $A$ is a real associative algebra and $f:V\rightarrow A$ is a linear map, then there exists a unique algebra homomorphism $F:T(V)\rightarrow A$ such that the diagram  
+% https://q.uiver.app/#q=WzAsMyxbMiwwLCJUKFYpIl0sWzIsMiwiQSJdLFswLDAsIlYiXSxbMiwwLCJcXGRvdHtcXGlvdGF9Il0sWzIsMSwiZiIsMl0sWzAsMSwiRiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	V && {T(V)} \\
+	\\
+	&& A
+	\arrow["{\dot{\iota}}", from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-3]
+	\arrow["F", dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+commutes. The proof that such definition is indeed unique up to isomorphism is similar to that of \myref{Theorem}{UoT} and thus omitted. We now give the most useful construction. \\
+
+Let $V$ be finite-dimensional real vector space. We use the notation 
+ \begin{align*}
+T^n(V)\triangleq  \overbrace{V \otimes  \cdots \otimes  V}^{n\text{ copies }}
+\end{align*}
+and call $T^{n}(V)$ the \textbf{$n$-th tensor power of $V$} or the \textbf{$n$-fold tensor product of  $V$}. Define  
+\begin{align*}
+  T(V)&\triangleq  \bigoplus_{n=0}^{\infty} T^n(V)\\
+  &=\R \oplus V \oplus (V\otimes V) \oplus (V\otimes V \otimes V)  \oplus \cdots 
+\end{align*}
+and define for all $f,g \in T(V)$ the multiplication 
+\begin{align*}
+  (fg)(n)\triangleq   \sum_{k=0}^{n}f(k)g(n-k)
+\end{align*}
+where 
+\begin{align*}
+  &\Big(\sum_{I} a_I v_{I(1)}\otimes \cdots \otimes  v_{I(k)}\Big)\Big(\sum_J b_J v_{J(1)}\otimes  \cdots \otimes  v_{J(l)}\Big)\\
+  &\triangleq \sum_{I,J} a_I b_J v_{I(1)}\otimes \cdots \otimes  v_{I(k)}\otimes  v_{J(1)}\otimes  \cdots \otimes  v_{J(l)}
+\end{align*}
+where $\set{v_1,\dots ,v_m}$ is some basis for $V$, $I$ run through the set of function that maps $\set{1,\dots ,k}$ into $\set{1,\dots ,m}$ and $J$ run through the set of function that maps  $\set{1,\dots ,l}$ into $\set{1,\dots ,m}$. For example, given two elements  
+\begin{align*}
+  (5,0,v_1\otimes v_2,0,0,\dots )\text{ and }(7,v_3,0,0,\dots)
+\end{align*}
+of $T(V)$, their product is defined to be 
+\begin{align*}
+  (35,5v_3,7v_1\otimes v_2, v_1 \otimes v_2 \otimes v_3 ,0,0,\dots)
+\end{align*}
+Tedious effort shows that our multiplication is consistent with abuse of notation in the sense that if $f,g\in T(V)$ is defined by  
+\begin{align*}
+ f(k)\triangleq \begin{cases}
+   w_1\otimes \cdots \otimes  w_n & \text{ if $k=n$ }\\
+   0& \text{ if otherwise }
+ \end{cases} \text{ and } g(k)\triangleq \begin{cases}
+   w_{n+1}\otimes  \cdots \otimes  w_{n+l}& \text{ if $k=l$ }\\
+   0& \text{ if otherwise }
+ \end{cases} 
+\end{align*}
+then 
+\begin{align*}
+  (fg)(k)=\begin{cases}
+    w_1\otimes  \cdots \otimes  w_{n+l}& \text{ if $n=k+l$ }\\
+    0& \text{ if otherwise }
+  \end{cases}
+\end{align*}
+
+
+does form an associative algebra with multiplication identity $1\inr$. Thus, $T(V)$ is in fact a ring. Let $I(V)\subseteq T(V)$ be the ideal generated by $\set{v\otimes v:v \in V}$. By definition, ideal $I(V)$ is a subgroup of $T(V)$. To see that $I(V)$ is closed under scalar multiplication, observe that for all $t\inr\text{ and }x\in T(V)$, the scalar multiplication $tx$ is identical to $tx$ where $t$ is treated as an element of $T(V)$, so it follows from definition of ideal that $I(V)$ is also a vector subspace of $T(V)$. Let $\set{v_1,\dots ,v_n}$ be a basis for $V$, and let  $S$ be the set of function that maps  $\set{1,\dots ,n}$ into $\set{1,\dots ,k}$. We know for a fact that 
+\begin{align*}
+T^k(V) = \operatorname{span} \set{v_{I(1)}\otimes  \cdots \otimes  v_{I(k)}: I \in S}
+\end{align*}
+If we define $I^k(V)\triangleq I(V)\cap T^k(V)$, one then have 
+\begin{align}
+\label{ikv} I^k(V)=\operatorname{span}\set{v_{I(1)}\otimes \cdots \otimes  v_{I(k)}:I(j)=I(j+1)\text{ for some }j}
+\end{align}
+This is proved by showing $I^0(V)\oplus  I^1(V)\oplus  I^2(V)\oplus  \cdots $ is indeed the smallest ideal containing $\set{v\otimes  v:v \in V}$. Define an equivalence class on $T(V)$ by 
+\begin{align*}
+x\sim  y\overset{\triangle}{\iff }x-y \in I (V)
+\end{align*}
+Because ideal form a subgroup, we see that our definition indeed give an equivalence relation. We then can define on the set of equivalence class $T(V)\setminus I(V)$ addition, scalar multiplication and vector multiplication 
+\begin{align*}
+[x]+[y]\triangleq [x+y] \text{ and }[x]\wedge [y]\triangleq [xy]\text{ and }c[x]\triangleq [cx]
+\end{align*}
+which is well defined and form an algebra as one can check. We call this algebra $T(V)\setminus I(V)$ the \textbf{exterior algebra} $\wedge ^* (V)$. Note that if we refer to $v,w \in T^k(V)$ as elements of $\wedge ^*(V) $, we mean $[v],[w]$. Immediately, we see that the wedge product is \textbf{alternating} in the sense that if $v\in V$, then 
+\begin{align*}
+v\wedge v=0 
+\end{align*}
+and is \textbf{anti-symmetric} in the sense that if $v,w \in V$, then 
+\begin{align*}
+v\wedge w= -w\wedge  v
+\end{align*}
+We use the notation 
+\begin{align*}
+\wedge^k(V) \triangleq \bset{ [x] \in \wedge ^*(V): x \in \overbrace{V \otimes  \cdots \otimes  V}^{k\text{ copies }}} 
+\end{align*}
+Immediately from \myref{Equation}{ikv}, we see that $\wedge ^k (V) $ is the vector space 
+\begin{align*}
+\operatorname{span}\set{v_{I(1)}\wedge  \cdots \wedge  v_{I(k)}:I \in S  }
+\end{align*}
+where $\set{v_1,\dots ,v_n}$ is a basis for $V$ and $S$ is the set of function that maps  $\set{1,\dots ,k}$ into $\set{1,\dots ,n}$. If we define the vector subspace $I^k(V)\triangleq T^k(V)\cap I(V)$, there exists a natural vector space isomorphism
+\begin{align*}
+\wedge  ^k(V)\underset{\text{ v.s. }}{\cong }T^k(V)\setminus I^k(V);[x]\leftrightarrow [x]
+\end{align*}
+where $T^k(V)\setminus I^k(V)$ is the quotient vector space.
+\end{mdframed}
+\begin{theorem}
+\label{Universal mapping property for alternating $k$-linear map}
+\textbf{(Universal mapping property for alternating $k$-linear map)} For any vector space $Z$ over  $\R$ and any alternating  $k$-linear map  $f:V^k\rightarrow Z$, there is a unique linear map $F:\bigwedge ^k V\rightarrow Z $ such that the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGJpZ3dlZGdlXmsgViAiXSxbMCwyLCJWXmsiXSxbMiwyLCJaIl0sWzEsMCwiXFx3ZWRnZSAiXSxbMCwyLCJcXHRpbGRle2Z9Il0sWzEsMiwiZiIsMl1d
+\[\begin{tikzcd}
+	{\bigwedge^k V } \\
+	\\
+	{V^k} && Z
+	\arrow["F", from=1-1, to=3-3]
+	\arrow["{\wedge }", from=3-1, to=1-1]
+	\arrow["f"', from=3-1, to=3-3]
+\end{tikzcd}\]
+commute, i.e., 
+\begin{align*}
+F(v_1\wedge \cdots \wedge  v_k  )=f(v_1,\dots ,v_k) \text{ for all }v_1,\dots,v_k \in V
+\end{align*}
+\end{theorem}
+\begin{proof}
+By \customref{Universal Property of Tensor Product}{universal property of tensor product}, there exists unique linear map $h:T^k(V)\rightarrow Z$ such that 
+ \begin{align*}
+h(v_1 \otimes  \cdots \otimes  v_k)=f(v_1,\cdots ,v_k)
+\end{align*}
+Because $f$ is alternating, we see from the characterization of $I^k(V)$ given in \myref{Equation}{ikv} that $h$ vanishes on $I^k(V)$. We then can induce a linear map 
+\begin{align*}
+F:\wedge^k (V)\cong \frac{T^k(V)}{I^k(V)} \rightarrow Z 
+\end{align*}
+by $F([x])\triangleq h(x)$. This then give us the desired  
+\begin{align*}
+F(v_1 \wedge  \cdots \wedge  v_k )=h(v_1\otimes  \cdots \otimes  v_k)=f(v_1,\dots ,v_k)
+\end{align*}
+Note that $F$ is unique because all such linear map take the same values on  $\set{v_{I(1)}\wedge  \cdots \wedge  v_{I(k)}:I \in S }$ which spans $\wedge ^k(V) $. 
+\end{proof}
+\begin{mdframed}
+Let $\set{w_1,\dots ,w_l}\subseteq V$ be linear independent. An immediate consequence of the \customref{Universal mapping property for alternating $k$-linear map}{universal mapping property for alternating $k$-linear map} is that one may define alternating multilinear $f:V^l\rightarrow \R$ by 
+\begin{align*}
+B(v_1,\dots ,v_l)\triangleq \operatorname{det}(M)\text{ where }v_i= \sum_j M_{i,j}w_j
+\end{align*}
+and see that $F:\wedge^l (V)\rightarrow \R $ take $w_1\wedge  \cdots \wedge  w_l$ to $1$. This implies that  
+\begin{align*}
+w_1\wedge  \cdots \wedge  w_l \neq 0  
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{ASo}
+\textbf{(Anti-symmetry of wedge product)} If $\alpha \in \wedge ^k (V),\beta \in \wedge ^l (V)  $, then $\alpha \wedge  \beta =(-1)^{kl}(\beta  \wedge  \alpha  )  $. 
+\end{theorem}
+\begin{proof}
+Let $v_1,\dots ,v_n$ be a basis of $V$. Let $S_k$ be the space of function that maps $\set{1,\dots ,k}$into  $\set{1,\dots,n}$ , $S_l$ be the space of function that maps  $\set{1,\dots ,l}$ into  $\set{1,\dots ,n}$. We may then write 
+\begin{align*}
+\alpha = \sum_{I \in S_k} a_I (v_{I(1)}\wedge \cdots \wedge  v_{I(k)})\text{ and }\beta =\sum_{J \in S_l} b_J (v_{J(1)}\wedge \cdots \wedge v_{J(l)}  )
+\end{align*}
+and compute 
+\begin{align*}
+\alpha \wedge \beta &= \sum_{I \in S_k,J\in S_l}a_Ib_J (v_{I(1)}\wedge \cdots \wedge v_{I(k)} \wedge  v_{J(1)} \wedge \cdots  \wedge v_{J(l)}   )\\
+&=   \sum_{I \in S_k,J\in S_l}(-1)a_Ib_J (v_{I(1)}\wedge \cdots \wedge   v_{J(1)} \wedge  v_{I(k)}\cdots\wedge \cdots  \wedge v_{J(l)}   )   \\
+&=  \sum_{I \in S_k,J\in S_l}(-1)^ka_Ib_J (v_{J(1)}\wedge v_{I(1)}\wedge  \cdots \wedge    v_{I(k)} \wedge  v_{J(2)} \wedge \cdots  \wedge v_{J(l)}   )   \\
+  &=\sum_{I \in S_k,J\in S_l}(-1)^{kl}a_Ib_J (v_{J(1)}\wedge \cdots \wedge  v_{J(l)}\wedge v_{I(1)} \wedge   \cdots \wedge   v_{I(k)})= (-1)^{kl}\beta \wedge  \alpha  
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Following from \myref{Theorem}{ASo}, \myref{Equation}{ikv} and tedious effort, one can see that if $\set{v_1,\dots ,v_n}$ is a basis for $V$, then 
+ \begin{align*}
+\set{v_{i_1}\wedge  \cdots \wedge  v_{i_k}:1\leq i_1< \cdots < i_k\leq n  }
+\end{align*}
+form a basis for $\wedge^k(V)$. If $A:V\rightarrow W$ is a linear map, we define linear map $\wedge^k A:\wedge^k (V)\rightarrow \wedge^k (W) $ by linear extension of 
+\begin{align*}
+\wedge^k(A)(v_1\wedge  \cdots \wedge   v_n)=Av_1 \wedge  \cdots \wedge  Av_n  
+\end{align*}
+Note that if  $A:V\rightarrow V$ and $\operatorname{dim}(V)=n$, then $\wedge ^nA: \wedge^n (V)\rightarrow \wedge ^n(V)$ is given by the determinant since given basis  $\set{v_1,\dots ,v_n}$, we have 
+\begin{align*}
+\wedge^nA(v_1 \wedge  \cdots \wedge  v_n   )&=\Big(\sum_j A_{j,1}v_j\Big)\wedge  \cdots \wedge \Big(\sum_j A_{j,n}v_j\Big)    \\
+&=\sum_{\sigma \in S_n} A_{\sigma (1),1}\cdots A_{\sigma (n),n}v_{\sigma (1)}\wedge  \cdots \wedge  v_{\sigma(n)}   \\
+&=\sum_{\sigma \in S_n}\operatorname{sgn}(\sigma)A_{\sigma(1),1}\cdots A_{\sigma(n),n}v_1\wedge  \cdots \wedge  v_n
+\end{align*}
+\end{mdframed}
 \section{Norm and Inner Product}
 \begin{mdframed}
 This section contains
@@ -3190,7 +3464,7 @@ The convergent part follows from comparison to an appropriate geometric series a
 \end{align*}
 \end{theorem}
 \begin{proof}
-Fix $\epsilon $ and WOLG suppose $\liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}>0$. We prove 
+Fix $\epsilon $ and WLOG suppose $\liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}>0$. We prove 
 \begin{align*}
   \vi{\liminf_{n\to\infty} \sqrt[n]{\abso{z_n}}\geq \liminf_{n\to\infty} \abso{\frac{z_{n+1}}{z_n}}-\epsilon  }
 \end{align*}
@@ -3751,6 +4025,124 @@ Similarly, one should check
 \label{consig}
 Now, given a family $S$ of subsets of $X$, there in fact exists an explicit expression of $\sigma (S)$, albeit infamous. Let $\omega_1$ be the smallest uncountable ordinal, and let $\mathbf{\Sigma}^0_1\triangleq S$. For each ordinal $\alpha <\omega_1$, we recursively define $\mathbf{\Pi}^0_\alpha \triangleq  \set{X\setminus A: A \in \mathbf{\Sigma}^0_\alpha}$ and $\mathbf{\Sigma}^0_\alpha \triangleq \set{\bigcup_{n\inn}A_n: (A_n)\subseteq \bigcup_{1\leq \gamma <\alpha }\mathbf{\Pi}^0_\gamma }$. One can use transfinite induction to check that $\sigma (S)= \bigcup_{\alpha <\omega_1}\mathbf{\Sigma}^0_\alpha$.
 \end{mdframed}
+\section{Basic Property of Measurable Functions}
+\begin{abstract}
+In this section, we discuss the usage of the term 'measurable function', and prove some basic properties for later usage. 
+\end{abstract}
+\begin{mdframed}
+  In the most general setting, if we are given a function $f:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ between two measurable space, then we say the $f$ is a \textbf{measurable function} if every pre-image of measurable set is again measurable. Immediately, one can check that in this setting, the composition of two measurable functions must be measurable.
+\end{mdframed}
+\begin{theorem}
+\label{EDm}
+\textbf{(Criteria of function measurability)} If a function $f:(X,\Sigma_X)\rightarrow (Y,\sigma (T))$ satisfy 
+\begin{align*}
+f^{-1}(E)\in \Sigma_X\text{ for all $E \in T$ }
+\end{align*}
+then 
+\begin{align*}
+f\text{ is measurable }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define 
+\begin{align*}
+\mathcal{A}\triangleq \set{E \subseteq Y: f^{-1}(E)\in \Sigma_X}
+\end{align*}
+Check that $\mathcal{A}$ is a $\sigma$-algebra on $Y$. By premise, $T \subseteq \mathcal{A}$. It then follows from definition that $\sigma (T)\subseteq \mathcal{A}$. This conclude that $f$ is  $(\Sigma_X, \sigma(T))$-measurable. 
+\end{proof}
+\begin{mdframed}
+When $Y$ is a topological space, if there are no explicit specification of $\Sigma_Y$, as a consensus, we take $\Sigma_Y$ to be the Borel sigma algebra. This default consensus have good property if one take account of the Borel hierarchy. If $F$ is some Borel measurable subspace of $Y$, then the Borel sigma algebra $\Sigma_F$ on $F$ is contained by the Borel sigma algebra $\Sigma_Y$ on $Y$ by a proof of transfinite induction on the Borel hierarchy of  $\Sigma_F$. This implies that if $f:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ is measurable, and $f$ only take value in $F$, then $f$ is still measurable when considered as a function $f:(X,\Sigma_X)\rightarrow (F,\Sigma_F)$ between $X$ and  $F$. \\
+
+If $Y=[-\infty,\infty]$, because 
+\begin{align*}
+  \set{f\geq  a}= \bigcup_n \set{f > a-\frac{1}{n}}
+\end{align*}
+and open sets in $[-\infty,\infty]$ can be expressed as disjoint union of countable collection of open interval, with \myref{Theorem}{EDm} we can equivalently define $f:X\rightarrow Y$ to be  measurable if and only if 
+\begin{align*}
+\set{f>a}\in \Sigma_X \text{ for all }a\inr
+\end{align*}
+Beside this important simplification of the definition of function measurability, we also see from \myref{Theorem}{EDm} that if $X,Y$ are both Borel, then a continuous function  $f:X\rightarrow Y$ must also be a measurable function. These proposition give the following Lemma, which later prove \myref{Theorem}{Btsa}, by replacing the codomain $Y$ with $\R$ or $\C$. 
+
+
+
+
+
+
+\end{mdframed}
+\begin{lemma}
+\label{CL}
+\textbf{(Computational Lemma)} Given a second-countable topological space $Y$, two functions $u,v:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ and a continuous function $\Phi:Y^2 \rightarrow Y$, the function $h:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ defined by
+\begin{align*}
+h(x)\triangleq \Phi(u(x),v(x))
+\end{align*}
+is measurable. 
+\end{lemma}
+\begin{proof}
+  Define $f:(X,\Sigma_X)\rightarrow (Y^2,\Sigma_{Y^2})$ by 
+\begin{align*}
+f(x)\triangleq \big(u(x),v(x) \big)
+\end{align*}
+Because $\Phi$ is continuous and $h$ is the composition of $f$ and $\Phi$, we only have to prove $f$ is measurable. Let $\mathcal{B}$ be a countable basis of $Y$. It is clear that $\Sigma_{Y^2}=\sigma (\mathcal{B}^2)$. Now if we fix $I_1\times I_2 \in \mathcal{B}^2$, the proof follows from \myref{Theorem}{EDm} and noting 
+\begin{align*}
+f^{-1}(I_1\times I_2)=u^{-1}(I_1)\cap v^{-1}(I_2) \in \Sigma_X \end{align*}
+\end{proof}
+\begin{theorem}
+\label{Btsa}
+\textbf{(Arithmetic properties of measurable real and complex valued function)} Given two real-valued function $u,v:(X,\Sigma_X)\rightarrow \R$
+\begin{enumerate}[label=(\alph*)]
+  \item  $u+iv:X\rightarrow \C$ is measurable if and only if $u,v$ are measurable.
+  \item If  $f,g:X\rightarrow \R\text{ or }\C$ are measurable, so are $f+g,fg\text{ and }\abso{f}$.
+  \item If $f:X\rightarrow \R\text{ or }\C$ is measurable and $g:X\rightarrow \R\text{ or }\C$ isn't, then $f+g$ is not measurable.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(a) and (b) follows from \myref{Lemma}{CL}, noting $u=\operatorname{Re}(u+iv),v=\operatorname{Im}(u+iv)$ and the fact $\R,\C$ are topological fields. It is clear that the set of all function from  $X$ to $\R\text{ or }\C$ form a group under addition. (b) shows that the set of measurable functions from a subgroup, thus giving (c).
+\end{proof}
+\begin{theorem}
+\label{Slm}
+\textbf{(Superior limit of measurable $f_n:X\rightarrow [-\infty,\infty]$ is measurable)} Given a sequence $f_n:X\rightarrow [-\infty, \infty]$ of measurable functions
+\begin{align*}
+g\triangleq \sup f_n \text{ and }f\triangleq \limsup_{n\to\infty} f_n\text{ are both measurable }
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proofs follows from noting 
+\begin{align*}
+\set{g>a}=\bigcup_n \set{f_n>a}\text{ for all $a\inr$ }
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Immediately, following from \myref{Theorem}{Slm}, we see that if $f$ is a pointwise limit of some sequence of measurable function $(f_n)$, then $f$ is also a measurable function. In addition to the pointwise limit, if $f:X\rightarrow [-\infty,\infty]$ is measurable, then both its positive and negative parts  $f^+,f^-:X\rightarrow [0,\infty]$ 
+\begin{align*}
+f^+(x)\triangleq \max \set{f(x),0}\text{ and }f^-(x)\triangleq  - \min  \set{f(x),0}
+\end{align*}
+are measurable, since 
+\begin{align*}
+f^+=\limsup_{n\to\infty} h_n\text{ and }f^-=-\liminf_{n\to\infty} h_n
+\end{align*}
+where $h_n:X\rightarrow [-\infty,\infty]$ is defined by 
+\begin{align*}
+h_n(x)\triangleq \begin{cases}
+  f(x)& \text{ if $n$ is odd }\\
+  0& \text{ if $n$ is even }
+\end{cases}
+\end{align*}
+In view of integration, perhaps the most important property of measurable function is that we can approximate them using measurable simple functions. By the term \textbf{simple function}, we merely mean function whose range is a set of finite elements. 
+\end{mdframed}
+\begin{theorem}
+\label{Approximation of nonnegative function by increasing simple function}
+\textbf{(Approximation of nonnegative function by increasing simple function)} Given $f:X\rightarrow [0,\infty]$, there exists an increasing sequence of simple function $s_n:E\rightarrow \R_0^+$ such that $s_n \nearrow f$. If $f$ is measurable, we can require $s_n$ to be also measurable.
+\end{theorem}
+\begin{proof}
+Because  $f$ is non-negative, we can well define $s_n:X\rightarrow \R_0^+$ by 
+\begin{align*}
+s_n(x)\triangleq \begin{cases}
+  \frac{k-1}{2^n}& \text{ if there exists some $k\in \set{1,\dots ,n2^n}$ such that }\frac{k-1}{2^n}\leq f(x)< \frac{k}{2^n}\\
+  n& \text{ if $f(x)\geq n$ }
+\end{cases}
+\end{align*}
+Some tedious effort follows to show that $s_n\nearrow f$ and when  $f$ is measurable, $s_n$ are measurable. 
+\end{proof}
 \section{Carathéodory's Extension Theorem}
 \label{caratheodory_extension_theorem}
 \begin{abstract}
@@ -4005,171 +4397,146 @@ The proof then follows from the facts
 \end{enumerate}
 Note that fact (b) can be checked straightforwardly. 
 \end{proof}
-\section{Lebesgue Measure}
+\section{Abstract integration} 
+\label{Ai}
 \begin{abstract}
-This section demonstrate a construction of Lebesgue measure with usage of \customref{caratheodory_extension_theorem}{Carathéodory’s Extension Theorem}. For discussion of non Lebesgue measurable set, see \customref{Vitali Set}{Vitali set}, and to see that continuous function may not preserve Lebesgue measurability, see \customref{Cantor-Lebesgue Function}{Cantor-Lebesgue function}.  
+In this section, we prove  
+\begin{enumerate}[label=(\alph*)]
+  \item \customref{MCTn}{Monotone convergence Theorem for nonnegative functions} 
+  \item \customref{Fatoun}{Fatou's Lemma for nonnegative functions} 
+  \item \customref{RFL}{Reversed Fatou's Lemma} 
+  \item \customref{DCTg}{Dominate Convergence Theorem}
+\end{enumerate}
+in the general abstract setting. Note that in this section, $X$ is always a measurable space with measure $\mu:\Sigma_X\rightarrow [0,\infty]$. 
 \end{abstract}
 \begin{mdframed}
-It is clear that the collection $S$ of half-open interval $\prod [a_j,b_j)$ form a semi-ring. If we define a volume function $\mu : S\rightarrow [0,\infty]$ on  $S$ by 
+Suppose $s:X\rightarrow [0,\infty)$ is a simple function taking values $c_1,\dots ,c_N$ on $E_1,\dots ,E_N$. It is clear that $s$ is measurable if and only if all $E_n$ are measurable. If $s$ is measurable, we define its \textbf{integral} to be 
+\begin{align*}
+\int_X s d\mu \triangleq \sum_{n=1}^N c_n \mu (E_n)
+\end{align*}
+To expand our definitions to non-negative measurable $f:X\rightarrow [0,\infty]$, we define  
+\begin{align*}
+  \int_X fd\mu \triangleq \sup \int_X sd\mu
+\end{align*}
+where $s:X\rightarrow [0,\infty)$ runs through all measurable simple functions on $X$ such that $s(x)\leq f(x)$ for all $x\in X$. At this point, one may check that our definition so far is consistent.  
+Let $E\in \Sigma_X$. If we define 
+\begin{align*}
+\Sigma_E\triangleq \set{A\in \Sigma_X: A \subseteq E}
+\end{align*}
+we see that $(E,\Sigma_E, \mu |_{\Sigma_E})$ also form a measure space. Then for function $f$ defined and \textbf{measurable on $E$}, i.e., $f|_E:E\rightarrow [0,\infty]$ is measurable, we then can define  
+\begin{align*}
+\int_E fd\mu\triangleq \int_E (f|_E)d\mu_E
+\end{align*}
+It follows from our definition that 
  \begin{align*}
-\mu \Big( \prod_{j=1}^d [a_j,b_j) \Big)\triangleq  \prod_{j=1}^d (b_j-a_j)
+\int_E fd\mu \leq \int_X fd\mu
 \end{align*}
-we see that the empty set is indeed null and $\mu$ is indeed monotone. To check that $\mu$ form a pre-measure, it remains to prove 
-\begin{align*}
-\prod_{j=1}^d [a_j,b_j)= \bigsqcup_{n=1}^{\infty} \prod_{j=1}^d [a_{j,n},b_{j,n}) \implies \mu \Big(\prod_{j=1}^d [a_j,b_j) \Big)= \sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
-\end{align*}
-To check 
-\begin{align}
-\mu \Big(\prod_{j=1}^d [a_j,b_j) \Big) \geq \sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
-\end{align}
-One fix arbitrary $N$ and cut  $\prod_{j=1}^d [a_j,b_j)$ into finite amount of grids to see  
-\begin{align*}
-\mu \Big(\prod_{j=1}^d [a_j,b_j) \Big) \geq \sum_{n=1}^{N} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
-\end{align*}
-To check 
-\begin{align}
-\label{58}
-\mu \Big(\prod_{j=1}^d [a_j,b_j) \Big)\leq \sum_{n=1}^{\infty} \mu \Big(\prod _{j=1}^d [a_{j,n},b_{j,n}) \Big)
-\end{align}
-One fix $\epsilon$ and have each $\epsilon _n$ satisfy 
-\begin{align*}
-  \mu \Big(\prod_{j=1}^d [a_{j,n}-\epsilon_n , b_{j,n}+\epsilon_n) \Big) \leq (1+\epsilon )\mu  \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
-\end{align*}
-Then because  
-\begin{align*}
-\bset{\prod_{j=1}^d (a_{j,n}-\epsilon_n , b_{j,n}+\epsilon_n )\subseteq \R^d:n\inn}\text{ form an open cover for compact }\prod_{j=1}^d [a_j,b_j]
-\end{align*}
-there exists finite subset $I \subseteq \N$ such that 
-\begin{align*}
-\prod_{j=1}^d [a_j,b_j]\subseteq \bigcup_{n \in I} \prod_{j=1}^d [a_{j,n}-\epsilon _n, b_{j,n}+\epsilon _n)
-\end{align*}
-This then give us 
-\begin{align*}
-\mu \Big(\prod_{j=1}^d [a_j,b_j)\Big)\leq \sum_{n \in I}\mu \Big(\prod_{j=1}^d [a_{j,n}-\epsilon _n, b_{j,n}+\epsilon _n) \Big) \leq (1+\epsilon )\sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
-\end{align*}
-which give us \myref{Equation}{58}. Having proved that the volume function $\mu : S\rightarrow [0,\infty]$ is a pre-measure, we can \customref{Piom}{induce an outer measure on $\R^d$ by }
-\begin{align*}
-\abso{E}_e \triangleq \inf \bset{ \mu (T_n) : E \subseteq \bigcup_ n T_n \text{ and }T_1,T_2,\dots  \in S}
-\end{align*}
-and \customref{Omi}{restrict the outer measure into a measure by letting the collection $\mathcal{L}(\R^d)$ of Lebesgue measurable set to be} 
-\begin{align*}
-\mathcal{L}(\R^d)\triangleq \set{A \subseteq \R^d: \forall E \subseteq \R^d, \abso{E}_e= \abso{E\cap A}_e + \abso{E\cap A^c}_e}
-\end{align*}
-Notably, if we define the class $K_n$ of half-open dyadic cubes by 
-\begin{align*}
-K_n \triangleq \bset{\prod_{j=1}^{d} [\frac{m_j}{2^n}, \frac{m_j+1}{2^n})\subseteq \R^d: m_j \inz \text{ for all }j}
-\end{align*}
-We see that for each $p$ in some open set $U$, there exists some small enough half-open dyadic cube $Q\in K_n$ (for some $n$) such that $p \in Q \subseteq U$. Then, since the collection $\bigcup K_n$ of half-open dyadic cubes is countable, we see $U$ is in the sigma-algebra  $\mathcal{L}(\R^d)$. 
 \end{mdframed}
 \begin{theorem}
-\label{Equivalent Definition of Lebesgue Measurability}
-\textbf{(Equivalent Definition of Lebesgue Measurability)} The following statements are equivalent. 
-\begin{enumerate}[label=(\alph*)]
-  \item $E\in \mathcal{L}(\R^d)$. 
-  \item For all $\epsilon $, there exists some open $O$ containing $E$ such that  $\abso{O\setminus E}_e< \epsilon $. 
-  \item For all $\epsilon $, there exists some closed $F$ contained by $E$ such that $\abso{E\setminus F}_e<\epsilon $. 
-  \item $E= H \setminus Z$ for some null $Z$ and some $H \in G_\delta$.  
-  \item $E=H \cup Z$ for some null $Z$ and some $H\in F_\sigma$. 
-\end{enumerate}
+\label{MCTn}
+\textbf{(Monotone Convergence Theorem for nonnegative function)} Given an increasing sequence of measurable functions $f_n:X\rightarrow [0,\infty]$, if we denote the limit of $f_n$ by $f$, then 
+\begin{align*}
+  \int_X fd\mu = \lim_{n\to \infty}\int_X f_n d\mu
+\end{align*}
 \end{theorem}
 \begin{proof}
-Since $\R^d$ is  $\sigma$-finite, to prove from (a) to (b), we can WOLG suppose $\abso{E}<\infty$; the proof then follows from the definition of $\abso{E}_e$, the trick of enlarging the cover to appropriate size and that open set is measurable. The proof for $(\text{b})\implies (\text{d})\implies (\text{a})$ is straightforward. The proof for $(\text{b})\implies (\text{c})$ is observation of $O \setminus E^c= E\setminus O^c$, and the proof for  $(\text{c})\implies (\text{e})\implies (\text{a})$ is again straightforward.
+Fix $\epsilon $ and simple measurable $s:X\rightarrow [0,\infty)$ smaller than $f$. We reduce the problem into proving 
+\begin{align*}
+  \int_X (1-\epsilon )sd\mu \leq  \lim_{n\to \infty}\int_X f_nd\mu
+\end{align*}
+Define 
+\begin{align*}
+E_n \triangleq \set{x\in X: f_n(x)\geq (1-\epsilon )s(x)}
+\end{align*}
+Because $f_n$ are nonnegative on  $X$, we have
+\begin{align*}
+\int _{E_n}(1-\epsilon )sd\mu \leq \int_{E_n}f_nd\mu \leq \int_X f_nd\mu 
+\end{align*}
+It is clear that $E_n$ are measurable and $E_n \nearrow X$. We may now take the limit to have
+\begin{align*}
+  \int_X (1-\epsilon )sd\mu = \lim_{n\to \infty}\int_{E_n}(1-\epsilon )sd\mu \leq \lim_{n\to \infty}\int_{E_n}f_nd\mu \leq \lim_{n\to \infty}\int_X f_n d\mu
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Fatoun}
+\textbf{(Fatou's Lemma for nonnegative function)} Given sequence of measurable $f_n:X\rightarrow [0,\infty]$ 
+\begin{align*}
+\int_X \liminf_{n\to\infty} f_nd\mu \leq \liminf_{n\to\infty} \int_X f_n d\mu
+\end{align*}
+\end{theorem}
+\begin{proof}
+By \customref{MCTn}{Monotone Convergence Theorem for nonnegative function} 
+\begin{align*}
+\int_X \big(\inf_{j\geq n} f_j \big)d\mu \nearrow \int_X \big(\liminf_{n\to\infty} f_n \big) d\mu
+\end{align*}
+For all subsequence $n_k$ such that $\int_X f_{n_k}d\mu$ converge, we then have 
+\begin{align*}
+\int_X \liminf_{n\to\infty} f_n d\mu = \lim_{k\to \infty}\int_X \inf_{j\geq n_k}f_jd\mu \leq \lim_{k\to \infty}\int_X f_{n_k}d\mu 
+\end{align*}
+which give the desired result. 
 \end{proof}
 \begin{mdframed}
-  Given a topological space $X$, we say the smallest sigma-algebra containing the topology is the  \textbf{Borel sigma-algebra}, and we refer to element of the Borel sigma-algebra as \textbf{Borel sets}. In the case of $\R^d$, the Borel sigma-algebra is in fact quite "dense", in the sense that every set can be approximated by some Borel sets from outside. More precisely, we can associate every set $E\subseteq \R^d$ a set $H$ in the class of  $G_\delta$ containing $E$ such that $\abso{E}_e=\abso{H}$. To see this is true, observe that if $\abso{E}_e=\infty$, then $H=\R^d$ suffices, and if  $\abso{E}_e<\infty$, then we can use definition of outer measure to construct some open set $O$ containing $E$ such that $\abso{O}\leq \abso{E}_e + \frac{1}{n} $.  Note that this of course does not implies every set of finite outer measure is measurable, sine our inequality is 
-  \begin{align*}
-  \abso{O}\leq \abso{E}_e + \abso{O\setminus E}_e
-  \end{align*}
-  With this approximation in mind, we can generalize \customref{pop_meas}{the third property of measurable set} to 
+Obviously, we wish to define integral for not just non-negative function. Given extended-valued or complex-valued $f$ measurable on $X$, we say $f$ is \textbf{Lebesgue integrable on $X$ with respect to $\mu$} and write $f\in L^1(\mu)$ if 
 \begin{align*}
-E_n \nearrow E \implies \abso{E_n}_e\nearrow \abso{E}_e\text{ for arbitrary $E_n,E$ in $\R^d$ }
+\int_X \abso{f}d\mu <\infty
 \end{align*}
-\label{dyadic cube}
-
-It is worth pointing out that every open set can be expressed as a countable disjoint union of half-open dyadic cubes by an algorithmic construction. This implies that if we write  
+Immediately, we see that if $f\in L^1(\mu)$, then $f$ must be  \textbf{$\mu$-almost everywhere on $X$}, i.e., 
 \begin{align*}
-U_1\triangleq \bigsqcup_n Q_{n,1}\text{ and }U_2 \triangleq \bigsqcup_n Q_{n,2}
+\mu \Big(\set{x \in X: f(x)=\pm \infty} \Big)=0
 \end{align*}
-we have 
+Then if we define addition $f,g$ 
+
+
+
+
+\end{mdframed}
+\begin{mdframed}
+
+For extended-valued $f:X\rightarrow [-\infty,\infty]$, we define 
 \begin{align*}
-\abso{U_1\times U_2}=\left|\bigsqcup_{n,k}Q_{n,1}\times Q_{k,2}\right|=\sum_{n,k} \abso{Q_{n,1}} \abso{Q_{k,2}}= \sum_n \abso{Q_{n,1}}\sum_{k} \abso{Q_{k,2}}= \abso{U_1}\abso{U_2}
+\int_X fd\mu \triangleq  \int_X f^+ d\mu - \int_X f^-d\mu
 \end{align*}
-This with \customref{Equivalent Definition of Lebesgue Measurability}{open set approximation definition of Lebesgue measurability}  and the fact $\R^d$ is  $\sigma$-finite tell us that the product of measurable set is indeed measurable. \\
-
-Another property of Lebesgue measure people often use is that Lebesgue measure is both \textbf{an inner regular measure} and \textbf{an outer regular measure}. By a measure $\mu$ being outer regular, we mean the measure $\mu$ is defined on some topological space $X$ and for all measurable $A$, we have 
- \begin{align*}
-\mu (A)= \inf \set{\mu (G):A\subseteq G\text{ and }G\text{ is open and measurable }}
+whenever the right hand side expression make sense. It is clear from our definition we have the inequality 
+\begin{align*}
+  \abso{\int_X fd\mu}\leq \int_X f^+d\mu + \int_X f^-d\mu =\int_X (f^++f^-)d\mu =\int_X \abso{f}d\mu
 \end{align*}
-and by a measure $\mu$ being inner regular, we mean the measure $\mu$ is defined on some topological space $X$ and for all measurable  $A$, we have 
- \begin{align*}
-\mu (A)= \sup \set{\mu (K):K \subseteq A\text{ and }K\text{ is compact and measurable }}
-\end{align*}
-
 \end{mdframed}
 \begin{theorem}
-\textbf{(Lipschitz Continuity Preserve Lebesgue Measurability)} If $E\in \mathcal{L}(\R^d)$ and $f:\R^d\rightarrow \R^m$ is $K$-Lipschitz, where $d\leq m$, then  $f(E)\in \mathcal{L}(\R^m)$ .
+\label{RFL}
+\textbf{(Reversed Fatou's Lemma)} Given sequence of measurable function $f_n:X\rightarrow [-\infty,\infty]$ such that $f_n\leq g$ for all $n$ for some nonnegative real-valued  $g\in L^1(X)$, we have 
+\begin{align*}
+\int_X \limsup_{n\to\infty} f_n d\mu \geq \limsup_{n\to\infty} \int_X f_nd\mu
+\end{align*}
 \end{theorem}
 \begin{proof}
-  Write $E=H\cup Z$ where $H\in F_\sigma$ and $Z$ is null. Because $f(E)=f(H)\cup f(Z)$, to show $f(E)$ is measurable, we can reduce the problem into proving \vi{$f$ maps $F_\sigma$ into $F_\sigma$} and \blue{$f$ maps null set to null set}.\\
-
-By splitting $\R^d$ into a countable union of compact set 
- \begin{align*}
-\R^d = \bigcup_{n\inn} \overline{B_n (\textbf{0})}
-\end{align*}
-We see that each closed set in $\R^d$ can be expressed as a countable union of compact sets. Then because \customref{topological properties}{continuous function preserve compactness}, we see $f$ must map closed set into class $F_\sigma$ and thus map class $F_\sigma$ into $F_\sigma$. $\vdone$\\
-
-Fix $\epsilon $. Because $f:\R^d\rightarrow \R^d$ is $K$-Lipschitz, we know all its components  $f_1,\dots ,f_d:\R^d \rightarrow \R$  are also $K$-Lipschitz. Because $Z$ is measurable and \customref{dyadic cube}{open set can be expressed as a disjoint countable union of dyadic half-open cubes}, we can let $T_n \subseteq S$ be a countable cover of $Z$ consisting of dyadic half-open cubes such that 
+By \customref{Fatoun}{Fatou's Lemma for nonnegative function}, we have 
 \begin{align*}
-\sum_n \abso{T_n}<  \frac{\epsilon }{ K^m d^{\frac{m}{2}}}
+\int_X \liminf_{n\to\infty} (g-f_n)d\mu \leq \liminf_{n\to\infty} \int_X (g- f_n)d\mu
 \end{align*}
-Now, note that for each half-open cube $T_n$, if we write 
+We then have 
 \begin{align*}
-T_n=\prod_{j=1}^d [a_j,a_j+h)
+\int_X \limsup_{n\to\infty} (f_n-g) d\mu &=-\int_X \liminf_{n\to\infty} (g-f_n)d\mu \\
+&\geq - \liminf_{n\to\infty} \int_X (g- f_n)d\mu= \limsup_{n\to\infty} \int_X (f_n-g)d\mu
 \end{align*}
-We clearly have 
+The result then follows from adding both side with $\int_X gd\mu$. 
+\end{proof}
+\begin{theorem}
+\label{DCTg}
+  \textbf{(Dominate Convergence Theorem)} Given a convergent sequence of real-valued measurable function $f_n\to f$,  and some nonnegative real-valued $g \in L^1(X)$ such that $\abso{f_n}\leq g$, we have
 \begin{align*}
-\operatorname{diam}T_n= h \sqrt{d} \text{ and }\abso{T_n}=h^d
+ \lim_{n\to \infty}\int_X \abso{f_n-f}d\mu =0 
 \end{align*}
-This give us the relationship between diameter and volume of a cube by 
+\end{theorem}
+\begin{proof}
+Note that 
 \begin{align*}
-\operatorname{diam}T_n=  \abso{T_n}^{\frac{1}{d}}d^{\frac{1}{2}}
+\abso{f_n-f}\leq \abso{f_n}+\abso{f}\leq 2g
 \end{align*}
-Because $f_k:\R^d \rightarrow \R$ are all $K$-Lipschitz, we know $f_k(T_n)$ can be contained by an interval of length $K(\operatorname{diam}T_n)=K\abso{T_n}^{\frac{1}{d}}d^{\frac{1}{2}}$. This then tell us that $f(T_n)$ can be contained by closed cube of side length $K(\operatorname{diam}T_n)$, and give us the estimation  
+The proof follows from \customref{RFL}{Reversed Fatou Lemma}
 \begin{align*}
-\abso{f(T_n)}_e\leq K^m(\operatorname{diam}T_n)^m= K^m d^{\frac{m}{2}} \abso{T_n}^{\frac{m}{d}}\leq K^md^{\frac{m}{2}}\abso{T_n}
-\end{align*}
-where the last inequality hold true because $d\leq m$ and WOLG we can suppose $\abso{T_n}\leq 1$. We now see that 
-\begin{align*}
-\abso{f(Z)}_e \leq \sum_n \abso{f(T_n)}_e \leq K^md^{\frac{m}{2}}\sum_n \abso{T_n}< \epsilon \bdone
+\lim_{n\to \infty} \int_X \abso{f_n-f}d\mu \leq \int_X \limsup_{n\to\infty} \abso{f_n-f}d\mu
 \end{align*}
 \end{proof}
-\begin{mdframed}
-Although Lipschitz function from $\R^d$ to  $\R^m$ preserve Lebesgue measurability when $d\leq m$, the proposition does not hold true when $d>m$.  Simple counter example can be constructed with projection $\pi:\R^2\rightarrow \R$ and the set $V \times \set{0}$ where $V$ is the \customref{Vitali Set}{Vitali set}. \\
-
-  Ii is worth pointing out that our development of Theory of Lebesgue measure mostly depend on the abstract  \customref{caratheodory_extension_theorem}{Carathéodory’s Extension Theorem}, which is indeed quite unorthodox. If one wish to instead develop the Theory of Lebesgue measurability starting at \customref{Equivalent Definition of Lebesgue Measurability}{the second definition of Lebesgue measurability}, one may follows the following steps 
-\begin{enumerate}[label=(\roman*)] 
-\item Prove that the outer measure is countably subadditive using \customref{Piom}{$\epsilon 2^{-k}$ trick}.
-\item Prove that compact interval is measurable and have the expected measure. The former is proved by finding a small enough open interval and cover the difference naively, and the latter is proved by Hiene-Borel. 
-  \item Prove that the class of measurable set is closed under countable union.  (This step is independent of step 2)
-  \item Conclude that finite union of non-overlapping compact interval is measurable, and prove that it have the expected measure by Hiene-Borel. 
-\end{enumerate}
-With these knowledge, we then can 
-\begin{enumerate}[label=(\alph*)]
-  \item Prove that disjoint compact sets have positive distance. 
-  \item Prove that $d(E_1,E_2)>0 \implies \abso{E_1\cup E_2}_e = \abso{E_1}_e + \abso{E_2}_e$.   
-  \item Prove that compact set is measurable by expressing the difference $G\setminus F$  of the small enough open set $G$ containing compact $F$ to be a countable union of non-overlapping compact intervals.
-  \item Prove that closed set is measurable by expressing the closed set is a countable union of compact sets.
-\end{enumerate}
-and 
-\begin{enumerate}[label=(\roman*)]
-\item Prove that null set is measurable.  
-  \item Prove that complement $E^c$ of measurable set $E$ is measurable by expressing $E^c$ as a countable union of closed set and a null set.
-  \item Prove the \customref{Equivalent Definition of Lebesgue Measurability}{third equivalent definition of Lebesgue measurability}.  
-  \item Use \customref{Equivalent Definition of Lebesgue Measurability}{third equivalent definition of Lebesgue measurability} to conclude that if measurable $E_n$ are bounded and disjoint then $\abso{\bigcup E_n}= \sum \abso{E_n}$. 
-  \item Generalize the forth step to $E_n$ that may not be bounded. 
-\end{enumerate}
-\end{mdframed}
-
 \chapter{Riemann Calculus}
 \section{Bounded Variation}
 \begin{abstract}
@@ -5575,143 +5942,212 @@ We now have
 
 
 \chapter{Lebesgue Calculus}
-\section{Basic Property of Measurable Functions}
+\section{Lebesgue Measure}
 \begin{abstract}
-In this section, we discuss the usage of the term 'measurable function', and prove some basic properties for later usage. 
+This section demonstrate a construction of Lebesgue measure with usage of \customref{caratheodory_extension_theorem}{Carathéodory’s Extension Theorem}. For discussion of non Lebesgue measurable set, see \customref{Vitali Set}{Vitali set}, and to see that continuous function may not preserve Lebesgue measurability, see \customref{Cantor-Lebesgue Function}{Cantor-Lebesgue function}.  
 \end{abstract}
 \begin{mdframed}
-  In the most general setting, if we are given a function $f:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ between two measurable space, then we say the $f$ is a \textbf{measurable function} if every pre-image of measurable set is again measurable. Immediately, one can check that in this setting, the composition of two measurable functions must be measurable.
+It is clear that the collection $S$ of half-open interval $\prod [a_j,b_j)$ form a semi-ring. If we define a volume function $\mu : S\rightarrow [0,\infty]$ on  $S$ by 
+ \begin{align*}
+\mu \Big( \prod_{j=1}^d [a_j,b_j) \Big)\triangleq  \prod_{j=1}^d (b_j-a_j)
+\end{align*}
+we see that the empty set is indeed null and $\mu$ is indeed monotone. To check that $\mu$ form a pre-measure, it remains to prove 
+\begin{align*}
+\prod_{j=1}^d [a_j,b_j)= \bigsqcup_{n=1}^{\infty} \prod_{j=1}^d [a_{j,n},b_{j,n}) \implies \mu \Big(\prod_{j=1}^d [a_j,b_j) \Big)= \sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
+\end{align*}
+To check 
+\begin{align}
+\mu \Big(\prod_{j=1}^d [a_j,b_j) \Big) \geq \sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
+\end{align}
+one fix arbitrary $N$ and cut  $\prod_{j=1}^d [a_j,b_j)$ into finite amount of grids to see  
+\begin{align*}
+\mu \Big(\prod_{j=1}^d [a_j,b_j) \Big) \geq \sum_{n=1}^{N} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
+\end{align*}
+To check 
+\begin{align*}
+\label{58}
+\mu \Big(\prod_{j=1}^d [a_j,b_j) \Big)\leq \sum_{n=1}^{\infty} \mu \Big(\prod _{j=1}^d [a_{j,n},b_{j,n}) \Big)
+\end{align*}
+one fix $\epsilon$ and have each $\epsilon _n$ satisfy 
+\begin{align*}
+  \mu \Big(\prod_{j=1}^d [a_{j,n}-\epsilon_n , b_{j,n}+\epsilon_n) \Big) \leq (1+\epsilon )\mu  \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
+\end{align*}
+Then because  
+\begin{align*}
+\bset{\prod_{j=1}^d (a_{j,n}-\epsilon_n , b_{j,n}+\epsilon_n )\subseteq \R^d:n\inn}\text{ form an open cover for compact }\prod_{j=1}^d [a_j,b_j]
+\end{align*}
+there exists finite subset $I \subseteq \N$ such that 
+\begin{align*}
+\prod_{j=1}^d [a_j,b_j]\subseteq \bigcup_{n \in I} \prod_{j=1}^d [a_{j,n}-\epsilon _n, b_{j,n}+\epsilon _n)
+\end{align*}
+This then give us 
+\begin{align*}
+\mu \Big(\prod_{j=1}^d [a_j,b_j)\Big)\leq \sum_{n \in I}\mu \Big(\prod_{j=1}^d [a_{j,n}-\epsilon _n, b_{j,n}+\epsilon _n) \Big) \leq (1+\epsilon )\sum_{n=1}^{\infty} \mu \Big(\prod_{j=1}^d [a_{j,n},b_{j,n}) \Big)
+\end{align*}
+which give us \myref{Equation}{58}. Having proved that the volume function $\mu : S\rightarrow [0,\infty]$ is a pre-measure, we can \customref{Piom}{induce an outer measure on $\R^d$ by }
+\begin{align*}
+\abso{E}_e \triangleq \inf \bset{ \mu (T_n) : E \subseteq \bigcup_ n T_n \text{ and }T_1,T_2,\dots  \in S}
+\end{align*}
+and \customref{Omi}{restrict the outer measure into a measure by letting the collection $\mathcal{L}(\R^d)$ of Lebesgue measurable set to be} 
+\begin{align*}
+\mathcal{L}(\R^d)\triangleq \set{A \subseteq \R^d: \forall E \subseteq \R^d, \abso{E}_e= \abso{E\cap A}_e + \abso{E\cap A^c}_e}
+\end{align*}
+Notably, if we define the class $K_n$ of half-open dyadic cubes by 
+\begin{align*}
+K_n \triangleq \bset{\prod_{j=1}^{d} [\frac{m_j}{2^n}, \frac{m_j+1}{2^n})\subseteq \R^d: m_j \inz \text{ for all }j}
+\end{align*}
+We see that for each $p$ in some open set $U$, there exists some small enough half-open dyadic cube $Q\in K_n$ (for some $n$) such that $p \in Q \subseteq U$. Then, since the collection $\bigcup K_n$ of half-open dyadic cubes is countable, we see $U$ is in the sigma-algebra  $\mathcal{L}(\R^d)$. 
 \end{mdframed}
 \begin{theorem}
-\label{EDm}
-\textbf{(Criteria of function measurability)} If a function $f:(X,\Sigma_X)\rightarrow (Y,\sigma (T))$ satisfy 
-\begin{align*}
-f^{-1}(E)\in \Sigma_X\text{ for all $E \in T$ }
-\end{align*}
-then 
-\begin{align*}
-f\text{ is measurable }
-\end{align*}
-\end{theorem}
-\begin{proof}
-Define 
-\begin{align*}
-\mathcal{A}\triangleq \set{E \subseteq Y: f^{-1}(E)\in \Sigma_X}
-\end{align*}
-Check that $\mathcal{A}$ is a $\sigma$-algebra on $Y$. By premise, $T \subseteq \mathcal{A}$. It then follows from definition that $\sigma (T)\subseteq \mathcal{A}$. This conclude that $f$ is  $(\Sigma_X, \sigma(T))$-measurable. 
-\end{proof}
-\begin{mdframed}
-When $Y$ is a topological space, if there are no explicit specification of $\Sigma_Y$, as a consensus, we take $\Sigma_Y$ to be the Borel sigma algebra. This default consensus have good property if one take account of the Borel hierarchy. If $F$ is some Borel measurable subspace of $Y$, then the Borel sigma algebra $\Sigma_F$ on $F$ is contained by the Borel sigma algebra $\Sigma_Y$ on $Y$ by a proof of transfinite induction on the Borel hierarchy of  $\Sigma_F$. This implies that if $f:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ is measurable, and $f$ only take value in $F$, then $f$ is still measurable when considered as a function $f:(X,\Sigma_X)\rightarrow (F,\Sigma_F)$ between $X$ and  $F$. \\
-
-Although $\Sigma_Y$ is by default the Borel sigma algebra, when $X=\R^d$ and  $\Sigma_X$ is also not explicit specified, the sigma algebra $\Sigma_X$ is by default the Lebesgue sigma algebra $\Sigma_X\triangleq \mathcal{L}(\R^d)$, for obvious reason that we are building the Theory of measurable function for the Theory of Lebesgue integration. Take $Y$ to be some topological space, and suppose $f$ is define on some subset of $X$ and has codomain $Y$. If  $E\subseteq X$ is some Lebesgue measurable set, we say  $f$ is \textbf{measurable on $E$} if $f$ is defined on $E$ and  $f|_E:(E,\Sigma_E)\rightarrow (Y,\Sigma_Y)$ is measurable where $\Sigma_E$ is the sub-sigma algebra of the Lebesgue sigma algebra $\mathcal{L}(\R^d)$ defined by $\Sigma_E\triangleq \set{H\cap E:H \in \mathcal{L}(\R^d)}$. Note that the priori $E$ is Lebesgue measurable implies that $\Sigma_E\subseteq \mathcal{L}(\R^d)$. \\
-
-
-
-With this definition and the fact null sets are measurable, we immediately see that if  $g $ is defined on $E$, $f$ is measurable on  $E$, and  $g=f$ \textbf{almost everywhere on $E$}, i.e., $\abso{\set{x\in E:f(x)\neq g(x)}}=0$, then $g$ is also measurable on $E$. \\
-
-
-
-
-In addition to this almost everywhere property, if $f$ is extended-real-valued, then because 
-\begin{align*}
-  \set{f\geq  a}= \bigcup_n \set{f > a-\frac{1}{n}}
-\end{align*}
-where the notation $\set{f>a}$ simply mean $\set{f>a}\triangleq \set{x\in E: f(x)>a}$, and because open set in $\overline{\R}$ can be expressed as disjoint union of some countable collection of open interval, with \myref{Theorem}{EDm} we can equivalently define function to be Lebesgue measurable on $E$ if and only if 
-\begin{align*}
-\set{f>a}\text{ is Lebesgue measurable for all }a\inr
-\end{align*}
-Beside this important simplification of the definition of function measurability, we also see from \myref{Theorem}{EDm} that if $X,Y$ are both Borel, then a continuous function  $f:X\rightarrow Y$ must also be a measurable function. These proposition give the following Lemma, which later prove \myref{Theorem}{Btsa}, by replacing the codomain $Y$ with $\R$ or $\C$. 
-\end{mdframed}
-\begin{lemma}
-\label{CL}
-\textbf{(Computational Lemma)} Given a second-countable topological space $Y$, two functions $u,v:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ and a continuous function $\Phi:Y^2 \rightarrow Y$, the function $h:(X,\Sigma_X)\rightarrow (Y,\Sigma_Y)$ defined by
-\begin{align*}
-h(x)\triangleq \Phi(u(x),v(x))
-\end{align*}
-is measurable. 
-\end{lemma}
-\begin{proof}
-  Define $f:(X,\Sigma_X)\rightarrow (Y^2,\Sigma_{Y^2})$ by 
-\begin{align*}
-f(x)\triangleq \big(u(x),v(x) \big)
-\end{align*}
-Because $\Phi$ is continuous and $h$ is the composition of $f$ and $\Phi$, we only have to prove $f$ is measurable. Let $\mathcal{B}$ be a countable basis of $Y$. It is clear that $\Sigma_{Y^2}=\sigma (\mathcal{B}^2)$. Now if we fix $I_1\times I_2 \in \mathcal{B}^2$, the proof follows from \myref{Theorem}{EDm} and noting 
-\begin{align*}
-f^{-1}(I_1\times I_2)=u^{-1}(I_1)\cap v^{-1}(I_2) \in \Sigma_X \end{align*}
-\end{proof}
-\begin{theorem}
-\label{Btsa}
-\textbf{(Arithmetic properties of measurable real and complex valued function)} Given two real-valued function $u,v:(X,\Sigma_X)\rightarrow \R$
+\label{Equivalent Definition of Lebesgue Measurability}
+\textbf{(Equivalent Definition of Lebesgue Measurability)} The following statements are equivalent. 
 \begin{enumerate}[label=(\alph*)]
-  \item  $u+iv:X\rightarrow \C$ is measurable if and only if $u,v$ are measurable.
-  \item If  $f,g:X\rightarrow \R\text{ or }\C$ are measurable, so are $f+g,fg\text{ and }\abso{f}$.
-  \item If $f:X\rightarrow \R\text{ or }\C$ is measurable and $g:X\rightarrow \R\text{ or }\C$ isn't, then $f+g$ is not measurable.
+  \item $E\in \mathcal{L}(\R^d)$. 
+  \item For all $\epsilon $, there exists some open $O$ containing $E$ such that  $\abso{O\setminus E}_e< \epsilon $. 
+  \item For all $\epsilon $, there exists some closed $F$ contained by $E$ such that $\abso{E\setminus F}_e<\epsilon $. 
+  \item $E= H \setminus Z$ for some null $Z$ and some $H \in G_\delta$.  
+  \item $E=H \cup Z$ for some null $Z$ and some $H\in F_\sigma$. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-(a) and (b) follows from \myref{Lemma}{CL}, noting $u=\operatorname{Re}(u+iv),v=\operatorname{Im}(u+iv)$ and the fact $\R,\C$ are topological fields. It is clear that the set of all function from  $X$ to $\R\text{ or }\C$ form a group under addition. (b) shows that the set of measurable functions from a subgroup, thus giving (c).
+Since $\R^d$ is  $\sigma$-finite, to prove from (a) to (b), we may WLOG suppose $\abso{E}<\infty$; the proof then follows from the definition of $\abso{E}_e$, the trick of enlarging the cover to appropriate size and that open set is measurable. The proof for $(\text{b})\implies (\text{d})\implies (\text{a})$ is straightforward. The proof for $(\text{b})\implies (\text{c})$ is observation of $O \setminus E^c= E\setminus O^c$, and the proof for  $(\text{c})\implies (\text{e})\implies (\text{a})$ is again straightforward.
 \end{proof}
 \begin{mdframed}
-Note that \myref{Theorem}{Btsa} only consider function with finite values. 
+  Given a topological space $X$, we say the smallest sigma-algebra containing the topology is the  \textbf{Borel sigma-algebra}, and we refer to element of the Borel sigma-algebra as \textbf{Borel sets}. In the case of $\R^d$, the Borel sigma-algebra is in fact quite "dense", in the sense that every set can be approximated by some Borel sets from outside. More precisely, we can associate every set $E\subseteq \R^d$ a set $H$ in the class of  $G_\delta$ containing $E$ such that $\abso{E}_e=\abso{H}$. To see this is true, observe that if $\abso{E}_e=\infty$, then $H=\R^d$ suffices, and if  $\abso{E}_e<\infty$, then we can use definition of outer measure to construct some open set $O$ containing $E$ such that $\abso{O}\leq \abso{E}_e + \frac{1}{n} $.  Note that this of course does not implies every set of finite outer measure is measurable, sine our inequality is 
+  \begin{align*}
+  \abso{O}\leq \abso{E}_e + \abso{O\setminus E}_e
+  \end{align*}
+  With this approximation in mind, we may generalize \customref{pop_meas}{the third property of measurable set} in the following sense.  
+\begin{align*}
+E_n \nearrow E \implies \abso{E_n}_e\nearrow \abso{E}_e\text{ for arbitrary $E_n,E$ in $\R^d$ }
+\end{align*}
 \end{mdframed}
 \begin{theorem}
-\label{Slm}
-\textbf{(Superior limit of measurable $f_n:X\rightarrow [-\infty,\infty]$ is measurable)} Given a sequence $f_n:X\rightarrow [-\infty, \infty]$ of measurable functions
+\textbf{(Lebesgue Outer Measure of Increasing Sequence)} For arbitrary increasing sequence $E_n\subseteq \R^d$, we have 
 \begin{align*}
-g\triangleq \sup f_n \text{ and }f\triangleq \limsup_{n\to\infty} f_n\text{ are both measurable }
+E_n \nearrow E \implies  \abso{E_n}_e \nearrow \abso{E}_e
 \end{align*}
 \end{theorem}
 \begin{proof}
-The proofs follows from noting 
+It is clear that 
 \begin{align*}
-\set{g>a}=\bigcup_n \set{f_n>a}\text{ for all $a\inr$ }
+\lim_{n\to \infty} \abso{E_n}_e \leq \abso{E}_e 
 \end{align*}
-\end{proof}
-\begin{mdframed}
-Immediately, following from \myref{Theorem}{Slm}, we see that if $f$ is a pointwise limit of some sequence of measurable function $(f_n)$, then $f$ is also a measurable function. In addition to the pointwise limit, if $f:X\rightarrow [-\infty,\infty]$ is measurable, then both its positive and negative parts  $f^+,f^-:X\rightarrow [0,\infty]$ 
-\begin{align*}
-f^+(x)\triangleq \max \set{f(x),0}\text{ and }f^-(x)\triangleq  - \min  \set{f(x),0}
-\end{align*}
-are measurable, since 
-\begin{align*}
-f^+=\limsup_{n\to\infty} h_n\text{ and }f^-=-\liminf_{n\to\infty} h_n
-\end{align*}
-where $h_n:X\rightarrow [-\infty,\infty]$ is defined by 
-\begin{align*}
-h_n(x)\triangleq \begin{cases}
-  f(x)& \text{ if $n$ is odd }\\
-  0& \text{ if $n$ is even }
-\end{cases}
-\end{align*}
-In view of Lebesgue integration, perhaps the most important property of measurable function is that we can approximate them using measurable simple functions. By the term \textbf{simple function}, we merely mean function whose range is a set of finite elements. 
-\end{mdframed}
-\begin{theorem}
-\label{Approximation of nonnegative function by increasing simple function}
-\textbf{(Approximation of nonnegative function by increasing simple function)} Let $E$ be a subset of  $\R^d$. For each non negative function  $f:E\rightarrow [0,\infty]$, there exists an increasing sequence of simple function $s_n:E\rightarrow \R_0^+$ such that $s_n \nearrow f$. Moreover, if $f$ is measurable, we can require $s_n$ to be also measurable.
-\end{theorem}
-\begin{proof}
-Because  $f$ is non-negative, we can well define $s_n:E\rightarrow \R_0^+$ by 
-\begin{align*}
-s_n(x)\triangleq \begin{cases}
-  \frac{k-1}{2^n}& \text{ if there exists some $k\in \set{1,\dots ,n2^n}$ such that }\frac{k-1}{2^n}\leq f(x)< \frac{k}{2^n}\\
-  n& \text{ if $f(x)\geq n$ }
-\end{cases}
-\end{align*}
-Some tedious effort follows to show that $s_n\nearrow f$ and  when  $f$ is measurable, $s_n$ are measurable. 
-\end{proof}
-\begin{mdframed}
-Crucially, we can generalize \myref{Theorem}{Approximation of nonnegative function by increasing simple function} to extended value function $f:E\rightarrow [-\infty,\infty]$ by splitting $f$ into $f=f^+-f^-$ and have 
+We are required to prove the converse. Let $H_n$ be a sequence of sets in  $\R^d$ such that 
  \begin{align*}
-f_n^+-f_n^- \to f
+E_n\subseteq H_n \text{ and }\abso{E_n}_e=\abso{H_n}
 \end{align*}
-Note that $f_n^+,f_n^-$ are both of finite value. Then  \myref{Theorem}{Btsa} shows that $f_n\triangleq f_n^+-f_n^-$ is also measurable if $f$ is measurable. Tedious efforts shows that $f_n$ is also simple function, since it is the result of addition of two simple function.  
+Define $V_n\subseteq \R^d$ by 
+\begin{align*}
+V_n \triangleq \bigcap_{k=n}^{\infty}H_k 
+\end{align*}
+Let $V\triangleq \bigcup V_n$. By definition,  $E_n \subseteq V_n \subseteq H_n$. This implies  
+\begin{align*}
+  E= \bigcup E_n \subseteq \bigcup V_n = V
+\end{align*}
+which give us 
+\begin{align*}
+\abso{E}_e \leq \abso{V} = \lim_{n\to \infty} \abso{V_n}
+\end{align*}
+The proof then follows from noting 
+\begin{align*}
+\abso{E_n}_e\leq \abso{V_n} \leq \abso{H_n} \implies  \abso{V_n}= \abso{E_n}_e
+\end{align*}
+\end{proof}
+\begin{mdframed}
+
+\label{dyadic cube}
+
+It is worth pointing out that every open set can be expressed as a countable disjoint union of half-open dyadic cubes by an algorithmic construction. This implies that if we write  
+\begin{align*}
+U_1\triangleq \bigsqcup_n Q_{n,1}\text{ and }U_2 \triangleq \bigsqcup_n Q_{n,2}
+\end{align*}
+where $Q_{n,1},Q_{n,2}$ are half-open dyadic cubes, we have 
+\begin{align*}
+\abso{U_1\times U_2}=\left|\bigsqcup_{n,k}Q_{n,1}\times Q_{k,2}\right|=\sum_{n,k} \abso{Q_{n,1}} \abso{Q_{k,2}}= \sum_n \abso{Q_{n,1}}\sum_{k} \abso{Q_{k,2}}= \abso{U_1}\abso{U_2}
+\end{align*}
+This with \customref{Equivalent Definition of Lebesgue Measurability}{open set approximation definition of Lebesgue measurability}  and the fact $\R^d$ is  $\sigma$-finite tell us that the product of measurable set is indeed measurable. \\
+
+Another property of Lebesgue measure people often use is that Lebesgue measure is both \textbf{inner regular} and \textbf{outer regular}. By a measure $\mu$ being outer regular, we mean the measure $\mu$ is defined on some topological space $X$ and for all measurable $A$, we have 
+ \begin{align*}
+\mu (A)= \inf \set{\mu (G):A\subseteq G\text{ and }G\text{ is open and measurable }}
+\end{align*}
+and by a measure $\mu$ being inner regular, we mean the measure $\mu$ is defined on some topological space $X$ and for all measurable  $A$, we have 
+ \begin{align*}
+\mu (A)= \sup \set{\mu (K):K \subseteq A\text{ and }K\text{ is compact and measurable }}
+\end{align*}
+
 \end{mdframed}
-\section{Sequence of Measurable Function}
+\begin{theorem}
+\textbf{(Lipschitz Continuity Preserve Lebesgue Measurability)} If $E\in \mathcal{L}(\R^d)$ and $f:\R^d\rightarrow \R^m$ is $K$-Lipschitz, where $d\leq m$, then  $f(E)\in \mathcal{L}(\R^m)$ .
+\end{theorem}
+\begin{proof}
+  Write $E=H\cup Z$ where $H\in F_\sigma$ and $Z$ is null. Because $f(E)=f(H)\cup f(Z)$, to show $f(E)$ is measurable, we can reduce the problem into proving \vi{$f$ maps $F_\sigma$ into $F_\sigma$} and \blue{$f$ maps null set to null set}.\\
+
+By splitting $\R^d$ into a countable union of compact set 
+ \begin{align*}
+\R^d = \bigcup_{n\inn} \overline{B_n (\textbf{0})}
+\end{align*}
+We see that each closed set in $\R^d$ can be expressed as a countable union of compact sets. Then because \customref{topological properties}{continuous function preserve compactness}, we see $f$ must map closed set into class $F_\sigma$ and thus map class $F_\sigma$ into $F_\sigma$. $\vdone$\\
+
+Fix $\epsilon $. Because $f:\R^d\rightarrow \R^d$ is $K$-Lipschitz, we know all its components  $f_1,\dots ,f_d:\R^d \rightarrow \R$  are also $K$-Lipschitz. Because $Z$ is measurable and \customref{dyadic cube}{open set can be expressed as a disjoint countable union of dyadic half-open cubes}, we can let $T_n \subseteq S$ be a countable cover of $Z$ consisting of dyadic half-open cubes such that 
+\begin{align*}
+\sum_n \abso{T_n}<  \frac{\epsilon }{ K^m d^{\frac{m}{2}}}
+\end{align*}
+Now, note that for each half-open cube $T_n$, if we write 
+\begin{align*}
+T_n=\prod_{j=1}^d [a_j,a_j+h)
+\end{align*}
+We clearly have 
+\begin{align*}
+\operatorname{diam}T_n= h \sqrt{d} \text{ and }\abso{T_n}=h^d
+\end{align*}
+This give us the relationship between diameter and volume of a cube by 
+\begin{align*}
+\operatorname{diam}T_n=  \abso{T_n}^{\frac{1}{d}}d^{\frac{1}{2}}
+\end{align*}
+Because $f_k:\R^d \rightarrow \R$ are all $K$-Lipschitz, we know $f_k(T_n)$ can be contained by an interval of length $K(\operatorname{diam}T_n)=K\abso{T_n}^{\frac{1}{d}}d^{\frac{1}{2}}$. This then tell us that $f(T_n)$ can be contained by closed cube of side length $K(\operatorname{diam}T_n)$, and give us the estimation  
+\begin{align*}
+\abso{f(T_n)}_e\leq K^m(\operatorname{diam}T_n)^m= K^m d^{\frac{m}{2}} \abso{T_n}^{\frac{m}{d}}\leq K^md^{\frac{m}{2}}\abso{T_n}
+\end{align*}
+where the last inequality hold true because $d\leq m$ and WOLG we can suppose $\abso{T_n}\leq 1$. We now see that 
+\begin{align*}
+\abso{f(Z)}_e \leq \sum_n \abso{f(T_n)}_e \leq K^md^{\frac{m}{2}}\sum_n \abso{T_n}< \epsilon \bdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Although Lipschitz function from $\R^d$ to  $\R^m$ preserve Lebesgue measurability when $d\leq m$, the proposition does not hold true when $d>m$.  Simple counter example can be constructed with projection $\pi:\R^2\rightarrow \R$ and the set $V \times \set{0}$ where $V$ is the \customref{Vitali Set}{Vitali set}. \\
+
+  Ii is worth pointing out that our development of Theory of Lebesgue measure mostly depend on the abstract  \customref{caratheodory_extension_theorem}{Carathéodory’s Extension Theorem}, which is indeed quite unorthodox. If one wish to instead develop the Theory of Lebesgue measurability starting at \customref{Equivalent Definition of Lebesgue Measurability}{the second definition of Lebesgue measurability}, one may follows the following steps 
+\begin{enumerate}[label=(\roman*)] 
+\item Prove that the outer measure is countably subadditive using \customref{Piom}{$\epsilon 2^{-k}$ trick}.
+\item Prove that compact interval is measurable and have the expected measure. The former is proved by finding a small enough open interval and cover the difference naively, and the latter is proved by Hiene-Borel. 
+  \item Prove that the class of measurable set is closed under countable union.  (This step is independent of step 2)
+  \item Conclude that finite union of non-overlapping compact interval is measurable, and prove that it have the expected measure by Hiene-Borel. 
+\end{enumerate}
+With these knowledge, we then can 
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that disjoint compact sets have positive distance. 
+  \item Prove that $d(E_1,E_2)>0 \implies \abso{E_1\cup E_2}_e = \abso{E_1}_e + \abso{E_2}_e$.   
+  \item Prove that compact set is measurable by expressing the difference $G\setminus F$  of the small enough open set $G$ containing compact $F$ to be a countable union of non-overlapping compact intervals.
+  \item Prove that closed set is measurable by expressing the closed set is a countable union of compact sets.
+\end{enumerate}
+and 
+\begin{enumerate}[label=(\roman*)]
+\item Prove that null set is measurable.  
+  \item Prove that complement $E^c$ of measurable set $E$ is measurable by expressing $E^c$ as a countable union of closed set and a null set.
+  \item Prove the \customref{Equivalent Definition of Lebesgue Measurability}{third equivalent definition of Lebesgue measurability}.  
+  \item Use \customref{Equivalent Definition of Lebesgue Measurability}{third equivalent definition of Lebesgue measurability} to conclude that if measurable $E_n$ are bounded and disjoint then $\abso{\bigcup E_n}= \sum \abso{E_n}$. 
+  \item Generalize the forth step to $E_n$ that may not be bounded. 
+\end{enumerate}
+\end{mdframed}
+
+\section{Egorov's and Lusin's Theorem}
 \begin{abstract}
-In this section $Z$ always stands for some null set.
+In this section we prove \customref{Egorov's Theorem}{Egorov's Theorem} and \customref{Lusin's Theorem}{Lusin's Theorem} and discuss about convergence in measure. Note that $Z$ always stands for some null set in this section.
 \end{abstract}
 \begin{mdframed}
-We first prove \customref{Docae}{an important estimation for almost everywhere convergence sequence on finite domain}, which we will later repeatedly use in this section. 
+Although $\Sigma_Y$ is by default the Borel $\sigma$-algebra, when $X=\R^d$ and  $\Sigma_X$ is also not explicit specified, the $\sigma$-algebra $\Sigma_X$ is by default the Lebesgue $\sigma$-algebra $\Sigma_X\triangleq \mathcal{L}(\R^d)$, for obvious reason that we are building the Theory of measurable function for the Theory of Lebesgue integration. Take $Y$ to be some topological space, and suppose $f$ is define on some subset of $X$ and has codomain $Y$. If  $E\subseteq X$ is some Lebesgue measurable set, we say  $f$ is \textbf{measurable on $E$} if $f$ is defined on some measurable $F\subseteq E$ such that $\abso{E \setminus F}=0$ and $f|_F:(F,\Sigma_F)\rightarrow (Y,\Sigma_Y)$ is measurable where $\Sigma_F$ is the sub-$\sigma$-algebra of the Lebesgue $\sigma$-algebra $\mathcal{L}(\R^d)$ defined by $\Sigma_F \triangleq \set{H\cap F:H \in \mathcal{L}(\R^d)}$. Note that the priori $F$ is Lebesgue measurable implies that $\Sigma_F\subseteq \mathcal{L}(\R^d)$. We first prove \customref{Docae}{an important estimation for almost everywhere convergence sequence on domain of finite measure}, which we will later repeatedly use in this section. 
 \end{mdframed}
 \begin{theorem}
 \label{Docae}
@@ -5728,7 +6164,7 @@ For all $\epsilon ,\eta>0 $, there exists some closed $F\subseteq E$ and integer
 \begin{proof}
 For each $n$, define 
 \begin{align*}
-E_n \triangleq \bigcap_{k>n}\set{\abso{f-f_k}<\epsilon }
+E_n \triangleq \bigcap_{k>n}\bset{\abso{f-f_k}<\epsilon }
 \end{align*}
 It is clear that $E_n$ is an increasing sequence of measurable set. Let $f_n \to f$ on $E\setminus Z$. Because  $f$ is finite, we have  $E_n\nearrow E\setminus Z$. This then give us $\abso{E_n}\nearrow \abso{E\setminus Z}=\abso{E}$. Because $E$ is of finite measure, there exists $N$ such that  $\abso{E\setminus E_{N}}< \frac{\eta }{2}$. Let $F$ be a closed subset of  $E_{N}$ such that $\abso{E_{N}\setminus F}< \frac{\eta }{2}$. It is clear that $F$ and  $N$ suffices.
 \end{proof}
@@ -5741,20 +6177,47 @@ if for all $\epsilon $, we have
 \begin{align*}
 \abso{\set{\textbf{x}\in E: \abso{f(\textbf{x})-f_n(\textbf{x})}>\epsilon }}\to 0\text{ as }n\to \infty
 \end{align*}
-Immediately, using our \customref{Docae}{just proved estimation}, we see that if $f_n\to f$ almost everywhere on $E$ and $E$ is of finite measure, then $f_n$ also converge to $f$ in measure. This implies that on domain of finite measure, convergence in measure is weaker than almost everywhere convergence; In fact, convergence in measure is strictly weaker. Consider the following example
+Immediately, using our \customref{Docae}{just proved estimation}, we see that if $f_n\to f$ almost everywhere on $E$ and $E$ is of finite measure, then $f_n$ also converge to $f$ in measure. This implies that on domain of finite measure, convergence in measure is weaker than almost everywhere convergence; In fact, convergence in measure is strictly weaker. Consider the following examples. 
 \end{mdframed}
-\begin{Example}{\textbf{(Convergence in measure on finite domain yet does not converge almost everywhere)}}{}
+\begin{Example}{\textbf{(Convergence in measure is strictly stronger than almost everywhere convergence on domain of finite measure)}}{}
 \begin{align*}
 I_1\triangleq [0,1]
 \end{align*}
 Let $I_2,I_3$ be the two halves of $[0,1]$, $I_4,I_5,I_6,I_7$ be the four quarters, and so on. Define  $f_n:[0,1]\rightarrow \R$ by $f_n\triangleq \textbf{1}_I_n$. We see $f_n$ diverge everywhere, but $f_n\overset{m}{\to}0$. 
 \end{Example}
-\begin{Example}{\textbf{(Converge almost everywhere may not converge in measure on domain of infinite measure)}}{}
+\begin{mdframed}
+Next example shows that convergence in measure is only stronger than almost everywhere convergence on domain of finite measure.  
+\end{mdframed}
+\begin{Example}{\textbf{(Converge almost everywhere but not converge in measure)}}{}
 \begin{align*}
 f_n\triangleq \textbf{1}_{B_n(\textbf{0})}
 \end{align*}
 $f_n\to 1$ on $\R^d$, but $f_n$ does not converge to $1$ in measure.
 \end{Example}
+\begin{mdframed}
+Although convergence in measure does not implies almost everywhere convergence. There does exists a partial converse. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Convergence in measure implies subsequence converge almost everywhere)} Given a sequence of measurable $f_n:E\rightarrow [-\infty,\infty]$ that converge in measure to some measurable $f:E\rightarrow \R$, there exists some subsequence $f_{n_k}$ converge to $f$ almost everywhere.
+\end{theorem}
+\begin{proof}
+Because $f_n$ converge to $f$ in measure, we may let  $K_n$ be an increasing sequence such that 
+\begin{align*}
+\abso{\bset{\abso{f-f_{k}}>\frac{1}{n}}}< \frac{1}{2^n}\text{ for all }k\geq K_n
+\end{align*}
+Define  
+ \begin{align*}
+E_n\triangleq \bset{\abso{f-f_{K_n}}> \frac{1}{n}}\text{ and }H_n \triangleq \bigcup_{k\geq n}E_k\text{ and }H\triangleq \lim_{n\to \infty}H_n
+\end{align*}
+It is clear $\abso{H}=0$ by direct computation. It remains to show $f_{K_n}$ converge to $f$ on  $E \setminus H$. Fix $x\in E\setminus H$. By definition, there exists some $N$ such that 
+\begin{align*}
+x\not\in H_N = \bigcup_{n\geq N} \bset{\abso{f-f_{K_n} }> \frac{1}{n}}
+\end{align*}
+It follows that for all $n\geq N$, 
+\begin{align*}
+\abso{f(x)-f_{K_n}(x)}\leq \frac{1}{n} \leq \frac{1}{N}
+\end{align*}
+\end{proof}
 \begin{mdframed}
 We now prove Egorov's Theorem. Although the statement might be daunting, Egorov's Theorem basically says that if sequence of function converges almost everywhere to a finite limit, then the sequence "nearly" uniform converge to its limit. 
 \end{mdframed}
@@ -5799,275 +6262,60 @@ Lastly, we prove the if part. For each $n\inn$, let closed $F_n \subseteq E$ sat
 \end{align*}
 which is measurable, since $f$ is measurable  (continuous) on each $F_n$ and  $\set{\textbf{x}\in Z:f(\textbf{x})>a}$ is null.
 \end{proof}
-\section{Abstract integration} 
+\section{Lebesgue Integral}
 \begin{abstract}
-In this section, $X$ is always a measurable space with measure $\mu:\Sigma_X\rightarrow [0,\infty]$. 
+  This section is a continuation of \myref{Section}{Ai}. 
 \end{abstract}
 \begin{mdframed}
-Suppose $s:E\rightarrow [0,\infty]$ is a simple function defined on some measurable $E\subseteq X$ taking values $c_1,\dots ,c_N$ on $E_1,\dots ,E_N$. It is clear that $E_n$ is a finite disjoint decomposition of $E$, and $s$ is measurable if and only if all $E_n$ are measurable. We can write
+In this section, we continue the  development of theory of integral 
+\end{mdframed}
+
+
+
+\begin{mdframed}
+ If $X=\R^d,\Sigma_X=\mathcal{L}(\R^d)$ and $\mu$ is the Lebesgue measure, one can equivalently define the Lebesgue integral of $f$ non-negative and measurable on $E$ by 
 \begin{align*}
-s= \sum_{n=1}^N c_n \textbf{1}_{E_n}
+\int_E fd\textbf{x}\triangleq \abso{R(f,E)}\text{ where } R(f,E)\triangleq \set{(\textbf{x},y)\inr^{d+1}: \textbf{x}\in E\text{ and }y \in [0,f(\textbf{x}))}
 \end{align*}
-Then if $s$ is measurable, we can define
+To see that this definition make sense and agree with our definition in \myref{Section}{Ai}, consider \customref{Approximation of nonnegative function by increasing simple function}{a sequence of measurable simple function $s_n:E\rightarrow \R_0^+$ such that $s_n\nearrow f$ on  $E$}. Because Cartesian product of measurable set must be measurable with the expected measure, we know that $R(s_n,E)$ is measurable and $\abso{R(s_n,E)}=\int_E s_nd\mu$. It then follows from $R(s_n,E)\nearrow R(f,E)$ that $R(f,E)$ is also measurable, and by \customref{MCTn}{abstract monotone convergence theorem}, we have 
 \begin{align*}
-\int_E s d\mu \triangleq \sum_{n=1}^n c_n \mu (E_n)
+\int_Efd\textbf{x}= \lim_{n\to \infty}\int_E s_n d\textbf{x} = \lim_{n\to \infty} \abso{R(s_n,E)}=\abso{R(f,E)}
 \end{align*}
-We now expand our definitions to non-negative measurable $f:E\rightarrow [0,\infty]$. Define  
+Also, one shall note that for expression $\int_E fd\textbf{x}$ to make sense, $f$ does not have to be defined everywhere on $E$, and if  $f$ is integrable, then $f$ must be finite almost everywhere. If $f:E_1\sqcup  E_2\rightarrow [-\infty,\infty]$ is measurable, with some tedious effort, we have
 \begin{align*}
-  \int_E fd\mu \triangleq \sup \int_E sd\mu
+\int_{E_1\cup E_2}fd\textbf{x}=\int_{E_1}fd\textbf{x} +\int_{E_2}d\textbf{x}
 \end{align*}
-where $s:E\rightarrow [0,\infty]$ runs through all measurable simple functions on $E$ such that $s(x)\leq f(x)$ for all $x\in E$. At this point, one may check that our definition so far is consistent. We now expand our definitions to the class of all measurable functions $f:E\rightarrow [-\infty,\infty]$ ranging in $[-\infty,\infty]$. Given some non-negative measurable $g:E\rightarrow [0,\infty]$, we say $g$ is \textbf{Lebesgue integrable on $E$} if $\int_E gd\mu<\infty$. Given some measurable $f:E\rightarrow [-\infty,\infty]$, we say $f$ is \textbf{Lebesgue integrable on $E$} if 
-\begin{align*}
-\int_Ef^+d\mu<\infty\text{ and }\int_Ef^-d\mu<\infty
-\end{align*}
-where $f^+(x)\triangleq \max \set{f(x),0}\text{ and }f^-(x)\triangleq \min \set{f(x),0}$, and if $f:E\rightarrow [-\infty,\infty]$ is Lebesgue integrable on $E$, we define 
-\begin{align*}
-\int_E fd\mu\triangleq  \int_E f^+d\mu - \int_E f^-d\mu
-\end{align*}
-Again, one may check that our definition is so far consistent.  Is shall be clear that function $f:E\rightarrow [-\infty,\infty]$ Lebesgue integrable on $E$ forms a vector space over  $\R$ and the integral operator is linear. If $f:E_1\sqcup  E_2\rightarrow [-\infty,\infty]$ is measurable, with some tedious effort, we have
-\begin{align*}
-\int_{E_1\cup E_2}fd\mu=\int_{E_1}fd\mu +\int_{E_2}d\mu
-\end{align*}
-whenever it make sense. 
+whenever expressions on both side both make sense. 
 \end{mdframed}
 \begin{theorem}
-\textbf{(Lebesgue Monotone Convergence Theorem)} Let $E\subseteq X$ be measurable, $f_n:E\rightarrow [-\infty,\infty]$ be a sequence of measurable function, $f:E\rightarrow [-\infty,\infty]$ be a function 
+\label{MCT}
+\textbf{(Monotone Convergence Theorem)} Let $E\subseteq X$ be measurable, $f_n:E\rightarrow [-\infty,\infty]$ be a sequence of measurable function, $f:E\rightarrow [-\infty,\infty]$ be a function 
 \begin{enumerate}[label=(\alph*)]
-  \item If $f_n\nearrow f$ almost everywhere on $E$ and there exists  $\phi \in L(E)$ such that $f_n\geq \phi$ almost everywhere on $E$ for all  $n\inn$, then $\int_E f_nd\mu\nearrow  \int_E fd\mu$. 
+  \item If $f_n\nearrow f$ almost everywhere on $E$ and there exists  $\phi \in L(E)$ such that $f_n\geq \phi$ almost everywhere on $E$ for all  $n\inn$, then $\int_E f_nd\textbf{x}\nearrow  \int_E fd\textbf{x}$. 
+  \item If $f_n\searrow f$ almost everywhere on  $E$ and there exists  $\phi \in L(E)$ such that $f_n \leq \phi$ almost everywhere on $E$ for all  $n\inn$, then $\int_E f_nd\textbf{x}\searrow \int_E fd\textbf{x}$
 \end{enumerate}
 \end{theorem}
-\begin{mdframed}
- If $X=\R^d,\Sigma_X=\mathcal{L}(\R^d)$ and $\mu$ is the Lebesgue measure, one can equivalently define the Lebesgue integral of measurable $f:E\rightarrow [0,\infty]$ by 
-\begin{align*}
-\int_E fd\mu\triangleq \abso{R(f,E)}\text{ where } R(f,E)\triangleq \set{(\textbf{x},y)\inr^{d+1}: \textbf{x}\in E\text{ and }y \in [0,f(\textbf{x}))}
-\end{align*}
-To see that this definition make sense, i.e., $R(f,E)$ is Lebesgue measurable, consider \customref{Approximation of nonnegative function by increasing simple function}{a sequence of measurable simple function $s_n:E\rightarrow \R_0^+$ such that $s_n\nearrow f$ on  $E$}. Because Cartesian product of measurable set must be measurable, we know that $R(s_n,E)$ is measurable. It then follows from $R(s_n,E)\nearrow R(f,E)$ that $R(f,E)$ is also measurable. Tedious effort shows that two definitions gives the same values for simple functions $s_n$
-
-
-\end{mdframed}
-\begin{mdframed}
-We now expand our definitions to the class of all measurable functions range in $[-\infty,\infty]$, but before such, we have to first introduce the idea of \textbf{Lebesgue integrable}. For either $s$ or  $f$, range in either $[0,\infty)$ or $[0,\infty]$, it is always possible that $\int_E s\text{ or }fd\mu=\infty$.\\ 
-
-If we have $\int_Efd\mu=\infty$, we say $f$ is \textbf{not Lebesgue integrable}, and if $\int_Efd\mu<\infty$, we say $f$ is \textbf{Lebesgue integrable on }$E$. Because $\R$ is complete in order, we know $f$ is either Lebesgue integrable or not Lebesgue integrable on $E$.\\
-
-Given a function range in $[-\infty,\infty]$ and measurable on $E$, if both $f^+,f^-$ are Lebesgue integrable on $E$, we say  $f$ is Lebesgue integrable on $E$, and write 
-\begin{align*}
-\int_E fd\mu= \int_E f^+d\mu- \int_E f^-d\mu
-\end{align*}
-If either  $f^+$ or  $f^-$ are not Lebesgue integrable on $E$, we say $f$ is not Lebesgue integrable on $E$.\\
-
-Notice that 
-\begin{align*}
-f\text{ is Lebesgue integrable on }E\iff \int_E \abso{f}d\mu<\infty
-\end{align*}
-It is clear that our definition is again so far consistent.
-\end{mdframed}
-\begin{mdframed}
-We now 
-\end{mdframed}
-
-\section{Basic property of abstract integration}
-\begin{mdframed}
-This section prove some basic properties of Lebesgue integral over general measure space $(X,\Sigma_X,\mu)$. From now when we use the notation $X$, it shall be understood $X$ is equipped with an $\sigma$-algebra $\Sigma_X$ and a measure $\mu$. We will prove 
-\begin{enumerate}[label=(\alph*)]
-  \item Lebesgue Monotone Convergence Theorem (\myref{Theorem}{LMCT})
-  \item Fatou's Lemma (\myref{Theorem}{Fatou})
-  \item Reverse Fatou's Lemma (\myref{Theorem}{RFL}) 
-  \item Dominated Convergence Theorem (\myref{Theorem}{LDCT})
-\end{enumerate}
-\end{mdframed}
-\begin{theorem}
-\label{LMCT}
-\textbf{(Lebesgue Monotone Convergence Theorem)} Given a sequence of measurable $f_n:X\rightarrow [0,\infty]$ such that $\set{f_n(x)}_{n\inn}$ is an increasing sequence for each $x\in X$, then 
-\begin{align*}
-\int_X fd\mu = \lim_{n\to \infty}\int_X f_nd\mu
-\end{align*}
-\end{theorem}
 \begin{proof}
-$f$ is measurable by \myref{Corollary}{Plm}. Because  $f_n \nearrow f$ on $X$, we know 
-\begin{align*}
- \lim_{n\to \infty}\int_X f_nd\mu = \sup_n \int_X f_nd\mu \leq \int_X fd\mu 
-\end{align*}
-It remains to prove 
-\begin{align*}
-\vi{\int_X fd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
-\end{align*}
-Fix simple $0\leq s\leq f$ on $X$. We reduce the problem into proving 
-\begin{align*}
-  \vi{\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
-\end{align*}
-Fix $c \in (0,1)$. We reduce the problem into proving 
-\begin{align*}
-  \vi{c\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu}
-\end{align*}
-Define 
-\begin{align*}
-E_n \triangleq \set{x\in X: f_n(x)\geq cs(x)}
-\end{align*}
-$E_n$ are measurable because $f_n-cs$ are measurable. Now because $f_n$ are non-negative on  $X$, we have 
-\begin{align*}
-\int_X f_n d\mu \geq \int_{E_n}f_n d\mu \geq c \int_{E_n} sd\mu
-\end{align*}
-Taking limit, we see
-\begin{align*}
-\lim_{n\to \infty} \int_X f_n d\mu \geq \lim_{n\to \infty} c \int_{E_n}sd\mu 
-\end{align*}
-It is straightforward to check $E_n$ is increasing and $\bigcup E_n =X$. Then if we decompose $s=\sum_{j} c_j \textbf{1}_{F_j}$, by \myref{Theorem}{Bppm}, we can take limit 
-\begin{align*}
-\lim_{n\to \infty}\mu (F_j\cap E_n)=\mu (F_j)
-\end{align*}
-It then follows that 
-\begin{align*}
-\lim_{n\to \infty}\int_X f_nd\mu \geq \lim_{n\to \infty}c \int_{E_n}sd\mu= c\int_X sd\mu \vdone
-\end{align*}
-\end{proof}
-\begin{mdframed}
-It is worth pointing out in our proof for Lebesgue Monotone Convergence Theorem, instead of proving $\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu$, we proved $c\int_X sd\mu \leq \lim_{n\to \infty}\int_X f_nd\mu$. Multiplying $\int_X sd\mu$ with $c\in (0,1)$ is not just a random limit technique. Our action play a much more profound role. Consider the Example.
-\end{mdframed}
-\begin{Example}{\textbf{(Why we take $c\int_X sd\mu$ ?)}}{}
-\begin{align*}
-X=[0,1]\text{ and }f_n=1-\frac{1}{n}
-\end{align*}
-We can take $s=f$, and see $E_n=\varnothing$ for all $n$, which renders our proceeding proof invalid. 
-\end{Example}
-\begin{corollary}
-\textbf{(Monotone Convergence Theorem for general functions)} Given a sequence of measurable $f_n:X\rightarrow [0,\infty]$ such that
-\begin{enumerate}[label=(\alph*)]
-  \item $\set{f_n(x)}_{n\inn}$ is an increasing sequence on $N^c$
-  \item $f:X\rightarrow [0,\infty]$ is the limit of $f_n$ on $N^c$ 
-  \item $\mu (N)=0$
-  \item $\mu$ is complete
-\end{enumerate}
-We have 
-\begin{align*}
-\int_X fd\mu = \lim_{n\to \infty}\int_X f_nd\mu
-\end{align*}
-\end{corollary}
-\begin{proof}
-Let
-\begin{align*}
-g(x)\triangleq \begin{cases}
-  f(x)& \text{ if $x \in N^c$ }\\
-  0& \text{ if $x\in N$ }
-\end{cases}
-\end{align*}
-Note that 
-
-
-
-\begin{align*}
-\int_X fd\mu = \int_{N^c}fd\mu = \lim_{n\to \infty}\int_{N^c} fd\mu = \lim_{n\to \infty} \int_X fd\mu
-\end{align*}
+the first proposition follows from applying \customref{MCTn}{Monotone Convergence Theorem for nonnegative function presented in Chapter 6} to $f_n - \phi$ on a suitable domain $F\subseteq E$. The second proposition follows from applying the first proposition to $-f_n$.  
 \end{proof}
 \begin{theorem}
-\label{Fatou}
-\textbf{(Fatou's Lemma)} Given measurable $f_n:X\rightarrow [0,\infty]$ 
+\textbf{(Fatou's Lemma)} Given measurable sequence $f_n:E\rightarrow [-\infty,\infty]$, and some $\phi \in L(E)$ such that $f_n\geq \phi $ almost everywhere on $E$ for all  $n\inn$, 
 \begin{align*}
-\int_X \liminf_{n\to\infty} f_nd\mu \leq \liminf_{n\to\infty} \int_X f_n d\mu
+\int_E \liminf_{n\to\infty} f_nd\textbf{x}\leq \liminf_{n\to\infty} \int_E f_nd\textbf{x}
 \end{align*}
 \end{theorem}
-\begin{proof}
-Since $\inf_{k\geq n}f_k\leq f_n$ for each $n,x$, we see 
- \begin{align*}
-\int_X \inf_{k\geq n}f_k d\mu \leq \int_X f_nd\mu\text{ for all $n$ }
-\end{align*}
-Because $\inf_{k\geq n}f_k\nearrow  \liminf_{m\to\infty} f_m$ as $n\to \infty$, by (\myref{Theorem}{LMCT}: Lebesgue Monotone Convergence Theorem), we can take limit 
-\begin{align*}
-\int_X \liminf_{n\to\infty} f_n d\mu = \lim_{n\to \infty}\int_X \inf_{k\geq n}f_k d\mu\leq \liminf_{n\to\infty} \int_X f_nd\mu
-\end{align*}
-\end{proof}
-\begin{Example}{\textbf{(Fatou's Lemma strict inequality)}}{}
-\begin{align*}
-f_{2k}(x)=\begin{cases}
- 0& \text{ if $x\in [0,\frac{1}{2}]$ } \\
- 1& \text{ if $x\in (\frac{1}{2},1]$ }
-\end{cases}\text{ and }f_{2k+1}(x)=\begin{cases}
-  1& \text{ if $x\in [0,\frac{1}{2})$ }\\
-  0& \text{ if $x\in [\frac{1}{2},1]$ }
-\end{cases}
-\end{align*}
-\end{Example}
-\begin{mdframed}
-  From now, we use $L^1(\mu)$ to denote the set of all function defined and $\mu$-Lebesgue-integrable on $X$, and we say a sequence of function  $f_n:X\rightarrow [0,\infty]$ is  \textbf{dominated} by $g$, if $g$ is a $[0,\infty]$-valued function defined on $X$ such that 
-\begin{align*}
-\sup_n \abso{f_n(x)} \leq g(x)\text{ for all $x\in X$ }
-\end{align*}
-\end{mdframed}
 \begin{theorem}
-\label{RFL}
-\textbf{(Reverse Fatou's Lemma)} Given measurable $f_n:X\rightarrow [0,\infty]$ dominated by some $g \in L^1(\mu)$ 
+\textbf{(Reversed Fatou Lemma)} Given measurable sequence $f_n:E\rightarrow [-\infty,\infty]$, and some $\phi \in L(E)$ such that $f_n\leq \phi$ almost everywhere on $E$ for all  $n\inn$ we have 
 \begin{align*}
-\limsup_{n\to\infty} \int_X f_nd\mu \leq \int_X \limsup_{n\to\infty} f_nd\mu
+\limsup_{n\to\infty} \int_E f_nd\textbf{x}\leq \int_E \limsup_{n\to\infty} f_n d\textbf{x} 
 \end{align*}
 \end{theorem}
-\begin{proof}
-By (\myref{Theorem}{Fatou}: Fatou Lemma)
-\begin{align*}
-\int_X \liminf_{n\to\infty} (g-f_n) d\mu \leq \liminf_{n\to\infty} \int_X (g-f_n)d\mu 
-\end{align*}
-Multiplying both side with $-1$, we have 
-\begin{align*}
-\limsup_{n\to\infty} \int_X (f_n-g)d\mu \leq \int_X \limsup_{n\to\infty} (f_n-g)d\mu
-\end{align*}
-Then adding both side the constant $\int_X gd\mu$, we reach to the conclusion.
-\end{proof}
-\begin{mdframed}
-Note that in our proof above, when we "pull" the negative sign out from $\liminf_{n\to\infty} $, it changed to $\limsup_{n\to\infty} $. This is a standard technique, which can be justified using the sub-sequence definition of limit superior.
-\end{mdframed}
 \begin{theorem}
-\label{LDCT}
-\textbf{(Dominate Convergence Theorem)} Given a sequence $f_n:X\rightarrow \C\cup \set{\infty}$ of measurable function such that 
+\textbf{(Dominate Convergence Theorem)} If $f_n:E\rightarrow [-\infty,\infty]$ is a sequence of measurable function  converge almost everywhere to $f:E\rightarrow [-\infty,\infty]$, and there exists some $\phi \in L(E)$ such that $\abso{f_n}\leq \phi$ almost everywhere on $E$ for all  $n\inn$, then 
 \begin{align*}
-f\triangleq \lim_{n\to \infty}f_n\text{ exists on $X$ }
-\end{align*}
-If there exists $g \in L^1(\mu)$ dominating $f_n$, then 
-\begin{align*}
-\lim_{n \to \infty} \int_X \abso{f_n-f}d\mu=0\text{ and }\int_X fd\mu = \lim_{n\to \infty} \int_X f_n d\mu\text{ exists in $\C\cup  \set{\infty}$ }
+\int_E \abso{f-f_n}d\textbf{x}=0
 \end{align*}
 \end{theorem}
-\begin{proof}
-Because $f$ is measurable by \myref{Corollary}{Plm} and  $\abso{f}\leq g$ on $X$, $f \in L^1(\mu)$.\\
-
-We first prove 
-\begin{align*}
-  \vi{\lim_{n\to \infty}\int_X \abso{f_n-f}d\mu=0}
-\end{align*}
-We relax the problem into proving 
-\begin{align*}
-  \vi{\limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu=0}
-\end{align*}
-Note that $\abso{f_n-f}\leq 2g$. We can now apply (\myref{Theorem}{Fatou}: Fatou lemma) to $2g- \abso{f_n-f}$ and see 
-\begin{align*}
-\int_X 2gd\mu&=   \int_X \lim_{n\to \infty}(2g- \abso{f_n-f})d\mu \\
-&\leq \liminf_{n\to\infty} \int_X (2g-\abso{f_n-f})d\mu\\
-&= \int_X 2gd\mu + \liminf_{n\to\infty} \Big(- \int_X \abso{f_n-f}d\mu \Big)\\
-&=\int_X 2gd\mu - \limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu
-\end{align*}
-Then because $g \in L^1(\mu)$, we can subtract it and obtain 
-\begin{align*}
-\limsup_{n\to\infty}\int_X  \abso{f_n-f}d\mu=0 \vdone
-\end{align*}
-It then follows that 
-\begin{align*}
-  \limsup_{n\to\infty} \abso{\int_X (f_n-f)d\mu} \leq \limsup_{n\to\infty} \int_X \abso{f_n-f}d\mu =0
-\end{align*}
-which implies 
-\begin{align*}
-\lim_{n\to \infty} \int_X (f_n-f)d\mu =0
-\end{align*}
-and because $f\in L^1(\mu)$, we have
-\begin{align*}
-\lim_{n\to \infty}\int_X f_nd\mu = \int_X fd\mu
-\end{align*}
-\end{proof}
-\begin{Example}{\textbf{(Counterexample for Dominate Convergence Theorem)}}{}
-\begin{align*}
-f_n(x)=\begin{cases}
-  \frac{1}{n}& \text{ if $\abso{x}<n$ }\\
-  0& \text{ if $\abso{x}\geq n$ }
-\end{cases}
-\end{align*}
-\end{Example}
 \section{Change of Variables Formula}
 \begin{theorem}
   \textbf{(Linear Transformation and Lebesgue Measure)} Given a vector space homomorphism $T:\R^d\rightarrow \R^d$ and a Lebesgue measurable set $E\subseteq \R^d$, we have 
@@ -6075,6 +6323,201 @@ f_n(x)=\begin{cases}
 \abso{T(E)} = \abso{\operatorname{det}(T)}\cdot \abso{E}  
 \end{align*}
 \end{theorem}
+\begin{theorem}
+\textbf{(Change of Variables)} If $T$ is a nonsingular linear transformation of $\R^n$ and  $\int_E f(\textbf{y})d\textbf{y}$ exists, then 
+\begin{align*}
+\int_E f(\textbf{y})d\textbf{y}= \abso{\operatorname{det}T}\int_{T^{-1}E}f(T\textbf{x})d\textbf{x}
+\end{align*}
+\end{theorem}
+\section{Fubini's Theorem}
+\begin{theorem}
+\textbf{(Fubini's Theorem)} Let $I_1$ be some interval in  $\R^n$ and  $I_2$ be some interval in $\R^m$. If  $f:I_1 \times I_2\rightarrow [-\infty,\infty]$ is integrable, then 
+\begin{align*}
+\int_{I_1\times I_2}fd(\textbf{x},\textbf{y})=\int_{I_1} \Big[\int_{I_2}fd\textbf{y} \Big]d\textbf{x}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define 
+\begin{align*}
+\mathcal{F}\triangleq \bset{f\in L(I_1 \times I_2):\int_{I_1 \times I_2}fd(\textbf{x},\textbf{y})=\int_{I_1}\Big[\int_{I_2}fd\textbf{y} \Big]d\textbf{x}}
+\end{align*}
+We are required to show $\mathcal{F}=L(I_1,I_2)$. It is clear that $\mathcal{F}$ is closed under finite linear combination as long as the expression make sense. This reduce the problem into case of $f$ being nonnegative. \customref{Approximation of nonnegative function by increasing simple function}{Let $s_n:I_1\times I_2\rightarrow [0,\infty)$ be a sequence of simple measurable functions such that $s_n\nearrow f$}. By applying \customref{MCTn}{Monotone Convergence Theorem for nonnegative function} twice, we see that if $s_n \in \mathcal{F}$, then $f\in \mathcal{F}$. This reduce the problem into proving $s \in \mathcal{F}$ for nonnegative real-valued simple measurable function $s:I_1\times I_2\rightarrow [0,\infty)$. Moreover ,because $s$ is a finite linear combination of characteristic functions  $\textbf{1}_E$, we can reduce the problem into proving $\textbf{1}_E\in \mathcal{F}$ for measurable characteristic functions. Because $E$ is measurable, we may let  $E\sqcup  Z=H$ where $Z$ is null and $H \in G_\delta$. Because boundary of $I_1 \times I_2$ is clearly null, we can require $H$ to be contained by interior of $I_1 \times I_2$ by intersecting $H$ with interior of  $I_1 \times I_2$. Observe that $\textbf{1}_E=\textbf{1}_H - \textbf{1}_Z$. It remains to prove $\textbf{1}_H,\textbf{1}_Z \in \mathcal{F}$. \\
+
+
+Let $U \subseteq I_1 \times I_2$ be open. Recall that we may express $U$ as  countable disjoint union of half-open dyadic cubes 
+\begin{align*}
+U=\bigsqcup_n K_{n,1}\times K_{n,2}
+\end{align*}
+It is straightforward to check that $\textbf{1}_{K_{n,1}\times K_{n,2}}\in \mathcal{F}$. It then follows from $\textbf{1}_U= \sum_{n} \textbf{1}_{K_{n_1}\times K_{n,2}}$ that $\textbf{1}_U \in \mathcal{F}$. Let $U_n\subseteq I_1 \times I_2$  be a sequence of open set such that $U_n\searrow H$. It again follows from applying \customref{MCT}{Monotone Convergence Theorem} twice that $\textbf{1}_H\in \mathcal{F}$. One may now find some $H_0\in G_\sigma$ containing  $Z$ with zero measure and verify 
+\begin{align*}
+\int_{I_1}\Big[ \int_{I_2} \textbf{1}_Z d\textbf{y}\Big]d\textbf{x}\leq \int_{I_1} \Big[ \int_{I_2} \textbf{1}_{H_0}d\textbf{y} \Big] d\textbf{x}=\iint_{I_1 \times I_2}\textbf{1}_{H_0} d(\textbf{x},\textbf{y})=0 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Tonelli's Theorem)} Let $I_1$ be some interval in  $\R^n$ and  $I_2$ be some interval in $\R^m$. If  $f$ is nonnegative and measurable on $I_1 \times I_2$, then 
+\begin{align*}
+\int_{I_1\times I_2}fd(\textbf{x},\textbf{y})=\int_{I_1} \Big[\int_{I_2}fd\textbf{y} \Big]d\textbf{x}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $f_n:I_1 \times I_2\rightarrow [0,\infty )$ by 
+\begin{align*}
+f_n(\textbf{x},\textbf{y})\triangleq \begin{cases}
+  0& \text{ if $\abso{(x,y)}>n$ }\\
+  \min \set{n, f(\textbf{x},\textbf{y})}& \text{ if $\abso{(x,y)}\leq n$ }
+\end{cases}
+\end{align*}
+The result then follows from $f_n\nearrow f$ and applying Fubini's Theorem to  $f_n$. 
+\end{proof}
+\begin{mdframed}
+Note that Tonelli's Theorem is stronger in practice in the sense that even if you can't tell $f$ is integrable, you can still apply it. Given two extended-valued $f,g$ measurable on $\R^n$. Their  \textbf{convolution $f*g$} is defined by
+\begin{align*}
+  (f*g)(\textbf{x})\triangleq \int_{\R^n}f(\textbf{t})g(\textbf{x}-\textbf{t})d\textbf{t}
+\end{align*}
+Note that it follows from a change of variable that 
+\begin{align*}
+  (f*g)=(g*f)
+\end{align*}
+Note that for our definition to make sense, we must show $f(\textbf{x}-\textbf{t})$ is measurable on $\R^{2n}$. 
+\end{mdframed}
+\begin{theorem}
+\label{DoC}
+\textbf{(Definition of Convolution)} If $f(\textbf{x})$ is measurable on $\R^n$, then  $F(\textbf{x},\textbf{t})\triangleq f(\textbf{x}-\textbf{t})$ is measurable on $\R^{2n}$. 
+\end{theorem}
+\begin{proof}
+  Define $F_0$ by 
+\begin{align*}
+  F_0(\textbf{x},\textbf{t})\triangleq f(\textbf{x})
+\end{align*}
+Observe that 
+\begin{align*}
+\set{F_0 >a}=\set{f>a}\times \R^n
+\end{align*}
+It follows that $F_0$ is measurable. The proof then follows from noting 
+\begin{align*}
+F=F_0 \circ T
+\end{align*}
+where the non-singular linear transformation $T:\R^{2n}\rightarrow \R^{2n}$ is defined by 
+\begin{align*}
+T(\textbf{x},\textbf{t})\triangleq (\textbf{x}-\textbf{t},\textbf{x}+\textbf{t})
+\end{align*}
+so that preimage of measurable sets under $T$ is its image under $T^{-1}$, again measurable. 
+\end{proof}
+\begin{theorem}
+\textbf{(Existence of Convolution)} If $f,g \in L(\R^n)$, then $(f * g)\in L(\R^n)$ and 
+\begin{align*}
+\int_{\R^n}(f * g)d\textbf{x}= \Big( \int_{\R^n} fd\textbf{x} \Big) \Big(\int_{\R^n}gd\textbf{x} \Big)
+\end{align*}
+and 
+\begin{align*}
+\int_{\R^n} \abso{f * g}dx\leq \Big( \int_{\R^n} \abso{f}d\textbf{x} \Big) \Big( \int_{\R^n}\abso{g}d\textbf{x} \Big)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let's first suppose $f$ and  $g$ are nonnegative. By \myref{Theorem}{DoC}, we know $f(\textbf{x}-\textbf{t})g(\textbf{t})$ is measurable on $\R^{2n}$. We may now applies Tonelli's Theorem and use a change of variable to have 
+\begin{align*}
+\int_{\R^n}(f*g)d\textbf{x}&= \int_{\R^n}\int_{\R^n}f(\textbf{x}-\textbf{t})g(\textbf{t})d\textbf{x}d \textbf{t} \\
+&=\int_{\R^n}\Big(\int_{\R^n}f(\textbf{x}-\textbf{t})d\textbf{x} \Big) g(\textbf{t}) d\textbf{t} \\
+&=\int_{\R^n}\Big(\int_{\R^n}f(\textbf{x})d\textbf{x} \Big) g(\textbf{t})d\textbf{t} \\
+&=\Big( \int_{\R^n} f(\textbf{x})d\textbf{x} \Big) \Big(\int_{\R^n}g(\textbf{t})d\textbf{t} \Big)
+\end{align*}
+Note that the computation above hold true even if one of $f,g$ are not integrable. For general $f,g \in L(\R^n)$, we may use this result and Tonelli's Theorem to get 
+\begin{align*}
+ \int_{\R^{2n}}\abso{f(\textbf{x}-\textbf{t})g(\textbf{t})}d(\textbf{x},\textbf{t}) &=\int_{\R^n} \int_{\R^n}\abso{f(\textbf{x}-\textbf{t})g(\textbf{t})}d\textbf{t} d\textbf{x} \\
+  &=\int_{\R^n}\abso{f}*\abso{g}d\textbf{x} = \Big( \int_{\R^n}\abso{f}d\textbf{x} \Big)\Big(\int_{\R^n}\abso{g}d\textbf{x} \Big)<\infty
+\end{align*}
+We have shown $f(\textbf{x}-\textbf{t})g(\textbf{t})$ is integrable on $\R^{2n}$; Therefore, we may use Fubini's Theorem to repeat the first computation process. The inequality follows from verifying $\abso{f * g}\leq \abso{f} * \abso{g}$. 
+\end{proof}
+\section{$L^p$ class}
+\begin{abstract}
+
+\end{abstract}
+\begin{mdframed}
+Let $E$ be a measurable subset of $\R^n$ and  $p \in \R^+$. We use $L^p(E)$ to denote the space of complex-valued function $f$ such that $f^p \in L(E)$. On $L^p(E)$, we may define a semi-norm by 
+\begin{align*}
+\norm{f}_{p,E}\triangleq \Big( \int_E \abso{f}^p \Big)^{\frac{1}{p}}
+\end{align*}
+For this semi-norm to be well-defined. It remains to check for triangle inequality. \\
+
+If $f$ is real-valued and measurable on $E$, we define the \textbf{essential supremum of $f$ on $E$} by 
+\begin{align*}
+\esssup_E f\triangleq \begin{cases}
+  \inf \bset{\alpha : \abso{\set{\textbf{x}\in E: f(\textbf{x})> \alpha } }=0}& \text{ if $\abso{E}>0$ }\\
+   0& \text{ if $\abso{E}=0$ }
+\end{cases}
+\end{align*}
+Because 
+\begin{align*}
+\bset{f>\alpha + \frac{1}{n}}\nearrow \bset{f>\alpha }
+\end{align*}
+we see that if $\abso{E}>0$, then the infimum in the definition is actually a minimum, i.e.,  
+\begin{align*}
+M=\esssup_E f\text{ is the smallest number such that }f\leq M\text{ almost everywhere }
+\end{align*}
+We then define 
+\begin{align*}
+\norm{f}_{\infty, E}\triangleq  \esssup_E \abso{f}\text{ and }L^{\infty}(E)\triangleq \set{\text{measurable complex-valued }f: \norm{f}_{\infty , E}<\infty}
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+  \textbf{(Relation between $L^p$ norm)} If $\abso{E}<\infty$, then 
+\begin{align*}
+\norm{f}_{\infty}=\lim_{p\to \infty} \norm{f}_p
+\end{align*}
+\end{theorem}
+\begin{proof}
+If $\abso{E}=0$, then $\norm{f}_{\infty}=\norm{f}_p=0$. Compute for all $p <\infty$, 
+\begin{align*}
+\Big(\int_E \abso{f}^p \Big)^{\frac{1}{p}}\leq \Big(\int_E \norm{f}_{\infty}^p \Big)^{\frac{1}{p}}= \norm{f}_{\infty} \cdot \abso{E}^{\frac{1}{p}} \to \norm{f}_{\infty}
+\end{align*}
+We have shown 
+\begin{align*}
+\limsup_{p\to\infty} \norm{f}_p \leq \norm{f}_\infty
+\end{align*}
+To see the other part of the proof, first observe by definition,  
+\begin{align*}
+\abso{\bset{\textbf{x} \in E: \abso{f(\textbf{x})}> \norm{f}_\infty -\epsilon }}> 0
+\end{align*}
+It then follows that 
+\begin{align*}
+\Big(\int_E \abso{f}^{p} \Big)^{\frac{1}{p}}\geq \Big( (\norm{f}_\infty -\epsilon)^p \cdot r  \Big)^{\frac{1}{p}} \to \norm{f}_{\infty} - \epsilon 
+\end{align*}
+for some constant $r>0$. This implies 
+\begin{align*}
+\liminf_{p\to\infty} \norm{f}_p \geq \norm{f}_\infty
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Note that we generally don't have 
+\begin{align*}
+\norm{f}_\infty = \lim_{p\to \infty} \norm{f}_p
+\end{align*}
+for $\abso{E}=\infty$. Simply consider $\textbf{1}_{\R}$. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Relation between $L^p$ space)} If $0<p_1<p_2 \leq \infty$ and $\abso{E}< \infty$, then
+\begin{align*}
+L^{p_2}(E)\subseteq L^{p_1}(E)
+\end{align*}
+\end{theorem}
+\begin{proof}
+If $\abso{E}=0$, the proof is trivial. Suppose $\abso{E}>0$. Let $f\in L^{p_2}(E)$. If $p_2=\infty$, estimate 
+\begin{align*}
+\int_E \abso{f}^{p_1}\leq \int_E \norm{f}_{\infty}^{p_1}\inr
+\end{align*}
+If $p_2<\infty$, define 
+\begin{align*}
+E_1 \triangleq \set{\textbf{x}\in E: f(\textbf{x})>1}\text{ and }E_2\triangleq E \setminus E_1
+\end{align*}
+and estimate 
+\begin{align*}
+  \int_E \abso{f}^{p_1}&= \int_{E_1} \abso{f}^{p_1} + \int_{E_2} \abso{f}^{p_1} \\
+ &\leq \int_{E_1} \abso{f}^{p_2} + \abso{E_2}\leq \norm{f}_{p_2}^{p_2} + \abso{E_2}\inr
+\end{align*}
+\end{proof}
+\begin{mdframed}
+
+\end{mdframed}
 \chapter{Harmonic Analysis}
 \section{Weierstrass approximation Theorem: $[a,b]\rightarrow \R$}
 \begin{theorem}
@@ -7330,6 +7773,919 @@ In other words,
 [X,Y]=\sum_{i,j} \Big(X^i \frac{\partial Y^j}{\partial \textbf{x}^i}- Y^i \frac{\partial X^j}{\partial \textbf{x}^i}  \Big) \frac{\partial }{\partial \textbf{x}^j}
 \end{align*}
 \end{mdframed}
+\section{Cotangent Bundle}
+\label{Cotangent Bundle}
+\begin{abstract}
+From now on, given some linear map $A:V\rightarrow W$, we always use $A^\vee$ to denote its dual map. 
+\end{abstract}
+\begin{mdframed}
+For each $p \in M$, we use $T^*_pM$ to denote the dual space of $T_pM$ and we use $(\ld^i)$ to denote the dual basis of $(\frac{\partial }{\partial \textbf{x}^i})$ when given local coordinate. If we let $\omega \in T_p^*M$ and write 
+\begin{align*}
+\omega = \sum_i \omega^i \ld^i = \sum_j \tilde{\omega}^j \tilde{\ld}^j   
+\end{align*}
+we may compute 
+\begin{align*}
+  \omega^i= \omega \Big( \frac{\partial }{\partial \textbf{x}^i}\Big|_p \Big)= \omega \Big( \sum_j \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i}(p) \frac{\partial }{\partial \tilde{\textbf{x}}^j }\Big|_p \Big)= \sum_j \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i} (p)\tilde{\omega}^j 
+\end{align*}
+This give us 
+\begin{align}
+\label{ldi}
+\widetilde{\ld}^i = \sum_{j} \frac{\partial \tilde{ \textbf{x}}^i }{\partial \textbf{x}^j} {\ld }^j 
+\end{align}
+Thus, when we define the \textbf{cotangent bundle} $T^*M$ to be 
+\begin{align*}
+T^*M\triangleq \coprod_{p \in M}T_p^*M
+\end{align*}
+we may induce charts for $T^*M$ by 
+\begin{align*}
+\Phi (p,\sum_i \xi^i\ld^i )= \Big(\phi (p),\xi^1,\dots ,\xi^n \Big)
+\end{align*}
+when we give $T^*M$ the topology and the smooth structure the way we give to  $TM$, the atlas is indeed smooth, since 
+ \begin{align*}
+\tilde{\Phi}\circ \Phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^n,\xi^1,\dots ,\xi^n)&= \tilde{\Phi}\Big(\phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^n), \sum_{i} \xi^i \ld^i \Big) \\
+&= \tilde{\Phi}\Big(\phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^n), \sum_{i} \xi^i \sum_j  \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i}\tilde{\ld}^j  \Big) \\
+&=\Big(\tilde{\textbf{x}}^1,\dots, \tilde{\textbf{x}}^n, \sum_i \frac{\partial \tilde{\textbf{x}}^1 }{\partial \textbf{x}^i} (\textbf{x})\xi^i ,\dots , \sum_i  \frac{\partial \tilde{\textbf{x}}^n }{\partial \textbf{x}^i} (\textbf{x})\xi^i \Big)
+\end{align*}
+Given a section $\omega:M\rightarrow  T^*M$ of the cotangent bundle $T^*M$, we say  $\omega$ is a \textbf{covector field}. Note that the natural charts show that $\omega$ is smooth if and only if $\omega^i$ are all smooth where 
+\begin{align*}
+\omega= \sum_i \omega^i \ld^i
+\end{align*}
+If a section $\omega:M\rightarrow T^*M$ is smooth, we say $\omega$ is a \textbf{1-form} on $M$, and we use the notation  $\Omega^1(M)$ to denote the space of 1-form on  $M$. Obviously, the purpose of 1-form is to take in a smooth vector field $X \in \mathfrak{X}(M)$ and output a 0-form  $\omega X\in \Omega^0(M)$ defined by 
+\begin{align*}
+  (\omega X)_p \triangleq \omega_p X_p = \sum_{i=1} \omega^i X^i (p)
+\end{align*}
+A standard argument similar to that of \myref{Theorem}{SCfv} shows that $\omega$ is smooth if and only if $\omega X \in \Omega^0(M)$ for all $X\in \mathfrak{X}(M)$. Let $f\in \Omega^0(M)$. We then see that if we define the \textbf{differential $df\in \Omega^1(M)$ of $f$} by 
+\begin{align*}
+df(X)\triangleq Xf
+\end{align*}
+then by \myref{Theorem}{SCfv}, $df$ is indeed smooth and thus belong to $\Omega^1(M)$. Moreover, the differential satisfy the Leibniz rule 
+\begin{align*}
+d(fg)=fd_g+gd_f
+\end{align*}
+Locally, let $\textbf{x}^i\in \Omega^0(M)$; We see $(d\textbf{x}^i)$ is the dual basis of $(\frac{\partial }{\partial \textbf{x}^i})$. Simple computation then show 
+\begin{align*}
+df=\sum_i \frac{\partial f}{\partial \textbf{x}^i}d\textbf{x}^i
+\end{align*}
+In particular, this give us 
+\begin{align}
+\label{ldi2}
+d\textbf{x}^i= \sum_j \frac{\partial \textbf{x}^i }{\partial \tilde{\textbf{x}}^j }  d\tilde{\textbf{x}}^j
+\end{align}
+an equation one may reproduce using \myref{Equation}{ldi}.
+\end{mdframed}
+\begin{theorem}
+\label{Cfz}
+\textbf{(Constant function and zero differential)} Given some connected manifold $M$ and  $f\in \Omega^0(M)$ 
+\begin{align*}
+f\text{ is constant }\iff df=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+If $f $ is constant, then locally 
+\begin{align*}
+df=\sum_i \frac{\partial f}{\partial \textbf{x}^i}d\textbf{x}^i=0
+\end{align*}
+Now, suppose $df=0$. Fix $p \in M$. Because $f$ is continuous, we know $f^{-1}(\set{f(p)})$ is closed. Again, locally we have
+\begin{align*}
+0=df=\sum_i \frac{\partial f}{\partial \textbf{x}^i}d\textbf{x}^i
+\end{align*}
+which implies $f$ is constant on some neighborhood of each point of $M$. This implies $f^{-1}(\set{f(p)})$ is open. It then follows from $M$ being connected that $f^{-1}(\set{f(p)})=M$.  
+\end{proof}
+\begin{mdframed}
+  Given a smooth map $F:M\rightarrow N$, we define \textbf{the pullback $F^*f$ of 0-form $f\in \Omega^0(N)$ by $F$} simply by 
+\begin{align*}
+F^*f\triangleq f\circ F
+\end{align*}
+and we define \textbf{the pullback $F^*\omega$ of 1-form $\omega\in \Omega^1(N)$ by $F$}  by 
+\begin{align*}
+  (F^*\omega)_p\triangleq (F_{*,p})^{\vee} (\omega_{F(p)})
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Smoothness of pullback of 1-form)} Given some smooth map $F:M\rightarrow N$ and some 1-form $\omega \in \Omega^1(N)$, the covector field $F^*\omega$ is indeed smooth. 
+\end{theorem}
+\begin{proof}
+Let $F$ maps a chart  $U$ into  $V$. Write  $F(\textbf{x}^1,\dots ,\textbf{x}^m)=(\textbf{y}^1,\dots ,\textbf{y}^n)$. Compute 
+\begin{align*}
+  (F^*\omega)_p X&= (F_{*,p})^{\vee}(\omega_{F(p)})X  \\
+  &= \omega_{F(p)} F_{*,p}X \\
+  &= \sum_i \omega^i_{F(p)} \ld ^i_{F(p)} F_{*,p}X \\
+  &=\sum_{i}\omega^i_{F(p)}\ld ^i_{F(p)}F_{*,p} \sum_{j} X^j_p \frac{\partial }{\partial \textbf{x}^j}\Big|_p  \\
+  &=\sum_{i}\omega^i_{F(p)}\ld ^i_{F(p)} \sum_{j} X^j_p\sum_l  \frac{\partial F^l}{\partial \textbf{x}^j}(p) \frac{\partial }{\partial \textbf{y}^l}\Big|_{F(p)}  \\
+  &=\sum_{i,j,l} \omega^i _{F(p)} X^j_p \frac{\partial F^l}{\partial \textbf{x}^j}(p) \ld ^i_{F(p)} \frac{\partial }{\partial \textbf{y}^l}\Big|_{F(p)} \\
+  &=\sum_{i,j} \omega^i_{F(p)}X^j_p \frac{\partial F^i}{\partial \textbf{x}^j}(p)
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Dic}
+\textbf{(Differential is compatible with pullback)} Given some smooth map $F:M\rightarrow N$ and some 0-form $f\in \Omega^0(N)$, we have 
+\begin{align*}
+  F^*(df)=d(F^*f)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+  (F^*df)_p X&= (F_{*,p})^{\vee} (df_p)X \\
+  &= df_p (F_{*,p} X) \\
+  &=(F_{*,p}X)f\\
+  &=X_p (f \circ F) \\
+  &=X_p(F^*f)=d(F^*f)_pX
+\end{align*}
+\end{proof}
+\begin{Example}{\textbf{(Pullback)}}{}
+\begin{align*}
+F:\R^3\rightarrow \R^2\text{ defined by }F(x_1,x_2,x_3)\triangleq (x_1x_2,x_2+x_3)=(x,y)
+\end{align*}
+Define $\alpha \in \Omega^2(\R^2)$ by 
+\begin{align*}
+\alpha =xdx\wedge  dy 
+\end{align*}
+We see  
+\begin{align*}
+F^*(xdx\wedge  dy)&=F^*(xdx)\wedge   F^*(dy)\\
+&=F^*(x)F^*(dx)\wedge  F^*(dy) \\
+&=x_1x_2d(F^*x)\wedge   d(F^*y)\\
+&=x_1x_2d(x_1x_2)\wedge   d(x_2+x_3) \\
+&=x_1x_2\Big(\frac{\partial x_1x_2}{\partial x_1}dx_1 + \frac{\partial x_1x_2}{\partial x_2}dx_2 \Big)\wedge (dx_2+dx_3)  \\
+&=x_1x_2\Big(x_2dx_1 + x_1dx_2 \Big)\wedge (dx_2+dx_3)  \\
+&= x_1x_2^2 dx_1 \wedge  dx_2  + x_1^2 x_2 dx_2 \wedge  dx_3 + x_1x_2^2 dx_1 \wedge   dx_3 
+\end{align*}
+\end{Example}
+\section{Linear Algebra for Differential Form}
+\begin{abstract}
+This section construct tensor and exterior power for usage of the next section. 
+\end{abstract}
+\begin{theorem}
+\label{CoT}
+\textbf{(Construction of a Tensor product)} Let $V$ be a finite-dimensional real vector space. The definition 
+ \begin{align*}
+   T^k(V)\triangleq L(\overbrace{V^*,\dots ,V^*}^{k\text{ copies }};\R)\text{ and }(v_1\otimes \cdots \otimes  v_k)(\omega_1 ,\dots , \omega_k)\triangleq \omega_1(v_1)\cdots \omega_k (v_k)
+\end{align*}
+does satisfy the universal property.
+\end{theorem}
+\begin{proof}
+It is clear that the tensor product map $\otimes  :V^k\rightarrow T^k(V)$ does map elements of $V^k$ into $T^k(V)$ multi-linearly. Let $f:V^k\rightarrow W$ be a multi-linear map. It remains to show \vi{the existence and uniqueness of some linear map $F:T^k(V)\rightarrow W$ satisfying}
+\begin{align}
+\label{vfv}
+\vi{F(v_1\otimes  \cdots \otimes  v_k)=f(v_1,\dots ,v_k)}
+\end{align}
+Let $\set{w_1,\dots ,w_n}$ be a basis for $V$. We first show 
+\begin{align*}
+  \olive{B\triangleq \bset{w_{I(1)}\otimes  \cdots \otimes  w_{I(k)}:I\text{ maps }\set{1,\dots ,k}\text{ into }\set{1,\dots ,n}}\text{ form a basis for }T^k(V)}
+\end{align*}
+Let $\set{\omega_1,\dots ,\omega_n}$ be the dual basis of $\set{w_1,\dots ,w_n}$. To see $B$ is linearly independent, fix 
+\begin{align*}
+\sum_{I}c_I w_{I(1)}\otimes  \cdots \otimes  w_{I(k)}\in T^k(V)
+\end{align*}
+This element by definition of dual basis have the property 
+\begin{align*}
+\Big(\sum_{I}c_I w_{I(1)}\otimes  \cdots \otimes  w_{I(k)} \Big) (\omega_{J(1)},\dots ,\omega_{J(k)})= c_J
+\end{align*}
+This implies that if this element is zero, then $c_I=0$ for all $I$. We have shown the linear independence of $B$. Fix $\alpha \in T^k(V)$. Compute 
+\begin{align*}
+&\alpha \Big(\sum_{i_1=1}^n c_{1,i_1}\omega_{i_1},\dots ,\sum_{i_k=1}^n c_{k,i_k}\omega_{i_k} \Big)\\
+&=\sum_{i_1,\dots ,i_k} (c_{1,i_1}\cdots c_{k,i_k})\alpha (\omega_{i_1},\dots ,\omega_{i_k}) \\
+&=\sum_{i_1,\dots ,i_k} (c_{1,i_1}\cdots c_{k,i_k})\alpha (\omega_{i_1},\dots ,\omega_{i_k}) \big[w_{i_1}\otimes  \cdots \otimes  w_{i_k}(\omega_{i_1},\dots ,\omega_{i_k}) \big] \\
+&=\sum_{i_1,\dots ,i_k}\alpha (\omega_{i_1},\dots ,\omega_{i_k})w_{i_1}\otimes  \cdots \otimes  w_{i_k}(c_{1,i_1}\omega_{i_1},\dots ,c_{k,i_k}\omega_{i_k})\\
+&=\sum_{i_1,\dots ,i_k}\alpha (\omega_{i_1},\dots ,\omega_{i_k})w_{i_1}\otimes  \cdots \otimes  w_{i_k}(\sum_{j_1}c_{1,j_1}\omega_{j_1},\dots ,\sum_{j_k}c_{k,j_k}\omega_{j_k})
+\end{align*}
+The above computation shows that 
+\begin{align*}
+\alpha = \sum_{i_1,\dots ,i_k}\alpha (\omega_{i_1},\dots , \omega_{i_k}) w_{i_1}\otimes  \cdots \otimes  w_{i_k}
+\end{align*}
+We have shown $B$ indeed spans  $T^k(V)$. $\odone$\\
+
+The existence and uniqueness of linear map $F:T^k(V)\rightarrow W$ satisfying \myref{Equation}{vfv} then follows from the existence of such basis $B$. Explicitly, one may check  $F$ must be  
+\begin{align*}
+F\Big(\sum_{I}c_Iw_{I(1)}\otimes \cdots \otimes  w_{I(k)}\Big)= \sum_I c_I f(w_{I(1)},\dots ,w_{I(k)}) \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+  In this section, by \textbf{$k$-covariant tensor $\alpha $ on $V$}, we mean an element of $T^k(V^*)$, which according to our definition of tensor product in \myref{Theorem}{CoT}, is a multilinear form $\alpha : ((V^*)^*)^k\rightarrow \R$, which should always be regarded as a multilinear form on $V^k$. Given two covariant tensor $\alpha \in T^k(V^*),\beta \in T^l(V^*)$, we may define their \textbf{tensor product $\alpha \otimes  \beta \in T^{k+l}(V^*)$} by 
+\begin{align*}
+\alpha \otimes  \beta (v_1,\dots ,v_{k+l})\triangleq \alpha (v_1,\dots ,v_k)\beta (v_{k+1},\dots ,v_{k+l})
+\end{align*}
+One may check that 
+\begin{align*}
+T(V^*)\triangleq  \bigotimes_{k=0}^{\infty} T^k(V)
+\end{align*}
+form an associative algebra and a ring if we define its vector multiplication by extending the tensor product. Now, if we define the  \textbf{$k$-th exterior power $\extp^k(V)$ of $V$} by
+\begin{align*}
+\extp^k(V)\triangleq \bset{\alpha \in T^k(V):\alpha \text{ is alternating }}
+\end{align*}
+we see $\extp^k(V^*)$ is simply the space of all alternating $k$-linear forms on  $V$. It shall be clear that given $\omega_1,\dots ,\omega_k \in T^1(V^*)=V^*$, if we define $(\omega_1,\dots ,\omega_k):V^k\rightarrow \R$ by 
+\begin{align*}
+  (\omega_1,\dots ,\omega_k)(v_1,\dots ,v_k)\triangleq  \begin{vmatrix}
+      \omega_1 v_1 & \cdots & \omega_1 v_k \\
+      \vdots & \ddots & \vdots \\
+      \omega_k v_1 & \cdots & \omega_k v_k
+  \end{vmatrix} 
+\end{align*}
+then $(\omega_1,\dots ,\omega_k)$ is an alternating $k$-linear form on $V$, thus belongs to $\extp^k(V^*) $. One may check by simple computation that 
+\begin{align*}
+  (\omega_1,\omega_2)=\omega_1 \otimes \omega_2- \omega_2 \otimes  \omega_1
+\end{align*}
+It is clear from property of determinant that 
+\begin{align*}
+  (\omega_1,\dots ,\omega_k)\neq 0\text{ if and only if }\set{\omega_1,\dots ,\omega_k}\text{ is linearly independent }
+\end{align*}
+We may now present a good characterization of $\extp^k(V)$. 
+\end{mdframed}
+\begin{theorem}
+\label{Boe}
+\textbf{(Basis of $\extp^k(V^*)$)} Let $\set{\omega_1,\dots ,\omega_n}$ be some basis for $V^*$. 
+ \begin{align*}
+B\triangleq \bset{(\omega_{i_1},\dots ,\omega_{i_k})\in \extp^k(V^*): 1\leq i_1 <\cdots < i_k \leq n }\text{ form a basis for }\extp^k(V^*)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $\set{v_1,\dots,v_n}$ be a basis for $V$ dual of $\set{\omega_1,\dots ,\omega_n}$. It follows from computation (in basic linear algebra) that an alternating $k$-linear form $\alpha \in \extp^k(V^*)$ is determined by its values on $\set{(v_{i_1},\dots ,v_{i_k})\in V^k:1\leq i_1 <\cdots <i_k\leq n}$. Let $1\leq i_1 <\cdots < i_k\leq n$ and $1\leq j_1<\cdots <j_k\leq n$. It is clear that $(\omega_{i_1},\dots ,\omega_{i_k})(v_{j_1},\dots ,v_{j_k})$ equals to $1$ if and only if  $i_1=j_1,\dots ,i_k=j_k$, and equals to $0$ otherwise. This then let us write 
+\begin{align*}
+\alpha = \sum_{1\leq i_1<\cdots <i_k\leq n} c_{i_1,\dots ,i_k} (\omega_{i_1},\dots ,\omega_{i_k})
+\end{align*}
+where $c_{i_1,\dots ,i_k}=\alpha (v_{i_1},\dots ,v_{i_k})$. We have shown $B$ indeed spans  $\extp^k(V^*)$. Inputting $(v_{i_1},\dots ,v_{i_k})$ into any finite linear combinations of elements of $B$ shows that $B$  is indeed linearly independent. 
+\end{proof}
+\begin{mdframed}
+To discuss more about $\extp^k (V^*)$, we first define a projection $\operatorname{Alt}:T^k(V^*)\rightarrow \extp^k(V^*)$, called \textbf{alternation}, by 
+\begin{align*}
+\operatorname{Alt}\alpha (v_1,\dots ,v_k) \triangleq \frac{1}{k!} \sum_{\sigma \in S_k}(\operatorname{sgn} \sigma)\alpha (v_{\sigma(1)},\dots ,v_{\sigma (k)})
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{Ali}
+\textbf{(Alternation is a well-defined projection)} For all $\alpha \in T^k(V^*)$,  $\operatorname{Alt}\alpha $ is alternating, and if $\alpha $ is alternating, then $\operatorname{Alt}\alpha =\alpha $. 
+\end{theorem}
+\begin{proof}
+WLOG, suppose $v_1=v_2$.  We are required to show 
+\begin{align*}
+\operatorname{Alt}\alpha (v_1,\dots,v_k)=0
+\end{align*}
+Define $\pfi:S_k\rightarrow S_k$ by $\pfi(\sigma)\triangleq g \sigma$, where $g$ in cycle notation is just  $(1,2)$. Abstract group theory tell us $\pfi$ is bijective, $\pfi$ is its own inverse and $\pfi$ maps the set of even permutations to the set of odd permutations bijectively. We now see 
+\begin{align*}
+\operatorname{Alt}\alpha (v_1,\dots ,v_k)= \frac{1}{k!}\sum_{\sigma \in A_k}\alpha (v_{\sigma (1)},v_{\sigma (2)},\dots ,v_{\sigma (k)}) - \alpha (v_{g\sigma (1)},\dots ,v_{g \sigma(k)})=0 
+\end{align*}
+The fact that $\operatorname{Alt}$ maps alternating $\alpha $ to itself follows from 
+\begin{align*}
+\alpha (v_{\sigma (1)},\dots ,v_{\sigma (k)})=\begin{cases}
+  \alpha (v_1,\dots, v_k)& \text{ if $\sigma$ is even }\\
+  -\alpha (v_1,\dots ,v_k)& \text{ if $\sigma$ is odd }
+\end{cases}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Because of \myref{Theorem}{Ali}, we may now define \textbf{the wedge product $\alpha \wedge  \beta  $ of $\alpha  \in \extp^k(V^*)$ and $\beta \in \extp^l(V^*)$} to be an alternating $k+l$-covariant tensor $\alpha \wedge  \beta  \in \extp^{k+l}(V^*)$ on $V$ by 
+\begin{align*}
+\alpha \wedge  \beta \triangleq \frac{(k+l)!}{k!l!}\operatorname{Alt}(\alpha \otimes \beta ) \in \extp^{k+l}(V^*) 
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{WP}
+\textbf{(Wedge Product)} Let $\set{\omega_1,\dots ,\omega_n}$ be a basis for $T^1(V^*)=\extp^1 (V^*)=V^*$. We have 
+\begin{align*}
+  (\omega_1 ,\dots ,\omega_k)\wedge  (\omega_{k+1},\dots, \omega_{k+l})=(\omega_1,\dots ,\omega_{k+l}) 
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $\set{v_1,\dots ,v_n}$ be the dual basis for $V$. Because both sides are alternating, we only have to show they agree on 
+\begin{align*}
+B\triangleq \bset{(v_{i_1},\dots ,v_{i_{k+l}}):1\leq i_1< \cdots < i_{k+l} \leq n}
+\end{align*}
+Note that 
+\begin{align*}
+  (\omega_1,\dots ,\omega_{k+l})(v_1,\dots ,v_{k+l})=1
+\end{align*}
+and $(\omega_1,\dots , \omega_{k+l})$ take value $0$ on any other element of  $B$. Compute 
+\begin{align*}
+  &(\omega_1,\dots ,\omega_k)\wedge (\omega_{k+1},\dots ,\omega_{k+l}) (v_1,\dots ,v_{k+l})\\
+  &= \frac{1}{k!l!}\sum_{\sigma \in S_{k+l}} (\operatorname{sgn}\sigma) (\omega_1,\dots ,\omega_k)(v_{\sigma (1)},\dots ,v_{\sigma (k)})(\omega_{k+1},\dots ,\omega_{k+l})(v_{\sigma (k+1)},\dots ,v_{\sigma (k+l)}) \\
+  &= \frac{1}{k!l!}\sum_{\sigma \in S_{k+l}}(\operatorname{sgn}\sigma ) \begin{vmatrix}
+      \omega_1 v_{\sigma (1)} & \cdots & \omega_1 v_{\sigma (k)}\\
+      \vdots & \ddots & \vdots \\
+      \omega_k v_{\sigma (1)} & \cdots & \omega_k v_{\sigma (k)}
+  \end{vmatrix}  \begin{vmatrix}
+      w_{k+1}v_{\sigma (k+1)} & \cdots & w_{k+1} v_{\sigma (k+l)} \\
+      \vdots & \ddots & \vdots \\
+      \omega_{k+l}v_{\sigma (k+1)} & \cdots & \omega_{k+l}v_{\sigma (k+l)}
+  \end{vmatrix} 
+\end{align*}
+For terms in the last expression to be non-zero, $\sigma$ must maps $\set{1,\dots ,k}$ into itself bijectively; therefore 
+\begin{align*}
+  &(\omega_1,\dots ,\omega_k)\wedge (\omega_{k+1},\dots ,\omega_{k+l}) (v_1,\dots ,v_{k+l})\\
+  &= \frac{1}{k!l!} \sum_{\sigma \in S_k,\tau \in S_l} (\operatorname{sgn}\sigma)(\operatorname{sgn}\tau) \begin{vmatrix}
+      \omega_1 v_{\sigma (1)} & \cdots & \omega_1 v_{\sigma (k)} \\
+      \vdots & \ddots & \vdots \\
+      \omega_k v_{\sigma (1)} & \cdots & \omega_k v_{\sigma (k)}     
+  \end{vmatrix} \begin{vmatrix}
+      \omega_{k+1} v_{\tau (k+1)} &\cdots & \omega_{k+1} v_{\tau (k+l)} \\
+      \vdots & \ddots & \vdots \\
+      \omega_{k+l} v_{\tau (k+1)} & \cdots & \omega_{k+l}v_{\tau (k+l)}
+  \end{vmatrix} \\
+  &= \frac{1}{k!l!} \sum_{\sigma \in S_k ,\tau \in S_l} (\operatorname{sgn}\sigma)^2 (\operatorname{sgn}\tau)^2 \hspace{0.5cm}(\because \text{\customref{Det}{this equivalent definition of determinant}}) \\
+  &=1
+\end{align*}
+Note that we have in fact proved that $(\omega_1,\dots ,\omega_k)\wedge  (\omega_{k+1},\dots ,\omega_{k+l})$ take value $0$ on any element of  $B$ other than  $(v_1,\dots ,v_{k+l})$ by giving the expression in determinant forms. 
+\end{proof}
+\begin{mdframed}
+Following \myref{Theorem}{WP}, we may prove that wedge product is associative in the sense that 
+\begin{align*}
+  (\alpha \wedge  \beta )\wedge  \gamma =\alpha  \wedge  (\beta  \wedge  \gamma  )   
+\end{align*}
+by writing $\alpha ,\beta \text{ and }\gamma $ all as linear combinations of basis elements given in \myref{Theorem}{Boe}.  Therefore, it make sense to use the notation $\alpha \wedge  \beta  \wedge \gamma $ to denote both of them. In particular, we now may write 
+\begin{align*}
+  (\omega_1,\dots ,\omega_k)=\omega_1 \wedge  \cdots \wedge  \omega_k  
+\end{align*}
+Note that by direct computation, one may also deduce 
+\begin{align*}
+\alpha \wedge  \beta = (-1)^{kl}\beta  \wedge  \alpha 
+\end{align*}
+if $\alpha \in \extp^k(V^*),\beta \in \extp^l(V^*)$. 
+\end{mdframed}
+\section{Differential Form}
+\begin{abstract}
+  In this section, $M$ has dimension  $n$. 
+\end{abstract}
+\begin{mdframed}
+Following the setting of the last 2 sections, given a chart for $M$, by \myref{Theorem}{Boe}, 
+\begin{align*}
+  \bset{\ld^{i_1}\wedge \cdots \wedge \ld^{i_k}: 1\leq i_1<\cdots <i_k\leq n }\text{ form a basis for }\extp^k (T_p^*M)
+\end{align*}
+where $(\ld^i)$ is the dual basis of $(\frac{\partial }{\partial \textbf{x}^i})$. Thus, we may construct the \textbf{$k$-th cotangent bundle} $\extp^kT^*M$ 
+\begin{align*}
+\extp^k T^*M \triangleq \coprod_{p \in M}\extp^k (T_p^*M)
+\end{align*}
+by inducing the natural chart 
+\begin{align*}
+\Phi \Big(p , \sum_I \xi^I\ld^I \Big)\triangleq \Big(p , \begin{bmatrix}
+\xi^{I_1} \\
+\vdots \\
+\xi^{I_{\binom{n}{k}}}
+\end{bmatrix} \Big)
+\end{align*}
+The transition functions can be verified to be smooth by computing  
+\begin{align*}
+&\xi^I= \xi \Big( \frac{\partial }{\partial \textbf{x}^I} \Big)=\xi \Big(\frac{\partial }{\partial \textbf{x}^{i_1}}\wedge \cdots \wedge  \frac{\partial }{\partial \textbf{x}^{i_k}}  \Big) \\
+&=\xi \Big( \sum_{j_1} \frac{\partial \tilde{\textbf{x}}^{j_1} }{\partial \textbf{x}^{i_1}} \frac{\partial }{\partial \tilde{\textbf{x}}^{j_1} }\wedge  \cdots \wedge  \sum_{j_k} \frac{\partial \tilde{\textbf{x}}^{j_k} }{\partial \textbf{x}^{i_k}} \frac{\partial }{\partial \tilde{\textbf{x}}^{j_k} }  \Big) \\
+&=\xi \Big( \sum_{J} \frac{\partial \tilde{\textbf{x}}^J }{\partial  \textbf{x}^I} \frac{\partial }{\partial \tilde{\textbf{x}}^J } \Big)\text{ where } \frac{\partial \tilde{\textbf{x}}^J }{\partial \textbf{x}^I}\triangleq \prod_{l=1}^k \frac{\partial \tilde{\textbf{x}}^{j_l} }{\partial \textbf{x}^{i_l}}
+\end{align*}
+Crucially, note that we used the \myref{Equation}{ldi2} in the second line of our computation.  
+\end{mdframed}
+
+\begin{Example}{\textbf{(Change of coordinate for differential form)}}{}
+\begin{align*}
+M\triangleq \R^2\setminus \set{(x,0)\inr^2:x\geq 0}\text{ and }\omega=dx\wedge dy 
+\end{align*}
+If we consider another chart 
+ \begin{align*}
+x=r\cos \theta,y=r\sin \theta
+\end{align*}
+\myref{Equation}{ldi2} give 
+\begin{align*}
+  dx&= \frac{\partial x}{\partial r}dr+ \frac{\partial x}{\partial \theta}d\theta &\text{ and }dy&= \frac{\partial y}{\partial r}dr+ \frac{\partial y}{\partial \theta}d\theta\\
+    &= \cos \theta dr-r \sin \theta d\theta & &= \sin \theta dr +r \cos \theta d\theta  
+\end{align*}
+So 
+\begin{align*}
+\omega &=dx\wedge dy  \\
+&=(\cos \theta dr-r\sin \theta d\theta)\wedge  (\sin \theta dr+r \cos \theta d\theta) \\
+&= r\cos^2 \theta (dr\wedge  d\theta) -r  \sin^2 \theta (d\theta \wedge  dr) =r dr\wedge  d\theta 
+\end{align*}
+\end{Example}
+\begin{mdframed}
+We use the notation $\Omega^k(M)$ to denote the space of smooth sections of $\extp^k T^*M$ and call these sections \textbf{$k$-th forms}. Note that the naming are consistent when $k=0$ or $1$ if one take the convention  $\extp^0(V)=\R$. Again, one may use an argument similar to \myref{Theorem}{SCfv} to see that a section $\alpha $ of $\extp^k T^*M$ is smooth if and only if 
+\begin{align*}
+\alpha ^{I} \text{ is smooth for all $I$ }
+\end{align*}
+where $\alpha = \sum_I \alpha^I \ld^I$. In \customref{Cotangent Bundle}{the Cotangent Bundle section}, we see how differential $d$ maps the space  $\Omega^0(M)$ of 0-forms linearly into the space $\Omega^1(M)$ of 1-forms. We now extend such linear map to map $\Omega^k(M)$ into $\Omega^{k+1}(M)$ for arbitrary $k$. For the sake of convenience, given a chart, we shall use $(d\textbf{x}^i)$ to denote the dual basis of $(\frac{\partial }{\partial \textbf{x}^i})$ instead of using $\ld^i$. This convention is certainly an abuse of notation since there generally does not exists $\textbf{x}^i\in \Omega^0(M)$ such that $d\textbf{x}^i=\ld ^i$ on the whole chart. However, given a point $p \in U$ one can certainly define $\textbf{x}^i \in \Omega^0(M)$ using bump function so that $d\textbf{x}^i$ is dual to $\frac{\partial }{\partial \textbf{x}^i}$ on some neighborhood of $p$. 
+\end{mdframed}
+\begin{theorem}
+\label{Existence of Exterior Derivative}
+\textbf{(Existence of Exterior Derivative)} On any smooth manifold $M$, there exists a natural linear map  $d:\Omega^k(M)\rightarrow \Omega^{k+1}(M)$ called the \textbf{exterior derivative} satisfying 
+\begin{enumerate}[label=(\alph*)]
+  \item If $f \in \Omega^0(M)$, then $df\in \Omega^1(M)$ is the differential of $f$. 
+  \item $d^2=0$.
+  \item  $d (\alpha \wedge  \beta  )=d\alpha \wedge  \beta +(-1)^k \alpha \wedge  d\beta   $ if $ \alpha  \in \Omega^k(M)$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  Fix $\alpha  \in \Omega^k(M)$. The uniqueness part follows from computing 
+  \begin{align*}
+  d\alpha =\sum_I d\alpha^I \wedge  d\textbf{x}^I 
+  \end{align*}
+by property (b) and (c) on all charts, where 
+\begin{align*}
+\alpha = \sum_I \alpha^I d\textbf{x}^I
+\end{align*}
+We claim 
+\begin{align*}
+&d\alpha (X_1,\dots ,X_{k+1})\\
+&\triangleq \sum_{1\leq i\leq k+1}(-1)^{i+1}X_i \Big(\omega (X_1,\dots ,\widehat{X}_i,\dots ,X_{k+1}) \Big) \\
+&+\sum_{1\leq i<j\leq k+1}\omega \Big( [X_i,X_j],X_1 ,\dots ,\widehat{X}_i,\dots ,\widehat{X}_j,\dots ,X_{k+1} \Big)
+\end{align*}
+suffices, where the hats indicate omitted arguments.  
+\end{proof}
+\begin{mdframed}
+We now see that differential is merely a special case of the exterior derivative. This inspires us to believe exterior derivative is compatible with pullback, \customref{Dic}{just like the differential}. Given some smooth map $F:M\rightarrow N$, we define the \textbf{pullback $F^*\alpha $ of $k$-form  $\alpha \in \Omega^k(N)$ by $F$} by 
+\begin{align*}
+  (F^* \alpha )_p(v_1,\dots ,v_k)\triangleq \alpha_{F(p)}(F_{*,p}v_1,\dots ,F_{*,p}v_k)
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{Picw}
+\textbf{(Pullback is compatible with wedge product)} Given a smooth map $F:M\rightarrow N$ and some $k,l$-forms  $\alpha ,\beta $, we have 
+\begin{align*}
+F^* (\alpha \wedge  \beta  )=(F^* \alpha) \wedge  \beta + \alpha \wedge  (F^* \beta ) 
+\end{align*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\label{Pic}
+\textbf{(Pullback is compatible with exterior derivative)} Given a smooth map $F:M\rightarrow N$ and some $k$-form  $\alpha \in \Omega^k(N)$, we have 
+\begin{align*}
+F^*d\alpha =d(F^* \alpha)  
+\end{align*}
+\end{theorem}
+\begin{proof}
+Write 
+\begin{align*}
+\alpha_p = \sum_{i_1 <\cdots <i_k} a_{i_1,\dots ,i_k}(p) d\textbf{x}^{i_1}\wedge  \cdots \wedge  d\textbf{x}^{i_k}  
+\end{align*}
+Using the property of the exterior derivative and the \customref{Dic}{compatibility of pullback and differential}, we may compute 
+\begin{align*}
+d(F^* \alpha )&=\sum_{i_1<\cdots <i_k}  d \Big((a_{i_1,\dots ,i_k}\circ F) (F^*d\textbf{x}^{i_1})\wedge \cdots \wedge  (F^*d\textbf{x}^{i_k})   \Big) \\
+&= \sum_{i_1 <\cdots <i_k} d(a_{i_1,\dots ,i_k}\circ F) \wedge  (F^* d\textbf{x}^{i_1}) \wedge  \cdots \wedge  (F^* d\textbf{x}^{i_k})  \\ 
+&= \sum_{i_1 <\cdots <i_k} d(F^*a_{i_1,\dots ,i_k}) \wedge  (F^* d\textbf{x}^{i_1}) \wedge  \cdots \wedge  (F^* d\textbf{x}^{i_k})   \\
+&=  \sum_{i_1 <\cdots <i_k} (F^*da_{i_1,\dots ,i_k}) \wedge  (F^* d\textbf{x}^{i_1}) \wedge  \cdots \wedge  (F^* d\textbf{x}^{i_k})  = F^*(d\alpha ) 
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Suppose $\theta_t$ is a local flow generated by $X \in \mathfrak{X}(M)$, we define the \textbf{Lie-derivative $\mathcal{L}_X \alpha $ of the $k$-form  $\alpha $ with respect to $X$} by 
+\begin{align*}
+\mathcal{L}_X \alpha \triangleq \frac{\partial }{\partial t} (\theta_t^* \alpha )\Big|_{t=0}
+\end{align*}
+More precisely, 
+\begin{align*}
+  (\mathcal{L}_X \alpha)_p \triangleq  \lim_{t\to 0} \frac{(\theta_t ^{*}\alpha_{\theta_t (p)}) -\alpha_p }{t} 
+\end{align*}
+Because \customref{Pic}{pullback is compatible with exterior derivative}, we have 
+\begin{align*}
+d(\mathcal{L}_X \alpha )= \mathcal{L}_X d\alpha 
+\end{align*}
+and because \customref{Picw}{pullback is also compatible with wedge product}, we also have 
+\begin{align*}
+\mathcal{L}_X (\alpha \wedge  \beta  )= (\mathcal{L}_X \alpha )\wedge  \beta + (\alpha \wedge  \mathcal{L}_X \beta  ) 
+\end{align*}
+
+
+We also define \textbf{interior multiplication  $\iota_X \alpha \in \Omega^{k-1}(M)$ by $X$} by 
+\begin{align*}
+\iota_X \alpha (Y_1,\dots ,Y_{k-1})\triangleq \alpha (X,Y_1,\dots ,Y_{k-1})
+\end{align*}
+One may check that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\iota_X^2=0 $.
+  \item $\iota_X (\alpha \wedge  \beta  )=(\iota_X \alpha   )\wedge  \beta + (-1)^k \alpha \wedge  (\iota_X \beta   )$ where $k$ is the degree of  $\alpha$. 
+\end{enumerate}
+Note that property (b) implies 
+\begin{align*}
+\iota_X (d\textbf{x}^1\wedge  \cdots \wedge  d\textbf{x}^k)=\sum_{i=1}^k (-1)^{k-1}X^i d\textbf{x}^i \wedge \cdots \wedge  \widehat{d\textbf{x}^i} \wedge \cdots \wedge  d\textbf{x}^k      
+\end{align*}
+where the hats indicate omitted arguments.   
+\end{mdframed}
+\begin{theorem}
+\textbf{(Cartan's magic formula)} Given $X \in \mathfrak{X}(M),\alpha  \in \Omega^k(M)$, we have 
+\begin{align*}
+\mathcal{L}_X\alpha = d(\iota_X \alpha  )+ \iota_X d \alpha 
+\end{align*}
+\end{theorem}
+\begin{proof}
+If $k=0$, then 
+ \begin{align*}
+d(\iota_X \alpha  )+\iota_X d\alpha &= \iota_X d\alpha  \\
+&=\iota_X \sum_i \frac{\partial \alpha}{\partial \textbf{x}^i}d\textbf{x}^i \\
+&=\sum_i \frac{\partial \alpha }{\partial \textbf{x}^i}\iota_X d\textbf{x}^i \\
+&=\sum_i \frac{\partial \alpha }{\partial \textbf{x}^i} X^i = \sum_{i} (X^i \frac{\partial }{\partial \textbf{x}^i}) \alpha = X\alpha = \mathcal{L}_X \alpha 
+\end{align*}
+Let $k=r+1$ and suppose the proposition hold true for $k=r$. WLOG, we only have to prove the proposition for 
+\begin{align*}
+f(p)d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^{r+1}  
+\end{align*}
+Compute 
+\begin{align*}
+&\mathcal{L}_X (d\textbf{x}^1 \wedge  (fd\textbf{x}^2\wedge  \cdots \wedge   d\textbf{x}^{r+1} )  ) \\
+&= (\mathcal{L}_X d\textbf{x}^1)\wedge  (fd\textbf{x}^2\wedge  \cdots \wedge  d\textbf{x}^{r+1}  ) + d\textbf{x}^1 \wedge (\mathcal{L}_X (fd\textbf{x}^2 \wedge  \cdots \wedge d\textbf{x}^{r+1}  )) \\
+&=dX^1\wedge \beta  + d\textbf{x}^1 \wedge \big[ (d \iota_X)\beta +(\iota_X d  )\beta         \big]    
+\end{align*}
+where $\beta = fd\textbf{x}^2 \wedge  \cdots \wedge  d\textbf{x}^{r+1}  $. On the other hand, compute 
+\begin{align*}
+  &(\iota_X d+ d \iota_X)(d\textbf{x}^1 \wedge  \beta  )\\
+  &= \iota_X (-d\textbf{x}^1 \wedge  d\beta )+ d\Big((\iota_X d\textbf{x}^1)\wedge \beta - d\textbf{x}^1 \wedge  (\iota_X \beta   )      \Big) \\
+  &=\iota_X (-d\textbf{x}^1 \wedge  d\beta  )+ d\Big( X^1 \wedge  \beta - d\textbf{x}^1 \wedge  (\iota_X \beta  )   \Big) \\
+  &= -\iota_X d\textbf{x}^1  \wedge  d\beta  + d\textbf{x}^1 \wedge  \iota_X d\beta + dX^1 \wedge  \beta  +X^1 \wedge  d\beta  + d\textbf{x}^1 \wedge  (d \iota_X \beta   )     \\
+  &= -X^1 \wedge  d\beta  + d\textbf{x}^1 \wedge  \iota_X d\beta + dX^1 \wedge  \beta  +X^1 \wedge  d\beta  + d\textbf{x}^1 \wedge  (d \iota_X \beta   )     \\
+  &=d\textbf{x}^1 \wedge  \big[ (d \iota_X )\beta + (\iota_X d )+ \beta    \big] + dX^1 \wedge  \beta  
+\end{align*}
+\end{proof}
+\section{Orientation}
+\begin{abstract}
+In this section, $M$ is always a $m$-dimensional smooth manifold. 
+\end{abstract}
+\begin{mdframed}
+  We say $\omega \in \Omega^m(M)$ is a \textbf{volume from on $M$} if $\omega$ is non-zero everywhere on $M$, and say $M$ is \textbf{orientable} if a volume form on $M$ exists. If $M$ is orientable, on the space of volume forms, we may define an equivalence relation by relating two volume forms $\omega,\omega'$ together if there exists some positive zero-form $f\in \Omega^0(M)$ such that  $\omega'=f \omega$. We then define an \textbf{orientation on $M$} to be an equivalence class. \\
+
+
+Because $m$-th exterior powers of $T_p^*M$ are 1-dimensional, for each pair of volume forms  $\omega,\omega' \in \Omega^m(M)$, there exists some $f:M\rightarrow \R^*$ such that $\omega'=f \omega$. Charts by charts, one can check that $f\in \Omega^0(M)$ is indeed smooth. Define $g:\R^*\rightarrow \set{0,1}$ by 
+  \begin{align*}
+  g(x)\triangleq \begin{cases}
+    1& \text{ if $x>0$ }\\
+    0& \text{ if $x<0$ }
+  \end{cases}
+  \end{align*}
+Because $g$ is continuous, we know  $g \circ f: M\rightarrow \set{0,1}$ is continuous. It then follows that if $M$ has  $n$ connected components, then there are $2^n$ orientation on  $M$. 
+\end{mdframed}
+\begin{Example}{\textbf{(A volume form on $S^n$)}}{}
+\vspace{0.8cm}
+Let $f:\R^{n+1}\rightarrow \R$ be a smooth map, and $M\subseteq \R^{n+1}$ be a regular level set. By \customref{Regular Level Set Theorem}{regular level set theorem}, $M$ is an embedded submanifold of $\R^{n+1}$. Let $p \in M$. Because $p$ is a regular point, we know 
+\begin{align*}
+\frac{\partial f}{\partial \textbf{x}^i}(p) \neq 0\text{ for some }i
+\end{align*}
+then by \customref{IpFT}{implicit function theorem} and uniqueness of smooth structure, we have some chart $(U,\phi)$ around $p$ such that 
+\begin{align*}
+\phi (\textbf{x}^1,\dots ,\textbf{x}^n)= (\textbf{x}^1,\dots , \widehat{\textbf{x}}^i,\dots ,\textbf{x}^{n+1})
+\end{align*}
+and 
+\begin{align*}
+\frac{\partial f}{\partial \textbf{x}^i}\neq 0\text{ on }U
+\end{align*}
+Therefore, we may define a non-vanishing $n$-form $\omega$ on $U$ by  
+\begin{align}
+\label{ojh}
+\omega\triangleq  (-1)^i \Big(\frac{\partial f}{\partial \textbf{x}^i}\Big)^{-1}  d\textbf{x}^1\wedge \cdots  \wedge  \widehat{d \textbf{x}}^i \wedge  \cdots \wedge  d \textbf{x}^{n+1}
+\end{align}
+To see $\omega$ is globally well-defined, first observe that   because $f$ is constant on  $M$, globally we have 
+ \begin{align}
+\label{0df}
+0=\sum_{k} \frac{\partial f}{\partial \textbf{x}^k}d\textbf{x}^k
+\end{align}
+Now, if $(V,\psi)$ is a similarly defined chart with 
+\begin{align*}
+\phi (\textbf{x}^1,\dots ,\textbf{x}^n)= (\textbf{x}^1,\dots ,\widehat{\textbf{x}}^j,\dots ,\textbf{x}^{n+1}) 
+\end{align*}
+and 
+\begin{align*}
+\frac{\partial f}{\partial \textbf{x}^j}\neq 0\text{ on }V
+\end{align*}
+such that $V \cap U\neq \varnothing$, we may compute by \myref{Equation}{0df} that 
+\begin{align*}
+d\textbf{x}^j = - \Big( \frac{\partial f}{\partial \textbf{x}^j} \Big)^{-1} \sum_{k\neq j} \frac{\partial f}{\partial \textbf{x}^j}  d\textbf{x}^k\text{ on }U \cap V
+\end{align*}
+Therefore, the expression of $\omega$ in \myref{Equation}{ojh} on $V \cap U$ is equal to 
+\begin{align*}
+  \omega= (-1)^j \Big( \frac{\partial f}{\partial \textbf{x}^j} \Big)^{-1}d\textbf{x}^1 \wedge  \cdots \wedge  \widehat{d \textbf{x}}^j \wedge  \cdots \wedge  d\textbf{x}^{n+1}    
+\end{align*}
+We have shown $\omega$ is globally well-defined. Now, if we let $f(\textbf{x})\triangleq \abso{\textbf{x}}^2$ and let $f(M)=1$, we see $M=S^n$. In particular, 
+ \begin{align*}
+\omega= \frac{(-1)^i}{2\textbf{x}^i} d\textbf{x}^1 \wedge  \cdots \wedge \widehat{d \textbf{x}}^i \wedge \cdots \wedge  d\textbf{x}^{n+1}    
+\end{align*}
+on $\set{\textbf{x} \in S^n: \textbf{x}^i \neq 0}$. 
+\end{Example}
+\begin{theorem}
+\textbf{($\RP^n$ is not orientable for even  $n$)} Define an equivalence relation on $\R^{n+1}\setminus \set{\textbf{0}}$ by 
+\begin{align*}
+\textbf{x}\sim \textbf{y}\text{ if }\textbf{x}=\ld  \textbf{y}\text{ for some }\ld \inr
+\end{align*}
+Let $\pi $ be the quotient map and $\RP^n$ be the quotient space. If we give $\RP^n$ the atlas 
+\begin{align*}
+[\textbf{x}_1 ,\dots ,\textbf{x}_{n+1}]\mapsto  \Big(\frac{\textbf{x}_1}{\textbf{x}_i}, \dots , \frac{\textbf{x}_{i-1}}{\textbf{x}_i},\frac{\textbf{x}_{i+1}}{\textbf{x}_i}, \dots ,\frac{\textbf{x}^{n+1}}{\textbf{x}^i}\Big) 
+\end{align*}
+and $n$ is even, then  $\RP^n$ is not orientable. 
+\end{theorem}
+\begin{proof}
+We first show that
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+     \olive{$\pi  : S^n \rightarrow \RP^n $ is a smooth immersion}. 
+   \end{minipage}
+\end{center}
+Define $U\triangleq \set{\textbf{x}\in S^n: \textbf{x}_1>0}$ and $\phi : U\rightarrow \R^n$ by 
+\begin{align*}
+\phi (\textbf{x})\triangleq (\textbf{x}_2 ,\dots , \textbf{x}_n)
+\end{align*}
+Compute 
+\begin{align*}
+\psi \circ \pi  \circ  \phi ^{-1} (\textbf{x}_2 ,\dots ,\textbf{x}_{n+1})=  \Big(\frac{\textbf{x}_2}{\textbf{x}_1},\dots , \frac{\textbf{x}_{n+1}}{\textbf{x}_1}\Big)
+\end{align*}
+We have shown $\pi $ is indeed smooth. To see $\pi _{*,p}$ is invertible everywhere, observe that $\psi \circ \pi  \circ   \phi^{-1}$ have the action 
+\begin{align*}
+\textbf{y}\mapsto  \frac{\textbf{y}}{\sqrt{1- \abso{\textbf{y}}^2} }
+\end{align*}
+which has a left inverse 
+\begin{align*}
+\textbf{y}\mapsto \frac{\textbf{y}}{\sqrt{1+ \abso{\textbf{y}}^2} }
+\end{align*}
+One can check from definition of $\pi $ that this left inverse is indeed an inverse. More precisely, we have established a diffeomorphism between $U$ and $\pi  (U)$. Therefore, $\pi$ is a local diffeomorphism. This implies $\pi _{*,p}$ is invertible everywhere. $\odone$ \\
+
+ Let $\omega \in \Omega^n (S^n)$ be the volume form of $S^n$ as defined in the above example, and define a smooth diffeomorphism $\sigma :S^n\rightarrow S^n$ by 
+\begin{align*}
+\sigma (\textbf{x})\triangleq - \textbf{x}
+\end{align*}
+We now show 
+\begin{align*}
+  \vi{\sigma^* \omega = - \omega}
+\end{align*}
+Compute on $\set{\textbf{x} \in S^n : \textbf{x}_i \neq 0} $
+\begin{align*}
+  \sigma^* \omega &=  \sigma^*  \Big[\frac{(-1)^i}{2\textbf{x}_i} d\textbf{x}_1 \wedge  \cdots \wedge \widehat{d \textbf{x}_i} \wedge \cdots \wedge  d\textbf{x}_{n+1}  \Big] \\
+  &= \frac{(-1)^i}{-2\textbf{x}_i}d(-\textbf{x}_1)\wedge  \cdots \wedge  d(-\textbf{x}_{i-1}) \wedge  d(-\textbf{x}_{i+1}) \wedge  \cdots \wedge   d(-\textbf{x}_{n+1})    \\
+  &=(-1)^{n-1} \omega=-\omega 
+\end{align*}
+Repeating the same computation on $\textbf{x}_j \neq 0$, we see that, indeed, $\sigma^* \omega= -\omega$ globally. $\vdone$\\
+
+
+\As{$\theta \in \Omega^n (\RP^n)$ is a volume form}. Because $\pi$ is an immersion, we know $\pi ^* \theta \in \Omega^n (S^n)$ is also a volume form. Therefore, we may define an no-where-zero $f\in \Omega^0(S^n)$ by 
+\begin{align*}
+f\triangleq \frac{\pi ^* \theta}{\omega }
+\end{align*}
+It is clear that $\pi \circ \sigma= \pi  $. Therefore, 
+\begin{align*}
+  f\omega= \pi ^* \theta= (\pi  \circ  \sigma)^* \theta= \sigma^* \pi ^* \theta= \sigma^* (f \omega)= -(f \circ \sigma)\omega 
+\end{align*}
+This give us 
+\begin{align*}
+f(\textbf{x})=-f(-\textbf{x})\text{ for all }\textbf{x}\in S^n
+\end{align*}
+This is impossible, since the fact that $S^n$ is connected implies  $f$ have the same sign everywhere. \CaC 
+\end{proof}
+\begin{theorem}
+\textbf{(Equivalent Definition of Orientability)} A smooth manifold is orientable if and only if there exists a covering of charts such that 
+\begin{align*}
+  \operatorname{det} \Big(\frac{\partial \textbf{y}^i}{\partial \textbf{x}^j} \Big)>0\text{ everywhere }
+\end{align*}
+\end{theorem}
+\section{De Rham Cohomology}
+\begin{abstract}
+
+\end{abstract}
+\begin{mdframed}
+We say a form $\alpha $ is \textbf{closed} if $d\alpha =0$ and say $\alpha $ is  \textbf{exact} if $\alpha=d\beta $ for some $\beta $. Property of exterior derivative tell us that the vector space of exact $k$-forms is a subspace of the closed $k$-forms. In other words, we have the following Euler diagram 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+\includegraphics[height=8cm,width=14cm]{ednf}
+   \end{minipage}
+\end{center}
+Thus, we may define the \textbf{De Rham cohomology group $H^k(M)$ in degree $k$ of  $M$} to be the quotient vector space 
+\begin{align*}
+H^k(M)\triangleq \frac{\set{\text{ closed $k$-th forms }}}{\set{\text{ exact $k$-th forms }}}
+\end{align*}
+By \myref{Theorem}{Cfz}, a 0-form is closed if and only if it is a constant, it follows from no 0-forms being exact that 
+\begin{align*}
+H^0(M)= \R
+\end{align*}
+if $M$ is connected. Note that the requirement of second countability make compact manifold have only finite amount of connected component. It follows that 
+\begin{align*}
+H^0(M)=\R^{\text{number  connected components of }M}
+\end{align*}
+It is clear that 
+\begin{align*}
+H^k(M)=\Omega^k(M)=0\text{ if }k>\operatorname{dim}M
+\end{align*}
+We may define a bilinear product $H^k(M)\times H^l(M)\to H^{k+l}(M)$ by 
+\begin{align*}
+[\alpha ][\beta ]\triangleq  [\alpha \wedge  \beta ]
+\end{align*}
+To see that this bilinear product is well-defined, compute 
+\begin{align*}
+  (\alpha + d\gamma )\wedge  (\beta  + d\delta)&= \alpha \wedge  \beta + \alpha \wedge  d \delta + d\gamma  \wedge  \beta  + d\gamma   \wedge  d\delta     \\
+  &= \alpha \wedge  \beta  + (-1)^kd(\alpha \wedge  \delta )  + (-1)^{k-1}d (\gamma \wedge  \beta  )+d(\gamma  \wedge  d \delta )
+\end{align*}
+differing to $\alpha \wedge  \beta $ by some exact $k+l$-th form. If $F:M\rightarrow N$ is a smooth map, then we have a natural linear map $F^*:H^k(N)\rightarrow H^k(M)$ defined by 
+\begin{align*}
+F^* [\alpha ]\triangleq [F^* \alpha ]
+\end{align*}
+Again, this is well defined because 
+\begin{align*}
+F^*(\alpha +d \gamma )= F^* \alpha +d F^* \gamma  
+\end{align*}
+differing to $F^*\alpha $ by some exact $k$-form. 
+\end{mdframed}
+\begin{theorem}
+\label{PPL}
+\textbf{(Pre Poincare Lemma)} Let $F:M\times  (-\epsilon  ,1+\epsilon )\rightarrow N$ be a smooth map. If we define $F_t:M\rightarrow N$ by 
+\begin{align*}
+F_t(x)\triangleq F(x,t)
+\end{align*}
+then for all $k\geq 0$
+\begin{align*}
+F_0^*=F_1^*:H^k(N)\rightarrow H^k(M)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix some closed form $\alpha \in \Omega^k(N)$. Locally, because $d\textbf{x}^1,\dots ,d\textbf{x}^m,dt$ form a basis for $T_p^*(M\times (-\epsilon , 1+\epsilon ) )$, by \myref{Theorem}{Boe} we may decompose $F^* \alpha $ into 
+\begin{align*}
+F^* \alpha  = \beta_t + \gamma_t \wedge  dt 
+\end{align*}
+where $\beta _t,\gamma _t\in \Omega^k (M)$. Write 
+\begin{align*}
+\beta _t= \sum_I B^I (\textbf{x}^1,\dots ,\textbf{x}^m,t)d\textbf{x}^I \text{ and } \gamma _t= \sum_I C^I (\textbf{x}^1,\dots ,\textbf{x}^m,t)d\textbf{x}^I
+\end{align*}
+
+Using \myref{Theorem}{Picw}, we may compute 
+\begin{align*}
+d(\beta _t + \gamma_t \wedge  dt )&=  d\Big( \sum_I B^I(\textbf{x}^1,\dots ,\textbf{x}^m,t)d\textbf{x}^I \Big) + d \Big(\sum_I C^I (\textbf{x}^1,\dots ,\textbf{x}^m,t)d\textbf{x}^I \Big) \wedge  dt  \\
+&= \sum_I \Big[\sum_{j=1}^m \frac{ \partial B^I}{\partial \textbf{x}^j} d\textbf{x}^j \wedge    d\textbf{x}^I + \frac{\partial B^I}{\partial t}dt \wedge  d\textbf{x}^I    \Big] + \sum_I \sum_{j=1}^m \frac{\partial C^I}{\partial \textbf{x}^j}d\textbf{x}^j \wedge  d\textbf{x}^I \wedge  dt   \\
+&= d_M \beta_t - \frac{\partial \beta _t}{\partial t} \wedge  dt+  (d_M \gamma_t) \wedge  dt 
+\end{align*}
+This with \myref{Theorem}{Pic} and the fact $\alpha $ is closed give us 
+\begin{align*}
+0=F^* d\alpha =dF^* \alpha = d(\beta _t + \gamma_t \wedge  dt ) =d_M\beta_t - \frac{\partial \beta _t}{\partial t}\wedge  dt + (d_M \gamma _t )\wedge  dt   
+\end{align*}
+This give us 
+\begin{align*}
+\frac{\partial \beta _t}{\partial t}= d_M \gamma_t
+\end{align*}
+Note that 
+\begin{align*}
+  F_t^* \alpha = \beta _t
+\end{align*}
+We then have 
+\begin{align*}
+  F_1^* \alpha -F_0^{*}\alpha &= \int_0^1 \frac{\partial \beta_t }{\partial t}dt \\
+  &=\int_0^1 d_M \gamma_t dt =d_M \int_0^1 \gamma_t dt
+\end{align*}
+\end{proof}
+\begin{corollary}
+\label{PL}
+\textbf{(Poincare Lemma)} Let $n,k\geq 1$. We have 
+\begin{align*}
+H^k(\R^n)=0 
+\end{align*}
+\end{corollary}
+\begin{proof}
+ Define $F:\R^n\times (-\epsilon ,1+\epsilon )\rightarrow \R^n$ by 
+  \begin{align*}
+  F(\textbf{x},t)\triangleq t\textbf{x}
+  \end{align*}
+so that 
+\begin{align*}
+F_0\text{ is the zero map and $F_1$ is the identity map }
+\end{align*}
+Now, because for $k\geq 1$
+\begin{align*}
+  &F_0^*:\Omega^k(\R^n)\rightarrow \Omega^k(\R^n)\text{ is a zero map } \\
+  \text{ and }&F_1^* :\Omega^k(\R^n)\rightarrow \Omega^k (\R^n)\text{ is the identity map }
+\end{align*}
+we have 
+\begin{align*}
+&F_0^*:H^k(\R^n)\rightarrow H^k(\R^n)\text{ is a zero map } \\
+  \text{ and }&F_1^*:H^k(\R^n)\rightarrow H^k(\R^n)\text{ is the identity map }
+\end{align*}
+\myref{Theorem}{PPL} states that $F_0^*=F_1^*$. It then follows that $H^k(\R^n)=0$.
+\end{proof}
+\begin{mdframed}
+The same argument can be used to show 
+\begin{align}
+\label{hkm}
+H^k(M\times \R^m)\cong  H^k(M)
+\end{align}
+for $k\geq 0$ by setting 
+\begin{align*}
+F(p,\textbf{x},t)\triangleq (p,t \textbf{x})
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+We now compute $H^k(S^1)$ by another method. Again note that $H^0(S^1)\cong  \R$ because $S^1$ is connected and  $H^k(S^1)\cong 0$ for $k\geq 2$ because $\operatorname{dim}S^1=1$. Recall that $S^1\cong  \R \setminus \Z$ where $\R \setminus \Z$ is given the smooth structure 
+\begin{align*}
+  \begin{cases}
+\phi_0: \set{[x]:x\in (0,1)}  \rightarrow (0,1) \\
+\phi_0 ( \pi ^{-1}(x))\triangleq x
+  \end{cases} \text{ and }\begin{cases}
+\phi_1: \set{[x]:x\in (\frac{-1}{2},\frac{1}{2})}  \rightarrow (-\frac{1}{2},\frac{1}{2}) \\
+\phi_1 ( \pi ^{-1}(x))\triangleq x
+  \end{cases}
+\end{align*}
+We claim the $1$-form  $\alpha \in \Omega^1 (\R \setminus \Z)$ defined by 
+\begin{align*}
+\alpha \triangleq \begin{cases}
+  dx_0 \text{ on }\set{[x]: x \in (0,1)} \\
+  dx_1\text{ on }\set{[x]:x \in (\frac{-1}{2}, \frac{1}{2})}
+\end{cases}
+\end{align*}
+is well-defined, where $x_0: \set{[x]: x \in (0,1)}\rightarrow (0,1),x_1 : \set{[x]:x \in (\frac{-1}{2}, \frac{1}{2})}\rightarrow  (\frac{-1}{2}, \frac{1}{2})$ is defined by 
+\begin{align*}
+x_0\triangleq \phi_0   \text{ and }x_1 \triangleq \phi_1
+\end{align*}
+This is true because the area where two charts overlaps have two connected components, and $x_0,x_1$ take the same value on one of them while taking values different by constant $1$ on another. Also note that $\alpha $ is clearly non-zero, so we have shown $\Omega^1 (\R \setminus \Z)\neq 0$. \\
+
+Note that $\alpha $ is not exact since if $\alpha = d\gamma $ for some $\gamma \in \Omega^0(\R \setminus \Z)$ then $\gamma $ on $\set{[x]: x \in (0,1)}$ must have the same action as $x_0$, which is impossible since this make  $\gamma $ discontinuous at end-point. On the other hand, suppose $\beta  \in \Omega^1 (\R \setminus \Z)$. Write in local coordinate 
+\begin{align*}
+\beta  (x)=g(x)dx\text{ on }\set{[x]:x \in (0,1)}
+\end{align*}
+Set $f\in \Omega^{1}(\R \setminus \Z)$ by 
+\begin{align*}
+f(x)\triangleq \int_0^x g(s)ds - \Big( \int_0^1 g(s)ds \Big)x \text{ on } \set{[x]:x \in (0,1)}
+\end{align*}
+It follows that 
+\begin{align*}
+\beta = \Big( \int_0^1 g(s)ds \Big)\alpha + df
+\end{align*}
+We have shown $H^1(S^1)=\R$
+\end{mdframed}
+\begin{theorem}
+\textbf{(De Rham Cohomology of $S^n$)} For $n>0$ 
+ \begin{align*}
+H^k (S^n) \cong \begin{cases}
+  \R & \text{ if $k=0\text{ or }n$ }\\
+  0& \text{ if otherwise }
+\end{cases}
+\end{align*}
+\end{theorem}
+\begin{proof}
+The case of $n=1$ have been proved in the above paragraph. We first prove 
+\begin{align*}
+\vi{H^1(S^2)\cong  0}
+\end{align*}
+Define  
+ \begin{align*}
+ U \triangleq S^2 \setminus \overline{B_\epsilon (N)} \text{ and }V \triangleq S^2 \setminus \overline{B_\epsilon (S)}
+ \end{align*}
+By means of stereographic projection, we know $U$ and  $V$ are both diffeomorphic to an open ball in  $\R$. Let $\alpha \in \Omega^1(S^2)$ be a closed $1$-form.  By \customref{PL}{Poincare Lemma}, $\alpha |_U$ and $\alpha |_V$ are both exact. Write 
+\begin{align*}
+\alpha = du \text{ on }U\text{ and }\alpha =dv\text{ on }V
+\end{align*}
+where $u\in \Omega^{0}(U),v \in \Omega^{0}(V)$ are two zero-forms. Compute 
+\begin{align*}
+d(u-v)=\alpha -\alpha =0\text{ on }U\cap V
+\end{align*}
+This implies $u-v \in \Omega^{0}(U \cap V)$ are closed. It then follows from $U \cap V$ being connected that $u-v\in \Omega^0(U \cap V)$ is constant. Therefore, if we define $\gamma \in \Omega^0(S^1)$ by 
+\begin{align*}
+\gamma  \triangleq \begin{cases}
+  u& \text{ on  }U\\
+  v+c&\text{ on }V
+\end{cases}
+\end{align*}
+where $c\equiv u-v$ on $U \cap V$, then $\gamma $ is well-defined. It is easily seen that $\alpha = d\gamma $. $\vdone$\\
+
+We now prove 
+\begin{align*}
+\blue{H^2(S^2)\cong  \R}
+\end{align*}
+Again, define 
+ \begin{align*}
+ U \triangleq S^2 \setminus \overline{B_\epsilon (N)} \text{ and }V \triangleq S^2 \setminus \overline{B_\epsilon (S)}
+ \end{align*}
+By means of stereographic projection, we know $U$ and  $V$ are both diffeomorphic to an open ball in  $\R^2$. Let $\alpha \in \Omega^2(S^n)$ be a closed $2$-form. By \customref{PL}{Poincare Lemma}, $\alpha |_U, \alpha |_V$ are both exact. Write 
+\begin{align*}
+\alpha = du \text{ on }U\text{ and }\alpha =dv\text{ on }V
+\end{align*}
+where $u\in \Omega^{1}(U),v \in \Omega^{1}(V)$ are two $1$-forms. Compute 
+\begin{align*}
+d(u-v)=\alpha -\alpha =0\text{ on }U\cap V
+\end{align*}
+This implies $u-v\in \Omega^{1}(U \cap V)$ are closed. Compute by \myref{Equation}{hkm} 
+\begin{align*}
+H^{1}(U \cap V)\cong  H^{1}(S^{1}\times \R)\cong  H^{1}(S^{1})\cong \R
+\end{align*}
+Let $[\omega]\in H^1(U \cap V)$ be non-trivial. We then see 
+\begin{align*}
+u-v=c \omega + dw 
+\end{align*}
+for some unique $c \inr$ and $w\in \Omega^0(U \cap V)$. We now show that \olive{such $c$ only depends on $\alpha $, independent of choice of  $u,v$}.   
+
+
+
+
+We may now define a linear map $H^2(S^2)\rightarrow \R$ by 
+\begin{align*}
+\alpha \mapsto c_\alpha 
+\end{align*}
+
+\end{proof}
+\section{Lie Group}
+\begin{mdframed}
+Suppose $\beta  \in \Omega^1 (\R \setminus \Z)$. Write in local coordinate 
+\begin{align*}
+\beta  (x)=g(x)dx\text{ on }\set{[x]:x \in (0,1)}
+\end{align*}
+The whole point here is then to find some $f \in \Omega^1 (\R \setminus \Z)$ so that on the chart $\set{[x]: x \in (0,1)}$, we have 
+\begin{align*}
+\beta = cdx + df\text{ for some constant $c$ }
+\end{align*}
+The argument presented in class is to set  
+\begin{align*}
+f(x)\triangleq \int_0^x g(s)ds\text{ for }x\in (0,1)
+\end{align*}
+in local coordinate and get the conclusion $c= \int_0^1 g(s)ds$. This confuse me: If $f$ have the above action on  $\set{[x]:x \in (0,1)}$, then we must have $\int_0^1 g(s)ds=0$ so that $f$ is continuous. Yet, we don't know nothing about $g$. Why can we assume $\int_0^1 g(s)ds=0$? Doesn't this assumption just make $\beta =df$ on $\set{[x]: x\in (0,1)}$?  
+\end{mdframed}
+\begin{mdframed}
+By a \textbf{Lie group}, we mean a smooth manifold equipped with a group structure such that the inversion and group addition are both smooth map, or equivalently, that 
+\begin{align*}
+M^2\rightarrow  M; (g,h)\mapsto gh^{-1}
+\end{align*}
+is smooth. 
+\end{mdframed}
 \section{Integral Curve and Flow}
 \begin{abstract}
 Note that in this section, $I,J$ always stand for open intervals and integral is always defined on some open interval. 
@@ -7486,113 +8842,114 @@ which is just
 \mathcal{L}_XY=[X,Y]
 \end{align*}
 \end{proof}
-\section{Differential Form}
-\begin{abstract}
-
-\end{abstract}
-\begin{mdframed}
-For each $p \in M$, we use $T^*_pM\triangleq (T_pM)^*$ to denote the dual space of $T_pM$ and we use $\ld ^i$ to denote the dual basis of $\frac{\partial }{\partial \textbf{x}^i}$ when given local coordinate. Let $\omega \in T_p^*M$ and write 
-\begin{align*}
-\omega = \sum_i \omega^i \ld^i = \sum_j \tilde{\omega}^j \tilde{\ld}^j   
-\end{align*}
-We may compute 
-\begin{align*}
-  \omega_i= \omega \Big( \frac{\partial }{\partial \textbf{x}^i}\Big|_p \Big)= \omega \Big( \sum_j \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i}(p) \frac{\partial }{\partial \tilde{\textbf{x}}^j }\Big|_p \Big)= \sum_j \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i} (p)\tilde{\omega}^j 
-\end{align*}
-In other words, 
-\begin{align*}
-\ld ^i= \sum_{j} \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i} \tilde{\ld }^j 
-\end{align*}
-Again, we define the \textbf{cotangent bundle} $T^*M$ to be 
-\begin{align*}
-T^*M\triangleq \coprod_{p \in M}T_p^*M
-\end{align*}
-We now see that given the natural charts 
-\begin{align*}
-\Phi (p,\sum_i \xi^i\ld^i )= \Big(\phi (p),\xi^1,\dots ,\xi^n \Big)
-\end{align*}
-when we give $T^*M$ the topology and the smooth structure the way we give to  $TM$, the atlas is indeed smooth, since 
- \begin{align*}
-\tilde{\Phi}\circ \Phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^n,\xi^1,\dots ,\xi^n)&= \tilde{\Phi}\Big(\phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^n), \sum_{i} \xi^i \ld^i \Big) \\
-&= \tilde{\Phi}\Big(\phi^{-1}(\textbf{x}^1,\dots ,\textbf{x}^n), \sum_{i} \xi^i \sum_j  \frac{\partial \tilde{\textbf{x}}^j }{\partial \textbf{x}^i}\tilde{\ld}^j  \Big) \\
-&=\Big(\tilde{\textbf{x}}^1,\dots, \tilde{\textbf{x}}^n, \sum_i \frac{\partial \tilde{\textbf{x}}^1 }{\partial \textbf{x}^i} (\textbf{x})\xi^i ,\dots , \sum_i  \frac{\partial \tilde{\textbf{x}}^n }{\partial \textbf{x}^i} (\textbf{x})\xi^i \Big)
-\end{align*}
-Given a section $\omega:M\rightarrow  T^*M$ of the cotangent bundle $T^*M$, we say  $\omega$ is a \textbf{covector field} or a \textbf{1-form}, and we may now discuss the smoothness of $\omega$. Note that the natural charts show that $\omega$ is smooth if and only if $\omega^i$ are all smooth where 
-\begin{align*}
-\omega= \sum_i \omega^i \ld^i
-\end{align*}
-Given $X \in \mathfrak{X}(M)$, we may also define $\omega X:M\rightarrow \R$ by 
-\begin{align*}
-\omega X(p)\triangleq \omega_p X_p= \sum_{i=1} \omega^i X^i(p)
-\end{align*}
-An argument similar to that of \myref{Theorem}{SCfv} shows that $\omega$ is smooth if $\omega X \in C^{\infty}(M)$ for all $X\in \mathfrak{X}(M)$. We denote the space of 1-forms by $\Omega (M)$. We see that $\Omega (M)$ form a module over $C^{\infty}(M)$ if we define $f\omega: M\rightarrow T^*M$ 
-\begin{align*}
-f\omega (p)=f(p)\omega_p
-\end{align*}
-Note that for all $f\inC^{\infty}(M)$, we may associate $f$ with $df \in \Omega (M)$ by defining 
-\begin{align*}
-dfX\triangleq Xf
-\end{align*}
-Note that for convenience, we often use $df_p$ to denote  $df(p)\in T_p^*M$, and with some tedious effort, one may deduce the local expression 
-\begin{align*}
-df=\sum_i \frac{\partial f}{\partial \textbf{x}^i}d\textbf{x}^i
-\end{align*}
-where $\textbf{x}^i:U\rightarrow \R$ is defined by 
-\begin{align*}
-\textbf{x}^i(\phi ^{-1}(\textbf{y}^1,\dots ,\textbf{y}^n))\triangleq \textbf{y}^i
-\end{align*}
-We may now prove some expected result.  
-\end{mdframed}
+\section{Archived}
 \begin{theorem}
-\textbf{(Constant function and zero differential)} Given some connected manifold $M$ and  $f\in C^{\infty}(M)$ 
-\begin{align*}
-f\text{ is constant }\iff df=0
-\end{align*}
+\textbf{(Existence of Exterior Derivative)} On any smooth manifold $M$, there exists a natural linear map  $d:\Omega^k(M)\rightarrow \Omega^{k+1}(M)$ called the \textbf{exterior derivative} satisfying 
+\begin{enumerate}[label=(\alph*)]
+  \item If $f \in \Omega^0(M)$, then $df\in \Omega^1(M)$ is the differential of $f$. 
+  \item $d^2=0$.
+  \item  $d (\alpha \wedge  \beta  )=d\alpha \wedge  \beta +(-1)^k \alpha \wedge  d\beta   $ if $ \alpha  \in \Omega^k(M)$
+\end{enumerate}
 \end{theorem}
 \begin{proof}
-If $f $ is constant, then locally 
+  Fix $\alpha  \in \Omega^k(M)$. The uniqueness part follows from computing 
+  \begin{align*}
+  d\alpha =\sum_I d\alpha^I \wedge  d\textbf{x}^I 
+  \end{align*}
+by property (b) and (c) on all charts, where 
 \begin{align*}
-df=\sum_i \frac{\partial f}{\partial \textbf{x}^i}d\textbf{x}^i=0
+\alpha = \sum_I \alpha^I d\textbf{x}^I
 \end{align*}
-Now, suppose $df=0$. Fix $p \in M$. Because $f$ is continuous, we know $f^{-1}(\set{f(p)})$ is closed. Again, locally we have
+We claim 
 \begin{align*}
-0=df=\sum_i \frac{\partial f}{\partial \textbf{x}^i}d\textbf{x}^i
+&d\alpha (X_1,\dots ,X_{k+1})\\
+&\triangleq \sum_{1\leq i\leq k+1}(-1)^{i+1}X_i \Big(\omega (X_1,\dots ,\widehat{X}_i,\dots ,X_{k+1}) \Big) \\
+&+\sum_{1\leq i<j\leq k+1}\omega \Big( [X_i,X_j],X_1 ,\dots ,\widehat{X}_i,\dots ,\widehat{X}_j,\dots ,X_{k+1} \Big)
 \end{align*}
-which implies $f$ is constant on each chart $U$. This implies $f^{-1}(\set{f(p)})$ is open. It then follows from $M$ being connected that $f^{-1}(\set{f(p)})=M$.  
-\end{proof}
+suffices, where the hats indicate omitted arguments.  
+
+
+Let $U$ be a chart. It is then clear that we must define 
+\begin{align*}
+d\alpha = \sum_I d\alpha^I \wedge   d\textbf{x}^I \text{ on }U
+\end{align*}
+It remains to show such definition is well defined and satisfies properties (b) and (c). The well-defined part requires us to show 
+\begin{align*}
+\sum_I d\alpha^I d\textbf{x}^I= \sum_I d\beta^I d\textbf{y}^I 
+\end{align*}
+on where they overlaps. 
+
+
+
+On $\widehat{U}\triangleq \phi^{-1}(B_{r}(\phi (p)))$, we may then write 
+\begin{align*}
+\alpha  = \sum_{i_1 < \cdots <i_k} a_{i_1,\dots ,i_k} d\textbf{x}^{i_1} \wedge  \cdots \wedge  d\textbf{x}^{i_k}  
+\end{align*}
+We define 
+\begin{align*}
+d\alpha \triangleq  \sum_{i_1< \cdots < i_k}da_{i_1,\dots ,i_k} \wedge   d\textbf{x}^{i_1}\wedge  \cdots \wedge  d\textbf{x}^{i_k}  \text{ on }\widehat{U}
+\end{align*}
+where 
+\begin{align*}
+da_{i_1,\dots ,i_k} X_q\triangleq \widehat{X}_q (a_{i_1,\dots ,i_k})
+\end{align*}
+where  $\widehat{X}=X |_{\widehat{U}}$. Note that the expression make sense because $T_p \widehat{U}\cong T_pM$. Note that our local definition is indeed linear and does satisfy (a). Compute 
+\begin{align*}
+d(d\alpha )&= d\Big(\sum_{i_1< \cdots < i_k}da_{i_1,\dots ,i_k} \wedge   d\textbf{x}^{i_1}\wedge  \cdots \wedge  d\textbf{x}^{i_k}   \Big)\\
+&=d\Big(\sum_{j;i_1<\cdots <i_k} \frac{\partial a_{i_1,\dots ,i_k}}{\partial \textbf{x}^j}d\textbf{x}^j \wedge  d\textbf{x}^{i_1}\wedge \cdots \wedge  d\textbf{x}^{i_k}    \Big)\\
+&=\sum_{j,l;i_1<\cdots <i_k} \underbrace{\frac{\partial a_{i_1,\dots ,i_k}}{\partial \textbf{x}^j \partial \textbf{x}^l}}_{\text{ symmetric in }j,l}\underbrace{d\textbf{x}^l \wedge   d\textbf{x}^j}_{\text{ skew-symmetric in }j,l} \wedge  d\textbf{x}^{i_1}\wedge \cdots \wedge  d\textbf{x}^{i_k} =0 
+\end{align*}
+We have shown our local definition satisfy (b). Let $\beta  \in \Omega^{s}(M)$ and write 
+\begin{align*}
+\beta  \triangleq \sum_{i_1 <\cdots <i_s}b_{i_1,\dots ,i_{s}} d\textbf{x}^{i_1} \wedge  \cdots  \wedge  d\textbf{x}^{i_{s}} \text{ on }\widehat{U}
+\end{align*}
+Using the multi-index notation, we may compute 
+\begin{align*}
+d(\alpha \wedge  \beta  )&= d\Big(\sum_I a_I d\textbf{x}^{I}\wedge \sum_J b_Jd\textbf{x}^{J} \Big) \\
+&= d\Big( \sum_{I,J} a_I b_J d\textbf{x}^I \wedge d\textbf{x}^J  \Big) \\
+&=\sum_{I,J} d\big( a_Ib_J d\textbf{x}^I \wedge  d\textbf{x}^J  \big) \\
+&=\sum_{I,J} (a_I db_J+b_Jda_I)\wedge   d\textbf{x}^I \wedge  d\textbf{x}^J  \\
+&=\sum_{I,J} b_J d a_I \wedge   d\textbf{x}^I \wedge  d\textbf{x}^J + \sum_{I,J} a_I db_J \wedge  d\textbf{x}^I \wedge  d\textbf{x}^J   \\
+&= d\alpha \wedge  \beta  + \sum_{I,J}(-1)^ka_I   d\textbf{x}^I \wedge db_J \wedge  d\textbf{x}^J       \\
+&= d\alpha \wedge  \beta + (-1)^k \alpha \wedge  d \beta   
+\end{align*}
+It remains to show our definition is in fact globally defined. That is, for another expression 
+\begin{align*}
+\alpha = \sum_{i_1< \cdots <i_k}b_{i_1,\dots ,i_k}d\textbf{y}^{i_1}\wedge  \cdots \wedge d\textbf{y}^{i_k}  
+\end{align*}
+that lies in $\widehat{U}$, we have 
+\begin{align*}
+\sum_{i_1< \cdots < i_k}da_{i_1,\dots ,i_k} \wedge   d\textbf{x}^{i_1}\wedge  \cdots \wedge  d\textbf{x}^{i_k} = \sum_{i_1 <\cdots <i_k}db_{i_1,\dots ,i_k} \wedge  d\textbf{y}^{i_1}\wedge  \cdots \wedge  d\textbf{y}^{i_k}   
+\end{align*}
+Using the already proved properties, we may compute on $\widehat{U}$ that 
+\begin{align*}
+\sum_{i_1< \cdots < i_k}da_{i_1,\dots ,i_k} \wedge   d\textbf{x}^{i_1}\wedge  \cdots \wedge  d\textbf{x}^{i_k}&=d\Big(\sum_{i_1 <\cdots <i_k}b_{i_1,\dots ,i_k}  d\textbf{y}^{i_1}\wedge  \cdots \wedge  d\textbf{y}^{i_k}   \Big)\\
+&= \sum_{i_1 <\cdots <i_k} d (b_{i_1,\dots ,i_k}  d\textbf{y}^{i_1}\wedge  \cdots \wedge  d\textbf{y}^{i_k}) \\
+(\text{ property (a) and (c)})\hspace{0.5cm}&= \sum_{i_1 <\cdots <i_k} db_{i_1,\dots ,i_k} \wedge (d\textbf{y}^{i_1}\wedge  \cdots \wedge  d\textbf{y}^{i_k}  ) \\
+&+ b_{i_1,\dots ,i_k} \wedge d(d\textbf{y}^{i_1}\wedge  \cdots \wedge  d\textbf{y}^{i_k}  ) \\
+(\text{ property (b) })\hspace{0.5cm}&=  \sum_{i_1< \cdots <i_k} db_{i_1,\dots ,i_k}\wedge  d\textbf{y}^{i_1}\wedge  \cdots \wedge  d\textbf{y}^{i_k}   
+\end{align*}
+\end{proof} 
 \begin{mdframed}
-  Now, for each smooth map $F:M\rightarrow N$, $f\in C^{\infty}(N)$ and $\omega \in \Omega (N)$, we may define their \textbf{pullbacks} $F^*f\in C^{\infty}(M),F^*\omega\in \Omega (M)$ by
+Note that if take some $1$-form  $\alpha \in \Omega^1(\R^3)$ and write 
 \begin{align*}
-F^*f\triangleq f\circ F\text{ and }(F^*\omega)_p\triangleq (F_{*,p})^*(\omega_{F(p)})
+\alpha =a_1dx^1 + a_2dx^2+a_3dx^3
 \end{align*}
-With this definition and some tedious effort, we see that pullbacks is compatible with differential in the sense that 
+We then see that the differential of $\alpha $ have the form of curl 
 \begin{align*}
-F^*(dh)=d(F^*h) 
+d\alpha &= da_1 \wedge  dx^1 + da_2\wedge  dx^2 +da_3\wedge   dx^3   \\
+&=  \sum_i (\frac{\partial a_i}{\partial x^1}dx^1+\frac{\partial a_i}{\partial x^2}dx^2+ \frac{\partial a_i}{\partial x^3}dx_3)\wedge  dx^i \\
+&=\Big(\frac{\partial a_1}{\partial x^1}-\frac{\partial a_1}{\partial x^2}\Big) dx^1 \wedge  dx^2 + \Big( \frac{\partial a_3}{\partial x^2}- \frac{\partial a_2}{\partial x^3} \Big)dx^2 \wedge  dx^3+ \Big( \frac{\partial a_3}{\partial x^1}- \frac{\partial a_1}{\partial x^3} \Big) dx^1\wedge  dx^3 
 \end{align*}
-The definition tell us that pullbacks is linear 
+from (b) in \myref{Theorem}{Existence of Exterior Derivative} and \myref{Equation}{fid}. We also see that the differential of 2-form $\beta \in \Omega^2(\R^3)$ 
 \begin{align*}
-F^*(c\omega_1+\omega_2)=cF^*\omega_1+F^*\omega_2
+\beta =b_1 dx^1 \wedge  dx^2 + b_2 dx^2\wedge  dx^3 + b_3 dx^1 \wedge  dx^3   
 \end{align*}
-and is compatible to the module 
+have the form of divergence
 \begin{align*}
-F^*(g\alpha )=(F^*g)(F^*\alpha )
+d\beta  &=db_1 \wedge  dx^2\wedge  dx^3+ db_2 \wedge  dx^3 \wedge  dx^1 + db_3 \wedge  dx^1\wedge  dx^2      \\
+&= \Big( \frac{\partial b_1}{\partial x^1} + \frac{\partial b_2}{\partial x^2}+ \frac{\partial b_3}{\partial x^3} \Big) dx^1 \wedge  dx^2 \wedge  dx^3  
 \end{align*}
-This then shows that the pullbacks $F^*\omega$ of smooth 1-from on $N$ is indeed smooth since if we write $\omega= \sum_i \omega^i d\textbf{y}^i$ locally, we may write 
- \begin{align*}
-F^*\omega &=F^* \Big(\sum_i \omega^i d\textbf{y}^i  \Big) \\
-&=\sum_i F^* \omega^i F^*d\textbf{y}^i \\
-&=\sum_i (\omega^i \circ F) d(F^* \textbf{y}^i)\\
-&=\sum_i (\omega^i \circ F)dF^i=\sum_{i,j} (\omega^i \circ F) \frac{\partial F^i}{\partial \textbf{x}^j}d\textbf{x}^j
-\end{align*}
-At this point, one can see that if $S\xhookrightarrow{\diota} M$ is an immersed submanifold, then the pullback $\diota^* \omega \in \Omega(S)$ of the 1-form $\omega \in \Omega(M)$ is just the restriction of $\omega$. 
-\end{mdframed}
-\section{Lie Group}
-\begin{mdframed}
-By a \textbf{Lie group}, we mean a smooth manifold equipped with a group structure such that the inversion and group addition are both smooth map, or equivalently, that 
-\begin{align*}
-M^2\rightarrow  M; (g,h)\mapsto gh^{-1}
-\end{align*}
-is smooth. 
 \end{mdframed}
 
 \chapter{Complex Analysis}
@@ -7615,9 +8972,10 @@ A parametrization $\gamma :[a,b]\rightarrow \C$ is said to be \textbf{closed} if
 \int_\gamma f(z)dz \triangleq \int_a^b f(\gamma  (t))\gamma  '(t)dt
 \end{align*}
 Again the \customref{CoV}{change of variables} shows that our definition is well defined for contours. Similar to the real case, we have the estimation  
-\begin{align*}
+\begin{align}
+\label{LM}
 \abso{\int_{\gamma}fdz}\leq LM
-\end{align*}
+\end{align}
 where $L$ is the length of  $\gamma $ and $M$ is the maximum of  $\abso{f}$ on $\gamma $. We can also generalize \customref{FTC2}{Part 2 of Fundamental Theorem of Calculus} to contour integral: If $D\subseteq \C$ is open, $f:D\rightarrow \C$ is continuous, and $F:D\rightarrow \C$ satisfy $F'(z)=f(z)$ for all $z\in D$, then for all contour $\gamma :[a,b]\rightarrow D$, we have 
 \begin{align*}
 \int_{\gamma }fdz=F(\gamma (b))-F(\gamma (a))
@@ -7689,7 +9047,7 @@ By $D\subseteq \C$ being \textbf{star-convex with center $z_*$}, we mean that fo
 satisfy $\gamma ([0,1])\subseteq D$. 
 \end{mdframed}
 \begin{theorem}
-\textbf{(Cauchy's Integral Theorem for closed contour in a star domain)} Suppose $D\subseteq \C$ is open and star-convex with centre  $z_*$. If $f:D\rightarrow \C$ is holomorphic, then $F:D\rightarrow \C$ defined by 
+\textbf{(Existence of antiderivative on star-convex domain)} Suppose $D\subseteq \C$ is open and star-convex with centre  $z_*$. If $f:D\rightarrow \C$ is holomorphic, then $F:D\rightarrow \C$ defined by 
 \begin{align*}
 F(z)\triangleq \int_\gamma f(w)dw\text{ where }\gamma :[0,1]\rightarrow D\text{ is defined by }\gamma(t)\triangleq z_*+t(z-z_*)
 \end{align*}
@@ -7703,12 +9061,278 @@ Fix $z_0 \in D$. Because $D$ is open, there exists some open ball $B_\epsilon (z
 \end{align*}
 where $\gamma$ is the line segment traveling from $z_0$ to  $z$.  
 \end{proof}
+\begin{mdframed}
+At this point, it is appropriate for us to define \textbf{the winding number $w(\gamma ,z_0)$ of a contour $\gamma :[a,b]\rightarrow \C$ around some point $z_0\not\in \gamma $} by 
+\begin{align*}
+w(\gamma ,z_0)\triangleq  \frac{1}{2\pi  i}\int_{\gamma } \frac{1}{z-z_0}dz
+\end{align*}
+Immediately, we see that our definition satisfy our geometric intuition in the sense that the circle $\gamma :[0,2\pi  ]\rightarrow \C$ is defined by 
+\begin{align*}
+\gamma (t)\triangleq z_0 + e^{it}
+\end{align*}
+have winding number  
+\begin{align*}
+w(\gamma ,z_0)= \frac{1}{2\pi i}\int_0^{2\pi } e^{- it }ie^{it}dt= 1
+\end{align*}
+Moreover, we expect any closed contour $\gamma :[a,b]\rightarrow \C$ to have integer-valued winding number. This is true. Consider $f:[a,b]\rightarrow \C$ defined by 
+\begin{align*}
+f(t)\triangleq \frac{1}{2\pi  i}\int_a^t \frac{\gamma '(s)}{\gamma (s)-z_0}ds
+\end{align*}
+One may check by direct computation that 
+\begin{align*}
+\frac{d}{dt}e^{-2\pi  if (t)}(\gamma (t)-z_0)\equiv 0 
+\end{align*}
+It then follows from $\gamma $ being closed that 
+\begin{align*}
+e^{-2\pi  if(a)}=e^{-2\pi  if(b)}
+\end{align*}
+which implies 
+\begin{align*}
+w(\gamma ,z_0)=f(b)=f(a)+n=n\inz
+\end{align*}
+Given some contour $\gamma :[a,b]\rightarrow \C$, if we define $g:\C\setminus \gamma \rightarrow \C$ by 
+\begin{align*}
+g(z)\triangleq w(\gamma ,z)
+\end{align*}
+we see that $g$ is continuous, since if $z_0\not\in \gamma $, we may find $D_r(z_0)$ disjoint with $\gamma $ and obtain the estimate 
+ \begin{align*}
+\abso{w(\gamma ,z_0)-w(\gamma ,z_1)}&= \frac{1}{2\pi  }\abso{\int_\gamma \Big[ \frac{1}{z-z_0}-\frac{1}{z-z_1} \Big]dz} \\
+&=\frac{1}{2\pi  }\abso{\int_{\gamma } \frac{z_1-z_0}{(z-z_0)(z-z_1)}dz} \\
+&\leq \frac{L \abso{z_1-z_0}}{ r^2 \pi  }\text{ where }L\text{ is the length of }\gamma 
+\end{align*}
+as long as $\abso{z_0-z_1}<\frac{r}{2}$. The continuity of $g$ together with the fact that  $g$ can only be integer-valued implies that  $g$ is constant on any connected component of  $\C \setminus \gamma $. We may now finally state our version of \customref{CIT}{Cauchy Integral Theorem}. 
+\end{mdframed}
+\begin{theorem}
+\label{CIT}
+\textbf{(Cauchy Integral Theorem)} Suppose $D\subseteq \C$ is open and $f:D\rightarrow \C$ is holomorphic. If $\gamma :[a,b]\rightarrow \C$ is a closed contour lying in $D$ such that  $w(\gamma ,z)=0$ for all $z\not\in D$, then 
+\begin{align*}
+\int_\gamma  fdz=0 
+\end{align*}
+\end{theorem}
+\begin{proof}
+As Prof Frank remarked, the proof is omitted here for being too long and tricky. 
+\end{proof}
+\begin{theorem}
+\label{CIF}
+\textbf{(Cauchy Integral Formula)}  Let $U\subseteq \C$ be open, $D$ be an closed disk contained by  $U$, and $C$ be a closed contour running through the boundary of $D$ counterclockwise. If $f:U\rightarrow \C$ is holomorphic and $a\in D^\circ $, then 
+\begin{align*}
+f(a)= \frac{1}{2\pi  i}\int_C \frac{f(z)}{z-a}dz
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $\epsilon $. Let $\delta$ satisfy 
+\begin{align*}
+\abso{z-a}\leq \delta \implies  \abso{f(z)-f(a)}\leq \epsilon 
+\end{align*}
+With a geometric argument using \customref{CIT}{Cauchy Integral Theorem}, one have 
+\begin{align*}
+\int_C \frac{f(z)}{z-a}dz=  \int_{\gamma  } \frac{f(z)}{z-a}dz
+\end{align*}
+where $\gamma :[0,2\pi ]\rightarrow D^\circ $ is defined by  
+\begin{align*}
+\gamma (t)\triangleq a+ \delta e^{it} 
+\end{align*}
+The proof then follows from the estimation 
+\begin{align*}
+  \abso{f(a)- \frac{1}{2\pi i}  \int_C \frac{f(z)}{z-a}dz}&= \abso{f(a)- \frac{1}{2\pi  i}\int_\gamma  \frac{f(z)}{z-a}dz} \\
+                              &= \abso{f(a)- \frac{1}{2\pi  i}\int_0^{2\pi  } \frac{f(a+ \delta e^{it})}{\delta e^{it} } i\delta e^{i t} dt}  \\
+                              &= \frac{1}{2\pi } \abso{\int_0^{2\pi  } f(a+ \delta e ^{it})- f(a)dt}\leq \epsilon 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{Hfaa}
+\textbf{(Holomorphic functions are analytic)} Let $U\subseteq \C$ be an open, $D$ be an closed disk contained by $U$ and centering $a$ with radius  $R$. Let $C$ be a closed contour running through the boundary of $D$ counterclockwise. If we define for all $n\geq 0$ 
+\begin{align*}
+c_n\triangleq  \frac{1}{2 \pi  i}\int_C \frac{f(z)}{(z-a)^{n+1}}dz
+\end{align*}
+then the power series 
+\begin{align*}
+  \sum_{n=0}^{\infty} c_n (z-a)^n
+\end{align*}
+agrees with $f$ on $D^{\circ }$. 
+\end{theorem}
+\begin{proof}
+Let $z\in D^{\circ }$. By \customref{CIF}{Cauchy's Integral Formula}, we have 
+\begin{align*}
+f(z)&= \frac{1}{2\pi  i}\int_C \frac{f(w)}{w-z}dw \\
+&=\frac{1}{2\pi  i}\int_C f(w)\Big[ \frac{1}{w-a} + \frac{z-a}{(w-a)^2}+ \cdots + \frac{(z-a)^m}{(w-a)^{m+1}} + \frac{(z-a)^{m+1}}{(w-a)^{m+1}(w-z)} \Big]dw \\
+&=\sum_{n=0}^{m} c_n (z-a)^n + \frac{1}{2\pi  i}\int_C \frac{(z-a)^{m+1}}{(w-a)^{m+1}(w-z)}dw
+\end{align*}
+The proof then follows from noting  $\abso{\frac{z-a}{w-a}}<1$ and direct estimation of \myref{Equation}{LM}. 
+\end{proof}
+\begin{mdframed}
+What follows from the fact  \customref{Hfaa}{holomorphic functions are analytic} and 
+\customref{TT}{Taylor's Theorem for Power Series} is that if $f$ is holomorphic on some open disk  $D_{r+\epsilon }(a)$ and $C$ is the closed contour running through the boundary of  $D_r(a)$ counterclockwise, then we have a nice formula  
+\begin{align*}
+f^{(n)}(a)=  \frac{n!}{2\pi  i}\int_C \frac{f(z)}{(z-a)^{n+1}}dz
+\end{align*}
+which agrees with our \customref{CIF}{Cauchy integral Formula}.\\ 
+
+In particular, we often encounter  complex function $f:\C\rightarrow \C$ that is \textbf{entire}, i.e., $f$ is holomorphic on the whole $\C$. \myref{Theorem}{Hfaa} states that for all $R>0$, if we let  $C$ be the closed contour running through the boundary of the open disk centering $0$ with radius  $R$  counterclockwise, then 
+\begin{align*}
+f=\sum_{n=0}^{\infty}c_{n,R} z^n \text{ on the open disk with radius }R
+\end{align*}
+for $c_{n,R}$ given in \myref{Theorem}{Hfaa}. Let $R_1< R_2$. Trivially, 
+\begin{align*}
+\sum_{n=0}^{\infty} c_{n,R_1}z^n=\sum_{n=0}^{\infty} c_{n,R_2}z^n\text{ on the open disk with radius }R_1
+\end{align*}
+It then follows from \customref{Identity Theorem}{Identity Theorem} that 
+\begin{align*}
+c_{n,R_1}=c_{n,R_2}\text{ for all }n
+\end{align*}
+Letting $R\to \infty$, we may now just write 
+\begin{align*}
+f(z)= \sum_{n=0}^{\infty}c_nz^n\text{ on }\C
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{LV}
+\textbf{(Liouville's Theorem)} If entire $f:\C\rightarrow \C$ is bounded, then $f$ is constant. 
+\end{theorem}
+\begin{proof}
+Write 
+\begin{align*}
+f(z)=\sum_{n=0}^{\infty}c_nz^n\text{ on }\C
+\end{align*}
+By \myref{Theorem}{Hfaa}, 
+\begin{align*}
+c_n= \frac{1}{2\pi i}\int_{C_r} \frac{f(z)}{z^{n+1}}dz
+\end{align*}
+where $C_r$ is the closed contour running through the boundary of the open disk centering  the origin with radius  $r$. Let $n\geq 1$, and let  $M$ be an upper bound of $\abso{f}$. The proof then following from letting $r \to \infty$ in the below estimation 
+\begin{align*}
+\abso{c_n}= \frac{1}{2\pi } \cdot (2\pi r) \cdot \max_{C_r} \abso{\frac{f(z)}{z^{n+1}}} \leq \frac{M}{r^n}
+\end{align*}
+\end{proof}
+\section{Dirichlet's Problem}
+\begin{mdframed}
+Let $D(R)\subseteq \R^2$ denote the unit open disk, and let $g:\partial D(R) \rightarrow \R$ be a  continuous function defined on the boundary. Dirichlet's problem asked: 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+Is there continuous $u: \overline{D(R)}\rightarrow \R$ such that $u$ is harmonic on the interior and agree with $g$ on boundary? 
+   \end{minipage}
+\end{center}
+Let's first suppose such $u$ exists. If we define $f:D(R)\rightarrow \C$ by 
+\begin{align*}
+f= \frac{\partial u}{\partial x}- i \frac{\partial u}{\partial y}
+\end{align*}
+then $f$ is holomorphic according to Cauchy-Riemann Theorem. Because $f$ is holomorphic, we may let $F:D(R)\rightarrow \C$ be its anti-derivative. It is clear that by computation that $F$ has the form
+\begin{align*}
+F= u+iv +C
+\end{align*}
+where $C$ is some constant. Let $C=0$. By \customref{CIF}{Cauchy Integral Formula}, for all $r<R$, we have 
+ \begin{align*}
+F(z)= \sum_{n=0}^{\infty} c_n z^n \text{ for }\abso{z}<r
+\end{align*}
+for some $c_n$. By \customref{Identity Theorem}{Identity Theorem}, we can just write 
+\begin{align*}
+F(z)=\sum_{n=0}^{\infty} c_nz^n \text{ for }\abso{z}<R
+\end{align*}
+If we write 
+ \begin{align*}
+c_n = \alpha _n + i \beta _n 
+\end{align*}
+because $u=\operatorname{Re}F$, we may compute 
+\begin{align*}
+u= \sum_{n=0}^{\infty} r^n (a_n \cos (n\theta)+b_n \sin (n \theta))\text{ on }D(R)
+\end{align*}
+where $a_n=\alpha_n$ and $b_n=-\beta_n$. Because $u$ is continuous, we know 
+ \begin{align}
+\label{lk}
+g(\theta)=\lim_{r\to 1} \Big(\sum_{n=0}^{\infty}r^n (a_n \cos (n \theta)+ b_n \sin (n\theta)) \Big)\text{ exists }
+\end{align}
+It then follows from a non-trivial estimation (you may do this by yourself) that 
+\begin{align*}
+g(\theta)= \sum_{n=0}^{\infty} a_n \cos (n \theta)+ b_n \sin (n \theta)
+\end{align*}
+Because $g$ is continuous, we know 
+\begin{align*}
+a_n= \frac{1}{\pi }\int_{-\pi }^{\pi } g(\theta)\cos (n \theta) d\theta \text{ and }b_n = \frac{1}{\pi }\int_{-\pi }^{\pi }g(\theta)\sin (n \theta)d \theta \text{ for }n\geq 1
+\end{align*}
+and 
+\begin{align*}
+a_0= \frac{1}{2\pi }\int_{-\pi }^{\pi }g(\theta) d\theta
+\end{align*}
+We thus may write 
+\begin{align}
+\label{lk2}
+u&=\sum_{n=0}^{\infty} r^n (a_n \cos (n\theta)+b_n \sin (n \theta))\text{ on }D(R)\\
+&=  \frac{1}{2\pi }\int_{-\pi }^{\pi }g(\phi)d\phi +\sum_{n=1}^{\infty} \frac{r^n}{\pi } \int_{-\pi }^{\pi } g(\phi) \cos (n\phi)\cos (n \theta) + g(\phi) \sin (n \phi)\sin (n \theta)d \phi \notag  \\
+&= \frac{1}{2\pi }\int_{-\pi }^{\pi }g(\phi)d\phi + \sum_{n=1}^{\infty} \frac{r^n}{\pi }\int_{-\pi }^{\pi }g(\phi) \cos \big(n (\theta- \phi)\big)  d\phi\notag  \\
+&=\int_{-\pi }^{\pi }g(\phi) \Big[\frac{1}{2 \pi  }+\sum_{n=1}^{\infty} \frac{r^n}{\pi }\cos \big( n (\theta- \phi) \big) \Big]d\phi \text{ on }D(R)\notag 
+\end{align}
+Note that the last equality holds since the series is dominated by some constant multiples of $g$.    In fact, we can simplify the expression using the next lemma. 
+\end{mdframed}
+\begin{lemma}
+For $0\leq r<1$ and $\xi\inr$, 
+\begin{align*}
+\frac{1}{2}+\sum_{n=1}^{\infty} r^n \cos ( n \xi)=  \frac{1}{2}\cdot \frac{1-r^2}{1-2r \cos (\xi) + r^2}
+\end{align*}
+\end{lemma}
+\begin{proof}
+Let $w=re^{i n \xi}$. Compute $\abso{w}=\abso{r}<1$. Therefore, 
+\begin{align*}
+\frac{1}{2}+\sum_{n=1}^{\infty} r^n \cos ( n \xi) &=\frac{1}{2}+ \frac{1}{2}\Big(\sum_{n=1}^{\infty} w^n +\overline{w^n}  \Big) \\
+&=\frac{1}{2}\Big( \sum_{n=0}^{\infty}w^n + \sum_{n=1}^{\infty} \overline{w^n} \Big) \\
+&=\frac{1}{2}\Big( \frac{1}{1-w}+ \frac{\overline{w}}{1- \overline{w}} \Big)\\
+&= \frac{1}{2}\cdot \frac{1- \abso{w}^2}{ \abso{1-w}^2}= \frac{1}{2} \cdot \frac{1-r^2}{1-2r \cos \theta + r^2}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+In conclusion, 
+\begin{align*}
+u= \frac{1}{2\pi }\int_{-\pi }^{\pi } g(\phi) \frac{1-r^2}{1-2r \cos (\theta- \phi)+r^2}d \phi \text{ on }D(R)
+\end{align*}
+The fact that this expression have boundary limit $g$ follows from \myref{Equation}{lk} and \myref{Equation}{lk2}. 
+\end{mdframed}
+\section{Archived}
+\begin{theorem}
+\textbf{(Cauchy Integral Theorem)} Suppose $D\subseteq \C$ is open and $f:D\rightarrow \C$ is holomorphic. If $\gamma :[a,b]\rightarrow \C$ is a closed contour lying in $D$ such that  $w(\gamma ,z)=0$ for all $z\not\in D$, then 
+\begin{align*}
+\int_\gamma  fdz=0 
+\end{align*}
+\end{theorem}
+\begin{proof} 
+We first shows that $\gamma $ is \textbf{pavable} on $[a,b]$, i.e, 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+     \olive{There exists some partition $\set{a=t_0< \cdots < t_N=b}$ such that each sub-contour $\gamma_n$ obtained by restricting $\gamma $ to $[t_{n-1},t_n]$ lies inside an open disc $D_n\subseteq D$}
+   \end{minipage}
+\end{center}
+\As{$\gamma $ is not pavable on $[a,b]$}. Bisect $[a,b]$  to get two closed intervals intersecting at the midpoint. We know $\gamma $ is unpavable on one of these intervals, otherwise $\gamma $ is pavable on $[a,b]$. Call this interval $I_1$ and bisect $I_1$ to get two closed interval intersecting at the midpoint of $I_1$ again. Similarly, one of these interval is unpavable, which we call $I_2$. Repeating the process, we have a sequence 
+\begin{align*}
+[a,b] \supseteq I_1 \supseteq I_2 \supseteq I_3 \supseteq \cdots 
+\end{align*}
+of compact intervals each with diameter $(b-a)2^{-n}$. It then follows from \myref{Theorem}{DSoC} that there exists some $t \in [a,b]$ such that 
+\begin{align*}
+\bigcap_{n=1}^{\infty} I_n =\set{t}
+\end{align*}
+Let $D_\epsilon$ be an open disk centering $\gamma (t)$ contained by $D$. It is clear that $\gamma ^{-1}(D_\epsilon )\subseteq [a,b]$ is some open set containing $t$. It follows that  $\gamma ^{-1}(D_\epsilon )$ contain some $I_n$ for some large enough  $n$. This implies $\gamma $ is pavable on $I_n$.  \CaC $\odone$\\
+
+Define $\sigma_n:[t_{n-1},t_n]\rightarrow D_n$ by 
+
+\end{proof}
 \chapter{Beauty}
 \label{Beauty}
 \section{Fundamental Theorem of Algebra}
 \begin{theorem}
-\textbf{(Fundamental Theorem of Algebra)}
+\textbf{(Fundamental Theorem of Algebra)} Every non-constant complex polynomial $p:\C\rightarrow \C$ has at least one root. 
 \end{theorem}
+\begin{proof}
+\As{$p$ has no root}. Because $p$ has no root, we may define  $q:\C\rightarrow \C$ by $q\triangleq p^{-1}$. It follows from \customref{Product and Quotient Rule for Holomorphic Function}{Quotient Rule} that $q$ is also entire. If we write $p=a_nz^n+ \cdots + a_0$, we have 
+\begin{align*}
+\abso{a_nz^n+ \cdots +a_0}\geq \abso{a_nz^n}- \abso{a_{n-1}z^{n-1}+ \cdots + a_0}
+\end{align*}
+Therefore, we may find some $R>0$ such that 
+\begin{align*}
+\abso{p(z)}>1 \text{ for all }z\not\in  \overline{D_R(0)}
+\end{align*}
+It follows that 
+\begin{align*}
+\abso{q(z)}\leq 1\text{ on }\C \setminus \overline{D_R(0)}
+\end{align*}
+Because $\abso{q}$ is continuous on $\overline{D_R(0)}$, it now follows from EVT that $q$ is indeed bounded on $\C$. Therefore, by \customref{LV}{Liouville's Theorem}, $q=\frac{1}{p}$ is a constant, impossible. \CaC
+\end{proof}
+
 \section{Euler's Formula}
 \begin{abstract}
 This section give a precise definition to exponential function and trigonometric functions, prove \customref{Euler's Formula}{Euler's Formula} and prove some of their basic properties seen in the real case. In this section, $z,v$ are complex numbers, and $x,y$ are real numbers.   
@@ -7852,6 +9476,19 @@ we have for all $n>N_1$
 \end{align*}
 \end{proof}
 \begin{mdframed}
+If one define complex logarithm $\Log$ on the usual domain $\C \setminus \R_0^-$ by taking 
+\begin{align*}
+\Log (z)\triangleq x+ yi\text{ such that }y \in (- \pi  ,\pi )\text{ and }e^{x+y i}=z
+\end{align*}
+(Check!) One can use \customref{IFT}{Inverse function Theorem} to have 
+\begin{align*}
+\frac{d}{dz}\Log (z)=\frac{1}{z}
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+
+
+
 \begin{align*}
 \ln (x)\triangleq \int_1^x \frac{1}{t}dt
 \end{align*}
@@ -8066,7 +9703,43 @@ Note that if the base 3 representation of $x\in (0,1)$ has the trailing  $0$ or 
 \end{mdframed}
 \section{Volterra's Function}
 \section{Peano Space-filling Curve}
-
-
+\chapter{Archived}
+\section{Linear Algebra Done Outrageous}
+\begin{theorem}
+\textbf{(Tensor product as dual of multilinear forms)} The map $\otimes  :V_1 \times \cdots \times V_n \rightarrow (L(V_1,\dots ,V_n;\R))^{\vee}$ defined by 
+\begin{align*}
+v_1 \otimes  \cdots \otimes  v_n (B)\triangleq B(v_1,\dots ,v_n)
+\end{align*}
+satisfies the universal property. 
+\end{theorem}
+\begin{proof}
+Let $Z$ be a vector space. Define $\rho: Z^\vee \rightarrow L(V_1,\dots ,V_k;\R)$ by 
+\begin{align*}
+\rho (\xi)\triangleq \xi \circ B
+\end{align*}
+Let $\alpha :U\rightarrow (U^{\vee})^{\vee}$ be the natural isomorphism defined by 
+\begin{align*}
+\alpha (u)(\xi)\triangleq \xi(u)
+\end{align*}
+We claim that $\alpha ^{-1}\circ \rho^{\vee}:V_1 \otimes \cdots \otimes  V_k\rightarrow U$ is the desired linear map $\beta $. Fix $\xi \in U^{\vee}$. To show 
+\begin{align*}
+\alpha ^{-1}\circ \rho ^{\vee}(v_1\otimes  \cdots \otimes  v_k)=B(v_1,\dots ,v_k)
+\end{align*}
+We have to show 
+\begin{align*}
+\rho^{\vee}(v_1\otimes  \cdots \otimes  v_k)(\xi)= \alpha (B(v_1,\dots ,v_k)) (\xi)
+\end{align*}
+The proof then follows from computing  
+\begin{align*}
+\rho^{\vee}(v_1\otimes  \cdots \otimes  v_k)(\xi)&= (v_1\otimes  \cdots \otimes  v_k) \circ \rho (\xi)\\
+&=(v_1\otimes  \cdots \otimes  v_k)(\xi \circ B)\\
+&=\xi \circ B(v_1,\dots ,v_k)
+\end{align*}
+and 
+\begin{align*}
+\alpha (B(v_1,\dots ,v_k))(\xi)= \xi(B(v_1,\dots ,v_k))
+\end{align*}
+Note that $\beta $ is unique because all such linear map have the same values on the basis for $V_1\otimes  \cdots \otimes  V_n$ given in \myref{Equation}{ba}. 
+\end{proof}
 
 \end{document}
