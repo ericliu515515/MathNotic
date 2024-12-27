@@ -34,7 +34,7 @@
 \newcommand{\inr}{\in\R}
 \newcommand{\inc}{\in\C}
 \newcommand{\inq}{\in\Q}
-\newcommand{\norm}[1]{\| #1 \|}
+\newcommand{\norm}[1]{\left\| #1 \right\|}
 \newcommand{\bnorm}[1]{\Big\| #1 \Big\|}
 \newcommand{\gen}[1]{\langle #1 \rangle}
 \newcommand{\abso}[1]{\left|#1\right|}
@@ -44,5 +44,7 @@
 \newcommand{\dcup}{\mathbin{\dot{\cup}}}
 \newcommand{\diam}[1]{\text{diam}\, #1}
 \newcommand{\at}{\Big|}
-\renewcommand{\phi}{\varphi}
 
+\let\originalphi\phi % Store the original \phi in \originalphi
+\renewcommand{\phi}{\varphi} % Redefine \phi to \varphi
+\newcommand{\pfi}{\originalphi} % Define \pfi to display the original \phi

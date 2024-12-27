@@ -1856,6 +1856,7 @@ To check triangle inequality, we first have to prove Cauchy-Schwarz inequality.
 \end{align*}
 \end{proof}
 \begin{theorem}
+\label{CSI}
 \textbf{(Cauchy-Schwarz Inequality)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle :V^2\rightarrow \C$ on vector space $V$ over $\C$, we have 
 \begin{enumerate}[label=(\alph*)]
   \item $\abso{\langle x,y\rangle}\leq  \norm{x}\cdot\norm{y}\hspace{0.5cm}(x,y \in V)$ 
@@ -4400,14 +4401,7 @@ Note that fact (b) can be checked straightforwardly.
 \section{Abstract integration} 
 \label{Ai}
 \begin{abstract}
-In this section, we prove  
-\begin{enumerate}[label=(\alph*)]
-  \item \customref{MCTn}{Monotone convergence Theorem for nonnegative functions} 
-  \item \customref{Fatoun}{Fatou's Lemma for nonnegative functions} 
-  \item \customref{RFL}{Reversed Fatou's Lemma} 
-  \item \customref{DCTg}{Dominate Convergence Theorem}
-\end{enumerate}
-in the general abstract setting. Note that in this section, $X$ is always a measurable space with measure $\mu:\Sigma_X\rightarrow [0,\infty]$. 
+This short section defines integral for non-negative functions and proves \customref{MCTn}{Abstract Monotone Convergence Theorem} and \customref{Fatoun}{Abstract Fatou's Lemma} in an abstract setting.  Note that $X$ in this section is always a measurable space with measure $\mu:\Sigma_X\rightarrow [0,\infty]$. 
 \end{abstract}
 \begin{mdframed}
 Suppose $s:X\rightarrow [0,\infty)$ is a simple function taking values $c_1,\dots ,c_N$ on $E_1,\dots ,E_N$. It is clear that $s$ is measurable if and only if all $E_n$ are measurable. If $s$ is measurable, we define its \textbf{integral} to be 
@@ -4434,7 +4428,7 @@ It follows from our definition that
 \end{mdframed}
 \begin{theorem}
 \label{MCTn}
-\textbf{(Monotone Convergence Theorem for nonnegative function)} Given an increasing sequence of measurable functions $f_n:X\rightarrow [0,\infty]$, if we denote the limit of $f_n$ by $f$, then 
+\textbf{(Abstract Monotone Convergence Theorem)} Given an increasing sequence of measurable functions $f_n:X\rightarrow [0,\infty]$, if we denote the limit of $f_n$ by $f$, then 
 \begin{align*}
   \int_X fd\mu = \lim_{n\to \infty}\int_X f_n d\mu
 \end{align*}
@@ -4459,21 +4453,20 @@ It is clear that $E_n$ are measurable and $E_n \nearrow X$. We may now take the 
 \end{proof}
 \begin{theorem}
 \label{Fatoun}
-\textbf{(Fatou's Lemma for nonnegative function)} Given sequence of measurable $f_n:X\rightarrow [0,\infty]$ 
+\textbf{(Abstract Fatou's Lemma)} Given sequence of measurable $f_n:X\rightarrow [0,\infty]$ 
 \begin{align*}
 \int_X \liminf_{n\to\infty} f_nd\mu \leq \liminf_{n\to\infty} \int_X f_n d\mu
 \end{align*}
 \end{theorem}
 \begin{proof}
-By \customref{MCTn}{Monotone Convergence Theorem for nonnegative function} 
+By \customref{MCTn}{abstract monotone convergence theorem}, we have
 \begin{align*}
 \int_X \big(\inf_{j\geq n} f_j \big)d\mu \nearrow \int_X \big(\liminf_{n\to\infty} f_n \big) d\mu
 \end{align*}
-For all subsequence $n_k$ such that $\int_X f_{n_k}d\mu$ converge, we then have 
+Therefore, for all subsequence $n_k$ such that $\int_X f_{n_k}d\mu$ converge, we have 
 \begin{align*}
 \int_X \liminf_{n\to\infty} f_n d\mu = \lim_{k\to \infty}\int_X \inf_{j\geq n_k}f_jd\mu \leq \lim_{k\to \infty}\int_X f_{n_k}d\mu 
 \end{align*}
-which give the desired result. 
 \end{proof}
 \begin{mdframed}
 Obviously, we wish to define integral for not just non-negative function. Given extended-valued or complex-valued $f$ measurable on $X$, we say $f$ is \textbf{Lebesgue integrable on $X$ with respect to $\mu$} and write $f\in L^1(\mu)$ if 
@@ -6264,16 +6257,113 @@ which is measurable, since $f$ is measurable  (continuous) on each $F_n$ and  $\
 \end{proof}
 \section{Lebesgue Integral}
 \begin{abstract}
-  This section is a continuation of \myref{Section}{Ai}. 
+  This section is a continuation of \myref{Section}{Ai}; We set $X=\R^d,\Sigma_X=\mathcal{L}(\R^d)$ and $\mu$ the Lebesgue measure.  
 \end{abstract}
 \begin{mdframed}
-In this section, we continue the  development of theory of integral 
+Let $E\subseteq \R^d$ be a measurable set. Given some $f$ measurable on $E$ and non-negative on  $F$, where  $F \subseteq E$ and $\abso{E\setminus F}=0$ , we define 
+\begin{align*}
+\int_E fd\textbf{x}\triangleq \int_F fd\mu 
+\end{align*}
+where the right hand side expression is defined in \myref{Section}{Ai}. If $f$ is extended-valued, we define 
+\begin{align*}
+\int_E fd\textbf{x}\triangleq  \int_E f^+ d\textbf{x}- \int_E f^-d\textbf{x}
+\end{align*}
+whenever the right hand side expression make sense. If $f$ is complex-valued, we define 
+\begin{align*}
+\int_E fd\textbf{x}\triangleq \int_E \operatorname{Re}fd\textbf{x} + i \int_E \operatorname{Im}fd\textbf{x}
+\end{align*}
+whenever the right hand side expression make sense. At this point, one may rush to make the conclusion that 
+\begin{align*}
+  \abso{\int_E fd\textbf{x}}\leq \int_E \abso{f}d\textbf{x}
+\end{align*}
+which is true, but non-trivial for complex and vector-valued $f$. 
 \end{mdframed}
-
-
-
+\begin{theorem}
+\textbf{(Common Estimation)} Let $f$ be a $\R^n$-valued function measurable on  $E$. We have 
+\begin{align*}
+  \abso{\int_E fd\textbf{x}} \leq \int_E \abso{f}d\textbf{x}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $\textbf{y}\triangleq \int_E fd\textbf{x}$. By Cauchy-Schwarz Inequality, 
+\begin{align*}
+\sum \textbf{y}_i f_i(\textbf{x})=\textbf{y}\cdot f(\textbf{x})\leq \abso{\textbf{y}}\cdot \abso{f(\textbf{x})}
+\end{align*}
+Therefore,  
+\begin{align*}
+\abso{\textbf{y}}^2 = \sum  \textbf{y}_i^2 &= \sum  \textbf{y}_i \int  f_id\textbf{x}\\
+&=\int \Big(\sum  \textbf{y}_i f_i \Big) d\textbf{x} \leq  \int \abso{\textbf{y}} \cdot \abso{f}d\textbf{x}
+\end{align*}
+\end{proof}
 \begin{mdframed}
- If $X=\R^d,\Sigma_X=\mathcal{L}(\R^d)$ and $\mu$ is the Lebesgue measure, one can equivalently define the Lebesgue integral of $f$ non-negative and measurable on $E$ by 
+
+We use the notation $L^1(E)$ to denote the space of all complex-valued function measurable on $E$ whose integral on $E$ is finite, and we say $f\in L^1(E)$ are \textbf{Lebesgue integrable on $E$}. Immediately, one see that  
+\begin{align*}
+f \in L^1(E)\iff \int_E \abso{f}d\textbf{x}\inr
+\end{align*}
+If we define the addition $f+g$ of two $f,g\in L^1(E)$ by letting $f+g$ has the domain  $\operatorname{Dom}(f)\cap \operatorname{Dom}(g)$ and 
+\begin{align*}
+  (f+g)(\textbf{x})\triangleq f(\textbf{x})+ g(\textbf{x})
+\end{align*}
+then $L^1(E)$ form a complex vector space. (Very) Tedious effort shows that 
+\begin{align*}
+\int_E (f+g)d\textbf{x}=\int_E fd\textbf{x}+ \int_E gd\textbf{x}
+\end{align*}
+We may now introduce the four important convergence and estimation theorems. 
+\end{mdframed}
+\begin{theorem}
+\label{MCT}
+\textbf{(Monotone Convergence Theorem)} Let $E\subseteq X$ be measurable, and $f_n$ be a sequence of extended-valued function measurable on $E$.   
+\begin{enumerate}[label=(\alph*)]
+  \item If $f_n\nearrow f$ almost everywhere on $E$ and there exists  $\phi \in L(E)$ such that $f_n\geq \phi$ almost everywhere on $E$ for all  $n\inn$, then $\int_E f_nd\textbf{x}\nearrow  \int_E fd\textbf{x}$. 
+  \item If $f_n\searrow f$ almost everywhere on  $E$ and there exists  $\phi \in L(E)$ such that $f_n \leq \phi$ almost everywhere on $E$ for all  $n\inn$, then $\int_E f_nd\textbf{x}\searrow \int_E fd\textbf{x}$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The first proposition follows from applying \customref{MCTn}{abstract monotone convergence theorem} to $f_n - \phi$ on 
+\begin{align*}
+\bigcap_{n} \set{\textbf{x} \in \operatorname{Dom}(f_n): f_n(\textbf{x})\geq \phi(\textbf{x})\inr}
+\end{align*}
+The second proposition follows from applying the first proposition to $-f_n$.  
+\end{proof}
+\begin{theorem}
+\label{FL}
+\textbf{(Fatou's Lemma)} Let $E\subseteq X$ be measurable, and $f_n$ be a sequence of extended-valued function measurable on $E$. If there exists some $\phi \in L(E)$ such that $f_n\geq \phi $ almost everywhere for all  $n\inn$, then 
+\begin{align*}
+\int_E \liminf_{n\to\infty} f_nd\textbf{x}\leq \liminf_{n\to\infty} \int_E f_nd\textbf{x}
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proposition again follows from applying \customref{Fatoun}{abstract Fatou's Lemma} to $f_n - \phi$ on 
+\begin{align*}
+\bigcap_{n} \set{\textbf{x} \in \operatorname{Dom}(f_n): f_n(\textbf{x})\geq \phi(\textbf{x})\inr}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{RFL}
+\textbf{(Reversed Fatou's Lemma)} 
+ Let $E\subseteq X$ be measurable, and $f_n$ be a sequence of extended-valued function measurable on $E$. If there exists some $\phi \in L(E)$ such that $f_n\leq  \phi $ almost everywhere for all  $n\inn$, then 
+\begin{align*}
+\limsup_{n\to\infty} \int_E f_nd\textbf{x}\leq \int_E \limsup_{n\to\infty} f_n d\textbf{x} 
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proof follows from applying \customref{FL}{Fatou's Lemma} to $-f_n$. 
+\end{proof}
+\begin{theorem}
+\textbf{(Dominate Convergence Theorem)} Let $E\subseteq X$ be measurable, and $f_n$ be a sequence of complex-valued function measurable on  $E$ that converges almost everywhere to some $f$ on $E$. If  there exists some  $\phi \in L(E)$ such that $\abso{f_n}\leq \phi$ almost everywhere for all $n\inn$, then
+\begin{align*}
+\lim_{n\to \infty}\int_E \abso{f-f_n}d\textbf{x}=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+It is clear that $\abso{f-f_n}\leq \abso{f}+\abso{f_n}\leq 2\phi$ almost everywhere. It then follows from \customref{RFL}{reversed Fatou's lemma} that 
+\begin{align*}
+\limsup_{n\to\infty} \int_E \abso{f-f_n}d\textbf{x}\leq \int_E \limsup_{n\to\infty} \abso{f-f_n}d\textbf{x}=0 
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Notably, if $f$ is non-negative and measurable on $E$, one can equivalently define the Lebesgue integral of $f$ by 
 \begin{align*}
 \int_E fd\textbf{x}\triangleq \abso{R(f,E)}\text{ where } R(f,E)\triangleq \set{(\textbf{x},y)\inr^{d+1}: \textbf{x}\in E\text{ and }y \in [0,f(\textbf{x}))}
 \end{align*}
@@ -6287,35 +6377,156 @@ Also, one shall note that for expression $\int_E fd\textbf{x}$ to make sense, $f
 \end{align*}
 whenever expressions on both side both make sense. 
 \end{mdframed}
+\section{Distribution function}
+\begin{mdframed}
+Given some extended-valued $f$ measurable on $E$, we define its  \textbf{distribution function} $\omega:\R \rightarrow [0,\infty]$ by 
+\begin{align*}
+\omega (\alpha )\triangleq \abso{\bset{f>\alpha }}
+\end{align*}
+Obviously, the function is decreasing, and continuous from the right 
+\begin{align*}
+\omega (\alpha + )= \omega (\alpha )\text{ for all }\alpha \inr
+\end{align*}
+and have the left limit 
+\begin{align*}
+\omega (\alpha -)= \abso{\bset{f\geq \alpha  }}\text{ for all }\alpha \inr
+\end{align*}
+This coincides with 
+\begin{align*}
+\lim_{\alpha \to -\infty} \omega (\alpha )=  \abso{\bset{f>-\infty}}\text{ and }\lim_{\alpha \to \infty} \omega (\alpha )= \abso{\bset{f=\infty}}
+\end{align*}
+\end{mdframed}
 \begin{theorem}
-\label{MCT}
-\textbf{(Monotone Convergence Theorem)} Let $E\subseteq X$ be measurable, $f_n:E\rightarrow [-\infty,\infty]$ be a sequence of measurable function, $f:E\rightarrow [-\infty,\infty]$ be a function 
-\begin{enumerate}[label=(\alph*)]
-  \item If $f_n\nearrow f$ almost everywhere on $E$ and there exists  $\phi \in L(E)$ such that $f_n\geq \phi$ almost everywhere on $E$ for all  $n\inn$, then $\int_E f_nd\textbf{x}\nearrow  \int_E fd\textbf{x}$. 
-  \item If $f_n\searrow f$ almost everywhere on  $E$ and there exists  $\phi \in L(E)$ such that $f_n \leq \phi$ almost everywhere on $E$ for all  $n\inn$, then $\int_E f_nd\textbf{x}\searrow \int_E fd\textbf{x}$
-\end{enumerate}
+\label{Lia}
+\textbf{(Lebesgue integral as Riemann integral of distribution function)} If for some $-\infty < a <b<\infty$, we have 
+\begin{align*}
+a<f(\textbf{x})\leq b\text{ for all }\textbf{x} \in E
+\end{align*}
+then 
+\begin{align*}
+\int_E f= - \int_a^b \alpha d \omega (\alpha )
+\end{align*}
+provided the integrals on both sides exist. 
 \end{theorem}
 \begin{proof}
-the first proposition follows from applying \customref{MCTn}{Monotone Convergence Theorem for nonnegative function presented in Chapter 6} to $f_n - \phi$ on a suitable domain $F\subseteq E$. The second proposition follows from applying the first proposition to $-f_n$.  
+  Let $P= \set{ a= \alpha_0 < \cdots < \alpha _N =b}$ be a partition of $[a,b]$. For all $n \in \set{1,\dots ,N}$, define 
+\begin{align*}
+E_n \triangleq \set{\alpha_n \geq f>\alpha_{n-1}}
+\end{align*}
+Therefore, $\omega (\alpha _n)-\omega (\alpha_{n-1})= - \abso{E_n}$ for all $n$. Moreover, it is clear that for all $n$, 
+\begin{align*}
+\alpha_{n-1}\abso{E_n} \leq \int_{E_n}f \leq \alpha_n \abso{E_n}
+\end{align*}
+Because $\set{E_1,\dots , E_N}$ is a collection of disjoint subsets of $E$ whose union is  $E$, we know the sum of  $\int_{E_n}f$ equals to $\int_E f$. This give us 
+\begin{align*}
+\sum_{n=1}^N \alpha _{n-1} \abso{E_n} \leq \int_E f \leq \sum_{n=1}^N \alpha_n \abso{E_n}
+\end{align*}
+which the proof follows by letting $\abso{P}\to 0$. 
+
 \end{proof}
 \begin{theorem}
-\textbf{(Fatou's Lemma)} Given measurable sequence $f_n:E\rightarrow [-\infty,\infty]$, and some $\phi \in L(E)$ such that $f_n\geq \phi $ almost everywhere on $E$ for all  $n\inn$, 
+\textbf{(Lebesgue integral as Riemann integral of distribution function)} Suppose $\abso{E}<\infty$ and $f$ is finite a.e. on $E$. If either $\int_E f$ or $\int_{-\infty}^{\infty}\alpha d\omega (\alpha )$ exists and is finite, then the other exists and is finite, and 
 \begin{align*}
-\int_E \liminf_{n\to\infty} f_nd\textbf{x}\leq \liminf_{n\to\infty} \int_E f_nd\textbf{x}
+\int_E f= - \int_{-\infty}^{\infty} \alpha d \omega (\alpha )
 \end{align*}
 \end{theorem}
+\begin{proof}
+Let $-\infty < a< b<\infty$, and define 
+\begin{align*}
+E_{ab}\triangleq \set{b\geq  f>a}
+\end{align*}
+We first claim 
+\begin{align*}
+\olive{\int_{E_{ab}}f= - \int_a^b \alpha d\omega_{f,E} (\alpha ) }
+\end{align*}
+The integral on the left hand side exists because $\abso{E}< \infty$, and the integral on the right hand side exists because 
+\begin{align*}
+\infty> \abso{E}\geq \omega_{f,E}(a)\geq \omega_{f,E}(b) \geq 0
+\end{align*}
+Is is clear that $\omega_{f,E_{ab}}$ and $\omega_{f,E}$ on $[a,b]$ differ by a constant 
+\begin{align*}
+\omega_{f,E} (\alpha )= \omega_{f,E_{ab}} (\alpha )+  \abso{\set{f>b}}\text{ for all }\alpha  \in [a,b]
+\end{align*}
+Therefore, by \myref{Theorem}{Lia}, 
+\begin{align*}
+\int_{E_{ab}}f= - \int_a^b \alpha d\omega_{f,E_{ab}}(\alpha )= - \int_a^b \alpha d \omega_{f,E}(\alpha ) \odone 
+\end{align*}
+Now, suppose $f \in L(E)$. Because 
+\begin{align*}
+\lim_{\substack{b \to \infty \\ a \to -\infty}}E_{ab}= \set{f \inr}
+\end{align*}
+and $f$ is finite almost everywhere on $E$, we see 
+ \begin{align*}
+\int_E f= \int_{ \set{f\inr }} f=  \lim_{\substack{b \to \infty \\ a \to -\infty}} \int_{E_{ab}}f=  \lim_{\substack{b \to \infty \\ a \to -\infty}} - \int_a^b \alpha d \omega_{f,E}(\alpha )= - \int_{-\infty} ^{\infty} \alpha d \omega_{f,E}(\alpha )
+\end{align*}
+Conversely, suppose 
+\begin{align*}
+\int_{-\infty}^{ \infty} \alpha d \omega_{f,E}(\alpha )\inr
+\end{align*}
+We see 
+\begin{align*}
+  \int_E f^+ =\int_{\set{f>0}} f=   \lim_{\substack{b \to \infty \\ a=0}}\int_{E_{ab}} f =  \lim_{\substack{b \to \infty \\ a=0}} - \int_a^b \alpha d\omega_{f,E}(\alpha )= - \int_0^{\infty} \alpha d\omega_{f,E}(\alpha )
+\end{align*}
+
+\end{proof}
+\begin{mdframed}
+$L^p$ version of Tchebyshev's inequality:  For all $\alpha >0$ and $0<p <\infty$, 
+\begin{align*}
+\omega (\alpha )\leq  \frac{1}{\alpha ^p}  \int_{\set{f>\alpha }}f^p
+\end{align*}
+\end{mdframed}
 \begin{theorem}
-\textbf{(Reversed Fatou Lemma)} Given measurable sequence $f_n:E\rightarrow [-\infty,\infty]$, and some $\phi \in L(E)$ such that $f_n\leq \phi$ almost everywhere on $E$ for all  $n\inn$ we have 
+\label{Deod}
+ \textbf{(Decay estimation of distribution function)} If $0<p<\infty$ and $f\in L^p(E)$, then 
 \begin{align*}
-\limsup_{n\to\infty} \int_E f_nd\textbf{x}\leq \int_E \limsup_{n\to\infty} f_n d\textbf{x} 
+\lim_{\alpha \to \infty} \alpha ^p \omega (\alpha )=0 
 \end{align*}
 \end{theorem}
+\begin{proof}
+Let $\alpha_n \to \infty$. Define for all $n$, 
+ \begin{align*}
+f_n(\textbf{x})\triangleq \begin{cases}
+  f(\textbf{x})& \text{ if $f(\textbf{x})>\alpha_n$ }\\
+  0& \text{ if $f(\textbf{x})\leq \alpha_n$ }
+\end{cases}
+\end{align*}
+Therefore,
+\begin{align*}
+\int_{\set{f>\alpha_n}} f^p= \int_E f_{n}^p 
+\end{align*}
+Because $f\in L^p(E)$, $f$ is finite almost everywhere on $E$. Therefore, $f_n \to 0$ almost everywhere on $E$. Observe that $f_n^p$ is dominated by  $\abso{f}^p$. The proof then follows from DCT. 
+\end{proof}
+\begin{mdframed}
+Note that we have the following \textbf{integral by part}: If $\int_a^b fd\phi$ exists, then $\int_a^b \phi df$ exists and 
+\begin{align*}
+\int_a^b fd\phi + \int_a^b \phi df =  f \phi \Big|_{a}^b 
+\end{align*}
+\end{mdframed}
 \begin{theorem}
-\textbf{(Dominate Convergence Theorem)} If $f_n:E\rightarrow [-\infty,\infty]$ is a sequence of measurable function  converge almost everywhere to $f:E\rightarrow [-\infty,\infty]$, and there exists some $\phi \in L(E)$ such that $\abso{f_n}\leq \phi$ almost everywhere on $E$ for all  $n\inn$, then 
+\textbf{($L^p$ integral as Riemann integral of distribution function)} If $0<p<\infty$, $f$ is non-negative and $f\in L^p(E)$, then 
 \begin{align*}
-\int_E \abso{f-f_n}d\textbf{x}=0
+\int_E f^p = - \int_0^{\infty} \alpha^p d \omega (\alpha ) = p \int_0^{\infty} \alpha ^{p-1}\omega (\alpha )d\alpha 
 \end{align*}
 \end{theorem}
+\begin{proof}
+The first equality is an application of 
+\begin{align*}
+\int_E \pfi(f)= - \int_{-\infty}^{\infty} \pfi (\alpha )  d \omega (\alpha )
+\end{align*}
+where $\pfi(\alpha )\triangleq \alpha ^p$. Here, we use the non-negativeness of $f$ to deduce 
+ \begin{align*}
+\int_{-\infty}^{\infty} \pfi (\alpha )d \omega (\alpha )= \int_{0}^{\infty} \pfi (\alpha )d \omega (\alpha )
+\end{align*}
+The second equality is an application of integral by part. Here, we apply the change of variables 
+\begin{align*}
+\int_a^b \omega (\alpha ) d \pfi = \int_a^b p \alpha ^{p-1}\omega (\alpha )d \alpha 
+\end{align*}
+and the fact 
+\begin{align*}
+\omega (\alpha )\alpha^p\Big|_{\alpha =0}=0\text{ and }\lim_{\alpha \to \infty} \alpha ^p\omega (\alpha )=0 
+\end{align*}
+where the second equality is \myref{Theorem}{Deod}. 
+\end{proof}
 \section{Change of Variables Formula}
 \begin{theorem}
   \textbf{(Linear Transformation and Lebesgue Measure)} Given a vector space homomorphism $T:\R^d\rightarrow \R^d$ and a Lebesgue measurable set $E\subseteq \R^d$, we have 
@@ -6330,18 +6541,22 @@ the first proposition follows from applying \customref{MCTn}{Monotone Convergenc
 \end{align*}
 \end{theorem}
 \section{Fubini's Theorem}
+\begin{abstract}
+  This section proves \customref{FT}{Fubini's Theorem} and \customref{TnT}{Tonelli's Theorem} and introduce one of their application for convolution. In this section, by an interval in $\R^n$, we mean a subset of the form  $\prod_{j=1}^n I_j$ where $I_j$ is an interval in  $\R^n$ that isn't necessarily open nor closed. 
+\end{abstract}
 \begin{theorem}
+\label{FT}
 \textbf{(Fubini's Theorem)} Let $I_1$ be some interval in  $\R^n$ and  $I_2$ be some interval in $\R^m$. If  $f:I_1 \times I_2\rightarrow [-\infty,\infty]$ is integrable, then 
 \begin{align*}
 \int_{I_1\times I_2}fd(\textbf{x},\textbf{y})=\int_{I_1} \Big[\int_{I_2}fd\textbf{y} \Big]d\textbf{x}
 \end{align*}
 \end{theorem}
 \begin{proof}
-Define 
+WLOG, we may suppose $I_1,I_2$ are both open. Define 
 \begin{align*}
 \mathcal{F}\triangleq \bset{f\in L(I_1 \times I_2):\int_{I_1 \times I_2}fd(\textbf{x},\textbf{y})=\int_{I_1}\Big[\int_{I_2}fd\textbf{y} \Big]d\textbf{x}}
 \end{align*}
-We are required to show $\mathcal{F}=L(I_1,I_2)$. It is clear that $\mathcal{F}$ is closed under finite linear combination as long as the expression make sense. This reduce the problem into case of $f$ being nonnegative. \customref{Approximation of nonnegative function by increasing simple function}{Let $s_n:I_1\times I_2\rightarrow [0,\infty)$ be a sequence of simple measurable functions such that $s_n\nearrow f$}. By applying \customref{MCTn}{Monotone Convergence Theorem for nonnegative function} twice, we see that if $s_n \in \mathcal{F}$, then $f\in \mathcal{F}$. This reduce the problem into proving $s \in \mathcal{F}$ for nonnegative real-valued simple measurable function $s:I_1\times I_2\rightarrow [0,\infty)$. Moreover ,because $s$ is a finite linear combination of characteristic functions  $\textbf{1}_E$, we can reduce the problem into proving $\textbf{1}_E\in \mathcal{F}$ for measurable characteristic functions. Because $E$ is measurable, we may let  $E\sqcup  Z=H$ where $Z$ is null and $H \in G_\delta$. Because boundary of $I_1 \times I_2$ is clearly null, we can require $H$ to be contained by interior of $I_1 \times I_2$ by intersecting $H$ with interior of  $I_1 \times I_2$. Observe that $\textbf{1}_E=\textbf{1}_H - \textbf{1}_Z$. It remains to prove $\textbf{1}_H,\textbf{1}_Z \in \mathcal{F}$. \\
+We are required to show $\mathcal{F}=L(I_1,I_2)$. It is clear that $\mathcal{F}$ is closed under finite linear combination as long as the expression make sense. This reduce the problem into case of $f$ being nonnegative. \customref{Approximation of nonnegative function by increasing simple function}{Let $s_n:I_1\times I_2\rightarrow [0,\infty)$ be a sequence of simple measurable functions such that $s_n\nearrow f$}. By applying \customref{MCT}{Monotone Convergence Theorem} twice, we see that if $s_n \in \mathcal{F}$, then $f\in \mathcal{F}$. This reduce the problem into proving $s \in \mathcal{F}$ for nonnegative real-valued simple measurable function $s:I_1\times I_2\rightarrow [0,\infty)$. Moreover , because $s$ is a finite linear combination of characteristic functions  $\textbf{1}_E$, we can reduce the problem into proving $\textbf{1}_E\in \mathcal{F}$ for measurable characteristic functions. Because $E$ is measurable, we may let  $E\sqcup  Z=H$ where $Z$ is null and $H \in G_\delta$. Because $I_1 \times I_2$ is open, we may suppose $H \subseteq I_1 \times I_2$. Observe that $\textbf{1}_E=\textbf{1}_H - \textbf{1}_Z$. It remains to prove $\textbf{1}_H,\textbf{1}_Z \in \mathcal{F}$. \\
 
 
 Let $U \subseteq I_1 \times I_2$ be open. Recall that we may express $U$ as  countable disjoint union of half-open dyadic cubes 
@@ -6353,7 +6568,16 @@ It is straightforward to check that $\textbf{1}_{K_{n,1}\times K_{n,2}}\in \math
 \int_{I_1}\Big[ \int_{I_2} \textbf{1}_Z d\textbf{y}\Big]d\textbf{x}\leq \int_{I_1} \Big[ \int_{I_2} \textbf{1}_{H_0}d\textbf{y} \Big] d\textbf{x}=\iint_{I_1 \times I_2}\textbf{1}_{H_0} d(\textbf{x},\textbf{y})=0 
 \end{align*}
 \end{proof}
+\begin{mdframed}
+Note that in the statement of our \customref{FT}{Fubini's Theorem}, we are concerned with the following two properties 
+\begin{enumerate}[label=(\alph*)]
+  \item $\int_{I_2}fd\textbf{y}$ is defined for almost every $\textbf{x}$. 
+  \item $\int_{I_2}fd\textbf{y}$ as a function of $\textbf{x}$ is integrable on $I_1$. 
+\end{enumerate}
+, and they are both implicitly addressed in the proof.  
+\end{mdframed}
 \begin{theorem}
+\label{TnT}
 \textbf{(Tonelli's Theorem)} Let $I_1$ be some interval in  $\R^n$ and  $I_2$ be some interval in $\R^m$. If  $f$ is nonnegative and measurable on $I_1 \times I_2$, then 
 \begin{align*}
 \int_{I_1\times I_2}fd(\textbf{x},\textbf{y})=\int_{I_1} \Big[\int_{I_2}fd\textbf{y} \Big]d\textbf{x}
@@ -6367,7 +6591,7 @@ f_n(\textbf{x},\textbf{y})\triangleq \begin{cases}
   \min \set{n, f(\textbf{x},\textbf{y})}& \text{ if $\abso{(x,y)}\leq n$ }
 \end{cases}
 \end{align*}
-The result then follows from $f_n\nearrow f$ and applying Fubini's Theorem to  $f_n$. 
+The result then follows from $f_n\nearrow f$ and applying \customref{FT}{Fubini's Theorem} to  $f_n$. 
 \end{proof}
 \begin{mdframed}
 Note that Tonelli's Theorem is stronger in practice in the sense that even if you can't tell $f$ is integrable, you can still apply it. Given two extended-valued $f,g$ measurable on $\R^n$. Their  \textbf{convolution $f*g$} is defined by
@@ -6414,7 +6638,7 @@ and
 \end{align*}
 \end{theorem}
 \begin{proof}
-Let's first suppose $f$ and  $g$ are nonnegative. By \myref{Theorem}{DoC}, we know $f(\textbf{x}-\textbf{t})g(\textbf{t})$ is measurable on $\R^{2n}$. We may now applies Tonelli's Theorem and use a change of variable to have 
+  Let's first suppose $f$ and  $g$ are nonnegative. By \myref{Theorem}{DoC}, we know $f(\textbf{x}-\textbf{t})g(\textbf{t})$ is measurable on $\R^{2n}$. We may now apply \customref{TnT}{Tonelli's Theorem} and use a change of variable to have 
 \begin{align*}
 \int_{\R^n}(f*g)d\textbf{x}&= \int_{\R^n}\int_{\R^n}f(\textbf{x}-\textbf{t})g(\textbf{t})d\textbf{x}d \textbf{t} \\
 &=\int_{\R^n}\Big(\int_{\R^n}f(\textbf{x}-\textbf{t})d\textbf{x} \Big) g(\textbf{t}) d\textbf{t} \\
@@ -6428,17 +6652,39 @@ Note that the computation above hold true even if one of $f,g$ are not integrabl
 \end{align*}
 We have shown $f(\textbf{x}-\textbf{t})g(\textbf{t})$ is integrable on $\R^{2n}$; Therefore, we may use Fubini's Theorem to repeat the first computation process. The inequality follows from verifying $\abso{f * g}\leq \abso{f} * \abso{g}$. 
 \end{proof}
-\section{$L^p$ class}
+\section{$L^p$ Spaces}
 \begin{abstract}
-
+This section introduces the idea of $L^p$ space, and, notably, proves the \customref{HI}{Holder's inequality} and \customref{MI}{Minkowski's inequality}.  
 \end{abstract}
 \begin{mdframed}
-Let $E$ be a measurable subset of $\R^n$ and  $p \in \R^+$. We use $L^p(E)$ to denote the space of complex-valued function $f$ such that $f^p \in L(E)$. On $L^p(E)$, we may define a semi-norm by 
+Before we proceed to develop the Theory of $L^p$ space, we first need an estimation only regarding to numbers. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Fundamental Estimation)} Let $a,b\geq 0$. If $0<p<1$, then 
+ \begin{align*}
+   (a+b)^p \leq a^p + b^p
+ \end{align*}
+If $1\leq p <\infty$, then 
 \begin{align*}
-\norm{f}_{p,E}\triangleq \Big( \int_E \abso{f}^p \Big)^{\frac{1}{p}}
+  (a+b)^p \leq 2^{p-1}(a^p+b^p)
 \end{align*}
-For this semi-norm to be well-defined. It remains to check for triangle inequality. \\
-
+\end{theorem}
+\begin{proof}
+The proof is trivial if any of $a,b$ is infinite, so suppose  $a,b< \infty$. Let $0<p<1$. Define $f:\R_0^+\rightarrow \R$ by 
+\begin{align*}
+f(b)\triangleq a^p + b^p - (a+b)^p
+\end{align*}
+It is clear that  $f(0)=0$. The first estimation then follows from 
+\begin{align*}
+f'(t)= p(t^{p-1}-(a+t)^{p-1})> 0
+\end{align*}
+Let $1\leq p<\infty$. The second estimation follows from $x^p$ being convex on  $[0,\infty)$. 
+\end{proof}
+\begin{mdframed}
+  Let $E$ be a measurable subset of $\R^n$ and  $p \in \R^+$. We use $L^p(E)$ to denote the space of complex-valued function $f$ such that $f^p \in L(E)$. Note that earlier estimation shows that $L^p(E)$ is indeed closed under addition and thus forms a complex vector space. On $L^p(E)$, we define a functional $\norm{\cdot}_p:L^p(E)\rightarrow \R$ by 
+\begin{align*}
+\norm{f}_{p}\triangleq \Big( \int_E \abso{f}^p \Big)^{\frac{1}{p}}
+\end{align*}
 If $f$ is real-valued and measurable on $E$, we define the \textbf{essential supremum of $f$ on $E$} by 
 \begin{align*}
 \esssup_E f\triangleq \begin{cases}
@@ -6456,7 +6702,7 @@ M=\esssup_E f\text{ is the smallest number such that }f\leq M\text{ almost every
 \end{align*}
 We then define 
 \begin{align*}
-\norm{f}_{\infty, E}\triangleq  \esssup_E \abso{f}\text{ and }L^{\infty}(E)\triangleq \set{\text{measurable complex-valued }f: \norm{f}_{\infty , E}<\infty}
+\norm{f}_{\infty}\triangleq  \esssup_E \abso{f}\text{ and }L^{\infty}(E)\triangleq \set{\text{measurable complex-valued }f: \norm{f}_{\infty }<\infty}
 \end{align*}
 \end{mdframed}
 \begin{theorem}
@@ -6466,7 +6712,7 @@ We then define
 \end{align*}
 \end{theorem}
 \begin{proof}
-If $\abso{E}=0$, then $\norm{f}_{\infty}=\norm{f}_p=0$. Compute for all $p <\infty$, 
+Compute 
 \begin{align*}
 \Big(\int_E \abso{f}^p \Big)^{\frac{1}{p}}\leq \Big(\int_E \norm{f}_{\infty}^p \Big)^{\frac{1}{p}}= \norm{f}_{\infty} \cdot \abso{E}^{\frac{1}{p}} \to \norm{f}_{\infty}
 \end{align*}
@@ -6495,19 +6741,20 @@ Note that we generally don't have
 for $\abso{E}=\infty$. Simply consider $\textbf{1}_{\R}$. 
 \end{mdframed}
 \begin{theorem}
-\textbf{(Relation between $L^p$ space)} If $0<p_1<p_2 \leq \infty$ and $\abso{E}< \infty$, then
+\label{RbLp}
+\textbf{(Relationship between $L^p$ space on finite domain)} If $\abso{E}< \infty$, we have 
 \begin{align*}
-L^{p_2}(E)\subseteq L^{p_1}(E)
+0< p_1<p_2\leq \infty \implies   L^{p_2}(E)\subseteq L^{p_1}(E)
 \end{align*}
 \end{theorem}
 \begin{proof}
-If $\abso{E}=0$, the proof is trivial. Suppose $\abso{E}>0$. Let $f\in L^{p_2}(E)$. If $p_2=\infty$, estimate 
+Fix $f\in L^{p_2}(E)$. If $p_2=\infty$, estimate 
 \begin{align*}
 \int_E \abso{f}^{p_1}\leq \int_E \norm{f}_{\infty}^{p_1}\inr
 \end{align*}
 If $p_2<\infty$, define 
 \begin{align*}
-E_1 \triangleq \set{\textbf{x}\in E: f(\textbf{x})>1}\text{ and }E_2\triangleq E \setminus E_1
+  E_1 \triangleq \set{\textbf{x}\in E: \abso{f(\textbf{x})}>1}\text{ and }E_2\triangleq E \setminus E_1
 \end{align*}
 and estimate 
 \begin{align*}
@@ -6516,8 +6763,262 @@ and estimate
 \end{align*}
 \end{proof}
 \begin{mdframed}
-
+To summarize \customref{RbLp}{The relationship between $L^p$ space on finite domain} in one sentence: The higher the number, the smaller the space.  In fact, the inequality here is strict, as one have the following diagram.  
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       \includegraphics[height=6cm,width=12cm]{ga2}
+   \end{minipage}
+\end{center}
+However, the relationship can be different on infinite domain, as we have the following diagram.  
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       \includegraphics[height=6cm,width=12cm]{ga3}
+   \end{minipage}
+\end{center}
+Notably, if $f$ is bounded on $E$, then we may deduce  $f \in L^{p_2}(E)$ from $f \in L^{p_1}(E)$ regardless whether $\abso{E}$ is finite.
 \end{mdframed}
+\begin{theorem}
+\textbf{(Bounded functions in $L^p$)} If $f$ is essentially bounded on  $E$, then 
+\begin{align*}
+f\in L^{p_1}(E) \implies  f\in L^{p_2}(E)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Note that $\abso{\set{\abso{f}>1}}\inr$ because $f\in L^{p_1}$. Let 
+\begin{align*}
+M\triangleq \esssup_E \abso{f} \inr
+\end{align*}
+The proof follows from the estimation 
+ \begin{align*}
+\int_E \abso{f}^{p_2}&= \int_{\set{\abso{f}\leq 1}} \abso{f}^{p_2} + \int_{\set{\abso{f}>1}} \abso{f}^{p_2}\\
+&\leq \int_E \abso{f}^{p_1}+ M^{p_2} \abso{\bset{\abso{f}>1}} \inr
+\end{align*}
+\end{proof}
+\begin{mdframed}
+  Before we proceed to prove \customref{YI}{Young's inequality for product},  \customref{HI}{Holder's Inequality} and \customref{MI}{Minkowski's Inequality}, we first need  \customref{PYI}{a geometric estimation}, in which we do consider when one of  $a,b$ is infinite.  
+\end{mdframed}
+\begin{lemma}
+\label{PYI}
+\textbf{(A geometric estimation)} If $\phi:[0,\infty)\rightarrow \R$ is continuous and strictly increasing, then for all $a,b \in [0,\infty]$, 
+\begin{align*}
+ab\leq  \int_0^a \phi (x)dx + \int_0^b \psi(y)dy
+\end{align*}
+where $\psi: [0,\infty)\rightarrow \R$ is the inverse function of $\phi$. The equality hold true only when $a=b$.  
+\end{lemma}
+\begin{proof}
+The proof follows from observing 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering       
+\includegraphics[height=4cm,width=8cm]{young}
+   \end{minipage}
+\end{center}
+\end{proof}
+\begin{mdframed}
+Given a pair of numbers $p,q\in [1,\infty]$, we say they are \textbf{exponential conjugated} if 
+\begin{align*}
+\frac{1}{p}+ \frac{1}{q}= 1
+\end{align*}
+To make the statements of the rest of the great inequality simpler, we shall suppose from now on that $p \in [1,\infty]$ and $q$ is by default the exponential conjugate of  $p$. 
+\end{mdframed}
+\begin{theorem}
+\label{YIfp}
+\textbf{(Young's Inequality for product)} If $a,b \in [0,\infty]$ and $1< p < \infty$, then 
+\begin{align*}
+  ab \leq  \frac{a^p}{p} + \frac{b^q}{q}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $\phi :[0,\infty)\rightarrow \R$ by 
+\begin{align*}
+\phi (x)\triangleq x^{p-1}
+\end{align*}
+Because $p>1$, $\phi$ is clearly continuous and strictly increasing and have the inverse $\psi : [0,\infty]\rightarrow \R$ 
+\begin{align*}
+\psi (y)=  y^{ \frac{1}{p-1}}
+\end{align*}
+It then follows from \customref{PYI}{our earlier geometric estimation} that 
+\begin{align*}
+  ab &\leq \int_0^a \phi (x)dx+ \int_0^b \psi (y)dy \\
+  &= \frac{x^p}{p}\Big|_{x=0}^a + \frac{y ^q}{q}\Big|_{y=0}^b = \frac{a^p}{p} + \frac{b^q}{q}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Using \customref{YI}{Young's Inequality for product}, we may now prove \customref{HI}{Holder's Inequality}. 
+\end{mdframed}
+\begin{theorem}
+\label{HI}
+\textbf{(Holder's Inequality)} Let $f,g$ be two functions measurable on $E$. We have 
+ \begin{align*}
+\norm{fg}_1 \leq \norm{f}_p \norm{g}_q
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proof is trivial if $p=1\text{ or }\infty$, so we may suppose
+\begin{align*}
+1< p <\infty
+\end{align*}
+Now, if $\norm{f}_p=0$, then $f=0$ almost everywhere, which renders the inequality trivial since $\norm{fg}_1=0$. If $\norm{f}_p=\infty$, the proof is again trivial. We may now suppose  
+\begin{align*}
+\norm{f}_p , \norm{g}_q \in (0,\infty)
+\end{align*}
+Define $f_1,g_1$ by 
+\begin{align*}
+f_1 \triangleq \frac{f}{\norm{f}_p} \text{ and }g_1 \triangleq \frac{g}{\norm{g}_q}
+\end{align*}
+Because $1<p<\infty$, by  \customref{YIfp}{Young's Inequality for product}, we have
+\begin{align*}
+  \norm{f_1g_1}_1=\int_E \abso{f_1g_1} &\leq \int_E \Big( \frac{\abso{f_1}^p}{p}+ \frac{\abso{g_1}^q}{q} \Big) \\
+&= \frac{\norm{f_1}_p^p}{p} + \frac{\norm{g_1}_q^q}{q}= \frac{1}{p}+ \frac{1}{q}=1
+\end{align*}
+The proof then follows the assumption $\norm{f}_p,\norm{g}_q \in (0,\infty)$ and  
+\begin{align*}
+\norm{f_1g_1}_1= \frac{\norm{fg}_1}{\norm{f}_p \norm{g}_q}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+What's interesting is that if we define $\langle \cdot , \cdot\rangle :L^2(E)\rightarrow \C$ by 
+\begin{align*}
+\langle f,g\rangle \triangleq \int f \overline{g}d\textbf{x}
+\end{align*}
+then $\langle \cdot, \cdot \rangle $ clearly form a positive semi-definite Hermitian form, and induce $\norm{\cdot}_2$. This with standard linear algebra immediately shows that $\norm{\cdot}_2$ satisfies the triangle inequality thus the induced $\norm{\cdot}_2$ forms a semi-norm on $L^2(E)$. Moreover, \customref{CSI}{General Cauchy-Schwarz Inequality} takes the following form on $L^2(E)$ 
+\begin{align*}
+ \abso{\int f \overline{g}d\textbf{x}}=\abso{\langle f,g\rangle }\leq \norm{f}_2 \cdot \norm{g}_2 
+\end{align*}
+which is implied by the  \customref{HI}{Holder's inequality} when $p=2$, 
+\begin{align*}
+\abso{\int f \overline{g}d\textbf{x}} \leq \int \abso{fg}d \textbf{x} = \norm{fg}_1 \leq \norm{f}_2 \norm{g}_2 
+\end{align*}
+Although it was easily shown that $L^2(E)$ is semi-normed space, to prove the same for $p \in [1,\infty]\setminus \set{2}$ is non-trivial.   
+\end{mdframed}
+\begin{theorem}
+\label{MI}
+\textbf{(Minkowski's Inequality)} For all $f,g$ measurable on  $E$  
+\begin{align*}
+\norm{f+g}_p \leq \norm{f}_p + \norm{g}_p
+\end{align*}
+\end{theorem}
+\begin{proof}
+If $p=1$ or  $p=\infty$, then the proof follows from noting 
+\begin{align*}
+\abso{f+g}\leq \abso{f}+ \abso{g}
+\end{align*}
+Suppose $1< p < \infty$. Let $q$ be the exponential conjugate of  $p$. Applying \customref{HI}{Holder's Inequality}, we have 
+\begin{align*}
+\int \abso{f+g}^{p} &= \int \abso{f+g}^{p-1} \abso{f+g} \\
+&\leq \int \abso{f+g}^{p-1} \abso{f} + \int \abso{f+g}^{p-1} \abso{g} \\
+&= \bnorm{\abso{f+g}^{p-1}f}_1 + \bnorm{\abso{f+g}^{p-1}g}_1 \\
+&\leq \bnorm{\abso{f+g}^{p-1}}_q \cdot \norm{f}_p + \bnorm{\abso{f+g}^{p-1}}_q \cdot \norm{g}_p \\
+&= \Big(\int \abso{f+g}^{p} \Big)^{\frac{1}{q}} \cdot (\norm{f}_p + \norm{g}_p)
+\end{align*}
+Because the proof is trivial for $\norm{f+g}_p=0\text{ or }\infty$, we may  divide both side with $(\int \abso{f+g}^{p})^{\frac{1}{q}}$ and get 
+\begin{align*}
+\norm{f+g}_p=\Big( \int \abso{f+g}^p \Big)^{\frac{1}{p}}= \Big( \int \abso{f+g}^p \Big)^{1- \frac{1}{q}}\leq \norm{f}_p + \norm{g}_p
+\end{align*}
+\end{proof}
+\begin{mdframed}
+What's significant about \customref{MI}{Minkowski's Inequality} is that it shows that $L^{p}(E)$ form a semi-normed space for $1\leq p\leq \infty$. To make the presentation of the proof of the next Theorem simpler, we adapt the notation 
+\begin{align*}
+  (\operatorname{sgn}f)(\textbf{x})\triangleq \begin{cases}
+    1& \text{ if $f(\textbf{x})\geq 0$ }\\
+    -1& \text{ if $f(\textbf{x})<0$ }
+  \end{cases}
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Alternative characterization of $L^p$ norm for real-valued function)} If $f$ is real-valued and measurable on  $E$ and  $1\leq p\leq \infty$, then 
+\begin{align*}
+\norm{f}_p = \sup_g \int_E fg
+\end{align*}
+where the supremum run through all $g$ such that  $\int_E fg$ exists and $\norm{g}_q \leq 1$. 
+\end{theorem}
+\begin{proof}
+The inequality 
+\begin{align*}
+\sup_g \int_E fg \leq \norm{f}_p
+\end{align*}
+follows from \customref{HI}{Holder's Inequality}. We now prove the opposite, by splitting into three cases 
+\begin{enumerate}[label=(\alph*)]
+  \item $\vi{p=1}$.  
+  \item $\blue{1< p < \infty}$. 
+  \item $\olive{p=\infty}$. 
+\end{enumerate} 
+\vi{Let $p=1$, so $q=\infty$}. Define $h \triangleq \operatorname{sgn}f$. It is clear that $\norm{h}_{\infty}=1$. Moreover, because $f\in L^1(E)$, 
+\begin{align*}
+\int_E fh= \int_E \abso{f}\text{ exists. }
+\end{align*}
+The inequality is now trivial 
+\begin{align*}
+\norm{f}_1 = \int_E \abso{f}= \int_E fh\leq \sup_g \int_E fg \vdone
+\end{align*}
+\blue{Let $1<p<\infty$}. Because the proof is trivial for $\norm{f}_p=0$, suppose $\norm{f}_p >0$. Now, divide the proof into two sub-cases 
+\begin{enumerate}[label=(\alph*)]
+  \item $\teal{\norm{f}_p<\infty}$. 
+  \item $\orange{\norm{f}_p=\infty}$.  
+\end{enumerate}
+\teal{Let $\norm{f}_p<\infty$}. Define 
+\begin{align}
+\label{hsgn}
+h\triangleq (\operatorname{sgn}f) \Big( \frac{\abso{f}}{\norm{f}_p} \Big) ^{ \frac{p}{q}}
+\end{align}
+Direct computation may verify $\norm{h}_q=1$ and 
+\begin{align*}
+  \int_E fh=\int_E \abso{fh} = \norm{f}_p \inr
+\end{align*}
+The proof then easily follows  
+\begin{align*}
+  \norm{f}_p =\int_E fh \leq \sup_g \int_E fg \tdone
+\end{align*}
+\orange{Let $\norm{f}_p= \infty$}. Define $f_n$ by 
+\begin{align*}
+f_n(\textbf{x})\triangleq \begin{cases}
+  0& \text{ if $\abso{\textbf{x}}>n$ }\\
+  \min \set{f(\textbf{x}),n}& \text{ if $\abso{\textbf{x}}\leq n$ } 
+\end{cases}
+\end{align*}
+Because $f_n$ is only non-zero on $\abso{\textbf{x}}\leq n$ and is bounded by  $n$, we know $f_n \in L^p(E)$. Moreover, because $f_n\nearrow f$, by \customref{MCT}{Monotone Convergence Theorem}, 
+\begin{align*}
+\norm{f_n}_p \to \norm{f}_p = \infty
+\end{align*}
+Similar to \myref{Equation}{hsgn} in the proof of the \teal{teal sub-case}, define $h_n$ by 
+\begin{align*}
+h_n(\textbf{x})\triangleq \begin{cases}
+  (\operatorname{sgn}f_n) \Big( \frac{\abso{f_n}}{\norm{f_n}_p} \Big) ^{ \frac{p}{q}}& \text{ if $\abso{\textbf{x}}\leq n$ }\\
+  0& \text{ if $\abso{\textbf{x}}>n$ }
+\end{cases} 
+\end{align*}
+Again, direct computation verifies $\norm{h_n}_q=1$ and  
+ \begin{align*}
+   \int_E f_nh_n = \int_E \abso{f_nh_n}= \norm{f_n}_p \inr
+\end{align*}
+The proof then follows from 
+\begin{align*}
+\sup_g \int_E fg\geq \int_E fh_n \geq \int_E f_nh_n = \norm{f_n}_p \ordone 
+\end{align*}
+\olive{Let $p=\infty$}. Again, the proof is trivial for $\norm{f}_{\infty}=0$. If $\norm{f}_{\infty}<\infty$, define 
+\begin{align*}
+E_n \triangleq \bset{\textbf{x}\in E: \abso{f(\textbf{x})}> \norm{f}_\infty - \frac{1}{n}}
+\end{align*}
+If $\norm{f}_{\infty}=\infty$, define 
+\begin{align*}
+E_n \triangleq \bset{\textbf{x} \in E: \abso{f(\textbf{x})}> n}
+\end{align*}
+In either case, $\abso{E_n}>0$ by definition. Therefore, we may find $h_n$ that share the same sign with $f$ everywhere and satisfy   
+\begin{align*}
+\int_{E}\abso{h_n}=1\text{ and }h_n(\textbf{x})=0\text{ for all }\textbf{x}\not\in E_n
+\end{align*}
+Note that  $\int fh_n$  exists because $f$ and  $h_n$ share the same sign. If $\norm{f}_{\infty}<\infty$, the proof follows from 
+\begin{align*}
+\sup_g \int_E fg\geq \int_E fh_n \geq \int_{E_n} (\norm{f}_{\infty}- \frac{1}{n}) \abso{h_n}= \norm{f}_{\infty} - \frac{1}{n} 
+\end{align*}
+If $\norm{f}_{\infty}=\infty$, the proof follows from 
+\begin{align*}
+\sup_g \int_E fg \geq \int_E fh_n \geq \int_{E_n} n \abso{h_n}= n \odone
+\end{align*}
+
+\end{proof}
 \chapter{Harmonic Analysis}
 \section{Weierstrass approximation Theorem: $[a,b]\rightarrow \R$}
 \begin{theorem}
@@ -8288,142 +8789,7 @@ where $\beta = fd\textbf{x}^2 \wedge  \cdots \wedge  d\textbf{x}^{r+1}  $. On th
   &=d\textbf{x}^1 \wedge  \big[ (d \iota_X )\beta + (\iota_X d )+ \beta    \big] + dX^1 \wedge  \beta  
 \end{align*}
 \end{proof}
-\section{Orientation}
-\begin{abstract}
-In this section, $M$ is always a $m$-dimensional smooth manifold. 
-\end{abstract}
-\begin{mdframed}
-  We say $\omega \in \Omega^m(M)$ is a \textbf{volume from on $M$} if $\omega$ is non-zero everywhere on $M$, and say $M$ is \textbf{orientable} if a volume form on $M$ exists. If $M$ is orientable, on the space of volume forms, we may define an equivalence relation by relating two volume forms $\omega,\omega'$ together if there exists some positive zero-form $f\in \Omega^0(M)$ such that  $\omega'=f \omega$. We then define an \textbf{orientation on $M$} to be an equivalence class. \\
-
-
-Because $m$-th exterior powers of $T_p^*M$ are 1-dimensional, for each pair of volume forms  $\omega,\omega' \in \Omega^m(M)$, there exists some $f:M\rightarrow \R^*$ such that $\omega'=f \omega$. Charts by charts, one can check that $f\in \Omega^0(M)$ is indeed smooth. Define $g:\R^*\rightarrow \set{0,1}$ by 
-  \begin{align*}
-  g(x)\triangleq \begin{cases}
-    1& \text{ if $x>0$ }\\
-    0& \text{ if $x<0$ }
-  \end{cases}
-  \end{align*}
-Because $g$ is continuous, we know  $g \circ f: M\rightarrow \set{0,1}$ is continuous. It then follows that if $M$ has  $n$ connected components, then there are $2^n$ orientation on  $M$. 
-\end{mdframed}
-\begin{Example}{\textbf{(A volume form on $S^n$)}}{}
-\vspace{0.8cm}
-Let $f:\R^{n+1}\rightarrow \R$ be a smooth map, and $M\subseteq \R^{n+1}$ be a regular level set. By \customref{Regular Level Set Theorem}{regular level set theorem}, $M$ is an embedded submanifold of $\R^{n+1}$. Let $p \in M$. Because $p$ is a regular point, we know 
-\begin{align*}
-\frac{\partial f}{\partial \textbf{x}^i}(p) \neq 0\text{ for some }i
-\end{align*}
-then by \customref{IpFT}{implicit function theorem} and uniqueness of smooth structure, we have some chart $(U,\phi)$ around $p$ such that 
-\begin{align*}
-\phi (\textbf{x}^1,\dots ,\textbf{x}^n)= (\textbf{x}^1,\dots , \widehat{\textbf{x}}^i,\dots ,\textbf{x}^{n+1})
-\end{align*}
-and 
-\begin{align*}
-\frac{\partial f}{\partial \textbf{x}^i}\neq 0\text{ on }U
-\end{align*}
-Therefore, we may define a non-vanishing $n$-form $\omega$ on $U$ by  
-\begin{align}
-\label{ojh}
-\omega\triangleq  (-1)^i \Big(\frac{\partial f}{\partial \textbf{x}^i}\Big)^{-1}  d\textbf{x}^1\wedge \cdots  \wedge  \widehat{d \textbf{x}}^i \wedge  \cdots \wedge  d \textbf{x}^{n+1}
-\end{align}
-To see $\omega$ is globally well-defined, first observe that   because $f$ is constant on  $M$, globally we have 
- \begin{align}
-\label{0df}
-0=\sum_{k} \frac{\partial f}{\partial \textbf{x}^k}d\textbf{x}^k
-\end{align}
-Now, if $(V,\psi)$ is a similarly defined chart with 
-\begin{align*}
-\phi (\textbf{x}^1,\dots ,\textbf{x}^n)= (\textbf{x}^1,\dots ,\widehat{\textbf{x}}^j,\dots ,\textbf{x}^{n+1}) 
-\end{align*}
-and 
-\begin{align*}
-\frac{\partial f}{\partial \textbf{x}^j}\neq 0\text{ on }V
-\end{align*}
-such that $V \cap U\neq \varnothing$, we may compute by \myref{Equation}{0df} that 
-\begin{align*}
-d\textbf{x}^j = - \Big( \frac{\partial f}{\partial \textbf{x}^j} \Big)^{-1} \sum_{k\neq j} \frac{\partial f}{\partial \textbf{x}^j}  d\textbf{x}^k\text{ on }U \cap V
-\end{align*}
-Therefore, the expression of $\omega$ in \myref{Equation}{ojh} on $V \cap U$ is equal to 
-\begin{align*}
-  \omega= (-1)^j \Big( \frac{\partial f}{\partial \textbf{x}^j} \Big)^{-1}d\textbf{x}^1 \wedge  \cdots \wedge  \widehat{d \textbf{x}}^j \wedge  \cdots \wedge  d\textbf{x}^{n+1}    
-\end{align*}
-We have shown $\omega$ is globally well-defined. Now, if we let $f(\textbf{x})\triangleq \abso{\textbf{x}}^2$ and let $f(M)=1$, we see $M=S^n$. In particular, 
- \begin{align*}
-\omega= \frac{(-1)^i}{2\textbf{x}^i} d\textbf{x}^1 \wedge  \cdots \wedge \widehat{d \textbf{x}}^i \wedge \cdots \wedge  d\textbf{x}^{n+1}    
-\end{align*}
-on $\set{\textbf{x} \in S^n: \textbf{x}^i \neq 0}$. 
-\end{Example}
-\begin{theorem}
-\textbf{($\RP^n$ is not orientable for even  $n$)} Define an equivalence relation on $\R^{n+1}\setminus \set{\textbf{0}}$ by 
-\begin{align*}
-\textbf{x}\sim \textbf{y}\text{ if }\textbf{x}=\ld  \textbf{y}\text{ for some }\ld \inr
-\end{align*}
-Let $\pi $ be the quotient map and $\RP^n$ be the quotient space. If we give $\RP^n$ the atlas 
-\begin{align*}
-[\textbf{x}_1 ,\dots ,\textbf{x}_{n+1}]\mapsto  \Big(\frac{\textbf{x}_1}{\textbf{x}_i}, \dots , \frac{\textbf{x}_{i-1}}{\textbf{x}_i},\frac{\textbf{x}_{i+1}}{\textbf{x}_i}, \dots ,\frac{\textbf{x}^{n+1}}{\textbf{x}^i}\Big) 
-\end{align*}
-and $n$ is even, then  $\RP^n$ is not orientable. 
-\end{theorem}
-\begin{proof}
-We first show that
-\begin{center}
-   \begin{minipage}{0.9\linewidth}  
-     \olive{$\pi  : S^n \rightarrow \RP^n $ is a smooth immersion}. 
-   \end{minipage}
-\end{center}
-Define $U\triangleq \set{\textbf{x}\in S^n: \textbf{x}_1>0}$ and $\phi : U\rightarrow \R^n$ by 
-\begin{align*}
-\phi (\textbf{x})\triangleq (\textbf{x}_2 ,\dots , \textbf{x}_n)
-\end{align*}
-Compute 
-\begin{align*}
-\psi \circ \pi  \circ  \phi ^{-1} (\textbf{x}_2 ,\dots ,\textbf{x}_{n+1})=  \Big(\frac{\textbf{x}_2}{\textbf{x}_1},\dots , \frac{\textbf{x}_{n+1}}{\textbf{x}_1}\Big)
-\end{align*}
-We have shown $\pi $ is indeed smooth. To see $\pi _{*,p}$ is invertible everywhere, observe that $\psi \circ \pi  \circ   \phi^{-1}$ have the action 
-\begin{align*}
-\textbf{y}\mapsto  \frac{\textbf{y}}{\sqrt{1- \abso{\textbf{y}}^2} }
-\end{align*}
-which has a left inverse 
-\begin{align*}
-\textbf{y}\mapsto \frac{\textbf{y}}{\sqrt{1+ \abso{\textbf{y}}^2} }
-\end{align*}
-One can check from definition of $\pi $ that this left inverse is indeed an inverse. More precisely, we have established a diffeomorphism between $U$ and $\pi  (U)$. Therefore, $\pi$ is a local diffeomorphism. This implies $\pi _{*,p}$ is invertible everywhere. $\odone$ \\
-
- Let $\omega \in \Omega^n (S^n)$ be the volume form of $S^n$ as defined in the above example, and define a smooth diffeomorphism $\sigma :S^n\rightarrow S^n$ by 
-\begin{align*}
-\sigma (\textbf{x})\triangleq - \textbf{x}
-\end{align*}
-We now show 
-\begin{align*}
-  \vi{\sigma^* \omega = - \omega}
-\end{align*}
-Compute on $\set{\textbf{x} \in S^n : \textbf{x}_i \neq 0} $
-\begin{align*}
-  \sigma^* \omega &=  \sigma^*  \Big[\frac{(-1)^i}{2\textbf{x}_i} d\textbf{x}_1 \wedge  \cdots \wedge \widehat{d \textbf{x}_i} \wedge \cdots \wedge  d\textbf{x}_{n+1}  \Big] \\
-  &= \frac{(-1)^i}{-2\textbf{x}_i}d(-\textbf{x}_1)\wedge  \cdots \wedge  d(-\textbf{x}_{i-1}) \wedge  d(-\textbf{x}_{i+1}) \wedge  \cdots \wedge   d(-\textbf{x}_{n+1})    \\
-  &=(-1)^{n-1} \omega=-\omega 
-\end{align*}
-Repeating the same computation on $\textbf{x}_j \neq 0$, we see that, indeed, $\sigma^* \omega= -\omega$ globally. $\vdone$\\
-
-
-\As{$\theta \in \Omega^n (\RP^n)$ is a volume form}. Because $\pi$ is an immersion, we know $\pi ^* \theta \in \Omega^n (S^n)$ is also a volume form. Therefore, we may define an no-where-zero $f\in \Omega^0(S^n)$ by 
-\begin{align*}
-f\triangleq \frac{\pi ^* \theta}{\omega }
-\end{align*}
-It is clear that $\pi \circ \sigma= \pi  $. Therefore, 
-\begin{align*}
-  f\omega= \pi ^* \theta= (\pi  \circ  \sigma)^* \theta= \sigma^* \pi ^* \theta= \sigma^* (f \omega)= -(f \circ \sigma)\omega 
-\end{align*}
-This give us 
-\begin{align*}
-f(\textbf{x})=-f(-\textbf{x})\text{ for all }\textbf{x}\in S^n
-\end{align*}
-This is impossible, since the fact that $S^n$ is connected implies  $f$ have the same sign everywhere. \CaC 
-\end{proof}
-\begin{theorem}
-\textbf{(Equivalent Definition of Orientability)} A smooth manifold is orientable if and only if there exists a covering of charts such that 
-\begin{align*}
-  \operatorname{det} \Big(\frac{\partial \textbf{y}^i}{\partial \textbf{x}^j} \Big)>0\text{ everywhere }
-\end{align*}
-\end{theorem}
+\chapter{Differential Geometry 2}
 \section{De Rham Cohomology}
 \begin{abstract}
 
@@ -8473,13 +8839,13 @@ differing to $F^*\alpha $ by some exact $k$-form.
 \end{mdframed}
 \begin{theorem}
 \label{PPL}
-\textbf{(Pre Poincare Lemma)} Let $F:M\times  (-\epsilon  ,1+\epsilon )\rightarrow N$ be a smooth map. If we define $F_t:M\rightarrow N$ by 
+\textbf{(Deformation invariance of De Rham Cohomology group)} Let $F:M\times  (-\epsilon  ,1+\epsilon )\rightarrow N$ be a smooth map. If we define $F_t:M\rightarrow N$ by 
 \begin{align*}
 F_t(x)\triangleq F(x,t)
 \end{align*}
 then for all $k\geq 0$
 \begin{align*}
-F_0^*=F_1^*:H^k(N)\rightarrow H^k(M)
+F_0^*=F_1^*
 \end{align*}
 \end{theorem}
 \begin{proof}
@@ -8663,6 +9029,367 @@ We may now define a linear map $H^2(S^2)\rightarrow \R$ by
 \end{align*}
 
 \end{proof}
+\section{Orientation}
+\begin{abstract}
+  This section gives an \customref{EDO}{equivalent definitions for orientation} and constructs \customref{Svf}{the standard volume form for $S^n$}. In this section, $M$ is always a $m$-dimensional smooth manifold  
+\end{abstract}
+\begin{mdframed}
+Let $(U,\textbf{x}),(V,\textbf{y})$ be two charts for $M$. If 
+\begin{align*}
+  \operatorname{det} \Big(\frac{\partial \textbf{y}^i}{\partial \textbf{x}^j} \Big)>0\text{ everywhere on }U \cap V
+\end{align*}
+we say their transition function is \textbf{orientation preserving}. We say an atlas $\mathcal{U}$ for  $M$ is  \textbf{oriented atlas} if all transition functions for $\mathcal{U}$ is orientation preserving. A maximal oriented atlas for $M$ is said to be an  \textbf{orientation} of $M$. If $M$ admits an oriented atlas, we say  $M$ is  \textbf{orientable}; moreover, if we say $M$ is an  \textbf{oriented manifold}, we mean that $M$ is equipped with a maximal oriented atlas.\\
+
+By a \textbf{volume form on $M$}, we mean a top-degree differential form $\omega \in \Omega^m(M)$ such that $\omega$ is non-zero everywhere. On the space of volume forms, we may define an equivalence relation by relating two volume forms $\omega,\omega'$ together if there exists some positive zero-form $f\in \Omega^0(M)$ such that  $\omega'=f \omega$.\\
+
+
+We may now prove the equivalency of two definitions of orientation.  
+\end{mdframed}
+\begin{theorem}
+\label{EDO}
+\textbf{(Equivalent Definition of Orientation)} Let $M$ be a smooth manifold. There exists a one-to-one correspondence between the set of orientation of $M$ and the set of equivalence class of volume forms. 
+\end{theorem}
+\begin{proof}
+Let $\omega$ be a volume form. By changing $\textbf{x}^1$ to $-\textbf{x}^1$ if necessary, we may find an atlas $\mathcal{U}$ such that 
+\begin{align}
+\label{vu}
+f>0\text{ when we write }\omega= f(\textbf{x}) \ld^1 \wedge  \cdots \wedge  \ld ^n  \text{ on }U
+\end{align}
+for all $(U,\textbf{x})\in \mathcal{U}$. If on another chart $(V,\textbf{y})\in \mathcal{U}$, we write 
+\begin{align*}
+\omega= g(\textbf{y})\tilde{\ld }^1 \wedge  \cdots \wedge  \tilde{\ld }^n  \text{ on }V
+\end{align*}
+by \myref{Equation}{ldi}, we may compute 
+\begin{align*}
+f(\textbf{x})\ld ^1 \wedge  \cdots \wedge   \ld ^n=\omega&= g(\textbf{y}) \tilde{\ld } ^1 \wedge  \cdots \wedge \tilde{\ld } ^n   \\
+&= g(\textbf{y}(\textbf{x})) \operatorname{det}\Big( \frac{\partial \textbf{y}^i}{\partial \textbf{x}^j} \Big) \ld ^1 \wedge  \cdots \wedge  \ld ^n  \text{ on }U\cap V
+\end{align*}
+It follows from $f,g$ are both positive that $\operatorname{det}\Big( \frac{\partial \textbf{y}^i}{\partial \textbf{x}^j} \Big)>0$. We have shown $\mathcal{U}$ is an oriented atlas. Direct computation with \myref{Equation}{ldi} shows that if $\omega'$ is a volume form equivalent to $\omega$, then the oriented atlas $\mathcal{U}'$ induced by the same procedure is consistent with $\mathcal{U}$. We have constructed a function  $F$ that maps the set of equivalence class of volume forms into the set of orientation of  $M$. Note that, again, direct computation with \myref{Equation}{ldi} shows that $F$ is one-to-one. \\
+
+It remains to show $F$ is onto. Let $(U_\alpha )$ be a maximal oriented atlas, and let \customref{Smooth manifolds always admit smooth partition of unity}{$(\phi_\alpha )$ be a partition of unity subordinate to $(U_\alpha )$}. Define $\omega \in \Omega^n(M)$ by 
+\begin{align*}
+\omega \triangleq \sum_{\alpha } \phi_\alpha \ld ^1_\alpha \wedge  \cdots \wedge  \ld _\alpha ^n  
+\end{align*}
+Note that $\omega$ is well-defined because $(\phi_\alpha )$ is locally finite. Let $p \in M$. To see $\omega$ is indeed non-vanishing, let $(U_{\alpha _1},\textbf{x})$ be a chart containing $p$, and compute on an neighborhood around $p$ 
+ \begin{align*}
+\omega&= \sum_{\alpha :\phi_\alpha (p)>0} \phi_\alpha d\textbf{y}^1_\alpha \wedge  \cdots \wedge  d\textbf{y}^n_\alpha    \\
+&= \sum_{\alpha :\phi_\alpha (p)>0} \phi_\alpha  \operatorname{det}\Big( \frac{\partial \textbf{y}^i_\alpha  }{\partial \textbf{x}^j } \Big) d\textbf{x}^1 \wedge  \cdots \wedge   d\textbf{x}^n\neq 0
+\end{align*} 
+This implies that $\omega$ is a volume form satisfying \myref{Equation}{vu}. In other words, $F$ maps  $[\omega]$ to $(U_\alpha )$. We have shown $F$ is indeed onto.  
+\end{proof}
+\begin{mdframed}
+Because of \myref{Theorem}{EDO}, if $M$ is oriented with oriented atlas $\mathcal{U}$ and  $\omega$ is a volume form such that 
+\begin{align*}
+f>0\text{ when we write }\omega= f(\textbf{x}) \ld^1 \wedge  \cdots \wedge  \ld ^n  \text{ on }U\text{ for all }U \in \mathcal{U}
+\end{align*}
+we say $\omega$ is a \textbf{positively oriented volume form}. 
+\end{mdframed}
+\label{Svf}
+\begin{Example}{\textbf{(Standard volume form of $S^n$)}}{}
+\vspace{0.8cm}
+Let $f:\R^{n+1}\rightarrow \R$ be a smooth map, and $M\subseteq \R^{n+1}$ be a regular level set. By \customref{Regular Level Set Theorem}{regular level set theorem}, $M$ is an embedded submanifold of $\R^{n+1}$. Let $p \in M$. Because $p$ is a regular point, we know 
+\begin{align*}
+\frac{\partial f}{\partial \textbf{x}^i}(p) \neq 0\text{ for some }i
+\end{align*}
+then by \customref{IpFT}{implicit function theorem} and uniqueness of smooth structure, we have some chart $(U,\phi)$ around $p$ such that 
+\begin{align*}
+\phi (\textbf{x}^1,\dots ,\textbf{x}^n)= (\textbf{x}^1,\dots , \widehat{\textbf{x}}^i,\dots ,\textbf{x}^{n+1})
+\end{align*}
+and 
+\begin{align*}
+\frac{\partial f}{\partial \textbf{x}^i}\neq 0\text{ on }U
+\end{align*}
+Therefore, we may define a non-vanishing $n$-form $\omega$ on $U$ by  
+\begin{align}
+\label{ojh}
+\omega\triangleq  (-1)^i \Big(\frac{\partial f}{\partial \textbf{x}^i}\Big)^{-1}  d\textbf{x}^1\wedge \cdots  \wedge  \widehat{d \textbf{x}}^i \wedge  \cdots \wedge  d \textbf{x}^{n+1}
+\end{align}
+To see $\omega$ is globally well-defined, first observe that   because $f$ is constant on  $M$, globally we have 
+ \begin{align}
+\label{0df}
+0=\sum_{k} \frac{\partial f}{\partial \textbf{x}^k}d\textbf{x}^k
+\end{align}
+Now, if $(V,\psi)$ is a similarly defined chart with 
+\begin{align*}
+\phi (\textbf{x}^1,\dots ,\textbf{x}^n)= (\textbf{x}^1,\dots ,\widehat{\textbf{x}}^j,\dots ,\textbf{x}^{n+1}) 
+\end{align*}
+and 
+\begin{align*}
+\frac{\partial f}{\partial \textbf{x}^j}\neq 0\text{ on }V
+\end{align*}
+such that $V \cap U\neq \varnothing$, we may compute by \myref{Equation}{0df} that 
+\begin{align*}
+d\textbf{x}^j = - \Big( \frac{\partial f}{\partial \textbf{x}^j} \Big)^{-1} \sum_{k\neq j} \frac{\partial f}{\partial \textbf{x}^j}  d\textbf{x}^k\text{ on }U \cap V
+\end{align*}
+Therefore, the expression of $\omega$ in \myref{Equation}{ojh} on $V \cap U$ is equal to 
+\begin{align*}
+  \omega= (-1)^j \Big( \frac{\partial f}{\partial \textbf{x}^j} \Big)^{-1}d\textbf{x}^1 \wedge  \cdots \wedge  \widehat{d \textbf{x}}^j \wedge  \cdots \wedge  d\textbf{x}^{n+1}    
+\end{align*}
+We have shown $\omega$ is globally well-defined. Now, if we let $f(\textbf{x})\triangleq \abso{\textbf{x}}^2$ and let $f(M)=1$, we see $M=S^n$ and  
+ \begin{align*}
+\omega= \frac{(-1)^i}{2\textbf{x}^i} d\textbf{x}^1 \wedge  \cdots \wedge \widehat{d \textbf{x}}^i \wedge \cdots \wedge  d\textbf{x}^{n+1}    
+\end{align*}
+on $\set{\textbf{x} \in S^n: \textbf{x}^i \neq 0}$. We call this $\omega$ the \textbf{standard volume form on $S^n$}. 
+\end{Example}
+\begin{mdframed}
+Because the $m$-th exterior powers of $T_p^*M$ are 1-dimensional, for each pair of volume forms  $\omega,\omega' \in \Omega^m(M)$, there exists some $f:M\rightarrow \R^*$ such that $\omega'=f \omega$. Charts by charts, one can check that $f\in \Omega^0(M)$ is indeed smooth. Define $g:\R^*\rightarrow \set{0,1}$ by 
+  \begin{align*}
+  g(x)\triangleq \begin{cases}
+    1& \text{ if $x>0$ }\\
+    0& \text{ if $x<0$ }
+  \end{cases}
+  \end{align*}
+Because $g$ is continuous, we know  $g \circ f: M\rightarrow \set{0,1}$ is continuous. It then follows that if $M$ has  $n$ connected components, then there are $2^n$ orientation on  $M$. 
+\end{mdframed}
+\section{Integration on Manifold}
+\begin{abstract}
+In this section, we introduce the idea of integration on smooth manifold and prove  \customref{HBT}{the hairy ball theorem} for smooth vector field and that \customref{rpin}{$\RP^n$ is not orientable for even  $n$}
+\end{abstract}
+\begin{mdframed}
+Let $M$ be an oriented manifold and  $\omega \in \Omega^m(M)$ be a top-degree form with compact support.  Because $M$ is oriented and $\omega$ is of compact support, we may find a finite set of charts $U_1,\dots ,U_N$ such that $\operatorname{supp}\omega \subseteq U_1 \cup \cdots \cup U_N$ and $f_i$ share the same sign if we write on each chart  
+\begin{align*}
+\omega|_{U_i }= f_i (\textbf{x})\ld_i^1 \wedge  \cdots \wedge  \ld_i^m
+\end{align*}
+Let $\phi_1,\dots ,\phi_N$ be a smooth partition of unity subordinated to $U_1,\dots ,U_N$. We define the integral of $\omega$ on $M$ to be 
+ \begin{align*}
+\int_M \omega\triangleq \sum_{i=1}^N \int_{\R^m} \phi_i f_i (\textbf{x}) 
+\end{align*}
+To show that the definition is independent of choice of the finite covers and partition of unity, let $\tilde{U}_j$ be a another finite cover and $\tilde{\phi}_j$ a subordinating partition of unity, and check 
+\begin{align*}
+\sum_j \int_M \tilde{\phi}_j \omega= \sum_{i,j} \int_M \tilde{\phi}_j \phi_i \omega  = \sum_i \int_M \phi_i \omega
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{SCST}
+\textbf{(Special Case of Stoke's Theorem)} Let $M$ be oriented and  $\omega\in \Omega^{m-1}(M)$ be of compact support. We have 
+\begin{align*}
+\int_M d\omega=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+Again, let $\phi_i$ be a partition of unity subordinated to a positively oriented finite set of charts. On each chart, we may write 
+\begin{align*}
+\phi_i \omega= \sum_{n=1}^m (-1)^{n+1} a_n \ld^1 \wedge  \cdots \wedge \widehat{\ld }^n \wedge  \cdots \wedge \ld^m    
+\end{align*}
+Compute 
+\begin{align*}
+d(\phi_i \omega)= \sum_{n=1}^m \frac{\partial a_n}{\partial \textbf{x}^n} \ld ^1 \wedge  \cdots \wedge \ld^m   
+\end{align*}
+It then follows from each $a_n$ is of compact support that 
+ \begin{align*}
+\int_M d\omega= \sum_i \int_M d(\phi_i \omega)=0
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Immediately, following from \customref{SCST}{special case of Stoke's theorem}, we see that if $M$ is compact and orientable, then 
+ \begin{align*}
+H^m(M)\neq 0
+\end{align*}
+since if $\alpha \in \Omega^m(M)$ is a positively oriented volume forms, then 
+\begin{align*}
+\int_M \alpha  >0
+\end{align*}
+which implies $\alpha $ is not exact. 
+\end{mdframed}
+\begin{theorem}
+\label{rpin}
+\textbf{($\RP^n$ is not orientable for even  $n$)} Define an equivalence relation on $\R^{n+1}\setminus \set{\textbf{0}}$ by 
+\begin{align*}
+\textbf{x}\sim \textbf{y}\text{ if }\textbf{x}=\ld  \textbf{y}\text{ for some }\ld \inr
+\end{align*}
+Let $\pi $ be the quotient map and $\RP^n$ be the quotient space. If we give $\RP^n$ the atlas 
+\begin{align*}
+[\textbf{x}_1 ,\dots ,\textbf{x}_{n+1}]\mapsto  \Big(\frac{\textbf{x}_1}{\textbf{x}_i}, \dots , \frac{\textbf{x}_{i-1}}{\textbf{x}_i},\frac{\textbf{x}_{i+1}}{\textbf{x}_i}, \dots ,\frac{\textbf{x}^{n+1}}{\textbf{x}^i}\Big) 
+\end{align*}
+and $n$ is even, then  $\RP^n$ is not orientable. 
+\end{theorem}
+\begin{proof}
+We first show that
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+     \olive{$\pi  : S^n \rightarrow \RP^n $ is a smooth immersion}. 
+   \end{minipage}
+\end{center}
+Define $U\triangleq \set{\textbf{x}\in S^n: \textbf{x}_1>0}$ and $\phi : U\rightarrow \R^n$ by 
+\begin{align*}
+\phi (\textbf{x})\triangleq (\textbf{x}_2 ,\dots , \textbf{x}_n)
+\end{align*}
+Compute 
+\begin{align*}
+\psi \circ \pi  \circ  \phi ^{-1} (\textbf{x}_2 ,\dots ,\textbf{x}_{n+1})=  \Big(\frac{\textbf{x}_2}{\textbf{x}_1},\dots , \frac{\textbf{x}_{n+1}}{\textbf{x}_1}\Big)
+\end{align*}
+We have shown $\pi $ is indeed smooth. To see $\pi _{*,p}$ is invertible everywhere, observe that $\psi \circ \pi  \circ   \phi^{-1}$ have the action 
+\begin{align*}
+\textbf{y}\mapsto  \frac{\textbf{y}}{\sqrt{1- \abso{\textbf{y}}^2} }
+\end{align*}
+which has a left inverse 
+\begin{align*}
+\textbf{y}\mapsto \frac{\textbf{y}}{\sqrt{1+ \abso{\textbf{y}}^2} }
+\end{align*}
+One can check from definition of $\pi $ that this left inverse is indeed an inverse. More precisely, we have established a diffeomorphism between $U$ and $\pi  (U)$. Therefore, $\pi$ is a local diffeomorphism. This implies $\pi _{*,p}$ is invertible everywhere. $\odone$ \\
+
+ Let $\omega \in \Omega^n (S^n)$ be the \customref{Svf}{standard volume form of $S^n$}. Define a smooth diffeomorphism $\sigma :S^n\rightarrow S^n$ by 
+\begin{align*}
+\sigma (\textbf{x})\triangleq - \textbf{x}
+\end{align*}
+We now show 
+\begin{align}
+\label{sgw}
+  \vi{\sigma^* \omega = - \omega}
+\end{align}
+Compute on $\set{\textbf{x} \in S^n : \textbf{x}_i \neq 0} $
+\begin{align*}
+  \sigma^* \omega &=  \sigma^*  \Big[\frac{(-1)^i}{2\textbf{x}_i} d\textbf{x}_1 \wedge  \cdots \wedge \widehat{d \textbf{x}_i} \wedge \cdots \wedge  d\textbf{x}_{n+1}  \Big] \\
+  &= \frac{(-1)^i}{-2\textbf{x}_i}d(-\textbf{x}_1)\wedge  \cdots \wedge  d(-\textbf{x}_{i-1}) \wedge  d(-\textbf{x}_{i+1}) \wedge  \cdots \wedge   d(-\textbf{x}_{n+1})    \\
+  &=(-1)^{n-1} \omega=-\omega 
+\end{align*}
+Repeating the same computation on $\textbf{x}_j \neq 0$, we see that, indeed, $\sigma^* \omega= -\omega$ globally. $\vdone$\\
+
+
+\As{$\theta \in \Omega^n (\RP^n)$ is a volume form}. Because $\pi$ is an immersion, we know $\pi ^* \theta \in \Omega^n (S^n)$ is also a volume form. Therefore, we may define an no-where-zero $f\in \Omega^0(S^n)$ by 
+\begin{align*}
+f\triangleq \frac{\pi ^* \theta}{\omega }
+\end{align*}
+It is clear that $\pi \circ \sigma= \pi  $. Therefore, 
+\begin{align*}
+  f\omega= \pi ^* \theta= (\pi  \circ  \sigma)^* \theta= \sigma^* \pi ^* \theta= \sigma^* (f \omega)= -(f \circ \sigma)\omega 
+\end{align*}
+This give us 
+\begin{align*}
+f(\textbf{x})=-f(-\textbf{x})\text{ for all }\textbf{x}\in S^n
+\end{align*}
+This is impossible, since the fact that $S^n$ is connected implies  $f$ have the same sign everywhere. \CaC 
+\end{proof}
+\begin{theorem}
+\label{HBT}
+\textbf{(Hairy Ball Theorem in Differential Geometry)} Let  $X\in \mathfrak{X}(S^{2m})$ be a smooth vector field. 
+\begin{align*}
+\text{ There exists some $p  \in S^{2m}$ such that }X_p=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+\As{$X$ is non-vanishing}. Obviously, we may identify each $T_\textbf{x}S^{2m}$ as a $2m$-dimensional subspace of  $\R^{2m+1}$ orthogonal to $\textbf{x}$. This way, $X$ is smooth function that maps  $S^{2m}$ into $\R^{2m+1}$ such that 
+\begin{align*}
+X(\textbf{x})\cdot \textbf{x}=0\text{ for all }\textbf{x} \in S^{2m}
+\end{align*}
+Because the normalizing function $\textbf{x}\mapsto \frac{\textbf{x}}{\abso{\textbf{x}}}$ is smooth, if we define $\widehat{X}\in \mathfrak{X}(S^{2m})$ by 
+\begin{align*}
+\widehat{X}_\textbf{x}\triangleq \frac{X_\textbf{x}}{\abso{X_\textbf{x}}}
+\end{align*}
+then $\widehat{X}$ is indeed smooth. Define $F_t:S^{2m}\rightarrow S^{2m}$ by 
+\begin{align*}
+F_t(\textbf{x})\triangleq (\cos t)\textbf{x}+ (\sin t)\widehat{X}_\textbf{x}
+\end{align*}
+Tedious computations shows that $F:S^{2m}\times \R \rightarrow S^{2m}$ is indeed smooth. Compute 
+\begin{align*}
+F_0(\textbf{x})=\textbf{x}\text{ and }F_\pi  (\textbf{x})=-\textbf{x}\text{ for all }\textbf{x}\in S^{2m}
+\end{align*}
+Let $\omega \in \Omega^{2m}(S^{2m})$ be the \customref{Svf}{standard volume form}. By \myref{Equation}{sgw} proved in \myref{Theorem}{rpin}, we have 
+\begin{align*}
+F_0(\omega)=\omega\text{ and }F_\pi  (\omega)=-\omega
+\end{align*}
+It then follows from \customref{PPL}{deformation invariance of De Rham cohomology group} that $\omega$ is exact. This cause a contradiction, since \customref{SCST}{special case of Stoke's theorem} says that exact top-form $\omega$ on $S^{2n}$, which is compact, must have 
+\begin{align*}
+\int_M \omega =0
+\end{align*}
+while the fact $\omega$ is the standard volume form implies 
+\begin{align*}
+\int_M \omega> 0 \tCaC
+\end{align*}
+\end{proof}
+\section{Stoke's Theorem}
+\begin{abstract}
+
+\end{abstract}
+\begin{mdframed}
+In this section, we use  $\H^n$ to denote the upper-half space of $\R^n$
+\begin{align*}
+\H^n \triangleq \set{\textbf{x}\in \R^n: \textbf{x}^n \geq 0}
+\end{align*}
+By a $n$-dimensional topological manifold with boundary, we mean a second-countable and Hausdorff topological space $M$ such that for all $p \in M$, there exists some neighborhood $U$ around  $p$ homeomorphic to some open subsets of  $\H^n$. By invariance of domain, a non-trivial Theorem in algebraic topology, one can deduce that if $p$ is mapped by some chart into $\partial \H^n$, then all charts map $p$ into  $\partial \H^n$. Therefore, we may distinguish between the \textbf{interior $M^\circ $ and boundary $\partial M$ of $M$}.  \\
+
+It is clear that $M^\circ $ and $\partial M$ when endowed with subspace topology from $M$, they are respectively a $n$-dimensional topological  manifold and a $(n-1)$-dimensional topological manifold. Let $f$ be a function that maps $E\subseteq \H^n$ into $\R^n$, where $E$ is open in  $\H^n$ and contain $p \in \partial \H^n$, we say $f$ is smooth at $p$ if there exists some smooth function $\widehat{f}:B_\epsilon (p)\rightarrow \R^n$ such that 
+\begin{align*}
+\widehat{f}\equiv f \text{ on }E\cap B_\epsilon (p)
+\end{align*}
+With this in mind, it make sense for us to talk about \textbf{smooth manifold with boundary}. \\
+
+Let $p \in \partial M$ and $(U,\phi)$ be a chart around $p$. Because
+\begin{align*}
+T_pM\cong  T_p U\cong  T_{\phi (p)}\phi (U)\cong  T_{\phi (p)} \H^n \cong  T_{\phi (p)}\R^n
+\end{align*}
+we see $T_pM$ is also  $n$-dimensional, where the last isomorphism is given by the derivative of inclusion map $\diota: \H^n\rightarrow \R^n $. (Lemma 3.11 in Lee) 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Induced orientation on boundary)} If $\mathcal{U}$ is an oriented atlas for $M$, then its restriction 
+\begin{align*}
+\mathcal{U}'\triangleq \bset{(U\cap \partial M,\phi |_{U \cap \partial M}): (U,\phi) \in \mathcal{U}}
+\end{align*}
+is an oriented atlas for $\partial M$. 
+\end{theorem}
+\begin{proof}
+Let $(U,\textbf{x}),(V,\textbf{y}) \in \mathcal{U}$. Because 
+\begin{align*}
+\textbf{y}^n (\textbf{x}^1,\dots ,\textbf{x}^{n-1},0)=0
+\end{align*}
+we know 
+ \begin{align*}
+\frac{\partial \textbf{y}^n}{\partial \textbf{x}^{i}}=0,\frac{\partial \textbf{y}^n}{\partial \textbf{x}^n}>0\text{ for $i<n$ on }\partial M
+\end{align*}
+Then because the Jacobian $J_M$ of the transition function between $\textbf{x},\textbf{y}$ has the form 
+\begin{align*}
+\begin{vmatrix} 
+  \frac{\partial \textbf{y}^1}{\partial \textbf{x}^1} & \cdots & \frac{\partial \textbf{y}^1}{\partial \textbf{x}^{n-1} & \frac{\partial \textbf{y}^1}{\partial \textbf{x}^n}} \\
+  \vdots & \ddots & \vdots & \vdots  \\
+  \frac{\partial \textbf{y}^{n-1}}{\partial \textbf{x}^1} & \cdots & \frac{\partial \textbf{y}^{n-1}}{\partial \textbf{x}^{n-1}} & \frac{\partial \textbf{y}^{n-1}}{\partial \textbf{x}^n} \\
+  0 & \cdots & 0 & \frac{\partial \textbf{y}^n}{\partial \textbf{x}^n}
+\end{vmatrix}\text{ on }\partial M
+\end{align*}
+we see that the Jacobian $J_{\partial M}$ of the transition function between the restricted $\textbf{x},\textbf{y}$ is 
+\begin{align*}
+\begin{vmatrix} 
+  \frac{\partial \textbf{y}^1}{\partial \textbf{x}^1} & \cdots & \frac{\partial \textbf{y}^1}{\partial \textbf{x}^{n-1}} \\ 
+  \vdots & \ddots & \vdots  \\
+  \frac{\partial \textbf{y}^{n-1}}{\partial \textbf{x}^1} & \cdots & \frac{\partial \textbf{y}^{n-1}}{\partial \textbf{x}^{n-1}}  
+\end{vmatrix} = \frac{J_M}{\frac{\partial \textbf{y}^n}{\partial \textbf{x}^n}}>0
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Note that if a positively oriented volume form $\omega$ has the expression 
+\begin{align*}
+f(\textbf{x}) d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^n  
+\end{align*}
+then its pullback $\diota^*\omega $ to the boundary have the expression 
+\begin{align*}
+  (-1)^n f(\textbf{x})d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^{n-1}  
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Stoke's Theorem)} Let $M$ be an oriented  $n$-dimensional manifold with  boundary $\partial M$, and let $\omega \in \Omega^{n-1}(M)$ be of compact support. We have 
+\begin{align*}
+\int_M d\omega = \int_{\partial M} \omega 
+\end{align*}
+where the restriction of $\omega$ on $\partial M$ should be considered as the pullback $\diota^*\omega $ of $\diota: \partial M\rightarrow M $. 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\textbf{(Brouwer's fixed point Theorem)} If 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\textbf{(Top De Rham cohomology group of oriented compact connected manifold)} If $M$ is a $n$-dimensional oriented compact connected manifold, then 
+ \begin{align*}
+H^n(M)\cong  \R
+\end{align*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\chapter{Geometry Archived}
 \section{Lie Group}
 \begin{mdframed}
 Suppose $\beta  \in \Omega^1 (\R \setminus \Z)$. Write in local coordinate 

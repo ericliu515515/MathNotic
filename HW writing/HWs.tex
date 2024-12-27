@@ -13,7 +13,1295 @@
 \pdfbookmark[section]{\contentsname}{toc}
 \tableofcontents
 \pagebreak
+\chapter{PDE LAST}
+\section{Cheat Sheet}
+\begin{mdframed}
+Consider the \textbf{Dirichlet} eigenproblem 
+\begin{align*}
+\begin{cases}
+  X''+ \ld X=0 \\
+  X(0)=X(l)=0
+\end{cases}
+\end{align*}
+It is clear that $0$ is NOT an eigenvalue. Suppose  $\ld =\beta ^2\inc$ is an eigenvalue. We see that $X$ must take the form
+\begin{align*}
+X= A \cos (\beta x)+ B \sin (\beta x)
+\end{align*}
+The initial condition implies 
+\begin{align*}
+\begin{bmatrix}
+  1 & 0  \\
+  \cos (\beta l) & \sin (\beta l)
+\end{bmatrix} \begin{bmatrix}
+A\\
+B
+\end{bmatrix}=0 
+\end{align*}
+This implies that 
+\begin{align*}
+\beta = \frac{n \pi  }{l}\text{ and } X= \sin ( \frac{n \pi  x}{l})\text{ for }n\geq 1
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+  Consider the \textbf{Neumann} eigenproblem 
+\begin{align*}
+\begin{cases}
+  X'' + \ld X=0 \\
+  X'(0)=X'(l)=0
+\end{cases}
+\end{align*}
+It is clear that $0$ is an eigenvalue with eigenspace spanned by constant function. Suppose $\ld =\beta ^2\inc$ is an eigenvalue. We see that $X$ must take the form 
+ \begin{align*}
+X= A\cos (\beta x) + B\sin (\beta x)
+\end{align*}
+The initial condition then implies 
+\begin{align*}
+\begin{bmatrix}
+  0 & \beta \\
+  -\beta  \sin (\beta l) & \beta  \cos (\beta l)
+\end{bmatrix}\begin{bmatrix}
+A\\
+B
+\end{bmatrix}=0 
+\end{align*}
+This implies that 
+\begin{align*}
+\beta = \frac{n \pi  }{l} \text{ and }X= \cos (\frac{n \pi  x}{l})\text{ for }n\geq 1
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+Consider the \textbf{mixed} eigenproblem 
+\begin{align*}
+\begin{cases}
+  X''+ \ld  X=0 \\
+  X(0)=X'(l)=0
+\end{cases}
+\end{align*}
+It is clear that $0$ is Not an eigenvalue. Suppose $\ld = \beta ^2\inc$ is an eigenvalue. We see that $X$ must take the form 
+ \begin{align*}
+X=A \cos (\beta x)+ B \sin (\beta x)
+\end{align*}
+The initial condition implies 
+\begin{align*}
+\begin{bmatrix}
+  1 & 0 \\
+  -\beta  \sin (\beta l) & \beta \cos (\beta l) 
+\end{bmatrix} \begin{bmatrix}
+A \\
+B
+\end{bmatrix}=0 
+\end{align*}
+This implies
+\begin{align*}
+\beta = \frac{(n+ \frac{1}{2})\pi }{l}\text{ and }X_n= \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})\text{ for }n\geq 1
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+The \textbf{Fourier sine series of $\phi$ on $(0,l)$} is 
+  \begin{align*}
+  \phi (x)=\sum_{n=0}^{\infty} A_n \sin (\frac{n \pi  x}{l})
+  \end{align*}
+The \textbf{Fourier cosine series of $\phi$ on $(0,l)$} is 
+  \begin{align*}
+  \phi (x)=\sum_{n=0}^{\infty} A_n \cos (\frac{n \pi  x}{l})
+  \end{align*}
+The \textbf{Fourier full series of $\phi$ on $(-l,l)$} us 
+\begin{align*}
+\phi (x)= \sum_{n=0}^{\infty} A_n \cos (\frac{n \pi  x}{l})+ B_n \sin ( \frac{n \pi  x}{l})
+\end{align*}
+The \textbf{Fourier complex series of $\phi$ on $(-l,l)$ is}
+\begin{align*}
+\phi (x)=\sum_{n=-\infty}^{\infty}  c_n e^{\frac{- i n \pi  x}{l}}
+\end{align*}
+\end{mdframed}
+\begin{mdframed}
+Let $n,m\neq 0$. To compute the sine series, we have 
+\begin{align*}
+\int_0^l \sin (\frac{n \pi  x}{l})\sin (\frac{m \pi  x}{l})dx=\begin{cases}
+  \frac{l}{2}& \text{ if $n= m$ } \\
+  0& \text{ if $n\neq m$ }
+\end{cases}
+\end{align*}
+Let $n,m\neq 0$. To compute the cosine series, we have 
+\begin{align*}
+\int_0^l \cos (\frac{n \pi  x}{l})\cos (\frac{m \pi  x}{l})dx= \begin{cases}
+  \frac{l}{2}& \text{ if $n= m$ }\\
+  0& \text{ if $n \neq m$ }
+\end{cases}
+\end{align*}
+Let $n,m\neq 0$. To compute the full series, we have 
+\begin{align*}
+\int_{-l}^{l} \sin (\frac{n \pi  x}{l})\sin (\frac{m \pi  x}{l})dx= \begin{cases}
+  l& \text{ if $n=m$ }\\
+  0& \text{ if $n\neq  m$ }
+\end{cases}
+\end{align*}
+and 
+\begin{align*}
+\int_{-l}^{l} \cos (\frac{n \pi  x}{l}) \cos ( \frac{m \pi  x}{l})dx=\begin{cases}
+  l& \text{ if $n=m$ }\\
+  0& \text{ if $n\neq m$ }
+\end{cases}
+\end{align*}
+Let $n,m \inz$. To compute the complex series, we have 
+\begin{align*}
+\int_{-l}^{l} e^{\frac{i (n-m)\pi  x}{l}}dx= \begin{cases}
+  2l & \text{ if $n=m$ }\\
+  0& \text{ if $n\neq m$ }
+\end{cases}
+\end{align*}
+Let $n,m\geq  0$. To compute the weird series, we have 
+\begin{align*}
+  \int_0^l \sin (\frac{(n+ \frac{1}{2})\pi  x}{l}) \sin (\frac{(m+ \frac{1}{2})\pi  x}{l})dx = \begin{cases}
+    \frac{l}{2}& \text{ if $n=m$ }\\
+    0& \text{ if $n\neq m$ }
+  \end{cases}
+\end{align*}
+and 
+\begin{align*}
+  \int_0^l \cos (\frac{(n+ \frac{1}{2})\pi  x}{l}) \cos (\frac{(m+ \frac{1}{2})\pi  x}{l})dx = \begin{cases}
+    \frac{l}{2}& \text{ if $n=m$ }\\
+    0& \text{ if $n\neq m$ }
+  \end{cases}
+\end{align*}
+\end{mdframed}
+\section{5.2 Even, Odd, Periodic and Complex Functions}
+\begin{question}{}{}
+Show that $\cos x+ \cos (\alpha x)$ is periodic if $\alpha $ is a rational number. What is its period? Show that $\cos x+ \cos (\sqrt{2}x)$ is not periodic. 
+\end{question}
+\begin{proof}
+If $\alpha \inq$, we may write 
+\begin{align*}
+\alpha = \frac{q}{p}\text{ where }p \inn
+\end{align*}
+we then see $\cos x+ \cos (\alpha x)$ has period $2p \pi $. \As{$\cos x+ \cos (\sqrt{2}x )$ have period $r$}. Then 
+\begin{align*}
+2= \cos (r)+ \cos (\sqrt{2}r )
+\end{align*}
+which is easily seen impossible by noting for this to be true we must have $r= 2n \pi $. 
+\end{proof}
+\begin{question}{}{}
+Prove 
+\begin{enumerate}[label=(\alph*)]
+  \item If $\phi$ is an odd function, its full Fourier series on $(-l,l)$ has only sine terms. 
+  \item Also, if $\phi$ is an even function, its full Fourier series on $(-l,l)$ has only cosine terms. (Hint: Don't use the series directly. Use the formulas for the coefficients to show that every second coefficient vanishes.)
+\end{enumerate}
+\end{question}
+\begin{proof}
+Write 
+\begin{align*}
+\phi = \sum_{n=0}^{\infty} A_n \cos (\frac{n \pi  x}{l})+ B_n \sin ( \frac{n \pi  x}{l})
+\end{align*}
+Compute 
+\begin{align*}
+A_nl=\int_{-l}^{l} \phi (x) \cos (\frac{ n \pi  x}{l})dx=0\text{ for all }n\geq 1
+\end{align*}
+if $\phi$ is odd. Compute 
+\begin{align*}
+B_nl = \int_{-l}^{l} \phi (x)\sin ( \frac{n \pi  x}{l})dx=0\text{ for all }n\geq 1
+\end{align*}
+if $\phi$ is even. 
+\end{proof}
+\begin{question}{}{}
+Let $\phi(x)$ be a function of period $\pi $. If $\phi (x)=\sum_{n=1}^{\infty}a_n \sin (nx)$ for all $x$, find the odd coefficients. 
+\end{question}
+\begin{proof}
+Because $\phi$ has period $\pi $, we have 
+\begin{align*}
+\sum_{n=1}^{\infty} a_n \sin (nx)= \phi (x)= \phi (x+ \pi )&= \sum_{n=1}^{\infty}a_n \sin (nx+ n \pi )\\
+&=\sum_{n=1}^{\infty}(-1)^na_n \sin (nx)
+\end{align*}
+For this to be true, we must have $a_{\operatorname{odd}}=0$. 
+\end{proof}
+\begin{question}{}{}
+Find the full Fourier series of $e^x$ on  $(-l,l)$ in its real and complex forms. (Hint: It is convenient to find the complex form first)
+\end{question}
+\begin{proof}
+Write 
+\begin{align*}
+e^x= \sum_{n=- \infty}^{\infty} c_n e^{ \frac{i n \pi x }{l}}
+\end{align*}
+Compute 
+\begin{align*}
+c_n&= \frac{1}{2l}\int_{-l}^{l}e^x e^{\frac{- i n \pi  x}{l}}dx \\
+&=\frac{1}{2l}\int_{-l}^{l}e^{ \frac{(l-i n\pi )x}{l}}dx\\
+&=\frac{1}{2l} \cdot \frac{le^{\frac{(l-i n \pi )x}{l}}}{l-i n \pi  }\Big|_{x=-l}^{l} \\
+&= \frac{l(e^{l- i n \pi }- e^{-(l- i n \pi )})}{2l (l- i n \pi )}\\
+&= \frac{(-1)^n (e^l - e^{-l})}{2(l - i n \pi )}= \frac{(-1)^n}{(l- i n \pi )}\sinh (l)
+\end{align*}
+We now have 
+\begin{align*}
+e^x&= \sum_{n=-\infty}^{\infty} \frac{(-1)^n}{(l- i n \pi )}\sinh (l) e^{\frac{i n \pi x}{l}} \\
+&= \frac{\sinh (l)}{l}+ \sum_{n=1}^{\infty} \Big[\frac{(-1)^n \sinh (l) }{(l- i n \pi )}e^{\frac{i n \pi  x}{l}}+ \frac{(-1)^n \sinh (l)}{(l+ i n \pi )}e^{\frac{- i n \pi x}{l}}  \Big] \\
+&=\frac{\sinh (l)}{l}+ \sum_{n=1}^{\infty} (-1)^n\sinh (l) \Big[ \frac{\cos (\frac{n \pi  x}{l})+ i \sin (\frac{n \pi  x}{l})}{l- i n \pi }+ \frac{\cos (\frac{n \pi  x}{l})- i \sin (\frac{n \pi  x}{l})}{l+ i n \pi } \Big]\\
+&= \frac{\sinh (l)}{l}\\
+&+ \sum_{n=1}^{\infty} (-1)^n \sinh (l) \cdot \frac{(l+ i n \pi )\big(\cos (\frac{n \pi  x}{l})+i \sin (\frac{n \pi  x}{l})  \big)+(l- i n \pi )\big( \cos (\frac{n \pi  x}{l})- i \sin (\frac{n \pi  x}{l}) \big)}{l^2 + n^2 \pi ^2} \\
+&=\frac{\sinh (l)}{l}+ \sum_{n=1}^{\infty} \frac{(-1)^n \sinh (l)\big[ 2l \cos (\frac{n \pi  x}{l})-2n \pi  \sin (\frac{n \pi  x}{l}) \big]}{l^2+n^2\pi  ^2} \\
+&= \sum_{n=0}^{\infty} \frac{2(-1)^n \sinh (l)}{l^2 + n^2 \pi ^2}\Big[l\cos (\frac{n \pi  x}{l})- n \pi  \sin (\frac{n \pi  x}{l}) \Big]
+\end{align*}
 
+\end{proof}
+\begin{question}{}{}
+Repeat the last exercise for $\cosh (x)$
+\end{question}
+\begin{proof}
+Recall from last exercise that 
+\begin{align*}
+e^x= \sum_{n=- \infty}^{\infty} \frac{(-1)^n \sinh (l)}{l-i n \pi }  e^{ \frac{i n \pi  x}{l}}
+\end{align*}
+This give us 
+\begin{align*}
+\cosh (x) =\frac{1}{2}(e^{x}-e^{-x})= \frac{1}{2}\Big( \sum_{n=-\infty}^{\infty} \frac{(-1)^n \sinh (l)}{l- i n \pi }e^{ \frac{i n \pi  x}{l}}+ \sum_{n=-\infty}^{\infty} \frac{(-1)^n \sinh (l)}{l- i n \pi }e^{\frac{-i n \pi  x}{l}} \Big)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Repeat the last exercise for $\sin x$. Assume that $l$ is not an integer multiple of  $\pi $. (Hint: First find the series for $e^{ ix}$)
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{5.3 Orthogonality and General Fourier Series} 
+\begin{mdframed}
+In this section, we are concerned with the eigenproblem 
+\begin{align*}
+X''+\ld  X= 0\text{ on }(a,b)
+\end{align*}
+with a pair of boundary conditions 
+\begin{align*}
+\begin{cases}
+  \alpha_1 X(a)+ \beta _1 X(b)+ \gamma_1 X'(a)+ \delta_1 X'(b)=0 \\
+  \alpha_2 X(a) + \beta _2 X(b)+ \gamma _2 X'(a)+ \delta_2 X'(b)=0
+\end{cases}
+\end{align*}
+where the coefficients $\alpha ,\beta ,\gamma\text{ and }\delta$ are all real. A pair of boundary condition is called \textbf{symmetric} if every pair of function $f,g:(a,b)\rightarrow \C$ that satisfies the boundary conditions also satisfies   
+\begin{align*}
+  f'(x)\overline{g(x)}-f(x)\overline{g'(x)} \Big|_{x=a}^b =0
+\end{align*}
+Immediately, we see that if the boundary condition is symmetric, two eigenfunction $X_1,X_2$ with distinct eigenvalues are either orthogonal or have conjugate eigenvalues since 
+ \begin{align*}
+   (\ld _1- \overline{\ld _2})\int_a^b X_1  \overline{X_2} dx&= \int_a^b (-X_1''\overline{ X_2}+ X_1\overline{X_2''})dx \\
+                                                                      &= (-X_1'\overline{X_2}+X_1\overline{X_2'})\Big|_{x=a}^b=0
+\end{align*}
+The second equality is often referred to as \textbf{Green's second identity}. 
+\end{mdframed}
+\begin{question}{}{}
+Consider $u_{tt}=c^2 u_{xx}$ for $0<x<l$, with the boundary conditions  $u (0,t)=u_x(l,t)=0$, and the initial condition $u(x,0)=x,u_t(x,0)=0$. Find the solution explicitly in series form. 
+\end{question}
+\begin{proof}
+The eigenproblems are 
+\begin{align*}
+\begin{cases}
+  X''+ \ld  X=0 \\
+  X(0)=X'(l)=0
+\end{cases} \text{ and }\begin{cases}
+  T''+ c^2 \ld T=0
+\end{cases}
+\end{align*}
+Direct computation shows that $\ld \neq 0$. If $\ld=\beta ^2$, and $X= A \cos (\beta x)+B \sin (\beta x)$, then BCs give 
+\begin{align*}
+\begin{bmatrix}
+  1 & 0 \\
+  -\beta  \sin (\beta l) & \beta \cos (\beta l) 
+\end{bmatrix} \begin{bmatrix}
+A \\
+B
+\end{bmatrix}=0 
+\end{align*}
+This implies
+\begin{align*}
+\beta = \frac{(n+ \frac{1}{2})\pi }{l}\text{ and }X_n= \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})
+\end{align*}
+and $T_n= A_n\cos (c \beta t)+ B_n \sin (c \beta t)$. We now may write 
+\begin{align*}
+u= \sum_{n=0}^{\infty} \Big(A_n \cos (\frac{(n+\frac{1}{2})c \pi t  }{l}) + B_n \sin (\frac{(n+\frac{1}{2})c \pi  t}{l})  \Big) \sin ( \frac{(n+ \frac{1}{2})\pi  x}{l})
+\end{align*}
+Compute 
+\begin{align*}
+u_t= \sum_{n=0}^{\infty} \frac{(n+ \frac{1}{2})c \pi  }{l}  \Big(-A_n  \sin  (\frac{(n+\frac{1}{2})c \pi t  }{l}) + B_n \cos (\frac{(n+\frac{1}{2})c \pi  t}{l})  \Big) \sin ( \frac{(n+ \frac{1}{2})\pi  x}{l})
+\end{align*}
+Plugin the ICs, we now have 
+\begin{align*}
+x=\sum_{n=0}^{\infty} A_n \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})
+\end{align*}
+and 
+\begin{align*}
+0=\sum_{n=0}^{\infty} \frac{(n+ \frac{1}{2})c \pi  }{l}  B_n   \sin ( \frac{(n+ \frac{1}{2})\pi  x}{l})
+\end{align*}
+Because 
+\begin{align*}
+\int_0^l \sin (\frac{(n+\frac{1}{2})\pi  x}{l}) \sin ( \frac{(m+\frac{1}{2})\pi  x}{l}) dx= \begin{cases}
+  \frac{l}{2}& \text{ if $n=m$ }\\
+  0& \text{ if $n\neq m$ }
+\end{cases}
+\end{align*}
+for $n,m\geq 0$, we have 
+\begin{align*}
+\frac{(-1)^nl^2}{(n+ \frac{1}{2})^2 \pi ^2}=\int_0^l x \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})dx = \frac{lA_n}{2}
+\end{align*}
+Thus, 
+\begin{align*}
+u=\sum_{n=0}^{\infty} \frac{2(-1)^n l}{(n+\frac{1}{2})^2 \pi ^2} \cos ( \frac{(n+ \frac{1}{2})c \pi  t}{l}) \sin ( \frac{(n+ \frac{1}{2})\pi  x}{l})
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Consider the problem $u_t=ku_{xx}$ for $0<x<l$, with the boundary conditions  $u(0,t)=U,u_x(l,t)=0$, and the initial condition $u(x,0)=0$ where $U$ is a constant. 
+ \begin{enumerate}[label=(\alph*)]
+  \item Find the solution in series form. (Hint: Consider $u(x,t)-U$) 
+  \item Using a direct argument, show that the series converges for $t>0$.  
+  \item If $\epsilon $ is a given margin of error, estimate how long a time is required for the value $u(l,t)$ at the endpoint to be approximated by the constant $U$ within the error  $\epsilon $. (Hint: It is an alternating series with first $U$, so that the error is less than the next term)
+\end{enumerate}
+\end{question}
+\begin{proof}
+Let $v\triangleq u-U$. We have 
+\begin{align*}
+\begin{cases}
+  v_t=kv_{xx}\text{ for }x\in (0,l)\text{ \textbf{(Homogeneous DE)} } \\
+  v(0,t)=v_x(l,t)=0\text{ \textbf{(BC)} }\\
+  v(x,0)=-U\text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+The eigenproblems are then 
+\begin{align*}
+\begin{cases}
+  X'' + \ld  X=0 \\
+  X(0)=X'(l)=0
+\end{cases} \text{ and }\begin{cases}
+  T'+ k \ld T=0
+\end{cases}
+\end{align*}
+Thus, 
+\begin{align*}
+v= \sum_{n=1}^{\infty} A_ne^{\frac{-(n+ \frac{1}{2})^2 \pi ^2kt}{l^2}}  \sin (\frac{(n+ \frac{1}{2}) \pi  x}{l})
+\end{align*}
+The IC becomes, 
+\begin{align*}
+-U= \sum_{n=1}^{\infty} A_n \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})
+\end{align*}
+We then have 
+\begin{align*}
+v= \sum_{n=1}^{\infty} \frac{-2U}{(n+ \frac{1}{2})\pi  }  e^{\frac{-(n+ \frac{1}{2})^2 \pi ^2kt}{l^2}}  \sin (\frac{(n+ \frac{1}{2}) \pi  x}{l})
+\end{align*}
+The series absolutely converge because it is eventually smaller than a geometric series. One may use root test to check this fact.   
+\end{proof}
+\begin{question}{}{}
+Find the complex eigenvalues of the first-derivative operator $\frac{d}{dx}$ subject to the single boundary condition $X(0)=X(1)$. Are the eigenfunctions orthogonal on the interval $(0,1)$? 
+\end{question}
+\begin{proof}
+We are solving the eigenproblem 
+\begin{align*}
+\begin{cases}
+  X'+ \ld X=0 \\
+  X(0)=X(1)
+\end{cases}
+\end{align*}
+Clearly, the solution $X$ must take the form  $X=e^{-\ld x}$. The boundary conditions then implies 
+\begin{align*}
+e^{-\ld }=X(1)=X(0)=1
+\end{align*}
+which implies 
+\begin{align*}
+\ld = 2n i \pi \text{ for }n\inz
+\end{align*}
+Compute for distinct $n,m$ 
+\begin{align*}
+\langle X_n,X_m\rangle = \int_0^1 e^{- 2(n-m) i \pi  x}dx= \frac{e^{-2(n-m)i \pi  x}}{-2(n-m)i \pi }\Big|_{x=0}^1= 0
+\end{align*}
+So the eigenfunctions are indeed orthogonal. 
+\end{proof}
+\begin{question}{}{}
+Show by direct integration that the eigenfunctions associated with Robin BSc, namely 
+\begin{align*}
+\phi_n (x)= \cos (\beta_n x)+ \frac{a_0}{\beta_n} \sin (\beta_n x)\text{ where }\ld _n= \beta_n^2
+\end{align*}
+are mutually orthogonal on $0\leq x\leq l$, where $\beta _n$ are the positive roots of 
+\begin{align*}
+  (\beta ^2 - a_0a_l)\tan (\beta l)= (a_0+a_l)\beta 
+\end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Show that the boundary conditions 
+\begin{align*}
+X(b)=\alpha X(a)+\beta X'(a)\text{ and }X'(b)=\gamma  X(a)+\delta X'(a)
+\end{align*}
+on an interval $a\leq x\leq b$ are symmetric if and only if $\alpha  \delta-\beta  \gamma =1$.
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+(-X_1'X_2+ X_1X_2')\Big|_{x=a}^b&= -X_1'(b)X_2(b)+X_1 (b)X_2'(b) \\
+&+X_1'(a)X_2(a)-X_1(a)X_2'(a)\\
+&= - \Big(\gamma X_1(a)+\delta X_1'(a) \Big)\Big( \alpha X_2(a) + \beta X'_2(a) \Big)\\
+&+ \Big(\alpha X_1(a)+ \beta X'_1(a) \Big) \Big( \gamma X_2(a)+\delta X'_2(a) \Big)\\
+&+X_1'(a)X_2(a)-X_1(a)X_2'(a)\\
+&= (-\delta \alpha + \beta  \gamma +1)\big(X_1'(a)X_2(a)-X_1(a)X_2'(a)\big)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+  (The Gram-Schmidt orthogonalization procedure) If $X_1,X_2,\dots$ is any sequence (finite or infinite) of linearly independent vectors in any vector space with an inner, it can be replace by a sequence of linear combinations that are mutually orthogonal. The idea is that at each step one subtracts off the components parallel to the previous vectors. The procedure is as follows. First, we let $Z_1 = \frac{X_1}{\norm{X_1}}$. Second, we define 
+\begin{align*}
+    Y_2\triangleq X_2 - (X_2,Z_1)Z_1\text{ and }Z_2 \triangleq \frac{Y_2}{\norm{Y_2}}
+\end{align*}
+  Third, we define 
+\begin{align*}
+Y_3 \triangleq X_3 - (X_3,Z_2)Z_2 - (X_3,Z_1)Z_1\text{ and }Z_3\triangleq \frac{Y_3}{\norm{Y_3}}  
+\end{align*}
+and so on. 
+\begin{enumerate}[label=(\alph*)]
+  \item Show that all vectors $Z_1,Z_2,Z_3,\dots$ are orthogonal to each other. 
+  \item Apply the procedure to the pair of functions $\cos (x)+\cos (2x)$ and $3 \cos (x)-4 \cos (2x)$ in the interval $(0,\pi )$ to get an orthogonal pair. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\norm{\cos (x)+ \cos (2x)}^2&=\int_0^{\pi } (\cos (x)+ \cos (2x))^2 dx  \\
+&=\int_0^{\pi } \frac{\cos (x)+ \cos (2x)+ \cos (3x)+ \cos (4x)+2}{2} dx \\
+&=\pi  
+\end{align*}
+Compute 
+\begin{align*}
+\langle \cos (x)+ \cos (2x), 3 \cos (x)-4 \cos (2x)\rangle&= 3\langle \cos(x) ,\cos (x)\rangle  -4\langle \cos (2x),\cos (2x)\rangle  \\
+&= \frac{- \pi  }{2}
+\end{align*}
+Thus an orthogonal pair can be 
+\begin{align*}
+\cos (x)+ \cos (2x)\text{ and } \frac{7}{2}(\cos (x)-\cos (2x))
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}[label=(\alph*)]
+  \item Show that the condition $f(x)f'(x)|_a^b\leq 0$ is valid for any function that satisfies the Dirichlet, Neumann, or periodic boundary conditions. 
+  \item Show that it is also valid for Robin BCs provided that the constants $a_0$ and  $a_l$ are positive. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Part (a) is clear. Note that the periodic boundary conditions mean 
+\begin{align*}
+f(b)=f(a)\text{ and }f'(b)=f'(a)
+\end{align*}
+The Robin boundary conditions means 
+\begin{align*}
+X'-a_0X=0 \text{ at $0$ and }X'+a_lX=0\text{ at }l
+\end{align*}
+Compute 
+\begin{align*}
+X'(b)X(b)-X'(a)X(a)&= -a_l X^2(b)-a_0X^2(a)\leq 0
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Use Green's first identity to prove if the boundary conditions is symmetric and 
+\begin{align*}
+f(x)f'(x)\Big|_{x=a}^b \leq 0
+\end{align*}
+for any real-valued $f$ satisfying BCs, then there is no negative eigenvalue.
+\end{question}
+\begin{proof}
+Note that the symmetry the boundary conditions have nothing to do here. Product rule give us 
+\begin{align*}
+\int_a^b X''Xdx= XX' \Big|_{x=a}^b- \int_a^b (X')^2dx
+\end{align*}
+The right hand side by definition is non-positive. The proof then follows from noting if $X$ is of negative eigenvalue, then the left hand side is positive.  
+\end{proof}
+\section{5.4 Completeness}
+\begin{theorem}
+\textbf{(Infinite number of eigenvalues)} Consider the eigenproblem 
+\begin{align*}
+X''+ \ld  X=0\text{ on }(a,b)
+\end{align*}
+with a pair of symmetric BCs. Let $f:[a,b]\rightarrow \R$ be a real-valued function. We have
+\begin{enumerate}[label=(\alph*)]
+  \item Any two eigenfunction that correspond to distinct eigenvalues are orthogonal. 
+  \item The set of eigenvalues is exactly a real sequence $\ld_n$ converging to $\infty$, and every eigenspace contain at least one real eigenfunction. 
+\begin{mdframed}
+Let $X_n:[a,b]\rightarrow \R$ be a sequence of real-valued eigenfunction corresponding to distinct eigenvalues. We say $(X_n)$ is an orthogonal set, since they are indeed orthogonal to each other. For all $n\inn$, we define the Fourier coefficient $A_n$ by 
+ \begin{align*}
+A_n \triangleq \frac{(f,X_n)}{\norm{X_n}^2}=\frac{\int_a^b f(x)\overline{X_n(x)}dx}{\int_a^b \abso{X_n(x)}^2 dx}
+\end{align*}
+\end{mdframed}
+  \item If $f$ is  $C^2$ on $[a,b]$ and also satisfies the symmetric BCs, then the Fourier series converge $\sum A_nX_n$ converge to $f$ uniformly on  $[a,b]$.
+  \item If $f \in L^2(a,b)$, then $\sum A_nX_n \to f$ in $L^2$
+    \begin{align*}
+    \norm{f - \sum_{n=1}^N A_nX_n}\to 0\text{ as }N \to \infty 
+    \end{align*}
+  \item If $f':[a,b]\rightarrow \R$ is piecewise continuous, then the classical Fourier series  (full or sine or cosine) converge to $f$ on $(a,b)$.  
+\end{enumerate}
+\end{theorem}
+\begin{theorem}
+\textbf{(Least Square Approximation)} Fix $N$. 
+ \begin{align*}
+\norm{f- \sum_{n=1}^N c_nX_n}
+\end{align*}
+as a function in $c_1,\dots ,c_N$ has a minimum, which happen exactly when $c_n=A_n$. 
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+  \norm{f- \sum_{n=1}^N c_n X_n}^2&= \int_a^b \abso{f- \sum_{n=1}^N c_n X_n}^2 dx\\
+  &=\int_a^b \Big(f- \sum_{n=1}^N c_n X_n\Big)^2dx  \\
+  &=\int_a^b f^2 - 2\sum_{n=1}^N c_n f X_n + \Big(\sum_{n=1}^N c_n X_n  \Big)^2 dx \\
+  &= \norm{f}^2 - 2c_n (f,X_n) + \sum_{n=1}^N c_n^2 \norm{X_n}^2 \\
+  &=\norm{f}^2 + \sum_{n=1}^N \norm{X_n}^2 \Big[ c_n - \frac{(f,X_n)}{\norm{X_n}^2} \Big]^2  - \sum_{n=1}^N \frac{(f,X_n)^2}{\norm{X_n}^2}
+\end{align*}
+which obviously have a minimum when $c_n= \frac{(f,X_n)}{\norm{X_n}^2}=A_n$. 
+\end{proof}
+\begin{mdframed}
+Note that the proof above moreover gives the \textbf{Bessel's Inequality} 
+\begin{align*}
+\norm{f}^2- \sum_{n=1}^N A_n^2 \norm{X_n}^2 =\norm{f}^2 - \sum_{n=1}^N \frac{(f,X_n)^2}{\norm{X_n}^2} = \norm{f- \sum_{n=1}^N c_n X_n}^2 \geq 0
+\end{align*}
+That is, 
+\begin{align*}
+\sum_{n=1}^N A_n^2 \norm{X_n}^2 \leq \norm{f}^2
+\end{align*}
+It also shows that 
+\begin{align*}
+  \norm{f-\sum_{n=1}^N A_nX_n } \to 0\iff \norm{f}^2=\sum_{n=1}^\infty A_n^2 \norm{X_n}^2
+\end{align*}
+The expression on the right hand side is often called \textbf{Parseval equality}. 
+\end{mdframed}
+\begin{question}{}{}
+Consider 
+\begin{align*}
+\sum_{n=0}^{\infty}(-1)^n x^{2n}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Does it converge pointwise in $(-1,1)$?  
+  \item Does it converge uniformly in $(-1,1)$? 
+  \item Does it converge in $L^2$ in $(-1,1)$? 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Geometric series as such obviously  converges to 
+\begin{align*}
+\sum_{n=0}^{\infty} (-1)^n x^{2n}= \sum_{n=0}^{\infty}(-x^2)^n= \frac{1}{1+x^2}
+\end{align*}
+Note that the remainder can also be computed by 
+\begin{align*}
+  \sup_{x\in (-1,1)}\abso{\sum_{n=N}^{\infty} (-x^2)^n}= \sup_{x \in (-1,1)}\abso{\frac{-x^{2N}}{1+x^2}}= \frac{1}{2}\text{ for all }N
+\end{align*}
+It follows that the series does NOT converge uniformly on $(-1,1)$. Compute 
+\begin{align*}
+\int_{-1}^{1} \Big(\sum_{n=N}^{\infty} (-x^2)^n \Big)^2 dx&= \int_{-1}^1 \Big( \frac{-x^{2N}}{1+x^2} \Big)^2 dx  \\
+&=\int_{-1}^1 \frac{x^{4N}}{(1+x^2)^2}dx \\
+&\leq \int_{-1}^{1} x^{4N}dx= \frac{x^{4N+1}}{4N+1}\Big|_{x=-1}^{1}\to 0
+\end{align*}
+It follows that the series does converge in $L^2$. 
+\end{proof}
+\begin{question}{}{}
+Find the sine series of the function $\cos (x)$ on the interval $(0,\pi )$. For each $x$ in $[-\pi ,\pi ]$, what is the sum of the series?  
+\end{question}
+\begin{proof}
+Write 
+\begin{align*}
+\cos (x)\sim  \sum_{n=1}^{\infty} A_n \sin (n  x)
+\end{align*}
+Compute the coefficients   
+\begin{align*}
+ A_n = \frac{\int_0^{\pi } \cos (x)\sin (n  x)dx}{\int_0^{\pi }\sin^2 (nx)dx}=\begin{cases}
+  0& \text{ if $n$ is odd } \\
+  \frac{4n}{\pi  (n^2-1)}& \text{ if $n$ is even }
+ \end{cases} 
+\end{align*}
+The Fourier series by oddness and smoothness of $\cos (x)$ converge to 
+\begin{align*}
+\sum A_n \sin (nx)= \begin{cases}
+  \cos (x)& \text{ if $x\in (0,\pi )$ }\\
+  0& \text{ if $x=0,\pm \pi $ } \\
+  -\cos (x)& \text{ if $x\in (-\pi ,0)$ }
+\end{cases}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let 
+\begin{align*}
+\phi (x)\triangleq \begin{cases}
+  -1-x& \text{ if $x\in (-1,0)$ }\\
+  1-x& \text{ if $x\in (0,1)$ }
+\end{cases}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Find the full Fourier series of $\phi$ in the interval $(-1,1)$. 
+  \item Find the first three nonzero terms explicitly. 
+  \item Does it converge in $L^2$?  
+  \item Does it converge pointwise? 
+  \item Does it converge uniformly to $\phi$ in the interval $(-1,1)$? 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Define
+\begin{align*}
+\psi (x)\triangleq \begin{cases}
+  -1& \text{ if $x\in (-1,0)$ }\\
+  1& \text{ if $x\in (0,1)$ }
+\end{cases}
+\end{align*}
+Write 
+\begin{align*}
+\psi (x)\sim  \sum_{n=0}^{\infty}A_n \cos (n\pi  x)+ B_n \sin (n \pi x )
+\end{align*}
+It is clear that $A_0=0$. Compute 
+\begin{align*}
+A_n= \frac{\int_{-1}^{1} \psi (x) \cos ( n \pi  x)dx}{2}=0 
+\end{align*}
+Compute 
+\begin{align*}
+B_n= \frac{2\int_0^1 \sin (n \pi  x)dx}{2}= \frac{\cos (n \pi  x)}{-n \pi  }\Big|_{x=0}^{1}=   \frac{(-1)^n-1}{-n \pi  }
+\end{align*}
+Therefore 
+\begin{align*}
+\psi (x)\sim  \sum_{n=1}^{\infty} \frac{(-1)^n -1}{- n \pi  } \sin (n \pi  x)
+\end{align*}
+Write 
+\begin{align*}
+x\sim  \sum_{n=0}^{\infty} A_n \cos (n \pi  x)+ B_n \sin (n \pi  x)
+\end{align*}
+It is clear that $A_n=0$. Compute 
+\begin{align*}
+B_n&= \frac{\int_{-1}^{1}x \sin (n \pi  x)dx}{2}= \frac{-2(-1)^n}{n \pi }
+\end{align*}
+In conclusion 
+\begin{align*}
+  \phi (x)= \psi (x)-x &\sim  \sum_{n=1}^{\infty} \Big[ \frac{(-1)^n-1}{- n \pi }- \frac{-2(-1)^n}{n \pi } \Big] \sin (n \pi  x) \\
+  &= \sum_{n=1}^{\infty} \frac{(-1)^n+1}{n\pi  } \sin ( n \pi  x)
+\end{align*}
+The series converge in $L^2$ since $\phi \in L^2$. Because $\phi$ is smooth on $(-1,0)$ and $(0,1)$, the series converge to $\phi$ at least on $(-1,0)\cup (0,1)$. \\
+
+We claim that the series does NOT converge uniformly. Because none of the partial sum has uniform distance with $\phi$ smaller than $1$. Observe 
+\begin{align*}
+\lim_{x\to 0} \Big(\sum_{n=1}^N \frac{(-1)^n + 1}{n \pi  }\sin (n \pi  x)=0 \Big) \text{ and }\lim_{x\to 0} \phi (x)
+\end{align*}
+If the convergence is uniform, then the former expression should have converge to the latter as $N \to \infty$.  
+\end{proof}
+\begin{question}{}{}
+Let $f(x)$ be a function on $(-l,l)$ that has a continuous derivative and satisfies the periodic BCs. 
+\begin{align*}
+f(-l)=f(l)\text{ and }f'(-l)=f'(l)
+\end{align*}
+Let $a_n$ and  $b_n$ be the Fourier coefficients of $f(x)$, and let $a'_n$ and  $b'_n$ be the Fourier coefficients of its derivative $f'(x)$. Show that 
+\begin{align*}
+a'_n= \frac{n \pi  b_n}{l}\text{ and }b'_n = \frac{- n \pi  a_n}{l}\text{ for }n\neq 0
+\end{align*}
+(Hint: Write the formulas for $a'_n$ and $b'_n$ and integrate by parts.) This means that the Fourier series of $f'(x)$ is what you would obtain as if you differentiated term by term. It does not mean that the differentiated series converges. 
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+a'_n&= \frac{1}{l}\int_{-l}^{l}f'(x) \cos (\frac{n \pi  x}{l})dx  \\
+&=\frac{1}{l} \Big( f(x) \cos (\frac{n \pi  x}{l})\Big|_{x=-l}^{l}+ \frac{n \pi }{l} \int_{-l}^l f(x)\sin ( \frac{n \pi  x}{l})dx \Big)= \frac{n \pi  b_n}{l}
+\end{align*}
+Compute 
+\begin{align*}
+b'_n&= \frac{1}{l}\int_{-l}^l f'(x) \sin ( \frac{n \pi  x}{l})dx \\
+&=\frac{1}{l}\Big( f(x)\sin ( \frac{n \pi  x}{l})\Big|_{x=-l}^l - \frac{n \pi }{l}\int_{-l}^l f(x) \cos ( \frac{n \pi  x}{l}) \Big)= \frac{-n \pi  a_n}{l}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+  (Term by Term integration) 
+\begin{enumerate}[label=(\alph*)]
+  \item If $f(x)$ is a piecewise continuous function in $[-l,l]$, show that its definite integral $F(x)=\int_{-l}^x f(s)ds$ has a full Fourier series that converges pointwise. 
+  \item Write this convergent series for $F(x)$ explicitly in terms of the Fourier coefficients $a_0,a_n,b_n$ of  $f(x)$ where $a_0=0$. (Hint: Apply a convergence Theorem. Write the formulas for the coefficients and integrate by parts.)
+\end{enumerate}
+\end{question}
+\begin{proof}
+Part (a) follows from observing $F'=f$ is pointwise continuous so that the classical Fourier series of $F$ converges to  $F$ by Theorem 4 in the textbook.\\
+
+Write 
+\begin{align*}
+f(x)=\sum_{n=1}^{\infty} a_n\cos ( \frac{n \pi  x}{l})+ b_n \sin ( \frac{n \pi  x}{l}) 
+\end{align*}
+Note that the definition of piece wise continuity in this book implies boundedness on compact domain, and note that each term
+\begin{align*}
+\sum_{n=1}^N a_n \cos (\frac{n \pi  x}{l})+ b_n \sin (\frac{n \pi  x}{l})
+\end{align*}
+is obviously bounded on $[-l,l]$. Then because $f$ is bounded on $[-l,l]$, we know 
+\begin{align*}
+\sum_{n=1}^N a_m \cos (\frac{n \pi  x}{l})+ b_n \sin (\frac{n \pi  x}{l})\text{ is uniformly bounded on }[-l,l]
+\end{align*}
+Therefore, we may apply DCT to compute 
+\begin{align*}
+F(x)&= \int_{-l}^x \sum_{n=1}^{\infty} a_n \cos ( \frac{n \pi  s}{l})+ b_n \sin ( \frac{n \pi  s}{l})ds  \\
+&=\sum_{n=1}^{\infty} \int_{-l}^x a_n \cos ( \frac{n \pi  s}{l})+ b_n \sin ( \frac{n \pi  s}{l})ds\\
+&=\sum_{n=1}^{\infty} \frac{a_n l}{n \pi  }\sin ( \frac{ n \pi  x}{l}) + \frac{-b_n l}{n \pi }\cos (\frac{n \pi  x}{l})+ \frac{-(-1)^nb_nl}{n \pi }
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Start with the Fourier sine series of $f(x)=x$ on the interval $(0,l)$. Apply Parseval's equality. Find the sum $\sum_{n=1}^{\infty } \frac{1}{n^2}$. 
+\end{question}
+\begin{proof}
+Set 
+\begin{align*}
+X_n\triangleq  \sin (\frac{n \pi  x}{l})
+\end{align*}
+Compute the coefficients 
+\begin{align*}
+A_n= \frac{2}{l}\int_0^l x \sin ( \frac{n \pi  x}{l})dx= \frac{-2l(-1)^n}{n \pi  }
+\end{align*}
+Parseval's equality is now 
+\begin{align*}
+ \frac{l^3}{3}=\norm{f}^2= \sum_{n=1}^{\infty} \abso{A_n}^2 \norm{X_n}^2= \sum_{n=1}^{\infty} \frac{4l^2}{n^2 \pi ^2}\cdot\frac{l}{2}
+\end{align*}
+This give us 
+\begin{align*}
+\sum_{n=1}^{\infty} \frac{1}{n^2}= \frac{\pi ^2}{6}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Find the sum 
+\begin{align*}
+\sum_{n=1}^{\infty} \frac{1}{n^6}
+\end{align*}
+\end{question}
+\begin{proof}
+Consider the full Fourier series of $f(x)=x^3$ on $(-\pi ,\pi )$. Let 
+\begin{align*}
+x^3 \sim A_0+ \sum_{n=1}^{\infty} A_n \cos (nx)+ B_n \sin (nx)
+\end{align*}
+Because $x^3$ is odd, we have 
+\begin{align*}
+A_0=A_n=0
+\end{align*}
+Compute 
+\begin{align*}
+B_n= \frac{1}{\pi }\int_{-\pi }^{\pi } x^3\sin (nx)= (-1)^n \Big[\frac{12 \pi }{n^3}-\frac{2\pi ^2}{n}\Big]
+\end{align*}
+The rest of the computation follows from Parseval's equality and computing the sum of  $\frac{1}{n^4}$ by considering the cosine Fourier series of $x^2$ on $(0,\pi )$. 
+\end{proof}
+\begin{question}{}{}
+Let $\phi (x)=\abso{x}$ in $(-\pi ,\pi )$. If we approximate it by the function 
+\begin{align*}
+f(x)= \frac{1}{2}a_0+ a_1\cos x + b_1 \sin x+ a_2 \cos 2x + b_2 \sin 2x
+\end{align*}
+what choice of coefficients will minimize the $L^2$ error. 
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\frac{1}{2}a_0= \frac{1}{2\pi }\int_{-\pi }^{\pi }\abso{x}dx= \frac{\pi }{2}
+\end{align*}
+Compute 
+\begin{align*}
+a_1= \frac{1}{\pi } \int_{-\pi }^{\pi } \abso{x}\cos (x)dx= \frac{-4}{\pi }
+\end{align*}
+Compute 
+\begin{align*}
+a_2=\frac{1}{\pi }\int_{-\pi }^{\pi }\abso{x}\cos (2x)dx = 0
+\end{align*}
+Because $\abso{x}$ is even, obviously $b_1=b_2=0$. 
+\end{proof}
+\begin{question}{}{}
+Here is a general method to calculate the normalizing constants. Let $X(x,\ld )$ be a family of real solutions of the ODE 
+\begin{align*}
+-X''=\ld  X
+\end{align*}
+which depends in a smooth manner of $\ld $ as well as on $x$. 
+ \begin{enumerate}[label=(\alph*)]
+  \item Find the ODE satisfied by  $\frac{\partial X}{\partial \ld }$.
+  \item Apply Green's second identity to the pair of functions $X$ and  $\frac{\partial X}{\partial \ld }$ in order to obtain a formula for $\int _a^b X^2 dx$ in terms of the boundary values. 
+  \item As an example, use the result of part (b) and the Dirichlet boundary conditions to compute  $\int _0^l \sin^2 (\frac{m \pi  x}{l})dx$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{5.5 Completeness and the Gibbs Phenomenon} 
+\begin{question}{}{}
+Prove the Schwarz Inequality 
+\begin{align*}
+\abso{ (f,g)} \leq \norm{f}_2 \cdot \norm{g}_2
+\end{align*}
+for any pair of functions. 
+\end{question}
+\begin{proof}
+Schwarz inequality for integral is a corollary of Holder's inequality 
+\begin{align*}
+\abso{(f,g)}&= \abso{\int f \overline{g}dx}\leq \int \abso{fg}dx = \norm{fg}_1 \leq \norm{f}_2 \cdot \norm{g}_2 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Prove the inequality 
+\begin{align*}
+[f(l)-f(0)]^2 \leq l \int_0^l (f'(x))^2 dx 
+\end{align*}
+for any continuous $f:[0,l]\rightarrow \R$ that is $C^1$ on  $(0,l)$. \\
+
+Hint: Use Schwarz inequality with the pair $f'(x)$ and $1$. 
+\end{question}
+\begin{proof}
+Because $f$ is differentiable on $(0,l)$ and continuous on the boundary, we may use the Fundamental Theorem of Calculus and apply the Schwarz inequality for integral to the pair $f'$ and $1$ to deduce 
+ \begin{align*}
+[f(l)-f(0)]^2 = \abso{(f',1)}^2  \leq \norm{f'}_2^2 \cdot \norm{1}_2^2 = l \int_0^l (f'(x))^2 dx
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let 
+\begin{align*}
+\int_{-\pi }^{\pi } \Big[\abso{f(x)}^2 + \abso{g(x)}^2 \Big]dx 
+\end{align*}
+be finite, where 
+\begin{align*}
+g(x)\triangleq \frac{f(x)}{e^{ix}-1}. 
+\end{align*}
+Let $c_n$ be the coefficients of the full complex Fourier series of $f$. Show that 
+ \begin{align*}
+\sum_{n=-N}^N c_n \to 0
+\end{align*}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\sum_{n=-N}^N c_n &= \sum_{n=-N}^N \frac{1}{2\pi }\int_{-\pi }^{\pi } f(x) e^{- i n x}dx \\
+&= \frac{1}{2\pi }\int_{-\pi }^{\pi } f(x)\sum_{n=-N}^N  e^{- i n x} dx \\
+&=\frac{1}{2\pi } \int_{-\pi }^{\pi }f(x) \cdot \frac{e^{-i (N+1)x}- e^{i Nx}}{e^{ix}-1}dx \\
+&=\frac{1}{2\pi }\int_{-\pi }^{\pi } g(x) \Big[e^{-i (N+1)x}- e^{i Nx}  \Big] dx \\
+&= \frac{(g,X_{N+1})- (g,X_{-N})}{2\pi }
+\end{align*}
+This give us 
+\begin{align*}
+\abso{\sum_{n=-N}^N c_n} \leq \frac{\abso{(g,X_{N+1})}+ \abso{(g,X_{-N})}}{2\pi }=\abso{A_{N+1}}+ \abso{A_{-N}}
+\end{align*}
+Because $g$ is $L^2$, the proof then follows from the Parseval's inequality 
+ \begin{align*}
+2\pi  \sum_{n=-\infty}^{\infty} \abso{A_n}^2=\sum_{n=-\infty}^{\infty} \abso{A_n}^2 \norm{X_n}^2= \norm{g}^2 \inr
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Show that if $f$ is $C^1$ on  $[- \pi  ,\pi ]$ and satisfies the periodic BC and if $\int_{-\pi }^{\pi }f(x)dx=0$, then 
+\begin{align*}
+\int_{-\pi }^{\pi } \abso{f}^2 dx \leq \int_{-\pi }^{\pi } \abso{f'}^2 dx
+\end{align*}
+Hint: Use Parseval's equality. 
+\end{question}
+\begin{proof}
+Because $f$ is $C^1$ on  $[-\pi ,\pi ]$, we know $f,f'\in L^2([-\pi  ,\pi ])$. Therefore, if we write 
+\begin{align*}
+f \sim  A_0+ \sum_{n=1}^{\infty} a_n \cos (nx) + b_n \sin (nx)
+\end{align*}
+and 
+\begin{align*}
+f' \sim  A_0'+ \sum_{n=1}^{\infty} a_n' \cos (nx)+ b_n' \sin (nx)
+\end{align*}
+We know 
+\begin{align*}
+\norm{f}^2= \abso{A_0}^2 2\pi  + \pi  \sum_{n=1}^{\infty} (a_n^2 +b_n^2)
+\end{align*}
+and 
+\begin{align*}
+\norm{f'}^2 = \abso{A_0'}^2 2\pi  + \pi  \sum_{n=1}^{\infty}(a'_n^2 +b'_n^2)
+\end{align*}
+Compute 
+\begin{align*}
+A_0= \frac{1}{2\pi }\int_{-\pi }^{\pi }f(x)dx=0 
+\end{align*}
+and 
+\begin{align*}
+  A'_0= \frac{1}{2\pi }\int_{-\pi }^{\pi }f'(x)dx= \frac{1}{2\pi }[f(\pi )-f(-\pi )]=0 
+\end{align*}
+Compute 
+\begin{align*}
+a'_n &= \frac{1}{\pi }\int_{-\pi }^{\pi }f'(x) \cos (nx)dx \\
+&=\frac{1}{\pi } \Big[f(x) \cos (nx)\Big|_{x=-\pi }^{\pi }+ n\int_{-\pi }^{\pi }f(x) \sin (nx)dx  \Big] \\
+&= nb_n
+\end{align*}
+and 
+\begin{align*}
+b'_n &= \frac{1}{\pi }\int_{-\pi }^{\pi }f'(x)\sin (nx)dx \\
+&=\frac{1}{\pi }\Big[ f(x)\sin (nx)\Big|_{x=-\pi }^{\pi }- n \int_{-\pi }^{\pi }f(x)\cos (nx)dx \Big]\\
+&=-na_n
+\end{align*}
+In conclusion 
+\begin{align*}
+\norm{f}^2 = \pi \sum_{n=1}^{\infty} (a_n^2+b_n^2) \leq \pi  \sum_{n=1}^{\infty} n^2(a_n^2+b_n^2)= \norm{f'}^2
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Prove the validity of the Fourier series solution of the diffusion equation on $(0,l)$ with 
+\begin{align*}
+\begin{cases}
+  u_t=ku_{xx}\text{ \textbf{(Homogeneous DE)} }\\
+  u_x(x,0)=u_x(x,l)=0\text{ \textbf{(Neumann BC)} }\\
+  u(x,0)= \phi (x)\text{ \textbf{(IC)} }
+\end{cases}
+\end{align*}
+where $\phi$ is continuous with a piecewise continuous derivative. That is, prove that the series truly converges to the solution. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{6.1 Laplace's Equation}
+\begin{mdframed}
+In two dimensions, we always set 
+\begin{align*}
+x\triangleq r \cos \theta \text{ and } y\triangleq r \sin \theta
+\end{align*}
+In three dimensions, we always set 
+\begin{align*}
+x\triangleq r \sin \theta \cos \pfi \text{ and } y \triangleq r\sin \theta \sin \pfi \text{ and }z=r \cos \theta
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\begin{align*}
+\Delta_2 = \frac{\partial ^2}{\partial r^2} + \frac{1}{r} \frac{\partial }{\partial r} + \frac{1}{r^2} \frac{\partial ^2}{\partial \theta^2}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+\begin{bmatrix}
+  \frac{\partial x}{\partial r} & \frac{\partial x}{\partial  \theta} \\
+  \frac{\partial y}{\partial r} & \frac{\partial y}{\partial  \theta}
+\end{bmatrix} = \begin{bmatrix}
+  \cos \theta & -r \sin \theta \\
+  \sin \theta & r \cos \theta
+\end{bmatrix}
+\end{align*}
+And compute its inverse
+\begin{align*}
+\begin{bmatrix}
+  \frac{\partial r}{\partial x} & \frac{\partial r}{\partial y} \\
+  \frac{\partial \theta}{\partial x} & \frac{\partial  \theta}{\partial y}
+\end{bmatrix} = \begin{bmatrix}
+  \cos \theta & \sin \theta   \\
+  \frac{- \sin \theta}{r} & \frac{\cos \theta}{r}
+\end{bmatrix}
+\end{align*}
+Compute 
+\begin{align*}
+\frac{\partial }{\partial x}&= \frac{\partial r}{\partial x} \frac{\partial }{\partial r}+ \frac{\partial \theta}{\partial x} \frac{\partial }{\partial \theta} \\
+&= \cos \theta \frac{\partial }{\partial r}+ \frac{- \sin \theta}{r} \frac{\partial }{\partial \theta}
+\end{align*}
+And compute 
+\begin{align*}
+\frac{\partial }{\partial y}&= \frac{\partial r}{\partial y} \frac{\partial }{\partial r}+ \frac{\partial \theta}{\partial y} \frac{\partial }{\partial \theta} \\
+&= \sin \theta \frac{\partial }{\partial r}+ \frac{\cos \theta}{r} \frac{\partial }{\partial \theta}
+\end{align*}
+Compute 
+\begin{align*}
+\frac{\partial^2 }{\partial x^2}&= \Big[\cos \theta \frac{\partial }{\partial r}+ \frac{- \sin \theta}{r} \frac{\partial }{\partial \theta}\Big]^2 \\
+&= \cos^2 \theta \frac{\partial^2}{\partial r^2}+ \frac{-2\cos \theta \sin \theta}{r}  \frac{\partial^2}{\partial  r \partial  \theta} + \frac{\sin^2 \theta}{r^2} \frac{\partial ^2}{\partial \theta^2} \\
+&+ \frac{\cos \theta \sin \theta}{r^2} \frac{\partial }{\partial \theta}+ \frac{\sin ^2 \theta}{r}\frac{\partial }{\partial r} +  \frac{\sin \theta \cos \theta}{r^2} \frac{\partial }{\partial  \theta}
+\end{align*}
+Compute 
+\begin{align*}
+\frac{\partial ^2}{\partial y^2}&=\Big[ \sin \theta \frac{\partial }{\partial r}+ \frac{\cos \theta}{r} \frac{\partial }{\partial \theta} \Big]^2 \\
+&= \sin \theta^2 \frac{\partial^2 }{\partial r^2} + \frac{2\sin \theta \cos \theta}{r} \frac{\partial^2}{\partial r \partial  \theta} + \frac{\cos ^2 \theta}{r^2} \frac{\partial ^2}{\partial \theta^2} \\
+&+ \frac{- \sin \theta \cos \theta}{r^2} \frac{\partial }{\partial \theta}+ \frac{\cos^2 \theta}{r} \frac{\partial }{\partial r}+ \frac{- \sin \theta \cos \theta}{r} \frac{\partial }{\partial \theta}
+\end{align*}
+Therefore, 
+\begin{align*}
+\Delta_2&= \frac{\partial ^2}{\partial x^2} + \frac{\partial ^2}{\partial y^2}  \\
+&= \frac{\partial ^2}{\partial r^2}+ \frac{1}{r^2} \frac{\partial ^2}{\partial \theta^2} + \frac{1}{r} \frac{\partial }{\partial r}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\begin{align*}
+\Delta_3 = \frac{\partial ^2}{\partial r^2} + \frac{2}{r} \frac{\partial }{\partial r} + \frac{\cot \theta}{r^2} \frac{\partial ^2}{\partial  \theta^2} + \frac{1}{r^2 \sin ^2 \theta} \frac{\partial ^2}{\partial \phi^2}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Note that if we set $s=r \sin \theta$, then 
+\begin{align*}
+x=s \cos \pfi \text{ and }y= s \sin \pfi 
+\end{align*}
+And 
+\begin{align*}
+s=r \sin \theta \text{ and }z= r \cos \theta
+\end{align*}
+Note that our chain of change of variables is 
+\begin{align*}
+\begin{bmatrix}
+x \\
+y\\
+z
+\end{bmatrix} \leftarrow \begin{bmatrix}
+\pfi\\
+s\\
+z
+\end{bmatrix} \leftarrow  \begin{bmatrix}
+\pfi \\
+r \\
+\theta 
+\end{bmatrix}
+\end{align*}
+These with the same procedure in computation of Laplace in polar coordinate give us 
+\begin{align*}
+u_{xx}+ u_{yy}= u_{ss}+ \frac{u_s}{s} + \frac{u_{\pfi \pfi}}{s^2} 
+\end{align*}
+and 
+\begin{align*}
+u_{ss}+ u_{zz}= u_{rr}+ \frac{u_r}{r}+ \frac{u_{\theta \theta}}{r^2}
+\end{align*}
+This give us 
+\begin{align*}
+u_{xx}+u_{yy}+u_{zz}= u_{rr}+ \frac{u_r}{r}+ \frac{u_{\theta \theta}}{r^2} + \frac{u_s}{s}+ \frac{u_{\pfi \pfi}}{s^2} 
+\end{align*}
+Compute 
+\begin{align*}
+ \begin{bmatrix}
+   \frac{\partial \pfi}{\partial \pfi} & \frac{\partial \pfi}{\partial r} & \frac{\partial \pfi}{\partial \theta} \\
+   \frac{\partial s}{\partial \pfi} & \frac{\partial s}{\partial r} & \frac{\partial s}{\partial \theta} \\
+   \frac{\partial z}{\partial \pfi} & \frac{\partial z}{\partial r} & \frac{\partial z}{\partial \theta} 
+ \end{bmatrix} =\begin{bmatrix}
+   1 & 0 & 0 \\
+   0 & \sin \theta & r \cos \theta \\
+   0 & \cos \theta & -r \sin \theta
+ \end{bmatrix}
+\end{align*}
+This give us 
+\begin{align*}
+\begin{bmatrix}
+  \frac{\partial \pfi}{\partial \pfi} & \frac{\partial \pfi}{\partial s} & \frac{\partial \pfi}{\partial z} \\
+  \frac{\partial r}{\partial \pfi} & \frac{\partial r}{\partial s} & \frac{\partial r}{\partial z} \\
+  \frac{\partial \theta}{\partial \pfi} & \frac{\partial \theta}{\partial s} & \frac{\partial \theta}{\partial z} 
+\end{bmatrix} = \begin{bmatrix}
+1 & 0 & 0 \\
+0 & \sin \theta & \cos \theta \\
+0 & \frac{\cos \theta}{r} & \frac{-\sin \theta}{r}
+\end{bmatrix}
+\end{align*}
+Compute 
+\begin{align*}
+u_s &= u_\pfi \frac{\partial \pfi}{\partial s} + u_r \frac{\partial r}{\partial s}+ u_\theta\frac{\partial  \theta}{\partial s} \\
+&= \sin \theta u_r + \frac{\cos \theta}{r} u_\theta \\
+&=\frac{s}{r}u_r + \frac{\cos \theta}{r}u_ \theta
+\end{align*}
+In conclusion, writing everything in spherical coordinate, 
+\begin{align*}
+\Delta_3 &= u_{xx}+u_{yy}+u_{zz}\\
+&= u_{rr}+ \frac{u_r}{r}+ \frac{u_{\theta \theta}}{r^2} + \frac{u_s}{s}+ \frac{u_{\pfi \pfi}}{s^2}  \\
+&= u_{rr}+ \frac{u_{\theta \theta}}{r^2} + \frac{u_{\pfi \pfi}}{r^2 \sin ^2 \theta} + \frac{2}{r} u_r + \frac{\cot \theta}{r^2}u_{\theta}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Find the solutions that depend only on $r$ of the equation 
+ \begin{align*}
+u_{xx}+u_{yy}+u_{zz}= k^2 u
+\end{align*}
+where $k$ is a positive constant. 
+\end{question}
+\begin{proof}
+If $u$ depend only on  $r$, then the equation can be rewritten into 
+ \begin{align*}
+u_{rr}+ \frac{2}{r}u_r= k^2u
+\end{align*}
+If we set $u=\frac{v}{r}$, we have 
+\begin{align*}
+u'= \frac{v'}{r}- \frac{v}{r^2} \text{ and } u''= \frac{v''}{r}- \frac{2v'}{r^2}+ \frac{2v}{r^3}
+\end{align*}
+Therefore, 
+\begin{align*}
+0&=u''+ \frac{2}{r}u' - k^2 u \\
+&= \frac{v''- k^2 v}{r} 
+\end{align*}
+This implies 
+\begin{align*}
+v= Ae^{kr}+ Be^{-kr}
+\end{align*}
+and 
+\begin{align*}
+u= \frac{Ae^{kr}+ B e^{-kr}}{r}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve 
+\begin{align*}
+u_{xx}+u_{yy}+u_{zz}=0
+\end{align*}
+in the spherical shell $0<a<r<b$ with
+boundary condition $u=A$ on  $r=a$ and  $u=B$ on  $r=b$. 
+\end{question}
+\begin{proof}
+Because $u$ vanish on the whole boundary, we may assume  $u$ depend only  $r$. Therefore, the Laplacian equation in the spherical coordinate can be simplified into 
+ \begin{align*}
+0=u_{rr} + \frac{2u_r}{r} 
+\end{align*}
+If we write $v=u_r$, then we can further simplify
+ \begin{align*}
+v'+ \frac{2v}{r}=0
+\end{align*}
+The solution of this ODE is clearly
+\begin{align*}
+u_r=v=\frac{c}{r^2}
+\end{align*}
+Therefore, 
+\begin{align*}
+u= \frac{C_1}{r}+ C_2
+\end{align*}
+Plugging in the boundary condition, we may solve for the two unknowns 
+\begin{align*}
+u= \frac{(A-B)ab}{r(b-a)} + \frac{-Aa + bB}{b-a}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve the Poisson Equation
+\begin{align*}
+\begin{cases}
+  u_{xx}+ u_{yy}=1 \text{ in }r<a \\
+  u=0\text{ on }r=a
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Write the Poisson equation in polar coordinate 
+\begin{align*}
+u_{rr}+ \frac{u_r}{r} + \frac{u_{\theta \theta}}{r^2}=1
+\end{align*}
+Because $u(a, \theta)$ for all $\theta$, we may suppose $u$ is independent of  $\theta$. Therefore, the Poisson equation in polar coordinate simplifies to 
+\begin{align*}
+u_{rr} + \frac{u_r}{r} = 1
+\end{align*}
+The solution space of this ODE is exactly  
+\begin{align*}
+\bset{ \frac{r^2}{4}+ C_1 \ln r+ C_2 : C_1, C_2 \inr}
+\end{align*}
+Let 
+\begin{align*}
+u= \frac{r^2}{4}+ C_1 \ln r + C_2
+\end{align*}
+Because $u$ is finite on $r=0$, we must have  $C_1=0$. It then follows from  $u=0$ for  $r=a$ that   
+\begin{align*}
+u= \frac{r^2}{4}- \frac{a^2}{4}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve the Poisson Equation 
+\begin{align*}
+\begin{cases}
+  u_{xx}+u_{yy}=1\text{ in the annulus }0<a<r<b  \\
+  u=0\text{ for }r=a\text{ or }b
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Write the Poisson equation in polar coordinate 
+\begin{align*}
+  u_{rr}+ \frac{u_r}{r}+ \frac{u_{\theta \theta}}{r^2}=1
+\end{align*}
+Because $u(a,\theta)=0$ for all $\theta$, we may suppose $u$ depend only on  $r$. Therefore, the Poisson equation may be simplified into 
+\begin{align*}
+u_{rr} + \frac{u_r}{r}=1
+\end{align*}
+The solution space of this ODE is exactly 
+\begin{align*}
+\bset{ \frac{r^2}{4}+ C_1 \ln r+ C_2 : C_1, C_2 \inr}
+\end{align*}
+Let 
+\begin{align*}
+u= \frac{r^2}{4}+ C_1 \ln r + C_2
+\end{align*}
+Plugging in the boundary conditions, we may solve for the two unknowns $C_1,C_2$ 
+ \begin{align*}
+u= \frac{r^2}{4}+ \frac{b^2-a^2}{4(\ln a- \ln b)} \ln r + \frac{b^2 \ln a - a^2 \ln b}{4(\ln b- \ln a)}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Prove the uniqueness of the Dirichlet problem 
+\begin{align*}
+\Delta u= f \text{ in }D,u=g\text{ on }\operatorname{bdy}D
+\end{align*}
+by the energy method. That is, after subtracting two solutions $w=u-v$, multiply the Laplace equation for  $w$ by $w$ itself and use the divergence Theorem. 
+\end{question}
+\begin{proof}
+Set $w\triangleq u-v$, so that $\Delta w=0$ in $D$ and  $w=0$ on boundary of $D$. Applying Green's first identity to $w$ and  $w$, we have 
+\begin{align*}
+  \iint_{\operatorname{bdy}D} w \frac{\partial w}{\partial \textbf{n}}dS =\iiint_D \nabla w \cdot \nabla w d\textbf{x}+ \iiint_D w \Delta w d\textbf{x} 
+\end{align*}
+Because $w$ is constant on the boundary and $\Delta w$ is zero in $D$, we know the left hand side and the second term of the right hand side is also zero. This leave us 
+ \begin{align*}
+\iiint_D  \abso{\nabla w}^2 d \textbf{x}=0 
+\end{align*}
+which implies $\nabla w=\textbf{0}$ in $D$.  This together with the Dirichlet boundary condition implies $w\equiv 0$.  
+\end{proof}
+\begin{theorem}
+\textbf{(Green's first Identity)}
+\begin{align*}
+\iint_{\operatorname{bdy}D} v \frac{\partial u}{\partial \textbf{n}}dS = \iiint_D \nabla v \cdot \nabla u d\textbf{x} + \iiint_D v \Delta u d\textbf{x}
+\end{align*}
+\end{theorem}
+\begin{question}{}{}
+Show that there is no solution of 
+\begin{align*}
+\Delta u =f \text{ in }D, \frac{\partial u}{\partial \textbf{n}}=g\text{ on }\operatorname{bdy}D
+\end{align*}
+in three dimension, unless
+\begin{align*}
+\iiint_D fd\textbf{x}= \iint_{\operatorname{bdy}D}gdS
+\end{align*}
+(Hint: Integrate the equation.) Also show that analogue in one and two dimensions. 
+\end{question}
+\begin{proof}
+\end{proof}
+\section{6.3 Poisson Formula}
+\begin{mdframed}
+Consider 
+\begin{align*}
+\begin{cases}
+  \Delta u =0 \text{ for }r<a  \\
+  u= h(\theta)\text{ for }r=a
+\end{cases}
+\end{align*}
+Rewrite Laplacian in polar coordinate  
+\begin{align*}
+\Delta u= u_{rr}+ \frac{u_r}{r}+ \frac{u_{\theta \theta}}{r^2}
+\end{align*}
+Let's make the separation of variable 
+\begin{align*}
+u(r,\theta)\triangleq  R(r) \Theta (\theta)
+\end{align*}
+The Laplace Differential Equation then can be rewritten into  
+\begin{align*}
+0=R''(r)\Theta  (\theta)+ \frac{1}{r}R'(r)\Theta  (\theta)+ \frac{1}{r^2}R(r)\Theta  ''(\theta)
+\end{align*}
+Divide both side $\frac{r^2}{R(r)\Theta (\theta)}$, we have 
+\begin{align*}
+\frac{r^2R''}{R}+ r \frac{R'}{R}= - \frac{\Theta  ''}{\Theta }= \ld \text{ for some constant  }\ld 
+\end{align*}
+We are now interested in solving the two eigenproblems 
+\begin{align*}
+\begin{cases}
+  \Theta '' + \ld  \Theta =0 \\
+  \Theta  (\theta + 2\pi )= \Theta  (\theta) 
+\end{cases} \text{ and }\begin{cases}
+  r''R''+ rR' - \ld  R=0
+\end{cases}
+\end{align*}
+The solution of the first eigenproblem is 
+\begin{align*}
+  \ld _n=n^2 \text{ and }\Theta _n = A_n \cos (n \theta)+ B_n \sin (n \theta)\text{ for }n \inz_0^+
+\end{align*}
+The second eigenproblem is of Euler type and clearly admits all eigenvalues  $\ld _n=n^2$ 
+\begin{align*}
+R_n=C_nr^n + D_n r^{-n}\text{ and }R_0= D_0\ln r + C_0
+\end{align*}
+Now, because Laplace Equation satisfy maximum principle and 
+ \begin{align*}
+\ln r\to -\infty \text{ and }r^{-n}\to \infty \text{ as }r\to 0^+
+\end{align*}
+We can just write 
+\begin{align*}
+R_n=C_nr^n \text{ and }R_0=C_0
+\end{align*}
+Therefore, summing up all the eigenfunctions, we have  
+\begin{align*}
+u(r,\theta)= \frac{1}{2}A_0 + \sum_{n=1}^{\infty} r^n (A_n \cos (n \theta)+ B_n \sin (n\theta))
+\end{align*}
+Plugging the boundary condition $u=h$ for  $r=a$, we have 
+ \begin{align*}
+h(\theta) = \frac{1}{2}A_0 + \sum_{n=1}^{\infty} a^n (A_n \cos (n \theta)+ B_n \sin (n \theta))
+\end{align*}
+This allow us to solve for $A_0,A_n,B_n$
+\begin{align*}
+A_0&= \frac{1}{\pi }\int_0^{2\pi } h(\pfi)d \pfi \text{ and } A_n= \frac{1}{a^n \pi }\int_0^{2\pi }h(\pfi) \cos (n \pfi)d \pfi  \\
+B_n&= \frac{1}{a^n \pi}\int_{0}^{2\pi } h(\pfi)\sin (n \pfi)d\phi
+\end{align*}
+Although the coefficients may seem daunting, the original $u$ can actually be simplified as follows 
+\begin{align*}
+u&= \frac{1}{2\pi }\int_0^{2\pi }h(\pfi)d\phi + \sum_{n=1}^{\infty} \frac{r^n}{a^n \pi }\int_0^{2\pi } h(\pfi) \Big[\cos (n \pfi)\cos (n \theta)+ \sin (n \pfi)\sin (n \theta) \Big] d\pfi  \\
+&=\frac{1}{2\pi } \int_0^{2\pi }h(\phi)\Big[1+ 2\sum_{n=1}^{\infty} \frac{r^n}{a^n}\cos (n(\theta- \pfi)) \Big]d \pfi
+\end{align*}
+\end{mdframed}
 \chapter{General Analysis HW}
 \section{Brunn-Minkowski Inequality}
 \begin{abstract}
@@ -1170,7 +2458,27 @@ i.e., $f$ is also upper semicontinuous. The second part of question (a) ask us t
 \begin{align*}
 f_n(x)\triangleq \sup_{p \in [a,b]}\Big(f(p)-n\abso{x-p} \Big)
 \end{align*}
-Fix  $n$. We first show that $f_n:[a,b]\rightarrow [-\infty,\infty]$ is continuous. Fix $\epsilon $, and let $x,y\in [a,b]$ satisfy $\abso{x-y}< \frac{\epsilon}{n}$. For all $p\in [a,b]$, we may use reverse triangle inequality to show that 
+It is clear that $f_n:[a,b]\rightarrow [-\infty,\infty]$ is decreasing. Fix $x \in [a,b]$. We now show 
+\begin{align*}
+f_n(x)\searrow f(x)
+\end{align*}
+Fix $\epsilon $. Because $f$ is upper semi-continuous at  $x$, there exists  $\delta$ such that 
+\begin{align*}
+\sup_{y \in [x-\delta, x+\delta]} f(y)\leq f(x)+ \epsilon 
+\end{align*}
+Because $f$ is upper semi-continuous on compact $[a,b]$, we know $f$ is bounded. Let $M$ bound  $\abso{f}$. Let $N\geq \frac{2M}{\delta}$. We see that if $y \in [x-\delta,x+\delta]$, then 
+\begin{align*}
+f(y)- N \abso{x-y} \leq  f(y) \leq f(x)+ \epsilon 
+\end{align*}
+and if $y \not\in [x-\delta,x+\delta]$, then 
+\begin{align*}
+f(y)- N \abso{x-y}\leq f(y)-2M \leq f(x)+ \epsilon 
+\end{align*}
+Fix $n$. We now show  $f_n:[a,b]\rightarrow [-\infty,\infty]$ is continuous. Fix $\epsilon $, we claim 
+\begin{align*}
+\abso{x-y}< \frac{\epsilon }{n} \implies \abso{f_n(x)-f_n(y)}\leq \epsilon 
+\end{align*}
+Observe 
 \begin{align*}
 \abso{\Big(f(p)-n \abso{x-p} \Big)- \Big( f(p)-n\abso{y-p} \Big)}= n \abso{\Big(\abso{x-p}-\abso{y-p} \Big)}\leq n \abso{x-y}< \epsilon 
 \end{align*}
@@ -1186,101 +2494,49 @@ In summary,
 \begin{align*}
 f_n(x)+\epsilon \geq f_n(y) \geq f_n(x)-\epsilon 
 \end{align*}
-Because  $\epsilon $ is arbitrary, we have shown $f_n$ is (uniform) continuous. We now show $f_n$ is decreasing. Fix $x\in [a,b]$ and $n<m$. Observe that for all $p \in [a,b]$ 
-\begin{align*}
-f(p)-m \abso{x-p}< f(p)-n \abso{x-p}
-\end{align*}
-Taking supremum on both side, we have 
-\begin{align*}
-f_m(x)=\sup_{p \in [a,b]}\Big(f(p)-m \abso{x-p} \Big) \leq \sup_{p \in [a,b]}\Big(f(p)-n \abso{x-p} \Big)=f_n(x)
-\end{align*}
-Because $x$ is arbitrary, this implies $f_n$ is indeed decreasing. Lastly, we show $f_n\to f$. Fix $x_0\in [a,b]$ and $\epsilon $. Because $f$ is finite and upper semicontinuous on $[a,b]$, we may let $M\inr $ be the upper bound of $f$ on $[a,b]$ and let $\delta$ satisfy 
-\begin{align*}
-\sup_{[x_0-\delta,x_0+\delta]}f(x)\leq f(x_0)+ \epsilon 
-\end{align*}
-Let $N> \frac{M-(f(x_0)+\epsilon )}{\delta}$. If $p \in [x_0-\delta,x_0+\delta]$, then $f(p)-N\abso{p-x_0}\leq f(p)\leq f(x_0)+\epsilon $. If $p\not\in [x_0-\delta,x_0+\delta]$, then 
-\begin{align*}
-f(p)- N \abso{p-x_0}\leq M-N \abso{p-x_0}<f(x_0)+\epsilon 
-\end{align*}
-Letting $p$ run through $[a,b]$, we now see 
-\begin{align*}
-f_N(x_0)=\sup_{p \in [a,b]}\Big(f(p)-N\abso{p-x_0} \Big)\leq f(x_0)+\epsilon 
-\end{align*}
-Because $\epsilon $ and $x_0$ are arbitrary, and $f_n$ is decreasing, we have shown  $f_n \to f$.
 \end{proof}
 \begin{question}{}{}
-Let $f_k$ be a sequence of measurable function defined on a measurable set  $E$ with finite measure. If  $\abso{f_k(\textbf{x})}\leq M_{\textbf{x}}<\infty$ for all $k$ and for each  $\textbf{x} \in E$, show that given $\epsilon >0$, there exists closed $F\subseteq E$ and finite $M$ such that  $\abso{E-F}< \epsilon $ and $\abso{f_k(\textbf{x})}\leq M$ for all $k$ and  $\textbf{x}\in F$. 
+\begin{enumerate}[label=(\alph*)]
+  \item Shows $f_n\nearrow f \implies  \omega_{f_n}\nearrow \omega_f$. 
+  \item Shows that if $\omega_f$ is continuous at $\alpha $ and $f_n \overset{m}{\to}f$, then $\omega_{f_n}(\alpha ) \to \omega_f (\alpha )$. 
+\end{enumerate}
 \end{question}
 \begin{proof}
-Define for all $n\inn$
+For \textbf{part (a)}, observe for all $\alpha \inr$
 \begin{align*}
-E_n \triangleq \bigcap_{k=1}^{\infty} \set{ f_k \leq n}
-\end{align*}
-Because $f_k$ are measurable on $E$, we know $E_n$ are measurable. Because for all $\textbf{x} \in E, \sup_{n\inn}\abso{f_n(\textbf{x})}< \infty$, we see that $E_n \nearrow E$. Then because $E$ is of finite measure, we know there exists some  $N$ such that 
-\begin{align*}
-\abso{E\setminus E_N}< \frac{\epsilon}{2}
-\end{align*}
-Because $E_N$ is measurable, we know there exists some closed $F\subseteq E_N$ such that 
-\begin{align*}
-\abso{E_N\setminus F}< \frac{\epsilon}{2}
-\end{align*}
-It then follows that 
-\begin{align*}
-\abso{E\setminus F}< \epsilon 
-\end{align*}
-and for all $\textbf{x} \in F$, 
-\begin{align*}
-\textbf{x} \in F \implies  \textbf{x}\in E_N\implies \abso{f_k(\textbf{x})}<N\text{ for all }k\inn
-\end{align*}
-\end{proof}
-\begin{question}{}{}
-If $f$ is measurable on $E$, define  $\omega_f(a)\triangleq \abso{\set{f>a}}$ for $a \inr$. If $f_k\nearrow f$, show  $\omega_{f_k}\nearrow \omega_f$.  If $f_k \overset{m}{\to}f$, show that $\omega_{f_k}\to \omega_f$ at each point of continuity of $\omega_f$. (For the second part, show that if $f_k\overset{m}{\to}f$, then $\limsup_{k\to\infty}\omega_{f_k}(a)\leq \omega_f (a-\epsilon )$ and $\liminf_{k\to\infty} \omega_{f_k}(a)\geq \omega_f(a+\epsilon ) $ for all $\epsilon >0$). 
-\end{question}
-\begin{proof}
-Suppose $f_n\nearrow f$. We know that for all $a\inr$ 
-\begin{align*}
-\set{f_n>a}\nearrow \set{f>a}
+\set{f_n>\alpha }\nearrow \set{f>\alpha }
 \end{align*}
 This implies 
 \begin{align*}
 \omega_{f_n}(a)=\abso{\set{f_n>a}}\nearrow \abso{\set{f>a}}=\omega_f(a)
 \end{align*}
-Because $a$ is arbitrary, we have shown $\omega_{f_n}\nearrow \omega_f$. \\
+For \textbf{part (b)}, fix $\epsilon $ and  observe 
+\begin{align*}
+\set{f_n > \alpha }\subseteq \set{f > \alpha  -\epsilon } \cup  \set{ \abso{f_n -f}> \epsilon }
+\end{align*}
+This implies 
+\begin{align*}
+\omega_{f_n}(\alpha )\leq \omega_f(\alpha -\epsilon ) + \abso{\set{\abso{f_n-f}>\epsilon }}
+\end{align*}
+Then because $\abso{\set{\abso{f_n-f}> \epsilon }} \to 0$, taking limit we have 
+\begin{align*}
+\limsup_{n\to\infty} \omega_{f_n}(\alpha )\leq \omega_f (\alpha - \epsilon )
+\end{align*}
+Again, observe 
+\begin{align*}
+  \set{f_n > \alpha } \cup  \set{\abso{f_n-f}> \epsilon } \supseteq \set{f> \alpha + \epsilon }
+\end{align*}
 
-Suppose $f_n\overset{m}{\to}f$. Fix $\epsilon $. Observe that for all $a\inr$ and $n\inn$
+This implies 
 \begin{align*}
-  \set{f_n >a}\subseteq \set{\abso{f_n-f}>\epsilon } \cup \set{f>a-\epsilon }
+\omega_{f_n}(\alpha )+\abso{\set{\abso{f_n-f}> \epsilon }} \geq \omega_f (\alpha +\epsilon  )
 \end{align*}
-Measuring both side, we get 
+Then because $\abso{\set{\abso{f_n-f}> \epsilon }} \to 0$, taking limit we have 
 \begin{align*}
-\omega_{f_n}(a)= \abso{\set{f_n>a}}\leq \abso{\set{\abso{f_n-f}>\epsilon }}+ \abso{\set{f>a-\epsilon }}= \abso{\set{\abso{f_n-f}<\epsilon }}+ \omega_f(a-\epsilon )
+\liminf_{n\to\infty}  \omega_{f_n}(\alpha )\geq  \omega_f (\alpha + \epsilon )
 \end{align*}
-Then because $f_n\overset{m}{\to}f$ implies $\abso{\set{\abso{f_n-f}<\epsilon }}\to 0$, if we take limit superior on both side, we get 
- \begin{align*}
-\limsup_{n\to\infty} \omega_{f_n}(a)\leq \omega_f(a-\epsilon )
-\end{align*}
-Again, observe that for all $a\inr$ and $n\inn$ 
-\begin{align*}
-\set{f>a+\epsilon }\subseteq \set{\abso{f_n-f}>\epsilon }\cup  \set{f_n>a}
-\end{align*}
-Measuring both side, we get 
-\begin{align*}
-\omega_f(a+\epsilon )= \abso{\set{f>a+\epsilon }} \leq \abso{\set{\abso{f_n-f}>\epsilon }} + \abso{\set{f_n>a}}=\abso{\set{\abso{f_n-f}>\epsilon }} + \omega_{f_n}(a)
-\end{align*}
-Then because $f_n\overset{m}{\to}f$ implies $\abso{\set{\abso{f_n-f}<\epsilon }}\to 0$, if we take limit inferior on both side, we get 
-\begin{align*}
- \omega_f(a+\epsilon )\leq \liminf_{n\to\infty} \omega_{f_n}(a)
-\end{align*}
-Now, if $\omega_f$ is continuous at $a$, we have 
- \begin{align*}
-\omega_f(a+\epsilon )\searrow \omega_f(a)\text{ and }\omega_f(a-\epsilon )\nearrow \omega_f(a)\text{ as }\epsilon \searrow 0 
-\end{align*}
-This then implies 
-\begin{align*}
-\liminf_{n\to\infty} \omega_{f_n}(a)=\limsup_{n\to\infty} \omega_{f_n}(a)=\omega_f(a)
-\end{align*}
-as we wished.
 \end{proof}
+
 \begin{question}{}{}
   If $f$ is measurable and finite almost everywhere on $[a,b]$, show that given $\epsilon >0$, there is a continuous $g$ on $[a,b]$ such that $\abso{\set{f\neq g}}< \epsilon $. Formulate and prove a similar result in $\R^n$ by combining Lusin's Theorem with the Tietze extension Theorem. 
 \end{question}
@@ -1430,27 +2686,29 @@ This implies that $\abso{\set{f< \frac{-1}{n}}}=0$ for all $n\inn$. It then foll
 \end{enumerate}
 \end{question}
 \begin{proof}
-Denote $I_n \triangleq [-n,n]$. By Fubini's Theorem 
+\textbf{(a)}\\
+
+By Tonelli's Theorem 
 \begin{align*}
-\abso{E\cap I_n^2}=\int_{I_n^2}\textbf{1}_E dxdy&=\int_{I_n} \Big( \int_{I_n} \textbf{1}_E dy \Big) dx  \\
-&=\int_{I_n} g(x)dx=0 
+\abso{E}=\int_{\R^2}\chi_E d(x,y)&=\int_\R \Big(\int_\R \chi_E dy\Big)dx\\
+&=\int_{\R} \abso{\set{y\inr:(x,y)\in E}} dx=0
 \end{align*}
-where the last equality follows from the fact  $g(x)=0$ for almost every $x$, which follows from the premise. It follows that 
+where the last equality follows from the premise that $\set{y\inr: (x,y)\in E}$ has $\R^1$-measure zero for almost every  $x$. Again, by Tonelli's Theorem, 
 \begin{align*}
-\abso{E}=\lim_{n\to \infty} \abso{E\cap I_n^2}=0
-\end{align*}
-Now, note that 
-\begin{align*}
-0=\int_{I_n^2}\textbf{1}_E dxdy= \int_{I_n} \Big( \int_{I_n}\textbf{1}_E dx \Big) dy
+\int_{\R} \abso{\set{x\inr: (x,y)\in E}} dy&=\int_\R \Big(\int_\R \chi_E dx\Big)dy\\
+&=\int_{\R^2}\chi_E d(x,y)=0
 \end{align*}
 This implies 
 \begin{align*}
-\abso{\set{x \in I_n: (x,y) \in E }}=\int_{I_n}\textbf{1}_E dx=0 \text{ for almost every }y
+\int_{\R} \abso{\set{x\inr: (x,y)\in E}}dx=0\text{ for almost every }y
 \end{align*}
-It then follows that for almost every $y\inr$, 
+This is true if and only if  
 \begin{align*}
-\abso{\set{x \inr: (x,y)\in E}}= \lim_{n\to \infty} \abso{\set{x \in I_n:(x,y) \in E}}= 0\text{ for almost every }y
+\set{x\inr: (x,y) \in E}\text{ has measure zero for almost every }y
 \end{align*}
+
+\textbf{(b)} \\
+
 Let $F\triangleq \set{(x,y)\inr^2: f(x,y)=\infty}$. Observe 
 \begin{align*}
 F= \bigcap_{n\inn} \set{(x,y)\inr^2:f(x,y)>n}
@@ -1459,7 +2717,7 @@ It follows from $f$ is measurable that $F$ is  measurable. By premise,
 \begin{align*}
 \abso{\set{y\inr: (x,y)\in F}}=0\text{ for almost every }x 
 \end{align*}
-We have shown $F$ satisfy the hypothesis $E$ that satisfies. It then follows from part (a) that 
+We have shown $F$ satisfies the hypothesis $E$ satisfies. It then follows from part \textbf{(a)} that 
 \begin{align*}
   \abso{\set{x\inr: (x,y)\in F}}=0\text{ for almost every }y
 \end{align*}
@@ -1494,7 +2752,7 @@ We have shown $f(x)-f(t)\in L([0,1]^2)$. It then follows from Fubini's Theorem
 \begin{align*}
 \int_0^1 \abso{f(x)-f(t)}dx \inr \text{ for almost every }t \in [0,1]
 \end{align*}
-Fix some $t \in [0,1]$ such that $\int_0^1 \abso{f(x)-f(t)}dx$. It is clear that if $\int_0^1 \abso{f(x)-f(t)}dx \inr$, then $\abso{f(t)}<\infty$. Define  $h_t:[0,1]\rightarrow [-\infty,\infty]$ by 
+Fix some $t \in [0,1]$ such that $\int_0^1 \abso{f(x)-f(t)}dx\inr$. Because $[0,1]$ is not null, $f(t)\neq \pm \infty$ obviously. Define  $h_t:[0,1]\rightarrow [-\infty,\infty]$ by 
 \begin{align*}
 h_t(x)\triangleq f(x)-f(t)
 \end{align*}
@@ -1525,10 +2783,10 @@ Thus,
 \begin{align*}
 \omega (y)= \abso{R(f,E)_y}
 \end{align*}
-Now by Tonelli's Theorem, 
+Let $E\subseteq \R^n$. Part \textbf{(a)} then follows from applying Tonelli's Theorem to compute  
 \begin{align*}
-\int_E f=\abso{R(f,E)}&= \iint_{R(f,E)}d\textbf{x}dy \\
-&=\int_{\R^+} \Big[\int_{R(f,E)_y} d\textbf{x}  \Big] dy \\
+\int_E f=\abso{R(f,E)}&=\int_{\R^n \times \R^+} \chi_{R(f,E)}  d(\textbf{x},y)\hspace{0.5cm}\text{ Recall $y>0$ }\\
+&=\int_{\R^+} \Big[\int_{\R^n} \chi_{R(f,E)} d\textbf{x}  \Big] dy \\
 &=\int_{\R^+} \abso{R(f,E)_y} dy=\int_{\R^+}\omega (y)dy
 \end{align*}
 Define $\omega_p:\R^+\rightarrow [0,\infty]$ by 
@@ -5458,599 +6716,6 @@ In summary
 u=\frac{t}{2}+ \frac{\cos (2x)\sin (2ct) }{4c}
 \end{align*}
 \end{proof}
-\chapter{PDE 4}
-\section{Cheat Sheet}
-\begin{mdframed}
-Consider the \textbf{Dirichlet} eigenproblem 
-\begin{align*}
-\begin{cases}
-  X''+ \ld X=0 \\
-  X(0)=X(l)=0
-\end{cases}
-\end{align*}
-It is clear that $0$ is NOT an eigenvalue. Suppose  $\ld =\beta ^2\inc$ is an eigenvalue. We see that $X$ must take the form
-\begin{align*}
-X= A \cos (\beta x)+ B \sin (\beta x)
-\end{align*}
-The initial condition implies 
-\begin{align*}
-\begin{bmatrix}
-  1 & 0  \\
-  \cos (\beta l) & \sin (\beta l)
-\end{bmatrix} \begin{bmatrix}
-A\\
-B
-\end{bmatrix}=0 
-\end{align*}
-This implies that 
-\begin{align*}
-\beta = \frac{n \pi  }{l}\text{ and } X= \sin ( \frac{n \pi  x}{l})\text{ for }n\geq 1
-\end{align*}
-\end{mdframed}
-\begin{mdframed}
-  Consider the \textbf{Neumann} eigenproblem 
-\begin{align*}
-\begin{cases}
-  X'' + \ld X=0 \\
-  X'(0)=X'(l)=0
-\end{cases}
-\end{align*}
-It is clear that $0$ is an eigenvalue with eigenspace spanned by constant function. Suppose $\ld =\beta ^2\inc$ is an eigenvalue. We see that $X$ must take the form 
- \begin{align*}
-X= A\cos (\beta x) + B\sin (\beta x)
-\end{align*}
-The initial condition then implies 
-\begin{align*}
-\begin{bmatrix}
-  0 & \beta \\
-  -\beta  \sin (\beta l) & \beta  \cos (\beta l)
-\end{bmatrix}\begin{bmatrix}
-A\\
-B
-\end{bmatrix}=0 
-\end{align*}
-This implies that 
-\begin{align*}
-\beta = \frac{n \pi  }{l} \text{ and }X= \cos (\frac{n \pi  x}{l})\text{ for }n\geq 1
-\end{align*}
-\end{mdframed}
-\begin{mdframed}
-Consider the \textbf{mixed} eigenproblem 
-\begin{align*}
-\begin{cases}
-  X''+ \ld  X=0 \\
-  X(0)=X'(l)=0
-\end{cases}
-\end{align*}
-It is clear that $0$ is Not an eigenvalue. Suppose $\ld = \beta ^2\inc$ is an eigenvalue. We see that $X$ must take the form 
- \begin{align*}
-X=A \cos (\beta x)+ B \sin (\beta x)
-\end{align*}
-The initial condition implies 
-\begin{align*}
-\begin{bmatrix}
-  1 & 0 \\
-  -\beta  \sin (\beta l) & \beta \cos (\beta l) 
-\end{bmatrix} \begin{bmatrix}
-A \\
-B
-\end{bmatrix}=0 
-\end{align*}
-This implies
-\begin{align*}
-\beta = \frac{(n+ \frac{1}{2})\pi }{l}\text{ and }X_n= \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})\text{ for }n\geq 1
-\end{align*}
-\end{mdframed}
-\begin{mdframed}
-The \textbf{Fourier sine series of $\phi$ on $(0,l)$} is 
-  \begin{align*}
-  \phi (x)=\sum_{n=0}^{\infty} A_n \sin (\frac{n \pi  x}{l})
-  \end{align*}
-The \textbf{Fourier cosine series of $\phi$ on $(0,l)$} is 
-  \begin{align*}
-  \phi (x)=\sum_{n=0}^{\infty} A_n \cos (\frac{n \pi  x}{l})
-  \end{align*}
-The \textbf{Fourier full series of $\phi$ on $(-l,l)$} us 
-\begin{align*}
-\phi (x)= \sum_{n=0}^{\infty} A_n \cos (\frac{n \pi  x}{l})+ B_n \sin ( \frac{n \pi  x}{l})
-\end{align*}
-The \textbf{Fourier complex series of $\phi$ on $(-l,l)$ is}
-\begin{align*}
-\phi (x)=\sum_{n=-\infty}^{\infty}  c_n e^{\frac{- i n \pi  x}{l}}
-\end{align*}
-\end{mdframed}
-\begin{mdframed}
-Let $n,m\neq 0$. To compute the sine series, we have 
-\begin{align*}
-\int_0^l \sin (\frac{n \pi  x}{l})\sin (\frac{m \pi  x}{l})dx=\begin{cases}
-  \frac{l}{2}& \text{ if $n= m$ } \\
-  0& \text{ if $n\neq m$ }
-\end{cases}
-\end{align*}
-Let $n,m\neq 0$. To compute the cosine series, we have 
-\begin{align*}
-\int_0^l \cos (\frac{n \pi  x}{l})\cos (\frac{m \pi  x}{l})dx= \begin{cases}
-  \frac{l}{2}& \text{ if $n= m$ }\\
-  0& \text{ if $n \neq m$ }
-\end{cases}
-\end{align*}
-Let $n,m\neq 0$. To compute the full series, we have 
-\begin{align*}
-\int_{-l}^{l} \sin (\frac{n \pi  x}{l})\sin (\frac{m \pi  x}{l})dx= \begin{cases}
-  l& \text{ if $n=m$ }\\
-  0& \text{ if $n\neq  m$ }
-\end{cases}
-\end{align*}
-and 
-\begin{align*}
-\int_{-l}^{l} \cos (\frac{n \pi  x}{l}) \cos ( \frac{m \pi  x}{l})dx=\begin{cases}
-  l& \text{ if $n=m$ }\\
-  0& \text{ if $n\neq m$ }
-\end{cases}
-\end{align*}
-Let $n,m \inz$. To compute the complex series, we have 
-\begin{align*}
-\int_{-l}^{l} e^{\frac{i (n-m)\pi  x}{l}}dx= \begin{cases}
-  2l & \text{ if $n=m$ }\\
-  0& \text{ if $n\neq m$ }
-\end{cases}
-\end{align*}
-Let $n,m\geq  0$. To compute the weird series, we have 
-\begin{align*}
-  \int_0^l \sin (\frac{(n+ \frac{1}{2})\pi  x}{l}) \sin (\frac{(m+ \frac{1}{2})\pi  x}{l})dx = \begin{cases}
-    \frac{l}{2}& \text{ if $n=m$ }\\
-    0& \text{ if $n\neq m$ }
-  \end{cases}
-\end{align*}
-and 
-\begin{align*}
-  \int_0^l \cos (\frac{(n+ \frac{1}{2})\pi  x}{l}) \cos (\frac{(m+ \frac{1}{2})\pi  x}{l})dx = \begin{cases}
-    \frac{l}{2}& \text{ if $n=m$ }\\
-    0& \text{ if $n\neq m$ }
-  \end{cases}
-\end{align*}
-\end{mdframed}
-\section{5.2 Even, Odd, Periodic and Complex Functions}
-\begin{question}{}{}
-Show that $\cos x+ \cos (\alpha x)$ is periodic if $\alpha $ is a rational number. What is its period? Show that $\cos x+ \cos (\sqrt{2}x)$ is not periodic. 
-\end{question}
-\begin{proof}
-If $\alpha \inq$, we may write 
-\begin{align*}
-\alpha = \frac{q}{p}\text{ where }p \inn
-\end{align*}
-we then see $\cos x+ \cos (\alpha x)$ has period $2p \pi $. \As{$\cos x+ \cos (\sqrt{2}x )$ have period $r$}. Then 
-\begin{align*}
-2= \cos (r)+ \cos (\sqrt{2}r )
-\end{align*}
-which is easily seen impossible by noting for this to be true we must have $r= 2n \pi $. 
-\end{proof}
-\begin{question}{}{}
-Prove 
-\begin{enumerate}[label=(\alph*)]
-  \item If $\phi$ is an odd function, its full Fourier series on $(-l,l)$ has only sine terms. 
-  \item Also, if $\phi$ is an even function, its full Fourier series on $(-l,l)$ has only cosine terms. (Hint: Don't use the series directly. Use the formulas for the coefficients to show that every second coefficient vanishes.)
-\end{enumerate}
-\end{question}
-\begin{proof}
-Write 
-\begin{align*}
-\phi = \sum_{n=0}^{\infty} A_n \cos (\frac{n \pi  x}{l})+ B_n \sin ( \frac{n \pi  x}{l})
-\end{align*}
-Compute 
-\begin{align*}
-A_nl=\int_{-l}^{l} \phi (x) \cos (\frac{ n \pi  x}{l})dx=0\text{ for all }n\geq 1
-\end{align*}
-if $\phi$ is odd. Compute 
-\begin{align*}
-B_nl = \int_{-l}^{l} \phi (x)\sin ( \frac{n \pi  x}{l})dx=0\text{ for all }n\geq 1
-\end{align*}
-if $\phi$ is even. 
-\end{proof}
-\begin{question}{}{}
-Let $\phi(x)$ be a function of period $\pi $. If $\phi (x)=\sum_{n=1}^{\infty}a_n \sin (nx)$ for all $x$, find the odd coefficients. 
-\end{question}
-\begin{proof}
-Because $\phi$ has period $\pi $, we have 
-\begin{align*}
-\sum_{n=1}^{\infty} a_n \sin (nx)= \phi (x)= \phi (x+ \pi )&= \sum_{n=1}^{\infty}a_n \sin (nx+ n \pi )\\
-&=\sum_{n=1}^{\infty}(-1)^na_n \sin (nx)
-\end{align*}
-For this to be true, we must have $a_{\operatorname{odd}}=0$. 
-\end{proof}
-\begin{question}{}{}
-Find the full Fourier series of $e^x$ on  $(-l,l)$ in its real and complex forms. (Hint: It is convenient to find the complex form first)
-\end{question}
-\begin{proof}
-Write 
-\begin{align*}
-e^x= \sum_{n=- \infty}^{\infty} c_n e^{ \frac{i n \pi x }{l}}
-\end{align*}
-Compute 
-\begin{align*}
-c_n&= \frac{1}{2l}\int_{-l}^{l}e^x e^{\frac{- i n \pi  x}{l}}dx \\
-&=\frac{1}{2l}\int_{-l}^{l}e^{ \frac{(l-i n\pi )x}{l}}dx\\
-&=\frac{1}{2l} \cdot \frac{le^{\frac{(l-i n \pi )x}{l}}}{l-i n \pi  }\Big|_{x=-l}^{l} \\
-&= \frac{l(e^{l- i n \pi }- e^{-(l- i n \pi )})}{2l (l- i n \pi )}\\
-&= \frac{(-1)^n (e^l - e^{-l})}{2(l - i n \pi )}= \frac{(-1)^n}{(l- i n \pi )}\sinh (l)
-\end{align*}
-We now have 
-\begin{align*}
-e^x&= \sum_{n=-\infty}^{\infty} \frac{(-1)^n}{(l- i n \pi )}\sinh (l) e^{\frac{i n \pi x}{l}} \\
-&= \frac{\sinh (l)}{l}+ \sum_{n=1}^{\infty} \Big[\frac{(-1)^n \sinh (l) }{(l- i n \pi )}e^{\frac{i n \pi  x}{l}}+ \frac{(-1)^n \sinh (l)}{(l+ i n \pi )}e^{\frac{- i n \pi x}{l}}  \Big] \\
-&=\frac{\sinh (l)}{l}+ \sum_{n=1}^{\infty} (-1)^n\sinh (l) \Big[ \frac{\cos (\frac{n \pi  x}{l})+ i \sin (\frac{n \pi  x}{l})}{l- i n \pi }+ \frac{\cos (\frac{n \pi  x}{l})- i \sin (\frac{n \pi  x}{l})}{l+ i n \pi } \Big]\\
-&= \frac{\sinh (l)}{l}\\
-&+ \sum_{n=1}^{\infty} (-1)^n \sinh (l) \cdot \frac{(l+ i n \pi )\big(\cos (\frac{n \pi  x}{l})+i \sin (\frac{n \pi  x}{l})  \big)+(l- i n \pi )\big( \cos (\frac{n \pi  x}{l})- i \sin (\frac{n \pi  x}{l}) \big)}{l^2 + n^2 \pi ^2} \\
-&=\frac{\sinh (l)}{l}+ \sum_{n=1}^{\infty} \frac{(-1)^n \sinh (l)\big[ 2l \cos (\frac{n \pi  x}{l})-2n \pi  \sin (\frac{n \pi  x}{l}) \big]}{l^2+n^2\pi  ^2} \\
-&= \sum_{n=0}^{\infty} \frac{2(-1)^n \sinh (l)}{l^2 + n^2 \pi ^2}\Big[l\cos (\frac{n \pi  x}{l})- n \pi  \sin (\frac{n \pi  x}{l}) \Big]
-\end{align*}
-
-\end{proof}
-\begin{question}{}{}
-Repeat the last exercise for $\cosh (x)$
-\end{question}
-\begin{proof}
-Recall from last exercise that 
-\begin{align*}
-e^x= \sum_{n=- \infty}^{\infty} \frac{(-1)^n \sinh (l)}{l-i n \pi }  e^{ \frac{i n \pi  x}{l}}
-\end{align*}
-This give us 
-\begin{align*}
-\cosh (x) =\frac{1}{2}(e^{x}-e^{-x})= \frac{1}{2}\Big( \sum_{n=-\infty}^{\infty} \frac{(-1)^n \sinh (l)}{l- i n \pi }e^{ \frac{i n \pi  x}{l}}+ \sum_{n=-\infty}^{\infty} \frac{(-1)^n \sinh (l)}{l- i n \pi }e^{\frac{-i n \pi  x}{l}} \Big)
-\end{align*}
-\end{proof}
-\begin{question}{}{}
-Repeat the last exercise for $\sin x$. Assume that $l$ is not an integer multiple of  $\pi $. (Hint: First find the series for $e^{ ix}$)
-\end{question}
-\begin{proof}
-
-\end{proof}
-\section{5.3 Orthogonality and General Fourier Series} 
-\begin{mdframed}
-In this section, we are concerned with the eigenproblem 
-\begin{align*}
-X''+\ld  X= 0\text{ on }(a,b)
-\end{align*}
-with a pair of boundary conditions 
-\begin{align*}
-\begin{cases}
-  \alpha_1 X(a)+ \beta _1 X(b)+ \gamma_1 X'(a)+ \delta_1 X'(b)=0 \\
-  \alpha_2 X(a) + \beta _2 X(b)+ \gamma _2 X'(a)+ \delta_2 X'(b)=0
-\end{cases}
-\end{align*}
-where the coefficients $\alpha ,\beta ,\gamma\text{ and }\delta$ are all real. A pair of boundary condition is called \textbf{symmetric} if every pair of function $f,g:(a,b)\rightarrow \C$ that satisfies the boundary conditions also satisfies   
-\begin{align*}
-  f'(x)\overline{g(x)}-f(x)\overline{g'(x)} \Big|_{x=a}^b =0
-\end{align*}
-Immediately, we see that if the boundary condition is symmetric, two eigenfunction $X_1,X_2$ with distinct eigenvalues are either orthogonal or have conjugate eigenvalues since 
- \begin{align*}
-   (\ld _1- \overline{\ld _2})\int_a^b X_1  \overline{X_2} dx&= \int_a^b (-X_1''\overline{ X_2}+ X_1\overline{X_2''})dx \\
-                                                                      &= (-X_1'\overline{X_2}+X_1\overline{X_2'})\Big|_{x=a}^b=0
-\end{align*}
-The second equality is often referred to as \textbf{Green's second identity}. 
-\end{mdframed}
-\begin{question}{}{}
-Consider $u_{tt}=c^2 u_{xx}$ for $0<x<l$, with the boundary conditions  $u (0,t)=u_x(l,t)=0$, and the initial condition $u(x,0)=x,u_t(x,0)=0$. Find the solution explicitly in series form. 
-\end{question}
-\begin{proof}
-The eigenproblems are 
-\begin{align*}
-\begin{cases}
-  X''+ \ld  X=0 \\
-  X(0)=X'(l)=0
-\end{cases} \text{ and }\begin{cases}
-  T''+ c^2 \ld T=0
-\end{cases}
-\end{align*}
-Direct computation shows that $\ld \neq 0$. If $\ld=\beta ^2$, and $X= A \cos (\beta x)+B \sin (\beta x)$, then BCs give 
-\begin{align*}
-\begin{bmatrix}
-  1 & 0 \\
-  -\beta  \sin (\beta l) & \beta \cos (\beta l) 
-\end{bmatrix} \begin{bmatrix}
-A \\
-B
-\end{bmatrix}=0 
-\end{align*}
-This implies
-\begin{align*}
-\beta = \frac{(n+ \frac{1}{2})\pi }{l}\text{ and }X_n= \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})
-\end{align*}
-and $T_n= A_n\cos (c \beta t)+ B_n \sin (c \beta t)$. We now may write 
-\begin{align*}
-u= \sum_{n=0}^{\infty} \Big(A_n \cos (\frac{(n+\frac{1}{2})c \pi t  }{l}) + B_n \sin (\frac{(n+\frac{1}{2})c \pi  t}{l})  \Big) \sin ( \frac{(n+ \frac{1}{2})\pi  x}{l})
-\end{align*}
-Compute 
-\begin{align*}
-u_t= \sum_{n=0}^{\infty} \frac{(n+ \frac{1}{2})c \pi  }{l}  \Big(-A_n  \sin  (\frac{(n+\frac{1}{2})c \pi t  }{l}) + B_n \cos (\frac{(n+\frac{1}{2})c \pi  t}{l})  \Big) \sin ( \frac{(n+ \frac{1}{2})\pi  x}{l})
-\end{align*}
-Plugin the ICs, we now have 
-\begin{align*}
-x=\sum_{n=0}^{\infty} A_n \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})
-\end{align*}
-and 
-\begin{align*}
-0=\sum_{n=0}^{\infty} \frac{(n+ \frac{1}{2})c \pi  }{l}  B_n   \sin ( \frac{(n+ \frac{1}{2})\pi  x}{l})
-\end{align*}
-Because 
-\begin{align*}
-\int_0^l \sin (\frac{(n+\frac{1}{2})\pi  x}{l}) \sin ( \frac{(m+\frac{1}{2})\pi  x}{l}) dx= \begin{cases}
-  \frac{l}{2}& \text{ if $n=m$ }\\
-  0& \text{ if $n\neq m$ }
-\end{cases}
-\end{align*}
-for $n,m\geq 0$, we have 
-\begin{align*}
-\frac{(-1)^nl^2}{(n+ \frac{1}{2})^2 \pi ^2}=\int_0^l x \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})dx = \frac{lA_n}{2}
-\end{align*}
-Thus, 
-\begin{align*}
-u=\sum_{n=0}^{\infty} \frac{2(-1)^n l}{(n+\frac{1}{2})^2 \pi ^2} \cos ( \frac{(n+ \frac{1}{2})c \pi  t}{l}) \sin ( \frac{(n+ \frac{1}{2})\pi  x}{l})
-\end{align*}
-\end{proof}
-\begin{question}{}{}
-Consider the problem $u_t=ku_{xx}$ for $0<x<l$, with the boundary conditions  $u(0,t)=U,u_x(l,t)=0$, and the initial condition $u(x,0)=0$ where $U$ is a constant. 
- \begin{enumerate}[label=(\alph*)]
-  \item Find the solution in series form. (Hint: Consider $u(x,t)-U$) 
-  \item Using a direct argument, show that the series converges for $t>0$.  
-  \item If $\epsilon $ is a given margin of error, estimate how long a time is required for the value $u(l,t)$ at the endpoint to be approximated by the constant $U$ within the error  $\epsilon $. (Hint: It is an alternating series with first $U$, so that the error is less than the next term)
-\end{enumerate}
-\end{question}
-\begin{proof}
-Let $v\triangleq u-U$. We have 
-\begin{align*}
-\begin{cases}
-  v_t=kv_{xx}\text{ for }x\in (0,l)\text{ \textbf{(Homogeneous DE)} } \\
-  v(0,t)=v_x(l,t)=0\text{ \textbf{(BC)} }\\
-  v(x,0)=-U\text{ \textbf{(IC)} }
-\end{cases}
-\end{align*}
-The eigenproblems are then 
-\begin{align*}
-\begin{cases}
-  X'' + \ld  X=0 \\
-  X(0)=X'(l)=0
-\end{cases} \text{ and }\begin{cases}
-  T'+ k \ld T=0
-\end{cases}
-\end{align*}
-Thus, 
-\begin{align*}
-v= \sum_{n=1}^{\infty} A_ne^{\frac{-(n+ \frac{1}{2})^2 \pi ^2kt}{l^2}}  \sin (\frac{(n+ \frac{1}{2}) \pi  x}{l})
-\end{align*}
-The IC becomes, 
-\begin{align*}
--U= \sum_{n=1}^{\infty} A_n \sin (\frac{(n+ \frac{1}{2})\pi  x}{l})
-\end{align*}
-We then have 
-\begin{align*}
-v= \sum_{n=1}^{\infty} \frac{-2U}{(n+ \frac{1}{2})\pi  }  e^{\frac{-(n+ \frac{1}{2})^2 \pi ^2kt}{l^2}}  \sin (\frac{(n+ \frac{1}{2}) \pi  x}{l})
-\end{align*}
-The series absolutely converge because it is eventually smaller than a geometric series. One may use root test to check this fact.   
-\end{proof}
-\begin{question}{}{}
-Find the complex eigenvalues of the first-derivative operator $\frac{d}{dx}$ subject to the single boundary condition $X(0)=X(1)$. Are the eigenfunctions orthogonal on the interval $(0,1)$? 
-\end{question}
-\begin{proof}
-We are solving the eigenproblem 
-\begin{align*}
-\begin{cases}
-  X'+ \ld X=0 \\
-  X(0)=X(1)
-\end{cases}
-\end{align*}
-Clearly, the solution $X$ must take the form  $X=e^{-\ld x}$. The boundary conditions then implies 
-\begin{align*}
-e^{-\ld }=X(1)=X(0)=1
-\end{align*}
-which implies 
-\begin{align*}
-\ld = 2n i \pi \text{ for }n\inz
-\end{align*}
-Compute for distinct $n,m$ 
-\begin{align*}
-\langle X_n,X_m\rangle = \int_0^1 e^{- 2(n-m) i \pi  x}dx= \frac{e^{-2(n-m)i \pi  x}}{-2(n-m)i \pi }\Big|_{x=0}^1= 0
-\end{align*}
-So the eigenfunctions are indeed orthogonal. 
-\end{proof}
-\begin{question}{}{}
-Show by direct integration that the eigenfunctions associated with Robin BSc, namely 
-\begin{align*}
-\phi_n (x)= \cos (\beta_n x)+ \frac{a_0}{\beta_n} \sin (\beta_n x)\text{ where }\ld _n= \beta_n^2
-\end{align*}
-are mutually orthogonal on $0\leq x\leq l$, where $\beta _n$ are the positive roots of 
-\begin{align*}
-  (\beta ^2 - a_0a_l)\tan (\beta l)= (a_0+a_l)\beta 
-\end{align*}
-\end{question}
-\begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Show that the boundary conditions 
-\begin{align*}
-X(b)=\alpha X(a)+\beta X'(a)\text{ and }X'(b)=\gamma  X(a)+\delta X'(a)
-\end{align*}
-on an interval $a\leq x\leq b$ are symmetric if and only if $\alpha  \delta-\beta  \gamma =1$.
-\end{question}
-\begin{proof}
-Compute 
-\begin{align*}
-(-X_1'X_2+ X_1X_2')\Big|_{x=a}^b&= -X_1'(b)X_2(b)+X_1 (b)X_2'(b) \\
-&+X_1'(a)X_2(a)-X_1(a)X_2'(a)\\
-&= - \Big(\gamma X_1(a)+\delta X_1'(a) \Big)\Big( \alpha X_2(a) + \beta X'_2(a) \Big)\\
-&+ \Big(\alpha X_1(a)+ \beta X'_1(a) \Big) \Big( \gamma X_2(a)+\delta X'_2(a) \Big)\\
-&+X_1'(a)X_2(a)-X_1(a)X_2'(a)\\
-&= (-\delta \alpha + \beta  \gamma +1)\big(X_1'(a)X_2(a)-X_1(a)X_2'(a)\big)
-\end{align*}
-\end{proof}
-\begin{question}{}{}
-  (The Gram-Schmidt orthogonalization procedure) If $X_1,X_2,\dots$ is any sequence (finite or infinite) of linearly independent vectors in any vector space with an inner, it can be replace by a sequence of linear combinations that are mutually orthogonal. The idea is that at each step one subtracts off the components parallel to the previous vectors. The procedure is as follows. First, we let $Z_1 = \frac{X_1}{\norm{X_1}}$. Second, we define 
-\begin{align*}
-    Y_2\triangleq X_2 - (X_2,Z_1)Z_1\text{ and }Z_2 \triangleq \frac{Y_2}{\norm{Y_2}}
-\end{align*}
-  Third, we define 
-\begin{align*}
-Y_3 \triangleq X_3 - (X_3,Z_2)Z_2 - (X_3,Z_1)Z_1\text{ and }Z_3\triangleq \frac{Y_3}{\norm{Y_3}}  
-\end{align*}
-and so on. 
-\begin{enumerate}[label=(\alph*)]
-  \item Show that all vectors $Z_1,Z_2,Z_3,\dots$ are orthogonal to each other. 
-  \item Apply the procedure to the pair of functions $\cos (x)+\cos (2x)$ and $3 \cos (x)-4 \cos (2x)$ in the interval $(0,\pi )$ to get an orthogonal pair. 
-\end{enumerate}
-\end{question}
-\begin{proof}
-Compute 
-\begin{align*}
-\norm{\cos (x)+ \cos (2x)}^2&=\int_0^{\pi } (\cos (x)+ \cos (2x))^2 dx  \\
-&=\int_0^{\pi } \frac{\cos (x)+ \cos (2x)+ \cos (3x)+ \cos (4x)+2}{2} dx \\
-&=\pi  
-\end{align*}
-Compute 
-\begin{align*}
-\langle \cos (x)+ \cos (2x), 3 \cos (x)-4 \cos (2x)\rangle&= 3\langle \cos(x) ,\cos (x)\rangle  -4\langle \cos (2x),\cos (2x)\rangle  \\
-&= \frac{- \pi  }{2}
-\end{align*}
-Thus an orthogonal pair can be 
-\begin{align*}
-\cos (x)+ \cos (2x)\text{ and } \frac{7}{2}(\cos (x)-\cos (2x))
-\end{align*}
-\end{proof}
-\begin{question}{}{}
-\begin{enumerate}[label=(\alph*)]
-  \item Show that the condition $f(x)f'(x)|_a^b\leq 0$ is valid for any function that satisfies the Dirichlet, Neumann, or periodic boundary conditions. 
-  \item Show that it is also valid for Robin BCs provided that the constants $a_0$ and  $a_l$ are positive. 
-\end{enumerate}
-\end{question}
-\begin{proof}
-Part (a) is clear. Note that the periodic boundary conditions mean 
-\begin{align*}
-f(b)=f(a)\text{ and }f'(b)=f'(a)
-\end{align*}
-The Robin boundary conditions means 
-\begin{align*}
-X'-a_0X=0 \text{ at $0$ and }X'+a_lX=0\text{ at }l
-\end{align*}
-Compute 
-\begin{align*}
-X'(b)X(b)-X'(a)X(a)&= -a_l X^2(b)-a_0X^2(a)\leq 0
-\end{align*}
-\end{proof}
-\begin{question}{}{}
-Use Green's first identity to prove if the boundary conditions is symmetric and 
-\begin{align*}
-f(x)f'(x)\Big|_{x=a}^b \leq 0
-\end{align*}
-for any real-valued $f$ satisfying BCs, then there is no negative eigenvalue.
-\end{question}
-\begin{proof}
-Note that the symmetry the boundary conditions have nothing to do here. Product rule give us 
-\begin{align*}
-\int_a^b X''Xdx= XX' \Big|_{x=a}^b- \int_a^b (X')^2dx
-\end{align*}
-The right hand side by definition is non-positive. The proof then follows from noting if $X$ is of negative eigenvalue, then the left hand side is positive.  
-\end{proof}
-\section{5.4 Completeness}
-\begin{question}{}{}
-Consider 
-\begin{align*}
-\sum_{n=0}^{\infty}(-1)^n x^{2n}
-\end{align*}
-\begin{enumerate}[label=(\alph*)]
-  \item Does it converge pointwise in $(-1,1)$?  
-  \item Does it converge uniformly in $(-1,1)$? 
-  \item Does it converge in $L^2$ in $(-1,1)$? 
-\end{enumerate}
-\end{question}
-\begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Find the sine series of the function $\cos (x)$ on the interval $(0,\pi )$. For each $x$ in $[-\pi ,\pi ]$, what is the sum of the series?  
-\end{question}
-\begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Let 
-\begin{align*}
-\phi (x)\triangleq \begin{cases}
-  -1-x& \text{ if $x\in (-1,0)$ }\\
-  1-x& \text{ if $x\in (0,1)$ }
-\end{cases}
-\end{align*}
-\begin{enumerate}[label=(\alph*)]
-  \item Find the full Fourier series of $\phi$ in the interval $(-1,1)$. 
-  \item Find the first three nonzero terms explicitly. 
-  \item Does it converge in $L^2$?  
-  \item Does it converge pointwise? 
-  \item Does it converge uniformly to $\phi$ in the interval $(-1,1)$? 
-\end{enumerate}
-\end{question}
-\begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Let $f(x)$ be a function on $(-l,l)$ that has a continuous derivative and satisfies the periodic BCs. 
-\begin{align*}
-f(-l)=f(l)\text{ and }f'(-l)=f'(l)
-\end{align*}
-Let $a_n$ and  $b_n$ be the Fourier coefficients of $f(x)$, and let $a'_n$ and  $b'_n$ be the Fourier coefficients of its derivative $f'(x)$. Show that 
-\begin{align*}
-a'_n= \frac{n \pi  b_n}{l}\text{ and }b'_n = \frac{- n \pi  a_n}{l}\text{ for }n\neq 0
-\end{align*}
-(Hint: Write the formulas for $a'_n$ and $b'_n$ and integrate by parts.) This means that the Fourier series of $f'(x)$ is what you would obtain as if you differentiated term by term. It does not mean that the differentiated series converges. 
-\end{question}
-\begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-  (Term by Term integration) 
-\begin{enumerate}[label=(\alph*)]
-  \item If $f(x)$ is a piecewise continuous function in $[-l,l]$, show that its definite integral $F(x)=\int_{-l}^x f(s)ds$ has a full Fourier series that converges pointwise. 
-  \item Write this convergent series for $F(x)$ explicitly in terms of the Fourier coefficients $a_0,a_n,b_n$ of  $f(x)$ where $a_0=0$. (Hint: Apply a convergence Theorem. Write the formulas for the coefficients and integrate by parts.)
-\end{enumerate}
-\end{question}
-\begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Start with the Fourier sine series of $f(x)=x$ on the interval $(0,l)$. Apply Parseval's equality. Find the sum $\sum_{n=1}^{\infty } \frac{1}{n^2}$. 
-\end{question}
-\begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Find the sum 
-\begin{align*}
-\sum_{n=1}^{\infty} \frac{1}{n^6}
-\end{align*}
-\end{question}
-\begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Let $\phi (x)=\abso{x}$ in $(-\pi ,\pi )$. If we approximate it by the function 
-\begin{align*}
-f(x)= \frac{1}{2}a_0+ a_1\cos x + b_1 \sin x+ a_2 \cos 2x + b_2 \sin 2x
-\end{align*}
-what choice of coefficients will minimize the $L^2$ error. 
-\end{question}
-\begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Here is a general method to calculate the normalizing constants. Let $X(x,\ld )$ be a family of real solutions of the ODE 
-\begin{align*}
--X''=\ld  X
-\end{align*}
-which depends in a smooth manner of $\ld $ as well as on $x$. 
- \begin{enumerate}[label=(\alph*)]
-  \item Find the ODE satisfied by  $\frac{\partial X}{\partial \ld }$.
-  \item Apply Green's second identity to the pair of functions $X$ and  $\frac{\partial X}{\partial \ld }$ in order to obtain a formula for $\int _a^b X^2 dx$ in terms of the boundary values. 
-  \item As an example, use the result of part (b) and the Dirichlet boundary conditions to compute  $\int _0^l \sin^2 (\frac{m \pi  x}{l})dx$. 
-\end{enumerate}
-\end{question}
 \chapter{PDE HW}
 \section{PDE HW 1}
 \begin{theorem}
@@ -6564,6 +7229,140 @@ Compute for distinct $n,m$
 \langle X_n,X_m\rangle = \int_0^1 e^{- 2(n-m) i \pi  x}dx= \frac{e^{-2(n-m)i \pi  x}}{-2(n-m)i \pi }\Big|_{x=0}^1= 0
 \end{align*}
 So the eigenfunctions are indeed orthogonal. 
+\end{proof}
+\section{PDE HW 10}
+\begin{question}{}{}
+Consider 
+\begin{align*}
+\sum_{n=0}^{\infty}(-1)^n x^{2n}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Does it converge pointwise in $(-1,1)$?  
+  \item Does it converge uniformly in $(-1,1)$? 
+  \item Does it converge in $L^2$ in $(-1,1)$? 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Geometric series as such obviously  converges to 
+\begin{align*}
+\sum_{n=0}^{\infty} (-1)^n x^{2n}= \sum_{n=0}^{\infty}(-x^2)^n= \frac{1}{1+x^2}
+\end{align*}
+Note that the remainder can also be computed by 
+\begin{align*}
+  \sup_{x\in (-1,1)}\abso{\sum_{n=N}^{\infty} (-x^2)^n}= \sup_{x \in (-1,1)}\abso{\frac{-x^{2N}}{1+x^2}}= \frac{1}{2}\text{ for all }N
+\end{align*}
+It follows that the series does NOT converge uniformly on $(-1,1)$. Compute 
+\begin{align*}
+\int_{-1}^{1} \Big(\sum_{n=N}^{\infty} (-x^2)^n \Big)^2 dx&= \int_{-1}^1 \Big( \frac{-x^{2N}}{1+x^2} \Big)^2 dx  \\
+&=\int_{-1}^1 \frac{x^{4N}}{(1+x^2)^2}dx \\
+&\leq \int_{-1}^{1} x^{4N}dx= \frac{x^{4N+1}}{4N+1}\Big|_{x=-1}^{1}\to 0
+\end{align*}
+It follows that the series does converge in $L^2$. 
+\end{proof}
+\begin{question}{}{}
+  (Term by Term integration) 
+\begin{enumerate}[label=(\alph*)]
+  \item If $f(x)$ is a piecewise continuous function in $[-l,l]$, show that its definite integral $F(x)=\int_{-l}^x f(s)ds$ has a full Fourier series that converges pointwise. 
+  \item Write this convergent series for $F(x)$ explicitly in terms of the Fourier coefficients $a_0,a_n,b_n$ of  $f(x)$ where $a_0=0$. (Hint: Apply a convergence Theorem. Write the formulas for the coefficients and integrate by parts.)
+\end{enumerate}
+\end{question}
+\begin{proof}
+Part (a) follows from observing $F'=f$ is pointwise continuous so that the classical Fourier series of $F$ converges to  $F$ by Theorem 4 in the textbook.\\
+
+Write 
+\begin{align*}
+f(x)=\sum_{n=1}^{\infty} a_n\cos ( \frac{n \pi  x}{l})+ b_n \sin ( \frac{n \pi  x}{l}) 
+\end{align*}
+Note that the definition of piece wise continuity in this book implies boundedness on compact domain, and note that each term
+\begin{align*}
+\sum_{n=1}^N a_n \cos (\frac{n \pi  x}{l})+ b_n \sin (\frac{n \pi  x}{l})
+\end{align*}
+is obviously bounded on $[-l,l]$. Then because $f$ is bounded on $[-l,l]$, we know 
+\begin{align*}
+\sum_{n=1}^N a_m \cos (\frac{n \pi  x}{l})+ b_n \sin (\frac{n \pi  x}{l})\text{ is uniformly bounded on }[-l,l]
+\end{align*}
+Therefore, we may apply DCT to compute 
+\begin{align*}
+F(x)&= \int_{-l}^x \sum_{n=1}^{\infty} a_n \cos ( \frac{n \pi  s}{l})+ b_n \sin ( \frac{n \pi  s}{l})ds  \\
+&=\sum_{n=1}^{\infty} \int_{-l}^x a_n \cos ( \frac{n \pi  s}{l})+ b_n \sin ( \frac{n \pi  s}{l})ds\\
+&=\sum_{n=1}^{\infty} \frac{a_n l}{n \pi  }\sin ( \frac{ n \pi  x}{l}) + \frac{-b_n l}{n \pi }\cos (\frac{n \pi  x}{l})+ \frac{-(-1)^nb_nl}{n \pi }
+\end{align*}
+\end{proof}
+\section{PDE HW 11}
+\begin{question}{}{}
+Prove the Schwarz Inequality 
+\begin{align*}
+\abso{ (f,g)} \leq \norm{f}_2 \cdot \norm{g}_2
+\end{align*}
+for any pair of functions. 
+\end{question}
+\begin{proof}
+Schwarz inequality for integral is a corollary of Holder's inequality 
+\begin{align*}
+\abso{(f,g)}&= \abso{\int f \overline{g}dx}\leq \int \abso{fg}dx = \norm{fg}_1 \leq \norm{f}_2 \cdot \norm{g}_2 
+\end{align*}
+The following is a proof of Holder's inequality. Note that here we use $p=q=2$. 
+\end{proof}
+\begin{theorem}
+\label{HI}
+\textbf{(Holder's Inequality)} Let $f,g$ be two functions measurable on $E$. We have 
+ \begin{align*}
+\norm{fg}_1 \leq \norm{f}_p \norm{g}_q
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proof is trivial if $p=1\text{ or }\infty$, so we may suppose
+\begin{align*}
+1< p <\infty
+\end{align*}
+Now, if $\norm{f}_p=0$, then $f=0$ almost everywhere, which renders the inequality trivial since $\norm{fg}_1=0$. If $\norm{f}_p=\infty$, the proof is again trivial. We may now suppose  
+\begin{align*}
+\norm{f}_p , \norm{g}_q \in (0,\infty)
+\end{align*}
+Define $f_1,g_1$ by 
+\begin{align*}
+f_1 \triangleq \frac{f}{\norm{f}_p} \text{ and }g_1 \triangleq \frac{g}{\norm{g}_q}
+\end{align*}
+Because $1<p<\infty$, by  \customref{YIfp}{Young's Inequality for product}, we have
+\begin{align*}
+  \norm{f_1g_1}_1=\int_E \abso{f_1g_1} &\leq \int_E \Big( \frac{\abso{f_1}^p}{p}+ \frac{\abso{g_1}^q}{q} \Big) \\
+&= \frac{\norm{f_1}_p^p}{p} + \frac{\norm{g_1}_q^q}{q}= \frac{1}{p}+ \frac{1}{q}=1
+\end{align*}
+The proof then follows the assumption $\norm{f}_p,\norm{g}_q \in (0,\infty)$ and  
+\begin{align*}
+\norm{f_1g_1}_1= \frac{\norm{fg}_1}{\norm{f}_p \norm{g}_q}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve the Poisson Equation
+\begin{align*}
+\begin{cases}
+  u_{xx}+ u_{yy}=1 \text{ in }r<a \\
+  u=0\text{ on }r=a
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+Write the Poisson equation in polar coordinate 
+\begin{align*}
+u_{rr}+ \frac{u_r}{r} + \frac{u_{\theta \theta}}{r^2}=1
+\end{align*}
+Because $u(a, \theta)$ for all $\theta$, we may suppose $u$ is independent of  $\theta$. Therefore, the Poisson equation in polar coordinate simplifies to 
+\begin{align*}
+u_{rr} + \frac{u_r}{r} = 1
+\end{align*}
+The solution space of this ODE is exactly  
+\begin{align*}
+\bset{ \frac{r^2}{4}+ C_1 \ln r+ C_2 : C_1, C_2 \inr}
+\end{align*}
+Let 
+\begin{align*}
+u= \frac{r^2}{4}+ C_1 \ln r + C_2
+\end{align*}
+Because $u$ is finite on $r=0$, we must have  $C_1=0$. It then follows from  $u=0$ for  $r=a$ that   
+\begin{align*}
+u= \frac{r^2}{4}- \frac{a^2}{4}
+\end{align*}
 \end{proof}
 \chapter{Differential Geometry HW} 
 \section{HW1} 

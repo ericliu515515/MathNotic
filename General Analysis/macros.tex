@@ -93,3 +93,8 @@
 \renewcommand{\lambda}{\pilambdaup}
 \renewcommand{\tilde}{\widetilde}
 \DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand{\bluecheck}{}%
+\DeclareRobustCommand{\bluecheck}{%
+  \tikz\fill[scale=0.4, color=blue]
+  (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;%
+}
