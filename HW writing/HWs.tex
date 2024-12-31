@@ -1233,6 +1233,38 @@ in three dimension, unless
 \end{question}
 \begin{proof}
 \end{proof}
+\section{6.2 Rectangles and Cubes}
+\begin{question}{}{}
+Solve $u_{xx}+u_{yy}=0$ in the rectangle $0<x<a,0<y<b$ with the following boundary conditions: 
+ \begin{align*}
+u_x&=-a\text{ on }x=0 \text{ and }u_x=0\text{ on }x=a \\
+u_y&=b\text{ on }y=0\text{ and }u_y=0\text{ on }y=b
+\end{align*}
+(Hint: Note that the necessary condition of Exercise 6.1.11 is satisfied. A shortcut is to guess that the solution might be a quadratic polynomial in $x$ and $y$)
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Prove that the eigenfunctions $\set{\sin my \sin nz}$ are orthogonal on the square $\set{0<y<\pi  , 0 <z<\pi }$. 
+\end{question}
+\begin{proof}
+Let $p,q$ be a pair of integer such that $p\neq m$ and $q\neq n$. Because $\set{\sin (ix)}_{i\inz}$ is an orthogonal system on $(0,\pi )$, we may compute 
+\begin{align*}
+&\int_0^{\pi }\int_0^{\pi } \sin (my)\sin (nz) \sin (py)\sin (qz)dydz \\
+&= \int_0^{\pi } \sin (my)\sin (py)dy \int_0^{\pi } \sin (nz)\sin (qz)dz \\
+&=0 \cdot 0=0 
+\end{align*}
+This shows that $\set{\sin (my) \sin (nz)}$ are indeed orthogonal on the square $\set{0<y<\pi ,0<z<\pi }$. Note that we used the Fubini's theorem in our first equality, and the reason we can use the Fubini's theorem is that the function $\sin (my)\sin (nz)\sin (py)\sin (qz)$ is bounded by $1$ on the bounded domain  $[0,\pi ]^2$. 
+\end{proof}
+\begin{question}{}{}
+Find the harmonic function $u(x,y)$ in the square $D= \set{0<x<\pi  ,0 <y< \pi }$ with the boundary conditions: 
+\begin{align*}
+u_y&=0\text{ for }y=0\text{ and }\pi   \\
+u&=0\text{ for }x=0\\
+u&=\cos^2 y = \frac{1+ \cos 2y}{2}\text{ for }x=\pi 
+\end{align*}
+\end{question}
 \section{6.3 Poisson Formula}
 \begin{mdframed}
 Consider 
@@ -7364,6 +7396,19 @@ Because $u$ is finite on $r=0$, we must have  $C_1=0$. It then follows from  $u=
 u= \frac{r^2}{4}- \frac{a^2}{4}
 \end{align*}
 \end{proof}
+\section{PDE HW 12}
+\begin{question}{}{}
+Prove that the eigenfunctions $\set{\sin my \sin nz}$ are orthogonal on the square $\set{0<y<\pi  , 0 <z<\pi }$. 
+\end{question}
+\begin{proof}
+Let $p,q$ be a pair of integer such that $p\neq m$ and $q\neq n$. Because $\set{\sin (ix)}_{i\inz}$ is an orthogonal system on $(0,\pi )$, we may compute 
+\begin{align*}
+&\int_0^{\pi }\int_0^{\pi } \sin (my)\sin (nz) \sin (py)\sin (qz)dydz \\
+&= \int_0^{\pi } \sin (my)\sin (py)dy \int_0^{\pi } \sin (nz)\sin (qz)dz \\
+&=0 \cdot 0=0 
+\end{align*}
+This shows that $\set{\sin (my) \sin (nz)}$ are indeed orthogonal on the square $\set{0<y<\pi ,0<z<\pi }$. Note that we used the Fubini's theorem in our first equality, and the reason we can use the Fubini's theorem is that the function $\sin (my)\sin (nz)\sin (py)\sin (qz)$ is bounded by $1$ on the bounded domain  $[0,\pi ]^2$. 
+\end{proof}
 \chapter{Differential Geometry HW} 
 \section{HW1} 
 \begin{abstract}
@@ -7785,4 +7830,478 @@ Note that we often call $E$ the  \textbf{total space} and $M$ the  \textbf{base 
 \end{align*}
 we say $\sigma$ is a \textbf{smooth section of the bundle $\pi:E\rightarrow M$}. 
 \end{mdframed}
+\section{HW 3}
+\begin{question}{}{}
+Let $V$ be a finite dimensional vector space over $\R$. Show that for 
+ \begin{align*}
+\operatorname{dim}(V)<4
+\end{align*}
+Every non-zero element of $\extp^2(V)$ can be expressed as a wedge product of two vectors in $V$.  Give an example to show that this is not true if $\operatorname{dim}(V)=4$. 
+\end{question}
+\begin{theorem}
+\textbf{(Case of Zero and One Dimension)} If 
+\begin{align*}
+\operatorname{dim}(V)\leq 1
+\end{align*}
+Then every non-zero element of $\extp^2(V)$ can be expressed as a wedge product of two vectors in $V$. 
+\end{theorem}
+\begin{proof}
+Recall
+\begin{align*}
+\operatorname{dim}\Big( \extp^2(V) \Big)= \binom{\operatorname{dim}(V)}{2}=0
+\end{align*}
+This implies $\extp^2(V)=0$. There does not exists non-zero element of $\extp^2(V)$, rendering the proposition viciously true. 
+\end{proof}
+\begin{theorem}
+\textbf{(Case of Two Dimension)} If 
+\begin{align*}
+\operatorname{dim}(V)=2
+\end{align*}
+Then every non-zero element of $\extp^2(V)$ can be expressed as a wedge product of two vectors in $V$. 
+\end{theorem}
+\begin{proof}
+Let  $\set{e_1,e_2}$ be a basis for $V$.  We have 
+\begin{align*}
+\extp^2(V)=\operatorname{span} \set{e_1 \wedge  e_2}
+\end{align*}
+Therefore, for all $\omega \in \extp^2(V)$, we have 
+\begin{align*}
+\omega  = c(e_1 \wedge  e_2)=(ce_1) \wedge  e_2 \text{ for some }c\inr  
+\end{align*}
+\begin{theorem}
+\textbf{(Case of Three Dimensions)} If 
+\begin{align*}
+  \set{e_1,e_2,e_3}\text{ is a basis for }V
+\end{align*}
+Then every non-zero element of $\extp^2(V)$ can be expressed as a wedge product of two vectors in $V$. 
+\end{theorem}
+\begin{proof}
+We know $\extp^2(V)$ have the following basis  
+\begin{align*}
+\set{e_1\wedge  e_2, e_1 \wedge  e_3, e_2 \wedge  e_3} 
+\end{align*}
+Therefore, for arbitrary $\omega  \in \extp^2(V)$, we may express 
+\begin{align*}
+\omega = \omega_1 (e_1 \wedge e_2)+ \omega_2 (e_1 \wedge  e_3) + \omega_3 (e_2 \wedge  e_3)  \text{ for some }\omega_1,\omega_2,\omega_3 \inr
+\end{align*}
+Write $\textbf{x}=(\omega_3,-\omega_2,\omega_1)\inr^3$. By premise, $\textbf{x}\neq \textbf{0}$. Using Gram-Schmidt algorithm, we know there exists some $\textbf{a}=(a_1,a_2,a_3),\textbf{b}=(b_1,b_2,b_3)\inr^3$ such that 
+\begin{align*}
+\abso{\textbf{a}}=\abso{\textbf{b}}=1 \text{ and }\set{\textbf{x},\textbf{a},\textbf{b}}\text{ are orthogonal }
+\end{align*}
+The orthogonality of $\set{\textbf{x},\textbf{a},\textbf{b}}$ implies 
+\begin{align*}
+\textbf{x}= c \textbf{a}\times \textbf{b}\text{ for some }c\inr
+\end{align*}
+Explicitly, 
+\begin{align*}
+\begin{cases}
+  \omega_1 = \textbf{x}_3 = c(a_1b_2-a_2b_1) \\
+  \omega_2= - \textbf{x}_2= c(a_1b_3-a_3b_1) \\
+  \omega_3= \textbf{x}_1= c(a_2b_3-a_3b_2)
+\end{cases}
+\end{align*}
+We now see 
+\begin{align*}
+  &[c(a_1e_1+a_2e_2+a_3e_3)]\wedge  (b_1e_1+b_2e_2+b_3e_3)\\
+  &= c (a_1b_2-a_2b_1) (e_1 \wedge  e_2) + c(a_1b_3 -a_3b_1)(e_1 \wedge  e_3 )+ c(a_2b_3 -a_3b_2)(e_2\wedge  e_3 ) \\
+  &=\omega_1 (e_1 \wedge  e_2 )+ \omega_2 (e_1 \wedge  e_3 )+ \omega_3(e_2\wedge  e_3)=\omega
+\end{align*}
+We have shown 
+\begin{align*}
+\omega= (ca_1e_2+ca_2e_2+ca_3e_3)\wedge (b_1e_1+b_2e_2+b_3e_3) 
+\end{align*}
+That is, $\omega$ can indeed be expressed as a wedge product of two vectors in $V$. 
+
+\end{proof}
+\begin{theorem}
+\textbf{(Case of Four Dimensions)} If 
+\begin{align*}
+\set{e_1,e_2,e_3,e_4}\text{ is a basis for }V
+\end{align*}
+Then $e_1 \wedge  e_2 +e_3 \wedge  e_4 $ can not be expressed as a wedge product of two vectors in $V$. 
+\end{theorem}
+\begin{proof}
+\As{for a contradiction that for some $(a_1,a_2,a_3,a_4),(b_1,b_2,b_3,b_4)\inr^4$, we have} 
+ \begin{align}
+\label{gi}
+ \red{e_1 \wedge  e_2 + e_3 \wedge  e_4  = (a_1e_1+a_2e_2+a_3e_3+a_4e_4) \wedge  (b_1e_1+b_2e_2+b_3e_3+b_4e_4)}
+\end{align}
+Equating the coefficients of $e_1 \wedge  e_2$, we have  
+\begin{align*}
+  a_1b_2-a_2b_1 =1
+\end{align*}
+This implies that one of $a_1,b_1$ is non-zero. WLOG, suppose  $a_1\neq 0$. Now, equating the coefficients of $e_1 \wedge  e_3$ and $e_1 \wedge  e_4$, we have 
+\begin{align*}
+a_1b_3-a_3b_1=0=a_1b_4-a_4b_1
+\end{align*}
+Dividing $a_1$, we may deduce 
+ \begin{align*}
+b_3= \frac{a_3b_1}{a_1} \text{ and }b_4= \frac{a_4b_1}{a_1}
+\end{align*}
+Therefore, the coefficients of $e_3 \wedge  e_4$ in the right side expression of \myref{Equation}{gi} is 
+\begin{align*}
+a_3b_4-a_4b_3= \frac{a_3a_4b_1}{a_1}- \frac{a_4a_3b_1}{a_1}=0
+\end{align*}
+which does not equals to $1$, the coefficient of $e_3 \wedge  e_4$ in the left side expression of \myref{Equation}{gi}. This cause a contradiction. 
+\end{proof}
+\begin{question}{}{}
+Let $\alpha $ be the $1$-form  $dz+xdy$  on  $\R^3$. 
+ \begin{enumerate}[label=(\alph*)]
+  \item Find a basis for $\operatorname{Ker}\alpha $. 
+  \item Compute $\alpha \wedge  d\alpha  $. 
+  \item Find the vector field  $R$ that satisfies  $\alpha (R)=1$ and $\iota_R d\alpha =0$.
+  \item Let $R$ be the same vector filed in  (c), and let  $\phi_t:\R^3 \rightarrow \R^3$ denote its flows. Compute $\mathcal{L}_R\alpha $ and $\phi_t^*\alpha  $ for all fixed $t$.  
+\end{enumerate}
+\end{question}
+\begin{theorem}
+\textbf{(Part 1)} For all $p=(p_1,p_2,p_3)\in \R^3$, the kernel of $\alpha _{p}:T_p\R^3 \rightarrow \R$ has the basis 
+\begin{align*}
+\bset{\frac{\partial }{\partial x}\Big|_{p}, \frac{\partial }{\partial y}\Big|_{p}-p_1 \frac{\partial }{\partial z}\Big|_{p}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let 
+\begin{align*}
+ c_1\frac{\partial }{\partial x}\Big|_{p}+c_2 \frac{\partial }{\partial y}\Big|_{p}+ c_3\frac{\partial }{\partial z}\Big|_{p} \in \operatorname{Ker}\alpha _p
+\end{align*}
+Compute 
+\begin{align*}
+0=\alpha_p\Big( c_1\frac{\partial }{\partial x}\Big|_{p}+c_2 \frac{\partial }{\partial y}\Big|_{p}+ c_3\frac{\partial }{\partial z}\Big|_{p}  \Big)&=  (dz+xdy) \Big( c_1\frac{\partial }{\partial x}\Big|_{p}+c_2 \frac{\partial }{\partial y}\Big|_{p}+ c_3\frac{\partial }{\partial z}\Big|_{p}  \Big) \\
+&= c_3 + p_1 c_2
+\end{align*}
+This implies 
+\begin{align*}
+\frac{\partial }{\partial x}\Big|_{p}, \frac{\partial }{\partial y}\Big|_{p}-p_1 \frac{\partial }{\partial z}\Big|_{p} \in \operatorname{Ker}\alpha_p
+\end{align*}
+Because 
+\begin{align*}
+\alpha_p \frac{\partial }{\partial z}\Big|_p =1
+\end{align*}
+We know $\operatorname{Im}(\alpha_p)=\R$. Therefore, 
+\begin{align*}
+\operatorname{dim}(\operatorname{Ker}\alpha_p)=3- \operatorname{dim}(\operatorname{Im}\alpha _p)= 2
+\end{align*}
+It is clear that 
+\begin{align*}
+  \bset{\frac{\partial }{\partial x}\Big|_{p}, \frac{\partial }{\partial y}\Big|_{p}-p_1 \frac{\partial }{\partial z}\Big|_{p}}\subseteq \operatorname{Ker}\alpha _p\text{ is linearly independent }
+\end{align*}
+It then follows that 
+\begin{align*}
+  \bset{\frac{\partial }{\partial x}\Big|_{p}, \frac{\partial }{\partial y}\Big|_{p}-p_1 \frac{\partial }{\partial z}\Big|_{p}} \text{ is indeed a basis for }\operatorname{Ker}\alpha _p
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Part 2)} 
+\begin{align*}
+\alpha \wedge  d \alpha  = dx \wedge  dy \wedge  dz   
+\end{align*}
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+d\alpha &= d(dz+xdy)\\
+&=d^2z+dx\wedge  dy+ xd^2y \\
+&=dx\wedge  dy   
+\end{align*}
+Compute 
+\begin{align*}
+\alpha \wedge  d\alpha &= (dz+xdy)\wedge (dx \wedge  dy )\\
+&= dz\wedge  dx \wedge  dy + x dy \wedge  dx\wedge  dy \\
+&=dx\wedge  dy \wedge  dz       
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Part 3)} 
+\begin{align*}
+R\triangleq  \frac{\partial }{\partial z}\text{ is the unique vector filed that satisfies }\alpha (R)=1 \text{ and }\iota_R d\alpha =0 
+\end{align*}
+\end{theorem}
+\begin{proof}
+Suppose 
+\begin{align*}
+R\triangleq R^1 \frac{\partial }{\partial x}+ R^2 \frac{\partial }{\partial y}+ R^3 \frac{\partial }{\partial z}\text{ satisfies }\alpha (R)=1 \text{ and }\iota_R d\alpha =0 
+\end{align*}
+For all $V \in \mathfrak{X}(\R^3)$, if we write 
+\begin{align*}
+V=V^1 \frac{\partial }{\partial x}+ V^2 \frac{\partial }{\partial y}+ V^3 \frac{\partial }{\partial z}
+\end{align*}
+Then 
+\begin{align}
+\label{sg}
+\begin{vmatrix} 
+  R^1 & V^1 \\
+  R^2 & V^2
+\end{vmatrix}=\begin{vmatrix} 
+  dx R & dx V\\
+  dy R & dy V
+\end{vmatrix}&= (dx \wedge  dy)(R,V) \\
+&=d\alpha (R,V)=\iota_R d\alpha (V)  =0 \notag 
+\end{align}
+If any of $R^1$ or $R^2$ is non-zero at some point $p \inr^3$, by setting $V^1=-R^2$ and $V_2=R^1$ at  $p$ we have   
+\begin{align*}
+\begin{vmatrix} 
+  R^1 & V^1 \\
+  R^2 & V^2 
+\end{vmatrix}\text{ is non-zero at $p$ }
+\end{align*}
+which contradicts to \myref{Equation}{sg}. Therefore, we must have $R^1=R^2=0$ on  $\R^3$. We may now compute 
+ \begin{align*}
+1=\alpha (R)= (dz+xdy) (R^3 \frac{\partial }{\partial z})= R^3
+\end{align*}
+We may now conclude 
+\begin{align*}
+  R=  \frac{\partial }{\partial z}
+\end{align*}
+
+\end{proof}
+\begin{theorem}
+\textbf{(Part 4)} For all fixed $t$, 
+\begin{align*}
+\phi_t^* \alpha = \alpha 
+\end{align*}
+And 
+\begin{align*}
+\mathcal{L}_R \alpha =0
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $t$. Obviously,  
+\begin{align*}
+\phi_t (x,y,z)= (x,y,z+t)
+\end{align*}
+Let $p=(x_0,y_0,z_0)\inr^3$ and 
+\begin{align*}
+v= v^1\frac{\partial }{\partial x}\Big|_{p}+ v^2\frac{\partial }{\partial y}\Big|_{p}+v^3 \frac{\partial }{\partial z}\Big|_{p} \in T_p\R^3
+\end{align*}
+Denote $(x_0,y_0,z_0+t)$ by $q$.  Compute  
+\begin{align*}
+  (\phi_t^*\alpha )_{p}(v)&=\alpha_{q}((\phi_t)_{*,p}v)  \\
+  &=\alpha_{q} \Big( v^1\frac{\partial }{\partial x}\Big|_{q}+ v^2\frac{\partial }{\partial y}\Big|_{q}+v^3 \frac{\partial }{\partial z}\Big|_{q} \Big) \\
+  &= (dz+x_0dy) \Big( v^1\frac{\partial }{\partial x}\Big|_{q}+ v^2\frac{\partial }{\partial y}\Big|_{q}+v^3 \frac{\partial }{\partial z}\Big|_{q} \Big)  \\
+  &= v^3 + x_0v^2\\
+  &=(dz+x_0dy)\Big( v^1\frac{\partial }{\partial x}\Big|_{p}+ v^2\frac{\partial }{\partial y}\Big|_{p}+v^3 \frac{\partial }{\partial z}\Big|_{p}  \Big) \\
+  &=\alpha_p (v)
+\end{align*}
+We have shown $(\phi_t^* \alpha )_p=\alpha _p$. Because $p$ is arbitrary, this implies  $\phi_t^*\alpha =\alpha $. We may now compute 
+\begin{align*}
+\mathcal{L}_R \alpha =\lim_{t\to 0} \frac{(\phi_t^*\alpha )_p-\alpha_p}{t}= \lim_{t\to 0} \frac{0}{t}=0
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Orient $S^n$ in  $\R^{n+1}$ as the boundary of the unit closed ball. 
+\begin{enumerate}[label=(\alph*)]
+  \item Show that a volume form on $S^n$ is 
+     \begin{align*}
+    \omega = \sum_{i=1}^{n+1}(-1)^{i-1}\textbf{x}^i d\textbf{x}^1 \wedge \cdots \wedge  \widehat{d\textbf{x}^i} \wedge  \cdots \wedge d\textbf{x}^{n+1}       
+    \end{align*}
+  where the caret $\text{  }\widehat{}\text{  }$ over $d\textbf{x}^i$ indicates that $d\textbf{x}^i$ is to be omitted. 
+  \item Show that on $S^2$ 
+ \begin{align*}
+ \omega= \begin{cases}
+   \frac{dy \wedge  dz}{x}\text{ for }x\neq 0\\
+   \frac{dz \wedge  dx}{y}\text{ for }y\neq 0\\
+   \frac{dx \wedge  dy}{z}\text{ for }z\neq 0
+ \end{cases}
+ \end{align*}
+ \item Calculate $\int_{S_2}\omega$
+\end{enumerate}
+\end{question}
+\begin{theorem}
+\textbf{(Part 1)} Show that a volume form on $S^n$ is 
+     \begin{align*}
+    \omega = \sum_{i=1}^{n+1}(-1)^{i-1}\textbf{x}^i d\textbf{x}^1 \wedge \cdots \wedge  \widehat{d\textbf{x}^i} \wedge  \cdots \wedge d\textbf{x}^{n+1}       
+    \end{align*}
+  where the caret $\text{  }\widehat{}\text{  }$ over $d\textbf{x}^i$ indicates that $d\textbf{x}^i$ is to be omitted. 
+
+\end{theorem}
+\begin{proof}
+Let $\diota : S^{n}\rightarrow \R^{n+1}$ be the inclusion map and define $V \in \mathfrak{X}(\R^{n+1})$ by 
+\begin{align*}
+V_{\textbf{y}}\triangleq  \sum_{i=1}^{n+1} \textbf{y}^i \frac{\partial }{\partial \textbf{x}^i}\Big|_\textbf{y}
+\end{align*}
+So that $V$ is nowhere tangent to  $S^{n}$. By Proposition 15.21 of "Introduction to Smooth Manifold" by John Lee, we know  
+\begin{align*}
+\diota^* (\iota_V d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^{n+1}   ) \text{ is a volume form on }S^n
+\end{align*}
+Compute
+\begin{align*}
+\diota^*   (\iota_V d\textbf{x}^1\wedge  \cdots \wedge  d\textbf{x}^{n+1}  )&=\diota^* \Big(\sum_{i=1}^{n+1}(-1)^{i-1}V^i d\textbf{x}^1 \wedge  \cdots \wedge   \widehat{d\textbf{x}^i} \wedge  \cdots \wedge  d\textbf{x}^{n+1}    \Big)   \\
+&=\sum_{i=1}^{n+1}(-1)^{i-1} (V^i \circ \diota) d(\textbf{x}^1\circ \diota) \wedge  \cdots \wedge \widehat{d\textbf{x}^i} \wedge  \cdots \wedge  d(\textbf{x}^{n+1}\circ \diota)       \\
+&= \sum_{i=1}^{n+1}(-1)^{i-1}V^i d\textbf{x}^1 \wedge  \cdots \wedge  \widehat{d\textbf{x}^i} \wedge  \cdots \wedge d\textbf{x}^{n+1}   \\
+&= \sum_{i=1}^{n+1}(-1)^{i-1}\textbf{x}^i d\textbf{x}^1 \wedge  \cdots \wedge  \widehat{d\textbf{x}^i} \wedge  \cdots \wedge d\textbf{x}^{n+1}=\omega
+\end{align*}
+We have shown 
+\begin{align*}
+\omega = \diota^*(\iota_V d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^{n+1}   )   
+\end{align*}
+This implies $\omega$ is indeed a volume form on $S^n$.  
+\end{proof}
+\begin{theorem}
+\textbf{(Part 2)} Show that on $S^2$, 
+ \begin{align*}
+ \omega= \begin{cases}
+   \frac{dy \wedge  dz}{x}\text{ for }x\neq 0\\
+   \frac{dz \wedge  dx}{y}\text{ for }y\neq 0\\
+   \frac{dx \wedge  dy}{z}\text{ for }z\neq 0
+ \end{cases}
+ \end{align*}
+\end{theorem}
+\begin{proof}
+Define  $f\in \Omega^0(\R^3)$ by 
+\begin{align*}
+f(x,y,z)\triangleq  \sqrt{x^2+y^2+z^2} 
+\end{align*}
+So we have 
+\begin{align*}
+df= \frac{\partial f}{\partial x}dx+ \frac{\partial f}{\partial y}dy + \frac{\partial f}{\partial z}dz
+\end{align*}
+Let $\diota:S^2\rightarrow \R^3$ be the inclusion map. Because $f \circ \diota:S^2\rightarrow \R^3$ is constant  $1$, we may compute 
+\begin{align*}
+  0&=d(f\circ \diota  )=d(\diota^* f )=\diota^* (df)= \diota^*\Big( \frac{\partial f}{\partial x}dx+  \frac{\partial f}{\partial y}dy + \frac{\partial f}{\partial z}dz \Big)   \\
+  &=\frac{\partial f}{\partial x}dx+ \frac{\partial f}{\partial y}dy + \frac{\partial f}{\partial z}dz \\
+  &=\frac{xdx+ydy+zdz}{\sqrt{x^2+y^2+z^2} }= xdx+ydy+zdz
+\end{align*}
+This give us 
+\begin{align*}
+\begin{cases}
+dx= \frac{ydy + zdz}{-x}\text{ for }x\neq 0 \\
+dy= \frac{xdx+zdz}{-y}\text{ for }y\neq 0\\
+dz= \frac{xdx+ydy}{-z}\text{ for }z\neq 0
+\end{cases}
+\end{align*}
+Therefore, for $x\neq 0$ 
+\begin{align*}
+\omega&= xdy \wedge dz- ydx\wedge  dz + zdx \wedge  dy      \\
+&= xdy \wedge  dz- y (\frac{ydy+zdz}{-x}) \wedge dz+ z (\frac{ydy+zdz}{-x})\wedge  dy  \\
+&=(x+ \frac{y^2}{x}+ \frac{z^2}{x})dy \wedge  dz \\
+&=\frac{(x^2+y^2+z^2)dy \wedge  dz }{x}= \frac{dy \wedge  dz}{x}
+\end{align*}
+Similarly, for $y\neq 0$ 
+\begin{align*}
+\omega&=  xdy \wedge dz- ydx\wedge  dz + zdx \wedge  dy  \\
+&=x(\frac{xdx+zdz}{-y}) \wedge  dz -ydx\wedge  dz + z dx \wedge  (\frac{xdx+zdz}{-y})    \\
+&= (\frac{x^2}{y} +y + \frac{z^2}{y}) dz \wedge  dx \\
+&=\frac{(x^2+y^2+z^2)dz\wedge  dx }{y}= \frac{dz \wedge  dx}{y}
+\end{align*}
+Lastly, for $z\neq 0$ 
+\begin{align*}
+\omega&=   xdy \wedge dz- ydx\wedge  dz + zdx \wedge  dy      \\
+&= xdy\wedge  (\frac{xdx+ydy}{-z}) -ydx \wedge   (\frac{xdx+ydy}{-z})  + z dx\wedge  dy  \\
+&= (\frac{x^2}{z}+ \frac{y^2}{z}+ z)dx \wedge  dy \\
+&=\frac{(x^2+y^2+z^2)dx\wedge  dy }{z}= \frac{dx \wedge  dy }{z} 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Part 3)} Orient $S^n$ in  $\R^{n+1}$ as the boundary of the unit closed ball. 
+\begin{align*}
+\int_{S^2}\omega =4\pi  
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because 
+\begin{align*} 
+\omega = \diota^*(\iota_V d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^{n+1}   )   
+\end{align*}
+And because  
+\begin{align*}
+d\textbf{x}^1 \wedge  \cdots \wedge  d \textbf{x}^{n+1}   \text{ is a positively oriented volume form on the unit closed ball }
+\end{align*}
+We know $\omega$ as a volume form of $S^n$ is also positively oriented. Therefore, when we consider the chart  
+\begin{align*}
+U \triangleq \set{(x,y,z)\in S^2:z>0}\text{ and } \phi(x,y,z)\triangleq (x,y)
+\end{align*}
+And the chart 
+\begin{align*}
+V\triangleq \set{(x,y,z)\in S^2 :z<0}\text{ and }\psi (x,y,z)\triangleq (x,y)
+\end{align*}
+According to our computation in part 2, we may integrate  
+\begin{align*}
+\int_U \omega&= \int_{\phi (U)} \frac{1}{\sqrt{1-x^2-y^2} }dxdy \\
+&=\int_{0}^1 \int_{0}^{2\pi } \frac{r}{\sqrt{1-r^2} }d\theta dr=2\pi  \int_{0}^1 \frac{r}{\sqrt{1-r^2} }dr= 2\pi  (-\sqrt{1-r^2} )\Big|_{r=0}^1=2\pi 
+\end{align*}
+And integrate 
+\begin{align*}
+\int_V \omega= -\int_{\psi (V)} \frac{1}{-\sqrt{1-x^2-y^2} }dxdy= 2\pi 
+\end{align*}
+Therefore, 
+\begin{align*}
+\int_{S^2}\omega= \int_U \omega + \int_V \omega = 4\pi 
+\end{align*}
+
+\end{proof}
+\begin{question}{}{}
+Let $M$ be a manifold of dimension  $n$, and  $\set{U_i}_{i \in I}$ be a countable open cover. Suppose that each $U_i$  is diffeomorphic to  $\R^n$ and all $U_{ij}\triangleq U_i \cap U_j$  and $U_{ijk}\triangleq U_i \cap U_j \cap U_k$ are either diffeomorphic to $\R^n$ or empty. Choose a total order $<$ on  $I$, and consider the following sequence of real vector space 
+ \begin{align*}
+\mathcal{W}_1 = \prod_{i \in I} \R \overset{\ld }{\longrightarrow} \mathcal{W}_2 = \prod_{i<j \in I;U_{ij}\neq \varnothing} \R \overset{\mu }{\longrightarrow} \mathcal{W}_3 = \prod_{i<j<k\in I;U_{ijk}\neq \varnothing} \R
+\end{align*}
+where the linear maps are defined by 
+ \begin{align*}
+&\ld :(c_i)_{i \in I}\mapsto  (c_i-c_j)_{i<j \in I;U_{ij\neq \varnothing}}  \\
+&\mu: (c_{ij})_{i<j \in I;U_{ij}\neq \varnothing} \mapsto  (c_{ij}+c_{jk}-c_{ik})_{i<j<k \in I; I_{ijk}\neq \varnothing}
+\end{align*}
+which satisfies 
+\begin{align*}
+\mu \circ \ld = 0
+\end{align*}
+\end{question}
+\begin{theorem}
+\textbf{(a)} Let $\alpha $ be a closed 1-form. Show that for each $i \in I$, we have $\alpha |_{U_i}=df_i$ for some smooth function $f_i:U_i\rightarrow \R$. Show that there exists a unique element $(c_{ij})$ in $\mathcal{W}_2$ with $f_i |_{U_{ij}}-f_j |_{U_{ij}}=c_{ij}$ for all $i<j,U_{ij}\neq \varnothing$. Show that $\mu ((c_{ij}))=0$
+\end{theorem}
+\begin{proof}
+Because 
+\begin{enumerate}[label=(\roman*)]
+  \item $U_i$ is diffeomorphic to  $\R^n$. 
+  \item $\alpha $ is closed. 
+  \item $H^1(\R^n)=0$ by Poincare Lemma.  
+\end{enumerate}
+We know there exists some smooth  $f_i:U_i \rightarrow \R$ such that  $\alpha |_{U_i}=df_i$. Fix $i<j,U_{ij}\neq \varnothing$. On $U_{ij}$, we may compute 
+\begin{align*}
+d(f_i-f_j)=df_i-df_j= \alpha -\alpha =0
+\end{align*}
+Which implies 
+\begin{align*}
+f_i|_{U_{ij}}-f_j|_{U_{ij}}\text{ is some constant }c_{ij}\text{ on }U_{ij}
+\end{align*}
+Lastly, to see $\mu ((c_{ij}))=0$. Fix $i<j<k, p \in U_{ijk}$ , and compute 
+\begin{align*}
+  c_{ij}+c_{jk}-c_{ik}&= (f_i-f_j)(p)+ (f_j-f_k)(p) - (f_i-f_k)(p)\\
+  &=(f_i-f_j-f_k+f_k-f_i)(p)=0
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(b)} Show that in Part (a), the element $(c_{ij})+\operatorname{Im}\ld \in \operatorname{Ker} \mu \diagup \operatorname{Im}\ld $ is independent of the choice of $f_i$, and depend only on the cohomology class $[\alpha ]\in H^1(M)$. 
+\end{theorem}
+\begin{proof}
+Let $\widehat{f_i} :U_i\rightarrow \R$ also satisfy $\alpha |_{U_i}=d \widehat{f_i} $, and again induce 
+\begin{align*}
+\widehat{c_{ij}}\triangleq \widehat{f_i}-\widehat{f_j}
+\end{align*}
+Because 
+\begin{align*}
+d(f_i-\widehat{f_i})= df_i -d \widehat{f_i}= \alpha - \alpha =0
+\end{align*}
+We know $f_i,\widehat{f_i}$ differ by some constant, which we denote 
+\begin{align*}
+c_i \triangleq  f_i - \widehat{f_i}
+\end{align*}
+Now, compute 
+\begin{align*}
+  \ld(c_i)&= (c_i-c_j)_{i<j \in I;U_{ij}\neq \varnothing}\\
+  &=(f_i- \widehat{f_i}- f_j + \widehat{f_j})_{i<j \in I;U_{ij}\neq \varnothing} \\
+  &=(c_{ij}- \widehat{c_{ij}})_{i<j \in I;U_{ij}\neq \varnothing} 
+\end{align*}
+We have shown $(\widehat{c_{ij}})_{i<j \in I; U_{ij}\neq \varnothing},(c_{ij})_{i<j \in I;U_{ij}\neq \varnothing}$ differ by $\ld  (c_i)$. That is, the map 
+\begin{align*}
+\alpha \mapsto (c_{ij})+ \operatorname{Im} \ld \in \frac{\operatorname{Ker}\mu}{\operatorname{Im}\ld }  \text{ is well-defined }
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Using the machinery developed, we may now define a linear map $\Phi:H^1(M)\rightarrow \operatorname{Ker}\mu \diagup \operatorname{Im}\ld $. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(c)} Show that $\Phi$ is injective. 
+\end{theorem}
+\begin{proof}
+Fix $[\alpha ]\neq 0$. We are required to show the induced $(c_{ij})\in \mathcal{W}_2$ does not belong to $\operatorname{Im}\ld $. \As{for a contradiction that $(c_{ij})=\ld  ((c_i))$ for some $(c_i)\in \mathcal{W}_1$}
+\end{proof}
 \end{document}

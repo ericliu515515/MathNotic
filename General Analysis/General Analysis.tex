@@ -3738,11 +3738,11 @@ We now have
 \end{align*}
 \end{proof}
 \begin{mdframed}
-Lastly, to close this section, we prove the \customref{Identity Theorem}{Identity Theorem}. By a \textbf{region $D\subseteq \C$}, we mean a connected and open subset of $\C$
+Lastly, to close this section, we prove the \customref{Identity Theorem}{Identity Theorem}, which is extremely useful in complex analysis. 
 \end{mdframed}
 \begin{theorem}
 \label{Identity Theorem}
-\textbf{(Identity Theorem)} Given two analytic complex-valued function $f,g:D\rightarrow \C$ defined on some region $D\subseteq \C$, if $f,g$ agree on some subset $S \subseteq D$ such that $S$ has a limit point in $D$, then  $f,g$ agree on the whole region $D$.
+\textbf{(Identity Theorem)} Given two analytic complex-valued function $f,g:D\rightarrow \C$ defined on some open connected $D\subseteq \C$, if $f,g$ agree on some subset $S \subseteq D$ such that $S$ has a limit point in $D$, then  $f,g$ agree on the whole region $D$.
 \end{theorem}
 \begin{proof}
 Define 
@@ -8751,7 +8751,7 @@ One may check that
 \end{enumerate}
 Note that property (b) implies 
 \begin{align*}
-\iota_X (d\textbf{x}^1\wedge  \cdots \wedge  d\textbf{x}^k)=\sum_{i=1}^k (-1)^{k-1}X^i d\textbf{x}^i \wedge \cdots \wedge  \widehat{d\textbf{x}^i} \wedge \cdots \wedge  d\textbf{x}^k      
+\iota_X (d\textbf{x}^1\wedge  \cdots \wedge  d\textbf{x}^k)=\sum_{i=1}^k (-1)^{i-1}X^i d\textbf{x}^i \wedge \cdots \wedge  \widehat{d\textbf{x}^i} \wedge \cdots \wedge  d\textbf{x}^k      
 \end{align*}
 where the hats indicate omitted arguments.   
 \end{mdframed}
@@ -9928,6 +9928,377 @@ c_n= \frac{1}{2\pi i}\int_{C_r} \frac{f(z)}{z^{n+1}}dz
 where $C_r$ is the closed contour running through the boundary of the open disk centering  the origin with radius  $r$. Let $n\geq 1$, and let  $M$ be an upper bound of $\abso{f}$. The proof then following from letting $r \to \infty$ in the below estimation 
 \begin{align*}
 \abso{c_n}= \frac{1}{2\pi } \cdot (2\pi r) \cdot \max_{C_r} \abso{\frac{f(z)}{z^{n+1}}} \leq \frac{M}{r^n}
+\end{align*}
+\end{proof}
+\section{Residue Formula}
+\begin{abstract}
+
+\end{abstract}
+\begin{mdframed}
+Before we begin developing this section, we first give the following remark. Let  
+\begin{align*}
+0<R_1 <r_1<r_2<R_2 < \infty
+\end{align*}
+Let $C_1,C_2$ respectively be closed contours running through the boundary of $D_{r_1}(0),D_{r_2}(0)$. If $f$ is holomorphic on on $R_1 < \abso{z}<R_2$, then 
+\begin{align*}
+\int_{C_1} f(z)dz= \int_{C_2}f(z)dz
+\end{align*}
+by a simple geometric argument. Therefore, we may give the next Theorem a well-defined statement. 
+\end{mdframed}
+\begin{theorem}
+\label{LTC}
+\textbf{(Laurent's Theorem)} Suppose
+\begin{align*}
+0\leq R_1 <r< R_2 \leq \infty
+\end{align*}
+$C_r$ is a closed contour running through the circle centering $z_0$ with radius $r$ counterclockwise, and $f$ is holomorphic on the annulus $R_1 < \abso{z-z_0} < R_2$. If we define 
+\begin{align*}
+c_n\triangleq  \frac{1}{2\pi  i} \int_{C_r} \frac{f(z)}{(z-z_0)^{n+1}}dz\text{ for all }n\inz
+\end{align*}
+Then $\sum_{n\geq 0} c_nh^n$ converge for $\abso{h}<R_2$, $\sum_{n<0} c_nh^{n}$ converge for $\abso{h}>R_1$ and 
+\begin{align*}
+f(z_0+h)= \sum_{n\inz} c_nh^n\text{ on the annulus }R_1 < \abso{h}< R_2
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix some  $h\inc$ such that $R_1 < \abso{h}<R_2$. Let $r_1,r_2$ satisfy 
+ \begin{align*}
+R_1 < r_1 < \abso{h}< r_2 < R_2
+\end{align*}
+And let $C_{r_1},C_{r_2}$ respectively be closed contours running through the circle centering $z_0$ with radius  $r_1,r_2$ counterclockwise. We first show that 
+\begin{align*}
+  \vi{f(z_0+h)= \frac{1}{2\pi  i}\int_{C_{r_1}} \frac{f(z)}{z-(z_0+h)}dz- \frac{1}{2\pi i}\int _{C_{r_2}} \frac{f(z)}{z-(z_0+h)}dz}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+With \customref{LTC}{Laurent's Theorem}, given holomorphic $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$, we may write 
+\begin{align*}
+f(z)= \sum_{n\inz} c_n (z-z_0)^n\text{ for } 0<\abso{z-z_0}< \epsilon 
+\end{align*}
+If $c_n=0$ for all $n<0$, obviously we may define  $f(z_0)\triangleq c_0$, so that $f$ is still holomorphic after such extension. If this is the case, we say $f$ has a  \textbf{removable singularity at $z_0$}.     
+\end{mdframed}
+\begin{theorem}
+\label{RoRS}
+\textbf{(Riemann's removable singularity Theorem)} Given holomorphic $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$ 
+\begin{align*}
+z_0\text{ is a removable singularity of $f$ }\iff f\text{ is bounded on some }D_\delta (z_0)\setminus \set{z_0}
+\end{align*}
+\end{theorem}
+\begin{proof}
+From left to right is clear. Suppose $f$ is bounded by $M$ on $D_\delta(z_0)\setminus \set{z_0}$. Because 
+\begin{align*}
+c_n=\frac{1}{2\pi  i}\int_{C_r}f(z)(z-z_0)^{-n-1}dz
+\end{align*}
+We may estimate 
+\begin{align*}
+  \abso{c_n}\leq \frac{1}{2\pi }(2\pi r )( M r^{-n-1})= Mr^{-n}
+\end{align*}
+The proof then follows from letting $n<0$ and $r \to 0$. 
+\end{proof}
+\begin{mdframed}
+If for some $m<0$, we have  
+ \begin{align*}
+c_m \neq 0\text{ and }c_n=0\text{ for all }n\leq m
+\end{align*}
+then we say $f$ has a  \textbf{pole of order $m$ at  $z_0$}. If a pole is of order $1$, we say such pole is a  \textbf{simple pole}.  
+\end{mdframed}
+\begin{theorem}
+\textbf{(Recognition of Pole)} Given holomorphic $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$ 
+\begin{align*}
+f\text{ has a pole of order }m\text{ at }z_0\iff \lim_{z\to z_0}(z-z_0)^mf(z)\inc^*
+\end{align*}
+\end{theorem}
+\begin{proof}
+From left to right is clear. From right to left, define $g:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$ by 
+\begin{align*}
+g(z)\triangleq (z-z_0)^m f(z)
+\end{align*}
+From premise, we may deduce $g$ is bounded on some  $D_\delta(z_0)\setminus \set{z_0}$. Therefore, by \myref{Theorem}{RoRS}, $g$ has a removable singularity at $z_0$. Thus, we may write 
+ \begin{align*}
+g(z)=\sum_{n=0}^{\infty}a_n z^n
+\end{align*}
+where $a_0\neq 0$ by premise. The proof then follows from writing $f$ in terms of $a_n$.  
+\end{proof}
+\begin{mdframed}
+Writing holomorphic $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$ in terms of Laurent Series  
+\begin{align*}
+f(z)= \sum_{n\inz} c_n (z-z_0)^n 
+\end{align*}
+We define the \textbf{residue of $f$ at  $z_0$} to be 
+\begin{align*}
+\operatorname{Res}(f,z_0)\triangleq c_{-1}
+\end{align*}
+If there are infinitely many $n<0$ such that $c_n\neq 0$, we say $f$ has a \textbf{essential singularity} at $z_0$. Obviously, if  $f$ has a removable singularity at  $z_0$, then the residue of  $f$ at $z_0$ is  $0$. Immediately, from direct computation with Laurent expansion of $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$, we may conclude the following easy ways to compute residue for relatively simple function. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Calculation of Residue)} If holomorphic $p,q:D_\epsilon (z_0)\rightarrow \C$ satisfies 
+\begin{align*}
+p(z_0)\neq 0\text{ and }q(z_0)=0,q'(z_0)\neq 0 
+\end{align*}
+Then $f=\frac{p}{q}$ has a simple pole at $z_0$ and 
+ \begin{align*}
+\operatorname{Res}(f,z_0)= \frac{p(z_0)}{q'(z_0)}
+\end{align*}
+If $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$ has a pole of order $m$ at  $z_0$,  then 
+ \begin{align*}
+\operatorname{Res}(f,z_0)=  \lim_{z\to z_0} \frac{1}{(m-1)!} \Big( \frac{d}{dz} \Big)^{m-1} (z-z_0)^m f(z)
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\label{CRT}
+\textbf{(Cauchy's Residue Theorem)} Suppose that $f$ is holomorphic in an open set containing a positively oriented  Jordan curve $\gamma $ and its interior, except for poles at the points $z_1,\dots ,z_N$ inside $\gamma $. Then 
+\begin{align*}
+\int_{\gamma }f(z)dz = 2\pi  i\sum_{n=1}^N \operatorname{Res} (f,z_n)
+\end{align*}
+\end{theorem}
+\begin{mdframed}
+  Using \customref{CRT}{the residue theorem}, we may compute the following integral that will definitely exists in context of Fourier analysis.   
+\end{mdframed}
+\begin{Example}{\textbf{(Poisson Kernel)}}{}
+\begin{align*}
+  \int_0^{\pi } \frac{\log x}{1+x^2}dx
+\end{align*}
+\end{Example}
+\begin{mdframed}
+Let $D \subseteq \C$ be open connected, $f:D\rightarrow \C$ be holomorphic. Suppose $f$ does not vanish identically on  $D$.  \customref{Identity Theorem}{Identity Theorem} tell us that the set of \textbf{zeros}
+\begin{align*}
+Z\triangleq \set{z\in D: f(z)=0}
+\end{align*}
+must have no limit point in $D$. Therefore, for each zero $z_0 \in Z$, when we write locally 
+\begin{align*}
+  f(z)= \sum_{n=0}^{\infty} c_n(z-z_0)^n
+\end{align*}
+there exists some smallest $n\geq 1$ such that $c_n \neq 0$. We then say $f$ has a  \textbf{zero of order $n$ at $z_0$}, and if  $n=1$, we say this zero is  \textbf{simple}. \\
+
+Let $z_0\inc$. Given some holomorphic $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$, we say $f$ has a \textbf{removable singularity at $z_0$} if we may define $f(z_0)$ to be some complex number so that $f:D_\epsilon (z_0)\rightarrow \C$ is holomorphic. Suppose $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C^*$. We say $f$ has a  \textbf{pole of order $n$ at $z_0$} if the function $g:D_\epsilon (z_0)\rightarrow \C$ defined by 
+\begin{align*}
+g(z)\triangleq \begin{cases}
+  \frac{1}{f(z)}& \text{ if $z\neq z_0$ }\\
+  0& \text{ if $z=z_0$ }
+\end{cases}
+\end{align*}
+is holomorphic with the order $n$ at zero  $z_0$. Obviously, there exists an unique holomorphic $h:D_\epsilon (z_0)\rightarrow \C$ such that 
+\begin{align*}
+g(z)= (z-z_0)^n h(z)
+\end{align*}
+It is clear that $h$ does not vanish on  $D_\epsilon (z_0)$. Therefore, we may write 
+\begin{align*}
+G(z)= \frac{1}{h(z)}
+\end{align*}
+so that $G:D_\epsilon (z_0)\rightarrow \C$ is holomorphic and write 
+\begin{align*}
+f(z)= \frac{G(z)}{(z-z_0)^n}=\sum_{k=-n}^{\infty}a_k (z-z_0)^k
+\end{align*}
+We then call 
+\begin{align*}
+\sum_{k=-n}^{-1}a_k(z-z_0)^k
+\end{align*}
+the \textbf{principal part of $f$ at the pole $z_0$} and 
+\begin{align*}
+\operatorname{Res}_{z_0}f\triangleq a_{-1}
+\end{align*}
+the \textbf{residue of $f$ at the pole  $z_0$}. It is clear from the Laurent expansion of $f$ and direct computation that   
+\begin{align*}
+\operatorname{Res}_{z_0}f=
+\end{align*}
+\end{mdframed}
+\section{Script}
+\begin{question}{}{}
+There are three types of isolated singularities: removable singularity, poles and essential singularity. Provide the definition of each type and give an example.  
+\end{question}
+\begin{proof}
+Let $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$ be holomorphic so that $f$ has an isolated singularity at  $z_0$. By Laurent's Theorem, we may express $f$ as a Laurent series 
+\begin{align*}
+f(z)= \sum_{n=-\infty}^{\infty} c_n(z-z_0)^n
+\end{align*}
+If $c_n=0$ for all negative $n$, say 
+\begin{align*}
+f(z)= (z-z_0)^2 + 7 \text{ on }D_\epsilon (z_0)\setminus \set{z_0}
+\end{align*}
+we say $f$ has a removable singularity at $z_0$. If there are only finite numbers of negative $n$ such that $c_n\neq 0$, and $m$ is the smallest integer such that
+\begin{align*}
+c_n \neq 0 \text{ for }n=m
+\end{align*}
+we say $f$ has a pole of order $m$ at $z_0$. For example, $f$ can be 
+ \begin{align*}
+f(z)=\frac{1}{z-z_0}\text{ on }D_\epsilon (z_0)\setminus \set{z_0}
+\end{align*}
+If there are infinite number of negative $n$ such that  $c_n \neq 0$, for example, 
+\begin{align*}
+f(z)= e^{\frac{1}{(z-z_0)}}= \sum_{n=0}^{\infty} \frac{1}{n!}(z-z_0)^{-n}\text{ on }D_\epsilon (z_0)\setminus \set{z_0}
+\end{align*}
+we say $f$ has an essential singularity at $z_0$. 
+\end{proof}
+\begin{question}{}{}
+State the definition of the residue of a function at an isolated singularity. 
+\end{question}
+\begin{proof}
+Let $f:D_\epsilon (z_0)\setminus \set{z_0}\rightarrow \C$ be holomorphic so that $f$ has an isolated singularity at  $z_0$. By Laurent's Theorem, we may express $f$ as a Laurent series 
+\begin{align*}
+f(z)= \sum_{n=-\infty}^{\infty} c_n(z-z_0)^n
+\end{align*}
+The residue of $f$ at  $z_0$ is defined to be $c_{-1}$. 
+\begin{align*}
+\operatorname{Res}(f,z_0)\triangleq c_{-1}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+If $z_0$ is a simple pole of  $f$, prove that 
+\begin{align*}
+\operatorname{Res}(f,z_0)= \lim_{z\to z_0} (z-z_0)f(z)
+\end{align*}
+\end{question}
+\begin{proof}
+Because $z_0$ is a simple pole of  $f$, we may write 
+ \begin{align*}
+   f(z)= [\operatorname{Res}(f,z_0)](z-z_0)^{-1}+ \sum_{n=0}^{\infty} c_n(z-z_0)^n
+\end{align*}
+This give us 
+\begin{align*}
+\lim_{z\to z_0}(z-z_0)f(z)&= \lim_{z\to z_0}\operatorname{Res}(f,z_0)+ \sum_{n=0}^{\infty}c_n(z-z_0)^{n+1} \\
+&=\operatorname{Res}(f,z_0)+ \sum_{n=0}^{\infty} \lim_{z\to z_0}c_n (z-z_0)^{n+1} \\
+&=\operatorname{Res}(f,z_0)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+If  $f(z)=\frac{q(z)}{p(z)}$ where $p$ and $q$ are holomorphic, and  $z_0$ is a simple zero of  $p$, prove that 
+\begin{align*}
+\operatorname{Res}(f,z_0)= \frac{q(z_0)}{p'(z_0)}
+\end{align*}
+\end{question}
+\begin{proof}
+Because $z_0$ is a simple zero of $p$, we know 
+\begin{align*}
+p'(z_0)\neq 0
+\end{align*}
+If $q(z_0)\neq 0$, then $f$ has a simple pole at $z_0$, and from result of last question we may compute 
+ \begin{align*}
+\operatorname{Res}(f,z_0)&= \lim_{z\to z_0} \frac{(z-z_0)q(z)}{p(z)-p(z_0)}= \frac{q(z_0)}{p'(z_0)} 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+If $z_0$ is a pole of  $f$ of order $m$, prove that 
+ \begin{align*}
+\operatorname{Res}(f,z_0)=\lim_{z\to z_0} \frac{1}{(m-1)!}\Big(\frac{d}{dz}\Big)^{m-1} g(z)
+\end{align*}
+where $g(z)=(z-z_0)^m f(z)$
+\end{question}
+\begin{proof}
+Because $z_0$ is a pole of $f$ of order $m$, we may write 
+ \begin{align*}
+f(z)=\sum_{n=-m}^\infty c_n (z-z_0)^n\text{ and }g(z)=\sum_{n=0}^{\infty} c_{n-m}(z-z_0)^n
+\end{align*}
+Or write 
+\begin{align*}
+  g(z)= c_{-m}+c_{-m+1} (z-z_0)   + \cdots + c_{-1}(z-z_0)^{m-1} + c_0(z-z_0)^m +\cdots 
+\end{align*}
+Compute 
+\begin{align*}
+g^{(m-1)}(z)= \frac{(m-1)!}{0!}c_{-1}+\frac{m!}{1!}c_0(z-z_0)+ \frac{(m+1)!}{2!}c_1(z-z_0)^2 + \cdots  
+\end{align*}
+This give us 
+\begin{align*}
+\lim_{z\to z_0} \frac{1}{(m-1)!}g^{(m-1)}(z)= c_{-1}= \operatorname{Res}(f,z_0)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Find the residue of the following function at the indicated points: 
+\begin{enumerate}[label=(\alph*)]
+  \item $\frac{z}{(2-3z)(4z+3)}$ at $z= \frac{2}{3}$. 
+  \item $\frac{z-\frac{1}{6}z^3 - \sin z}{z^8}$ at $z=0$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+For the first function, observe  
+\begin{align*}
+\lim_{z\to \frac{2}{3}} (z- \frac{2}{3}) \cdot \frac{z}{(2-3z)(4z+3)}= \lim_{z\to \frac{2}{3}}\frac{z}{-3(4z+3)}= \frac{2}{-51}\neq 0
+\end{align*}
+which implies $z=\frac{2}{3}$ is a simple pole. Therefore, from the question earlier, we may deduce its residue is exactly $\frac{2}{-51}$. For the second function, we can just compute its Laurent series by 
+\begin{align*}
+\frac{z- \frac{1}{6}z^3- \sin z}{z^8}&= \frac{1}{z^7}- \frac{1}{6z^5} - \frac{1}{z^8}\sum_{n=0}^{\infty}  \frac{(-1)^n}{(2n+1)!}z^{2n+1} \\
+&=\frac{1}{5!}z^{-3}+ \frac{-1}{7!}z^{-1}+ \frac{1}{9!}z + \cdots 
+\end{align*}
+Therefore, its residue is $\frac{-1}{7!}$. 
+\end{proof}
+\begin{question}{}{}
+Evaluate 
+\begin{align*}
+\int_{-\pi }^{\pi } \frac{d\theta}{5+ 3 \cos \theta}
+\end{align*}
+\end{question}
+\begin{proof}
+Define $\gamma :[-\pi ,\pi ]\rightarrow \C$ by 
+\begin{align*}
+\gamma (t)=e^{it}
+\end{align*}
+We have 
+\begin{align*}
+I\triangleq -2i\int _{\gamma } \frac{dz}{3z^2+10z+3}&= \int_\gamma  \frac{dz}{\frac{3i}{2}z^2 + 5iz+ \frac{3}{2}i} \\
+&=\int_{\gamma } \frac{1}{5+ \frac{3}{2}(z+ \frac{1}{z})} \cdot \frac{1}{iz} dz\\
+&=\int_{-\pi }^{\pi } \frac{1}{5+ \frac{3}{2}(e^{it}+e^{-it})} \cdot \frac{ie^{ it}}{i e^{it}}dt \\
+&=\int_{-\pi }^{\pi } \frac{1}{5+ 3 \cos t}dt
+\end{align*}
+In summary 
+\begin{align*}
+\int_{-\pi }^{\pi } \frac{d\theta}{5+ 3 \cos \theta}&= -2i \int_{\gamma } \frac{dz}{3z^2+10z+3} 
+\end{align*}
+Note that 
+\begin{align*}
+\frac{1}{3z^2+10+3}= \frac{1}{(3z+1)(z+3)}
+\end{align*}
+have two simple poles $z=-3$ and  $z= \frac{1}{-3}$, and have residue $\frac{1}{8}$ at pole $z=\frac{1}{-3}$. It then follows from residue theorem that 
+\begin{align*}
+\int_{-\pi }^{\pi } \frac{d\theta}{5+ 3 \cos \theta}= - 2i \cdot 2\pi  i \cdot \frac{1}{8}= \frac{\pi }{2} 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Evaluate 
+\begin{align*}
+\int^{\infty}_{- \infty } \frac{dx}{x^2+2x+2}
+\end{align*}
+\end{question}
+\begin{proof}
+Let $S_R:[0 ,\pi ]\rightarrow \C$ be the semi-circle $S_R(t)\triangleq Re^{it}$, $L_R:[-R,R]\rightarrow \C$ be the line segment $L_R(t)\triangleq t$, and $\gamma$ the wedge $\gamma =S_R+L_R$. By residue theorem, 
+\begin{align*}
+\int_{\gamma } \frac{dz}{z^2+2z+2}= 2\pi i \cdot \frac{1}{2i}=\pi 
+\end{align*}
+for large enough $R$. Observe 
+\begin{align*}
+  \abso{\int_{S_R} \frac{dz}{z^2+2z+2} }\leq \pi R \cdot \max_{S_R} \frac{1}{\abso{z+1-i}\cdot \abso{z+1+i}} \leq  \frac{\pi  R}{(R- \sqrt{2} )^2} 
+\end{align*}
+This implies 
+\begin{align*}
+\lim_{R\to \infty} \int_{S_R} \frac{dz}{z^2+2z+2}= 0
+\end{align*}
+Therefore, 
+\begin{align*}
+\int_{-\infty}^{\infty} \frac{dx}{x^2+2x+2}&= \lim_{R\to \infty}\int_{L_R} \frac{dz}{z^2+2z+2} \\
+&=\lim_{R\to \infty} \pi  - \int_{S_R} \frac{dz}{z^2+2z+2}=\pi 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Evaluate 
+\begin{align*}
+\int_{-\infty}^{\infty} \frac{dx}{x^4+2x^2+1}
+\end{align*}
+\end{question}
+\begin{proof}
+Let $S_R:[0 ,\pi ]\rightarrow \C$ be the semi-circle $S_R(t)\triangleq Re^{it}$, $L_R:[-R,R]\rightarrow \C$ be the line segment $L_R(t)\triangleq t$, and $\gamma$ the wedge $\gamma =S_R+L_R$. By residue theorem, 
+\begin{align*}
+\int_{\gamma } \frac{dz}{z^4+2z^2+1}= 2\pi  i \lim_{z\to i} \frac{d}{dz} \frac{1}{(z+i)^2}= \frac{\pi }{2}
+\end{align*}
+for large enough $R$. Observe 
+ \begin{align*}
+\abso{\int_{S_R} \frac{dz}{z^4+2z^2+1}}\leq \pi  R \cdot \max_{S_R} \frac{1}{\abso{z+i}^2 \cdot \abso{z-i}^2}\leq \frac{\pi  R}{(R-1)^4}
+\end{align*}
+This implies 
+\begin{align*}
+\lim_{R\to \infty} \int_{S_R} \frac{dz}{z^4+2z^2+1} = 0
+\end{align*}
+Therefore, 
+\begin{align*}
+\int_{-\infty}^{\infty} \frac{dx}{x^4+ 2x^2+1}&= \lim_{R\to \infty} \int_{L_R} \frac{dz}{z^4+2z^2+1} \\
+&=\lim_{R\to \infty} \frac{\pi }{2}- \int_{S_R} \frac{dz}{z^4+2z^2+1}= \frac{\pi }{2}
 \end{align*}
 \end{proof}
 \section{Dirichlet's Problem}

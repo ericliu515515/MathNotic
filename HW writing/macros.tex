@@ -43,8 +43,48 @@
 \newcommand{\power}[1]{\mathcal{P}(#1)}
 \newcommand{\dcup}{\mathbin{\dot{\cup}}}
 \newcommand{\diam}[1]{\text{diam}\, #1}
+\newcommand{\diota}{\dot{\iota}}
 \newcommand{\at}{\Big|}
 
 \let\originalphi\phi % Store the original \phi in \originalphi
 \renewcommand{\phi}{\varphi} % Redefine \phi to \varphi
 \newcommand{\pfi}{\originalphi} % Define \pfi to display the original \phi
+\makeatletter
+\NewDocumentCommand{\extp}{e{^}}{%
+  \mathop{\mathpalette\extp@{#1}}\nolimits
+}
+\NewDocumentCommand{\extp@}{mm}{%
+  \bigwedge\nolimits\IfValueT{#2}{^{\extp@@{#1}#2}}%
+  \IfValueT{#1}{\kern-2\scriptspace\nonscript\kern2\scriptspace}%
+}
+\newcommand{\extp@@}[1]{%
+  \mkern
+    \ifx#1\displaystyle-1.8\else
+    \ifx#1\textstyle-1\else
+    \ifx#1\scriptstyle-1\else
+    -0.5\fi\fi\fi
+  \thinmuskip
+}
+\makeatletter
+\usepackage{pifont}
+\makeatletter
+\newcommand\Pimathsymbol[3][\mathord]{%
+  #1{\@Pimathsymbol{#2}{#3}}}
+\def\@Pimathsymbol#1#2{\mathchoice
+  {\@Pim@thsymbol{#1}{#2}\tf@size}
+  {\@Pim@thsymbol{#1}{#2}\tf@size}
+  {\@Pim@thsymbol{#1}{#2}\sf@size}
+  {\@Pim@thsymbol{#1}{#2}\ssf@size}}
+\def\@Pim@thsymbol#1#2#3{%
+  \mbox{\fontsize{#3}{#3}\Pisymbol{#1}{#2}}}
+\makeatother
+% the next two lines are needed to avoid LaTeX substituting upright from another font
+\input{utxmia.fd}
+\DeclareFontShape{U}{txmia}{m}{n}{<->ssub * txmia/m/it}{}
+% you may also want
+\DeclareFontShape{U}{txmia}{bx}{n}{<->ssub * txmia/bx/it}{}
+% just in case
+%\DeclareFontShape{U}{txmia}{l}{n}{<->ssub * txmia/l/it}{}
+%\DeclareFontShape{U}{txmia}{b}{n}{<->ssub * txmia/b/it}{}
+% plus info from Alan Munn at https://tex.stackexchange.com/questions/290165/how-do-i-get-a-nicer-lambda?noredirect=1#comment702120_290165
+\newcommand{\pilambdaup}{\Pimathsymbol[\mathord]{txmia}{21}}
