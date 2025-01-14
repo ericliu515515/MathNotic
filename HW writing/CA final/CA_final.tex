@@ -1,0 +1,491 @@
+\documentclass{report}
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\begin{document}
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+\pagebreak
+\chapter{Complex Analysis Final} 
+\section{Complex Analysis Final}
+\begin{mdframed}
+  (1)  (20 pts) Let $S^2 \subseteq \R^3$ be the closed unit sphere defined by the equation $x^2+y^2+z^2=1$. Let $N=(0,0,1)$ be the north pole of $S^2$ and  $S=(0,0,-1)$ be the south pole of $S^2$. Define 
+  \begin{align*}
+  U_N \triangleq S^2 \setminus \set{N} \text{ and }U_S = S^2 \setminus \set{S}
+  \end{align*}
+\end{mdframed}
+\begin{question}{}{}
+  (a) (5pts) Prove that $U_N$ and  $U_S$ are open subsets of  $S^2$. (Here $S^2$ is equipped with the subspace topology induced by  $\R^3$.) 
+\end{question}
+\begin{proof}
+Fix $p \in U_N$. Because $N \not\in  U_N$, we know $\abso{p-N}>0$. Let  $\epsilon<\abso{p-N}$, so that the open ball $B_\epsilon (p)$ in $\R^3$ does not contain $N$. This give us 
+ \begin{align*}
+p \in B_\epsilon  (p)\cap S^2 \subseteq U_N
+\end{align*}
+Where $B_\epsilon (p)\cap S^2$ is open in $S^2$ by definition of subspace topology. We have shown that for each $p \in U_{N}$ there exists some subset $M_p \subseteq S^2$ open in $S^2$, containing $p$ and contained by  $U_N$. This implies  $U_N$ is open in  $S^2$.    \\
+
+
+Fix $p \in U_S$. Because $S \not\in  U_S$, we know $\abso{p-S}>0$. Let  $\epsilon<\abso{p-S}$, so that the open ball $B_\epsilon (p)$ in $\R^3$ does not contain $S$. This give us 
+ \begin{align*}
+p \in B_\epsilon  (p)\cap S^2 \subseteq U_S
+\end{align*}
+Where $B_\epsilon (p)\cap S^2$ is open in $S^2$ by definition of subspace topology. We have shown that for each $p \in U_{S}$ there exists some subset $M_p \subseteq S^2$ open in $S^2$, containing $p$ and contained by  $U_S$. This implies  $U_S$ is open in  $S^2$.    
+\end{proof}
+\begin{question}{}{}
+  (b) (5pts) Define $\phi_N:U_N\rightarrow \C$ and $\phi_S:U_S \rightarrow \C$ by 
+  \begin{align*}
+  \phi_N(a,b,c)\triangleq \frac{a+b i}{1-c}\text{ and }\phi_S (a,b,c)\triangleq \frac{a-b i}{1+c}
+  \end{align*}
+Prove that both $\phi_N$ and $\phi_S$ are homeomorphisms. 
+\end{question}
+\begin{proof}
+The continuity of $\phi_N$ and $\phi_S$ is obvious. Suppose 
+\begin{align*}
+x+yi= \frac{a+b i}{1-c}= \phi_N (a,b,c)
+\end{align*}
+Multiply both side by $1-c$ 
+ \begin{align}
+\label{xyi}
+   (1-c)(x+yi)=a+bi
+\end{align}
+This give us 
+\begin{align*}
+  (1-c)^2 (x^2+y^2) + c^2 = a^2+ b^2 + c^2 =1
+\end{align*}
+Which give us 
+\begin{align*}
+  (x^2+y^2+1)c^2 - 2(x^2+y^2) c + (x^2+y^2-1)=0
+\end{align*}
+By quadratic formula, 
+\begin{align*}
+c&= \frac{2(x^2+y^2)\pm \sqrt{4(x^2+y^2)^2 - 4(x^2+y^2+1)(x^2+y^2-1)} }{2(x^2+y^2+1)} \\
+&=\frac{x^2+y^2 \pm 1}{x^2+y^2+1}= \frac{x^2+y^2-1}{x^2+y^2+1}
+\end{align*}
+Note that the last equality hold because $(a,b,c)\in U_N \implies c\neq 1$. From  \myref{Equation}{xyi}, we may now compute 
+\begin{align*}
+a=(1-c)x= \frac{2x}{x^2+y^2+1}\text{ and }b=(1-c)y= \frac{2y}{x^2+y^2+1}
+\end{align*}
+We have shown that $\phi_N$ is a bijection between $U_N$ and $\C$, and its inverse is exactly 
+ \begin{align}
+\label{phn}
+\phi_N^{-1} (x+yi)= \frac{(2x,2y,x^2+y^2-1)}{x^2+y^2+1} 
+\end{align}
+The continuity of $\phi_N^{-1}:\C \rightarrow U_N$ is obvious. We have shown $\phi_N$ is indeed a homeomorphism. Now, suppose 
+\begin{align}
+\label{xyi2}
+x+yi= \frac{a-b i}{1+c}= \phi_S(a,b,c)
+\end{align}
+Multiply both side by $1+c$ 
+ \begin{align*}
+   (1+c)(x+yi)=a-b i
+\end{align*}
+This give us 
+\begin{align*}
+  (1+c)^2(x^2+y^2)+c^2= a^2+ b^2 +c^2 =1
+\end{align*}
+Which give us 
+\begin{align*}
+  (x^2+y^2+1)c^2 + 2(x^2+y^2)c + (x^2+y^2-1)=0
+\end{align*}
+By quadratic formula 
+\begin{align*}
+c&= \frac{-2(x^2+y^2)\pm \sqrt{4(x^2+y^2)^2 -4(x^2+y^2+1)(x^2+y^2-1)} }{2(x^2+y^2+1)} \\
+&= \frac{-x^2-y^2\pm 1}{x^2+y^2+1}= \frac{-x^2-y^2+1}{x^2+y^2+1}
+\end{align*}
+Note that the last equality hold because $(a,b,c) \in U_S \implies c\neq -1$. From \myref{Equation}{xyi2}, we may now compute 
+\begin{align*}
+a=(1+c)x= \frac{2x}{x^2+y^2+1}\text{ and }b=(1+c)y= \frac{2y}{x^2+y^2+1}
+\end{align*}
+We have shown $\phi_S$ is a bijection between $U_S$ and  $\C$, and its inverse is exactly 
+ \begin{align*}
+\phi_S^{-1}(x+yi)= \frac{(2x,2y,1-x^2-y^2)}{x^2+y^2+1}
+\end{align*}
+The continuity of $\phi_S^{-1}:\C \rightarrow U_S$ is obvious. We have shown $\phi_S$ is indeed a homeomorphism. 
+\end{proof}
+\begin{question}{}{}
+  (c) (5pts) Prove that 
+\begin{align*}
+\phi_N (S)=\phi_S(N)=0 \text{ and }\phi_N (U_N \cap U_S)= \phi_S (U_N \cap U_S)=\C^*
+\end{align*}
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\phi_N (S)= \phi_N (0,0,-1)= \frac{0+0i}{2}=0
+\end{align*}
+Compute 
+\begin{align*}
+\phi_S(N)= \phi_S(0,0,1)= \frac{0-0i}{2}= 0
+\end{align*}
+Compute 
+\begin{align*}
+U_N \cap  U_S = U_N \setminus \set{S} = U_S \setminus \set{N}
+\end{align*}
+It then follows from the fact $\phi_N$ maps $U_N$ into  $\C$ bijectively that 
+\begin{align*}
+\phi_N (U_N \cap U_S)= \phi_N (U_N \setminus \set{S})= \C \setminus \set{\phi_N (S)}=\C \setminus \set{0}=\C^*
+\end{align*}
+ Similarly, it follows from the fact $\phi_S$ maps $U_S$ into  $\C$ bijectively that 
+\begin{align*}
+\phi_N (U_N \cap U_S)= \phi_N (U_S \setminus \set{N})= \C \setminus \set{\phi_S (N)}=\C \setminus \set{0}=\C^*
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+  (d) (5pts) Show that 
+  \begin{align*}
+  f= \phi_S \circ \phi_N^{-1} :\C^* \rightarrow \C^* 
+  \end{align*}
+  is a holomorphic function. 
+\end{question}
+\begin{proof}
+Using \myref{Equation}{phn}, we may compute for all $x+yi \inc^*$ 
+\begin{align*}
+f(x+yi)&= \phi_S (\phi_N^{-1}(x+yi)) \\
+&=\phi_S \Big(\frac{2x}{x^2+y^2+1}, \frac{2y}{x^2+y^2+1}, \frac{x^2+y^2-1}{x^2+y^2+1}\Big)  \\
+&= \frac{\frac{2x}{x^2+y^2+1}- \frac{2iy}{x^2+y^2+1}}{1+ \frac{x^2+y^2-1}{x^2+y^2+1}} \\
+&= \frac{2x-2iy}{2(x^2+y^2)}= \frac{x-iy}{x^2+y^2}
+\end{align*}
+Compute 
+\begin{align*}
+\frac{\partial }{\partial x}\operatorname{Re}f&= \frac{\partial }{\partial x} \frac{x}{x^2+y^2}= \frac{y^2-x^2}{(x^2+y^2)^2} \\
+\frac{\partial }{\partial y}\operatorname{Im}f&=\frac{\partial }{\partial y} \frac{-y}{x^2+y^2}= \frac{y^2-x^2}{(x^2+y^2)^2} 
+\end{align*}
+Compute 
+\begin{align*}
+\frac{\partial }{\partial x} \operatorname{Im} f&= \frac{\partial }{\partial x} \frac{-y}{x^2+y^2}= \frac{2xy}{(x^2+y^2)^2} \\
+\frac{\partial }{\partial y}\operatorname{Re}f &= \frac{\partial }{\partial y} \frac{x}{x^2+y^2}= \frac{-2xy}{(x^2+y^2)^2}
+\end{align*}
+We have shown that $f$ satisfy the Cauchy-Riemann criteria. Because both $\frac{\partial }{\partial x}\operatorname{Re}f,\frac{\partial }{\partial y}\operatorname{Re}f:\R^2 \setminus \set{\textbf{0}} \rightarrow \R$ are continuous, we know $\operatorname{Re}f:\R^2\setminus \set{\textbf{0}} \rightarrow \R$ is differentiable.  Because both $\frac{\partial }{\partial x}\operatorname{Im}f,\frac{\partial }{\partial y}\operatorname{Im}f:\R^2\setminus \set{\textbf{0}} \rightarrow \R$ are continuous, we know $\operatorname{Im}f:\R^2 \setminus \set{\textbf{0}} \rightarrow \R$ is differentiable. It now follows from the Cauchy-Riemann Theorem that $f:\C^*\rightarrow \C$ is indeed holomorphic. 
+\end{proof}
+\begin{mdframed}
+  (2) (20 pts) We identify $\C$ with  $S^2 \setminus \set{N}$. Denote $N$ by $\infty$. Denote $S^2 $ by  $\C_{\infty}= \C \cup  \set{\infty}$. From the previous problem, we know that  $N$ is the point of  $U_S$ corresponding  to  $w=0$. \\
+
+   Let $f$ be a function defined on $\abso{z}>R$ for some $R>0$. We say that  $\infty$ is a pole of $f$ of order $m$ if the function $g:D_{\epsilon }(0)\setminus 0 \rightarrow \C$ defined by 
+   \begin{align*}
+   g(z)\triangleq f(\frac{1}{z})
+   \end{align*}
+  has a pole of order $m$ at  $z=0$. 
+\end{mdframed}
+\begin{question}{}{}
+(a) Prove that $f(z)=-3z+z^2$ has a pole at $\infty$. Find the residue and order of the pole of $f$ at  $\infty$. 
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+g(z)= f(\frac{1}{z})= \frac{-3}{z}+ \frac{1}{z^2}= \frac{-3z+1}{z^2}
+\end{align*}
+Because 
+\begin{align*}
+\lim_{z\to 0}z^2 g(z)= \lim_{z\to 0} -3z+1 =1 \inc^* 
+\end{align*}
+We see $g$ has a pole of order $2$ at  $0$. Therefore,  $f$ has a pole of order $2$ at $\infty$. Note that the residue of $f$ at $\infty$ is defined to be  
+\begin{align*}
+  \operatorname{Res}(f,\infty)&=  - \operatorname{Res}\Big(\frac{1}{z^2}g(z),0\Big) \\
+  &= - \operatorname{Res}\Big(\frac{-3z+1}{z^4},0\Big)=0 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+  (b) Prove that a function on $\C_{\infty}$ is meromorphic if and only if it is a rational function, i.e., $f$ is meromorphic if and only if 
+   \begin{align*}
+  f(z)= \frac{Q(z)}{P(z)}
+  \end{align*}
+for some complex polynomial $P,Q$ such that $P\neq 0 \in \C [z]$  and $P,Q$ share no roots. 
+\end{question}
+\begin{proof}
+
+For the 'if' part, by fundamental theorem of algebra, we may write 
+\begin{align*}
+f(z)= \frac{(z-z_0')\cdots (z-z_q')}{(z-z_0)\cdots (z-z_p)}
+\end{align*}
+This implies that  $f$ has at most $p+2$ numbers of poles, and  $f$ is differentiable everywhere except for points at which $f$ has a pole. That is, $f$ is meromorphic on  $\C_{\infty}$.\\
+
+For the 'only if' part, suppose $f:\C_{\infty} \setminus Z\rightarrow \C$ is meromorphic, where 
+\begin{align*}
+Z\text{ is the set of poles of $f$ }
+\end{align*}
+Because $f$ is either differentiable or has a pole at $\infty$, we know there exists $R>0$ such that  $f$ is defined on $\set{z\inc: \abso{z}>R}$. By letting $R$ be larger if necessary, we may WLOG suppose $Z\setminus \set{\infty}$ is contained by $D_R(0)$, the open disk centering origin with radius $R$. Define $g:D_R(0)\rightarrow \C$ by 
+\begin{align*}
+g(z)\triangleq \begin{cases}
+  \frac{1}{f(z)}& \text{ if $z\not\in Z$ }\\
+  0& \text{ if $z\in Z$ }
+\end{cases}
+\end{align*}
+Because $Z$ is the set of poles of  $f$, we know  $g$ is holomorphic. Obviously, $g$ can not vanish identically, otherwise $f$ has a pole at $p$ for all  $p \in D_R(0)$. It then follows from Identity Theorem that $Z\setminus \set{\infty}$, the set on which $g$ vanish, has no limit points in $D_R(0)$. By repeating the same procedure for similarly defined $g:D_{R+\epsilon }(0)\rightarrow \C$, we may WLOG suppose $Z \setminus \set{\infty}$ has no limit points in $\C$. It then follows from  $Z \setminus \set{\infty}$ is bounded that $Z$ is finite, since otherwise  $Z$ has a limit point in  $\C$, by Hiene-Borel and the fact limit point compact and compact are equivalent for  $\C$. \\
+
+Knowing that $Z\setminus \set{\infty}$ is finite, we may write $Z \setminus \set{\infty}=\set{z_1,\dots ,z_k}$. Let $n_1,\dots ,n_k$ be the order of these poles. If we define  
+\begin{align*}
+g(z)\triangleq  (z-z_1)^{n_1} \cdots (z-z_k)^{n_k} f(z)
+\end{align*}
+We know on $\C$,  $g$ can only have removable singularity, so $g$ is in fact an entire function. Write 
+\begin{align}
+\label{gz}
+g(z)= \sum_{n=0}^{\infty}a_nz^n\text{ for all }z\inc
+\end{align}
+Now, let $N$ be the order of the pole of  $f$ at  $\infty$, where $N=0$ if  $f$ is differentiable at $\infty$. By definition of $g$, 
+ \begin{align*}
+g\text{ has a pole at $\infty$ of order }N+n_1+\cdots +n_k\triangleq M
+\end{align*}
+It now follows from 
+\begin{align*}
+g(\frac{1}{z})= \sum_{n=0}^{\infty} a_nz^{-n}\text{ for all }\abso{z}>0
+\end{align*}
+that $a_{M+n}=0$ for all $n>0$. Then from  \myref{Equation}{gz}, we see $g$ is in fact a polynomial 
+\begin{align*}
+g(z)=a_Mz^M+ \cdots + a_0
+\end{align*}
+It follows from definition of $g$ that
+\begin{align*}
+f(z)&= \frac{g(z)}{(z-z_1)^{n_1}\cdots (z-z_k)^{n_k}}\\
+&= \frac{a_Mz^M + \cdots +a_0}{(z-z_1)^{n_1}\cdots (z-z_k)^{n_k}}\text{ is indeed rational }
+\end{align*}
+Two things to note here: First, because 
+\begin{align*}
+  g(z)= (z-z_1)^{n_1}\cdots (z-z_k)^{n_k}f(z)\text{ and }z_j\text{ is of order $n_j$ for }f
+\end{align*}
+We have 
+\begin{align*}
+\lim_{z\to z_j} g(z)\neq 0
+\end{align*}
+That is,  $g$ indeed shares no roots with $(z-z-1)^{n_1}\cdots (z-z_k)^{n_k}$. Second, the argument holds true even if $Z\setminus \set{\infty}=\varnothing$. In such case, $P=1$ and $f$ is just  $g$.  
+\end{proof}
+\begin{question}{}{}
+  (3) (15 pts) Let $f:\C\rightarrow \C$ be an entire function. Suppose that there exist two nonzero complex numbers $\omega_1$ and $\omega_2$ such that 
+  \begin{enumerate}[label=(\alph*)]
+    \item $\set{\omega_1,\omega_2}$ form a basis for $\C$ if $\C$ is viewed as a vector space over  $\R$.  
+    \item $f(z+\omega_1)=f(z+\omega_2)=f(z)$ for all $z\inc$ 
+  \end{enumerate}
+Show that $f$ is constant. 
+\end{question}
+\begin{proof}
+Let 
+\begin{align*}
+F\triangleq  \set{c_1\omega_1+ c_2\omega_2: 0\leq c_1,c_2 \leq 1}
+\end{align*}
+Because $F$ is by Hiene-Borel compact ($F$ is the closed parallelogram with vertices being $\set{0,\omega_1,\omega_2,\omega_1+\omega_2}$), and $f$ is continuous on $F$, we know by EVT $\abso{f}$ is bounded  by some $M>0$ on  $F$. Now, for all $z\inc$, because $\set{\omega_1,\omega_2}$ form a basis 
+\begin{align*}
+z=a_1\omega_1+a_2 \omega_2\text{ for some unique pair }a_1,a_2\inr
+\end{align*}
+By Euclidean algorithm, we may further write 
+\begin{align*}
+z= (n_1+c_1)\omega_1 + (n_2+c_2)\omega_2
+\end{align*}
+For some $n_1,n_2 \inz $ and $c_1,c_2 \in [0,1]$. It then follows from the premise that 
+\begin{align*}
+  \abso{f(z)}&=\abso{f((n_1+c_1)\omega_1+ (n_2+c_2)\omega_2)} \\
+             &=\abso{f(c_1\omega_1+c_2\omega_2)}\leq M
+\end{align*}
+We have shown $f$ is bounded on the whole $\C$. Because $f$ is entire, it follows from the Liouville's Theorem that  $f$ is a constant.
+\end{proof}
+\begin{theorem}
+\label{TL}
+\textbf{(Truncated Laurent Series of $\cot (\pi  z)$)} Near $0$, we have 
+\begin{align*}
+\cot (\pi z)= \frac{1}{\pi  z}- \frac{\pi  z}{3}- \frac{(\pi  z)^3}{45}- \frac{2 (\pi z)^5}{945}- \frac{(\pi z)^7}{4725} + O(z^9)
+\end{align*}
+Near $n$, we have 
+ \begin{align*}
+\cot (\pi z)= \frac{1}{\pi (z-n)}- \frac{\pi  (z-n)}{3}- \frac{(\pi  (z-n))^3}{45}- \frac{2 (\pi (z-n))^5}{945}- \frac{(\pi (z-n))^7}{4725} + O((z-n)^9)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Direct computation allow us to expand the Taylor series of $\tan$ at $0$ 
+\begin{align*}
+\tan(\pi z)=z+\frac{(\pi z)^3}{3}+\frac{2 (\pi  z)^5}{15}+\frac{17 (\pi z)^7}{315}+\frac{62
+(\pi z)^9}{2835}+O\left(z^{11}\right)
+\end{align*}
+This implies 
+\begin{align*}
+  \cot(\pi z)=\frac 1{\pi z+\frac{(\pi  z)^3}{3}+\frac{2 (\pi  z)^5}{15}+\frac{17 (\pi z)^7}{315}+\frac{62 (\pi z)^9}{2835}+ O(z^{11})}
+\end{align*}
+Then by long division, we may compute 
+\begin{align*}
+\cot (\pi z)= \frac{1}{\pi  z}- \frac{\pi  z}{3}- \frac{(\pi  z)^3}{45}- \frac{2 (\pi z)^5}{945}- \frac{(\pi z)^7}{4725} + O(z^9)
+\end{align*}
+The truncated Laurent series around $n$ follows from the fact $\cot(\pi  z)$ is a function with period $1$.  
+\end{proof}
+\begin{theorem}
+\label{IoD}
+\textbf{(Two damned facts I can't prove)}  Let $\xi \not\inz$  and $f(z)\triangleq  \frac{1}{z-\xi}+ \frac{1}{z}$. There exists some sequence $(C_N)_{N=1}^{\infty}$ of closed contours such that the region enclosed by $C_N$ converge to  $\C$ and 
+\begin{align*}
+\lim_{N\to \infty} \int_{C_N}f(z)\cot (\pi  z)dz=0
+\end{align*}
+Also, 
+\begin{align*}
+\log \Big(\frac{\pi }{2} \Big)+ \sum_{n=1}^{\infty} \log (1- \frac{1}{4n^2})=0
+\end{align*}
+\end{theorem}
+\begin{question}{}{}
+(4) (20 pts) Prove the formula 
+\begin{align*}
+\sin \pi  z= \pi  z \prod _{n=1}^{\infty} \Big( 1-\frac{z^2}{n^2} \Big)
+\end{align*}
+using the following steps: 
+\begin{enumerate}[label=(\alph*)]
+  \item Consider $f(z)= \frac{1}{z- \xi}+ \frac{1}{z}$, and show that when $\xi \not\inz$, 
+    \begin{align*}
+    \pi  \cot (\pi  \xi)= \frac{1}{\xi}+ \sum_{n=1}^{\infty} \frac{2\xi}{\xi^2- n^2}
+    \end{align*} 
+    \item Integrate $\pi  \cot \pi z$ along a suitable contour to show that 
+      \begin{align*}
+      \log \sin \pi z= \log \pi z + \sum_{n=1}^{\infty} \log (1-\frac{z^2}{n^2})
+      \end{align*}
+      where $\log$ is chosen such that $\log 1=0$ in each term. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Fix $\xi \not\inz$ and define 
+\begin{align*}
+f(z)\triangleq \frac{1}{z-\xi}+ \frac{1}{z}= \frac{2z-\xi}{z(z-\xi)}
+\end{align*}
+Because  $\cot (\pi  z)$ has poles at $z=n\inz$ and they are all simple, we know $f(z)\cot (\pi  z)$ have simple poles at $z=n\inz^,z=\xi$, and have a double pole at $0$. Using \myref{Theorem}{TL}, we may compute 
+ \begin{align*}
+\operatorname{Res}(f(z)\cot (\pi  z),0)&= \operatorname{Res}\Big(\frac{\cot (\pi  z)}{z-\xi}, 0\Big)+ \operatorname{Res}\Big(\frac{\cot ( \pi z)}{z},0\Big) \\
+&= \operatorname{Res}\Big(\frac{\cot (\pi  z)}{z-\xi}, 0\Big) \\
+&=\lim_{z\to 0} \frac{z \cot (\pi  z)}{z-\xi}= \frac{\frac{1}{\pi }}{- \xi}= \frac{1}{- \pi \xi}
+\end{align*}
+And compute  
+\begin{align*}
+\operatorname{Res}(f(z)\cot (\pi  z), n)= \lim_{z\to n} f(z) z \cot (\pi  z)= \frac{2n - \xi}{\pi  n(n- \xi)} 
+\end{align*}
+And compute 
+\begin{align*}
+\operatorname{Res}(f(z)\cot (\pi  z), \xi)= \lim_{z\to \xi} (1+ \frac{z- \xi}{z}) \cot ( \pi  z)= \cot (\pi  \xi)
+\end{align*}
+It now follows from \myref{Theorem}{IoD} and Residue Theorem that 
+\begin{align*}
+0&= \lim_{N\to \infty} \int_{C_N} f(z) \cot (\pi  z) dz \\
+&=\lim_{N\to \infty} \frac{1}{-\pi  \xi}+   \cot (\pi  \xi) +\sum_{0< \abso{n}\leq N} \frac{2n - \xi}{\pi  n (n- \xi)} 
+\end{align*}
+Therefore, 
+\begin{align*}
+  \cot (\pi  \xi)&= \frac{1}{\pi \xi}+ \sum_{\abso{n}>0} \frac{2n- \xi}{\pi n (\xi -n)}  \\
+&=\frac{1}{\pi  \xi}+\frac{1}{\pi } \sum_{n=1}^{\infty} \Big( \frac{2n- \xi}{n (\xi-n)} + \frac{-2n-\xi}{-n(\xi+n)} \Big) \\
+&= \frac{1}{\pi  \xi}+ \frac{1}{\pi }\sum_{n=1}^{\infty} \frac{(2n-\xi)(\xi+n)+(2n+\xi)(\xi-n)}{n(\xi^2-n^2)} \\
+&=\frac{1}{\pi \xi} + \frac{1}{\pi }\sum_{n=1}^{\infty} \frac{2n\xi}{n(\xi^2-n^2)} \\
+&=\frac{1}{\pi  \xi}+ \frac{1}{\pi }\sum_{n=1}^{\infty} \frac{2\xi}{\xi^2-n^2}
+\end{align*}
+Multiplying both side with $\pi $, we now have 
+\begin{align}
+\label{kk}
+\pi  \cot (\pi  \xi)= \frac{1}{\xi}+ \sum_{n=1}^{\infty} \frac{2\xi}{\xi^2-n^2}
+\end{align}
+Now, note that 
+\begin{align*}
+\frac{d}{dz} \Big(\log \sin (\pi  z) \Big)&= \frac{\pi  \cos (\pi  z)}{\sin (\pi  z)}= \pi  \cot (\pi  z) \\
+\frac{d}{dz} \Big( \log \pi  z \Big)&=\frac{1}{z} \\
+\frac{d}{dz} \Big( \sum_{n=1}^{\infty} \log (1- \frac{z^2}{n^2}) \Big)&= \sum_{n=1}^{\infty} \frac{d}{dz} \log ( 1- \frac{z^2}{n^2}) = \sum_{n=1}^{\infty} \frac{\frac{-2z}{n^2}}{1- \frac{z^2}{n^2}}= \sum_{n=1}^{\infty} \frac{2z}{z^2-n^2}
+\end{align*}
+Fix $z\not\inz$, and let $\gamma $ be some contour that starts at $\frac{1}{2}$ and ends at $z$ without touching any integer. It follows from \myref{Theorem}{IoD} and fundamental theorem of calculus for complex function that 
+\begin{align*}
+\log (\sin (\pi z))&=\int_{\gamma } \pi  \cot (\pi  z)dz \\
+&= \int_{\gamma }\Big( \frac{1}{z}+ \sum_{n=1}^{\infty} \frac{2z}{z^2-n^2} \Big) dz \\
+&=\log (\pi  z)+ \sum_{n=1}^{\infty} \log (1-\frac{z^2}{n^2})
+\end{align*}
+Taking exponential on both side, we finally have 
+\begin{align*}
+\sin (\pi  z)= \pi  z \prod_{n=1}^{\infty} (1-\frac{z^2}{n^2})
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+  (5) (15pts) If $\abso{a}>e$, use Rouche's Theorem to prove that the equation 
+\begin{align*}
+e^z= az^n  
+\end{align*}
+has $n$ roots with $\abso{z}<1$
+\end{question}
+\begin{proof}
+Let $\textbf{D}$ be the unit disk centered at origin. Define entire $f,g:\C\rightarrow \C$ by 
+\begin{align*}
+f(z)\triangleq  az^n  \text{ and }g(z)\triangleq -e^z
+\end{align*}
+Because $e< \abso{a}$, on $\partial \textbf{D}$, we have 
+\begin{align*}
+\abso{g(z)}= \abso{e^z}=e^{\operatorname{Re}z} \leq e < \abso{a}= \abso{az^n}=\abso{f(z)}
+\end{align*}
+Therefore, by Rouche's Theorem,  $az^n-e^z=f+g$ has the same number of zeros in $\textbf{D}$ as  $f=az^n$. It is clear that $az^n$ only has zero $z=0$ with multiplicity $n$. Therefore, 
+\begin{align*}
+az^n-e^z\text{ has }n\text{ zeros in }\textbf{D}
+\end{align*}
+We have shown 
+\begin{align*}
+e^z=az^n\text{ has }n\text{ roots in }\textbf{D}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+  (6) (10pts) Let $f:\textbf{D}\rightarrow \C$ be a holomorphic function, where $\textbf{D}$ is the unit open disk centering $\textbf{D}$. If  $f(0)=0$ and $\abso{f(z)}\leq 1$ on $\textbf{D}$, prove that 
+   \begin{enumerate}[label=(\alph*)]
+    \item $\abso{f(z)}\leq \abso{z}$ for all $z\in \textbf{D}$. 
+    \item $\abso{f'(0)}\leq 1$
+  \end{enumerate}
+\end{question}
+\begin{proof}
+Because the proposition is trivial for constant $f$, suppose $f$ is non-constant. Define $g:\textbf{D}\rightarrow \C$ by 
+\begin{align*}
+g(z)\triangleq \begin{cases}
+  \frac{f(z)}{z}& \text{ if $z\neq 0$ }\\
+  f'(0)& \text{ if $z=0$ }
+\end{cases}
+\end{align*}
+Applying maximum modulus principle to $g$ on open disk centered at origin with radius  $r<1$, we have 
+\begin{align*}
+\abso{f'(0)}=\abso{g(0)}\leq \abso{g(z)}= \frac{\abso{f(z)}}{\abso{z}}\leq \frac{1}{r}\text{ for some }z\text{ such that }\abso{z}=r
+\end{align*}
+Letting $r\to 1$, this implies 
+\begin{align*}
+\abso{f'(0)}\leq 1
+\end{align*}
+Note that when $z=0$, 
+ \begin{align*}
+\abso{f(z)}=\abso{f(0)}=0 \leq 0= \abso{z}
+\end{align*}
+
+
+
+Fix $z\neq 0 \in \textbf{D}$. The maximum modulus principle implies that for each open disk $D_r$ centered at origin with radius  $r<1$ that contains $z$, there exists some $z_r\in \partial D_r$ such that 
+ \begin{align*}
+\abso{g(z)} \leq \abso{g(z_r)}= \frac{\abso{f(z_r)}}{\abso{z_r}} \leq \frac{1}{r}
+\end{align*}
+Letting $r\to 1$, we now have  
+\begin{align*}
+\frac{\abso{f(z)}}{\abso{z}}=\abso{g(z)}\leq 1
+\end{align*}
+Multiplying both side with $\abso{z}$, we now have 
+\begin{align*}
+\abso{f(z)}\leq \abso{z}\text{ for all }z\neq 0 \in \textbf{D}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{OMT}
+\textbf{(Open Mapping Theorem for Disk)} Let $U$ be an open disk and  $f:U \rightarrow \C$ be some non-constant holomorphic function. 
+\begin{align*}
+f(U)\text{ is open }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix arbitrary $w_0\in f(U)$, and let $z_0\in U$ satisfy $f(z_0)=w_0$. Define holomorphic $g:U\rightarrow \C$ by $g(z)\triangleq f(z)-w_0$. Because $g$ is non-constant holomorphic, by Identity Theorem, the zeros of $g$ are isolated. Note that $z_0$ is a zero of  $g$. We may now let  $B$ be a closed disk centering  $z_0$ such that  $B$ is contained by $U$ and contains no other zero of  $g$. Because $\partial B\subseteq U$ is compact, by EVT, we may let 
+\begin{align*}
+a\triangleq \min_{\partial B}\abso{g}
+\end{align*}
+Note that $a>0$ because  $g$ has no zeros in  $\partial B \subseteq B$. Let $D$ be the open disk centering  $w_0$ with radius  $a$. Fix $w_1 \neq w_0\in D$. If we define $h:U\rightarrow \C$ by $h(z)\triangleq f(z)-w_1$, we see that for all $z\in \partial B$, we have 
+\begin{align*}
+\abso{g(z)-h(z)}= \abso{w_0-w_1}< a \leq \abso{g(z)}
+\end{align*}
+Therefore, by Rocuhe's Theorem, $h$ has some zero in  $B^\circ $. That is,  $f(z_1)=w_1$ for some $z_1 \in B^\circ $. Because $w_1$ is arbitrarily picked from  $D$, we have shown  $D \subseteq f(U)$. That is, $w_0$ is an interior point of  $f(U)$. Because $w_0$ is arbitrarily picked from $f(U)$. We have shown $f(U)$ is open. 
+\end{proof}
+\begin{question}{}{}
+  (7) (20pts) Let $f:D\rightarrow \C$ be a non-constant holomorphic function defined on a domain $D$ contained in  $\C$. Prove that  $f$ is an open mapping. 
+\end{question}
+\begin{proof}
+Let $E\subseteq D$ be open. We are required to show $f(E)$ is open. Because the set of open disk form a basis for $\C$, we may let 
+\begin{align*}
+E= \bigcup_{i \in I}U_i
+\end{align*}
+where $\set{U_i}_{i \in I}$ is a collection of open disk. It now follows from \myref{Theorem}{OMT} that 
+\begin{align*}
+f(E)= \bigcup_{i \in I} f(U_i)\text{ is open }
+\end{align*}
+because $f(E)$ is a union of open sets. 
+\end{proof}
+\end{document}

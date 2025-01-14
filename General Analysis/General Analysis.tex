@@ -9359,10 +9359,11 @@ Note that if a positively oriented volume form $\omega$ has the expression
 \begin{align*}
 f(\textbf{x}) d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^n  
 \end{align*}
-then its pullback $\diota^*\omega $ to the boundary have the expression 
-\begin{align*}
+then its pullback $\diota^*\omega $ to the boundary by \textbf{stoke convention} have the expression 
+\begin{align}
+\label{-1n}
   (-1)^n f(\textbf{x})d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^{n-1}  
-\end{align*}
+\end{align}
 \end{mdframed}
 \begin{theorem}
 \textbf{(Stoke's Theorem)} Let $M$ be an oriented  $n$-dimensional manifold with  boundary $\partial M$, and let $\omega \in \Omega^{n-1}(M)$ be of compact support. We have 
@@ -9372,7 +9373,34 @@ then its pullback $\diota^*\omega $ to the boundary have the expression
 where the restriction of $\omega$ on $\partial M$ should be considered as the pullback $\diota^*\omega $ of $\diota: \partial M\rightarrow M $. 
 \end{theorem}
 \begin{proof}
-
+Let $\set{U_\alpha }$ be an open cover, and let $\set{\rho_\alpha }$ be a subordinate partition of unity. Therefore, we may write 
+\begin{align*}
+\int_M d\omega= \sum_{i=1}^N \int_M \rho_i d\omega= \sum_{i=1}^N \int_M d(\rho_i \omega)
+\end{align*}
+Fix $i$. Write   
+\begin{align}
+\label{fi}
+\rho_i \omega= \sum_{j=1}^n (-1)^{j-1}a_j d\textbf{x}^1 \wedge  \cdots \wedge  \widehat{d \textbf{x}^j}  \wedge  \cdots \wedge   d\textbf{x}^n 
+\end{align}
+And compute 
+\begin{align*}
+d (\rho_i \omega)= \sum_{j=1}^n \frac{\partial a_j}{\partial \textbf{x}^j} d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^n  
+\end{align*}
+If $U_i\cap  \partial M= \varnothing$, then we may use Fubini's Theorem and Fundamental Theorem of Calculus to conclude 
+\begin{align*}
+\int_M d(\rho_i \omega)=0 
+\end{align*}
+If  $U_i \cap \partial M \neq \varnothing$,  by \myref{Equation}{-1n} and \myref{Equation}{fi}, we may observe 
+\begin{align*}
+\diota^* (\rho_i \omega) = - a_n d\textbf{x}^1 \wedge  \cdots \wedge  d\textbf{x}^{n-1}  
+\end{align*}
+And again use Fubini's Theorem and Fundamental Theorem of Calculus to compute 
+\begin{align*}
+\int_M d(\rho_i \omega)=  \int_{\textbf{x}^n \geq 0} \frac{\partial a_n}{\partial \textbf{x}^n} &= \int_{\R^{n-1}} a_n(\textbf{x}^1,\dots ,\textbf{x}^n)\Big|_{\textbf{x}^n=0}^{\infty } \\
+&=-\int_{\R^{n-1}} a_n (\textbf{x}^1,\dots ,\textbf{x}^{n-1},0) \\
+&=\int_{\partial M} \rho_i \omega
+\end{align*}
+This finishes the proof.
 \end{proof}
 \begin{theorem}
 \textbf{(Brouwer's fixed point Theorem)} If 
@@ -9388,6 +9416,40 @@ H^n(M)\cong  \R
 \end{theorem}
 \begin{proof}
 
+\end{proof}
+\section{Degree Theory}
+\begin{theorem}
+\textbf{(Degree of a Smooth Map)} Suppose $M$ and  $N$ are compact, connected, oriented, smooth manifold of dimension  $n$, and  $F:M\rightarrow N$ is a smooth map. There exists a unique integer $k$, called the  \textbf{degree of $F$}, that satisfies both the following conditions 
+\begin{enumerate}[label=(\alph*)]
+  \item For every smooth $n$-form  $\omega$ on $N$, 
+     \begin{align*}
+    \int_M F^* \omega= k \int_N \omega
+    \end{align*} 
+  \item If $q \in N$ is a regular value of $F$, then 
+     \begin{align*}
+    k= \sum_{p \in F^{-1}(q)}\operatorname{sgn}(p)
+    \end{align*}
+  where $\operatorname{sgn}(p)=\operatorname{sgn}(\operatorname{det}F_{*,p})$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Let $\theta$ be some $n$-from on  $N$ such that 
+ \begin{align*}
+\int_N \theta =1
+\end{align*}
+Define 
+\begin{align*}
+k\triangleq \int_M F^* \theta\inr
+\end{align*}
+Fix $\omega \in \Omega^n (N)$. Because $N$ is compact connected oriented, we know  $H^n(N)=0$. This implies 
+\begin{align*}
+\omega= a \theta  + \beta 
+\end{align*}
+for some closed $n$-form  $\beta $ on $N$. Because $M,N$ have no  boundary, and pullback maps closed forms to closed forms, we know 
+\begin{align*}
+\int_M F^* \omega= a\int_M F^* \theta =  k a= k \int_N \omega
+\end{align*}
+It remains to show $k$ satisfy condition  (b). 
 \end{proof}
 \chapter{Geometry Archived}
 \section{Lie Group}

@@ -284,6 +284,11 @@ Immediately, we see that if the boundary condition is symmetric, two eigenfuncti
 \end{align*}
 The second equality is often referred to as \textbf{Green's second identity}. 
 \end{mdframed}
+\begin{mdframed}
+\begin{align*}
+  (\ld_1 - \ld _2) \int XY = \int X''Y-XY''= X'Y- XY' \Big|_{a}^b = 0
+\end{align*}
+\end{mdframed}
 \begin{question}{}{}
 Consider $u_{tt}=c^2 u_{xx}$ for $0<x<l$, with the boundary conditions  $u (0,t)=u_x(l,t)=0$, and the initial condition $u(x,0)=x,u_t(x,0)=0$. Find the solution explicitly in series form. 
 \end{question}
@@ -1214,12 +1219,6 @@ Because $w$ is constant on the boundary and $\Delta w$ is zero in $D$, we know t
 \end{align*}
 which implies $\nabla w=\textbf{0}$ in $D$.  This together with the Dirichlet boundary condition implies $w\equiv 0$.  
 \end{proof}
-\begin{theorem}
-\textbf{(Green's first Identity)}
-\begin{align*}
-\iint_{\operatorname{bdy}D} v \frac{\partial u}{\partial \textbf{n}}dS = \iiint_D \nabla v \cdot \nabla u d\textbf{x} + \iiint_D v \Delta u d\textbf{x}
-\end{align*}
-\end{theorem}
 \begin{question}{}{}
 Show that there is no solution of 
 \begin{align*}
@@ -1242,8 +1241,40 @@ u_y&=b\text{ on }y=0\text{ and }u_y=0\text{ on }y=b
 \end{align*}
 (Hint: Note that the necessary condition of Exercise 6.1.11 is satisfied. A shortcut is to guess that the solution might be a quadratic polynomial in $x$ and $y$)
 \end{question}
+\begin{mdframed}
+\begin{align*}
+u= \frac{x^2}{2}- \frac{y^2}{2} -ax+by
+\end{align*}
+\end{mdframed}
+\end{proof}
 \begin{proof}
-
+Setting $u=XY$, we are required to solve the eigenproblem 
+\begin{align*}
+\begin{cases}
+  X''+ \ld X =0 \\
+  X'(0)=-a\text{ and }X'(a)=0
+\end{cases} \text{ and }\begin{cases}
+  Y'' - \ld  Y= 0\\
+  Y'(0)=b \text{ and } Y'(b)=0
+\end{cases}
+\end{align*}
+Obviously, $0$ is NOT an eigenvalue. Let $\ld  =\beta ^2\inc^*$. We see 
+\begin{align*}
+X= A\cos (\beta x)+ B \sin ( \beta x)
+\end{align*}
+Plugging the initial condition, we see 
+\begin{align*}
+  \begin{bmatrix}
+    0 & \beta  \\
+    -\beta \sin ( \beta  a) & \beta \cos (\beta  a) 
+  \end{bmatrix} \begin{bmatrix}
+  A \\
+  B
+  \end{bmatrix} =   \begin{bmatrix}
+  -a \\
+  0
+  \end{bmatrix}
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Prove that the eigenfunctions $\set{\sin my \sin nz}$ are orthogonal on the square $\set{0<y<\pi  , 0 <z<\pi }$. 
@@ -1265,6 +1296,56 @@ u&=0\text{ for }x=0\\
 u&=\cos^2 y = \frac{1+ \cos 2y}{2}\text{ for }x=\pi 
 \end{align*}
 \end{question}
+\begin{proof}
+Note that there is only one non-homogeneous BC, so there is no need to split up the solution. Let $u=XY$. We are required to first solve the following eigenproblem 
+\begin{align*}
+\begin{cases}  
+Y'' + \ld  Y=0 \\
+Y'(0)=Y'(\pi )=0
+\end{cases}
+\end{align*}
+This is the Neumann eigenproblem, whose solution is 
+\begin{align*}
+Y_n (y)= \cos (ny)\text{ and }n\inz_0^+;\ld =n^2
+\end{align*}
+We are now required to solve the ODE 
+\begin{align*}
+\begin{cases}  
+X''_n - \ld_n X_n=0  \\
+X(0)=0
+\end{cases}
+\end{align*}
+The solution is  
+\begin{align*}
+X_0=A_0x\text{ and } X_n= A_n \sinh (nx)\text{ for }n\geq 1
+\end{align*}
+We now have 
+\begin{align*}
+u=A_0x+ \sum_{n=1}^{\infty} A_n \sinh (nx) \cos (ny)
+\end{align*}
+It remains to solve for $A_n$ 
+ \begin{align*}
+\cos^2 (y)= A_0\pi  + \sum_{n=1}^{\infty}A_n \sinh (n \pi )\cos (ny)
+\end{align*}
+Luckily, they can be written down explicitly 
+\begin{align*}
+ A_0=\frac{1}{\pi ^2}\int_0^{\pi }\cos^2 (y) dy= \frac{1}{2\pi } 
+\end{align*}
+And 
+\begin{align*}
+A_n&=\frac{2}{\pi  \sinh (n \pi  )}\int_0^{\pi }\cos^2(y) \cos (ny)dy \\
+&=\frac{2}{\pi  \sinh (n \pi )}\int_0^{\pi } \frac{\cos (2y)+1}{2} \\
+&=\frac{1}{\pi  \sinh (n \pi )} \int_0^{\pi } \cos (2y) \cos (ny) dy\\
+&=\begin{cases}
+  \frac{1}{2 \sinh (2\pi )}& \text{ if $n=2$ }\\
+  0& \text{ if $n\neq 2$ }
+\end{cases}
+\end{align*}
+In conclusion, 
+\begin{align*}
+u= \frac{x}{2\pi  }+ \frac{\sinh (2x)\cos (2y)}{2\sinh (2\pi )}
+\end{align*}
+\end{proof}
 \section{6.3 Poisson Formula}
 \begin{mdframed}
 Consider 
@@ -1296,7 +1377,7 @@ We are now interested in solving the two eigenproblems
   \Theta '' + \ld  \Theta =0 \\
   \Theta  (\theta + 2\pi )= \Theta  (\theta) 
 \end{cases} \text{ and }\begin{cases}
-  r''R''+ rR' - \ld  R=0
+  r^2R''+ rR' - \ld  R=0
 \end{cases}
 \end{align*}
 The solution of the first eigenproblem is 
@@ -1319,6 +1400,80 @@ Therefore, summing up all the eigenfunctions, we have
 \begin{align*}
 u(r,\theta)= \frac{1}{2}A_0 + \sum_{n=1}^{\infty} r^n (A_n \cos (n \theta)+ B_n \sin (n\theta))
 \end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Poisson Formula)} The solution of the homogeneous Dirichlet problem for circle 
+\begin{align*}
+\begin{cases}
+  \nabla u = 0 \text{ for }r<a \\
+  u = h (\theta)\text{ for }r=a
+\end{cases}
+\end{align*}
+is 
+\begin{align*}
+u(r,\theta)= \frac{a^2-r^2}{2\pi } \int_0^{2\pi } \frac{h (\pfi)}{a^2-2ar \cos (\theta - \pfi)+ r^2} d \pfi
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\textbf{(Maximum Principle)} Let $D\subseteq \R^n$ be connected, bounded and open. Let continuous $u:\overline{D}\rightarrow \R$ be harmonic in $D$. If  $u$ is non-constant, then 
+\begin{align*}
+\text{ Both the maximum and the minimum of $u$ does not appear in }D.
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\textbf{(Two Dimensional Mean Value Property of Harmonic function)} Let $B_r(\textbf{x})\subseteq \R^2$ be an open ball. Given continuous $u:\overline{B_r(\textbf{x})}\rightarrow \R$ harmonic inside, we have  
+\begin{align*}
+u(\textbf{x})= \frac{1}{2\pi }\int_0^{2\pi } h(\theta)d\theta
+\end{align*}
+where $h=u|_{\partial B_r (\textbf{x})}$ 
+\end{theorem}
+\begin{question}{}{}
+Suppose that $u$ is a harmonic function in the disk $D =\set{r<2}$ and that 
+\begin{align*}
+u= 3 \sin 2 \theta + 1\text{ for }r=2
+\end{align*}
+Without finding the solution, answer the following the questions. 
+\begin{enumerate}[label=(\alph*)]
+  \item Find the maximum value of $u$ in $\overline{D}$. 
+  \item Calculate the value of $u$ at the origin. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Because $u$ attain its maximum only on the boundary, we know 
+\begin{align*}
+\max_{\overline{D}}u= 4
+\end{align*}
+Using mean value property, we also know  
+\begin{align*}
+u(0)= \frac{1}{2\pi }\int_{0}^{2\pi } (3 \sin (2\theta)+1)d \theta = 1
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Solve $u_{xx}+u_{yy}=0$ in the disk $\set{r<a}$ with the boundary condition 
+\begin{align*}
+u=1+3 \sin \theta \text{ on }r=a
+\end{align*}
+\end{question}
+\begin{proof}
+Recall that by separation of variables, we may write 
+\begin{align*}
+u(r, \theta)= \frac{1}{2}A_0 + \sum_{n=1}^{\infty} r^n (A_n \cos ( n\theta)+ B_n \sin (n \theta))
+\end{align*}
+This give us 
+\begin{align*}
+1+3 \sin \theta = \frac{1}{2}A_0+ \sum_{n=1}^{\infty}a^n (A_n \cos ( n\theta)+ B_n \sin ( n\theta))\text{ for }\theta \in (-\pi ,\pi )
+\end{align*}
+In other words, 
+\begin{align*}
+A_0=2 \text{ and } B_1= \frac{3}{a}\text{ and the rest are all zero }
+\end{align*}
+This then give us 
+\begin{align*}
+u(r,\theta)= 1+ \frac{3r \sin (\theta)}{a}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+
 Plugging the boundary condition $u=h$ for  $r=a$, we have 
  \begin{align*}
 h(\theta) = \frac{1}{2}A_0 + \sum_{n=1}^{\infty} a^n (A_n \cos (n \theta)+ B_n \sin (n \theta))
@@ -1333,6 +1488,41 @@ Although the coefficients may seem daunting, the original $u$ can actually be si
 u&= \frac{1}{2\pi }\int_0^{2\pi }h(\pfi)d\phi + \sum_{n=1}^{\infty} \frac{r^n}{a^n \pi }\int_0^{2\pi } h(\pfi) \Big[\cos (n \pfi)\cos (n \theta)+ \sin (n \pfi)\sin (n \theta) \Big] d\pfi  \\
 &=\frac{1}{2\pi } \int_0^{2\pi }h(\phi)\Big[1+ 2\sum_{n=1}^{\infty} \frac{r^n}{a^n}\cos (n(\theta- \pfi)) \Big]d \pfi
 \end{align*}
+\end{mdframed}
+\section{7.1 Green's First Identity}
+\begin{mdframed}
+The divergence theorem states that given some vector field $\textbf{F}$, we have 
+\begin{align*}
+\int_D \nabla \cdot \textbf{F} d\textbf{x}= \int_{\partial  D} \textbf{F} \cdot \textbf{n}dS 
+\end{align*}
+From product rule, we may deduce 
+\begin{align*}
+\nabla \cdot (v \nabla u )&= \nabla v \cdot \nabla u + v (\nabla \cdot \nabla u) \\
+&=\nabla v \cdot \nabla u+ v \nabla^2 u
+\end{align*}
+This with divergence theorem give us 
+\begin{align*}
+\int_{\partial D} v \frac{\partial u}{\partial \textbf{n}}dS = \int_D \nabla v \cdot \nabla u d\textbf{x}+ \int_D v \nabla^2 u d\textbf{x}
+\end{align*}
+which is called \textbf{Green's first identity}. Immediately, we can use Green's first identity to prove the uniqueness for Dirichlet's problem and Neumann problem. Let $u$ be the difference of two solutions, so  $u$ is harmonic with Dirichlet (or Neumann) boundary condition. Applying Green's first identity to $u,u$, we then have 
+\begin{align*}
+0=\int_{\partial  D} u \frac{\partial u}{\partial \textbf{n}}dS= \int_D \abso{\nabla u}^2 d\textbf{x}
+\end{align*}
+This then implies $u$ is a constant. 
+\end{mdframed}
+\begin{mdframed}
+Also, note that the divergence theorem implies that the problem 
+\begin{align*}
+\begin{cases}
+  \nabla^2 u = f\text{ in }D \\
+  \frac{\partial u}{\partial \textbf{n}}=g\text{ on }\partial D
+\end{cases}
+\end{align*}
+has solution only if the integrals of $f$ and  $g$ are equal, since 
+ \begin{align*}
+\int_D f= \int_D \nabla \cdot (\nabla u )= \int_{\partial D} (\nabla u) \cdot \textbf{n} = \int_{\partial D} \frac{\partial u}{\partial \textbf{n}}= \int_{\partial D} g
+\end{align*}
+
 \end{mdframed}
 \chapter{General Analysis HW}
 \section{Brunn-Minkowski Inequality}
@@ -3583,6 +3773,23 @@ We know
 \begin{align*}
 f(1)=\sum_{n=0} \frac{1}{n!}=2.7182818.....
 \end{align*}
+\end{proof}
+\begin{proof}
+Let $z=x+iy$ be on the two horizontal sides of the square, so from  $\abso{y}\geq \frac{1}{2}$, we have 
+\begin{align*}
+\abso{\cot (\pi  z)}&= \abso{\frac{e^{ i \pi  z}+ e^{- i \pi  z}}{e^{i \pi  z}-e^{- i \pi  z}}} \\
+ &\leq \abso{\frac{\abso{e^{i \pi  z}}+ \abso{e^{- i \pi  z}}}{ \abso{e^{i \pi  z}}-\abso{ e^{- i \pi  z}}}} \\
+ &= \abso{\frac{e^{-\pi  y}+ e^{\pi  y}}{e^{-\pi y}- e^{\pi y}}}= \abso{\coth (\pi  y)}\leq  \coth (\frac{\pi }{2})
+\end{align*}
+Let $z= \pm (N+ \frac{1}{2})+ it$ be on the two vertical sides of the square. Note that because $N$ is even, we have 
+\begin{align*}
+\abso{\cot (\pi  z)}&= \abso{\frac{\cos (\pi  (N+ \frac{1}{2})+ \pi it )}{\sin (\pi  (N+ \frac{1}{2})+ \pi it )}} \\
+&= \abso{ \frac{\cos (\frac{\pi }{2}+ \pi  it)}{\sin (\frac{\pi}{2}+ \pi  it)}} \\
+&=\abso{\frac{\sin (\pi  it)}{\cos (\pi  it)}}\\
+&=\abso{\frac{\sinh (\pi t)}{\cosh (\pi  t)}}\\
+&=\abso{\tanh (\pi t)}= \abso{\frac{1- e^{-2\pi t}}{1+e^{-2\pi t}}}\leq 1
+\end{align*}
+We have shown the existence of some constant $M$ such that  $\abso{\cot (\pi z)}\leq M$ for all $z\in C_N$ for all even $N$.  
 \end{proof}
 \chapter{PDE intro}
 \section{1.2 First Order Linear Equations}
