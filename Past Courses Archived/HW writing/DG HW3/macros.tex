@@ -1,0 +1,100 @@
+\newcommand{\liff}{\llap{$\iff$}}
+\newcommand{\rap}[1]{\rrap{\text{ (#1)}}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\vi}[1]{\textcolor{violet}{#1}}
+\newcommand{\olive}[1]{\textcolor{olive}{#1}}
+\newcommand{\teal}[1]{\textcolor{teal}{#1}}
+\newcommand{\brown}[1]{\textcolor{brown}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}
+\newcommand{\tCaC}{\text{ \CaC }}
+\newcommand{\CaC}{\red{CaC} }
+\newcommand{\As}[1]{Assume \red{#1}}
+\newcommand{\vdone}{\vi{\text{ (done) }}}
+\newcommand{\bdone}{\blue{\text{ (done) }}}
+\newcommand{\tdone}{\teal{\text{ (done) }}}
+\newcommand{\odone}{\olive{\text{ (done) }}}
+\newcommand{\bodone}{\brown{\text{ (done) }}}
+\newcommand{\ordone}{\orange{\text{ (done) }}}
+\newcommand{\ld}{\lambda}
+\newcommand{\vecta}[1]{\textbf{#1}}
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\bset}[1]{\Big\{ #1 \Big\}}
+\newcommand{\inS}{\in S}
+\newcommand{\inF}{\in\F}
+\newcommand{\inE}{\in E}
+\newcommand{\inA}{\in A}
+\newcommand{\inB}{\in B}
+\newcommand{\inC}{\in C}
+\newcommand{\inU}{\in U}
+\newcommand{\inV}{\in V}
+\newcommand{\inR}{\in\R}
+\newcommand{\inn}{\in\N}
+\newcommand{\inz}{\in\Z}
+\newcommand{\inr}{\in\R}
+\newcommand{\inc}{\in\C}
+\newcommand{\inq}{\in\Q}
+\newcommand{\norm}[1]{\| #1 \|}
+\newcommand{\bnorm}[1]{\Big\| #1 \Big\|}
+\newcommand{\gen}[1]{\langle #1 \rangle}
+\newcommand{\abso}[1]{\left|#1\right|}
+\newcommand{\myref}[2]{\hyperref[#2]{#1\ \ref*{#2}}}
+\newcommand{\customref}[2]{\hyperref[#1]{#2}}
+\newcommand{\power}[1]{\mathcal{P}(#1)}
+\newcommand{\dcup}{\mathbin{\dot{\cup}}}
+\newcommand{\diam}[1]{\text{diam}\, #1}
+\newcommand{\at}{\Big|}
+\let\originalphi\phi % Store the original \phi in \originalphi
+\renewcommand{\phi}{\varphi} % Redefine \phi to \varphi
+\newcommand{\pfi}{\originalphi} % Define \pfi to display the original \phi
+\newcommand{\diota}{\dot{\iota}}
+\newcommand{\Log}{\operatorname{Log}}
+\usepackage{amsmath}
+
+\makeatletter
+\NewDocumentCommand{\extp}{e{^}}{%
+  \mathop{\mathpalette\extp@{#1}}\nolimits
+}
+\NewDocumentCommand{\extp@}{mm}{%
+  \bigwedge\nolimits\IfValueT{#2}{^{\extp@@{#1}#2}}%
+  \IfValueT{#1}{\kern-2\scriptspace\nonscript\kern2\scriptspace}%
+}
+\newcommand{\extp@@}[1]{%
+  \mkern
+    \ifx#1\displaystyle-1.8\else
+    \ifx#1\textstyle-1\else
+    \ifx#1\scriptstyle-1\else
+    -0.5\fi\fi\fi
+  \thinmuskip
+}
+\makeatletter
+\usepackage{pifont}
+\makeatletter
+\newcommand\Pimathsymbol[3][\mathord]{%
+  #1{\@Pimathsymbol{#2}{#3}}}
+\def\@Pimathsymbol#1#2{\mathchoice
+  {\@Pim@thsymbol{#1}{#2}\tf@size}
+  {\@Pim@thsymbol{#1}{#2}\tf@size}
+  {\@Pim@thsymbol{#1}{#2}\sf@size}
+  {\@Pim@thsymbol{#1}{#2}\ssf@size}}
+\def\@Pim@thsymbol#1#2#3{%
+  \mbox{\fontsize{#3}{#3}\Pisymbol{#1}{#2}}}
+\makeatother
+% the next two lines are needed to avoid LaTeX substituting upright from another font
+\input{utxmia.fd}
+\DeclareFontShape{U}{txmia}{m}{n}{<->ssub * txmia/m/it}{}
+% you may also want
+\DeclareFontShape{U}{txmia}{bx}{n}{<->ssub * txmia/bx/it}{}
+% just in case
+%\DeclareFontShape{U}{txmia}{l}{n}{<->ssub * txmia/l/it}{}
+%\DeclareFontShape{U}{txmia}{b}{n}{<->ssub * txmia/b/it}{}
+% plus info from Alan Munn at https://tex.stackexchange.com/questions/290165/how-do-i-get-a-nicer-lambda?noredirect=1#comment702120_290165
+\newcommand{\pilambdaup}{\Pimathsymbol[\mathord]{txmia}{21}}
+\renewcommand{\lambda}{\pilambdaup}
+\renewcommand{\tilde}{\widetilde}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand{\bluecheck}{}%
+\DeclareRobustCommand{\bluecheck}{%
+  \tikz\fill[scale=0.4, color=blue]
+  (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;%
+}
