@@ -1,0 +1,969 @@
+\documentclass{report}
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\title{Notes on Linear Algebra}
+\author{Eric Liu}
+\date{}
+\begin{document}
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+
+\tableofcontents
+\pagebreak
+\chapter{Linear Algebra Done Outrageous}
+\section{Quick Recap}
+\begin{abstract}
+In this section, $V$ and $W$ are two vector spaces over the same field $\F$, $\F$ can be interpreted as either the field of real numbers or the field of complex numbers, and $S$ is subset of  $V$.  
+\end{abstract}
+\begin{mdframed}
+We say  $S$ is 
+\begin{enumerate}[label=(\alph*)]
+  \item \textbf{linearly independent} if to write $0$ as finite linear combination of  $S$, the coefficients must all be zero.
+  \item  $S$  \textbf{spans $V$} if all $v\in V$ can be written as finite linear combination of $S$. 
+\end{enumerate}
+We say $S$ is a \textbf{basis} if any of the following equivalent conditions hold true 
+\begin{enumerate}[label=(\alph*)]
+  \item $S$ is a maximum linearly independent subset of  $V$.  
+  \item $S$ is linearly independent and spans $V$.  
+  \item All elements of $V$ can be uniquely written as some finite linear combination of  $S$. 
+\end{enumerate}
+Suppose $V$ has a basis  of cardinality $n$. Using \textbf{Gauss elimination}, one see that all linear independent subset of $V$ must have cardinality not greater than $n$, and all basis must have cardinality $n$. Therefore, for vector space with some basis of finite cardinality, it make sense to refer to its \textbf{dimension}. Let $\operatorname{dim}(V)=n$. Each linearly independent subset $S$ of  $V$ of cardinality  $n$ must be a basis, otherwise we may construct a linearly independent set of cardinality greater than  $n$. By an algorithm, one see that 
+\begin{enumerate}[label=(\alph*)]
+  \item If $S$ spans  $V$ and has cardinality greater than  $n$, then there exists a subset of $S$ that is a basis of $V$.  
+  \item If $B$ is a basis of  $V$ and  $S$ is linearly independent, then there exists some subset  $U$ of $B$ such that  $S \cup  U$ is a basis of $V$.   
+\end{enumerate}
+Let $F:V\rightarrow W$ be a linear map. It is clear that  both image and kernel of $F$ form some vector space. Therefore, it make sense to define the \textbf{rank} of $F$ by 
+ \begin{align*}
+\operatorname{rank}(F)\triangleq \operatorname{dim} (\operatorname{Im}F)
+\end{align*}
+By extending a basis of the kernel of $F$ to a basis of the whole  $V$, one can prove the  \textbf{Rank-Nullity Theorem} 
+\begin{align*}
+\operatorname{dim}(\operatorname{Ker}F)+ \operatorname{rank}(F)= \operatorname{dim}(V)
+\end{align*}
+We use $V^*$ to denote the vector space of linear map from  $V$ to  $\F$, the  \textbf{dual space} of $V$. Let $F:V\rightarrow W$ be a linear map. Its \textbf{dual map} $F^*:W^*\rightarrow V^*$ is defined by 
+\begin{align*}
+F^*(\phi)\triangleq \phi \circ F
+\end{align*}
+If $V$ is finite-dimensional with basis  $\set{v_1,\dots ,v_n}$, then its \textbf{dual basis} $\set{\phi_1,\dots ,\phi_n}$ is defined by 
+\begin{align*}
+\phi_i (v_j)\triangleq \delta^i_j
+\end{align*}
+And there exists a natural isomorphism between $V$ and its double dual  $(V^*)^*$ by identifying $v\in (V^*)^*$ as 
+\begin{align*}
+v(\phi) \triangleq \phi (v)
+\end{align*}
+Let $\set{w_1,\dots ,w_m}$ be a basis of $W$ with dual basis  $\set{\xi_i , \dots ,\xi_m}$. It is clear that
+\begin{align*}
+  \text{ The matrices of $F$ and  $F^*$ are transpose of each other. }
+\end{align*}
+This together with the observation that for finite dimensional $V,W$, we have 
+ \begin{align*}
+\operatorname{rank}(F)+ \operatorname{dim}(\operatorname{ker}F^*)= \operatorname{dim}(W)
+\end{align*}
+gain us a quick proof that the dimensions of column space and row space of a fixed matrix are always equal. 
+\end{mdframed}
+\begin{mdframed}
+  Given some $n$-by-$n$ square matrix $A$, its \textbf{determinant} is by definition 
+\begin{align*}
+\operatorname{det}A\triangleq  \sum_{\sigma \in S_n} \Big(\operatorname{sgn}\sigma \prod_{k=1}^n  A_{\sigma (k),k} \Big)
+\end{align*}
+If one identify the space of $n$-by-$n$ square matrix over  $\F$ with  $(\F^n)^n$, determinant can be equivalently defined to be the unique alternating multilinear map from $(\F^n)^n$ to $\F$ such that 
+ \begin{align*}
+\operatorname{det}(I)=1
+\end{align*}
+By an algorithm, one see that, for each alternating multilinear map $F:(\F^n)^n\rightarrow \F$, we have 
+\begin{align*}
+F(B)= (\operatorname{det}B)\cdot F(I) \text{ for all }B.
+\end{align*}
+Therefore, if we observe for each $n$-by-$n$ square matrix $A$ over  $\F$ that the map $B\mapsto \operatorname{det}AB$ is indeed alternating multilinear, then we immediately have the celebrated result $\operatorname{det}AB=\operatorname{det}A\operatorname{det}B$ as a corollary. This multiplicative property of determinant allow us to well define determinant for each linear epimorphism $F$ over some finite-dimensional vector space by 
+ \begin{align*}
+\operatorname{det}F\triangleq  \operatorname{det}([F])
+\end{align*}
+where $[F]$ is the matrix representation of $F$ with respect to some basis. Moreover, because the inverse of a linear map is linear if exists, we see that for linear map $F$ and square matrix $A$, 
+\begin{align*}
+F\text{ is invertible }\iff \operatorname{det}F\neq 0 
+\end{align*}
+And 
+\begin{align*}
+A\text{ is invertible }\iff  \operatorname{det}A \neq 0
+\end{align*}
+Given some linear epimorphism $F$ over $V$, we say $v\in V$ is an \textbf{eigenvector} with respect to the \textbf{eigenvalue} $\ld \in \F$ if $v\neq 0$ and $F(v)=\ld v$. If there exists some basis of $V$ consisting eigenvectors  of $F$, we say  $F$ is  \textbf{diagonalizable}. Let $A$ be some square matrix, if there exists some  invertible square matrix  $P$ such that  $PAP^{-1}$ diagonal, we also say $A$ is  \textbf{diagonalizable}. Immediately, we see that if $V$ is finite dimensional, then with respect to any basis of $V$
+\begin{align*}
+[F]\text{ is diagonalizable }\iff F\text{ is diagonalizable }
+\end{align*}
+Let $V$ be finite dimensional. We define the \textbf{characteristic polynomial} of $F$ and $A$ by 
+ \begin{align*}
+\operatorname{det}(tI-F)\text{ and }\operatorname{det}(tI-A)
+\end{align*}
+Obviously, $\ld $ is an eigenvalue of $F$ if and only if $\ld $ is a root of the characteristic polynomial of $F$.
+\end{mdframed}
+
+\section{Jordan-Chevalley Decomposition}
+\begin{abstract}
+In this section, all vectors spaces are finite dimensional,  and we say that $V$ is a \textbf{direct sum} of some collection $\set{U_i}_{i \in I}$ of subspaces of $V$ and writes $V=\bigoplus _{i \in I}U_i$ if for each $v\in V$ there exists some unique tuple $(u_i)_{i \in I}$ such that $u_i \neq 0$ for finite number of $i \in I$ and $v=\sum u_i$. 
+\end{abstract}
+\begin{mdframed}
+Given $F\in \operatorname{End}(V)$, we know the kernels of its powers is increasing 
+\begin{align*}
+\set{0}=\operatorname{Ker}F^0\subseteq \operatorname{Ker}F^1 \subseteq \operatorname{Ker}F^2 \subseteq \operatorname{Ker}F^3\subseteq \cdots 
+\end{align*}
+This sequence grows in good manner. If it stops growing at some points, say, $\operatorname{Ker}F^n=\operatorname{Ker}F^{n+1}$ for some $n\inz_0^+$, then it stops forever 
+\begin{align*}
+\operatorname{Ker}F^n = \operatorname{Ker}F^{n+1}= \operatorname{Ker}F^{n+2}= \operatorname{Ker}F^{n+3}= \cdots 
+\end{align*}
+In particular, by counting dimensions, we know that this  sequence must stops before reaching to the dimension of $V$ in the sense that  
+ \begin{align}
+\label{stop}
+\operatorname{Ker}(F^{\operatorname{dim}V})=\operatorname{Ker}(F^{\operatorname{dim}V+1})
+\end{align}
+\myref{Equation}{stop} allows us to elegantly unify distinct notions within a single framework. For instance, for each eigenvalue \( \lambda \), we define the \textbf{generalized eigenspace} \( G(\lambda, F) \) as  
+\begin{align*}
+G(\lambda, F) \triangleq  \operatorname{Ker} (F - \lambda I)^{\operatorname{dim}V}
+\end{align*}
+Similarly, we say that \( F \) is \textbf{nilpotent} if  
+\begin{align*}
+\operatorname{Ker}F^{\operatorname{dim}V}=V
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{LIGE}
+\textbf{(Linear Independence of Generalized Eigenspaces)} Let $F\in \operatorname{End}(V)$. If $v_1,\dots ,v_n$ are generalized eigenvectors with respect to distinct eigenvalues $\ld_1,\dots ,\ld _n$, then they are linearly independent. 
+\end{theorem}
+\begin{proof}
+Suppose 
+\begin{align}
+\label{a1v1}
+a_1v_1 + \cdots + a_nv_n=0
+\end{align}
+Because $v_1$ is a generalized eigenvector, we may let $k$ be the largest non-negative integer such that  $(F-\ld_1 I)^kv_1\neq 0$, so that  
+\begin{align*}
+w\triangleq (F-\ld_1 I)^k v_1\text{ is an eigenvector with eigenvalue  $\ld_1$. }
+\end{align*}
+Now, noting that the set of endomorphism $\set{(F-\ld_1I)^k,(F-\ld_2I)^{\operatorname{dim}V},\dots ,(F-\ld_nI)^{\operatorname{dim}V}}$  indeed commutes, we may apply the endomorphism $(F-\ld_1I)^k(F-\ld_2I)^{\operatorname{dim}V}\cdots (F-\ld_n I)^{\operatorname{dim}V}$ onto both sides of \myref{Equation}{a1v1} and get 
+\begin{align*}
+  0&=a_1(F-\ld_2I)^{\operatorname{dim}V}\cdots (F-\ld_nI)^{\operatorname{dim}V}w \\
+  &=a_1(\ld_1-\ld_2)^{\operatorname{dim}V}\cdots (\ld_1-\ld_n)^{\operatorname{dim}V}w
+\end{align*}
+Which implies $a_1=0$. WLOG, we have shown $a_1=\cdots = a_n=0$.  
+\end{proof}
+\begin{mdframed}
+\myref{Equation}{stop} together with Rank-Nullity Theorem give us a theoretically crucial decomposition of $V$ 
+\begin{align}
+\label{VFn}
+V= \operatorname{Ker}F^{\operatorname{dim}V} \oplus  \operatorname{Im}F^{\operatorname{dim}V}
+\end{align}
+As we will later show, \myref{Decomposition}{VFn} plays a central role in the proof for \myref{Theorem}{DiGE}. 
+\end{mdframed}
+\begin{theorem}
+\label{DiGE}
+\textbf{(Decomposition into Generalized Eigenspaces)} Let $V$ be a finite dimensional complex vector space, let $F \in \operatorname{End}(V) $, and let $\set{\ld _1,\dots ,\ld _m}$ be the set of eigenvalues of $F$. We have 
+ \begin{align*}
+V= G(\ld_1,F)\oplus \cdots \oplus G(\ld_m,F)
+\end{align*}
+\end{theorem}
+\begin{proof}
+This is proved by induction on the dimension of $V$. The two base cases correspond to the 0-dimensional and 1-dimensional cases, both of which are trivial. Now, suppose that such a decomposition always exists for complex vector spaces of strictly smaller dimension than $V$ and their endomorphisms. By \myref{Equation}{VFn}, we may decompose $V$ into 
+\begin{align*}
+  V= G(\ld_1,F) \oplus U,\quad\text{ where }U=\operatorname{Im}(F-\ld_1)^{\operatorname{dim}V}. 
+\end{align*}
+Noting that $F$ and  $F-\ld_1I$ commutes, we conclude that $U$ is stable under $F$. Therefore, the restriction $F |_U$ defines an endomorphism  $F|_U \in \operatorname{End}(U)$. By inductive hypothesis, we may decompose $U$ into 
+ \begin{align*}
+U= G(\ld _2,F|_U)\oplus   \cdots \oplus  G(\ld _m,F|_U)
+\end{align*}
+WLOG, it remains to show 
+\begin{align*}
+G(\ld _2,F|_U)=G(\ld _2,F)
+\end{align*}
+Arbitrary select $v\in G(\ld _2,F)$. We may decompose $v=a_1v_1+\cdots + a_mv_m$, where $v_1\in G(\ld _1,F)$ and $v_n\in G(\ld _n ,F|_U)$ for $2\leq n\leq m$. Because $(F-\ld _2I)^{\operatorname{dim}V}v_2=0$, we know 
+\begin{align*}
+  (F-\ld_2I)^{\operatorname{dim}V}(a_1v_1+ a_3v_3+\cdots + a_mv_m)=0
+\end{align*}
+This implies $a_1v_1+a_3v_3+\cdots + a_mv_m \in G(\ld_2,F)$. It now follows from \myref{Theorem}{LIGE} that $a_1=a_3=\cdots = a_m=0$. We have shown $v\in G(\ld_2,F|_U)$.
+\end{proof} 
+\begin{theorem}
+\textbf{(Jordan forms of Nilpotent Operators)} Let $V$ be a finite dimensional complex vector space, and let  $N \in \operatorname{End}(V)$ be nilpotent. There exists some $v_1,\dots ,v_m \in V$ and non-negative integer $n_1,\dots ,n_m$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $N^{n_1}v_1,\dots ,Nv_1,v_1,\dots ,N^{n_m}v_m,\dots ,Nv_m,v_m$ form a basis for $V$. 
+  \item $N^{n_1+1}v_1=\cdots = N^{n_m+1}v_m=0$. 
+\end{enumerate}
+\end{theorem}
+\begin{mdframed}
+\myref{Theorem}{DiGE} give us a quick way to tell if some square matrix $A$ is nilpotent. $A$ is nilpotent if and only if the leading coefficient is the only non-zero coefficient in the characteristic polynomial of $A$. 
+\end{mdframed}
+\section{Adjoint}
+\begin{mdframed}
+  By a \textbf{norm}, we mean some \textbf{positive-definite} linear functional $\norm{\cdot}:V\to \R$ satisfying \textbf{absolute homogeneity} and \textbf{triangle inequality}. In this context, for $\norm{\cdot}$ to be positive-definite, it has to satisfy 
+\begin{align*}
+  \norm{v}=0 \implies  v=0
+\end{align*}
+Observing 
+\begin{align*}
+\norm{0}=\norm{0+v}\leq \norm{0}+\norm{v}\text{ for all $v\in V$ }
+\end{align*}
+We see norm must also be \textbf{non-negative}. By an \textbf{inner product}, we mean some \textbf{positive-definite}  map $\langle \cdot,\cdot\rangle : V^2 \rightarrow \F$ linear in the first argument, satisfying \textbf{conjugate symmetry}
+\begin{align*}
+\langle v,w\rangle = \overline{\langle w,v\rangle }\text{ for all }v,w \in V
+\end{align*}
+In this context, for $\langle \cdot,\cdot\rangle :V^2\rightarrow \F$ to be positive-definite, it has to satisfy 
+\begin{align*}
+\langle v,v\rangle >0 \text{ for all }v\neq 0
+\end{align*}
+If we do not require $\langle \cdot,\cdot\rangle $ to be positive-definite, but only non-negative, i.e. $\langle x,x\rangle \geq 0$ for all $x\in V$, then we have a \textbf{positive semi-definite Hermitian form}. Formally speaking, a positive semi-definite Hermitian form $\langle\cdot,\cdot \rangle :V^2 \rightarrow \R\text{ or }\C$ satisfy the following axioms
+\begin{enumerate}[label=(\alph*)]
+  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity)
+  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (conjugate symmetry)
+  \item $\langle x+y,z\rangle =\langle x,z\rangle +\langle y,z\rangle $ and $\langle cx,z\rangle=c\langle x,z\rangle $ (Linearity in the first argument)
+\end{enumerate}
+\begin{Example}{\textbf{(Example of Positive semi-definite Hermitian form)}}{}
+\begin{align*}
+\text{ arbitrary }V\text{ over $\R$ or  $\C$ }\hspace{0.5cm}\langle x,y\rangle \triangleq 0\text{ for all $x,y$ }\hspace{1cm}
+\end{align*}
+\end{Example}
+\end{mdframed}
+\textbf{(Norm Induce Part)}
+\begin{mdframed}
+Given a vector space $V$ over $\R$ or  $\C$, one can check that if  $V$ is equipped with an inner product  $\langle \cdot,\cdot\rangle :V^2\rightarrow \R\text{ or }\C$, then we can induce a norm on $V$ by 
+\begin{align*}
+\hspace{3cm}\norm{x}\triangleq \sqrt{\langle x,x\rangle }\hspace{1.5cm}(x \in V)
+\end{align*}
+Note that 
+\begin{align*}
+\norm{x}=0\iff \langle x,x\rangle =0 
+\end{align*}
+This implies that if $\langle \cdot,\cdot\rangle $ is an inner product (satisfy positive-definiteness), then $\norm{\cdot}$ is also positive-definite. And if $\langle \cdot,\cdot\rangle $ is not positive-definite, then there exists  $x\neq 0\in V$ such that $\norm{x}=0$, which make $\norm{\cdot}$ a \textbf{semi-norm}.\\
+
+Absolute homogeneity follows from the linearity of inner product.\\
+
+To check triangle inequality, we first have to prove Cauchy-Schwarz inequality.
+\end{mdframed}
+\begin{theorem}
+\label{BPoP}
+\textbf{(Basic Property of Positive semi-definite Hermitian form)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle:V^2 \rightarrow \R\text{ or }\C $ and $x,y \in V$, we have 
+\begin{align*}
+\langle x,x\rangle =0 \implies \langle x,y\rangle =0
+\end{align*}
+\end{theorem}
+\begin{proof}
+\As{$\langle x,y\rangle\neq 0 $}. Fix $t> \frac{\norm{y}^2 }{2\abso{\langle x,y\rangle }^2}$. Compute 
+\begin{align*}
+\norm{y-t\langle y,x\rangle x}^2 &= \norm{y}^2 + \norm{(-t)\langle y,x\rangle x }^2  + \langle -t\langle y,x\rangle x,y \rangle + \langle y,-t\langle y,x\rangle x\rangle \\
+&=\norm{y}^2 + t^2 \abso{\langle x,y\rangle }^2 \norm{x}^2 -t \langle y,x\rangle \langle x,y\rangle - t \langle x,y\rangle \langle y,x\rangle  \\
+&= \norm{y}^2- 2t \abso{\langle x,y\rangle }^2 <0 \tCaC
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{CSI}
+\textbf{(Cauchy-Schwarz Inequality)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle :V^2\rightarrow \C$ on vector space $V$ over $\C$, we have 
+\begin{enumerate}[label=(\alph*)]
+  \item $\abso{\langle x,y\rangle}\leq  \norm{x}\cdot\norm{y}\hspace{0.5cm}(x,y \in V)$ 
+  \item the equality hold true if $x,y$ are linearly dependent
+  \item the equality hold true if and only if $x,y$ are linearly dependent (provided $\langle \cdot,\cdot\rangle $ is an inner product)
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+  \vi{\hspace{3cm}\abso{\langle x,y\rangle }\leq \norm{x}\cdot\norm{y}\hspace{1.5cm}(x,y \in V)}
+\end{align*}
+Fix $x,y \in V$. \myref{Theorem}{BPoP} tell us $\norm{x}=0 \implies  \langle x,y\rangle =0$. Then we can reduce the problem into proving 
+\begin{align*}
+\vi{\frac{\abso{\langle x,y\rangle }^2}{\norm{x}^2}\leq\norm{y}^2  }
+\end{align*}
+Set $z\triangleq y-\frac{\langle y,x\rangle }{\norm{x}^2}x$. We then have 
+\begin{align*}
+\langle z,x\rangle =\langle y-\frac{\langle y,x\rangle }{\norm{x}^2}x,x \rangle =\langle y,x\rangle - \frac{\langle y,x\rangle }{\norm{x}^2}\langle x,x\rangle =0
+\end{align*}
+Then from $y=z+\frac{\langle y,x\rangle }{\norm{x}^2}x$, we can now deduce
+\begin{align*}
+\langle y,y\rangle &= \langle z+\frac{\langle y,x\rangle }{\norm{x}^2}x,z+ \frac{\langle y,x\rangle }{\norm{x}^2}x\rangle  \\
+&=\langle z,z\rangle + \abso{\frac{\langle y,x\rangle }{\langle x,x\rangle }}^2 \langle x,x\rangle \\
+&=\langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }
+\end{align*}
+Because $\langle z,z\rangle\geq 0 $, we now have
+\begin{align*}
+\langle y,y\rangle = \langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\geq  \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\vdone
+\end{align*}
+The equality hold true if and only if $\langle z,z\rangle =0$. This explains the other two statements regarding the equality. 
+\end{proof}
+\begin{mdframed}
+The proof is clearly geometrical. If one wish to remember the proof, one should see the trick we use is exactly 
+\begin{align*}
+z\triangleq y-\abso{y}(\cos \theta )\hat{x}\text{ is the projection of $y$ onto $x^{\perp}$ }
+\end{align*}
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       \includegraphics[height=5cm,width=12cm]{CSp.jpeg}
+   \end{minipage}
+\end{center}
+Then all we do rest is just expanding $\abso{y}^2=\abso{z+\tilde{x}}^2$, where $\tilde{x}=y-z=\abso{y}(\cos \theta)\hat{x}$, which give the answer and is easy to compute since $z\cdot \tilde{x}=0$.\\
+
+Now, with Cauchy-Schwarz Inequality, we can check the triangle inequality 
+\begin{align*}
+  \norm{x+y}^2&=\langle x+y,x+y\rangle \\
+&=\langle x,x\rangle +\langle x,y\rangle +\langle y,x\rangle +\langle y,y\rangle \\
+&= \langle x,x\rangle + \langle y,y\rangle +2\text{ Re }\langle x,y\rangle \\
+&\leq \norm{x}^2 + \norm{y}^2 + 2\abso{\langle x,y\rangle }\\
+&\leq \norm{x}^2 + \norm{y}^2 + 2\norm{x}\cdot \norm{y}=\Big(\norm{x}+\norm{y}\Big)^2
+\end{align*}
+\end{mdframed}
+\textbf{(Euclidean Space Abstract Part)} 
+\begin{mdframed}
+  By a \textbf{concrete Euclidean Space}, we mean some space of $n$-tuple  $(x_1,\dots ,x_n)$ over $\R$, equipped with inner product  $\langle \cdot,\cdot\rangle_E$ defined by 
+\begin{align*}
+  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle_E= \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
+\end{align*}
+By an \textbf{Euclidean Space}, we simply mean a finite dimensional vector space $V$ over $\R$,  equipped with an inner product $\langle \cdot,\cdot\rangle $ such that there exists a concrete Euclidean space $E$ and an isomorphism  $\phi:V\to E$ such that 
+\begin{align*}
+\hspace{3cm}\langle x,y\rangle= \langle \phi (x),\phi (y)\rangle_E \hspace{1.5cm}(x,y \in V)
+\end{align*}
+Note that if you define $\langle \cdot,\cdot\rangle $ on the space of $n$-tuples $(x_1,\dots ,x_n)$ over $\R$ by 
+\begin{align*}
+  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle=2 \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
+\end{align*}
+Then, the space of $n$-tuple is clearly not a concrete Euclidean space, and clearly an Euclidean space. 
+
+\end{mdframed}
+\textbf{(SVD)}
+\chapter{NTU Math M.A. Program Entrance Exam} 
+\section{Year 113}
+\begin{question}{}{}
+Let 
+\begin{align*}
+A\triangleq  \begin{bmatrix}
+  -2 & -1 & 1\\
+  1 & 0 & 1\\
+  0 & 0 & 1
+\end{bmatrix}
+\end{align*}
+Find the Jordan-Chevalley decomposition of $A$ and compute  $e^A$. 
+\end{question}
+\begin{proof}
+Routine computation give us 
+\begin{align*}
+J=\begin{bmatrix}
+  1 & 0 & 0 \\
+  0 & -1 & 1\\
+  0 & 0 & -1
+\end{bmatrix}\text{ and }P=\begin{bmatrix}
+  0 & 1 & -1 \\
+  1 & -1 & 0 \\
+  1 & 0 & 0
+\end{bmatrix}\text{ and }A=PJP^{-1}
+\end{align*}
+Therefore, the Jordan-Chevalley decomposition of $A$ is 
+\begin{align*}
+A= D+ N \text{ where }D=P\begin{bmatrix}
+  1 & 0 & 0 \\
+  0 & -1 & 0 \\
+  0 & 0 & -1 
+\end{bmatrix}P^{-1}\text{ and }N=P\begin{bmatrix}
+0 & 0 & 0 \\
+0 & 0 & 1 \\
+0 & 0 & 0
+\end{bmatrix}P ^{-1}
+\end{align*}
+And 
+\begin{align*}
+e^A= P\begin{bmatrix}
+  e & 0 & 0\\
+  0 & e^{-1} & e^{-1} \\
+  0 & 0 & e^{-1}
+\end{bmatrix} P^{-1}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $V$ be the space of polynomial in $x$ over  $\R$ of degree not higher than  $2$. Define an inner product for $V$ by 
+\begin{align*}
+\langle f,g\rangle \triangleq \int_{-1}^{1} fg
+\end{align*}
+Find a polynomial $k(x,t)$ such that 
+\begin{align}
+\label{fx=}
+f(x)= \int_{-1}^{1}k(x,t)f(t)dt \quad\text{for all }f \in V
+\end{align}
+Define $T \in \operatorname{End}(V)$ by 
+\begin{align*}
+T(a_2x^2+a_1x+a_0) \triangleq 2a_2x+a_1
+\end{align*}
+Find the adjoint of $T$. 
+\end{question}
+\begin{proof}
+Because of the linearity, for $k$ to satisfy \myref{Equation}{fx=} for all $f\in V$, it only has to satisfies 
+\begin{align}
+\label{solve}
+1=\int_{-1}^{1}kdt\text{ and }x=\int_{-1}^{1}ktdt \text{ and }x^2 =\int_{-1}^{1}kt^2dt
+\end{align}
+If we write $k$ in the form 
+\begin{align*}
+k= f_0(x)+ f_1(x)t+ f_2(x)t^2 + \cdots 
+\end{align*}
+Then \myref{Equation}{solve} becomes 
+\begin{align*}
+1&= \frac{2f_0(x)}{1}+ \frac{2f_2(x)}{3}+ \frac{2f_4(x)}{5}+ \cdots  \\
+x&=  \frac{2f_1(x)}{3}+ \frac{2f_3(x)}{5}+ \frac{2f_5(x)}{7}+ \cdots \\
+x^2&= \frac{2f_0(x)}{3} + \frac{2f_2(x)}{5}+ \frac{2f_4(x)}{7}+ \cdots 
+\end{align*}
+Thus, $k$ can be 
+\begin{align*}
+k(x,t)= \Big(\frac{9}{8}+ \frac{-15}{8}x^2\Big)+ \Big(\frac{3x}{2}\Big)t+ \Big(\frac{-15}{8}+ \frac{45}{8}x^2\Big)t^2 
+\end{align*}
+\end{proof}
+
+\begin{question}{}{}
+Let $V$ be the vector space of all $n$-by-$n$ square matrices over $\R$, and let $F:V\rightarrow \R$ be linear. Suppose  
+\begin{align*}
+F(AB)=F(BA)\text{ and }F(I)=n
+\end{align*}
+for all $A,B \in V$. Show that $F$ is the trace function. 
+\end{question}
+\begin{proof}
+Let $E_{i,j}\in V$ be the matrix whose only nonzero entry is $1$, located in the $i$-th row and $j$-th column. If $i \neq j$, then  
+\begin{align*}
+E_{i,i}E_{i,j}=E_{i,j}\text{ and }E_{i,j}E_{i,i}=0.
+\end{align*}
+This, together with the linearity of $F$, shows that $F$ depends only on the diagonal entries. For each permutation $\sigma \in S_n$, there exists a \textbf{permutation matrix} $C$ such that  
+\begin{align*}
+\text{The $\sigma(i)$-th row of }CA\text{ is identical to the $i$-th row of }A.
+\end{align*}
+And  
+\begin{align*}
+\text{The $\sigma(i)$-th column of }AC^{-1}\text{ is identical to the $i$-th column of }A.
+\end{align*}
+Therefore,  
+\begin{align*}
+  A_{i,i}=(CAC^{-1})_{\sigma (i),\sigma (i)}.
+\end{align*}
+Observing that  
+\begin{align*}
+F(CAC^{-1})=F(A(CC^{-1}))=F(A),
+\end{align*}
+we have shown that $F$ is stable under the permutation of diagonal entries. Define $\sigma \in S_n$ by  
+\begin{align*}
+\sigma(i)\triangleq \begin{cases}
+  i+1& \text{ if } 1\leq i<n, \\
+  1& \text{ if } i=n.
+\end{cases}
+\end{align*}
+Let $C_k$ be the permutation matrix corresponding to $\sigma^k$ for all $1\leq k\leq n$. The proof now follows from computing  
+\begin{align*}
+nF(A)= \sum_{k=1}^{n}F(C_kAC_k^{-1})=F\Big(\sum_{k=1}^n C_kAC_k^{-1}\Big)= F((\operatorname{tr}A)I)=n\operatorname{tr}A.
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+  Let $U,V$ be two finite dimensional space over the same field. Let  $T:U\rightarrow V$ be a linear map, and let $T^*:U^*\rightarrow V^*$ be its dual map. Prove 
+\begin{align*}
+T\text{ is injective }\iff T^*\text{ is surjective }   
+\end{align*}
+And 
+\begin{align*}
+T\text{ is surjective }\iff T^*\text{ is injective }
+\end{align*}
+\end{question}
+\begin{proof}
+Let $\set{T(u_1),\dots ,T(u_n)}$ be a basis for the image of $T$. Extend this to a basis $\set{T(u_1),\dots ,T(u_n),v_1,\dots ,v_m}$ for $V$. Let $\set{\xi_1,\dots ,\xi_{n+m}}$ be its dual basis. It is clear that $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ belongs to the kernel of $T^*$. Observe  
+\begin{align*}
+T^*\xi_1v_1 = 1
+\end{align*}
+to conclude that $\xi_i \not\in \operatorname{Ker}T^*$ for all $1\leq i\leq n$. We have shown $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ is a basis for the kernel of $T^*$. In other words,  
+\begin{align*}
+   \operatorname{rank}T+\operatorname{Dim}(\operatorname{Ker}T^*)= \operatorname{dim}V.
+\end{align*}
+This, together with Rank-Nullity Theorem, proves both propositions.
+\end{proof}
+\begin{question}{}{}
+Let $V$ be some finite-dimensional vector space over some field $\F$ and let $T \in \operatorname{End}(V)$. Let $f,g$ be two relatively prime polynomials. Prove 
+\begin{align*}
+\operatorname{Ker}(f(T)g(T))= \operatorname{Ker}f(T)\oplus \operatorname{Ker}g(T).
+\end{align*}
+\end{question}
+
+\begin{proof}
+To show that the two kernels form a direct sum, assume for contradiction that there exists a nonzero vector $v \in V$ such that $v$ belongs to both kernels. Since $f$ is a polynomial satisfying $f(T)v=0$, there must exist a polynomial $p$ of minimal degree such that $p(T)v=0$. By polynomial division, we can write 
+\begin{align*}
+f = pq + r, \quad \text{where } q, r \text{ are polynomials and } \deg r < \deg p.
+\end{align*}
+Since $r$ has a strictly smaller degree than $p$, the minimality of $p$ implies that $r = 0$. Thus, $f$ is divisible by $p$. WLOG, we may assume that $g$ is also divisible by $p$. This contradicts the assumption that $f$ and $g$ are relatively prime polynomials. We have shown the two kernels indeed form a direct sum. It is clear that 
+\begin{align*}
+\operatorname{Ker}f(T)\oplus  \operatorname{Ker}g(T)\subseteq \operatorname{Ker}(f(T)g(T)) 
+\end{align*}
+We now prove the opposite. Let $v \in \operatorname{Ker}(f(T)g(T))$. Because $f,g$ are relatively prime, there exists some polynomials  $a,b$ such that 
+\begin{align*}
+af+bg=1
+\end{align*}
+The proof then follows from noting 
+\begin{align*}
+  (af)(T)v \in \operatorname{Ker}g(T) \text{ and }(bg)(T)v \in \operatorname{Ker}f(T)
+\end{align*}
+\end{proof}
+\chapter{Archived}
+\section{Tensor Algebra}
+\begin{abstract}
+In this section, by the term \textbf{ring}, we mean a ring with a multiplication identity, and by the term \textbf{real algebra}, we mean a real vector space equipped with a vector multiplication compatible with both scalar multiplication and addition. In this definition, for a real algebra $A$ to be a ring, $A$ must be associative.  By the term \textbf{ideal}, we mean a 2-sided ideal. If we say a multi-linear map $M:V^k\rightarrow Z$ is \textbf{alternating}, we mean that $M$ maps $(v_1,\dots ,v_n)$ to $0$ if two arguments coincide.
+\end{abstract}
+\begin{mdframed}
+Given a finite collection $(V_1,\dots ,V_n)$ of finite dimensional real vector space, by the term \textbf{tensor product of $V_1,\dots ,V_n$}, we mean a real vector space  usually denoted by $V_1 \otimes \cdots \otimes  V_n$ and a multilinear map  $\otimes  : V_1 \times \cdots \times V_n \rightarrow V_1 \otimes  \cdots \otimes  V_n$ satisfying the universal property: If $B:V_1 \times \cdots \times V_n\rightarrow Z$ is a multilinear map, then there exists a unique linear map $\beta :V_1\otimes \cdots \otimes  V_n$ such that 
+\begin{align*}
+B(v_1,\dots ,v_n)=\beta (v_1\otimes \cdots \otimes  v_n)
+\end{align*}
+In other words, we have the commutative diagram
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJWXFx0aW1lcyBXIl0sWzAsMiwiViBcXG90aW1lcyBXIl0sWzIsMCwiVSJdLFswLDIsIkIiXSxbMSwyLCJcXGV4aXN0cyEgXFxiZXRhIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzAsMSwiKHYsdylcXG1hcHN0byB2XFxvdGltZXMgdyIsMl1d
+\[\begin{tikzcd}
+	{V_1\times \cdots \times V_n} && U \\
+	\\
+	{V_1 \otimes \cdots \otimes   V_n}
+	\arrow["B", from=1-1, to=1-3] 
+	\arrow["{\otimes }"', from=1-1, to=3-1]
+	\arrow["{\exists! \beta}"', dashed, from=3-1, to=1-3]
+\end{tikzcd}\]
+This approach indeed define a pair of vector space and multilinear map uniquely up to isomorphism, in the sense of \myref{Theorem}{UoT}, where we define the isomorphism between tensor product. 
+\end{mdframed}
+\begin{theorem}
+\label{UoT}
+\textbf{(Uniqueness of Tensor product)} Given a finite collection $(V_1,\dots, V_n)$ of finite dimensional real vector space, if $V_1 \otimes \cdots \otimes  V_n ,V_1\otimes  '\cdots \otimes  ' V_n$ both satisfy the universal property, then there exists an linear isomorphism $T:V_1 \otimes  \cdots \otimes  V_n \rightarrow V_1 \otimes' \cdots \otimes  ' V_n $ such that 
+\begin{align*}
+T(v_1\otimes  \cdots \otimes  v_n)=v_1 \otimes  '\cdots \otimes  'v_n
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $V_1 \otimes  \cdots \otimes  V_n$ satisfies the universal property, there exists a linear map $T:V_1 \otimes  \cdots \otimes  V_n\rightarrow V_1 \otimes'  \cdots \otimes' V_n  $ such that  
+\begin{align*}
+\otimes' =T \circ \otimes  
+\end{align*}
+It remains to show $T$ is bijective. Similarly, because $V_1 \otimes ' \cdots \otimes'  V_n$ satisfies the universal property, there exists a linear map $T':V_1 \otimes'  \cdots \otimes'  V_n\rightarrow V_1 \otimes  \cdots \otimes V_n  $ such that 
+\begin{align*}
+\otimes = T' \circ \otimes  '
+\end{align*}
+Composing the two equations, we have 
+\begin{align*}
+\otimes '=T\circ T' \circ \otimes  '
+\end{align*}
+It then follows from uniqueness of the induced linear map in universal property that $T \circ T'=\textbf{id}:V_1 \otimes  ' \cdots \otimes  'V_n \rightarrow V_1 \otimes  ' \cdots \otimes  'V_n$. This implies $T$ is indeed bijective. 
+\end{proof}
+\begin{mdframed}
+We have shown that tensor products is unique up to isomorphism. A construction further shows that if $B_i$ are bases for $V_i$, then 
+ \begin{align*}
+\set{v_1 \otimes  \cdots \otimes v_n: v_i \in B_i\text{ for all }1\leq i\leq n  }\text{ form a basis for }V_1 \otimes  \cdots \otimes  V_n
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\textbf{(Associativity of the Tensor product)} Given three finite-dimensional real vector spaces $X,Y,Z$,  there exists a unique linear isomorphism $F:X\otimes  Y\otimes  Z\rightarrow (X\otimes  Y)\otimes  Z$ that satisfy 
+\begin{align*}
+F(x\otimes  y \otimes  z)=(x\otimes  y)\otimes  z
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $f:X\times Y \times Z\rightarrow (X\otimes  Y)\otimes Z$ by 
+\begin{align*}
+f(x,y,z)\triangleq (x \otimes  y)\otimes z
+\end{align*}
+It follows from the universal property that there exists a unique linear map $F:X\otimes  Y\otimes Z\rightarrow (X \otimes  Y)\otimes  Z $ such that 
+\begin{align*}
+F(x\otimes  y\otimes  z)=f(x,y,z)= (x \otimes y) \otimes z 
+\end{align*}
+It remains to show \vi{$F$ is bijective}.  For all $z\in Z$, define $h_z:X\times Y\rightarrow X \otimes  Y\otimes Z$ by 
+\begin{align*}
+h_z(x,y)\triangleq x\otimes  y\otimes  z
+\end{align*}
+If follows from the universal property that there exists a unique linear map $H_z:X\otimes  Y \rightarrow X \otimes  Y\otimes  Z$ such that 
+\begin{align*}
+H_z(x \otimes  y)=h_z(x,y)=x \otimes  y \otimes  z
+\end{align*}
+Define $h:(X\otimes  Y)\times Z\rightarrow X\otimes Y \otimes Z$ by 
+\begin{align*}
+h(v,z)\triangleq H_z(v)
+\end{align*}
+It is clear that $h$ in linear in  $(X\otimes  Y)$. We now show $h$ is linear in  $Z$, that is 
+ \begin{align*}
+   \olive{H_{c_1z_1+z_2}=c_1H_{z_1}+H_{z_2}}
+\end{align*}
+By definition, 
+\begin{align*}
+  (c_1H_{z_1}+H_{z_2})(x\otimes  y)&=c_1 x\otimes  y\otimes  z_1+ x\otimes  y \otimes  z_2\\
+  &= x\otimes  y\otimes  (c_1z_1+z_2)=h_{c_1z_1+z_2}(x,y)
+\end{align*}
+It then follows from the uniqueness part of the universal property that $H_{c_1z_1+z_2}=c_1H_{z_1}+H_{z_2}$. $\odone$  \\
+
+
+We have shown $h$ is indeed bilinear. It follows from the universal property that there exists a unique linear map $H:(X\otimes  Y)\otimes  Z\rightarrow X\otimes Y\otimes Z$ such that 
+\begin{align*}
+H((x\otimes y)\otimes z)=h(x\otimes  y,z)=H_z(x\otimes  y)=x\otimes  y\otimes  z
+\end{align*}
+Let $\otimes:X\times Y\times Z\rightarrow X\otimes  Y\otimes  Z$ denotes the tensor product, we now have 
+\begin{align*}
+\otimes = H \circ F \circ \otimes 
+\end{align*}
+It then follows from universal property that $H \circ F=\textbf{id}:X\otimes  Y\otimes  Z\rightarrow X\otimes  Y\otimes  Z$. This implies $F$ is indeed bijective. $\vdone$
+\end{proof}
+\begin{mdframed}
+Let $V$ be a finite-dimensional real vector space. By its  \textbf{tensor algebra}, we mean any real associative algebra $T(V)$ with an injective linear map $\diota:V\rightarrow T(V)$ that satisfies the universal property: If $A$ is a real associative algebra and $f:V\rightarrow A$ is a linear map, then there exists a unique algebra homomorphism $F:T(V)\rightarrow A$ such that the diagram  
+% https://q.uiver.app/#q=WzAsMyxbMiwwLCJUKFYpIl0sWzIsMiwiQSJdLFswLDAsIlYiXSxbMiwwLCJcXGRvdHtcXGlvdGF9Il0sWzIsMSwiZiIsMl0sWzAsMSwiRiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	V && {T(V)} \\
+	\\
+	&& A
+	\arrow["{\dot{\iota}}", from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-3]
+	\arrow["F", dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+commutes. The proof that such definition is indeed unique up to isomorphism is similar to that of \myref{Theorem}{UoT} and thus omitted. We now give the most useful construction. \\
+
+Let $V$ be finite-dimensional real vector space. We use the notation 
+ \begin{align*}
+T^n(V)\triangleq  \overbrace{V \otimes  \cdots \otimes  V}^{n\text{ copies }}
+\end{align*}
+and call $T^{n}(V)$ the \textbf{$n$-th tensor power of $V$} or the \textbf{$n$-fold tensor product of  $V$}. Define  
+\begin{align*}
+  T(V)&\triangleq  \bigoplus_{n=0}^{\infty} T^n(V)\\
+  &=\R \oplus V \oplus (V\otimes V) \oplus (V\otimes V \otimes V)  \oplus \cdots 
+\end{align*}
+and define for all $f,g \in T(V)$ the multiplication 
+\begin{align*}
+  (fg)(n)\triangleq   \sum_{k=0}^{n}f(k)g(n-k)
+\end{align*}
+where 
+\begin{align*}
+  &\Big(\sum_{I} a_I v_{I(1)}\otimes \cdots \otimes  v_{I(k)}\Big)\Big(\sum_J b_J v_{J(1)}\otimes  \cdots \otimes  v_{J(l)}\Big)\\
+  &\triangleq \sum_{I,J} a_I b_J v_{I(1)}\otimes \cdots \otimes  v_{I(k)}\otimes  v_{J(1)}\otimes  \cdots \otimes  v_{J(l)}
+\end{align*}
+where $\set{v_1,\dots ,v_m}$ is some basis for $V$, $I$ run through the set of function that maps $\set{1,\dots ,k}$ into $\set{1,\dots ,m}$ and $J$ run through the set of function that maps  $\set{1,\dots ,l}$ into $\set{1,\dots ,m}$. For example, given two elements  
+\begin{align*}
+  (5,0,v_1\otimes v_2,0,0,\dots )\text{ and }(7,v_3,0,0,\dots)
+\end{align*}
+of $T(V)$, their product is defined to be 
+\begin{align*}
+  (35,5v_3,7v_1\otimes v_2, v_1 \otimes v_2 \otimes v_3 ,0,0,\dots)
+\end{align*}
+Tedious effort shows that our multiplication is consistent with abuse of notation in the sense that if $f,g\in T(V)$ is defined by  
+\begin{align*}
+ f(k)\triangleq \begin{cases}
+   w_1\otimes \cdots \otimes  w_n & \text{ if $k=n$ }\\
+   0& \text{ if otherwise }
+ \end{cases} \text{ and } g(k)\triangleq \begin{cases}
+   w_{n+1}\otimes  \cdots \otimes  w_{n+l}& \text{ if $k=l$ }\\
+   0& \text{ if otherwise }
+ \end{cases} 
+\end{align*}
+then 
+\begin{align*}
+  (fg)(k)=\begin{cases}
+    w_1\otimes  \cdots \otimes  w_{n+l}& \text{ if $n=k+l$ }\\
+    0& \text{ if otherwise }
+  \end{cases}
+\end{align*}
+
+
+does form an associative algebra with multiplication identity $1\inr$. Thus, $T(V)$ is in fact a ring. Let $I(V)\subseteq T(V)$ be the ideal generated by $\set{v\otimes v:v \in V}$. By definition, ideal $I(V)$ is a subgroup of $T(V)$. To see that $I(V)$ is closed under scalar multiplication, observe that for all $t\inr\text{ and }x\in T(V)$, the scalar multiplication $tx$ is identical to $tx$ where $t$ is treated as an element of $T(V)$, so it follows from definition of ideal that $I(V)$ is also a vector subspace of $T(V)$. Let $\set{v_1,\dots ,v_n}$ be a basis for $V$, and let  $S$ be the set of function that maps  $\set{1,\dots ,n}$ into $\set{1,\dots ,k}$. We know for a fact that 
+\begin{align*}
+T^k(V) = \operatorname{span} \set{v_{I(1)}\otimes  \cdots \otimes  v_{I(k)}: I \in S}
+\end{align*}
+If we define $I^k(V)\triangleq I(V)\cap T^k(V)$, one then have 
+\begin{align}
+\label{ikv} I^k(V)=\operatorname{span}\set{v_{I(1)}\otimes \cdots \otimes  v_{I(k)}:I(j)=I(j+1)\text{ for some }j}
+\end{align}
+This is proved by showing $I^0(V)\oplus  I^1(V)\oplus  I^2(V)\oplus  \cdots $ is indeed the smallest ideal containing $\set{v\otimes  v:v \in V}$. Define an equivalence class on $T(V)$ by 
+\begin{align*}
+x\sim  y\overset{\triangle}{\iff }x-y \in I (V)
+\end{align*}
+Because ideal form a subgroup, we see that our definition indeed give an equivalence relation. We then can define on the set of equivalence class $T(V)\setminus I(V)$ addition, scalar multiplication and vector multiplication 
+\begin{align*}
+[x]+[y]\triangleq [x+y] \text{ and }[x]\wedge [y]\triangleq [xy]\text{ and }c[x]\triangleq [cx]
+\end{align*}
+which is well defined and form an algebra as one can check. We call this algebra $T(V)\setminus I(V)$ the \textbf{exterior algebra} $\wedge ^* (V)$. Note that if we refer to $v,w \in T^k(V)$ as elements of $\wedge ^*(V) $, we mean $[v],[w]$. Immediately, we see that the wedge product is \textbf{alternating} in the sense that if $v\in V$, then 
+\begin{align*}
+v\wedge v=0 
+\end{align*}
+and is \textbf{anti-symmetric} in the sense that if $v,w \in V$, then 
+\begin{align*}
+v\wedge w= -w\wedge  v
+\end{align*}
+We use the notation 
+\begin{align*}
+\wedge^k(V) \triangleq \bset{ [x] \in \wedge ^*(V): x \in \overbrace{V \otimes  \cdots \otimes  V}^{k\text{ copies }}} 
+\end{align*}
+Immediately from \myref{Equation}{ikv}, we see that $\wedge ^k (V) $ is the vector space 
+\begin{align*}
+\operatorname{span}\set{v_{I(1)}\wedge  \cdots \wedge  v_{I(k)}:I \in S  }
+\end{align*}
+where $\set{v_1,\dots ,v_n}$ is a basis for $V$ and $S$ is the set of function that maps  $\set{1,\dots ,k}$ into $\set{1,\dots ,n}$. If we define the vector subspace $I^k(V)\triangleq T^k(V)\cap I(V)$, there exists a natural vector space isomorphism
+\begin{align*}
+\wedge  ^k(V)\underset{\text{ v.s. }}{\cong }T^k(V)\setminus I^k(V);[x]\leftrightarrow [x]
+\end{align*}
+where $T^k(V)\setminus I^k(V)$ is the quotient vector space.
+\end{mdframed}
+\begin{theorem}
+\label{Universal mapping property for alternating $k$-linear map}
+\textbf{(Universal mapping property for alternating $k$-linear map)} For any vector space $Z$ over  $\R$ and any alternating  $k$-linear map  $f:V^k\rightarrow Z$, there is a unique linear map $F:\bigwedge ^k V\rightarrow Z $ such that the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXGJpZ3dlZGdlXmsgViAiXSxbMCwyLCJWXmsiXSxbMiwyLCJaIl0sWzEsMCwiXFx3ZWRnZSAiXSxbMCwyLCJcXHRpbGRle2Z9Il0sWzEsMiwiZiIsMl1d
+\[\begin{tikzcd}
+	{\bigwedge^k V } \\
+	\\
+	{V^k} && Z
+	\arrow["F", from=1-1, to=3-3]
+	\arrow["{\wedge }", from=3-1, to=1-1]
+	\arrow["f"', from=3-1, to=3-3]
+\end{tikzcd}\]
+commute, i.e., 
+\begin{align*}
+F(v_1\wedge \cdots \wedge  v_k  )=f(v_1,\dots ,v_k) \text{ for all }v_1,\dots,v_k \in V
+\end{align*}
+\end{theorem}
+\begin{proof}
+By \customref{Universal Property of Tensor Product}{universal property of tensor product}, there exists unique linear map $h:T^k(V)\rightarrow Z$ such that 
+ \begin{align*}
+h(v_1 \otimes  \cdots \otimes  v_k)=f(v_1,\cdots ,v_k)
+\end{align*}
+Because $f$ is alternating, we see from the characterization of $I^k(V)$ given in \myref{Equation}{ikv} that $h$ vanishes on $I^k(V)$. We then can induce a linear map 
+\begin{align*}
+F:\wedge^k (V)\cong \frac{T^k(V)}{I^k(V)} \rightarrow Z 
+\end{align*}
+by $F([x])\triangleq h(x)$. This then give us the desired  
+\begin{align*}
+F(v_1 \wedge  \cdots \wedge  v_k )=h(v_1\otimes  \cdots \otimes  v_k)=f(v_1,\dots ,v_k)
+\end{align*}
+Note that $F$ is unique because all such linear map take the same values on  $\set{v_{I(1)}\wedge  \cdots \wedge  v_{I(k)}:I \in S }$ which spans $\wedge ^k(V) $. 
+\end{proof}
+\begin{mdframed}
+Let $\set{w_1,\dots ,w_l}\subseteq V$ be linear independent. An immediate consequence of the \customref{Universal mapping property for alternating $k$-linear map}{universal mapping property for alternating $k$-linear map} is that one may define alternating multilinear $f:V^l\rightarrow \R$ by 
+\begin{align*}
+B(v_1,\dots ,v_l)\triangleq \operatorname{det}(M)\text{ where }v_i= \sum_j M_{i,j}w_j
+\end{align*}
+and see that $F:\wedge^l (V)\rightarrow \R $ take $w_1\wedge  \cdots \wedge  w_l$ to $1$. This implies that  
+\begin{align*}
+w_1\wedge  \cdots \wedge  w_l \neq 0  
+\end{align*}
+\end{mdframed}
+\begin{theorem}
+\label{ASo}
+\textbf{(Anti-symmetry of wedge product)} If $\alpha \in \wedge ^k (V),\beta \in \wedge ^l (V)  $, then $\alpha \wedge  \beta =(-1)^{kl}(\beta  \wedge  \alpha  )  $. 
+\end{theorem}
+\begin{proof}
+Let $v_1,\dots ,v_n$ be a basis of $V$. Let $S_k$ be the space of function that maps $\set{1,\dots ,k}$into  $\set{1,\dots,n}$ , $S_l$ be the space of function that maps  $\set{1,\dots ,l}$ into  $\set{1,\dots ,n}$. We may then write 
+\begin{align*}
+\alpha = \sum_{I \in S_k} a_I (v_{I(1)}\wedge \cdots \wedge  v_{I(k)})\text{ and }\beta =\sum_{J \in S_l} b_J (v_{J(1)}\wedge \cdots \wedge v_{J(l)}  )
+\end{align*}
+and compute 
+\begin{align*}
+\alpha \wedge \beta &= \sum_{I \in S_k,J\in S_l}a_Ib_J (v_{I(1)}\wedge \cdots \wedge v_{I(k)} \wedge  v_{J(1)} \wedge \cdots  \wedge v_{J(l)}   )\\
+&=   \sum_{I \in S_k,J\in S_l}(-1)a_Ib_J (v_{I(1)}\wedge \cdots \wedge   v_{J(1)} \wedge  v_{I(k)}\cdots\wedge \cdots  \wedge v_{J(l)}   )   \\
+&=  \sum_{I \in S_k,J\in S_l}(-1)^ka_Ib_J (v_{J(1)}\wedge v_{I(1)}\wedge  \cdots \wedge    v_{I(k)} \wedge  v_{J(2)} \wedge \cdots  \wedge v_{J(l)}   )   \\
+  &=\sum_{I \in S_k,J\in S_l}(-1)^{kl}a_Ib_J (v_{J(1)}\wedge \cdots \wedge  v_{J(l)}\wedge v_{I(1)} \wedge   \cdots \wedge   v_{I(k)})= (-1)^{kl}\beta \wedge  \alpha  
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Following from \myref{Theorem}{ASo}, \myref{Equation}{ikv} and tedious effort, one can see that if $\set{v_1,\dots ,v_n}$ is a basis for $V$, then 
+ \begin{align*}
+\set{v_{i_1}\wedge  \cdots \wedge  v_{i_k}:1\leq i_1< \cdots < i_k\leq n  }
+\end{align*}
+form a basis for $\wedge^k(V)$. If $A:V\rightarrow W$ is a linear map, we define linear map $\wedge^k A:\wedge^k (V)\rightarrow \wedge^k (W) $ by linear extension of 
+\begin{align*}
+\wedge^k(A)(v_1\wedge  \cdots \wedge   v_n)=Av_1 \wedge  \cdots \wedge  Av_n  
+\end{align*}
+Note that if  $A:V\rightarrow V$ and $\operatorname{dim}(V)=n$, then $\wedge ^nA: \wedge^n (V)\rightarrow \wedge ^n(V)$ is given by the determinant since given basis  $\set{v_1,\dots ,v_n}$, we have 
+\begin{align*}
+\wedge^nA(v_1 \wedge  \cdots \wedge  v_n   )&=\Big(\sum_j A_{j,1}v_j\Big)\wedge  \cdots \wedge \Big(\sum_j A_{j,n}v_j\Big)    \\
+&=\sum_{\sigma \in S_n} A_{\sigma (1),1}\cdots A_{\sigma (n),n}v_{\sigma (1)}\wedge  \cdots \wedge  v_{\sigma(n)}   \\
+&=\sum_{\sigma \in S_n}\operatorname{sgn}(\sigma)A_{\sigma(1),1}\cdots A_{\sigma(n),n}v_1\wedge  \cdots \wedge  v_n
+\end{align*}
+\end{mdframed}
+\section{Operator Norm}
+\begin{abstract}
+This section introduces the concept of the operator norm and proves some fundamental results related operator norm and finite-dimensional normed spaces. For example, we establish results such as \customref{LOB}{a linear operator being bounded if and only if it is continuous} and \customref{ANoF}{the equivalence of all norms on finite-dimensional vector spaces}.
+\end{abstract}
+\begin{mdframed}
+In this section, and particularly in functional analysis, we say a function $T$ between two metric space is a  \textbf{bounded operator} if $T$ always map bounded set to bounded set. In particular, if $T$ is a linear transformation between two normed space, we say $T$ is a \textbf{bounded linear operator}. Now, suppose $\mathcal{X},\mathcal{Y}$ are two normed space over $\R\text{ or }\C$. In space $L(\mathcal{X},\mathcal{Y})$, alternatively, we can define 
+\begin{align*}
+T\text{ is bounded } \overset{\triangle}{\iff} \exists M\inr,\forall x\in \mathcal{X}, \norm{Tx}\leq M\norm{x}
+\end{align*}
+The proof of equivalency is simple. For $(\longrightarrow )$, observe 
+\begin{align*}
+\norm{Tx}= \norm{x}\cdot\norm{T \frac{x}{\norm{x}}}\leq \Big(\sup \set{\norm{Ty}:\norm{y}=1} \Big)\norm{x}
+\end{align*}
+For $(\longleftarrow)$, observe 
+\begin{align*}
+\norm{Tx-Ty}=\norm{T(x-y)}\leq M \norm{x-y}
+\end{align*}
+We first show that \customref{LOB}{a linear transformation is continuous if and only if it is bounded}. 
+\end{mdframed}
+\begin{theorem}
+\label{LOB}
+\textbf{(Liner Operator is Bounded if and only if it is Continuous)} Given two normed space $\mathcal{X},\mathcal{Y}$ over $\R\text{ or }\C$ and  $T\in L(\mathcal{X},\mathcal{Y})$, we have 
+\begin{align*}
+T\text{ is a bounded operator }\iff T\text{ is continuous on $\mathcal{X}$}
+\end{align*}
+\end{theorem}
+\begin{proof}
+If $T$ is bounded, we see that $T$ is Lipschitz. 
+\begin{align*}
+\norm{Tx-Ty}\leq M \norm{x-y}
+\end{align*}
+Now, suppose $T$ is linear and continuous at $0$. Let $\epsilon $ satisfy 
+\begin{align*}
+\sup_{\norm{y}\leq \epsilon } \norm{Ty} \leq 1
+\end{align*}
+Observe that for all $x \in \mathcal{X}$, we have
+\begin{align*}
+\norm{Tx}= \frac{\norm{x}}{\epsilon } \bnorm{T \frac{\epsilon x}{\norm{x}}}\leq \frac{\norm{x}}{\epsilon}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Here, we introduce a new terminology, which shall later show its value. Given a set $X$, we say two metrics $d_1,d_2$ on $X$ are \textbf{equivalent}, and write $d_1\sim d_2$, if we have 
+\begin{align*}
+\exists m,M \inr^+, \forall x ,y\in X, md_1(x,y)\leq d_2(x,y) \leq Md_1(x,y)
+\end{align*}
+Now, given a fixed vector space $V$, naturally, we say two norms $\norm{\cdot}_1,\norm{\cdot}_2$ on $V$ are \textbf{equivalent} if 
+\begin{align*}
+\exists m,M \inr^+, \forall x\in X, m \norm{x}_1\leq \norm{x}_2 \leq M\norm{x}_1
+\end{align*}
+We say two metric $d_1,d_2$ on  $X$ are  \textbf{topologically equivalent} if the topology they induce on $X$ are identical.\\
+
+A few properties can be immediately spotted.  
+\begin{enumerate}[label=(\alph*)]
+  \item Our definition of $\sim$ between metrics of a fixed $X$ is an equivalence relation.
+  \item Our definition of $\sim$ between norms on a fixed $V$ is an equivalence relation.
+  \item Equivalent norms induce equivalent metrics.
+  \item Equivalent metrics are topologically equivalent. 
+\end{enumerate}
+
+We now prove \customref{ANoF}{if $V$ is finite-dimensional, then all norms on  $V$ are equivalent}. This property will later show its value, as used to prove \customref{LmoF}{linear map of finite-dimensional domain is always continuous} 
+\end{mdframed}
+\begin{theorem}
+\label{ANoF}
+\textbf{(All Norms on Finite-dimensional space are Equivalent)} Suppose $V$ is a finite-dimensional vector space over $\R\text{ or }\C$. Then 
+\begin{align*}
+\text{ all norms on $V$ are equivalent }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $\set{e_1,\dots ,e_n}$ be a basis of $V$. Define $\infty$-norm $\norm{\cdot}_\infty$ on $V$ by 
+\begin{align*}
+\bnorm{\sum \alpha_i e_i}_{\infty}\triangleq  \max \abso{\alpha_i} 
+\end{align*}
+It is easily checked that $\norm{\cdot}_\infty$ is indeed a norm. Fix a norm $\norm{\cdot}$ on $V$. We reduce the problem into  
+\begin{align*}
+  \vi{\text{ finding $m,M\inr^+$ such that }m\norm{x}_\infty \leq \norm{x}\leq M\norm{x}_\infty}
+\end{align*}
+We first claim 
+\begin{align*}
+\blue{M=\sum \norm{e_i}\text{ suffices }}
+\end{align*}
+Compute 
+\begin{align*}
+\norm{x}= \bnorm{\sum \alpha_ie_i} \leq \sum \abso{\alpha _i} \norm{e_i} \leq \norm{x}_\infty \sum \norm{e_i}= M \norm{x}_\infty \bdone
+\end{align*}
+Note that reverse triangle inequality give us 
+\begin{align}
+\label{Lip1}
+\Big|\norm{x}-\norm{y}\Big|\leq \norm{x-y} \leq M \norm{x-y}_\infty
+\end{align}
+Then we can check that 
+\begin{enumerate}[label=(\alph*)]
+  \item  $\norm{\cdot}:\Big(V,\norm{\cdot}_\infty \Big)\rightarrow \R$ is Lipschitz continuous because of \myref{Equation}{Lip1}.
+  \item $S\triangleq \set{y\in V:\norm{y}_\infty=1}$ is sequentially compact in $\norm{\cdot}$ and non-empty. 
+\end{enumerate}
+Now, by EVT, we know $\min _{y \in S}\norm{y}$ exists. Note that $\min_{y \in S}\norm{y}>0$, since $0 \not\in S$. We claim 
+\begin{align*}
+  \olive{m= \min_{y \in S}\norm{y}\text{ suffices }}
+\end{align*}
+Fix $x \in V$ and compute 
+\begin{align*}
+m\norm{x}_\infty = \norm{x}_\infty (\min_{y \in S} \norm{y})\leq \norm{x}_\infty \cdot  \bnorm{ \frac{x}{\norm{x}_\infty}}=\norm{x}\odone \vdone
+\end{align*}
+
+
+
+
+
+
+\end{proof}
+\begin{theorem}
+\label{LmoF}
+\textbf{(Linear map of Finite-dimensional Domain is always Continuous)} Given a finite-dimensional normed space $\mathcal{X}$ over $\R\text{ or }\C$, an arbitrary normed space  $\mathcal{Y}$ over $\R\text{ or }\C$ and a linear transformation  $T:\mathcal{X}\rightarrow \mathcal{Y}$, we have 
+\begin{align*}
+T\text{ is continuous }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $x\in \mathcal{X},\epsilon $. We wish 
+\begin{align*}
+\vi{\text{ to find $\delta$ such that }\forall h\in \mathcal{X}: \norm{h}\leq \delta, \norm{T(x+h)-Tx}\leq \epsilon }
+\end{align*}
+Let $\set{e_1,\dots ,e_n}$ be a basis of $\mathcal{X}$. Note that $ \norm{ \sum \alpha_i e_i }_1\triangleq  \sum \abso{\alpha _i}$ is a norm. \customref{ANoF}{Because $\mathcal{X}$ is finite-dimensional, we know $\norm{\cdot}$ and $\norm{\cdot}_1$ are equivalent}. Then, we can fix $M\inr^+$ such that 
+\begin{align*}
+\hspace{2cm}\norm{x}_1 \leq M\norm{x}\hspace{0.5cm}(x \in V)
+\end{align*}
+We claim 
+\begin{align*}
+\vi{\delta= \frac{\epsilon }{M(\max \norm{Te_i} )}\text{ suffices }} 
+\end{align*}
+Fix $\norm{h}\leq \delta$ and express $h=\sum \alpha_i e_i$. Compute using linearity of $T$
+\begin{align*}
+  \norm{T(x+h)-Tx}&=\norm{\sum \alpha_i T e_i}\\
+  &\leq \sum \abso{\alpha _i} \norm{Te_i}\\
+  &\leq  \norm{h}_1 (\max \norm{Te_i} )\\
+  &\leq M \norm{h}(\max \norm{Te_i})=\epsilon \vdone
+\end{align*}
+\end{proof}
+\begin{mdframed}
+We now see that, because \customref{LOB}{Linear transformation is bounded if and only if it is continuous} and \customref{LmoF}{Linear map of finite-dimensional domain is always continuous}, if $\mathcal{X}$ is finite-dimensional, then all linear map of domain $\mathcal{X}$ are bounded. A counter example to the generalization of this statement is followed. 
+\begin{Example}{\textbf{(Differentiation is an Unbounded Linear Operator)}}{}
+\begin{align*}
+\mathcal{X}=\Big(\R[x]|_{[0,1]}, \norm{\cdot}_\infty \Big), D(P)\triangleq P'
+\end{align*}
+Note that $\set{x^n}_{n\inn}$ is bounded in $\mathcal{X}$ and $\set{D(x^n)}_{n\inn}$ is not.   
+\end{Example}
+Now, suppose $\mathcal{X},\mathcal{Y}$ are two fixed normed spaces over $\R$ or $\C$. We can easily check that the set $BL(\mathcal{X},\mathcal{Y})$ of bounded linear operators from $\mathcal{X}$ to $\mathcal{Y}$ form a vector space over whichever field $\mathcal{Y}$ is over.\\
+
+Naturally, our definition of boundedness of linear operator derive us a norm on $BL(\mathcal{X},\mathcal{Y})$, as followed 
+\begin{align}
+\label{tnop}
+\norm{T}_{\text{op}}\triangleq \inf \set{M\inr^+ :\forall x \in \mathcal{X}, \norm{Tx}\leq M\norm{x}}
+\end{align}
+Before we show that our definition is indeed a norm, we first give some equivalent definitions and prove their equivalency. 
+\end{mdframed}
+\begin{theorem}
+\textbf{(Equivalent Definitions of Operator Norm)} Given two fixed normed space $\mathcal{X},\mathcal{Y}$ over $\R$ or  $\C$, a bounded linear operator  $T:\mathcal{X}\rightarrow \mathcal{Y}$, and define $\norm{T}_{\text{op}}$ as in \myref{Equation}{tnop}, we have 
+\begin{align*}
+\norm{T}_{\text{op}}=\sup_{x\in \mathcal{X},x\neq 0} \frac{\norm{Tx}}{\norm{x}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Define $J\triangleq \set{M\inr^+:\forall x \in \mathcal{X},\norm{Tx}\leq M\norm{x}}$ and observe 
+\begin{align*}
+J&=\set{M\inr^+:M\geq \frac{\norm{Tx}}{\norm{x}},\forall x\neq 0\in \mathcal{X}}
+\end{align*}
+This let us conclude 
+\begin{align*}
+\sup_{x \in \mathcal{X},x\neq 0} \frac{\norm{Tx}}{\norm{x}}=\min  J= \norm{T}_{\text{op}}
+\end{align*}
+\end{proof}
+\begin{mdframed}
+It is now easy to see 
+\begin{align}
+  \norm{T}_{\text{op}}&=\sup_{x \in \mathcal{X},x\neq 0} \frac{\norm{Tx}}{\norm{x}}\label{equivdefopnorm1}\\
+&=\sup_{x\in \mathcal{X},\norm{x}=1} \norm{Tx}\label{equivdefopnorm}
+\end{align}
+It is not all in vain to introduce the equivalent definitions. See that the verification of  $\norm{\cdot}_{\text{op}}$ being a norm on $BL(\mathcal{X},\mathcal{Y})$ become simple by utilizing the equivalent definitions. 
+\begin{enumerate}[label=(\alph*)]
+  \item For positive-definiteness, fix non-trivial $T$ and fix $x\in \mathcal{X}\setminus N(T)$. Use \myref{Equation}{equivdefopnorm1} to show $\norm{T}_{\text{op}}\geq \frac{\norm{Tx}}{\norm{x}}>0$. 
+  \item For absolute homogenity, use \myref{Equation}{equivdefopnorm} and $\norm{Tcx}=\abso{c}\cdot \norm{Tx}$.
+  \item For triangle inequality, use \myref{Equation}{equivdefopnorm} and $\norm{(T_1+T_2)x}\leq \norm{T_1x}+\norm{T_2x}$. 
+\end{enumerate}
+Naturally, and very very importantly, \myref{Equation}{equivdefopnorm1} give us 
+\begin{align*}
+\hspace{3cm}\norm{Tx}\leq \norm{T}_\text{op}\cdot \norm{x}\hspace{1.5cm}(x\in \mathcal{X})
+\end{align*}
+This inequality will later be the best tool to help analyze the derivatives of functions between Euclidean spaces, and perhaps better, it immediately give us 
+\begin{align*}
+ \frac{\norm{T_1T_2x}}{\norm{x}}\leq \frac{\norm{T_1}_\text{op}\cdot \norm{T_2}_\text{op}\cdot \norm{x}}{\norm{x}}=\norm{T_1}_\text{op}\cdot \norm{T_2}_{\text{op}}
+\end{align*}
+Then \myref{Equation}{equivdefopnorm1} give us  
+\begin{align*}
+\norm{T_1T_2}_\text{op}\leq \norm{T_1}_\text{op}\cdot \norm{T_2}_\text{op}
+\end{align*}
+\end{mdframed}
+\end{document}
