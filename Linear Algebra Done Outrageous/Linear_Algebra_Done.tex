@@ -156,7 +156,7 @@ Which implies $a_1=0$. WLOG, we have shown $a_1=\cdots = a_n=0$.
 \label{VFn}
 V= \operatorname{Ker}F^{\operatorname{dim}V} \oplus  \operatorname{Im}F^{\operatorname{dim}V}
 \end{align}
-As we will later show, \myref{Decomposition}{VFn} plays a central role in the proof for \myref{Theorem}{DiGE}. 
+As we will later see, \myref{Decomposition}{VFn} plays a central role in the proof for \myref{Theorem}{DiGE}. 
 \end{mdframed}
 \begin{theorem}
 \label{DiGE}
@@ -184,151 +184,171 @@ Arbitrary select $v\in G(\ld _2,F)$. We may decompose $v=a_1v_1+\cdots + a_mv_m$
 \end{align*}
 This implies $a_1v_1+a_3v_3+\cdots + a_mv_m \in G(\ld_2,F)$. It now follows from \myref{Theorem}{LIGE} that $a_1=a_3=\cdots = a_m=0$. We have shown $v\in G(\ld_2,F|_U)$.
 \end{proof} 
+\begin{mdframed}
+Given some finite dimensional vector space $V$ and some $F \in \operatorname{End}(V)$, we are particularly concerned with the existence and uniqueness of the \textbf{Jordan-Chevalley decomposition} of $F$, i.e, some diagonalizable $S \in \operatorname{End}(V)$ such that 
+\begin{enumerate}[label=(\alph*)]
+  \item $N\triangleq F-S$ is nilpotent. 
+  \item $S$ and  $N$ commute. 
+\end{enumerate}
+If $V$ is over $\C$, then \myref{Theorem}{DiGE} assert the existence of such decomposition by letting $S$ maps $v\in G(\ld_i,F)$ to $\ld_iv$. To see such decomposition is unique, let $S\in \operatorname{End}(V)$ be some Jordan-Chevalley decomposition of $F$ and decompose $V$ into 
+\begin{align*}
+V=V_1\oplus  \cdots \oplus  V_k
+\end{align*}
+where $V_i$ are the eigenspaces of $S$ corresponding to distinct eigenvalues $\ld_i$. Because $F,S$ commute and $F-S$ is nilpotent, we may conclude that  $\ld_i$ are indeed eigenvalues of $F$ and 
+\begin{align*}
+V_i \subseteq G(\ld_i,F)\text{ for all }i
+\end{align*}
+This together with \myref{Theorem}{DiGE} shows the uniqueness of Jordan-Chevalley decomposition of endomorphisms of finite dimensional vector spaces over $\C$. 
+\end{mdframed}
 \begin{theorem}
-\textbf{(Jordan forms of Nilpotent Operators)} Let $V$ be a finite dimensional complex vector space, and let  $N \in \operatorname{End}(V)$ be nilpotent. There exists some $v_1,\dots ,v_m \in V$ and non-negative integer $n_1,\dots ,n_m$ such that 
+\label{JfNO}
+\textbf{(Jordan forms of Nilpotent Operators)} Let $V$ be a finite-dimensional complex vector space, and let  $N \in \operatorname{End}(V)$ be nilpotent. There exists some $v_1,\dots ,v_m \in V$ and nonnegative integer $n_1,\dots ,n_m$ such that 
 \begin{enumerate}[label=(\alph*)]
   \item $N^{n_1}v_1,\dots ,Nv_1,v_1,\dots ,N^{n_m}v_m,\dots ,Nv_m,v_m$ form a basis for $V$. 
   \item $N^{n_1+1}v_1=\cdots = N^{n_m+1}v_m=0$. 
 \end{enumerate}
 \end{theorem}
+\begin{proof}
+This is also proved by induction on the dimension of $V$. The two base cases correspond to the $0$-dimensional and $1$-dimensional cases, both of which are trivial. We now prove the inductive case. \\
+
+Because $N$ is nilpotent, we know  $\operatorname{dim}(\operatorname{Im}N)< \operatorname{dim}V$. Noting that $\operatorname{Im}N$ is stable under $N$, we see $N|_{\operatorname{Im}N}\in \operatorname{End}(\operatorname{Im}N)$. From inductive hypothesis, we have $v_1,\dots ,v_n\in \operatorname{Im}N$ and nonnegative integer $k_1,\dots ,k_n$ such that 
+\begin{align*}
+  \set{N^{k_1}v_1,\dots ,Nv_1,v_1, \dots ,N^{k_n}v_n,\dots ,Nv_n,v_n}\text{ form a basis for $\operatorname{Im}N$. }
+\end{align*}
+and 
+\begin{align*}
+N^{k_1+1}v_1=\cdots = N^{k_n+1}v_n=0. 
+\end{align*}
+Because $v_1,\dots ,v_n \in \operatorname{Im}N$, we may let $u_1,\dots ,u_n \in V$ satisfy $v_j=Nu_j$ for all  $j$. To see 
+\begin{align}
+\label{setn}
+  \set{N^{k_1+1}u_1 ,\dots ,Nu_1,u_1, \dots ,N^{k_n}u_n,\dots ,Nu_n,u_n}\text{ is linearly independent, }
+\end{align}
+suppose some finite linear combination equals to $0$. By applying $N$ to this finite linear combination, we see the only possible nonzero coefficients are those of $N^{k_j+1}u_j$, otherwise 
+\begin{align*}
+  \set{N^{k_1}v_1,\dots ,Nv_1,v_1,\dots ,N^{k_n}v_n,\dots ,Nv_n,v_n}\text{ would not be linearly independent. }
+\end{align*}
+Knowing that the only possible nonzero coefficients are those of $N^{k_j+1}u_j=N^{k_j}v_j$, we may conclude that even these coefficients are zero, since $\set{N^{k_1}v_1,\dots ,N^{k_n}v_n}$ is linearly independent in the first place. We may now expand \myref{Set}{setn} to a basis 
+\begin{align}
+\label{set1}
+\set{N^{k_1+1}u_1,\dots ,Nu_1,u_1,\dots ,N^{k_n+1}u_n,\dots ,Nu_n,u_n,w_1,\dots ,w_p}
+\end{align}
+for $V$. Because $\set{N^{k_1+1}u_1,\dots ,N^2u_1,Nu_1,\dots ,N^{k_n+1}u_n,\dots ,N^2u_n,Nu_n}$ is a basis for  $\operatorname{Im}N$, we may subtract each $w_i$ with some element of 
+\begin{align*}
+\operatorname{span} \set{N^{k_1}u_1,\dots ,Nu_1,u_1,\dots , N^{k_n+1}u_n,\dots ,Nu_n,u_n}
+\end{align*}
+so that  \myref{Set}{set1} form a desired basis for $V$.    
+\end{proof}
 \begin{mdframed}
-\myref{Theorem}{DiGE} give us a quick way to tell if some square matrix $A$ is nilpotent. $A$ is nilpotent if and only if the leading coefficient is the only non-zero coefficient in the characteristic polynomial of $A$. 
+Let $V$ be some finite-dimensional complex vector space and $F\in \operatorname{End}(V)$. Let $S+N$ be the Jordan-Chevalley decomposition of  $F$. The basis for $V$ from  \myref{Theorem}{JfNO} is called a \textbf{Jordan basis}. If we express $F$ as a matrix with respect to this basis, we say that matrix is in its \textbf{Jordan form}. The Jordan form looks like 
+\begin{align*}
+\begin{bmatrix}
+  J_1 & & \\
+      & \ddots & \\
+      & & J_r
+\end{bmatrix}
+\end{align*}
+where each block matrix looks like 
+\begin{align*}
+J =  \begin{bmatrix}
+  \ld_i & 1 & & \\
+        & \ld_i & \ddots & \\
+        & & \ddots & 1 \\
+        & & & \ld_i
+\end{bmatrix}
+\end{align*}
+Let $\ld_1,\dots ,\ld_m$ be the distinct eigenvalues of $F$, and let  $r_i$ be the dimension of the largest Jordan block with eigenvalue  $\ld_i$. It is clear that the \textbf{minimal polynomial} of $F$, some polynomial $m$ of smallest degree such that $m(F)=0$, take the form 
+\begin{align*}
+m(x)=(x-\ld_1)^{r_1}\cdots (x-\ld_m)^{r_m} 
+\end{align*}
+It is also clear that even if $V$ is over $\R$ instead of  $\C$, we have the  \textbf{Cayley-Hamilton Theorem}, that is, $p(F)=0$, where $p$ is the characteristic polynomial of  $F$.\\
+
+Interestingly, we may also take a completely algebraic approach to construct the Jordan-Chevalley decomposition \( S, N \) and show that they are polynomials in \( F \), without ever invoking \myref{Theorem}{LIGE}, \myref{Theorem}{DiGE}, nor any result that depends on them. The argument proceeds as follows: \\
+
+Because \( \operatorname{End}(V) \) is finite-dimensional, the minimal polynomial \( m \) exists. By the Fundamental Theorem of Algebra, we can factor \( m \) into linear terms:
+\begin{align*}
+m(x) = (x - \xi_1)^{r_1} \cdots (x - \xi_k)^{r_k}.
+\end{align*}
+Consider the polynomials \( f_i \) defined by
+\begin{align*}
+f_i(x) \triangleq \prod_{j=1;j\neq i}^{k} (x - \xi_j)^{r_j}.
+\end{align*}
+Since \( \set{f_1, \dots, f_k} \) are coprime, by Bézout's identity, we may find polynomials \( q_i \in \C[x] \) such that
+\begin{align*}
+1 = \sum_{i=1}^{k} q_i f_i.
+\end{align*}
+Define \( \pi_i \in \operatorname{End}(V) \) by \( \pi_i \triangleq (q_i f_i)(F) \). Because \( m \) divides \( f_i f_j \) for \( i \neq j \), we conclude that
+\begin{align*}
+\pi_i \pi_j = 0 \quad \text{for } i \neq j.
+\end{align*}
+This, together with \( \sum \pi_j = 1 \), shows that \( \pi_i \) are \textbf{projections}:
+\begin{align*}
+\pi_i^2 = \pi_i \quad \text{for all } i.
+\end{align*}
+It is clear that \( V \) is a direct sum of the images of these projections. Define
+\begin{align*}
+S \triangleq \sum_{i=1}^{k} \xi_i \pi_i.
+\end{align*}
+Since \( S \) is a polynomial in \( F \), we conclude that \( S \) and \( N \) commute. The fact that \( N \) is nilpotent follows from the definition of \( f_i \).
 \end{mdframed}
-\section{Adjoint}
+\section{Spectral}
 \begin{mdframed}
-  By a \textbf{norm}, we mean some \textbf{positive-definite} linear functional $\norm{\cdot}:V\to \R$ satisfying \textbf{absolute homogeneity} and \textbf{triangle inequality}. In this context, for $\norm{\cdot}$ to be positive-definite, it has to satisfy 
+  By a \textbf{norm}, we mean some \textbf{positive-definite} functional $\norm{\cdot}:V\to \R$ that satisfies \textbf{absolute homogeneity} and \textbf{triangle inequality}. In this context, for $\norm{\cdot}$ to be positive-definite, it must satisfy 
 \begin{align*}
   \norm{v}=0 \implies  v=0
 \end{align*}
-Observing 
+Observing that  
 \begin{align*}
 \norm{0}=\norm{0+v}\leq \norm{0}+\norm{v}\text{ for all $v\in V$ }
 \end{align*}
-We see norm must also be \textbf{non-negative}. By an \textbf{inner product}, we mean some \textbf{positive-definite}  map $\langle \cdot,\cdot\rangle : V^2 \rightarrow \F$ linear in the first argument, satisfying \textbf{conjugate symmetry}
+we see norm must also be nonnegative.\\
+
+By an \textbf{inner product}, we mean some \textbf{positive-definite}  map $\langle \cdot,\cdot\rangle : V^2 \rightarrow \F$ that is linear in the first argument and satisfies \textbf{conjugate symmetry}: 
 \begin{align*}
-\langle v,w\rangle = \overline{\langle w,v\rangle }\text{ for all }v,w \in V
+\langle v,w\rangle = \overline{\langle w,v\rangle }\quad\text{for all }v,w \in V
 \end{align*}
 In this context, for $\langle \cdot,\cdot\rangle :V^2\rightarrow \F$ to be positive-definite, it has to satisfy 
 \begin{align*}
-\langle v,v\rangle >0 \text{ for all }v\neq 0
+\langle v,v\rangle >0\quad\text{for all }v\neq 0
 \end{align*}
-If we do not require $\langle \cdot,\cdot\rangle $ to be positive-definite, but only non-negative, i.e. $\langle x,x\rangle \geq 0$ for all $x\in V$, then we have a \textbf{positive semi-definite Hermitian form}. Formally speaking, a positive semi-definite Hermitian form $\langle\cdot,\cdot \rangle :V^2 \rightarrow \R\text{ or }\C$ satisfy the following axioms
-\begin{enumerate}[label=(\alph*)]
-  \item $\langle x,x\rangle \geq 0$ for all $x\in V$ (non-negativity)
-  \item $\langle x,y\rangle =\overline{\langle y,x\rangle }$ (conjugate symmetry)
-  \item $\langle x+y,z\rangle =\langle x,z\rangle +\langle y,z\rangle $ and $\langle cx,z\rangle=c\langle x,z\rangle $ (Linearity in the first argument)
-\end{enumerate}
-\begin{Example}{\textbf{(Example of Positive semi-definite Hermitian form)}}{}
+With an inner product equipped on $V$, we may discuss the  \textbf{orthogonality} of vectors. Given a countable set  $\set{v_1,v_2,v_3,\dots }$ of non-zero vectors, we use the term \textbf{Gram-Schmidt process} to refer to the process of defining 
 \begin{align*}
-\text{ arbitrary }V\text{ over $\R$ or  $\C$ }\hspace{0.5cm}\langle x,y\rangle \triangleq 0\text{ for all $x,y$ }\hspace{1cm}
+e_n \triangleq v_n - \frac{\langle v_{n},e_{n-1}\rangle }{\norm{e_{n-1}}^2}e_{n-1} - \cdots - \frac{\langle v_n,e_1\rangle }{\norm{e_1}^2}e_1
 \end{align*}
-\end{Example}
+so that $\set{e_1,e_2,e_3,\dots}$ become orthogonal while 
+\begin{align*}
+\operatorname{span}(v_1,\dots ,v_n)=\operatorname{span}(e_1,\dots ,e_n)\quad\text{for all }n.
+\end{align*}
+Although implicit, Gram-Schmidt process may be considered one of the most important notions in inner product space. For example, the Gram-Schmidt process, together with \textbf{Pythagorean Theorem}, can be used to prove the \textbf{Cauchy-Schwarz Inequality}, which in term shows that the functional $f:V\rightarrow \R$ induced by 
+\begin{align*}
+f(v)\triangleq \sqrt{\langle v,v\rangle }  
+\end{align*}
+indeed satisfies triangle inequality, thus forming a norm. In addition, given an endomorphism $T$ of some finite-dimensional complex vector space $V$, by applying Gram-Schmidt process to a Jordan basis, we get an orthogonal basis under which $T$ becomes an upper triangular matrix, called its \textbf{Schur's form}.\\
+
+Let $V,W$ be two inner product space over  $\F$, and let  $T:V\rightarrow W$ be some linear map. If some linear map $T^\dagger:W\rightarrow V$ satisfies 
+\begin{align*}
+\langle Tv,w\rangle = \langle v,T^\dagger w\rangle \quad\text{for all }v\in V,w\in W, 
+\end{align*}
+we say $T^\dagger $ is an  \textbf{adjoint} of $T$. If both $V$ and $W$ are finite-dimensional, then $T^\dagger $ exists uniquely, and its matrix representation is always the complex conjugate of that of $T$, regardless of the choices of bases. It is obvious that the double adjoint of a linear map between two finite-dimensional inner product spaces over $\F$ is itself.\\
+
+If $T$ is \textbf{normal}, then by direct computation, we see that its Schur's form must be diagonal. This argument is called \textbf{Spectral Theorem for complex finite-dimensional vector space}.\\
+
+
+
+
+
+
+
+
 \end{mdframed}
-\textbf{(Norm Induce Part)}
+\section{Matrix Exponential}
 \begin{mdframed}
-Given a vector space $V$ over $\R$ or  $\C$, one can check that if  $V$ is equipped with an inner product  $\langle \cdot,\cdot\rangle :V^2\rightarrow \R\text{ or }\C$, then we can induce a norm on $V$ by 
+Given some square matrix $A$ over  $\F$, we define its  \textbf{matrix exponential} by 
 \begin{align*}
-\hspace{3cm}\norm{x}\triangleq \sqrt{\langle x,x\rangle }\hspace{1.5cm}(x \in V)
+e^A \triangleq \sum_{n=0}^{\infty} \frac{A^n}{n!}
 \end{align*}
-Note that 
-\begin{align*}
-\norm{x}=0\iff \langle x,x\rangle =0 
-\end{align*}
-This implies that if $\langle \cdot,\cdot\rangle $ is an inner product (satisfy positive-definiteness), then $\norm{\cdot}$ is also positive-definite. And if $\langle \cdot,\cdot\rangle $ is not positive-definite, then there exists  $x\neq 0\in V$ such that $\norm{x}=0$, which make $\norm{\cdot}$ a \textbf{semi-norm}.\\
-
-Absolute homogeneity follows from the linearity of inner product.\\
-
-To check triangle inequality, we first have to prove Cauchy-Schwarz inequality.
+It 
 \end{mdframed}
-\begin{theorem}
-\label{BPoP}
-\textbf{(Basic Property of Positive semi-definite Hermitian form)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle:V^2 \rightarrow \R\text{ or }\C $ and $x,y \in V$, we have 
-\begin{align*}
-\langle x,x\rangle =0 \implies \langle x,y\rangle =0
-\end{align*}
-\end{theorem}
-\begin{proof}
-\As{$\langle x,y\rangle\neq 0 $}. Fix $t> \frac{\norm{y}^2 }{2\abso{\langle x,y\rangle }^2}$. Compute 
-\begin{align*}
-\norm{y-t\langle y,x\rangle x}^2 &= \norm{y}^2 + \norm{(-t)\langle y,x\rangle x }^2  + \langle -t\langle y,x\rangle x,y \rangle + \langle y,-t\langle y,x\rangle x\rangle \\
-&=\norm{y}^2 + t^2 \abso{\langle x,y\rangle }^2 \norm{x}^2 -t \langle y,x\rangle \langle x,y\rangle - t \langle x,y\rangle \langle y,x\rangle  \\
-&= \norm{y}^2- 2t \abso{\langle x,y\rangle }^2 <0 \tCaC
-\end{align*}
-\end{proof}
-\begin{theorem}
-\label{CSI}
-\textbf{(Cauchy-Schwarz Inequality)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle :V^2\rightarrow \C$ on vector space $V$ over $\C$, we have 
-\begin{enumerate}[label=(\alph*)]
-  \item $\abso{\langle x,y\rangle}\leq  \norm{x}\cdot\norm{y}\hspace{0.5cm}(x,y \in V)$ 
-  \item the equality hold true if $x,y$ are linearly dependent
-  \item the equality hold true if and only if $x,y$ are linearly dependent (provided $\langle \cdot,\cdot\rangle $ is an inner product)
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-We first prove 
-\begin{align*}
-  \vi{\hspace{3cm}\abso{\langle x,y\rangle }\leq \norm{x}\cdot\norm{y}\hspace{1.5cm}(x,y \in V)}
-\end{align*}
-Fix $x,y \in V$. \myref{Theorem}{BPoP} tell us $\norm{x}=0 \implies  \langle x,y\rangle =0$. Then we can reduce the problem into proving 
-\begin{align*}
-\vi{\frac{\abso{\langle x,y\rangle }^2}{\norm{x}^2}\leq\norm{y}^2  }
-\end{align*}
-Set $z\triangleq y-\frac{\langle y,x\rangle }{\norm{x}^2}x$. We then have 
-\begin{align*}
-\langle z,x\rangle =\langle y-\frac{\langle y,x\rangle }{\norm{x}^2}x,x \rangle =\langle y,x\rangle - \frac{\langle y,x\rangle }{\norm{x}^2}\langle x,x\rangle =0
-\end{align*}
-Then from $y=z+\frac{\langle y,x\rangle }{\norm{x}^2}x$, we can now deduce
-\begin{align*}
-\langle y,y\rangle &= \langle z+\frac{\langle y,x\rangle }{\norm{x}^2}x,z+ \frac{\langle y,x\rangle }{\norm{x}^2}x\rangle  \\
-&=\langle z,z\rangle + \abso{\frac{\langle y,x\rangle }{\langle x,x\rangle }}^2 \langle x,x\rangle \\
-&=\langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }
-\end{align*}
-Because $\langle z,z\rangle\geq 0 $, we now have
-\begin{align*}
-\langle y,y\rangle = \langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\geq  \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\vdone
-\end{align*}
-The equality hold true if and only if $\langle z,z\rangle =0$. This explains the other two statements regarding the equality. 
-\end{proof}
-\begin{mdframed}
-The proof is clearly geometrical. If one wish to remember the proof, one should see the trick we use is exactly 
-\begin{align*}
-z\triangleq y-\abso{y}(\cos \theta )\hat{x}\text{ is the projection of $y$ onto $x^{\perp}$ }
-\end{align*}
-\begin{center}
-   \begin{minipage}{0.9\linewidth}  
-       \centering
-       \includegraphics[height=5cm,width=12cm]{CSp.jpeg}
-   \end{minipage}
-\end{center}
-Then all we do rest is just expanding $\abso{y}^2=\abso{z+\tilde{x}}^2$, where $\tilde{x}=y-z=\abso{y}(\cos \theta)\hat{x}$, which give the answer and is easy to compute since $z\cdot \tilde{x}=0$.\\
-
-Now, with Cauchy-Schwarz Inequality, we can check the triangle inequality 
-\begin{align*}
-  \norm{x+y}^2&=\langle x+y,x+y\rangle \\
-&=\langle x,x\rangle +\langle x,y\rangle +\langle y,x\rangle +\langle y,y\rangle \\
-&= \langle x,x\rangle + \langle y,y\rangle +2\text{ Re }\langle x,y\rangle \\
-&\leq \norm{x}^2 + \norm{y}^2 + 2\abso{\langle x,y\rangle }\\
-&\leq \norm{x}^2 + \norm{y}^2 + 2\norm{x}\cdot \norm{y}=\Big(\norm{x}+\norm{y}\Big)^2
-\end{align*}
-\end{mdframed}
-\textbf{(Euclidean Space Abstract Part)} 
-\begin{mdframed}
-  By a \textbf{concrete Euclidean Space}, we mean some space of $n$-tuple  $(x_1,\dots ,x_n)$ over $\R$, equipped with inner product  $\langle \cdot,\cdot\rangle_E$ defined by 
-\begin{align*}
-  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle_E= \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
-\end{align*}
-By an \textbf{Euclidean Space}, we simply mean a finite dimensional vector space $V$ over $\R$,  equipped with an inner product $\langle \cdot,\cdot\rangle $ such that there exists a concrete Euclidean space $E$ and an isomorphism  $\phi:V\to E$ such that 
-\begin{align*}
-\hspace{3cm}\langle x,y\rangle= \langle \phi (x),\phi (y)\rangle_E \hspace{1.5cm}(x,y \in V)
-\end{align*}
-Note that if you define $\langle \cdot,\cdot\rangle $ on the space of $n$-tuples $(x_1,\dots ,x_n)$ over $\R$ by 
-\begin{align*}
-  \langle  (x_1,\dots,x_n)  ,(y_1,\dots ,y_n)\rangle=2 \sqrt{\sum_{k=1}^n (y_k-x_k)^2} 
-\end{align*}
-Then, the space of $n$-tuple is clearly not a concrete Euclidean space, and clearly an Euclidean space. 
-
-\end{mdframed}
-\textbf{(SVD)}
 \chapter{NTU Math M.A. Program Entrance Exam} 
 \section{Year 113}
 \begin{question}{}{}
@@ -390,7 +410,7 @@ Define $T \in \operatorname{End}(V)$ by
 \begin{align*}
 T(a_2x^2+a_1x+a_0) \triangleq 2a_2x+a_1
 \end{align*}
-Find the adjoint of $T$. 
+That is, $Tf\triangleq f'$. Find the adjoint of $T$. 
 \end{question}
 \begin{proof}
 Because of the linearity, for $k$ to satisfy \myref{Equation}{fx=} for all $f\in V$, it only has to satisfies 
@@ -411,6 +431,22 @@ x^2&= \frac{2f_0(x)}{3} + \frac{2f_2(x)}{5}+ \frac{2f_4(x)}{7}+ \cdots
 Thus, $k$ can be 
 \begin{align*}
 k(x,t)= \Big(\frac{9}{8}+ \frac{-15}{8}x^2\Big)+ \Big(\frac{3x}{2}\Big)t+ \Big(\frac{-15}{8}+ \frac{45}{8}x^2\Big)t^2 
+\end{align*}
+Routine computation give us an orthonormal basis 
+\begin{align*}
+\bset{\sqrt{\frac{1}{2}}, \sqrt{\frac{3}{2}}x, \sqrt{\frac{45}{8}}(x^2- \frac{1}{3})}\text{ for $V$ }
+\end{align*}
+With respect to this ordered basis, the matrix representation of $T$ is 
+\begin{align*}
+\begin{bmatrix}
+  0 & \sqrt{3}  & 0 \\
+  0 & 0 & \sqrt{15} \\
+  0 & 0 & 0 
+\end{bmatrix}
+\end{align*}
+Because the matrix representation of $T^\dagger $ with respect to the same basis is the conjugate transpose of that of  $T$, we may now compute 
+ \begin{align*}
+T^\dagger (a_2x^2+a_1x+a_0)= \frac{15a_1}{2}(x^2- \frac{1}{3})+ (3a_0+a_2)x
 \end{align*}
 \end{proof}
 
@@ -491,7 +527,7 @@ Since $r$ has a strictly smaller degree than $p$, the minimality of $p$ implies 
 \begin{align*}
 \operatorname{Ker}f(T)\oplus  \operatorname{Ker}g(T)\subseteq \operatorname{Ker}(f(T)g(T)) 
 \end{align*}
-We now prove the opposite. Let $v \in \operatorname{Ker}(f(T)g(T))$. Because $f,g$ are relatively prime, there exists some polynomials  $a,b$ such that 
+We now prove the opposite. Let $v \in \operatorname{Ker}(f(T)g(T))$. Because $f,g$ are relatively prime, by \textbf{Bezout's identity}, there exists some polynomials  $a,b$ such that 
 \begin{align*}
 af+bg=1
 \end{align*}
@@ -500,6 +536,254 @@ The proof then follows from noting
   (af)(T)v \in \operatorname{Ker}g(T) \text{ and }(bg)(T)v \in \operatorname{Ker}f(T)
 \end{align*}
 \end{proof}
+\section{Year 112}
+\begin{question}{}{}
+Let 
+\begin{align*}
+\textbf{v}_1= (1,2,0,4),\textbf{v}_2=(-1,1,3,-3),\textbf{v}_3= (0,1,-5,-2),\textbf{v}_4=(-1,-9,-1,-4)
+\end{align*}
+be vectors in $\R^4$. Let $W_1$ be the subspace spanned by  $\textbf{v}_1$ and $\textbf{v}_2$, and let $W_2$ be the subspace spanned by $\textbf{v}_3$ and $\textbf{v}_4$. Find a basis for $W_1 \cap W_2$. 
+\end{question}
+\begin{proof}
+Use Gauss elimination to show 
+\begin{align*}
+\begin{cases}
+  \set{\textbf{v}_1,\textbf{v}_2,\textbf{v}_3}\text{ is linearly independent. }\\
+  \set{\textbf{v}_1,\textbf{v}_2,\textbf{v}_4}\text{ is linearly independent. }
+\end{cases}
+\end{align*}
+Use Gauss elimination to show 
+\begin{align*}
+3\textbf{v}_1+ 2\textbf{v}_2 +\textbf{v}_3+ \textbf{v}_4=0
+\end{align*}
+And conclude 
+\begin{align*}
+W_1 \cap W_2= \operatorname{span} \set{\textbf{v}_3+\textbf{v}_4}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let 
+\begin{align*}
+A= \begin{bmatrix}
+  0 & 1 & -1 \\
+  3 & -4 & 1 \\
+  3 & -8 & 5 
+\end{bmatrix}
+\end{align*}
+Find an invertible matrix $Q\in M_3(\C)$ such that 
+\begin{align*}
+QAQ^{-1}= \begin{bmatrix}
+  0 & 0 & 0 \\
+  1 & 0 & 12 \\
+  0 & 1 & 1
+\end{bmatrix}
+\end{align*}
+Find an invertible matrix $P \in M_3  (\C)$ such that $PAP^{-1}$ is diagonal. \emph{Note that my wording differs slightly with the original}.  
+\end{question}
+\begin{proof}
+Noting that characteristic polynomial is defined uniquely up to change of basis, 
+\begin{align*}
+\operatorname{det}(tI- QAQ^{-1})=\operatorname{det}(Q(tI-A)Q^{-1})= \operatorname{det}(tI-A)
+\end{align*}
+We may quickly compute that the characteristic polynomial of $A$ is $t(t-4)(t+3)$. Routine computation now give us 
+\begin{align*}
+P=\begin{bmatrix}
+  1 & 7 & 0 \\
+  1 & -1 & 1 \\
+  1 & -29 & 1
+\end{bmatrix} \text{ and }PAP^{-1}=\begin{bmatrix}
+  0 & 0 & 0 \\
+  0 & 4 & 0 \\
+  0 & 0 & -3 
+\end{bmatrix}
+\end{align*}
+Note that one may find $Q$ by solving a  9-by-9 linear equation. Here we give a smarter approach.  By looking at $QAQ^{-1}$, we may reduce the problem into finding $v\inc^3$ such that 
+\begin{align*}
+A^3v= 12Av+A^2v \text{ and }\set{v,Av,A^2v}\text{ is linear independent }
+\end{align*}
+So that 
+\begin{align*}
+Q\triangleq \begin{bmatrix}
+  v & Av & A^2v
+\end{bmatrix}\text{ suffices. }
+\end{align*}
+Because the characteristic polynomial of $A$ is  $t(t-4)(t+3)$, by Cayley-Hamilton Theorem, we know all $v\inc^3$ satisfy the first condition.  To satisfy the linear independence, we  write 
+\begin{align*}
+v= c_1e_1+c_2e_2+c_3e_3
+\end{align*}
+where $e_1,e_2,e_3$ are the eigenvectors
+ \begin{align*}
+e_1\triangleq \begin{bmatrix}
+  1 \\
+  1 \\
+  1 
+\end{bmatrix} \text{ and } e_2 \triangleq  \begin{bmatrix}
+7 \\
+-1 \\
+-29
+\end{bmatrix} \text{ and }e_3\triangleq \begin{bmatrix}
+0 \\
+1 \\
+1
+\end{bmatrix}
+\end{align*}
+So that we may just looks for $c_1,c_2,c_3\inc$ that makes 
+\begin{align*}
+\begin{bmatrix}
+  c_1 & c_2 & c_3 \\
+  0 & 4c_2 & -3c_3 \\
+  0 & 16c_3 & 9c_3
+\end{bmatrix}\text{ invertible. }
+\end{align*}
+By computing the determinant, we see that an obvious choice is $c_1=c_2=c_3=1$. That is, 
+\begin{align*}
+v=\begin{bmatrix}
+8 \\
+1 \\
+-27
+\end{bmatrix}\text{ and }Q=\begin{bmatrix}
+8 & 28 & 112 \\
+1 & -7 & -7 \\
+-27 & -119 & -455
+\end{bmatrix}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Define \textbf{matrix trigonometry} by 
+\begin{align*}
+\sin A \triangleq \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n+1)!}A^{2n+1}
+\end{align*}
+Compute 
+\begin{align*}
+\sin \begin{pmatrix}
+  1 & 3 \\
+  0 & 1
+\end{pmatrix}
+\end{align*}
+Show that there exist no matrix $A \in M_{2}(\R)$ such that 
+\begin{align*}
+\sin A = \begin{pmatrix}
+ 1 & 2022 \\
+ 0 & 1
+\end{pmatrix}
+\end{align*}
+\end{question}
+\begin{proof}
+Using the identity 
+\begin{align*}
+\sin A= \frac{e^{iA}-e^{-iA}}{2i}
+\end{align*}
+we may compute 
+\begin{align*}
+\sin \begin{pmatrix}
+  1 & 3 \\
+  0 & 1
+\end{pmatrix}= \begin{pmatrix}
+  \sin (1) & 3 \cos (1) \\
+  0 & \sin (1)
+\end{pmatrix}
+\end{align*}
+Because $\sin (PBP^{-1})=P (\sin B)P^{-1}$ for all $B$ and all invertible  $P$, and because 
+\begin{align*}
+  \sin \begin{pmatrix} 
+    \ld_1 & 0 \\
+    0 & \ld_2
+  \end{pmatrix}= \begin{pmatrix} 
+    \sin \ld_1 & 0 \\
+    0 & \sin \ld_2
+  \end{pmatrix} \text{ and }\sin \begin{pmatrix} 
+    \ld & 1 \\
+    0 & \ld 
+  \end{pmatrix}= \begin{pmatrix} 
+    \sin \ld  & \cos \ld  \\
+    0 & \sin \ld 
+  \end{pmatrix}
+\end{align*}
+We may finish the proof by computing the Jordan form
+\begin{align*}
+\begin{pmatrix} 
+  1 & 2022 \\
+  0 & 1
+\end{pmatrix}= \begin{pmatrix} 
+  1 & 1 \\
+  0 & \frac{1}{2022}
+\end{pmatrix}\begin{pmatrix} 
+  1 & 1 \\
+  0 & 1
+\end{pmatrix} \begin{pmatrix} 
+  1 & 1 \\
+  0 & \frac{1}{2022}
+\end{pmatrix}^{-1}
+\end{align*}
+that there exists no matrix $A\in M_2(\R)$ such that 
+\begin{align*}
+\sin A = \begin{pmatrix}
+ 1 & 2022 \\
+ 0 & 1
+\end{pmatrix}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $A= (a_{ij})\in M_n(\C)$, and let $\ld_1,\dots ,\ld _n$ be roots of characteristic polynomial of $A$ counted with multiplicity. Show that 
+ \begin{align*}
+A\text{ is normal }\iff  \norm{A}_F= \sum_{k=1}^n \abso{\ld_k}^2
+\end{align*}
+where $\norm{A}_F$ is the Frobenius norm of $A$. 
+\end{question}
+\begin{proof}
+Because the underlying field is $\C$, we may apply  \textbf{Schur's decomposition} to get an upper triangular matrix $D$ and an unitary matrix  $Q$ such that 
+ \begin{align*}
+A= QDQ^{-1}
+\end{align*}
+Because $A$ and  $D$ has the same characteristic polynomial, we know the eigenvalues of $A$ lie on the diagonal line of $D$ counted with multiplicity. The proof now follows from computing
+\begin{align*}
+\norm{A}_F= \operatorname{tr}(A^*A)=\operatorname{tr}(D^*D)= \norm{D}_F
+\end{align*}
+and \textbf{Spectral Theorem for complex finite-dimensional vector space}.
+\end{proof}
+\begin{question}{}{}
+Let $A,B \in M_n(\C)$. Suppose that all of the eigenvalues of $A$ and  $B$ are positive real numbers. Prove 
+ \begin{align*}
+A^4=B^4 \implies  A=B
+\end{align*}
+\end{question}
+\begin{proof}
+\end{proof}
+\section{Year 111}
+\begin{question}{}{}
+Let $V$ be a finite-dimensional complex inner product space. Let $d\in \operatorname{End}(V)$ satisfy 
+\begin{align*}
+d^2=0
+\end{align*}
+Let $\delta$ be the adjoint of $d$. Define $\Delta \in \operatorname{End}(V)$ by 
+\begin{align*}
+\Delta \triangleq d\delta + \delta d
+\end{align*}
+Prove 
+\begin{enumerate}[label=(\alph*)]
+  \item $\operatorname{Ker}d\delta\subseteq \operatorname{Ker}\delta$ and $\operatorname{Ker}\delta d\subseteq \operatorname{Ker}d$.
+  \item  $\operatorname{Ker}\Delta = \operatorname{Ker}d\cap \operatorname{Ker}\delta$. 
+  \item $V= \operatorname{Ker}\Delta \oplus  \operatorname{Im}d \oplus  \operatorname{Im}\delta$ is an orthogonal decomposition. 
+  \item $\operatorname{Ker}d=\operatorname{Ker}\Delta \oplus  \operatorname{Im}d$ is an orthogonal decomposition. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+  Because the underlying field is $\C$, we may express $d$ in its \textbf{Jordan form}. Because $d^2=0$, we know its Jordan blocks all have eigenvalue  $0$ and have size no greater than  $2$. Knowing that the matrix representation of $\delta$ with respect to the same Jordan basis is just the conjugate transpose of $d$, we may easily prove all four propositions with computation, except 
+\begin{align*}
+  \operatorname{Ker}\Delta \perp \operatorname{Im}d\quad\text{ and }\quad \operatorname{Im}d \perp \operatorname{Im}\delta \quad\text{ and }\quad \operatorname{Im}\delta \perp \operatorname{Ker}\Delta 
+\end{align*}
+Direct computation with the hint $\delta= d^{\dagger }$ and $d^2=0$ shows  $\operatorname{Im}d\perp \operatorname{Im}\delta$. Direct computation with hint $\operatorname{Ker}\Delta =\operatorname{Ker}d\cap \operatorname{Ker}\delta$ shows the other two orthogonal relationships. 
+\end{proof}
+\begin{question}{}{}
+Let $V=\R^n$ be the space of column vectors, and  $M$ a positive definite symmetric  $n\times n$ real matrix. Suppose $A\in M_{n}(\R)$ satisfies 
+\begin{align*}
+MAM^{-1}=A^t
+\end{align*}
+Show that there exists some $P \in M_n(\R)$ such that 
+\begin{align*}
+P^t M P = I \text{ and }P^{-1}AP\text{ is diagonal }
+\end{align*}
+\end{question}
 \chapter{Archived}
 \section{Tensor Algebra}
 \begin{abstract}
@@ -965,5 +1249,68 @@ Then \myref{Equation}{equivdefopnorm1} give us
 \begin{align*}
 \norm{T_1T_2}_\text{op}\leq \norm{T_1}_\text{op}\cdot \norm{T_2}_\text{op}
 \end{align*}
+\end{mdframed}
+\section{Cauchy-Schwarz for Positive semi-definite Hermitian form}
+\begin{mdframed}
+Sometimes, we do not require $\langle \cdot,\cdot\rangle :V^2\rightarrow \F$ to be positive-definite, but only \textbf{positive semi-definite}, i.e. $\langle v,v\rangle \geq 0$ for all $v\in V$. In this case, we say $\langle \cdot, \cdot\rangle :V^2\rightarrow \F$ is a \textbf{positive semi-definite Hermitian form}. If we again induce a functional $\norm{\cdot}:V\rightarrow \R$ from some positive semi-definite Hermitian form using \myref{Equation}{indn}, then the functional $\norm{\cdot}:V\rightarrow \R$ in general is not positive-definite, and is called a \textbf{semi norm}, since, as we later show, it still satisfies triangle inequality and absolute homogeneity.
+\end{mdframed}
+\begin{theorem}
+\label{BPoP}
+\textbf{(Basic Property of Positive semi-definite Hermitian form)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle:V^2 \rightarrow \F$ and $x,y \in V$, we have 
+\begin{align*}
+\langle x,x\rangle =0 \implies \langle x,y\rangle =0
+\end{align*}
+\end{theorem}
+\begin{proof}
+\As{$\langle x,y\rangle\neq 0 $}. Fix $t> \frac{\norm{y}^2 }{2\abso{\langle x,y\rangle }^2}$. Compute 
+\begin{align*}
+\norm{y-t\langle y,x\rangle x}^2 &= \norm{y}^2 + \norm{(-t)\langle y,x\rangle x }^2  + \langle -t\langle y,x\rangle x,y \rangle + \langle y,-t\langle y,x\rangle x\rangle \\
+&=\norm{y}^2 + t^2 \abso{\langle x,y\rangle }^2 \norm{x}^2 -t \langle y,x\rangle \langle x,y\rangle - t \langle x,y\rangle \langle y,x\rangle  \\
+&= \norm{y}^2- 2t \abso{\langle x,y\rangle }^2 <0 \tCaC
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{CSI}
+\textbf{(Cauchy-Schwarz Inequality)} Given a positive semi-definite Hermitian form $\langle \cdot,\cdot\rangle :V^2\rightarrow \C$ on vector space $V$ over $\C$, we have
+\begin{align*}
+\abso{\langle x,y\rangle }\leq \norm{x}\cdot \norm{y}
+\end{align*}
+Moreover, the equality hold true if $x,y$ are linearly independent. In addition, if $\langle \cdot,\cdot\rangle :V^2\rightarrow \F$ is an inner product, then the equality hold true only if $x,y$ are linearly independent.   
+\end{theorem}
+\begin{proof}
+We first prove 
+\begin{align*}
+  \vi{\hspace{3cm}\abso{\langle x,y\rangle }\leq \norm{x}\cdot\norm{y}\hspace{1.5cm}(x,y \in V)}
+\end{align*}
+Fix $x,y \in V$. \myref{Theorem}{BPoP} tell us $\norm{x}=0 \implies  \langle x,y\rangle =0$. Then we can reduce the problem into proving 
+\begin{align*}
+\vi{\frac{\abso{\langle x,y\rangle }^2}{\norm{x}^2}\leq\norm{y}^2  }
+\end{align*}
+Set $z\triangleq y-\frac{\langle y,x\rangle }{\norm{x}^2}x$. We then have 
+\begin{align*}
+\langle z,x\rangle =\langle y-\frac{\langle y,x\rangle }{\norm{x}^2}x,x \rangle =\langle y,x\rangle - \frac{\langle y,x\rangle }{\norm{x}^2}\langle x,x\rangle =0
+\end{align*}
+Then from $y=z+\frac{\langle y,x\rangle }{\norm{x}^2}x$, we can now deduce
+\begin{align*}
+\langle y,y\rangle &= \langle z+\frac{\langle y,x\rangle }{\norm{x}^2}x,z+ \frac{\langle y,x\rangle }{\norm{x}^2}x\rangle  \\
+&=\langle z,z\rangle + \abso{\frac{\langle y,x\rangle }{\langle x,x\rangle }}^2 \langle x,x\rangle \\
+&=\langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }
+\end{align*}
+Because $\langle z,z\rangle\geq 0 $, we now have
+\begin{align*}
+\langle y,y\rangle = \langle z,z\rangle + \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\geq  \frac{\abso{\langle x,y\rangle }^2}{\langle x,x\rangle }\vdone
+\end{align*}
+The equality hold true if and only if $\langle z,z\rangle =0$. This explains the other two statements regarding the equality. 
+\end{proof}
+\begin{mdframed}
+Now, with Cauchy-Schwarz Inequality, we can check the triangle inequality 
+\begin{align*}
+  \norm{x+y}^2&=\langle x+y,x+y\rangle \\
+&=\langle x,x\rangle +\langle x,y\rangle +\langle y,x\rangle +\langle y,y\rangle \\
+&= \langle x,x\rangle + \langle y,y\rangle +2\text{ Re }\langle x,y\rangle \\
+&\leq \norm{x}^2 + \norm{y}^2 + 2\abso{\langle x,y\rangle }\\
+&\leq \norm{x}^2 + \norm{y}^2 + 2\norm{x}\cdot \norm{y}=\Big(\norm{x}+\norm{y}\Big)^2
+\end{align*}
+indeed holds true for space equipped with only positive semi-definite Hermitian form. 
 \end{mdframed}
 \end{document}
