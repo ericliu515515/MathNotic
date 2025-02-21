@@ -3,7 +3,7 @@
 \input{macros}
 \input{letterfonts}
 
-\title{Notes on Linear Algebra}
+\title{Linear Algebra Done Outrageous (Taiwanese Version)}
 \author{Eric Liu}
 \date{}
 \begin{document}
@@ -14,7 +14,7 @@
 
 \tableofcontents
 \pagebreak
-\chapter{Linear Algebra Done Outrageous}
+\chapter{Summary}
 \section{Quick Recap}
 \begin{abstract}
 In this section, $V$ and $W$ are two vector spaces over the same field $\F$, $\F$ can be interpreted as either the field of real numbers or the field of complex numbers, and $S$ is subset of  $V$.  
@@ -331,16 +331,29 @@ Let $V,W$ be two inner product space over  $\F$, and let  $T:V\rightarrow W$ be 
 \end{align*}
 we say $T^\dagger $ is an  \textbf{adjoint} of $T$. If both $V$ and $W$ are finite-dimensional, then $T^\dagger $ exists uniquely, and its matrix representation is always the complex conjugate of that of $T$, regardless of the choices of bases. It is obvious that the double adjoint of a linear map between two finite-dimensional inner product spaces over $\F$ is itself.\\
 
-If $T$ is \textbf{normal}, then by direct computation, we see that its Schur's form must be diagonal. This argument is called \textbf{Spectral Theorem for complex finite-dimensional vector space}.\\
-
-
-
-
-
-
-
-
+If the underlying field is $\C$ and $T$ is \textbf{normal}, then by direct computation, we see that its Schur's form must be diagonal. This argument is called \textbf{Spectral Theorem for complex finite-dimensional vector space}. If the underlying field is $\R$, then $T$ being normal is not enough for $T$ to be orthogonally diagonalized, since we do not have Schur's decomposition in the first place.\footnote{Actually, we do have Schur's decomposition in the sense that we may first decompose a real matrix into a complex Jordan matrix, and then applying the Gram-Schmidt process. Yet, because the matrix representation of adjoint of $T$ when the underlying field is  $\R$ is just the transpose of that of $T$ instead of  the conjugate transpose, direct computation yield nothing.} 
 \end{mdframed}
+\begin{theorem}
+  \textbf{(Spectral Theorem for real finite-dimensional vector space)} Let $V$ be a finite-dimensional real vector space, and let $T \in \operatorname{End}(V)$. If $T$ is \textbf{self-adjoint}, then there exists an orthogonal eigenbasis for $V$ with  respect to $T$. 
+\end{theorem}
+\begin{proof}
+The is proved by induction on the dimension of $V$. The two base cases correspond to the  $0$-dimensional and  $1$-dimensional cases, both of which are trivial. We now prove the inductive case. \\
+
+Let $v^{\perp}$ denote the space of vectors orthogonal to $v$. Because $T$ is self-adjoint, if $v$ is an eigenvector of $T$, then  $v^{\perp}$ is stable under $T$. This reduce the problem into proving the existence of an eigenvector.\\
+
+Let $f$ be some real polynomial that sends  $T$  to zero. By Fundamental Theorem of Algebra, we may write 
+\begin{align*}
+0=f(T)= (T^2+b_1T+c_1I)\cdots (T^2+b_nT+c_nI)(T-\ld_1 I)\cdots (T-\ld_m I) 
+\end{align*}
+for some real $b_i,c_i,\ld_i$ such that $b_i^2<4c_i$ for all  $i$. Because $T$ is self-adjoint, for each $i$, by Cauchy-Schwarz inequality, we may compute for all $v\neq 0$ that  
+\begin{align*}
+\langle (T^2+b_iT+c_iI)v,v\rangle &= \langle T^2v,v\rangle + b_i\langle Tv,v\rangle + c_i\langle v,v\rangle   \\
+&=\langle Tv,Tv\rangle + b_i\langle Tv,v\rangle + c_i \norm{v}^2 \\
+&\geq  \norm{Tv}^2 - b_i \norm{Tv}\cdot \norm{v} + c_i \norm{v}^2 \\
+&=\Big(\norm{Tv}- \frac{b_i \norm{v}}{2}\Big)^2 + \Big(c_i- \frac{b_i^2}{4}\Big) \norm{v}^2 > 0 
+\end{align*}
+This implies $T^2+b_iT+c_iI$ are invertible, which implies for some $j$, the map $T-\ld_j I$ is not invertible, i.e., for some $j$, the real number $\ld_j$ is an eigenvalue. 
+\end{proof}
 \section{Matrix Exponential}
 \begin{mdframed}
 Given some square matrix $A$ over  $\F$, we define its  \textbf{matrix exponential} by 
