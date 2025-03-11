@@ -22,7 +22,7 @@ An \textbf{ideal} of a ring $R$ is an additive subgroup $I$ such that $ar \in I$
  \begin{align*}
 \operatorname{Ideal }J\text{ of $R$ that contains }I \mapsto \set{[x]\in R\quotient I: x\in J}
 \end{align*}
-forms a bijection between the collection of the ideals of $R$ containing  $I$ and the collection of the ideals of $R\quotient I$. This fact is commonly referred to as \textbf{The Correspondence Theorem for Rings}. \\
+forms a bijection between the collection of the ideals of $R$ containing  $I$ and the collection of the ideals of $R\quotient I$. This fact is commonly referred to as the \textbf{correspondence theorem} for rings. \\
 
 A \textbf{unit} is an element that has a multiplicative inverse. Under our initial requirement that rings are commutative, for a non-zero ring $R$ to be a \textbf{field}, we only need all non-zero elements of $R$ to be units, or equivalently, the only ideals of $R$ to be $\set{0}$ or $R$ itself.\\
 
@@ -48,7 +48,316 @@ $\operatorname{Nil}(R)\subseteq \bigcap \operatorname{spec}(R)$ is obvious. Supp
 Let $yz \in I$. Assume for a contradiction that $y\not\in I$ and $z\not\in I$. By maximality of $I$, both ideal $I+ \langle y\rangle$ and ideal $I+\langle z\rangle$ do not belong to $\Sigma$. This implies $x^n \in I+ \langle y\rangle$ and $x^m \in I + \langle z\rangle $ for some $n,m>0$, which cause a contradiction to $I \in \Sigma$, since $x^{n+m} \in I + \langle yz\rangle =I$. 
 \end{proof}
 
-Let $I$ be an ideal of the ring $R$. By the term \textbf{radical} of $I$, we mean $\sqrt{I}\triangleq \set{ x \in R : x^n \in I \text{ for some } n > 0 }$, which is equivalent to  the preimage of $\operatorname{Nil}(R \quotient  I)$ under the quotient map and equivalent\footnote{This follows from the fact that the correspondence between the ideals of $R$ and the ideals of $R \quotient  I$ induces a bijection between $\operatorname{Spec}(R)$ and $\operatorname{Spec}(R \quotient  I)$.} to the intersection of all prime ideals of $R$ that contain $I$.
+Let $I$ be an ideal of the ring $R$. By the term \textbf{radical} of $I$, we mean $\sqrt{I}\triangleq \set{ x \in R : x^n \in I \text{ for some } n > 0 }$, which is equivalent to  the preimage of $\operatorname{Nil}(R \quotient  I)$ under the quotient map and equivalent\footnote{This follows from the fact that the correspondence between the ideals of $R$ and the ideals of $R \quotient  I$ can be restricted to a bijection between $\operatorname{Spec}(R)$ and $\operatorname{Spec}(R \quotient  I)$.} to the intersection of all prime ideals of $R$ that contain $I$.
+\section{Modules}
+Let $R$ be some ring. By a $R$-\textbf{module}, we mean an abelian group $M$ together with a $R$-scalar multiplication. We use the notation $\operatorname{Hom}(M,N)$ to denote the space of \textbf{$R$-module homomorphism} from  $M$ to $N$. It is clear that the obvious assignment of $R$-scalar multiplication and addition makes $\operatorname{Hom}(M,N)$ a $R$-module.\\
+
+Let $M$ be a  $R$-module, and let $N$ be a subset of  $M$. We say $N$ is a $R$-\textbf{submodule} if $N$ is closed under both addition and $R$-scalar multiplication, or equivalently, if $N$ is the kernel of some  $R$-module homomorphism. Just like how ideal is proved to be kernel of some ring homomorphism, to see submodule is the kernel of some $R$-module homomorphism, we simply construct the \textbf{quotient module} $M\quotient N$, and get the quotient map $\pi :M\rightarrow M\quotient N$ that is a $R$-module homomorphism with kernel $N$, and get also the bijection
+\begin{align*}
+R\text{-submodule $S$ of  $M$ that contains  $N$}\mapsto \set{[x]\in M \quotient N: x \in S}
+\end{align*}
+ between the collection of the $R$-submodules of $M$ that contains  $N$ and the collection of the $R$-submodule of  $M\setminus N$, the  \textbf{correspondence theorem} for modules.\\
+
+
+Again similar to the other algebraic structure, we have the \textbf{third isomorphism theorem} for modules. Let $N \subseteq M \subseteq L$ be three $R$-modules. It is obvious that $M\quotient N$ is a subset of $L\quotient N$, and moreover, $M\quotient  N$ forms a submodule of  $L\quotient N$. We have an isomorphism $\pfi:(L\quotient N)\quotient (M\quotient N)\to L\quotient M$ defined by $(l+N)+ (M\quotient N)\mapsto l+M$. To simplify matters, from now on all modules and submodules are over $R$ in this section. \\
+
+Given a subset $E$ of  $M$, clearly its \textbf{span}, the set of finite sum $\sum rx$ where $x \in E$, forms a submodule. We say  $M$ is \textbf{finitely generated} if $M$ can be spanned by a finite set.\\
+
+
+
+
+Let $\set{M_i:i \in I}$ be a collection of modules. If we give the Cartesian product $\prod M_i$ the obvious addition and multiplication, then we say it is the \textbf{direct product}. It is clear that 
+\begin{align*}
+\bset{(x_i)_{i \in I} \in \prod_{i \in I}M_i:x_i \neq 0\text{ for finitely many }i.}
+\end{align*}
+forms a submodule of the direct product. We denote this submodule by $\bigoplus M_i$, and call it the  \textbf{direct sum}.  Obviously, if the index set $I$ is finite, then the direct product and direct sum are identical.  \\
+
+By \textbf{free modules}, we mean modules of the form $\bigoplus_{i \in I}M_i$ where $M_i \cong R$. We denote the free module $\bigoplus_{i \in I}M_i$ by $R^{(I)}$. \\
+
+
+
+
+Given an ideal $\mathfrak{a}$ of $R$, some  $R$-module $M$ and some  $R$-submodule  $N$ of  $M$, the \textbf{product of the $R$-submodule $N$  by the ideal $\mathfrak{a}$}  is the set of finite sum $\sum a_i x_i$ where $a_i \in \mathfrak{a}$ and $x_i \in N$. We denote such set by  $\mathfrak{a}N$, and $\mathfrak{a}N$ clearly forms a $R$-submodule of $M$. \\
+\section{Tensor Product of Modules}
+Let $R$ be some ring. Given a finite collection $\set{M_1,\dots ,M_n}$ of $R$-modules, by the term \textbf{tensor product space}, we mean a $R$-module denoted by $\bigotimes M_i$ and a $R$-multilinear map $\otimes : \prod M_i \rightarrow \bigotimes M_i$ that satisfies the \textbf{universal property}: For each multilinear map $f:\prod M_i \rightarrow P$, there exists unique linear map $\tilde{f}:\bigotimes M_i \rightarrow P$ such that the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMiwyLCJOIl0sWzAsMCwiXFxwcm9kIE1faSJdLFsyLDAsIlxcb3RpbWVzIE1faSJdLFsxLDIsIlxcb3RpbWVzIl0sWzEsMCwiZiIsMl0sWzIsMCwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	{\prod M_i} && {\bigotimes   M_i} \\
+	\\
+	&& P 
+	\arrow["\otimes ", from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-3]
+	\arrow["\tilde{f} ", dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+commutes. This definition is unique up to isomorphism: If $\bigotimes 'M_i$ is also a tensor product, then there exists some module isomorphism from $\bigotimes  M_i$ to $\bigotimes  'M_i$ that sends $m_1 \otimes  \cdots \otimes  m_n$ to $m_1 \otimes  ' \cdots \otimes  ' m_n$. One common construction of the tensor product space is to quotient the free module $R^{(\prod M_i)}$ with the submodule spanned by the set:
+\begin{align*}
+  \bigcup_{i=1}^n &\Big[\bset{(x_1,\dots, rx_i ,\dots, x_n)-r(x_1,\dots ,x_n)}\\
+ & \cup \bset{(x_1,\dots ,x_i +x_i',\dots  ,x_n)- (x_1,\dots ,x_i,\dots  ,x_n)-(x_1,\dots ,x_i',\dots ,x_n)}  \Big]
+\end{align*}
+Denoting this spanned submodule by $D$, our tensor product space $\bigotimes M_i$ is now $R^{(\prod M_i)}\quotient D$, and because of the forms of the generators of $D$, the tensor product map $\otimes  :\prod M_i \rightarrow \bigotimes  M_i$ defined by 
+\begin{align*}
+x_1\otimes  \cdots \otimes  x_n \triangleq [(x_1,\dots ,x_n)] 
+\end{align*}
+is clearly multilinear. Because free module $R^{(\prod M_i)}$ is a direct sum, it is clear that $\bigotimes M_i$ is generated by the \textbf{basic elements}\footnote{Elements of the form $x_1\otimes  \cdots \otimes  x_n$}, and because of such, for every multilinear map $f:\prod M_i \rightarrow P$, the induced map $\tilde{f}: \bigotimes M_i \rightarrow P$ must be unique. To actually induce $\tilde{f}$, one first extend $f$ to the whole free module $\overline{f}:R^{(\prod M_i)}\rightarrow P$ by setting $\overline{f}(\sum r (x_1,\dots ,x_n))\triangleq \sum rf(x_1,\dots ,x_n)$, and see that because $\overline{f}$ vanishes on the generators of $D$, we may induce some mapping from $\bigotimes M_i$ to $P$ that clearly has the desired action of $\tilde{f}$ on the basic elements. \\
+
+Note that the \textbf{tensor-horn adjunction} isomorphism 
+\begin{align*}
+\operatorname{Hom}(M\otimes N,P) \cong  \operatorname{Hom}(M,\operatorname{Hom}(N,P))
+\end{align*}
+maps $f \in \operatorname{Hom}(M\otimes N,P)$ to   $\tilde{f}\in \operatorname{Hom}(M,\operatorname{Hom}(N,P))$ with the action
+\begin{align*}
+  \tilde{f}(m)n\triangleq f(m\otimes n)
+\end{align*}
+\chapter{Scripts}
+\section{Script 2}
+Let $A$ and  $B$ be two rings. Let  $M$ be an  $A$-module, and let $N$ be a  $(A,B)$-\textbf{bimodule}. By $N$ being a  $(A,B)$-bimodule, we mean that $N$ not only have both structure of $A$-module and $B$-module, but also  satisfy $a(bx)=b(ax)$. Consider the tensor product $M\otimes_A N$. For any $b \in B$, we may define a $A$-bilinear map $M\times N \rightarrow M\otimes_A N$ by 
+\begin{align*}
+  (m,n)\mapsto m \otimes  bn
+\end{align*}
+Therefore, by universal property, there exists some unique $A$-linear map $\tilde{b}:M\otimes _A N\rightarrow M\otimes  _A N$. Doing this procedure for each $b \in B$, to claim $M\otimes_A N$ forms a $(A,B)$-bimodule, it remains to check that 
+\begin{enumerate}[label=(\alph*)]
+  \item $b(x+y)=bx+by$. 
+  \item $(b_1+b_2)x=b_1x+b_2x$. 
+  \item $(b_1b_2)x=b_1(b_2x)$. 
+  \item $1_Bx=x$. 
+  \item $a(bx)=b(ax)$. 
+\end{enumerate}
+\begin{question}{Exercise 2.15}{}
+Let $P$ be a  $B$-module. Find an $(A,B)$-bimodule isomorphism  between 
+\begin{align*}
+  (M\otimes _AN)\otimes _B P \text{ and }M \otimes  _A (N \otimes  _B P)
+\end{align*}
+\end{question}
+\begin{proof}
+For each $p \in P$, the $A$-bilinear map from  $M\times N$ to $M \otimes_A (N \otimes _B P)$ defined by $(m,n)\mapsto  m \otimes  (n \otimes  p)$ induce a unique $A$-linear map $f_p:M\otimes _A N \to M\otimes _A(N\otimes _B P)$ that sends $m\otimes  n$ to $m\otimes (n \otimes  p)$. By expressing elements of $M \otimes_A N$ as finite sum of basic elements, one can see that $f_p$ is also  $B$-linear. Therefore, if we define $f:(M\otimes _A N) \times P\rightarrow M \otimes _A (N \otimes  _B P)$ by 
+\begin{align*}
+f(x,p)\triangleq f_p(x)
+\end{align*}
+we see that $f$ is $B$-linear in $M\otimes _A N$. Again, by expressing elements of $M \otimes  _A N$ as finite sum of basic elements, one can see that $f$ is also  $B$-linear in  $P$. Therefore, by universal property, there exists some $B$-linear mapping  $\tilde{f}:(M\otimes _A N) \otimes_B  P\rightarrow M \otimes _A (N \otimes  _B P)$  with action:
+\begin{align*}
+  (m \otimes  n)\otimes p \mapsto   f_p(m\otimes n)=m\otimes  (n \otimes  p)
+\end{align*}
+Tedious computation by expressing elements of $(M \otimes _A N)\otimes _B P$ into finite sum of basic elements shows that $\tilde{f}$ is also $A$-linear. We have shown $\tilde{f}$ is an $(A,B)$-bimodule homomorphism.  \\
+
+To finish the proof, one first use similar argument to construct some  $(A,B)$-bimodule homomorphism $\tilde{g}: M \otimes_A (N \otimes _B P)\rightarrow (M\otimes _A N)\otimes_B P$ with action: 
+\begin{align*}
+  m \otimes  (n \otimes  p)\mapsto (m\otimes  n)\otimes  p
+\end{align*}
+And then, see that $\tilde{g}\circ \tilde{f}\in \operatorname{End}_{(A,B)}[(M\otimes_ AN)\otimes _BP]$ have the identity action on basic elements $x\otimes  p$\footnote{Again, by expressing $x$ as basic element  $x= \sum m_i \otimes  n_i$.} to conclude by universal property that $\tilde{g}\circ \tilde{f}$ is the identity function. 
+\end{proof}
+\begin{mdframed}
+Let $f:A\rightarrow B$ be a ring homomorphism. If $N$ is a  $B$-module, then the  $A$-module structure on  $N$ defined by $an\triangleq f(a)n$ is called \textbf{restriction of scalars}. If $M$ is an $A$-module, then the  $B$-module structure on  $B\otimes _A M$\footnote{$B$ is given an $A$-module structure by restriction of scalar.} defined by 
+\begin{align*}
+b(b' \otimes  m)\triangleq  bb' \otimes  m
+\end{align*}
+is called \textbf{extension of scalars}. 
+\end{mdframed}
+\begin{question}{Proposition 2.16}{}
+Let $A,B$ be two rings, and let  $B$ be an  $A$-module, so we have a ring homomorphism $f:A\rightarrow B$ defined by $f(a)\triangleq a1_B$. Let $N$ be a $B$-module, and give $N$ an  $A$-module structure using restriction of scalars with respect to  $f$.\\
+
+Show that if $N$ is finitely generated as a $B$-module and  if $B$ is finitely generated as an  $A$-module, then  $N$ is finitely generated as an $A$-module. 
+\end{question}
+\begin{proof}
+Suppose $n_1,\dots ,n_k$ generate $N$ over  $B$, and suppose  $b_1,\dots ,b_m$ generate $B$ over $A$. We claim  $\set{b_jn_i}$ generates $N$ over $A$. Let 
+\begin{align*}
+b_i'= \sum_{j=1}^m a_{i,j}b_j
+\end{align*}
+Compute 
+\begin{align*}
+\sum_{i=1}^k b_i'n_i&= \sum_{i=1}^k \Big(\sum_{j=1}^m a_{i,j}b_j \Big)n_i \\
+&=\sum_{i=1}^k  \sum_{j=1}^m (a_{i,j}b_j)n_i  \\
+&=\sum_{i,j} (a_{i,j}b_j) n_i \\
+&=\sum_{i,j}a_{i,j}(b_jn_i)
+\end{align*}
+For justification of last equality, compute 
+\begin{align*}
+a(bn)=f(a)(bn)=(f(a)b)n=(ab)n
+\end{align*}
+Remark: similar routine computation shows that $N$ is in fact an  $(A,B)$-bimodule. 
+\end{proof}
+\begin{question}{Proposition 2.17}{}
+Let $f:A\rightarrow B$ be a ring homomorphism, and let $M$ be a finitely generated $A$-module, show that its extension of scalar  $B\otimes_A M$ is finitely generated as a $B$-module.   
+\end{question}
+\begin{proof}
+Let $\set{m_1,\dots ,m_n}$ generates $M$ over $A$. We claim $\set{1_B\otimes m_i}$ generate all the basic elements. Consider 
+\begin{align*}
+b \otimes \sum a_im_i&= \sum b\otimes a_i m_i \\
+&= \sum b (1_B \otimes a_im_i)\\
+&=\sum b ( a_i 1_B \otimes  m_i) \hspace{0.5cm}(\because \text{ $B$ is regarded as an  $A$-module when we write }B\otimes _A M)\\
+&=\sum b (f(a_i)\otimes m_i)\\
+&=\sum bf(a_i)(1\otimes m_i)
+\end{align*}
+\end{proof}
+\begin{mdframed}
+Let $M\overset{f}{\longrightarrow }M'$ and $N\overset{g}{\longrightarrow }N'$ be in the category of $A$-module. The function  $h:M\times N \rightarrow M' \otimes  N'$ defined by 
+\begin{align*}
+h(x,y)\triangleq f(x)\otimes  g(y)
+\end{align*}
+is clearly $A$-bilinear. Therefore, we may induce some unique $A$-linear map  $f\otimes  g:M\otimes  N\rightarrow M'\otimes  N'$ such that 
+\begin{align*}
+  (f\otimes  g)(x\otimes  y)=f(x)\otimes  g(y)
+\end{align*}
+Note that for each $M' \overset{f'}{\longrightarrow }M''$ and $N'\overset{g'}{\longrightarrow }N''$, we have 
+\begin{align*}
+  (f' \circ f) \otimes  (g' \circ g)= (f'\otimes  g')\circ (f\otimes  g)
+\end{align*}
+because they agree on the basic elements. 
+\end{mdframed}
+\begin{question}{Proposition 2.18 (Exaction of Tensor Product)}{}
+If 
+\begin{align}
+\label{Mfg}
+M'\overset{f}{\longrightarrow }M\overset{g}{\longrightarrow } M'' \rightarrow  0
+\end{align}
+is an exact sequence of $A$-modules and homomorphism, then for any $A$-module  $N$, the sequence 
+ \begin{align*}
+M' \otimes  N \overset{f \otimes 1 }{\longrightarrow } M \otimes  N \overset{g \otimes  1}{\longrightarrow }M'' \otimes  N \rightarrow  0
+\end{align*}
+is also exact, where $1 \in \operatorname{End}(N)$ is the identity mapping. 
+\end{question}
+\begin{proof}
+  Because $g$ is surjective, we may construct an \textbf{right inverse} $g^{-1}:M''\rightarrow M$. That is, $g \circ g^{-1}(m'')=m''$ for all $m'' \in M''$. To see $g\otimes  1$ is surjective, just observe 
+\begin{align*}
+  \sum m''_i \otimes  n_i= (g \otimes  1) \Big(\sum g^{-1}(m''_i) \otimes  n_i\Big)
+\end{align*}
+After computing 
+\begin{align*}
+(g \otimes  1)\circ (f\otimes  1)= (g\circ f)\otimes  (1 \circ 1)= 0
+\end{align*}
+we may reduce the problem into proving the factored map 
+\begin{align*}
+\operatorname{Coker}(f\otimes 1) \overset{\tilde{g}}{\longrightarrow } M'' \otimes  N
+\end{align*}
+is injective. Consider the map $h:M''\times N \rightarrow \operatorname{Coker}(f\otimes  1)$ defined by 
+\begin{align*}
+h(m'',n)\triangleq [g^{-1}(m'')\otimes  n]
+\end{align*}
+Clearly, $h$ is linear in $n$. Using the fact $\operatorname{Im}(f)=\operatorname{Ker}(g)$ and computation  
+\begin{align*}
+g(g^{-1}(am'')-ag^{-1}(m''))&=0\\
+g(g^{-1}(m_1''+m_2'')-g^{-1}(m_1'')-g^{-1}(m_2''))&=0
+\end{align*}
+we may conclude that $h$ is also linear in  $M''$. Now, because $h$ is bilinear, we may induce some linear $\tilde{h}:M''\otimes  N\rightarrow \operatorname{Coker}(f\otimes  1)$ with action 
+\begin{align*}
+\tilde{h} (m''\otimes  n)=[g^{-1}(m'')\otimes  n]
+\end{align*}
+Using universal property, it is east to check that $\tilde{h}\circ \tilde{g} \in \operatorname{End}(\operatorname{Coker}(f\otimes  1))$ is identity mapping. We have shown $\tilde{g}$ is injective. 
+\end{proof}
+\begin{mdframed}
+Note that the exaction of tensor product holds only for sequence of the \myref{form}{Mfg}. One can't delete the zero space at the end and still reach the same conclusion. Consider 
+\begin{align*}
+0\longrightarrow \Z \overset{f(x)=2x}{\longrightarrow }\Z 
+\end{align*}
+where the underlying ring is $\Z$. The sequence 
+\begin{align*}
+0\longrightarrow \Z \otimes \operatorname{Coker}(f) \overset{f\otimes  1}{\longrightarrow } \Z \otimes  \operatorname{Coker}(f)
+\end{align*}
+is not exact, because 
+\begin{align*}
+  (f\otimes 1)(x \otimes  [y])=2x \otimes  [y]= x \otimes  [2y]= 0 
+\end{align*}
+implies $\operatorname{Ker}(f\otimes  1)=\Z \otimes  \operatorname{Coker}(f)$, while 
+\begin{align*}
+\Z \otimes  \operatorname{Coker}(f)\cong  \operatorname{Coker}(f)\neq 0 
+\end{align*}
+An $A$-module $N$ is said to be \textbf{flat} if for any exact sequence 
+\begin{align*}
+\cdots \rightarrow M_{i-1} \overset{f_{i-1}}{\longrightarrow } M_i \overset{f_i}{\longrightarrow }M_{i+1}\rightarrow \cdots
+\end{align*}
+in the category of $A$-modules, the sequence 
+ \begin{align*}
+\cdots \rightarrow M_{i-1}\otimes  N \overset{f_{i-1}\otimes  1}{\longrightarrow }M_i \otimes  N \overset{f_i \otimes 1 }{\longrightarrow }M_{i+1}\otimes  N \rightarrow \cdots 
+\end{align*}
+is also exact. 
+\end{mdframed}
+\begin{question}{}{}
+Show that for an $A$-module  $N$, the following are equivalents 
+\begin{enumerate}[label=(\alph*)]
+  \item $N$ is flat. 
+  \item If $0\rightarrow M'\longrightarrow M\longrightarrow M''\rightarrow  0$ is exact, then $0\rightarrow  M'\otimes N \longrightarrow M\otimes N \longrightarrow M''\otimes N \rightarrow 0$ is also exact. 
+  \item If $f:M'\rightarrow M$ is injective, then $f\otimes  1:M'\otimes  N \rightarrow M\otimes N$ is injective. 
+  \item If $f:M'\rightarrow N$ is injective and $M,M'$ are finitely generated, then  $f\otimes 1:M'\otimes N\rightarrow M\otimes N$ is injective. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+From (a) to (b) is definition. We now prove from (b) to (a). Consider the exact sequence  
+\begin{align*}
+\cdots \rightarrow M_{i-1} \overset{f_{i-1}}{\longrightarrow } M_i \overset{f_i}{\longrightarrow }M_{i+1}\rightarrow \cdots
+\end{align*}
+We may split this into a short exact sequence 
+\begin{align*}
+0\longrightarrow  \operatorname{Im}(f_{i-1})\hookrightarrow M_i \overset{f_i}{\longrightarrow }\operatorname{Im}(f_i)\longrightarrow 0
+\end{align*}
+By (b), the short sequence
+\begin{align*}
+0\longrightarrow \operatorname{Im}(f_{i-1})\otimes  N \hookrightarrow M_i \otimes  N \overset{f_i\otimes 1}{\longrightarrow }\operatorname{Im}(f_i)\otimes  N \longrightarrow 0 
+\end{align*}
+is also exact. This implies 
+\begin{align*}
+\operatorname{Ker}(f_i\otimes  1)=\operatorname{Im}(f_{i-1})\otimes N=\operatorname{Im}(f_{i-1}\otimes  1)
+\end{align*}
+We have shown 
+\begin{align*}
+\cdots \rightarrow M_{i-1} \otimes  N \overset{f_{i-1}\otimes  1}{\longrightarrow } M_i \otimes  N \overset{f_i\otimes  1}{\longrightarrow }M_{i+1}\otimes  N\rightarrow \cdots
+\end{align*}
+is also exact, thus proving (a). From (b) to (c), we simply let $M''\triangleq \operatorname{Coker}(f)$ and let  $M\rightarrow M''$ be the quotient map. From (c) to (b) follows from right exaction and 
+\begin{align*}
+\operatorname{Im}(f\otimes 1)=\operatorname{Im}(f)\otimes  N = \operatorname{Ker}(g)\otimes N= \operatorname{Ker}(g\otimes 1) 
+\end{align*}
+From (c) to (d) is clear. It only remains to show from  (d) to (c). \\
+
+Fix 
+\begin{align*}
+u = \sum_{i=1}^n x_i \otimes  y_i \in \operatorname{Ker}(f\otimes  1)
+\end{align*}
+Let $M_0'$ be the submodule of $M'$ generated by $\set{x_1,\dots ,x_n}$, and let $u_0' \in M'_0\otimes  N$ be the element 
+\begin{align*}
+u_0'\triangleq \sum_{i=1}^n x_i \otimes  y_i \in M'_0 \otimes  N
+\end{align*}
+By Corollary 2.13, there exists some finitely generated submodule $M_0$ of  $M$ such that $u_0 \in M_0\otimes N$ defined by
+ \begin{align*}
+u_0\triangleq \sum_{i=1}^n f(x_i) \otimes y_i \in M_0 \otimes  N
+\end{align*}
+equals to $0$. Note that because $\set{x_1,\dots ,x_n}$ generates $M'_0$ and  $M_0$ contains $\set{f(x_1),\dots ,f(x_n)}$, so $M_0$  contains $f(M'_0)$, and obviously 
+\begin{align*}
+f|_{M_0'}:M_0'\rightarrow M_0\text{ is injective. }
+\end{align*}
+We now see from (d) that 
+\begin{align*}
+f|_{M_0'}\otimes 1:M'_0 \otimes  N\rightarrow M_0 \otimes  N\text{ is injective. }
+\end{align*}
+Compute 
+\begin{align*}
+  (f|_{M'_0}\otimes  1)(u_0')= \sum_{i=1}^n f(x_i)\otimes  y_i=u_0=0
+\end{align*}
+We see $u'_0=\sum_{i=1}^n x_i \otimes  y_i \in M'_0 \otimes  N$ is zero. Now consider  the universal property 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNJ18wIFxcdGltZXMgTiAiXSxbMiwwLCJNJ18wIFxcb3RpbWVzIE4iXSxbMiwyLCJNJyBcXG90aW1lcyBOIl0sWzAsMl0sWzAsMV0sWzEsMiwiXFxwaGkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	{M'_0 \times N } && {M'_0 \otimes N} \\
+	\\
+	&& {M' \otimes N}
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-3]
+	\arrow["\pfi"', dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+We may see $u=\pfi(u_0')$ is zero. Finishing the proof. 
+\end{proof}
+\begin{question}{Exercise 2.20}{}
+Let ring $B$ be an  $(A,B)$-bimodule, and let $M$ be a flat  $A$-module. Show that the extension of scalar $B\otimes_A M$ is a flat $B$-module. 
+\end{question}
+\begin{proof}
+Let $g:P'\rightarrow P$ be an injective $B$-module homomorphism.  We are required to show 
+\begin{align*}
+P' \otimes_B (B \otimes _A M) \overset{g\otimes 1}{\longrightarrow } P \otimes  _B (B \otimes_A M)
+\end{align*}
+is also injective. We have the isomorphism 
+\begin{align*}
+P' \otimes  _B (B\otimes  _A M) \cong  (P' \otimes  _B B) \otimes_A M \cong  P' \otimes _A M 
+\end{align*}
+It now follows from $M$ being flat that  $g\otimes  1$ is injective. 
+
+
+\end{proof}
 \section{Script 1}
 
 I proved and gathered the propositions in my paragraphs. 
@@ -224,4 +533,37 @@ r(I)= \bigcap \set{S \in \operatorname{spec}(R): I \subseteq S}
 There are essentially two distinct substructures of a ring. A subset of a ring is called a \textbf{subring} if it is closed under addition and multiplication and contains the multiplicative identity. 
 
 Because the union of a chain of proper ideals is still a proper ideal\footnote{No proper ideals contain $1$.}, we may apply \textbf{Zorn's Lemma} to show that a \textbf{maximal ideal}\footnote{By a maximal ideal, we mean a proper ideal contained by no other proper ideal.} always exists. Equivalently, we may define a proper ideal $I$ to be maximal if and only if $R\quotient I$ is a field.\\ 
+
+\begin{question}{}{}
+Show that the sequence 
+\begin{align}
+\label{Mu}
+M'\overset{u}{\longrightarrow }M  \overset{v}{\longrightarrow }M''\longrightarrow 0
+\end{align}
+is exact if and only if for every module $N$ the sequence 
+\begin{align}
+\label{Ns}
+0\longrightarrow \operatorname{Hom}(M'',N)\overset{\overline{v}}{\longrightarrow }\operatorname{Hom}(M,N) \overset{\overline{u}}{\longrightarrow } \operatorname{Hom}(M',N)
+\end{align}
+is exact. 
+\end{question}
+\begin{proof}
+Suppose for every module $N$ the \myref{sequence}{Ns} is exact. To show  \myref{sequence}{Mu} is also exact, we are required to show $v$ is surjective and $\operatorname{Im}(u)=\operatorname{Ker}(v)$. To see $v$ is surjective, let $N\triangleq \operatorname{Coker}(v)$, and use the injectivity of $\overline{v}$ to show that the quotient map $\pi: M''\rightarrow N$ is indeed zero. \\
+
+To see $\operatorname{Im}(u)\subseteq \operatorname{Ker}(v)$, let $N\triangleq M''$, consider the identity mapping $\id _{M''}$, and note that 
+\begin{align*}
+\overline{u}\circ \overline{v} (\id _{M''}) = \id _{M''} \circ v \circ  u = 0
+\end{align*}
+To see $\operatorname{Ker}(v)\subseteq \operatorname{Im}(u)$, let $N\triangleq  M\quotient \operatorname{Im}(u)$, and let $\pi :M\rightarrow N$ be the quotient map. Obviously $\pi  \in \operatorname{Ker}(\overline{u})=\operatorname{Im}(\overline{v})$, so there exists some $\psi : M''\rightarrow N$ such that $\pi = \psi \circ v $. This implies $\operatorname{Ker}(v)\subseteq \operatorname{Ker}(\pi )=\operatorname{Im}(u)$. \\
+
+Now, suppose \myref{sequence}{Mu} is exact and let $N$ be some module. To show \myref{sequence}{Ns} is exact, we are required to show $\overline{v}$ is injective and $\operatorname{Im}(\overline{v})=\operatorname{Ker}(\overline{u})$. The fact $\overline{v}$ is injective follows from $v$ is surjective.   
+
+
+
+
+
+
+
+
+\end{proof}
 \end{document}

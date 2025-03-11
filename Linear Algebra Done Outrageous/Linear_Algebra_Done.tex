@@ -762,7 +762,7 @@ A^4=B^4 \implies  A=B
 \end{question}
 \begin{proof}
 \end{proof}
-\section{Year 111}
+\section{Year 110}
 \begin{question}{}{}
 Let $V$ be a finite-dimensional complex inner product space. Let $d\in \operatorname{End}(V)$ satisfy 
 \begin{align*}
@@ -796,6 +796,105 @@ Show that there exists some $P \in M_n(\R)$ such that
 \begin{align*}
 P^t M P = I \text{ and }P^{-1}AP\text{ is diagonal }
 \end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Prove that invertible $M \in \operatorname{End}(\C^n)$ always has a square root. Let $n>2$, and let $N$ be a  $n\times n$ matrix over some field $K$ such that $N^n=0$ and $N^{n-1}\neq 0$. Prove that there is no $n\times n$ square matrix $B$ over $K$  such that $B^2=N$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $V$ be a vector space over some field  $K$, and let  $u_1,\dots ,u_n \in V$ be linearly independent. Show that, for any $v_1,\dots ,v_n \in V$, the set $\set{u_1+\alpha v_1, \dots ,u_n+ \alpha v_n}$ is linearly independent for all but finitely many $\alpha \in K$.  
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $P$ be some  $n\times n$ matrix over some field. Show 
+\begin{align*}
+\operatorname{rank}(P)+\operatorname{rank}(I-P)= n \implies P^2=P
+\end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{Year 109}
+\begin{question}{}{}
+Let $A$ be a  $4\times 4 $ real symmetric matrix. Suppose that $1$ and $2$ are eigenvalues of $A$ and the eigenspace of  $2$ is  $3$-dimensional. Suppose  $(1,-1,-1,1)^t$ is an eigenvector with eigenvalue $1$. 
+ \begin{enumerate}[label=(\alph*)]
+  \item Find an orthonormal basis for the eigenspace for the eigenvalue $2$ of $A$.  
+  \item Find $Av$, where  $v=(1,0,0,0)^t$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $A$ be a real  $n\times n$ matrix. Prove 
+\begin{align*}
+2\operatorname{rank}(A^2)\leq \operatorname{rank}(A^3)+\operatorname{rank}(A)
+\end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $V$ be a finite-dimensional real vector space, and let $S,T$ and  $U$ be subspaces of  $V$. Prove or disprove 
+ \begin{enumerate}[label=(\alph*)]
+  \item $\operatorname{dim}(S+T)=\operatorname{dim}(S)+\operatorname{dim}(T)-\operatorname{dim}(S \cap T)$. 
+  \item $\operatorname{dim}(S+T+U)=\operatorname{dim}(S)+\operatorname{dim}(T)+\operatorname{dim}(U)-\operatorname{dim}(S \cap T) - \operatorname{dim}(T \cap U)- \operatorname{dim}(U \cap S)+ \operatorname{dim}(S \cap T \cap U)$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let 
+\begin{align*}
+A\triangleq \begin{pmatrix} 
+  0 & 1 \\
+  -1 & 2
+\end{pmatrix}
+\end{align*}
+\begin{enumerate}[label=(\alph*)]
+  \item Compute $\exp A$. 
+  \item Prove $\operatorname{det}(\exp A)= \exp (\operatorname{tr}A)$. 
+  \item Prove or disprove 
+    \begin{align*}
+    A\text{ is nilpotent }\implies \exp (A-I)\text{ is nilpotent }
+    \end{align*}
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+  Let $U,V$ be two finite dimensional space over the same field. Let  $T:U\rightarrow V$ be a linear map, and let $T^*:U^*\rightarrow V^*$ be its dual map. Prove 
+\begin{align*}
+T\text{ is injective }\iff T^*\text{ is surjective }   
+\end{align*}
+And 
+\begin{align*}
+T\text{ is surjective }\iff T^*\text{ is injective }
+\end{align*}
+\end{question}
+\begin{proof}
+Let $\set{T(u_1),\dots ,T(u_n)}$ be a basis for the image of $T$. Extend this to a basis $\set{T(u_1),\dots ,T(u_n),v_1,\dots ,v_m}$ for $V$. Let $\set{\xi_1,\dots ,\xi_{n+m}}$ be its dual basis. It is clear that $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ belongs to the kernel of $T^*$. Observe  
+\begin{align*}
+T^*\xi_1v_1 = 1
+\end{align*}
+to conclude that $\xi_i \not\in \operatorname{Ker}T^*$ for all $1\leq i\leq n$. We have shown $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ is a basis for the kernel of $T^*$. In other words,  
+\begin{align*}
+   \operatorname{rank}T+\operatorname{Dim}(\operatorname{Ker}T^*)= \operatorname{dim}V.
+\end{align*}
+This, together with Rank-Nullity Theorem, proves both propositions.
+\end{proof}
+\section{Year 108}
+\begin{question}{}{}
+Find all possible Jordan forms for $8\times 8$ real matrices $x^2(x-2)^3$ as minimal polynomial.
 \end{question}
 \chapter{Archived}
 \section{Tensor Algebra}
