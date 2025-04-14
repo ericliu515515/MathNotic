@@ -227,6 +227,11 @@ Moreover, if $g$ is an inner product on $V$, we may also extend  $g$ onto $V_\C$
  \begin{align*}
 g_\C (u_1+iu_2, v_1+iv_2)\triangleq g(u_1,v_1)+g(u_2,v_2)+i [g(u_2,v_1)-g(u_1,v_2)]
 \end{align*}
+By defining 
+\begin{align*}
+  (\phi_1+ i\phi_2) (v_1+iv_2)\triangleq (\phi_1v_1-\phi_2v_2)+ i (\phi_2 v_1 + \phi_1 v_2)
+\end{align*}
+we have the isomorphism $(V^*)_\C \cong  (V_\C)^*$
 
 
  By an \textbf{almost complex} structure on $V$, we mean some $\R$-linear map $J\in \operatorname{End}(V)$ whose squared is the negate of the identity map of $V$. Clearly, if $J$ is an almost complex structure on $V$, then we may make $V$ into a complex vector space by defining 
@@ -274,49 +279,6 @@ is injective. One may now check that the $\C$-linear map
 forms a $\C$-linear isomorphism. 
 \end{proof}
 \section{Hodge star operator}
-Let $(V,g)$ be an oriented $d$-dimensional real inner product space whose orientation is determined by the orthonormal basis $\set{e_1,\dots ,e_d}$, for each exterior power $\extp^k V$, we may well define (?) an inner product $g^k$ on $\extp^k V$ such that for every orthonormal basis $\set{e_1,\dots ,e_d}$ of $V$, the basis  $\set{e_I \in \extp^k V:I=\set{i_1< \cdots <i_k}}$ is orthonormal for $\extp^k V$, and well define (?) the \textbf{Hodge star operator} $\star:\extp^k V \rightarrow \extp^{d-k} V$ so that 
-\begin{align*}
-\alpha \wedge \star \beta  = g^k(\alpha ,\beta ) \cdot e_1 \wedge  \cdots \wedge  e_d   \text{ for all }\alpha ,\beta  \in \extp^k V
-\end{align*}
-\begin{mdframed}
-Let $(V,g)$ be a finite dimensional real inner product space, and let $J:V\rightarrow V$ be an almost complex structure compatible with $g$.  Let $\omega\in \operatorname{Hom}^2(V\times V,\R)$ be the fundamental form associated with $(V,g,J)$. I read from your note and also the textbook that 
-\begin{align}
-\label{ggg}
-\omega \in \extp^{1,1}V^*
-\end{align}
-where $\extp^{1,1}W$ is defined by 
-\begin{align*}
-\extp^{1,1}W \triangleq \extp W^{1,0}\otimes _\C \extp W^{0,1}
-\end{align*}
-My question is: How does  \myref{statement}{ggg} make sense? Shouldn't $\extp^{1,1}V^*$ be the space of bilinear maps
-
-
-Thank you for your reply. I just realized that I wrongly identified $\extp^{1,1}V^*$. But I still can't piece things together to show that 
-\begin{align}
-\extp^{1,1}V^*\text{ is the space of }
-\end{align}
- \begin{align*}
-g_\C (u_1+iu_2, v_1+iv_2)\triangleq g(u_1,v_1)+g(u_2,v_2)+i [g(u_2,v_1)-g(u_1,v_2)]
-\end{align*}
-and 
-\begin{align*}
-\omega_\C (u_1+iu_2, v_1+iv_2)\triangleq \omega(u_1,v_1)+\omega(u_2,v_2)+i [\omega(u_2,v_1)-\omega(u_1,v_2)]
-\end{align*}
-\begin{align*}
-\omega_\C (z_1v_1,z_2v_2)\triangleq z_1 \overline{z_2}\omega (v_1,v_2)
-\end{align*}
-
-\begin{align*}
-\extp^{1,1}V^* &= \extp^1 (V^{*})^{1,0} \otimes _\C \extp^1 (V^*)^{0,1} \\
-&=(V^*)^{1,0}\otimes_\C (V^*)^{0,1} \\
-&=\operatorname{Hom}^2([(V^*)^{1,0}]^*\times [(V^*)^{0,1}]^{*}, \C) \\
-&=\operatorname{Hom}^2(V^{1,0}\times V^{0,1},\C) 
-\end{align*}
-\begin{align*}
-\operatorname{Hom}^2(\extp (V^*)^{1,0}\times \extp (V^*)^{0,1},\C)
-\end{align*}
-by definition of tensor product? How cam an element $\omega \in \operatorname{Hom}^2 (V\times V,\R)$ be identified as an element of $\operatorname{Hom}^2(\extp (V^*)^{1,0}\times \extp (V^*)^{0,1},\C)$? 
-\end{mdframed}
 I realized I had the completely wrong understanding. Please confirm with me if my current understanding is correct. The statement   
 \begin{align}
 \omega \in \extp^{1,1}V^*
@@ -332,9 +294,6 @@ and that the components of $\omega_\C$ in $\extp^{2,0}V^*$ and $\extp^{0,2}V^*$ 
 &\omega_\C (a_1v_1+ib_1v_2, a_2w_1+ib_2w_2)\\
 &\triangleq a_1a_2\omega(v_1,w_1)-b_1b_2\omega(v_2,w_2)+ i[b_1a_2\omega (v_2,w_1)+a_1b_2\omega (v_1,w_2)]
 \end{align}
-
-
-\section{Fundamental form and complex inner product induced by compatible real inner product and almost complex structure}
 For each finite dimensional real inner product space $(V,g)$, an almost complex structure $J:V\rightarrow V$ is said to be \textbf{compatible} with $g$ if 
 \begin{align*}
 g(J(v_1),J(v_2))=g(v_1,v_2)
@@ -346,9 +305,41 @@ Given such compatible $(V,g,J)$, one see that the decomposition $V_\C=V^{1,0}\op
 It is easy to see $\omega$ is always alternating, and that $h\triangleq g- i \omega$ forms a complex inner product when $V$ is viewed as a complex vector space. 
 
 \chapter{Complex Manifold}
-\section{Definition and Examples}
-Given some topological manifold $M$, by a \textbf{holomorphic chart}, we mean an open subset $U\subseteq M$ and a topological embedding  $\phi : U \rightarrow \C^n$. For two complex charts $\phi_i$ and $\phi_j$ to be \textbf{compatible}, the function $\phi_i \circ \phi_j |_{\phi_j (U_i \cap U_j)}$ has to be holomorphic. A collection of complex charts is said to be a \textbf{holomorphic atlas} if the collection covers the whole $M$ and all pairs of the charts in the collection are compatible.  A \textbf{complex structure} on $M$ if exists, is just a maximal holomorphic atlas. By a \textbf{complex manifold}, we mean a topological manifold together with a complex structure. \\
+\section{Definition}
+Given some topological manifold $M$, by a \textbf{holomorphic chart}, we mean an open subset $U\subseteq M$ and a topological embedding  $\phi : U \rightarrow \C^n$. For two complex charts $\phi_i$ and $\phi_j$ to be \textbf{compatible}, the function $\phi_i \circ \phi_j |_{\phi_j (U_i \cap U_j)}$ has to be holomorphic. A collection of complex charts is said to be a \textbf{holomorphic atlas} if the collection covers the whole $M$ and all pairs of the charts in the collection are compatible.  A \textbf{complex structure} on $M$ if exists, is just a maximal holomorphic atlas. By a \textbf{complex manifold}, we mean a topological manifold together with a complex structure. Clearly, a complex manifold is also a smooth manifold. \\ 
 
+Let $M$ be a smooth manifold. An \textbf{almost complex structure} on $M$ is a smooth bundle map $J:TM \rightarrow TM$ such that $J^2=-\id _{TM}$. Obviously, if $M$ carries an almost complex structure, then $M$ is of even dimension. 
+\begin{theorem}
+\textbf{(Complex Manifold carries almost complex structure)} If $X$ is a complex manifold, then we may well define an almost complex complex structure $J$ on  $X$ by 
+ \begin{align*}
+   \frac{\partial }{\partial x_i}\mapsto \frac{\partial }{\partial y_i}\text{ and }\frac{\partial }{\partial y_i}\mapsto -\frac{\partial }{\partial x_i}
+\end{align*}
+for any chart $z_i=x_i + i y_i$. 
+\end{theorem}
+\begin{proof}
+Clearly, we only have to check that $J$ is well-defined as a function. Let $\tilde{z}_i\triangleq \tilde{x}_i+i  \tilde{y}_i$ be another chart. We have 
+\begin{align*}
+\frac{\partial }{\partial \tilde{x}_j }= \sum_{i=1}^{n} \frac{\partial x_i}{\partial \tilde{x}_j } \frac{\partial }{\partial x_i}+ \frac{\partial y_i}{\partial \tilde{x}_j } \frac{\partial }{\partial y_i} \text{ and } \frac{\partial }{\partial \tilde{y}_j }= \sum_{i=1}^n \frac{\partial x_i}{\partial \tilde{y}_j } \frac{\partial }{\partial x_i} + \frac{\partial y_i}{\partial \tilde{y}_j } \frac{\partial }{\partial y_i}
+\end{align*}
+Using Cauchy-Riemann equation, we may check that indeed
+\begin{align*}
+  J\Big(\frac{\partial }{\partial \tilde{x}_j } \Big)= \sum_{i=1}^n \frac{\partial x_i}{\partial \tilde{x}_j } \frac{\partial }{\partial y_i}- \frac{\partial y_i}{\partial \tilde{x}_j } \frac{\partial }{\partial x_i}= \sum_{i=1}^n  \frac{\partial x_i}{\partial \tilde{y}_j } \frac{\partial }{\partial x_i}+ \frac{\partial y_i}{\partial \tilde{y_j} } \frac{\partial }{\partial y_i}=  \frac{\partial }{\partial \tilde{y}_j } 
+\end{align*}
+\end{proof}
+Therefore, we have the direct sum 
+\begin{align*}
+T_\C X = T^{1,0}X \oplus  T^{0,1}X
+\end{align*}
+where $(T_pX)^{1,0}$ as the $i$-eigenspace of $J_\C$ have the expression    
+\begin{align*}
+  (T_pX)^{1,0}= \bset{ \sum \frac{z_i}{2}\Big(\frac{\partial }{\partial x_i}- i \frac{\partial }{\partial y_i}\Big) :z_i \inc }  
+\end{align*}
+This, for every holomorphic chart $\phi : U\subseteq X\rightarrow \C^n$ give us a trivialization $\psi:T^{1,0}U\rightarrow \C^{2n}$
+\begin{align*}
+\psi \Big(p,\sum_{i=1}^n \frac{z_i}{2}\Big(\frac{\partial }{\partial x_i}- i \frac{\partial }{\partial y_i}\Big) \Big)\triangleq (\phi (p), z_1,\dots ,z_n)
+\end{align*}
+which makes $T^{1,0}X$ a holomorphic vector bundle. 
+\section{Example}
 The first example of complex manifold is the \textbf{complex projective space}. Define an equivalence relation on $\C^
 {n+1}\setminus \set{0}$ by 
 \begin{align*}
@@ -369,4 +360,6 @@ The second example is the \textbf{complex tori}. Define an equivalence relation 
 z \sim  w \overset{\triangle }{\iff }\text{ For all  }j\text{ there exists some $a,b \inz$ such that }z_j-w_j= a+ ib
 \end{align*}
 The complex tori is defined to be the quotient topological space $\C^n \quotient \sim$. Let $\pi $ be the quotient map. Clearly for all $z\inc^n$, if we let $\epsilon = (\frac{1}{2},\dots ,\frac{1}{2})$, then $\pi  (B_\epsilon (z))$ is open in the tori.  
+\section{Almost Complex Manifold}
+Becaus
 \end{document}

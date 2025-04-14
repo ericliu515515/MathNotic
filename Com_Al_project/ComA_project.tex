@@ -1,0 +1,60 @@
+\documentclass{report}
+\input{preamble}
+\input{macros}
+\input{letterfonts}
+
+\title{Commutative Algebra Final Project:Bijective Holomorphic Function is Biholomorphic}
+\author{Eric Liu}
+\date{}
+\begin{document}
+\maketitle
+\newpage% or \cleardoublepage
+% \pdfbookmark[<level>]{<title>}{<dest>}
+\pdfbookmark[section]{\contentsname}{toc}
+
+\tableofcontents
+\pagebreak
+\chapter{Main}
+\section{Main}
+Given some open $U \subseteq \C^n$ and $f:U\rightarrow \C$, we say $f$ is \textbf{holomorphic} in its variable $z_1$ if the mapping $z_1 \mapsto f(z_1,z_2,\dots ,z_n)$ is holomorphic in the classical single variable sense for every fixed $(z_2,\dots ,z_n)\inc^{n-1}$. Contrary to the real world, where function from $\R^n$ to $\R$ can have partial derivatives everywhere but still be discontinuous, \textbf{Hartog's Theorem on separate holomorphicity} states that if $f$ is holomorphic in all of its variables, then $f$ is continuous and differentiable in the sense that 
+\begin{align*}
+  \lim_{h\to 0;h\inc^n} \frac{f(z+h)-f(z)-T(h)}{\abso{h}}=0,\quad\text{ for some linear  }T:\C^n\rightarrow \C
+\end{align*}
+This (kind of) justify the convention of simply calling function $f:U\rightarrow \C$ \textbf{holomorphic} given that $f$ is holomorphic in all of its variables, and just like the category of smooth function, given $g:U\rightarrow \C^n$, we say $g$ is \textbf{holomorphic} if $g_1,\dots ,g_n$ are all holomorphic, where $g(z)=(g_1(z),\dots ,g_n(z))$. For the rest of this note, we use $Jf_z$ to denote the linear map such that 
+\begin{align*}
+\lim_{h\to 0;h\inc^n} \frac{f(z+h)-f(z)-Jf_z(h)}{\abso{h}}=0
+\end{align*}
+Recall that in category of smooth function, even though we do have the invariance of domain, bijective smooth function need not have smooth inverse. In the category of multivariable holomorphic mappings, not only do we have invariance of domain, bijective holomorphic mapping in fact have holomorphic inverse. The goal of this note is to prove this. More precisely, we want to prove 
+\begin{theorem}
+\textbf{(Main Theorem)} Given open $U\subseteq \C^n$ and injective holomorphic $f:U\rightarrow \C^n$, we have $\operatorname{det}(Jf_z)\neq 0$ for all $z \in U$. Therefore, by inverse function theorem, inverse of  $f$ is also holomorphic. 
+\end{theorem}
+The proof turn out to be extremely nontrivial, and it is based on induction on the dimension. 
+
+
+\begin{theorem}
+\textbf{(Base case)} If holomorphic $f: U \rightarrow \C$ is injective, then $f'$ does not vanish in  $U$.  
+\end{theorem}
+\begin{proof}
+Assume for a contradiction that $f'(z_0)=0$ for some $z_0 \in U$. WLOG, suppose $z_0=f(z_0)=0$. Therefore, for some $k>2$, we may write on a small enough neighborhood around $0$ that 
+ \begin{align*}
+f(z)= \sum_{n=k}^{\infty} c_nz^n\text{ where }c_k \neq 0
+\end{align*}
+Because $\sqrt[n]{\abso{c_n}}$ converges to some nonnegative real number, we may suppose $\abso{c_n}\leq M^n$ for some positive real number $M$ for all $n$. Therefore, there exists $\delta> 0$ and exists $w\neq 0$ such that 
+\begin{align} 
+  \label{hy1}
+  \abso{\frac{w}{c_k}}^{\frac{1}{k}}< \frac{\delta}{2}
+\end{align}
+and such that for all $\abso{z}\leq \delta$ we have 
+ \begin{align}
+\label{hy2}
+ \abso{\sum_{n=k+1}^{\infty} c_n z^n} \leq \sum_{n=k+1}^{\infty} \abso{Mz}^n = \frac{\abso{Mz}^{k+1}}{1- \abso{Mz}} \leq \abso{c_kz^k}-  \abso{w} 
+\end{align}
+Now, if we define $G,F:B_\delta (0)\rightarrow \C$ by 
+\begin{align*}
+G(z)\triangleq \sum_{n=k+1}^{\infty}c_nz^n  \text{ and } F(z)\triangleq c_kz^k-w
+\end{align*}
+we may conclude by \myref{inequality}{hy2} that $\abso{G}<\abso{F}$ on $\partial B_{\frac{\delta}{2}}(0)$ and conclude by \myref{inequality}{hy1} that $F$ has more than $2$ distinct roots in  $B_{\frac{\delta}{2}}(0)$. These two observations allow us to apply Rouché's Theorem to conclude that $f-w=G+F$ has more than 2 roots in  $B_{\frac{\delta}{2}}(0)$, which contradicts to the injectivity of $f$. (Some more work is needed for showing the two roots are distinct. See https://math.stackexchange.com/questions/1116076/injective-holomorphic-function-is-conformal-i-e-nonzero-derivative)  
+\end{proof}
+
+
+\end{document}

@@ -14,15 +14,11 @@
 
 \tableofcontents
 \pagebreak
-\chapter{Summary}
+\chapter{What you need to know}
 \section{Quick Recap}
-\begin{abstract}
-In this section, $V$ and $W$ are two vector spaces over the same field $\F$, $\F$ can be interpreted as either the field of real numbers or the field of complex numbers, and $S$ is subset of  $V$.  
-\end{abstract}
-\begin{mdframed}
-We say  $S$ is 
+Let $V$ be a vector space over some field $\F$, and let  $S$ be a subset of $V$. We say  
 \begin{enumerate}[label=(\alph*)]
-  \item \textbf{linearly independent} if to write $0$ as finite linear combination of  $S$, the coefficients must all be zero.
+  \item $S$ is \textbf{linearly independent} if to write $0$ as finite linear combination of  $S$, the coefficients must all be zero.
   \item  $S$  \textbf{spans $V$} if all $v\in V$ can be written as finite linear combination of $S$. 
 \end{enumerate}
 We say $S$ is a \textbf{basis} if any of the following equivalent conditions hold true 
@@ -36,38 +32,27 @@ Suppose $V$ has a basis  of cardinality $n$. Using \textbf{Gauss elimination}, o
   \item If $S$ spans  $V$ and has cardinality greater than  $n$, then there exists a subset of $S$ that is a basis of $V$.  
   \item If $B$ is a basis of  $V$ and  $S$ is linearly independent, then there exists some subset  $U$ of $B$ such that  $S \cup  U$ is a basis of $V$.   
 \end{enumerate}
-Let $F:V\rightarrow W$ be a linear map. It is clear that  both image and kernel of $F$ form some vector space. Therefore, it make sense to define the \textbf{rank} of $F$ by 
+Let $W$ be another vector space over  $\F$, and let $F \in \operatorname{Hom}(V,W)$. It is clear that  both image and kernel of $F$ forms a vector space. Therefore, it make sense to define the \textbf{rank} of $F$ by 
  \begin{align*}
-\operatorname{rank}(F)\triangleq \operatorname{dim} (\operatorname{Im}F)
+\operatorname{rank}(F)\triangleq \operatorname{dim} (\operatorname{Im}F). 
 \end{align*}
 By extending a basis of the kernel of $F$ to a basis of the whole  $V$, one can prove the  \textbf{Rank-Nullity Theorem} 
 \begin{align*}
-\operatorname{dim}(\operatorname{Ker}F)+ \operatorname{rank}(F)= \operatorname{dim}(V)
+\operatorname{dim}(\operatorname{Ker}F)+ \operatorname{rank}(F)= \operatorname{dim}(V). 
 \end{align*}
-We use $V^*$ to denote the vector space of linear map from  $V$ to  $\F$, the  \textbf{dual space} of $V$. Let $F:V\rightarrow W$ be a linear map. Its \textbf{dual map} $F^*:W^*\rightarrow V^*$ is defined by 
+We use $V^*$ to denote the vector space of linear map from  $V$ to  $\F$, the  \textbf{dual space} of $V$. Let $F:V\rightarrow W$ be a linear map. Its \textbf{dual map} $F^\dagger :W^*\rightarrow V^*$ is defined by 
 \begin{align*}
-F^*(\phi)\triangleq \phi \circ F
+F^\dagger (\phi)\triangleq \phi \circ F
 \end{align*}
 If $V$ is finite-dimensional with basis  $\set{v_1,\dots ,v_n}$, then its \textbf{dual basis} $\set{\phi_1,\dots ,\phi_n}$ is defined by 
 \begin{align*}
 \phi_i (v_j)\triangleq \delta^i_j
 \end{align*}
-And there exists a natural isomorphism between $V$ and its double dual  $(V^*)^*$ by identifying $v\in (V^*)^*$ as 
+and there exists a natural isomorphism between $V$ and its double dual  $(V^*)^*$ by identifying $v\in (V^*)^*$ as 
 \begin{align*}
-v(\phi) \triangleq \phi (v)
+v(\phi) \triangleq \phi (v). 
 \end{align*}
-Let $\set{w_1,\dots ,w_m}$ be a basis of $W$ with dual basis  $\set{\xi_i , \dots ,\xi_m}$. It is clear that
-\begin{align*}
-  \text{ The matrices of $F$ and  $F^*$ are transpose of each other. }
-\end{align*}
-This together with the observation that for finite dimensional $V,W$, we have 
- \begin{align*}
-\operatorname{rank}(F)+ \operatorname{dim}(\operatorname{ker}F^*)= \operatorname{dim}(W)
-\end{align*}
-gain us a quick proof that the dimensions of column space and row space of a fixed matrix are always equal. 
-\end{mdframed}
-\begin{mdframed}
-  Given some $n$-by-$n$ square matrix $A$, its \textbf{determinant} is by definition 
+Let $\set{w_1,\dots ,w_m}$ be a basis of $W$ with dual basis  $\set{\xi_i , \dots ,\xi_m}$. It is clear that under these two basis, the matrices representation of $F$ and  $F^\dagger $ are transpose of each other. This together with the observation that $\operatorname{rank}(F)+ \operatorname{dim}(\operatorname{ker}F^*)= \operatorname{dim}(W)$ for finite dimensional $V$ and  $W$, give us a quick proof that the dimensions of column space and row space of a fixed matrix are always equal. Now, given some $n$-by-$n$ square matrix $A$, its \textbf{determinant} is by definition 
 \begin{align*}
 \operatorname{det}A\triangleq  \sum_{\sigma \in S_n} \Big(\operatorname{sgn}\sigma \prod_{k=1}^n  A_{\sigma (k),k} \Big)
 \end{align*}
@@ -79,11 +64,11 @@ By an algorithm, one see that, for each alternating multilinear map $F:(\F^n)^n\
 \begin{align*}
 F(B)= (\operatorname{det}B)\cdot F(I) \text{ for all }B.
 \end{align*}
-Therefore, if we observe for each $n$-by-$n$ square matrix $A$ over  $\F$ that the map $B\mapsto \operatorname{det}AB$ is indeed alternating multilinear, then we immediately have the celebrated result $\operatorname{det}AB=\operatorname{det}A\operatorname{det}B$ as a corollary. This multiplicative property of determinant allow us to well define determinant for each linear epimorphism $F$ over some finite-dimensional vector space by 
+Therefore, if we observe for each $n$-by-$n$ square matrix $A$ over  $\F$ that the map $B\mapsto \operatorname{det}AB$ is indeed alternating multilinear, then we immediately have the celebrated result $\operatorname{det}AB=\operatorname{det}A\operatorname{det}B$ as a corollary. This multiplicative property of determinant allow us to well define determinant for each linear endomorphism $F$ over some finite-dimensional vector space by 
  \begin{align*}
 \operatorname{det}F\triangleq  \operatorname{det}([F])
 \end{align*}
-where $[F]$ is the matrix representation of $F$ with respect to some basis. Moreover, because the inverse of a linear map is linear if exists, we see that for linear map $F$ and square matrix $A$, 
+where $[F]$ is the matrix representation of $F$ with respect to some basis. Moreover, because the inverse of a linear map is linear if exists, we see that for linear map $F$,  
 \begin{align*}
 F\text{ is invertible }\iff \operatorname{det}F\neq 0 
 \end{align*}
@@ -91,7 +76,7 @@ And
 \begin{align*}
 A\text{ is invertible }\iff  \operatorname{det}A \neq 0
 \end{align*}
-Given some linear epimorphism $F$ over $V$, we say $v\in V$ is an \textbf{eigenvector} with respect to the \textbf{eigenvalue} $\ld \in \F$ if $v\neq 0$ and $F(v)=\ld v$. If there exists some basis of $V$ consisting eigenvectors  of $F$, we say  $F$ is  \textbf{diagonalizable}. Let $A$ be some square matrix, if there exists some  invertible square matrix  $P$ such that  $PAP^{-1}$ diagonal, we also say $A$ is  \textbf{diagonalizable}. Immediately, we see that if $V$ is finite dimensional, then with respect to any basis of $V$
+Given some $F\in \operatorname{End}(V)$, we say $v\in V$ is an \textbf{eigenvector} with respect to the \textbf{eigenvalue} $\ld \in \F$ if $v\neq 0$ and $F(v)=\ld v$. If there exists some basis of $V$ consisting eigenvectors  of $F$, we say  $F$ is  \textbf{diagonalizable}. Let $A$ be some square matrix, if there exists some  invertible square matrix  $P$ such that  $PAP^{-1}$ diagonal, we also say $A$ is  \textbf{diagonalizable}. Immediately, we see that if $V$ is finite dimensional, then with respect to any basis of $V$
 \begin{align*}
 [F]\text{ is diagonalizable }\iff F\text{ is diagonalizable }
 \end{align*}
@@ -100,38 +85,32 @@ Let $V$ be finite dimensional. We define the \textbf{characteristic polynomial} 
 \operatorname{det}(tI-F)\text{ and }\operatorname{det}(tI-A)
 \end{align*}
 Obviously, $\ld $ is an eigenvalue of $F$ if and only if $\ld $ is a root of the characteristic polynomial of $F$.
-\end{mdframed}
-
 \section{Jordan-Chevalley Decomposition}
-\begin{abstract}
-In this section, all vectors spaces are finite dimensional,  and we say that $V$ is a \textbf{direct sum} of some collection $\set{U_i}_{i \in I}$ of subspaces of $V$ and writes $V=\bigoplus _{i \in I}U_i$ if for each $v\in V$ there exists some unique tuple $(u_i)_{i \in I}$ such that $u_i \neq 0$ for finite number of $i \in I$ and $v=\sum u_i$. 
-\end{abstract}
-\begin{mdframed}
-Given $F\in \operatorname{End}(V)$, we know the kernels of its powers is increasing 
+\label{JCD}
+Let $V$ be some finite dimensional $\F$-vector space. Given $T\in \operatorname{End}(V)$, we know the kernels of its powers is increasing 
 \begin{align*}
-\set{0}=\operatorname{Ker}F^0\subseteq \operatorname{Ker}F^1 \subseteq \operatorname{Ker}F^2 \subseteq \operatorname{Ker}F^3\subseteq \cdots 
+0\subseteq \operatorname{Ker}T^1 \subseteq \operatorname{Ker}T^2 \subseteq \operatorname{Ker}T^3\subseteq \cdots 
 \end{align*}
-This sequence grows in good manner. If it stops growing at some points, say, $\operatorname{Ker}F^n=\operatorname{Ker}F^{n+1}$ for some $n\inz_0^+$, then it stops forever 
+This sequence grows in good manner. If it stops growing at some points, say, $\operatorname{Ker}T^n=\operatorname{Ker}T^{n+1}$ for some $n\inz_0^+$, then it stops forever 
 \begin{align*}
-\operatorname{Ker}F^n = \operatorname{Ker}F^{n+1}= \operatorname{Ker}F^{n+2}= \operatorname{Ker}F^{n+3}= \cdots 
+\operatorname{Ker}T^n = \operatorname{Ker}T^{n+1}= \operatorname{Ker}T^{n+2}= \operatorname{Ker}T^{n+3}= \cdots 
 \end{align*}
 In particular, by counting dimensions, we know that this  sequence must stops before reaching to the dimension of $V$ in the sense that  
  \begin{align}
 \label{stop}
-\operatorname{Ker}(F^{\operatorname{dim}V})=\operatorname{Ker}(F^{\operatorname{dim}V+1})
+\operatorname{Ker}(T^{\operatorname{dim}V})=\operatorname{Ker}(T^{\operatorname{dim}V+1})
 \end{align}
-\myref{Equation}{stop} allows us to elegantly unify distinct notions within a single framework. For instance, for each eigenvalue \( \lambda \), we define the \textbf{generalized eigenspace} \( G(\lambda, F) \) as  
+\myref{Equation}{stop} allows us to elegantly unify distinct notions within a single framework. For instance, for each eigenvalue \( \lambda \), we define the \textbf{generalized eigenspace} \( G(\lambda, T) \) as  
 \begin{align*}
-G(\lambda, F) \triangleq  \operatorname{Ker} (F - \lambda I)^{\operatorname{dim}V}
+G(\lambda, T) \triangleq  \operatorname{Ker} (T - \lambda I)^{\operatorname{dim}V}
 \end{align*}
-Similarly, we say that \( F \) is \textbf{nilpotent} if  
+Similarly, we say that \( T \) is \textbf{nilpotent} if  
 \begin{align*}
-\operatorname{Ker}F^{\operatorname{dim}V}=V
+\operatorname{Ker}T^{\operatorname{dim}V}=V
 \end{align*}
-\end{mdframed}
 \begin{theorem}
 \label{LIGE}
-\textbf{(Linear Independence of Generalized Eigenspaces)} Let $F\in \operatorname{End}(V)$. If $v_1,\dots ,v_n$ are generalized eigenvectors with respect to distinct eigenvalues $\ld_1,\dots ,\ld _n$, then they are linearly independent. 
+\textbf{(Linear Independence of Generalized Eigenspaces)} If $v_1,\dots ,v_n$ are generalized eigenvectors of $T$ with respect to distinct eigenvalues $\ld_1,\dots ,\ld _n$, then they are linearly independent. 
 \end{theorem}
 \begin{proof}
 Suppose 
@@ -139,70 +118,103 @@ Suppose
 \label{a1v1}
 a_1v_1 + \cdots + a_nv_n=0
 \end{align}
-Because $v_1$ is a generalized eigenvector, we may let $k$ be the largest non-negative integer such that  $(F-\ld_1 I)^kv_1\neq 0$, so that  
+Because $v_1$ is a generalized eigenvector, we may let $k$ be the largest non-negative integer such that  $(T-\ld_1 I)^kv_1\neq 0$, so that  
 \begin{align*}
-w\triangleq (F-\ld_1 I)^k v_1\text{ is an eigenvector with eigenvalue  $\ld_1$. }
+w\triangleq (T-\ld_1 I)^k v_1\text{ is an eigenvector with eigenvalue  $\ld_1$. }
 \end{align*}
-Now, noting that the set of endomorphism $\set{(F-\ld_1I)^k,(F-\ld_2I)^{\operatorname{dim}V},\dots ,(F-\ld_nI)^{\operatorname{dim}V}}$  indeed commutes, we may apply the endomorphism $(F-\ld_1I)^k(F-\ld_2I)^{\operatorname{dim}V}\cdots (F-\ld_n I)^{\operatorname{dim}V}$ onto both sides of \myref{Equation}{a1v1} and get 
+Noting that the collection  $\set{(T-\ld_1I)^k,(T-\ld_2I)^{\operatorname{dim}V},\dots ,(T-\ld_nI)^{\operatorname{dim}V}}$ of endomorphisms indeed commutes, we may apply the endomorphism $(T-\ld_1I)^k(T-\ld_2I)^{\operatorname{dim}V}\cdots (T-\ld_n I)^{\operatorname{dim}V}$ onto both sides of \myref{Equation}{a1v1} and get 
 \begin{align*}
-  0&=a_1(F-\ld_2I)^{\operatorname{dim}V}\cdots (F-\ld_nI)^{\operatorname{dim}V}w \\
+  0&=a_1(T-\ld_2I)^{\operatorname{dim}V}\cdots (T-\ld_nI)^{\operatorname{dim}V}w \\
   &=a_1(\ld_1-\ld_2)^{\operatorname{dim}V}\cdots (\ld_1-\ld_n)^{\operatorname{dim}V}w
 \end{align*}
-Which implies $a_1=0$. WLOG, we have shown $a_1=\cdots = a_n=0$.  
+which implies $a_1=0$. WLOG, we have shown $a_1=\cdots = a_n=0$.  
 \end{proof}
-\begin{mdframed}
 \myref{Equation}{stop} together with Rank-Nullity Theorem give us a theoretically crucial decomposition of $V$ 
 \begin{align}
 \label{VFn}
-V= \operatorname{Ker}F^{\operatorname{dim}V} \oplus  \operatorname{Im}F^{\operatorname{dim}V}
+V= \operatorname{Ker}T^{\operatorname{dim}V} \oplus  \operatorname{Im}T^{\operatorname{dim}V}
 \end{align}
-As we will later see, \myref{Decomposition}{VFn} plays a central role in the proof for \myref{Theorem}{DiGE}. 
-\end{mdframed}
+As we will later see, \myref{Decomposition}{VFn} plays a central role in decomposition of $V$ into generalized eigenspace of $T$ if  $\F$ is algebraically closed. See \myref{Theorem}{DiGE}. 
 \begin{theorem}
 \label{DiGE}
-\textbf{(Decomposition into Generalized Eigenspaces)} Let $V$ be a finite dimensional complex vector space, let $F \in \operatorname{End}(V) $, and let $\set{\ld _1,\dots ,\ld _m}$ be the set of eigenvalues of $F$. We have 
+\textbf{(Decomposition into Generalized Eigenspaces)} If $\F$ is algebraically closed, then clearly $T$ has some eigenvalues. If we let $\set{\ld _1,\dots ,\ld _m}$ be the set of eigenvalues of $T$, we have 
  \begin{align*}
-V= G(\ld_1,F)\oplus \cdots \oplus G(\ld_m,F)
+V= G(\ld_1,T)\oplus \cdots \oplus G(\ld_m,T)
 \end{align*}
 \end{theorem}
 \begin{proof}
 This is proved by induction on the dimension of $V$. The two base cases correspond to the 0-dimensional and 1-dimensional cases, both of which are trivial. Now, suppose that such a decomposition always exists for complex vector spaces of strictly smaller dimension than $V$ and their endomorphisms. By \myref{Equation}{VFn}, we may decompose $V$ into 
 \begin{align*}
-  V= G(\ld_1,F) \oplus U,\quad\text{ where }U=\operatorname{Im}(F-\ld_1)^{\operatorname{dim}V}. 
+  V= G(\ld_1,T) \oplus U,\quad\text{ where }U=\operatorname{Im}(T-\ld_1)^{\operatorname{dim}V}. 
 \end{align*}
-Noting that $F$ and  $F-\ld_1I$ commutes, we conclude that $U$ is stable under $F$. Therefore, the restriction $F |_U$ defines an endomorphism  $F|_U \in \operatorname{End}(U)$. By inductive hypothesis, we may decompose $U$ into 
+Noting that $T$ and  $T-\ld_1I$ commutes, we conclude that $U$ is stable under $T$. Therefore, the restriction $T |_U$ defines an endomorphism  $T|_U \in \operatorname{End}(U)$. By inductive hypothesis, we may decompose $U$ into 
  \begin{align*}
-U= G(\ld _2,F|_U)\oplus   \cdots \oplus  G(\ld _m,F|_U)
+U= G(\ld _2,T|_U)\oplus   \cdots \oplus  G(\ld _m,T|_U)
 \end{align*}
 WLOG, it remains to show 
 \begin{align*}
-G(\ld _2,F|_U)=G(\ld _2,F)
+G(\ld _2,T|_U)=G(\ld _2,T)
 \end{align*}
-Arbitrary select $v\in G(\ld _2,F)$. We may decompose $v=a_1v_1+\cdots + a_mv_m$, where $v_1\in G(\ld _1,F)$ and $v_n\in G(\ld _n ,F|_U)$ for $2\leq n\leq m$. Because $(F-\ld _2I)^{\operatorname{dim}V}v_2=0$, we know 
+Arbitrary select $v\in G(\ld _2,T)$. We may decompose $v=a_1v_1+\cdots + a_mv_m$, where $v_1\in G(\ld _1,T)$ and $v_n\in G(\ld _n ,T|_U)$ for $2\leq n\leq m$. Because $(T-\ld _2I)^{\operatorname{dim}V}v_2=0$, we know 
 \begin{align*}
-  (F-\ld_2I)^{\operatorname{dim}V}(a_1v_1+ a_3v_3+\cdots + a_mv_m)=0
+  (T-\ld_2I)^{\operatorname{dim}V}(a_1v_1+ a_3v_3+\cdots + a_mv_m)=0
 \end{align*}
-This implies $a_1v_1+a_3v_3+\cdots + a_mv_m \in G(\ld_2,F)$. It now follows from \myref{Theorem}{LIGE} that $a_1=a_3=\cdots = a_m=0$. We have shown $v\in G(\ld_2,F|_U)$.
+This implies $a_1v_1+a_3v_3+\cdots + a_mv_m \in G(\ld_2,T)$. It now follows from \myref{Theorem}{LIGE} that $a_1=a_3=\cdots = a_m=0$. We have shown $v\in G(\ld_2,T|_U)$.
 \end{proof} 
-\begin{mdframed}
-Given some finite dimensional vector space $V$ and some $F \in \operatorname{End}(V)$, we are particularly concerned with the existence and uniqueness of the \textbf{Jordan-Chevalley decomposition} of $F$, i.e, some diagonalizable $S \in \operatorname{End}(V)$ such that 
+Given some finite dimensional vector space $V$ and some $T \in \operatorname{End}(V)$, we are particularly concerned with the existence and uniqueness of the \textbf{Jordan-Chevalley decomposition} of $T$, i.e, some diagonalizable $S \in \operatorname{End}(V)$ such that 
 \begin{enumerate}[label=(\alph*)]
-  \item $N\triangleq F-S$ is nilpotent. 
+  \item $N\triangleq T-S$ is nilpotent. 
   \item $S$ and  $N$ commute. 
 \end{enumerate}
-If $V$ is over $\C$, then \myref{Theorem}{DiGE} assert the existence of such decomposition by letting $S$ maps $v\in G(\ld_i,F)$ to $\ld_iv$. To see such decomposition is unique, let $S\in \operatorname{End}(V)$ be some Jordan-Chevalley decomposition of $F$ and decompose $V$ into 
+If $V$ is over an algebraically closed field $\overline{\F}$, then \myref{Theorem}{DiGE} assert the existence of such decomposition by requiring $S$ to map $v\in G(\ld_i,T)$ to $\ld_iv$. To see such decomposition is unique, let $S\in \operatorname{End}(V)$ be some Jordan-Chevalley decomposition of $T$ and decompose $V$ into 
 \begin{align*}
-V=V_1\oplus  \cdots \oplus  V_k
+V=E(\ld_1,S)\oplus  \cdots \oplus  E(\ld_k , S)
 \end{align*}
-where $V_i$ are the eigenspaces of $S$ corresponding to distinct eigenvalues $\ld_i$. Because $F,S$ commute and $F-S$ is nilpotent, we may conclude that  $\ld_i$ are indeed eigenvalues of $F$ and 
+where $E(\ld _i,S)$ are the eigenspaces of $S$ corresponding to distinct eigenvalues $\ld_i$. Because $T,S$ commute and $T-S$ is nilpotent, we may conclude that $\ld_i$ are indeed the eigenvalues of $F$ and  
 \begin{align*}
-V_i \subseteq G(\ld_i,F)\text{ for all }i
+E(\ld _i ,S) \subseteq G(\ld_i,T)\text{ for all }i
 \end{align*}
-This together with \myref{Theorem}{DiGE} shows the uniqueness of Jordan-Chevalley decomposition of endomorphisms of finite dimensional vector spaces over $\C$. 
-\end{mdframed}
+This together with the decomposition we obtained from \myref{Theorem}{DiGE}: 
+\begin{align*}
+V= G(\ld_1,T)\oplus \cdots \oplus G(\ld_m,T)
+\end{align*}
+shows the uniqueness of Jordan-Chevalley decomposition. Interestingly, we may also take a completely algebraic approach to prove
+\begin{enumerate}[label=(\alph*)]
+  \item the existence of Jordan-Chevalley decomposition. 
+  \item the uniqueness of Jordan-Chevalley decomposition. 
+  \item that $S=p(T)$ for some polynomial $p \in \overline{\F}[x]$. 
+\end{enumerate}
+without ever invoking \myref{Theorem}{LIGE}, \myref{Theorem}{DiGE}, nor any result that depends on them. The argument proceeds as follows: Because \( \operatorname{End}(V) \) is finite-dimensional, the minimal polynomial \( m \) exists. By the Fundamental Theorem of Algebra, we can factor \( m \) into linear terms:
+\begin{align*}
+m(x) = (x - \xi_1)^{r_1} \cdots (x - \xi_k)^{r_k}.
+\end{align*}
+Consider the polynomials \( f_i \) defined by
+\begin{align*}
+f_i(x) \triangleq \prod_{j=1;j\neq i}^{k} (x - \xi_j)^{r_j}.
+\end{align*}
+Since \( \set{f_1, \dots, f_k} \) are coprime, Bézout's identity says that there exist polynomials \( q_i \in \C[x] \) such that
+\begin{align*}
+1 = \sum_{i=1}^{k} q_i f_i.
+\end{align*}
+Define \( \pi_i \in \operatorname{End}(V) \) by \( \pi_i \triangleq (q_i f_i)(T) \). Because \( m \) divides \( f_i f_j \) for \( i \neq j \), we conclude that
+\begin{align*}
+\pi_i \pi_j = 0 \quad \text{for } i \neq j.
+\end{align*}
+This, together with \( \sum \pi_j = 1 \), shows that \( \pi_i \) are \textbf{projections}:
+\begin{align*}
+\pi_i^2 = \pi_i \quad \text{for all } i.
+\end{align*}
+It is clear that \( V \) is a direct sum of the images of these projections. Define
+\begin{align*}
+S \triangleq \sum_{i=1}^{k} \xi_i \pi_i.
+\end{align*}
+Since \( S \) is a polynomial in \( T \), we conclude that \( S \) and \( N \) commute. The fact that \( N \) is nilpotent follows from the definitions of \( f_i \). We now prove the uniqueness. Let $T=S'+N'$ be another Jordan-Chevalley decomposition. We are required to prove $S-S'=0$. Clearly $\set{S,N,S',N'}$ all commute with each other. This implies $S-S'=N-N'$ is nilpotent. Note that  $S-S'$ is diagonalizable\footnote{Two commuting linear operator $S,S'$ over finite dimensional vector space are always simultaneously diagonalizable. Prove this by first proving that $E(\ld ,S)$ is stable under $S'$ and then consider  $V=E(\ld_1,S)\oplus  \cdots \oplus   E(\ld_k,S)$} . This now implies $S-S'=0$, since no units are zero-divisor. 
+
+
+\section{Jordan Form}
 \begin{theorem}
 \label{JfNO}
-\textbf{(Jordan forms of Nilpotent Operators)} Let $V$ be a finite-dimensional complex vector space, and let  $N \in \operatorname{End}(V)$ be nilpotent. There exists some $v_1,\dots ,v_m \in V$ and nonnegative integer $n_1,\dots ,n_m$ such that 
+\textbf{(Jordan forms of Nilpotent Operators)} Let $V$ be a finite-dimensional vector space, and let  $N \in \operatorname{End}(V)$ be nilpotent. There exists some $v_1,\dots ,v_m \in V$ and nonnegative integer $n_1,\dots ,n_m$ such that 
 \begin{enumerate}[label=(\alph*)]
   \item $N^{n_1}v_1,\dots ,Nv_1,v_1,\dots ,N^{n_m}v_m,\dots ,Nv_m,v_m$ form a basis for $V$. 
   \item $N^{n_1+1}v_1=\cdots = N^{n_m+1}v_m=0$. 
@@ -239,71 +251,26 @@ for $V$. Because $\set{N^{k_1+1}u_1,\dots ,N^2u_1,Nu_1,\dots ,N^{k_n+1}u_n,\dots
 \end{align*}
 so that  \myref{Set}{set1} form a desired basis for $V$.    
 \end{proof}
-\begin{mdframed}
-Let $V$ be some finite-dimensional complex vector space and $F\in \operatorname{End}(V)$. Let $S+N$ be the Jordan-Chevalley decomposition of  $F$. The basis for $V$ from  \myref{Theorem}{JfNO} is called a \textbf{Jordan basis}. If we express $F$ as a matrix with respect to this basis, we say that matrix is in its \textbf{Jordan form}. The Jordan form looks like 
+Let $V$ be some $n$-dimensional $\F$-vector space and $F\in \operatorname{End}(V)$, and let $[F]\in M_n(\F)$ be some matrix representation of $F$ with respect to some basis. Let  $\overline{\F}$ be the algebraically closure of $\F$, and consider the Jordan-Chevalley decomposition        $[F]=S+N$, where $S,N \in M_n(\overline{\F})$. By \myref{Theorem}{DiGE}, we have 
 \begin{align*}
-\begin{bmatrix}
-  J_1 & & \\
-      & \ddots & \\
-      & & J_r
-\end{bmatrix}
+  (\overline{\F})^n= G(\ld _1,F)\oplus \cdots \oplus G(\ld _m ,F)
 \end{align*}
-where each block matrix looks like 
-\begin{align*}
-J =  \begin{bmatrix}
-  \ld_i & 1 & & \\
-        & \ld_i & \ddots & \\
-        & & \ddots & 1 \\
-        & & & \ld_i
-\end{bmatrix}
-\end{align*}
-Let $\ld_1,\dots ,\ld_m$ be the distinct eigenvalues of $F$, and let  $r_i$ be the dimension of the largest Jordan block with eigenvalue  $\ld_i$. It is clear that the \textbf{minimal polynomial} of $F$, some polynomial $m$ of smallest degree such that $m(F)=0$, take the form 
+Because both $[F]$ and  $S$ map  $G(\ld _j,F)$ into themselves, we know $N$ also maps  $G(\ld _j,F)$ into themselves. Therefore, we may apply \myref{Theorem}{JfNO} to $N |_{G(\ld_j,F)}$ and get a \textbf{Jordan basis}, here an invertible matrix $P\in M_n(\overline{\F})$ such that $P^{-1}[F]P$ is in the \textbf{Jordan form}. Let $\ld_1,\dots ,\ld_m$ be the distinct eigenvalues of $[F]$, and let $r_i$ be the dimension of the largest Jordan block with eigenvalue  $\ld_i$. It is clear that the \textbf{minimal polynomial}\footnote{It is worth mentioning that we didn't prove that the minimal polynomial of $F$ is invariant under field extension. To prove such, one need to show that the minimal polynomial $m$ of $[F]$ over $\overline{\F}$ has only $\F$ coefficients. This follows from noting that if we write $m=m_1+c_2m_2+\cdots + c_km_k$ where $m_1,\dots ,m_k \in \F[x]$, then $m_2=\cdots=m_k=0$, since they have degree strictly smaller than $m$, as minimal polynomial is defined to be monic.} of $F$, some polynomial $m$ of smallest degree such that $m(F)=0$, take the form 
 \begin{align*}
 m(x)=(x-\ld_1)^{r_1}\cdots (x-\ld_m)^{r_m} 
 \end{align*}
-It is also clear that even if $V$ is over $\R$ instead of  $\C$, we have the  \textbf{Cayley-Hamilton Theorem}, that is, $p(F)=0$, where $p$ is the characteristic polynomial of  $F$.\\
-
-Interestingly, we may also take a completely algebraic approach to construct the Jordan-Chevalley decomposition \( S, N \) and show that they are polynomials in \( F \), without ever invoking \myref{Theorem}{LIGE}, \myref{Theorem}{DiGE}, nor any result that depends on them. The argument proceeds as follows: \\
-
-Because \( \operatorname{End}(V) \) is finite-dimensional, the minimal polynomial \( m \) exists. By the Fundamental Theorem of Algebra, we can factor \( m \) into linear terms:
-\begin{align*}
-m(x) = (x - \xi_1)^{r_1} \cdots (x - \xi_k)^{r_k}.
-\end{align*}
-Consider the polynomials \( f_i \) defined by
-\begin{align*}
-f_i(x) \triangleq \prod_{j=1;j\neq i}^{k} (x - \xi_j)^{r_j}.
-\end{align*}
-Since \( \set{f_1, \dots, f_k} \) are coprime, by Bézout's identity, we may find polynomials \( q_i \in \C[x] \) such that
-\begin{align*}
-1 = \sum_{i=1}^{k} q_i f_i.
-\end{align*}
-Define \( \pi_i \in \operatorname{End}(V) \) by \( \pi_i \triangleq (q_i f_i)(F) \). Because \( m \) divides \( f_i f_j \) for \( i \neq j \), we conclude that
-\begin{align*}
-\pi_i \pi_j = 0 \quad \text{for } i \neq j.
-\end{align*}
-This, together with \( \sum \pi_j = 1 \), shows that \( \pi_i \) are \textbf{projections}:
-\begin{align*}
-\pi_i^2 = \pi_i \quad \text{for all } i.
-\end{align*}
-It is clear that \( V \) is a direct sum of the images of these projections. Define
-\begin{align*}
-S \triangleq \sum_{i=1}^{k} \xi_i \pi_i.
-\end{align*}
-Since \( S \) is a polynomial in \( F \), we conclude that \( S \) and \( N \) commute. The fact that \( N \) is nilpotent follows from the definition of \( f_i \).
-\end{mdframed}
-\section{Spectral}
-\begin{mdframed}
-  By a \textbf{norm}, we mean some \textbf{positive-definite} functional $\norm{\cdot}:V\to \R$ that satisfies \textbf{absolute homogeneity} and \textbf{triangle inequality}. In this context, for $\norm{\cdot}$ to be positive-definite, it must satisfy 
+This give a proof of the  \textbf{Cayley-Hamilton Theorem}, that is, $p(F)=0$, where $p$ is the characteristic polynomial of  $F$.
+\section{Spectral Theorem}
+\label{Spectral Theorem}
+Let  $V$ be a $\F$-vector space where $\F$ is a subfield of $\C$. By a \textbf{norm} on $V$, we mean some \textbf{positive-definite} functional $\norm{\cdot}:V\to \R$ that satisfies \textbf{absolute homogeneity} and \textbf{triangle inequality}. In this context, for $\norm{\cdot}$ to be positive-definite, it must satisfy 
 \begin{align*}
   \norm{v}=0 \implies  v=0
 \end{align*}
 Observing that  
 \begin{align*}
-\norm{0}=\norm{0+v}\leq \norm{0}+\norm{v}\text{ for all $v\in V$ }
+\norm{0}=\norm{0+v}\leq \norm{0}+\norm{v},\quad \text{for all $v\in V$ }
 \end{align*}
-we see norm must also be nonnegative.\\
-
-By an \textbf{inner product}, we mean some \textbf{positive-definite}  map $\langle \cdot,\cdot\rangle : V^2 \rightarrow \F$ that is linear in the first argument and satisfies \textbf{conjugate symmetry}: 
+we see norm must also be nonnegative. By an \textbf{inner product} on $V$, we mean some \textbf{positive-definite}  map $\langle \cdot,\cdot\rangle : V^2 \rightarrow \F$ that is linear in the first argument and satisfies \textbf{conjugate symmetry}: 
 \begin{align*}
 \langle v,w\rangle = \overline{\langle w,v\rangle }\quad\text{for all }v,w \in V
 \end{align*}
@@ -325,13 +292,13 @@ f(v)\triangleq \sqrt{\langle v,v\rangle }
 \end{align*}
 indeed satisfies triangle inequality, thus forming a norm. In addition, given an endomorphism $T$ of some finite-dimensional complex vector space $V$, by applying Gram-Schmidt process to a Jordan basis, we get an orthogonal basis under which $T$ becomes an upper triangular matrix, called its \textbf{Schur's form}.\\
 
-Let $V,W$ be two inner product space over  $\F$, and let  $T:V\rightarrow W$ be some linear map. If some linear map $T^\dagger:W\rightarrow V$ satisfies 
+Let $V,W$ be two inner product space over  $\F$, and let  $F:V\rightarrow W$ be some linear map. If some linear map $F^\dagger:W\rightarrow V$ satisfies 
 \begin{align*}
-\langle Tv,w\rangle = \langle v,T^\dagger w\rangle \quad\text{for all }v\in V,w\in W, 
+\langle Fv,w\rangle = \langle v,F^\dagger w\rangle \quad\text{for all }v\in V,w\in W, 
 \end{align*}
-we say $T^\dagger $ is an  \textbf{adjoint} of $T$. If both $V$ and $W$ are finite-dimensional, then $T^\dagger $ exists uniquely, and its matrix representation is always the complex conjugate of that of $T$, regardless of the choices of bases. It is obvious that the double adjoint of a linear map between two finite-dimensional inner product spaces over $\F$ is itself.\\
+we say $F^\dagger $ is an  \textbf{adjoint} of $F$. If both $V$ and $W$ are finite-dimensional, then $F^\dagger $ exists uniquely, and its matrix representation is always the complex conjugation of that of $F$, regardless of the choices of bases. It is obvious that the double adjoint of a linear map between two finite-dimensional inner product spaces over $\F$ is itself. \\
 
-If the underlying field is $\C$ and $T$ is \textbf{normal}, then by direct computation, we see that its Schur's form must be diagonal. This argument is called \textbf{Spectral Theorem for complex finite-dimensional vector space}. If the underlying field is $\R$, then $T$ being normal is not enough for $T$ to be orthogonally diagonalized, since we do not have Schur's decomposition in the first place.\footnote{Actually, we do have Schur's decomposition in the sense that we may first decompose a real matrix into a complex Jordan matrix, and then applying the Gram-Schmidt process. Yet, because the matrix representation of adjoint of $T$ when the underlying field is  $\R$ is just the transpose of that of $T$ instead of  the conjugate transpose, direct computation yield nothing.} 
+Given finite dimensional $\C$-vector space  $V$ and  $T \in \operatorname{End}(V)$, if $T$ is \textbf{normal}, i.e. $T$ commutes with its adjoint, then by direct computation, we see that its Schur's form must be diagonal. This result is called \textbf{Spectral Theorem for complex finite-dimensional vector space}. If $V$ is over $\R$ instead of  $\C$, then $T$ being normal is not enough for $T$ to be orthogonally diagonalized, since we do not have Schur's decomposition in the first place.\footnote{Actually, we do have Schur's decomposition in the sense that we may first decompose a real matrix into a complex Jordan matrix, and then applying the Gram-Schmidt process. Yet, because the matrix representation of adjoint of $T$ when the underlying field is  $\R$ is just the transpose of that of $T$ instead of  the conjugate transpose, direct computation yield nothing.} 
 \end{mdframed}
 \begin{theorem}
   \textbf{(Spectral Theorem for real finite-dimensional vector space)} Let $V$ be a finite-dimensional real vector space, and let $T \in \operatorname{End}(V)$. If $T$ is \textbf{self-adjoint}, then there exists an orthogonal eigenbasis for $V$ with  respect to $T$. 
@@ -354,14 +321,154 @@ for some real $b_i,c_i,\ld_i$ such that $b_i^2<4c_i$ for all  $i$. Because $T$ i
 \end{align*}
 This implies $T^2+b_iT+c_iI$ are invertible, which implies for some $j$, the map $T-\ld_j I$ is not invertible, i.e., for some $j$, the real number $\ld_j$ is an eigenvalue. 
 \end{proof}
+\section{SVD}
+\label{SVD}
+Let $V,W$ be two finite-dimensional inner product space over $\F$, where $\F=\C$ or  $\R$. Given linear $F:V\rightarrow W$, clearly $F^{\dagger }F\in \operatorname{End}(V)$ is self-adjoint. Therefore, by \customref{Spectral Theorem}{Spectral Theorem}, there exists some orthonormal eigenbasis $\alpha  $ of $V$ with respect to $F^{\dagger }F$.  Clearly, for every pair $v_1,v_2 \in \alpha  $, we have $\langle F(v_1),F(v_2)\rangle =0$ whether $F(v_1),F(v_2)$ are both nonzero or not. This implies that by deleting the zeros and negation of some elements, we may extend $\set{F(v)\in W: v \in \alpha  }$ to an orthonormal basis $\beta$ for $W$ such that every non-zero entry of the $\operatorname{dim}(V)$-by-$\operatorname{dim}(W)$ $\C$-matrix $[F]_{\alpha }^\beta $  is a positive real number and lie in the diagonal. This process is called the \textbf{singular value decomposition of $F$}.  
+
+\section{Appendix: Chinese Remainder Theorem and Bezout's Identity}
+\chapter{What you probably need to know}
 \section{Matrix Exponential}
-\begin{mdframed}
-Given some square matrix $A$ over  $\F$, we define its  \textbf{matrix exponential} by 
+Given two $n\times n$ square $\F$-matrices $A,B$, where $\F=\C$ or  $\R$, by Cauchy-Schwarz inequality, we see that the Frobenius norm
 \begin{align*}
-e^A \triangleq \sum_{n=0}^{\infty} \frac{A^n}{n!}
+  \norm{AB}^2 &= \sum_{i,j} \Big(\sum_k \abso{A_{i,k}B_{k,j}} \Big)^2 \\
+&\leq \sum_{i,j}  \Big(\sum_k \abso{A_{i,k}}^2\Big) \Big( \sum_k \abso{B_{k,j}}^2\Big) \\
+&=\sum_{i,j,k,l} \abso{A_{i,k}}^2 \abso{B_{j,l}}^2 = \sum_{i,k} \abso{A_{i,k}}^2 \sum_{j,l} \abso{B_{j,l}}^2 = \norm{A}^2 \norm{B}^2
 \end{align*}
-It 
-\end{mdframed}
+is submultiplicative. Therefore, when we define   \textbf{matrix exponential} by 
+\begin{align*}
+e^A \triangleq \sum_{k=0}^{\infty} \frac{A^k}{k!}
+\end{align*}
+we see that $e^{At}$ converges uniformly in $t\inr$ on any bounded interval. Because of such, we may perform term-by-term differentiation and get 
+\begin{align*}
+\frac{de^{At}}{dt}=Ae^{At}
+\end{align*}
+This implies that for any first order linear system of ODE: 
+\begin{align*}
+\begin{cases}
+  y'(t)=Ay(t)\text{ \textbf{(DE)} } \\
+  y(0)=y_0\text{ \textbf{(IV)} }
+\end{cases}
+\end{align*}
+by ODE uniqueness theorem, the solution must have the closed form: 
+\begin{align*}
+y(t)\triangleq e^{At}y_0
+\end{align*}
+Moreover, because every general solution to $y'=Ay$ has an initial value at $0$, we now see that the general solution space is just the column space of $e^{At}$. We close this section by showing how to compute the matrix exponential using Jordan decomposition. From now on, suppose $A \in M_n(\C)$. \\
+
+
+Let $A \in M_n(\F)$. The first step is to compute and factorize the characteristic polynomial of $A$, and   
+
+
+Given square matrix $A\in M_{n\times n}(\F)$ with Jordan decomposition: 
+\begin{align*}
+A=QJQ^{-1}=Q(S+N)Q^{-1}\text{ where diagonal $S$ and nilpotent  $N$ commutes. }
+\end{align*}
+Because the series $\sum  \frac{X^n}{n!}$ always absolutely converge, and because $S$ and $N$ commute, we may copy the argument of Merten's Theorem for Cauchy product to see that  
+\begin{align*}
+e^{A}=Qe^{S+N}Q^{-1}=Q(e^{S}e^{N})Q^{-1}
+\end{align*}
+Here the term $e^S$ and  $e^N$ all can be easily computed. We have 
+ \begin{align*}
+S=\begin{bmatrix}
+  \ld_1 & & \\
+        & \ddots & \\
+        & & \ld_n
+\end{bmatrix} \implies e^S = \begin{bmatrix}
+  e^{\ld _1} & & \\
+             & \ddots & \\
+             & & e^{\ld _n}
+\end{bmatrix}\text{ and }e^N= \sum_{k=0}^n \frac{N^k}{k!}
+\end{align*}
+\section{Tensor Product}
+In the most general sense, the \textbf{tensor product} of two $\F$-vector space $V_1,V_2$ is merely a  $\F$-vector space  $X$ associated with a $\F$-bilinear map  $g:V_1\times V_2\rightarrow X$ that satisfies the \textbf{universal property} of tensor product: For every $\F$-bilinear map  $f:V_1\times V_2 \rightarrow W$, there exists a unique $\F$-linear map  $\tilde{f}:X\rightarrow W$ such that $f= \tilde{f}\circ g$.  \\
+
+It is routine to check that the universal property of tensor product defines vector space up to an isomorphism compatible with itself. More precisely, if $Y,h:V_1 \times V_2 \rightarrow Y$ also satisfies the universal property, then there exists an isomorphism $f:X\rightarrow Y$ such that $f\circ g=h$. \\
+
+
+Because of such, we often write $X$ simply as  $V_1 \otimes V_2$ and denote $g(v_1,v_2)$ by $v_1 \otimes  v_2$. One common construction of the tensor product is to define  $V_1 \otimes  V_2$ as the space of $\F$-bilinear maps from  $V_1^*\times V_2^*$ to $\F$ and to define the $\F$-bilinear map by $(v_1\otimes  v_2)(\phi_1, \phi_2)\triangleq \phi_1(v_1) \phi_2(v_1)$. \\
+
+At this point, one may already observe that we may restate the universal property of tensor product as follows. Given a finite collection $\set{V_1,\dots ,V_n}$ of $\F$-vector spaces, we say the $\F$-vector space $V_1\otimes  \cdots \otimes  V_n$ and the $\F$-multilinear map $\otimes  :V_1\times \cdots \times V_n \rightarrow V_1 \otimes  \cdots \otimes  V_n$ satisfies the universal property if for every $\F$-multilinear map  $f:V_1\times \cdots \times V_n \rightarrow W$, there exists a unique $\F$-linear map  $\tilde{f}:V_1 \otimes  \cdots \otimes  V_n$ such that $\tilde{f}(v_1\otimes  \cdots \otimes  v_n)=f(v_1,\dots ,v_n)$ for every  $(v_1,\dots ,v_n)\in V_1 \times \cdots \times V_n$.  \\
+
+Even thought in general consensus, the construction of the tensor product is unimportant, here, we make the remark that the construction we gave shows that if $B_j$ are finite bases for $V_j$, then  $\set{v_1\otimes \cdots \otimes  v_n \in V_1 \otimes  \cdots \otimes  V_n: v_j \in B_j\text{ for all }j}$ forms a basis for $V_1\otimes  \cdots \otimes  V_n$. In fact, this together with the universal property may be the only things about tensor product one will ever need to develop other properties of tensor products. 
+\section{Exterior Algebra}
+Let $V$ be some finite-dimensional $\F$-vector space. In this note, by the \textbf{exterior $n$-th power} $\extp^n V$ of $V$, we mean the space of the antisymmetric multilinear maps from $(V^*)^n$ to $\F$, together with a multilinear map $\wedge :V^n \rightarrow \extp^n V$ defined by 
+\begin{align*}
+  (v_1\wedge  \cdots \wedge  v_n )(\phi_1, \dots ,\phi_n)\triangleq \begin{vmatrix} 
+    \phi_1 v_1 & \cdots & \phi_1 v_n \\
+    \vdots & \ddots & \vdots \\
+    \phi_n v_1 & \cdots & \phi_n v_n 
+  \end{vmatrix}
+\end{align*}
+One may check that 
+\begin{enumerate}[label=(\alph*)]
+  \item $\wedge$ is itself antisymmetric. 
+  \item If $\set{v_1,\dots ,v_k}$ forms a basis for $V$, then  $\set{v_{i_1}\wedge  \cdots \wedge   v_{i_n} \in \extp^n V : 1\leq i_1 < \cdots < i_n  \leq k}$ forms a basis for $\extp^n V$.
+  \item $\extp^n V$ also satisfies its \textbf{universal property}: For every antisymmetric multilinear map $f:V^n \rightarrow W$, there exists a unique linear map $\tilde{f}$ such that $\tilde{f}= f \circ \wedge $.  
+\end{enumerate}
+Because of the universal property, after some tedious construction, we see that there exists some unique bilinear map $g:\extp^n V \times \extp^k V$ such that $g(v_1\wedge  \cdots \wedge  v_n, v_{n+1}\wedge  \cdots \wedge  v_{n+k})=v_1 \wedge  \cdots \wedge  v_{n+k}$ for all $(v_1,\dots ,v_{n+k})\in V^{n+k}$. Therefore, when we define the \textbf{exterior algebra of $V$} by
+\begin{align*}
+\extp V \triangleq \bigoplus_{n=0}^{\infty} \extp^n V
+\end{align*}
+where $\extp^0V= \F$ by convention, we see that $\extp V$ indeed have the structure of an associative $\F$-algebra where the vector multiplication $\wedge  :\extp V \times \extp V \rightarrow \extp V $ satisfies 
+\begin{align}
+\label{vm}
+  (v_1 \wedge  \cdots \wedge  v_n  ) \wedge  (v_{n+1}\wedge  \cdots \wedge  v_{n+k})= v_1 \wedge  \cdots \wedge  v_{n+k}   
+\end{align}
+for all $(v_1,\dots ,v_{n+k})\in V^{n+k}$. Again, since both exterior power and exterior algebra are categorical concept, the fore tedious construction doesn't really matter. What matter is the property they always have, for example \myref{Equation}{vm}, the fact wedge products is antisymmetric, or the fact $\set{v_{i_1}\wedge  \cdots \wedge  v_{i_n} \in \extp^n V: 1\leq i_1 < \cdots < i_n \leq k  }$ forms a basis for $\extp^n V$. For future references, we close this section by giving two other important properties of the exterior algebra. 
+\begin{enumerate}[label=(\alph*)]
+  \item For arbitrary $\sigma \in S_n$ and arbitrary $e_1, \dots ,e_n \in V$, we have 
+    \begin{align*}
+    e_{\sigma (1)}\wedge  \cdots \wedge  e_{\sigma (n)}=  \operatorname{sgn}(\sigma)e_1 \wedge \cdots \wedge  e_{n}  
+    \end{align*}  
+  \item For arbitrary $e_1, \dots ,e_n \in V$ and arbitrary $A \in M_n(\F)$, we have  
+    \begin{align*}
+    f_i=  \sum_j A_{i,j}e_j \text{ for all }i\implies f_1\wedge  \cdots \wedge  f_n = \operatorname{det}(A) e_1 \wedge  \cdots \wedge  e_n    
+    \end{align*}
+\end{enumerate}
+\section{Pfaffian}
+Given an $2n\times 2n$ skew-symmetric matrix $A$ over $\F$, we define  its \textbf{Pfaffian} to be 
+\begin{align*}
+\operatorname{pf}(A)\triangleq \frac{1}{2^nn!}\sum_{\sigma \in S_{2n}} \operatorname{sgn}(\sigma) \prod_{k=1}^n A_{\sigma (2k-1), \sigma (2k)} 
+\end{align*}
+\begin{theorem}
+\label{EDoP}
+\textbf{(Equivalent Definition of Pfaffian)} If we define $\omega \in \extp^{2n} \F$ by 
+\begin{align*}
+\omega \triangleq  \sum_{i,j}A_{i,j}e_i \wedge  e_j 
+\end{align*}
+then 
+\begin{align*}
+\omega^n = 2^n n! \operatorname{pf}(A)e_1 \wedge  e_2 \wedge  \cdots \wedge  e_{2n}   
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $X$ be the set of functions that maps  $\set{1,\dots ,n}$ into $\set{1,\dots ,2n}\times \set{1,\dots ,2n}$ such that when we write $f(k)=(f_1(k),f_2(k))$ for $f \in X$, we have 
+\begin{align*}
+  \set{f_1(k):1\leq k\leq n } \cup  \set{f_2(k): 1 \leq k \leq n}= \set{1,\dots ,2n}
+\end{align*}
+Because the wedge product is antisymmetric, we have 
+\begin{align*}
+\omega^n = \sum_{f \in X} \Big(\prod_{k=1}^n A_{f_1(k),f_2(k)} \Big) e_{f_1(1)}\wedge  e_{f_2(1)}\wedge  \cdots \wedge  e_{f_n(1)} \wedge  e_{f_n(2)}    
+\end{align*}
+It remains to show 
+\begin{align*}
+ &\sum_{f \in X} \Big(\prod_{k=1}^n A_{f_1(k),f_2(k)} \Big) e_{f_1(1)}\wedge  e_{f_2(1)}\wedge  \cdots \wedge  e_{f_n(1)} \wedge  e_{f_n(2)}  \\
+ =& \sum_{\sigma \in S_{2n}} \operatorname{sgn}(\sigma) \Big(\prod_{k=1}^n A_{\sigma (2k-1), \sigma (2k)} \Big)  e_1 \wedge \cdots \wedge   e_{2n} 
+\end{align*}
+Define $\pfi: S_{2n}\rightarrow X$ by 
+\begin{align*}
+  (\pfi (\sigma))(k)\triangleq (\sigma (2k-1),\sigma (2k))
+\end{align*}
+Clearly, $\pfi$ is a bijection, and 
+\begin{align*}
+\prod_{k=1}^n A_{\sigma (2k-1), \sigma (2k)} = \prod_{k=1}^n A_{\pfi(\sigma)_1(k),\pfi(\sigma)_2(k)} 
+\end{align*}
+and 
+\begin{align*}
+e_{\pfi (\sigma)_1 (1)}\wedge  e_{\pfi (\sigma)_2(1)}\wedge  \cdots \wedge  e_{\pfi(\sigma)_1(n)}   \wedge  e_{\pfi (\sigma)_2(n)}= e_{\sigma(1)}\wedge  e_{\sigma (2)}\wedge  \cdots \wedge  e_{\sigma (2n)}   = \operatorname{sgn}(\sigma)e_1 \wedge  \cdots \wedge  e_{2n}  
+\end{align*}
+Above equation need to be explained in the section before.
+\end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam} 
 \section{Year 113}
 \begin{question}{}{}
@@ -464,18 +571,18 @@ T^\dagger (a_2x^2+a_1x+a_0)= \frac{15a_1}{2}(x^2- \frac{1}{3})+ (3a_0+a_2)x
 \end{proof}
 
 \begin{question}{}{}
-Let $V$ be the vector space of all $n$-by-$n$ square matrices over $\R$, and let $F:V\rightarrow \R$ be linear. Suppose  
+Let $V$ be the vector space of all $n$-by-$n$ square matrices over $\R$, and let $f:V\rightarrow \R$ be linear. Suppose  
 \begin{align*}
-F(AB)=F(BA)\text{ and }F(I)=n
+f(AB)=f(BA)\text{ and }f(I)=n
 \end{align*}
-for all $A,B \in V$. Show that $F$ is the trace function. 
+for all $A,B \in V$. Show that $f$ is the trace function. 
 \end{question}
 \begin{proof}
 Let $E_{i,j}\in V$ be the matrix whose only nonzero entry is $1$, located in the $i$-th row and $j$-th column. If $i \neq j$, then  
 \begin{align*}
 E_{i,i}E_{i,j}=E_{i,j}\text{ and }E_{i,j}E_{i,i}=0.
 \end{align*}
-This, together with the linearity of $F$, shows that $F$ depends only on the diagonal entries. For each permutation $\sigma \in S_n$, there exists a \textbf{permutation matrix} $C$ such that  
+This, together with the linearity of $f$, shows that $f$ depends only on the diagonal entries. For each permutation $\sigma \in S_n$, there exists a \textbf{permutation matrix} $C$ such that  
 \begin{align*}
 \text{The $\sigma(i)$-th row of }CA\text{ is identical to the $i$-th row of }A.
 \end{align*}
@@ -489,9 +596,9 @@ Therefore,
 \end{align*}
 Observing that  
 \begin{align*}
-F(CAC^{-1})=F(A(CC^{-1}))=F(A),
+f(CAC^{-1})=f(A(CC^{-1}))=f(A),
 \end{align*}
-we have shown that $F$ is stable under the permutation of diagonal entries. Define $\sigma \in S_n$ by  
+we have shown that $f$ is stable under the permutation of diagonal entries. Define $\sigma \in S_n$ by  
 \begin{align*}
 \sigma(i)\triangleq \begin{cases}
   i+1& \text{ if } 1\leq i<n, \\
@@ -500,7 +607,7 @@ we have shown that $F$ is stable under the permutation of diagonal entries. Defi
 \end{align*}
 Let $C_k$ be the permutation matrix corresponding to $\sigma^k$ for all $1\leq k\leq n$. The proof now follows from computing  
 \begin{align*}
-nF(A)= \sum_{k=1}^{n}F(C_kAC_k^{-1})=F\Big(\sum_{k=1}^n C_kAC_k^{-1}\Big)= F((\operatorname{tr}A)I)=n\operatorname{tr}A.
+nf(A)= \sum_{k=1}^{n}f(C_kAC_k^{-1})=f\Big(\sum_{k=1}^n C_kAC_k^{-1}\Big)= f((\operatorname{tr}A)I)=n\operatorname{tr}A.
 \end{align*}
 \end{proof}
 \begin{question}{}{}
@@ -754,14 +861,17 @@ Because $A$ and  $D$ has the same characteristic polynomial, we know the eigenva
 \end{align*}
 and \textbf{Spectral Theorem for complex finite-dimensional vector space}.
 \end{proof}
+\begin{mdframed}
+Remark: In my opinion, the next and final question of this exam is remarkably difficult compared to the rest in this note. Someone (not me) have posted this question on MSE and received multiple great answers. As it turned out, there are multiple (distinct) approaches. The following proof I provided is merely an expansion of one of them. The link to the post is here:\\
+
+https://math.stackexchange.com/q/4774695/1225113
+\end{mdframed}
 \begin{question}{}{}
 Let $A,B \in M_n(\C)$. Suppose that all of the eigenvalues of $A$ and  $B$ are positive real numbers. Prove 
  \begin{align*}
 A^4=B^4 \implies  A=B
 \end{align*}
 \end{question}
-\begin{proof}
-\end{proof}
 \section{Year 110}
 \begin{question}{}{}
 Let $V$ be a finite-dimensional complex inner product space. Let $d\in \operatorname{End}(V)$ satisfy 
@@ -798,28 +908,82 @@ P^t M P = I \text{ and }P^{-1}AP\text{ is diagonal }
 \end{align*}
 \end{question}
 \begin{proof}
-
+  Because $M$ is symmetric and positive definite, by \textbf{real spectral theorem}, there exists some symmetric positive definite \textbf{square root} $M^{\frac{1}{2}}$ of $M$.  Define 
+\begin{align*}
+B \triangleq M^{\frac{1}{2}}AM^{\frac{-1}{2}}
+\end{align*}
+The fact that $M^{\frac{1}{2}}$ is symmetric and $MAM^{-1}=A^t$ allow us to do computation to directly show that  $B$ is symmetric. Therefore, by real spectral theorem, there exists some orthonormal $Q$ such that  $QBQ^{-1}$ is diagonal. It is clear that $P\triangleq M^{\frac{-1}{2}}Q^{-1}$ makes $P^{-1}AP$ diagonal, and 
+\begin{align*}
+P^tMP= (M^{\frac{-1}{2}}Q^{-1})^t M M^{\frac{-1}{2}}Q^{-1}= Q M^{\frac{-1}{2}}MM^{\frac{-1}{2}}Q^{-1}=I
+\end{align*}
 \end{proof}
 \begin{question}{}{}
-Prove that invertible $M \in \operatorname{End}(\C^n)$ always has a square root. Let $n>2$, and let $N$ be a  $n\times n$ matrix over some field $K$ such that $N^n=0$ and $N^{n-1}\neq 0$. Prove that there is no $n\times n$ square matrix $B$ over $K$  such that $B^2=N$. 
+\begin{enumerate}[label=(\alph*)]
+  \item Prove that invertible $M \in \operatorname{End}(\C^n)$ always has a square root. 
+  \item  Let $n>2$, and let $N$ be a  $n\times n$ matrix over some field $\F$ such that $N^n=0$ and $N^{n-1}\neq 0$. Prove that there is no $n\times n$ square matrix $B$ over $\F$  such that $B^2=N$. 
+\end{enumerate}
 \end{question}
 \begin{proof}
-
+For (a), we only have to show that given nilpotent $P\in \operatorname{End}(\C^n)$, $I+P$ must have a square root, and then the rest of the proof will follow from decomposing $M$ into its Jordan form. Suppose $P$ has the nilpotency index $k$. That is, $k$ is the smallest integer such that $P^k=0$. Computing
+\begin{align*}
+  (a_0I+\cdots + a_k P^{k-1})^2= \sum_{j=0}^{k-1} \Big(\sum_{i=0}^j a_i a_{j-i}\Big)P^j 
+\end{align*}
+we see that the processing of finding $a_0,\dots ,a_k \inr$ to satisfy $(a_0I+\cdots +a_kP^{k-1})^2=I+P$ boils down to solving the following equations  
+\begin{align*}
+a_0^2=1 \longrightarrow 2a_0a_1=1 \longrightarrow 2a_0a_2+a_1^2=0\longrightarrow 2a_0a_3+2a_1a_2=0 \longrightarrow \cdots 
+\end{align*}
+in order, and they clearly have the solution 
+\begin{align*}
+a_0=1,a_1= \frac{1}{2},a_2 = \frac{-1}{8}, a_3= \frac{1}{16} ,a_4= \frac{-5}{128}, a_4 = \frac{7}{256},\dots 
+\end{align*}
+In fact, this solution is just the coefficients of Taylor expansion of $\sqrt{1+x}$ at $x=0$, and it has the closed form 
+ \begin{align*}
+a_j= \frac{\frac{1}{2}(\frac{1}{2}-1)\cdots (\frac{1}{2}-j+1)}{j!}
+\end{align*}
+For (b), assume for a contradiction that $B^2=N$, so  $B^{2n}=0$ and $B^{2n-2}\neq 0$. Various different methods show that given arbitrary nilpotent $F \in \operatorname{End}(V)$ on finite-dimensional $V$, the nilpotent index of $F$ must not be greater than  $\operatorname{Dim}(V)$. In our case, we see that $B^n=0$, which together with $n>2$ cause a contradiction to  $B^{2n-2}\neq 0$.  \footnote{\myref{Equation}{stop} and its previous observation is one way. Another is to decompose $F$ into its Jordan form, which is doable because every field have an algebraic closure.} 
 \end{proof}
 \begin{question}{}{}
-Let $V$ be a vector space over some field  $K$, and let  $u_1,\dots ,u_n \in V$ be linearly independent. Show that, for any $v_1,\dots ,v_n \in V$, the set $\set{u_1+\alpha v_1, \dots ,u_n+ \alpha v_n}$ is linearly independent for all but finitely many $\alpha \in K$.  
+Let $V$ be a vector space over some field  $\F$, and let  $u_1,\dots ,u_n \in V$ be linearly independent. Show that, for any $v_1,\dots ,v_n \in V$, the set $\set{u_1+t v_1, \dots ,u_n+ t v_n}$ is linearly independent for all but finitely many $t \in \F$.  
 \end{question}
 \begin{proof}
-
+Extend $\set{u_1,\dots ,u_n}$ to some basis  $\set{u_i:i \in I}$ for $V$. Because every vector can be expressed as a finite sum of basis element, by rearranging the index, we may write  for some large enough $r\inn$ that 
+ \begin{align*}
+v_j= \sum_{i=1}^r b_{i,j}u_i\text{ for all }1\leq j \leq n
+\end{align*}
+Clearly, $\set{u_1+t v_1,\dots ,u_n+t v_n}$ is linearly dependent only if the following determinant  
+\begin{align*}
+\begin{vmatrix} 
+  1+t b_{1,1} & t b_{1,2} & t b_{1,3} & \cdots  & t b_{1,n} \\
+  t b_{2,1} & 1+ t b_{2,2} & t b_{2,3} & \cdots &t b_{2,n}  \\
+  \vdots & \vdots & \ddots & \ddots &\vdots  \\
+  t b_{n,1} & t b_{n,2} & t b_{n,3} & \cdots  & 1+t b_{n,n}
+\end{vmatrix} 
+\end{align*}
+equals to $0$. This determinant is a polynomial in $t$ over $\F$, which only have finite number of roots, since $\F$ is a field. 
 \end{proof}
 \begin{question}{}{}
-Let $P$ be some  $n\times n$ matrix over some field. Show 
+Let $P$ be some  $n\times n$ matrix over some field $\F$. Show 
 \begin{align*}
 \operatorname{rank}(P)+\operatorname{rank}(I-P)= n \implies P^2=P
 \end{align*}
 \end{question}
 \begin{proof}
-
+Observe 
+\begin{align*}
+v=v- Pv= (I-P)v,\quad\text{ for all }v \in \operatorname{Ker}(P)
+\end{align*}
+This implies $\operatorname{Ker}(P)\subseteq \operatorname{Im}(I-P)$. It now follows from \textbf{Rank-Nullity Theorem} and  
+\begin{align*}
+\operatorname{rank}(P) + \operatorname{rank}(I-P)=n 
+\end{align*}
+that
+\begin{align*}
+\operatorname{Ker}(P)=\operatorname{Im}(I-P). 
+\end{align*}
+Therefore, 
+\begin{align*}
+  (P-P^2)v=P(I-P)v=0,\quad \text{ for all }v \in \F^n\text{ as desired. }
+\end{align*}
 \end{proof}
 \section{Year 109}
 \begin{question}{}{}
@@ -830,7 +994,30 @@ Let $A$ be a  $4\times 4 $ real symmetric matrix. Suppose that $1$ and $2$ are e
 \end{enumerate}
 \end{question}
 \begin{proof}
-
+Let $G(2,A)$ be the eigenspace of $A$ with eigenvalue  $2$. By applying \textbf{Real Spectral Theorem} to $A$, we know that  
+ \begin{align*}
+   \R^4=\operatorname{span}\set{(1,-1,-1,1)} \oplus G(2,A)
+\end{align*}
+forms an orthogonal decomposition. By computing the determinant, we know 
+\begin{align*}
+\set{(1,-1,-1,1),(0,1,0,0),(0,0,1,0),(0,0,0,1)}\text{ forms a basis for }\R^4
+\end{align*}
+Applying Gram-Schmidt process, we now see that 
+\begin{align*}
+  \set{\frac{1}{2\sqrt{3}}(1,3,-1,1),\frac{1}{\sqrt{6}}(1,0,2,1),\frac{1}{\sqrt{2}}(-1,0,0,1)}\text{ forms an orthonormal basis for }G(2,A). 
+\end{align*}
+Because 
+\begin{align*}
+  (1,0,0,0) \cdot \frac{1}{2}(1,-1,-1,1)= \frac{1}{2}
+\end{align*}
+we know the orthogonal decomposition of $(1,0,0,0)$ is exactly 
+\begin{align*}
+  (1,0,0,0)= \frac{1}{4}(1,-1,-1,1)+ (\frac{3}{4},\frac{1}{4},\frac{1}{4},\frac{-1}{4}). 
+\end{align*}
+Therefore 
+\begin{align*}
+A(1,0,0,0)^t= \frac{1}{4}(1,-1,-1,1)+ 2(\frac{3}{4},\frac{1}{4},\frac{1}{4},\frac{-1}{4})= (\frac{7}{4},\frac{1}{4},\frac{1}{4}, \frac{-1}{4})
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Let $A$ be a real  $n\times n$ matrix. Prove 
@@ -839,7 +1026,26 @@ Let $A$ be a real  $n\times n$ matrix. Prove
 \end{align*}
 \end{question}
 \begin{proof}
+  The question is immediately solved once we decompose $A$ into its \textbf{Jordan form}:
+\begin{align*}
+  A=PJP^{-1}\text{ where }P,J\in M_n(\C)
+\end{align*}
+We will leave the detail of why the question is immediately solved by decomposing $A$ into its Jordan form later. What's more important here is to show  $\operatorname{rank}_\R(A)=\operatorname{rank}_\C(A)$\footnote{The same procedure can be used to show for any field $\F \subseteq \mathbb{K}$ and $A \in M_n(\F)$, we have $\operatorname{rank}_\F(A)=\operatorname{rank}_{\mathbb{K}}(A)$}. Clearly, $\operatorname{rank}_\R (A)\geq \operatorname{rank}_\C(A)$. Suppose $A_1,\dots ,A_k\in \R^n$ are $\R$-linearly independent. If $(a_1+ib_1)A_1+ \cdots + (a_k+i b_k)A_k=0$, then $a_1=\cdots = a_k=b_1=\cdots =b_k=0$ by $\R$-linear independence of  $A_1,\dots ,A_k$. We have shown $\operatorname{rank}_\R (A)\leq  \operatorname{rank}_\C(A)$. \\
 
+We now go back to the obvious detail. Suppose 
+\begin{align*}
+A= \bigoplus _{i=1}^r J(\ld_i ,m_i) \oplus \bigoplus_{i=1}^q J(0,k_i),\quad \text{where $\ld_i$ are all non-zero. }
+\end{align*}
+Let $p\triangleq \sum m_i$. We have 
+\begin{align*}
+\operatorname{rank}(A)&=p + \sum_{i=1}^q (k_i-1)\\
+\operatorname{rank}(A^2)&=p+ \sum_{i=1}^q \max \set{k_i-2,0}\\
+\operatorname{rank}(A^3)&=p+ \sum_{i=1}^q \max \set{k_i-3,0}
+\end{align*}
+The proof then follows from checking 
+\begin{align*}
+2\max \set{k_i-2,0}\leq k_i-1+ \max \set{k_i-3,0}
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Let $V$ be a finite-dimensional real vector space, and let $S,T$ and  $U$ be subspaces of  $V$. Prove or disprove 
@@ -849,27 +1055,86 @@ Let $V$ be a finite-dimensional real vector space, and let $S,T$ and  $U$ be sub
 \end{enumerate}
 \end{question}
 \begin{proof}
+For (a), let $B$ be a basis for  $S \cap T$, and let $B_S\subseteq S\text{ and }B_T \subseteq T$ satisfy 
+\begin{align*}
+B_S \sqcup  B,B_T\sqcup  B \text{ are respectively bases for $S$ and  $T$ }
+\end{align*}
+where $\sqcup $ means disjoint union. A tedious proof by contradiction shows that $B_S \cap B_T=\varnothing$ and $B_S \cup B_T$ are linearly independent. It is easy to see that $B_S\sqcup B\sqcup B_T$ spans $S+T$. We have shown $B_S \sqcup B \sqcup B_T$ forms a basis for $S+T$. This give us proposition (a). \\
 
+For (b), let $V\triangleq \R^2,S\triangleq \operatorname{span}(1,0),T\triangleq \operatorname{span}(0,1)\text{ and }\operatorname{U}\triangleq \operatorname{span}(1,1)$, and we see a counter example.  
 \end{proof}
 \begin{question}{}{}
 Let 
 \begin{align*}
-A\triangleq \begin{pmatrix} 
+M\triangleq \begin{pmatrix} 
   0 & 1 \\
   -1 & 2
 \end{pmatrix}
 \end{align*}
 \begin{enumerate}[label=(\alph*)]
-  \item Compute $\exp A$. 
-  \item Prove $\operatorname{det}(\exp A)= \exp (\operatorname{tr}A)$. 
+  \item Compute $e^M$. 
+  \item Prove $\operatorname{det}(e^A)= \exp (\operatorname{tr}A)$ for $A\in M_n(\C)$. 
   \item Prove or disprove 
     \begin{align*}
-    A\text{ is nilpotent }\implies \exp (A-I)\text{ is nilpotent }
+    A\inM_n(\C)\text{ is nilpotent }\implies e^{A}-I\text{ is nilpotent }
     \end{align*}
 \end{enumerate}
+\emph{Remark: the original phrasing of part (c) of this question is absolutely horrible. They should have written $\exp (A)-I$ instead of $\exp A-I$.}
 \end{question}
 \begin{proof}
-
+Decompose $M$ into its \textbf{Jordan form}
+\begin{align*}
+M= \begin{bmatrix}
+  1 & 1 \\
+  1 & 2 
+\end{bmatrix}  \begin{bmatrix}
+  1 & 1 \\
+  0 & 1 
+\end{bmatrix} \begin{bmatrix}
+  1 & 1 \\
+  1 & 2 
+\end{bmatrix}^{-1}. 
+\end{align*}
+We see 
+\begin{align*}
+e^M= \begin{bmatrix}
+  1 & 1 \\
+  1 & 2
+\end{bmatrix} \Big( \begin{bmatrix}
+  e & 0 \\
+  0 & e
+\end{bmatrix} \begin{bmatrix}
+  1 & 1 \\
+  0 & 1
+\end{bmatrix} \Big) \begin{bmatrix}
+  1 & 1 \\
+  1 & 2
+\end{bmatrix}^{-1}= \begin{bmatrix}
+  0 & e \\
+  -e & 2e
+\end{bmatrix}. 
+\end{align*}
+For part (b), decompose $A$ into its Jordan form 
+\begin{align*}
+A=QJQ^{-1}=Q(S+N)Q^{-1}\text{ where }S\text{ is diagonal and }N\text{ is nilpotent. }
+\end{align*}
+Because 
+\begin{align*}
+e^{QJQ^{-1}}= \sum_{k=0}^{\infty} \frac{(QJQ^{-1})^k}{k!}= \sum_{k=0}^{\infty} \frac{QJ^kQ^{-1}}{k!}= Q\Big( \sum_{k=0}^{\infty} \frac{J^k}{k!} \Big)Q^{-1}=Qe^J Q^{-1}
+\end{align*}
+we have 
+\begin{align*}
+  \operatorname{det}(e^A)= \operatorname{det}(e^{QJQ^{-1}})= \operatorname{det}(Qe^J Q^{-1})= \operatorname{det}(e^J)
+\end{align*}
+Noting that $e^J$ is upper triangular with diagonal entries  $e^{\ld_i}$ where $\ld _i$ are the diagonal entries of $J$, we may conclude 
+ \begin{align*}
+\operatorname{det}(e^J)=e^{\sum \ld _i}=e^{\operatorname{tr}J}=e^{\operatorname{tr}(Q^{-1}AQ)}= e^{\operatorname{tr}(A)}. 
+\end{align*}
+For part (c), let $A^m=0$, so 
+ \begin{align*}
+   e^A-I =\sum_{k=0}^{m-1} \frac{A^k}{k!}- I= \sum_{k=1}^{m-1} \frac{A^k}{k!} 
+\end{align*}
+We have shown $e^A-I$ is a polynomial in  $A$ with constant coefficient zero. This implies $(e^A-I)^m=0$. 
 \end{proof}
 \begin{question}{}{}
   Let $U,V$ be two finite dimensional space over the same field. Let  $T:U\rightarrow V$ be a linear map, and let $T^*:U^*\rightarrow V^*$ be its dual map. Prove 
@@ -896,6 +1161,537 @@ This, together with Rank-Nullity Theorem, proves both propositions.
 \begin{question}{}{}
 Find all possible Jordan forms for $8\times 8$ real matrices $x^2(x-2)^3$ as minimal polynomial.
 \end{question}
+\begin{proof}
+  This question requires us to show that the Jordan form  
+\begin{align*}
+J=\bigoplus_{i_1}  J(\ld_1,n_{i_1}) \oplus  \cdots \oplus  \bigoplus_{i_m} J(\ld_m , n_{i_m})
+\end{align*}
+has the minimal polynomial 
+\begin{align*}
+  T(x)=(x-\ld_1)^{\max_{i_1}n_{i_1}} \cdots (x-\ld _m)^{\max _{i_m}n_{i_m}}.
+\end{align*}
+It is clear that $J$ is a root of  $T$. To see that  $T$ is indeed minimal, utilize the algebraic closure of the underlying field to show that the minimal polynomial of $J$ can not have roots other than  $\ld_1,\dots ,\ld _m$, and directly show that any polynomial that have $J$ as a root must have power on factor $(x-\ld _j)$ greater than $\max _{i_j} n_{i_j}$. 
+\end{proof}
+\begin{question}{}{}
+Let $V$ be a vector space over a field $\F$ of infinite elements, and let $v_1,\dots ,v_n$ be vectors in $V$ such that there exists infinite numbers of $z \in\F$ satisfying 
+ \begin{align*}
+v_0+zv_1+\cdots +z^nv_n=0
+\end{align*}
+where $n>0$. Show that  
+\begin{align*}
+v_0=v_1=\cdots =v_n=0
+\end{align*}
+\end{question}
+\begin{proof}
+Let $\set{w_\alpha :\alpha \in I}$ be a basis for $V$, by rearranging the index, we may write 
+\begin{align*}
+v_i= \sum_{k=1}^r c_{k,i} w_{k}\text{ for all }1\leq i \leq n
+\end{align*}
+Fix $k$. We must have 
+ \begin{align*}
+c_{k,n}z^n + \cdots + c_{k,1}z+c_{k,0}= 0\text{ for infinite $z\in\F$ }
+\end{align*}
+Because $\F$ forms a field, we know for this to be true, we must have $c_{k,n}=c_{k,n-1}=\cdots =c_{k,0}=0$. 
+\end{proof}
+\begin{question}{}{}
+Let $V \in M_{n\times n}(\R)$ and let $f\in \operatorname{Hom}(V,\R)$ satisfy 
+\begin{align*}
+f(AB)=f(BA),\quad\text{ for all }A,B \in V \text{ and }f(I)=n
+\end{align*}
+Show that $f$ is the trace function. 
+\end{question}
+\begin{proof}
+Let $E_{i,j}\in V$ be the matrix whose only nonzero entry is $1$, located in the $i$-th row and $j$-th column. If $i \neq j$, then  
+\begin{align*}
+E_{i,i}E_{i,j}=E_{i,j}\text{ and }E_{i,j}E_{i,i}=0.
+\end{align*}
+This, together with the linearity of $f$, shows that $f$ depends only on the diagonal entries. For each permutation $\sigma \in S_n$, there exists a \textbf{permutation matrix} $C$ such that  
+\begin{align*}
+\text{The $\sigma(i)$-th row of }CA\text{ is identical to the $i$-th row of }A.
+\end{align*}
+And  
+\begin{align*}
+\text{The $\sigma(i)$-th column of }AC^{-1}\text{ is identical to the $i$-th column of }A.
+\end{align*}
+Therefore,  
+\begin{align*}
+  A_{i,i}=(CAC^{-1})_{\sigma (i),\sigma (i)}.
+\end{align*}
+Observing that  
+\begin{align*}
+f(CAC^{-1})=f(A(CC^{-1}))=f(A),
+\end{align*}
+we have shown that $f$ is stable under the permutation of diagonal entries. Define $\sigma \in S_n$ by  
+\begin{align*}
+\sigma(i)\triangleq \begin{cases}
+  i+1& \text{ if } 1\leq i<n, \\
+  1& \text{ if } i=n.
+\end{cases}
+\end{align*}
+Let $C_k$ be the permutation matrix corresponding to $\sigma^k$ for all $1\leq k\leq n$. The proof now follows from computing  
+\begin{align*}
+nf(A)= \sum_{k=1}^{n}f(C_kAC_k^{-1})=f\Big(\sum_{k=1}^n C_kAC_k^{-1}\Big)= f((\operatorname{tr}A)I)=n\operatorname{tr}A.
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $V$ be an  $n$-dimensional vector space over $\R$ and  $B:V\times V\rightarrow \R$ be a symmetric bilinear form. 
+\begin{enumerate}[label=(\alph*)]
+  \item Let $W$ be a subspace of $V$, and define 
+     \begin{align*}
+    W^{\perp}\triangleq \set{v \in V: B(v,w)=0\text{ for all }w \in W}
+    \end{align*}
+    Show that $\operatorname{dim}(W^{\perp})\geq  \operatorname{dim}(V)-\operatorname{dim}(W)$. 
+    \item Prove that $V=W \oplus W^{\perp}$ if and only if $B$ is nondegenerate on $W$. 
+    \item Prove that if $B$ is nondegenerate on $V$, then there exists a nonnegative integer $p$ with  $p\leq \operatorname{Dim}(V)$ and a basis $\set{e_1,\dots ,e_n}$ such that 
+      \begin{align*}
+      B(e_i,e_j)= \begin{cases}
+        1& \text{ if $1\leq i=j\leq p$ }\\
+        -1& \text{ if $p+1\leq  i=j \leq n$ }\\
+        0& \text{ if $i\leq j$ }
+      \end{cases}
+      \end{align*}
+\end{enumerate}
+\end{question}
+\begin{proof}
+Let $\set{w_1,\dots ,w_m}$ be a basis for $W$. Consider the linear map $F:V\rightarrow \R^m$ defined by $v \mapsto  (B(v,w_1),\dots ,B(v,w_m))$. By Rank-Nullity Theorem, we have 
+\begin{align*}
+\operatorname{dim}(W^{\perp})=\operatorname{dim}(\operatorname{Ker}F)= \operatorname{dim}(V)- \operatorname{rank}(F) \geq  \operatorname{dim}(V)- m
+\end{align*}
+We have proved part (a). Note that $W\cap W^{\perp}=0$ if and only if $B$ is degenerate on $W$. This together with part  (a) prove part (b). \\
+
+Part (c) is independent of part (a) and (b). Because $B$ is nondegenerate, we may let $\set{v_1,\dots ,v_n}$ be a basis for $V$ such that $B(v_i,v_i)$ is positive for $i\leq p$ and negative for $i>p$. Define $\tilde{v}_1,\dots ,\tilde{v}_n  $ by 
+\begin{align*}
+  \tilde{v}_j\triangleq v_j - \frac{B(v_j,\tilde{v}_{j-1})}{B(\tilde{v} _{j-1},\tilde{v} _{j-1})} \tilde{v}_{j-1} - \cdots - \frac{B(v_j,\tilde{v} _1)}{B(\tilde{v}_1,\tilde{v} _1)} \tilde{v}_1,\quad\text{ (Gram-Schmidt process) }
+\end{align*}
+It is clear that $\set{\tilde{v_1},\dots ,\tilde{v_n}}$ is orthogonal. It is easy to normalize them, and the result is the desired $\set{e_1,\dots ,e_n}$. 
+\end{proof}
+\section{Year 107}
+\begin{question}{}{}
+Let 
+ \begin{align*}
+A= \begin{bmatrix}
+  -1 & 3 & -2 \\
+  2 & 3 & 0 \\
+  11 & -6 & 7
+\end{bmatrix}
+\end{align*}
+Find the lower triangular Jordan form of $A$. Compute  $e^{tA}$ and the general solutions of $x'(t)=Ax(t)$ where $x$ is a 3-dimensional column vector.  
+\end{question}
+\begin{proof}
+Computing 
+\begin{align*}
+\operatorname{det}(tI-A^T)=\operatorname{det}(tI-A)=(t-3)^3
+\end{align*}
+and 
+\begin{align*}
+\operatorname{Ker}(3I-A^T)= \operatorname{span}(\begin{bmatrix}
+4\\
+-3 \\
+2
+\end{bmatrix})
+\end{align*}
+we may compute 
+\begin{align*}
+A^T= \begin{bmatrix}
+  4 & 3 & 1 \\
+  -3 & -3 & -2 \\
+  2 & 2 & 1 
+\end{bmatrix} \begin{bmatrix}
+  3 & 1 &  \\
+    & 3 & 1 \\
+    & & 3
+\end{bmatrix} \begin{bmatrix}
+  4 & 3 & 1 \\
+  -3 & -3 & -2 \\
+  2 & 2 & 1 
+\end{bmatrix} ^{-1}
+\end{align*}
+Therefore, 
+\begin{align*}
+A= \begin{bmatrix}
+  4 & -3 & 2 \\
+  3 & -3 & 2 \\
+  1 & -2 & 1 
+\end{bmatrix}^{-1} \begin{bmatrix}
+  3 & & \\
+  1 & 3 & \\
+    & 1 & 3
+\end{bmatrix} \begin{bmatrix}
+  4 & -3 & 2 \\
+  3 & -3 & 2 \\
+  1 & -2 & 1
+\end{bmatrix}
+\end{align*}
+This give us 
+\begin{align*}
+e^{tA}&=  \begin{bmatrix}
+  4 & -3 & 2 \\
+  3 & -3 & 2 \\
+  1 & -2 & 1 
+\end{bmatrix}^{-1}  \Big( \begin{bmatrix}
+  e^{3t} & & \\
+      & e^{3t} &  \\
+      & & e^{3t}
+\end{bmatrix}\cdot  \begin{bmatrix}
+   1 & 0 & 0 \\
+   t & 1 & 0 \\
+   \frac{t^2}{2} & t & 1
+\end{bmatrix}\Big)\begin{bmatrix}
+  4 & -3 & 2 \\
+  3 & -3 & 2 \\
+  1 & -2 & 1 
+\end{bmatrix}  \\
+&= e^{3t}  \begin{bmatrix}
+  4 & -3 & 2 \\
+  3 & -3 & 2 \\
+  1 & -2 & 1 
+\end{bmatrix}^{-1}    \begin{bmatrix}
+   1 & 0 & 0 \\
+   t & 1 & 0 \\
+   \frac{t^2}{2} & t & 1
+\end{bmatrix}\begin{bmatrix}
+  4 & -3 & 2 \\
+  3 & -3 & 2 \\
+  1 & -2 & 1 
+\end{bmatrix}    \\
+&=  e^{3t}  \begin{bmatrix}
+  1 & -1 & 0 \\
+  -1 & 2 & -2\\
+  -3 & 5 & -3  
+\end{bmatrix}     \begin{bmatrix}
+  4 & -3 & 2 \\
+  4t+3 & -3t -3 & 2t+2 \\
+  2t^2+3t +1 & \frac{-3}{2}t^2-3t-2 & t^2 +2t +1 
+\end{bmatrix} \\
+&=e^{3t} \begin{bmatrix}
+  -4t +1 & 3t & -2t \\
+  -4t^2 +2t & 3t^2 +1 & -2t^2 \\
+  -6t^2 +11 t & \frac{9}{2}t^2 -6t & -3t^2 +4t +1 
+\end{bmatrix}
+\end{align*}
+The space of solutions of $x'(t)=Ax(t)$ is the column space of $e^{tA}$. (The above heavy computation is verified by ChatGPT o3-model. I am not going to manually verify it.) 
+\end{proof}
+\begin{question}{}{}
+Let $V$ be an  $n$-dimensional complex vector space, and let $T\in \operatorname{End}(V)$ satisfy $T^2=1$. 
+ \begin{enumerate}[label=(\alph*)]
+  \item Show that $T$ is diagonalizable. 
+  \item Let $S\subseteq \operatorname{End}(V)$ be the space of endomorphisms that commute with $T$. Express  $\operatorname{dim}(S)$ in term of $\operatorname{tr}(T)$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Clearly, $T$ can only have eigenvalues $\pm 1$. Computing 
+\begin{align*}
+\begin{bmatrix}
+  \ld & 1 & & \\
+        & \ld & \ddots & \\
+        & & \ddots & 1 \\
+        & & & \ld  
+\end{bmatrix}^2 = \begin{bmatrix}
+  \ld ^2 & 2\ld  & 1 & & \\
+         & \ld ^2 & 2\ld  & \ddots & &  \\
+         &  & \ld ^2 & \ddots & 1 \\
+         & & & \ddots &  2\ld \\ 
+         & & & &  \ld^2  
+\end{bmatrix}
+\end{align*}
+we see that to satisfies $T^2=1$, each Jordan block of $T$ must have size $1$, otherwise there exists some  $v\inc^n$ such that $T^2v\neq v$. We have shown $T$ is indeed diagonalizable with eigenvalues $\pm 1$. Therefore, there exists some basis under which  $T$ have the expression 
+\begin{align*}
+\begin{bmatrix}
+  I_m & O \\
+  O & -I_{n-m}
+\end{bmatrix}
+\end{align*}
+Let $X\in M_n(\C)$, and divide $X$ into submatrices: 
+\begin{align*}
+X= \begin{bmatrix}
+A & B \\
+C & D
+\end{bmatrix}\text{ where }A\in M_m(\C)\text{ and }D\in M_{n-m}(\C)
+\end{align*}
+We see 
+\begin{align*}
+X \in S \iff B=C=O 
+\end{align*}
+This give us 
+\begin{align*}
+\operatorname{dim}(S)=m^2 + (n-m)^2
+\end{align*}
+We may now compute  
+\begin{align*}
+\operatorname{tr}(T)=2m-n \implies  m= \frac{n+\operatorname{tr}(T)}{2} \implies \operatorname{dim}(S)=  \frac{n^2 + (\operatorname{tr}(T))^2}{2}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $A=(A_{ij})$ be a $2n\times 2n$ real invertible skew-symmetric  matrix. 
+\begin{enumerate}[label=(\alph*)]
+  \item Show that all eigenvalues of $A$ are pure-imaginary. 
+  \item Define the Pfaffian $\operatorname{pf}(A)$ of $A$ by 
+     \begin{align*}
+    \operatorname{pf}(A)= \frac{1}{2^nn!}\sum_{\sigma \in S_{2n}}\operatorname{sgn}(\sigma) \prod_{k=1}^n A_{\sigma (2k-1),\sigma (2k)} 
+    \end{align*}
+  Show that for every $2n\times 2n$ real matrix $B$, we have 
+   \begin{align*}
+  \operatorname{pf}(BAB^t)= \operatorname{pf}(A)\operatorname{det}(B)
+  \end{align*}
+\item Suppose for some $2n\times 2n$ real orthogonal matrix $O$ we have 
+  \begin{align*}
+  OAO^t=\operatorname{diag} \bset{\begin{pmatrix} 
+      0 & m_1 \\
+       -m_1 & 0 
+  \end{pmatrix} , \begin{pmatrix} 
+       0 & m_2 \\
+       -m_2 & 0 
+  \end{pmatrix} ,\dots ,\begin{pmatrix} 
+       0 & m_n \\
+       -m_n & 0 
+   \end{pmatrix}}
+  \end{align*}
+where $m_i \inr$ for all $i$, Show that $\operatorname{det}(A)=\operatorname{pf}(A)^2$
+\end{enumerate}
+\end{question}
+\begin{proof}
+For part (a), one simply have to note that the matrix representation of adjoint of linear map $T$ over $\C$ is just the complex conjugation of that of $T$. Suppose $Av=\ld v$ for some $v\neq 0 \inc^{2n}$. Because $A^*=A^t=-A$, we have 
+\begin{align*}
+\ld v \cdot v = Av \cdot v = v \cdot A^* v = - v \cdot Av = - \overline{\ld } v \cdot v
+\end{align*}
+This implies the real part of $\ld $ must be zero. We now prove (b). Compute 
+\begin{align*}
+  (BAB^t)_{ij}= \sum_{kl} B_{il}A_{lk}B_{jk}
+\end{align*}
+Let $e_1,\dots ,e_{2n}$ be the standard basis for $\R^{2n}$. If we define $\omega \in \extp \R^{2n}$ by 
+\begin{align*}
+\omega \triangleq  \sum_{ij} (BAB^t)_{ij} e_i \wedge  e_j 
+\end{align*}
+we now have 
+\begin{align*}
+\omega = \sum_{ijkl} B_{il}A_{lk}B_{jk}e_i \wedge  e_j = \sum_{lk} A_{lk}f_l\wedge  f_k,\quad \text{ where }f_p= \sum_{q} B_{qp}e_q 
+\end{align*}
+This together with \myref{Theorem}{EDoP} give us 
+\begin{align*}
+2^n n! \operatorname{pf}(A)\operatorname{det}(B) e_1 \wedge \cdots \wedge   e_{2n}&= 2^n n! \operatorname{pf}(A)f_1 \wedge  \cdots \wedge  f_{2n}   \\
+&=\omega^n = 2^n n! \operatorname{pf}(BAB^t) e_1 \wedge  \cdots   \wedge  e_{2n} 
+\end{align*}
+The proof of part (b) now follows from noting $e_1 \wedge  \cdots \wedge  e_{2n}\neq 0$. We now prove (c). Again, define $\omega \in \extp\R^{2n}$ by  
+\begin{align*}
+\omega \triangleq \sum_{ij}(OAO^t)_{ij}e_i \wedge  e_j  
+\end{align*}
+Because of the form of $OAO^t$, we see 
+ \begin{align*}
+\omega = 2m_1 e_1 \wedge  e_2 + 2m_2 e_3\wedge  e_4 + \cdots + 2m_n e_{2n-1}\wedge  e_{2n}   
+\end{align*}
+This allow us to compute 
+\begin{align*}
+\omega^n = 2^nn! \Big(\prod m_i \Big) e_1 \wedge  \cdots \wedge   e_{2n} 
+\end{align*}
+It now follows from \customref{EDoP}{Equivalent Definition of Pfaffian} and part (b) of this question that 
+\begin{align*}
+\operatorname{pf}(A)=\operatorname{pf}(OAO^t)= m_1  \cdots m_n
+\end{align*}
+The rest of part (c) then follows from computing $\operatorname{det}(A)=\operatorname{det}(OAO^t)=m_1^2 \cdots m_n^2$
+\end{proof}
+\begin{question}{}{}
+Let $A,B \in M_n(\C)$ be $n\times n $ complex matrices. Show that if $A$ and  $B$ commute, then they are simultaneously diagonalizable. (i.e., there exists an invertible matrix $P \in GL_n(\C)$ such that $PAP^{-1}$ and $PAP^{-1}$ are both upper triangular)
+\end{question}
+\begin{proof}
+Before presenting the proof, I will like to point out that this question can not be solved using Jordan decomposition: It is possible that two commuting matrices over $\C$ does not share any Jordan basis. For example, consider $T$ and  $T^2$, where  $T$ has some Jordan block of size greater than $2$.\\
+
+We prove by induction. The base case is trivial. Let $\set{\ld _1,\dots ,\ld _n}$ be the set of eigenvalues of $A$. Consider the generalized eigenspaces $G(\ld_i,A)=\operatorname{Ker}(A-\ld_i I)^{n}$. It is well known that 
+\begin{align*}
+  \C^n = G(\ld _1, A)\oplus  \cdots \oplus  G(\ld _n, A),\quad \text{See  \myref{Theorem}{DiGE}}
+\end{align*}
+Because $A,B$ commute, we may conclude $G(\ld _i,A)$ are all stable under $B$. This allow us to apply inductive hypothesis on  $G(\ld _1,A)\oplus   \cdots \oplus   G(\ld _{n-1},A)$ and $G(\ld _n,A)$ to finish the proof.
+\end{proof}
+\begin{question}{}{}
+Show that 
+\begin{align}
+\label{x0n}
+\begin{vmatrix} 
+  X_0 & X_1 & X_2 & \cdots & X_{n-1} \\
+  X_{n-1} & X_0 & X_1 & \cdots & X_{n-2} \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  X_1 & X_2 & X_3 & \cdots & X_0
+\end{vmatrix}= \prod_{j=0}^{n-1} \Big( \sum_{k=0}^{n-1}\xi^{jk}X_k \Big)
+\end{align}
+where $\xi$ is a $n$-th primitive root of unity. 
+\end{question}
+\begin{proof}
+Because $\xi$ is a $n$-th primitive root of unity, we may compute that the following product of $n\times n$ matrices 
+ \begin{align*}
+\begin{pmatrix} 
+X_0 & X_1 & X_2 & \cdots & X_{n-1} \\
+  X_{n-1} & X_0 & X_1 & \cdots & X_{n-2} \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  X_1 & X_2 & X_3 & \cdots & X_0
+\end{pmatrix} \begin{pmatrix} 
+  \xi^0 & \xi^0& \xi^0 & \cdots & \xi^0 \\
+  \xi^0 & \xi^1 & \xi^2 & \cdots & \xi^{n-1} \\
+  \xi^0 & \xi^2 & \xi^4 & \cdots & \xi^{2(n-1)}  \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  \xi^0 & \xi^{n-1} & \xi^{2(n-2)}& \cdots & \xi^{(n-1)^2}
+\end{pmatrix}
+\end{align*}
+is exactly 
+\begin{align*}
+\begin{pmatrix} 
+ \xi^0 Y_0 & \xi^0Y_1& \xi^0Y_2 & \cdots & \xi^0 Y_{n-1} \\
+  \xi^0 Y_0 & \xi^1Y_1 & \xi^2Y_2 & \cdots & \xi^{n-1}Y_{n-1} \\
+  \xi^0 Y_0 & \xi^2Y_1 & \xi^4 Y_2 & \cdots & \xi^{2(n-1)}Y_{n-1}  \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  \xi^0Y_0 & \xi^{n-1}Y_1 & \xi^{2(n-2)} Y_2& \cdots & \xi^{(n-1)^2}Y_{n-1}
+\end{pmatrix}
+\end{align*}
+where 
+\begin{align*}
+Y_j= \sum_{k=0}^{n-1} \xi^{jk} X_k\text{ for all }j
+\end{align*}
+Noting that the right hand side of \myref{Equation}{x0n} is just $\prod Y_j$ and that  
+\begin{align*}
+\begin{vmatrix} 
+ \xi^0 Y_0 & \xi^0Y_1& \xi^0Y_2 & \cdots & \xi^0 Y_{n-1} \\
+  \xi^0 Y_0 & \xi^1Y_1 & \xi^2Y_2 & \cdots & \xi^{n-1}Y_{n-1} \\
+  \xi^0 Y_0 & \xi^2Y_1 & \xi^4 Y_2 & \cdots & \xi^{2(n-1)}Y_{n-1}  \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  \xi^0Y_0 & \xi^{n-1}Y_1 & \xi^{2(n-2)} Y_2& \cdots & \xi^{(n-1)^2}Y_{n-1}
+\end{vmatrix}= \Big( \prod_{j=0}^{n-1} Y_j \Big)\begin{vmatrix} 
+  \xi^0 & \xi^0& \xi^0 & \cdots & \xi^0 \\
+  \xi^0 & \xi^1 & \xi^2 & \cdots & \xi^{n-1} \\
+  \xi^0 & \xi^2 & \xi^4 & \cdots & \xi^{2(n-1)}  \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  \xi^0 & \xi^{n-1} & \xi^{2(n-2)}& \cdots & \xi^{(n-1)^2}
+\end{vmatrix}
+\end{align*}
+we conclude that to close out the proof with the general formula $\operatorname{det}(AB)=\operatorname{det}(A)\operatorname{det}(B)$, it only remains to show the determinant of the \textbf{Vandermonde matrix} 
+\begin{align*}
+\begin{vmatrix} 
+  \xi^0 & \xi^0& \xi^0 & \cdots & \xi^0 \\
+  \xi^0 & \xi^1 & \xi^2 & \cdots & \xi^{n-1} \\
+  \xi^0 & \xi^2 & \xi^4 & \cdots & \xi^{2(n-1)}  \\
+  \vdots & \vdots & \vdots & \ddots & \vdots \\
+  \xi^0 & \xi^{n-1} & \xi^{2(n-2)}& \cdots & \xi^{(n-1)^2}
+\end{vmatrix}
+\end{align*}
+is nonzero. 
+\end{proof}
+\section{Year 106}
+\begin{question}{}{}
+Let $\F$ be some field, and let $A\in M_n(\F)$.
+\begin{enumerate}[label=(\alph*)]
+  \item Show that if $k$ is the largest integer such that some $k\times k$ submatrix of $A$ has a nonzero determinant, then $\operatorname{rank}(A)=k$. 
+  \item Suppose $A^n=0$ and $A^{n-1}\neq 0$. Find $\max_{v \in \F^n} \operatorname{dim}(\operatorname{span}(v,Av,\dots ,A^{n-1}v))$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+We first prove part (a). Because exchanging two columns or exchanging two rows do not change the rank, we may WLOG suppose the $k\times k$ submatrix is 
+ \begin{align}
+\label{Ask}
+\begin{pmatrix} 
+  A_{1,1} & \cdots & A_{1,k} \\
+  \vdots & \ddots & \vdots \\
+  A_{k,1} & \cdots & A_{k,k}
+\end{pmatrix}
+\end{align}
+Because the \myref{subamtrix}{Ask} has nonzero determinant, we know that there exists no nonzero $(c_1,\dots ,c_k)\in \F^k$ such that $c_1A_{;,1}+\cdots + c_k A_{;,k}=0$, where  $A_{;,j}$ stands for the $j$-th column of  $A$. We have shown  $\operatorname{rank}(A)\geq k$. It remains to show $\operatorname{rank}(A)\leq k$. Assume $\operatorname{rank}(A)>k$ for a contradiction. WLOG, suppose $A_{;,1},\dots ,A_{;,k+1}$ are linearly independent. Recall that for any matrix, square or not, the columns rank equals the row rank, so there exists some $1\leq i_1< \cdots < i_{k+1} \leq  n$ such that 
+\begin{align*}
+ \bset{(A_{i_j,1},\dots ,A_{i_j,k+1})\in \F^{k+1}: 1\leq j \leq k+1}\text{ is linearly independent }
+\end{align*}
+This implies 
+\begin{align*}
+\begin{vmatrix} 
+  A_{i_1,1} & \cdots & A_{i_1,k+1} \\
+  \vdots & \ddots & \vdots \\
+  A_{i_{k+1},1} & \cdots & A_{i_{k+1},k+1}
+\end{vmatrix}\neq 0
+\end{align*}
+causing a contradiction. For part (b), we note that the Jordan decomposition always exists for nilpotent endomorphism over finite dimensional space, whether the base field is algebraically closed or not. (Observe that both the statement and the proof for \myref{Theorem}{JfNO} do not mention whether the base field of $V$ is closed or not). Therefore, we may conclude the solution is  
+\begin{align*}
+\max_{v \in \F^n} \operatorname{dim}(\operatorname{span}(v,Av,\dots ,A^{n-1}v))=n  
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}[label=(\alph*)]
+  \item Let $A=\begin{pmatrix} 
+      5 & -6 & -6 \\
+      -1 & 4 & 2 \\
+      3 & -6 & -4
+  \end{pmatrix}$. Find the general solution of linear system of ODE: $x'=Ax$. 
+  \item Let $V$ be the space of all real polynomial having degree strictly less than $4$ with  inner product $\langle f,g\rangle \triangleq \int_{-1}^1 f(t)g(t)dt$. Define $T\in \operatorname{End}(V)$ by $T(f)\triangleq f'+3f$. Use the Gram-Schmidt process to replace $\beta = \set{1,1+x,x+x^2,x^2+x^3}$ by an orthonormal basis, and find the matrix representation of the adjoint $T^\dagger $ with respect to this new basis. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+The characteristic polynomial of $A$ is  $\operatorname{ch}(t)=(t-2)^2(t-1)$. Luckily, $A$ is diagonalizable: 
+\begin{align*}
+A= P\operatorname{diag}(1,2,2)P^{-1}\text{ where }P= \begin{pmatrix} 
+-3 & 4 & 2 \\
+1 & 1 & 1 \\
+-3 & 1 & 0
+\end{pmatrix}
+\end{align*}
+This implies 
+\begin{align*}
+  e^{At}= P \operatorname{diag}(e^t,e^{2t},e^{2t})P^{-1}= \begin{pmatrix} 
+    -3e^t +4e^{2t} & -6 e^t -6e^{2t} & 6e^t - 6 e^{2t} \\
+    e^{t}-e^{2t} & 2e^t + 3 e^{2t} & -2e^{t} +2e^{2t} \\
+    -3e^t +3e^{2t} & -6 e^t -6 e^{2t} & 6e^t - 5 e^{2t}
+  \end{pmatrix}
+\end{align*}
+We now do the computation for part (b). The new orthonormal basis is 
+\begin{align*}
+\bset{\frac{1}{\sqrt{2}}, \frac{\sqrt{3}}{\sqrt{2}}x,\frac{3\sqrt{5} }{2\sqrt{2} }(x^2 - \frac{1}{3}),\frac{5 \sqrt{7} }{2\sqrt{2} }(x^3- \frac{3}{5}x)}
+\end{align*}
+With respect to this basis, we have 
+\begin{align*}
+[T]= \begin{pmatrix} 
+  3 & \sqrt{3} & 0 & \sqrt{7} \\
+  0 & 3 & \sqrt{15} & 0 \\
+  0 & 0 & 3 & \sqrt{35} \\
+  0 & 0 & 0 & 3    
+\end{pmatrix}  \implies [T^\dagger ]= \begin{pmatrix} 
+  3 & 0 & 0 & 0 \\
+  \sqrt{3} & 3 & 0 & 0 \\
+  0 & \sqrt{15}  & 3 & 0 \\
+  \sqrt{7}  & 0& \sqrt{35}  & 3
+\end{pmatrix}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}[label=(\alph*)]
+  \item Let $A\in M_n(\R)$. Show that there exists orthonormal $Q\in M_n(\R)$ and positive semi-definite symmetric matrix $P \in M_n(\R)$ such that $A=QP$ .\footnote{I was first confused by the original phrasing of the question, so I did some googling. According to Wikipedia, the term "orthogonal matrix" and the term "orthonormal matrix" are interchangeable. They mean a real square matrix  $P$ such that  $PP^t=I$. The term "positive semi-definite matrix" means a real square matrix $Q$ such that $v^tQv\geq 0$ for all $v \inr^n$} 
+  \item Let $V$ be a finite dimensional  $\C$-vector space, and let $T \in \operatorname{End}(V)$. Show 
+\begin{align*}
+T\text{ is normal }\iff  T^{\dagger }=p(T)\text{ for some }p \in \C[x]
+\end{align*}
+  \end{enumerate}  
+\end{question}
+\begin{proof}
+  We first prove part (a). By \customref{SVD}{SVD}, there exists some orthonormal $U,V \in M_n(\R)$ and diagonal  $D \in M_n(\R^+_0)$ such that $A=UDV$. Clearly $Q\triangleq UV$ and $P\triangleq V^tD V$ suffice.\footnote{To see $v^t(V^tDV)v$ is always nonnegative, express $v$ as the linear combination of columns of  $V$ and perform  direct computation.} \\
+
+We now prove part (b). The "if" part is clear. Suppose $T$ is normal. By \customref{Spectral Theorem}{Spectral Theorem}, there exists some orthonormal basis $\beta $ of $V$ such that  $[T]_\beta  = \operatorname{diag}(z_1,\dots ,z_n)$ for some $z_1,\dots ,z_n \inc$. Because $[T^{\dagger }]_\beta  = \operatorname{diag}(\overline{z_1},\dots, \overline{z_n})$. The polynomial $p$ we are looking for only has to satisfy $p(z_i)= \overline{z_i}$ for each $i$. Write $\set{z_1,\dots , z_n}=\set{x_1,\dots ,x_k}$ where $x_1,\dots ,x_k$ are distinct. We have reduced the original question into an interpolation problem with well known solution: 
+\begin{align*}
+p(x)\triangleq \prod_{i=1}^k \frac{\overline{x_i}(x-x_1)\cdots (x-x_{i-1})(x-x_{i+1})\cdots (x-x_{k})}{(x_i-x_1)\cdots (x_i- x_{i-1})(x_i-x_{i+1})\cdots (x_i-z_k)}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $T \in \operatorname{End}(V)$ for finite dimensional $\C$-vector space  $V$. Prove the existence and uniqueness of Jordan-Chevalley decomposition $T=S+N$. Show that there exists some polynomial $\tilde{p}  \in \C [x]$ such that $S=\tilde{p} (T)$ and $\tilde{p} (0)=0$.
+\end{question}
+\begin{proof}
+In my personal opinion, this is a question shitty for exam. There are multiple distinct\footnote{distinct in the sense that how much  universal polynomial ring theory one wish to employ} approaches to show the existence and uniqueness of Jordan-Chevalley decomposition, but there is essentially only one approach, i.e., the ones quoting the Chinese Remainder Theorem without giving a proof, that is short enough to fully write down in exam time.\\ 
+
+Here, we offer a proof that use only Bezout's identity, i.e., the one we presented at the end of \myref{Section}{JCD}, which is short enough I guess.\\ 
+
+
+The only part the question require us to prove that the argument presented at the end of \myref{Section}{JCD} didn't prove is that we may select some $\tilde{p}  \in \C [x]$ so that not only $S=\tilde{p} (T)$ but also  $\tilde{p} $ has zero constant term. Let $p=\sum \xi_i q_i f_i$ where $\xi_i,q_i,f_i$ are defined at the end of \myref{Section}{JCD}. To prove this, we first note that because $T-p(T)$ is nilpotent, we may find $n$ such that the polynomial  $(x-p)^n$ sends $T$ to $0$. If $p$ has zero constant term, then  $\tilde{p}\triangleq p$ suffice. If $p$ has nonzero constant term, then  $(x-p)^n$ also has nonzero constant term and $\tilde{p}\triangleq p- \frac{\text{ constant term of $p$}}{\text{ constant term of }(x-p)^n}(x-p)^n \in \C [x]$ is a polynomial that sends $T$ to $0$ and has zero constant term.  
+\end{proof}
+\section{NTU Round 2 Year 106}
+\begin{question}{}{}
+Show that if 
+ \begin{align*}
+\R^n = W_1 \cup W_2 \cup  \cdots \cup  W_k \cup  \cdots  
+\end{align*}
+then $\R^n=W_k$ for some $k$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
 \chapter{Archived}
 \section{Tensor Algebra}
 \begin{abstract}
