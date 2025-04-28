@@ -8,6 +8,7 @@
 \usepackage{tikz}
 \usepackage{mathrsfs}
 \usepackage{mdframed}
+\usepackage[new]{old-arrows}
 
 % Create a new toggle
 \newtoggle{firstsection}
@@ -223,6 +224,16 @@
 
 
 \usepackage{tikz}
+
+\usetikzlibrary{arrows} % Needed for custom arrow tips
+\usetikzlibrary{arrows.meta} % Needed for custom arrow tips
+
+\tikzcdset{
+  doubletail/.style={
+    arrows={tail reversed-tail}
+  }
+}
+\tikzstyle{double_arrow} = [thick,<->,>=stealth]
 \definecolor{doc}{RGB}{0,60,110}
 \usepackage{titletoc}
 \contentsmargin{0cm}

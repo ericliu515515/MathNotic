@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  14 APR 2025 19:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  28 APR 2025 19:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -441,6 +441,31 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \c@mdf@env@ii=\count294
 \c@mdf@zref@counter=\count295
 Package zref Info: New property: mdf@pagevalue on input line 895.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/old-arrows/old-arrows.sty
+Package: old-arrows 2017/01/05 v2.0 Old Arrows
+\symoasy=\mathgroup5
+LaTeX Font Info:    Overwriting symbol font `oasy' in version `normal'
+(Font)                  OMS/oasy/m/n --> OMS/oasy/m/n on input line 90.
+LaTeX Font Info:    Overwriting symbol font `oasy' in version `bold'
+(Font)                  OMS/oasy/m/n --> OMS/oasy/b/n on input line 91.
+LaTeX Font Info:    Redeclaring math symbol \leftarrow on input line 93.
+LaTeX Font Info:    Redeclaring math symbol \rightarrow on input line 95.
+LaTeX Font Info:    Redeclaring math symbol \leftrightarrow on input line 97.
+LaTeX Font Info:    Redeclaring math symbol \nearrow on input line 98.
+LaTeX Font Info:    Redeclaring math symbol \searrow on input line 99.
+LaTeX Font Info:    Redeclaring math symbol \nwarrow on input line 100.
+LaTeX Font Info:    Redeclaring math symbol \swarrow on input line 101.
+LaTeX Font Info:    Redeclaring math symbol \mapstochar on input line 102.
+LaTeX Font Info:    Redeclaring math delimiter \uparrow on input line 105.
+LaTeX Font Info:    Redeclaring math delimiter \downarrow on input line 106.
+LaTeX Font Info:    Redeclaring math delimiter \updownarrow on input line 107.
+LaTeX Info: Redefining \longrightarrow on input line 117.
+LaTeX Info: Redefining \longleftarrow on input line 119.
+\symcmsy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `cmsy' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/cmsy/m/n on input line 235.
+LaTeX Font Info:    Overwriting symbol font `cmsy' in version `bold'
+(Font)                  OMS/cmsy/m/n --> OMS/cmsy/b/n on input line 235.
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/lipsum/lipsum.sty (/usr/local/texlive/2023/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2023-02-02 LaTeX2e option processing using LaTeX3 keys
 )
@@ -514,8 +539,8 @@ LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup5
-\symAMSb=\mathgroup6
+\symAMSa=\mathgroup7
+\symAMSb=\mathgroup8
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
@@ -698,13 +723,13 @@ Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \bigstrutjot=\dimen312
 )
 
-./preamble.tex:61: LaTeX Error: Option clash for package xcolor.
+./preamble.tex:62: LaTeX Error: Option clash for package xcolor.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.61 \definecolor
+l.62 \definecolor
                  {myg}{RGB}{56, 140, 70}
 The package xcolor has already been loaded with options:
   []
@@ -798,13 +823,13 @@ File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
 \BKM@id=\count341
 ))
 
-./preamble.tex:71: LaTeX Error: Option clash for package hyperref.
+./preamble.tex:72: LaTeX Error: Option clash for package hyperref.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.71 \usepackage
+l.72 \usepackage
                 {xcolor}
 The package hyperref has already been loaded with options:
   []
@@ -815,7 +840,7 @@ Adding the global options:
 to your \documentclass declaration may fix this.
 Try typing  <return>  to proceed.
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 77.
+Package hyperref Info: Option `colorlinks' set `true' on input line 78.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
  (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/xspace.sty
@@ -959,9 +984,14 @@ Library (tcolorbox): 'tcbposter.code.tex' version '6.0.1'
 \c@tcb@cnt@Example=\count378
 \c@tcb@cnt@question=\count379
 \c@tcb@cnt@qstion=\count380
- (/usr/local/texlive/2023/texmf-dist/tex/latex/titlesec/titletoc.sty
+ (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\arrowsize=\dimen324
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2021/07/05 v2.14 TOC entries
-\ttl@leftsep=\dimen324
+\ttl@leftsep=\dimen325
 )) (./macros.tex (/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
 LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
@@ -977,7 +1007,7 @@ File: utxmia.fd 2000/12/15 v3.1
 LaTeX Info: Redefining \bluecheck on input line 91.
 ) (./letterfonts.tex) (./Commutative_Algebra.aux
 
-LaTeX Warning: Label `Fut' multiply defined.
+LaTeX Warning: Label `Potm' multiply defined.
 
 )
 \openout1 = `Commutative_Algebra.aux'.
@@ -1038,13 +1068,13 @@ LaTeX Font Info:    ... okay on input line 9.
 (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count381
-\scratchdimen=\dimen325
+\scratchdimen=\dimen326
 \scratchbox=\box137
 \nofMPsegments=\count382
 \nofMParguments=\count383
 \everyMPshowfont=\toks48
 \MPscratchCnt=\count384
-\MPscratchDim=\dimen326
+\MPscratchDim=\dimen327
 \MPnumerator=\count385
 \makeMPintoPDFobject=\count386
 \everyMPtoPDFconversion=\toks49
@@ -1088,6 +1118,10 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <16.79996> not available
+(Font)              size <17.28> substituted on input line 11.
+
+
+LaTeX Font Warning: Font shape `OMS/oasy/m/n' in size <16.79996> not available
 (Font)              size <17.28> substituted on input line 11.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 11.
@@ -1141,20 +1175,26 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/sc' in size <16.79996> not available
 (Font)              size <17.28> substituted on input line 1.
 
 
+Overfull \hbox (23.61703pt too wide) in paragraph at lines 1--1
+ [][]|[][]\T1/cmr/bx/sc/17.28 Local Ring, In-te-gral Clo-sure, and Noether[][]|
+ []
+
+
 LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <12.77509> not available
 (Font)              size <12> substituted on input line 2.
 
 Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
+LaTeX Font Info:    Calculating math sizes for size <14> on input line 17.
 Missing character: There is no ; in font nullfont!
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.22 ...er}{\numberline {5}Scripts}{32}{chapter.5}
+l.24 ... {3.4}Projective Variety}{49}{section.3.4}
                                                   % [1
 
 ]
+Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 )
 \tf@toc=\write4
@@ -1174,7 +1214,6 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <29.03607> not available
 LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <20.16003> not available
 (Font)              size <20.74> substituted on input line 18.
 
-LaTeX Font Info:    Calculating math sizes for size <14> on input line 19.
 
 Underfull \hbox (badness 10000) in paragraph at lines 19--20
 
@@ -1191,25 +1230,20 @@ Underfull \hbox (badness 10000) in paragraph at lines 27--28
 
  []
 
+[3
 
+{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/old-arrows/oasy.enc}]
 Underfull \hbox (badness 10000) in paragraph at lines 29--30
 
  []
 
-[3
 
-]
 Underfull \hbox (badness 10000) in paragraph at lines 31--32
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 34--35
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 36--37
+Underfull \hbox (badness 10000) in paragraph at lines 43--45
 
  []
 
@@ -1219,62 +1253,70 @@ Underfull \hbox (badness 10000) in paragraph at lines 46--47
  []
 
 [4]
-Underfull \hbox (badness 10000) in paragraph at lines 50--51
-
- []
-
-[5]
 Underfull \hbox (badness 10000) in paragraph at lines 58--59
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 63--65
+Underfull \hbox (badness 10000) in paragraph at lines 65--67
+
+ []
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 74--75
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 67--68
+Underfull \hbox (badness 10000) in paragraph at lines 79--81
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 75--77
+Underfull \hbox (badness 10000) in paragraph at lines 83--84
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--80
+Underfull \hbox (badness 10000) in paragraph at lines 91--93
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 82--83
+Underfull \hbox (badness 10000) in paragraph at lines 95--96
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 98--99
 
  []
 
 [6
 
 ]
-LaTeX Font Info:    Trying to load font information for U+euf on input line 84.
+LaTeX Font Info:    Trying to load font information for U+euf on input line 100.
  (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/ueuf.fd
 File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 ) [7]
-Underfull \hbox (badness 10000) in paragraph at lines 124--126
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 127--128
+Underfull \hbox (badness 10000) in paragraph at lines 141--143
 
  []
 
 [8
 
-] [9] [10
-
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 201--202
+Underfull \hbox (badness 10000) in paragraph at lines 146--147
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 151--153
+
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 176--178
 
  []
 
@@ -1283,204 +1325,390 @@ Underfull \hbox (badness 10000) in paragraph at lines 205--206
 
  []
 
-[11] [12
-
-] [13]
-Underfull \hbox (badness 10000) in paragraph at lines 332--333
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 356--358
-
- []
-
-[14
-
-] [15]
-Underfull \hbox (badness 10000) in paragraph at lines 368--369
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 388--390
-
- []
-
-[16
-
-] [17]
-Chapter 2.
-
-Underfull \hbox (badness 10000) in paragraph at lines 410--412
-
- []
-
-[18
-
-] [19] [20
+[10] [11] [12
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 452--453
+Underfull \hbox (badness 10000) in paragraph at lines 250--251
 
  []
 
-[21
 
-]
-Underfull \hbox (badness 10000) in paragraph at lines 458--459
+Overfull \hbox (0.1107pt too wide) in paragraph at lines 252--253
+\T1/cmr/m/n/14.4 that, in-deed, $\OML/cmm/m/it/14.4 A\OT1/cmr/m/n/14.4 [\OML/cmm/m/it/14.4 x; y\OT1/cmr/m/n/14.4 ]$ \T1/cmr/m/n/14.4 as an $\OML/cmm/m/it/14.4 A$\T1/cmr/m/n/14.4 -module is gen-er-ated by $[]$.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 254--255
 
  []
 
-[22
+[13] [14] [15
+
+] [16]
+Underfull \hbox (badness 10000) in paragraph at lines 420--421
+
+ []
+
+[17
+
+] [18] [19]
+Underfull \hbox (badness 10000) in paragraph at lines 509--511
+
+ []
+
+[20
 
 ]
-Chapter 3.
+Overfull \hbox (14.94508pt too wide) in paragraph at lines 530--531
+\T1/cmr/m/n/14.4 grow-ing strictly, and the con-tra-dic-tion to Ar-tinian of $\OML/cmm/m/it/14.4 V$ \T1/cmr/m/n/14.4 then oc-curs at $\OT1/cmr/m/n/14.4 ([] [])[]$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 551--552
+
+ []
+
+[21] [22]
+Underfull \hbox (badness 10000) in paragraph at lines 580--582
+
+ []
+
 [23
 
+] [24]
+Chapter 2.
+[25
+
+] [26]
+Underfull \hbox (badness 10000) in paragraph at lines 655--657
+
+ []
+
+[27
+
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 496--498
+Underfull \hbox (badness 10000) in paragraph at lines 677--679
 
  []
 
-[24]
-Underfull \hbox (badness 10000) in paragraph at lines 518--520
+[28] [29]
 
- []
-
-[25]
-
-./Commutative_Algebra.tex:558: Package amsmath Error: Multiple \label's: label 'QSI' will be lost.
+./Commutative_Algebra.tex:718: Package amsmath Error: Multiple \label's: label 'QSI' will be lost.
 
 See the amsmath package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.558 \end{align}
+l.718 \end{align}
                  
 Your command was ignored.
 Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 558--560
+Underfull \hbox (badness 10000) in paragraph at lines 718--720
 
  []
 
-[26
-
-] [27
-
-] [28
+[30
 
 ]
-Chapter 4.
-[29
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 618--619
+Underfull \hbox (badness 10000) in paragraph at lines 742--743
 
  []
 
-[30] [31
+[31
 
 ]
-Chapter 5.
-[32
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 696--698
+Underfull \hbox (badness 10000) in paragraph at lines 768--770
 
  []
 
-[33] [34] [35]
-Underfull \hbox (badness 10000) in paragraph at lines 808--810
+
+Underfull \hbox (badness 10000) in paragraph at lines 771--772
+
+ []
+
+
+Overfull \hbox (13.24976pt too wide) detected at line 797
+[]
+ []
+
+[32]
+Underfull \hbox (badness 10000) in paragraph at lines 800--801
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 802--803
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 804--805
+
+ []
+
+[33] [34
+
+] [35]
+Underfull \hbox (badness 10000) in paragraph at lines 913--915
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 916--917
 
  []
 
 [36
 
 ]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 818.
+Underfull \hbox (badness 10000) in paragraph at lines 918--919
 
-Underfull \hbox (badness 10000) in paragraph at lines 825--826
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 920--921
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 922--923
 
  []
 
 [37]
-Overfull \hbox (22.98003pt too wide) detected at line 858
+LaTeX Font Info:    Calculating math sizes for size <20.16003> on input line 926.
+
+
+LaTeX Font Warning: Font shape `OT1/cmr/m/n' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 926.
+
+
+LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 926.
+
+
+LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 926.
+
+
+LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 926.
+
+
+LaTeX Font Warning: Font shape `OMS/oasy/m/n' in size <20.16003> not available
+(Font)              size <20.74> substituted on input line 926.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 926.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 926.
+
+[38
+
+] [39]
+Underfull \hbox (badness 10000) in paragraph at lines 967--969
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 970--971
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 983--984
+
+ []
+
+[40
+
+]
+Overfull \hbox (8.77206pt too wide) detected at line 1004
 []
  []
 
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 861.
-[38] [39]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 916.
- [40]
-Underfull \hbox (badness 10000) in paragraph at lines 975--977
+[41]
+Underfull \hbox (badness 10000) in paragraph at lines 1027--1028
 
  []
 
 
-Overfull \hbox (12.8369pt too wide) in paragraph at lines 989--991
-\T1/cmr/m/n/14.4 equals to $\OT1/cmr/m/n/14.4 0$\T1/cmr/m/n/14.4 . Note that be-cause $\OMS/cmsy/m/n/14.4 f\OML/cmm/m/it/14.4 x[]; [] ; x[]\OMS/cmsy/m/n/14.4 g$ \T1/cmr/m/n/14.4 gen-er-ates $\OML/cmm/m/it/14.4 M[]$ \T1/cmr/m/n/14.4 and $\OML/cmm/m/it/14.4 M[]$ \T1/cmr/m/n/14.4 con-tains $\OMS/cmsy/m/n/14.4 f\OML/cmm/m/it/14.4 f\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 x[]\OT1/cmr/m/n/14.4 )\OML/cmm/m/it/14.4 ; [] ; f\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 x[]\OT1/cmr/m/n/14.4 )\OMS/cmsy/m/n/14.4 g$\T1/cmr/m/n/14.4 ,
+Underfull \hbox (badness 10000) in paragraph at lines 1029--1030
+
  []
 
-[41] [42]
-Package mdframed Info: mdframed detected package amsthm 
- changed the theorem header of amsthm
-(mdframed)              on input line 1060.
- [43
 
-] [44] [45] [46]
+Underfull \hbox (badness 10000) in paragraph at lines 1031--1032
+
+ []
+
+[42
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1046--1047
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1048--1049
+
+ []
+
+[43]
+Chapter 3.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1060--1061
+
+ []
+
+[44
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1105--1107
+
+ []
+
+[45]
+Underfull \hbox (badness 10000) in paragraph at lines 1119--1121
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1123--1124
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1140--1141
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1142--1143
+
+ []
+
+[46
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1151--1152
+
+ []
+
+[47]
+Underfull \hbox (badness 10000) in paragraph at lines 1174--1175
+
+ []
+
+[48
+
+] [49
+
+]
+Chapter 4.
+
+Underfull \hbox (badness 10000) in paragraph at lines 1178--1179
+
+ []
+
+[50
+
+]
+Chapter 5.
+
 Underfull \hbox (badness 10000) in paragraph at lines 1204--1205
 
  []
 
+[51
 
-Underfull \hbox (badness 10000) in paragraph at lines 1220--1221
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1206--1207
+
+ []
+
+[52]
+Underfull \hbox (badness 10000) in paragraph at lines 1236--1237
+
+ []
+
+[53
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1254--1255
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1225--1227
+LaTeX Warning: Hyper reference `un1' on page 54 undefined on input line 1256.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1256--1257
 
  []
 
-[47
 
-] [48
+LaTeX Warning: Hyper reference `Da1' on page 54 undefined on input line 1258.
 
-] [49
 
-] (./Commutative_Algebra.aux)
+LaTeX Warning: Reference `Da1' on page 54 undefined on input line 1258.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1258--1259
+
+ []
+
+[54
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1291--1293
+
+ []
+
+[55
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 1316--1318
+
+ []
+
+
+Overfull \hbox (16.19598pt too wide) in paragraph at lines 1329--1330
+[]$[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 fg\OT1/cmr/m/n/14.4 ) \OMS/cmsy/m/n/14.4 ^^R []\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 f\OT1/cmr/m/n/14.4 ) [](\OML/cmm/m/it/14.4 g\OT1/cmr/m/n/14.4 )$ \T1/cmr/m/n/14.4 is clear. By [][]def-i-ni-tion of rad-i-cal[][], to prove $[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 f\OT1/cmr/m/n/14.4 ) [](\OML/cmm/m/it/14.4 g\OT1/cmr/m/n/14.4 ) \OMS/cmsy/m/n/14.4 ^^R
+ []
+
+[56] [57] (./Commutative_Algebra.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.99791pt have occurred.
+
+
+LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 34816 strings out of 476025
- 712836 string characters out of 5790017
+ 35598 strings out of 476025
+ 730983 string characters out of 5790017
  1886388 words of memory out of 5000000
- 54424 multiletter control sequences out of 15000+600000
- 547130 words of font info for 127 fonts, out of 8000000 for 9000
+ 55104 multiletter control sequences out of 15000+600000
+ 550836 words of font info for 150 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 91i,19n,99p,1014b,1431s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/
-cm-super/sfti0800.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc3583.pfb>
-Output written on Commutative_Algebra.pdf (50 pages, 522506 bytes).
+ 91i,19n,99p,1223b,1118s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/old-arrows/oasy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-supe
+r/sfrm0800.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc3583.pfb>
+Output written on Commutative_Algebra.pdf (58 pages, 602917 bytes).
 PDF statistics:
- 807 PDF objects out of 1000 (max. 8388607)
- 634 compressed objects within 7 object streams
- 186 named destinations out of 1000 (max. 500000)
- 389 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1086 PDF objects out of 1200 (max. 8388607)
+ 893 compressed objects within 9 object streams
+ 274 named destinations out of 1000 (max. 500000)
+ 405 words of extra memory for PDF output out of 10000 (max. 10000000)
 

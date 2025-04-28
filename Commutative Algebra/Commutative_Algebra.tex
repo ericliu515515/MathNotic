@@ -3,7 +3,7 @@
 \input{macros}
 \input{letterfonts}
 
-\title{Notes on Commutative Algebra}
+\title{Notes on Algebraic Geometry and Commutative Algebra}
 \author{Eric Liu}
 \date{}
 \begin{document}
@@ -14,15 +14,15 @@
 
 \tableofcontents
 \pagebreak
-\chapter{Definitions} 
-\section{Definition of Rings}
+\chapter{Local Ring, Integral Closure, and Noether} 
+\section{Rings}
 The precise meaning of the term \textbf{ring} varies across different books, depending on the context and purpose. In this note, the multiplication of a ring is always associative and commutative, and have an identity. The additive identity is denoted by $0$. From the axioms, we can straightforwardly show that $x\cdot 0 = 0$ for all $x$. Consequently, the multiplicative and additive identities are always distinct unless the ring contained only one element, called  \textbf{zero} in this case.\\
 
 An \textbf{ideal} of a ring $R$ is an additive subgroup $I$ such that $ar \in I$ for all $a \in I,  r \in R$, or equivalently, the kernel of some \textbf{ring homomorphism}\footnote{Ring homomorphisms are mapping between two rings that respects addition, multiplication and  multiplicative identity.}. To see the equivalency, one simply construct the \textbf{quotient ring}\footnote{Consider the equivalence relation on $R$ defined by  $x\sim  y\overset{\triangle}{\iff } x-y \in I$} $R\quotient I$, under which the quotient map $\pi: R \rightarrow R \quotient  I$ is a surjective ring homomorphism whose kernel is the ideal $I$. Remarkably, the mapping defined by 
  \begin{align*}
 \operatorname{Ideal }J\text{ of $R$ that contains }I \mapsto \set{[x]\in R\quotient I: x\in J}
 \end{align*}
-forms a bijection between the collection of the ideals of $R$ containing  $I$ and the collection of the ideals of $R\quotient I$. This fact is commonly referred to as the \textbf{correspondence theorem} for rings. \\
+forms a bijection between the collection of the ideals of $R$ containing  $I$ and the collection of the ideals of $R\quotient I$. This fact is commonly referred to as the \textbf{correspondence theorem} for rings. \label{ctfr}\\
 
 A \textbf{unit} is an element that has a multiplicative inverse. Under our initial requirement that rings are commutative, for a non-zero ring $R$ to be a \textbf{field}, we only need all non-zero elements of $R$ to be units, or equivalently, the only ideals of $R$ to be $\set{0}$ or $R$ itself.\\
 
@@ -31,12 +31,24 @@ We use the term \textbf{proper} to describe strict set inclusion. By a \textbf{m
 A \textbf{zero-divisor} is an element $x$ that has some non-zero element $y$ such that  $xy=0$. Again, under our initial requirement that rings are commutative, for a non-zero ring $R$ to be an  \textbf{integral domain}, we only need all non-zero elements to be zero-divisors. By a \textbf{prime ideal}, we mean a proper ideal $I$ such that the product of two elements belongs to $I$ only if one of them belong to $I$, or equivalently, a proper ideal $I$ such that $R\quotient I$ is an integral domain.  \\
 
 
-There are many binary operations defined for ideals.  Given two ideals $I$ and $S$, we define their \textbf{sum} $I+S$ to be the set of all  $x+y$ where  $x\in I$ and $y \in S$, and define their \textbf{product} $IS$ to be the set of all finite sums $\sum x_iy_i$ where  $x_i \in I$ and $y_i\in S$. Note that the ideal multiplications are indeed distributive over addition, and they are both associative, so it make sense to write something like $I_1+I_2+I_3$ or $I_1I_2I_3$. Obviously, the intersection of ideals is still ideal, while the union of ideals generally are not. Moreover, we define their \textbf{quotient} $(I:S)$ to be the set of elements $x$ of $R$ such that $xy \in I$ for all $y \in S$. To simplify matters, we write $(I:x)$ instead of $(I:\langle x\rangle )$. \\ 
+There are many binary operations defined for ideals.  Given two ideals $I$ and $S$, we define their \textbf{sum} and \textbf{product} by 
+\begin{align}
+\label{IS}
+I+S \triangleq \set{\sum_{\text{finite}}x+y \in R: x \in I \text{ and }y \in S}\quad IS\triangleq \set{\sum_{\text{finite}}xy \in R: x \in I \text{ and } y \in S}
+\end{align}
+Note that the ideal multiplications are indeed distributive over addition, and they are both associative, so it make sense to write something like $I_1+I_2+I_3$ or $I_1I_2I_3$. Clearly, the intersection of ideals is still ideal, while the union of ideals generally are not\footnote{However, $I \cup  J$ generates $I+J$.}. Moreover, we define their \textbf{quotient} by 
+\begin{align}
+\label{Iq}
+  (I:S)\triangleq \set{x \in R: xS\subseteq I}
+\end{align}
+To simplify matters, we write $(I:x)$ instead of $(I:\langle x\rangle )$. \\ 
 
 For all subsets $S$ of some ring $R$, we may \textbf{generate} an ideal by setting it to be the set of all finite sum  $\sum rs$ such that $r\in R$ and $s \in S$, or equivalently, the smallest ideal of $R$ containing $S$. An ideal is called \textbf{principal} and denoted by $\langle x\rangle $ if it can be generated by a single element $x$. \\
 
+
 An element $x$ is called \textbf{nilpotent} if $x^n=0$ for some  $n\inn$. The set of all nilpotent elements obviously form an ideal, which we call \textbf{nilradical} and denote by $\operatorname{Nil}(R)$. Here, we give a nice description of the nilradical. 
 \begin{theorem}
+\label{EDfN}
 \textbf{(Equivalent Definition for Nilradical)} We use the term \textbf{spectrum} of $R$ and the notation  $\operatorname{spec}(R)$ to denote the set of prime ideals of $R$. We have 
  \begin{align*}
 \operatorname{Nil}(R)=\bigcap \operatorname{spec}(R)
@@ -47,14 +59,18 @@ $\operatorname{Nil}(R)\subseteq \bigcap \operatorname{Spec}(R)$ is obvious. Supp
 
 Let $yz \in I$. Assume for a contradiction that $y\not\in I$ and $z\not\in I$. By maximality of $I$, both ideal $I+ \langle y\rangle$ and ideal $I+\langle z\rangle$ do not belong to $\Sigma$. This implies $x^n \in I+ \langle y\rangle$ and $x^m \in I + \langle z\rangle $ for some $n,m>0$, which cause a contradiction to $I \in \Sigma$, since $x^{n+m} \in I + \langle yz\rangle =I$. 
 \end{proof}
-Let $I$ be an ideal of the ring $R$. By the term \textbf{radical} of $I$, we mean $\sqrt{I}\triangleq \set{ x \in R : x^n \in I \text{ for some } n > 0 }$, which is equivalent to  the preimage of $\operatorname{Nil}(R \quotient  I)$ under the quotient map and equivalent\footnote{This follows from the fact that the correspondence between the ideals of $R$ and the ideals of $R \quotient  I$ can be restricted to a bijection between $\operatorname{Spec}(R)$ and $\operatorname{Spec}(R \quotient  I)$.} to the intersection of all prime ideals of $R$ that contain $I$. \\
+Let $I$ be an ideal of the ring $R$. By the term \textbf{radical} of $I$, we mean 
+\begin{align*}
+\sqrt{I}\triangleq \set{ x \in R : x^n \in I \text{ for some } n > 0 }
+\end{align*}
+which is equivalent to the preimage of $\operatorname{Nil}(R \quotient  I)$ under the quotient map and equivalent\footnote{This follows from the fact that the correspondence between the ideals of $R$ and the ideals of $R \quotient  I$ can be restricted to a bijection between $\operatorname{Spec}(R)$ and $\operatorname{Spec}(R \quotient  I)$.} to the intersection of all prime ideals of $R$ that contain $I$. \label{raed}\\
 
 It should be noted that there is a "less is more" philosophy in our wording and notations for product, quotient and radical of ideals. For any ideal $I,Q$, we have 
  \begin{align*}
 IQ \subseteq I \subseteq \sqrt{I}  \text{ and }I \subseteq (I:Q)
 \end{align*}
 For ease in the section on fraction of rings and modules, we close this section by introducing two concept. Let $f:A\rightarrow B$ be some ring homomorphism. If $E$ is a subset of $A$, we call the ideal in  $B$ generated by $f(E)$ the \textbf{extension} of $E$, which we denote by  $E^e$. If  $E$ is a subset of  $B$, we call the ideal in  $A$ generated by  $f^{-1}(E)$ the \textbf{contraction} of $E$, which we denote by $E^c$. Clearly, if  $E$ is an ideal in $B$, then $E^c=f^{-1}(E)$. 
-\section{Definition of Modules and Algebra}
+\section{Modules and Algebra}
 Let $A$ be some ring. By an $A$-\textbf{module}, we mean an abelian group $M$ together with a $A$-scalar multiplication. Given another $A$-module $N$, we use the notation $\operatorname{Hom}(M,N)$ to denote the space of \textbf{$A$-module homomorphism} from  $M$ to $N$. It is clear that the obvious assignment of $A$-scalar multiplication and addition makes $\operatorname{Hom}(M,N)$ a $A$-module.\\
 
 Let $M$ be an $A$-module, and let $N$ be a subset of  $M$. We say $N$ is a $A$-\textbf{submodule} if $N$ forms an additive subgroup and is closed under $A$-scalar multiplication. Just like how ideals is proved to always be the kernel of some ring homomorphism, to see submodules is always the kernel of some $A$-module homomorphism, we simply construct the \textbf{quotient module} $M\quotient N$, and get the quotient map $\pi :M\rightarrow M\quotient N$ that is a $A$-module homomorphism with kernel $N$, and get also the bijection
@@ -79,12 +95,12 @@ forms a submodule of the direct product. We denote this submodule by $\bigoplus 
 Given a subset $E$ of  $M$, clearly its \textbf{span}, the set of finite sum $\sum rx$ where $x \in E$, forms a submodule. Interestingly, depending on the view one wish to take, there are multiple common notation for spans of $E$. To view modules as generalization of vector spaces, one may write  $\operatorname{span}(E)$, to view module as generalizations of rings, one may write $\langle E\rangle$, and to adapt the algebraic convention, one may also write $\sum_{x \in E}Ax$. \\ 
 
 
-We say  $M$ is \textbf{finitely generated} if $M$ can be spanned by some finite set $\set{x_1,\dots ,x_n}\subseteq M$. Clearly,  $(a_1,\dots ,a_n)\mapsto \sum a_ix_i$ forms a surjective homomorphism from $A^n$ to $M$, which implies $M$ is isomorphic to some quotient of $A^n$. This behavior, albeit seems unimportant for now, will later prove to be useful for it guarantees that finitely generated module over rings of some certain properties carry the same property.\footnote{For example, this shows that finitely generated module over Noetherian ring is Noetherian. See \myref{Section}{FGN}} \\
+We say  $M$ is \textbf{finitely generated} if $M$ can be spanned by some finite set $\set{x_1,\dots ,x_n}\subseteq M$. Clearly,  $(a_1,\dots ,a_n)\mapsto \sum a_ix_i$ forms a surjective homomorphism from $A^n$ to $M$, which implies $M$ is isomorphic to some quotient of $A^n$. This behavior, albeit seems unimportant for now, will later prove to be useful for it guarantees that finitely generated module over rings of some certain properties carry the same property.\footnote{For example, this shows that finitely generated module over Noetherian ring is Noetherian. See \myref{Theorem}{cpoN}} \\
 
 By the \textbf{Jacobson radical} $\operatorname{Jacob}(A)$ of $A$, we mean the intersection of all maximal ideals of $A$. Given an ideal $\mathfrak{a}$ of $A$, some  module $M$ and some  submodule  $N$ of  $M$, the \textbf{product $\mathfrak{a}N$ of the submodule $N$  by the ideal $\mathfrak{a}$} is the submodule of $M$ consisting of finite sum $\sum a_i x_i$ where $a_i \in \mathfrak{a}$ and $x_i \in N$. We may now state  \customref{Nakayama}{Nakyama's Lemma}. 
 \begin{lemma}
 \label{Nakayama}
-\textbf{(Nakayama)} Let $M$ be a finitely generate $A$-module, and  $\mathfrak{a}$ an ideal of $A$ contained by the Jacobson radical of  $A$. If  $\mathfrak{a}M=M$, then $M=0$. 
+\textbf{(Nakayama)} Let $M$ be a finitely generated $A$-module, and  $\mathfrak{a}$ an ideal of $A$ contained by the Jacobson radical of  $A$. If  $\mathfrak{a}M=M$, then $M=0$. 
 \end{lemma}
 \begin{proof}
 Assume for a contradiction that $M\neq 0$. Let $u_1,\dots ,u_n$ be a minimal set of generators of $M$. Write $u_n=a_1u_1+\cdots + a_n  u_n$ where $a_i \in \mathfrak{a}$. This give us 
@@ -93,11 +109,12 @@ Assume for a contradiction that $M\neq 0$. Let $u_1,\dots ,u_n$ be a minimal set
   (1-a_n) u_n= a_1u_1+\cdots + a_{n-1}u_{n-1}
 \end{align}
 We know that $1-a_n$ must be a unit, otherwise by Zorn's Lemma\footnote{Note that union of proper ideals is always proper because otherwise one of them would have contain $1$.} there exists a maximal ideal $\mathfrak{m}$ containing  $1-a_n$, which is impossible since  $a_n \in \operatorname{Jacob}(A)$ would have implies $1 \in \mathfrak{m}$. Because $1-a_n$ is a unit, by \myref{Equation}{1anun}, $u_n$ can be generated by  $\set{u_1,\dots ,u_{n-1}}$, a contradiction to the minimality of $\set{u_1,\dots ,u_n}$. 
-
-
-
 \end{proof}
-\section{Localization}
+There are multiple ways to give definition to the term \textbf{algebra $B$ over ring $A$}, and the easiest way is to say we have a ring homomorphism $A \overset{f}{\longrightarrow } B $, which induce the scalar product: 
+\begin{align*}
+a(b)\triangleq f(a)b
+\end{align*}
+\section{Localization and local ring}
 Let $A$ be a ring. We say  $S\subseteq A$ is a \textbf{multiplicatively closed subset} of $A$ if  $S$ contains $1$ and is closed under multiplication. We say a ring $B$ and a homomorphism $f:A\rightarrow B$ satisfies the \textbf{universal property of localization of $A$ by $S$} if
 \begin{enumerate}[label=(\alph*)]
   \item $f(S) \subseteq B^{\times}$. 
@@ -114,49 +131,81 @@ Suppose $A\overset{f}{\longrightarrow }B$ satisfies the universal property of lo
 	\arrow["g"', from=1-1, to=3-3]
 	\arrow["{\tilde{g}}", dashed, from=1-3, to=3-3]
 \end{tikzcd}\]
-commutes. Just like the universal properties for other mathematical objects, one many check\footnote{The proof is exactly the same as the ones for other mathematical objects.} that if  $A\overset{f'}{\longrightarrow }B'$ also satisfies the universal property of localization of $A$ by $S$, then $B \cong B'$. Immediately, we need to ask: Does there really exists some $A \overset{f}{\longrightarrow }B$ that satisfies the universal property of localization of $A$ by $S$? The answer if of course affirmative: Define an equivalence relation on  $A \times S$ by 
+commutes.\footnote{ Just like the universal properties for other mathematical objects, one many check that if  $A\overset{f'}{\longrightarrow }B'$ also satisfies the universal property of localization of $A$ by $S$, then $B \cong B'$, and the proof is exactly the same as the ones for other mathematical objects.} By \textbf{localization of $A$ by $S$}, we merely mean some $A\overset{f}{\longrightarrow }B$ that satisfies the universal property of localization of $A$ by  $S$, and, moreover, we always use the notation  $S^{-1}A$ to denote $B$, and refer to $f$ as the \textbf{canonical ring homomorphism}. Adopting the convention of denoting $f(a)f(s)^{-1} \in S^{-1}A$ by $\frac{a}{s}$, we see that we have the intuitive:
 \begin{align*}
-  (a,s)\sim  (b,t) \overset{\triangle}{\iff } (at-bs)u=0\text{ for some }u \in S
+ \frac{a}{s}+ \frac{b}{t}= \frac{at+bs}{st} \text{ and } \frac{a}{s}\cdot \frac{b}{t}=\frac{ab}{st}
 \end{align*}
-Denoting the set of equivalence classes by $S^{-1}A$ and denoting the equivalence class of $(a,s)$ by $\frac{a}{s}$, we have a ring structure on $S^{-1}A$ from defining 
+and by universal property 
 \begin{align*}
- \frac{a}{s}+ \frac{b}{t}\triangleq \frac{at+bs}{st} \text{ and } \frac{a}{s}\cdot \frac{b}{t}\triangleq \frac{ab}{st}
+\frac{a}{s}= \frac{a'}{s'} \iff  (as'-a's)s''=0\text{ for some }s'' \in S. 
 \end{align*}
-Clearly, the \textbf{canonical} ring homomorphism $A\longrightarrow S^{-1}A;a \mapsto \frac{a}{1}$ satisfies the universal property of localization of $A$ by  $S$, and just as out notation and intuition suggest, $S^{-1}A=0$ if $0 \in S$. \\
-
-If $P$ is a prime ideal of  $A$, we often just call  $A_P\triangleq (A\setminus P)^{-1}A$ the \textbf{localization of $A$ at $P$}. A nonzero ring is said to be a \textbf{local ring} if it has only one maximal ideal. One may check that a ring $A$ is local if and only if it is the localization of some ring $B$ at some prime ideal  $P$ of  $B$\footnote{If $A$ is local, then it is the localization of itself at its unique maximal ideal. If $A=B_P$, then the set of non-units $\set{\frac{p}{s}\in B_P:p \in P}$ is clearly the only maximal ideal of $A$.}, thus the naming of "local ring". \\
+Just as our fraction notation suggest, if $T\subseteq S$ is another multiplicatively closed subset of $A$, then clearly the canonical ring homomorphism $A\longrightarrow S^{-1}A$ maps $T$ into  $(S^{-1}A)^{\times}$. This by universal property implies the existence and uniqueness of a ring homomorphism from $T^{-1}A$ to $S^{-1}A$ that forms a commutative triangle with the two canonical ring homomorphism. This ring homomorphism have the obvious action, and will be how we are going to identify $T^{-1}A $ as a subring of $S^{-1}A$\footnote{One may check that this ring homomorphism is indeed injective.}. Similarly, given $A \longhookrightarrow B$, universal property implies the existence and uniqueness of a ring homomorphism from $S^{-1}A$ to $S^{-1}B$ that forms a commutative triangle with $A\longrightarrow S^{-1}A$ and the composited $A \longhookrightarrow B \longrightarrow S^{-1}B$, which have the obvious action and will be how we are going to identify $S^{-1}A$ as a subring of $S^{-1}B$.\\
 
 
 
+As another reason to adopt the fractional notation for localization, observe that $S^{-1}A=0$ if $0 \in S$, aligning with our intuition that $0$ can never be a denominator, and $(\set{1})^{-1}A\cong A$ as expected.\\   
 
-
-Let $I\subseteq A$ be some ideal, clearly its extension is the \textbf{localization of $I$ by $S$} defined by $S^{-1}I= \set{\frac{i}{s}\in S^{-1}A:i \in I}$. We use the notation $S(I)$ to denote the contraction of $S^{-1}I$. For \customref{UoP}{the section on uniqueness of primary decomposition}, we first prove some basic properties of localization of ideals. 
-\begin{theorem}
-\label{Pol}
-\textbf{(Properties of localization of ideals)} Let $A$ be a ring, and let  $S$ be some multiplicatively closed subset of  $A$. 
- \begin{enumerate}[label=(\alph*)]
-  \item If $I$ is an ideal in  $A$, then  
-    \begin{align*}
-    S(I)=\bigcup_{s \in S} (I:s)
-    \end{align*} 
-    \item If $I$ is an ideal in $A$, then 
+Let $A$ be a ring, and let $S \subseteq A$ be a multiplicatively closed subset that contains no zero-divisors. Clearly, in $S^{-1}A$, 
 \begin{align*}
-\sqrt{S^{-1}I}=S^{-1}\sqrt{I}        
+\frac{a}{s}=\frac{b}{t}\text{ if and only if }at=bs. 
 \end{align*}
-\item If $I_1,\dots ,I_n$ are ideals in $A$, then 
-   \begin{align*}
-  S^{-1}(I_1 \cap \cdots \cap I_n)= S^{-1}I_1 \cap  \cdots \cap S^{-1} I_n
-  \end{align*}
+This implies that the canonical ring homomorphism $A \longrightarrow  S^{-1}A$ is injective, which is how we are going to identify $A$ as a subring of $S^{-1}A$. Using the universal property, we see that the  \textbf{field of fraction} $\operatorname{Frac}(D)\triangleq (D^*)^{-1}D$ is the smallest field that contains a subring isomorphic to $D$. \\
+
+Let $A$ be some ring,  $S\subseteq A$ an multiplicatively closed subset, and $M$ an  $A$-module. By the \textbf{localization of $M$ by  $S$}, we mean an $A$-module $S^{-1}M$ and a canonical $A$-module homomorphism $M\overset{j}{\longrightarrow } S^{-1}M$ that satisfies the \textbf{universal property for localization of $M$ by  $S$}: 
+\begin{enumerate}[label=(\alph*)]
+  \item Every $s \in S$ acts invertibly on $S^{-1}M$. 
+  \item For any $A$-module $N$ on which all $s \in S$ acts invertibly and any $A$-module homomorphism $M\overset{g}{\longrightarrow } N$, there exists a unique $A$-module homomorphism $\tilde{g} $ such that the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQiJdLFsyLDIsIkMiXSxbMCwyLCJnIiwyXSxbMCwxLCJmIl0sWzEsMiwiXFx0aWxkZXtmfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	M && S^{-1}M \\
+	\\
+	&& N
+	\arrow["j", from=1-1, to=1-3]
+	\arrow["g"', from=1-1, to=3-3]
+	\arrow["{\tilde{g}}", dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+commutes.
 \end{enumerate}
+Just like localization of ring, we adopt the fractional notation $y\triangleq \frac{m}{s}$ for $sy=j(m)$, which give us the intuitive: 
+\begin{align*}
+\frac{m}{s}+ \frac{n}{t}= \frac{mt+ns}{st}\text{ and } a \cdot \frac{m}{s}
+\end{align*}
+and also by universal property: 
+\begin{align*}
+\frac{m}{s}= \frac{m'}{s'}\iff (ms'-m's)s''=0\text{ for some }s'' \in S. 
+\end{align*}
+Again, if $T \subseteq S$ is another multiplicatively closed subset of $A$, if there exists injective ring homomorphism $A \longhookrightarrow B$, and if there exists $A$-submodule $N \subseteq M$, then the obvious action is what the universal property will induce, thus being how we identify one as subsets of another.\\ 
+
+Contrary to ring localization, there is one more thing to note about localization of module. Given some $A$-module $N$ on which all  $s \in S$ act invertibly, we may give $N$ the \textbf{canonical}  $S^{-1}A$-module structure\footnote{It is the obvious one.}, and this is how we are going to view $S^{-1}M$ as an $S^{-1}A$-module. Also, given an $A$-module homomorphism  $M \overset{f}{\longrightarrow }N$, one may check that the unique $A$-module homomorphism $S^{-1}f$ from $S^{-1}M$ to $S^{-1}N$ that  forms a commutative triangle with $M\longrightarrow S^{-1}M$ and $M \overset{f}{\longrightarrow }N \longrightarrow S^{-1}N$ have the action $\frac{a}{s}\mapsto \frac{f(a)}{s}$, and is thus also an $S^{-1}A$-module homomorphism. Note that given
+\begin{align*}
+M' \overset{f}{\longrightarrow } M \overset{g}{\longrightarrow }M ''
+\end{align*}
+Clearly, we have 
+\begin{align*}
+S^{-1}(g \circ f)=S^{-1}g \circ S^{-1}f
+\end{align*}
+In other words, localization forms a functor. 
+\begin{theorem}
+\textbf{(Localization is an exact functor)} If 
+\begin{align*}
+M' \overset{f}{\longrightarrow }M \overset{g}{\longrightarrow }M''
+\end{align*}
+is exact, then 
+\begin{align*}
+S^{-1}M' \xrightarrow {S^{-1}f} S^{-1}M \xrightarrow{S^{-1}g}  S^{-1}M''
+\end{align*}
+is also exact. 
 \end{theorem}
 \begin{proof}
-We first prove part (a). Let $t \in (I:s)$ for some $s$. Because  $\frac{t}{1}= \frac{st}{s} \in S^{-1}I$, we see $t \in I^{ec}$. Let $t \in I^{ec}$, so $\frac{t}{1}= \frac{i}{s}$ for some $i \in I,s \in S$. Observe $ ts s'=is' \in I$ for some $s'$ to conclude $t \in (I:s s')$, and we are done. We now prove part (b). It is clear that $S^{-1}\sqrt{I}\subseteq \sqrt{S^{-1}I}$. Let $\frac{a}{s}\in \sqrt{S^{-1}I}$, so $\frac{a^n}{s^n}=\frac{i}{s'}\in S^{-1}I$ for some $n,i,s'$. Let $s''$ satisfies  $a^n s' s''= is^n s'' \in I$. Observations of $\frac{a}{s}= \frac{a s' s''}{s s' s''}$ and $a s' s'' \in \sqrt{I}$ finish the proof.  We now prove part (c). It is clear that $S^{-1}(I_1 \cap  \cdots \cap I_n)\subseteq S^{-1}I_1 \cap \cdots S^{-1}I_n$. Let $\frac{a}{s}\in S^{-1}I_1 \cap \cdots \cap  S^{-1}I_n$. For each $j\in \set{1,\dots ,n}$, we may find $s_j,s_j'\in S,i_j \in I$ such that  $as_js_j'=s i_j s_j' \in I_j$. Writing 
- \begin{align*}
-\frac{a}{s}= \frac{as_1s_1' s_2 s_2' \cdots s_n s_n'}{s s_1 s_1' s_2 s_2' \cdots  s_n s_n'}  \in S^{-1}(I_1\cap  \cdots \cap I_n)
-\end{align*}
-and we are done. 
+Clearly, we only have to prove $\operatorname{Ker}(S^{-1}g) \subseteq \operatorname{Ker}(S^{-1}f)$. Suppose $\frac{m}{s} \in \operatorname{Ker}(S^{-1}g)$. We have $tg(m)=0$ for some $t \in S$. This implies $tm \in \operatorname{Ker}g= \operatorname{Im}f$. Suppose $f(m')=tm$. This now give us $\frac{m}{s}= S^{-1}f(\frac{m'}{st})$. 
 \end{proof}
-\section{Integral Dependence}
+
+
+
+If $f\in A$, we often write $A_f$ in place of $S^{-1}A$ where $S=\set{f^n: n\geq 0}$, and if $\mathfrak{p}$ is a prime ideal of  $A$, we often just call  $A_\mathfrak{p}\triangleq (A\setminus \mathfrak{p})^{-1}A$ the \textbf{localization of $A$ at $\mathfrak{p}$}. A nonzero ring is said to be a \textbf{local ring} if it has only one maximal ideal, if and only if its set of non-units form an ideal, or that if and only if it is the localization of some ring $B$ at some prime ideal  $\mathfrak{p}$ of  $B$\footnote{If $A$ is local, then it is the localization of itself at its unique maximal ideal. If $A=B_\mathfrak{p}$, then the set of non-units $\set{\frac{p}{s}\in B_\mathfrak{p}:p \in \mathfrak{p}}$ is clearly the only maximal ideal of $A$.}, thus the name "local ring".  \\
+ 
+One of the key property of local ring $A$ is that if we let $\mathfrak{m}$ be its unique maximal ideal, then the quotient $A$-module  $\mathfrak{m}\quotient \mathfrak{m}^2$ forms a $A\quotient \mathfrak{m}$-vector space, called the \textbf{cotangent space of} $A$, with the obvious assignment of scalar product. If $A$ is local, we often write  $(A,\mathfrak{m},k)$ to mean that $\mathfrak{m}$ is the unique maximal ideal of $A$ and  $k$ the residue field  $k\triangleq A\quotient \mathfrak{m}$. 
+\section{Integral dependence}
 Let $A$ be a subring of some ring  $B$. We say  $x \in B$ is \textbf{integral over} $A$ if  $x$ is a root of some monic polynomial with coefficients in $A$. 
 \begin{theorem}
 \label{CHTffgm}
@@ -202,7 +251,7 @@ Let $x,y\in B$ be integral over $A$. We are required to prove  $x\pm y,xy$ are a
 
 Now, note that $A[x,y]=(A[x])[y]$. Clearly $y$ is integral over  $A[x]$, so we know  $A[x,y]=(A[x])[y]$ is a finitely generated $A[x]$-module. Moreover, because $x$ is integral over $A$, we also know  $A[x]$ is a finitely generated $A$-module. Let $A[x,y]$ as an $A[x]$-module be generated by $\set{z_1,\dots ,z_n}$, and let $A[x]$ as an $A$-module be generated by $\set{v_1,\dots ,v_k}$. It is easy to check that, indeed, $A[x,y]$ as an $A$-module is generated  by $\set{z_iv_j \in A[x,y]: 1 \leq i \leq n,1\leq j\leq k}$. 
 \end{proof}
-Let $A$ be a subring of  $B$. Because of \myref{Corollary}{DoIC}, when we talk about the \textbf{integral closure of $A$ in $B$}, the set of elements of $B$ integral over $A$, we know we are indeed talking about a ring. If $B$ itself is the integral closure of $A$ in $B$, we say  $A$ is \textbf{integrally closed} in $B$. \\
+Let $A$ be a subring of  $B$. Because of \myref{Corollary}{DoIC}, when we talk about the \textbf{integral closure of $A$ in $B$}, the set of elements of $B$ integral over $A$, we know we are indeed talking about a ring. If $A$ itself is the integral closure of itself in $B$, we say  $A$ is \textbf{integrally closed in}  $B$.\\ 
 
 For the proof of  \myref{Corollary}{ToIC}, note that induction and argument similar to the second paragraph of the proof of \myref{Corollary}{DoIC} shows that if $x_1,\dots ,x_n$ are all integral over $A$, then  $A[x_1,\dots ,x_n]$ as an $A$-module is finitely generated.
 \begin{corollary}
@@ -216,7 +265,8 @@ x^n+b_{n-1}x^{n-1}+ \cdots + b_0=0,\quad \text{for some }b_0,\dots ,b_{n-1} \in 
 \end{align*}
 By \myref{Theorem}{EDfid}, we are only required to show $A[b_0,\dots ,b_{n-1},x]$ as an $A$-module is finitely generated. Clearly, $x$ is integral over the subring $A[b_0,\dots ,b_{n-1}]$, so by \myref{Theorem}{EDfid}, we know $A[b_0,\dots ,b_{n-1},x]$ as an $A[b_0,\dots ,b_{n-1}]$-module is finitely generated. The proof then follows from noting $A[b_0,\dots ,b_{n-1}]$ is finitely generated as an $A$-module since all  $b_0,\dots ,b_{n-1}$ are all integral over $A$.  
 \end{proof}
-\section{The Nonsense Lemmas}
+An integral domain is said to be an \textbf{integrally closed domain} if it is integrally closed in its field of fraction.  
+\section{Homological lemmas}
 Let $R$ be some ring. Given a sequence of $R$-modules and $R$-modules homomorphism 
 \begin{align*}
 \cdots \longrightarrow M_{k-1} \overset{f}{\longrightarrow } M_k \overset{g}{\longrightarrow } M_{k+1} \longrightarrow \cdots 
@@ -328,14 +378,188 @@ If the two rows are exact, $m,p$ are surjective,  $q$ is injective, then  $n$ is
 \end{tikzcd}\]
 If the two rows are exact and $m,p$ are isomorphisms, then $n$ is an isomorphism.  
 \end{lemma}
-\section{Tensor Product of Modules}
-By \textbf{free modules}, we mean modules of the form $\bigoplus_{i \in I}M_i$ where $M_i \cong R$. We denote the free module $\bigoplus_{i \in I}M_i$ by $R^{(I)}$. \\
+\section{Noetherian}
+Given some collection $\Sigma$ of sets, we say $\Sigma$ satisfies the \textbf{ascending chain condition, a.c.c.}, if for each chain $x_1 \subseteq x_2 \subseteq  \cdots$ there exists $n$ such that $x_n=x_{n+1}=\cdots$, and we say $\Sigma$ satisfies the \textbf{descending chain condition, d.c.c.}, if for each chain $x_1 \supseteq x_2 \supseteq \cdots $ there exists $n$ such that $x_n=x_{n+1}= \cdots$. Let $M$ be some module. We say  $M$  is  \textbf{Noetherian} if the collection of submodules of $M$ satisfies  a.c.c., and we say $M$ is  \textbf{Artinian} if the collection of submodules  satisfies d.c.c. Thanks to axiom of choice, we have: 
+\begin{theorem}
+\label{EDoN}
+\textbf{(Equivalent Definition of Noetherian)} Let $M$ be a module. The following are equivalent: 
+\begin{enumerate}[label=(\alph*)]
+  \item $M$ is Noetherian.  
+  \item Every nonempty collection of submodules of $M$ has a maximal element.  
+  \item Every submodule of $M$ is finitely generated.
+\end{enumerate}
+\end{theorem}
+Immediately from the equivalent definitions of Noetherian, we have the following useful properties for ideals in Noetherian ring. How useful? See how we established equivalent characterization of DVR with \myref{corollary}{IiN} in \myref{theorem}{ECoDp1}.  
+\begin{corollary}
+\label{IiN}
+  \textbf{(Ideals in Noetherian always contain some powers of its radical)} If $\mathfrak{a}\subseteq A$ for Noetherian $A$, then $\mathfrak{a}\supseteq (\sqrt{ \mathfrak{a}})^n$ for some $n$. 
+\end{corollary}
+\begin{proof}
+Suppose $\sqrt{\mathfrak{a}}= \langle x_1,\dots ,x_k\rangle $ and $x_i^{n_i}\in \mathfrak{a}$. Defining  
+\begin{align*}
+m \triangleq \left(\sum_{i=1}^k n_i-1\right)+1 
+\end{align*}
+We have 
+\begin{align*}
+ \left(\sqrt{\mathfrak{a}}\right)^m = \left\langle \set{x_1^{r_1}\cdots x_k^{r_k} \in A: \sum_{i=1}^k r_i =m \text{ and }r_i \geq 0}\right\rangle 
+\end{align*}
+Now, by definition of $m$, we have 
+ \begin{align*}
+\sum_{i=1}^k r_i= m \text{ and }r_i \geq 0\implies r_i \geq n_i \text{ for at least one }i
+\end{align*}
+which implies $x_1^{r_1}\cdots x_1^{r_k} \in \mathfrak{a}$ for all $\sum_{i=1}^k r_i=m$ and $r_1 \geq 0$.  
+\end{proof}
+\begin{corollary}
+\label{PIoN}
+\textbf{(Primary ideals of Noetherian rings)} Let $A$ be Noetherian and $\mathfrak{m}\subseteq A$ maximal. For any ideal $\mathfrak{q}\subseteq A$, we have 
+\begin{align*}
+\mathfrak{q}\text{ is }\mathfrak{m}\text{-primary} \iff  \mathfrak{m}^n \subseteq \mathfrak{q} \subseteq \mathfrak{m}\text{ for some }n>0
+\end{align*}
+\end{corollary}
+\begin{proof}
+  $(\implies ):$ This follows from \myref{corollary}{IiN}.  $(\impliedby):$ $\mathfrak{m}=\sqrt{\mathfrak{q}} $ follows from $\mathfrak{m} \subseteq  \sqrt{\mathfrak{m}^n} \subseteq \sqrt{\mathfrak{q}}\subseteq \sqrt{\mathfrak{m}} = \mathfrak{m}$. It remains to prove $\mathfrak{q}$ is indeed primary. \\
 
 
+Because $\mathfrak{m}=\sqrt{\mathfrak{q}} $, by \customref{raed}{definition of radical} $\mathfrak{m}$ is preimage of  $\operatorname{Nil}(A\quotient \mathfrak{q})$. This implies by correspondence theorem for rings\footnote{What we mean by the correspondence theorem for ring is \customref{ctfr}{this}.} that $\operatorname{Nil}(A\quotient \mathfrak{q})$ is the only prime ideal of $A\quotient \mathfrak{q}$.\footnote{This is because $\operatorname{Nil}(A\quotient \mathfrak{q})=\bigcap \operatorname{Spec}(A\quotient \mathfrak{q})$. See \myref{theorem}{EDfN}. The proof is nontrivial.}. We have shown $A\quotient \mathfrak{q}$ is local, so $\operatorname{Nil}(A\quotient \mathfrak{q})$ is exactly the collection of non-units of $ A\quotient \mathfrak{q}$. This implies every zero-divisor in $A\quotient \mathfrak{q}$ is nilpotent, which implies $\mathfrak{q}$ is primary.  
+\end{proof}
+We close this section by showing Noetherian and Artinian properties are closed under multiple operations.  
+\begin{proposition}
+\label{FpNm}
+\textbf{(Formal properties of Noetherian and Artinian modules)} Given a short exact sequence of $A$-modules:  
+ \begin{align*}
+0 \longrightarrow M' \overset{\alpha }{\longrightarrow } M \overset{\beta }{\longrightarrow } M'' \longrightarrow 0
+\end{align*}
+$M$ is Noetherian if and only if  $M'$ and $M''$ are both Noetherian. Also, $M$ is Artinian if and only if $M'$ and  $M''$ are both Artinian. 
+\end{proposition}
+\begin{proof}
+Consider chain condition definition. For the "if" part, let $L_n$ be an ascending chain of submodules of  $M$, and use \customref{SFL}{short five lemma} on
+% https://q.uiver.app/#q=WzAsMTEsWzAsMCwiMCJdLFsyLDAsIlxcYWxwaGFeey0xfShMX24pIl0sWzQsMCwiTF9uIl0sWzYsMCwiXFxiZXRhKExfbikiXSxbOCwwLCIwIl0sWzAsMiwiMCJdLFsyLDIsIlxcYWxwaGFeey0xfShMX3tuKzF9KSJdLFs0LDIsIkxfe24rMX0iXSxbMywyXSxbOCwyLCIwIl0sWzYsMiwiXFxiZXRhKExfe24rMX0pIl0sWzAsMV0sWzEsMiwiXFxhbHBoYSJdLFsyLDMsIlxcYmV0YSJdLFs1LDZdLFs2LDcsIlxcYWxwaGEiXSxbMyw0XSxbNywxMCwiXFxiZXRhIl0sWzEwLDldLFszLDEwLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDcsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsNiwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+\[\begin{tikzcd}
+	0 && {\alpha^{-1}(L_n)} && {L_n} && {\beta(L_n)} && 0 \\
+	\\
+	0 && {\alpha^{-1}(L_{n+1})} & {} & {L_{n+1}} && {\beta(L_{n+1})} && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow["\alpha", from=1-3, to=1-5]
+	\arrow[hook, from=1-3, to=3-3]
+	\arrow["\beta", from=1-5, to=1-7]
+	\arrow[hook, from=1-5, to=3-5]
+	\arrow[from=1-7, to=1-9]
+	\arrow[hook, from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["\alpha", from=3-3, to=3-5]
+	\arrow["\beta", from=3-5, to=3-7]
+	\arrow[from=3-7, to=3-9]
+\end{tikzcd}\]
+to conclude that $L_n$ must stop at some point.  
+\end{proof}
+\begin{theorem}
+\label{cpoN}
+\textbf{(closed property of Noetherian)} Let $A$ be a Noetherian ring, $S\subseteq A$ a multiplicatively closed subset, $\mathfrak{a}\subseteq A$ an ideal, $M$ an  $A$-module, and $N\subseteq M$ an $A$-submodule.  We have: 
+\begin{enumerate}[label=(\roman*)] 
+\item $A^n$ as an $A$-module is Noetherian.  
+\item If $M$ is Noetherian, then  $M\quotient N$ is also Noetherian.   
+  \item If $M$ is finitely generated, then $M$ is Noetherian.  
+  \item $\mathfrak{a}$ as an $A$-module is Noetherian.  
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+For $(\text{i})$, just apply \myref{Proposition}{FpNm} inductively to 
+\begin{align*}
+ 0\longrightarrow A \longrightarrow A^n \longrightarrow A^{n-1} \longrightarrow 0 
+\end{align*}
+And for (ii), just apply \myref{Proposition}{FpNm} to 
+\begin{align*}
+0 \longrightarrow 0 \longrightarrow M \longrightarrow M\quotient N \longrightarrow 0
+\end{align*}
+For (iii), one simply note that if $M= \langle x_1,\dots ,x_n\rangle $, then $\pfi :A^n \to M ; (a_1,\dots ,x_n)\mapsto  a_1x_1+ \cdots +a_nx_n$ forms a surjective $A$-module homomorphism, thus $M$ isomorphic to  $A \quotient \operatorname{Ker}\pfi$ is Noetherian by (i) and (ii). (iv) is clear. 
+\end{proof}
+
+\begin{theorem}
+\label{cpoA}
+\textbf{(closed property of Artinian)} Let $A$ be a Artinian ring, $S\subseteq A$ a multiplicatively closed subset, $\mathfrak{a}\subseteq A$ an ideal, $M$ an  $A$-module, and $N\subseteq M$ an $A$-submodule.  We have: 
+\begin{enumerate}[label=(\roman*)] 
+\item $A^n$ as an $A$-module is Artinian.  
+\item If $M$ is Artinian, then  $M\quotient N$ is also Artinian.   
+  \item If $M$ is finitely generated, then $M$ is Artinian.  
+  \item $\mathfrak{a}$ as an $A$-module is Artinian.  
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  The proofs are identical to that of \myref{Theorem}{cpoN}. 
+\end{proof}
+\section{Length}
+Given a finite \textbf{chain} of submodules 
+\begin{align*}
+M_0 \subset M_1 \subset \cdots \subset M_n 
+\end{align*}
+we say this chain is of \textbf{length} $n$. Under the obvious assignment of order on the collection of all finite chains of submodules of $M$, we may define the \textbf{composition series} of $M$ to be the maximal finite chains. Clearly, a finite chain 
+\begin{align*}
+0= M_0 \subset \cdots \subset M_n= M
+\end{align*}
+is maximal if and only if  $M_k\quotient M_{k-1}$ are simple. 
+\begin{theorem}
+\label{Lom}
+\textbf{(Length of modules is well defined)} Every composition series of a module $M$ have the same length. 
+\end{theorem}
+\begin{proof}
+Suppose $M$ has a composition series, and let $l(M)$ denote the least length of a composition series of $M$. We wish to show every chain has length smaller than $l(M)$. Before such, we first prove 
+\begin{align}
+\label{NsM}
+N \subset M \implies  l(N)< l(M)
+\end{align}
+Let $M_0 \subset \cdots \subset M_n=M$ be a composition series of least length. Define $N_k \triangleq N \cap M_k$ for all $k \in \set{0,\dots ,n}$. Consider the obvious homomorphism $N_k \quotient N_{k-1} \rightarrow M_k \quotient M_{k-1}$. We see that either $N_k \quotient N_{k-1} \cong M_k \quotient M_{k-1}$ or $N_k = N_{k-1}$. This implies that the chain $N_0 \subset \cdots \subset N_n$ will be a composition series of $N$ after the unnecessary terms are removed. It remains to show there are unnecessary terms in $N_0 \subset \cdots \subset N_n$. Assume not for a contradiction. Because $N_1 \subseteq M_1$ and $N_1 \quotient \set{0} \cong   M_1 \quotient \set{0}$, we have $N_1 = M_1$. Repeating the same argument, we have  $N=N_n=M_n=M$, a contradiction. We have proved \myref{statement}{NsM}.\\
+
+Now, let $M_0' \subset \cdots \subset M_r'$ be some composition series of $M$. The proof then follows from using \myref{statement}{NsM} to deduce 
+\begin{align*}
+l(M)=l (M_r') > \cdots > l(M_0')=0 \implies r\leq l(M)
+\end{align*}
+\end{proof}
+Because of \myref{Theorem}{Lom}, we may well define the \textbf{length} $l(M)$ of module. For obvious reason, if module $M$ has no composition series, we say $M$ has infinite length and write $l(M)=\infty$. Clearly, if $M$ is of finite length, then $M$ is both Noetherian and Artinian. Conversely, if $M$ is both Noetherian and Artinian, then by the maximal element definition of Noetherian, there exists a decreasing sequence $M=M_0 \supset M_1 \supset M_2 \supset \cdots $, which by d.c.c. must be finite.   
+\begin{theorem}
+\label{AaN}
+\textbf{(Artinian and Noetherian are equivalent for vector space)} Let $k$ be some field, and $V$ some $k$-vector space. The following are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $V$ is finite dimensional. 
+  \item $V$ is of finite length. 
+  \item $V$ is Noetherian. 
+  \item $V$ is Artinian. 
+\end{enumerate}
+Moreover, $l(V)=\operatorname{dim}(V)$ in such case. 
+\end{theorem}
+\begin{proof}
+$(\text{i})\implies (\text{ii})\implies (\text{iii})$ and $(\text{ii})\implies (\text{iv})$ are clear. It remains to prove $(\text{iii})\implies (\text{i})$ and $(\text{iv})\implies (\text{i})$. Assume for a contradiction that $\set{v_i \in V: i \inn}$ is linearly independent. The contradiction to Noetherian of $V$ then occurs at  $(\operatorname{span}\set{v_i \in V: i\leq n})_n$ doesn't stop growing strictly, and the contradiction to Artinian of $V$ then occurs at $(\operatorname{span}\set{v_i \in  V : i\geq n})_n$ strictly decrease infinitely.  
+\end{proof}
+For usage in \customref{AR}{ section on Artin ring}, we give a corollary. 
+\begin{corollary}
+\label{Aiet}
+\textbf{(Artinian is equivalent to Noetherian in the class of rings whose zero ideal is some finite product of maximal ideals)} Let $A$ be a ring with $0=\mathfrak{m}_1\cdots \mathfrak{m}_n$, where $\mathfrak{m}_i$ are maximal. We have 
+\begin{align*}
+A\text{ is Noetherian }\iff A\text{ is Artinian }
+\end{align*}
+\end{corollary}
+\begin{proof}
+WLOG, we only prove $(\implies )$. The proof is done by  induction. Write $\mathfrak{a}_i\triangleq \mathfrak{m}_1 \cdots \mathfrak{m}_i$, where $\mathfrak{a}_0\triangleq A$ and $\mathfrak{a}_n=0$. Clearly, $\mathfrak{a}_n$ is Artinian as an $A$-module. We now show $\mathfrak{a}_{n-1}$ is also Artinian as an $A$-module. Consider the short exact sequence of $A$-module:    
+\begin{align*}
+0 \longrightarrow \mathfrak{a}_n \longrightarrow \mathfrak{a}_{n-1} \longrightarrow \mathfrak{a}_{n-1} \quotient  \mathfrak{a}_{n} \longrightarrow 0
+\end{align*}
+By \myref{proposition}{FpNm}, to prove $\mathfrak{a}_{n-1}$ is Artinian as an $A$-module, we only have to show  $\mathfrak{a}_{n-1}\quotient \mathfrak{a}_n$ is Artinian as an $A$-module. Before such, we first have to make two remarks: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathfrak{a}_{n-1}\quotient \mathfrak{a}_n$ forms an $A\quotient \mathfrak{m}_n$-vector space  under obvious assignment of scalar product. 
+  \item For each $E \subseteq \mathfrak{a}_{n-1}\quotient \mathfrak{a}_n$, $E$ forms an $A$-submodule if and only if $E$ forms an  $A\quotient \mathfrak{m}_n$-submodule. 
+\end{enumerate}
+
+Now, by \myref{proposition}{cpoN} we know $\mathfrak{a}_n \quotient \mathfrak{a}_{n-1}$ is Noetherian as an $A$-module, which with remark  (ii) implies that $\mathfrak{a}_n \quotient \mathfrak{a}_{n-1}$ is Noetherian as an $A\quotient \mathfrak{m}_n$-module, which further implies by \myref{theorem}{AaN} that $\mathfrak{a}_n \quotient \mathfrak{a}_{n-1}$ is Artinian as an $A\quotient \mathfrak{m}_n$-module, which further further implies with remark (ii) that, indeed, $\mathfrak{a}_n \quotient \mathfrak{a}_{n-1}$ is Artinian as an $A$-module. \\
 
 
+We have shown $\mathfrak{a}_{n-1}$ is Artinian as an $A$-module, and if we apply the same argument\footnote{Replace $A\quotient \mathfrak{m}_n$ with $A\quotient \mathfrak{m}_{n-1}$} short exact sequence of $A$-module: 
+ \begin{align*}
+0 \longrightarrow \mathfrak{a}_{n-1} \longrightarrow \mathfrak{a}_{n-2}\longrightarrow \mathfrak{a}_{n-2}\quotient \mathfrak{a}_{n-1} \longrightarrow 0
+\end{align*}
+We see $\mathfrak{a}_{n-2}$ is also Artinian as an $A$-module. Continuing the same process, we see that indeed  $A=\mathfrak{a}_0$ is Artinian. (as an $A$-module)
+\end{proof}
 
-Let $R$ be some ring. Given a finite collection $\set{M_1,\dots ,M_n}$ of $R$-modules, by the term \textbf{tensor product space}, we mean a $R$-module denoted by $\bigotimes M_i$ and a $R$-multilinear map $\otimes : \prod M_i \rightarrow \bigotimes M_i$ that satisfies the \textbf{universal property}: For each multilinear map $f:\prod M_i \rightarrow P$, there exists unique linear map $\tilde{f}:\bigotimes M_i \rightarrow P$ such that the diagram 
+\section{Tensor product for modules}
+Let $R$ be some ring. By \textbf{free $R$-modules}, we mean $R$-modules of the form $\bigoplus_{i \in I}M_i$ where $M_i \cong R$. We denote the free module $\bigoplus_{i \in I}M_i$ by $R^{(I)}$. Given a finite collection $\set{M_1,\dots ,M_n}$ of $R$-modules, by the term \textbf{tensor product space}, we mean a $R$-module denoted by $\bigotimes M_i$ and a $R$-multilinear map $\otimes : \prod M_i \rightarrow \bigotimes M_i$ that satisfies the \textbf{universal property}: For each multilinear map $f:\prod M_i \rightarrow P$, there exists unique linear map $\tilde{f}:\bigotimes M_i \rightarrow P$ such that the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMiwyLCJOIl0sWzAsMCwiXFxwcm9kIE1faSJdLFsyLDAsIlxcb3RpbWVzIE1faSJdLFsxLDIsIlxcb3RpbWVzIl0sWzEsMCwiZiIsMl0sWzIsMCwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
 	{\prod M_i} && {\bigotimes   M_i} \\
@@ -364,99 +588,34 @@ maps $f \in \operatorname{Hom}(M\otimes N,P)$ to   $\tilde{f}\in \operatorname{H
 \begin{align*}
   \tilde{f}(m)n\triangleq f(m\otimes n)
 \end{align*}
-\section{Chain Condition}
-Given some collection $\Sigma$ of sets, we say $\Sigma$ satisfies the \textbf{ascending chain condition, a.c.c.}, if for each chain $x_1 \subseteq x_2 \subseteq  \cdots$ there exists $n$ such that $x_n=x_{n+1}=\cdots$, and we say $\Sigma$ satisfies the \textbf{descending chain condition, d.c.c.}, if for each chain $x_1 \supseteq x_2 \supseteq \cdots $ there exists $n$ such that $x_n=x_{n+1}= \cdots$. Let $M$ be some module. We say  $M$  is  \textbf{Noetherian} if the collection of submodules of $M$ satisfies  a.c.c., and we say $M$ is  \textbf{Artinian} if the collection of submodules  satisfies d.c.c. Thanks to axiom of choice, module $M$ is Noetherian if and only if every nonempty collection of submodules of $M$ has a maximal element if and only if every submodule of $M$ is finitely generated. \\
-
-Given a finite \textbf{chain} of submodules 
-\begin{align*}
-M_0 \subset M_1 \subset \cdots \subset M_n 
-\end{align*}
-we say this chain is of \textbf{length} $n$. Under the obvious assignment of order on the collection of all finite chains of submodules of $M$, by a  \textbf{composition series} of $M$, we mean a maximal finite chain. Clearly, a finite chain 
-\begin{align*}
-0= M_0 \subset \cdots \subset M_n= M
-\end{align*}
-is maximal if and only if  $M_k\quotient M_{k-1}$ are simple. 
+\chapter{Valuation Ring and DVR}
+\section{Localization of ideals}
+Let $I\subseteq A$ be some ideal, clearly its extension is the \textbf{localization of $I$ by $S$} defined by $S^{-1}I= \set{\frac{i}{s}\in S^{-1}A:i \in I}$. We use the notation $S(I)$ to denote the contraction of $S^{-1}I$. For \customref{UoP}{the section on uniqueness of primary decomposition}, we first prove some basic properties of localization of ideals. 
 \begin{theorem}
-\label{Lom}
-\textbf{(Length of modules is well defined)} Every composition series of a module $M$ have the same length. 
-\end{theorem}
-\begin{proof}
-Suppose $M$ has a composition series, and let $l(M)$ denote the least length of a composition series of $M$. We wish to show every chain has length smaller than $l(M)$. Before such, we first prove 
-\begin{align}
-\label{NsM}
-N \subset M \implies  l(N)< l(M)
-\end{align}
-Let $M_0 \subset \cdots \subset M_n=M$ be a composition series of least length. Define $N_k \triangleq N \cap M_k$ for all $k \in \set{0,\dots ,n}$. Consider the obvious homomorphism $N_k \quotient N_{k-1} \rightarrow M_k \quotient M_{k-1}$. We see that either $N_k \quotient N_{k-1} \cong M_k \quotient M_{k-1}$ or $N_k = N_{k-1}$. This implies that the chain $N_0 \subset \cdots \subset N_n$ will be a composition series of $N$ after the unnecessary terms are removed. It remains to show there are unnecessary terms in $N_0 \subset \cdots \subset N_n$. Assume not for a contradiction. Because $N_1 \subseteq M_1$ and $N_1 \quotient \set{0} \cong   M_1 \quotient \set{0}$, we have $N_1 = M_1$. Repeating the same argument, we have  $N=N_n=M_n=M$, a contradiction. We have proved \myref{statement}{NsM}.\\
-
-Now, let $M_0' \subset \cdots \subset M_r'$ be some composition series of $M$. The proof then follows from using \myref{statement}{NsM} to deduce 
+\label{Pol}
+\textbf{(Properties of localization of ideals)} Let $A$ be a ring, and let  $S$ be some multiplicatively closed subset of  $A$. 
+ \begin{enumerate}[label=(\alph*)]
+  \item If $I$ is an ideal in  $A$, then  
+    \begin{align*}
+    S(I)=\bigcup_{s \in S} (I:s)
+    \end{align*} 
+    \item If $I$ is an ideal in $A$, then 
 \begin{align*}
-l(M)=l (M_r') > \cdots > l(M_0')=0 \implies r\leq l(M)
+\sqrt{S^{-1}I}=S^{-1}\sqrt{I}        
 \end{align*}
-\end{proof}
-Because of \myref{Theorem}{Lom}, we may well define the \textbf{length} $l(M)$ of module. For obvious reason, if module $M$ has no composition series, we say $M$ has infinite length and write $l(M)=\infty$. Clearly, if $M$ is of finite length, then $M$ is both Noetherian and Artinian. Conversely, if $M$ is both Noetherian and Artinian, then by the maximal element definition of Noetherian, there exists a decreasing sequence $M=M_0 \supset M_1 \supset M_2 \supset \cdots $, which by d.c.c. must be finite.   
-
-\chapter{IDK where u belong}
-\section{Valuation Rings}
-Let $A$ be a ring, and let $S \subseteq A$ be a multiplicatively closed subset that contains no zero-divisors. Clearly, in $S^{-1}A$, 
-\begin{align*}
-\frac{a}{s}=\frac{b}{t}\text{ if and only if }at=bs. 
-\end{align*}
-This implies that the canonical ring homomorphism $A \rightarrow S^{-1}A$ is injective, and it thus make sense for us to identify $A$ as a subring of $S^{-1}A$. In particular, if $D$ is an integral domain, then we consider $D$ to be a subring of its \textbf{field of fraction} $(D^*)^{-1}D$. Let $K$ be a field and  $D$ a subring of  $K$. If for all  $x \in K$, either $x \in D$ or $x^{-1} \in D$, then the mapping $F\longrightarrow \operatorname{Frac}(D)$ defined by  
-\begin{align*}
-x\mapsto \begin{cases}
-  \frac{x}{1}& \text{ if $x \in D$ }\\
-  \frac{1}{x^{-1}}& \text{ if $x\not\in D$ }
-\end{cases}
-\end{align*}
-forms a field isomorphism. Because of this identification, for each integral domain $D$, it make sense to say $D$ is a  \textbf{valuation ring (of some field)} whenever  $x \in \operatorname{Frac}(D)\implies x\in D\text{ or }x^{-1}\in D$. \\
-
-
-
-
-Given a field $K$ and an totally ordered abelian group $\Gamma $, we say $\nu : K\rightarrow \Gamma \cup \set{\infty}$ is a \textbf{valuation} if it satisfies:
-\begin{enumerate}[label=(\alph*)]
-  \item $\nu ^{-1}(\infty)= \set{0}$. 
-  \item $\nu  (xy)=\nu  (x)+ \nu  (y)$. 
-  \item $\nu  (x+y)\geq \min  \set{\nu (x),\nu  (y)}$, with the equality holds true if $\nu (x)\neq \nu  (y)$. 
-\end{enumerate}
-Let $D$ be an integral domain. We say $D$ is a \textbf{valuation ring} if for each $x \in \operatorname{Frac}(D)$, either $x \in D$ or $x^{-1} \in D$. 
-\begin{theorem}
-\textbf{(Equivalent Definitions of valuation rings)} Let $D$ be an integral domain. The following are equivalent 
-\begin{enumerate}[label=(\roman*)]
-  \item $D$ is a valuation ring. 
-  \item The principal ideals of $D$ are totally ordered by inclusion. 
-  \item The ideals of $D$ are  totally ordered by inclusion.  
-  \item There is a totally ordered abelian group $\Gamma $ and a valuation $\nu : \operatorname{Frac}(D)\rightarrow \Gamma \cup \set{\infty}$ such that $D= \set{x \in \operatorname{Frac}(D): \nu  (x)\geq 0 \in \Gamma }$. 
-  \item $D$ is a local Bezout Domain.  
+\item If $I_1,\dots ,I_n$ are ideals in $A$, then 
+   \begin{align*}
+  S^{-1}(I_1 \cap \cdots \cap I_n)= S^{-1}I_1 \cap  \cdots \cap S^{-1} I_n
+  \end{align*}
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-It is easy to prove $(\text{i})\implies (\text{ii})\implies (\text{iii})\implies (\text{i})$. For $(\text{i})\implies (\text{iv})$, let $D^{\times}$ be the set of units of $D$. Clearly,  $D^{\times}$ is a normal subgroup of $(\operatorname{Frac}D)^*$. Because $D$ is a valuation ring, we may well define a total order on $\Gamma \triangleq (\operatorname{Frac}D)^* \quotient D^\times$ by 
-\begin{align*}
-[x]\geq [y]\overset{\triangle}{\iff } xy^{-1} \in D
+We first prove part (a). Let $t \in (I:s)$ for some $s$. Because  $\frac{t}{1}= \frac{st}{s} \in S^{-1}I$, we see $t \in I^{ec}$. Let $t \in I^{ec}$, so $\frac{t}{1}= \frac{i}{s}$ for some $i \in I,s \in S$. Observe $ ts s'=is' \in I$ for some $s'$ to conclude $t \in (I:s s')$, and we are done. We now prove part (b). It is clear that $S^{-1}\sqrt{I}\subseteq \sqrt{S^{-1}I}$. Let $\frac{a}{s}\in \sqrt{S^{-1}I}$, so $\frac{a^n}{s^n}=\frac{i}{s'}\in S^{-1}I$ for some $n,i,s'$. Let $s''$ satisfies  $a^n s' s''= is^n s'' \in I$. Observations of $\frac{a}{s}= \frac{a s' s''}{s s' s''}$ and $a s' s'' \in \sqrt{I}$ finish the proof.  We now prove part (c). It is clear that $S^{-1}(I_1 \cap  \cdots \cap I_n)\subseteq S^{-1}I_1 \cap \cdots S^{-1}I_n$. Let $\frac{a}{s}\in S^{-1}I_1 \cap \cdots \cap  S^{-1}I_n$. For each $j\in \set{1,\dots ,n}$, we may find $s_j,s_j'\in S,i_j \in I$ such that  $as_js_j'=s i_j s_j' \in I_j$. Writing 
+ \begin{align*}
+\frac{a}{s}= \frac{as_1s_1' s_2 s_2' \cdots s_n s_n'}{s s_1 s_1' s_2 s_2' \cdots  s_n s_n'}  \in S^{-1}(I_1\cap  \cdots \cap I_n)
 \end{align*}
-It is routine to check that $\nu  : \operatorname{Frac}(D)\rightarrow \Gamma \cup  \set{\infty}$ defined by 
-\begin{align*}
-\nu (x)\triangleq \begin{cases}
-  [x]& \text{ if $x\neq 0$ } \\
-  \infty& \text{ if $x=0$ }
-\end{cases}
-\end{align*}
-is a valuation such that $D= \set{x\in \operatorname{Frac}(D):\nu  (x)\geq 0 \in \Gamma }$. j 
+and we are done. 
 \end{proof}
-Because of ideals of valuation ring are totally ordered by inclusion, clearly valuation rings are always local rings.  
-\section{Discrete Valuation Rings}
-Let $K$ be a field. A \textbf{discrete valuation $\nu :K\rightarrow \Gamma \cup  \set{\infty}$} is a valuation such that $\Gamma =\Z$. Clearly, the set of $x\in K$ such that $\nu  (x)\geq 0$ forms a ring\footnote{$\nu (1)=\nu  (-1)=0$.}, called the \textbf{discrete valuation ring} of $\nu $, since indeed it is a valuation ring.    
-\section{Fractional "Ideal"}
-
-Notably, if $S$ contains  $0$, then  $S^{-1}A$ is zero ring, so when we talk about the \textbf{filed of fraction} $K$ of an integral domain $A$, we mean  $(A\setminus 0)^{-1}A$. Given an $A$-submodule $M$ of  $K$, if $xM \subseteq A$ for some $x\neq 0 \in A$, unfortunately we say $M$ is a \textbf{fractional ideal} of $A$ even though $M$ needs not to be a subset of $A$. However, if $I$ is an ideal of $A$, then clearly  $I$ is also a fractional ideal of $A$.\\
-
-If $M\subseteq K$ is a  finitely generated $A$-submodule, then $M$ is a fractional ideal of $A$, since if $M=\langle \frac{b_1}{a_1},\dots , \frac{b_n}{a_n}\rangle $, then $(a_1\cdots a_n)M\subseteq A$. We say an $A$-submodule  $M \subseteq K$ is \textbf{invertible} if there exists some $A$-submodule $N \subseteq \F$ such that  $MN=A$ where $ MN\triangleq \set{m_1 n_1 + \cdots + m_kn_k \in \F: m_i \in M,n_i\in N}$. 
-\section{Local Property}
-
-
-If we say a module property $X$ is a  \textbf{local property}, we mean that for every $A$-module $M$ and prime ideal  $P \subseteq A$, $M$ satisfies  $X$ if and only if  $M_P$ satisfies  $X$, and if we say a ring property $X$ is a \textbf{local property}, we mean that for every ring $A$ and prime ideal $P \subseteq A$, $A$ satisfies  $X$ if and only if $A_P$ satisfies $X$.\\
-\chapter{Some Theorems}
 \section{Uniqueness of Primary Decomposition}
 \label{UoP}
 Let $A$ be a ring. We say a proper ideal $Q$ is \textbf{primary} if for each $xy \in Q$, either $x \in Q$ or $y^n \in Q$ for some $n>0$. Equivalently, a proper ideal $I$ is primary if and only if every zero-divisors in $A \quotient  Q$ is nilpotent. Clearly, the radical $P=\sqrt{Q} $ of a primary ideal $Q$ is prime. In such case, we say $Q$ is $P$\textbf{-primary}. A \textbf{primary decomposition} of an ideal $I$ is an expression of $I$ as a finite intersection of primary ideals
@@ -473,7 +632,7 @@ An ideal $I$ is said to be  \textbf{decomposable} if there exists some primary d
 \textbf{(First uniqueness theorem for irredundant primary decomposition)} Given some irredundant primary decomposition $I= \bigcap_{i=1}^n Q_i$, we have 
 \begin{align}
 \label{QiRa}
-\bset{\sqrt{Q_ia}:1\leq i\leq n}= \operatorname{Spec}(R) \cap \bset{\sqrt{(I:x)} \subseteq R: x \in R } 
+\bset{\sqrt{Q_i}:1\leq i\leq n}= \operatorname{Spec}(R) \cap \bset{\sqrt{(I:x)} \subseteq R: x \in R } 
 \end{align}
 \end{theorem}
 \begin{proof}
@@ -494,7 +653,7 @@ We now prove that the left hand side of \myref{equation}{QiRa} is a subset of th
 \begin{align*}
 \sqrt{Q_i}  =  \sqrt{(I:x)} 
 \end{align*}
-Noting that $\sqrt{Q_i}$ must be prime due to $Q_i$ being primary, we have shown the left hand side of \myref{Equation}{QiR} is a indeed a subset of the right hand side. \\
+Noting that $\sqrt{Q_i}$ must be prime due to $Q_i$ being primary, we have shown the left hand side of \myref{Equation}{QiRa} is a indeed a subset of the right hand side. \\
 
 Now, suppose for some $x\in R$ that $\sqrt{(I:x)}$ is prime. Because prime ideal must be proper, we know there must exists some $k$ such that $x\not \in Q_k$. By \myref{equation}{sIxa}, to finish the proof, we only need to show $\sqrt{Q_k}\subseteq \sqrt{(I:x)}$ for some $k$ such that $x \not \in Q_k$. Assume not for a contradiction. Then for all $k$ such that $x \not \in Q_k$, there exists $y_k \in \sqrt{Q_k}$ such that $y_k \not \in \sqrt{(I:x)}$. The product of these $y_k$ is an element of  $\bigcap \sqrt{Q_k}$, thus an element of $\sqrt{(I:x)}$. This with $\sqrt{(I:x)}$ being prime shows that $y_k \in \sqrt{(I:x)}$ for some $k$, a contradiction. 
 \end{proof}
@@ -540,6 +699,7 @@ S^{-1}I = \bigcap_{i=1}^n S^{-1}Q_i=S^{-1}Q_1
 \end{align*}
 \end{proof}
 \section{Existence of Primary Decomposition in Noetherian ring}
+\label{EoPDiNr}
 Let $A$ be a ring, and let  $I\subseteq A$ be some ideal. We say $I$ is  \textbf{irreducible} if whenever $I$ is expressed as an intersection of two ideals, $I$ equals to one of them. Clearly, to show every ideal in Noetherian ring is decomposable, we only need to show the following two lemmas. 
 \begin{lemma}
 In Noetherian ring $A$, every ideal is a finite intersection of irreducible ideals.  
@@ -560,56 +720,338 @@ Let $a \in \langle x^n\rangle \cap \langle y\rangle $. Because $a \in \langle y\
 
 Finally, because the zero ideal is irreducible, we must have $\langle x^n\rangle =0$ or $\langle y\rangle =0$. Because $y\neq 0$, we may conclude $x^n=0$.  
 \end{proof}
-\section{Equivalent Definitions of DVR}
-\section{Unique factorization Theorem for ideals in Noetherian domain of Krull dimension 1}
+\section{Artin Rings}
+\label{AR}
+Set theoretically similar to \customref{EDoN}{equivalent definition of Noetherian}, by axiom of choice, we have 
+\begin{theorem}
+\label{EDoA}
+\textbf{(Equivalent Definition of Artinian)} Let $M$ be a module. We have 
+ \begin{enumerate}[label=(\alph*)]
+  \item $M$ is Artinian.  
+  \item Every nonempty collection of submodules of $M$ has a minimal element.  
+\end{enumerate}
+\end{theorem}
+From this definition, we see that Artin ring can only have finite number of maximal ideals. 
+\begin{corollary}
+\textbf{(Artin ring has only a finite number of maximal ideals)} If $A$ is an Artin ring, then  
+\begin{align*}
+A\text{ only has a finite number of maximal ideals. }
+\end{align*}
+\end{corollary}
+\begin{proof}
+Let $\Sigma$ be the collection of all finite intersection of maximal ideals of $A$, and let  $\mathfrak{m}_1 \cap  \cdots \cap \mathfrak{m}_n \in \Sigma$ be minimal. We claim that $\mathfrak{m}_1,\dots ,\mathfrak{m}_n$ are the only maximal ideals of $A$. To prove this, we only have to prove that for each maximal ideal $\mathfrak{m}$, there exist some $i$ such that $\mathfrak{m}_i \subseteq \mathfrak{m}$, and it will follows that $\mathfrak{m}=\mathfrak{m}_i$.\\
+
+Assume not for a contradiction. Let $x_i \in \mathfrak{m}_i - \mathfrak{m}$ for all $i$. We see $\prod x_i \in \prod \mathfrak{m}_i \subseteq \bigcap \mathfrak{m}_i\subseteq \mathfrak{m}$, where the last set inclusion follows from minimality of $\bigcap \mathfrak{m}_i \in \Sigma$. Because  $\mathfrak{m}$ is prime, we see $x_i \in \mathfrak{m}$ for some $i$, a contradiction to the construction of  $x_i$.  
+\end{proof}
+\begin{theorem}
+\label{Niin}
+\textbf{(Nilradical in Artin ring is nilpotent)} If ring $A$ is Artinian, then
+\begin{align*}
+(\operatorname{Nil}(A))^k=0\text{ for some }k.
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $\mathfrak{a}\triangleq (\operatorname{Nil}(A))^k= (\operatorname{Nil}(A))^{k+1}= \cdots $. Assume for a contradiction that $\mathfrak{a}\neq 0$. Letting $\Sigma$ be the collection of all ideals $\mathfrak{b}$ such that $\mathfrak{a} \mathfrak{b}\neq 0$, we see $\Sigma$ is nonempty since $\mathfrak{a} \in \Sigma$, and therefore by \customref{EDoA}{equivalent definition of Artinian} there exists minimal $\mathfrak{c} \in \Sigma$. Picking $x \in \mathfrak{c}$ such that $x \mathfrak{b}\neq 0$, we see by minimality of $\mathfrak{c}$ that $\mathfrak{c}=\langle x\rangle $. Checking that $(x\mathfrak{a})\mathfrak{a}=x \mathfrak{a}^2 =x \mathfrak{a}\neq 0$ and $x\mathfrak{a}\subseteq \mathfrak{a}$, again by minimality of $\langle x\rangle $, we see $x\mathfrak{a}=\langle x\rangle $. This implies $x=xy$ for some  $y \in \mathfrak{a} \supseteq \operatorname{Nil}(A)$, and therefore $x=xy=xy^2 =\cdots = xy^n =0$ for some large enough $n$, a contradiction to construction of $x$. 
+\end{proof}
+Given ring $A$, we define its \textbf{Krull dimension} to be the supremum of the length of all chains of prime ideals in $A$. Albeit tempting to treat Artinian a property symmetry to Noetherian, Artin rings is in fact a subclass of Noether rings. 
+\begin{theorem}
+\label{AcoA}
+\textbf{(Actual characterization of Artin Rings)} Given some ring $A$, 
+ \begin{align*}
+A\text{ is Artin }\iff  A\text{ is Noetherian with }\operatorname{Krudim}(A)=0
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\implies)$: We first prove $\operatorname{Krudim}(A)=0$. Note that $\operatorname{Krudim}(A)=0$ means exactly that all prime ideal of $A$ are maximal. Let $\mathfrak{p}\subseteq A$ be prime, and $x \neq 0\in B \triangleq A\quotient p$. Because $B$ is Artinian, there exists some $n$ such that $\langle x^n\rangle =\langle x^{n+1}\rangle $, which implies 
+\begin{align*}
+x^n =x^{n+1}y,\quad\text{for some }y \in B
+\end{align*}
+Because $x \neq 0$ and $B$ is an integral domain, this tell us $xy=1$. We have shown that $B$ is a field, i.e., $\mathfrak{p}$ is indeed maximal. \\
+
+Let $\mathfrak{m}_1,\dots ,\mathfrak{m}_n$ be the maximal ideals of $A$. Because every maximal ideal in Artin ring is prime and $\mathfrak{m}_1,\dots ,\mathfrak{m}_n$ are the only maximal ideal of $A$, we see that \customref{EDfN}{$\prod \mathfrak{m}_i^k\subseteq (\bigcap  \mathfrak{m}_i)^k =(\operatorname{Nil}(A))^k=0$} for some $k$ by  \myref{Theorem}{Niin}. It then follows from \myref{Corollary}{Aiet} that $A$ is indeed Noetherian. \\
+
+$(\impliedby)$:  Because $A$ is Noetherian,  \customref{EoPDiNr}{we know the zero ideal of $A$ has an irredundant  primary decomposition $0= \bigcap_{i=1}^n \mathfrak{q}_i$}. Let $\mathfrak{p}$ be a prime ideal. Because $\bigcap_{i=1}^n \mathfrak{q}_i \subseteq \mathfrak{p}$, we know $\mathfrak{q}_i \subseteq \mathfrak{p}$ for some $i$\footnote{Otherwise you may cause a contradiction by considering $\prod x_i$ where $x_i \in \mathfrak{q}_i - \mathfrak{p}$}, which by  \customref{raed}{definition of radical} implies that $\sqrt{ \mathfrak{p}_i }\subseteq \mathfrak{p}$. We have shown \customref{EDfN}{$\operatorname{Nil}(A)= \bigcap_{i=1}^n \sqrt{\mathfrak{q}_i} $}. Letting $\mathfrak{a}=0$ in \myref{Corollary}{IiN}, we now see
+\begin{align*}
+\prod_{i=1}^n (\sqrt{\mathfrak{q}_i})^k \subseteq (\bigcap_{i=1}^n \sqrt{\mathfrak{q}_i} )^k= (\operatorname{Nil}(A))^k=0
+\end{align*}
+Because $\operatorname{Krudim}(A)=0$, we know $\sqrt{\mathfrak{q}_i}$ are all maximal ideals. It then follows from \myref{Corollary}{Aiet} that $A$ is Artinian. 
+\end{proof}
+Having zero Krull dimension together with being local form a very lethal weapon. A ring $A$ satisfies  $A$ local and  $\operatorname{Kudim}(A)=0$ if and only if $A$ contains exactly one prime ideal, i.e., its nilradical. From this point of view, \myref{Theorem}{AcoA} is very strong, which you can already guess from its long proof. Indeed, \myref{Theorem}{AcoA} give us the following two useful corollaries, which are all later used to establish the \customref{ECoDp1}{equivalent characterization of DVR}.  
+\begin{corollary}
+\label{Potm}
+\textbf{(Powers of the maximal ideal of Noetherian local rings)} Given Noetherian local ring $(A,\mathfrak{m})$, exactly one of the following two statements is true: 
+\begin{enumerate}[label=(\alph*)]
+  \item $\mathfrak{m}^n \neq \mathfrak{m}^{n+1}$ for all $n$. 
+  \item $\mathfrak{m}^n=0$ for some $n$, and  $A$ is an Artin ring. 
+\end{enumerate}
+\end{corollary}
+\begin{proof}
+  Suppose $\mathfrak{m}^n=\mathfrak{m}^{n+1}$ for some $n$. Because $A$ is Noetherian and local, we may apply  \customref{Nakayama}{Nakayama Lemma} to see $\mathfrak{m}^{n}=\mathfrak{m}^{n+1}=0$. To show $A$ is indeed Artinian, by  \myref{Theorem}{AcoA}, we only have to prove that $\mathfrak{m}$ is the only prime ideal of $A$. Too see thus, just observe $\mathfrak{m} \subseteq \sqrt{\mathfrak{m}^n}\subseteq \sqrt{ \mathfrak{p}}=\mathfrak{p} $ if $\mathfrak{p}$ is prime. 
+\end{proof}
+
+\begin{corollary}
+\label{Potm}
+\textbf{(Powers of the maximal ideal of Artin local ring)} Consider the Artin local ring $(A,\mathfrak{m},k)$. We have 
+\begin{align*}
+A\text{ is a PID with every proper nonzero ideal being some power of $\mathfrak{m}$ }\iff \operatorname{dim}_{k}(\mathfrak{m}\quotient \mathfrak{m}^2)\leq 1
+\end{align*}
+\end{corollary}
+\begin{proof}
+$(\implies ):$ This follows from noting that if we let $x$ be the generator of  $\mathfrak{m}$, then $[x]$ spans $\mathfrak{m}\quotient \mathfrak{m}^2$ over $k$. \\
+
+$(\impliedby)$: If  $\operatorname{dim}_k(\mathfrak{m}\quotient \mathfrak{m}^2)=0$, then $\mathfrak{m}=\mathfrak{m}^2$, so by \customref{Nakayama}{Nakayama Lemma}\footnote{Because  \customref{AcoA}{$A$ is Noetherian}, we know $\mathfrak{m}$ is finitely generated.}, $\mathfrak{m}=0$, implying $A$ is a field. Suppose $\operatorname{dim}_k(\mathfrak{m}\quotient \mathfrak{m}^2)=1$ and $[x]\in \mathfrak{m}\quotient \mathfrak{m}^2$ spans $\mathfrak{m}\quotient \mathfrak{m}^2$ over $k$. We first show that indeed, $\mathfrak{m}$ as an ideal of $A$ is generated by just $x$.\\
+
+Let $y \in \mathfrak{m}$. Because $[x]\in \mathfrak{m}\quotient \mathfrak{m}^2$ spans $\mathfrak{m}\quotient \mathfrak{m}^2$ over $k$. We know $[y]=[ax] \in \mathfrak{m}\quotient \mathfrak{m}^2$ for some $a \in A$. This implies $y-ax= m_1m_1'+\cdots + m_nm_n'$ for some $m_i,m_i \in \mathfrak{m}$, which implies $[y]=[y-ax] \in \mathfrak{m}\quotient \langle x\rangle $ is also an element of $\mathfrak{m}(\mathfrak{m}\quotient \langle x\rangle )$. We have shown  $\mathfrak{m}(\mathfrak{m}\quotient \langle x\rangle )=\mathfrak{m}\quotient \langle x\rangle $. It now follows from \customref{Nakayama}{Nakayama Lemma}\footnote{$\mathfrak{m}\quotient \langle x\rangle $ is finitely generated because $A$ is  \customref{AcoA}{$A$ is Noetherian}.} that $\mathfrak{m}\quotient \langle x\rangle =0$, i.e., $\mathfrak{m}=\langle x\rangle $ indeed. \\
+
+Now, let $\mathfrak{a}\subset A$ be a proper nonzero ideal.\footnote{If $\mathfrak{a}=A$, then $\mathfrak{a}=\langle 1\rangle $.} \myref{Theorem}{AcoA} tell us that  $\operatorname{Krudim}(A)=0$, and so $\mathfrak{m}^n=\operatorname{Nil}(A)^n=0$ for some $n$ by \myref{Theorem}{Niin}. Let $r$ satisfies $\mathfrak{a}\subseteq \mathfrak{m}^r,\mathfrak{a}\not \subseteq \mathfrak{m}^{r+1}$. By construction, there exist some $y \in \mathfrak{a}$ such that $y=ax^r$ for some $a \in A$ and  $y \not\in \langle x^{r+1}\rangle $. We now see this $a$ satisfies  $a \not \in \langle x\rangle = \mathfrak{m}$, implying $a$ is a unit. This shows $x^r=ya^{-1}\in \mathfrak{a}$. We have shown $\mathfrak{a}=\langle x^r\rangle $, as desired.
+\end{proof}
+\section{Valuation Rings}
+Let $K$ be a field and  $D$ a subring of  $K$. If for all  $x \in K$ either $x \in D$ or $x^{-1} \in D$, then the mapping $F\longrightarrow \operatorname{Frac}(D)$ defined by  
+\begin{align*}
+x\mapsto \begin{cases}
+  \frac{x}{1}& \text{ if $x \in D$ }\\
+  \frac{1}{x^{-1}}& \text{ if $x\not\in D$ }
+\end{cases}
+\end{align*}
+forms a field isomorphism. Because of this identification, for each integral domain $D$, it make sense to say $D$ is a  \textbf{valuation ring of field $K$} if 
+\begin{align}
+\label{xinD}
+x\in \operatorname{Frac}(D)\implies x \in D\text{ or }x^{-1} \in D
+\end{align}
+ since if we replace $\operatorname{Frac}(D)$ with $K$ in \myref{Equation}{xinD}, we know that  $K$ is isomorphic to   $\operatorname{Frac}(D)$. Given a field $K$ and a totally ordered abelian group $\Gamma $, we say $\nu : K\rightarrow \Gamma \cup \set{\infty}$ is a \textbf{valuation} if it satisfies:
+\begin{enumerate}[label=(\alph*)]
+  \item $\nu ^{-1}(\infty)= \set{0}$. 
+  \item $\nu  (xy)=\nu  (x)+ \nu  (y)$. 
+  \item $\nu  (x+y)\geq \min  \set{\nu (x),\nu  (y)}$, with the equality holds true if $\nu (x)\neq \nu  (y)$. 
+\end{enumerate}
+\begin{theorem}
+\label{EDovr}
+\textbf{(Equivalent Definitions of valuation rings)} Let $D$ be an integral domain. The following are equivalent 
+\begin{enumerate}[label=(\roman*)]
+  \item $D$ is a valuation ring. 
+  \item The principal ideals of $D$ are totally ordered by inclusion. 
+  \item The ideals of $D$ are  totally ordered by inclusion.  
+  \item There is a totally ordered abelian group $\Gamma $ and a valuation $\nu : \operatorname{Frac}(D)\rightarrow \Gamma \cup \set{\infty}$ such that $D= \set{x \in \operatorname{Frac}(D): \nu  (x)\geq 0 \in \Gamma }$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+It is easy to prove $(\text{vi})\implies (\text{i})\implies (\text{ii})\implies (\text{iii})\implies (\text{i})$. For $(\text{i})\implies (\text{iv})$, let $D^{\times}$ be the set of units of $D$. Clearly,  $D^{\times}$ is a normal subgroup of $(\operatorname{Frac}D)^*$. Because $D$ is a valuation ring, we may well define a total order on $\Gamma \triangleq (\operatorname{Frac}D)^* \quotient D^\times$ by 
+\begin{align*}
+[x]\geq [y]\overset{\triangle}{\iff } xy^{-1} \in D
+\end{align*}
+It is routine to check that $\nu  : \operatorname{Frac}(D)\rightarrow \Gamma \cup  \set{\infty}$ defined by 
+\begin{align*}
+\nu (x)\triangleq \begin{cases}
+  [x]& \text{ if $x\neq 0$ } \\
+  \infty& \text{ if $x=0$ }
+\end{cases}
+\end{align*}
+is a valuation such that $D= \set{x\in \operatorname{Frac}(D):\nu  (x)\geq 0 \in \Gamma }$. 
+\end{proof}
+Obviously, the name "valuation rings" comes from the fact an integral domain $D$ is a valuation ring if and only if its field of fraction admits some valuation whose preimage of nonnegative element is exactly  $D$. Because of such, given field $K$  and valuation $\nu  : K \rightarrow \Gamma \cup \set{\infty}$, when we want to refer to the valuation ring $\set{x\in K : \nu  (x)\geq 0 \in \Gamma }$, we may refer it as the valuation ring \emph{of} $\nu $.  
+
+\begin{theorem}
+  \label{Vraic}
+\textbf{(Valuation rings are integrally closed)} If $D$ is a valuation ring, then $D$ is integrally closed. 
+\end{theorem}
+\begin{proof}
+Let $x \in \operatorname{Frac}(B)$ be integral over $B$, say,  
+\begin{align*}
+x^n + b_1 x^{n-1}+ \cdots + b_n=0,\quad \text{where }b_i \in B.  
+\end{align*}
+If $x \in B$ there is noting to prove. If not, then $x^{-1}\in B$ and thus $x=-(b_1+b_2x^{-1}+\cdots + b_n x^{1-n})\in B$. 
+\end{proof}
+
+
+
+Clearly, if $D$ is a valuation ring of $\nu$, then the set of units of $D$ is exactly the preimage  $\nu ^{-1}(0)$.\footnote{Because $0=\nu  (1)=\nu (x)+ \nu  (x^{-1})$ and $D=\nu ^{-1}(\set{x \in K: \nu  (x)\geq 0\in \Gamma })$, we know $x,x^{-1}\in D \implies \nu  (x)=0$, and we also know $\nu  (x)=0 \implies \nu (x^{-1})=0 \implies x^{-1} \in D$.} This tell us for all $x \in K$, we have 
+\begin{table}[h]
+\centering
+\begin{tabular}{l|l|l}
+                   & $x\in D$    & $x\not \in D$ \\ \hline
+$x^{-1}\in D$      & $\nu (x)=0$ & $\nu(x)<0$    \\ \hline
+$x^{-1}\not \in D$ & $\nu (x)>0$ & impossible   
+\end{tabular}
+\end{table}
+
+
+
+Moreover, because \customref{EDovr}{ideals of valuation rings are totally ordered by inclusion}, we know valuation ring is local, and thus the set of non-units form an ideal, the unique maximal ideal $\mathfrak{m}$. In fact, $\mathfrak{m}$ has the form:  
+\begin{align*}
+\mathfrak{m}= \set{x \in D: \nu  (x)>0 \in \Gamma }
+\end{align*}
+\section{Equivalent Characterizations of DVR}
+Let $K$ be a field. A \textbf{discrete valuation $\nu :K\rightarrow \Gamma \cup  \set{\infty}$} is a valuation such that $\Gamma \cong  \Z$ as totally ordered abelian group. An integral domain $D$ is a \textbf{discrete valuation ring of} if $D=\set{x\in \operatorname{Frac}(D):\nu  (x)\geq 0}$ for some nontrivial discrete valuation $\nu : \operatorname{Frac}(D)\rightarrow \Z \cup  \set{\infty}$. Because every ideal $\mathfrak{a}\subseteq D$ is of the form: \footnote{To see the "$\supseteq$", let $a\in \mathfrak{a}$ satisfies $\nu  (a)= \min  \nu  (\mathfrak{a})$ and observe for all $x \in D$ such that $\nu (x)\geq \nu (a)$, we have $x=(xa^{-1})a\in \mathfrak{a}$ since $\nu (xa^{-1})=\nu (x)-\nu (a)\geq 0 \implies xa^{-1}\in D$}
+\begin{align*}
+\mathfrak{a}=\set{x \in D: \nu  (x)\geq \min \nu  (\mathfrak{a})}
+\end{align*}
+We see that the collection of the ideals in DVRs is exactly $\set{\mathfrak{a}_k:k \inn}$ where 
+\begin{align}
+\label{cDVR}
+\mathfrak{a}_k= \set{x \in D : \nu  (x)\geq pk}= \langle x^k\rangle \text{ for any }\nu  (x)=p\triangleq  \min \set{\nu  (d) \inn:d^{-1}\not \in D}
+\end{align}
+In fact, we can conversely characterize DVRs using these good properties. 
+\begin{theorem}
+\label{ECoDp1}
+\textbf{(Equivalent Characterizations of DVR: part 1)} Given an $1$-Krull-dimensional Noetherian local domain $(D,\mathfrak{m},k)$, the following are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $D$ is a DVR.  
+  \item $D$ is integrally closed. 
+  \item $\mathfrak{m}$ is principal. 
+  \item $\operatorname{dim}_k (\mathfrak{m}\quotient \mathfrak{m}^2)=1$. 
+  \item Every proper nonzero ideal of $D$ is a power of $\mathfrak{m}$. 
+  \item There exists $x\in D$ such that every nonzero ideal is of the form $\langle x^s\rangle ,s\geq 0$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Before we start going the rounds, we shall make the following remark 
+\begin{enumerate}[label=(\Alph*)]
+  \item Because $D$ is an $1$-Krull-dimensional local domain, $D$ has only two prime ideals, i.e., the zero ideal and $\mathfrak{m}$. 
+  \item  Because $D$ is Noetherian, by remark (A) and  \myref{Corollary}{IiN}, for every proper nonzero ideal $\mathfrak{a}\subseteq D$, we have some $n$ that satisfies $\mathfrak{m}^n \subseteq \mathfrak{a}$ and $\mathfrak{m}^{n-1}\not \subseteq \mathfrak{a}$. 
+  \item Because $\operatorname{Krudim}(D)=1$ and $D$ is Noetherian local, $\mathfrak{m}^n \neq \mathfrak{m}^{n+1}\text{ for all }n\geq 0$ by \myref{Theorem}{Potm}. 
+\end{enumerate}
+We may now start going rounds. 
+(i)$\implies $(ii) follows from the fact  \customref{Vraic}{valuation ring are integrally closed}.\\
+
+(ii)$\implies $(iii): Let $a \neq 0 \in \mathfrak{m}$.  By remark (B), there exists some $n$ such that  $\mathfrak{m}^n \subseteq \langle a\rangle $ and $\mathfrak{m}^{n-1}\not \subseteq  \langle a\rangle $. Picking $b \in \mathfrak{m}^{n-1}-\langle a\rangle $, and defining $x \triangleq  \frac{a}{b} \in \operatorname{Frac}(D)$, clearly we have $x^{-1}\not\in D$, so by premise, $x^{-1}$ is not integral over $D$. Therefore, $x^{-1}\mathfrak{m} \not \subseteq \mathfrak{m}$\footnote{Otherwise, we may set $A\triangleq D$, $\mathfrak{a}\triangleq D$,  $M\triangleq \mathfrak{m}$, and $\pfi (m)\triangleq x^{-1}m$ in   \customref{CHTffgm}{Cayley-Hamilton Theorem for finitely generated module} to deduce $x^{-1}$ is integral over $D$. Note that $\mathfrak{m}\neq 0$ because $\operatorname{Krudim}(D)=1$.}. This, together with the fact that $x^{-1}\mathfrak{m}=a^{-1}(b \mathfrak{m})\subseteq \mathfrak{m}^n \subseteq a^{-1}\langle a\rangle \subseteq A$  by construction, implies $x^{-1}\mathfrak{m}=A$, since $\mathfrak{m}\neq 0$ is the only maximal ideal of $A$. In conclusion, one can now finish the proof by checking, indeed,  $\mathfrak{m}=xA=\langle x\rangle $. \\
+
+(iii)$\implies $(iv): If $\mathfrak{m}$ is generated by $x$ over $D$, then $\mathfrak{m}\quotient \mathfrak{m} $ is spanned by $[x]\in \mathfrak{m}\quotient \mathfrak{m}^2$ over $k$, and so by remark  (C), we have $\operatorname{dim}_k(\mathfrak{m}\quotient \mathfrak{m}^2)=1$. \\
+
+(iv)$\implies $(v): Let $\mathfrak{a}\subset D$ be some proper nonzero ideal. By remark (B), there exists some $n$ that satisfies  $\mathfrak{m}^n \subseteq \mathfrak{a}$. By \customref{ctfr}{ring correspondence theorem} and \myref{theorem}{cpoN}, $A\quotient \mathfrak{m}^n$ is Noetherian local, and thus by \myref{corollary}{Potm} Artin. Now, checking that indeed the square of image of $\mathfrak{m}$ is the image of $\mathfrak{m}^2$ under quotient map $A\longrightarrow A\quotient \mathfrak{m}^n$, and checking that $\operatorname{dim}_{(A\quotient \mathfrak{m}^n)\quotient \mathfrak{m}}(\mathfrak{m}\quotient \mathfrak{m}^2)\leq \operatorname{dim}_k(\mathfrak{m}\quotient \mathfrak{m}^2)=1$, we may apply \myref{corollary}{Potm} to conclude that $\mathfrak{a}$ is a power of $\mathfrak{m}$ in $A\quotient \mathfrak{m}^n$. Now, says $\mathfrak{a}=\mathfrak{m}^r$ in $A\quotient \mathfrak{m}^n$, because the quotient map  $A \longrightarrow A\quotient \mathfrak{m}^n$ maps $\mathfrak{m}^r$ to the $r$-th power of image of $\mathfrak{m}$, we see by \customref{ctfr}{ring correspondence theorem} that indeed $\mathfrak{a}=\mathfrak{m}^r$ in $A$. \\
+
+ (v)$\implies$(vi): By remark (C), there exists $x \in \mathfrak{m}-\mathfrak{m}^2$, and by premise, $\langle x\rangle =\mathfrak{m}^r$ for some $r$. Because if $r>1$, then  $x \in \mathfrak{m}^r \subseteq \mathfrak{m}^2$, we see $r=1$. It is then easy to check $\mathfrak{m}^s=\langle x^s\rangle $  for all $s \inn$.  \\
+
+  (vi)$\implies $(i): Let $\mathfrak{m}\triangleq \langle x\rangle $. For all $y\in D$, one define $\nu (y)\triangleq n$ where $n\geq 0$ is  the smallest nonnegative integer such that $y \not\in \langle x^n\rangle $. To finish the proof one may check $\nu  (yz^{-1})\triangleq \nu (y)-\nu (z)$ well define a discrete valuation on $\operatorname{Frac}(D)$. 
+\end{proof}
+\section{UFT for ideals in $1$-Krull-dimensional Noetherian domain}
 Before the main course, we first develop some basic notion. We say two ideals are \textbf{coprime} if their sum equals to the whole ring. Note that two prime ideals need not be coprime. If $K$ is a field, then $\langle x\rangle ,\langle y\rangle $ are not coprime in $K[x,y]$. 
 \begin{proposition}
+\label{Poc}
 \textbf{(Product of coprime ideals is the intersection)} Let $I_k$ be a finite collection of pairwise coprime ideals. We have  $\prod I_k= \bigcap I_k$. 
 \end{proposition}
 \begin{proof}
 The proof relies on induction of total number of the pairwise coprime ideals. The base case is when there are only two, says, $I$ and  $J$. Clearly  $IJ \subseteq I \cap J$. To prove the converse, observe for $c \in I \cap J$, there exists $1=i+j$ so that  $c=ci+cj$, where $ci,cj \in I \cap J$. 
 \end{proof}
-
-
-
-\chapter{Big Theorems}
-\section{Hilbert's Basis Theorem}
-\label{FGN}
-Before we prove the \customref{HBT}{Hilbert's Basis Theorem}, we must first show that finitely generated modules over Noetherian rings is also Noetherian.    
-\begin{proposition}
-\label{FpNm}
-\textbf{(Formal properties of Noetherian modules)} Given a short exact sequence of $A$-modules:  
- \begin{align*}
-0 \longrightarrow M' \overset{\alpha }{\longrightarrow } M \overset{\beta }{\longrightarrow } M'' \longrightarrow 0
+\begin{theorem}
+\textbf{(UFT for ideals in Noetherian domain of Krull Dimension 1)} If $A$ is a Noetherian domain of Krull dimension $1$, then every nonzero ideal  $I \subseteq A$ can be uniquely expressed as a product of primary ideals whose radicals are all distinct. 
+\end{theorem}
+\begin{proof}
+We first note that 
+\begin{enumerate}[label=(\roman*)]
+  \item Because $\operatorname{Krudim}(A)=1$, every prime ideal in $A$ is maximal.  
+  \item Two distinct maximal ideals are always coprime. 
+  \item $\sqrt{J},\sqrt{J'}$ coprime $\implies J,J'$ coprime.\footnote{$x+y=1,x^n \in J,y^k \in J' \implies 1=1^{n+k}=(x+y)^{n+k}\in J+J'$.}
+\end{enumerate}
+For existence, first observe that   \customref{EoPDiNr}{because $A$ is Noetherian, $I$ has an irredundant primary decomposition $I= \bigcap  Q_i$}. Then, by (i), (ii), (iii), and \myref{Proposition}{Poc}, we have 
+\begin{align*}
+I=\bigcap Q_i=\prod Q_i
 \end{align*}
-$M$ is Noetherian if and only if  $M'$ and $M''$ are both Noetherian.   
+To see $\sqrt{Q_i}$ are indeed distinct, just note that the primary decomposition  $I= \bigcap Q_i$ is irredundant. For uniqueness, suppose $I= \prod Q_i=\prod Q_i'$, where $\sqrt{Q_i}$, just like $\sqrt{Q_j}$, are distinct and prime. Again, by (i), (ii), (iii), and \myref{Proposition}{Poc}, we have 
+\begin{align*}
+I = \prod Q_i = \bigcap Q_i = \prod Q_i' = \bigcap Q_i' 
+\end{align*}
+Because $\sqrt{Q_i}$ are distinct, by \customref{Fut}{first uniqueness theorem for primary decomposition}, we know none of $Q_i$ are redundant, i.e., $I= \bigcap Q_i$ is an irredundant primary decomposition. Same argument shows that $I= \bigcap Q_i'$ is also an irredundant primary decomposition. The fact that these two primary decomposition are identical up to a renewal of index then follows from \customref{Sut}{second uniqueness theorem for primary decomposition} and noting that every $\sqrt{Q_i},\sqrt{Q_i'} $ are isolated because by (i) they are all maximal.    
+
+
+
+
+
+
+
+
+\end{proof}
+\section{Fractional Ideal}
+Let $A$ be an integral domain, and  $K\triangleq \operatorname{Frac}(A)$. Given two $A$-submodule $N,M\subseteq K$, we define their \textbf{product} and \textbf{quotient} and the same way we define product and quotient\footnote{See \myref{Equation}{IS} and \myref{Equation}{Iq}} for ideals of a ring:   
+\begin{align*}
+NM\triangleq \set{ \sum_{\text{ finite}}nm \in K: n \in N \text{ and }m \in M}\text{ and }(N:M)\triangleq \set{x\in K : xM \subseteq N}
+\end{align*}
+Clearly, $A$-submodules of  $K$ are indeed closed under  these two binary operation, and moreover the product for $A$-submodule of  $K$ is associative, commutative, and has a unique identity $A$, forming a commutative monoid\footnote{You may google what is a monoid.}.   \\
+
+A \textbf{fractional ideal} of $A$ is an  $A$-submodule  $M \subseteq K$ such that $xM \subseteq A$ for some $x\neq 0 \in A$. Clearly, fractional ideals need not be subsets of $A$, so fractional ideals are not always ideals of $A$\footnote{However unfortunate, the naming is "justified" in the sense that fractional ideals "act like" ordinary ideals with the twist that denominators are allowed, and moreover, if $xM\subseteq A$ for some $x$, then $xM$ is indeed an ideal.}. If there is need to talk about fractional ideal, some people use the term \textbf{integral ideal} to refer to an ordinary ideal. Clearly the set of fractional ideal is closed under product and contains $A$, so the set of fractional ideals of $A$ is a sub-monoid of the commutative monoid of  $A$-submodules of  $K$.\\ 
+
+An \textbf{invertible ideal} of $A$ is an $A$-submodule of  $M \subseteq A$ such that $NM=A$ for some $A$-submodule $N\subseteq K$. In other words, it is the set of all elements of the commutative monoid of $A$-submodule of  $K$ that has an inverse. From this point of view, it is clear that the set of invertible ideal is closed under product, and thus forms a group\footnote{which automatically implies the uniqueness of inverses of invertible ideals}.\begin{proposition}
+\label{Foti}
+\textbf{(Form of the inverse of invertible ideal)} Let $A$ be an integral domain, and $K\triangleq \operatorname{Frac}(A)$. If  $M$ is invertible with inverse $N$, then  $N= (A:M)$.  
 \end{proposition}
 \begin{proof}
-Consider the ascending chain condition definition. For the "if" part, let $L_n$ be an ascending chain of submodules of  $M$, and use \customref{SFL}{short five lemma} on
-% https://q.uiver.app/#q=WzAsMTEsWzAsMCwiMCJdLFsyLDAsIlxcYWxwaGFeey0xfShMX24pIl0sWzQsMCwiTF9uIl0sWzYsMCwiXFxiZXRhKExfbikiXSxbOCwwLCIwIl0sWzAsMiwiMCJdLFsyLDIsIlxcYWxwaGFeey0xfShMX3tuKzF9KSJdLFs0LDIsIkxfe24rMX0iXSxbMywyXSxbOCwyLCIwIl0sWzYsMiwiXFxiZXRhKExfe24rMX0pIl0sWzAsMV0sWzEsMiwiXFxhbHBoYSJdLFsyLDMsIlxcYmV0YSJdLFs1LDZdLFs2LDcsIlxcYWxwaGEiXSxbMyw0XSxbNywxMCwiXFxiZXRhIl0sWzEwLDldLFszLDEwLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDcsIiIsMSx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEsNiwiIiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
-\[\begin{tikzcd}
-	0 && {\alpha^{-1}(L_n)} && {L_n} && {\beta(L_n)} && 0 \\
-	\\
-	0 && {\alpha^{-1}(L_{n+1})} & {} & {L_{n+1}} && {\beta(L_{n+1})} && 0
-	\arrow[from=1-1, to=1-3]
-	\arrow["\alpha", from=1-3, to=1-5]
-	\arrow[hook, from=1-3, to=3-3]
-	\arrow["\beta", from=1-5, to=1-7]
-	\arrow[hook, from=1-5, to=3-5]
-	\arrow[from=1-7, to=1-9]
-	\arrow[hook, from=1-7, to=3-7]
-	\arrow[from=3-1, to=3-3]
-	\arrow["\alpha", from=3-3, to=3-5]
-	\arrow["\beta", from=3-5, to=3-7]
-	\arrow[from=3-7, to=3-9]
-\end{tikzcd}\]
-to conclude that $L_n$ must stop at some point.  
-\end{proof}
-Suppose $A$ is a Noetherian ring. Applying  \myref{Proposition}{FpNm} inductively to 
+Because $MN=A$ and the product is associative, we know  $(A:M)\subseteq (A:M)A= (A:M)MN$, which give us the desired inequality: 
 \begin{align*}
- 0\longrightarrow A \longrightarrow A^n \longrightarrow A^{n-1} \longrightarrow 0
+N \subseteq (A:M)\subseteq (A:M)MN\subseteq AN\subseteq N
 \end{align*}
-we see the module $A^n$ is also Noetherian, and so any finitely generated module over  $A$, isomorphic to some quotient of $A^n$, is also Noetherian. We may now give a simple proof to Hilbert's Basis Theorem.    
+finishing the proof.
+\end{proof}
+Let $M$ be an element of the group invertible ideals of  $A$. From \customref{Foti}{$M^{-1}=(A:M)$}, we see that $M$ as an  $A$-module is finitely generated\footnote{$\sum x_iy_i =1$ for some $x_i \in (A:M),y_i \in M\implies M= \langle y_i\rangle $} and thus a fractional ideal of $A$\footnote{$(x_1\cdots x_n)\langle \frac{y_1}{x_1},\dots ,\frac{y_n}{x_n}\rangle \subseteq A$.}. We have shown that the group of invertible ideals is a sub-monoid of the monoid of  fractional ideals of $A$. \\ 
+
+For next theorem, note that given any $A$-submodule $N\subseteq K$ and prime $\mathfrak{p}\subseteq A$, we can and will identify $N_\mathfrak{p}$ as an $A_\mathfrak{p}$-submodule of $\operatorname{Frac}(A)$. This is because by universal property, we have the diagram  
+% https://q.uiver.app/#q=WzAsNixbMiwwLCJBIl0sWzQsMCwiQV9cXG1hdGhmcmFre3B9Il0sWzIsMiwiXFxvcGVyYXRvcm5hbWV7RnJhY30oQSkiXSxbNCwyLCJcXG9wZXJhdG9ybmFtZXtGcmFjfShBX1xcbWF0aGZyYWt7cH0pIl0sWzAsMCwiTSJdLFswLDIsIk1fXFxtYXRoZnJha3twfSJdLFs0LDIsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzQsNV0sWzUsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwyXSxbMCwxXSxbMSwzXSxbMiwzLCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJhcnJvd2hlYWQifX19XV0=
+\[\begin{tikzcd}
+	N && A && {A_\mathfrak{p}} \\
+	\\
+	{N_\mathfrak{p}} && {\operatorname{Frac}(A)} && {\operatorname{Frac}(A_\mathfrak{p})}
+	\arrow[from=1-1, to=3-1]
+	\arrow[hook, from=1-1, to=3-3]
+	\arrow[from=1-3, to=1-5]
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=1-5, to=3-5]
+	\arrow[hook, from=3-1, to=3-3]
+	\arrow[double_arrow   ,  from=3-3, to=3-5]
+\end{tikzcd}\]
+\begin{theorem}
+\label{Iialp}
+\textbf{(Invertibility is a local property)} Let $A$ be an integral domain, $K\triangleq \operatorname{Frac}(A)$, and $M\subseteq K$ a fractional ideal of $A$. We have 
+\begin{align*}
+  M \text{ is invertible } \iff M\text{  is finitely generated and  $M_\mathfrak{p}$ invertible of $A_\mathfrak{p}$ for all prime $\mathfrak{p}\subseteq A$. }
+\end{align*}
+\end{theorem}
+\begin{proof}
+For the only if part, since we already know that $M_\mathfrak{p}$ is finitely generated, we only have to perform a routine check of: 
+\begin{align*}
+M_\mathfrak{p}(A:M)_\mathfrak{p}=A_\mathfrak{p}.
+\end{align*}
+For the if part, first observe that $M(A:M)$ is an integral ideal. Let $\mathfrak{m}$ be an maximal integral ideal, and denote the integral ideal $M(A:M)$ by $\mathfrak{a}$. Check that 
+\begin{align*}
+\mathfrak{a}_\mathfrak{m}= M_\mathfrak{m}(A:M)_\mathfrak{m}= M_\mathfrak{m} (A_\mathfrak{m}:M_\mathfrak{m})=A_\mathfrak{m} 
+\end{align*}
+\footnote{$(A:M)_\mathfrak{m}=(A_\mathfrak{m}:M_\mathfrak{m})$ depends on the fact that $M$ is finitely generated. }
+Let $x \in A - \mathfrak{m}$. Because $x \in A \subseteq A_\mathfrak{m}=\mathfrak{a}_\mathfrak{m}$, we know there exists $a \in \mathfrak{a}$ and $s \in A - \mathfrak{m}$ such that $x=as^{-1}$. Because maximal ideal is prime, we now see $a=xs \not\in \mathfrak{m}$. In other words, $\mathfrak{a}\not \subseteq \mathfrak{m}$. This with maximality of $\mathfrak{m}$ implies $\mathfrak{a}=A$, i.e., $M$ is invertible. 
+\end{proof}
+\section{Dedekind domain}
+\begin{theorem}
+\label{LdiD}
+\textbf{(Local domain $D$ is DVR if and only if every nonzero fractional ideal of $D$ is invertible)} Let $D$ be a local domain. 
+ \begin{align*}
+D\text{ is a DVR } \iff  \text{ every nonzero fractional ideal of $D$ is invertible. }
+\end{align*}
+\end{theorem}
+\begin{proof}
+We first prove $(\implies )$. Let $ \mathfrak{a}_1 = \langle x\rangle $ in \myref{Equation}{cDVR}, and let $M$ be a nonzero fractional ideal. Let $y \in D$ satisfies $yM \subseteq D$, so $yM= \langle x^k\rangle $ for some $k\inn$. This implies $M$ is a fractional principal ideal $M= \langle x^{k- \frac{\nu  (y)}{p}}\rangle $, thus invertible.  \\ 
+
+We now prove $(\impliedby)$. Because every integral ideal of $D$ is invertible and \customref{EDoN}{therefore finitely generated, we know $D$ is Noetherian}. Let $\mathfrak{m}$ be the unique maximal ideal of $D$. If every nonzero proper integral ideal is a power of $\mathfrak{m}$, then no nonzero proper ideal integral ideal that isn't $\mathfrak{m}$ can be prime, since, says $0\neq \mathfrak{m}^k \subset \mathfrak{m}$, we would have some $m_1,\dots ,m_k \not\in \mathfrak{m}^k$ that satisfy $m_1\cdots m_k \in \mathfrak{m}^k$. Therefore, if we can prove that every nonzero proper integral ideal is a power of $\mathfrak{m}$, we can conclude $\operatorname{Krudim}(D)=1$ and use \myref{Theorem}{ECoDp1} to  conclude $D$ is a DVR. \\
+
+We have reduced the problem into proving every nonzero proper integral ideal is a power of $\mathfrak{m}$. Assume for a contradiction that this isn't true. Let $\Sigma$ be the collection of nonzero ideals that are not powers of $\mathfrak{m}$. \customref{EDoN}{Because $D$ is Noetherian, there exists some maximal element $\mathfrak{a} \in \Sigma$}. We know $\mathfrak{a} \subset \mathfrak{m}$ from $\mathfrak{a}\neq \mathfrak{m}^1$. Let $\mathfrak{m}^{-1}$ be the inverse of $\mathfrak{m}$ in the group of invertible ideals. Because $\mathfrak{a}\neq \mathfrak{m}^1$, we know $\mathfrak{a}\subset \mathfrak{m}$, which implies $\mathfrak{m}^{-1}\mathfrak{a}\subset \mathfrak{m}^{-1}\mathfrak{m}=D$. We have shown that $\mathfrak{m}^{-1}\mathfrak{a}$ is a proper integral ideal. Also, note that $\mathfrak{m}^{-1}\mathfrak{a}\supseteq \mathfrak{a}$ because by \myref{Proposition}{Foti} $1 \in \mathfrak{m}^{-1}$.\\
+
+We shall cause a contradiction using the fact $\mathfrak{a}\subseteq \mathfrak{m}^{-1}\mathfrak{a}\subset D$, which we have just proved. Clearly, there are only two possibilities: either $\mathfrak{m}^{-1}\mathfrak{a}$ strictly include $\mathfrak{a}$ or not. If $\mathfrak{m}^{-1}\mathfrak{a}$ strictly include $\mathfrak{a}$, then $\mathfrak{m}^{-1}\mathfrak{a}$ is a power of $\mathfrak{m}$ by maximality of $\mathfrak{a}$, which implies that $\mathfrak{a}$ is a power of $\mathfrak{m}$, a contradiction. If not, then we may deduce $\mathfrak{a}=\mathfrak{m}\mathfrak{a}$, and use \customref{Nakayama}{Nakayama's Lemma}\footnote{ To see $\mathfrak{a}$ is finitely generated, observe that $\mathfrak{a}$ is an $D$-submodule of the Noetherian $D$-module and use  \myref{Theorem}{EDoN}. To see $\mathfrak{m}\subseteq \operatorname{Jacob}(D)$, just note that by definition  $\mathfrak{m}$ is the only maximal ideal of $D$.} to deduce $\mathfrak{a}=0$, also a contradiction.   
+
+
+
+\end{proof}
+A \textbf{Dedekind domain} is an integral domain $D$ whose localizations at nonzero prime are always DVR.
+\begin{theorem}
+\textbf{(An equivalent definition of Dedekind Domain)} Let $D$ be an integral domain. 
+ \begin{align*}
+D\text{ is a Dedekind domain }\iff \text{ every nonzero fractional ideal of $D$ is invertible. }
+\end{align*}
+\end{theorem}
+\begin{proof}
+  We first prove $(\implies )$. Let $M\neq 0$ be a fractional ideal. $\operatorname{Frac}(D)$ is Noetherian because $D$ is Noetherian. \customref{EDoN}{This implies $M$ is finitely generated}. Clearly for any prime $\mathfrak{p}\subseteq D$, $M_\mathfrak{p}$ is always nonzero fractional ideal of $D_\mathfrak{p}$. We have shown $M$ is finitely generated and  $M_\mathfrak{p}$ is always invertible ideal of $D_\mathfrak{p}$. Then because  \customref{Iialp}{invertibility is a local property},  $M$ is also invertible. \\
+
+  We now prove $(\impliedby)$. Fix nonzero prime $\mathfrak{p}\subseteq D$. By \myref{Theorem}{LdiD}, we only have to prove every nonzero fractional ideal of $D_\mathfrak{p}$ is invertible. Let $M$ be a nonzero fractional ideal of $D_\mathfrak{p}$, and $x\neq 0\in \operatorname{Frac}(D)$ satisfies $xM \subseteq D_\mathfrak{p}$. To prove $M$ is invertible of  $D_\mathfrak{p}$, we must first note that if there exists some fractional ideal $N$ of $D_\mathfrak{p}$ such that  $(xM)N=D_\mathfrak{p}$, then we will have  $M(xN)=D_\mathfrak{p}$. Because $xM$ is a nonzero integral ideal of  $D_\mathfrak{p}$, this allow us to reduce the problem into proving all nonzero integral ideal of $D_\mathfrak{p}$ is invertible of $D_\mathfrak{p}$. \\
+
+Let $\mathfrak{b}$ be an integral ideal of $D_\mathfrak{p}$, and define $\mathfrak{a}\triangleq \mathfrak{b}\cap D$. Clearly $\mathfrak{a}$ is an integral ideal of $D$, so by premise, $\mathfrak{a}$ is invertible. It now follows from $\mathfrak{b}=\mathfrak{a}_\mathfrak{p}$\footnote{You may check this.} and the fact \customref{Iialp}{invertibility is a local property} that $\mathfrak{b}$ is invertible of $D_\mathfrak{p}$. 
+\end{proof}
+\chapter{Variety}
+\section{Hilbert's Nullstellensatz and basis theorem}
+\label{FGN}
 \begin{theorem}
 \label{HBT}
 \textbf{(Hilbert's Basis Theorem)} If $A$ is Noetherian, than the polynomial ring $A[x]$ is also Noetherian. 
@@ -632,628 +1074,290 @@ and satisfy
 \end{align*}
 Proceeding this way, we end up with $f-g=h$ where  $g\in X'$ and $h \in X \cap \langle 1,x,\dots ,x^{r-1}\rangle $. We have proved \myref{Equation}{23X}. Now, because $X'$ is finitely generated, to show  $X$ is finitely generated, it only remains to show the ideal $X \cap \langle 1,x,\dots ,x^{r-1}\rangle $  is finitely generated, which follows immediately from noting $\langle 1,x,\dots ,x^{r-1}\rangle $ as a module is Noetherian.    
 \end{proof}
-We close this section by giving a cute corollary of Hilbert's Basis Theorem in classical algebraic geometry. Suppose $E\subseteq R[x_0,\dots ,x_{n-1}]$ is an infinite collection of polynomials. Let $V$ be the set of common roots of these polynomials, i.e., 
-\begin{align*}
-V \triangleq \set{x\in R^n: f(x)=0 \text{ for all }f \in E}
-\end{align*}
-Clearly, 
-\begin{align*}
-V= \set{x \in R^n : f(x)=0\text{ for all }f\in \langle E\rangle }
-\end{align*}
-Induction with Hilbert's Basis Theorem shows that $R[x_0,\dots ,x_{n-1}]$ is Noetherian, so $\langle E\rangle $ is finitely generated. This allow us to write  $\langle E\rangle = \langle f_1,\dots ,f_n\rangle$ for some finite set of polynomials $f_1, \dots ,f_n \in R[x_0,\dots ,x_{n-1}]$. We now see that the locus $V$ of an infinite collection of polynomials can always be written as a locus of some finite collection of polynomials.  
-\section{Nullstellensatz}
 \begin{theorem}
-\textbf{(Hilbert's Nullstellensatz)} Let $K$ be an algebraically closed field, and let $I$ be an ideal of  $K[t_1,\dots ,t_n]$. Define 
-\begin{align*}
-V\triangleq \set{x\in K^n : f(x)=0\text{ for all }f \in I}
-\end{align*}
-If we let $X$ be the ideal 
-\begin{align*}
-X \triangleq \set{ g \in K[t_1,\dots,t_n] : g(x)=0\text{ for all }x\in V }
-\end{align*}
-then $X=\sqrt{I}$. 
+\label{WfoN}
+\textbf{(Weak form of Nullstellensatz)} Given field $k$ and finitely generated  $k$-algebra  $B$, if  $B$ is a field then it is a finite algebraic extension of $k$.  
 \end{theorem}
 \begin{proof}
-
+A proof can be found in the end of Chapter 5 of Atiyah-MacDonald. Another proof can be found in Chapter 7 of Atiyah-MacDonald, at page 82.
 \end{proof}
-
-\chapter{Scripts}
-\section{Script 3}
-A \textbf{primary decomposition} of an ideal $I$ is an expression of $I$ as a finite intersection of primary ideals
+\begin{theorem}
+\label{HN}
+\textbf{(Hilbert's Nullstellensatz)} Given algebraically closed field $k$ and ideal  $I\subseteq k[x_1,\dots ,x_n]$. If we let $V$ be the locus of $I$: 
+\begin{align*}
+V\triangleq   \set{x\in k^n : F(x)=0\text{ for all }F \in I}
+\end{align*}
+and let $J$ be the defining ideal of $V$: 
  \begin{align*}
-I= \bigcap_{i=1}^n Q_i
+J\triangleq  \set{F \in k[x_1,\dots ,x_n]: F(x)=0\text{ for all }x \in V}
 \end{align*}
-Moreover, if $\sqrt{Q_i}$ are all distinct and 
-\begin{align*}
-\bigcap_{j\neq i}Q_j \not \subseteq Q_i\text{ for all }i
-\end{align*}
-then we say the primary decomposition is \textbf{irredundant}. 
-\begin{theorem}
-\label{Fut}
-\textbf{(First uniqueness theorem for irredundant primary decomposition)} Given some irredundant primary decomposition $I= \bigcap_{i=1}^n Q_i$, we have 
-\begin{align}
-\label{QiR}
-\bset{\sqrt{Q_i}:1\leq i\leq n}= \operatorname{Spec}(R) \cap \bset{\sqrt{(I:x)} \subseteq R: x \in R } 
-\end{align}
+then $J = \sqrt{I}$. 
 \end{theorem}
 \begin{proof}
-Before showing that both sides of \myref{Equation}{QiR} are subsets of each other, we first make the following observation. For all $x \in R$, clearly 
+  $\sqrt{I}\subseteq J$ is clear. Assume for a contradiction that $F \in J - \sqrt{I}$. \customref{raed}{Because $F \not\in \sqrt{I}$, there exists some prime $\mathfrak{p}\subseteq k[x_1,\dots ,x_n]$ that contains $\sqrt{I}$ but does not contain $F$}. Denote 
 \begin{align*}
-  (I:x)= \Big(\bigcap Q_i :x\Big) = \bigcap (Q_i : x)
+B \triangleq k[x_1,\dots ,x_n]\quotient  \mathfrak{p} \text{ and }g\triangleq [F] \in B\text{ and }C\triangleq B_g
 \end{align*}
-Therefore, 
-\begin{align}
-\label{sIx}
-\sqrt{(I:x)}= \bigcap \sqrt{(Q_i:x)}= \bigcap_{k:x \not\in Q_k} \sqrt{Q_k}  
+Let $\mathfrak{m}$ be some maximal ideal of $C$. Because of the $k$-algebra homomorphism diagram: 
+ \begin{align}
+\label{kdm}
+k[x_1,\dots ,x_n]\xrightarrow{\text{ring quotient}}  B\xrightarrow{\text{localization}} C\xrightarrow{\text{ring quotient}} C \quotient \mathfrak{m}
 \end{align}
-where the last equality is justified by 
-\begin{align*}
-x \in Q_i \implies (Q_i:x)=R,\quad\text{ and } x \not\in Q_i \implies  \sqrt{(Q_i:x)} = \sqrt{Q_i} 
-\end{align*}
-We now prove that the left hand side of \myref{Equation}{QiR} is a subset of the right hand side. Fix $i$. By irredundancy of the decomposition, there exists some  $x\in R$ such that $x$ belongs to all $Q_j$ except  $Q_i$. This $x$ by \myref{Equation}{sIx} must satisfies
-\begin{align*}
-\sqrt{Q_i}  =  \sqrt{(I:x)} 
-\end{align*}
-Noting that $\sqrt{Q_i}$ must be prime due to $Q_i$ being primary, we have shown the left hand side of \myref{Equation}{QiR} is a indeed a subset of the right hand side. \\
+We see that  by  \customref{HBT}{Hilbert Basis Theorem}, \myref{theorem}{cpoN}, and \customref{EDoN}{equivalent definition of Noetherian},  $C\quotient \mathfrak{m}$ is finitely generated over $k$, thus a finite algebraic extension of $k$ by  \customref{WfoN}{weak form of Nullstellensatz}. Because $k$ is algebraically closed, this implies $C\quotient \mathfrak{m}\cong  k$. \\
 
-Now, suppose for some $x\in R$ that $\sqrt{(I:x)}$ is prime. Because prime ideal must be proper, we know there must exists some $k$ such that $x\not \in Q_k$. By \myref{Equation}{sIx}, to finish the proof, we only need to show $\sqrt{Q_k}\subseteq \sqrt{(I:x)}$ for some $k$ such that $x \not \in Q_k$. Assume not for a contradiction. Then for all $k$ such that $x \not \in Q_k$, there exists $y_k \in \sqrt{Q_k}$ such that $y_k \not \in \sqrt{(I:x)}$. The product of these $y_k$ is an element of  $\bigcap \sqrt{Q_k}$, thus an element of $\sqrt{(I:x)}$. This with $\sqrt{(I:x)}$ being prime shows that $y_k \in \sqrt{(I:x)}$ for some $k$, a contradiction. 
+Now, for each  $1\leq i\leq n$, let $t_i\in k\cong C\quotient \mathfrak{m}$ be the image of $x_i\in k[x_1,\dots ,x_n]$ under the $k$-module homomorphism in \myref{diagram}{kdm}.  Letting $t\triangleq (t_1,\dots ,t_n)\in k^n$, it is easy to check\footnote{Recall $k[x_1,\dots ,x_n]=\langle x_1,\dots ,x_n\rangle $.} by direct computation that \myref{diagram}{kdm} have action $G \in k[x_1,\dots ,x_n]\mapsto G(t)\in k$. Because  $I \subseteq \mathfrak{p}$, by construction of $B$ we see \myref{diagram}{kdm} maps every element of $I$ to $0\in k$. Yet, at the same time the image of $F$ in $C$ is a unit by construction of  $C$, which implies the image of $F$ in the quotient ring $C\quotient \mathfrak{m}$ is nonzero. We have shown $t \in V$ and $F(t)\neq 0$, a contradiction. 
 \end{proof}
-Because of \myref{Theorem}{Fut}, we may well define the following notions. Given some decomposable ideal $I$, we say the prime ideals $\set{\sqrt{Q_1},\dots ,\sqrt{Q_n} }$ \textbf{belong} to $I$, and if $\sqrt{Q_i}$ is a minimal element of $\set{\sqrt{Q_1},\dots ,\sqrt{Q_n}}$, then we say $\sqrt{Q_i}$ is an \textbf{isolated} prime ideal belonging to $I$. 
+\section{Affine variety}
+Let $k$ be some field, by the   \textbf{affine $n$-space  $\mathbb{A}^n_k$ over $k$}, with notation $\A^n$ when $k$ is understood, we mean the Cartesian product $k^n$. If we say a subset $V \subseteq \A^n$ is \textbf{(affine) algebraic}, we mean that it is the \textbf{locus} $V(S)\triangleq \set{a \in \A^n : F (a)=0\text{ for all }F \in S}$ of some $S \subseteq k[x_1,\dots ,x_n]$. We usually write $V(F_1,\dots ,F_n)$ instead $V(\set{F_1,\dots ,F_n})$ for aesthetic reason, and clearly: 
+\begin{align*}
+V(F_1,\dots ,F_m)= V(F_1) \cap \cdots \cap  V(F_m)
+\end{align*}
+for arbitrary $F_1,\dots ,F_m \in k[x_1,\dots, x_n]$. Given an affine algebraic set $V$, we call the ideal $I(V)$ of polynomials in $k[x_1,\dots ,x_n]$ that vanishes on $V$ the \textbf{defining ideal of $V$}, since 
+\begin{align}
+\label{VVIV}
+V=V(I(V)),\quad \text{for all affine algebraic set $V \subseteq \A^n$ }
+\end{align}
+\footnote{In general we only have $I \subseteq I (V(I))$.}If $V_1,V_2\subseteq \A^n$ are algebraic with defining ideal $I_1,I_2$, then  $V_1 \cup V_2$ is also algebraic with defining ideal $I_1I_2$, and arbitrary intersection $ \bigcap V_\alpha $ of affine algebraic subset is also algebraic with defining ideal generated by  $\bigcup I_\alpha $. This together with the easily observed fact that $\A^n$ and empty set are all algebraic give rise to the \textbf{Zariski topology} on $\A^n$, where a set $E \subseteq \A^n$ is closed if  and only if $E$ is algebraic. Note that when we refer to the \textbf{Zariski topology on some algebraic $V \subseteq \A^n$}, we just mean the subspace topology on $V$ induced by the Zariski topology on  $\A^n$. \\  
+
+
+We say a nonempty set $Y$ of some topological space $X$ is  \textbf{irreducible} or \textbf{hyperconnected} if $Y$ can not be written as union of two proper subsets each closed in $Y$, and we say algebraic $V \subseteq \A^n$ is \textbf{irreducible} if it is irreducible in Zariski $\A^n$, or equivalently, if $I(V)$ is prime. \\
+
+
+
+
+
+
+
+
+From \myref{Equation}{VVIV}, we see that by \customref{HBT}{Hilbert Basis Theorem}, every affine algebraic set $V \subseteq \A^n$ can be written as $V=V(F_1)\cap \cdots \cap  V(F_m)$  for some $F_1,\dots ,F_m \in k[x_1,\dots ,x_n]$. For convenience, we shall use \customref{HBT}{Hilbert Basis Theorem} and \customref{EDoN}{equivalent definitions of Noetherian} without explicit citation. 
 \begin{theorem}
-\label{P46}
-\textbf{(Proposition 4.6)} Let $I$ be a decomposable ideal. Any prime ideal $P \supseteq I$ contains an isolated prime ideal belonging to $I$. 
+\textbf{(Existence and uniqueness of irreducible decomposition of affine algebraic set)} Given any algebraic $V\subseteq \A^n$, there always exists unique irreducible algebraic $V_1,\dots ,V_m \subseteq \A^n$ such that 
+\begin{gather}
+V= V_1 \cup  \cdots \cup  V_m \text{ and }V_i \not \subseteq V_j \text{ for all }i,j. 
+\end{gather}
 \end{theorem}
+\begin{proof}
+Note that if $V$ has an irreducible decomposition, then we may delete the unnecessary terms to have an irredundant irreducible decomposition of $V$. We now prove that every affine algebraic sets of $\A^n$ has an irreducible decomposition.\\  
+
+Let $\mathscr{S}$ be the collection of affine algebraic sets that has no irreducible decomposition. Assume for a contradiction that $\mathscr{S}$ is nonempty, and let $I(V)$ be a maximal element of the collection of defining ideals of elements of $\mathscr{S}$. Note that because $V\in \mathscr{S}$, we know $V$ is reducible: $V=V_1 \cup  V_2$. Because $V$ is minimum in $\mathscr{S}$\footnote{$V$ is minimum because $V_1 \subseteq V_2\implies I(V_1)\supseteq I(V_2)$ for all affine algebraic sets $V_1,V_2$.}, we know $V_1,V_2$ both have irreducible decomposition, which implies $V$ also has an irreducible decomposition, a contradiction. \\
+
+It remains to prove the uniqueness of irredundant irreducible decomposition of a fixed algebraic set $V \subseteq \A^n$, so suppose 
+\begin{align*}
+V= V_1 \cup  \cdots \cup  V_m = W_1 \cup  \cdots \cup  W_r
+\end{align*}
+are two irredundant irreducible decomposition. Note that for each $i$, because $V_i$ is irreducible and we have decomposition $V_i = \bigcup (W_j \cap V_i)$\footnote{This is a decomposition because $V(\bigcup   I_\alpha )=\bigcap V(I_\alpha )$ and $V(I)\cap V(J)=V (IJ)$ in general.}, we have $V_i \subseteq W_j$. The same procedure yields $W_j \subseteq V_p$ for some $p$, from which we can use irredundancy to deduce  $V_i=W_j=V_p$. This implies the uniqueness. 
+\end{proof}
+
+ Typically, if $k$ is algebraically closed, we call affine algebraic set $V \subseteq \A^n$ \textbf{affine variety}, and we call a set $V\subseteq \A^n$ an \textbf{quasi-affine variety} if $V$ is contained by some affine variety  $W\subseteq \A^n$ and be open in $W$, or equivalently that  $V= W - T$  for some affine varieties $W,T \subseteq \A^n$. \\
+
+From the convention of only calling algebraic set over closed field "variety", we see how we care much more about algebraic set over closed field than those over a non closed field. Let $k$ be closed. \customref{HN}{Nullstellensatz} means exactly:
+\begin{align*}
+I(V(I))=\sqrt{I},\quad \text{ for all ideal }I \subseteq k[x_1,\dots, x_n]
+\end{align*}
+From \customref{HN}{Nullstellensatz}, we have 
+\begin{enumerate}[label=(\Alph*)]
+  \item If $I$ is prime, then $V(I)$ is irreducible. 
+  \item By (A), functor $I$ maps the collection of irreducible variety to $\operatorname{Spec}(k[x_1,\dots ,x_n])$ bijectively.   
+  \item Every point $a \in \A^n$ satisfies: $\set{a}\subseteq \A^n$ irreducible. 
+  \item  Functor $I$ maps $\set{\set{a}\subseteq \A^n : a \in \A^n}$ to $\operatorname{Specm}(k[x_1,\dots ,x_n])$ bijectively.\footnote{Using \customref{WfoN}{the weak form of Nullstellensatz}, if $\mathfrak{m}\subseteq k[x_1,\dots ,x_n]$ is maximal, then one construct isomorphism $\pfi: k[x_1,\dots ,x_n]\quotient \mathfrak{m}\to k$ and set $a_i\triangleq x_i$ to see $\pfi([f])=f(a)$ and $\set{a}=V(\mathfrak{m})$} In particular, $I(\set{a})=\langle x_1-a_1,\dots ,x_n-a_n\rangle $.   
+\end{enumerate}
+
+ \section{Dimension of Affine Variety}
+Let $X$ be a topological space, we define its \textbf{dimension} to be the supremum of all integers $n$ such that there exists a chain $Z_0 \subset Z_1 \subset \cdots \subset Z_n$ of distinct irreducible closed subsets of $X$.  
+\begin{theorem}
+\textbf{(Equivalent definition of dimension for affine algebraic set: coordinate ring)} Given algebraic $V\subseteq \A^n$, its dimension equals to the Krull dimension of its coordinate ring $\Gamma  (V) \cong k[x_1,\dots ,x_n]\quotient I(V)$.  
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+ For any set $V \neq 0\subseteq \A^n$, we use notation $\mathscr{F}(V,k)$ to denote the $k$-algebra of all functions from $V$ to $k$, which contains $k$ as a subring. Given algebraic $V \subseteq \A^n$, a function $f\in \mathscr{F}(V,k)$ is called a \textbf{polynomial function} if there exists $F \in k [x_1,\dots ,x_n]$ agreeing with $f$ on $V$. Clearly, the set of polynomials functions forms a sub $k$-algebra of $\mathscr{F}(V,k)$ containing $k$, and we call this $k$-algebra the  \textbf{coordinate ring of $V$} with notation $\Gamma (V)$, which is clearly isomorphic to $k[x_1,\dots ,x_n]\quotient I (V)$. \\
+\section{Projective Variety}
+\chapter{Scheme}
+
+Given some ring $R$, we may give $\operatorname{Spec}(R)$ its \textbf{Zariski topology} by defining $E\subseteq \operatorname{Spec}(R)$ to be closed if and only if $E=\set{J \in \operatorname{Spec}(R):I \subseteq J}$ for some ordinary ideal $I\subseteq R$. \\
+\chapter{Archived}
+\section{Some Fulton}
+
+
+Given two affine varieties $V \subseteq \A^n,W\subseteq \A^m$, we say mapping $\phi:V\rightarrow W$ is a \textbf{polynomial map}\footnote{One may check that polynomial maps and affine varieties together form a category} if there are polynomials $T_1,\dots ,T_m \in k[x_1,\dots ,x_n]$ such that $\phi(a)=(T_1(a),\dots ,T_m (a))$ for all $a \in V$. Every mapping $\phi:V\rightarrow W$, polynomial or not, induce a ring homomorphism 
+\begin{align*}
+  \tilde{\phi}:\mathscr{F}(W,k)\rightarrow  \mathscr{F}(V,k)\quad  f \mapsto  f \circ \phi   
+\end{align*}
+Clearly, if $\phi$ is a polynomial map, then $\tilde{\phi}$ maps $\Gamma (W)$ into $\Gamma  (V)$ and is in fact an $\A$-algebra homomorphism.  By \myref{proposition}{un2}, there exists an obvious one-to-one correspondence between $(k[x_1,\dots ,x_n])^m$ and some subcollection of the space of polynomials map from $\A^n$ to  $\A^m$, so if polynomial map  $T:\A^n \rightarrow \A^m$ satisfies
+\begin{align*}
+  \forall  a \in \A^n,T(a)=(T_1(a),\dots ,T_m(a))\quad,\text{ for some }T_1,\dots ,T_m \in k[x_1,\dots ,x_n]
+\end{align*}
+it make sense for us to denote $T=(T_1,\dots ,T_m)$. 
+\begin{theorem}
+\label{un3}
+  \textbf{(Natural one-to-one correspondence between $\operatorname{Hom}(\Gamma (W),\Gamma (V))$ and $\operatorname{Hom}(V,W)$)} Given two affine variety $V \subseteq \A^n,W \subseteq \A^m$, if we denote  
+\begin{align*}
+  \operatorname{Hom}(V,W)&\triangleq \set{\text{polynomial }\phi : V \rightarrow W} \\
+  \operatorname{Hom}(\Gamma W, \Gamma  V)&\triangleq \set{\text{$\A$-algebra homomorphism  $\pfi : \Gamma  (W)\rightarrow \Gamma (V)$}}
+\end{align*}
+then the mapping $\phi \mapsto  \tilde{\phi}$ forms a bijection between them.  
+\end{theorem}
+\begin{proof}
+It is easy to check the mapping $\phi \mapsto \tilde{\phi}$ is injective. We now prove that it is surjective. Fix $\alpha  \in \operatorname{Hom}(\Gamma W,\Gamma V)$. Let $T_i \in k[x_1,\dots ,x_n]$ satisfies $\alpha ([x_i])=[T_i]$ for each $i$, and define polynomial map $T\triangleq (T_1,\dots ,T_m): \A^n \rightarrow \A^m$. Note that $\Gamma  (A^n)\cong  k[x_1,\dots ,x_n]$. It is then easy to check $\tilde{T}: \Gamma (A^m)\longrightarrow \Gamma  (A^n)$ maps $I (W)$ into $I(V)$, which allow us to check $T(V) \subseteq W$. To finish the proof, just check $\tilde{T|_V}:\Gamma W \rightarrow \Gamma V$ is identical with $\alpha $. 
+\end{proof}
+A polynomial map $\phi : V\rightarrow W$ is an \textbf{$k$-affine variety isomorphism} if it's bijective with inverse being also a polynomial map. \myref{Theorem}{un3} shows that two affine varieties are isomorphic if and only if their coordinate rings are.\\
+
+By an \textbf{affine change of coordinate} on $\A^n$, we mean a bijective polynomial map $T: \A^n \rightarrow  \A^n$ such that each of its component $T_i \in k[x_1,\dots ,x_n]$ is of degree $1$.  \\
+
+Let $V\subseteq \A^n$ be an nonempty affine variety. We use the notation $k(V)\triangleq \operatorname{Frac}(\Gamma V)$ to denote the \textbf{field of rational function on $V$}. Given rational function $f$ on $V$, we say $f \in k(V)$ is \textbf{defined} at $a  \in V$ if there exists $g,h \in \Gamma  V$ such that $f=gh^{-1}$ and $h(a)\neq 0$. Given $a \in V$, we use the notation $\mathscr{O}_a(V)$ to denote the ring of rational functions on $V$ that are defined at $a$. We have 
+\begin{align*}
+ k \subseteq \Gamma (V)\subseteq \mathscr{O}_a (V) \subseteq k(V) 
+\end{align*}
+Clearly, for each $f \in \mathscr{O}_a(V)$, we may well-define a \textbf{value of $f$ at $a$} by saying $f(a)\triangleq g(a)h(a)^{-1}$, and we see that indeed, $\mathscr{O}_a(V)$ is a local ring whose maximal ideal is
+\begin{align*}
+\mathfrak{m}_a(V)\triangleq \set{f\in \mathscr{O}_a(V):f(a)=0}
+\end{align*}
+\section{Some Fulton 2}
+For intuitively geometrical reason, we usually call locus of a single non-constant polynomial $F \in k[x_1,\dots ,x_n]$ a \textbf{hypersurface}, and a hypersurface in $\A^2$ an  \textbf{affine plane curve}. 
+\begin{lemma}
+\label{IL}
+\textbf{(Intuitive Lemma)} If $F,G \in k[x,y]$ have no common factor, then $V(F,G)=V(F)\cap  V(G)$ is a finite set of points.
+\end{lemma}
+\begin{proof}
+
+\end{proof}
+Because algebraically closed field is always infinite, the following classification theorem particularly applies to affine varieties.   
+\begin{theorem}
+\textbf{(Classification of irreducible affine variety in $\A^2$)} If $k$ is infinite, every irreducible affine algebraic set $V \subseteq \A^2$ falls into one of the following class: 
+\begin{enumerate}[label=(\alph*)]
+  \item  $\A^2$. 
+  \item Empty set.  
+  \item A finite set. 
+  \item $V(F)$ where $F \in k[x_1,x_2]$ is irreducible. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  Clearly, if $I(V)=0$\footnote{Zero ideal is prime in the integral domain $k[x_1,x_2]$.} then $V=\A^2$, class (a). Also, if $I(V)$ contains a nonzero constant, then $V$ is empty, class (b). We have shown that if $V$ is not in class  (a) nor class (b), then $I(V)$ contains some non-constant polynomial $F$.\\
+
+Because $k[x_1,x_2]$ is a UFD, we may write $F=F_1\cdots F_n$ where $F_1,\dots ,F_n$ are all irreducible. It then follows from $I(V)$ being prime that $F_1 \in I(V)$, WLOG. If $I(V)=\langle F_1\rangle $, then $V$ is in class (d), so suppose there exists some $G \in I(V)- \langle F_1\rangle $. This immediately implies $V \subseteq V (F_1,G)$, and since  $F_1$ is irreducible and  $G \not\in \langle F_1\rangle $, we may apply \myref{Lemma}{IL} to see that $V$ is finite, class (c).
+\end{proof}
+\section{More Equivalent Definitions of DVR}
+Let $u \in K^{\times}$. We sometimes denote the \textbf{fractional principal ideal} $Au$ by  $\langle u\rangle $. It is clear that $\langle u\rangle $ is invertible with inverse $\langle u^{-1}\rangle $. 
+\begin{theorem}
+\textbf{(Equivalent Definitions of DVR)} Given an integral domain $D$, the following are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $D$ is a DVR with discrete valuation $\nu$.   
+  \item $D$ is a local Euclidean domain and not a field.  
+  \item $D$ is a local PID and not a field. 
+  \item $D$ is local and every nonzero fractional ideal of $D$ is invertible. 
+  \item $D$ is local and  
+  \item $D$ is local, Noetherian and of Krull dimension $1$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  For $(\text{i})\implies (\text{ii})$, note that $D$ is local because  \customref{EDovr}{ideals of $D$ are totally ordered by inclusion}, that  $\nu $ is the desired Euclidean function\footnote{Suppose $x,y \in D, y\neq 0$. If $\frac{x}{y}\in D$, then $x= y \cdot \frac{x}{y}+0$ suffices. If $\frac{x}{y}\not\in D$, then $x=y+(x-y)$ suffices.}, and $D$ is not a field because $\nu$ is nontrivial.\\
+
+  For $(\text{ii})\implies (\text{iii})$, just recall  \customref{un1}{Euclidean domains are PID}.\\
+
+For  $(\text{i})\implies (\text{iv})$, let $ \mathfrak{a}_1 = \langle x\rangle $ in \myref{Equation}{Da1}, and let $M$ be a nonzero fractional ideal. Let $y \in D$ satisfies $yM \subseteq D$, so $yM= \langle x^k\rangle $ for some $k\inn$. This implies $M$ is a fractional principal ideal $M= \langle x^{k- \frac{\nu  (y)}{p}}\rangle $, thus invertible.  \\
+
+For $(\text{iv})\implies (\text{i})$, first note that because every integral ideal of $D$ is invertible, thus finitely generated, \customref{EDoN}{$D$ is Noetherian}.  
+\end{proof}
+\begin{theorem}
+\textbf{(Sufficient conditions for valuation rings to be discrete)} If $D$ is a valuation ring of  $\nu :\operatorname{Frac}(D)\rightarrow \Gamma \cup \set{\infty}$, then the following are equivalent: 
+\begin{enumerate}[label=(\alph*)]
+  \item $\nu $ is discrete. 
+  \item $D$ is Noetherian. 
+  \item $D$ is a principal ideal domain.   
+\end{enumerate}
+\end{theorem}
+
+
+\section{PID, UFD and Gauss Lemma}
+Let $A$ be a ring and $a \in A$ be an non-unit nonzero element. We say $a$ is  \textbf{irreducible} if  $a=xy\implies x\text{ is a unit or $y$ is a unit}$. We say $a$ is \textbf{prime} if $\langle a\rangle $ is prime. We say an integral domain $D$ is a \textbf{UFD (Unique Factorization Domain)} if every nonzero non-unit element of $D$ can be written as some finite product of irreducible elements, up to units and change of order. We say an integral domain is a \textbf{PID (Principal Ideal Domain)} if every ideal is principal. We say an integral domain is a  \textbf{GCD domain} if there always exists a unique minimal principal ideal containing the ideal generated by two given elements. If $D$ is a GCD domain, and $x,y \in D$, we use $\operatorname{gcd}(x,y)$ to denote the unique principal ideal containing $\langle x,y\rangle $. Clearly, every PID is  Noetherian, and moreover: 
+\begin{theorem}
+\textbf{(Irreducibles are prime in PID)} If $D$ is a PID and $a \in D$  is irreducible, then $a$ is prime. 
+\end{theorem}
+\begin{proof}
+Let  $bc \in \langle a\rangle$. From the premise, if we write 
+\begin{align*}
+\langle a,b\rangle = \langle d\rangle \text{ and }a=de
+\end{align*}
+We see that either $d$ or $e$ is a unit. If $e$ is a unit, then when we write $b=yd$ we see $b=yae^{-1} \in \langle a\rangle $. If $d$ is a unit, then $\langle a,b\rangle = \langle d\rangle =D$ implies existence of some $x,y \in D$ such that $xa+yb=1$ which implies $c=cxa+ybc \in \langle a\rangle $.  \footnote{Because $bc \in \langle a\rangle $}
+\end{proof}
+\begin{corollary}
+\textbf{(PID are UFD)} If $D$ is a PID, then $D$ is an UFD. 
+\end{corollary}
 \begin{proof}
 Let 
 \begin{align*}
-\bigcap_{i=1}^n Q_i = I \subseteq P
+\mathscr{U}\triangleq \set{\langle x\rangle \subseteq D: x \in D\text{ can't be written as some finite product of irreducible elements.}}
 \end{align*}
-We have 
+Assume for a contradiction that $\mathscr{U}$ is nonempty. \customref{EDoN}{Because $D$ is Noetherian, there exists maximal $\langle x\rangle  \in \mathscr{U}$}. By construction, $x$ is reducible and thus not prime, which implies the existence of some maximal ideal $\langle y\rangle$ that strictly include $\langle x\rangle $. Because $\langle y\rangle \not \in \mathscr{U}$, we have irreducible factorization $y=a_1\cdots a_n$. Let $x=sy$ and  $u\triangleq sa_2\cdots a_n$. We shall cause a contradiction from  $x=a_1u$. If $\langle u\rangle \not \in  \mathscr{U}$, then because $a_1$ is irreducible, we see $x$ can be written as a finite product of irreducible elements\footnote{You may check that in general, if and $\langle t\rangle = \langle t'\rangle $, then $t=u't'$ for some unit $u'$}, a contradiction. If $\langle u\rangle \in \mathscr{U}$, then by maximality of $\langle x\rangle $, we have $\langle u\rangle = \langle x\rangle $, which implies $a_1$ is a unit, a contradiction. \\
+
+We now prove the uniqueness of factorization. Suppose 
 \begin{align*}
-\bigcap_{i=1}^n \sqrt{Q_i} =\sqrt{\bigcap_{i=1}^n Q_i}\subseteq \sqrt{P} =P 
+a= p_1\cdots p_n= q_1 \cdots q_m
 \end{align*}
-Because $P$ is prime, we see that there must exists some  $i \in \set{1,\dots ,n}$ such that $\sqrt{Q_i}\subseteq P$, otherwise, we may construct some $\prod x_i \in \bigcap \sqrt{Q_i}\setminus P$ by selecting $x_i \in \sqrt{Q_i}\setminus P $. If $\sqrt{Q_i}$ is isolated, we are done. If not, then there exists some isolated ideal $\sqrt{Q_j}$ such that $\sqrt{Q_j}\subseteq \sqrt{Q_i} $ and we are done. 
+are two factorization. Because $p_1$ is prime, for some $i$ we have $q_i \in \langle p_1\rangle $. WLOG suppose $i=1$. Because  $q_1$ is irreducible, we see that  $q_1=u_1p_1$ for some unit  $u_1$, which implies\footnote{Because $A$ is an integral domain.}
+\begin{align*}
+p_2\cdots p_n= u_1q_2 \cdots q_m
+\end{align*}
+Continuing this process, we have 
+\begin{align*}
+p_n=u_{n-1}q_n \cdots q_m
+\end{align*}
+The proof then follows from $p_n$ being irreducible.
 \end{proof}
-The second remark gives an example of two distinct irredundant primary decomposition of an ideal. Let $\langle x^2,xy\rangle \subseteq \F [x,y]$. We have 
-\begin{align*}
-\langle x^2,xy\rangle= \langle x\rangle \cap \langle x,y\rangle^2 = \langle x\rangle \cap \langle x^2,y\rangle   
-\end{align*}
-where 
- \begin{align*}
-y \not\in \langle x,y\rangle^2 
-\end{align*}
-Also, note from \myref{Theorem}{P46} that 
-\begin{align*}
-\operatorname{Nil}(R)=\bigcap \text{ all minimal primes ideal belonging to }\set{0}
-\end{align*}
 \begin{theorem}
-\label{Soz}
-  \textbf{(Set of zero-divisors is the union of all prime ideals belonging to $\set{0}$)} If we let $D$ be set of zero-divisors of  $R$, then 
-\begin{align*}
-D= \bigcup \set{I\in \operatorname{Spec}(R):I\text{ belongs to }\set{0}} 
-\end{align*}
+\textbf{(UFD are GCD domain)} If $D$ is an UFD, then  $D$ is a GCD domain. 
 \end{theorem}
 \begin{proof}
-Clearly, 
-\begin{align*}
-D= \bigcup_{x\neq 0} \sqrt{(\set{0}:x)} 
-\end{align*}
-This together with \myref{Equation}{sIx} shows that $D$ is a subset of the union of all prime ideals belonging to $\set{0}$. The converse follows directly from \myref{Theorem}{Fut}. 
-\end{proof}
-We may generalize \myref{Theorem}{Soz} as following. Let $I = \bigcap Q_i$ be an irredundant primary decomposition. Let $\pi  :R \rightarrow R\quotient I$ be the quotient map. Clearly $\set{[0]}= \bigcap \pi  (Q_i)$ forms an irredundant primary decomposition. Therefore, \myref{Theorem}{Soz} implies 
-\begin{align*}
-\bigcup   \sqrt{\pi  (Q_i)}= \bset{[x] \in R\quotient I: xy \in I\text{ for some }y\neq 0} 
-\end{align*}
-which implies 
-\begin{align*}
-\bigcup \sqrt{Q_i} = \bset{x \in R: (I:x) \neq I}
-\end{align*}
-\begin{theorem}
-\textbf{(Proposition 4.8)} Let $S$ be a multiplicatively closed subset of  $A$, and let  $Q$ be a $P$-primary ideal. 
- \begin{align*}
-S \cap P \neq \varnothing \implies  S^{-1}Q = S^{-1}A
-\end{align*}
-and 
-\begin{align*}
-S \cap P=\varnothing \implies S^{-1}Q\text{ is $P$-primary  and its contraction in $A$ is  $Q$ }
-\end{align*}
-\end{theorem}
-\begin{proof}
-If $s \in S \cap P$, then $s^n \in Q$ for some $n>0$, and $\frac{s^n}{1} \in S^{-1}Q$. Note that 
-\begin{align*}
-\frac{s^n}{1}\cdot \frac{1}{s^n}= \frac{s^n}{s^n}=1
-\end{align*}
-Suppose $S \cap P=\varnothing$. Note that $S^{-1}Q=Q^e$, so to show the contraction of $S^{-1}Q$ is $Q$, we only have to show 
+Let $x,y \in D$. If any of $x,y$ is a unit, then $\langle 1\rangle $ is the unique minimal principal ideal containing $\langle x,y\rangle $, and if $y$ is zero, then $\langle x\rangle$ is the unique minimal principal ideal containing $\langle x,y\rangle $. Now suppose they have the irreducible decomposition: 
 \begin{align}
-\label{g1}
-Q^{ec}=Q
+\label{irxx}
+x=(x_1\cdots x_t)x_{t+1}\cdots x_r \text{ and }y=(x_1 \cdots x_t)y_{t+1}\cdots y_s
 \end{align}
-Obviously $Q \subseteq Q^{ec}$. We show the opposite. The second part of proposition 3.11 states that 
-\begin{align*}
-Q^{ec}= \bigcup_{s \in S} (Q:s)
-\end{align*}
-Because $Q \subseteq P$, if $as \in Q$, then $a \in Q$. Therefore, $a \in (Q:s)\implies  a \in Q$. We have shown  \myref{goal}{g1}. Note that the fifth part of proposition 3.11  states that 
-\begin{align*}
-\sqrt{S^{-1}Q}=S^{-1}\sqrt{Q}=S^{-1}P   
-\end{align*}
-It remains to show $S^{-1}Q$ is indeed primary. Let  $\frac{ab}{ss'} = \frac{q}{s''}\in S^{-1}Q$. This implies $(abs'' -qss')t=0$ for some $t \in S$, which implies $ab(s''t)\in Q$. Because $S$ is closed under multiplication and $S \cap P = \varnothing$, we know $(s''t)^n \not\in Q$ for all $n>0$. This implies  $ab \in Q$, which implies $a \in Q$ or some powers of  $b$ is an element of  $Q$. We have shown either  $\frac{a}{s} \in S^{-1}Q$ or some power of  $\frac{b}{s''}$ belongs to $S^{-1}Q$. We have shown $S^{-1}Q$ is indeed primary.
-\end{proof}
-\section{Script 2}
-Let $A$ and  $B$ be two rings. Let  $M$ be an  $A$-module, and let $N$ be a  $(A,B)$-\textbf{bimodule}. By $N$ being a  $(A,B)$-bimodule, we mean that $N$ not only have both structure of $A$-module and $B$-module, but also  satisfy $a(bx)=b(ax)$. Consider the tensor product $M\otimes_A N$. For any $b \in B$, we may define a $A$-bilinear map $M\times N \rightarrow M\otimes_A N$ by 
-\begin{align*}
-  (m,n)\mapsto m \otimes  bn
-\end{align*}
-Therefore, by universal property, there exists some unique $A$-linear map $\tilde{b}:M\otimes _A N\rightarrow M\otimes  _A N$. Doing this procedure for each $b \in B$, to claim $M\otimes_A N$ forms a $(A,B)$-bimodule, it remains to check that 
-\begin{enumerate}[label=(\alph*)]
-  \item $b(x+y)=bx+by$. 
-  \item $(b_1+b_2)x=b_1x+b_2x$. 
-  \item $(b_1b_2)x=b_1(b_2x)$. 
-  \item $1_Bx=x$. 
-  \item $a(bx)=b(ax)$. 
-\end{enumerate}
-\begin{question}{Exercise 2.15}{}
-Let $P$ be a  $B$-module. Find an $(A,B)$-bimodule isomorphism  between 
-\begin{align*}
-  (M\otimes _AN)\otimes _B P \text{ and }M \otimes  _A (N \otimes  _B P)
-\end{align*}
-\end{question}
-\begin{proof}
-For each $p \in P$, the $A$-bilinear map from  $M\times N$ to $M \otimes_A (N \otimes _B P)$ defined by $(m,n)\mapsto  m \otimes  (n \otimes  p)$ induce a unique $A$-linear map $f_p:M\otimes _A N \to M\otimes _A(N\otimes _B P)$ that sends $m\otimes  n$ to $m\otimes (n \otimes  p)$. By expressing elements of $M \otimes_A N$ as finite sum of basic elements, one can see that $f_p$ is also  $B$-linear. Therefore, if we define $f:(M\otimes _A N) \times P\rightarrow M \otimes _A (N \otimes  _B P)$ by 
-\begin{align*}
-f(x,p)\triangleq f_p(x)
-\end{align*}
-we see that $f$ is $B$-linear in $M\otimes _A N$. Again, by expressing elements of $M \otimes  _A N$ as finite sum of basic elements, one can see that $f$ is also  $B$-linear in  $P$. Therefore, by universal property, there exists some $B$-linear mapping  $\tilde{f}:(M\otimes _A N) \otimes_B  P\rightarrow M \otimes _A (N \otimes  _B P)$  with action:
-\begin{align*}
-  (m \otimes  n)\otimes p \mapsto   f_p(m\otimes n)=m\otimes  (n \otimes  p)
-\end{align*}
-Tedious computation by expressing elements of $(M \otimes _A N)\otimes _B P$ into finite sum of basic elements shows that $\tilde{f}$ is also $A$-linear. We have shown $\tilde{f}$ is an $(A,B)$-bimodule homomorphism.  \\
+where $ux_i \neq y_j$ for all unit $u$ and $i,j>t$. Define $d\triangleq x_1\cdots x_t$. Clearly, if $\langle d\rangle$ is the smallest principal ideal containing $\langle x,y\rangle $, then it is the unique minimal principal ideal containing $\langle x,y\rangle $. Therefore, it suffices to prove for any $\langle f\rangle $ containing $\langle x,y\rangle $, we have $\langle d\rangle \subseteq \langle f\rangle $.\\
 
-To finish the proof, one first use similar argument to construct some  $(A,B)$-bimodule homomorphism $\tilde{g}: M \otimes_A (N \otimes _B P)\rightarrow (M\otimes _A N)\otimes_B P$ with action: 
-\begin{align*}
-  m \otimes  (n \otimes  p)\mapsto (m\otimes  n)\otimes  p
-\end{align*}
-And then, see that $\tilde{g}\circ \tilde{f}\in \operatorname{End}_{(A,B)}[(M\otimes_ AN)\otimes _BP]$ have the identity action on basic elements $x\otimes  p$\footnote{Again, by expressing $x$ as basic element  $x= \sum m_i \otimes  n_i$.} to conclude by universal property that $\tilde{g}\circ \tilde{f}$ is the identity function. 
+If $f$ is a unit, then what we want to prove trivially holds true. Assume for a contradiction that $\langle d\rangle \not \subseteq \langle f\rangle $. Clearly, the irreducible decomposition of $f$ must always contain some $g$ that doesn't divide $d$ in the sense that $d \not\in gD$. This implies for some $i,j>t$, $g$ divides both $x_{i}$ and $y_{j}$. This cause a contradiction to how we construct \myref{Equation}{irxx}: $y_{j} \not\in D^{\times}x_i$ for all $i,j>t$.
 \end{proof}
-\begin{mdframed}
-Let $f:A\rightarrow B$ be a ring homomorphism. If $N$ is a  $B$-module, then the  $A$-module structure on  $N$ defined by $an\triangleq f(a)n$ is called \textbf{restriction of scalars}. If $M$ is an $A$-module, then the  $B$-module structure on  $B\otimes _A M$\footnote{$B$ is given an $A$-module structure by restriction of scalar.} defined by 
-\begin{align*}
-b(b' \otimes  m)\triangleq  bb' \otimes  m
-\end{align*}
-is called \textbf{extension of scalars}. 
-\end{mdframed}
-\begin{question}{Proposition 2.16}{}
-Let $A,B$ be two rings, and let  $B$ be an  $A$-module, so we have a ring homomorphism $f:A\rightarrow B$ defined by $f(a)\triangleq a1_B$. Let $N$ be a $B$-module, and give $N$ an  $A$-module structure using restriction of scalars with respect to  $f$.\\
-
-Show that if $N$ is finitely generated as a $B$-module and  if $B$ is finitely generated as an  $A$-module, then  $N$ is finitely generated as an $A$-module. 
-\end{question}
-\begin{proof}
-Suppose $n_1,\dots ,n_k$ generate $N$ over  $B$, and suppose  $b_1,\dots ,b_m$ generate $B$ over $A$. We claim  $\set{b_jn_i}$ generates $N$ over $A$. Let 
-\begin{align*}
-b_i'= \sum_{j=1}^m a_{i,j}b_j
-\end{align*}
-Compute 
-\begin{align*}
-\sum_{i=1}^k b_i'n_i&= \sum_{i=1}^k \Big(\sum_{j=1}^m a_{i,j}b_j \Big)n_i \\
-&=\sum_{i=1}^k  \sum_{j=1}^m (a_{i,j}b_j)n_i  \\
-&=\sum_{i,j} (a_{i,j}b_j) n_i \\
-&=\sum_{i,j}a_{i,j}(b_jn_i)
-\end{align*}
-For justification of last equality, compute 
-\begin{align*}
-a(bn)=f(a)(bn)=(f(a)b)n=(ab)n
-\end{align*}
-Remark: similar routine computation shows that $N$ is in fact an  $(A,B)$-bimodule. 
-\end{proof}
-\begin{question}{Proposition 2.17}{}
-Let $f:A\rightarrow B$ be a ring homomorphism, and let $M$ be a finitely generated $A$-module, show that its extension of scalar  $B\otimes_A M$ is finitely generated as a $B$-module.   
-\end{question}
-\begin{proof}
-Let $\set{m_1,\dots ,m_n}$ generates $M$ over $A$. We claim $\set{1_B\otimes m_i}$ generate all the basic elements. Consider 
-\begin{align*}
-b \otimes \sum a_im_i&= \sum b\otimes a_i m_i \\
-&= \sum b (1_B \otimes a_im_i)\\
-&=\sum b ( a_i 1_B \otimes  m_i) \hspace{0.5cm}(\because \text{ $B$ is regarded as an  $A$-module when we write }B\otimes _A M)\\
-&=\sum b (f(a_i)\otimes m_i)\\
-&=\sum bf(a_i)(1\otimes m_i)
-\end{align*}
-\end{proof}
-\begin{mdframed}
-Let $M\overset{f}{\longrightarrow }M'$ and $N\overset{g}{\longrightarrow }N'$ be in the category of $A$-module. The function  $h:M\times N \rightarrow M' \otimes  N'$ defined by 
-\begin{align*}
-h(x,y)\triangleq f(x)\otimes  g(y)
-\end{align*}
-is clearly $A$-bilinear. Therefore, we may induce some unique $A$-linear map  $f\otimes  g:M\otimes  N\rightarrow M'\otimes  N'$ such that 
-\begin{align*}
-  (f\otimes  g)(x\otimes  y)=f(x)\otimes  g(y)
-\end{align*}
-Note that for each $M' \overset{f'}{\longrightarrow }M''$ and $N'\overset{g'}{\longrightarrow }N''$, we have 
-\begin{align*}
-  (f' \circ f) \otimes  (g' \circ g)= (f'\otimes  g')\circ (f\otimes  g)
-\end{align*}
-because they agree on the basic elements. 
-\end{mdframed}
-\begin{question}{Proposition 2.18 (Exaction of Tensor Product)}{}
-If 
-\begin{align}
-\label{Mfg}
-M'\overset{f}{\longrightarrow }M\overset{g}{\longrightarrow } M'' \rightarrow  0
-\end{align}
-is an exact sequence of $A$-modules and homomorphism, then for any $A$-module  $N$, the sequence 
- \begin{align*}
-M' \otimes  N \overset{f \otimes 1 }{\longrightarrow } M \otimes  N \overset{g \otimes  1}{\longrightarrow }M'' \otimes  N \rightarrow  0
-\end{align*}
-is also exact, where $1 \in \operatorname{End}(N)$ is the identity mapping. 
-\end{question}
-\begin{proof}
-  Because $g$ is surjective, we may construct an \textbf{right inverse} $g^{-1}:M''\rightarrow M$. That is, $g \circ g^{-1}(m'')=m''$ for all $m'' \in M''$. To see $g\otimes  1$ is surjective, just observe 
-\begin{align*}
-  \sum m''_i \otimes  n_i= (g \otimes  1) \Big(\sum g^{-1}(m''_i) \otimes  n_i\Big)
-\end{align*}
-After computing 
-\begin{align*}
-(g \otimes  1)\circ (f\otimes  1)= (g\circ f)\otimes  (1 \circ 1)= 0
-\end{align*}
-we may reduce the problem into proving the factored map 
-\begin{align*}
-\operatorname{Coker}(f\otimes 1) \overset{\tilde{g}}{\longrightarrow } M'' \otimes  N
-\end{align*}
-is injective. Consider the map $h:M''\times N \rightarrow \operatorname{Coker}(f\otimes  1)$ defined by 
-\begin{align*}
-h(m'',n)\triangleq [g^{-1}(m'')\otimes  n]
-\end{align*}
-Clearly, $h$ is linear in $n$. Using the fact $\operatorname{Im}(f)=\operatorname{Ker}(g)$ and computation  
-\begin{align*}
-g(g^{-1}(am'')-ag^{-1}(m''))&=0\\
-g(g^{-1}(m_1''+m_2'')-g^{-1}(m_1'')-g^{-1}(m_2''))&=0
-\end{align*}
-we may conclude that $h$ is also linear in  $M''$. Now, because $h$ is bilinear, we may induce some linear $\tilde{h}:M''\otimes  N\rightarrow \operatorname{Coker}(f\otimes  1)$ with action 
-\begin{align*}
-\tilde{h} (m''\otimes  n)=[g^{-1}(m'')\otimes  n]
-\end{align*}
-Using universal property, it is east to check that $\tilde{h}\circ \tilde{g} \in \operatorname{End}(\operatorname{Coker}(f\otimes  1))$ is identity mapping. We have shown $\tilde{g}$ is injective. 
-\end{proof}
-\begin{mdframed}
-Note that the exaction of tensor product holds only for sequence of the \myref{form}{Mfg}. One can't delete the zero space at the end and still reach the same conclusion. Consider 
-\begin{align*}
-0\longrightarrow \Z \overset{f(x)=2x}{\longrightarrow }\Z 
-\end{align*}
-where the underlying ring is $\Z$. The sequence 
-\begin{align*}
-0\longrightarrow \Z \otimes \operatorname{Coker}(f) \overset{f\otimes  1}{\longrightarrow } \Z \otimes  \operatorname{Coker}(f)
-\end{align*}
-is not exact, because 
-\begin{align*}
-  (f\otimes 1)(x \otimes  [y])=2x \otimes  [y]= x \otimes  [2y]= 0 
-\end{align*}
-implies $\operatorname{Ker}(f\otimes  1)=\Z \otimes  \operatorname{Coker}(f)$, while 
-\begin{align*}
-\Z \otimes  \operatorname{Coker}(f)\cong  \operatorname{Coker}(f)\neq 0 
-\end{align*}
-An $A$-module $N$ is said to be \textbf{flat} if for any exact sequence 
-\begin{align*}
-\cdots \rightarrow M_{i-1} \overset{f_{i-1}}{\longrightarrow } M_i \overset{f_i}{\longrightarrow }M_{i+1}\rightarrow \cdots
-\end{align*}
-in the category of $A$-modules, the sequence 
- \begin{align*}
-\cdots \rightarrow M_{i-1}\otimes  N \overset{f_{i-1}\otimes  1}{\longrightarrow }M_i \otimes  N \overset{f_i \otimes 1 }{\longrightarrow }M_{i+1}\otimes  N \rightarrow \cdots 
-\end{align*}
-is also exact. 
-\end{mdframed}
-\begin{question}{}{}
-Show that for an $A$-module  $N$, the following are equivalents 
-\begin{enumerate}[label=(\alph*)]
-  \item $N$ is flat. 
-  \item If $0\rightarrow M'\longrightarrow M\longrightarrow M''\rightarrow  0$ is exact, then $0\rightarrow  M'\otimes N \longrightarrow M\otimes N \longrightarrow M''\otimes N \rightarrow 0$ is also exact. 
-  \item If $f:M'\rightarrow M$ is injective, then $f\otimes  1:M'\otimes  N \rightarrow M\otimes N$ is injective. 
-  \item If $f:M'\rightarrow N$ is injective and $M,M'$ are finitely generated, then  $f\otimes 1:M'\otimes N\rightarrow M\otimes N$ is injective. 
-\end{enumerate}
-\end{question}
-\begin{proof}
-From (a) to (b) is definition. We now prove from (b) to (a). Consider the exact sequence  
-\begin{align*}
-\cdots \rightarrow M_{i-1} \overset{f_{i-1}}{\longrightarrow } M_i \overset{f_i}{\longrightarrow }M_{i+1}\rightarrow \cdots
-\end{align*}
-We may split this into a short exact sequence 
-\begin{align*}
-0\longrightarrow  \operatorname{Im}(f_{i-1})\hookrightarrow M_i \overset{f_i}{\longrightarrow }\operatorname{Im}(f_i)\longrightarrow 0
-\end{align*}
-By (b), the short sequence
-\begin{align*}
-0\longrightarrow \operatorname{Im}(f_{i-1})\otimes  N \hookrightarrow M_i \otimes  N \overset{f_i\otimes 1}{\longrightarrow }\operatorname{Im}(f_i)\otimes  N \longrightarrow 0 
-\end{align*}
-is also exact. This implies 
-\begin{align*}
-\operatorname{Ker}(f_i\otimes  1)=\operatorname{Im}(f_{i-1})\otimes N=\operatorname{Im}(f_{i-1}\otimes  1)
-\end{align*}
-We have shown 
-\begin{align*}
-\cdots \rightarrow M_{i-1} \otimes  N \overset{f_{i-1}\otimes  1}{\longrightarrow } M_i \otimes  N \overset{f_i\otimes  1}{\longrightarrow }M_{i+1}\otimes  N\rightarrow \cdots
-\end{align*}
-is also exact, thus proving (a). From (b) to (c), we simply let $M''\triangleq \operatorname{Coker}(f)$ and let  $M\rightarrow M''$ be the quotient map. From (c) to (b) follows from right exaction and 
-\begin{align*}
-\operatorname{Im}(f\otimes 1)=\operatorname{Im}(f)\otimes  N = \operatorname{Ker}(g)\otimes N= \operatorname{Ker}(g\otimes 1) 
-\end{align*}
-From (c) to (d) is clear. It only remains to show from  (d) to (c). \\
-
-Fix 
-\begin{align*}
-u = \sum_{i=1}^n x_i \otimes  y_i \in \operatorname{Ker}(f\otimes  1)
-\end{align*}
-Let $M_0'$ be the submodule of $M'$ generated by $\set{x_1,\dots ,x_n}$, and let $u_0' \in M'_0\otimes  N$ be the element 
-\begin{align*}
-u_0'\triangleq \sum_{i=1}^n x_i \otimes  y_i \in M'_0 \otimes  N
-\end{align*}
-By Corollary 2.13, there exists some finitely generated submodule $M_0$ of  $M$ such that $u_0 \in M_0\otimes N$ defined by
- \begin{align*}
-u_0\triangleq \sum_{i=1}^n f(x_i) \otimes y_i \in M_0 \otimes  N
-\end{align*}
-equals to $0$. Note that because $\set{x_1,\dots ,x_n}$ generates $M'_0$ and  $M_0$ contains $\set{f(x_1),\dots ,f(x_n)}$, so $M_0$  contains $f(M'_0)$, and obviously 
-\begin{align*}
-f|_{M_0'}:M_0'\rightarrow M_0\text{ is injective. }
-\end{align*}
-We now see from (d) that 
-\begin{align*}
-f|_{M_0'}\otimes 1:M'_0 \otimes  N\rightarrow M_0 \otimes  N\text{ is injective. }
-\end{align*}
-Compute 
-\begin{align*}
-  (f|_{M'_0}\otimes  1)(u_0')= \sum_{i=1}^n f(x_i)\otimes  y_i=u_0=0
-\end{align*}
-We see $u'_0=\sum_{i=1}^n x_i \otimes  y_i \in M'_0 \otimes  N$ is zero. Now consider  the universal property 
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNJ18wIFxcdGltZXMgTiAiXSxbMiwwLCJNJ18wIFxcb3RpbWVzIE4iXSxbMiwyLCJNJyBcXG90aW1lcyBOIl0sWzAsMl0sWzAsMV0sWzEsMiwiXFxwaGkiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
-\[\begin{tikzcd}
-	{M'_0 \times N } && {M'_0 \otimes N} \\
-	\\
-	&& {M' \otimes N}
-	\arrow[from=1-1, to=1-3]
-	\arrow[from=1-1, to=3-3]
-	\arrow["\pfi"', dashed, from=1-3, to=3-3]
-\end{tikzcd}\]
-We may see $u=\pfi(u_0')$ is zero. Finishing the proof. 
-\end{proof}
-\begin{question}{Exercise 2.20}{}
-Let ring $B$ be an  $(A,B)$-bimodule, and let $M$ be a flat  $A$-module. Show that the extension of scalar $B\otimes_A M$ is a flat $B$-module. 
-\end{question}
-\begin{proof}
-Let $g:P'\rightarrow P$ be an injective $B$-module homomorphism.  We are required to show 
-\begin{align*}
-P' \otimes_B (B \otimes _A M) \overset{g\otimes 1}{\longrightarrow } P \otimes  _B (B \otimes_A M)
-\end{align*}
-is also injective. We have the isomorphism 
-\begin{align*}
-P' \otimes  _B (B\otimes  _A M) \cong  (P' \otimes  _B B) \otimes_A M \cong  P' \otimes _A M 
-\end{align*}
-It now follows from $M$ being flat that  $g\otimes  1$ is injective. 
-
-
-\end{proof}
-\section{Script 1}
-
-I proved and gathered the propositions in my paragraphs. 
+Let $A$ be a ring, and $f\in A[x_1,\dots ,x_n]$ a formal polynomial. Its \textbf{content} $\operatorname{cont}(f)$ is the ideal in $A$ generated by its coefficients, and we say $f$ is \textbf{primitive} if $\operatorname{cont}(f)=A$. Gauss show that a non-constant polynomial in $\Z[x]$ is irreducible in $\Z[x]$ if it is irreducible in $\Q[x]$ and primitive in $\Z[x]$. Here, we generalize his result to the case of commutative ring. 
 \begin{theorem}
-\textbf{(Ideal Quotients are well defined)} If we define for each pair $I,S$ of ideals of $R$ their \textbf{ideal quotient} by
+\textbf{(Gauss lemma over commutative ring)} For each pair of polynomials $f,g \in A[x_1,\dots ,x_n]$, we have 
 \begin{align*}
-  (I:S)\triangleq \set{x\in R: xy \in I\text{ for all }y \in S }
-\end{align*}
-Then $(I:S)$ forms an ideal.  
-\end{theorem}
-\begin{proof}
-To see $(I:S)$ is closed under addition, let $x,z \in I,y \in S,$ and observe 
-\begin{align*}
-  (x+z)y=xz+yz \in I
-\end{align*}
-To see $(I:S)$ is a multiplicative black hole, let $u \in (I:S),v \in R,s \in S$ and observe 
-\begin{align*}
-  (uv)s=v(us)\in I\text{ because }us \in I
-\end{align*}
-\end{proof}
-\begin{theorem}
-\textbf{(Description of annihilator)} Given some ideal $I$ of $R$, we use the notation $\operatorname{Ann}(I)$ to denote its \textbf{annihilator} $(\set{0}:I)$. We have 
-\begin{align*}
-\operatorname{Ann}(I)=\set{x\in R: xy=0\text{ for all }y \in I}
+\operatorname{cont}(fg)\subseteq \operatorname{cont}(f)\operatorname{cont}(g) \subseteq  \sqrt{\operatorname{cont}(fg)} 
 \end{align*}
 \end{theorem}
 \begin{proof}
-Obvious.
-\end{proof}
-\begin{mdframed}
-Given a principal ideal $\langle x\rangle $, we shall always denote its annihilator simply by $\operatorname{Ann}(x)$
-\end{mdframed}
-\begin{theorem}
-\textbf{(Description of the set of zero-divisors)} If we denote  $D$ the set of zero-divisors of $R$, we have 
+$\operatorname{cont}(fg)\subseteq \operatorname{cont}(f)\operatorname{cont}(g)$ is clear. By \customref{raed}{definition of radical}, to prove $\operatorname{cont}(f)\operatorname{cont}(g)\subseteq \sqrt{\operatorname{cont}(fg)} $, we only have to prove every prime ideal containing $\operatorname{cont}(fg)$ also contains $\operatorname{cont}(f)\operatorname{cont}(g)$. Let $\mathfrak{p}\subseteq A$ be a prime ideal containing $\operatorname{cont}(fg)$. Because 
 \begin{align*}
-D = \bigcup_{x\neq 0 \in R} \operatorname{Ann}(x )
+\mathfrak{p}[x_1,\dots ,x_n]\triangleq \set{h \in A[x_1,\dots ,x_n]:\text{ All coefficients of $h$ lie in $\mathfrak{p}$.}}
+\end{align*}
+forms a prime ideal of $A[x_1,\dots ,x_n]$ as one can check and because $fg \in \mathfrak{p}[x_1,\dots ,x_n]$, we see that one of $f,g$ is an element of  $\mathfrak{p}[x_1,\dots ,x_n]$, i.e., one of $\operatorname{cont}(f),\operatorname{cont}(g)$ is a subset of $\mathfrak{p}$. This immediately implies $\operatorname{cont}(f)\operatorname{cont}(g)\subseteq \mathfrak{p}$. 
+\end{proof}
+Noting that in a GCD domain 
+\begin{align*}
+\operatorname{gcd}(x,y,z)\triangleq \operatorname{gcd}(d,z)\text{ where }\langle d\rangle =\operatorname{gcd}(x,y)
+\end{align*}
+and so 
+\begin{align*}
+\operatorname{gcd}(\operatorname{cont}(a_nx^n+\cdots +a_1x+a_0))\triangleq \operatorname{gcd}(a_0,\dots ,a_n)\text{ is well defined. }
+\end{align*}
+We may give the Gauss lemma for UFD, whose proof is obvious if one use the notion of "divisors".   
+\begin{theorem}
+\textbf{(Gauss lemma over UFD)} If $A$ is an UFD, then for each pair of polynomials $f,g \in A[x_1,\dots ,x_n]$, we have 
+\begin{align*}
+\operatorname{gcd}(\operatorname{cont}(fg))= \operatorname{gcd}(\operatorname{cont}(f))\operatorname{gcd}(\operatorname{cont}(g))
 \end{align*}
 \end{theorem}
+\begin{corollary}
+\textbf{(Gauss lemma over UFD)} Given UFD $A$ with $K\triangleq \operatorname{Frac}(A)$, if $f \in A[x_1,\dots ,x_n]$ is irreducible, then $f \in K[x_1,\dots ,x_n]$ is also irreducible.
+\end{corollary}
 \begin{proof}
-If $d$ is a zero-divisor, then $d \in \operatorname{Ann}(s)$ for the $s\neq 0$ that divides $0$ with  $d$.  If $x\neq 0$ and $y \in \operatorname{Ann}(x)$, then $yx=0$.  
+If $f=gh \in K[x_1,\dots ,x_n]$ is reducible, then $f=g(rh)\in A[x_1,\dots ,x_n]$ is reducible, where $r$ is the product of all denominators of coefficients of $h$. 
 \end{proof}
-\begin{theorem}
-\textbf{(An example)} Let $R\triangleq \Z,I\triangleq \langle m\rangle$ and $S\triangleq \langle n\rangle $. We have 
-\begin{align*}
-  (I:S)=\langle q\rangle 
-\end{align*}
-Where  
-\begin{align*}
-q= \frac{m}{(m,n)}\text{ and }(m,n)\text{ is the highest common factor of $m$ and $n$. }
-\end{align*}
-\end{theorem}
-\begin{proof}
-To show $\langle q\rangle \subseteq (I:S)$, we only have to show $q \in (I:S)$. Let $p$ be arbitrary integer so $pn$ is an arbitrary element of  $S$. Note that 
-\begin{align*}
-m \mid mp \cdot \frac{n}{(m,n)} =  q (pn) \implies  q(pn) \in I
-\end{align*}
-Because $pn$ is an arbitrary element of  $S$, we have shown  $q\in (I:S)$. To show $(I:S)\subseteq \langle q\rangle $, let $p \in (I:S)$. Because $p \in (I:S)$, we know $pn\in I$. That is, 
-\begin{align*}
-m \mid  pn
-\end{align*}
-Dividing both side with $(m,n)$, we see  
-\begin{align*}
-q \mid p \cdot \frac{n}{(m,n)} 
-\end{align*}
-Because $q= \frac{m}{(m,n)}$ is by definition coprime with $\frac{n}{(m,n)}$, we can now deduce 
-\begin{align*}
-q \mid p 
-\end{align*}
-as desired.
-\end{proof}
-\begin{question}{}{}
-Let $I,S,T,V_\alpha $ be ideals of ring $R$. Show 
-\begin{enumerate}[label=(\alph*)]
-  \item $I \subseteq (I:S)$. 
-  \item $(I:S)S \subseteq I$. 
-  \item $((I:S):T)=(I:ST)=((I:T):S)$. 
-  \item $(\bigcap  V_\alpha : S)= \bigcap  (V_\alpha :S)$. 
-  \item $(I: \sum V_\alpha )=\bigcap (I:V_\alpha )$. 
-\end{enumerate}
-\end{question}
-\begin{proof}
-Proposition (a) is obvious. Proposition (b) is also obvious once we reduce the problem into proving the single sum $xy$ belongs to  $I$ where  $x\in (I:S)$ and $y \in S$. For proposition (c), we first show 
-\begin{align*}
-\vi{((I:S):T)\subseteq (I:ST)}
-\end{align*}
-Because ideal is closed under addition, we only have to prove $xst\in I$ where $x\in ((I:S):T), s \in S\text{ and } t \in T$, which follows from noting $xt \in (I:S)$. $\vdone$. Note that  
-\begin{align*}
-\blue{(I:ST)\subseteq ((I:T):S)}
-\end{align*}
-is obvious. $\bdone$. Lastly, we show 
-\begin{align*}
-\vi{((I:T):S)\subseteq ((I:S):T)}
-\end{align*}
-Let $x\in ((I:T):S),t\in T$ and $s \in S$. We are required to show $xts \in I$, which is obvious since $xs \in (I:T)$. $\vdone$. Proposition (d) is obvious.  Let $x \in (I: \sum V_\alpha )$. Fix $\alpha $ and $r \in V_\alpha $. Because $r\in \sum V_\alpha $, we see $xr\in I$. Let $x$ be in the intersection, it is clear that $x \sum v_\alpha =\sum xv_\alpha \in I$ because $xv_\alpha \in I$.     
-\end{proof}
-\begin{theorem}
-\textbf{(Radicals of ideals are well-defined)} If $I$ is an ideal of $R$, then the  \textbf{radical} of $I$ defined by 
- \begin{align*}
-r(I)\triangleq  \set{x\in R: x^n\in I\text{ for some }n>0}
-\end{align*}
-is also an ideal. 
-\end{theorem}
-\begin{proof}
-  To see $r(I)$ is closed under addition, let $x^n,y^m \in I$, and observe $(x+y)^{n+m}\in I$. To see $r(I)$ is a multiplicative black hole, let $x^n\in I,v \in R$ and observe $(xv)^n=x^nv^n \in I$. 
-\end{proof}
-\begin{theorem}
-\textbf{(Description of Radicals)} Let $\pi : R \rightarrow R \quotient I$ be the quotient map. We have
-\begin{align*}
-r(I)= \pi ^{-1}(\operatorname{Nil}(R\quotient I)) 
-\end{align*}
-\end{theorem}
-\begin{proof}
-Obvious. 
-\end{proof}
-\begin{question}{}{}
-  \begin{enumerate}[label=(\alph*)]
-    \item $I \subseteq r(I)$. 
-    \item $r(r(I))=r(I)$.  
-    \item $r(IS)=r(I\cap S)=r(I)\cap r(S)$
-    \item $r(I)=R \iff  I= R$. 
-    \item $r(I+S)=r(r(I)+r(S))$. 
-    \item If $I$ is prime, then  $r(I^n)=I$ for all $n>0$. 
-  \end{enumerate}
-\end{question}
-\begin{proof}
-Proposition (a) and (b) are obvious. The proposition
-\begin{align*}
-r(IS)\subseteq r(I\cap S) 
-\end{align*}
-follows from $IS \subseteq I \cap S$. The propositions 
-\begin{align*}
-r(I \cap S)\subseteq r(I)\cap r(S)\text{ and }r(I) \cap r(S) \subseteq r(IS)
-\end{align*}
-are clear, thus proving proposition (c). The proposition 
-\begin{align*}
-I=R \implies  r(I)=R 
-\end{align*}
-is clear, and its converse follows from $1\in r(I)\implies 1=1^n \in I$, thus proving proposition (d). The proposition 
-\begin{align*}
-r(I+S)\subseteq r(r(I)+r(S))
-\end{align*}
-is clear. Let $x^n=y+z$ where  $y^m \in I$ and $z^p \in S$. We see $x^{n(m+p)}\in I+S$. We have shown 
-\begin{align*}
-r(r(I)+r(S)) \subseteq r(I+S)
-\end{align*}
-thus proving proposition (e). Let $I$ be prime. We know $I \subseteq r(I)$. To see the converse, let $x^n \in I$. Because $I$ is prime, either  $x$ or  $x^{n-1}$ belongs to $I$. If  $x$ does not belong to  $I$, then  $x^{n-1}$ belongs to $I$, which implies either $x\in I$ or $x^{n-2}\in I$. Applying the same argument repeatedly, we see $x \in I$, thus proving $r(I)\subseteq I$. Because 
-\begin{align*}
-I \supseteq I^2 \supseteq I^3 \supseteq I^4 \supseteq \cdots   
-\end{align*}
-we know
-\begin{align*}
-r(I) \supseteq r(I^2) \supseteq r(I^3) \supseteq r(I^4) \supseteq \cdots  
-\end{align*}
-Because 
-\begin{align*}
-x^n \in I \implies  x^{nk} \in I^k \text{ for all }k \inn
-\end{align*}
-We now also have 
-\begin{align*}
-r(I) \subseteq r(I^k)\text{ for all }k  \inn
-\end{align*}
-This proved proposition (e). 
-\end{proof}
-\begin{theorem}
-\textbf{(Description of radical)}  Let $I$ be an ideal of $R$. 
-\begin{align*}
-r(I)= \bigcap \set{S \in \operatorname{spec}(R): I \subseteq S}
-\end{align*}
-\end{theorem}
-
-\section{archived}
-
-There are essentially two distinct substructures of a ring. A subset of a ring is called a \textbf{subring} if it is closed under addition and multiplication and contains the multiplicative identity. 
-
-Because the union of a chain of proper ideals is still a proper ideal\footnote{No proper ideals contain $1$.}, we may apply \textbf{Zorn's Lemma} to show that a \textbf{maximal ideal}\footnote{By a maximal ideal, we mean a proper ideal contained by no other proper ideal.} always exists. Equivalently, we may define a proper ideal $I$ to be maximal if and only if $R\quotient I$ is a field.\\ 
-
-\begin{question}{}{}
-Show that the sequence 
-\begin{align}
-\label{Mu}
-M'\overset{u}{\longrightarrow }M  \overset{v}{\longrightarrow }M''\longrightarrow 0
-\end{align}
-is exact if and only if for every module $N$ the sequence 
-\begin{align}
-\label{Ns}
-0\longrightarrow \operatorname{Hom}(M'',N)\overset{\overline{v}}{\longrightarrow }\operatorname{Hom}(M,N) \overset{\overline{u}}{\longrightarrow } \operatorname{Hom}(M',N)
-\end{align}
-is exact. 
-\end{question}
-\begin{proof}
-Suppose for every module $N$ the \myref{sequence}{Ns} is exact. To show  \myref{sequence}{Mu} is also exact, we are required to show $v$ is surjective and $\operatorname{Im}(u)=\operatorname{Ker}(v)$. To see $v$ is surjective, let $N\triangleq \operatorname{Coker}(v)$, and use the injectivity of $\overline{v}$ to show that the quotient map $\pi: M''\rightarrow N$ is indeed zero. \\
-
-To see $\operatorname{Im}(u)\subseteq \operatorname{Ker}(v)$, let $N\triangleq M''$, consider the identity mapping $\id _{M''}$, and note that 
-\begin{align*}
-\overline{u}\circ \overline{v} (\id _{M''}) = \id _{M''} \circ v \circ  u = 0
-\end{align*}
-To see $\operatorname{Ker}(v)\subseteq \operatorname{Im}(u)$, let $N\triangleq  M\quotient \operatorname{Im}(u)$, and let $\pi :M\rightarrow N$ be the quotient map. Obviously $\pi  \in \operatorname{Ker}(\overline{u})=\operatorname{Im}(\overline{v})$, so there exists some $\psi : M''\rightarrow N$ such that $\pi = \psi \circ v $. This implies $\operatorname{Ker}(v)\subseteq \operatorname{Ker}(\pi )=\operatorname{Im}(u)$. \\
-
-Now, suppose \myref{sequence}{Mu} is exact and let $N$ be some module. To show \myref{sequence}{Ns} is exact, we are required to show $\overline{v}$ is injective and $\operatorname{Im}(\overline{v})=\operatorname{Ker}(\overline{u})$. The fact $\overline{v}$ is injective follows from $v$ is surjective.   
-
-
-
-
-
-
-
-
-\end{proof}
-\section{Mail Draft}
-Sorry to bother you. At the bottom of page 51 and the top of page 52, Atiyah and MacDonald claim that for every primary decomposition 
-\begin{align}
-\label{prim}
-I = \bigcap_{i=1}^n Q_i
-\end{align}
-we may use their Lemma 4.3, which states 
-\begin{align*}
-\sqrt{T_j}=P\text{ for all primary $T_j \in \set{T_1,\dots ,T_m}$ } \implies \sqrt{\bigcap T_j}=P 
-\end{align*}
-to reduce  the \myref{decomposition}{prim} into a new decomposition 
-\begin{align*}
-I = \bigcap_{j=1}^r Q_j'
-\end{align*}
-such that
-\begin{align*}
-\bset{\sqrt{Q_1'},\dots ,\sqrt{Q_r'}  }\text{ are all distinct }
-\end{align*}
-I am quite confused about this. Do they mean that if $\sqrt{Q_1}=\sqrt{Q_2}$, we may use $Q_1 \cap Q_2$ to replace $Q_1$ and  $Q_2$? If so, they didn't show that $Q_1\cap Q_2$ will be primary. Obviously, finite intersection of primary ideals need not be primary in general, and the minimal  
-\section{Question}
-
+\begin{proposition}
+\textbf{()} Every algebraically closed set is infinite. 
+\end{proposition}
+\begin{proposition}
+\label{un2}
+\textbf{()} If $k$ is an infinite filed, and $F\in k[x_1,\dots ,x_n]$ maps all $a \in \A^n$ to $0$, then  $F=0$. 
+\end{proposition}
 \end{document}
