@@ -116,6 +116,7 @@ a(b)\triangleq f(a)b
 \end{align*}
 Let $B$ be an $A$-algebra. Because there are three structures on $B$, one shall be careful when one says "$B$ is finitely generated," since  $B$ can be finitely generated as a ring, as an $A$-module, or even as an  $A$-algebra. If we say $B$ is \textbf{finitely generated as an $A$-algebra},  we mean that there exists some $b_1,\dots , b_n\in B$ such that $B=(f(A))[b_1,\dots ,b_n]$. 
 \section{Localization and local ring}
+\label{Lalr}
 Let $A$ be a ring. We say  $S\subseteq A$ is a \textbf{multiplicatively closed subset} of $A$ if  $S$ contains $1$ and is closed under multiplication. We say a ring $B$ and a homomorphism $f:A\rightarrow B$ satisfies the \textbf{universal property of localization of $A$ by $S$} if
 \begin{enumerate}[label=(\alph*)]
   \item $f(S) \subseteq B^{\times}$. 
@@ -143,14 +144,22 @@ and by universal property
 Just as our fraction notation suggest, if $T\subseteq S$ is another multiplicatively closed subset of $A$, then clearly the canonical ring homomorphism $A\longrightarrow S^{-1}A$ maps $T$ into  $(S^{-1}A)^{\times}$. This by universal property implies the existence and uniqueness of a ring homomorphism from $T^{-1}A$ to $S^{-1}A$ that forms a commutative triangle with the two canonical ring homomorphism. This ring homomorphism have the obvious action, and will be how we are going to identify $T^{-1}A $ as a subring of $S^{-1}A$\footnote{One may check that this ring homomorphism is indeed injective.}. Similarly, given $A \longhookrightarrow B$, universal property implies the existence and uniqueness of a ring homomorphism from $S^{-1}A$ to $S^{-1}B$ that forms a commutative triangle with $A\longrightarrow S^{-1}A$ and the composited $A \longhookrightarrow B \longrightarrow S^{-1}B$, which have the obvious action and will be how we are going to identify $S^{-1}A$ as a subring of $S^{-1}B$.\\
 
 
+There are even more reason to adopt the fractional notation for localizations: observe 
+\begin{enumerate}[label=(\roman*)]
+  \item $S^{-1}A=0$ if $0 \in S$, aligning with our intuition that $0$ can never be a denominator. 
+  \item $(\set{1})^{-1}A\cong  A$. 
+  \item $as^{-1} \in S^{-1}A$ is a unit in $S^{-1}A$ if and only if $a \in S$. 
+\end{enumerate}
 
-As another reason to adopt the fractional notation for localization, observe that $S^{-1}A=0$ if $0 \in S$, aligning with our intuition that $0$ can never be a denominator, and $(\set{1})^{-1}A\cong A$ as expected.\\   
 
 Let $A$ be a ring, and let $S \subseteq A$ be a multiplicatively closed subset that contains no zero-divisors. Clearly, in $S^{-1}A$, 
 \begin{align*}
 \frac{a}{s}=\frac{b}{t}\text{ if and only if }at=bs. 
 \end{align*}
 This implies that the canonical ring homomorphism $A \longrightarrow  S^{-1}A$ is injective, which is how we are going to identify $A$ as a subring of $S^{-1}A$. Using the universal property, we see that the  \textbf{field of fraction} $\operatorname{Frac}(D)\triangleq (D^*)^{-1}D$ is the smallest field that contains a subring isomorphic to $D$. \\
+
+
+
 
 Let $A$ be some ring,  $S\subseteq A$ an multiplicatively closed subset, and $M$ an  $A$-module. By the \textbf{localization of $M$ by  $S$}, we mean an $A$-module $S^{-1}M$ and a canonical $A$-module homomorphism $M\overset{j}{\longrightarrow } S^{-1}M$ that satisfies the \textbf{universal property for localization of $M$ by  $S$}: 
 \begin{enumerate}[label=(\alph*)]
@@ -203,9 +212,10 @@ Clearly, we only have to prove $\operatorname{Ker}(S^{-1}g) \subseteq \operatorn
 
 
 
-If $f\in A$, we often write $A_f$ in place of $S^{-1}A$ where $S=\set{f^n: n\geq 0}$, and if $\mathfrak{p}$ is a prime ideal of  $A$, we often just call  $A_\mathfrak{p}\triangleq (A\setminus \mathfrak{p})^{-1}A$ the \textbf{localization of $A$ at $\mathfrak{p}$}. A nonzero ring is said to be a \textbf{local ring} if it has only one maximal ideal, if and only if its set of non-units form an ideal, or that if and only if it is the localization of some ring $B$ at some prime ideal  $\mathfrak{p}$ of  $B$\footnote{If $A$ is local, then it is the localization of itself at its unique maximal ideal. If $A=B_\mathfrak{p}$, then the set of non-units $\set{\frac{p}{s}\in B_\mathfrak{p}:p \in \mathfrak{p}}$ is clearly the only maximal ideal of $A$.}, thus the name "local ring".  \\
- 
-One of the key property of local ring $A$ is that if we let $\mathfrak{m}$ be its unique maximal ideal, then the quotient $A$-module  $\mathfrak{m}\quotient \mathfrak{m}^2$ forms a $A\quotient \mathfrak{m}$-vector space, called the \textbf{cotangent space of} $A$, with the obvious assignment of scalar product. If $A$ is local, we often write  $(A,\mathfrak{m},k)$ to mean that $\mathfrak{m}$ is the unique maximal ideal of $A$ and  $k$ the residue field  $k\triangleq A\quotient \mathfrak{m}$. 
+If $f\in A$, we often write $A_f$ in place of $(\set{f^n:n\geq 0})^{-1}A$, and if $\mathfrak{p}$ is a prime ideal of  $A$, we often just call  $A_\mathfrak{p}\triangleq (A\setminus \mathfrak{p})^{-1}A$ the \textbf{localization of $A$ at $\mathfrak{p}$}. Clearly, every nontrivial localizations of integral domain $A$, even not at primes, are still integral domain, so it make sense to talk the fraction field of $S^{-1}A$. Moreover, a routine, long, and tedious proof from universal property, shows that the obvious map from $\operatorname{Frac}(S^{-1}A)$ to $\operatorname{Frac}(A)$ is an isomorphism, so we usually treat $S^{-1}A$ as a subring of $\operatorname{Frac}(A)$ containing $A$. In fact, one have $A=\bigcap A_\mathfrak{m}$ where $\mathfrak{m}$ runs over all maximal ideals of $A$\footnote{Because if $s \in A$ is not in any maximal ideal of $A$, then  $s$ must be a unit.}. \label{sam} \\
+
+
+A nonzero ring is said to be a \textbf{local ring} if it has only one maximal ideal, if and only if its set of non-units form an ideal, or that if and only if it is the localization of some ring $B$ at some prime ideal  $\mathfrak{p}$ of  $B$\footnote{If $A$ is local, then it is the localization of itself at its unique maximal ideal. If $A=B_\mathfrak{p}$, then the set of non-units $\set{\frac{p}{s}\in B_\mathfrak{p}:p \in \mathfrak{p}}$ is clearly the only maximal ideal of $A$.}, thus the name "local ring".  One of the key property of local ring $A$ is that if we let $\mathfrak{m}$ be its unique maximal ideal, then the quotient $A$-module  $\mathfrak{m}\quotient \mathfrak{m}^2$ forms a $A\quotient \mathfrak{m}$-vector space, called the \textbf{cotangent space of} $A$, with the obvious assignment of scalar product. If $A$ is local, we often write  $(A,\mathfrak{m},k)$ to mean that $\mathfrak{m}$ is the unique maximal ideal of $A$ and  $k$ the residue field  $k\triangleq A\quotient \mathfrak{m}$. 
 \section{Integral dependence}
 Let $A$ be a subring of some ring  $B$. We say  $x \in B$ is \textbf{integral over} $A$ if  $x$ is a root of some monic polynomial with coefficients in $A$. 
 \begin{theorem}
@@ -1112,7 +1122,7 @@ We see that  by  \customref{HBT}{Hilbert Basis Theorem}, \myref{theorem}{cpoN}, 
 
 Now, for each  $1\leq i\leq n$, let $t_i\in k\cong C\quotient \mathfrak{m}$ be the image of $x_i\in k[x_1,\dots ,x_n]$ under the $k$-module homomorphism in \myref{diagram}{kdm}.  Letting $t\triangleq (t_1,\dots ,t_n)\in k^n$, it is easy to check\footnote{Recall $k[x_1,\dots ,x_n]=\langle x_1,\dots ,x_n\rangle $.} by direct computation that \myref{diagram}{kdm} have action $G \in k[x_1,\dots ,x_n]\mapsto G(t)\in k$. Because  $I \subseteq \mathfrak{p}$, by construction of $B$ we see \myref{diagram}{kdm} maps every element of $I$ to $0\in k$. Yet, at the same time the image of $F$ in $C$ is a unit by construction of  $C$, which implies the image of $F$ in the quotient ring $C\quotient \mathfrak{m}$ is nonzero. We have shown $t \in V$ and $F(t)\neq 0$, a contradiction. 
 \end{proof}
-\section{Noether Normalization Lemma (Unfinished)}
+\section{Noether Normalization Lemma (Planned, to do before dimension theory)}
 Let $k$ be a field and $A$ a $k$-algebra. If we say $E\subseteq A$ is \textbf{algebraically independent over $k$}, we mean that there exists no $\set{y_1,\dots ,y_n}\subseteq E$ and polynomial $F \in k[x_1,\dots ,x_n]$ such that $F(y_1,\dots ,y_n)=0$. If $A$ is itself a field and the algebra-defining ring homomorphism $k \longrightarrow A$ forms an injective field homomorphism, then we can talk about the \textbf{transcendence degree $\operatorname{trdeg}_k A$ of $A$ over  $k$}. By Zorn's Lemma, there exists some maximal algebraically independent subset $E \subseteq A$, and by an argument similar to that for vector space, two maximal algebraically independent subsets $E_1,E_2 \subseteq A$ must have the same cardinality. It thus make sense for us to talk about the transcendence degree $\operatorname{trdeg}_k A$. 
 \begin{theorem}
 \label{NNL}
@@ -1141,7 +1151,7 @@ I(V(I))=\sqrt{I},\quad \text{ for all ideal }I \subseteq k[x_1,\dots, x_n]
 \end{align*}
 As later we will show, \customref{HN}{Nullstellensatz} is indeed very powerful. Let $X$ be a topological space. We say $X$ is  \textbf{Noetherian} if its closed set satisfies d.c.c. Note that subspace $Y$ of Noetherian space $X$ is also Noetherian\footnote{Given $X_1\cap Y \supseteq X_2 \cap Y \supseteq\cdots $, we have $X_n \cap Y=X_1 \cap  \cdots \cap X_n\cap Y$, and the descending chain $X_1\supseteq X_1 \cap X_2 \supseteq \cdots$ must stop.}. We say $Y \subseteq X$ is \textbf{irreducible} if $Y$ is nonempty and cannot be expressed as the union of two proper subsets, each closed in $Y$. Immediately, we have the following properties:
 \begin{enumerate}[label=(\Alph*)]
-  \item Nonempty open subset of an irreducible space is always dense.  
+  \item Nonempty open subset of an irreducible space is always dense.  \label{NAA}
   \item Given $Z \subseteq Y \subseteq X$, if $Z$ is irreducible in  $Y$, then  $Z$ is irreducible in $X$. If $Z$ irreducible in $X$ and  $Y$ closed, then  $Z$ is irreducible in $Y$.   
   \item  By \customref{HBT}{Hilbert's basis theorem}, every closed set in $\A^1$, even if $k$ is not closed, must be either finite or the whole space. \label{CnD}
   \item Because of (B), if $k$ is infinite, then $\A^1$ is irreducible, which in particular apply to the usual case when $k$ is closed.\footnote{To see algebraically closed field is infinite, assume not and consider $1+ \prod (x-y_i)$ where $y_i$ runs over all element.} 
@@ -1165,16 +1175,95 @@ V= V_1 \cup  \cdots \cup  V_m = W_1 \cup  \cdots \cup  W_r
 \end{align*}
 are two irredundant irreducible decomposition. Note that for each $i$, because $V_i$ is irreducible and we have decomposition $V_i = \bigcup (W_j \cap V_i)$, we have $V_i \subseteq W_j$. The same procedure yields $W_j \subseteq V_p$ for some $p$, from which we can use irredundancy to deduce  $V_i=W_j=V_p$. This implies the uniqueness. 
 \end{proof}
+Let $X$ be a topological space. We define the \textbf{dimension of $X$} to be the supremum of all integers $n$ such that there exists a chain $\varnothing =Z_0 \subset Z_1 \subset \cdots \subset Z_n$ of distinct irreducible closed subsets of $X$. Immediately we see same wanted property of our definition for dimension: Given subspace $Y\subseteq X$, we have $\operatorname{topdim}(Y)\leq \operatorname{topdim}(X)$\footnote{To prove this, you will need $Y_0$ closed in  $Y\implies Y_0=\overline{Y_0}\cap Y$.}; Because of \customref{CnD}{(C) ad (D)}, clearly $\A^1$ is $1$-dimensional as expected. We will show in the \customref{DT}{section on Dimension Theory} that indeed for all $n$, $\A^n$ is  $n$-dimensional.   
+\section{Projective variety}
+Given some ring $A$ and monoid $M$, by a $M$-\textbf{grading on $A$}, we mean a collection $(A_m)_{m \in M}$ of subgroup of the additive group of $A$ such that $A= \bigoplus A_m$\footnote{The direct sum is a direct sum of groups.} and $A_mA_n\subseteq A_{m+n}$\footnote{You may interpret $A_mA_n$ as  $\set{a_ma_n \in A:a_n \in A_m,a_n \in A_n}$ here.} for all $m,n \in M$. Fix $a \in A$. If $a=a_{m_1}+ \cdots + a_{m_r}$ for $a_{m_i} \in A_{m_i}$, we say $a_{m_i}$ are the \textbf{homogeneous components of $a$}, and if $r=1$ we say $a$ is a \textbf{homogeneous element}.  Note that there is  ambiguity whether $0$ should be considered homogeneous. If one consider $0$  homogeneous, then $0$ should have arbitrary degree.\\ 
+
+We say an ideal $I \subseteq A$ is \textbf{homogeneous} if $I$ have a set of generators that are all homogeneous, or equivalently, if $I= \bigoplus I \cap A_n$. Note that the sum, product, and intersection of homogeneous ideals are homogeneous. Clearly, if $M=\Z_0$ or  $\Z_0^+$, then $A_0$ forms a subring of  $A$\footnote{To see $1 \in A_0$, consider the highest graded component of $1$ and $1=1\cdot 1$.}; $A_i$ all form obvious $A_0$-modules; and radical of homogeneous ideal remain homogeneous\footnote{If $(x_1+\cdots +x_r)^l \in I$ with $x_r$ highest grade and $I$ homogeneous, then since the highest grade term of $(x_1+\cdots +x_r)^l$ is $x_r^l$, we have  $x_r \in \sqrt{I}$, which implies $x_1+\cdots + x_{r-1} \in \sqrt{I}$.}.\\
 
 
 
-We define the \textbf{dimension of $X$} to be the supremum of all integers $n$ such that there exists a chain $\varnothing =Z_0 \subset Z_1 \subset \cdots \subset Z_n$ of distinct irreducible closed subsets of $X$. Because of \customref{CnD}{(C) ad (D)}, clearly $\A^1$ is $1$-dimensional as expected. We will show in the \customref{DT}{section on Dimension Theory} that indeed for all $n$, $\A^n$ is  $n$-dimensional.   
 
 
-\section{Projective Variety}
-Given some ring $A$,  by a \textbf{grading on $A$}, we mean a collection $(A_n)_{n\geq 0}$ of subgroup of the additive group of $A$ such that $A= \bigoplus A_n$\footnote{The direct sum is a direct sum of groups.} and $A_mA_n\subseteq A_{m+n}$\footnote{You may interpret $A_mA_n$ as  $\set{a_ma_n \in A:a_n \in A_m,a_n \in A_n}$ here.} for all $m,n\geq 0$. Fix $a \in A$. If $a=a_{i_1}+ \cdots + a_{i_k}$ for $a_{i_j} \in A_{i_j}$, we say $a_{i_j}$ are the \textbf{homogeneous component of $a$}, and if $k=1$ we say $a$ is a \textbf{homogeneous element}. We say an ideal $I \subseteq A$ is \textbf{homogeneous} if $I$ have a set of generators that are all homogeneous, or equivalently, if $I= \bigoplus I \cap A_n$. Clearly, the sum, product, intersection, and radical of homogeneous ideals are homogeneous\footnote{If $(x_1+\cdots +x_k)^n \in I$ with $x_k$ highest grade and $I$ homogeneous, then since the highest grade term of $(x_1+\cdots +x_k)^n$ is $x_k^n$, we have  $x_k \in \sqrt{I}$, which implies $x_1+\cdots + x_{k-1} \in \sqrt{I}$.     }.\\
-
-
+Let $A$ be a graded ring, and $\mathfrak{p}\subseteq A$ a homogeneous prime ideal. Clearly the set $S$ of homogeneous elements not in $\mathfrak{p}$ forms a multiplicatively closed subset.  
+\begin{theorem}
+\label{Ogoh}
+\textbf{(Obvious grading on homogeneous localizations: What we mean by $A_{(\mathfrak{p})}$)} Given a $\Z_0^+$-graded ring $A$, if  $\mathfrak{p}\subseteq A$ is homogeneous prime and we denote $S$ the set of homogeneous element not in $\mathfrak{p}$, then we may well define a $\Z$-grading on $S^{-1}A$ by letting  
+\begin{align*}
+  (S^{-1}A)_n\triangleq \set{f\quotient g \in S^{-1}A:f\text{ homogeneous and }n=\operatorname{deg}f-\operatorname{deg}g}\cup \set{0}
+\end{align*}
+\end{theorem}
+\begin{proof}
+To check that $(S^{-1}A)_n$ are well-defined as sets, we are required to show 
+\begin{align*}
+  \frac{a_1}{s_1}= \frac{a_2}{s_2} \in S^{-1}A\text{ and }a_1\text{ homo }\implies a_2\text{ homo and }\operatorname{deg}a_1-\operatorname{deg}s_1=\operatorname{deg}a_2- \operatorname{deg}s_2
+\end{align*}
+Because $a_1\quotient s_1=a_2\quotient s_2 \in S^{-1}A$, we know $a_1s_2u=a_2s_1u$ for some  $u \in S$. By definition and premise, $a_1,s_2,s_2$, and  $u$ are all homogeneous, which with $a_1s_2u=a_2s_1u$ implies  $a_2$ is indeed homogeneous with $\operatorname{deg}a_1-\operatorname{deg}s_1=\operatorname{deg}a_2- \operatorname{deg}s_2$. Clearly $(S^{-1}A)_n$ all form groups, $S^{-1}A= \sum (S^{-1}A)_n$, and $(S^{-1}A)_n(S^{-1}A)_m \subseteq (S^{-1}A)_{n+m}$. It remains to prove the sum is direct. Suppose 
+\begin{align*}
+\frac{a}{s}= \frac{a_0}{s_0}+\cdots + \frac{a_n}{s_n}
+\end{align*}
+where  $a\quotient s \in (S^{-1}A)_m$ and $a_i \quotient s_i \in (S^{-1}A)_{n_i}$ such that $n_i$ all distinct and not equal to  $m$. We are required to show $\frac{a}{s}=0$. From  
+\begin{align*}
+\frac{a}{s}= \frac{a_0s_1\cdots s_n+\cdots + a_ns_0\cdots s_{n-1}}{s_0\cdots s_n}
+\end{align*}
+We know that either 
+\begin{align*}
+\frac{a_0s_1\cdots s_n + \cdots + a_ns_0\cdots s_{n-1}}{s_0\cdots s_n}=0
+\end{align*}
+or $(a_0s_1\cdots s_n+ \cdots +a_ns_0\cdots s_{n-1})$ homogeneous with
+\begin{align*}
+\operatorname{deg}(a)+\operatorname{deg}(s_0\cdots s_n)= \operatorname{deg}(a_0s_1 \cdots s_n + \cdots + a_ns_0\cdots s_{n-1})+ \operatorname{deg}(s). 
+\end{align*}
+Assume for a contradiction that $a_0s_1\cdots s_n + \cdots + a_ns_0\cdots s_{n-1}$ is homogeneous. WLOG, we have 
+\begin{align*}
+\operatorname{deg}(a)+\operatorname{deg}(s_0\cdots s_n)= \operatorname{deg}(a_0s_1 \cdots s_n)+ \operatorname{deg}(s). 
+\end{align*}
+which implies 
+\begin{align*}
+\operatorname{deg}(a)+\operatorname{deg}(s_0)=\operatorname{deg}(a_0)+\operatorname{deg}(s)
+\end{align*}
+a contradiction to the definition of $a_0\quotient s_0$. 
+\end{proof}
+We use the notation $A_{(\mathfrak{p})}$ to denote the $(S^{-1}A)_0$ in \myref{Theorem}{Ogoh}. Clearly $A_{(\mathfrak{p})}$ is also a local ring with maximal ideal $\set{a \quotient s \in A_{(\mathfrak{p})}: a \in \mathfrak{p}}$\footnote{This set is clearly the set of non units of $A_{(\mathfrak{p})}$, and it clearly forms an ideal of $A_{(\mathfrak{p})}$}. In particular, this local ring becomes a field when $\mathfrak{p}=0$, and in such case we write $A_{(\mathfrak{p})}=A_{(\langle 0\rangle )}$. 
+\begin{theorem}
+\label{Ogoh2}
+\textbf{(Obvious grading on homogeneous localizations: What we mean by $A_{(f)}$)} Given some $\Z_0^+$-graded ring  $A$ and homogeneous $f \in A$, we may well define a $\Z$-grading on  $A_f$ by letting 
+ \begin{align*}
+   (A_f)_n\triangleq \set{\frac{g}{f^l} \in A_f:g\text{ homogeneous and }n=\operatorname{deg}(g)-l\operatorname{deg}(f)}\cup \set{0}
+\end{align*}
+\end{theorem}
+\begin{proof}
+To check that $(A_f)_n$ are well defined as sets, we are required to show 
+\begin{align*}
+\frac{g_1}{f^{l_1}}=\frac{g_2}{f^{l_2}}\in A_f\text{ and }g_1\text{ homo }\implies g_2\text{ homo and }\operatorname{deg}(g_1)-\operatorname{deg}(f^{l_1})=\operatorname{deg}(g_2)-\operatorname{deg}(f^{l_2})
+\end{align*}
+whose proof is similar to the one in \myref{Theorem}{Ogoh}. Again, clearly $(A_f)_n$ all form groups, $A_f = \sum (A_f)_n$, and $(A_f)_n(A_f)_m \subseteq (A_f)_{n+m}$. It remains to prove the sum is direct. Suppose 
+\begin{align*}
+\frac{g_0}{f^{l_0}}= \frac{g_1}{f^{l_1}}+ \cdots + \frac{g_n}{f^{l_n}}
+\end{align*}
+where $g_i\quotient f^{l_i}\in (A_f)_{r_i}$ and $r_i$ are all distinct. We are required to  show $\frac{g_0}{f^{l_0}}=0$. From 
+\begin{align*}
+\frac{g_0}{f^{l_0}}= \frac{g_1f^{l_2 + \cdots + l_n}+\cdots + g_n f^{l_1 + \cdots + l_{n-1}}}{f^{l_1+\cdots + l_n}}
+\end{align*}
+We know that either 
+\begin{align*}
+\frac{g_1f^{l_2 + \cdots + l_n}+\cdots + g_n f^{l_1 + \cdots + l_{n-1}}}{f^{l_1+\cdots + l_n}}=0
+\end{align*}
+or $(g_1f^{l_2 + \cdots + l_n}+\cdots + g_n f^{l_1 + \cdots + l_{n-1}})$ homogeneous with 
+\begin{align*}
+\operatorname{deg}(g_0) -\operatorname{deg}(f^{l_0})= \operatorname{deg}(g_1f^{l_2 + \cdots + l_n}+\cdots + g_n f^{l_1 + \cdots + l_{n-1}}) - \operatorname{deg}(f^{l_1+ \cdots +l_n})
+\end{align*}
+Assume for a contradiction that $g_1f^{l_2 + \cdots + l_n}+\cdots + g_n f^{l_1 + \cdots + l_{n-1}}$ is homogeneous. WLOG, we have 
+\begin{align*}
+\operatorname{deg}(g_0) -\operatorname{deg}(f^{l_0})= \operatorname{deg}(g_1f^{l_2 + \cdots + l_n}) - \operatorname{deg}(f^{l_1+ \cdots +l_n})
+\end{align*}
+which implies 
+\begin{align*}
+\operatorname{deg}(g_0)-\operatorname{deg}(f^{l_0})= \operatorname{deg}(g_1)-\operatorname{deg}(f^{l_1})
+\end{align*}
+a contradiction to the premise  $r_0\neq r_1$. 
+\end{proof}
+Again, we use the notation $A_{(f)}$ to denote the $(A_f)_0$ in \myref{Theorem}{Ogoh2}. \\
 
 
 
@@ -1190,25 +1279,205 @@ Clearly, when we give the polynomial ring $k[x_0,\dots,x_n]$ the obvious grading
 
 Again this give rise to \textbf{Zariski topology} on $\P^n$ where $E \subseteq \P^n$ is closed if and only if $E$ is algebraic. Note that we define the notions \textbf{projective variety} and \textbf{dimension} similar to before.
 \begin{theorem}
-\textbf{($\P^n$ is locally  $\A^n$ under Zariski topology)} Let $k$ be a field\footnote{It needs not to be algebraically closed.}. Every $p \in \P^n$ has an open neighborhood homeomorphic to $\A^n$. 
-\end{theorem}
-\begin{proof}
-Clearly, $x_0,\dots ,x_n \in k[x_0,\dots ,x_n]$ are homogeneous, and  $\P^n - V(x_i)$ forms an open cover of $\P^n$. Let $U\triangleq \P^n - V(x_0)$. WLOG, we only have to prove $U$ is homeomorphic to $\A^n$. Clearly, we may well-define bijective $\phi: U\to \A^n$ by 
+\label{Ste}
+\textbf{(Standard topological embedding of $\A^n$ into  $\P^n$)} Let $k$ be a field\footnote{It needs not to be algebraically closed.}, and $U\triangleq \P^n - V(x_0)$\footnote{Clearly $x_0 \in k[x_0,\dots ,x_n]$ is homogeneous.}. The map $\phi: U\rightarrow \A^n$  
 \begin{align*}
 \phi \left([x_0:\cdots :x_n]\right)\triangleq \left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
 \end{align*}
-Let $S$ be set of the homogeneous elements of $k[x_0,\dots ,x_n]$. Clearly, we may well-define mapping $\alpha :S \to k[x_1,\dots ,x_n],\beta :k[x_1,\dots ,x_n]\to S$ by 
+is a well-defined homeomorphism. 
+\end{theorem}
+\begin{proof}
+It is routine to check $\phi$ is well-defined and bijective. We now prove it is indeed bicontinuous. Let $S$ be the set of homogeneous elements of $k[x_0,\dots ,x_n]$. Clearly, we may well-define mapping  $\alpha :S \to k[x_1,\dots ,x_n],\beta :k[x_1,\dots ,x_n]\to S$\footnote{The setting of $\alpha$ and $\beta $ are standard. Respectively, they are called \textbf{dehomogenization} and \textbf{homogenization}. Their actions are actually easy to memorize. Homogenization send $y-x^2$ to  $wy-x^2$ and send  $z-x^3$ to  $zw^2-x^3$.} by 
 \begin{align*}
 \alpha (f)\triangleq f(1,x_1,\dots ,x_n)\text{ and }\beta (g)\triangleq x_0^{\operatorname{deg}(g)} g\left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
 \end{align*}
 Now, let $Y\subseteq U$ be closed in $U$, and let $\overline{Y}$ be the closure of $Y$ in $\P^n$. By definition, there exists some collection  $T$ of homogeneous polynomials $f \in k[x_0,\dots ,x_n]$ whose locus is exactly $\overline{Y}$. To see $\phi (Y)$ is closed, just check $\phi (Y)= V(\alpha (T))$. Conversely, given closed $W \subseteq \A^n$, one have $\phi^{-1}(W)=V(\beta  (I(W)))\cap U$\footnote{You will need the fact $V(I(W))=W$ in the proof of this equality, which holds true because $W$ is closed.}. 
 \end{proof}
-\section{Morphism (Unfinished from now on)}
-By a \textbf{quasi affine variety} $Y\subseteq \A^n$, we mean  $Y$ is a subset of some closed $V \subseteq \A^n$ and $Y$ is open in $V$. By a \textbf{quasi projective variety} $Y\subseteq \P^n$, we mean  $Y$ is a subset of some closed $V \subseteq \P^n$ and $Y$ is open in $V$. \\
+\section{Morphism}
+By a \textbf{quasi affine (or projective) variety} $X\subseteq \A^n$ (resp. $\P^n$), we mean  $X$ is a subset of some variety $V \subseteq \A^n$ (resp. $\P^n$) and $X$ is open in $V$. One key property for quasi variety $X$ is that, their closed sets are always intersection of algebraic set and $X$, since 
+\begin{align*}
+E \overset{\text{closed}}{\subseteq}X \subseteq V \overset{\text{closed}}{\subseteq} (\A^n\text{ or }\P^n)\implies  \quad   E= \operatorname{cl}_V(E)\cap X
+\end{align*}
 
 
-Given a quasi-affine variety $Y\subseteq \A^n_k$, and some $k$-valued function $f$ defined at $p \in Y$, we say $f$ is \textbf{regular at $p$} if there exists neighborhood $U$\footnote{In the topology of $Y$.}  of $p$ and $g,h\in k[x_1,\dots ,X_n]$ such that $h$ nonzero on  $U$ and  $f=g \quotient h$ on $U$. 
 
+Given some quasi affine variety $X\subseteq \A^n$ and $f:X \rightarrow  k$, we say $f$ is \textbf{regular at $p \in X$} if there exist $U\subseteq X$ open in $X$ containing $p$ and exist $g,h \in k[x_1,\dots ,x_n]$ such that $h$ nonzero on $U$ and  $f=g\quotient h$ on $U$. Given some quasi projective variety $X \subseteq \P^n$ and $f:X \rightarrow k$, in the projective setting we say $f$ is \textbf{regular at $p \in X$} if there exists $U \subseteq X$ containing $p$ and exist homogeneous $g,h \in k[x_0,\dots,x_n]$ such that $h$ nonzero on $U$, $f=g\quotient h$ on $U$, and $g,h$ have same degree. Given a quasi variety $X$, we say  $f:X\rightarrow k$ is \textbf{regular} if it is regular at each points of $X$, and we denote the \textbf{ring of regular function on $X$} by $\mathscr{O}(X)$. \label{rorf} 
+\footnote{It is IMPORTANT to deduce that regular functions indeed forms a ring here, since it is impossible to later check transitivity of \myref{equivalence}{UCO} purely topologically, without using the algebraic result of one regular functions minus another is still regular, thus continuous. I guess the moral of the story here is that one must remember  $\A^1$ is a field, and thus have a field structure (or that if something forms an algebraic structure, then utilize that structure as much as possible), which shall be used when topological method doesn't work; Indeed, we are talking about ALGEBRAIC geometry here.}
+\begin{theorem}
+\label{Rfac}
+\textbf{(Regular functions are continuous)} Given quasi variety $X\subseteq \A^n$ (or $\P^n$), if $f:X\rightarrow k$ is regular, then $f$ is continuous.  
+\end{theorem}
+\begin{proof}
+Because every closed set in $\A^1$ is either finite or the whole space, we only have to show $f^{-1}(a)$ is closed for fixed $a \in k$. Let $(U_i,g_i,h_i)_{i \in I}$ cover $X$, where $h_i$ nonzero and $f=g_i\quotient h_i$ on $U_i$. Because $X$ is coherent\footnote{You may Google what does \textbf{coherent topology} mean. To see that every topological space $X$ and any of its open cover $U_i$ are always coherent, just observe for any $Z\subseteq X$, we have $Z = \bigcup (U_i\cap Z) $ and $X-Z= \bigcup (U_i -Z)$.} with  $(U_i)_I$, we only have to show $U_i\cap f^{-1}(a)$ is closed in $U_i$ for fixed $i\in I$, which follows from noting $U_i\cap f^{-1}(a)=V(g-ah)\cap U_i$. 
+\end{proof}
+
+Let $X$ be a quasi variety with $p \in X$. Consider the collection of all pairs $(p \in U\subseteq X,f:U\rightarrow k)$, where $f$ is regular, and the collection of all $(U\subseteq X,f:U\rightarrow k)$, where $U$ is nonempty and  $f$ is regular, because \customref{Rfac}{regular functions are continuous} and \customref{NAA}{nonempty open subset of irreducible space is always dense}, we may well define  two equivalence relation respectively on these two collection by: 
+\begin{align}
+(U,f)\sim (O,g)\overset{\triangle}{\iff }f=g\text{ on }U \cap O \label{UCO}
+\end{align}
+\footnote{As noted before, to check transitivity, you must consider the regular function $f-h$.}to form the ring $\mathscr{O}_{p,X}$ of \textbf{germs\footnote{You may Google what does \textbf{germ} means. It is generic.} of regular functions on $X$ near $p$} and the \textbf{function field} $K(X)$ of $X$.\\ 
+
+Let $(U,f)\in K(X)$. If $p \in U$ and $f$ doesn't vanish at $p$, then $f^{-1}$ is well-defined and regular on some smaller neighborhood of $p$. This implies that indeed $K(X)$ is a field, and that the units of $\mathscr{O}_{p,X}$ are exactly those who doesn't vanish at $p$, which implies the non-units, those vanish at  $p$, forms an ideal of $\mathscr{O}_{p,X}$, justifying the colloquial convention of calling $\mathscr{O}_{p,X}$ the \textbf{local ring of $p$ on $X$}\footnote{Recall that if the set of non-units forms an ideal, then the ring is local.}. Clearly, the obvious mappings of $\mathscr{O}(X)\longrightarrow \mathscr{O}_{p,X}\longrightarrow K(X)$ are well-defined injective ring homomorphism, and they will be how we treat one as subset of another.\label{sam2}  \\
+
+
+Let $X,Y$ be two quasi varieties. We say $\phi : X\rightarrow Y$ is a \textbf{quasi variety morphism} if $\phi$ is continuous and for every open $U \subseteq Y$ and regular $f:U \rightarrow k$, the function $f \circ \phi:\phi^{-1}(U)\rightarrow k$ is regular. If we say  $\phi : X\rightarrow Y$ is a \textbf{quasi variety isomorphism}, we mean that $\phi$ is bijective with its inverse being also a quasi variety morphism.\footnote{One may check that the standard topological embedding of $\phi:\A^n \rightarrow \P^n$ in \myref{Theorem}{Ste} is a quasi variety isomorphism.} Clearly, if $\phi :X\rightarrow Y$ is a quasi variety isomorphism, then $\mathscr{O}(X)$ and $\mathscr{O}(Y)$ as ring are isomorphic; for each $p \in X$, $\mathscr{O}_{p,X}$ and $\mathscr{O}_{\phi (p),Y}$ as ring are isomorphic; and $K(X)$ and $K(Y)$ as ring are isomorphic. Because of such, we often say $\mathscr{O}(X),\mathscr{O}_{p,X}$, and $K(X)$ are \textbf{invariant up to isomorphisms}.\\ 
+
+In fact, given quasi variety mapping $\phi$ whose target is affine, there is an if and only if test  for whether $\phi$ is a quasi variety morphism. 
+\begin{theorem}
+\label{Iaoi}
+\textbf{(If and only if test for quasi variety mapping whose target is affine)} Given quasi variety mapping $\phi :X\rightarrow Y \subseteq \A^n$, 
+\begin{align*}
+\phi \text{ is a quasi variety morphism. }\iff  x_i\circ \phi:X\rightarrow k\text{ are all regular. }
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\implies )$ follows from definition. We now prove  $(\impliedby)$. Clearly, because regular function on $X$ is closed under addition and multiplication  \customref{rorf}{as noted before}, for all $F\in k[x_1,\dots ,x_n]$, the function $F\circ \phi$ must be regular. It then follows from \customref{Rfac}{continuity of regular functions} and 
+\begin{align*}
+\phi^{-1}(V(S)\cap Y)= \bigcap_{F \in S} (F\circ \phi)^{-1}(0),\quad \text{ for any }S \subseteq k[x_1,\dots ,x_n]
+\end{align*}
+that $\phi$ is continuous. Fix regular $(U\subseteq Y,g:U\rightarrow k)$ and $p \in \phi^{-1}(U)$. It remains to prove $g \circ \phi:\phi^{-1}(U)\rightarrow k$ is regular at $p$. Because $U\xrightarrow{g}k$ is regular, there exists open $O\subseteq U$ containing $\phi (p)$ such that $g=\frac{h_1}{h_2}$ on $O$ for some  $h_1,h_2 \in k[x_1,\dots ,x_n]$ where $h_2$ nonzero on whole $O$ and degree of them being the same if $X$ is projective. Clearly, 
+\begin{align*}
+g\circ \phi = \frac{h_1 \circ \phi}{h_2 \circ \phi},\quad \text{ on }\phi^{-1}(O).
+\end{align*}
+Because $h_1 \circ \phi$ and $h_2 \circ \phi$ are regular as function from $X$ to $k$ as we proved in the first paragraph of this proof, we know there exists open $V \subseteq \phi^{-1}(O)$ containing $p$ such that 
+\begin{align*}
+h_1\circ \phi= \frac{f_1}{f_2} \text{ and }h_2 \circ \phi= \frac{f_3}{f_4},\quad \text{ on }V
+\end{align*}
+for some polynomials $f_1,f_2,f_3,f_4$ where $f_2,f_4$ nonzero on $V$ and the pairs having the same degree if  $X$ projective. This give us 
+\begin{align*}
+g\circ \phi = \frac{f_1f_4}{f_2f_3},\quad \text{ on }V
+\end{align*}
+where $\operatorname{deg}(f_1f_4)=\operatorname{deg}(f_2f_3)$ if $X$ projective. We have shown that indeed $g \circ \phi$ is regular at $p$. 
+\end{proof}
+
+Given an affine quasi variety $X\subseteq \A^n$, we use notation $\Gamma (X)$ to denote its \textbf{coordinate ring} $k[x_1,\dots ,x_n]\quotient I(X)$, which is clearly isomorphic to the ring of function $f:X\rightarrow k$ such that $f=F|_X$ for some $F \in k[x_1,\dots ,x_n]$\footnote{We call these functions \textbf{polynomial functions}.}. From the second point of view, immediately we see that coordinate ring of affine quasi variety is in fact an integral domain\footnote{If $FG=0$ on  $X \subseteq Y \subseteq \A^n$ where $Y$ is a variety, then because $Y$ is irreducible, one of $F^{-1}(0)\cap Y,G^{-1}(0)\cap Y$ must be whole $Y$.}. Later we will see more usage of the realization of  $\Gamma (Y)$ as ring of polynomials function in the proof of \myref{Theorem}{Asog}. 
+\begin{theorem}
+\label{Asog}
+\textbf{(Algebraic structure of global ring, local ring, and function field of affine quasi variety)} If $X \subseteq \A^n$ is an affine quasi variety, then 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathscr{O}(X)\cong \Gamma (X)$. 
+  \item For all $p \in X$, if we let $\mathfrak{m}_p\subseteq \Gamma (X)$ be the maximal ideal corresponding to $p$, then  $\mathscr{O}_{p,X}\cong \Gamma (X)_{\mathfrak{m}_p}$.
+  \item $K(X)\cong  \operatorname{Frac}(\Gamma X)$.  
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Before the proof, we first remark that: If we fix $p$, regarding $\Gamma (X)$ either as the ring of polynomial function $f:X\rightarrow  k$ or as the quotient  $k[x_1,\dots ,x_n]\quotient I(X)$ makes no mathematical differences. In the former, $I(p)\subseteq \Gamma (X)$ is the ring of polynomial functions that vanishes at $p$, and in the latter,  $I(p)\subseteq \Gamma (X)$ is the image of $I(p)\subseteq k[x_1,\dots ,x_n]$  under the quotient map $k[x_1,\dots ,x_n] \twoheadrightarrow k[x_1,\dots ,x_n]\quotient I(X)$. Either way, the  $I(p)\subseteq \Gamma (X)$ is what we meant by $\mathfrak{m}_p$ in (ii), and using the latter point of view with the bijection between $\A^n$ and $\operatorname{Max}(k[x_1,\dots,x_n])$, we have a bijection between $X$ and $\operatorname{Max}(\Gamma X)$: $p\leftrightarrow \mathfrak{m}_p=I(p)$. \\
+
+
+Fix $p$. Let $\beta  :\Gamma (X)_{\mathfrak{m}_p}\rightarrow \mathscr{O}_{p,X}$ be the obvious mapping\footnote{From $\beta $ you can see that the done localization $\Gamma (X)_{\mathfrak{m}_p}$ is of geometrical nature, not algebraic.}: $f\quotient g\mapsto [(U,f\quotient g)]$ where $f,g:X\rightarrow k$ are polynomial function and $U=\set{x \in X:g(x)\neq 0}$. Clearly $\beta $ is an injective ring homomorphism\footnote{Note that $[(U,f)]=0 \in \mathscr{O}_{p,X}$ if and only if $f=0$ on  $U$, since if $f\neq 0$ on $U$, then  $f+f\neq f$. This implies injectivity of $\beta $ since $f^{-1}(0)\subseteq X$ is closed in $X$, containing  $g^{-1}(k^\times) \subseteq X$, whose closure in $X$ are  $X$.  ($\because Z \subseteq Y \subseteq X \implies \operatorname{cl}_Z(Y)=\operatorname{cl}_X(X)\cap Y$) }. To see $\beta $ is surjective, just recall the definition of regular function. We have constructed isomorphism  $\beta :\Gamma (X)_{\mathfrak{m}_p}\rightarrow \mathscr{O}_{p,X}$, proving (ii). The same argument works for constructing isomorphism $\operatorname{Frac}(\Gamma X)\cong  K(X)$, proving (iii).\\
+
+  Let $\alpha :\Gamma (X)\rightarrow \mathscr{O}(X)$ be the obvious mapping, which is clearly an injective ring homomorphism. It remains to prove $\alpha $ is surjective, which follows from checking the diagram: 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEdhbW1hKFgpIl0sWzAsMiwiXFxiaWdjYXBfe30iXSxbMiwwLCJcXGJ1bGxldCJdLFsyLDIsIlxcYnVsbGV0Il0sWzAsMl0sWzAsMSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn19fV0sWzEsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn19fV0sWzIsM11d
+\[\begin{tikzcd}
+	\Gamma(X) && \mathscr{O}(X) \\
+	\\
+  \bigcap \limits_{\mathfrak m\in\operatorname{Max}(\Gamma X)}(\Gamma X)_\mathfrak{m} && \bigcap \limits_{p \in X}\mathscr{O}_{p,X}
+	\arrow["\alpha" ,from=1-1, to=1-3]
+	\arrow[double_arrow , from=1-1, to=3-1]
+	\arrow[hook,from=1-3, to=3-3]
+	\arrow[double_arrow , from=3-1, to=3-3]
+\end{tikzcd}\]
+\footnote{The left isomorphism is explain in \customref{sam}{this paragraph} of  \myref{Section}{Lalr}, the bottom isomorphism is from (ii), and the right injective homomorphism is from \customref{sam2}{this paragraph} of this section.}is indeed commutative, where the left and right sides are, respectively, subrings of $\operatorname{Frac}(\Gamma X)$ and $K(X)$. 
+\end{proof}
+It may seem surprising that $\mathscr{O}(X) \cong \Gamma(X)$, since one might expect the former to be a localization of the latter, given that regular functions are defined locally as quotients of global polynomial functions. However, this apparent tension is actually a valuable opportunity to distinguish between the local and global perspectives: regularity is inherently a local notion. Indeed, by definition, a function $f : X \to k$ is regular if, locally, it can be written as a fraction $g/h$ with $g, h \in \Gamma(X)$.\\
+
+In fact, if one attempts to show that $\mathscr{O}_{p,X}$ is the localization $({f \in \mathscr{O}(X) : f(p) \neq 0})^{-1} \mathscr{O}(X)$ —that is, to verify that the obvious map $\mathscr{O}(X) \to \mathscr{O}_{p,X}$ satisfies the universal property—without invoking \myref{Theorem}{Asog}, one quickly encounters difficulties and will be forced to use isomorphism $\mathscr{O}(X) \cong \Gamma(X)$\footnote{As the action of isomorphism $\alpha $ in \myref{Theorem}{Asog} suggest, one can really just write $\mathscr{O}(X)=\Gamma (X)$ }.  \\
+
+Now, let $X,Y$ be two quasi varieties  with $Y$ affine. It is clear that the three structures $\mathscr{O}(X),\mathscr{O}_{p,X},$ and $K(X)$ all admit obvious $k$-algebra structures, and from the proof of \myref{Theorem}{Asog}, the ring isomorphism $\mathscr{O}(Y)\cong \Gamma (Y)$ is also a $k$-algebra isomorphism.
+\begin{theorem}
+\textbf{(Induction forms a bijection between set of quasi varieties of morphism and set of $k$-algebra homomorphism from target's coordinate ring to source's global ring if target is affine)} Let $X,Y$ be two quasi varieties  with $Y\subseteq \A^n$. Denoting the collection quasi variety morphism $X \rightarrow Y$ by $\operatorname{Hom}(X,Y)$ and the collection of  $k$-algebra homomorphism $\Gamma (Y)\rightarrow \mathscr{O}(X)$ by $\operatorname{Hom}(\mathscr{O}(X),\Gamma (Y))$, clearly we can well define a map  $\operatorname{Hom}(X,Y)\xrightarrow{\alpha }  \operatorname{Hom}(\Gamma (Y),\mathscr{O}(X))$ by 
+\begin{align*}
+\phi \mapsto  (\tilde{\phi}:\Gamma (Y)\rightarrow \mathscr{O}(X)),\quad \text{ where }\tilde{\phi} (F)\triangleq  F \circ \phi. 
+\end{align*}
+Such $\alpha $ is bijective. 
+\end{theorem}
+\begin{proof}
+Fix $h\in \operatorname{Hom}(\Gamma (Y),\mathscr{O}(X))$. Consider $x_i \in \Gamma (Y),\xi_i\triangleq h(x_i) \in \mathscr{O}(X)$, and $\psi: X\rightarrow \A^n$ defined by $\psi(p)\triangleq (\xi_1(p),\dots ,\xi_n(p))$. Because $\alpha $ is clearly injective\footnote{A direct proof suffices. It is easy to construct $F \in k[x_1,\dots ,x_n]$ for arbitrary $p_1 \neq p_2 \in \A^n$ that satisfies $F(p_1)\neq F(p_2)$.}, our end goal here is to show that $\psi \in \operatorname{Hom}(X,Y)$ and $h= \tilde{\psi}$. \\
+
+Because $Y=V(I(Y))$, to show that $\psi$ at least forms a map from $X$ to $Y$, we only have to show  $F\circ \psi=0 $ for any fixed $F \in I(Y)$. Because $h$ is a $k$-algebra homomorphism and  $F$ in $k$-algebra  $\Gamma (Y)$ can be appropriately (See footnote) generated by $x_i$, we have $h(F)=F(h(x_1),\dots ,h(x_n))$\footnote{For example, $h(x_1^2+x_2)=(h(x_1))^2+h(x_2)$. Note that the $F$ on the left hand side is an element of $\Gamma (Y)$, and that the $F$ on the right hand side is an actual polynomial.}. This by definition of $\xi$ and $\psi$ give us
+\begin{align}
+\label{hFF}
+h(F)=F(\xi_1,\dots ,\xi_n)= F \circ \psi
+\end{align}
+This together with the fact  $F$ as an element of $\Gamma (Y)$ is zero implies, indeed, $F \circ \psi=0$. \\
+
+Noticing that \myref{Equation}{hFF} also holds true for any $F \in \Gamma (Y)$\footnote{Perhaps here it will be better to write $ k[x_1,\dots ,x_n]$ in place of $\Gamma (Y)$.} that's not in $I(Y)$, we conclude that if $\psi$ really is a morphism, then we will have $h=\tilde{\psi}$. Therefore, it only remains to show $\psi$ is indeed a morphism, which follows from $x_i \circ \psi = \xi_i \in \mathscr{O}(X)$ for all $x_i \in k[x_1,\dots ,x_n]$ and \myref{Test}{Iaoi}.
+\end{proof}
+\begin{corollary}
+\textbf{(Quasi varieties are isomorphic if and only if their coordinate ring are isomorphic as $k$-algebra)} Let $X,Y$ be two quasi affine variety. We have 
+ \begin{align*}
+X,Y\text{ isomorphic as quasi variety }\iff \Gamma (Y),\Gamma (X)\text{ isomorphic as $k$-algebra. }
+\end{align*}
+\end{corollary}
+\begin{proof}
+If $\phi:X\rightarrow Y$ is a quasi variety isomorphism, then  $\tilde{\phi}:\Gamma (Y)\rightarrow \Gamma (X)$ is a $k$-algebra isomorphism with inverse $\tilde{\phi^{-1}}:\Gamma (X)\rightarrow \Gamma (Y)$. If $\pfi: \Gamma (Y)\rightarrow \Gamma (X)$ is a $k$-algebra isomorphism, then the unique morphism  $\phi: X\rightarrow Y $ that satisfies $\tilde{\phi}=\pfi$ is an isomorphism with the obvious inverse.  
+\end{proof}
+Given a projective quasi variety $X \subseteq \P^n$, we also use notation $\Gamma (X)$ to denote its \textbf{homogeneous coordinate ring} $k[x_0,\dots ,x_n]\quotient I(X)$, where $I(X)$ are the defining ideal of $X$, the ideal generated by homogeneous polynomials vanishing on  $X$. We have shown that coordinate rings of affine quasi varieties are invariant up to isomorphisms, and we are going to show coordinate rings of projective quasi varieties are not.  
+\begin{theorem}
+\label{Ogot}
+  \textbf{(Obvious grading of the quotient of graded ring)} Given $\Z_0^+$-graded ring $A$, homogeneous ideal $I \subseteq A$, and quotient ring $\pi :A \twoheadrightarrow A\quotient I $, we have a well defined $\Z_0^+$-grading on $A\quotient I$:
+\begin{align*}
+A\quotient I = \bigoplus_{n\geq 0} \pi  (A_n)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Clearly $\pi (A_n)$ all form groups, and $A\quotient I = \sum \pi  (A_n)$. It remains to show the sum is direct. Suppose 
+ \begin{align*}
+\pi (a_{n_{r}})= \sum_{i=1}^{r-1} \pi (a_{n_i}),\quad \text{ where $n_i$ distinct and } a_{n_i} \in A_{n_i}
+\end{align*}
+We are required to show $a_{n_r} \in I$. Clearly, we have $n_r>n_i$ for all $i<r$ and 
+\begin{align*}
+a_{n_r}- \sum_{i=1}^{r-1}a_{n_i} \in I
+\end{align*}
+This implies 
+\begin{align*}
+a_{n_r}= \sum_{i=1}^{r-1} a_{n_i} + b,\quad \text{ for some }b \in I
+\end{align*}
+Note that $I$ is homogeneous, so there exists unique decomposition of $b=a_{n_r}-\sum_{i=1}^{r-1}a_{n_i}$ as elements of $A_n \cap I$. By comparing the degrees of the elements of the unique decomposition of $b$ and $a_{n_r}-\sum_{i=1}^{r-1}a_{n_i}$, we see that the unique decomposition of $b$ is exactly $a_{n_r}-\sum_{i=1}^{r-1}a_{n_i}$, i.e., $a_{n_i} \in I$ for all $i\leq r$. 
+\end{proof}
+Let $X$ be a projective quasi variety. From now on, we regard $\Gamma (X)$ as a $\Z_0^+$-graded ring, whose grading come from \myref{Theorem}{Ogot}. 
+\begin{theorem}
+\textbf{(Algebraic structure of global ring, local ring, and function field of projective quasi variety)} Let $X\subseteq \P^n$ be a projective  quasi variety. We have 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathscr{O}(X)=k$. 
+  \item $\mathscr{O}_{p,X}\cong  \Gamma (X)_{(\mathfrak{m}_p)}$ for all $p \in X$.  
+  \item $K(X)\cong  \Gamma (X)_{(\langle x\rangle )}$. 
+\end{enumerate}
+\end{theorem}
+\section{Rational Map (Planned)}
+\section{Dimension Theory (Planned)}
+
+\chapter{Scheme}
+
+Given some ring $R$, we may give $\operatorname{Spec}(R)$ its \textbf{Zariski topology} by defining $E\subseteq \operatorname{Spec}(R)$ to be closed if and only if $E=\set{J \in \operatorname{Spec}(R):I \subseteq J}$ for some ordinary ideal $I\subseteq R$. \\
+\chapter{Not used yet}
+\section{Some Fulton}
+
+
+Given two affine varieties $V \subseteq \A^n,W\subseteq \A^m$, we say mapping $\phi:V\rightarrow W$ is a \textbf{polynomial map}\footnote{One may check that polynomial maps and affine varieties together form a category} if there are polynomials $T_1,\dots ,T_m \in k[x_1,\dots ,x_n]$ such that $\phi(a)=(T_1(a),\dots ,T_m (a))$ for all $a \in V$. Every mapping $\phi:V\rightarrow W$, polynomial or not, induce a ring homomorphism 
+\begin{align*}
+  \tilde{\phi}:\mathscr{F}(W,k)\rightarrow  \mathscr{F}(V,k)\quad  f \mapsto  f \circ \phi   
+\end{align*}
+Clearly, if $\phi$ is a polynomial map, then $\tilde{\phi}$ maps $\Gamma (W)$ into $\Gamma  (V)$ and is in fact an $\A$-algebra homomorphism.  By \myref{proposition}{un2}, there exists an obvious one-to-one correspondence between $(k[x_1,\dots ,x_n])^m$ and some subcollection of the space of polynomials map from $\A^n$ to  $\A^m$, so if polynomial map  $T:\A^n \rightarrow \A^m$ satisfies
+\begin{align*}
+  \forall  a \in \A^n,T(a)=(T_1(a),\dots ,T_m(a))\quad,\text{ for some }T_1,\dots ,T_m \in k[x_1,\dots ,x_n]
+\end{align*}
+it make sense for us to denote $T=(T_1,\dots ,T_m)$. 
+\begin{theorem}
+\label{un3}
+  \textbf{(Natural one-to-one correspondence between $\operatorname{Hom}(\Gamma (W),\Gamma (V))$ and $\operatorname{Hom}(V,W)$)} Given two affine variety $V \subseteq \A^n,W \subseteq \A^m$, if we denote  
+\begin{align*}
+  \operatorname{Hom}(V,W)&\triangleq \set{\text{polynomial }\phi : V \rightarrow W} \\
+  \operatorname{Hom}(\Gamma W, \Gamma  V)&\triangleq \set{\text{$\A$-algebra homomorphism  $\pfi : \Gamma  (W)\rightarrow \Gamma (V)$}}
+\end{align*}
+then the mapping $\phi \mapsto  \tilde{\phi}$ forms a bijection between them.  
+\end{theorem}
+\begin{proof}
+It is easy to check the mapping $\phi \mapsto \tilde{\phi}$ is injective. We now prove that it is surjective. Fix $\alpha  \in \operatorname{Hom}(\Gamma W,\Gamma V)$. Let $T_i \in k[x_1,\dots ,x_n]$ satisfies $\alpha ([x_i])=[T_i]$ for each $i$, and define polynomial map $T\triangleq (T_1,\dots ,T_m): \A^n \rightarrow \A^m$. Note that $\Gamma  (A^n)\cong  k[x_1,\dots ,x_n]$. It is then easy to check $\tilde{T}: \Gamma (A^m)\longrightarrow \Gamma  (A^n)$ maps $I (W)$ into $I(V)$, which allow us to check $T(V) \subseteq W$. To finish the proof, just check $\tilde{T|_V}:\Gamma W \rightarrow \Gamma V$ is identical with $\alpha $. 
+\end{proof}
+A polynomial map $\phi : V\rightarrow W$ is an \textbf{$k$-affine variety isomorphism} if it's bijective with inverse being also a polynomial map. \myref{Theorem}{un3} shows that two affine varieties are isomorphic if and only if their coordinate rings are.\\
+
+By an \textbf{affine change of coordinate} on $\A^n$, we mean a bijective polynomial map $T: \A^n \rightarrow  \A^n$ such that each of its component $T_i \in k[x_1,\dots ,x_n]$ is of degree $1$.  \\
  \section{Dimension Theory}
 \label{DT}
 \begin{theorem}
@@ -1253,38 +1522,6 @@ According to \customref{NNL}{Noether normalization lemma}, there exists $x_1,\do
 \end{proof}
 
 
-
-\chapter{Scheme}
-
-Given some ring $R$, we may give $\operatorname{Spec}(R)$ its \textbf{Zariski topology} by defining $E\subseteq \operatorname{Spec}(R)$ to be closed if and only if $E=\set{J \in \operatorname{Spec}(R):I \subseteq J}$ for some ordinary ideal $I\subseteq R$. \\
-\chapter{Not used yet}
-\section{Some Fulton}
-
-
-Given two affine varieties $V \subseteq \A^n,W\subseteq \A^m$, we say mapping $\phi:V\rightarrow W$ is a \textbf{polynomial map}\footnote{One may check that polynomial maps and affine varieties together form a category} if there are polynomials $T_1,\dots ,T_m \in k[x_1,\dots ,x_n]$ such that $\phi(a)=(T_1(a),\dots ,T_m (a))$ for all $a \in V$. Every mapping $\phi:V\rightarrow W$, polynomial or not, induce a ring homomorphism 
-\begin{align*}
-  \tilde{\phi}:\mathscr{F}(W,k)\rightarrow  \mathscr{F}(V,k)\quad  f \mapsto  f \circ \phi   
-\end{align*}
-Clearly, if $\phi$ is a polynomial map, then $\tilde{\phi}$ maps $\Gamma (W)$ into $\Gamma  (V)$ and is in fact an $\A$-algebra homomorphism.  By \myref{proposition}{un2}, there exists an obvious one-to-one correspondence between $(k[x_1,\dots ,x_n])^m$ and some subcollection of the space of polynomials map from $\A^n$ to  $\A^m$, so if polynomial map  $T:\A^n \rightarrow \A^m$ satisfies
-\begin{align*}
-  \forall  a \in \A^n,T(a)=(T_1(a),\dots ,T_m(a))\quad,\text{ for some }T_1,\dots ,T_m \in k[x_1,\dots ,x_n]
-\end{align*}
-it make sense for us to denote $T=(T_1,\dots ,T_m)$. 
-\begin{theorem}
-\label{un3}
-  \textbf{(Natural one-to-one correspondence between $\operatorname{Hom}(\Gamma (W),\Gamma (V))$ and $\operatorname{Hom}(V,W)$)} Given two affine variety $V \subseteq \A^n,W \subseteq \A^m$, if we denote  
-\begin{align*}
-  \operatorname{Hom}(V,W)&\triangleq \set{\text{polynomial }\phi : V \rightarrow W} \\
-  \operatorname{Hom}(\Gamma W, \Gamma  V)&\triangleq \set{\text{$\A$-algebra homomorphism  $\pfi : \Gamma  (W)\rightarrow \Gamma (V)$}}
-\end{align*}
-then the mapping $\phi \mapsto  \tilde{\phi}$ forms a bijection between them.  
-\end{theorem}
-\begin{proof}
-It is easy to check the mapping $\phi \mapsto \tilde{\phi}$ is injective. We now prove that it is surjective. Fix $\alpha  \in \operatorname{Hom}(\Gamma W,\Gamma V)$. Let $T_i \in k[x_1,\dots ,x_n]$ satisfies $\alpha ([x_i])=[T_i]$ for each $i$, and define polynomial map $T\triangleq (T_1,\dots ,T_m): \A^n \rightarrow \A^m$. Note that $\Gamma  (A^n)\cong  k[x_1,\dots ,x_n]$. It is then easy to check $\tilde{T}: \Gamma (A^m)\longrightarrow \Gamma  (A^n)$ maps $I (W)$ into $I(V)$, which allow us to check $T(V) \subseteq W$. To finish the proof, just check $\tilde{T|_V}:\Gamma W \rightarrow \Gamma V$ is identical with $\alpha $. 
-\end{proof}
-A polynomial map $\phi : V\rightarrow W$ is an \textbf{$k$-affine variety isomorphism} if it's bijective with inverse being also a polynomial map. \myref{Theorem}{un3} shows that two affine varieties are isomorphic if and only if their coordinate rings are.\\
-
-By an \textbf{affine change of coordinate} on $\A^n$, we mean a bijective polynomial map $T: \A^n \rightarrow  \A^n$ such that each of its component $T_i \in k[x_1,\dots ,x_n]$ is of degree $1$.  \\
 
 \section{Some Fulton 2}
 For intuitively geometrical reason, we usually call locus of a single non-constant polynomial $F \in k[x_1,\dots ,x_n]$ a \textbf{hypersurface}, and a hypersurface in $\A^2$ an  \textbf{affine plane curve}. 
