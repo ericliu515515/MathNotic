@@ -10,9 +10,18 @@
 \usepackage{mdframed}
 \usepackage[new]{old-arrows}
 
+
 % Create a new toggle
 \newtoggle{firstsection}
 
+\def\mylongmapsto#1{%
+\begin{tikzpicture}
+\draw (0,0.5mm) -- (0,-0.5mm);
+\newlength\mylength
+\setlength{\mylength}{\widthof{#1}}
+\draw[->] (0,0) -- (1.2\mylength,0) node[above,midway] {#1};
+\end{tikzpicture}
+}
 % Redefine the \chapter command to reset the toggle for each new chapter
 \let\oldchapter\chapter
 \renewcommand{\chapter}{\toggletrue{firstsection}\oldchapter}

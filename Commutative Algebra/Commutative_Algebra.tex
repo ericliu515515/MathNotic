@@ -16,9 +16,10 @@
 \pagebreak
 \chapter{Local Ring, Integral Closure, and Noether} 
 \section{Rings}
-The precise meaning of the term \textbf{ring} varies across different books, depending on the context and purpose. In this note, the multiplication of a ring is always associative and commutative, and have an identity. The additive identity is denoted by $0$. From the axioms, we can straightforwardly show that $x\cdot 0 = 0$ for all $x$. Consequently, the multiplicative and additive identities are always distinct unless the ring contained only one element, called  \textbf{zero} in this case.\\
+The precise meaning of the term \textbf{ring} varies across different books, depending on the context and purpose. In this note, the multiplication of a ring is always associative, commutative, and has an identity. The additive identity is denoted by $0$. From the axioms, we can straightforwardly show that $x\cdot 0 = 0$ for all $x$. Consequently, the multiplicative and additive identities are always distinct unless the ring contained only one element, and in such case, we say the ring is the \textbf{zero ring}. By \textbf{ring homomorphisms}, we mean mappings between two rings respecting addition\footnote{Respecting addition immediately implies respecting $0$ and negation.}, multiplication, and multiplicative identity. Clearly, inverse of a bijective ring homomorphism is also a ring homomorphism.\\  
 
-An \textbf{ideal} of a ring $R$ is an additive subgroup $I$ such that $ar \in I$ for all $a \in I,  r \in R$, or equivalently, the kernel of some \textbf{ring homomorphism}\footnote{Ring homomorphisms are mapping between two rings that respects addition, multiplication and  multiplicative identity.}. To see the equivalency, one simply construct the \textbf{quotient ring}\footnote{Consider the equivalence relation on $R$ defined by  $x\sim  y\overset{\triangle}{\iff } x-y \in I$} $R\quotient I$, under which the quotient map $\pi: R \rightarrow R \quotient  I$ is a surjective ring homomorphism whose kernel is the ideal $I$. Remarkably, the mapping defined by 
+
+An \textbf{ideal} of a ring $R$ is an additive subgroup $I$ such that $ar \in I$ for all $a \in I,  r \in R$, or equivalently, the kernel of some ring homomorphism. To see the equivalency, one simply construct the \textbf{quotient ring}\footnote{Consider the equivalence relation on $R$ defined by  $x\sim  y\overset{\triangle}{\iff } x-y \in I$} $R\quotient I$, under which the quotient map $\pi: R \rightarrow R \quotient  I$ is a surjective ring homomorphism whose kernel is the ideal $I$. Remarkably, the mapping defined by 
  \begin{align*}
 \operatorname{Ideal }J\text{ of $R$ that contains }I \mapsto \set{[x]\in R\quotient I: x\in J}
 \end{align*}
@@ -1122,15 +1123,52 @@ We see that  by  \customref{HBT}{Hilbert Basis Theorem}, \myref{theorem}{cpoN}, 
 
 Now, for each  $1\leq i\leq n$, let $t_i\in k\cong C\quotient \mathfrak{m}$ be the image of $x_i\in k[x_1,\dots ,x_n]$ under the $k$-module homomorphism in \myref{diagram}{kdm}.  Letting $t\triangleq (t_1,\dots ,t_n)\in k^n$, it is easy to check\footnote{Recall $k[x_1,\dots ,x_n]=\langle x_1,\dots ,x_n\rangle $.} by direct computation that \myref{diagram}{kdm} have action $G \in k[x_1,\dots ,x_n]\mapsto G(t)\in k$. Because  $I \subseteq \mathfrak{p}$, by construction of $B$ we see \myref{diagram}{kdm} maps every element of $I$ to $0\in k$. Yet, at the same time the image of $F$ in $C$ is a unit by construction of  $C$, which implies the image of $F$ in the quotient ring $C\quotient \mathfrak{m}$ is nonzero. We have shown $t \in V$ and $F(t)\neq 0$, a contradiction. 
 \end{proof}
-\section{Noether Normalization Lemma (Planned, to do before dimension theory)}
-Let $k$ be a field and $A$ a $k$-algebra. If we say $E\subseteq A$ is \textbf{algebraically independent over $k$}, we mean that there exists no $\set{y_1,\dots ,y_n}\subseteq E$ and polynomial $F \in k[x_1,\dots ,x_n]$ such that $F(y_1,\dots ,y_n)=0$. If $A$ is itself a field and the algebra-defining ring homomorphism $k \longrightarrow A$ forms an injective field homomorphism, then we can talk about the \textbf{transcendence degree $\operatorname{trdeg}_k A$ of $A$ over  $k$}. By Zorn's Lemma, there exists some maximal algebraically independent subset $E \subseteq A$, and by an argument similar to that for vector space, two maximal algebraically independent subsets $E_1,E_2 \subseteq A$ must have the same cardinality. It thus make sense for us to talk about the transcendence degree $\operatorname{trdeg}_k A$. 
+\section{Noether Normalization Lemma (Half way there)}
+Let $k$ be a field and $A$ a $k$-algebra. If we say $E\subseteq A$ is \textbf{algebraically independent over $k$}, we mean that there exists no $\set{y_1,\dots ,y_n}\subseteq E$ and polynomial $F \in k[x_1,\dots ,x_n]$ such that $F(y_1,\dots ,y_n)=0$.\\
+
+\begin{enumerate}[label=(\roman*)]
+  \item Why the differences between finite generation and integral? Are they equivalent? Or only one implies the other? Or they have no implication at all? 
+  \item I guess for the above we have: Given rings $A\subseteq B$, then $B$ is finitely generated as an $A$-module if and only if  $B$ is integral over  $A$. Or at least this hold true when $A$ is a field and  $B$ as an $A$-algebra is finitely generated.  
+  \item Theorem 3.2.1
+  \item Is the foonote correct? 
+  \item WHY Krudim A=0 below? Can I explain this without Theorem 3.2.1.? Like does quotient of $k[y]$ always have zero Krull dimension?   
+\end{enumerate}
+\begin{theorem}
+\textbf{(Relationship to the Krull dimension)} Let $k$ be a field, and  $A$ a (finitely generated, I am not sure if this is necessary) $k$-algebra. If $y_1,\dots ,y_r \in A$ is algebraically independent over $k$ such that  $A$ is finitely generated as a $k[y_1,\dots ,y_r]$-module, then $\operatorname{Krudim}(A)=r$.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
 \begin{theorem}
 \label{NNL}
-\textbf{(Noether Normalization Lemma)} Let $k$ be a field. If $A$ is a finitely generated $k$-algebra, then there exists $y_1,\dots ,y_r \in A$, with $r=\operatorname{Krudim}(A)$,  algebraically independent over $k$ such that  $A$ is integral over  $k[y_1,\dots ,y_r]$. 
+\textbf{(Noether Normalization Lemma)} Let $k$ be a field. If $A$ is a finitely generated $k$-algebra, says, 
+\begin{align*}
+A= k[y_1',\dots ,y_m']\text{ for smallest }m,
+\end{align*}
+then there exists $y_1,\dots ,y_r \in A$, with $r=\operatorname{Krudim}(A)$,  algebraically independent over $k$ such that  $A$ as a $k[y_1,\dots ,y_r]$-module is finitely generated. 
 \end{theorem}
+\begin{proof}
+We prove by induction on $m$. If $m=0$, then the lemma hold true trivially. \\
+
+
+Suppose $m=1$. Clearly, $A\cong  k[y]\quotient I$ as $k$-algebras where  $I\subseteq k[y]$ is the ideal of polynomials vanishing at $y_1'$. If $I=0$, then the proof is trivial\footnote{$k[y]$ is a PID (To see this, just consider smallest degree element and division algorithm.). Its nonzero prime ideals are exactly those whose generator is irreducible (To see irreducible polynomials generate prime ideals, prove that they generate maximal ideal.).}. \\
+
+Suppose $I=\langle f\rangle $ and that  $f$ has degree $e$. Clearly $A$ is finitely generated as a  $k$-module with generators $\set{1,y^1,\dots ,y^{e-1}}$. \\
+
+(So $\operatorname{Krudim}(A)=0$. HOW?) 
+
+Suppose $m\geq 2$. If $y_i'$ are algebraically independent, then we are done.  (Remains to show Krudim)  \\
+
+
+
+
+
+\end{proof}
+ If $A$ is itself a field and the algebra-defining ring homomorphism $k \longrightarrow A$ forms an injective field homomorphism, then we can talk about the \textbf{transcendence degree $\operatorname{trdeg}_k A$ of $A$ over  $k$}. By Zorn's Lemma, there exists some maximal algebraically independent subset $E \subseteq A$, and by an argument similar to that for vector space, two maximal algebraically independent subsets $E_1,E_2 \subseteq A$ must have the same cardinality. It thus make sense for us to talk about the transcendence degree $\operatorname{trdeg}_k A$. 
+
 \chapter{Variety}
 \section{Affine variety}
-Let $k$ be some algebraically closed field. We use the notation $\A^n$ to denote the \textbf{affine $n$-space} over $k$, the Cartesian product $k^n$. Given some collection $S \subseteq k[x_1,\dots ,x_n]$ of polynomials, we use notation $V(S)= \set{a \in \A^n:F(a)=0\text{ for all }F \in S}$ to denote its \textbf{zero set (locus)}, and given $Y \subseteq \A^n$, we use notation $I(Y)$ to denote the ideal of polynomials that vanish on $Y$. If $Y \subseteq \A^n$ is the locus of some $S \subseteq k[x_1,\dots ,x_n]$, we say $T$ is \textbf{algebraic}. Clearly this give rise to a topology on $\A^n$, the  \textbf{Zariski topology}, where one define $Y\subseteq \A^n$ to be closed if and only if $Y$ is algebraic\footnote{Note that $V(S_1)\cup V(S_2)=V(\set{f_1f_2:f_1 \in S_1,f_2\in S_2})$ and $\bigcap V(S_\alpha )=V (\bigcup S_\alpha )$}. Note that we have $\overline{Y}=I(V(Y))$ for all $Y \subseteq \A^n$, and in summary, we have the (not commutative) diagram:  
+Let $k$ be some algebraically closed field. We use the notation $\A^n$ to denote the \textbf{affine $n$-space} over $k$, the Cartesian product $k^n$. Given some collection $S \subseteq k[x_1,\dots ,x_n]$ of polynomials, we use notation $V(S)= \set{a \in \A^n:F(a)=0\text{ for all }F \in S}$ to denote its \textbf{zero set (locus)}, and given $Y \subseteq \A^n$, we use notation $I(Y)$ to denote the ideal of polynomials that vanish on $Y$. If $Y \subseteq \A^n$ is the locus of some $S \subseteq k[x_1,\dots ,x_n]$, we say $T$ is \textbf{algebraic}. Clearly this give rise to a topology on $\A^n$, the  \textbf{Zariski topology}, where one define $Y\subseteq \A^n$ to be closed if and only if $Y$ is algebraic\footnote{Note that $V(S_1)\cup V(S_2)=V(\set{f_1f_2:f_1 \in S_1,f_2\in S_2})$ and $\bigcap V(S_\alpha )=V (\bigcup S_\alpha )$}. Note that we have $I(\overline{Y})=I(Y)$ for all $Y \subseteq \A^n$, and in summary, we have the (not commutative) diagram:  
 \[\begin{tikzcd}
 \label{di1}
   {\text{subsets of }\A^n} && {\text{ideals of }k[x_1,\dots,x_n]} \\
@@ -1294,7 +1332,7 @@ It is routine to check $\phi$ is well-defined and bijective. We now prove it is 
 Now, let $Y\subseteq U$ be closed in $U$, and let $\overline{Y}$ be the closure of $Y$ in $\P^n$. By definition, there exists some collection  $T$ of homogeneous polynomials $f \in k[x_0,\dots ,x_n]$ whose locus is exactly $\overline{Y}$. To see $\phi (Y)$ is closed, just check $\phi (Y)= V(\alpha (T))$. Conversely, given closed $W \subseteq \A^n$, one have $\phi^{-1}(W)=V(\beta  (I(W)))\cap U$\footnote{You will need the fact $V(I(W))=W$ in the proof of this equality, which holds true because $W$ is closed.}. 
 \end{proof}
 \section{Morphism}
-By a \textbf{quasi affine (or projective) variety} $X\subseteq \A^n$ (resp. $\P^n$), we mean  $X$ is a subset of some variety $V \subseteq \A^n$ (resp. $\P^n$) and $X$ is open in $V$. One key property for quasi variety $X$ is that, their closed sets are always intersection of algebraic set and $X$, since 
+By a \textbf{quasi affine (or projective) variety} $X\subseteq \A^n$ (resp. $\P^n$), we mean  $X$ is a subset of some variety $V \subseteq \A^n$ (resp. $\P^n$) and $X$ is open in $V$, equivalently, we can define $X$ to be a quasi variety if and only if $X$ is open in $\overline{X}$\footnote{Because we will always have  $\overline{X}\subseteq V$}. One key property for quasi variety $X$ is that, their closed sets are always intersection of algebraic set and $X$, since 
 \begin{align*}
 E \overset{\text{closed}}{\subseteq}X \subseteq V \overset{\text{closed}}{\subseteq} (\A^n\text{ or }\P^n)\implies  \quad   E= \operatorname{cl}_V(E)\cap X
 \end{align*}
@@ -1436,6 +1474,109 @@ a_{n_r}= \sum_{i=1}^{r-1} a_{n_i} + b,\quad \text{ for some }b \in I
 Note that $I$ is homogeneous, so there exists unique decomposition of $b=a_{n_r}-\sum_{i=1}^{r-1}a_{n_i}$ as elements of $A_n \cap I$. By comparing the degrees of the elements of the unique decomposition of $b$ and $a_{n_r}-\sum_{i=1}^{r-1}a_{n_i}$, we see that the unique decomposition of $b$ is exactly $a_{n_r}-\sum_{i=1}^{r-1}a_{n_i}$, i.e., $a_{n_i} \in I$ for all $i\leq r$. 
 \end{proof}
 Let $X$ be a projective quasi variety. From now on, we regard $\Gamma (X)$ as a $\Z_0^+$-graded ring, whose grading come from \myref{Theorem}{Ogot}. 
+\section{Segre Embedding and Category of Varieties (Just started)}
+\label{SE}
+Fix $n$ and $m$. In this section, we express elements of $\P^{(n+1)(m+1)-1}$ (non uniquely, of course) as matrices:  
+\begin{align*}
+\begin{bmatrix}
+  z_{0,0} & \cdots & z_{0,m} \\
+  \vdots & \ddots & \vdots \\
+  z_{n,0} & \cdots & z_{n,m} 
+\end{bmatrix}
+\end{align*}
+Similarly, we write the coordinate of $\P^{(n+1)(m+1)-1}$, the polynomial ring, as $k[z_{i,j}]$. Now, consider the \textbf{Segre embedding} $\psi: \P^n \times \P^m \rightarrow \P^{(n+1)(m+1)-1}$ defined by 
+\begin{align*}
+[x_0:\cdots : x_n] \times [y_0 : \cdots :y_m] \mapsto  \begin{bmatrix}
+  x_0y_0 & \cdots & x_0y_m \\
+  \vdots & \ddots & \vdots \\
+  x_ny_0 & \cdots & x_ny_m 
+\end{bmatrix}
+\end{align*}
+It is clear that $\psi$ is well-defined and injective. We shall show that the image of $\psi$ is a projective variety to justify calling it an embedding. Consider 
+\begin{align*}
+S\triangleq \bset{z_{i,j}z_{p,l}-z_{p,j}z_{i,l}\in k[z_{i,j}]:i,p \in \set{0,\dots ,n}\text{ and }j,l \in \set{0,\dots ,m}}
+\end{align*}
+\begin{theorem}
+\textbf{(Image of Segre embedding is a projective variety)} We have 
+\begin{align*}
+\operatorname{Im}(\psi)= V(S)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Clearly, we have $\operatorname{Im}(\psi) \subseteq V(S)$. Suppose 
+\begin{align*}
+\alpha \triangleq \begin{bmatrix}
+  z_{0,0} & \cdots & z_{0,m} \\
+  \vdots & \ddots & \vdots \\
+  z_{n,0} & \cdots & z_{n,m} 
+\end{bmatrix} \in V(S)
+\end{align*}
+By definition, there exists some column of $\alpha $ that is nonzero. WLOG, let that column be the first one. To show $\alpha  \in \operatorname{Im}(\psi)$, we are required to show there exists some $\ld _1,\dots ,\ld _m \in k$ such that 
+\begin{align*}
+z_{i,j}=\ld _j z_{i,0},\quad \text{ for all }i,j
+\end{align*}
+then the proof will follows from noting $\alpha $ is the image of $[z_{0,0}:\cdots : z_{n,0}]\times [1:\ld_1:\cdots :\ld _m]$. WLOG, let $z_{0,0}\neq 0$. One may now check $\ld_j\triangleq z_{0,j}z_{0,0}^{-1}$ suffices, using the premise $\alpha  \in V(S)$. 
+\end{proof}
+From now on, if we treat $\P^n \times \P^m$ as a variety, we mean that we are identifying $\P^n \times \P^m $ as a subvariety of $\P^{(n+1)(m+1)-1}$ using the Segre embedding. 
+\begin{theorem}
+\textbf{(Projections are quasi varieties morphisms)} Identifying $\P^n\times \P^m$ as a sub projective varieties of $\P^{(n+1)(m+1)-1}$ using Segre embedding, the projection $\pi: \P^n\times \P^m \rightarrow \P^n$ is a quasi variety morphism. 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\textbf{(Well-defined of product of projective quasi varieties: Irreduciblity)} Let $X\subseteq \P^n$ and $Y \subseteq \P^m$ be two quasi-projective varieties. Identifying $X\times Y$ as a subset of $\P^{(n+1)(m+1)-1}$ using Segre embedding, $X\times Y$ is irreducible.  
+\end{theorem}
+
+\begin{theorem}
+\textbf{(Well-defined of product of affine quasi varieties: Irreduciblity)} Let $X\subseteq \A^n$ and $Y\subseteq \A^m$ be two quasi varieties. The Zariski topology on $X\times Y$ is irreducible. 
+\end{theorem}
+\section{Rational Map (Just started)}
+\begin{theorem}
+\label{Rmi}
+\textbf{(Rational map is well-defined)} Let $X$ and  $Y$ be two quasi varieties, and let $\phi$ and $\psi$ be two quasi varieties from $X$ to $Y$. If there exists non empty open subset $U \subseteq X$ on which $\phi$ and $\psi$ agree, them $\phi = \psi$. 
+\end{theorem}
+\begin{proof}
+WLOG\footnote{As we have mentioned, one may check that the map $\A^n\rightarrow \P^n - \set{x_0=0}$ in \myref{Theorem}{Ste} is a quasi variety isomorphism. One can also check that given any quasi variety isomorphism $\phi:Y\rightarrow Z$ and open $E\subseteq Y$, $\phi(E)$ is open in $Z$ and  $\phi|_E:E\rightarrow \phi (E)$ forms a quasi variety isomorphism.}, let $Y\subseteq \P^n$. Consider $\phi \times \psi: X\rightarrow \P^n \times \P^n$, where $\P^n\times \P^n$ is identified as a subvariety of $\P^{2n}$ using \customref{SE}{Segre Embedding}. 
+\end{proof}
+Let $X$ and  $Y$ be two quasi varieties. Because of \myref{Theorem}{Rmi}, we may well-define \textbf{rational map} $\phi: X \DashedArrow  Y$ to be equivalence class of pairs $(U,\phi_U)$ where $U$ is a nonempty open subset of $X$ and  $\phi_U:U\rightarrow Y$ is a quasi variety morphism. Given a rational map $\phi:X\DashedArrow Y$, we say $\phi$ is \textbf{dominant} if for some and hence every\footnote{Let $U,V \subseteq X$ be open, and $\phi (U)$ be dense in $Y$. Because $U$ is irreducible, we know $U=\operatorname{cl}_U(U \cap V)$, and because $\phi:U\rightarrow Y$ is continuous, we know $\phi (\operatorname{cl}_U(U \cap V))\subseteq \overline{\phi (U\cap V)}$. Together, we have $Y=\overline{\phi (U)}= \overline{\phi (\operatorname{cl}_U(U\cap V))}\subseteq \overline{\phi (U\cap V)}\subseteq \overline{\phi (V)}$.} pair $(U,\phi_U)$, the image of $\phi_U$ is dense in $Y$. Consider two dominant rational maps $X \overset{\phi}{\DashedArrow}Y \overset{\psi}{\DashedArrow}Z$, and consider $(U,\phi_U)\in \phi$ and $(V,\psi_V)\in \psi$. Because $\phi(U)$ is dense in $Y$, we know $\phi^{-1}_U(V)$ is nonempty. Therefore, it make sense to talk about the composition $\psi \circ \phi:X\DashedArrow Z$ of the dominant rational maps, the equivalence class containing $(\phi^{-1}_U(V),\psi \circ \phi)$. It is trivial to check the composition is indeed well-defined. It is clear that composition of dominant rational maps is again dominant\footnote{Let $W \subseteq Z$ be open. We are required to show $W$ intersect with $\psi (V \cap \phi (U))$. Because $\psi_V(V)\subseteq Z$ is dense and $\psi_V$ is continuous, we know $\psi_V^{-1}(W)\subseteq Y$ is nonempty and open. It then follows from dominance of $\phi$ that $\phi_U^{-1} (\psi^{-1}_V (W))$ is nonempty.}.\\
+
+
+
+If we say $\phi : X\DashedArrow Y$ is a \textbf{birational map}, we mean $\phi$ is dominant and there exists some dominant  $\psi:Y \DashedArrow X$ such that $\psi \circ \phi:X\DashedArrow X$ contains $(X,\id )$ and $\phi \circ \psi: Y \DashedArrow Y$ contains $(Y,\id )$. Clearly, inverse of any birational map must be unique. Two quasi varieties are said to be \textbf{birational equivalent} if there exists a birational map between them. 
+\begin{theorem}
+\textbf{(Birational equivalence implies isomorphism of function field as $k$-algebra)} Let $X$ and  $Y$ be two quasi varieties. 
+\begin{align*}
+X\text{ and }Y\text{ are birational equivalent }\implies K(X)\cong  K(Y)\text{ as $k$-algebra. }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let dominant rational $\phi : X\DashedArrow Y$ and $\psi:Y \DashedArrow X$ be inverse to each other, consider $(U,\phi_U)\in \phi$  and $(V,\psi_V)\in \psi$, and consider $E\triangleq  \phi^{-1}_U(\psi^{-1}_V(U))$ and $F \triangleq \psi^{-1}_V (\phi_U^{-1}(V))$. Clearly, $E\subseteq U$ and $F\subseteq V$ are open, and a routine check shows that $\phi_E$ maps $E$ isomorphically to $F$ with inverse being  $\psi_F$. A routine check now shows that $K(X)\rightarrow K(Y)$ defined by 
+\begin{align*}
+[(T,f)]\longmapsto [(\psi^{-1}_F(T), f \circ \psi)] 
+\end{align*}
+and $K(Y)\rightarrow K(X)$ defined by 
+\begin{align*}
+[(H,g)]\longmapsto [(\phi^{-1}_E(H), g \circ \phi)] 
+\end{align*}
+are two well-defined $k$-algebra homomorphism being inverse to each others\footnote{Therefore they are isomorphisms inverse to each other.}.  
+\end{proof}
+Let $\phi:X\DashedArrow Y$ be a dominant rational map and $(U,\phi_U)\in \phi$. Let $(V,f)\in K(Y)$. Clearly, $\phi_U^{-1}(V)$ is nonempty and open, and $f \circ \phi_U$ is a regular function on $\phi_U^{-1}(V)$. In other words, $(\phi_U^{-1}(V),f \circ \phi_U)\in K(X)$.
+
+Verify this is 
+\begin{enumerate}[label=(\roman*)]
+  \item well-defined as a set map. 
+  \item a $k$-algebra homomorphism.  
+\end{enumerate}
+\section{Dimension Theory (Planned)}
+$X$ is a quasi variety iff  $X$ is irreducible and  $X$ is open in  $\overline{X}$. 
+
+$X$ is irreducible iff $\overline{X}$ is irreducible. 
+\chapter{Scheme}
+
+Given some ring $R$, we may give $\operatorname{Spec}(R)$ its \textbf{Zariski topology} by defining $E\subseteq \operatorname{Spec}(R)$ to be closed if and only if $E=\set{J \in \operatorname{Spec}(R):I \subseteq J}$ for some ordinary ideal $I\subseteq R$. \\
+\chapter{Not used yet}
+\section{Maybe later}
 \begin{theorem}
 \textbf{(Algebraic structure of global ring, local ring, and function field of projective quasi variety)} Let $X\subseteq \P^n$ be a projective  quasi variety. We have 
 \begin{enumerate}[label=(\roman*)]
@@ -1444,13 +1585,6 @@ Let $X$ be a projective quasi variety. From now on, we regard $\Gamma (X)$ as a 
   \item $K(X)\cong  \Gamma (X)_{(\langle x\rangle )}$. 
 \end{enumerate}
 \end{theorem}
-\section{Rational Map (Planned)}
-\section{Dimension Theory (Planned)}
-
-\chapter{Scheme}
-
-Given some ring $R$, we may give $\operatorname{Spec}(R)$ its \textbf{Zariski topology} by defining $E\subseteq \operatorname{Spec}(R)$ to be closed if and only if $E=\set{J \in \operatorname{Spec}(R):I \subseteq J}$ for some ordinary ideal $I\subseteq R$. \\
-\chapter{Not used yet}
 \section{Some Fulton}
 
 
