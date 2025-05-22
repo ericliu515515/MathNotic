@@ -96,7 +96,17 @@ forms a submodule of the direct product. We denote this submodule by $\bigoplus 
 Given a subset $E$ of  $M$, clearly its \textbf{span}, the set of finite sum $\sum rx$ where $x \in E$, forms a submodule. Interestingly, depending on the view one wish to take, there are multiple common notation for spans of $E$. To view modules as generalization of vector spaces, one may write  $\operatorname{span}(E)$, to view module as generalizations of rings, one may write $\langle E\rangle$, and to adapt the algebraic convention, one may also write $\sum_{x \in E}Ax$. \\ 
 
 
-We say  $M$ is \textbf{finitely generated} if $M$ can be spanned by some finite set $\set{x_1,\dots ,x_n}\subseteq M$. Clearly,  $(a_1,\dots ,a_n)\mapsto \sum a_ix_i$ forms a surjective homomorphism from $A^n$ to $M$, which implies $M$ is isomorphic to some quotient of $A^n$. This behavior, albeit seems unimportant for now, will later prove to be useful for it guarantees that finitely generated module over rings of some certain properties carry the same property.\footnote{For example, this shows that finitely generated module over Noetherian ring is Noetherian. See \myref{Theorem}{cpoN}} \\
+We say  $M$ is \textbf{finitely generated} if $M$ can be spanned by some finite set $\set{x_1,\dots ,x_n}\subseteq M$. Clearly,  $(a_1,\dots ,a_n)\mapsto \sum a_ix_i$ forms a surjective homomorphism from $A^n$ to $M$, which implies $M$ is isomorphic to some quotient of $A^n$. This behavior, albeit seems unimportant for now, will later prove to be useful for it guarantees that finitely generated module over rings of some certain properties carry the same property \footnote{For example, this shows that finitely generated module over Noetherian ring is Noetherian. See \myref{Theorem}{cpoN}}. Quite often, we are required to consider \textbf{extension of scalars}: Given ring homomorphism $f:A\rightarrow B$ and $B$-module  $N$, we can give $N$ an $A$-module by setting $an\triangleq f(a)n$.
+\begin{theorem}
+\label{Fgas}
+\textbf{(Finite generation and scalar extension)} Given ring homomorphism $f:A\rightarrow B$ and some finitely generated $B$-module  $N$, if $B$ is finitely generated as an  $A$-module under extension of scalar, then $N$ is also finitely generated as an  $A$-module under extension of scalar. 
+\end{theorem}
+\begin{proof}
+If $b_1,\dots ,b_k$ generate $B$ over $A$ and  $n_1,\dots ,n_r$ generate $N$ over  $B$, then clearly $\set{b_i n_j \in N: i \in \set{1,\dots ,k} \text{ and } j\in \set{1,\dots ,r}}$ generates $N$ over $A$. 
+\end{proof}
+
+
+
 
 By the \textbf{Jacobson radical} $\operatorname{Jacob}(A)$ of $A$, we mean the intersection of all maximal ideals of $A$. Given an ideal $\mathfrak{a}$ of $A$, some  module $M$ and some  submodule  $N$ of  $M$, the \textbf{product $\mathfrak{a}N$ of the submodule $N$  by the ideal $\mathfrak{a}$} is the submodule of $M$ consisting of finite sum $\sum a_i x_i$ where $a_i \in \mathfrak{a}$ and $x_i \in N$. We may now state  \customref{Nakayama}{Nakyama's Lemma}. 
 \begin{lemma}
@@ -218,6 +228,7 @@ If $f\in A$, we often write $A_f$ in place of $(\set{f^n:n\geq 0})^{-1}A$, and i
 
 A nonzero ring is said to be a \textbf{local ring} if it has only one maximal ideal, if and only if its set of non-units form an ideal, or that if and only if it is the localization of some ring $B$ at some prime ideal  $\mathfrak{p}$ of  $B$\footnote{If $A$ is local, then it is the localization of itself at its unique maximal ideal. If $A=B_\mathfrak{p}$, then the set of non-units $\set{\frac{p}{s}\in B_\mathfrak{p}:p \in \mathfrak{p}}$ is clearly the only maximal ideal of $A$.}, thus the name "local ring".  One of the key property of local ring $A$ is that if we let $\mathfrak{m}$ be its unique maximal ideal, then the quotient $A$-module  $\mathfrak{m}\quotient \mathfrak{m}^2$ forms a $A\quotient \mathfrak{m}$-vector space, called the \textbf{cotangent space of} $A$, with the obvious assignment of scalar product. If $A$ is local, we often write  $(A,\mathfrak{m},k)$ to mean that $\mathfrak{m}$ is the unique maximal ideal of $A$ and  $k$ the residue field  $k\triangleq A\quotient \mathfrak{m}$. 
 \section{Integral dependence}
+\label{Id}
 Let $A$ be a subring of some ring  $B$. We say  $x \in B$ is \textbf{integral over} $A$ if  $x$ is a root of some monic polynomial with coefficients in $A$. 
 \begin{theorem}
 \label{CHTffgm}
@@ -248,7 +259,7 @@ Noting that $\operatorname{der}(\delta_{ij}\pfi - a_{ij}\textbf{1})$ is an $\mat
 \begin{enumerate}[label=(\roman*)]
   \item $x\in B$ is integral over $A$.  
   \item $A[x]$ is a finitely generated $A$-module. 
-  \item $A[x]$ is contained in a subring $C$ of $B$ such that $C$ as the obvious $A$-module is finitely generated. 
+  \item $A[x]$ is contained in a subring $C$ of $B$ such that $C$ as an $A$-module is finitely generated. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -396,7 +407,7 @@ If the two rows are exact and $m,p$ are isomorphisms, then $n$ is an isomorphism
 \end{lemma}
 \section{Noetherian}
 Given some collection $\Sigma$ of sets, we say $\Sigma$ satisfies the \textbf{ascending chain condition, a.c.c.}, if for each chain $x_1 \subseteq x_2 \subseteq  \cdots$ there exists $n$ such that $x_n=x_{n+1}=\cdots$, and we say $\Sigma$ satisfies the \textbf{descending chain condition, d.c.c.}, if for each chain $x_1 \supseteq x_2 \supseteq \cdots $ there exists $n$ such that $x_n=x_{n+1}= \cdots$. Let $M$ be some module. We say  $M$  is  \textbf{Noetherian} if the collection of submodules of $M$ satisfies  a.c.c., and we say $M$ is  \textbf{Artinian} if the collection of submodules  satisfies d.c.c. Thanks to axiom of choice, we have: 
-\begin{theorem}
+\begin{equiv_def}
 \label{EDoN}
 \textbf{(Equivalent Definition of Noetherian)} Let $M$ be a module. The following are equivalent: 
 \begin{enumerate}[label=(\alph*)]
@@ -404,7 +415,7 @@ Given some collection $\Sigma$ of sets, we say $\Sigma$ satisfies the \textbf{as
   \item Every nonempty collection of submodules of $M$ has a maximal element.  
   \item Every submodule of $M$ is finitely generated.
 \end{enumerate}
-\end{theorem}
+\end{equiv_def}
 Immediately from the equivalent definitions of Noetherian, we have the following useful properties for ideals in Noetherian ring. How useful? See how we established equivalent characterization of DVR with \myref{corollary}{IiN} in \myref{theorem}{ECoDp1}.  
 \begin{corollary}
 \label{IiN}
@@ -1124,20 +1135,24 @@ We see that  by  \customref{HBT}{Hilbert Basis Theorem}, \myref{theorem}{cpoN}, 
 Now, for each  $1\leq i\leq n$, let $t_i\in k\cong C\quotient \mathfrak{m}$ be the image of $x_i\in k[x_1,\dots ,x_n]$ under the $k$-module homomorphism in \myref{diagram}{kdm}.  Letting $t\triangleq (t_1,\dots ,t_n)\in k^n$, it is easy to check\footnote{Recall $k[x_1,\dots ,x_n]=\langle x_1,\dots ,x_n\rangle $.} by direct computation that \myref{diagram}{kdm} have action $G \in k[x_1,\dots ,x_n]\mapsto G(t)\in k$. Because  $I \subseteq \mathfrak{p}$, by construction of $B$ we see \myref{diagram}{kdm} maps every element of $I$ to $0\in k$. Yet, at the same time the image of $F$ in $C$ is a unit by construction of  $C$, which implies the image of $F$ in the quotient ring $C\quotient \mathfrak{m}$ is nonzero. We have shown $t \in V$ and $F(t)\neq 0$, a contradiction. 
 \end{proof}
 \section{Noether Normalization Lemma (Half way there)}
-Let $k$ be a field and $A$ a $k$-algebra. If we say $E\subseteq A$ is \textbf{algebraically independent over $k$}, we mean that there exists no $\set{y_1,\dots ,y_n}\subseteq E$ and polynomial $F \in k[x_1,\dots ,x_n]$ such that $F(y_1,\dots ,y_n)=0$.\\
-
-\begin{enumerate}[label=(\roman*)]
-  \item Why the differences between finite generation and integral? Are they equivalent? Or only one implies the other? Or they have no implication at all? 
-  \item I guess for the above we have: Given rings $A\subseteq B$, then $B$ is finitely generated as an $A$-module if and only if  $B$ is integral over  $A$. Or at least this hold true when $A$ is a field and  $B$ as an $A$-algebra is finitely generated.  
-  \item Theorem 3.2.1
-  \item Is the foonote correct? 
-  \item WHY Krudim A=0 below? Can I explain this without Theorem 3.2.1.? Like does quotient of $k[y]$ always have zero Krull dimension?   
-\end{enumerate}
+Let $k$ be a field and $A$ a $k$-algebra. If we say $E\subseteq A$ is \textbf{algebraically independent over $k$}, we mean that there exists no $\set{y_1,\dots ,y_n}\subseteq E$ and polynomial $F\neq 0 \in k[x_1,\dots ,x_n]$ such that $F(y_1,\dots ,y_n)=0$. Before stating our version of \customref{NNL}{Noether Normalization Lemma}, we should prove what we should have proved in \customref{Id}{the previous section on Integral Dependence}, so one can see the equivalency between our version and others. 
 \begin{theorem}
-\textbf{(Relationship to the Krull dimension)} Let $k$ be a field, and  $A$ a (finitely generated, I am not sure if this is necessary) $k$-algebra. If $y_1,\dots ,y_r \in A$ is algebraically independent over $k$ such that  $A$ is finitely generated as a $k[y_1,\dots ,y_r]$-module, then $\operatorname{Krudim}(A)=r$.
+\label{IaFT1}
+\textbf{(Integral and Finite Type)} Given rings $B\subseteq A$, if $x_1,\dots ,x_n \in A$ are integral over $B$, then  $B[x_1,\dots ,x_n]$ as a $B$-module finitely generated. 
 \end{theorem}
 \begin{proof}
+We shall prove by induction on $n$.  Base case $n=1$ follows from \customref{EDfid}{the second definition of integral dependence}. Let $n> 1$.  Trivially, $x_n$ is integral over $B[x_1,\dots ,x_{n-1}]$, so it follows from  \customref{EDfid}{the second definition of integral dependence} that $B[x_1,\dots ,x_n]=(B[x_1,\dots,x_{n-1}])[x_n]$ is finitely generated as a $B[x_1,\dots ,x_{n-1}]$-module. Now, because inductive hypothesis said that $B[x_1,\dots ,x_{n-1}]$ is finitely generated as a $B$-module, we see from \myref{theorem}{Fgas}\footnote{You may check that the module structures here all agree with scalar extension.} that indeed $B[x_1,\dots ,x_n]$ is finitely generated as a $B$-module.
+\end{proof}
+\begin{corollary}
+\textbf{(Integral and Finite Type)} Let $k$ be a field, and $A$ a finitely generated a $k$-algebra. Given any $y_1,\dots ,y_r \in A$, we have
+\begin{align*}
+A\text{ as a $k[y_1,\dots ,y_r]$-module is finitely generated }\iff A\text{ is integral over }k[y_1,\dots ,y_r] 
+\end{align*}
+\end{corollary}
+\begin{proof}
+$(\implies):$ This follows from  \customref{EDfid}{the third definition of integral dependence}. \\
 
+$(\impliedby):$ Because $A$ is finitely generated as a $k$-algebra, there exists some $m$ and $y_1',\dots ,y_m'\in A$ such that $A=k[y_1',\dots,y_m']$. The proof then follows from  $A=(k[y_1,\dots ,y_r])[y_1',\dots ,y_m']$ and \myref{Theorem}{IaFT1}. 
 \end{proof}
 \begin{theorem}
 \label{NNL}
@@ -1145,79 +1160,147 @@ Let $k$ be a field and $A$ a $k$-algebra. If we say $E\subseteq A$ is \textbf{al
 \begin{align*}
 A= k[y_1',\dots ,y_m']\text{ for smallest }m,
 \end{align*}
-then there exists $y_1,\dots ,y_r \in A$, with $r=\operatorname{Krudim}(A)$,  algebraically independent over $k$ such that  $A$ as a $k[y_1,\dots ,y_r]$-module is finitely generated. 
+then there exists $y_1,\dots ,y_r \in A$ algebraically independent over $k$ such that  $A$ as a $k[y_1,\dots ,y_r]$-module is finitely generated. 
 \end{theorem}
 \begin{proof}
-We prove by induction on $m$. If $m=0$, then the lemma hold true trivially. \\
+We shall prove by induction on $m$.  Consider the base case $m=1$. If $y_1'$ is algebraic independent over  $k$, then $y_1 \triangleq y_1'$ suffices trivially. If not, then clearly $A$ as a $k$-algebra is isomorphic to the quotient  $k[y]\quotient I$, where $k[y]$ is the formal polynomial ring and $I$ is the (clearly nonzero) ideal of polynomials vanishing at $y_1'$. Let $f$ be the generator of $I$.\footnote{$k[y]$ is a PID (To see this, just consider smallest degree element and division algorithm.). Its nonzero prime ideals are exactly those whose generator is irreducible (To see irreducible polynomials generate prime ideals, prove that they generate maximal ideal.).} The proof then follows from noting $A$ as a $k$-module is generated by $1,y,\dots ,y^{\operatorname{deg}f-1}$. \\
 
+Let $m\geq 2$. If $y_i'$ are algebraically independent, then $y_i\triangleq y_i'$ suffices trivially. Suppose not.
 
-Suppose $m=1$. Clearly, $A\cong  k[y]\quotient I$ as $k$-algebras where  $I\subseteq k[y]$ is the ideal of polynomials vanishing at $y_1'$. If $I=0$, then the proof is trivial\footnote{$k[y]$ is a PID (To see this, just consider smallest degree element and division algorithm.). Its nonzero prime ideals are exactly those whose generator is irreducible (To see irreducible polynomials generate prime ideals, prove that they generate maximal ideal.).}. \\
-
-Suppose $I=\langle f\rangle $ and that  $f$ has degree $e$. Clearly $A$ is finitely generated as a  $k$-module with generators $\set{1,y^1,\dots ,y^{e-1}}$. \\
-
-(So $\operatorname{Krudim}(A)=0$. HOW?) 
-
-Suppose $m\geq 2$. If $y_i'$ are algebraically independent, then we are done.  (Remains to show Krudim)  \\
+(Remains to show Krudim)  \\
 
 
 
 
 
 \end{proof}
+
+(So $\operatorname{Krudim}(A)=0$. HOW? Because $A=k[y]\quotient I$ and $I$ nonzero  $\operatorname{Krudim}(k[y])=1$) 
  If $A$ is itself a field and the algebra-defining ring homomorphism $k \longrightarrow A$ forms an injective field homomorphism, then we can talk about the \textbf{transcendence degree $\operatorname{trdeg}_k A$ of $A$ over  $k$}. By Zorn's Lemma, there exists some maximal algebraically independent subset $E \subseteq A$, and by an argument similar to that for vector space, two maximal algebraically independent subsets $E_1,E_2 \subseteq A$ must have the same cardinality. It thus make sense for us to talk about the transcendence degree $\operatorname{trdeg}_k A$. 
 
 \chapter{Variety}
-\section{Affine variety}
-Let $k$ be some algebraically closed field. We use the notation $\A^n$ to denote the \textbf{affine $n$-space} over $k$, the Cartesian product $k^n$. Given some collection $S \subseteq k[x_1,\dots ,x_n]$ of polynomials, we use notation $V(S)= \set{a \in \A^n:F(a)=0\text{ for all }F \in S}$ to denote its \textbf{zero set (locus)}, and given $Y \subseteq \A^n$, we use notation $I(Y)$ to denote the ideal of polynomials that vanish on $Y$. If $Y \subseteq \A^n$ is the locus of some $S \subseteq k[x_1,\dots ,x_n]$, we say $T$ is \textbf{algebraic}. Clearly this give rise to a topology on $\A^n$, the  \textbf{Zariski topology}, where one define $Y\subseteq \A^n$ to be closed if and only if $Y$ is algebraic\footnote{Note that $V(S_1)\cup V(S_2)=V(\set{f_1f_2:f_1 \in S_1,f_2\in S_2})$ and $\bigcap V(S_\alpha )=V (\bigcup S_\alpha )$}. Note that we have $I(\overline{Y})=I(Y)$ for all $Y \subseteq \A^n$, and in summary, we have the (not commutative) diagram:  
-\[\begin{tikzcd}
-\label{di1}
-  {\text{subsets of }\A^n} && {\text{ideals of }k[x_1,\dots,x_n]} \\
-	\\
-                           & {\text{ closed set of }\A^n}
-	\arrow["I", from=1-1, to=1-3]
-	\arrow["V", from=1-3, to=3-2]
-	\arrow[hook', from=3-2, to=1-1]
-\end{tikzcd}\]
-Even thought not commutative at the top two nodes, indeed the diagram is commutative at the node below: 
-\begin{align}
-\label{VVIV}
-V=V(I(V)),\quad \text{for all closed $V \subseteq \A^n$ }
-\end{align}
-\footnote{Because of \myref{Equation}{VVIV}, if $V_1 \neq V_2$, then $I(V_1)\neq I(V_2)$}Moreover, because we require $k$ to be closed, we have \customref{HN}{Hilbert's Nullstellensatz}:
-\begin{align*}
-I(V(I))=\sqrt{I},\quad \text{ for all ideal }I \subseteq k[x_1,\dots, x_n]
-\end{align*}
-As later we will show, \customref{HN}{Nullstellensatz} is indeed very powerful. Let $X$ be a topological space. We say $X$ is  \textbf{Noetherian} if its closed set satisfies d.c.c. Note that subspace $Y$ of Noetherian space $X$ is also Noetherian\footnote{Given $X_1\cap Y \supseteq X_2 \cap Y \supseteq\cdots $, we have $X_n \cap Y=X_1 \cap  \cdots \cap X_n\cap Y$, and the descending chain $X_1\supseteq X_1 \cap X_2 \supseteq \cdots$ must stop.}. We say $Y \subseteq X$ is \textbf{irreducible} if $Y$ is nonempty and cannot be expressed as the union of two proper subsets, each closed in $Y$. Immediately, we have the following properties:
-\begin{enumerate}[label=(\Alph*)]
-  \item Nonempty open subset of an irreducible space is always dense.  \label{NAA}
-  \item Given $Z \subseteq Y \subseteq X$, if $Z$ is irreducible in  $Y$, then  $Z$ is irreducible in $X$. If $Z$ irreducible in $X$ and  $Y$ closed, then  $Z$ is irreducible in $Y$.   
-  \item  By \customref{HBT}{Hilbert's basis theorem}, every closed set in $\A^1$, even if $k$ is not closed, must be either finite or the whole space. \label{CnD}
-  \item Because of (B), if $k$ is infinite, then $\A^1$ is irreducible, which in particular apply to the usual case when $k$ is closed.\footnote{To see algebraically closed field is infinite, assume not and consider $1+ \prod (x-y_i)$ where $y_i$ runs over all element.} 
-  \item  $Y\subseteq \A^n$ is irreducible if and only if $I(Y)$ is prime, and in such case if $Y$ moreover is closed, we call $Y$ an \textbf{(affine) variety}. This in particular shows that $\A^n$ are irreducible, as  $I(\A^n)=0$, another proof of (D). 
+\section{Topology of Zariski}
+Let $X$ be a topological space. We say $X$ is \textbf{irreducible} if $X$ can not be written as union of two proper closed subset of $X$.    
+\begin{equiv_def}
+\textbf{(Irreducible topology)} Given topological space $X$, the followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $X$ is irreducible. 
+  \item Every nonempty open subset of $X$ is dense. 
+  \item Every two nonempty open subset of $X$ have nonempty intersection. 
 \end{enumerate}
-Because of \customref{HN}{Nullstellensatz},    we see that $I$ in the \customref{di1}{above triangular diagram} forms a bijection between varieties in $\A^n$ with  $\operatorname{Spec}(k[x_1,\dots ,x_n])$\footnote{Let $a \in \A^n$. Clearly, $\set{a}$ is an variety.}, and in particular forms a bijection between points in $\A^n$ with  $\operatorname{Max}(k[x_1,\dots ,x_n])$\footnote{Using \customref{WfoN}{the weak form of Nullstellensatz}, if $\mathfrak{m}\subseteq k[x_1,\dots ,x_n]$ is maximal, then one construct isomorphism $\pfi: k[x_1,\dots ,x_n]\quotient \mathfrak{m}\to k$ and set $a_i\triangleq x_i$ to see $\pfi([f])=f(a)$ and $\set{a}=V(\mathfrak{m})$}. \
+\end{equiv_def}
+\begin{proof}
+$\hspace{3cm}$
+  \\
+(i)$\implies $(ii): If nonempty open $Y\subseteq X$ is not dense, then $\overline{Y}$ is proper closed and $X=\overline{Y}\cup (X-Y)$.
+
+(ii)$\implies $(iii): Assume for a contradiction $Y_1,Y_2\subseteq X$ are nonempty open that have empty intersection. One get a contradiction from  $\overline{Y_1}=X$ and $Y_1\subseteq X-Y_2$.
+
+(iii)$\implies $(i): Assume for a contradiction $X$ is reducible, says, $X=Y_1\cup Y_2$. One get a contradiction from noting $X-Y_1$ and $X-Y_2$ have empty intersection. 
+\end{proof}
+If we say a subset of some topological space is \textbf{irreducible}, we mean that that subset when given the subspace topology is irreducible. Let $X$ be some arbitrary topological space. In other words, $Y\subseteq X$ is irreducible if and only if $Y$ can not be written as  $Y=(F_1 \cap Y)\cup  (F_2\cap Y)$ where $F_1,F_2 \subseteq X$ are closed and don't contain $Y$. From this point of view, clearly, if $Y \subseteq X$ is irreducible, then so is $\overline{Y}$. By Zorn's Lemma\footnote{Clearly $\set{x}$ is irreducible. Let $E_n$ be an ascending chain of irreducible set containing  $x$. To see its upper bound is also irreducible, assume it isn't and cause a contradiction by showing  $E_n$ are reducible for large  $n$.}, every $x \in X$ has some not necessarily unique maximal irreducible set $Y$ containing $x$. We call these maximal irreducible sets  \textbf{irreducible components of $X$}. Because closure of an irreducible set is also irreducible, irreducible components are closed. \\
+
+Let $X$ be a topological space. We say $X$ is  \textbf{Noetherian} if its closed sets satisfy descending chain condition. Clearly, subspace $Y$ of Noetherian space $X$ is also Noetherian\footnote{Given $X_1\cap Y \supseteq X_2 \cap Y \supseteq\cdots $, we have $X_n \cap Y=X_1 \cap  \cdots \cap X_n\cap Y$, and the descending chain $X_1\supseteq X_1 \cap X_2 \supseteq \cdots$ must stop.}. 
+\begin{equiv_def}
+\textbf{(Noetherian topology)} Given topological space $X$, the followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $X$ is Noetherian 
+  \item Open sets of $X$ satisfy ascending chain condition. 
+  \item Every subset of $X$ is compact. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+  (i)$\implies $(ii) is clear.\\
+
+  (ii)$\implies $(iii):  Assume for a contradiction $Y\subseteq X$ has an open cover $\mathcal{U}$ that has no finite subcover. Fix $E_1 \in \mathcal{U}$. Because $\mathcal{U}$ has no finite subcover, there exists $E_2 \in \mathcal{U}$ such that $E_2\cap Y-(E_1\cap Y)$ is nonempty, i.e., $E_1\cup E_2$ strictly contain $E_1$. Again, because $\mathcal{U}$ has no finite subcover, there exists $E_3 \in \mathcal{U}$ such that $E_3\cap Y - ((E_1 \cup  E_2) \cap Y)$ is nonempty. Repeating the same process, we construct a non-stopping ascending chain of open sets: $E_1 \subset E_1\cup E_2 \subset E_1 \cup  E_2 \cup E_3 \subset \cdots $, a contradiction. \\
+
+  (iii)$\implies $(i): Let $F_n$ be a descending chain of closed subsets of  $X$. Clearly $X-F_n$ is an ascending chain and forms an open cover of $X- \bigcap F_n$. It follows from compactness of $X- \bigcap F_n$ that descending chain $F_n$ must stops permanently at some point.
+\end{proof}
+As we shall see, most of the topologies studied in this note are Noetherian, and indeed they have nice relationship with irreducibility. 
 \begin{theorem}
-\textbf{(Existence and uniqueness of irreducible decomposition of affine algebraic set)} Given any closed $V\subseteq \A^n$, (even if $k$ is not closed) there always exists unique irreducible algebraic $V_1,\dots ,V_m \subseteq \A^n$ such that 
+\label{TfoL}
+\textbf{(Topological form of Lasker-Noether Theorem)} If topological space $X$ is Noetherian, then for every nonempty closed $V\subseteq X$,  there always exists unique irreducible closed $V_1,\dots ,V_m \subseteq X$ such that 
 \begin{gather}
-V= V_1 \cup  \cdots \cup  V_m \text{ and }V_i \not \subseteq V_j \text{ for all }i,j. 
+V= V_1 \cup  \cdots \cup  V_m 
 \end{gather}
+and every $V_i$ is necessary in the sense that $\bigcup_{j\neq i}V_j\neq V$. 
 \end{theorem}
 \begin{proof}
-Note that if $V$ has an irreducible decomposition, then we may delete the unnecessary terms to have an irredundant irreducible decomposition of $V$. We now prove that every affine algebraic sets of $\A^n$ has an irreducible decomposition.\\  
+Note that if $V$ can be written as some finite union of irreducible closed subsets, then we may delete the unnecessary terms so that every term in the union is necessary. We now prove that every $V$ can be written as a finite union of irreducible closed subset.\\  
 
-Let $\mathscr{S}$ be the collection of affine algebraic sets that has no irreducible decomposition. Assume for a contradiction that $\mathscr{S}$ is nonempty, and let $I(V)$ be a maximal element of the collection of defining ideals of elements of $\mathscr{S}$. Note that because $V\in \mathscr{S}$, we know $V$ is reducible: $V=V_1 \cup  V_2$. Because $V$ is minimum in $\mathscr{S}$\footnote{$V$ is minimum because $V_1 \subseteq V_2\implies I(V_1)\supseteq I(V_2)$ for all affine algebraic sets $V_1,V_2$.}, we know $V_1,V_2$ both have irreducible decomposition, which implies $V$ also has an irreducible decomposition, a contradiction. \\
+Let $\mathscr{S}$ be the collection of nonempty closed subset of $X$ that can not be written as finite union of irreducible closed subsets. Assume for a contradiction that $\mathscr{S}$ is nonempty. Because $X$ is Noetherian, $\mathscr{S}$ have some minimal element, say $Y$. Because $Y$ is reducible, we may write $Y=Y_1\cup Y_2$, where $Y_1$ and $Y_2$ are both closed and contained strictly by $Y$. By minimality of $Y \in \mathscr{S}$, $Y_1$ and  $Y_2$ can both be written as finite union of irreducible closed subset, a contradiction\footnote{Because $Y=Y_1 \cup  Y_2$.}. \\
 
-It remains to prove the uniqueness of irredundant irreducible decomposition of a fixed algebraic set $V \subseteq \A^n$, so suppose 
+It remains to prove the uniqueness of expression of $V$, so suppose 
 \begin{align*}
 V= V_1 \cup  \cdots \cup  V_m = W_1 \cup  \cdots \cup  W_r
 \end{align*}
-are two irredundant irreducible decomposition. Note that for each $i$, because $V_i$ is irreducible and we have decomposition $V_i = \bigcup (W_j \cap V_i)$, we have $V_i \subseteq W_j$. The same procedure yields $W_j \subseteq V_p$ for some $p$, from which we can use irredundancy to deduce  $V_i=W_j=V_p$. This implies the uniqueness. 
+where $V_i,W_j$ are all irreducible closed and "necessary". For each $i$, because $V_i$ is irreducible and $V_i = \bigcup (W_j \cap V_i)$, we have $V_i \subseteq W_j$ for some fixed $j$. The same argument yields $W_j\subseteq V_p$ for some fixed $p$. It then follows from the "necessity" that $V_i=W_j$. This implies uniqueness. 
 \end{proof}
-Let $X$ be a topological space. We define the \textbf{dimension of $X$} to be the supremum of all integers $n$ such that there exists a chain $\varnothing =Z_0 \subset Z_1 \subset \cdots \subset Z_n$ of distinct irreducible closed subsets of $X$. Immediately we see same wanted property of our definition for dimension: Given subspace $Y\subseteq X$, we have $\operatorname{topdim}(Y)\leq \operatorname{topdim}(X)$\footnote{To prove this, you will need $Y_0$ closed in  $Y\implies Y_0=\overline{Y_0}\cap Y$.}; Because of \customref{CnD}{(C) ad (D)}, clearly $\A^1$ is $1$-dimensional as expected. We will show in the \customref{DT}{section on Dimension Theory} that indeed for all $n$, $\A^n$ is  $n$-dimensional.   
+Let $X$ be a Noetherian topological space. \customref{TfoL}{Topological form of Lasker-Noether Theorem} tell us that $X$, uniquely, can be written as  $X=V_1\cup  \cdots \cup V_m$ where $V_i$ are all irreducible closed and necessary in this union. One may conjecture that these $V_i$ are exactly the irreducible components of $X$. This is true indeed. Fix $j$. To see  $V_j$ is an irreducible component, let $W$ be some irreducible component containing  $V_j$. We are required to show $W=V_j$. Because $W= \bigcup (W\cap V_i)$ and $W$ is an irreducible component\footnote{So $W\cap V_i$ are all closed. Recall that irreducible components are closed, since closure of irreducible set is also irreducible.}, we must have $W\subseteq V_l$ for some $l$. It then follows from the "necessity: that $j=l$ and  $V_j=W$. Conversely, let $W$ be some irreducible component of  $X$. We are required to show $W$ is one of $V_i$. Because $W$ is irreducible and  $W=\bigcup (W\cap V_i)$, we have $W \subseteq V_i$ for some $i$,which by maximality of $W$ implies  $W=V_i$.\\
+
+We close this section by introducing the idea of variety dimension in a purely topological setting. Let $X$ be a topological space. We define the \textbf{dimension of $X$} to be the supremum of all integers $n$ such that there exists a chain $\varnothing =Z_0 \subset Z_1 \subset \cdots \subset Z_n$ of distinct irreducible closed subsets of $X$. Immediately we see same wanted property of our definition for dimension: Given subspace $Y\subseteq X$, we have $\operatorname{topdim}(Y)\leq \operatorname{topdim}(X)$.\footnote{To prove this, you will need: $Y_i$ closed in  $Y\implies Y_i=\overline{Y_i}\cap Y$.}
+\section{Affine variety}
+Let $k$ be some field. We use the notation $\A^n$ to denote the \textbf{affine $n$-space} over $k$, the Cartesian product $k^n$. Given some collection $S \subseteq k[x_1,\dots ,x_n]$ of polynomials, we use notation $V(S)= \set{a \in \A^n:F(a)=0\text{ for all }F \in S}$ to denote its \textbf{zero set (locus)}, and given $X \subseteq \A^n$, we use notation $I(X)$ to denote the ideal of polynomials that vanish on $X$. If $X \subseteq \A^n$ is the locus of some $S \subseteq k[x_1,\dots ,x_n]$, we say $X$ is \textbf{algebraic}. Clearly this give rise to a topology on $\A^n$, the  \textbf{Zariski topology}, in which $X\subseteq \A^n$ is closed if and only if $X$ is algebraic\footnote{Note that $V(S_1)\cup V(S_2)=V(\set{f_1f_2:f_1 \in S_1,f_2\in S_2})$ and $\bigcap V(S_\alpha )=V (\bigcup S_\alpha )$}. Clearly, we have 
+\begin{align}
+\label{ovlX}
+ \overline{X}=V(I(X)),\quad \text{ for all }X \subseteq \A^n
+\end{align}
+Already, at this early stage, we have the prime-irreducibility correspondence: 
+\begin{theorem}
+\label{Pic}
+\textbf{(Prime-irreducibility correspondence)} For all  $X\subseteq \A^n$, 
+\begin{align*}
+X\text{ is irreducible }\iff  I(X)\text{ is prime  }
+\end{align*}
+\end{theorem}
+\begin{proof}
+$(\implies )$: Assume $fg\in I(X)$ and $f,g\not \in I(X)$ for a contradiction. Because $fg$ vanishes on  $X$, we have  $X=(X\cap V(f))\cup (X\cap V(g))$. Because neither  $f$ nor  $g$ vanish on  $X$, we see that  $X\cap V(f)\neq X \neq X\cap V(g)$, a contradiction. \\
+
+$(\impliedby)$: Assume for a contradiction that $X=(X\cap V_1)\cup (X\cap V_2)$ for some $V_1,V_2$ such that neither of them covers $X$. Clearly, there exists some $f \in I(V_1)$ that doesn't vanish on the whole $X$. This $f$ satisfies $I(V_1)-I(X)$. Similar argument gives us some $g \in I(V_2)-I(X)$, but $fg \in I(X)$, a contradiction to $I(X)$ being prime. 
+\end{proof}
+\begin{corollary}
+\textbf{(Irreducible criteria in affine spaces)} For all $X \subseteq \A^n$, 
+\begin{align*}
+X\text{ is irreducible }\iff \overline{X}\text{ is irreducible }
+\end{align*}
+\end{corollary}
+\begin{proof}
+If $X$ is irreducible, then $I(\overline{X})=I(X)$ is prime. If $\overline{X}$ is irreducible, then $I(X)=I(\overline{X})$ is prime. 
+\end{proof}
+
+
+
+Because  \customref{HBT}{Hilbert's Basis Theorem} only require the underlying ring of polynomials to be Noetherian, which all fields are, we can already deduce some important properties from the hypothesis (as weak as this hypothesis is) that $k$ is a field. For example, one may show $\A^n$ as a topological space is Noetherian\footnote{Given descending chain of closed subset $X_0\supset X_1 \supset \cdots \supset X_m$ of $\A^n$, we must have $I(X_0)\subset I(X_1)\subset \cdots \subset I(X_m)$ where the inequalities hold true because of \myref{Equation}{ovlX}. Now recall that \customref{HBT}{Hilbert's Basis Theorem} guarantees $k[x_1,\dots ,x_n]$ is Noetherian.}, every closed $X\subseteq \A^n$ is of the form $X=V(f_1,\dots ,f_m)$ for some $f_1,\dots ,f_m \in k[x_1,\dots ,x_n]$,\footnote{For its reason, consider \customref{EDoN}{the third equivalent definition of Noetherian module}.}  and $\A^n$ is irreducible if, moreover,  $k$ is infinite: 
+\begin{theorem}
+\textbf{(Polynomial Identity Principal)} Let $k$ be an infinite field and $F \in k[x_1,\dots ,x_n]$. If $F(\textbf{a})=0$ for all $\textbf{a}\in \A^n$, then $F=0$. 
+\end{theorem}
+\begin{proof}
+We prove by induction on $n$. Base case $n=1$ follows from fundamental theorem of algebra and taking algebraic closure  $\overline{k}$. Suppose the assertion hold true for $n-1$, and write 
+ \begin{align*}
+F(x_1,\dots ,x_n)= \sum_{i=0}^{d} G_i(x_1,\dots ,x_{n-1})x_n^i,\quad \text{ where }d=\operatorname{deg}_{x_n}F
+\end{align*}
+Premise $F(\textbf{a})=0,\forall \textbf{a}\in \A^n$ and base case together implies that $G_i(\textbf{x})=0$ for all $i$ and $\textbf{x}\in \A^{n-1}$, which by inductive hypothesis implies $G_i=0\in k[x_1,\dots ,x_{n-1}]$ for all $i$.
+\end{proof}
+\begin{corollary}
+\textbf{(Affine space is irreducible if the underlying field is infinite)} If field $k$ is infinite, then $\A^n$ as a topological space is irreducible. 
+\end{corollary}
+\begin{proof}
+Assume for a contradiction that $\A^n=V(f_1,\dots ,f_r)\cup V(g_1,\dots ,g_m)$ where the two closed set are both proper subset of  $\A^n$. Clearly  $f_1\cdots f_rg_1\cdots g_m$ vanish identically on $\A^n$. This implies  $f_1\cdots f_rg_1\cdots g_m=0 \in k[x_1,\dots ,x_n]$, which implies one of them is zero, a contradiction. 
+\end{proof}
+Most of the time we require $k$ to be closed. In such case, we call irreducible closed sets of $\A^n$  \textbf{affine varieties}, and we have the powerful \customref{HN}{ Nullstellensatz}:
+\begin{align*}
+I(V(I))=\sqrt{I},\quad \text{ for all ideal }I \subseteq k[x_1,\dots, x_n]
+\end{align*}
+As \myref{Theorem}{Pic} have already shown, functor: 
+\begin{align*}
+\set{X \subseteq \A^n : X\text{ is a variety.}}\xlongrightarrow{I} \operatorname{Spec}(k[x_1,\dots,x_n])
+\end{align*}
+is injective. \customref{HN}{Nullstellensatz} moreover shows that this functor is surjective. In particular, $I$ forms a bijection between points in $\A^n$ with  $\operatorname{Max}(k[x_1,\dots ,x_n])$\footnote{Using \customref{WfoN}{the weak form of Nullstellensatz}, if $\mathfrak{m}\subseteq k[x_1,\dots ,x_n]$ is maximal, then one construct isomorphism $\pfi: k[x_1,\dots ,x_n]\quotient \mathfrak{m}\to k$ and set $a_i\triangleq x_i$ to see $\pfi([f])=f(a)$ and $\set{a}=V(\mathfrak{m})$}. \\
+
 \section{Projective variety}
 Given some ring $A$ and monoid $M$, by a $M$-\textbf{grading on $A$}, we mean a collection $(A_m)_{m \in M}$ of subgroup of the additive group of $A$ such that $A= \bigoplus A_m$\footnote{The direct sum is a direct sum of groups.} and $A_mA_n\subseteq A_{m+n}$\footnote{You may interpret $A_mA_n$ as  $\set{a_ma_n \in A:a_n \in A_m,a_n \in A_n}$ here.} for all $m,n \in M$. Fix $a \in A$. If $a=a_{m_1}+ \cdots + a_{m_r}$ for $a_{m_i} \in A_{m_i}$, we say $a_{m_i}$ are the \textbf{homogeneous components of $a$}, and if $r=1$ we say $a$ is a \textbf{homogeneous element}.  Note that there is  ambiguity whether $0$ should be considered homogeneous. If one consider $0$  homogeneous, then $0$ should have arbitrary degree.\\ 
 
-We say an ideal $I \subseteq A$ is \textbf{homogeneous} if $I$ have a set of generators that are all homogeneous, or equivalently, if $I= \bigoplus I \cap A_n$. Note that the sum, product, and intersection of homogeneous ideals are homogeneous. Clearly, if $M=\Z_0$ or  $\Z_0^+$, then $A_0$ forms a subring of  $A$\footnote{To see $1 \in A_0$, consider the highest graded component of $1$ and $1=1\cdot 1$.}; $A_i$ all form obvious $A_0$-modules; and radical of homogeneous ideal remain homogeneous\footnote{If $(x_1+\cdots +x_r)^l \in I$ with $x_r$ highest grade and $I$ homogeneous, then since the highest grade term of $(x_1+\cdots +x_r)^l$ is $x_r^l$, we have  $x_r \in \sqrt{I}$, which implies $x_1+\cdots + x_{r-1} \in \sqrt{I}$.}.\\
+We say an ideal $I \subseteq A$ is \textbf{homogeneous} if $I$ have a set of generators that are all homogeneous, or equivalently, if $I= \bigoplus I \cap A_n$. Note that the sum, product, and intersection of homogeneous ideals are homogeneous. Clearly, if $M=\Z$ or  $\Z_0^+$, then $A_0$ forms a subring of  $A$\footnote{To see $1 \in A_0$, consider the highest graded component of $1$ and $1=1\cdot 1$.}; $A_i$ all form obvious $A_0$-modules; and radical of homogeneous ideal remain homogeneous\footnote{If $(x_1+\cdots +x_r)^l \in I$ with $x_r$ highest grade and $I$ homogeneous, then since the highest grade term of $(x_1+\cdots +x_r)^l$ is $x_r^l$, we have  $x_r \in \sqrt{I}$, which implies $x_1+\cdots + x_{r-1} \in \sqrt{I}$.}.\\
 
 
 
@@ -1340,7 +1423,7 @@ E \overset{\text{closed}}{\subseteq}X \subseteq V \overset{\text{closed}}{\subse
 
 
 Given some quasi affine variety $X\subseteq \A^n$ and $f:X \rightarrow  k$, we say $f$ is \textbf{regular at $p \in X$} if there exist $U\subseteq X$ open in $X$ containing $p$ and exist $g,h \in k[x_1,\dots ,x_n]$ such that $h$ nonzero on $U$ and  $f=g\quotient h$ on $U$. Given some quasi projective variety $X \subseteq \P^n$ and $f:X \rightarrow k$, in the projective setting we say $f$ is \textbf{regular at $p \in X$} if there exists $U \subseteq X$ containing $p$ and exist homogeneous $g,h \in k[x_0,\dots,x_n]$ such that $h$ nonzero on $U$, $f=g\quotient h$ on $U$, and $g,h$ have same degree. Given a quasi variety $X$, we say  $f:X\rightarrow k$ is \textbf{regular} if it is regular at each points of $X$, and we denote the \textbf{ring of regular function on $X$} by $\mathscr{O}(X)$. \label{rorf} 
-\footnote{It is IMPORTANT to deduce that regular functions indeed forms a ring here, since it is impossible to later check transitivity of \myref{equivalence}{UCO} purely topologically, without using the algebraic result of one regular functions minus another is still regular, thus continuous. I guess the moral of the story here is that one must remember  $\A^1$ is a field, and thus have a field structure (or that if something forms an algebraic structure, then utilize that structure as much as possible), which shall be used when topological method doesn't work; Indeed, we are talking about ALGEBRAIC geometry here.}
+\footnote{It is IMPORTANT to deduce that regular functions indeed forms a ring here, since it is impossible to later check transitivity of \myref{equivalence}{UCO} purely topologically, without using the algebraic result of one regular functions minus another is still regular, thus continuous. I guess the moral of the story here is that one must remember  $\A^1$ is a field, and thus have a field structure, which shall be used when topological method doesn't work; or that if something forms an algebraic structure, then utilize that structure as much as possible.  Indeed, we are talking about ALGEBRAIC geometry here.}
 \begin{theorem}
 \label{Rfac}
 \textbf{(Regular functions are continuous)} Given quasi variety $X\subseteq \A^n$ (or $\P^n$), if $f:X\rightarrow k$ is regular, then $f$ is continuous.  
@@ -1474,7 +1557,7 @@ a_{n_r}= \sum_{i=1}^{r-1} a_{n_i} + b,\quad \text{ for some }b \in I
 Note that $I$ is homogeneous, so there exists unique decomposition of $b=a_{n_r}-\sum_{i=1}^{r-1}a_{n_i}$ as elements of $A_n \cap I$. By comparing the degrees of the elements of the unique decomposition of $b$ and $a_{n_r}-\sum_{i=1}^{r-1}a_{n_i}$, we see that the unique decomposition of $b$ is exactly $a_{n_r}-\sum_{i=1}^{r-1}a_{n_i}$, i.e., $a_{n_i} \in I$ for all $i\leq r$. 
 \end{proof}
 Let $X$ be a projective quasi variety. From now on, we regard $\Gamma (X)$ as a $\Z_0^+$-graded ring, whose grading come from \myref{Theorem}{Ogot}. 
-\section{Segre Embedding and Category of Varieties (Just started)}
+\section{Category of Quasi Varieties}
 \label{SE}
 Fix $n$ and $m$. In this section, we express elements of $\P^{(n+1)(m+1)-1}$ (non uniquely, of course) as matrices:  
 \begin{align*}
@@ -1804,4 +1887,28 @@ If $f=gh \in K[x_1,\dots ,x_n]$ is reducible, then $f=g(rh)\in A[x_1,\dots ,x_n]
 \label{un2}
 \textbf{()} If $k$ is an infinite filed, and $F\in k[x_1,\dots ,x_n]$ maps all $a \in \A^n$ to $0$, then  $F=0$. 
 \end{proposition}
+\section{Archived}
+Moreover, clearly we have
+\begin{align*}
+I(\overline{X})=I(X),\quad\text{for all }X \subseteq \A^n
+\end{align*}
+and in summary, we have the (not commutative) diagram:  
+\[\begin{tikzcd}
+\label{di1}
+  {\text{subsets of }\A^n} && {\text{ideals of }k[x_1,\dots,x_n]} \\
+	\\
+                           & {\text{ closed set of }\A^n}
+	\arrow["I", from=1-1, to=1-3]
+	\arrow["V", from=1-3, to=3-2]
+	\arrow[hook', from=3-2, to=1-1]
+\end{tikzcd}\]
+Even thought not commutative at the top two nodes, indeed the diagram is commutative at the node below: 
+\begin{align}
+\label{VVIV}
+V=V(I(V)),\quad \text{for all closed $V \subseteq \A^n$ }
+\end{align}
+  \item  By \customref{HBT}{Hilbert's basis theorem}, every closed set in $\A^1$, even if $k$ is not closed, must be either finite or the whole space. \label{CnD}
+  \item Because of (B), if $k$ is infinite, then $\A^1$ is irreducible, which in particular apply to the usual case when $k$ is closed.\footnote{To see algebraically closed field is infinite, assume not and consider $1+ \prod (x-y_i)$ where $y_i$ runs through all elements.} 
+  \item  $Y\subseteq \A^n$ is irreducible if and only if $I(Y)$ is prime, and in such case if $Y$ moreover is closed, we call $Y$ an \textbf{(affine) variety}. This in particular shows that $\A^n$ are irreducible, as  $I(\A^n)=0$, another proof of (D). 
+ Because of \customref{CnD}{(C) ad (D)}, clearly $\A^1$ is $1$-dimensional as expected. We will show in the \customref{DT}{section on Dimension Theory} that indeed for all $n$, $\A^n$ is  $n$-dimensional.   
 \end{document}
