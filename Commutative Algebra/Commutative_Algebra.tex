@@ -1076,107 +1076,59 @@ D\text{ is a Dedekind domain }\iff \text{ every nonzero fractional ideal of $D$ 
 
 Let $\mathfrak{b}$ be an integral ideal of $D_\mathfrak{p}$, and define $\mathfrak{a}\triangleq \mathfrak{b}\cap D$. Clearly $\mathfrak{a}$ is an integral ideal of $D$, so by premise, $\mathfrak{a}$ is invertible. It now follows from $\mathfrak{b}=\mathfrak{a}_\mathfrak{p}$\footnote{You may check this.} and the fact \customref{Iialp}{invertibility is a local property} that $\mathfrak{b}$ is invertible of $D_\mathfrak{p}$. 
 \end{proof}
-\chapter{Great Theorems like a bridge}
-\section{Hilbert's Nullstellensatz and basis theorem}
-\label{FGN}
-\begin{theorem}
-\label{HBT}
-\textbf{(Hilbert's Basis Theorem)} If $A$ is Noetherian, than the polynomial ring $A[x]$ is also Noetherian. 
-\end{theorem}
+\chapter{Completion}
+\section{Completion}
+Let $G$ be simultaneously a group and a topological space. We say $G$ is a \textbf{topological group} if addition $(x,y)\mapsto x+y$ and negation $x\mapsto -x$ are both continuous. 
+\begin{equiv_def}
+\textbf{(Topological Group)} Let $G$ be simultaneously a group and a topological space. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $G$ is a topological group. 
+  \item $G\times G\rightarrow G;(x,y)\mapsto x-y$ is continuous.  
+\end{enumerate}
+\end{equiv_def}
 \begin{proof}
-Let $X$ be an ideal in  $A[x]$. We are required to show that $X$ is finitely generated. Let $I$ be the ideal in $A$  that contains exactly the leading coefficients of elements of  $X$. Because $A$ is Noetherian, we may let $I=  \langle a_1,\dots ,a_n\rangle $ and let $f_1,\dots ,f_n \in X$ have leading coefficients $a_1,\dots ,a_n$. Let $X'\triangleq \langle f_1,\dots ,f_n\rangle \subseteq X$ and let $r\triangleq  \max \set{\operatorname{deg}(f_1),\dots ,\operatorname{deg}(f_n)}$.\\
-
-We first show 
-\begin{align}
-\label{23X}
-X= \Big(X \cap \langle 1,x,\dots ,x^{r-1}\rangle \Big) + X'
-\end{align}
-Let $f\in X$ with $\operatorname{deg}(f)=m$ and leading coefficients $a$. We wish to show $f \in (X \cap \langle 1,x,\dots ,x^{r-1}\rangle )+X'$. Because $a \in I$, we may find some $u_i \in A$ such that $a= \sum u_i a_i$. Clearly, these $u_i$ satisfy
+  (i)$\implies $(ii): Because subtraction is the composition:  
 \begin{align*}
-f- \sum u_if_ix^{m-\operatorname{deg}(f_i)} \in X,\quad \text{and }\sum u_i f_ix^{m-\operatorname{deg}(f_i)}\in X'
+G\times G\xrightarrow{(x,y)\mapsto (x,-y)} G\times G \xrightarrow{(x,y)\mapsto x+y} G
 \end{align*}
-and satisfy
+To see the first map is continuous, just observe both components of $(x,y)\mapsto (x,-y)$ are continuous.\footnote{The universal property of product topology implies that $f:X\rightarrow \prod Y_i$ is continuous if and only if $f_i$ are all continuous.}\\
+
+(ii)$\implies $(i): Note that negation is the composition: 
 \begin{align*}
-\operatorname{deg}\Big(f- \sum u_i f_i x^{m-\operatorname{deg}(f_i)}\Big)<m
+G \xrightarrow{x\mapsto (0,x)} G\times G \xrightarrow{(x,y)\mapsto (x-y)}  G
 \end{align*}
-Proceeding this way, we end up with $f-g=h$ where  $g\in X'$ and $h \in X \cap \langle 1,x,\dots ,x^{r-1}\rangle $. We have proved \myref{Equation}{23X}. Now, because $X'$ is finitely generated, to show  $X$ is finitely generated, it only remains to show the ideal $X \cap \langle 1,x,\dots ,x^{r-1}\rangle $  is finitely generated, which follows immediately from noting $\langle 1,x,\dots ,x^{r-1}\rangle $ as a module is Noetherian.    
-\end{proof}
-\begin{theorem}
-\label{WfoN}
-\textbf{(Weak form of Nullstellensatz)} Given field $k$ and finitely generated  $k$-algebra  $B$, if  $B$ is a field then it is a finite algebraic extension of $k$.  
-\end{theorem}
-\begin{proof}
-A proof can be found in the end of Chapter 5 of Atiyah-MacDonald. Another proof can be found in Chapter 7 of Atiyah-MacDonald, at page 82.
-\end{proof}
-\begin{theorem}
-\label{HN}
-\textbf{(Hilbert's Nullstellensatz)} Given algebraically closed field $k$ and ideal  $I\subseteq k[x_1,\dots ,x_n]$. If we let $V$ be the locus of $I$: 
+Again to see the first map is continuous, just observe that both components of $x\mapsto (0,x)$ are continuous. Note that addition is the composition: 
 \begin{align*}
-V\triangleq   \set{x\in k^n : F(x)=0\text{ for all }F \in I}
+G \times G \xrightarrow{(x,y)\mapsto (x,-y)} G\times G \xrightarrow{(x,y)\mapsto x-y} G 
 \end{align*}
-and let $J$ be the defining ideal of $V$: 
- \begin{align*}
-J\triangleq  \set{F \in k[x_1,\dots ,x_n]: F(x)=0\text{ for all }x \in V}
-\end{align*}
-then $J = \sqrt{I}$. 
-\end{theorem}
-\begin{proof}
-  $\sqrt{I}\subseteq J$ is clear. Assume for a contradiction that $F \in J - \sqrt{I}$. \customref{raed}{Because $F \not\in \sqrt{I}$, there exists some prime $\mathfrak{p}\subseteq k[x_1,\dots ,x_n]$ that contains $\sqrt{I}$ but does not contain $F$}. Denote 
+The fact that the second components of the first map is continuous follows from the fact that negation is continuous. 
+\end{proof}
+Recall that given topological space $X$ and sequence  $\set{x_n}$ in $X$, we say $x_n \rightarrow y$ if for all neighborhood $U$ of  $y$, there exists some  $s(U)$ such that $x_n \in U$ for all $n\geq s(U)$. Let $G$ be an abelian topological group\footnote{We must require $G$ to be abelian here, so that we don't have to talk about notions like "left converge", "right converge", "left Cauchy," and "right Cauchy". For more information, see comments of this MO post: https://mathoverflow.net/questions/150703/completion-of-abelian-topological-groups# that give a reference to Bourbaki.}. Because $U+x$ are open for any open  $U\subseteq G$ and $x \in G$,\footnote{You may check that the translation $z\mapsto z-x$ is continuous.} we see that in $G$, 
 \begin{align*}
-B \triangleq k[x_1,\dots ,x_n]\quotient  \mathfrak{p} \text{ and }g\triangleq [F] \in B\text{ and }C\triangleq B_g
+x_n \rightarrow y \iff (x_n-y) \rightarrow 0. 
 \end{align*}
-Let $\mathfrak{m}$ be some maximal ideal of $C$. Because of the $k$-algebra homomorphism diagram: 
- \begin{align}
-\label{kdm}
-k[x_1,\dots ,x_n]\xrightarrow{\text{ring quotient}}  B\xrightarrow{\text{localization}} C\xrightarrow{\text{ring quotient}} C \quotient \mathfrak{m}
-\end{align}
-We see that  by  \customref{HBT}{Hilbert Basis Theorem}, \myref{theorem}{cpoN}, and \customref{EDoN}{equivalent definition of Noetherian},  $C\quotient \mathfrak{m}$ is finitely generated over $k$, thus a finite algebraic extension of $k$ by  \customref{WfoN}{weak form of Nullstellensatz}. Because $k$ is algebraically closed, this implies $C\quotient \mathfrak{m}\cong  k$. \\
-
-Now, for each  $1\leq i\leq n$, let $t_i\in k\cong C\quotient \mathfrak{m}$ be the image of $x_i\in k[x_1,\dots ,x_n]$ under the $k$-module homomorphism in \myref{diagram}{kdm}.  Letting $t\triangleq (t_1,\dots ,t_n)\in k^n$, it is easy to check\footnote{Recall $k[x_1,\dots ,x_n]=\langle x_1,\dots ,x_n\rangle $.} by direct computation that \myref{diagram}{kdm} have action $G \in k[x_1,\dots ,x_n]\mapsto G(t)\in k$. Because  $I \subseteq \mathfrak{p}$, by construction of $B$ we see \myref{diagram}{kdm} maps every element of $I$ to $0\in k$. Yet, at the same time the image of $F$ in $C$ is a unit by construction of  $C$, which implies the image of $F$ in the quotient ring $C\quotient \mathfrak{m}$ is nonzero. We have shown $t \in V$ and $F(t)\neq 0$, a contradiction. 
-\end{proof}
-\section{Noether Normalization Lemma (Half way there)}
-Let $k$ be a field and $A$ a $k$-algebra. If we say $E\subseteq A$ is \textbf{algebraically independent over $k$}, we mean that there exists no $\set{y_1,\dots ,y_n}\subseteq E$ and polynomial $F\neq 0 \in k[x_1,\dots ,x_n]$ such that $F(y_1,\dots ,y_n)=0$. Before stating our version of \customref{NNL}{Noether Normalization Lemma}, we should prove what we should have proved in \customref{Id}{the previous section on Integral Dependence}, so one can see the equivalency between our version and others. 
-\begin{theorem}
-\label{IaFT1}
-\textbf{(Integral and Finite Type)} Given rings $B\subseteq A$, if $x_1,\dots ,x_n \in A$ are integral over $B$, then  $B[x_1,\dots ,x_n]$ as a $B$-module finitely generated. 
-\end{theorem}
-\begin{proof}
-We shall prove by induction on $n$.  Base case $n=1$ follows from \customref{EDfid}{the second definition of integral dependence}. Let $n> 1$.  Trivially, $x_n$ is integral over $B[x_1,\dots ,x_{n-1}]$, so it follows from  \customref{EDfid}{the second definition of integral dependence} that $B[x_1,\dots ,x_n]=(B[x_1,\dots,x_{n-1}])[x_n]$ is finitely generated as a $B[x_1,\dots ,x_{n-1}]$-module. Now, because inductive hypothesis said that $B[x_1,\dots ,x_{n-1}]$ is finitely generated as a $B$-module, we see from \myref{theorem}{Fgas}\footnote{You may check that the module structures here all agree with scalar extension.} that indeed $B[x_1,\dots ,x_n]$ is finitely generated as a $B$-module.
-\end{proof}
-\begin{corollary}
-\textbf{(Integral and Finite Type)} Let $k$ be a field, and $A$ a finitely generated a $k$-algebra. Given any $y_1,\dots ,y_r \in A$, we have
+Let $G$ be an abelian topological group. We say a sequence $\set{x_n}$ in  $G$ is a \textbf{Cauchy sequence} if for all neighborhood  $U$ of $0$, there exists some integer $s(U)$ such that 
 \begin{align*}
-A\text{ as a $k[y_1,\dots ,y_r]$-module is finitely generated }\iff A\text{ is integral over }k[y_1,\dots ,y_r] 
+x_n-x_m \in U \text{ for all }n,m\geq s(U)
 \end{align*}
-\end{corollary}
-\begin{proof}
-$(\implies):$ This follows from  \customref{EDfid}{the third definition of integral dependence}. \\
+Clearly,  we may define on the collection of Cauchy sequences in $G$ an equivalence relation by saying two Cauchy sequences $\set{x_n},\set{y_n}$ are equivalent if and only if $x_n-y_n \rightarrow 0$.\footnote{Fix $U$, and let $f:G\rightarrow G$ be the negation. There exists $N$ such that $x_n-y_n \in f^{-1}(U)$ for all $n\geq N$. Such $N$ suffices to prove symmetry. Let  $g:G\times G\rightarrow G$ be the addition. There exists open $O_1,O_2\subseteq G$ such that $O_1 \times O_2 \subseteq g^{-1}(U)$, and there exists $N$ such that  $x_n-y_n \in O_1$ and $y_n-z_n \in O_2$. Such $N$ suffices to prove transitivity.} We denote the equivalence class of Cauchy sequences in $G$ by  $\widehat{G}$. Clearly we may well-define the obvious group structure on $\widehat{G}$.\footnote{The argument for well-definedness of group structure is the same as that for well-definedness of equivalence class.} \\
 
-$(\impliedby):$ Because $A$ is finitely generated as a $k$-algebra, there exists some $m$ and $y_1',\dots ,y_m'\in A$ such that $A=k[y_1',\dots,y_m']$. The proof then follows from  $A=(k[y_1,\dots ,y_r])[y_1',\dots ,y_m']$ and \myref{Theorem}{IaFT1}. 
-\end{proof}
-\begin{theorem}
-\label{NNL}
-\textbf{(Noether Normalization Lemma)} Let $k$ be a field. If $A$ is a finitely generated $k$-algebra, says, 
+Let $G$ be an abelian topological group, and let $N$ be a neighborhood of  $0$. We denote $\widehat{N}\subseteq \widehat{G}$ the collection of equivalence class $[x_n]$ such that for every $\set{y_n}\in [x_n]$, there exists integer $M$ such that $y_n \in N$ for all $n\geq M$. Clearly, the collection of $U\subseteq \widehat{G}$ such that: 
 \begin{align*}
-A= k[y_1',\dots ,y_m']\text{ for smallest }m,
+\text{ For all $[x_n]\in U$ there exists neighborhood $N\subseteq G$ of $0$ such that  $[x_n]+ \widehat{N}\subseteq U$  }
 \end{align*}
-then there exists $y_1,\dots ,y_r \in A$ algebraically independent over $k$ such that  $A$ as a $k[y_1,\dots ,y_r]$-module is finitely generated. 
-\end{theorem}
-\begin{proof}
-We shall prove by induction on $m$.  Consider the base case $m=1$. If $y_1'$ is algebraic independent over  $k$, then $y_1 \triangleq y_1'$ suffices trivially. If not, then clearly $A$ as a $k$-algebra is isomorphic to the quotient  $k[y]\quotient I$, where $k[y]$ is the formal polynomial ring and $I$ is the (clearly nonzero) ideal of polynomials vanishing at $y_1'$. Let $f$ be the generator of $I$.\footnote{$k[y]$ is a PID (To see this, just consider smallest degree element and division algorithm.). Its nonzero prime ideals are exactly those whose generator is irreducible (To see irreducible polynomials generate prime ideals, prove that they generate maximal ideal.).} The proof then follows from noting $A$ as a $k$-module is generated by $1,y,\dots ,y^{\operatorname{deg}f-1}$. \\
+forms a topology on $\widehat{G}$.\footnote{To see that this topology is indeed closed under finite intersection, show $\widehat{N_1 \cap N_2}\subseteq \widehat{N_1}\cap \widehat{N_2}$} \\
 
-Let $m\geq 2$. If $y_i'$ are algebraically independent, then $y_i\triangleq y_i'$ suffices trivially. Suppose not.
-
-(Remains to show Krudim)  \\
-
+Suppose moreover that $G$ has a \textbf{local basis} at  $0$ with the form: 
+\begin{align*}
+G=G_0 \supseteq G_1 \supseteq G_2 \supseteq \cdots,\quad \text{ where }G_i\text{ are all subgroups of $G$. }
+\end{align*}
+In other words, we have a descending chain of subgroups $G_i$ such that $G_i$ are all open and every neighborhood of  $0$ contains some $G_i$.  
 
 
 
 
-\end{proof}
 
-(So $\operatorname{Krudim}(A)=0$. HOW? Because $A=k[y]\quotient I$ and $I$ nonzero  $\operatorname{Krudim}(k[y])=1$) 
- If $A$ is itself a field and the algebra-defining ring homomorphism $k \longrightarrow A$ forms an injective field homomorphism, then we can talk about the \textbf{transcendence degree $\operatorname{trdeg}_k A$ of $A$ over  $k$}. By Zorn's Lemma, there exists some maximal algebraically independent subset $E \subseteq A$, and by an argument similar to that for vector space, two maximal algebraically independent subsets $E_1,E_2 \subseteq A$ must have the same cardinality. It thus make sense for us to talk about the transcendence degree $\operatorname{trdeg}_k A$. 
 
 \chapter{Variety}
 \section{Topology of Zariski}
@@ -1306,6 +1258,95 @@ We say an ideal $I \subseteq A$ is \textbf{homogeneous} if $I$ have a set of gen
 
 
 
+
+
+
+Let $k$ be some field. Clearly, we may define on $k^{n+1} - \set{0}$ an equivalence relation by setting
+\begin{align*}
+a \sim  b \overset{\triangle}{\iff } a = \ld  b,\quad \text{ for some }\ld \in k
+\end{align*}
+Similar to the affine $n$-space, we use the notation $\P^n$  to represent the set of equivalence class of $k^{n+1}$. Clearly, when we give the polynomial ring $k[x_0,\dots,x_n]$ the obvious grading, a polynomial $f\in k[x_0,\dots ,x_n]$ is homogeneous in the graded sense if and only if it is homogeneous in the usual sense\footnote{i.e., every term has the same degree.}. Suppose $f\in k[x_0,\dots ,x_n]$. Even though the value of $f$ on $\P^n$ is not well-defined, if $f$ is homogeneous then indeed it is well-defined whether $f(p)=0$ for fixed $p \in \P^n$, so it make sense for us to talk about the \textbf{(projective) algebraic set} $V(S)= \set{p \in \P^n: f(p)=0\text{ for all }f\in S}$ for every collection $S\subseteq k[x_1,\dots ,x_{n+1}]$ of homogeneous polynomial. Trivially, for each algebraic $V \subseteq \P^n$, the \textbf{defining ideal of $V$}, the ideal generated by homogeneous $f \in k[x_0,\dots ,x_n]$ that vanishes on $V$, is homogeneous, and moreover, contains only polynomials that "vanishes on  $V$ in the obvious sense". Again this give rise to \textbf{Zariski topology} on $\P^n$ where $E \subseteq \P^n$ is closed if and only if $E$ is algebraic. \\
+
+
+Similar to the affine case (\myref{Equation}{ovlX}), we have 
+\begin{align*}
+\overline{X}=V(I(X)),\quad \text{ for all }X\subseteq \P^n
+\end{align*}
+Let $\pi :\A^{n+1}- \set{0}\rightarrow \P^n$ be the quotient map. 
+
+\begin{align*}
+V_\P(\mathfrak{a})\triangleq V(\mathfrak{a})= \big\{[x_0,\dots ,x_n] \in \P^n : F(x_0,\dots ,x_n)=0\text{ for all }F\in \mathfrak{a}\big\}
+\end{align*}
+and the notation 
+\begin{align*}
+  V_\A(\mathfrak{a}) \triangleq  \set{(x_0,\dots ,x_n) \in \A^{n+1} : F(x_0,\dots ,x_n)=0\text{ for all }F \in \mathfrak{a}}
+\end{align*}
+
+
+ Note that if $k$ is algebraically closed and subset $V\subseteq \P^n$ is Zariski closed and irreducible, then again we say $V$ is a \textbf{projective variety}. \\
+\begin{theorem}
+\textbf{(Homogeneous or Projective Nullstellensatz)} Given algebraically closed field $k$ and homogeneous ideal $\mathfrak{a} \subseteq k[x_0,\dots ,x_n]$, if $V(\mathfrak{a})$ is nonempty\footnote{This implies $\mathfrak{a}$ contains no nonzero constant.}, then 
+\begin{align*}
+I(V(\mathfrak{a}))=\sqrt{\mathfrak{a}} 
+\end{align*}
+\end{theorem}
+\begin{proof}
+Clearly we have: 
+\begin{align*}
+\sqrt{\mathfrak{a}}\subseteq I(V(\mathfrak{a}))
+\end{align*}
+We now prove $I(V(\mathfrak{a}))\subseteq \sqrt{\mathfrak{a}} $. Note that in order to prove this, we shall distinguish the notation 
+\begin{align*}
+V_\P(\mathfrak{a})\triangleq V(\mathfrak{a})= \big\{[x_0,\dots ,x_n] \in \P^n : F(x_0,\dots ,x_n)=0\text{ for all }F\in \mathfrak{a}\big\}
+\end{align*}
+and the notation 
+\begin{align*}
+  V_\A(\mathfrak{a}) \triangleq  \set{(x_0,\dots ,x_n) \in \A^{n+1} : F(x_0,\dots ,x_n)=0\text{ for all }F \in \mathfrak{a}}
+\end{align*}
+Because \customref{HN}{affine Nullstellensatz} said that $\sqrt{\mathfrak{a}}=I(V_\A(\mathfrak{a}))$, we only have to prove $I(V_\P(\mathfrak{a}))\subseteq I(V(\mathfrak{a})) $. Let $\pi :\A^{n+1} \rightarrow \P^n$ be the quotient map. For all homogeneous ideal $I \subseteq k[x_0,\dots ,x_n]$, we have 
+\begin{align*}
+\pi  (V_\A (I))=V_\P(I)
+\end{align*}
+
+
+Fix homogeneous $F \in I (V_\P (\mathfrak{a}))$. Because by premise $V_{\P}(\mathfrak{a})$  is nonempty, we know $F$ can not be nonzero constant. 
+
+
+Fix  $F \in I(V(\mathfrak{a}))$.  
+
+
+\footnote{Clearly $\mathfrak{a}\subseteq I(V(\mathfrak{a}))$. This implies $\sqrt{\mathfrak{a}}\subseteq I(V(\mathfrak{a}))$, since if $F^n$ vanish on $V(\mathfrak{a})$, then $F$ must also vanish on $V(\mathfrak{a})$.} 
+
+
+We are required to prove $F^n \in \mathfrak{a}$ for some $n$. If $F=0$, then we are done. Suppose $F\neq 0$. Because $V(\mathfrak{a})$ is nonempty, clearly $F$ can not be nonzero constant, i.e., $\operatorname{deg}(F)>0$. Clearly 
+\end{proof}
+\begin{theorem}
+\textbf{(Special case of projective Nullstellensatz)} Given homogeneous ideal $\mathfrak{a}\subseteq k[x_0,\dots ,x_n]$, the followings are equivalents: 
+\begin{enumerate}[label=(\roman*)]
+  \item $V(\mathfrak{a})$ is empty. 
+  \item $\sqrt{\mathfrak{a}}=k[x_0,\dots ,x_n]$ or $\sqrt{\mathfrak{a}}=\set{F \in k[x_0,\dots ,x_n]:F(0)=0}$. 
+  \item For some  $d>0$, we have  $\set{F \in k[x_0,\dots ,x_n]:\operatorname{deg}(F)=d}\subseteq \mathfrak{a}$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+\begin{theorem}
+\label{Ste}
+\textbf{(Standard topological embedding of $\A^n$ into  $\P^n$)} Let $k$ be a field\footnote{It needs not to be algebraically closed.}, and $U\triangleq \P^n - V(x_0)$\footnote{Clearly $x_0 \in k[x_0,\dots ,x_n]$ is homogeneous.}. The map $\phi: U\rightarrow \A^n$  
+\begin{align*}
+\phi \left([x_0:\cdots :x_n]\right)\triangleq \left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
+\end{align*}
+is a well-defined homeomorphism. 
+\end{theorem}
+\begin{proof}
+It is routine to check $\phi$ is well-defined and bijective. We now prove it is indeed bicontinuous. Let $S$ be the set of homogeneous elements of $k[x_0,\dots ,x_n]$. Clearly, we may well-define mapping  $\alpha :S \to k[x_1,\dots ,x_n],\beta :k[x_1,\dots ,x_n]\to S$\footnote{The setting of $\alpha$ and $\beta $ are standard. Respectively, they are called \textbf{dehomogenization} and \textbf{homogenization}. Their actions are actually easy to memorize. Homogenization send $y-x^2$ to  $wy-x^2$ and send  $z-x^3$ to  $zw^2-x^3$.} by 
+\begin{align*}
+\alpha (f)\triangleq f(1,x_1,\dots ,x_n)\text{ and }\beta (g)\triangleq x_0^{\operatorname{deg}(g)} g\left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
+\end{align*}
+Now, let $Y\subseteq U$ be closed in $U$, and let $\overline{Y}$ be the closure of $Y$ in $\P^n$. By definition, there exists some collection  $T$ of homogeneous polynomials $f \in k[x_0,\dots ,x_n]$ whose locus is exactly $\overline{Y}$. To see $\phi (Y)$ is closed, just check $\phi (Y)= V(\alpha (T))$. Conversely, given closed $W \subseteq \A^n$, one have $\phi^{-1}(W)=V(\beta  (I(W)))\cap U$\footnote{You will need the fact $V(I(W))=W$ in the proof of this equality, which holds true because $W$ is closed.}. 
+\end{proof}
 Let $A$ be a graded ring, and $\mathfrak{p}\subseteq A$ a homogeneous prime ideal. Clearly the set $S$ of homogeneous elements not in $\mathfrak{p}$ forms a multiplicatively closed subset.  
 \begin{theorem}
 \label{Ogoh}
@@ -1385,37 +1426,20 @@ which implies
 a contradiction to the premise  $r_0\neq r_1$. 
 \end{proof}
 Again, we use the notation $A_{(f)}$ to denote the $(A_f)_0$ in \myref{Theorem}{Ogoh2}. \\
-
-
-
-Let $k$ be some field. Clearly, we may define on $k^{n+1} - \set{0}$ an equivalence relation by setting
-\begin{align*}
-a \sim  b \overset{\triangle}{\iff } a = \ld  b,\quad \text{ for some }\ld \in k
-\end{align*}
-Similar to the affine $n$-space, we use the notation $\P^n_k$, or  $\P^n$  when $k$ is understood, to represent the set of equivalence class of $k^{n+1}$. \\
-
-Clearly, when we give the polynomial ring $k[x_0,\dots,x_n]$ the obvious grading, a polynomial $f\in k[x_0,\dots ,x_n]$ is homogeneous in the graded sense if and only if it is homogeneous in the usual sense\footnote{i.e., every term has the same degree.}. Suppose $f\in k[x_0,\dots ,x_n]$. Even though the value of $f$ on $\P^n$ is not well-defined, if $f$ is homogeneous then indeed it is well-defined whether $f(p)=0$ for fixed $p \in \P^n$, so it make sense for us to talk about the \textbf{(projective) algebraic set} $V(S)= \set{p \in \P^n: f(p)=0\text{ for all }f\in S}$ for every collection $S\subseteq k[x_1,\dots ,x_{n+1}]$ of homogeneous polynomial. Trivially, for each algebraic $V \subseteq \P^n$, the \textbf{defining ideal of $V$}, the ideal generated by homogeneous $f \in k[x_0,\dots ,x_n]$ that vanishes on $V$, is homogeneous, and moreover, contains only polynomials that "vanishes on  $V$ in the obvious sense". \\
-
-
-
-Again this give rise to \textbf{Zariski topology} on $\P^n$ where $E \subseteq \P^n$ is closed if and only if $E$ is algebraic. Note that we define the notions \textbf{projective variety} and \textbf{dimension} similar to before.
-\begin{theorem}
-\label{Ste}
-\textbf{(Standard topological embedding of $\A^n$ into  $\P^n$)} Let $k$ be a field\footnote{It needs not to be algebraically closed.}, and $U\triangleq \P^n - V(x_0)$\footnote{Clearly $x_0 \in k[x_0,\dots ,x_n]$ is homogeneous.}. The map $\phi: U\rightarrow \A^n$  
-\begin{align*}
-\phi \left([x_0:\cdots :x_n]\right)\triangleq \left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
-\end{align*}
-is a well-defined homeomorphism. 
-\end{theorem}
-\begin{proof}
-It is routine to check $\phi$ is well-defined and bijective. We now prove it is indeed bicontinuous. Let $S$ be the set of homogeneous elements of $k[x_0,\dots ,x_n]$. Clearly, we may well-define mapping  $\alpha :S \to k[x_1,\dots ,x_n],\beta :k[x_1,\dots ,x_n]\to S$\footnote{The setting of $\alpha$ and $\beta $ are standard. Respectively, they are called \textbf{dehomogenization} and \textbf{homogenization}. Their actions are actually easy to memorize. Homogenization send $y-x^2$ to  $wy-x^2$ and send  $z-x^3$ to  $zw^2-x^3$.} by 
-\begin{align*}
-\alpha (f)\triangleq f(1,x_1,\dots ,x_n)\text{ and }\beta (g)\triangleq x_0^{\operatorname{deg}(g)} g\left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
-\end{align*}
-Now, let $Y\subseteq U$ be closed in $U$, and let $\overline{Y}$ be the closure of $Y$ in $\P^n$. By definition, there exists some collection  $T$ of homogeneous polynomials $f \in k[x_0,\dots ,x_n]$ whose locus is exactly $\overline{Y}$. To see $\phi (Y)$ is closed, just check $\phi (Y)= V(\alpha (T))$. Conversely, given closed $W \subseteq \A^n$, one have $\phi^{-1}(W)=V(\beta  (I(W)))\cap U$\footnote{You will need the fact $V(I(W))=W$ in the proof of this equality, which holds true because $W$ is closed.}. 
-\end{proof}
 \section{Morphism}
-By a \textbf{quasi affine (or projective) variety} $X\subseteq \A^n$ (resp. $\P^n$), we mean  $X$ is a subset of some variety $V \subseteq \A^n$ (resp. $\P^n$) and $X$ is open in $V$, equivalently, we can define $X$ to be a quasi variety if and only if $X$ is open in $\overline{X}$\footnote{Because we will always have  $\overline{X}\subseteq V$}. One key property for quasi variety $X$ is that, their closed sets are always intersection of algebraic set and $X$, since 
+By a \textbf{quasi affine (or projective) variety} $X\subseteq \A^n$ (resp. $\P^n$), we mean  $X$ is a subset of some variety $V \subseteq \A^n$ (resp. $\P^n$) and $X$ is open in $V$.
+\begin{equiv_def}
+\textbf{(Quasi variety)} Given $X\subseteq \A^n$ (or $\P^n$), we have
+\begin{align*}
+X\text{ is a quasi variety }\iff  X\text{ is irreducible and }X\text{ is open in }\overline{X}
+\end{align*}
+\end{equiv_def}
+\begin{proof}
+
+\end{proof}
+
+
+equivalently, we can define $X$ to be a quasi variety if and only if $X$ is open in $\overline{X}$\footnote{Because we will always have  $\overline{X}\subseteq V$}. One key property for quasi variety $X$ is that, their closed sets are always intersection of algebraic set and $X$, since 
 \begin{align*}
 E \overset{\text{closed}}{\subseteq}X \subseteq V \overset{\text{closed}}{\subseteq} (\A^n\text{ or }\P^n)\implies  \quad   E= \operatorname{cl}_V(E)\cap X
 \end{align*}
@@ -1911,4 +1935,107 @@ V=V(I(V)),\quad \text{for all closed $V \subseteq \A^n$ }
   \item Because of (B), if $k$ is infinite, then $\A^1$ is irreducible, which in particular apply to the usual case when $k$ is closed.\footnote{To see algebraically closed field is infinite, assume not and consider $1+ \prod (x-y_i)$ where $y_i$ runs through all elements.} 
   \item  $Y\subseteq \A^n$ is irreducible if and only if $I(Y)$ is prime, and in such case if $Y$ moreover is closed, we call $Y$ an \textbf{(affine) variety}. This in particular shows that $\A^n$ are irreducible, as  $I(\A^n)=0$, another proof of (D). 
  Because of \customref{CnD}{(C) ad (D)}, clearly $\A^1$ is $1$-dimensional as expected. We will show in the \customref{DT}{section on Dimension Theory} that indeed for all $n$, $\A^n$ is  $n$-dimensional.   
+
+\chapter{The Great Theorems}
+\section{Hilbert's Nullstellensatz and basis theorem}
+\label{FGN}
+\begin{theorem}
+\label{HBT}
+\textbf{(Hilbert's Basis Theorem)} If $A$ is Noetherian, than the polynomial ring $A[x]$ is also Noetherian. 
+\end{theorem}
+\begin{proof}
+Let $X$ be an ideal in  $A[x]$. We are required to show that $X$ is finitely generated. Let $I$ be the ideal in $A$  that contains exactly the leading coefficients of elements of  $X$. Because $A$ is Noetherian, we may let $I=  \langle a_1,\dots ,a_n\rangle $ and let $f_1,\dots ,f_n \in X$ have leading coefficients $a_1,\dots ,a_n$. Let $X'\triangleq \langle f_1,\dots ,f_n\rangle \subseteq X$ and let $r\triangleq  \max \set{\operatorname{deg}(f_1),\dots ,\operatorname{deg}(f_n)}$.\\
+
+We first show 
+\begin{align}
+\label{23X}
+X= \Big(X \cap \langle 1,x,\dots ,x^{r-1}\rangle \Big) + X'
+\end{align}
+Let $f\in X$ with $\operatorname{deg}(f)=m$ and leading coefficients $a$. We wish to show $f \in (X \cap \langle 1,x,\dots ,x^{r-1}\rangle )+X'$. Because $a \in I$, we may find some $u_i \in A$ such that $a= \sum u_i a_i$. Clearly, these $u_i$ satisfy
+\begin{align*}
+f- \sum u_if_ix^{m-\operatorname{deg}(f_i)} \in X,\quad \text{and }\sum u_i f_ix^{m-\operatorname{deg}(f_i)}\in X'
+\end{align*}
+and satisfy
+\begin{align*}
+\operatorname{deg}\Big(f- \sum u_i f_i x^{m-\operatorname{deg}(f_i)}\Big)<m
+\end{align*}
+Proceeding this way, we end up with $f-g=h$ where  $g\in X'$ and $h \in X \cap \langle 1,x,\dots ,x^{r-1}\rangle $. We have proved \myref{Equation}{23X}. Now, because $X'$ is finitely generated, to show  $X$ is finitely generated, it only remains to show the ideal $X \cap \langle 1,x,\dots ,x^{r-1}\rangle $  is finitely generated, which follows immediately from noting $\langle 1,x,\dots ,x^{r-1}\rangle $ as a module is Noetherian.    
+\end{proof}
+\begin{theorem}
+\label{WfoN}
+\textbf{(Weak form of Nullstellensatz)} Given field $k$ and finitely generated  $k$-algebra  $B$, if  $B$ is a field then it is a finite algebraic extension of $k$.  
+\end{theorem}
+\begin{proof}
+A proof can be found in the end of Chapter 5 of Atiyah-MacDonald. Another proof can be found in Chapter 7 of Atiyah-MacDonald, at page 82.
+\end{proof}
+\begin{theorem}
+\label{HN}
+\textbf{(Hilbert's Nullstellensatz)} Given algebraically closed field $k$ and ideal  $I\subseteq k[x_1,\dots ,x_n]$. If we let $V$ be the locus of $I$: 
+\begin{align*}
+V\triangleq   \set{x\in k^n : F(x)=0\text{ for all }F \in I}
+\end{align*}
+and let $J$ be the defining ideal of $V$: 
+ \begin{align*}
+J\triangleq  \set{F \in k[x_1,\dots ,x_n]: F(x)=0\text{ for all }x \in V}
+\end{align*}
+then $J = \sqrt{I}$. 
+\end{theorem}
+\begin{proof}
+  $\sqrt{I}\subseteq J$ is clear. Assume for a contradiction that $F \in J - \sqrt{I}$. \customref{raed}{Because $F \not\in \sqrt{I}$, there exists some prime $\mathfrak{p}\subseteq k[x_1,\dots ,x_n]$ that contains $\sqrt{I}$ but does not contain $F$}. Denote 
+\begin{align*}
+B \triangleq k[x_1,\dots ,x_n]\quotient  \mathfrak{p} \text{ and }g\triangleq [F] \in B\text{ and }C\triangleq B_g
+\end{align*}
+Let $\mathfrak{m}$ be some maximal ideal of $C$. Because of the $k$-algebra homomorphism diagram: 
+ \begin{align}
+\label{kdm}
+k[x_1,\dots ,x_n]\xrightarrow{\text{ring quotient}}  B\xrightarrow{\text{localization}} C\xrightarrow{\text{ring quotient}} C \quotient \mathfrak{m}
+\end{align}
+We see that  by  \customref{HBT}{Hilbert Basis Theorem}, \myref{theorem}{cpoN}, and \customref{EDoN}{equivalent definition of Noetherian},  $C\quotient \mathfrak{m}$ is finitely generated over $k$, thus a finite algebraic extension of $k$ by  \customref{WfoN}{weak form of Nullstellensatz}. Because $k$ is algebraically closed, this implies $C\quotient \mathfrak{m}\cong  k$. \\
+
+Now, for each  $1\leq i\leq n$, let $t_i\in k\cong C\quotient \mathfrak{m}$ be the image of $x_i\in k[x_1,\dots ,x_n]$ under the $k$-module homomorphism in \myref{diagram}{kdm}.  Letting $t\triangleq (t_1,\dots ,t_n)\in k^n$, it is easy to check\footnote{Recall $k[x_1,\dots ,x_n]=\langle x_1,\dots ,x_n\rangle $.} by direct computation that \myref{diagram}{kdm} have action $G \in k[x_1,\dots ,x_n]\mapsto G(t)\in k$. Because  $I \subseteq \mathfrak{p}$, by construction of $B$ we see \myref{diagram}{kdm} maps every element of $I$ to $0\in k$. Yet, at the same time the image of $F$ in $C$ is a unit by construction of  $C$, which implies the image of $F$ in the quotient ring $C\quotient \mathfrak{m}$ is nonzero. We have shown $t \in V$ and $F(t)\neq 0$, a contradiction. 
+\end{proof}
+\section{Noether Normalization Lemma (Half way there)}
+Let $k$ be a field and $A$ a $k$-algebra. If we say $E\subseteq A$ is \textbf{algebraically independent over $k$}, we mean that there exists no $\set{y_1,\dots ,y_n}\subseteq E$ and polynomial $F\neq 0 \in k[x_1,\dots ,x_n]$ such that $F(y_1,\dots ,y_n)=0$. Before stating our version of \customref{NNL}{Noether Normalization Lemma}, we should prove what we should have proved in \customref{Id}{the previous section on Integral Dependence}, so one can see the equivalency between our version and others. 
+\begin{theorem}
+\label{IaFT1}
+\textbf{(Integral and Finite Type)} Given rings $B\subseteq A$, if $x_1,\dots ,x_n \in A$ are integral over $B$, then  $B[x_1,\dots ,x_n]$ as a $B$-module finitely generated. 
+\end{theorem}
+\begin{proof}
+We shall prove by induction on $n$.  Base case $n=1$ follows from \customref{EDfid}{the second definition of integral dependence}. Let $n> 1$.  Trivially, $x_n$ is integral over $B[x_1,\dots ,x_{n-1}]$, so it follows from  \customref{EDfid}{the second definition of integral dependence} that $B[x_1,\dots ,x_n]=(B[x_1,\dots,x_{n-1}])[x_n]$ is finitely generated as a $B[x_1,\dots ,x_{n-1}]$-module. Now, because inductive hypothesis said that $B[x_1,\dots ,x_{n-1}]$ is finitely generated as a $B$-module, we see from \myref{theorem}{Fgas}\footnote{You may check that the module structures here all agree with scalar extension.} that indeed $B[x_1,\dots ,x_n]$ is finitely generated as a $B$-module.
+\end{proof}
+\begin{corollary}
+\textbf{(Integral and Finite Type)} Let $k$ be a field, and $A$ a finitely generated a $k$-algebra. Given any $y_1,\dots ,y_r \in A$, we have
+\begin{align*}
+A\text{ as a $k[y_1,\dots ,y_r]$-module is finitely generated }\iff A\text{ is integral over }k[y_1,\dots ,y_r] 
+\end{align*}
+\end{corollary}
+\begin{proof}
+$(\implies):$ This follows from  \customref{EDfid}{the third definition of integral dependence}. \\
+
+$(\impliedby):$ Because $A$ is finitely generated as a $k$-algebra, there exists some $m$ and $y_1',\dots ,y_m'\in A$ such that $A=k[y_1',\dots,y_m']$. The proof then follows from  $A=(k[y_1,\dots ,y_r])[y_1',\dots ,y_m']$ and \myref{Theorem}{IaFT1}. 
+\end{proof}
+\begin{theorem}
+\label{NNL}
+\textbf{(Noether Normalization Lemma)} Let $k$ be a field. If $A$ is a finitely generated $k$-algebra, says, 
+\begin{align*}
+A= k[y_1',\dots ,y_m']\text{ for smallest }m,
+\end{align*}
+then there exists $y_1,\dots ,y_r \in A$ algebraically independent over $k$ such that  $A$ as a $k[y_1,\dots ,y_r]$-module is finitely generated. 
+\end{theorem}
+\begin{proof}
+We shall prove by induction on $m$.  Consider the base case $m=1$. If $y_1'$ is algebraic independent over  $k$, then $y_1 \triangleq y_1'$ suffices trivially. If not, then clearly $A$ as a $k$-algebra is isomorphic to the quotient  $k[y]\quotient I$, where $k[y]$ is the formal polynomial ring and $I$ is the (clearly nonzero) ideal of polynomials vanishing at $y_1'$. Let $f$ be the generator of $I$.\footnote{$k[y]$ is a PID (To see this, just consider smallest degree element and division algorithm.). Its nonzero prime ideals are exactly those whose generator is irreducible (To see irreducible polynomials generate prime ideals, prove that they generate maximal ideal.).} The proof then follows from noting $A$ as a $k$-module is generated by $1,y,\dots ,y^{\operatorname{deg}f-1}$. \\
+
+Let $m\geq 2$. If $y_i'$ are algebraically independent, then $y_i\triangleq y_i'$ suffices trivially. Suppose not.
+
+(Remains to show Krudim)  \\
+
+
+
+
+
+\end{proof}
+
+(So $\operatorname{Krudim}(A)=0$. HOW? Because $A=k[y]\quotient I$ and $I$ nonzero  $\operatorname{Krudim}(k[y])=1$) 
+ If $A$ is itself a field and the algebra-defining ring homomorphism $k \longrightarrow A$ forms an injective field homomorphism, then we can talk about the \textbf{transcendence degree $\operatorname{trdeg}_k A$ of $A$ over  $k$}. By Zorn's Lemma, there exists some maximal algebraically independent subset $E \subseteq A$, and by an argument similar to that for vector space, two maximal algebraically independent subsets $E_1,E_2 \subseteq A$ must have the same cardinality. It thus make sense for us to talk about the transcendence degree $\operatorname{trdeg}_k A$. 
+
 \end{document}
