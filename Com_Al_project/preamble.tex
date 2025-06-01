@@ -1,3 +1,4 @@
+
 %%%%%%%%%%%%%% preamble.tex %%%%%%%%%%%%%%
 \usepackage[T1]{fontenc}
 \usepackage{etoolbox}
@@ -8,6 +9,7 @@
 \usepackage{tikz}
 \usepackage{mathrsfs}
 \usepackage{mdframed}
+\usepackage[new]{old-arrows}
 
 % Create a new toggle
 \newtoggle{firstsection}
@@ -106,7 +108,8 @@
 \newtheorem{lemma}[theorem]{Lemma}  
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{axiom}[theorem]{Axiom}
-
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{equiv_def}[theorem]{Equivalent Definition}
 
 % tcolorbox Setup
 \usepackage[most,many,breakable]{tcolorbox}
@@ -223,6 +226,16 @@
 
 
 \usepackage{tikz}
+
+\usetikzlibrary{arrows} % Needed for custom arrow tips
+\usetikzlibrary{arrows.meta} % Needed for custom arrow tips
+
+\tikzcdset{
+  doubletail/.style={
+    arrows={tail reversed-tail}
+  }
+}
+\tikzstyle{double_arrow} = [thick,<->,>=stealth]
 \definecolor{doc}{RGB}{0,60,110}
 \usepackage{titletoc}
 \contentsmargin{0cm}

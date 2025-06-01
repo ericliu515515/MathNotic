@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  21 MAR 2025 18:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.6.24)  1 JUN 2025 15:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -441,6 +441,31 @@ File: md-frame-0.mdf 2013/07/01\ 1.9b: md-frame-0
 \c@mdf@env@ii=\count294
 \c@mdf@zref@counter=\count295
 Package zref Info: New property: mdf@pagevalue on input line 895.
+) (/usr/local/texlive/2023/texmf-dist/tex/latex/old-arrows/old-arrows.sty
+Package: old-arrows 2017/01/05 v2.0 Old Arrows
+\symoasy=\mathgroup5
+LaTeX Font Info:    Overwriting symbol font `oasy' in version `normal'
+(Font)                  OMS/oasy/m/n --> OMS/oasy/m/n on input line 90.
+LaTeX Font Info:    Overwriting symbol font `oasy' in version `bold'
+(Font)                  OMS/oasy/m/n --> OMS/oasy/b/n on input line 91.
+LaTeX Font Info:    Redeclaring math symbol \leftarrow on input line 93.
+LaTeX Font Info:    Redeclaring math symbol \rightarrow on input line 95.
+LaTeX Font Info:    Redeclaring math symbol \leftrightarrow on input line 97.
+LaTeX Font Info:    Redeclaring math symbol \nearrow on input line 98.
+LaTeX Font Info:    Redeclaring math symbol \searrow on input line 99.
+LaTeX Font Info:    Redeclaring math symbol \nwarrow on input line 100.
+LaTeX Font Info:    Redeclaring math symbol \swarrow on input line 101.
+LaTeX Font Info:    Redeclaring math symbol \mapstochar on input line 102.
+LaTeX Font Info:    Redeclaring math delimiter \uparrow on input line 105.
+LaTeX Font Info:    Redeclaring math delimiter \downarrow on input line 106.
+LaTeX Font Info:    Redeclaring math delimiter \updownarrow on input line 107.
+LaTeX Info: Redefining \longrightarrow on input line 117.
+LaTeX Info: Redefining \longleftarrow on input line 119.
+\symcmsy=\mathgroup6
+LaTeX Font Info:    Overwriting symbol font `cmsy' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/cmsy/m/n on input line 235.
+LaTeX Font Info:    Overwriting symbol font `cmsy' in version `bold'
+(Font)                  OMS/cmsy/m/n --> OMS/cmsy/b/n on input line 235.
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/lipsum/lipsum.sty (/usr/local/texlive/2023/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
 Package: l3keys2e 2023-02-02 LaTeX2e option processing using LaTeX3 keys
 )
@@ -514,8 +539,8 @@ LaTeX Info: Redefining \[ on input line 2953.
 LaTeX Info: Redefining \] on input line 2954.
 ) (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\symAMSa=\mathgroup5
-\symAMSb=\mathgroup6
+\symAMSa=\mathgroup7
+\symAMSb=\mathgroup8
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
@@ -698,13 +723,13 @@ Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
 \bigstrutjot=\dimen312
 )
 
-./preamble.tex:61: LaTeX Error: Option clash for package xcolor.
+./preamble.tex:63: LaTeX Error: Option clash for package xcolor.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.61 \definecolor
+l.63 \definecolor
                  {myg}{RGB}{56, 140, 70}
 The package xcolor has already been loaded with options:
   []
@@ -798,13 +823,13 @@ File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
 \BKM@id=\count341
 ))
 
-./preamble.tex:71: LaTeX Error: Option clash for package hyperref.
+./preamble.tex:73: LaTeX Error: Option clash for package hyperref.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.71 \usepackage
+l.73 \usepackage
                 {xcolor}
 The package hyperref has already been loaded with options:
   []
@@ -815,7 +840,7 @@ Adding the global options:
 to your \documentclass declaration may fix this.
 Try typing  <return>  to proceed.
 
-Package hyperref Info: Option `colorlinks' set `true' on input line 77.
+Package hyperref Info: Option `colorlinks' set `true' on input line 79.
 (/usr/local/texlive/2023/texmf-dist/tex/latex/blindtext/blindtext.sty
 Package: blindtext 2012/01/06 V2.0 blindtext-Package
  (/usr/local/texlive/2023/texmf-dist/tex/latex/tools/xspace.sty
@@ -959,9 +984,14 @@ Library (tcolorbox): 'tcbposter.code.tex' version '6.0.1'
 \c@tcb@cnt@Example=\count378
 \c@tcb@cnt@question=\count379
 \c@tcb@cnt@qstion=\count380
- (/usr/local/texlive/2023/texmf-dist/tex/latex/titlesec/titletoc.sty
+ (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryarrows.code.tex
+File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+ (/usr/local/texlive/2023/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\arrowsize=\dimen324
+)) (/usr/local/texlive/2023/texmf-dist/tex/latex/titlesec/titletoc.sty
 Package: titletoc 2021/07/05 v2.14 TOC entries
-\ttl@leftsep=\dimen324
+\ttl@leftsep=\dimen325
 )) (./macros.tex (/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
 LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
@@ -1034,13 +1064,13 @@ LaTeX Font Info:    ... okay on input line 9.
 (/usr/local/texlive/2023/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count381
-\scratchdimen=\dimen325
+\scratchdimen=\dimen326
 \scratchbox=\box137
 \nofMPsegments=\count382
 \nofMParguments=\count383
 \everyMPshowfont=\toks48
 \MPscratchCnt=\count384
-\MPscratchDim=\dimen326
+\MPscratchDim=\dimen327
 \MPnumerator=\count385
 \makeMPintoPDFobject=\count386
 \everyMPtoPDFconversion=\toks49
@@ -1084,6 +1114,10 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 )
 
 LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <16.79996> not available
+(Font)              size <17.28> substituted on input line 11.
+
+
+LaTeX Font Warning: Font shape `OMS/oasy/m/n' in size <16.79996> not available
 (Font)              size <17.28> substituted on input line 11.
 
 LaTeX Font Info:    Trying to load font information for U+msa on input line 11.
@@ -1140,6 +1174,7 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/sc' in size <16.79996> not available
 LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <12.77509> not available
 (Font)              size <12> substituted on input line 2.
 
+Missing character: There is no ; in font nullfont!
 )
 \tf@toc=\write4
 \openout4 = `ComA_project.toc'.
@@ -1149,7 +1184,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has b
 <to be read again> 
                    \relax 
 l.17 \chapter
-             {Main} [1
+             {Main Body} [1
 
 ]
 Chapter 1.
@@ -1168,25 +1203,236 @@ LaTeX Font Warning: Font shape `T1/cmr/bx/n' in size <20.16003> not available
 LaTeX Font Info:    Calculating math sizes for size <14> on input line 19.
 [2
 
-] [3] (./ComA_project.aux)
+]
+LaTeX Font Info:    Calculating math sizes for size <11.66681> on input line 56.
+
+Underfull \hbox (badness 10000) in paragraph at lines 56--57
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 68--69
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 70--71
+
+ []
+
+[3]
+Underfull \hbox (badness 10000) in paragraph at lines 84--85
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--87
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 94--95
+
+ []
+
+[4] [5]
+Underfull \hbox (badness 10000) in paragraph at lines 117--119
+
+ []
+
+
+LaTeX Warning: Hyper reference `EDoN' on page 6 undefined on input line 135.
+
+[6
+
+]
+LaTeX Font Info:    Trying to load font information for U+euf on input line 170.
+ (/usr/local/texlive/2023/texmf-dist/tex/latex/amsfonts/ueuf.fd
+File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
+)
+Underfull \hbox (badness 10000) in paragraph at lines 169--171
+
+ []
+
+[7{/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/old-arrows/oasy.enc}]
+Underfull \hbox (badness 10000) in paragraph at lines 173--174
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 175--176
+
+ []
+
+LaTeX Font Info:    Font shape `U/txmia/m/n' in size <14> not available
+(Font)              Font shape `U/txmia/m/it' tried instead on input line 187.
+LaTeX Font Info:    Font shape `U/txmia/m/n' in size <9.79996> not available
+(Font)              Font shape `U/txmia/m/it' tried instead on input line 187.
+LaTeX Font Info:    Font shape `U/txmia/m/n' in size <7> not available
+(Font)              Font shape `U/txmia/m/it' tried instead on input line 187.
+
+Underfull \hbox (badness 10000) in paragraph at lines 187--189
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
+
+ []
+
+[8
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 213--214
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 215--216
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--218
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 219--220
+
+ []
+
+[9]
+Overfull \hbox (7.12848pt too wide) in paragraph at lines 253--254
+\OML/cmm/m/it/14.4 k\OT1/cmr/m/n/14.4 [\OML/cmm/m/it/14.4 x[]; [] ; x[]\OT1/cmr/m/n/14.4 ]$ \T1/cmr/m/n/14.4 of ho-mo-ge-neous poly-no-mi-als, $\OML/cmm/m/it/14.4 V[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 S\OT1/cmr/m/n/14.4 )$ \T1/cmr/m/n/14.4 equals to ei-ther $\OML/cmm/m/it/14.4 ^^Y[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 V[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 S\OT1/cmr/m/n/14.4 ))$ \T1/cmr/m/n/14.4 or $\OML/cmm/m/it/14.4 ^^Y[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 V[]\OT1/cmr/m/n/14.4 (\OML/cmm/m/it/14.4 S\OT1/cmr/m/n/14.4 )) \OMS/cmsy/m/n/14.4 [
+ []
+
+[10] [11]
+Underfull \hbox (badness 10000) in paragraph at lines 310--311
+
+ []
+
+[12] [13
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 335--337
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 338--339
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 341--342
+
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 357--358
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 359--360
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 403--404
+
+ []
+
+[16]
+Underfull \hbox (badness 10000) in paragraph at lines 406--407
+
+ []
+
+
+LaTeX Warning: Hyper reference `sam' on page 17 undefined on input line 419.
+
+
+LaTeX Warning: Hyper reference `Lalr' on page 17 undefined on input line 419.
+
+
+LaTeX Warning: Reference `Lalr' on page 17 undefined on input line 419.
+
+
+Overfull \hbox (5.49367pt too wide) in paragraph at lines 418--420
+[][][][][]\T1/cmr/m/n/14.4 is in-deed com-mu-ta-tive, where the left and right sides are, re-spec-tively, sub-rings of $[]\OT1/cmr/m/n/14.4 (^^@\OML/cmm/m/it/14.4 X\OT1/cmr/m/n/14.4 )$
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 421--422
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 423--424
+
+ []
+
+[17]
+Underfull \hbox (badness 10000) in paragraph at lines 434--435
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 440--442
+
+ []
+
+[18] [19]
+Chapter 2.
+
+Underfull \hbox (badness 10000) in paragraph at lines 463--464
+
+ []
+
+[20
+
+]
+
+LaTeX Warning: Hyper reference `raed' on page 21 undefined on input line 500.
+
+
+LaTeX Warning: Hyper reference `cpoN' on page 21 undefined on input line 509.
+
+
+LaTeX Warning: Reference `cpoN' on page 21 undefined on input line 509.
+
+
+LaTeX Warning: Hyper reference `EDoN' on page 21 undefined on input line 509.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 508--510
+
+ []
+
+[21] (./ComA_project.aux)
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 0.99791pt have occurred.
 
+
+LaTeX Warning: There were undefined references.
+
  ) 
 Here is how much of TeX's memory you used:
- 33708 strings out of 476025
- 689911 string characters out of 5790017
- 1862388 words of memory out of 5000000
- 53507 multiletter control sequences out of 15000+600000
- 536230 words of font info for 90 fonts, out of 8000000 for 9000
+ 34750 strings out of 476025
+ 713344 string characters out of 5790017
+ 1869388 words of memory out of 5000000
+ 54418 multiletter control sequences out of 15000+600000
+ 548587 words of font info for 137 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 91i,10n,99p,628b,590s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc3583.pfb>
-Output written on ComA_project.pdf (4 pages, 229423 bytes).
+ 91i,18n,99p,1160b,1062s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/euler/eufm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/old-arrows/oasy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/rsfs/rsfs10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx2986.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfbx3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-sup
+er/sfrm1200.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfrm2488.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfti1440.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc2074.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sfxc3583.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/txfonts/txmia.pfb>
+Output written on ComA_project.pdf (22 pages, 478296 bytes).
 PDF statistics:
- 202 PDF objects out of 1000 (max. 8388607)
- 124 compressed objects within 2 object streams
- 12 named destinations out of 1000 (max. 500000)
- 181 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 563 PDF objects out of 1000 (max. 8388607)
+ 435 compressed objects within 5 object streams
+ 110 named destinations out of 1000 (max. 500000)
+ 221 words of extra memory for PDF output out of 10000 (max. 10000000)
 
