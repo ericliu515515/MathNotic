@@ -1129,7 +1129,7 @@ In other words, we have a descending chain of subgroups $G_i$ such that $G_i$ ar
 
 
 
-\chapter{Variety}
+\chapter{The Classical}
 \section{Topology of Zariski}
 Let $X$ be a topological space. We say $X$ is \textbf{irreducible} if $X$ can not be written as union of two proper closed subset of $X$.    
 \begin{equiv_def}
@@ -1150,7 +1150,38 @@ $\hspace{3cm}$
 
 (iii)$\implies $(i): Assume for a contradiction $X$ is reducible, says, $X=Y_1\cup Y_2$. One get a contradiction from noting $X-Y_1$ and $X-Y_2$ have empty intersection. 
 \end{proof}
-If we say a subset of some topological space is \textbf{irreducible}, we mean that that subset when given the subspace topology is irreducible. Let $X$ be some arbitrary topological space. In other words, $Y\subseteq X$ is irreducible if and only if $Y$ can not be written as  $Y=(F_1 \cap Y)\cup  (F_2\cap Y)$ where $F_1,F_2 \subseteq X$ are closed and don't contain $Y$. From this point of view, clearly, if $Y \subseteq X$ is irreducible, then so is $\overline{Y}$. By Zorn's Lemma\footnote{Clearly $\set{x}$ is irreducible. Let $E_n$ be an ascending chain of irreducible set containing  $x$. To see its upper bound is also irreducible, assume it isn't and cause a contradiction by showing  $E_n$ are reducible for large  $n$.}, every $x \in X$ has some not necessarily unique maximal irreducible set $Y$ containing $x$. We call these maximal irreducible sets  \textbf{irreducible components of $X$}. Because closure of an irreducible set is also irreducible, irreducible components are closed. \\
+If we say a subset of some topological space is \textbf{irreducible}, we mean that that subset when given the subspace topology is irreducible. Let $X$ be some arbitrary topological space. In other words, $Y\subseteq X$ is irreducible if and only if $Y$ can not be written as  $Y=(F_1 \cap Y)\cup  (F_2\cap Y)$ where $F_1,F_2 \subseteq X$ are closed and don't contain $Y$. For ease in \customref{Morphism}{future section on quasi variety morphism}, we note that: 
+\begin{equiv_def}
+\label{Qv}
+\textbf{(Quasi variety)} If $V \subseteq X$ is irreducible closed and $Y \subseteq V$ is open in $V$, then  $\overline{Y}=V$.  
+\end{equiv_def}
+\begin{proof}
+Clearly $\overline{Y}\subseteq V$. The converse $V \subseteq \overline{Y}$ follows from $\overline{Y}\cap V=\operatorname{cl}_V(Y)=V$, where the last equality holds true due to  \customref{irrtop}{equivalent definition of irreducibility}. 
+\end{proof}
+\begin{theorem}
+\label{IaC}
+\textbf{(Irreducibility and closure)} Given topological spaces $Y \subseteq X$, 
+\begin{align*}
+Y\text{ is irreducible }\iff  \overline{Y}\text{ is irreducible }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Just observe that given two closed sets $F_1,F_2 \subseteq X$, the statement:
+\begin{align*}
+\overline{Y}=(F_1\cap \overline{Y})\cup (F_2 \cap \overline{Y})\text{ and }F_1\cup F_2\text{ doesn't cover }\overline{Y}
+\end{align*}
+is equivalent to: 
+\begin{align*}
+ Y=(F_1 \cap Y)\cup  (F_2 \cap Y)\text{ and $F_1 \cup F_2$ doesn't cover }Y. 
+\end{align*}
+\end{proof}
+\begin{equiv_def}
+\textbf{(Irreducible topology)} Given topological space $X$, $X$ is irreducible if and only if all of its open subspace is irreducible. 
+\end{equiv_def}
+\begin{proof}
+This follows immediately from \myref{Equivalent Definition}{irrtop} and \myref{Theorem}{IaC}. 
+\end{proof}
+By Zorn's Lemma\footnote{Clearly $\set{x}$ is irreducible. Let $E_n$ be an ascending chain of irreducible set containing  $x$. To see its upper bound is also irreducible, assume it isn't and cause a contradiction by showing  $E_n$ are reducible for large  $n$.}, every $x \in X$ has some not necessarily unique maximal irreducible set $Y$ containing $x$. We call these maximal irreducible sets  \textbf{irreducible components of $X$}. Because \customref{IaC}{closure of an irreducible set is also irreducible}, irreducible components are closed. \\
 
 Let $X$ be a topological space. We say $X$ is  \textbf{Noetherian} if its closed sets satisfy descending chain condition. Clearly, subspace $Y$ of Noetherian space $X$ is also Noetherian\footnote{Given $X_1\cap Y \supseteq X_2 \cap Y \supseteq\cdots $, we have $X_n \cap Y=X_1 \cap  \cdots \cap X_n\cap Y$, and the descending chain $X_1\supseteq X_1 \cap X_2 \supseteq \cdots$ must stop.}. 
 \begin{equiv_def}
@@ -1192,7 +1223,7 @@ Let $X$ be a Noetherian topological space. \customref{TfoL}{Topological form of 
 
 We close this section by introducing the idea of variety dimension in a purely topological setting. Let $X$ be a topological space. We define the \textbf{dimension of $X$} to be the supremum of all integers $n$ such that there exists a chain $\varnothing =Z_0 \subset Z_1 \subset \cdots \subset Z_n$ of distinct irreducible closed subsets of $X$. Immediately we see same wanted property of our definition for dimension: Given subspace $Y\subseteq X$, we have $\operatorname{topdim}(Y)\leq \operatorname{topdim}(X)$.\footnote{To prove this, you will need: $Y_i$ closed in  $Y\implies Y_i=\overline{Y_i}\cap Y$.}
 \section{Affine variety}
-Let $k$ be some field. We use the notation $\A^n$ to denote the \textbf{affine $n$-space} over $k$, the Cartesian product $k^n$. Given some collection $S \subseteq k[x_1,\dots ,x_n]$ of polynomials, we use notation $V(S)= \set{a \in \A^n:F(a)=0\text{ for all }F \in S}$ to denote its \textbf{zero set (locus)}, and given $X \subseteq \A^n$, we use notation $I(X)$ to denote the ideal of polynomials that vanish on $X$. If $X \subseteq \A^n$ is the locus of some $S \subseteq k[x_1,\dots ,x_n]$, we say $X$ is \textbf{algebraic}. Clearly this give rise to a topology on $\A^n$, the  \textbf{Zariski topology}, in which $X\subseteq \A^n$ is closed if and only if $X$ is algebraic\footnote{Note that $V(S_1)\cup V(S_2)=V(\set{f_1f_2:f_1 \in S_1,f_2\in S_2})$ and $\bigcap V(S_\alpha )=V (\bigcup S_\alpha )$}. We often call irreducible closed subset of $\A^n$  \textbf{affine variety}. Clearly, we have: 
+Let $k$ be some field. We use the notation $\A^n$ to denote the \textbf{affine $n$-space} over $k$, the Cartesian product $k^n$. Given some collection $S \subseteq k[x_1,\dots ,x_n]$ of polynomials, we use notation $V(S)= \set{a \in \A^n:F(a)=0\text{ for all }F \in S}$ to denote its \textbf{vanishing set}, and given $X \subseteq \A^n$, we use notation $I(X)$ to denote the ideal of polynomials that vanish on $X$. If $X \subseteq \A^n$ is the vanishing set of some $S \subseteq k[x_1,\dots ,x_n]$, we say $X$ is \textbf{algebraic}. Clearly this give rise to a topology on $\A^n$, the  \textbf{Zariski topology}, in which $X\subseteq \A^n$ is closed if and only if $X$ is algebraic\footnote{Note that $V(S_1)\cup V(S_2)=V(\set{f_1f_2:f_1 \in S_1,f_2\in S_2})$ and $\bigcap V(S_\alpha )=V (\bigcup S_\alpha )$}. We often call irreducible closed subset of $\A^n$  \textbf{affine variety}. Clearly, we have: 
 \begin{align}
 \label{ovlX}
  \overline{X}=V(I(X)),\quad \text{ for all }X \subseteq \A^n
@@ -1216,20 +1247,7 @@ $(\implies )$ in \myref{Equation}{XIX} is then an immediate consequence of $(\im
 
 We now prove $(\impliedby)$ in \myref{Equation}{XIX}. Assume for a contradiction that $X=(X\cap V_1)\cup (X\cap V_2)$ for some $V_1,V_2$ such that neither of them covers $X$. Clearly, there exists some $F \in I(V_1)$ that doesn't vanish on the whole $X$. This $F$ satisfies $I(V_1)-I(X)$. Similar argument gives us some $G \in I(V_2)-I(X)$, but $FG \in I(X)$, a contradiction to $I(X)$ being prime. 
 \end{proof}
-\begin{corollary}
-\label{Icias}
-\textbf{(Irreducible criteria in affine spaces)} For all $X \subseteq \A^n$, 
-\begin{align*}
-X\text{ is irreducible }\iff \overline{X}\text{ is irreducible }
-\end{align*}
-\end{corollary}
-\begin{proof}
-If $X$ is empty, then the assertion holds true trivially. We from now suppose  $X$ is nonempty. If $X$ is irreducible, then $I(\overline{X})=I(X)$ is prime. If $\overline{X}$ is irreducible, then $I(X)=I(\overline{X})$ is prime. 
-\end{proof}
-
-
-
-Because  \customref{HBT}{Hilbert's Basis Theorem} only require the underlying ring of polynomials to be Noetherian, which all fields are, we can already deduce some important properties from the hypothesis (as weak as this hypothesis is) that $k$ is a field. For example, one may show $\A^n$ as a topological space is Noetherian\footnote{Given descending chain of closed subset $X_0\supset X_1 \supset \cdots \supset X_m$ of $\A^n$, we must have $I(X_0)\subset I(X_1)\subset \cdots \subset I(X_m)$ where the inequalities hold true because of \myref{Equation}{ovlX}. Now recall that \customref{HBT}{Hilbert's Basis Theorem} guarantees $k[x_1,\dots ,x_n]$ is Noetherian.}, every closed $X\subseteq \A^n$ is of the form $X=V(f_1,\dots ,f_m)$ for some $f_1,\dots ,f_m \in k[x_1,\dots ,x_n]$,\footnote{For its reason, consider \customref{EDoN}{the third equivalent definition of Noetherian module}.}  and $\A^n$ is irreducible if, moreover,  $k$ is infinite: 
+Because  \customref{HBT}{Hilbert's Basis Theorem} only require the underlying ring of polynomials to be Noetherian, which all fields are, we can already deduce some important properties from the hypothesis (as weak as this hypothesis is) that $k$ is a field. For example, one may show $\A^n$ as a topological space is Noetherian\footnote{Given descending chain of closed subset $X_0\supset X_1 \supset \cdots \supset X_m$ of $\A^n$, we must have $I(X_0)\subset I(X_1)\subset \cdots \subset I(X_m)$ where the inequalities hold true because of \myref{Equation}{ovlX}. Now recall that \customref{HBT}{Hilbert's Basis Theorem} guarantees $k[x_1,\dots ,x_n]$ is Noetherian.}, every closed $X\subseteq \A^n$ is of the form $X=V(F_1,\dots ,F_m)$ for some $F_1,\dots ,F_m \in k[x_1,\dots ,x_n]$,\footnote{For its reason, consider \customref{EDoN}{the third equivalent definition of Noetherian module}.}  and $\A^n$ is irreducible if, moreover,  $k$ is infinite: 
 \begin{theorem}
 \label{PIP}
 \textbf{(Polynomial Identity Principal)} Let $k$ be an infinite field and $F\neq 0 \in k[x_1,\dots ,x_n]$. There exists some nonzero $\textbf{a}\in \A^n$ such that $F(\textbf{a})\neq 0$.  
@@ -1256,11 +1274,11 @@ Suppose $\A^n=V(F_1,\dots ,F_r)\cup V(G_1,\dots ,G_m)$. Clearly  $F_1\cdots F_rG
 \end{align*}
 Repeating the same argument, we see that either $F_1,\dots ,F_r$ are all zeros or  $G_1,\dots ,G_m$ are all zeros. 
 \end{proof}
-Most of the time we require $k$ to be closed. In such case, we have the powerful \customref{HN}{ Nullstellensatz}:
+\myref{Corollary}{Asii} proves that affine spaces over infinite field are irreducible, and their every of its open set is a quasi variety. The situation of affine spaces over finite field is in fact even simpler: If $k$ is finite and nontrivial, then  $\A^n$ all have discrete topology\footnote{Every singleton is closed. $\set{\textbf{a}}$ is the vanishing set of $\set{x_1-a_1,\dots ,x_n-a_n}$.}, thus reducible. Therefore, whenever we use the term variety, its ground field must be infinite.  Most of the time we require $k$ to be closed. In such case, we have the powerful \customref{HN}{ Nullstellensatz}:
 \begin{align*}
 I(V(I))=\sqrt{I},\quad \text{ for all ideal }I \subseteq k[x_1,\dots, x_n]
 \end{align*}
-As \myref{Theorem}{Pic} have already shown, functor: 
+As \myref{Equation}{ovlX} have already shown, functor: 
 \begin{align*}
 \set{X \subseteq \A^n : X\text{ is a variety.}}\xlongrightarrow{I} \operatorname{Spec}(k[x_1,\dots,x_n])
 \end{align*}
@@ -1282,9 +1300,9 @@ Let $k$ be some field. Clearly, we may define on $k^{n+1} - \set{0}$ an equivale
 \begin{align*}
 a \sim  b \overset{\triangle}{\iff } a = \ld  b,\quad \text{ for some }\ld \in k
 \end{align*}
-Similar to the affine $n$-space, we use the notation $\P^n$  to represent the set of equivalence class of $k^{n+1}$. Clearly, when we give the polynomial ring $k[x_0,\dots,x_n]$ the obvious grading, a polynomial $f\in k[x_0,\dots ,x_n]$ is homogeneous in the graded sense if and only if it is homogeneous in the usual sense\footnote{i.e., every term has the same degree.}. Suppose $f\in k[x_0,\dots ,x_n]$. Even though the value of $f$ on $\P^n$ is not well-defined, if $f$ is homogeneous then indeed it is well-defined whether $f(p)=0$ for fixed $p \in \P^n$, so it make sense for us to talk about the \textbf{(projective) algebraic set} $V(S)= \set{p \in \P^n: f(p)=0\text{ for all }f\in S}$ for every collection $S\subseteq k[x_1,\dots ,x_{n+1}]$ of homogeneous polynomial.  Again this give rise to \textbf{Zariski topology} on $\P^n$ where $E \subseteq \P^n$ is closed if and only if $E$ is algebraic, and again we say $X \subseteq \P^n$ is a \textbf{projective variety} if $X$ is irreducible closed.\\
+Similar to the affine $n$-space, we use the notation $\P^n$  to represent the set of equivalence classes, and we use the notation $[x_0:\cdots :x_n]$ to denote the equivalence class that contains $(x_0,\dots ,x_n)$. Clearly, we may give the polynomial ring $k[x_0,\dots ,x_n]$ the obvious grading. Let $F \in k[x_0,\dots ,x_n]$ be homogeneous. Even though the value of $F$ on $\P^n$ is not well-defined, if $F$ is homogeneous then indeed it is well-defined whether $F(p)=0$ for fixed $p \in \P^n$, so it make sense for us to talk about the \textbf{(projective) algebraic set} $V(S)= \set{p \in \P^n: F(p)=0\text{ for all }F\in S}$ for every collection $S\subseteq k[x_1,\dots ,x_{n+1}]$ of homogeneous polynomial.  Again this give rise to \textbf{Zariski topology} on $\P^n$ where $E \subseteq \P^n$ is closed if and only if $E$ is algebraic, and again we say $X \subseteq \P^n$ is a \textbf{projective variety} if $X$ is irreducible closed.\\
 
-Let $S_1$ and  $S_2\subseteq k[x_0,\dots ,x_n]$ be two collections of homogeneous polynomials that generate the same ideal. Clearly we have $V(S_1)=V(S_2)$. Therefore, given some homogeneous ideal $J \subseteq k[x_0,\dots ,x_n]$, we may well define algebraic $V(J)$. Trivially, for each $X \subseteq \P^n$,  the ideal generated by homogeneous $F \in k[x_0,\dots ,x_n]$ that vanishes on $X$, called the \textbf{defining ideal of $X$} if $X$ is closed, is homogeneous, and moreover, contains only polynomials that "vanishes on  $X$ in the obvious sense."\\
+Let $S_1$ and  $S_2\subseteq k[x_0,\dots ,x_n]$ be two collections of homogeneous polynomials that generate the same ideal. Clearly we have $V(S_1)=V(S_2)$. Therefore, given some homogeneous ideal $J \subseteq k[x_0,\dots ,x_n]$, we may well define algebraic $V(J)$. Trivially, for each $X \subseteq \P^n$,  the ideal generated by homogeneous $F \in k[x_0,\dots ,x_n]$ that vanishes on $X$ is homogeneous. We denote such ideal $I(X)$ and call it  \textbf{defining ideal of $X$} if $X$ is closed. \\
 
 Immediately, we see that projective space have lots of similar property with affine space, for example, similar to  \myref{Equation}{ovlX}, we have 
 \begin{align*}
@@ -1326,17 +1344,6 @@ For the case of $G_r \in I(X)$, just observe that $G_r \in I(X)\implies (F-F_d)(
 
 $(\impliedby)$: Assume for a contradiction that $X=(X\cap V_1)\cup (X\cap V_2)$ for some $V_1,V_2$ such that neither of them covers $X$. Clearly, there exists some homogeneous $F \in I(V_1)$ that doesn't vanish on the whole $X$. This $F$ satisfies $I(V_1)-I(X)$. Similar argument gives us some homogeneous $G \in I(V_2)-I(X)$, but $FG \in I(X)$, a contradiction to $I(X)$ being prime. 
 \end{proof}
-\begin{corollary}
-\label{Icips}
-\textbf{(Irreducible criteria in projective space)} For all $X\subseteq \P^n$, 
-\begin{align*}
-X\text{ is irreducible }\iff \overline{X}\text{ is irreducible }
-\end{align*}
-\end{corollary}
-\begin{proof}
-If $X$ is empty, then the assertion holds true trivially. We from now suppose  $X$ is nonempty. If $X$ is irreducible, then $I(\overline{X})=I(X)$ is prime. If $\overline{X}$ is irreducible, then $I(X)=I(\overline{X})$ is prime. 
-\end{proof}
-
 Let $S\subseteq k[x_0,\dots ,x_n]$ be some homogeneous ideal or collection of homogeneous polynomials.  If necessary, we often distinguish the two vanishing sets in affine and projective setting by writing: 
 \begin{align*}
 V_\P(S)\triangleq  \big\{[x_0:\cdots :x_n] \in \P^n : F(x_0,\dots ,x_n)=0\text{ for all }F\in S\big\}
@@ -1367,7 +1374,7 @@ To prove that $\pi $ is a topological quotient, we need to show that $\pi $ is s
 \label{pvs}
 \pi (V_{\A}(S))= V_{\P}(S)
 \end{align}
-Note that if the underlying field is finite, then the Zariski topologies are discrete so the assertion holds trivially\footnote{Per this guy on MO: https://mathoverflow.net/questions/16146/elementary-proof-that-projective-space-is-a-quotient}. We from now suppose the underlying field $k$ is infinite. Suppose $E\subseteq \P^n$ have closed preimage $\pi ^{-1}(E)=V_\A(T)- \set{\textbf{0}}$, where $T \subseteq k[x_0,\dots ,x_n]$. We show 
+Note that if the underlying field is finite, then the Zariski topologies are discrete so the assertion holds trivially. We from now suppose the underlying field $k$ is infinite. Suppose $E\subseteq \P^n$ have closed preimage $\pi ^{-1}(E)=V_\A(T)- \set{\textbf{0}}$, where $T \subseteq k[x_0,\dots ,x_n]$. We show 
 \begin{align*}
 E= V_\P(\set{F_i \in k[x_0,\dots ,x_n]: F_i\text{ is the homogeneous component of some $F \in T$.}})
 \end{align*}
@@ -1400,64 +1407,48 @@ We now prove $I(V(\mathfrak{a}))\subseteq \sqrt{\mathfrak{a}} $. Because \custom
 \begin{enumerate}[label=(\roman*)]
   \item $V_\P(\mathfrak{a})$ is empty. 
   \item $\sqrt{\mathfrak{a}}=k[x_0,\dots ,x_n]$ or $\sqrt{\mathfrak{a}}=\set{F \in k[x_0,\dots ,x_n]:F(0)=0}$. 
-  \item For some  $d>0$, we have  $\set{F \in k[x_0,\dots ,x_n]:\operatorname{deg}(F)=d}\subseteq \mathfrak{a}$. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
 (i)$\implies $(ii):  \myref{Theorem}{Vso} implies $V_\A(\mathfrak{a})$ either is empty or contains only the origin. This together with \customref{HN}{affine Nullstellensatz} proves (ii).\\
 
-(ii)$\implies $(i): \customref{HN}{Affine Nullstellensatz} said that $I(V_\A(\mathfrak{a}))=\sqrt{\mathfrak{a}}$. By premise no matter what  $\sqrt{\mathfrak{a}}$ actually is, it must contains $\set{x_0,\dots ,x_n}$. This implies $V_\A(\mathfrak{a})\subseteq \set{0}$, which proves (i) by \myref{Theorem}{Vso}. 
+(ii)$\implies $(i): \customref{HN}{Affine Nullstellensatz} said that $I(V_\A(\mathfrak{a}))=\sqrt{\mathfrak{a}}$. No matter which one  $\sqrt{\mathfrak{a}}$ actually is, it must contains $\set{x_0,\dots ,x_n}$. This implies $V_\A(\mathfrak{a})\subseteq \set{0}$, which proves (i) by \myref{Theorem}{Vso}. 
 \end{proof}
-\section{Morphism}
-By a \textbf{quasi affine (or projective) variety} $X\subseteq \A^n$ (resp. $\P^n$), we mean  $X$ is a subset of some variety $V \subseteq \A^n$ (resp. $\P^n$) and $X$ is open in $V$.
-\begin{equiv_def}
-\textbf{(Quasi variety)} Given $X\subseteq \A^n$ (or $\P^n$), if $X\subseteq V$ satisfy that $V$ is irreducible closed and  $X$ is nonempty open in  $V$, then  $V=\overline{X}$. 
-\end{equiv_def}
-\begin{proof}
-Clearly $\overline{X}\subseteq V$. We now prove $V \subseteq \overline{X}$, which follows from $\overline{X}\cap V=\operatorname{cl}_V(X)=V$, where the last equality holds true because by \customref{irrtop}{equivalent definition of irreducibility}, $X$ is dense in  $V$.   
-\end{proof}
-Given some quasi affine variety $X\subseteq \A^n$ and $f:X \rightarrow  k$, we say $f$ is \textbf{regular at $p \in X$} if there exist $U\subseteq X$ open in $X$ containing $p$ and exist $g,h \in k[x_1,\dots ,x_n]$ such that $h$ nonzero on $U$ and  $f=g\quotient h$ on $U$. In the projective setting, says $X \subseteq \P^n$ is a quasi projective variety and $f$ maps $X$ into  $k$, we say $f$ is \textbf{regular at $p \in X$} if there exists $U \subseteq X$ containing $p$ and open in $X$ such that there exists homogeneous $g,h \in k[x_0,\dots,x_n]$ such that $h$ nonzero on $U$, $f=g\quotient h$ on $U$, and $g,h$ have same degree. Given a quasi variety $X$, we say  $f:X\rightarrow k$ is \textbf{regular} if it is regular at each points of $X$, and we denote the \textbf{ring of regular function on $X$} by $\mathscr{O}(X)$. \label{rorf} 
+\section{Quasi variety morphism}
+\label{Morphism}
+By a \textbf{quasi affine (or projective) variety} $X\subseteq \A^n$ (resp. $\P^n$), we mean  $X$ is a subset of some variety $V \subseteq \A^n$ (resp. $\P^n$) and $X$ is open in $V$, or equivalently\footnote{See \myref{Equivalent Definition}{Qv} and \myref{Corollary}{IaC}} that $X$ is irreducible and open in its closure.   \\
+
+Given some quasi affine variety $X\subseteq \A^n$ and $f:X \rightarrow  k$, we say $f$ is \textbf{regular at $p \in X$} if there exist $U\subseteq X$ open in $X$ containing $p$ and exist $G,H \in k[x_1,\dots ,x_n]$ such that $H$ nonzero on $U$ and  $f=G\quotient H$ on $U$. In the projective setting, says $X \subseteq \P^n$ is a quasi projective variety and $f$ maps $X$ into  $k$, we say $f$ is \textbf{regular at $p \in X$} if there exists $U \subseteq X$ containing $p$ and open in $X$ such that there exists homogeneous $G,H \in k[x_0,\dots,x_n]$ such that $H$ nonzero on $U$, $f=G\quotient H$ on $U$, and $G,H$ have same degree. Given a quasi variety $X$, we say  $f:X\rightarrow k$ is \textbf{regular} if it is regular at each points of $X$, and we denote the \textbf{ring of regular function on $X$} by $\mathscr{O}(X)$. \label{rorf} 
 \footnote{It is IMPORTANT to deduce that regular functions indeed forms a ring here, since it is impossible to later check transitivity of \myref{equivalence}{UCO} purely topologically, without using the algebraic result of one regular functions minus another is still regular, thus continuous. I guess the moral of the story here is that one must remember  $\A^1$ is a field, and thus have a field structure, which shall be used when topological method doesn't work; or that if something forms an algebraic structure, then utilize that structure as much as possible.  Indeed, we are talking about ALGEBRAIC geometry here.}
 \begin{theorem}
 \label{Rfac}
 \textbf{(Regular functions are continuous)} Given quasi variety $X\subseteq \A^n$ (or $\P^n$), if $f:X\rightarrow k$ is regular, then $f$ is continuous.  
 \end{theorem}
 \begin{proof}
-Because every closed set in $k$ is either finite or the whole space\footnote{To see such, consider \customref{HBT}{Hilbert Basis Theorem} and fundamental theorem of algebra.}, we only have to show $f^{-1}(a)$ is closed for fixed $a \in k$. Let $(U_i,g_i,h_i)_{i \in I}$ cover $X$, where $h_i$ nonzero and $f=g_i\quotient h_i$ on $U_i$. Because $X$ is coherent\footnote{You may Google what does \textbf{coherent topology} mean. To see that every topological space $X$ and any of its open cover $U_i$ are always coherent, just observe for any $Z\subseteq X$, we have $Z = \bigcup (U_i\cap Z) $ and $X-Z= \bigcup (U_i -Z)$.} with  $(U_i)_I$, we only have to show $U_i\cap f^{-1}(a)$ is closed in $U_i$ for fixed $i\in I$, which follows from noting $U_i\cap f^{-1}(a)=V(g-ah)\cap U_i$. 
+Because every closed set in $k$ is either finite or the whole space\footnote{To see such, consider \customref{HBT}{Hilbert Basis Theorem} and fundamental theorem of algebra.}, we only have to show $f^{-1}(a)$ is closed for fixed $a \in k$. Let $(U_i,G_i,H_i)_{i \in I}$ cover $X$, where $H_i$ nonzero and $f=G_i\quotient H_i$ on $U_i$. Because $X$ is coherent\footnote{You may Google what does \textbf{coherent topology} mean. To see that every topological space $X$ and any of its open cover $U_i$ are always coherent, just observe for any $Z\subseteq X$, we have $Z = \bigcup (U_i\cap Z) $ and $X-Z= \bigcup (U_i -Z)$.} with  $(U_i)_I$, we only have to show $U_i\cap f^{-1}(a)$ is closed in $U_i$ for fixed $i\in I$, which follows from noting $U_i\cap f^{-1}(a)=V(G_i-aH_i)\cap U_i$. 
 \end{proof}
 
-Let $X$ be a quasi variety with $p \in X$. Consider the collection of all pairs $(p \in U\subseteq X,f:U\rightarrow k)$, where $f$ is regular, and the collection of all $(U\subseteq X,f:U\rightarrow k)$, where $U$ is nonempty and  $f$ is regular, because \customref{Rfac}{regular functions are continuous} and \customref{irrtop}{nonempty open subset of irreducible space is always dense}, we may well define two equivalence relation respectively on these two collection by: 
+Let $X$ be a quasi variety with $p \in X$. Consider the collection of all pairs $(p \in U\subseteq X,f:U\rightarrow k)$, where $f$ is regular, and the collection of all $(U\subseteq X,f:U\rightarrow k)$, where $U$ is nonempty and  $f$ is regular, because \customref{Rfac}{regular functions are continuous} and \customref{irrtop}{nonempty open subset of irreducible space is always dense}, we may well define two equivalence relation respectively on these two collections by: 
 \begin{align}
 (U,f)\sim (O,g)\overset{\triangle}{\iff }f=g\text{ on }U \cap O \label{UCO}
 \end{align}
 \footnote{As noted before, to check transitivity, you must consider the regular function $f-h$.}to form the ring $\mathscr{O}_{p,X}$ of \textbf{germs\footnote{You may Google what does \textbf{germ} means. It is generic.} of regular functions on $X$ near $p$} and the \textbf{function field} $K(X)$ of $X$.\\ 
 
-Let $(U,f)\in K(X)$. If $p \in U$ and $f$ doesn't vanish at $p$, then $f^{-1}$ is well-defined and regular on some smaller neighborhood of $p$. This implies that indeed $K(X)$ is a field, and that the units of $\mathscr{O}_{p,X}$ are exactly those who doesn't vanish at $p$, which implies the non-units, those vanish at  $p$, forms an ideal of $\mathscr{O}_{p,X}$, justifying the colloquial convention of calling $\mathscr{O}_{p,X}$ the \textbf{local ring of $p$ on $X$}\footnote{Recall that if the set of non-units forms an ideal, then the ring is local.}. Clearly, the obvious mappings of $\mathscr{O}(X)\longrightarrow \mathscr{O}_{p,X}\longrightarrow K(X)$ are well-defined injective ring homomorphism, and they will be how we treat one as subset of another.\label{sam2}  \\
+Let $(U,f)\in K(X)$. If $p \in U$ and $f$ doesn't vanish at $p$, then $f^{-1}$ is well-defined and regular on some smaller neighborhood of $p$. This implies that indeed $K(X)$ is a field, and that the units of $\mathscr{O}_{p,X}$ are exactly those who doesn't vanish at $p$, which implies the non-units, those vanish at  $p$, forms an ideal of $\mathscr{O}_{p,X}$, justifying the colloquial convention of calling $\mathscr{O}_{p,X}$ the \textbf{local ring of $p$ on $X$}\footnote{Recall that if the set of non-units forms an ideal, then the ring is local.}. Clearly, the three structure $\mathscr{O}(X),\mathscr{O}_{p,X}$, and $K(X)$ are all $k$-algebra, and the obvious mappings of $\mathscr{O}(X)\hookrightarrow \mathscr{O}_{p,X}\hookrightarrow K(X)$ are well-defined injective $k$-algebra homomorphism. This identification will be how we treat one as subset of another.\label{sam2}  \\
 
-
-Let $X,Y$ be two quasi varieties. We say $\phi : X\rightarrow Y$ is a \textbf{quasi variety morphism} if $\phi$ is continuous and for every $(U,f)\in K(Y)$, the function $f \circ \phi:\phi^{-1}(U)\rightarrow k$ is regular. If we say  $\phi : X\rightarrow Y$ is a \textbf{quasi variety isomorphism}, we mean that $\phi$ is bijective with its inverse being also a quasi variety morphism. Clearly, if $\phi :X\rightarrow Y$ is a quasi variety isomorphism, then $\mathscr{O}(X)$ and $\mathscr{O}(Y)$ as ring are isomorphic; for each $p \in X$, $\mathscr{O}_{p,X}$ and $\mathscr{O}_{\phi (p),Y}$ as ring are isomorphic; and $K(X)$ and $K(Y)$ as ring are isomorphic. Because of such, we often say $\mathscr{O}(X),\mathscr{O}_{p,X}$, and $K(X)$ are \textbf{invariant up to isomorphisms}.\\
-
-For ease in \myref{Theorem}{Ste}, we first introduce two notions. Let $S$ be the collection of homogeneous elements of $k[x_0,\dots ,x_n]$. Clearly, we may well-define mappings  $\alpha :S \to k[x_1,\dots ,x_n]$ and $\beta :k[x_1,\dots ,x_n]\to S$ by 
+Let $X$ be some quasi variety, and let $W \subseteq X$ be open nonempty. Clearly, the mapping $K(X)\rightarrow K(W)$ defined by:
 \begin{align*}
-\alpha (F)\triangleq F(1,x_1,\dots ,x_n)\text{ and }\beta (G)\triangleq x_0^{\operatorname{deg}(G)} g\left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
+[(U,f)]\mapsto [(W \cap U, f|_{W \cap U})]
 \end{align*}
-Let $F \in S$ and $G \in k[x_1,\dots ,x_n]$. We refer to $\alpha (F)$ as the \textbf{dehomogenization} of $F$ and denote it by $F_*$, and we refer to $\beta (G)$ as the \textbf{homogenization} of $G$ and denote it by $G^*$. Actions of homogenization are actually easy to memorize. For example, homogenization send $x_2-x_1^2$ to  $x_0x_2-x_1^2$, and send  $x_2-x_1^3$ to  $x_2x_0^2-x_1^3$. Dehomogenization sends $x_0x_2^2+x_1^3$ to  $x_2^2+x_1^3$. 
-\begin{theorem}
-\label{Ste}
-\textbf{(Standard embedding of $\A^n$ into  $\P^n$)} Let  $U\triangleq \P^n - V(x_0)$. The map $\phi: U\rightarrow \A^n$  defined by 
+is a well-defined $k$-algebra isomorphism\footnote{It is injective because $U$ are irreducible.}. This will be how we identify $K(W)=K(X)$ and identify $\mathscr{O}_{x, W}=\mathscr{O}_{x, X}$ if $x \in W$. Let $Y$ be another quasi variety. We say $\phi : W\rightarrow Y$ is a \textbf{quasi variety morphism} if $\phi$ is continuous and for every $(U,f)\in K(Y)$, the function $f \circ \phi:\phi^{-1}(U)\rightarrow k$ is regular. Clearly, this induces a $k$-algebra homomorphism  $\phi^*:K(Y)\rightarrow K(W)=K(X)$ defined by 
 \begin{align*}
-\phi \left([x_0:\cdots :x_n]\right)\triangleq \left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
+[(U,f)] \mapsto [(\phi^{-1}(U),f \circ \phi)]
 \end{align*}
-is a well-defined homeomorphism, and moreover a quasi variety isomorphism if the underlying field $k$ is infinite.  
-\end{theorem}
-\begin{proof}
-It is routine to check $\phi$ is well-defined and bijective. We now prove it is indeed bicontinuous. Let $Y\subseteq U$ be closed in $U$, and let $\overline{Y}$ be the closure of $Y$ in $\P^n$. By definition, there exists some collection  $T$ of homogeneous polynomials $F \in k[x_0,\dots ,x_n]$ whose locus is exactly $\overline{Y}$. To see $\phi (Y)$ is closed, just check $\phi (Y)$ is the locus of the dehomogenizations of $T$. Conversely, given closed $W \subseteq \A^n$, we know there exists $T\subseteq k[x_1,\dot ,x_n]$ whose  locus is exactly $W$. To see $\phi ^{-1}(W)$ is closed, just check that $\phi^{-1}(W)$ is the intersection between $U$ and the locus of the homogenization of $T$. We have shown $\phi$ is indeed a homeomorphism.\\
+which we call \textbf{the dual map of $\phi$} that always map  $\mathscr{O}_{y,Y}$ into $\bigcap_{x \in \phi^{-1}(y)}\mathscr{O}_{x,X}$.\\
 
-From now on suppose $k$ is infinite, and we wish to prove $\phi$ is moreover a quasi-variety isomorphism. To see $U$ is indeed a quasi variety, note that  \customref{Psii}{ projective space is irreducible when underlying field is infinite} and that \customref{irrtop}{nonempty subset of irreducible space is dense}.\\
 
-Fix $(O,f) \in K(\A^n)$, where, WLOG, $f=F\quotient G$ on $O$ for some  $F,G \in k[x_1,\dots ,x_n]$ such that $G$ nonzero on  $O$. To see $\phi$ is indeed a morphism, just check $f \circ \phi|_{\phi^{-1}(O)}=(x_0^{\operatorname{deg}(G)}F^*)\quotient (x_0^{\operatorname{deg}(F)}G^*)$. Fix $(O,f) \in K(U)$, where, WLOG, $f=F\quotient G$ on $O$ for some same degree homogeneous $F,G \in k[x_0,\dots ,x_n]$ such that $G$ nonzero on $O$. To see $\phi^{-1}$ is indeed a morphism, just check $f \circ \phi^{-1}|_{\phi (O)}=F_*\quotient G_*$. 
-\end{proof}
-In fact, given quasi variety mapping $\phi$ whose target is affine, there is an if and only if test  for whether $\phi$ is a quasi variety morphism. 
+
+If we say  $\phi : X\rightarrow Y$ is a \textbf{quasi variety isomorphism}, we mean that $\phi$ is bijective with its inverse being also a quasi variety morphism. Clearly, if $X,Y$ are quasi variety isomorphic, then we have three pairs of isomorphic $k$-algebras. Because of such, we often say $\mathscr{O}(X),\mathscr{O}_{p,X}$, and $K(X)$ are \textbf{invariant up to quasi variety isomorphisms}. As we shall show later in \customref{Rm}{the section on rational map}, unlike ring of globally defined regular function, $K(X)$ is in fact invariant up to a even weaker condition if we consider only varieties. 
 \begin{theorem}
 \label{Iaoi}
 \textbf{(If and only if test for quasi variety mapping whose target is affine)} Given quasi variety mapping $\phi :X\rightarrow Y \subseteq \A^n$, 
@@ -1470,13 +1461,13 @@ $(\implies )$ follows from definition. We now prove  $(\impliedby)$. Clearly, be
 \begin{align*}
 \phi^{-1}(V(S)\cap Y)= \bigcap_{F \in S} (F\circ \phi)^{-1}(0),\quad \text{ for any }S \subseteq k[x_1,\dots ,x_n]
 \end{align*}
-that $\phi$ is continuous. Fix $(U,g)\in K(Y)$ and $p \in \phi^{-1}(U)$. It remains to prove $g \circ \phi:\phi^{-1}(U)\rightarrow k$ is regular at $p$. Because $U\xrightarrow{g}k$ is regular, there exists open $O\subseteq U$ containing $\phi (p)$ such that $g=\frac{h_1}{h_2}$ on $O$ for some  $h_1,h_2 \in k[x_1,\dots ,x_n]$ where $h_2$ nonzero on whole $O$ and degree of them being the same if $X$ is projective. Clearly, 
+that $\phi$ is continuous. Fix $(U,g)\in K(Y)$ and $p \in \phi^{-1}(U)$. It remains to prove $g \circ \phi:\phi^{-1}(U)\rightarrow k$ is regular at $p$. Because $U\xrightarrow{g}k$ is regular, there exists open $O\subseteq U$ containing $\phi (p)$ such that $g=\frac{H_1}{H_2}$ on $O$ for some  $H_1,H_2 \in k[x_1,\dots ,x_n]$ where $H_2$ nonzero on whole $O$ and degree of them being the same if $X$ is projective. Clearly, 
 \begin{align*}
-g\circ \phi = \frac{h_1 \circ \phi}{h_2 \circ \phi},\quad \text{ on }\phi^{-1}(O).
+g\circ \phi = \frac{H_1 \circ \phi}{H_2 \circ \phi},\quad \text{ on }\phi^{-1}(O).
 \end{align*}
-Because $h_1 \circ \phi$ and $h_2 \circ \phi$ are regular as function from $X$ to $k$ as we proved in the first paragraph of this proof, we know there exists open $V \subseteq \phi^{-1}(O)$ containing $p$ such that 
+Because $H_1 \circ \phi$ and $H_2 \circ \phi$ are regular as function from $X$ to $k$ as we proved in the first paragraph of this proof, we know there exists open $V \subseteq \phi^{-1}(O)$ containing $p$ such that 
 \begin{align*}
-h_1\circ \phi= \frac{F_1}{F_2} \text{ and }h_2 \circ \phi= \frac{F_3}{F_4},\quad \text{ on }V
+H_1\circ \phi= \frac{F_1}{F_2} \text{ and }H_2 \circ \phi= \frac{F_3}{F_4},\quad \text{ on }V
 \end{align*}
 for some polynomials $F_1,F_2,F_3,F_4$, with $F_2,F_4$ nonzero on $V$ and the pairs having the same degree if  $X$ projective. This give us 
 \begin{align*}
@@ -1485,8 +1476,40 @@ F_3},\quad \text{ on }V
 \end{align*}
 where $\operatorname{deg}(F_1F_4)=\operatorname{deg}(F_2F_3)$ if $X$ is projective. We have shown that indeed $g \circ \phi$ is regular at $p$. 
 \end{proof}
+\begin{corollary}
+\label{Qve}
+  \textbf{(Quasi variety embedding of complement of hypersurface in infinite affine space into one-higher dimensional affine space as a hypersurface)} Let $k$ be infinite and $F \in k[x_1,\dots ,x_n]$. The projection $\pi :\A^{n+1}\rightarrow \A^n$ 
+\begin{align*}
+  (x_1,\dots ,x_{n+1})\rightarrow (x_1,\dots ,x_n)  
+\end{align*}
+when restricted onto $V(x_{n+1}F-1)$ is a quasi variety isomorphism from $V(x_{n+1}F-1)$ to $\A^n-V(F)$. 
+\end{corollary}
+\begin{proof}
+It is easy to check that $\pi$ restrict to a bijection between $V(x_{n+1}F-1)$ and $\A^n-V(F)$ with the inverse being $(\textbf{a})\mapsto (\textbf{a},F^{-1}(\textbf{a}))$. It then follows from  \myref{Theorem}{Iaoi} that indeed the restriction of $\pi $ forms a quasi variety isomorphism. 
+\end{proof}
+One particular key observation on \myref{Theorem}{Iaoi} is that it proves the continuity of a given map WITHOUT constructing pullbacks of polynomials, but simply claim the preimage of vanishing set is closed via \customref{Rfac}{continuity of regular functions}. A nontrivial technique indeed, go on to show the importance of \customref{Rfac}{continuity of regular functions}. 
+We close this section by proving \myref{Theorem}{Ste}, which will prove pivotal in later development, as it reduce lots of argument in the projective setting back to affine space. For ease in its proof, we first introduce two notions. Let $S$ be the collection of homogeneous elements of $k[x_0,\dots ,x_n]$. Clearly, we may well-define mappings  $\alpha :S \to k[x_1,\dots ,x_n]$ and $\beta :k[x_1,\dots ,x_n]\to S$ by 
+\begin{align*}
+\alpha (F)\triangleq F(1,x_1,\dots ,x_n)\text{ and }\beta (G)\triangleq x_0^{\operatorname{deg}(G)} g\left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
+\end{align*}
+Let $F \in S$ and $G \in k[x_1,\dots ,x_n]$. We refer to $\alpha (F)$ as the \textbf{dehomogenization} of $F$, and we refer to $\beta (G)$ as the \textbf{homogenization} of $G$. Actions of homogenization are actually easy to memorize. For example, homogenization send $x_2-x_1^2$ to  $x_0x_2-x_1^2$, and send  $x_2-x_1^3$ to  $x_2x_0^2-x_1^3$. Dehomogenization sends $x_0x_2^2+x_1^3$ to  $x_2^2+x_1^3$. 
+\begin{theorem}
+\label{Ste}
+\textbf{(Standard embedding of $\A^n$ into  $\P^n$)} Let  $U\triangleq \P^n - V(x_0)$. The map $\phi: U\rightarrow \A^n$  defined by 
+\begin{align*}
+\phi \left([x_0:\cdots :x_n]\right)\triangleq \left(\frac{x_1}{x_0},\dots ,\frac{x_n}{x_0}\right)
+\end{align*}
+is a well-defined homeomorphism, and moreover a quasi variety isomorphism if the underlying field $k$ is infinite.  
+\end{theorem}
+\begin{proof}
+It is routine to check $\phi$ is well-defined and bijective. We now prove it is indeed bicontinuous. Let $Y\subseteq U$ be closed in $U$, and let $\overline{Y}$ be the closure of $Y$ in $\P^n$. By definition, there exists some collection  $T$ of homogeneous polynomials $F \in k[x_0,\dots ,x_n]$ whose locus is exactly $\overline{Y}$. To see $\phi (Y)$ is closed, just check $\phi (Y)$ is the locus of the dehomogenizations of $T$. Conversely, given closed $W \subseteq \A^n$, we know there exists $T\subseteq k[x_1,\dots ,x_n]$ whose  locus is exactly $W$. To see $\phi ^{-1}(W)$ is closed, just check that $\phi^{-1}(W)$ is the intersection between $U$ and the locus of the homogenization of $T$. We have shown $\phi$ is indeed a homeomorphism.\\
 
-Given an affine quasi variety $X\subseteq \A^n$, we use notation $\Gamma (X)$ to denote its \textbf{coordinate ring} $k[x_1,\dots ,x_n]\quotient I(X)$, which is clearly isomorphic to the ring of function $f:X\rightarrow k$ such that $f=F|_X$ for some $F \in k[x_1,\dots ,x_n]$\footnote{We call these functions \textbf{polynomial functions}.}. From the second point of view, immediately we see that coordinate ring of affine quasi variety is in fact an integral domain\footnote{If $FG=0$ on  $X \subseteq Y \subseteq \A^n$ where $Y$ is a variety, then because $Y$ is irreducible, one of $F^{-1}(0)\cap Y,G^{-1}(0)\cap Y$ must be whole $Y$.}. Later we will see more usage of the realization of  $\Gamma (X)$ as ring of polynomial functions in the proof of \myref{Theorem}{Asog}. 
+From now on suppose $k$ is infinite, and we wish to prove $\phi$ is moreover a quasi-variety isomorphism. To see $U$ is indeed a quasi variety, note that  \customref{Psii}{ projective space is irreducible when underlying field is infinite} and that \customref{irrtop}{nonempty subset of irreducible space is dense}.\\
+
+Fix $(O,f) \in K(\A^n)$, where, WLOG, $f=F\quotient G$ on $O$ for some  $F,G \in k[x_1,\dots ,x_n]$ such that $G$ nonzero on  $O$. To see $\phi$ is indeed a morphism, just check $f \circ \phi|_{\phi^{-1}(O)}=(x_0^{\operatorname{deg}(G)}\tilde{F} )\quotient (x_0^{\operatorname{deg}(F)}\tilde{G} )$, where $\tilde{F}$ and $\tilde{G}$ are the homogenization of $F$ and  $G$. Fix $(O,f) \in K(U)$, where, WLOG, $f=F\quotient G$ on $O$ for some same degree homogeneous $F,G \in k[x_0,\dots ,x_n]$ such that $G$ nonzero on $O$. To see $\phi^{-1}$ is indeed a morphism, just check $f \circ \phi^{-1}|_{\phi (O)}=F_0\quotient G_0$, where $F_0$ and  $G_0$ are the dehomogenization of $F$ and  $G$.  
+\end{proof}
+\section{Coordinate ring and function field}
+Given an affine quasi variety $X\subseteq \A^n$, we use notation $\Gamma (X)$ to denote its \textbf{coordinate ring} $k[x_1,\dots ,x_n]\quotient I(X)$, which is clearly isomorphic to the ring of function $f:X\rightarrow k$ such that $f=F|_X$ for some $F \in k[x_1,\dots ,x_n]$\footnote{We call these functions \textbf{polynomial functions}.}. Because of the \customref{Pic}{prime-irreducibility correspondence in affine setting}, the coordinate of affine quasi variety is an integral domain. Later we will see more usage of the realization of  $\Gamma (X)$ as ring of polynomial functions in the proof of \myref{Theorem}{Asog}. 
 \begin{theorem}
 \label{Asog}
 \textbf{(Algebraic structure of global ring, local ring, and function field of affine quasi variety)} If $X \subseteq \A^n$ is an affine quasi variety, then 
@@ -1500,7 +1523,7 @@ Given an affine quasi variety $X\subseteq \A^n$, we use notation $\Gamma (X)$ to
 Before the proof, we first remark that: If we fix $p$, regarding $\Gamma (X)$ either as the ring of polynomial function $f:X\rightarrow  k$ or as the quotient  $k[x_1,\dots ,x_n]\quotient I(X)$ makes no mathematical differences. In the former, $I(p)\subseteq \Gamma (X)$ is the ring of polynomial functions that vanishes at $p$, and in the latter,  $I(p)\subseteq \Gamma (X)$ is the image of $I(p)\subseteq k[x_1,\dots ,x_n]$  under the quotient map $k[x_1,\dots ,x_n] \twoheadrightarrow k[x_1,\dots ,x_n]\quotient I(X)$. Either way, the  $I(p)\subseteq \Gamma (X)$ is what we meant by $\mathfrak{m}_p$ in (ii), and using the latter point of view with the bijection between $\A^n$ and $\operatorname{Max}(k[x_1,\dots,x_n])$, we have a bijection between $X$ and $\operatorname{Max}(\Gamma X)$: $p\leftrightarrow \mathfrak{m}_p=I(p)$. \\
 
 
-Fix $p$. Let $\beta  :\Gamma (X)_{\mathfrak{m}_p}\rightarrow \mathscr{O}_{p,X}$ be the obvious mapping\footnote{From $\beta $ you can see that the done localization $\Gamma (X)_{\mathfrak{m}_p}$ is of geometrical nature, not algebraic.}: $f\quotient g\mapsto [(U,f\quotient g)]$ where $f,g:X\rightarrow k$ are polynomial function and $U=\set{x \in X:g(x)\neq 0}$. Clearly $\beta $ is an injective ring homomorphism\footnote{Note that $[(U,f)]=0 \in \mathscr{O}_{p,X}$ if and only if $f=0$ on  $U$, since if $f\neq 0$ on $U$, then  $f+f\neq f$. This implies injectivity of $\beta $ since $f^{-1}(0)\subseteq X$ is closed in $X$, containing  $g^{-1}(k^\times) \subseteq X$, whose closure in $X$ are  $X$.  ($\because Z \subseteq Y \subseteq X \implies \operatorname{cl}_Z(Y)=\operatorname{cl}_X(X)\cap Y$) }. To see $\beta $ is surjective, just recall the definition of regular function. We have constructed isomorphism  $\beta :\Gamma (X)_{\mathfrak{m}_p}\rightarrow \mathscr{O}_{p,X}$, proving (ii). The same argument works for constructing isomorphism $\operatorname{Frac}(\Gamma X)\cong  K(X)$, proving (iii).\\
+Fix $p$. Let $\beta  :\Gamma (X)_{\mathfrak{m}_p}\rightarrow \mathscr{O}_{p,X}$ be the obvious mapping\footnote{From $\beta $ you can see that the done localization $\Gamma (X)_{\mathfrak{m}_p}$ is of geometrical nature, not algebraic.}: $F\quotient G\mapsto [(U,F\quotient G)]$ where $F,G:X\rightarrow k$ are polynomial function and $U=\set{x \in X:G(x)\neq 0}$. Clearly $\beta $ is an injective ring homomorphism\footnote{Note that $[(U,f)]=0 \in \mathscr{O}_{p,X}$ if and only if $f=0$ on  $U$, since if $f\neq 0$ on $U$, then  $f+f\neq f$. This implies injectivity of $\beta $ since $f^{-1}(0)\subseteq X$ is closed in $X$, containing  $g^{-1}(k^\times) \subseteq X$, whose closure in $X$ are  $X$.  ($\because Z \subseteq Y \subseteq X \implies \operatorname{cl}_Z(Y)=\operatorname{cl}_X(X)\cap Y$) }. To see $\beta $ is surjective, just recall the definition of regular function. We have constructed isomorphism  $\beta :\Gamma (X)_{\mathfrak{m}_p}\rightarrow \mathscr{O}_{p,X}$, proving (ii). The same argument works for constructing isomorphism $\operatorname{Frac}(\Gamma X)\cong  K(X)$, proving (iii).\\
 
   Let $\alpha :\Gamma (X)\rightarrow \mathscr{O}(X)$ be the obvious mapping, which is clearly an injective ring homomorphism. It remains to prove $\alpha $ is surjective, which follows from checking the diagram: 
 % https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXEdhbW1hKFgpIl0sWzAsMiwiXFxiaWdjYXBfe30iXSxbMiwwLCJcXGJ1bGxldCJdLFsyLDIsIlxcYnVsbGV0Il0sWzAsMl0sWzAsMSwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn19fV0sWzEsMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiYXJyb3doZWFkIn19fV0sWzIsM11d
@@ -1513,9 +1536,9 @@ Fix $p$. Let $\beta  :\Gamma (X)_{\mathfrak{m}_p}\rightarrow \mathscr{O}_{p,X}$ 
 	\arrow[hook,from=1-3, to=3-3]
 	\arrow[double_arrow , from=3-1, to=3-3]
 \end{tikzcd}\]
-\footnote{The left isomorphism is explain in \customref{sam}{this paragraph} of  \myref{Section}{Lalr}, the bottom isomorphism is from (ii), and the right injective homomorphism is from \customref{sam2}{this paragraph} of this section.}is indeed commutative, where the left and right sides are, respectively, subrings of $\operatorname{Frac}(\Gamma X)$ and $K(X)$. 
+\footnote{The left isomorphism is explained in \customref{sam}{this paragraph} of  \myref{Section}{Lalr}, the bottom isomorphism is from (ii), and the right injective homomorphism is from \customref{sam2}{this paragraph} of this section.}is indeed commutative, where the left and right sides are, respectively, subrings of $\operatorname{Frac}(\Gamma X)$ and $K(X)$. 
 \end{proof}
-It may seem surprising that $\mathscr{O}(X) \cong \Gamma(X)$, since one might expect the former to be a localization of the latter, given that regular functions are defined locally as quotients of global polynomial functions. However, this apparent tension is actually a valuable opportunity to distinguish between the local and global perspectives: regularity is inherently a local notion. Indeed, by definition, a function $f : X \to k$ is regular if, locally, it can be written as a fraction $g/h$ with $g, h \in \Gamma(X)$.\\
+It may seem surprising that $\mathscr{O}(X) \cong \Gamma(X)$, since one might expect the former to be a localization of the latter, given that regular functions are defined locally as quotients of global polynomial functions. However, this apparent tension is actually a valuable opportunity to distinguish between the local and global perspectives: regularity is inherently a local notion. Indeed, by definition, a function $f : X \to k$ is regular if, locally, it can be written as a fraction $G/H$ with $G, H \in \Gamma(X)$.\\
 
 In fact, if one attempts to show that $\mathscr{O}_{p,X}$ is the localization $({f \in \mathscr{O}(X) : f(p) \neq 0})^{-1} \mathscr{O}(X)$ —that is, to verify that the obvious map $\mathscr{O}(X) \to \mathscr{O}_{p,X}$ satisfies the universal property—without invoking \myref{Theorem}{Asog}, one quickly encounters difficulties and will be forced to use isomorphism $\mathscr{O}(X) \cong \Gamma(X)$\footnote{As the action of isomorphism $\alpha $ in \myref{Theorem}{Asog} suggest, one can really just write $\mathscr{O}(X)=\Gamma (X)$ }.  \\
 
@@ -1548,7 +1571,6 @@ X,Y\text{ isomorphic as quasi variety }\iff \Gamma (Y),\Gamma (X)\text{ isomorph
 \begin{proof}
 If $\phi:X\rightarrow Y$ is a quasi variety isomorphism, then  $\tilde{\phi}:\Gamma (Y)\rightarrow \Gamma (X)$ is a $k$-algebra isomorphism with inverse $\tilde{\phi^{-1}}:\Gamma (X)\rightarrow \Gamma (Y)$. If $\pfi: \Gamma (Y)\rightarrow \Gamma (X)$ is a $k$-algebra isomorphism, then the unique morphism  $\phi: X\rightarrow Y $ that satisfies $\tilde{\phi}=\pfi$ is an isomorphism with the obvious inverse.  
 \end{proof}
-\section{Structures of the germs on projective variety}
 Given a projective quasi variety $X \subseteq \P^n$, we also use notation $\Gamma (X)$ to denote its \textbf{homogeneous coordinate ring} $k[x_0,\dots ,x_n]\quotient I(X)$, where $I(X)$ are the defining ideal of $X$, the ideal generated by homogeneous polynomials vanishing on  $X$. We have shown that coordinate rings of affine quasi varieties are invariant up to isomorphisms, and we are going to show coordinate rings of projective quasi varieties are not.  
 \begin{theorem}
 \label{Ogot}
@@ -1654,7 +1676,7 @@ a contradiction to the premise  $r_0\neq r_1$.
 \end{proof}
 Again, we use the notation $A_{(f)}$ to denote the $(A_f)_0$ in \myref{Theorem}{Ogoh2}. \\
 
-\section{Category of Quasi Varieties (Huge rabbit holes concerning Cohen-Macaulay ring remains)}
+\section{Category of quasi varieties}
 \label{SE}
 \begin{theorem}
 \textbf{(Product of affine variety)} If $X \subseteq \A^n$ and variety $Y\subseteq \A^m$, 
@@ -1792,53 +1814,84 @@ is a collection of bi-homogeneous polynomial. Let $\psi: \P^n\times \P^m \righta
 \label{Apou}
 \textbf{(A part of universal property)} If $\phi:X\rightarrow \P^n,\psi:X\rightarrow \P^m$ are two quasi variety morphism, then $\phi \times \psi: X\rightarrow \P^n \times \P^m$ defined in the obvious way is also a quasi variety morphism.     
 \end{theorem}
-\section{Rational Map}
+\section{Rational map}
+\label{Rm}
 \begin{theorem}
 \label{Rmi}
 \textbf{(Rational map is well-defined)} Let $X$ and  $Y$ be two quasi varieties, and let $\phi$ and $\psi$ be two quasi varieties from $X$ to $Y$. If there exists non empty open subset $U \subseteq X$ on which $\phi$ and $\psi$ agree, them $\phi = \psi$. 
 \end{theorem}
 \begin{proof}
 WLOG\footnote{
-If $Y$ is affine, by \myref{Theorem}{Ste}, there exists isomorphism $Y\xrightarrow{\pfi} Y' \subseteq \P^n$. If $\pfi \circ \phi :X\rightarrow Y'$ and $\pfi \circ \psi:X\rightarrow Y'$ agree, then $\phi=\pfi ^{-1}\circ \pfi  \circ \phi$ and $\psi= \pfi ^{-1}\circ \pfi \circ \psi$ also agree. In other words, we may WLOG let $Y$ be projective. Let $j:Y\rightarrow \P^n$ be the inclusion. Because $j$ is injective,  if $j\circ \phi$ and $j\circ \psi $ agree, then $\phi$ and $\psi$ must agree. This allow us to WLOG suppose $Y=\P^n$.}, let $Y=\P^n$. By \customref{Apou}{universal property}, $\phi \times \psi : X\rightarrow \P^n \times \P^n$ is a quasi variety morphism. Clearly, the diagonal set $\Delta\triangleq \set{[\textbf{x}]\times [\textbf{x}]\in \P^n \times \P^n: [\textbf{x}]\in \P^n}$ equals to the vanishing set $V(\set{x_iy_j-x_iy_j: 0 \leq i,j\leq n})$, and is thus closed. By premise, $\phi \times \psi (U)\subseteq \Delta$. It then follows form continuity\footnote{Recall that one of the equivalent definition for function between two topological space to be continuous is that the functions maps closure of any subset $A$ of domain into the closure of image of  $A$.} of $\phi \times \psi$, $U$ being dense in $X$, and $\Delta$ being closed that  $\phi \times \psi (X)\subseteq \Delta $, which implies $\phi = \psi$. 
+If $Y$ is affine, by \myref{Theorem}{Ste}, there exists quasi variety isomorphism $Y\xrightarrow{\pfi} Y' \subseteq \P^n$. If $\pfi \circ \phi :X\rightarrow Y'$ and $\pfi \circ \psi:X\rightarrow Y'$ agree, then $\phi=\pfi ^{-1}\circ \pfi  \circ \phi$ and $\psi= \pfi ^{-1}\circ \pfi \circ \psi$ also agree. In other words, we may WLOG let $Y$ be projective. Let $j:Y\rightarrow \P^n$ be the inclusion. Because $j$ is injective,  if $j\circ \phi$ and $j\circ \psi $ agree, then $\phi$ and $\psi$ must agree. This allow us to WLOG suppose $Y=\P^n$.}, let $Y=\P^n$. By \customref{Apou}{universal property}, $\phi \times \psi : X\rightarrow \P^n \times \P^n$ is a quasi variety morphism. Clearly, the diagonal set $\Delta\triangleq \set{[\textbf{x}]\times [\textbf{x}]\in \P^n \times \P^n: [\textbf{x}]\in \P^n}$ equals to the vanishing set $V(\set{x_iy_j-x_iy_j: 0 \leq i,j\leq n})$, and is thus closed. By premise, $\phi \times \psi (U)\subseteq \Delta$. It then follows form continuity\footnote{Recall that one of the equivalent definition for function between two topological space to be continuous is that the functions maps closure of any subset $A$ of domain into the closure of image of  $A$.} of $\phi \times \psi$, $U$ being dense in $X$, and $\Delta$ being closed that  $\phi \times \psi (X)\subseteq \Delta $, which implies $\phi = \psi$. 
 \end{proof}
 Let $X$ and  $Y$ be two quasi varieties. Because of \myref{Theorem}{Rmi}, we may well-define \textbf{rational map} $\phi: X \DashedArrow  Y$ to be equivalence class of pairs $(U,\phi_U)$ where $U$ is a nonempty open subset of $X$ and  $\phi_U:U\rightarrow Y$ is a quasi variety morphism. Given a rational map $\phi:X\DashedArrow Y$, we say $\phi$ is \textbf{dominant} if for some and hence every\footnote{Let $U,V \subseteq X$ be open, and $\phi (U)$ be dense in $Y$. Because $U$ is irreducible, we know $U=\operatorname{cl}_U(U \cap V)$, and because $\phi:U\rightarrow Y$ is continuous, we know $\phi (\operatorname{cl}_U(U \cap V))\subseteq \overline{\phi (U\cap V)}$. Together, we have $Y=\overline{\phi (U)}= \overline{\phi (\operatorname{cl}_U(U\cap V))}\subseteq \overline{\phi (U\cap V)}\subseteq \overline{\phi (V)}$.} pair $(U,\phi_U)$, the image of $\phi_U$ is dense in $Y$. \\
 
-Consider two dominant rational maps $X \overset{\phi}{\DashedArrow}Y \overset{\psi}{\DashedArrow}Z$, and consider $(U,\phi_U)\in \phi$ and $(V,\psi_V)\in \psi$. Because $\phi(U)$ is dense in $Y$, we know $\phi^{-1}_U(V)$ is nonempty. Therefore, it make sense to talk about the composition $\psi \circ \phi:X\DashedArrow Z$ of the dominant rational maps, the equivalence class containing $(\phi^{-1}_U(V),\psi \circ \phi)$. It is trivial to check the composition is indeed well-defined. It is clear that composition of dominant rational maps is again dominant\footnote{Let $W \subseteq Z$ be open. We are required to show $W$ intersect with $\psi (V \cap \phi (U))$. Because $\psi_V(V)\subseteq Z$ is dense and $\psi_V$ is continuous, we know $\psi_V^{-1}(W)\subseteq Y$ is nonempty and open. It then follows from dominance of $\phi$ that $\phi_U^{-1} (\psi^{-1}_V (W))$ is nonempty.}.\\
-
-
-
-If we say $\phi : X\DashedArrow Y$ is a \textbf{birational map}, we mean $\phi$ is dominant and there exists some dominant  $\psi:Y \DashedArrow X$ such that $\psi \circ \phi:X\DashedArrow X$ contains $(X,\id )$ and $\phi \circ \psi: Y \DashedArrow Y$ contains $(Y,\id )$. Clearly, inverse of any birational map must be unique.
-
-
-Two quasi varieties are said to be \textbf{birational equivalent} if there exists a birational map between them, and  
-\begin{theorem}
-\textbf{(Birational equivalence implies isomorphism of function field as $k$-algebra)} Let $X$ and  $Y$ be two quasi varieties. 
+Let $\phi: X  \DashedArrow Y$ be a dominant rational map. Because for each open $U \subseteq X$, we have the identification $K(U)=K(X)$, we may also talk about the dual map $\phi^*:K(Y)\rightarrow K(X)$. Consider two dominant rational maps $X \overset{\phi}{\DashedArrow}Y \overset{\psi}{\DashedArrow}Z$, and consider $(U,\phi_U)\in \phi$ and $(V,\psi_V)\in \psi$. Because $\phi_U(U)$ is dense in $Y$, we know $\phi^{-1}_U(V)$ is nonempty. Therefore, it make sense to talk about the composition $\psi \circ \phi:X\DashedArrow Z$ of the dominant rational maps, the equivalence class containing $(\phi^{-1}_U(V),\psi_V \circ \phi_U)$. It is trivial to check the composition is indeed well-defined, and it is clear that composition of dominant rational maps is again dominant\footnote{Let $W \subseteq Z$ be open. We are required to show $W$ intersect with $\psi_V(V \cap \phi_U (U))$. Because $\psi_V(V)\subseteq Z$ is dense and $\psi_V$ is continuous, we know $\psi_V^{-1}(W)\subseteq Y$ is nonempty and open. It then follows from dominance of $\phi$ that $\phi_U^{-1} (\psi^{-1}_V (W))$ is nonempty.}. Moreover, we clearly have 
 \begin{align*}
-X\text{ and }Y\text{ are birational equivalent }\implies K(X)\cong  K(Y)\text{ as $k$-algebra. }
+  (\psi \circ \phi)^* = \phi^* \circ \psi^* 
 \end{align*}
+
+If we say $\phi : X\DashedArrow Y$ is a \textbf{birational map}, we mean $\phi$ is dominant and there exists some dominant  $\psi:Y \DashedArrow X$ such that $\psi \circ \phi:X\DashedArrow X$ contains $(X,\id )$ and $\phi \circ \psi: Y \DashedArrow Y$ contains $(Y,\id )$. Clearly, inverse of any birational map must be unique and also a birational map. Two quasi varieties are said to be \textbf{birational equivalent} if there exists a birational map between them.\\
+
+The reason we care about birational equivalence stemmed from that we care about the function field on varieties: One always study first about the functions on the object to make interesting conclusion of the object. As we have promise earlier, see the almighty \customref{BE}{equivalent definition for birational equivalence}. 
+\begin{theorem}
+\label{Bcoa}
+\textbf{(Basis consisting of "affine" variety)} Each variety $X$ has a basis whose elements are all quasi variety isomorphic to some affine variety. 
 \end{theorem}
 \begin{proof}
-Let dominant rational $\phi : X\DashedArrow Y$ and $\psi:Y \DashedArrow X$ be inverse to each other, consider $(U,\phi_U)\in \phi$  and $(V,\psi_V)\in \psi$, and consider $E\triangleq  \phi^{-1}_U(\psi^{-1}_V(U))$ and $F \triangleq \psi^{-1}_V (\phi_U^{-1}(V))$. Clearly, $E\subseteq U$ and $F\subseteq V$ are open, and a routine check shows that $\phi_E$ maps $E$ isomorphically to $F$ with inverse being  $\psi_F$. A routine check now shows that $K(X)\rightarrow K(Y)$ defined by 
-\begin{align*}
-[(T,f)]\longmapsto [(\psi^{-1}_F(T), f \circ \psi)] 
-\end{align*}
-and $K(Y)\rightarrow K(X)$ defined by 
-\begin{align*}
-[(H,g)]\longmapsto [(\phi^{-1}_E(H), g \circ \phi)] 
-\end{align*}
-are two well-defined $k$-algebra homomorphism being inverse to each others\footnote{Therefore they are isomorphisms inverse to each other.}.  
+Fix $p \in X$ and open $U\subseteq X$ containing $p$. We are required to find open $W \subseteq U$ containing  $p$ and quasi variety isomorphic to some affine variety.\\ 
+
+For the affine case $X\subseteq \A^n$, first observe that because $\A^n-U$ is closed, there exists $F\in I(\A^n-U)$ such that $p \not \in V(F)$. Clearly $W \triangleq X \cap (\A^n-V(F))$ is open in $X$, contains  $p$, and is contained by $U$. It remains to show that $W$ is quasi variety isomorphic to some affine variety. \\
+
+ By \myref{Theorem}{Qve}, there exists a quasi variety isomorphism $\psi :\A^n-V(F) \rightarrow  V(x_{n+1}F-1)\subseteq \A^{n+1}$. To show such $\psi$ when restricted onto  $W$ suffices, we only have to show $\psi (W)$ is closed, which follows from $W$ being closed in  $\A^n- V(F)$, which follows form $X$ being closed in  $\A^n$.  \\
+
+
+Let $X \subseteq \P^n$, let $p \in \A_{(0)}\triangleq \set{[\textbf{x}]\in \P^n : x_0 \neq 0}$, and let $\phi:\A_{(0)}\rightarrow \A^n$ be the \customref{Ste}{standard quasi variety isomorphism}. Because $X$ is closed, we know $\phi (X \cap \A_{(0)})\subseteq \A^n$ is closed. Clearly, $U \cap \A_{(0)}$ is open in $X\cap  \A_{(0)}$. It then follows from the affine case that there exists some $W'$, containing $\phi (p)$, contained by  $\phi (U \cap \A_{(0)})$, open in $\phi (X \cap \A_{(0)})$, and quasi variety isomorphic to some affine variety. By construction, $W\triangleq \phi^{-1}(W')$ suffices. 
 \end{proof}
-Let $\phi:X\DashedArrow Y$ be a dominant rational map and $(U,\phi_U)\in \phi$. Let $(V,f)\in K(Y)$. Clearly, $\phi_U^{-1}(V)$ is nonempty and open, and $f \circ \phi_U$ is a regular function on $\phi_U^{-1}(V)$. In other words, $(\phi_U^{-1}(V),f \circ \phi_U)\in K(X)$.
-
-Verify this is 
+\begin{theorem}
+\textbf{(Category of varieties and dominant rational map is "equivalent" to the finitely generated field extension)} Let $X,Y$ be two varieties. The map $\phi \mapsto \phi^*$ forms a bijection between 
 \begin{enumerate}[label=(\roman*)]
-  \item well-defined as a set map. 
-  \item a $k$-algebra homomorphism.  
+  \item the set of dominant rational maps from $X$ to  $Y$. 
+  \item the set of $k$-algebra homomorphism from  $K(Y)$ to $K(X)$. 
 \end{enumerate}
-\section{Dimension Theory (Planned)}
-$X$ is a quasi variety iff  $X$ is irreducible and  $X$ is open in  $\overline{X}$. 
+\end{theorem}
+\begin{proof}
+ Let $\theta: K(Y)\rightarrow K(X)$ be a $k$-algebra homomorphism. We are required to construct some $\phi :X \DashedArrow Y $ such that $\phi^* =\theta$.\\
 
-$X$ is irreducible iff $\overline{X}$ is irreducible. 
+ Let $Y$ be projective. By  \myref{Theorem}{Bcoa}, there exists some nonempty open $U \subseteq Y$ and quasi variety isomorphism $\pfi : U \rightarrow Z\subseteq \A^n$ where $Z$ is closed. Treat $\pfi^{-1} : Z\DashedArrow  Y$ as the obvious dominant rational map. We know $\pfi ^*:K(Z)\rightarrow K(U)=K(Y)$ is a $k$-algebra isomorphism. \\
+
+
+Now, says, we have constructed a dominant rational map $\psi:X \DashedArrow Z$ that satisfies $\psi^*= \theta \circ \pfi ^*$. Then we will have 
+\begin{align*}
+  (\pfi ^{-1}\circ \psi)^* = \psi^* \circ (\pfi ^{-1})^* = \theta
+\end{align*}
+In other words, we may suppose $Y$ is affine.\\
+
+
+
+
+
+\end{proof}
+\begin{equiv_def}
+\label{BE}
+\textbf{(Birational Equivalence)} Let $X,Y$ be two varieties. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $X$ and  $Y$ are birationally equivalent. 
+  \item There exists  $U \subseteq X$ and $V \subseteq Y$ such that  $U$ is open in  $X$,  $V$ is open in  $Y$, and  $U,V$ are quasi variety isomorphic. 
+  \item $K(X)$ and $K(Y)$ are isomorphic as $k$-algebras. 
+\end{enumerate} 
+\end{equiv_def}
+\begin{proof}
+  (i)$\implies $(ii): Let  $\phi:X\DashedArrow  Y$ and $\psi: Y\DashedArrow X$ be two dominant rational map inverse to each other, and let $(W,\phi_W)\in \phi,(T,\psi_V)\in \psi$. The proof then follows from checking $U\triangleq \phi_W^{-1}(\psi_T^{-1}(W)),V\triangleq \psi_T^{-1}(\phi^{-1}(W))$, and $\phi_W |_U$ suffices. \\
+
+(ii)$\implies $(iii): We have proved this. See \myref{Theorem}{Ascfff}. \\
+
+
+(iii)$\implies $(i):
+
+We wish to construct a dominant rational map from  $X$ to  $Y$. We first do the case when $Y$ is affine.  
+\end{proof}
+
 \chapter{Scheme}
 
 Given some ring $R$, we may give $\operatorname{Spec}(R)$ its \textbf{Zariski topology} by defining $E\subseteq \operatorname{Spec}(R)$ to be closed if and only if $E=\set{J \in \operatorname{Spec}(R):I \subseteq J}$ for some ordinary ideal $I\subseteq R$. \\

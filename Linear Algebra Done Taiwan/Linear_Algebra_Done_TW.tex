@@ -299,7 +299,8 @@ Let $V,W$ be two inner product space over  $\F$, and let  $F:V\rightarrow W$ be 
 we say $F^\dagger $ is an  \textbf{adjoint} of $F$. If both $V$ and $W$ are finite-dimensional, then $F^\dagger $ exists uniquely, and its matrix representation is always the complex conjugation of that of $F$, regardless of the choices of bases. It is obvious that the double adjoint of a linear map between two finite-dimensional inner product spaces over $\F$ is itself. \\
 
 Given finite dimensional $\C$-vector space  $V$ and  $T \in \operatorname{End}(V)$, if $T$ is \textbf{normal}, i.e. $T$ commutes with its adjoint, then by direct computation, we see that its Schur's form must be diagonal. This result is called \textbf{Spectral Theorem for complex finite-dimensional vector space}. If $V$ is over $\R$ instead of  $\C$, then $T$ being normal is not enough for $T$ to be orthogonally diagonalized, since we do not have Schur's decomposition in the first place.\footnote{Actually, we do have Schur's decomposition in the sense that we may first decompose a real matrix into a complex Jordan matrix, and then applying the Gram-Schmidt process. Yet, because the matrix representation of adjoint of $T$ when the underlying field is  $\R$ is just the transpose of that of $T$ instead of  the conjugate transpose, direct computation yield nothing.} 
-\end{mdframed}
+
+
 \begin{theorem}
   \textbf{(Spectral Theorem for real finite-dimensional vector space)} Let $V$ be a finite-dimensional real vector space, and let $T \in \operatorname{End}(V)$. If $T$ is \textbf{self-adjoint}, then there exists an orthogonal eigenbasis for $V$ with  respect to $T$. 
 \end{theorem}
@@ -380,6 +381,7 @@ S=\begin{bmatrix}
 \end{bmatrix}\text{ and }e^N= \sum_{k=0}^n \frac{N^k}{k!}
 \end{align*}
 \section{Tensor Product}
+\label{Universal Property of Tensor Product}
 In the most general sense, the \textbf{tensor product} of two $\F$-vector space $V_1,V_2$ is merely a  $\F$-vector space  $X$ associated with a $\F$-bilinear map  $g:V_1\times V_2\rightarrow X$ that satisfies the \textbf{universal property} of tensor product: For every $\F$-bilinear map  $f:V_1\times V_2 \rightarrow W$, there exists a unique $\F$-linear map  $\tilde{f}:X\rightarrow W$ such that $f= \tilde{f}\circ g$.  \\
 
 It is routine to check that the universal property of tensor product defines vector space up to an isomorphism compatible with itself. More precisely, if $Y,h:V_1 \times V_2 \rightarrow Y$ also satisfies the universal property, then there exists an isomorphism $f:X\rightarrow Y$ such that $f\circ g=h$. \\
@@ -1076,7 +1078,7 @@ M\triangleq \begin{pmatrix}
   \item Prove $\operatorname{det}(e^A)= \exp (\operatorname{tr}A)$ for $A\in M_n(\C)$. 
   \item Prove or disprove 
     \begin{align*}
-    A\inM_n(\C)\text{ is nilpotent }\implies e^{A}-I\text{ is nilpotent }
+    A\in M_n(\C)\text{ is nilpotent }\implies e^{A}-I\text{ is nilpotent }
     \end{align*}
 \end{enumerate}
 \emph{Remark: the original phrasing of part (c) of this question is absolutely horrible. They should have written $\exp (A)-I$ instead of $\exp A-I$.}
@@ -1777,6 +1779,94 @@ suffice. Clearly they are stable under $T$. It remains to show  $T |_{W_1}$ and 
   \item $T|_{W_1}$ and $T|_{W_2}$ respectively have characteristic polynomials $q_1$ and  $q_2$. 
 \end{enumerate}
 \end{proof}
+\section{Year 104}
+\begin{question}{}{}
+\begin{enumerate}[label=(\roman*)]
+  \item For each $x\inr$, let $V_x$ be the subspace of  $\R^4$ spanned by 
+   \begin{align*}
+      (x,1,1,1),(1,x,1,1),(1,1,x,1),(1,1,1,x)
+  \end{align*}
+  Determine all $x\inr$ such that $\operatorname{dim}(V_x)\leq 3$. 
+  \item Find the dimension and a basis for the space of $\R$-linear maps from $\R^5$ to $\R^3$ whose kernel contains  $(0,2,-3,0,1)$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+The first problem boils down to factorizing the determinant:
+\begin{align}
+\label{xma}
+\begin{vmatrix}
+  x& 1 & 1 & 1 \\
+  1 & x & 1 & 1\\
+  1 & 1 & x & 1 \\
+  1 & 1 & 1 & x
+\end{vmatrix}
+\end{align}
+into linear terms. Even though one may just perform direct computation and "guesses work" to find the solutions, we offer a different approach: Because \myref{Matrix}{xma} equals to $(x-1)I+ J$ where all entries of $J \in M_4(\R)$ are $1$, by \myref{Theorem}{Dosm}, the determinant of \myref{Matrix}{xma} is  $(x-1)^3(x-1+4)$. This implies the solutions of the first problem is $\set{1,-3}$. \\
+
+
+
+
+\end{proof}
+\begin{theorem}
+\label{Dosm}
+\textbf{(Determinant of special matrices)} Let $\F$ be some field, $\alpha ,\beta  \in\F$, and every entry of $J\in M_n(\F)$ be $1$.  The matrix  $\alpha I+\beta J$ is $\F$-diagonalizable with eigenvalues: 
+\begin{align}
+\label{alovb}
+\overbrace{\alpha ,\alpha ,\dots ,\alpha  }^{n-1\text{ copies }},\quad \text{ and }\quad \alpha +n \beta 
+\end{align}
+Therefore, 
+\begin{align}
+\label{dea}
+\operatorname{det}(\alpha I+\beta J)= (\alpha)^{n-1}(\alpha +n \beta )
+\end{align}
+\end{theorem}
+\begin{proof}
+Noting $\operatorname{rank}_\F(J)=1$, we see that $J$ is $\F$-diagonalizable with eigenvalues:\footnote{Note that here, by $n \in \F$, we mean  $\overbrace{1+\cdots +1}^{n\text{ copies }} \in \F$}
+\begin{align*}
+\overbrace{0,0,\dots ,0}^{n-1\text{ copies }},\quad \text{ and }\quad n
+\end{align*}
+Let $\textbf{v}\in \F^n$. Clearly, $J\textbf{v}=\textbf{0}\implies (\alpha I+\beta J)\textbf{v}=\alpha \textbf{v}$. Also, clearly,   $J\textbf{v}=n\textbf{v}\implies (\alpha I+\beta J)\textbf{v}=(\alpha +n\beta )\textbf{v}$. This proves \myref{Equation}{alovb}. To see \myref{Equatoin}{dea}, just consider \customref{JF}{the Jordan form}.  
+\end{proof}
+\begin{question}{}{}
+Let 
+\begin{align*}
+A\triangleq \begin{bmatrix}
+  -1 & 4 & -2 \\
+  -2 & 5 & -2 \\
+  -1 & 2 & 0
+\end{bmatrix}
+\end{align*}
+\begin{enumerate}[label=(\roman*)]
+  \item Compute the characteristic polynomial of $A$.  
+  \item If $f(x)\triangleq (x-3)^2+5$, find the eigenvalue of $f(A)$. 
+  \item Find an orthogonal matrix $P \in M_3(\R)$ such that $P^{-1}AP$ is diagonal. 
+\end{enumerate}
+\end{question}
+\begin{question}{}{}
+Let $A,B \in \operatorname{GL}_n(\R)$. Show that 
+\begin{enumerate}[label=(\roman*)]
+  \item If $ABA^{-1}B^{-1}=cI$, then $c=\pm 1$. 
+  \item If $AB-BA=cI$, then  $c=0$. 
+\end{enumerate}
+\end{question}
+\begin{question}{}{}
+Given $A \in M_n(\R)$, show 
+\begin{align*}
+A^3=A \implies \operatorname{rank}(A)=\operatorname{tr}(A^2)
+\end{align*}
+\end{question}
+\begin{question}{}{}
+Given $A \in M_n(\R)$, show 
+\begin{align*}
+\operatorname{rank}(A)+\operatorname{rank}(I-A) =n\implies A^2=A
+\end{align*}
+\end{question}
+\begin{question}{}{}
+Consider $A,B\in M_n(\Q)$ with $A^n=0$ but  $A^{n-1}\neq 0$. Show 
+\begin{align*}
+AB=BA \implies  B= F(A)\text{ for some }F \in \Q[x]\text{ such that }\operatorname{deg}(F)<n
+\end{align*}
+\end{question}
 \chapter{NTU MATH M.A. Program Entrance Exam Round 2}
 \section{NTU Round 2 Year 106}
 \begin{question}{}{}
@@ -2002,7 +2092,7 @@ F(v_1\wedge \cdots \wedge  v_k  )=f(v_1,\dots ,v_k) \text{ for all }v_1,\dots,v_
 \end{align*}
 \end{theorem}
 \begin{proof}
-By \customref{Universal Property of Tensor Product}{universal property of tensor product}, there exists unique linear map $h:T^k(V)\rightarrow Z$ such that 
+By \customref{Universal Property of Tensor Product}{universal property of tensor product},  there exists unique linear map $h:T^k(V)\rightarrow Z$ such that 
  \begin{align*}
 h(v_1 \otimes  \cdots \otimes  v_k)=f(v_1,\cdots ,v_k)
 \end{align*}
@@ -2257,7 +2347,7 @@ Then \myref{Equation}{equivdefopnorm1} give us
 \end{mdframed}
 \section{Cauchy-Schwarz for Positive semi-definite Hermitian form}
 \begin{mdframed}
-Sometimes, we do not require $\langle \cdot,\cdot\rangle :V^2\rightarrow \F$ to be positive-definite, but only \textbf{positive semi-definite}, i.e. $\langle v,v\rangle \geq 0$ for all $v\in V$. In this case, we say $\langle \cdot, \cdot\rangle :V^2\rightarrow \F$ is a \textbf{positive semi-definite Hermitian form}. If we again induce a functional $\norm{\cdot}:V\rightarrow \R$ from some positive semi-definite Hermitian form using \myref{Equation}{indn}, then the functional $\norm{\cdot}:V\rightarrow \R$ in general is not positive-definite, and is called a \textbf{semi norm}, since, as we later show, it still satisfies triangle inequality and absolute homogeneity.
+  Sometimes, we do not require $\langle \cdot,\cdot\rangle :V^2\rightarrow \F$ to be positive-definite, but only \textbf{positive semi-definite}, i.e. $\langle v,v\rangle \geq 0$ for all $v\in V$. In this case, we say $\langle \cdot, \cdot\rangle :V^2\rightarrow \F$ is a \textbf{positive semi-definite Hermitian form}. If we again induce a functional $\norm{\cdot}:V\rightarrow \R$ from some positive semi-definite Hermitian form using \myref{Equation}{indn}, then the functional $\norm{\cdot}:V\rightarrow \R$ in general is not positive-definite, and is called a \textbf{semi norm}, since, as we later show, it still satisfies triangle inequality and absolute homogeneity.
 \end{mdframed}
 \begin{theorem}
 \label{BPoP}
