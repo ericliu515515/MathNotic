@@ -218,9 +218,7 @@
 }{def}
 \makeatother
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% TABLE OF CONTENTS
+% COMMUTATIVE DIAGRAM
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -235,6 +233,18 @@
   }
 }
 \tikzstyle{double_arrow} = [thick,<->,>=stealth]
+
+\tikzset{
+  broken double arrow/.style={
+    thick,                    % line width
+    dashed,                   % make it broken
+    <->,                      % arrowheads at both ends
+    >=Stealth[length=2pt,width=1pt] % thinner arrowheads           
+  }
+}
+
+% TABLE OF CONTENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \definecolor{doc}{RGB}{0,60,110}
 \usepackage{titletoc}
 \contentsmargin{0cm}

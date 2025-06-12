@@ -260,6 +260,57 @@ Because both $[F]$ and  $S$ map  $G(\ld _j,F)$ into themselves, we know $N$ also
 m(x)=(x-\ld_1)^{r_1}\cdots (x-\ld_m)^{r_m} 
 \end{align*}
 This give a proof of the  \textbf{Cayley-Hamilton Theorem}, that is, $p(F)=0$, where $p$ is the characteristic polynomial of  $F$.
+\section{Powers of Jordan blocks}
+In this section, we denote Jordan block by $J(\ld ,n)$. For example, by $J(\sqrt{5},2)$ we mean: 
+\begin{align*}
+\begin{pmatrix} 
+  \sqrt{5} & 1 \\
+  0 & \sqrt{5}  
+\end{pmatrix}
+\end{align*}
+This section only prove one result: 
+\begin{theorem}
+\label{PoJb}
+\textbf{(Powers of Jordan blocks)} Given field $\F$ with $0$ characteristic value, $\ld \in \F$, and $n,t\inn$,  
+\begin{align*}
+  (J(\ld ,n))^t \text{ has the Jordan form: }  \begin{cases}
+    J(\ld ^t ,n)& \text{ if }\ld \neq 0 \\
+    \begin{pmatrix} 
+      J(0,n-t+1) & 0 \\
+      0 & 0 
+    \end{pmatrix}& \text{ if }\ld =0\text{ and } t<n \\
+    0 & \text{ if }\ld =0 \text{ and }t\geq n 
+  \end{cases} 
+\end{align*}
+\end{theorem}
+\begin{proof}
+(iii) is clear from computation. (ii) is also clear from computation. If $t<n$, then we have:  
+\begin{align*}
+J(0,n)^t= P \begin{pmatrix} 
+      J(0,n-t+1) & 0 \\
+      0 & 0 
+    \end{pmatrix}P^{-1}
+\end{align*}
+where 
+\begin{align*}
+P=\begin{bmatrix} 
+      \textbf{e}_1 & \textbf{e}_{t+1} & \textbf{e}_{t+2} & \cdots & \textbf{e}_{n} & \textbf{e}_2 & \textbf{e}_3 & \cdots \textbf{e}_{t}
+    \end{bmatrix}
+\end{align*}
+We now prove (i). For simplicity, from now on we write $J$ in place of $J(\ld ,n)=I+ \ld N$. Clearly, $J^t$ is always an upper triangular matrix whose diagonal entries are all $\ld ^t$, and its eigenvalues in $\overline{\F}$ are all $\ld ^t$. We are required to prove that $J^t$ has only one Jordan block, i.e., $(J^t- \ld ^tI)^{n-1}\neq 0$. Using binomial theorem, we may compute:
+\begin{align*}
+  J^t= (N+\ld I)^t = \sum_{k=0}^t \binom{t}{k} \ld ^{t-k}N^k   
+\end{align*}
+This implies: 
+\begin{align*}
+  J^t - \ld ^t I = a_{n-1}N^{n-1} + \cdots + a_1 N ^1,\quad \text{ where }a_i\triangleq \binom{t}{i} \ld ^{t-i}
+\end{align*}
+which implies: 
+\begin{align*}
+  (J^t-\ld ^t I)^{n-1}= a_1^{n-1}N^{n-1}\neq 0
+\end{align*}
+\end{proof}
+Clearly, \myref{Theorem}{PoJb} give us the \textbf{Spectral Theorem for Polynomials}, whatever version it is for you. 
 \section{Spectral Theorem}
 \label{Spectral Theorem}
 Let  $V$ be a $\F$-vector space where $\F$ is a subfield of $\C$. By a \textbf{norm} on $V$, we mean some \textbf{positive-definite} functional $\norm{\cdot}:V\to \R$ that satisfies \textbf{absolute homogeneity} and \textbf{triangle inequality}. In this context, for $\norm{\cdot}$ to be positive-definite, it must satisfy 
@@ -302,6 +353,7 @@ Given finite dimensional $\C$-vector space  $V$ and  $T \in \operatorname{End}(V
 
 
 \begin{theorem}
+\label{STfr}
   \textbf{(Spectral Theorem for real finite-dimensional vector space)} Let $V$ be a finite-dimensional real vector space, and let $T \in \operatorname{End}(V)$. If $T$ is \textbf{self-adjoint}, then there exists an orthogonal eigenbasis for $V$ with  respect to $T$. 
 \end{theorem}
 \begin{proof}
@@ -1803,9 +1855,7 @@ The first problem boils down to factorizing the determinant:
 \end{align}
 into linear terms. Even though one may just perform direct computation and "guesses work" to find the solutions, we offer a different approach: Because \myref{Matrix}{xma} equals to $(x-1)I+ J$ where all entries of $J \in M_4(\R)$ are $1$, by \myref{Theorem}{Dosm}, the determinant of \myref{Matrix}{xma} is  $(x-1)^3(x-1+4)$. This implies the solutions of the first problem is $\set{1,-3}$. \\
 
-
-
-
+In the second problem, if we identify $\operatorname{Hom}_\R(\R^5,\R^3)$ with $M_{3\times 5}(\R)$ the natural way, then the space in the question consists precisely of those matrix whose every row is orthogonal to $(0,2,-3,0,1)$. Clearly, the subspace of $\R^5$ consisting of vectors orthogonal to $(0,2,-3,0,1)$ is $4$-dimensional, and says, if $\set{\textbf{v}_1,\dots ,\textbf{v}_4}$ is a basis, then the space in the question is exactly $12$-dimensional with basis  $\set{E_{i,j}:1\leq i\leq 3,1\leq j\leq 4}$ where the non $i$-th row of $E_{i,j}$ are all $0$ and the  $i$-th row of  $E_{i,j}$ is $\textbf{v}_j$. We have reduced the problem into finding $\set{\textbf{v}_1,\dots ,\textbf{v}_4}$. Clearly, $\textbf{v}_1\triangleq (1,0,0,0,0),\textbf{v}_2\triangleq (0,1,1,0,1),\textbf{v}_3\triangleq (0,1,0,0,-2),\textbf{v}_4\triangleq (0,0,0,1,0)$ suffices.
 \end{proof}
 \begin{theorem}
 \label{Dosm}
@@ -1842,6 +1892,9 @@ A\triangleq \begin{bmatrix}
   \item Find an orthogonal matrix $P \in M_3(\R)$ such that $P^{-1}AP$ is diagonal. 
 \end{enumerate}
 \end{question}
+\begin{proof}
+The characteristic polynomial of $A$ is $(x-2)(x-1)^2$. By \customref{PoJb}{Spectral Theorem of polynomial} (Deduced from our \myref{Theorem}{PoJb}), the set of eigenvalues of $f(A)$ is then exactly  $\set{6,9}$. The third question is clearly wrong: There is no such $P$. By \customref{STfr}{Spectral Theorem for finite dimensional real vector space}, for such  $P$ to exist, $A$ must be symmetric.
+\end{proof}
 \begin{question}{}{}
 Let $A,B \in \operatorname{GL}_n(\R)$. Show that 
 \begin{enumerate}[label=(\roman*)]
@@ -1849,24 +1902,53 @@ Let $A,B \in \operatorname{GL}_n(\R)$. Show that
   \item If $AB-BA=cI$, then  $c=0$. 
 \end{enumerate}
 \end{question}
+\begin{proof}
+Note that $ABA^{-1}B^{-1}=cI$ implies $AB=cBA$, which implies  $\operatorname{det}(AB)=c^n\operatorname{det}(BA)$, which implies $c^n=1$, which implies  $c\in \set{-1,1}$. \\
+
+Note that $AB-BA=cI$ implies  $AB=cI+BA$, which implies  $\operatorname{trace}(AB)=nc+\operatorname{trace}(BA)$, which implies $nc=0$, which implies  $c=0$.  
+\end{proof}
 \begin{question}{}{}
 Given $A \in M_n(\R)$, show 
 \begin{align*}
 A^3=A \implies \operatorname{rank}(A)=\operatorname{tr}(A^2)
 \end{align*}
 \end{question}
+\begin{proof}
+  $A^3=A$ implies that  $x^3-x=x(x-1)(x+1)$ is a polynomial that send $A$ to  $0$. By long division, minimal polynomial of $A$ must divides  $x(x-1)(x+1)$. This implies that the set of eigenvalues of $A$ is contained by $\set{-1,0,1}$. It then follows from considering the \customref{JF}{Jordan form} of $A$ that  $\operatorname{rank}(A)=\operatorname{tr}(A^2)$.   
+\end{proof}
 \begin{question}{}{}
 Given $A \in M_n(\R)$, show 
 \begin{align*}
 \operatorname{rank}(A)+\operatorname{rank}(I-A) =n\implies A^2=A
 \end{align*}
 \end{question}
+\begin{proof}
+  Suppose $A$ has distinct eigenvalues $\ld_1=0,\ld _1=1,\ld _2,\dots ,\ld _k \inc$ with algebraic dimension $d_i$  (So $d_i=0$ if $\ld_i$ is not an eigenvalue), and suppose the \customref{JF}{Jordan form} of $A$ is 
+\begin{align*}
+\bigoplus_{i=1}^k J(\ld_i,r_1)\oplus  \cdots \oplus J(\ld _i,r_{m_i})
+\end{align*}
+Compute 
+\begin{align*}
+\operatorname{rank}(A)= n- m_1 \text{ and }\operatorname{rank}(I-A)= n- m_2
+\end{align*}
+This by premise give us 
+\begin{align*}
+m_1+m_2=n
+\end{align*}
+which implies that the $d_2=\cdots = d_k=0$ and all Jordan blocks of $A$ have size $1$. This implies that the minimal polynomial of $A$ is either  $x,x-1$, or  $x(x-1)$. Either way, this implies $A^2=A$.   
+\end{proof}
 \begin{question}{}{}
 Consider $A,B\in M_n(\Q)$ with $A^n=0$ but  $A^{n-1}\neq 0$. Show 
 \begin{align*}
 AB=BA \implies  B= F(A)\text{ for some }F \in \Q[x]\text{ such that }\operatorname{deg}(F)<n
 \end{align*}
 \end{question}
+\begin{proof}
+Looking at the \customref{JF}{Jordan form} of $A$, we know there exists some  $\textbf{e}\inq^n$ such that $\set{\textbf{e},A\textbf{e},\dots , A^{n-1}\textbf{e}}$ forms a basis for $\Q^n$. Therefore, there exists some $c_0,\dots ,c_{n-1}\inq$  such that if we define  $F(x)\triangleq c_{n-1}x^{n-1}+ \cdots + c_1x+c_0$, then $F(A)$ and $B$ have the same action on  $\textbf{e}$. To see such $F$ suffices, we only have to show  $B$ and  $F(A)$ moreover agree on rest of the $\set{\textbf{e},A\textbf{e},\dots , A^{n-1}\textbf{e}}$, which is a consequence of the commutation: 
+\begin{align*}
+BA^i\textbf{e}= A^iB\textbf{e}=A^i F(A)\textbf{e}= F(A)A^i \textbf{e}
+\end{align*}
+\end{proof}
 \chapter{NTU MATH M.A. Program Entrance Exam Round 2}
 \section{NTU Round 2 Year 106}
 \begin{question}{}{}
