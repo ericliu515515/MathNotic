@@ -14,26 +14,8 @@
 
 \tableofcontents
 \pagebreak
-\chapter{What belongs to topology}
 
-\chapter{What belongs to metric topology}
-\section{Compact}
-In this section, if we say a topological space $X$ is \textbf{compact}, we mean its every open cover has a finite subcover. If we say a topological space $X$ is \textbf{sequentially compact}, we mean that every sequence inside $X$ has a subsequence that converges to some $x\in X$. If we say a topological space $X$ is \textbf{limit point compact}, we mean that every infinite subset has a limit point in $X$. If we say a metric space $M$ is \textbf{totally bounded}, we mean that for any $\epsilon $, there exists some finite cover of $M$ consisting of only open balls of radius  $\epsilon $. If we say a metric space $M$ is  \textbf{complete}, we mean every \textbf{Cauchy sequence} in $M$ converge to some point in  $M$.  
-\begin{equiv_def}
-\label{Com}
-\textbf{(Compactness of metric space)} Let $M$ be a metric space. The followings are equivalent: 
-\begin{enumerate}[label=(\roman*)]
-  \item $M$ is compact. 
-  \item $M$ is sequentially compact. 
-  \item $M$ is limit point compact. 
-  \item $M$ is totally bounded and complete. 
-\end{enumerate}
-\end{equiv_def}
-\begin{proof}
-
-\end{proof}
-\chapter{What belongs to Differential Geometry}
-\chapter{Convergent Divergent}
+\chapter{Easy Calculus}
 \section{Tests}
 \label{Basic Technique on Sequence and Series}
 \begin{abstract}
@@ -761,13 +743,76 @@ Note that $g(x)\neq g(y)$ by \customref{MVT}{MVT}, since $g'\neq 0$ on $I \setmi
 \end{align*}
 The proof of \myref{Equation}{result L} then follows form \myref{Equation}{sq1}. $\bdone$
 \end{proof}
+\chapter{Difficult Calculus}
+\section{Compact}
+Let $X$ be a topological space. We say $X$ is \textbf{compact} if every of its open cover has a finite subcover. We say $X$ is \textbf{sequentially compact} if every sequence in $X$ has a \textbf{convergent} subsequence. We say $X$ is \textbf{limit point compact} if every infinite subset has a limit point.\\
+
+
+Let $M$ be a metric space.  We say $M$ is \textbf{totally bounded} if for all $\epsilon $, space $M$ can be covered by finite number of open balls of radius $\epsilon $. We say $M$ is  \textbf{complete}, if every Cauchy sequence in $M$ converge.  
+\begin{equiv_def}
+\label{Com}
+\textbf{(Compactness of metric space)} Let $M$ be a metric space. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $M$ is compact. 
+  \item $M$ is limit point compact. 
+  \item $M$ is sequentially compact. 
+  \item $M$ is totally bounded and complete. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+(i)$\implies $(ii): The argument by nature relies on contradiction. Assume for a contradiction that some sequence  $(x_n)$ of distinct elements in $M$ whose image has no limit point\footnote{Note that if finite metric spaces are trivially limit point compact.}. For each $x \in M$, since $x$ is not a limit point of  $\set{x_n}$, there exists some open ball centered at $x$ that contains at most one point of $\set{x_n}$, namely $x$ itself if and only if it appears in the sequence. The collection of these open balls is then a open cover of $M$ that has no finite subcover of  $M$ because  $\set{x_n}$ is infinite, a contradiction. \\
+
+ (ii)$\implies $(iii) is clear. \\
+
+ (iii)$\implies $(iv): It is easy to show Cauchy sequences converge in sequentially compact metric space. We now show $M$ is totally bounded. Assume $M$ is not for a contradiction. This implies the existence of some $\epsilon $ and some sequence of distinct elements in $M$ whose every points are  $\epsilon $-away. Such sequence has no convergent subsequence, a contradiction. \\
+
+ (iv)$\implies $(i): Again the argument by nature relies on contradiction. Assume for one that $(U_\alpha )$ is an open cover of $M$ that has no finite subcover. Due to totally boundedness of $M$, we know $M$ can be covered by some finite set of radius $1$ open balls. Since $(U_\alpha )$ has no finite subcover, one of these radius $1$ open balls can't be covered by finite numbers of $(U_\alpha) $. Denote the center of that radius  $1$ open ball by  $x_1$. Clearly,  $B_1(x_1)$ is again totally bounded, so it can be covered by some finite set of radius $\frac{1}{2}$ open balls centered inside. Again, because $B_1(x_1)$ can not be covered by finite numbers of $(U_\alpha) $, one of these radius $\frac{1}{2}$ open balls can't be covered by finite number of $(U_\alpha) $. Denote the center of that radius $\frac{1}{2}$ open ball by $x_2$. Repeating the same procedure, we have a Cauchy sequence  $\set{x_n}\subseteq M$. Let $x$ be the limit of this Cauchy sequence. Fix some $\alpha $ such that $x \in B_\epsilon (x)\subseteq U_\alpha $. Clearly, we may find $N$ large enough, for example $N>2\quotient \epsilon $, so that $B_{\frac{1}{N}}(x_N)\subseteq B_\epsilon (x)\subseteq U_\alpha $, a contradiction to the construction of $B_{\frac{1}{N}}(x_N)$.  
+\end{proof}
+\section{Holder Inequality}
+\section{Gamma function for $\operatorname{Re}(z)>0$}
+\section{Stirling approximation}
+\begin{theorem}
+\textbf{(Stirling approximation)} 
+\begin{align*}
+n!\sim \sqrt{2\pi n} \left(\frac{n}{e} \right)^n  ,\quad \text{ as }n\rightarrow \infty
+\end{align*}
+\end{theorem}
+\chapter{Vector Calculus}
+\section{Operator norm}
+We define the \textbf{operator norm} of linear $T: \R^n\rightarrow \R^m$ by 
+\begin{align*}
+\norm{T}_{\operatorname{op}}\triangleq \sup_{\textbf{x}\neq 0} \frac{\abso{T\textbf{x}}}{\abso{\textbf{x}}}=  \max_{\textbf{x}=1} \abso{T\textbf{x}}
+\end{align*}
+One may check that this forms a norm on the real vector space of linear mappings from $\R^n$ to  $\R^m$. \textbf{Singular Value Decomposition Theorem} said that for each linear $T :\R^n\rightarrow \R^m$, there exists some orthonormal basis $\set{\textbf{v}_1,\dots ,\textbf{v}_n}$ such that $\set{T(\textbf{v}_1),\dots ,T(\textbf{v}_m)}- \set{\textbf{0}}$ is orthogonal. We call $\abso{T(\textbf{v}_1)},\dots ,\abso{T(\textbf{v}_n)}$ the \textbf{singular values} of $T$. 
+\begin{theorem}
+\textbf{(Operator norm is the largest singular value)} The operator norm of linear $T:\R^n\rightarrow \R^m$ is exactly the largest singular value of $T$. 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\textbf{(Equivalence of norms on $\R^n$)}
+\end{theorem}
+Now use the fact that determinant is continuous to conclude that collection of invertible function in $\operatorname{End}_{\text{linear}}(\R^n)$ is open. 
+\begin{theorem}
+\textbf{(Inversion is Continuous)} Let $\Omega$ be the space of invertible linear functions from $\R^n$ to itself. The mapping $\Omega\rightarrow \Omega,A \mapsto  A^{-1}$ is continuous. 
+\end{theorem}
+\begin{proof}
+Try to sue the fact that all norms are equivalent and the fact that $\R^{n^2}$ is a topological group to do such. (Not faster). So stick to the one in General Analysis. 
+\end{proof}
+\section{Inverse function theorem}
+\begin{theorem}
+\textbf{(Inverse function theorem)} Let $M$ be some neighborhood of  $\textbf{a}\in \R^n$. If differentiable $\textbf{f}:M\rightarrow \R^n$ is $C^1$ at $\textbf{a}$ and has full rank Jacobian at $\textbf{a}$, then  $\textbf{f}$ maps some $B_\delta (\textbf{a})\subseteq U$ injectively to some open subset of $\R^n$, with inverse  differentiable at $\textbf{f}(\textbf{a})$. 
+\end{theorem} 
+\section{Lagrange multiplier theorem}
+\section{Integration on manifolds}
 \chapter{NTU Math M.A. Program Entrance Exam}
 \section{Year 113}
 \begin{question}{}{}
 If every closed and bounded set of a metric space $M$ is compact, does it follows that $(M,d)$ is complete?  
 \end{question}
 \begin{proof}
-  Yes. Let $\set{x_n}$ be a Cauchy sequence in $M$. To prove $\set{x_n}$ converge in $M$, one let  $E$ be the closure of  $\set{x_n}$, and prove that $E$ is indeed bounded. This by premise implies $E$ is compact. Therefore we may apply \textbf{Hiene-Borel Theorem} to show that $\set{x_n}$ converge in $E\subseteq M$. 
+  Yes. Let $\set{x_n}$ be a Cauchy sequence in $M$. To prove $\set{x_n}$ converge in $M$, one let  $E$ be the closure of  $\set{x_n}$, and prove that $E$ is indeed bounded. This by premise implies $E$ is compact, which implies there exists some convergent subsequence  $x_{n_k}\rightarrow x \in E$, since \customref{Com}{compactness is equivalent to sequential compactness for metric space}. The proof then follows from proving $x_n \rightarrow x$. 
 \end{proof}
 \begin{question}{}{}
 Determine the values of $h$ for which the following series converges uniformly on  $I_h=\set{x\inr:\abso{x}\leq h}$.
@@ -1001,7 +1046,7 @@ Let $C\inr^+$, function $f:[a,b]\rightarrow \R$ be proper Riemann integrable, an
 \begin{proof}
 There are essentially two way to "answer" this question. One is to construct an honest bound. Another is to cheat by quoting \textbf{Lebesgue's criteria for proper Riemann integrability}. The honest bound proof for this question and the proof for Lebesgue's criteria for proper Riemann integrability are morally the same. To quote Lebesgue's criteria for proper Riemann integrability, one only have to prove that $g\circ f$ is continuous at $x\in [a,b]$ if $f$ is continuous at  $x$.  
 \end{proof}
-\section{Year 111}
+\section{Year 110}
 \begin{question}{}{}
   Show that $C^1$ \textbf{proper} map  $f:\R^n\rightarrow \R^n$ (proper as preimage of compact subspace is compact) whose Jacobian is globally full rank is surjective. 
 \end{question}
@@ -1021,10 +1066,310 @@ Fix closed $A\subseteq X$ and $y \in \overline{f(A)}$. We are required to find $
 By premise, $f^{-1}(K)$ is compact. Because $A\cap f^{-1}(K)$ is closed in the  compact space $f^{-1}(K)$, we know $A\cap f^{-1}(K)$ is compact\footnote{Closed subset of compact space is compact. This is a standard topological proposition}. It now follows from $X$ being Hausdorff that  $A \cap f^{-1}(K)$ is closed\footnote{Compact subspace of Hausdorff space is closed. This is a standard topological proposition.}. Because $\set{x_n}\subseteq A \cap f^{-1}(K)$ and $A\cap f^{-1}(K)$ is compact Hausdorff, we know there exists some  subsequence $\set{x_{n_k}}$ that converges to some $x'\in A \cap f^{-1}(K)$.\footnote{This is a standard topological proposition, generalized of \textbf{Bolzano-Weierstrass Theorem}.} Because $f$ is continuous, we know  $f(x_{n_k})$ converges to $f(x')$. It now follows from $Y$ being Hausdorff that  $y=\lim f(x_{n_k})=f(x')$. We have shown this $x'$ suffices. 
 \end{proof}
 \begin{question}{}{}
-Let $F:\R^3 \rightarrow \R^3$ be the identity map, and define $M\triangleq \set{(x,y,z)\inr^3: x^2+y^2 \leq z \leq \sqrt{2-x^2+y^2}}$. Let the oriented atlas of $M$ contains identity, so $dx\wedge  dy \wedge  dz \in \Omega^3 (M)$ is a positively oriented volume form. Denote $dA\triangleq \iota (dx\wedge  dy \wedge  dz) \in \Omega^2 (\partial M)$. Compute 
+Let $\textbf{F}:\R^3 \rightarrow \R^3$ be the identity map, and let $M\triangleq \set{(x,y,z)\inr^3: x^2+y^2 \leq z \leq \sqrt{2-x^2+y^2}}$ be positively oriented, so the normal vector field point "outward."\\
+
+Compute:
 \begin{align*}
-\int_{\partial M} F \cdot \textbf{n} dA
+\int_{\partial M} \textbf{F} \cdot \textbf{n} dA
 \end{align*}
 \end{question}
+\begin{question}{}{}
+Let $M$ be a metric space with countable elements. Prove or disprove that $M$ is connected. 
+\end{question}
+\begin{proof}
+If $M$ has only one element, then  $M$ is trivially connected. We now prove that if  countable $M$ has more than one element then  $M$ is disconnected. Let $x\in M$. Because $\set{d(y,x)\inr^+: y \in M}$ is countable and $(0,r)\subseteq \R^+$ isn't for any $r\inr^+$,  there exists some  $r$ such that $d(y,x)\neq r$ for all $r$. The proof then follows from showing $B_r(x)$ is closed.  
+\end{proof}
+\begin{question}{}{}
+Define $f:\R\rightarrow \R$ by $f(x)\triangleq \frac{1}{4}+x-x^2$. 
+\begin{enumerate}[label=(\roman*)]
+  \item Show that $\set{f^n(0)}$ converges, and find its limit. 
+  \item Find all $x\inr$ that make $\set{f^n(x)}$ converge to $\lim f^n(0)$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+We will show $f^n(0)\rightarrow 1\quotient 2$ by proving 
+\begin{align*}
+f^n(0)= \frac{2^{2^n-1}-1}{2^{2^n}},\quad \text{ for all }n\inn
+\end{align*}
+via induction. The base case is clear. The proof for inductive case is also clear from computing:  
+\begin{align*}
+  \frac{1}{4}+  \frac{2^{2^n-1}-1}{2^{2^n}}- \left( \frac{2^{2^n-1}-1}{2^{2^n}} \right)^2 &= \frac{1}{4}+ \frac{2^{2^n-1}-1}{2^{2^n}}- \frac{(2^{2^n-1}-1)^2}{2^{2^{n+1}}}  \\
+&= \frac{2^{2^{n+1}-2}+ 2^{2^n}(2^{2^n-1}-1)-(2^{2^n-1}-1)^2}{2^{2^{n+1}}} \\
+&=\frac{2^{2^{n+1}-2}+ 2^{2^{n+1}-1}-2^{2^n}-2^{2^{n+1}-2}+ 2^{2^n}-1}{2^{2^{n+1}}}= \frac{2^{2^{n+1}-1}-1}{2^{2^{n+1}}}
+\end{align*}
 
+\end{proof}
+\begin{question}{}{}
+Let $X$ consist of all real-valued function $f$ on  $[0,1]$ such that $f(0)=0$ and 
+ \begin{align*}
+\norm{f}\triangleq \sup_{x\neq y} \frac{\abso{f(x)-f(y)}}{\abso{x-y}^{\frac{1}{3}}} \quad \text{ is finite. }
+\end{align*}
+Show that $X$ forms a vector space,  $\norm{\cdot}$ forms a norm on $X$, and  $X$ is complete with respect to this norm. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $f:(a,b)\rightarrow \R$ be differentiable. Show that $f':(a,b)\rightarrow \R$ has no jump discontinuity. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{Year 109}
+\begin{question}{}{}
+Does there exists real sequence $\set{a_k}$ that makes $\sum_{k=2}^{\infty}a_k \sin (kx)$ converges uniformly to $\sin (x)$ on $[0,\pi ]$? 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $f:\R\rightarrow \R$ be uniformly continuous. Show that $f$ must be bounded by a linear function, i.e., there exists constant $A,B \inr$ such that 
+\begin{align*}
+\abso{f(x)}\leq A+ B\abso{x},\quad \text{ for all }x\inr
+\end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $M,N$ be two metric spaces, and let $f:M\rightarrow N$ be a function. 
+ \begin{enumerate}[label=(\roman*)]
+  \item Given the hypothesis that for each convergent sequence $\set{x_n}\subseteq M$, the sequence $\set{f(x_n)}\subseteq N$ also converges, is $f$ continuous? 
+  \item Suppose the function $g:M\rightarrow \R$ makes $E\triangleq \set{(x,g(x))\in M\times \R:x\in M}$ compact in the product topology. Is $g$ continuous? 
+\end{enumerate}
+\end{question}
+\begin{proof}
+The answers for both questions are positive. Assume for a contradiction that $f$ is discontinuous at some $x \in M$. This implies the existence of some $\epsilon $ such that for all $\delta$, we have $f(B_\delta(x))\not \subseteq B_\epsilon (f(x))$. For all $n\inn$, fix $x_n \in B_{\frac{1}{n}}(x)$ that satisfies $f(x_n)\not\in B_\epsilon (f(x))$. We now see that the image of the convergent sequence $(x_1,x,x_2,x,x_3,x,\dots) $  doesn't converge, a contradiction.\\
+
+Before we prove the continuity of $g$, we need to first make three necessary topological remarks: 
+ \begin{enumerate}[label=(\alph*)]
+  \item $g(M)$ is compact because $E$ is compact and the projection $M\times \R\rightarrow \R$ is continuous by definition of product topology.   
+  \item $M\times \R$ is Hausdorff because it is the product of two Hausdorff spaces. Therefore $E$ as a compact subspace of $M\times \R $ is closed in $M\times \R$.  
+  \item Product topology have the property that if $y_n \rightarrow y$ in topological space $Y$ and  $z_n \rightarrow z$ in topological space $Z$, then $(y_n,z_n)\rightarrow (y,z)$ in $Y\times Z$. 
+\end{enumerate}
+We may now prove the continuity of $g$ using the result from question (i). Suppose $x_n\rightarrow x$ in $M$. We are required to prove $g(x_n)\rightarrow g(x)$. Assume not for a contradiction: There exists some $\epsilon $ and subsequence such that $g(x_{n_k})$ are all $\epsilon$-away from $g(x)$.  Because $g(M)$ is \customref{Com}{sequentially compact}, there exists some $y \in M$ and some convergent subsequence $g(x_{n_{k_l}})\rightarrow g(y)$. Because $x_n\rightarrow x$, we now have $(x_{n_{k_l}},g(x_{n_{k_l}}))\rightarrow (x,g(y))$. Moreover, this by closedness of $E$ implies  $(x,g(y))\in E$, which implies $g(y)=g(x)$, a contradiction to the assumption that $g(x_{n_k})$ are all $\epsilon $-away from $g(x)$.  
+
+
+
+
+\end{proof}
+\begin{question}{}{}
+Let $L:\R^3 \rightarrow \R^3$ be an invertible linear map, and let function $g:\R^3 \rightarrow \R^3$ be $C^1$ while satisfying: 
+ \begin{align*}
+\text{ For some }\epsilon ,\abso{g(x)}\leq C \abso{x}^{1+\epsilon }\text{ for all }x\inr^3
+\end{align*}
+Show that $L+g:\R^3 \rightarrow \R^3$ is invertible near the origin.  
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Find the volume of the ellipsoid: 
+\begin{align*}
+  (x+2y)^2+ (x-2y+z)^2 +3z^2 \leq 1
+\end{align*}
+Let $C\subseteq \R^2$ be a positively oriented simple closed curve. Find the curve $C$ that maximize the integral: 
+\begin{align*}
+\int_C y^3 dx+ (3x-x^3)dy
+\end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $f:[0,1]\rightarrow \R$ be continuous. Find the limit 
+\begin{align*}
+\lim_{n\to \infty}(n+1)\int_0^1 x^nf(x)dx
+\end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{Year 108}
+\begin{question}{}{}
+Does the series
+\begin{align*}
+\sum_{n=1}^{\infty} \frac{(-1)^n \ln (n+1)}{n}
+\end{align*}
+converge? Does it absolutely converge?  
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Define $\Omega \triangleq  \set{(x,y)\inr^2 :0\leq x,y\leq 1}- \set{(1,1)}$, and define $f:\Omega \rightarrow \R$ by 
+\begin{align*}
+f(x,y)\triangleq \frac{1}{(1-xy)^2}
+\end{align*}
+\begin{enumerate}[label=(\roman*)]
+  \item For any $\kappa \in (0,1)$, let $U_\kappa\triangleq \set{(x,y)\in^2: 0\leq x,y\leq \kappa}$. Is $f$ uniformly continuous on  $U_\kappa$ ?   
+  \item Is $f$ uniformly continuous on $\Omega$? 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $I\triangleq [0,1]$, and define $f_n:I\rightarrow \R$ for all $n\inn$ by $f_n(x)\triangleq nx^n(1-x)$. 
+\begin{enumerate}[label=(\roman*)]
+  \item Determine $\lim f_n(x)$ for all $x\in I$. 
+  \item Is the convergence uniform on $I$? 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Define 
+\begin{align*}
+F(x)\triangleq \int_0^{\infty} \frac{1-\cos (xt)}{t^2e^t}dt
+\end{align*}
+\begin{enumerate}[label=(\roman*)]
+  \item Can we switch the order of differentiation and integration to obtain formulas for $F'(x)$ and $F''(X)$? 
+  \item Find explicit formulas (Not an improper integral) for $F'(x)$ and $F''(x)$.  
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Consider the function $F:\R^4\rightarrow \R^2$ defined by 
+\begin{align*}
+F(x,y,u,v)\triangleq \left(\int_{x-y^2}^{x^2+y}(e^{t^2}+u)dt,x^3+v \right)
+\end{align*}
+\begin{enumerate}[label=(\roman*)]
+  \item Prove that near $(1,1,0,0)$, the two equations $F(x,y,u,v)=(\int_0^2 e^{t^2}dt,1)$ can be solved for $u,v$ as  $C^1$ functions of  $x,y$.  
+  \item Find the first order partial derivatives of the functions $u(x,y)$ and $v(x,y)$ in part (i). 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{Year 107}
+\begin{question}{}{}
+Evaluate the integral
+\begin{align*}
+\int^{\frac{5\pi }{4} }_{\frac{\pi }{4}} \frac{1}{1+3 \sin^2(x)}dx
+\end{align*}
+Hint: Let $u=\tan x$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+State and prove Leibniz criterion for convergence of alternating series. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $p \inr^2$ and let smooth $F:\R^2\rightarrow \R$ satisfies: 
+\begin{align*}
+  &\frac{\partial F}{\partial x}\Bigg|_p=\frac{\partial F}{\partial y}\Bigg|_p=0\\
+  &\frac{\partial^2 F}{\partial x^2}\Bigg|_p>0   \\
+  &\left( \frac{\partial^2 F}{\partial x^2} \cdot \frac{\partial ^2 F}{\partial y^2} - \frac{\partial^2 F}{\partial x\partial y}\right) \Bigg|_p >0
+\end{align*}
+Show that $p$ is a local minimum of  $F$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $X$ be a metric space. We say a  sequence  $(f_n:X\rightarrow \R)$ of real-valued functions \textbf{converges compactly} if for every compact $K \subseteq X$, the sequence $(f_n|_K:K\rightarrow \R)$ converges uniformly. \\
+
+Show that if a pointwise equicontinuous sequence $(f_n:X\rightarrow \R)$ of real-valued functions pointwise converge to some continuous function $f:X\rightarrow \R$, then the convergence is compact.  
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Compute the outward flux of the vector field $(x+ye^z,e^x \sin (yz),ye^{zx})$ through the boundary of the region $\set{(x,y,z)\inr^3: (\sqrt{x^2+y^2}-3 )^2+z^2<1}$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Show that the function 
+\begin{align*}
+f(x)\triangleq \sum_{n=1}^{\infty}  \frac{\cos (ne)}{n^x}
+\end{align*}
+is well-defined and continuous on $(0,\infty)$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $f,g:\R^2 \rightarrow \R$ be smooth, and define $S\triangleq \set{(x,y)\inr^2: f(x,y)=0}$. Suppose $p \in S$ satisfies 
+\begin{align*}
+\nabla f|_p= (-1,2)\\
+\nabla g |_p = (3,-6) \\
+\begin{pmatrix} 
+  \frac{\partial ^2 f}{\partial x^2} & \frac{\partial ^2 f}{\partial x \partial y} \\
+  \frac{\partial ^2 f}{\partial y \partial x} & \frac{\partial ^2 f}{\partial y^2}
+\end{pmatrix} \Bigg|_p = \begin{pmatrix} 
+ 1 & 3 \\
+ 3 & 0
+\end{pmatrix}  \\
+\begin{pmatrix} 
+  \frac{\partial ^2 g}{\partial x^2} & \frac{\partial ^2 g}{\partial x \partial y} \\
+  \frac{\partial ^2 g}{\partial y \partial x} & \frac{\partial ^2 g}{\partial y^2}
+\end{pmatrix} \Bigg|_p = \begin{pmatrix} 
+ 3 & -1 \\
+ -1 & 2
+\end{pmatrix}  \\
+\end{align*}
+Show that $p$ is a local minimum for  $g|_S$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\section{Year 106}
+\begin{question}{}{}
+Let $M$ be the unit ball  $B_1(0)$ in $\R^3$. Compute 
+ \begin{align*}
+\int_M \cos (x+y+z)dxdydz
+\end{align*}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $f:[-\pi ,\pi ]\rightarrow \R$ be proper Riemann integrable, and define its Fourier coefficients by 
+\begin{align*}
+  a_n&\triangleq \frac{1}{\pi }\int_{-\pi }^{\pi } f(x)\cos (nx)dx,\quad \text{ for all }n \in \Z_0^+ \\
+  b_n &\triangleq \frac{1}{\pi }\int_{-\pi }^{\pi }f(x)\sin (nx)dx,\quad \text{ for all }n\inn
+\end{align*}
+\begin{enumerate}[label=(\roman*)]
+  \item Show that $f^2:[-\pi ,\pi ]$ is proper Riemann integrable. 
+  \item Show that the series $\sum a_n^2 +b_n^2$ converges. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}[label=(\roman*)]
+  \item Let $\set{a_n}$ and $\set{b_n}$ be two sequences of real numbers, and define $B_n\triangleq b_1 + \cdots +b_n$. Show that if $a_n\searrow 0$ and  $\set{B_n}$ is bounded, then the series $\sum a_nb_n$ converges. 
+  \item Show that the function series: 
+    \begin{align*}
+    \sum_{n=1}^{\infty} \frac{(-1)^{n-1}}{n} \sin (nx)
+    \end{align*}
+    converges uniformly on $[-\pi +\epsilon ,\pi -\epsilon ]$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $(F_n:[-2,2]\rightarrow \R)$ be a uniformly bounded sequence of convex functions. Show that it has a subsequence that converges uniformly on $[-1,1]$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $U\subseteq \R^n$ be open, let $C^1$ function $f:U\rightarrow \R^n$ has globally full rank Jacobian, let $V \subseteq \R^n$ be open, and let continuous $g:V\rightarrow U$ satisfies $f\circ g(x)=x$ for all $x\in V$. Show that $g$ is also $C^1$. 
+\end{question}
+\begin{proof}
+
+\end{proof}
 \end{document}
