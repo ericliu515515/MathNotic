@@ -18,54 +18,185 @@
 \section{Rings}
 The precise meaning of the term \textbf{ring} varies across different books, depending on the context and purpose. In this note, the multiplication of a ring is always associative, commutative, and has an identity. The additive identity is denoted by $0$. From the axioms, we can straightforwardly show that $x\cdot 0 = 0$ for all $x$. Consequently, the multiplicative and additive identities are always distinct unless the ring contained only one element, and in such case, we say the ring is the \textbf{zero ring}. By \textbf{ring homomorphisms}, we mean mappings between two rings respecting addition\footnote{Respecting addition immediately implies respecting $0$ and negation.}, multiplication, and multiplicative identity. Clearly, inverse of a bijective ring homomorphism is also a ring homomorphism.\\  
 
-An \textbf{ideal} of a ring $R$ is an additive subgroup $I$ such that $ar \in I$ for all $a \in I,  r \in R$, or equivalently, the kernel of some ring homomorphism. To see the equivalency, one simply construct the \textbf{quotient ring}\footnote{Consider the equivalence relation on $R$ defined by  $x\sim  y\overset{\triangle}{\iff } x-y \in I$} $R\quotient I$, under which the quotient map $\pi: R \rightarrow R \quotient  I$ is a surjective ring homomorphism whose kernel is the ideal $I$. Remarkably, the mapping defined by 
- \begin{align*}
-\operatorname{Ideal }J\text{ of $R$ that contains }I \mapsto \set{[x]\in R\quotient I: x\in J}
+An \textbf{ideal} of a ring $A$ is an additive subgroup $\mathfrak{a}$ such that $xy \in \mathfrak{a}$ for all $x \in \mathfrak{a},  y \in A$. \textbf{Quotient ring} is a ring denoted by $A\quotient \mathfrak{a}$ together with a surjective ring homomorphism $\pi :A\rightarrow A\quotient \mathfrak{a}$ that satisfies the \textbf{universal property of quotient ring}: For each ring homomorphism $f:A\rightarrow B$ that vanishes on  $\mathfrak{a}$, there exists an unique $\tilde{f}\in \operatorname{Hom}(A\quotient \mathfrak{a},B)$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQiJdLFswLDIsIkFcXHF1b3RpZW50IFxcbWF0aGZyYWt7YX0iXSxbMCwxLCJmIl0sWzAsMiwiXFxwaSIsMl0sWzIsMSwiXFx0aWxkZXtmfSIsMl1d
+\[\begin{tikzcd}
+	A && B \\
+	\\
+	{A\quotient \mathfrak{a}}
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["\pi"', from=1-1, to=3-1]
+	\arrow["{\tilde{f}}"', from=3-1, to=1-3]
+\end{tikzcd}\]
+commutes. 
+\begin{equiv_def}
+\textbf{(First isomorphism theorem for rings)} Let $A$ be a ring and $\mathfrak{a}\subseteq A$. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathfrak{a}$ is an ideal in $A$.  
+  \item $\mathfrak{a}$ is the kernel of some ring homomorphism. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Unroll the definition. 
+\end{proof}
+\begin{theorem}
+\textbf{(Second isomorphism theorem for rings)} Let $A$ be a ring,  $B \subseteq A$ a subring, and $\mathfrak{a}\subseteq A$ an ideal. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item $B+ \mathfrak{a}\triangleq \set{b+a\in A: b \in B,a \in \mathfrak{a}}$ forms a subring of $A$.  
+  \item $B\cap \mathfrak{a}$ forms an ideal in $B$.  
+  \item $(B+\mathfrak{a})\quotient \mathfrak{a}\cong B\quotient (B \cap \mathfrak{a})$ as rings.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Unroll the definitions.  
+\end{proof}
+One should always be careful with the word \textbf{unit} and the word \textbf{zero-divisor}. In nonzero rings, the set of units is always disjoint with the set of zero-divisors. Given rings $A \subseteq B$, it is possible that $a \in A$ forms a non-zero-divisor (or unit) in $A$ but not in  $B$. Under our initial requirement that rings are commutative unital, for a nonzero ring $A$ to be an \textbf{integral domain}, we only need all nonzero elements to be non-zero-divisors, and for $A$ to be a  \textbf{field}, we only need all nonzero elements to be units.
+\begin{equiv_def}
+\label{edF}
+\textbf{(Field)} Let $A$ be a nonzero ring. The followings are equivalent:
+ \begin{enumerate}[label=(\roman*)]
+  \item $A$ is a field.  
+  \item $A$ have only two ideals, i.e.,  $\set{0}$ and $A$. 
+  \item Every ring homomorphism of $A$ into a nonzero ring  $B$ is injective. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Unroll the definitions. 
+\end{proof}
+We use the term \textbf{proper} to describe strict set inclusion. A \textbf{maximal ideal} is  a proper ideal contained by no other proper ideals. A \textbf{prime ideal} is a proper ideal $\mathfrak{p}$ such that the product of two element lies in $\mathfrak{p}$ implies one of then lies in $\mathfrak{p}$. 
+\begin{equiv_def}
+\label{edP}
+\textbf{(Prime ideals)} Let $\mathfrak{p}\subseteq A$ be an ideal. The followings are equivalent:
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathfrak{p}$ is prime. 
+  \item $A\quotient \mathfrak{p}$ forms an integral domain.  
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Unroll the definitions. 
+\end{proof}
+\begin{equiv_def}
+\textbf{(Integral domain)} Let $A$ be a ring. The followings are equivalent: 
+ \begin{enumerate}[label=(\roman*)]
+  \item $A$ is an integral domain.  
+  \item The zero ideal of $A$ is prime. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Unroll the definitions.
+\end{proof}
+\begin{theorem}
+\label{Tit}\label{ctfr}
+\textbf{(Third isomorphism theorem and correspondence theorem for rings)} Let $A$ be a ring, $\mathfrak{a}\subseteq \mathfrak{b} \subseteq A$ be two ideals, $S$ the collection of ideals in $A$ that contains  $\mathfrak{a}$, and $\pi :A \twoheadrightarrow A\quotient \mathfrak{a}$ the quotient map. We denote $\mathfrak{b}\quotient \mathfrak{a}\triangleq \pi  (\mathfrak{a})$. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathfrak{b}\quotient \mathfrak{a}\subseteq A\quotient \mathfrak{a}$ forms an ideal.
+  \item $(A\quotient \mathfrak{a})\quotient (\mathfrak{b}\quotient \mathfrak{a})\cong A\quotient \mathfrak{b}$ as rings.
+  \item The map $\mathfrak{c}\in S \mapsto \mathfrak{c}\quotient \mathfrak{a}$ forms a bijection between $S$ and the collection of ideals in  $A\quotient \mathfrak{a}$, a bijection between $S \cap \operatorname{Spec}A$ and $\operatorname{Spec}(A\quotient \mathfrak{a})$, and a bijection between $S\cap \operatorname{Max}A$ and $\operatorname{Max}(A\quotient \mathfrak{a})$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Unroll the definition. 
+\end{proof}
+\begin{equiv_def}
+\label{edM}
+\textbf{(Maximal ideals)} Let $\mathfrak{m}\subseteq A$ be an ideal. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathfrak{m}$ is maximal. 
+  \item $A\quotient \mathfrak{m}$ forms a field.
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+This follows from \customref{Tit}{correspondence theorem for rings} and  \customref{edF}{equivalent definitions of field}. 
+\end{proof}
+\begin{corollary}
+\textbf{(Maximal ideals are prime)} Let $A$ be a ring. If  $\mathfrak{m}\subseteq A$ is maximal, then $\mathfrak{m}$ is prime. 
+\end{corollary}
+\begin{proof}
+This follows from \customref{edP}{equivalent definition of prime ideals} and  \customref{edM}{equivalent definition of maximal ideals}. 
+\end{proof}
+Intersection of ideals clearly always form an ideal. We now introduce a key property of prime ideals: 
+\begin{theorem}
+\textbf{(Property of prime ideal)} 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathfrak{a}\subseteq \mathfrak{p}_1 \cup  \cdots \cup  \mathfrak{p}_n\implies \mathfrak{a} \subseteq \mathfrak{p}_i$ for some $i$.  
+  \item $\mathfrak{a}_1 \cap  \cdots \cap  \mathfrak{a}_n \subseteq \mathfrak{p} \implies \mathfrak{a}_i \subseteq \mathfrak{p}$ for some $i$. 
+  \item $\mathfrak{a}_1\cap \cdots \cap \mathfrak{a}_n=\mathfrak{p}\implies \mathfrak{a}_i =\mathfrak{p}$ for some $i$. 
+
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  (i) is proved by induction. Assume not and cause a contradiction by considering $\sum (x_1\cdots \widehat{x}_i\cdots x_n)$ where $x_i \in \mathfrak{a}-\mathfrak{p}_i$. For (ii), assume not, and cause a contradiction by considering $\prod a_i$ where $a_i \in \mathfrak{a}_i-\mathfrak{p}$. (iii) follows from (ii). 
+\end{proof}
+For all subsets $S$ of some ring $A$, the ideal $\langle S\rangle $ \textbf{generated} by $S$ is the smallest ideals that contain $S$. 
+ \begin{equiv_def}
+\textbf{(Generated ideals)} Let $A$ be a ring and  $S\subseteq A$. We have: 
+\begin{align*}
+\langle S\rangle = \set{\sum_{\text{finite}}a_is_i \in A: a_i \in A,s_i \in S}
 \end{align*}
-forms a bijection between the collection of the ideals of $R$ containing  $I$ and the collection of the ideals of $R\quotient I$. This fact is commonly referred to as the \textbf{correspondence theorem} for rings. One should always be careful with the word \textbf{unit}. Given rings $A \subseteq B$, it is possible that $a \in A$ forms a unit in $A$ but not in  $B$. Under our initial requirement that rings are commutative, for a non-zero ring $R$ to be a \textbf{field}, we only need all non-zero elements of $R$ to be units, or equivalently, the only ideals of $R$ to be $\set{0}$ or $R$ itself.\\
-\label{ctfr}\\
-We use the term \textbf{proper} to describe strict set inclusion. By a \textbf{maximal ideal}, we mean a proper ideal $I$ contained by no other proper ideals, or equivalently\footnote{By the Correspondence Theorem for Rings.}, a proper ideal $I$ such that $R\quotient I$ is a field.\\
-
-A \textbf{zero-divisor} is an element $x$ that has some non-zero element $y$ such that  $xy=0$. Again, under our initial requirement that rings are commutative, for a non-zero ring $R$ to be an  \textbf{integral domain}, we only need all non-zero elements to be zero-divisors. By a \textbf{prime ideal}, we mean a proper ideal $I$ such that the product of two elements belongs to $I$ only if one of them belong to $I$, or equivalently, a proper ideal $I$ such that $R\quotient I$ is an integral domain.  \\
-
-
-There are many binary operations defined for ideals.  Given two ideals $I$ and $S$, we define their \textbf{sum} and \textbf{product} by 
-\begin{align}
-\label{IS}
-I+S \triangleq \set{\sum_{\text{finite}}x+y \in R: x \in I \text{ and }y \in S}\quad IS\triangleq \set{\sum_{\text{finite}}xy \in R: x \in I \text{ and } y \in S}
-\end{align}
-Note that the ideal multiplications are indeed distributive over addition, and they are both associative, so it make sense to write something like $I_1+I_2+I_3$ or $I_1I_2I_3$. Clearly, the intersection of ideals is still ideal, while the union of ideals generally are not\footnote{However, $I \cup  J$ generates $I+J$.}. Moreover, we define their \textbf{quotient} by 
-\begin{align}
-\label{Iq}
-  (I:S)\triangleq \set{x \in R: xS\subseteq I}
-\end{align}
-To simplify matters, we write $(I:x)$ instead of $(I:\langle x\rangle )$. \\ 
-
-For all subsets $S$ of some ring $R$, we may \textbf{generate} an ideal by setting it to be the set of all finite sum  $\sum rs$ such that $r\in R$ and $s \in S$, or equivalently, the smallest ideal of $R$ containing $S$. An ideal is called \textbf{principal} and denoted by $\langle x\rangle $ if it can be generated by a single element $x$. \\
-
-
-An element $x$ is called \textbf{nilpotent} if $x^n=0$ for some  $n\inn$. The set of all nilpotent elements obviously form an ideal, which we call \textbf{nilradical} and denote by $\operatorname{Nil}(R)$. Here, we give a nice description of the nilradical. 
+\end{equiv_def}
+\begin{proof}
+Unroll the definitions. 
+\end{proof}
+A \textbf{principal ideal} $\langle x\rangle $ is an ideal generated by a single element. There are many ideals operations. Given any family of ideal $(\mathfrak{a}_i)$ in $A$, their \textbf{sum ideal} is:
+\begin{align*}
+\sum \mathfrak{a}_i \triangleq \set{\sum_{\text{finite}} a_i\in A: a_i \in \mathfrak{a}_i}
+\end{align*}
+\begin{equiv_def}
+\textbf{(Sum of ideals)} Let $A$ be a ring and  $(\mathfrak{a}_i)$ a family of ideals in $A$. The sum ideal $\sum \mathfrak{a}_i$ is generated by $\bigcup \mathfrak{a}_i$. 
+\end{equiv_def}
+\begin{proof}
+Unroll the definitions. 
+\end{proof}
+Given any finite family $\mathfrak{a}_1,\dots ,\mathfrak{a}_n$ of ideals in $A$, their  \textbf{product ideal} is: 
+\begin{align*}
+\prod_{i=1}^n \mathfrak{a}_i \triangleq \set{ \sum_{j=1}^m a_{j,1}\cdots a_{j,n} \in A: a_{j,i}\in \mathfrak{a}_i}
+\end{align*}
+\begin{equiv_def}
+\textbf{(Product of ideals)} Let $A$ be a ring and $\set{\mathfrak{a}_1,\dots ,\mathfrak{a}_n}$ a finite family of ideals in $A$. The product ideal  $(\mathfrak{a}_1\cdots \mathfrak{a}_n)$ is generated by  $\set{a_1\cdots a_n\in A:a_i \in\mathfrak{a}_i}$. 
+\end{equiv_def}
+\begin{proof}
+Unroll the definitions. 
+\end{proof}
+One should check that both the definitions of sum and product for ideals are consistent in the sense that they indeed are both  associative. Moreover, we have the distributive law: 
+\begin{align*}
+  (\mathfrak{a}+\mathfrak{b})\mathfrak{c}=\mathfrak{a}\mathfrak{c}+\mathfrak{b}\mathfrak{c}
+\end{align*}
+Given two ideals $\mathfrak{a},\mathfrak{b}$ in $A$, their  \textbf{quotient ideal} $(\mathfrak{a}:\mathfrak{b})$ is:
+\begin{align*}
+  (\mathfrak{a}:\mathfrak{b})\triangleq \set{ x\in A: xb \in \mathfrak{a},\quad  \text{ for all }b \in \mathfrak{b}}
+\end{align*}
+To simplify matter, we write $(\mathfrak{a}:x)$ instead of $(\mathfrak{a}:\langle x\rangle )$. This notation is justified since $(\mathfrak{a}:\langle x\rangle )=\set{y \in A: xy \in \mathfrak{a}}$. An element $x \in A$ is called \textbf{nilpotent} if $x^n=0$ for some  $n\inn$. The set of all nilpotent elements clearly form an ideal $\operatorname{Nil}(A)$ in $A$, which is the \textbf{nilradical} of $A$. 
 \begin{theorem}
 \label{EDfN}
-\textbf{(Equivalent Definition for Nilradical)} We use the term \textbf{spectrum} of $R$ and the notation  $\operatorname{spec}(R)$ to denote the set of prime ideals of $R$. We have 
- \begin{align*}
-\operatorname{Nil}(R)=\bigcap \operatorname{spec}(R)
+\textbf{(Equivalent Definition for Nilradical)} Let $A$ be a ring. We have:
+\begin{align*}
+\operatorname{Nil}(A)=\bigcap \operatorname{Spec} A
 \end{align*}
 \end{theorem}
 \begin{proof}
-$\operatorname{Nil}(R)\subseteq \bigcap \operatorname{Spec}(R)$ is obvious. Suppose $x \in \bigcap \operatorname{Spec}(R) \setminus  \operatorname{Nil}(R)$. Let $\Sigma$ be the set of ideals $I$ such that $x^n\not\in I$ for all $n>0$. Because unions of chains in $\Sigma$ belong to $\Sigma$ and $0 \in \Sigma$, by Zorn's Lemma, there exists some maximal element $I \in \Sigma$. Because $x\not \in I$, to close out the proof, we only have to show $I$ is prime.\\
+$\operatorname{Nil}(A)\subseteq \bigcap \operatorname{Spec}A$ is clear. Assume $x \in \bigcap \operatorname{Spec}A -  \operatorname{Nil}(A)$ for a contradiction. Let $\Sigma$ be the set of ideals $\mathfrak{a}$ such that $x^n\not\in \mathfrak{a}$ for all $n>0$. Because unions of chains in $\Sigma$ belong to $\Sigma$ and because $0 \in \Sigma$, by Zorn's Lemma, there exists some maximal element $\mathfrak{a} \in \Sigma$. Because $x\not \in \mathfrak{a}$, to close out the proof, we only have to show $\mathfrak{a}$ is prime.\\
 
-Let $yz \in I$. Assume for a contradiction that $y\not\in I$ and $z\not\in I$. By maximality of $I$, both ideal $I+ \langle y\rangle$ and ideal $I+\langle z\rangle$ do not belong to $\Sigma$. This implies $x^n \in I+ \langle y\rangle$ and $x^m \in I + \langle z\rangle $ for some $n,m>0$, which cause a contradiction to $I \in \Sigma$, since $x^{n+m} \in I + \langle yz\rangle =I$. 
+Let $yz \in \mathfrak{a}$. Assume for a contradiction that $y\not\in \mathfrak{a}$ and $z\not\in \mathfrak{a}$. By maximality of $\mathfrak{a}$, both  $\mathfrak{a}+ \langle y\rangle,\mathfrak{a}+\langle z\rangle$ don't belong to $\Sigma$. This implies $x^n \in \mathfrak{a}+ \langle y\rangle$ and $x^m \in \mathfrak{a} + \langle z\rangle $ for some $n,m>0$, which cause a contradiction to $\mathfrak{a} \in \Sigma$, since $x^{n+m} \in \mathfrak{a} + \langle yz\rangle =\mathfrak{a}$. 
 \end{proof}
-Let $I$ be an ideal of the ring $R$. By the term \textbf{radical} of $I$, we mean 
+Let $\mathfrak{a}$ be an ideal of the ring $A$. Its  \textbf{radical} $\sqrt{\mathfrak{a}}$ in $A$ is: 
 \begin{align*}
-\sqrt{I}\triangleq \set{ x \in R : x^n \in I \text{ for some } n > 0 }
+\sqrt{\mathfrak{a}}\triangleq \set{ x \in A : x^n \in \mathfrak{a} \text{ for some } n > 0 }
 \end{align*}
-which is equivalent to the preimage of $\operatorname{Nil}(R \quotient  I)$ under the quotient map and equivalent\footnote{This follows from the fact that the correspondence between the ideals of $R$ and the ideals of $R \quotient  I$ can be restricted to a bijection between $\operatorname{Spec}(R)$ and $\operatorname{Spec}(R \quotient  I)$.} to the intersection of all prime ideals of $R$ that contain $I$. \label{raed}\\
-
-It should be noted that there is a "less is more" philosophy in our wording and notations for product, quotient and radical of ideals. For any ideal $I,Q$, we have 
+\begin{equiv_def}
+\label{Roi}
+\textbf{(Radical of ideal)} Let $A$ be a ring and $\mathfrak{a}\subseteq A$ an ideal. The following are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\sqrt{\mathfrak{a}}$. 
+  \item The ideal in $A$ that \customref{ctfr}{correspond} to $\operatorname{Nil}(A\quotient \mathfrak{a})$ with respect to quotient map $A \twoheadrightarrow A\quotient \mathfrak{a}$. 
+  \item The intersection of all prime ideals in $A$ that contains  $\mathfrak{a}$. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+  (i) $=$ (ii): Unroll the definition.  (ii) $=$ (iii): Consider the \customref{ctfr}{correspondence theorem} and \customref{EDfN}{$\operatorname{Nil}(A \quotient \mathfrak{a})= \bigcap \operatorname{Spec} A \quotient \mathfrak{a}$}. 
+\end{proof}
+Let $\mathfrak{a}$ be an ideal of the ring $A$. A \textbf{minimal prime ideal $\mathfrak{p}$ over} $\mathfrak{a}$ is a prime ideal minimal among all prime ideals that contain $\mathfrak{a}$. Because of the \customref{Roi}{third definition of radical}, $\mathfrak{a}$ and $\sqrt{\mathfrak{a}}$ share same set of minimal prime ideal. It should be noted that there is a "less is more" philosophy in our wording and notations for product, quotient and radical of ideals. For any ideal $\mathfrak{a},\mathfrak{b}$, we have 
  \begin{align*}
-IQ \subseteq I \subseteq \sqrt{I}  \text{ and }I \subseteq (I:Q)
+\mathfrak{a}\mathfrak{b} \subseteq \mathfrak{a} \subseteq \sqrt{\mathfrak{a}}  \text{ and }\mathfrak{a} \subseteq (\mathfrak{a}:\mathfrak{b})
 \end{align*}
 For ease in the section on fraction of rings and modules, we close this section by introducing two concept. Let $f:A\rightarrow B$ be some ring homomorphism. If $E$ is a subset of $A$, we call the ideal in  $B$ generated by $f(E)$ the \textbf{extension} of $E$, which we denote by  $E^e$. If  $E$ is a subset of  $B$, we call the ideal in  $A$ generated by  $f^{-1}(E)$ the \textbf{contraction} of $E$, which we denote by $E^c$. Clearly, if  $E$ is an ideal in $B$, then $E^c=f^{-1}(E)$. 
 \section{Modules and Algebra}
@@ -75,7 +206,16 @@ Let $M$ be an $A$-module, and let $N$ be a subset of  $M$. We say $N$ is a $A$-\
 \begin{align*}
 A\text{-submodule $S$ of  $M$ that contains  $N$}\mapsto \set{[x]\in M \quotient N: x \in S}
 \end{align*}
- between the collection of the $A$-submodules of $M$ that contains  $N$ and the collection of the $A$-submodule of  $M\quotient  N$. This is called the \textbf{correspondence theorem} for modules.\\
+ between the collection of the $A$-submodules of $M$ that contains  $N$ and the collection of the $A$-submodule of  $M\quotient  N$. This is called the \textbf{correspondence theorem} for modules. 
+\begin{theorem}
+\textbf{(Third isomorphism theorem for modules)} Let $A$ be some ring and  $T \subseteq S \subseteq M$ be three $A$-modules. If we identify $S\quotient T$ as $A$-submodule of $M\quotient T$ the obvious way, then we have an obvious $A$-module isomorphism: 
+\begin{align*}
+   \frac{M\quotient T}{S\quotient T}\cong  \frac{M}{S}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Unroll the definitions. 
+\end{proof}
 
 
 Again similar to the other algebraic structure, we have the \textbf{third isomorphism theorem} for modules. Let $N \subseteq M \subseteq L$ be three modules. It is obvious that $M\quotient N$ is a subset of $L\quotient N$, and moreover, $M\quotient  N$ forms a submodule of  $L\quotient N$. We have an isomorphism $\pfi:(L\quotient N)\quotient (M\quotient N)\to L\quotient M$ defined by $(l+N)+ (M\quotient N)\mapsto l+M$. To simplify matters, from now on we use the term "module" in place of "$A$-module" until the end of this section. \\
@@ -120,7 +260,19 @@ We know that $1-a_n$ must be a unit, otherwise by Zorn's Lemma\footnote{Note tha
 \end{proof}
 There are multiple equivalent definitions for the term \textbf{algebra $B$ over ring $A$}. The easiest one is to say we have a ring homomorphism $f:A\rightarrow B$, which induces the scalar product: $a(b)\triangleq f(a)b$. Let $B,C$ be two  $A$-algebra with scalar defining map $f,g$. By an \textbf{$A$-algebra homomorphism}, we mean some ring homomorphism $h:B\rightarrow C$ that is also a $A$-module homomorphism, or equivalently that the ring homomorphism $h$ satisfies  $h\circ f=g$.      \\
 
-Let $B$ be an $A$-algebra. Because there are three structures on $B$, one shall be careful when one says "$B$ is finitely generated," since  $B$ can be finitely generated as a ring, as an $A$-module, or even as an  $A$-algebra. If we say $B$ is \textbf{finitely generated as an $A$-algebra},  we mean that there exists some $b_1,\dots , b_n\in B$ such that $B=(f(A))[b_1,\dots ,b_n]$. 
+Let $B$ be an $A$-algebra. Because there are three structures on $B$, one shall be careful when one says "$B$ is finitely generated," since  $B$ can be finitely generated as a ring, as an $A$-module, or even as an  $A$-algebra. If we say $B$ is \textbf{finitely generated as an $A$-algebra},  we mean that there exists some $b_1,\dots , b_n\in B$ such that $B=(f(A))[b_1,\dots ,b_n]$.\\
+
+Let $A$ be a ring, $\mathfrak{C}$ a subcategory of $A$-modules, and $G$ an abelian group. A function  $\ld : \mathfrak{C}\rightarrow G$ is said to be \textbf{additive} if for each short exact sequence $0\rightarrow M'\rightarrow M\rightarrow M''\rightarrow 0$ in $\mathfrak{C}$, we have $\ld (M)=\ld (M')+\ld (M'')$. 
+\begin{theorem}
+\label{Eod}
+\textbf{(Examples of additive functions)} The followings are examples of additive functions:
+\begin{enumerate}[label=(\roman*)]
+  \item Let $A$ be a field. The map $V\mapsto  \operatorname{dim}V$ is an additive function on the category of finite-dimensional vector space with codomain $\Z$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  (i): Unroll the definition with rank-nullity theorem. 
+\end{proof}
 \section{Localization}
 \label{Lalr}
 Let $A$ be a ring. We say  $S\subseteq A$ is a \textbf{multiplicatively closed subset} of $A$ if  $S$ contains $1$ and is closed under multiplication. We say a ring $B$ and a homomorphism $f:A\rightarrow B$ satisfies the \textbf{universal property of localization of $A$ by $S$} if
@@ -400,7 +552,7 @@ If the two rows are exact and $m,p$ are isomorphisms, then $n$ is an isomorphism
 Given some collection $\Sigma$ of sets, we say $\Sigma$ satisfies the \textbf{ascending chain condition, a.c.c.}, if for each chain $x_1 \subseteq x_2 \subseteq  \cdots$ there exists $n$ such that $x_n=x_{n+1}=\cdots$, and we say $\Sigma$ satisfies the \textbf{descending chain condition, d.c.c.}, if for each chain $x_1 \supseteq x_2 \supseteq \cdots $ there exists $n$ such that $x_n=x_{n+1}= \cdots$. Let $M$ be some module. We say  $M$  is  \textbf{Noetherian} if the collection of submodules of $M$ satisfies  a.c.c., and we say $M$ is  \textbf{Artinian} if the collection of submodules  satisfies d.c.c. Thanks to axiom of choice, we have: 
 \begin{equiv_def}
 \label{EDoN}
-\textbf{(Equivalent Definition of Noetherian)} Let $M$ be a module. The following are equivalent: 
+\textbf{(Noetherian modules)} Let $M$ be a module. The following are equivalent: 
 \begin{enumerate}[label=(\alph*)]
   \item $M$ is Noetherian.  
   \item Every nonempty collection of submodules of $M$ has a maximal element.  
@@ -636,45 +788,75 @@ and we are done.
 \end{proof}
 \section{Uniqueness of Primary Decomposition}
 \label{UoP}
-Let $A$ be a ring. We say a proper ideal $Q$ is \textbf{primary} if for each $xy \in Q$, either $x \in Q$ or $y^n \in Q$ for some $n>0$. Equivalently, a proper ideal $I$ is primary if and only if every zero-divisors in $A \quotient  Q$ is nilpotent. Clearly, the radical $P=\sqrt{Q} $ of a primary ideal $Q$ is prime. In such case, we say $Q$ is $P$\textbf{-primary}. A \textbf{primary decomposition} of an ideal $I$ is an expression of $I$ as a finite intersection of primary ideals
+Let $A$ be a ring. We say a proper ideal $\mathfrak{q}$ is \textbf{primary} if for each $xy \in \mathfrak{q}$, either $x \in \mathfrak{q}$ or $y^n \in \mathfrak{q}$ for some $n>0$.
+\begin{equiv_def}
+\textbf{(Primary ideal)} Let $A$ be a ring and  $\mathfrak{q}\subseteq A$ be an ideal. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathfrak{q}$ is primary. 
+  \item Every zero divisor of $A\quotient \mathfrak{q}$ is nilpotent. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Unroll the definition. 
+\end{proof}
+Clearly, the radical $\mathfrak{p}=\sqrt{\mathfrak{q}} $ of a primary ideal $\mathfrak{q}$ is prime. In such case, we say $\mathfrak{q}$ is $\mathfrak{p}$\textbf{-primary}. A \textbf{primary decomposition} of an ideal $\mathfrak{a}$ is an expression of $\mathfrak{a}$ as a finite intersection of primary ideals: 
  \begin{align*}
-I= \bigcap_{i=1}^n Q_i
+\mathfrak{a}= \bigcap_{i=1}^n \mathfrak{q}_i
 \end{align*}
-Such primary decomposition is said to be \textbf{irredundant} if $\sqrt{Q_i}$ are all distinct and no $Q_i$ is unnecessary in the sense that 
+Such primary decomposition is said to be \textbf{irredundant} if $\sqrt{\mathfrak{q}_i}$ are all distinct and no $\mathfrak{q}_i$ is unnecessary in the sense that: 
 \begin{align*}
-\bigcap_{j\neq i}Q_j \not \subseteq Q_i\text{ for all }i. 
+\bigcap_{j\neq i}\mathfrak{q}_j \not \subseteq \mathfrak{q}_i,\quad \text{ for all }i. 
 \end{align*}
-An ideal $I$ is said to be  \textbf{decomposable} if there exists some primary decomposition of $I$. Because finite intersection of $P$-primary ideals is again  $P$-primary, every decomposable ideal has an irredundant primary decomposition.  
+An ideal $\mathfrak{a}$ is said to be  \textbf{decomposable} if there exists some primary decomposition of $\mathfrak{a}$. Because finite intersection of $\mathfrak{p}$-primary ideals is again  $\mathfrak{p}$-primary\footnote{In general, finite intersection of primary ideals need not be primary. To prove finite intersection of $\mathfrak{p}$-primary ideals are $\mathfrak{p}$-primary, the first step is to prove the radical of the finite intersection is $\mathfrak{p}$.}, every decomposable ideal has an irredundant primary decomposition.  
 \begin{theorem}
 \label{Fut}
-\textbf{(First uniqueness theorem for irredundant primary decomposition)} Given some irredundant primary decomposition $I= \bigcap_{i=1}^n Q_i$, we have 
+\textbf{(First uniqueness theorem for irredundant primary decomposition)} Given some irredundant primary decomposition $\mathfrak{a}= \bigcap_{i=1}^n \mathfrak{q}_i$, we have 
 \begin{align}
 \label{QiRa}
-\bset{\sqrt{Q_i}:1\leq i\leq n}= \operatorname{Spec}(R) \cap \bset{\sqrt{(I:x)} \subseteq R: x \in R } 
+\set{\sqrt{\mathfrak{q}_i}:1\leq i\leq n}= \operatorname{Spec}(A) \cap \set{\sqrt{(\mathfrak{a}:x)} \subseteq A: x \in A } 
 \end{align}
 \end{theorem}
 \begin{proof}
-Before showing that both sides of \myref{equation}{QiRa} are subsets of each other, we first make the following observation. For all $x \in R$, clearly 
+Before showing that both sides of \myref{equation}{QiRa} are subsets of each other, we first make the following observation. For all $x \in A$, clearly: 
 \begin{align*}
-  (I:x)= \Big(\bigcap Q_i :x\Big) = \bigcap (Q_i : x)
+  (\mathfrak{a}:x)= \left(\bigcap \mathfrak{q}_i :x \right) = \bigcap (\mathfrak{q}_i : x)
 \end{align*}
 Therefore, 
 \begin{align}
 \label{sIxa}
-\sqrt{(I:x)}= \bigcap \sqrt{(Q_i:x)}= \bigcap_{k:x \not\in Q_k} \sqrt{Q_k}  
+\sqrt{(\mathfrak{a}:x)}= \bigcap \sqrt{(\mathfrak{q}_i:x)}= \bigcap_{k:x \not\in \mathfrak{q}_k} \sqrt{\mathfrak{q}_k}  
 \end{align}
-where the last equality is justified by 
+where the last equality is justified by: 
 \begin{align*}
-x \in Q_i \implies (Q_i:x)=R,\quad\text{ and } x \not\in Q_i \implies  \sqrt{(Q_i:x)} = \sqrt{Q_i} 
+x \in \mathfrak{q}_i \implies (\mathfrak{q}_i:x)=A,\quad\text{ and } x \not\in \mathfrak{q}_i \implies  \sqrt{(\mathfrak{q}_i:x)} = \sqrt{\mathfrak{q}_i} 
 \end{align*}
-We now prove that the left hand side of \myref{equation}{QiRa} is a subset of the right hand side. Fix $i$. By irredundancy of the decomposition, there exists some  $x\in R$ such that $x$ belongs to all $Q_j$ except  $Q_i$. This $x$ by \myref{equation}{sIxa} must satisfies
+We now prove that the left hand side of \myref{equation}{QiRa} is a subset of the right hand side. Fix $i$. By irredundancy of the decomposition, there exists some  $x\in A$ such that $x$ belongs to all $\mathfrak{q}_j$ except  $\mathfrak{q}_i$. This $x$ by \myref{equation}{sIxa} must satisfies:
 \begin{align*}
-\sqrt{Q_i}  =  \sqrt{(I:x)} 
+\sqrt{\mathfrak{q}_i}  =  \sqrt{(\mathfrak{a}:x)} 
 \end{align*}
-Noting that $\sqrt{Q_i}$ must be prime due to $Q_i$ being primary, we have shown the left hand side of \myref{Equation}{QiRa} is a indeed a subset of the right hand side. \\
+Noting that $\sqrt{\mathfrak{q}_i}$ must be prime due to $\mathfrak{q}_i$ being primary, we have shown the left hand side of \myref{equation}{QiRa} is a indeed a subset of the right hand side. \\
 
-Now, suppose for some $x\in R$ that $\sqrt{(I:x)}$ is prime. Because prime ideal must be proper, we know there must exists some $k$ such that $x\not \in Q_k$. By \myref{equation}{sIxa}, to finish the proof, we only need to show $\sqrt{Q_k}\subseteq \sqrt{(I:x)}$ for some $k$ such that $x \not \in Q_k$. Assume not for a contradiction. Then for all $k$ such that $x \not \in Q_k$, there exists $y_k \in \sqrt{Q_k}$ such that $y_k \not \in \sqrt{(I:x)}$. The product of these $y_k$ is an element of  $\bigcap \sqrt{Q_k}$, thus an element of $\sqrt{(I:x)}$. This with $\sqrt{(I:x)}$ being prime shows that $y_k \in \sqrt{(I:x)}$ for some $k$, a contradiction. 
+Now, suppose for some $x\in A$ that $\sqrt{(\mathfrak{a}:x)}$ is prime. Because prime ideal must be proper, we know there must exists some $k$ such that $x\not \in \mathfrak{q}_k$. By \myref{equation}{sIxa}, to finish the proof, we only need to show $\sqrt{\mathfrak{q}_k}\subseteq \sqrt{(\mathfrak{a}:x)}$ for some $k$ such that $x \not \in \mathfrak{q}_k$. Assume not for a contradiction. Then for all $k$ such that $x \not \in \mathfrak{q}_k$, there exists $y_k \in \sqrt{\mathfrak{q}_k} - \sqrt{(\mathfrak{a}:x)}$. The product of these $y_k$ is an element of  $\bigcap \sqrt{\mathfrak{q}_k}$, thus an element of $\sqrt{(\mathfrak{a}:x)}$. This with $\sqrt{(\mathfrak{a}:x)}$ being prime shows that $y_k \in \sqrt{(\mathfrak{a}:x)}$ for some $k$, a contradiction. 
 \end{proof}
+Let $\mathfrak{a}\subseteq A$ be an ideal. A \textbf{minimal prime ideal over $\mathfrak{a}$} is a minimal element in the set of prime ideals that contains $\mathfrak{a}$. Note that by \customref{Roi}{definition of radical}, a minimal prime ideal over $\mathfrak{a}$ is also is a minimal prime ideal over $\sqrt{\mathfrak{a}} $. 
+\begin{equiv_def}
+  \textbf{(Minimal prime ideals over decomposable ideals)} Let $A$ be a ring and  $\mathfrak{a}\subseteq A$ be a decomposable ideal with irredundant primary decomposition $\mathfrak{a}=\mathfrak{q}_1\cap  \cdots \cap \mathfrak{q}_n$. Let $\set{\sqrt{\mathfrak{q}_1},\dots ,\sqrt{\mathfrak{q}_m}}$ be the collection  of minimal elements of $\set{\sqrt{\mathfrak{q}_1} ,\dots ,\sqrt{\mathfrak{q}_n} }$. The followings are equivalent: 
+  \begin{enumerate}[label=(\roman*)]
+    \item $\mathfrak{p}$ is a minimal prime ideal over $\mathfrak{a}$. 
+    \item $\mathfrak{p}\in \set{\sqrt{\mathfrak{q}_1},\dots ,\sqrt{\mathfrak{q}_m}  }$
+  \end{enumerate}
+\end{equiv_def}
+\begin{proof}
+  (i)$\implies $(ii): Because $\mathfrak{p}$ contains $\mathfrak{q}_1 \cap \cdots \cap \mathfrak{q}_n$, we know 
+\begin{align*}
+  \sqrt{\mathfrak{q}_1}\cap  \cdots \cap \sqrt{\mathfrak{q}_n} \subseteq \sqrt{\mathfrak{q}_1 \cap \cdots \cap  \mathfrak{q}_n} \subseteq \sqrt{ \mathfrak{p}}=  \mathfrak{p}  
+\end{align*}
+If none of $\sqrt{\mathfrak{q}_i}$ is contained by $\mathfrak{p}$, then we can cause a contradiction by considering $\prod y_i$ where $y_i \in \sqrt{\mathfrak{q}_i}-\mathfrak{p}$.\\
+
+(ii)$\implies $(i): Let $1\leq i\leq m$. If $\sqrt{\mathfrak{q}_i}$ is not minimal, then by (i)$\implies $(ii), $\sqrt{\mathfrak{q}_i} \supseteq \sqrt{\mathfrak{q}_j}$ for some $1\leq j\leq m$ that isn't $i$, contradicting to the construction that $\set{\sqrt{\mathfrak{q}_1},\dots ,\sqrt{\mathfrak{q}_m}}$ are minimal among $\set{\sqrt{\mathfrak{q}_1},\dots ,\sqrt{\mathfrak{q}_n}  }$. 
+\end{proof}
+The followings have not been cleaned yet!!!!
+
 Because of \customref{Fut}{the first uniqueness theorem}, we may well define the \textbf{inner spectrum} of decomposable ideal $I$, independent of choice of irredundant decomposition, to be 
 \begin{align*}
 \bset{\sqrt{Q_1},\dots ,\sqrt{Q_n}}
@@ -1067,7 +1249,7 @@ D\text{ is a Dedekind domain }\iff \text{ every nonzero fractional ideal of $D$ 
 
 Let $\mathfrak{b}$ be an integral ideal of $D_\mathfrak{p}$, and define $\mathfrak{a}\triangleq \mathfrak{b}\cap D$. Clearly $\mathfrak{a}$ is an integral ideal of $D$, so by premise, $\mathfrak{a}$ is invertible. It now follows from $\mathfrak{b}=\mathfrak{a}_\mathfrak{p}$\footnote{You may check this.} and the fact \customref{Iialp}{invertibility is a local property} that $\mathfrak{b}$ is invertible of $D_\mathfrak{p}$. 
 \end{proof}
-\chapter{Completion}
+\chapter{Dimension and Completion}
 \section{Completion}
 Let $G$ be simultaneously a group and a topological space. We say $G$ is a \textbf{topological group} if addition $(x,y)\mapsto x+y$ and negation $x\mapsto -x$ are both continuous. 
 \begin{equiv_def}
@@ -1115,12 +1297,84 @@ Suppose moreover that $G$ has a \textbf{local basis} at  $0$ with the form:
 G=G_0 \supseteq G_1 \supseteq G_2 \supseteq \cdots,\quad \text{ where }G_i\text{ are all subgroups of $G$. }
 \end{align*}
 In other words, we have a descending chain of subgroups $G_i$ such that $G_i$ are all open and every neighborhood of  $0$ contains some $G_i$.  
+\section{Filtrations}
+\section{Graded rings and modules}
+Given some ring $A$, a \textbf{grading on} $A$ is an assignment of each $n\inz$ a subgroup $A_n \subseteq A$ such that $A= \bigoplus A_n$ and $A_nA_t \subseteq A_{n+t}$\footnote{You may interpret $A_tA_n$ as  $\set{a_ta_n \in A:a_t \in A_t,a_n \in A_n}$ here.} for all $n,t\inz$. If we say graded ring $A$ is  \textbf{$\N$-graded}, we mean that  $A_{n}=0$ for all $n<0$. Fix $a \in A$. If $a=a_{n_1}+ \cdots + a_{n_s}$ for $a_{n_i} \in A_{n_i}$, we say $a_{n_i}$ are the \textbf{homogeneous components of $a$}, and if $s=1$ we say $a$ is a \textbf{homogeneous element}. Note that there is  ambiguity whether $0$ should be considered homogeneous. If one consider $0$  homogeneous, then $0$ should have arbitrary degree. 
+\begin{theorem}
+\textbf{(Properties of graded rings)} If $A$ is a graded ring, then:
+ \begin{enumerate}[label=(\roman*)]
+  \item $A_0$ forms a subring of  $A$.  
+  \item For each $n\inz$, $A_n$ forms a $A_0$-modules where the scalar product is the multiplication of  $A_0$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i): $A_0$ is clearly closed under addition and multiplication. To see $1 \in A$, consider the highest graded component of $1$ and  $1=1 \cdot 1$. (ii) is clear. 
+\end{proof}
+An ideal $\mathfrak{a} \subseteq A$ is \textbf{homogeneous} if $\mathfrak{a}$ have a set of generators that are all homogeneous. 
+\begin{equiv_def}
+\textbf{(Homogeneous ideals)} Given a graded ring $A$ and an ideal $\mathfrak{a}$ in $A$, the followings are equivalent:
+ \begin{enumerate}[label=(\roman*)]
+  \item $\mathfrak{a}$ is homogeneous. 
+  \item $\mathfrak{a}= \bigoplus \mathfrak{a}\cap A_n$ 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+  (i)$\implies $(ii):  The sum $\sum (\mathfrak{a}\cap A_n)$ is clearly direct. We only have to prove $\sum (\mathfrak{a}\cap A_n)=\mathfrak{a}$. Fix $a \in \mathfrak{a}$. By premise, there exists some $a_1,\dots ,a_s,x_1,\dots ,x_s \in A$ such that: 
+\begin{enumerate}[label=(\alph*)]
+  \item $a=\sum x_ia_i$. 
+  \item  For all $i$,  $a_i\in \mathfrak{a}\cap A_{j_i}$ for some $j_i\inz$. 
+\end{enumerate}
+The proof then follows from expressing $x_i$ as the sum of its homogeneous components. Note that (ii)$\implies $(i) is clear.
+\end{proof}
+\begin{theorem}
+\textbf{(Homogeneous ideals are closed under common operations)}  Given a graded ring $A$ and two homogeneous ideals  $\mathfrak{a},\mathfrak{b}$ in $A$, the sum, the product, and the intersection of $\mathfrak{a},\mathfrak{b}$ all remain homogeneous. The radical of $\mathfrak{a}$ is also homogeneous.  
+\end{theorem}
+\begin{proof}
+Let $S_a,S_b$ contain only homogeneous elements and generate $\mathfrak{a},\mathfrak{b}$. The sum $\mathfrak{a}+\mathfrak{b}$ is then generated by $S_a\cup S_b$.\\
+
+
+
+If $(x_1+\cdots +x_r)^l \in I$ with $x_r$ highest grade and $I$ homogeneous, then since the highest grade term of $(x_1+\cdots +x_r)^l$ is $x_r^l$, we have  $x_r \in \sqrt{I}$, which implies $x_1+\cdots + x_{r-1} \in \sqrt{I}$.
+\end{proof}
+
+
+
+
+Given graded ring $A$ and homogeneous ideal  $I$, one may check that  $(A\quotient I)_d\triangleq \pi  (A_d)$ for all $d$ where  $\pi :A \twoheadrightarrow A\quotient I$ is the quotient map forms a grading and satisfies the universal property of quotient in the category of graded rings. \\
 
 
 
 
 
 
+
+Given a graded ring $A$ and an  $A$-module  $M$, a  \textbf{grading on $M$} is an assignment of each  $n\inz$ a submodule  $M_n\subseteq M$ such that $M=\bigoplus M_n$ and $A_nM_t \subseteq M_{n+t}$ for all $n,t\inz$. \textbf{Twisted module}  $M(l)$ as an $A$-module is the same as $M$, but its grading are shifted by $M(l)_d\triangleq M_{d+l}$. Given some map $f:M\rightarrow N$ between two graded $A$-modules, we say $f$ is a \textbf{graded $A$-module homomorphism} if $f$ is a $A$-module homomorphism and $f$ respect the grading in the sense that $f(M_n)\subseteq N_n$ for all $n\inz$. Let $N\subseteq M$ be an $A$-submodule. We say  $N$ is a \textbf{graded  $A$-submodule  of $M$} if the inclusion map is an graded $A$-module homomorphism. 
+\begin{equiv_def}
+\textbf{(Graded submodules)} Let $A$ be a graded ring, $M$ a graded $A$-module, and $N\subseteq M$ a $A$-submodule. The followings are equivalent:
+\begin{enumerate}[label=(\roman*)]
+  \item $N$ is a graded  $A$-submodule of  $M$.  
+  \item $N= \bigoplus (N\cap M_n)$. 
+  \item $N$ have a set of generator consisting of homogeneous elements.\footnote{You haven't define homogeneous elements for graded modules yet.}  
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+
+\end{proof}
+
+\section{Dimension}
+\begin{theorem}
+\label{Kpit}
+\textbf{(Krull's principal ideal theorem)} Given Noetherian  $A$, if  $x \in A$ is neither a unit nor a zero-divisor, then the minimal prime ideals over $\langle x\rangle $ all has height $1$. 
+\end{theorem}
+\begin{theorem}
+\label{sdt}
+\textbf{(Dimension Theorem)} Let $k$ be a field, $B$ a finitely generated  $k$-algebra and also an integral domain, and $\mathfrak{p}\subseteq B$ be prime. We have: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\operatorname{Krudim}(B)=\operatorname{trdeg}_k \operatorname{Frac}(B)$. 
+  \item $\operatorname{height}\mathfrak{p}+\operatorname{Krudim}(B\quotient \mathfrak{p})=\operatorname{Krudim}(B)$. 
+\end{enumerate}
+\end{theorem}
+\section{Hilbert function}
 \chapter{The Classical}
 \section{Topology of Zariski}
 Let $X$ be a topological space. We say $X$ is \textbf{irreducible} if $X$ can not be written as union of two proper closed subset of $X$. If we say a subset of some topological space is \textbf{irreducible}, we mean that that subset when given the subspace topology is irreducible. Let $X$ be some arbitrary topological space. In other words, $Y\subseteq X$ is irreducible if and only if $Y$ can not be written as  $Y=(F_1 \cap Y)\cup  (F_2\cap Y)$ where $F_1,F_2 \subseteq X$ are closed and don't contain $Y$. 
@@ -1200,11 +1454,15 @@ Let $X$ be a Noetherian topological space. \customref{TfoL}{Topological form of 
 
 We close this section by introducing the idea of variety dimension in a purely topological setting. Let $X$ be a topological space. We define the \textbf{dimension of $X$} to be the supremum of all integers $n$ such that there exists a chain $\varnothing =Z_0 \subset Z_1 \subset \cdots \subset Z_n$ of distinct irreducible closed subsets of $X$. Immediately we see same wanted property of our definition for dimension: Given subspace $Y\subseteq X$, we have $\operatorname{topdim}(Y)\leq \operatorname{topdim}(X)$.\footnote{To prove this, you will need: $Y_i$ closed in  $Y\implies Y_i=\overline{Y_i}\cap Y$.}
 \section{Affine variety}
-Let $k$ be some field. We use the notation $\A^n$ to denote the \textbf{affine $n$-space} over $k$, the Cartesian product $k^n$. Given some collection $S \subseteq k[x_1,\dots ,x_n]$ of polynomials, we use notation $V(S)= \set{a \in \A^n:F(a)=0\text{ for all }F \in S}$ to denote its \textbf{vanishing set}, and given $X \subseteq \A^n$, we use notation $I(X)$ to denote the ideal of polynomials that vanish on $X$. If $X \subseteq \A^n$ is the vanishing set of some $S \subseteq k[x_1,\dots ,x_n]$, we say $X$ is \textbf{algebraic}. Clearly this give rise to a topology on $\A^n$, the  \textbf{Zariski topology}, in which $X\subseteq \A^n$ is closed if and only if $X$ is algebraic\footnote{Note that $V(S_1)\cup V(S_2)=V(\set{f_1f_2:f_1 \in S_1,f_2\in S_2})$ and $\bigcap V(S_\alpha )=V (\bigcup S_\alpha )$}. We often call irreducible closed subset of $\A^n$  \textbf{affine variety}. Clearly, we have: 
+Let $k$ be some field. We use  $\A^n$ to denote the \textbf{affine $n$-space} over $k$, the Cartesian product $k^n$. Given some collection $S \subseteq k[x_1,\dots ,x_n]$ of polynomials, we use $V(S)= \set{a \in \A^n:F(a)=0\text{ for all }F \in S}$ to denote its \textbf{vanishing set}, and given $X \subseteq \A^n$, we use notation $I(X)$ to denote the ideal of polynomials that vanish on $X$. If $X \subseteq \A^n$ is the vanishing set of some $S \subseteq k[x_1,\dots ,x_n]$, we say $X$ is \textbf{algebraic}. Clearly this give rise to a topology on $\A^n$, the  \textbf{Zariski topology}, in which $X\subseteq \A^n$ is closed if and only if $X$ is algebraic\footnote{Note that $V(S_1)\cup V(S_2)=V(\set{f_1f_2:f_1 \in S_1,f_2\in S_2})$ and $\bigcap V(S_\alpha )=V (\bigcup S_\alpha )$}. We call irreducible closed subset of $\A^n$  \textbf{affine variety}. Clearly, we have: 
 \begin{align}
 \label{ovlX}
  \overline{X}=V(I(X)),\quad \text{ for all }X \subseteq \A^n
 \end{align}
+and 
+\begin{align*}
+I(X)=I(\overline{X}),\quad \text{ for all }X \subseteq \A^n
+\end{align*}
 Even without putting any restriction on the ground fields, we see from \customref{HBT}{Hilbert Basis Theorem} and \myref{Equation}{ovlX} that $\A^n$ are always Noetherian, and we have the prime-irreducibility correspondence: 
 \begin{theorem}
 \label{Pic}
@@ -1251,7 +1509,19 @@ Suppose $\A^n=V(F_1,\dots ,F_r)\cup V(G_1,\dots ,G_m)$. Clearly  $F_1\cdots F_rG
 \end{align*}
 Repeating the same argument, we see that either $F_1,\dots ,F_r$ are all zeros or  $G_1,\dots ,G_m$ are all zeros. 
 \end{proof}
-\myref{Corollary}{Asii} proves that affine spaces over infinite field are irreducible, and their every of its open set is a quasi variety. The situation of affine spaces over finite field is in fact even simpler: If $k$ is finite and nontrivial, then  $\A^n$ all have discrete topology\footnote{Every singleton is closed. $\set{\textbf{a}}$ is the vanishing set of $\set{x_1-a_1,\dots ,x_n-a_n}$.}, thus reducible. Therefore, whenever we use the term variety, its ground field must be infinite. If $k$ is closed, we have the powerful \customref{HN}{ Nullstellensatz}:
+\myref{Corollary}{Asii} proves that affine spaces over infinite field are irreducible, and their every of its open set is a quasi variety. The situation of affine spaces over finite field is in fact even simpler: If $k$ is finite and nontrivial, then  $\A^n$ all have discrete topology\footnote{Every singleton is closed. $\set{\textbf{a}}$ is the vanishing set of $\set{x_1-a_1,\dots ,x_n-a_n}$.}, thus reducible. Therefore, whenever we use the term variety, its ground field must be infinite.
+\begin{theorem}
+\textbf{(Relationship between topological form and algebraic form of Lasker-Noether Theorem)} Let $X\subseteq \A^n$ be nonempty closed, $C_1,\dots ,C_t$ be its irreducible components and $\mathfrak{p}_1,\dots ,\mathfrak{p}_r\subseteq k[\textbf{x}]$ minimal prime ideals over $I(X)$. We have $r=t$ and by switching order,  $C_i=V(\mathfrak{p}_i)$. 
+\end{theorem}
+\begin{proof}
+Observing that the ideal of any irreducible closed subsets of $X$ is a prime ideal over $I(X)$, we see that the 
+
+
+Clearly, $V(\mathfrak{p}_i)$ are irreducible closed subset of $X$. 
+\end{proof}
+
+
+If $k$ is closed, we have the powerful \customref{HN}{ Nullstellensatz}:
 \begin{align*}
 I(V(I))=\sqrt{I},\quad \text{ for all ideal }I \subseteq k[x_1,\dots, x_n]
 \end{align*}
@@ -1260,11 +1530,13 @@ As \myref{Equation}{ovlX} have already shown, functor:
 \set{X \subseteq \A^n : X\text{ is a variety.}}\xlongrightarrow{I} \operatorname{Spec}(k[x_1,\dots,x_n])
 \end{align*}
 is injective. \customref{HN}{Nullstellensatz} moreover shows that this functor is surjective. In particular, $I$ forms a bijection between points in $\A^n$ with  $\operatorname{Max}(k[x_1,\dots ,x_n])$\footnote{Using \customref{WfoN}{the weak form of Nullstellensatz}, if $\mathfrak{m}\subseteq k[x_1,\dots ,x_n]$ is maximal, then one construct isomorphism $\pfi: k[x_1,\dots ,x_n]\quotient \mathfrak{m}\to k$ and set $a_i\triangleq x_i$ to see $\pfi([f])=f(a)$ and $\set{a}=V(\mathfrak{m})$}. \\
+\begin{theorem}
+\textbf{(Hypersurface of affine space must be cutout by a single polynomial)} Let $k$ be closed. $X\subseteq \A^n$ has dimension $n-1$ if and only if  $X=V(F)$ for some nonconstant irreducible $F\in k[\textbf{x}]$. 
+\end{theorem}
+\begin{proof}
 
+\end{proof}
 \section{Projective variety}
-Given some ring $A$ and monoid $M$, by a $M$-\textbf{grading on $A$}, we mean a collection $(A_m)_{m \in M}$ of subgroup of the additive group of $A$ such that $A= \bigoplus A_m$\footnote{The direct sum is a direct sum of groups.} and $A_mA_n\subseteq A_{m+n}$\footnote{You may interpret $A_mA_n$ as  $\set{a_ma_n \in A:a_n \in A_m,a_n \in A_n}$ here.} for all $m,n \in M$. Fix $a \in A$. If $a=a_{m_1}+ \cdots + a_{m_r}$ for $a_{m_i} \in A_{m_i}$, we say $a_{m_i}$ are the \textbf{homogeneous components of $a$}, and if $r=1$ we say $a$ is a \textbf{homogeneous element}.  Note that there is  ambiguity whether $0$ should be considered homogeneous. If one consider $0$  homogeneous, then $0$ should have arbitrary degree.\\ 
-
-We say an ideal $I \subseteq A$ is \textbf{homogeneous} if $I$ have a set of generators that are all homogeneous, or equivalently, if $I= \bigoplus I \cap A_n$. Note that the sum, product, and intersection of homogeneous ideals are homogeneous. Clearly, if $M=\Z$ or  $\Z_0^+$, then $A_0$ forms a subring of  $A$\footnote{To see $1 \in A_0$, consider the highest graded component of $1$ and $1=1\cdot 1$.}; $A_i$ all form obvious $A_0$-modules; and radical of homogeneous ideal remain homogeneous\footnote{If $(x_1+\cdots +x_r)^l \in I$ with $x_r$ highest grade and $I$ homogeneous, then since the highest grade term of $(x_1+\cdots +x_r)^l$ is $x_r^l$, we have  $x_r \in \sqrt{I}$, which implies $x_1+\cdots + x_{r-1} \in \sqrt{I}$.}.\\
 
 
 
@@ -1648,20 +1920,16 @@ which implies
 a contradiction to the premise  $r_0\neq r_1$. 
 \end{proof}
 Again, we use the notation $A_{(f)}$ to denote the $(A_f)_0$ in \myref{Theorem}{Ogoh2}. \\
-
 \section{Category of quasi varieties}
+\begin{theorem}
+\textbf{()}
+\end{theorem}
+\section{Segre embedding}
 \label{SE}
 \begin{theorem}
-\textbf{(Product of affine variety)} If $X \subseteq \A^n$ and variety $Y\subseteq \A^m$, 
-
-
-$X\times Y \subseteq $
-
+\textbf{()}
 \end{theorem}
-
-
-
-Fix $n$ and $m$. In this section, we express elements of $\P^{(n+1)(m+1)-1}$ (non uniquely, of course) as matrices:  
+Fix $n$ and $m$. In this section, the underlying field $k$ is always infinite, and we express elements of $\P^{(n+1)(m+1)-1}$ (not uniquely, of course) as matrices:  
 \begin{align*}
 \begin{bmatrix}
   z_{0,0} & \cdots & z_{0,m} \\
@@ -1702,7 +1970,44 @@ z_{i,j}=\ld _j z_{i,0},\quad \text{ for all }i,j
 \end{align*}
 then the proof will follows from noting $\alpha $ is the image of $[z_{0,0}:\cdots : z_{n,0}]\times [1:\ld_1:\cdots :\ld _m]$. WLOG, let $z_{0,0}\neq 0$. One may now check $\ld_j\triangleq z_{0,j}z_{0,0}^{-1}$ suffices, using the premise $\alpha  \in V(S)$. 
 \end{proof}
-Identifying $\P^n\times\P^m$ as a closed subset of $\P^{(n+1)(m+1)-1}$ via Segre embedding, before proving $\P^n\times \P^m$ really is irreducible, we shall first make the remark that at this point the topology on $\P^n\times \P^m$ is already very clear. \\
+\begin{theorem}
+\textbf{(Basic Property)} Identifying $\P^n \times \P^m$ as a subspace of $\P^{(n+1)(m+1)-1}$ via Segre embedding $\psi$. If $C_1\subseteq \P^n,C_2\subseteq \P^m$ are closed, then $C_1 \times C_2 \subseteq \P^n \times \P^m$ is also closed.   
+\end{theorem}
+\begin{proof}
+Let $C_1\triangleq V(P_1,\dots ,P_r)$ and $C_2 \triangleq V(Q_1,\dots ,Q_l)$. The proof follows from checking that the image of $C_1 \times C_2\subseteq \P^{(n+1)(m+1)-1}$ is the intersection of image of $\P^n \times \P^m$ with:
+\begin{align*}
+\bigcap_{i,j} V(P_1(z_{0j},\dots ,z_{mj}),\dots ,P_r (z_{0j},\dots,z_{mj}),Q_1(z_{i0},\dots ,z_{i n}),\dots ,Q_l(z_{i0},\dots ,z_{i n}))
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Projection is indeed a close map)} Identifying $\P^n \times \P^m$ as a subspace of $\P^{(n+1)(m+1)-1}$, the projection $\pi :\P^n \times \P^m\rightarrow \P^m$ is a closed map. 
+\end{theorem}
+\begin{proof}
+  Let $C \subseteq \P^n \times \P^m$ be closed. We are required to prove $\pi  (C)$ is closed. Let $\phi_i: \P^m_{(i)}\rightarrow \A^m$ be the \customref{Ste}{standard open affine covering}  of $\P^m$, where $i$ runs through  $\set{0,\dots ,m}$. Because the topology of $\P^m$ is coherent with the topologies of $\P^m_{(i)}$, to prove $\pi  (C)$ is closed, we only have to prove $\pi (C)\cap \P^m_{(i)}$ are closed in $\P^m_{(i)}$. In other words, we wish to show $\phi_i \circ \pi (C)$ is closed in $\A^m$. \\
+
+
+
+  Let $u_i:\A^n \rightarrow \P^n_{(i)}$ be the \customref{Ste}{standard quasi variety isomorphisms}. 
+\end{proof}
+\begin{theorem}
+\textbf{(Image of Segre embedding is irreducible)} The image of the Segre embedding  $\psi:\P^n \times \P^m\rightarrow \P^{(n+1)(m+1)-1}$ is irreducible. 
+\end{theorem}
+\begin{proof}
+Suppose $\P^n\times \P^m=A \cup  B$ where $A,B$ are closed. We are required to show $\P^n \times \P^m$ is covered either by $A$ or by $B$. For each $[\textbf{x}] \in \P^n$, let $X_{[\textbf{x}]}\triangleq \set{[\textbf{x}]}\times \P^m$. Because $X_{[\textbf{x}]}$ is a subset of $\P^n \times \P^m$, we have: 
+\begin{align*}
+  X_{[\textbf{x}]}= (A \cap X_{[\textbf{x}]} )\cup  (B \cap X_{[\textbf{x}]})
+\end{align*}
+This implies by irreducibility of $X_{[\textbf{x}]}$ that either  $A$ or  $B$ covers $X_{[\textbf{x}]}$. Define $X_A$ to be the collection of  $[\textbf{x}] \in \P^n$ that makes $A$ cover $X_{[\textbf{x}]}$, and define $X_B$ similarly. By construction, if $X_A=\P^n$, then $A$ cover $\P^n \times \P^m$. A routine check shows that: 
+\begin{align*}
+X_A= \bigcap_{[\textbf{y}]\in \P^m} \pi_1 ( (\P^n \times \set{[\textbf{y}]}) \cap A)
+\end{align*}
+
+Because $\P^n$ is irreducible and we have shown $\P^n = X_A \cup X_B$, the proof moreover boils downs to proving $X_A$ and $X_B$ are closed. \\
+
+So it remains to show projection $\pi_1: \P^n \times \P^m\rightarrow \P^n$ is a closed map.  
+\end{proof}
+
+
 
 Consider formal polynomial $F \in k[x_0,\dots ,x_n,y_0,\dots ,y_m]$, and write $F = F_1+ \cdots +F_r$ where $F_i$ are all monomials of the forms $cx_0^{e_0}\cdots x_n^{e_n}y_0^{e_{n+1}}y_m^{e_{n+m}}$. If for all $i$, \textbf{the degree of $F_i$ in  $x$}, the numbers $e_0+\cdots +e_n$, are the same, then we say $F$ is \textbf{$\textbf{x}$-homogeneous}. We say $F$ is \textbf{bi-homogeneous} if $F$ is both  $\textbf{x}$-homogeneous and  $\textbf{y}$-homogeneous. \\
 
@@ -1752,19 +2057,6 @@ We now prove that $\phi$ is continuous. Let $\set{F_1,\dots ,F_t}\subseteq k[\te
 \begin{theorem}
 \textbf{(Image of Segre embedding is irreducible)} 
 \end{theorem}
-\begin{proof}
-Suppose $\P^n\times \P^m=A \cup  B$ where $A,B$ are closed. We are required to show $\P^n \times \P^m$ equals to either $A$ or  $B$. For all $[\textbf{x}] \in \P^n$, write $X_{[\textbf{x}]}\triangleq \set{[\textbf{x}]}\times \P^m$. By definition, we have 
-\begin{align*}
-  X_{[\textbf{x}]}= (A \cap X_{[\textbf{x}]} )\cup  (B \cap X_{[\textbf{x}]})
-\end{align*}
-This implies by irreducibility of $X_{[\textbf{x}]}$ that either  $A$ or  $B$ covers $X_{[\textbf{x}]}$. Define $X_A$ to be the collection of  $[\textbf{x}] \in \P^n$ such that $A$ cover $X_{[\textbf{x}]}$, and define $X_B$ similarly. Now, by definition of $X_A$, if $X_A=\P^n$, then we have $A=X$, so the whole proof boils down into proving $\P^n$ is covered by either  $A$ or  $B$. Because $\P^n$ is irreducible and we have shown $\P^n = X_A \cup X_B$, the proof moreover boils downs to proving $X_A$ and $X_B$ are closed. \\
-
-A routine check show that: 
-\begin{align*}
-X_A= \bigcap_{[\textbf{y}]\in \P^m} \pi_1 ( (\P^n \times \set{[\textbf{y}]}) \cap A)
-\end{align*}
-So it remains to show projection $\pi_1: \P^n \times \P^m\rightarrow \P^n$ is a closed map.  
-\end{proof}
 
 
 As it turned out, to prove the image of Segre embedding is irreducible is extremely nontrivial and is often overlooked by people who are not careful enough\footnote{See these two MSE post: 
@@ -1894,28 +2186,372 @@ Lastly, let $\psi: X\DashedArrow   Y$ be another dominant rational map such that
 \end{proof}
 
 \section{Singularity}
-Let $X$ be a quasi variety. We say $X$ is  \textbf{nonsingular at} $p \in X$ if the local ring $\mathscr{O}_{p,X}$ is moreover regular, and we say $X$ is  \textbf{smooth} or \textbf{nonsingular} if $X$ contains no singular point. \\
-
-
-
-
-
-
-Let $X \subseteq \A^n$ be an affine variety, $p \in X$, and $F_1,\dots ,F_t\subseteq k[x_1,\dots ,x_n]$ be a set of generators of $I(X)$. We say $X$ is \textbf{nonsingular at}  $p$ if the rank of the  $t \times n$ matrix $(\partial F_i \quotient \partial x_j)(p)$ equals to $n-\operatorname{topdim}(X)$. Basic linear algebra tell us that this is well-defined. We say $X$ is \textbf{smooth} or \textbf{nonsingular} if $X$ contains no singular points. 
+Let $X$ be a quasi variety. We say $X$ is  \textbf{nonsingular at} $\textbf{a} \in X$ if the local ring $\mathcal{O}_{\textbf{a},X}$ is moreover regular, and we say $X$ is  \textbf{smooth} or \textbf{nonsingular} if $X$ contains no singular point. 
 \begin{equiv_def}
-\textbf{(Singularities of affine quasi variety)} Given quasi affine variety $X \subseteq \A^n$ and $p \in X$. The followings are equivalent 
+  \textbf{(Singularities of affine quasi variety)} Given quasi affine variety $X \subseteq \A^n$, $\textbf{a} \in X$, and some set $\set{F_1,\dots ,F_t}\subseteq k[x_1,\dots ,x_n]$ of generators of $I(X)$, the followings are equivalent: 
+  \begin{enumerate}[label=(\roman*)]
+    \item $X$ is nonsingular at $\textbf{a}$.  
+    \item  The rank of the $t \times n$ \textbf{Jacobian matrix}  $(\partial F_i \quotient \partial x_j)|_\textbf{a}$, equals to $n-\operatorname{topdim}(X)$. 
+  \end{enumerate}
+Note that basic linear algebra told us the rank of the Jacobian matrix $(\partial F_i \quotient \partial x_j)$ is invariant under the choice of generators and $t$. 
+\end{equiv_def}
+\begin{proof}
+Define $k$-linear map $\theta: k[x_1,\dots ,x_n]\rightarrow k^n$ by 
+\begin{align*}
+\theta (G)\triangleq \left(\frac{\partial G}{\partial x_1}\Bigg|_\textbf{a},\dots , \frac{\partial G}{\partial x_n}\Bigg|_\textbf{a} \right)
+\end{align*}
+Let $\mathfrak{a}\triangleq \langle x_1-a_1,\dots,x_n-a_n\rangle\subseteq k[x_1,\dots ,x_n] $ be the maximal ideal correspond to $\textbf{a}$. Unrolling the definitions shows that $\theta $ vanishes on $\mathfrak{a}^2$ and $\theta (x_i-a_i)$ forms a basis for $k^n$. Therefore,  $\theta$ induces a $k$-linear isomorphism  $\theta' : \mathfrak{a}\quotient \mathfrak{a}^2 \rightarrow k^n$. Again, unrolling the definitions shows that dimension of $\theta (I(X))$ equals to the rank of the  Jacobian matrix. Note that $(\theta')^{-1}(\theta (I(X)))= (I(X)+\mathfrak{a}^2)\quotient \mathfrak{a}^2$. \\
+
+\myref{Theorem}{Asog} stated that $\mathcal{O}_p \cong (k[x_1,\dots ,x_n]\quotient I(X))_{(\mathfrak{a}+ k[x_1,\dots ,x_n])\quotient I(X)}$
+\end{proof}
+\section{Intersection}
+\begin{theorem}
+\textbf{(Affine Dimension Theorem)} Let $k$ be closed, $Y,Z$ be two varieties of dimensions  $r,s$ in  $\A^n$. Every irreducible component  of  $Y \cap Z$ has dimension $\geq r+s-n$. 
+\end{theorem}
+\begin{proof}
+We first prove the case when $Z$ is a hypersurface, says  $Z=V(F)$ for some irreducible $F \in k[\textbf{x}]$. We are required to prove irreducible components of $Y \cap Z$ have dimension $\geq r-1$. Because $A(Y)$ is Noetherian, by \customref{EoPDiNr}{primary decomposition theorem}, we know $\langle [F]\rangle \subseteq A(Y)$ has finite number of minimal prime ideals $\mathfrak{p}_1,\dots , \mathfrak{p}_m \subseteq A(Y)$. By \customref{ctfr}{correspondence theorem}, preimage of $\mathfrak{p}_i$ under quotient map $k[\textbf{x}] \twoheadrightarrow A(Y)$ are exactly minimal prime ideals over $I(Y)+\langle F\rangle $. Moreover, because:
+\begin{align*}
+\sqrt{I(Y)+\langle F\rangle}  =  I (V(I(Y)+\langle F\rangle ))  = I(Y\cap Z)
+\end{align*}
+We see preimages of  $\mathfrak{p}_i$ are furthermore exactly the minimal prime ideals over $I(Y\cap Z)$. Therefore, the images of ideals of irreducible components of $Y \cap Z$ under quotient map $k[\textbf{x}] \twoheadrightarrow A(Y)$ are exactly $\mathfrak{p}_i$. Let $C$ be an irreducible component of  $Y \cap Z$ correspond to $\mathfrak{p}_i$. It now follows from third isomorphism theorem of ring that 
+\begin{align*}
+A(C)= \frac{k[\textbf{x}]}{I(C)}= \frac{\frac{k[\textbf{x}]}{I(Y)}}{\frac{I(C)}{I(Y)}}  = \frac{A(Y)}{\mathfrak{p}_i} 
+\end{align*}
+Because $\mathfrak{p}_i$ is of height one by \customref{Kpit}{Krull's principal ideal theorem}, by \myref{Theorem}{sdt}, we know $\operatorname{Krudim}(A(C))=\operatorname{Krudim}(A(Y))- \operatorname{height}\mathfrak{p}_i=r-1$. We have proved the special case when $Z$ is a hypersurface. We now prove the general case. \\
+
+Denote the diagonal in $\A^{2n}$ by: 
+\begin{align*}
+\Delta \triangleq \set{(\textbf{a},\textbf{a})\in \A^{2n}: \textbf{a} \in \A^n}
+\end{align*}
+Clearly, $\phi:\A^n \rightarrow \Delta$ defined by $\textbf{a}\mapsto (\textbf{a},\textbf{a})$ forms a homeomorphism between $Y \cap Z\subseteq \A^n$ and $(Y \times Z)\cap \Delta \subseteq \A^{2n}$. Because of such, we only have to prove the irreducible components of $(Y \times Z)\cap \Delta $ has dimension $\geq r+s-n$. We now prove such using the special case above.\\
+
+Note that
 \begin{enumerate}[label=(\roman*)]
-  \item $X$ is nonsingular at $p$.  
-  \item $\mathscr{O}_{p,X}$ is a regular local ring.
+  \item $\operatorname{Topdom}(Y\times  Z)=r+s$. 
+  \item $\Delta =V(x_1-y_1)\cap  \cdots \cap  V(x_n-y_n)$ is the intersection of $n$ numbers of hyper surfaces. 
+\end{enumerate}
+By applying the special case $n$ times, we see the irreducible components of  $(Y\times Z)\cap \Delta$ has dimension $r+s- 1 \cdot n$.  
+\end{proof}
+\footnote{I don't understand:
+\begin{enumerate}[label=(\roman*)]
+  \item Do we need primary decomposition theorem to deduce about the number or existence of minimal prime ideals in $A(Y)$ over $\langle [F]\rangle $? Doesn't the finite existence of irreducible components of $Y\cap Z$ with correspondence theorem already implies this? 
+  \item Why $I(Y)+\langle F\rangle =I(Y \cap Z) $? 
+  \item How to write third isomorphism theorem better? Remember to write it formally in chapter 1. 
+  \item Why is $\phi $ a homeomorphism? 
+  \item Why is $\operatorname{Topdim}(Y\times Z)=r+s$? 
+  \item Why can we apply the special case $n$ times?   
+\end{enumerate}}
+\begin{theorem}
+\label{PDT}
+\textbf{(Projective Dimension Theorem)} Let $k$ be closed,  $Y,Z$ be two varieties of dimension  $r,s$ in  $\P^n$. Every irreducible component of $Y\cap Z$  has dimension $\geq r+s-n$. Moreover, if  $r+s-n\geq 0$, then $Y \cap Z$ is nonempty. 
+\end{theorem}
+\begin{proof}
+\end{proof}
+A single variable rational coefficient polynomial $P$ is said to be \textbf{numerical} if $P(z)$ is an integer for all $z\inz$.   
+\begin{equiv_def}
+\label{Np}
+\textbf{(Numerical polynomial)} For all $z\inc$ and $r\inz_0^+$, we define 
+\begin{align*}
+\binom{z}{r}\triangleq \frac{z(z-1)\cdots (z-r+1)}{r!}
+\end{align*}
+Given $P \in \Q[z]$, the followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+\item $P(z)\inz$ for all $z \gg 0 \inz$. 
+  \item There exists $c_0,\dots ,c_r\inz$ such that 
+\begin{align*}
+P(z)=c_0 \binom{z}{r}+ c_1 \binom{z}{r-1}+ \cdots + c_r
+\end{align*}
+  \item $P$ is numerical. 
 \end{enumerate}
 \end{equiv_def}
 \begin{proof}
+(i)$\implies $(ii): The proof is done by induction on degree of $P$. If $P$ is a constant then there is nothing to prove. Suppose $\operatorname{deg}(P)=r$ and the assertion hold true when $\operatorname{deg}(P)<r$. Clearly, there exists some $c_0,\dots ,c_r\inq $ such that 
+\begin{align*}
+P(z)=c_0 \binom{z}{r}+ c_1 \binom{z}{r-1}+ \cdots + c_r
+\end{align*}
+Define $\Delta P \in \Q[z]$ by $\Delta P(z)\triangleq P(z+1)-P(z)$. Computing 
+\begin{align*}
+\binom{z+1}{r}- \binom{z}{r}= \binom{z}{r-1}
+\end{align*}
+We see 
+\begin{align*}
+\Delta P(z)= c_0 \binom{z}{r-1} + c_1 \binom{z}{r-2}+ \cdots + c_{r-1}
+\end{align*}
+Clearly, $\Delta P(z)\inz$ for all $z\gg 0\inz$ by construction, and there exists only one $(b_0,\dots ,b_{r-1})\inq^r$ such that 
+\begin{align*}
+\Delta P(z)=  b_0 \binom{z}{r-1} + b_1 \binom{z}{r-2}+ \cdots + b_{r-1}
+\end{align*}
+Therefore, we may apply inductive hypothesis to conclude $c_0,\dots ,c_{r-1}\inz$. It then follows form $P(z)\inz$ for all $z\gg 0\inz$ that $c_r \inz$, as desired. \\
+
+(ii)$\implies $(iii): This follows from $\binom{z}{r}\inz$ for all $z\inz$, which can be checked by induction. \\
+
+(iii)$\implies $(i) is clear. 
+\end{proof}
+\begin{corollary}
+\label{Ponp}
+\textbf{(Properties of numerical polynomials)} Given two numerical $P_1,P_2\inq[z]$, if $P_1(z)=P_2(z)$ for all $z\gg 0\inz$, then $P_1=P_2$. 
+\end{corollary}
+\begin{proof}
+Clearly, $P_1-P_2\inq[z]$ is numerical and maps large integers to $0$. Therefore, by \customref{Np}{definition of numerical polynomial}, we have: 
+\begin{align*}
+  (P_1-P_2)(z)=c_0 \binom{z}{r}+ c_1\binom{z}{r-1}+ \cdots +c_r
+\end{align*}
+Letting $z\rightarrow \infty$, we see $c_0$ must be $0$. Letting $z\rightarrow \infty$ again, we see $c_1$ also must be $0$. Repeating the same process, we see  $P_1-P_2=0\inq[z]$. 
+\end{proof}
+
+
+
+
+\begin{theorem}
+\label{Ftc}
+\textbf{(Filtration to compute Hilbert polynomial)} Let $S$ be a  $\N$-graded Noetherian ring and  $M$ a graded $S$-module  of finite type.  There exists some ascending filtration $0=M^0 \subseteq M^1 \subseteq \cdots \subseteq M^r=M$ consisting of graded submodules together with a tuple $\set{\mathfrak{p}_1,\dots ,\mathfrak{p}_r}$ of homogeneous prime ideal in $S$ and a tuple of integer $\set{l_1,\dots ,l_r}$ such that  
+\begin{align*}
+M^i\quotient M^{i-1} \cong  (S\quotient \mathfrak{p}_i)(l_i),\quad \text{ as graded $S$-module for all $i$. }
+\end{align*}
+Even though such ascending filtration consisting of graded submodules aren't unique, every such filtration satisfies: 
+\begin{enumerate}[label=(\roman*)]
+  \item If $\mathfrak{p}\subseteq S$ is homogeneous prime, then 
+\begin{align*}
+\mathfrak{p} \supseteq \operatorname{Ann}M \iff \mathfrak{p}\supseteq \mathfrak{p}_i\text{ for some }i 
+\end{align*}
+   Moreover, the set of minimal elements of the set $\set{\mathfrak{p}_1,\dots ,\mathfrak{p}_r}$ is exactly the set of minimal prime ideals over $\operatorname{Ann}(M)$.\footnote{This statement implies the statement that minimal prime ideals over $\operatorname{Ann}(M)$ is always homogeneous, which I believe can be probed by showing $\operatorname{Ann}(M)$ is always homogeneous and minimal prime over homogeneous ideals are always homogeneous.}
+\item For each minimal prime $\mathfrak{p}$ over $\operatorname{Ann}(M)$, the number of times which $\mathfrak{p}$ occur in the set  $\set{\mathfrak{p}_1,\dots ,\mathfrak{p}_r}$  equals to $\mu_\mathfrak{p}(M)$, the length of the $S_\mathfrak{p}$-module $M_\mathfrak{p}$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  We first prove the existence of such filtration. Consider the set of graded submodule of $M$ which admit such a filtration. Clearly, the zero module is in this set, so this set is nonempty. Because $M$ is Noetherian, we know this set has a maximal element $M'$.\footnote{\myref{Theorem}{cpoN} implies $M$ is Noetherian. \customref{EDoN}{equivalent definition of Noetherian module} implies existence of $M'$}  \\
+
+Consider $M''\triangleq M\quotient M'$. If $M''=0$, we are done. If not, consider the set of ideals  $\set{\operatorname{Ann}(m) \subseteq M'':m \in M''\text{ is homogeneous and nonzero.}}$
+\end{proof}
+Let $M$ be a graded module over polynomial ring  $k[x_0,\dots ,x_n]$. Its \textbf{Hilbert function} $\phi_M:\Z\rightarrow \N \cup \set{0}$ is defined by 
+\begin{align*}
+\phi_M(l)\triangleq \operatorname{dim}_k(M_l)
+\end{align*}
+\begin{theorem}
+\label{HST}
+\textbf{(Hilbert-Serre Theorem)} Let $k$ be an algebraically closed field and $M$ a graded module of finite type over $k[x_0,\dots ,x_n]$. There exists unique $P_M\in \Q[z]$ such that 
+\begin{align*}
+ \phi_M(l)=P_M(l),\quad \text{ for all }l\gg 0 
+\end{align*}
+Moreover, the degree of this $P_M$ is the topological dimension of  $Z(\operatorname{Ann}M)\subseteq \P^n$. 
+\end{theorem}
+\begin{proof}
 
 \end{proof}
-\section{Intersection}
-\chapter{Scheme}
 
-Given some ring $R$, we may give $\operatorname{Spec}(R)$ its \textbf{Zariski topology} by defining $E\subseteq \operatorname{Spec}(R)$ to be closed if and only if $E=\set{J \in \operatorname{Spec}(R):I \subseteq J}$ for some ordinary ideal $I\subseteq R$. \\
+Given closed $Y \subseteq \P^n$, its \textbf{Hilbert polynomial} is $P_{S(Y)}$ from \customref{HST}{Hilbert-Serre Theorem}. The \textbf{degree} of $Y$ is the  $\operatorname{Topdim}(Y)!$ times the leading coefficient of  $P_{S(Y)}$. 
+\begin{theorem}
+\label{Dos}
+\textbf{(Degrees of simple objects are expected)} Let $k$ be closed. Denote $S$ the coordinate ring of  $\P^n$ and denote $\phi$ the Hilbert function. If  $F\in S$ is an irreducible homogeneous polynomial of degree $d$, $H$ is the zero set of  $F$, and  $X\subseteq \P^n$ is singleton, then:
+\begin{enumerate}[label=(\roman*)]
+  \item $\phi_S(l)=\binom{l+n}{n}$ for all $l\geq 0$. Therefore, $\operatorname{deg}(\P^n)=1$.  
+  \item  $\phi_{S(H) }(l)=\binom{l+n}{n}- \binom{l-d+n}{n}$ for all $l\geq d$. Therefore,  $\operatorname{deg}(H)=d$. 
+  \item $\phi_{S(X)}(l)= 1$ for all $l\geq 0$. Therefore, $\operatorname{deg}(X)=1$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  (i): The proof follows from noting that for all $l\geq 0$, $S_l$ has basis:
+\begin{align*}
+\set{x_0^{d_0}\cdots x_n^{d_n}\in S: d_0+\cdots +d_n=l}
+\end{align*}
+(ii): Fix $l\inz$. Check that $G\mapsto GF$ forms a graded $S$-module homomorphism $S(-d)\rightarrow S$ that give us a short exact sequence of graded $S$-modules: 
+ \begin{align*}
+ 0 \longrightarrow S(-d) \overset{F}{\longrightarrow } S \longtwoheadrightarrow S\quotient \langle F\rangle  \longrightarrow 0
+\end{align*}
+Clearly, its restriction is a short exact sequence of  $k$-vector spaces: \footnote{I want to check this again later.}\footnote{A $S$-module isomorphism is a  $k$-vector space isomorphism. Category of $S$-module is a subcategory of  $k$-vector space. Record this in early chapter.}  
+\begin{align*}
+0\longrightarrow S(-d)_l \longrightarrow  S_l \longrightarrow  S(H)_l  \longrightarrow 0
+\end{align*}
+ It then follows from \customref{Eod}{dimension of vector space is additive} and (i) that: 
+\begin{align*}
+\phi_{S(H)}(l)= \phi_S (l)-\phi_S (l-d)= \binom{l+n}{n}- \binom{l-d+n}{n},\quad \text{ for all }l\geq d. 
+\end{align*}
+(iii): Fix $l\geq 0$. Check that:\footnote{I haven't checked it yet, and I think there is a good generalization of it.}
+\begin{align*}
+S(X)_l\cong  S_l \quotient I(X)\cap S_l,\quad \text{ as $k$-vector space. }
+\end{align*}
+We are then required to show $\operatorname{dim}_k(I(X)\cap S_l)= \binom{l+n}{n}-1$. Under a projective change of coordinate\footnote{I don't know how to perform this yet.}, WLOG, we may let $X=\set{[1:0:\cdots :0]}$. The proof then follows from checking $I(X)\cap S_l$ has basis: 
+\begin{align*}
+\set{x_0^{d_0}\cdots x_n^{d_n}\in S: d_0+\cdots +d_n=l\text{ and }d_0\neq l}
+\end{align*}
+\end{proof}
+Let $S$ be a  $\N$-graded Noetherian ring, $M$ a graded  $S$-module, and $\mathfrak{p}\subseteq S$ be a minimal prime ideal over $\operatorname{Ann}(M)$. The \textbf{multiplicity} of $M$ at  $\mathfrak{p}$, denoted by $\mu_\mathfrak{p}(M)$ is the length of $M_\mathfrak{p}$ over $S_\mathfrak{p}$. Let $Y\subseteq \P^n$ be a projective variety and $H\subseteq \P^n$ a hypersurface not containing $Y$. Clearly, 
+\begin{align*}
+\operatorname{Ann}(S\quotient I(Y)+I(H))=I(Y)+I(H)
+\end{align*}
+Let $C_1,\dots ,C_s$ be the irreducible components of $Y \cap H$, so $\set{I(C_1),\dots ,I(C_s)}$ is exactly the set of minimal prime ideals over:\footnote{The first equality follows from $Z(I(Y)+I(H))=Y\cap H$, the second is just Nullstellensatz.}\footnote{Write the minimal prime share with radical in Chapter 1.1}
+ \begin{align}
+\label{IYH}
+I(Y\cap H)=I(Z(I(Y)+I(H)))= \sqrt{I(Y)+I(H)} 
+\end{align}
+This implies that $\set{I(C_1),\dots ,I(C_s)}$ is exactly the set of minimal prime ideals over $I(Y)+I(H)=\operatorname{Ann}(S\quotient I(Y)+I(H))$. Because of such, we may now well define the \textbf{intersection multiplicity (number) of $Y$ and  $H$ along  $C_j$} to be 
+\begin{align*}
+i(Y,H;C_j)\triangleq \mu_{I(C_j)}(S\quotient I(Y)+I(H)) 
+\end{align*}
+\begin{theorem}
+\label{GBT}
+\textbf{(Bezout Theorem for a variety and a hypersurface in $\P^n$)} Let $Y$ be a variety of dimension $\geq 1$ in $\P^n$, and let  $H$ be a hypersurface not containing  $Y$. Let  $C_1,\dots ,C_s$ be the irreducible components of $Y \cap H$. We have 
+\begin{align*}
+\sum_{j=1}^s i(Y,H;C_j) \cdot \operatorname{deg}C_j= (\operatorname{deg}Y)( \operatorname{deg}H) 
+\end{align*}
+\end{theorem} 
+\begin{proof}
+Let $H$ be defined by irreducible homogeneous  $F$ of degree $d$. We have an exact sequence of graded $S$-modules: 
+ \begin{align*}
+0\longrightarrow (S\quotient I(Y))(-d)\overset{F}{\longrightarrow }S\quotient I(Y) \longrightarrow S\quotient (I(Y)+I(H))\longrightarrow 0
+\end{align*}
+Clearly, its restriction is a short exact sequence of $k$-vector spaces: 
+\begin{align*}
+0\longrightarrow (S(Y))(-d)_l \longrightarrow S(Y)_l \rightarrow (S\quotient (I(Y)+I(H)))_l \longrightarrow 0
+\end{align*}
+Denoting $M\triangleq S\quotient (I(Y)+I(H))$, because \customref{Eod}{dimension of vector space is additive}, this give us: 
+\begin{align}
+\label{PMz}
+P_M(z)=P_{S(Y)}(z)-P_{S(Y)}(z-d),\quad \text{ for all }z\gg 0 
+\end{align}
+Let $r$ and $e$ respectively be the dimension and degree of  $Y$. It is clear that $\operatorname{Ann}(S(Y))=I(Y)$, which by closedness of $Y$ implies  $Z(\operatorname{Ann}(S(Y)))=Y$. It now follows from  \customref{HST}{Hilbert-Serre Theorem} that $P_{S(Y)}(z)$ has degree $r$. This implies the leading term of $P_{S(Y)}(z)$ is $\frac{\operatorname{deg}Y}{r!}z^r$. This with \myref{Equation}{PMz} 
+implies:
+\begin{align}
+\label{Tlt}
+  \text{ The leading term of $P_M(z)$ is $\frac{(\operatorname{deg}Y)(\operatorname{deg}H)}{(r-1)!}z^{r-1}$.} 
+\end{align}
+Let the ascending filtration $0=M^0 \subseteq M^1 \subseteq \cdots \subseteq M^{q}=M$ consisting of graded $S$-submodules and the tuples $\set{\mathfrak{p}_1,\dots , \mathfrak{p}_q},\set{l_1,\dots ,l_q}$ be from \myref{Theorem}{Ftc}. In other words, we have: 
+\begin{enumerate}[label=(\Roman*)]
+  \item For each $i$
+\begin{align}
+\label{Miqmi}
+M^i\quotient  M^{i-1}\cong  (S\quotient \mathfrak{p}_i)(l_i),\quad \text{ as graded $S$-module }
+\end{align}
+  \item The set of minimal elements of the set $\set{\mathfrak{p}_1,\dots ,\mathfrak{p}_q}$ is exactly the set of minimal prime ideals over $\operatorname{Ann}(M)$. 
+  \item For each minimal prime $\mathfrak{p}$ over $\operatorname{Ann}(M)$, the number of times which $\mathfrak{p}$ occur in the set $\set{\mathfrak{p}_1,\dots ,\mathfrak{p}_q}$ equals to $\mu_{\mathfrak{p}}(M)$.  
+\end{enumerate}
+Because for each $1\leq i\leq q$ we have short exact sequence of graded $S$-modules:
+ \begin{align*}
+0 \longrightarrow M^{i-1}\longrightarrow M^i \longrightarrow M^i \quotient M^{i-1} \longrightarrow 0
+\end{align*}
+We have $\phi_{M^i}=\phi_{M^{i-1}}+\phi_{M^i\quotient M^{i-1}}$, which by \myref{Corollary}{Ponp} give us $P_{M^i}=P_{M^{i-1}}+P_{M^i\quotient M^{i-1}}$. It now follows from induction and \myref{Equation}{Miqmi} that $P_M = \sum_{i=1}^q P_{(S\quotient \mathfrak{p}_i)(l_i)}$. Because shifting doesn't effect leading coefficients of Hilbert polynomial\footnote{This can be easily check by computing $G(z)\triangleq F(l+z)$.} and because of \myref{Equation}{Tlt}, it only remains to prove:
+\begin{align*}
+\text{ The leading coefficient of polynomial }\sum_{i=1}^q P_{S\quotient \mathfrak{p}_i}\text{ equals to } \frac{\sum_{j=1}^s i(Y,H;C_j)\cdot \operatorname{deg}C_j}{(r-1)!}
+\end{align*}
+Denote $r_i\triangleq \operatorname{Topdim}(Z(\mathfrak{p}_i))=\operatorname{Krudim}(S\quotient \mathfrak{p}_i)$, and denote $f_i\triangleq \operatorname{deg}(Z(\mathfrak{p}_i))$. Recall that 
+\begin{enumerate}[label=(\roman*)]
+  \item Because $\set{I(C_1),\dots ,I(C_s)}$ is exactly the set of minimal prime ideals over  $I(Y)+I(H)=\operatorname{Ann}(M)$ as shown in the paragraph before this theorem, by construction, $\set{I(C_1),\dots ,I(C_s)}$ is exactly the set of minimal elements of the set $\set{\mathfrak{p}_1,\dots ,\mathfrak{p}_q}$. 
+  \item By  \customref{PDT}{projective dimension theorem}, $\operatorname{Topdim}(C_j)= r-1$.
+\end{enumerate}
+Therefore, by \customref{sdt}{fake dimension theorem}, $\mathfrak{p}_i \in \set{I(C_1),\dots , I(C_s)}\iff r_i=r-1$. By \customref{HST}{Hilbert-Serre Theorem}, $P_{S\quotient \mathfrak{p}_i}$ have degree $r_i$ and therefore have leading term $\frac{f_i}{r_i!}z^{r_i}$. We now see conclude by (III) that indeed, the leading coefficient of $\sum_{i=1}^q P_{S\quotient \mathfrak{p}_i}$ equals to 
+\begin{align*}
+\frac{\sum_{r_i=r-1}f_i}{(r-1)!}=  \frac{\sum_{\mathfrak{p}_i \in \set{I(C_1),\dots ,I(C_s)}}f_i}{(r-1)!}=  \frac{\sum_{j=1}^q \mu_{I(C_j)}(M)\cdot \operatorname{deg}(C_j)}{(r-1)!}
+\end{align*}
+\end{proof}
+\begin{corollary}
+\textbf{(Bezout's Theorem for $\P^2$)} Let $k$ be algebraically closed and $H_1\triangleq Z(F_1),H_2\triangleq Z(F_2)$ be two hypersurfaces in $\P^2$. If $H_1 \cap H_2$ is finite, says, $H_1 \cap H_2= \set{P_1,\dots ,P_s}$, then: 
+\begin{align*}
+\sum i(H_1,H_2;P_j)= (\operatorname{deg}F_1)(\operatorname{deg}F_2)
+\end{align*}
+\end{corollary}
+\begin{proof}
+This follows from \customref{GBT}{Bezout theorem for a variety and a hypersurface in $\P^n$} and the fact  \customref{Dos}{$\operatorname{deg}(P_i)=1$ and  $\operatorname{deg}(H_j)=\operatorname{deg}(F_j)$}. 
+\end{proof}
+\chapter{Schemes}
+\section{Direct limit}
+We say that a pair $(X,\leq )$ forms a \textbf{preordered set} f the relation $\leq $ is reflexive and transitive. Given a preordered set $(X,\leq )$, an element $x \in X$ is called an \textbf{upper bound} of a subset $Y \subseteq X$ if  $y\leq x$ for all $y \in Y$. If every finite subset of $X$ has an upper bound, then  $(X,\leq )$ is called a \textbf{directed set}.  \\
+
+Let $(I,\leq )$ be a directed set, $\mathfrak{C}$ a category, and $\set{A_i \in \mathfrak{C}: i \in I}$ a family of objects in $\mathfrak{C}$. If for each pair $i\leq j$, there exists a morphism $f_{ij}:A_i \rightarrow A_j$, satisfying: 
+\begin{enumerate}[label=(\roman*)]
+  \item For all $i \in I$, $f_{ii}$ is the identity morphism.  
+  \item For all $i\leq j\leq k$, we have $f_{ik}=f_{jk}\circ f_{ij}$. 
+\end{enumerate}
+then we say $(A_i,f_{ij})$ forms a \textbf{direct system} over $I$. Given a direct system $(A_i,f_{ij})$, an object $B \in \mathfrak{C}$, together with morphisms $\phi_i:A_i\rightarrow B$ for each $i \in I$, is called a \textbf{target} if for all $i\leq j$, the compatibility condition
+\begin{align*}
+\phi_i=\phi_j \circ f_{ji}
+\end{align*}
+holds. The \textbf{direct limit} of the system, denoted $A\triangleq \varinjlim A_i$, is a target $(A,\phi_i)$ that satisfies the following \textbf{universal property}: For any target $(B,\psi_i)$, there exists a unique morphism $u:A\rightarrow B$ such that 
+\begin{align*}
+u\circ \phi_i= \psi_i,\quad \text{ for all }i\in I.
+\end{align*}
+As one might expect, direct limits are indeed unique up to a unique isomorphism. In the remainder of this note, we refer to a category as a \textbf{good category} if it is the category of groups, rings, modules over a fixed ring, or algebras over a fixed ring. In such good categories, the existence of direct limits can be established by explicitly constructing
+\begin{align*}
+A \triangleq \left( \bigsqcup A_i \right) \big/ \sim, \quad \text{where } x_i \sim x_j \overset{\triangle}{\iff} f_{ki}(x_i) = f_{kj}(x_j) \text{ for some } k \geq i,j.
+\end{align*}
+
+
+
+
+\section{Sheaves}
+Let $X$ be a topological space and $\mathfrak{C}$ a category. A \textbf{presheaf $\mathcal{F}$ of $\mathfrak{C}$-objects on $X$} consists of the following data:
+\begin{enumerate}[label=(\roman*)]
+  \item For each open subset $U \subseteq X$, an object $\mathcal{F}(U)\in \mathfrak{C}$. We call elements of $\mathcal{F}(U)$ \textbf{sections of $\mathcal{F}$ over} $U$. 
+  \item For each inclusion of open sets $V\subseteq U$, a morphism (called the \textbf{restriction map}) $\operatorname{Res}^U_V:\mathcal{F}(U)\rightarrow \mathcal{F}(V)$ in $\mathfrak{C}$. For obvious reason, we write $\operatorname{Res}^U_V(s)\triangleq s |_V$. 
+\end{enumerate}
+subject to the following conditions: 
+\begin{enumerate}[label=(\alph*)]
+  \item $\mathcal{F}(\varnothing )$ is a final object of $\mathfrak{C}$. 
+  \item \textbf{(Identity Law)} For every open set $U \subseteq X$, the restriction map $\operatorname{Res}^U_U$ is the identity morphism on $\mathcal{F}(U)$. 
+  \item \textbf{(Composition Law)} For all open sets $W\subseteq V \subseteq U$, the composition law holds: 
+    \begin{align*}
+    \operatorname{Res}^U_W =\operatorname{Res}^V_W \circ \operatorname{Res}^U_V
+    \end{align*}
+\end{enumerate}
+For example, if we say that \( \mathcal{F} \) is a \textbf{presheaf of sets} on \( X \), we mean that for each open subset \( U \subseteq X \), \( \mathcal{F}(U) \) is a set, each restriction map \( \operatorname{Res}^U_V : \mathcal{F}(U) \to \mathcal{F}(V) \) is a function between sets, the identity and composition laws hold, and \( \mathcal{F}(\varnothing) = \{\varnothing\} \). Similarly, if \( \mathcal{F} \) is a \textbf{presheaf of rings} on \( X \), then each \( \mathcal{F}(U) \) is a ring, each restriction map \( \operatorname{Res}^U_V \) is a ring homomorphism, and \( \mathcal{F}(\varnothing)=\Z_2 \). Likewise, a \textbf{presheaf of groups} consists of group-valued assignments: each \( \mathcal{F}(U) \) is a group, the restriction maps are group homomorphisms, and $\mathcal{F}(\varnothing )=\Z_1$. \\
+
+
+Fix $\mathfrak{C}$ and $X$. One may check that a $\mathfrak{C}$-valued presheaf on $X$ forms a category itself if we define a \textbf{morphism} $\phi$ from $\mathcal{F}$ to $\mathcal{G}$ to be an assignment of each open $U \subseteq X$ a $\mathfrak{C}$-morphism  $\phi (U):\mathcal{F}(U)\rightarrow \mathcal{G}(U)$ such that for every inclusion $V \subseteq U$, the following diagram commutes:
+\[\begin{tikzcd}
+\mathcal{F}(U) \arrow[r, "\phi_U"] \arrow[d, "\operatorname{Res}^{\mathcal{F}}_{UV}"'] & \mathcal{G}(U) \arrow[d, "\operatorname{Res}^{\mathcal{G}}_{UV}"] \\
+\mathcal{F}(V) \arrow[r, "\phi_V"] & \mathcal{G}(V)
+\end{tikzcd}\]
+Just like other categories, a presheaf isomorphism is again a morphism that admits a two-sided inverse. We from now on denote the category of $\mathfrak{C}$-valued presheaf on $X$ by  $\textbf{PSh}_{\mathfrak{C}}(X)$. \\
+
+
+Let $\mathfrak{C}$ be a good category, $\mathcal{F}$ and $\mathcal{G}$ in $\textbf{PSh}_{\mathfrak{C}}(X)$, and $\phi\in \operatorname{Hom}_{\textbf{PSh}_{\mathfrak{C}}(X)}(\mathcal{F},\mathcal{G})$. Because we require the diagram to commute, we can define \textbf{kernel} of $\phi$ to be the presheaf $U \mapsto \operatorname{Ker}(\phi (U))$ with restriction map being the restriction of restriction maps of $\mathcal{F}$. Similarly, we can define \textbf{image} of $\phi$ to be the presheaf $U \mapsto \operatorname{Im}(\phi (U))$ with restriction map being the restriction of restriction maps of $\mathcal{G}$. Similarly, we can define \textbf{cokernel} of $\phi$ to be the presheaf $U\mapsto \operatorname{Coker}(\phi (U))$ of quotient of the restriction map of $\mathcal{G}$. \\
+
+
+
+
+
+
+
+Given a point $p \in X$ and a presheaf $\mathcal{F}$ on  $X$ valued in a good category, we define the \textbf{stalk} $\mathcal{F}_p$ of $\mathcal{F}$ at $p$ as the direct limit of the directed system $(\mathcal{F}(U), \operatorname{Res})$ over all open neighborhoods $U \ni p$. Therefore, an element of $\mathcal{F}_p$ is an equivalence class represented by a pair $(U, s)$ with $s \in \mathcal{F}(U)$, and two such pairs $(U, s)$ and $(V, t)$ represent the same element if there exists a  neighborhood $W \subseteq U \cap V$ of $p$ such that $s|_W = t|_W$.\\
+
+In particular, recall that when $X$ is a quasi-variety, we denote by $\mathscr{O}(U)$ the ring of regular functions on an open set $U \subseteq X$, and by $\mathscr{O}_p$ the local ring of $X$ at a point $p \in X$. One can verify that $\mathscr{O}$ defines a presheaf on $X$, and that its stalk at $p$ coincides with the local ring $\mathscr{O}_p$—which is precisely why we adopt this notation in the first place. \\
+
+
+
+
+
+
+
+We call a presheaf $\mathcal{F}$ on $X$ a \textbf{sheaf} if for every union of open sets $U= \bigcup_{i \in I}V_i$, we have 
+\begin{enumerate}[label=(\roman*)]
+  \item \textbf{(Identity Law)} If $s,t \in \mathcal{F}(U)$ satisfies $s|_{V_i}=t |_{V_i}$ for all $i$, then  $s=t$.  
+  \item \textbf{(Gluing Law)} If $\set{s_i \in V_i: i \in I}$ satisfies $s_i|_{V_i \cap V_j}=s_j|_{V_i\cap V_j}$, then there exists $s \in \mathcal{F}(U)$ such that $s|_{V_i}=s_i$ for all $i$. 
+\end{enumerate}
+For each presheaf $\mathcal{F}$ on $X$, the \textbf{sheafification}  is the unique (up to a isomorphism, the isomorphism is unique if one require it make the diagram commute) sheaf $\mathcal{F}^+$ on $X$ together with a morphism $\theta :\mathcal{F}\rightarrow \mathcal{F}^+$ that     . 
+
+
+
+Given a sheaf $\mathcal{F}$ on $X$, a subspace $Z \subseteq X$, and a continuous map  $f:X\rightarrow Y$, and a sheaf $\mathcal{G}$ on $Y$, the \textbf{direct image sheaf} $f_*\mathcal{F}$ is a sheaf on $Y$ defined by $U\mapsto \mathcal{F}(f^{-1}(U))$ with the restriction map being that of $\mathcal{F}$, the \textbf{inverse image sheaf} $f^{-1}\mathcal{G}$ is the sheafification of the presheaf $U \mapsto \lim_{ V \supseteq f(U) }\mathcal{G}(V)$, and the \textbf{restriction sheaf} of $\mathcal{F}$ onto $Z$ denoted by $\mathcal{F}|_Z$ is simply the inverse image sheaf of  $\mathcal{F}$ under the inclusion map $Z \hookrightarrow X$.     
+\section{Scheme}
+Given some ring $A$ and ideal $\mathfrak{a} \subseteq A$, if we denote $V(\mathfrak{a})$ the set of prime ideals that contains $\mathfrak{a}$, then the collection  $\set{\operatorname{Spec}A-V(\mathfrak{a})}$ where $\mathfrak{a}$ runs over all ideals of  $A$ forms a topology on  $\operatorname{Spec}A$ called the \textbf{Zariski Topology}\footnote{$V(\mathfrak{a})\cup V(\mathfrak{b})=V(\mathfrak{a}\mathfrak{b})$, and $\bigcap V(\mathfrak{a}_i)=V (\sum \mathfrak{a}_i)$.}. Defining $\mathscr{O}(U)$ to be the ring of functions that maps $\mathfrak{p} \in U$ to some element of $A_\mathfrak{p}$ for each $U \subseteq \operatorname{Spec}A$, we get the \textbf{associated sheaf of ring} $\mathscr{O}$ on $\operatorname{Spec}A$. For each $f \in A$, we define $D(f)$ to be the open complement of $V(\langle f\rangle )$. 
+\begin{theorem}
+\textbf{(Basic property of spectrum)} Let $A$ be a ring. We have:
+\begin{enumerate}[label=(\roman*)]
+  \item For all $\mathfrak{p}\in \operatorname{Spec}A$, the stalk $\mathscr{O}_\mathfrak{p}$ is isomorphic to the local ring $A_\mathfrak{p}$. 
+  \item For all $f \in A$, the ring $\mathscr{O}(D(f))$ is isomorphic to $A_f$. Note that this implies the ring of global sections over $A$ is isomorphic to $A$.  
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+A \textbf{ringed space} is a pair $(X,\mathscr{O})$ consisting of a topological space $X$ and a sheaf of rings  $\mathscr{O}$ on $X$ called the \textbf{structure sheaf}. A \textbf{ringed space morphism} from $X$ to $Y$ is a pair $(f,f^\sharp)$ of a continuous map $f:X\rightarrow Y$ and a sheaf morphism $f^{\sharp}$ from the structure sheaf of $Y$ to the direct image of structure sheaf of  $X$ under  $f$. A ringed space is called a \textbf{locally ringed space} if the stalk of its structure sheaf at each point is a local ring. A \textbf{locally ringed space morphism} from $X$ to  $Y$ is a ringed space morphism $(f,f^{\sharp})$ such that the ring homomorphism from the stalk of the structure sheaf of  $Y$ to the stalk of the direct image sheaf induced by $f^{\sharp}$ are moreover local ring homomorphisms.  \\
+
+An \textbf{affine scheme} is a locally ringed space isomorphic as a locally ringed space to the spectrum of some ring. A \textbf{scheme} is a locally ringed space that has an open cover consisting of open sets when equipped with the restricted sheaf is an affine scheme. A \textbf{scheme morphism} is then just a locally ringed space morphism.
+\section{$\mathcal{O}$-modules}
+Given a ringed space $(X,\mathcal{O})$, if we say a sheaf $\mathcal{F}$ of abelian groups on $X$ is a $\mathcal{O}$\textbf{-module}, we are assigning each abelian group $\mathcal{F}(U)$ a $\mathcal{O}(U)$-module structure compatible not only with the addition of $\mathcal{F}(U)$ but also the restriction maps in the sense that: 
+\begin{align*}
+  (fs)|_V= (f|_V)(s|_V),\quad \text{ for each }f\in \mathcal{O}(U),s \in \mathcal{F}(U)\text{ and }V \subseteq U
+\end{align*}
+A \textbf{$\mathcal{O}$-module morphism} $\phi:\mathcal{F}\rightarrow \mathcal{G}$ is then just a sheaf morphism such that all $\phi (U)$ are also $\mathcal{O}(U)$-module homomorphisms. 
 \chapter{Not used yet}
 \section{Maybe later}
 \begin{theorem}
