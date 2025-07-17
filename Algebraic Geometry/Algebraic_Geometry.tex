@@ -14,9 +14,28 @@
 
 \tableofcontents
 \pagebreak
-\chapter{The Very Basics} 
+\chapter{Commutative Algebra} 
 \section{Rings}
-The precise meaning of the term \textbf{ring} varies across different books, depending on the context and purpose. In this note, the multiplication of a ring is always associative, commutative, and has an identity. The additive identity is denoted by $0$. From the axioms, we can straightforwardly show that $x\cdot 0 = 0$ for all $x$. Consequently, the multiplicative and additive identities are always distinct unless the ring contained only one element, and in such case, we say the ring is the \textbf{zero ring}. By \textbf{ring homomorphisms}, we mean mappings between two rings respecting addition\footnote{Respecting addition immediately implies respecting $0$ and negation.}, multiplication, and multiplicative identity. Clearly, inverse of a bijective ring homomorphism is also a ring homomorphism.\\  
+The precise meaning of the term \textbf{ring} varies across different books, depending on the context and purpose. In this note, the multiplication of a ring is always associative, commutative, and has an identity. The additive identity is denoted by $0$. From the axioms, we can straightforwardly show that $x\cdot 0 = 0$ for all $x$. Consequently, the multiplicative and additive identities are always distinct unless the ring contained only one element, and in such case, we say the ring is the \textbf{zero ring}. By \textbf{ring homomorphisms}, we mean mappings between two rings respecting addition\footnote{Respecting addition immediately implies respecting $0$ and negation. Respecting multiplication and multiplicative identity immediately implies respecting units.}, multiplication, and multiplicative identity. 
+\begin{theorem}
+\label{THrh}
+\textbf{(Properties of ring homomorphisms)} Let $A,B$ be two rings and  $f:A\rightarrow B$ be a ring homomorphism. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item $f(0_A)=0_B$. 
+  \item $f(-x)=-f(x)$ for all $x \in A$. 
+  \item $f(u)\in B$ is a unit for all unit $u \in A$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i): Observe $f(0_A)+0_B=f(0_A)=f(0_A+0_A)=f(0_A)+f(0_A)$. Subtracting both side with $f(0_A)$, we now see $f(0_A)=0_B$. \\
+
+(ii) follows from (i), as $f(-x)+f(x)=f(-x+x)=f(0)=0$. \\
+
+(iii): $f(u)f(u^{-1})=f(uu^{-1})=f(1)=1$. 
+\end{proof}
+
+
+Clearly, inverse of a bijective ring homomorphism is also a ring homomorphism.\\  
 
 An \textbf{ideal} of a ring $A$ is an additive subgroup $\mathfrak{a}$ such that $xy \in \mathfrak{a}$ for all $x \in \mathfrak{a},  y \in A$. \textbf{Quotient ring} is a ring $A\quotient \mathfrak{a}$ together with a surjective ring homomorphism $\pi :A\rightarrow A\quotient \mathfrak{a}$ that satisfies the \textbf{universal property of quotient ring}: For each ring homomorphism $f:A\rightarrow B$ that vanishes on  $\mathfrak{a}$, there exists an unique $\tilde{f}\in \operatorname{Hom}(A\quotient \mathfrak{a},B)$ that makes the diagram: 
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQiJdLFswLDIsIkFcXHF1b3RpZW50IFxcbWF0aGZyYWt7YX0iXSxbMCwxLCJmIl0sWzAsMiwiXFxwaSIsMl0sWzIsMSwiXFx0aWxkZXtmfSIsMl1d
@@ -50,7 +69,15 @@ Unroll the definition.
 \begin{proof}
 Unroll the definitions.  
 \end{proof}
-One should always be careful with the word \textbf{unit} and the word \textbf{zero-divisor}. In nonzero rings, the set of units is always disjoint with the set of zero-divisors. Given rings $A \subseteq B$, it is possible that $a \in A$ forms a non-zero-divisor (or unit) in $A$ but not in  $B$. Under our initial requirement that rings are commutative unital, for a nonzero ring $A$ to be an \textbf{integral domain}, we only need all nonzero elements to be non-zero-divisors, and for $A$ to be a  \textbf{field}, we only need all nonzero elements to be units.
+One should always be careful with the word \textbf{unit} and the word \textbf{zero-divisor}.\footnote{Note that $0$ is defined to be a zero-divisor. To justify this convention, note that if we allow  $0$ to be a non-zero-divisor, then the total ring of fraction is always the zero ring.}
+\begin{theorem}
+\label{THunz}
+\textbf{(Unit can not be zero-divisors in nonzero ring)} Let $A$ be a ring and $u \in A$ be a unit. If $A=\Z_1$, then $u$ is vacuously a zero-divisor. If $A$ is nonzero, then  $u$ isn't a zero-divisor. 
+\end{theorem}
+\begin{proof}
+Unroll the definitions. 
+\end{proof}
+Given rings $A \subseteq B$, it is possible that $a \in A$ forms a non-zero-divisor (or unit) in $A$ but not in  $B$. Under our initial requirement that rings are commutative unital, for a nonzero ring $A$ to be an \textbf{integral domain}, we only need all nonzero elements to be non-zero-divisors, and for $A$ to be a  \textbf{field}, we only need all nonzero elements to be units.
 \begin{equiv_def}
 \label{edF}
 \textbf{(Field)} Let $A$ be a nonzero ring. The followings are equivalent:
@@ -223,12 +250,13 @@ Let $\mathfrak{a}$ be an ideal of the ring $A$. Its  \textbf{radical} $\sqrt{\ma
 \textbf{(Radical of ideal)} Let $A$ be a ring and $\mathfrak{a}\subseteq A$ an ideal. The following are equivalent: 
 \begin{enumerate}[label=(\roman*)]
   \item $\sqrt{\mathfrak{a}}$. 
+  \item $\set{x \in A: x^n \in \mathfrak{a}\text{ for }n\gg  0 }$. 
   \item The ideal in $A$ that \customref{ctfr}{correspond} to $\operatorname{Nil}(A\quotient \mathfrak{a})$ with respect to quotient map $A \twoheadrightarrow A\quotient \mathfrak{a}$. 
   \item The intersection of all prime ideals in $A$ that contains  $\mathfrak{a}$. 
 \end{enumerate}
 \end{equiv_def}
 \begin{proof}
-  (i) $=$ (ii): Unroll the definition.  (ii) $=$ (iii): Consider the \customref{ctfr}{correspondence theorem} and \customref{EDfN}{$\operatorname{Nil}(A \quotient \mathfrak{a})= \bigcap \operatorname{Spec} A \quotient \mathfrak{a}$}. 
+  (i) $=$ (ii) $=$  (iii): Unroll the definition.  (ii) $=$ (iii): Consider the \customref{ctfr}{correspondence theorem} and \customref{EDfN}{$\operatorname{Nil}(A \quotient \mathfrak{a})= \bigcap \operatorname{Spec} A \quotient \mathfrak{a}$}. 
 \end{proof}
 Let  $A$ be a ring and $\mathfrak{a} \subseteq A$ be an ideal. A \textbf{minimal prime ideal $\mathfrak{p}$ over} $\mathfrak{a}$ is a prime ideal minimal among all prime ideals that contain $\mathfrak{a}$. Because of the \customref{Roi}{third definition of radical}, $\mathfrak{a}$ and $\sqrt{\mathfrak{a}}$ share same set of minimal prime ideal. It should be noted that there is a "less is more" philosophy in our wording and notations for product, quotient and radical of ideals. For any ideal $\mathfrak{a},\mathfrak{b}$, we have 
  \begin{align*}
@@ -437,6 +465,27 @@ and by universal property
 \begin{align*}
 \frac{a}{s}= \frac{a'}{s'} \iff  (as'-a's)s''=0\text{ for some }s'' \in S. 
 \end{align*}
+\begin{equiv_def}
+\label{EDla}
+\textbf{(Localization as ring extension)} Let $A$ be a ring, $S \subseteq A$ a multiplicatively closed subset, and $j: A \rightarrow S^{-1}A$ the canonical ring homomorphism. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $S$ consists of only non-zero-divisors. 
+  \item $j:A\rightarrow S^{-1}A$ is injective.
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Unroll the definitions.
+\end{proof}
+\begin{equiv_def}
+\textbf{(Height of prime ideals)} Let $A$ be a ring and  $\mathfrak{p}\in \operatorname{Spec}A$. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\operatorname{ht}(\mathfrak{p})$. 
+  \item $\operatorname{Krudim}(A_{\mathfrak{p}})$
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+
+\end{proof}
 Just as our fraction notation suggest, if $T\subseteq S$ is another multiplicatively closed subset of $A$, then clearly the canonical ring homomorphism $A\longrightarrow S^{-1}A$ maps $T$ into  $(S^{-1}A)^{\times}$. This by universal property implies the existence and uniqueness of a ring homomorphism from $T^{-1}A$ to $S^{-1}A$ that forms a commutative triangle with the two canonical ring homomorphism. This ring homomorphism have the obvious action, and will be how we are going to identify $T^{-1}A $ as a subring of $S^{-1}A$\footnote{One may check that this ring homomorphism is indeed injective.}. Similarly, given $A \longhookrightarrow B$, universal property implies the existence and uniqueness of a ring homomorphism from $S^{-1}A$ to $S^{-1}B$ that forms a commutative triangle with $A\longrightarrow S^{-1}A$ and the composited $A \longhookrightarrow B \longrightarrow S^{-1}B$, which have the obvious action and will be how we are going to identify $S^{-1}A$ as a subring of $S^{-1}B$.\\
 
 
@@ -452,9 +501,17 @@ Let $A$ be a ring, and let $S \subseteq A$ be a multiplicatively closed subset t
 \begin{align*}
 \frac{a}{s}=\frac{b}{t}\text{ if and only if }at=bs. 
 \end{align*}
-This implies that the canonical ring homomorphism $A \longrightarrow  S^{-1}A$ is injective, which is how we are going to identify $A$ as a subring of $S^{-1}A$. Using the universal property, we see that the  \textbf{field of fraction} $\operatorname{Frac}(D)\triangleq (D^*)^{-1}D$ is the smallest field that contains a subring isomorphic to $D$. \\
-
-
+This implies that the canonical ring homomorphism $A \longrightarrow  S^{-1}A$ is injective, which is how we are going to identify $A$ as a subring of $S^{-1}A$. Using the universal property, we see that the  \textbf{field of fraction} $\operatorname{Frac}(D)\triangleq (D^*)^{-1}D$ is the smallest field that contains a subring isomorphic to $D$. 
+\begin{theorem}
+\label{THlid}
+\textbf{(Localizations of integral domain at prime share the same fraction field)} Let $A$ be an integral domain. Then:
+\begin{enumerate}[label=(\roman*)]
+  \item For all $\mathfrak{p}\in \operatorname{Spec}A$, we have $\operatorname{Frac}(A_{\mathfrak{p}})=\operatorname{Frac}(A)$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\end{proof}
+Let $A$ be a ring. The \textbf{total ring of fraction} is the ring $S^{-1}A$, where   $S\subseteq A$ is the of non-zero-divisors. \\
 
 
 Let $A$ be some ring,  $S\subseteq A$ an multiplicatively closed subset, and $M$ an  $A$-module. By the \textbf{localization of $M$ by  $S$}, we mean an $A$-module $S^{-1}M$ and a canonical $A$-module homomorphism $M\overset{j}{\longrightarrow } S^{-1}M$ that satisfies the \textbf{universal property for localization of $M$ by  $S$}: 
@@ -519,7 +576,19 @@ A \textbf{local ring} is a ring that has only one maximal ideal.
 \begin{proof}
   (i)$\implies $(ii): Check that $B\triangleq A$ and $\mathfrak{p}\triangleq \mathfrak{m}$ suffice. (ii)$\implies $(iii): Because $\mathfrak{p}$ is prime, we see that the set of non-units in $B_\mathfrak{p}$ is exactly $\set{b\quotient s \in B_\mathfrak{p}: b \in \mathfrak{p}}$. This set forms an ideal as one can check. (iii)$\implies $(i): The proof follows from noting that any ideal that contains some unit contains the whole ring. 
 \end{proof}
-One of the key property of local ring $A$ is that if we let $\mathfrak{m}$ be its unique maximal ideal, then the quotient $A$-module  $\mathfrak{m}\quotient \mathfrak{m}^2$ forms a $A\quotient \mathfrak{m}$-vector space, called the \textbf{cotangent space of} $A$, with the obvious assignment of scalar product.  If $A$ is local, we often write  $(A,\mathfrak{m},k)$ to mean that $\mathfrak{m}$ is the unique maximal ideal of $A$ and  $k$ the residue field  $k\triangleq A\quotient \mathfrak{m}$. A \textbf{regular local ring} $A$ satisfies  $\operatorname{dim}_k(\mathfrak{m}\quotient \mathfrak{m}^2)=\operatorname{Krudim}(A)$. 
+One of the key property of local ring $A$ is that if we let $\mathfrak{m}$ be its unique maximal ideal, then the quotient $A$-module  $\mathfrak{m}\quotient \mathfrak{m}^2$ forms a $A\quotient \mathfrak{m}$-vector space, called the \textbf{cotangent space of} $A$, with the obvious assignment of scalar product.  If $A$ is local, we often write  $(A,\mathfrak{m},k)$ to mean that $\mathfrak{m}$ is the unique maximal ideal of $A$ and  $k$ the residue field  $k\triangleq A\quotient \mathfrak{m}$. A \textbf{local ring homomorphism} is a ring homomorphism $f:(A,\mathfrak{m})\rightarrow (B,\mathfrak{n})$ between two local rings such that $f^{-1}(\mathfrak{n})=\mathfrak{m}$. 
+\begin{equiv_def}
+\textbf{(Local ring homomorphism)} Let $f:(A,\mathfrak{m})\rightarrow (B,\mathfrak{n})$ be a ring homomorphism between two local rings. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $f$ is a local ring homomorphism. 
+  \item $f(\mathfrak{m})\subseteq \mathfrak{n}$. 
+  \item $f^{-1}(\mathfrak{n})\supseteq\mathfrak{m}$
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Unroll the definitions. 
+\end{proof}
+
 \section{Integral dependence}
 \label{Id}
 Let $A$ be a subring of some ring  $B$. We say  $x \in B$ is \textbf{integral over} $A$ if  $x$ is a root of some monic polynomial with coefficients in $A$. 
@@ -859,7 +928,8 @@ to conclude that $L_n$ must stop at some point.
 \item $A^n$ as an $A$-module is Noetherian.  
 \item If $M$ is Noetherian, then  $M\quotient N$ is also Noetherian.   
   \item If $M$ is finitely generated, then $M$ is Noetherian.  
-  \item $\mathfrak{a}$ as an $A$-module is Noetherian.  
+  \item $\mathfrak{a}$ as an $A$-module is Noetherian.   
+  \item $S^{-1}A$ is Noetherian. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -871,7 +941,9 @@ And for (ii), just apply \myref{Proposition}{FpNm} to
 \begin{align*}
 0 \longrightarrow 0 \longrightarrow M \longrightarrow M\quotient N \longrightarrow 0
 \end{align*}
-For (iii), one simply note that if $M= \langle x_1,\dots ,x_n\rangle $, then $\pfi :A^n \to M ; (a_1,\dots ,x_n)\mapsto  a_1x_1+ \cdots +a_nx_n$ forms a surjective $A$-module homomorphism, thus $M$ isomorphic to  $A \quotient \operatorname{Ker}\pfi$ is Noetherian by (i) and (ii). (iv) is clear. 
+For (iii), one simply note that if $M= \langle x_1,\dots ,x_n\rangle $, then $\pfi :A^n \to M ; (a_1,\dots ,x_n)\mapsto  a_1x_1+ \cdots +a_nx_n$ forms a surjective $A$-module homomorphism, thus $M$ isomorphic to  $A \quotient \operatorname{Ker}\pfi$ is Noetherian by (i) and (ii). (iv) is clear. \\
+
+(v) \red{unproved}. 
 \end{proof}
 
 \begin{theorem}
@@ -886,6 +958,28 @@ For (iii), one simply note that if $M= \langle x_1,\dots ,x_n\rangle $, then $\p
 \end{theorem}
 \begin{proof}
   The proofs are identical to that of \myref{Theorem}{cpoN}. 
+\end{proof}
+We say $A$ is a \textbf{regular local ring} if $A$ is a Noetherian local ring that satisfies  $\operatorname{dim}_k(\mathfrak{m}\quotient \mathfrak{m}^2)=\operatorname{Krudim}(A)$.
+\begin{equiv_def}
+\textbf{(Regular local rings)} Let $(A,\mathfrak{m},k)$ be a Noetherian local ring. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $A$ is regular.  
+  \item $\operatorname{Dim}_k(\mathfrak{m}\quotient \mathfrak{m}^2)=\operatorname{Krudim}(A)$. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\label{THrlrU}
+\textbf{(Local rings and UFDs)} Let $(A,\mathfrak{m},k)$ be a local ring. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item If $A$ is regular, then  $A$ is a UFD.  
+  \item If $A$ is a UFD and of Krull dimension $1$, then $A$ is regular.  
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+
 \end{proof}
 \section{Length}
 Given a finite \textbf{chain} of submodules 
@@ -957,8 +1051,6 @@ We have shown $\mathfrak{a}_{n-1}$ is Artinian as an $A$-module, and if we apply
 \end{align*}
 We see $\mathfrak{a}_{n-2}$ is also Artinian as an $A$-module. Continuing the same process, we see that indeed  $A=\mathfrak{a}_0$ is Artinian. (as an $A$-module)
 \end{proof}
-
-\chapter{Valuation Ring and DVR}
 \section{Localization of ideals}
 Let $I\subseteq A$ be some ideal, clearly its extension is the \textbf{localization of $I$ by $S$} defined by $S^{-1}I= \set{\frac{i}{s}\in S^{-1}A:i \in I}$. We use the notation $S(I)$ to denote the contraction of $S^{-1}I$. For \customref{UoP}{the section on uniqueness of primary decomposition}, we first prove some basic properties of localization of ideals. 
 \begin{theorem}
@@ -986,7 +1078,7 @@ We first prove part (a). Let $t \in (I:s)$ for some $s$. Because  $\frac{t}{1}= 
 \end{align*}
 and we are done. 
 \end{proof}
-\section{Uniqueness of Primary Decomposition}
+\section{Uniqueness for primary decompositions}
 \label{UoP}
 Let $A$ be a ring. We say a proper ideal $\mathfrak{q}$ is \textbf{primary} if for each $xy \in \mathfrak{q}$, either $x \in \mathfrak{q}$ or $y^n \in \mathfrak{q}$ for some $n>0$.
 \begin{equiv_def}
@@ -1098,7 +1190,7 @@ Noting that $\sqrt{Q_i}$ meets $S=A \setminus \sqrt{Q_1} $ for every $i>1$ due t
 S^{-1}I = \bigcap_{i=1}^n S^{-1}Q_i=S^{-1}Q_1
 \end{align*}
 \end{proof}
-\section{Existence of Primary Decomposition in Noetherian ring}
+\section{Existence of primary decompositions in Noetherian ring}
 \label{EoPDiNr}
 Let $A$ be a ring, and let  $I\subseteq A$ be some ideal. We say $I$ is  \textbf{irreducible} if whenever $I$ is expressed as an intersection of two ideals, $I$ equals to one of them. Clearly, to show every ideal in Noetherian ring is decomposable, we only need to show the following two lemmas. 
 \begin{lemma}
@@ -1120,7 +1212,7 @@ Let $a \in \langle x^n\rangle \cap \langle y\rangle $. Because $a \in \langle y\
 
 Finally, because the zero ideal is irreducible, we must have $\langle x^n\rangle =0$ or $\langle y\rangle =0$. Because $y\neq 0$, we may conclude $x^n=0$.  
 \end{proof}
-\section{Artin Rings}
+\section{Artin rings}
 \label{AR}
 Set theoretically similar to \customref{EDoN}{equivalent definition of Noetherian}, by axiom of choice, we have 
 \begin{theorem}
@@ -1205,8 +1297,8 @@ Let $y \in \mathfrak{m}$. Because $[x]\in \mathfrak{m}\quotient \mathfrak{m}^2$ 
 
 Now, let $\mathfrak{a}\subset A$ be a proper nonzero ideal.\footnote{If $\mathfrak{a}=A$, then $\mathfrak{a}=\langle 1\rangle $.} \myref{Theorem}{AcoA} tell us that  $\operatorname{Krudim}(A)=0$, and so $\mathfrak{m}^n=\operatorname{Nil}(A)^n=0$ for some $n$ by \myref{Theorem}{Niin}. Let $r$ satisfies $\mathfrak{a}\subseteq \mathfrak{m}^r,\mathfrak{a}\not \subseteq \mathfrak{m}^{r+1}$. By construction, there exist some $y \in \mathfrak{a}$ such that $y=ax^r$ for some $a \in A$ and  $y \not\in \langle x^{r+1}\rangle $. We now see this $a$ satisfies  $a \not \in \langle x\rangle = \mathfrak{m}$, implying $a$ is a unit. This shows $x^r=ya^{-1}\in \mathfrak{a}$. We have shown $\mathfrak{a}=\langle x^r\rangle $, as desired.
 \end{proof}
-\section{Equivalent Characterizations of DVR}
-Let $K$ be a field. A \textbf{discrete valuation $\nu :K\rightarrow \Gamma \cup  \set{\infty}$} is a valuation such that $\Gamma \cong  \Z$ as totally ordered abelian group. An integral domain $D$ is a \textbf{discrete valuation ring of} if $D=\set{x\in \operatorname{Frac}(D):\nu  (x)\geq 0}$ for some nontrivial discrete valuation $\nu : \operatorname{Frac}(D)\rightarrow \Z \cup  \set{\infty}$. Because every ideal $\mathfrak{a}\subseteq D$ is of the form: \footnote{To see the "$\supseteq$", let $a\in \mathfrak{a}$ satisfies $\nu  (a)= \min  \nu  (\mathfrak{a})$ and observe for all $x \in D$ such that $\nu (x)\geq \nu (a)$, we have $x=(xa^{-1})a\in \mathfrak{a}$ since $\nu (xa^{-1})=\nu (x)-\nu (a)\geq 0 \implies xa^{-1}\in D$}
+\section{Equivalent characterizations for DVR}
+Let $K$ be a field. A \textbf{discrete valuation $\nu :K\rightarrow \Gamma \cup  \set{\infty}$} is a valuation such that $\Gamma \cong  \Z$ as totally ordered abelian group. An integral domain $D$ is a \textbf{discrete valuation ring} if $D=\set{x\in \operatorname{Frac}(D):\nu  (x)\geq 0}$ for some nontrivial discrete valuation $\nu : \operatorname{Frac}(D)\rightarrow \Z \cup  \set{\infty}$. Because every ideal $\mathfrak{a}\subseteq D$ is of the form: \footnote{To see the "$\supseteq$", let $a\in \mathfrak{a}$ satisfies $\nu  (a)= \min  \nu  (\mathfrak{a})$ and observe for all $x \in D$ such that $\nu (x)\geq \nu (a)$, we have $x=(xa^{-1})a\in \mathfrak{a}$ since $\nu (xa^{-1})=\nu (x)-\nu (a)\geq 0 \implies xa^{-1}\in D$}
 \begin{align*}
 \mathfrak{a}=\set{x \in D: \nu  (x)\geq \min \nu  (\mathfrak{a})}
 \end{align*}
@@ -1216,18 +1308,18 @@ We see that the collection of the ideals in DVRs is exactly $\set{\mathfrak{a}_k
 \mathfrak{a}_k= \set{x \in D : \nu  (x)\geq pk}= \langle x^k\rangle \text{ for any }\nu  (x)=p\triangleq  \min \set{\nu  (d) \inn:d^{-1}\not \in D}
 \end{align}
 In fact, we can conversely characterize DVRs using these good properties. 
-\begin{theorem}
+\begin{equiv_def}
 \label{ECoDp1}
-\textbf{(Equivalent Characterizations of DVR: part 1)} Given an $1$-Krull-dimensional Noetherian local domain $(D,\mathfrak{m},k)$, the following are equivalent: 
+\textbf{(DVR, under the requirement of being an $1$-Krull-dimensional Noetherian local domain)} Let $(D,\mathfrak{m},k)$ be an $1$-Krull-dimensional Noetherian local domain. The followings are equivalent:
 \begin{enumerate}[label=(\roman*)]
   \item $D$ is a DVR.  
   \item $D$ is integrally closed. 
   \item $\mathfrak{m}$ is principal. 
-  \item $\operatorname{dim}_k (\mathfrak{m}\quotient \mathfrak{m}^2)=1$. 
+  \item $D$ is regular.
   \item Every proper nonzero ideal of $D$ is a power of $\mathfrak{m}$. 
   \item There exists $x\in D$ such that every nonzero ideal is of the form $\langle x^s\rangle ,s\geq 0$. 
 \end{enumerate}
-\end{theorem}
+\end{equiv_def}
 \begin{proof}
 Before we start going the rounds, we shall make the following remark 
 \begin{enumerate}[label=(\Alph*)]
@@ -1285,7 +1377,7 @@ Because $\sqrt{Q_i}$ are distinct, by \customref{Fut}{first uniqueness theorem f
 
 
 \end{proof}
-\section{Fractional Ideal}
+\section{Fractional ideal}
 Let $A$ be an integral domain, and  $K\triangleq \operatorname{Frac}(A)$. Given two $A$-submodule $N,M\subseteq K$, we define their \textbf{product} and \textbf{quotient} and the same way we define product and quotient\footnote{See \myref{Equation}{IS} and \myref{Equation}{Iq}} for ideals of a ring:   
 \begin{align*}
 NM\triangleq \set{ \sum_{\text{ finite}}nm \in K: n \in N \text{ and }m \in M}\text{ and }(N:M)\triangleq \set{x\in K : xM \subseteq N}
@@ -1374,7 +1466,6 @@ D\text{ is a Dedekind domain }\iff \text{ every nonzero fractional ideal of $D$ 
 
 Let $\mathfrak{b}$ be an integral ideal of $D_\mathfrak{p}$, and define $\mathfrak{a}\triangleq \mathfrak{b}\cap D$. Clearly $\mathfrak{a}$ is an integral ideal of $D$, so by premise, $\mathfrak{a}$ is invertible. It now follows from $\mathfrak{b}=\mathfrak{a}_\mathfrak{p}$\footnote{You may check this.} and the fact \customref{Iialp}{invertibility is a local property} that $\mathfrak{b}$ is invertible of $D_\mathfrak{p}$. 
 \end{proof}
-\chapter{Dimension and Completion}
 \section{Completion}
 Let $G$ be simultaneously a group and a topological space. We say $G$ is a \textbf{topological group} if addition $(x,y)\mapsto x+y$ and negation $x\mapsto -x$ are both continuous. 
 \begin{equiv_def}
@@ -1510,7 +1601,7 @@ Because of \customref{HBT}{Hilbert basis theorem}, it is enough to rove the case
 \end{enumerate}
 \end{theorem}
 \section{Hilbert function}
-\chapter{The Classical}
+\chapter{Varieties}
 \section{Topology of Zariski}
 Let $X$ be a topological space. We say $X$ is \textbf{irreducible} if $X$ can not be written as union of two proper closed subset of $X$. If we say a subset of some topological space is \textbf{irreducible}, we mean that that subset when given the subspace topology is irreducible. Let $X$ be some arbitrary topological space. In other words, $Y\subseteq X$ is irreducible if and only if $Y$ can not be written as  $Y=(F_1 \cap Y)\cup  (F_2\cap Y)$ where $F_1,F_2 \subseteq X$ are closed and don't contain $Y$. 
 \begin{theorem}
@@ -1547,6 +1638,7 @@ By Zorn's Lemma\footnote{Clearly $\set{x}$ is irreducible. Let $E_n$ be an ascen
 \begin{proof}
 Clearly $\overline{Y}\subseteq V$. The converse $V \subseteq \overline{Y}$ follows from $\overline{Y}\cap V=\operatorname{cl}_V(Y)=V$, where the last equality holds true due to  \customref{irrtop}{equivalent definition of irreducibility}. 
 \end{proof}
+Let $X$ be a topological space and $Z\subseteq X$ an nonempty irreducible closed subset. A \textbf{generic point} for $Z$ is a point  $P \in Z$ such that $Z= \overline{\set{P}}$.\\ 
 
 Let $X$ be a topological space. We say $X$ is  \textbf{Noetherian} if its closed sets satisfy descending chain condition. Clearly, subspace $Y$ of Noetherian space $X$ is also Noetherian\footnote{Given $X_1\cap Y \supseteq X_2 \cap Y \supseteq\cdots $, we have $X_n \cap Y=X_1 \cap  \cdots \cap X_n\cap Y$, and the descending chain $X_1\supseteq X_1 \cap X_2 \supseteq \cdots$ must stop.}. 
 \begin{equiv_def}
@@ -1587,7 +1679,24 @@ where $V_i,W_j$ are all irreducible closed and "necessary". For each $i$, becaus
 \end{proof}
 Let $X$ be a Noetherian topological space. \customref{TfoL}{Topological form of Lasker-Noether Theorem} tell us that $X$, uniquely, can be written as  $X=V_1\cup  \cdots \cup V_m$ where $V_i$ are all irreducible closed and necessary in this union. One may conjecture that these $V_i$ are exactly the irreducible components of $X$. This is true indeed. Fix $j$. To see  $V_j$ is an irreducible component, let $W$ be some irreducible component containing  $V_j$. We are required to show $W=V_j$. Because $W= \bigcup (W\cap V_i)$ and $W$ is an irreducible component\footnote{So $W\cap V_i$ are all closed. Recall that irreducible components are closed, since closure of irreducible set is also irreducible.}, we must have $W\subseteq V_l$ for some $l$. It then follows from the "necessity: that $j=l$ and  $V_j=W$. Conversely, let $W$ be some irreducible component of  $X$. We are required to show $W$ is one of $V_i$. Because $W$ is irreducible and  $W=\bigcup (W\cap V_i)$, we have $W \subseteq V_i$ for some $i$,which by maximality of $W$ implies  $W=V_i$.\\
 
-We close this section by introducing the idea of variety dimension in a purely topological setting. Let $X$ be a topological space. We define the \textbf{dimension of $X$} to be the supremum of all integers $n$ such that there exists a chain $\varnothing =Z_0 \subset Z_1 \subset \cdots \subset Z_n$ of distinct irreducible closed subsets of $X$. Immediately we see same wanted property of our definition for dimension: Given subspace $Y\subseteq X$, we have $\operatorname{topdim}(Y)\leq \operatorname{topdim}(X)$.\footnote{To prove this, you will need: $Y_i$ closed in  $Y\implies Y_i=\overline{Y_i}\cap Y$.}
+We close this section by introducing the idea of variety dimension in a purely topological setting. Let $X$ be a topological space. We define the \textbf{dimension of $X$} to be the supremum of all integers $n$ such that there exists a chain $\varnothing =Z_0 \subset Z_1 \subset \cdots \subset Z_n$ of distinct irreducible closed subsets of $X$. Immediately we see same wanted property of our definition for dimension: Given subspace $Z\subseteq X$, we have $\operatorname{topdim}(Z)\leq \operatorname{topdim}(X)$.\footnote{To prove this, you will need: $Y_i$ closed in  $Y\implies Y_i=\overline{Y_i}\cap Y$.}. If $Z$ is moreover irreducible closed, we define the \textbf{topological codimension} $\operatorname{Cotopdim}(Z,X)$ to be the supremum of the length of chains of distinct irreducible subsets of $X$: 
+\begin{align*}
+Z\triangleq Z_0 \subset Z_1 \subset \cdots \subset Z_n \subseteq X
+\end{align*}
+If $Y$ is a closed subset of  $X$, we define: 
+ \begin{align*}
+\operatorname{Cotopdim}(Y,X)\triangleq \inf_{Z \subseteq Y} \operatorname{Cotopdim}  (Z,X)
+\end{align*}
+\begin{theorem}
+\label{THcdim}
+\textbf{(Properties of codimension)} Let $X$ be a topological space, $Y\subseteq X$ an irreducible closed subset, and $U \subseteq X$ open such that $U \cap Y$ nonempty. Then: 
+\begin{align*}
+\operatorname{Cotopdim}(Y,X)= \operatorname{Cotopdim}(Y \cap U,U)
+\end{align*}
+\end{theorem}
+\begin{proof}
+https://stacks.math.columbia.edu/tag/02I4
+\end{proof}
 \section{Affine variety}
 Let $k$ be some field. We use  $\A^n$ to denote the \textbf{affine $n$-space} over $k$, the Cartesian product $k^n$. Given some collection $S \subseteq k[x_1,\dots ,x_n]$ of polynomials, we use $V(S)= \set{a \in \A^n:F(a)=0\text{ for all }F \in S}$ to denote its \textbf{vanishing set}, and given $X \subseteq \A^n$, we use notation $I(X)$ to denote the ideal of polynomials that vanish on $X$. If $X \subseteq \A^n$ is the vanishing set of some $S \subseteq k[x_1,\dots ,x_n]$, we say $X$ is \textbf{algebraic}. Clearly this give rise to a topology on $\A^n$, the  \textbf{Zariski topology}, in which $X\subseteq \A^n$ is closed if and only if $X$ is algebraic\footnote{Note that $V(S_1)\cup V(S_2)=V(\set{f_1f_2:f_1 \in S_1,f_2\in S_2})$ and $\bigcap V(S_\alpha )=V (\bigcup S_\alpha )$}. We call irreducible closed subset of $\A^n$  \textbf{affine variety}. Clearly, we have: 
 \begin{align}
@@ -2073,10 +2182,6 @@ which implies
 a contradiction to the premise  $r_0\neq r_1$. 
 \end{proof}
 Again, we use the notation $A_{(f)}$ to denote the $(A_f)_0$ in \myref{Theorem}{Ogoh2}. \\
-\section{Category of quasi varieties}
-\begin{theorem}
-\textbf{()}
-\end{theorem}
 \section{Segre embedding}
 \label{SE}
 \begin{theorem}
@@ -2306,7 +2411,7 @@ Let $\set{y_1,\dots ,y_n}$ generate $\Gamma (Y)$ as $k$-algebra. Because $X$ is 
 \end{enumerate}
 To see that $\phi$ is dominant,  observe that if $\phi_U(U)\subseteq V(F_1,\dots ,F_m)$, then $\theta (F_i)=0$, which by injectivity of the field homomorphism $\theta$ implies $F_i=0$. \\
 
-We now show $\phi^*=\theta$. Let $f \in K(Y)$ and $x \in \phi_U^{-1}(\operatorname{Dom}f)$.  Because by irreducibility, $\phi_U^{-1}(\operatorname{Dom}f)$ is nonempty open, to show $\theta (f)=\phi^*(f)$, we only have to show $\theta (f)(x)=\phi^*(f)(x)$, which is done by verifying the computation:
+We now show $\phi^*=\theta$. Let $f \in K(Y)$ and $x \in \phi_U^{-1}(\operatorname{Dom}f)$.  Because by denseness, $\phi_U^{-1}(\operatorname{Dom}f)$ is nonempty open, to show $\theta (f)=\phi^*(f)$, we only have to show $\theta (f)(x)=\phi^*(f)(x)$, which is done by verifying the computation:
 \begin{align*}
 \phi^*(f)(x)=\phi^*(F\quotient G)(x)= \frac{\phi^*(F)(x)}{\phi^*(G)(x)}= \frac{\theta(F)(x)}{\theta(G)(x)}=\theta (f)(x)
 \end{align*}
@@ -2783,7 +2888,7 @@ A \triangleq \left( \bigsqcup A_i \right) \big/ \sim, \quad \text{where } x_i \s
 
 
 
-\section{Sheaves}
+\section{Presheaves}
 Let $X$ be a topological space and $\mathfrak{C}$ a category. A \textbf{presheaf $\mathcal{F}$ of $\mathfrak{C}$-objects on $X$} consists of the following data:
 \begin{enumerate}[label=(\roman*)]
   \item For each open subset $U \subseteq X$, an object $\mathcal{F}(U)\in \mathfrak{C}$. We call elements of $\mathcal{F}(U)$ \textbf{sections of $\mathcal{F}$ over} $U$. 
@@ -2798,7 +2903,7 @@ subject to the following conditions:
     \operatorname{Res}^U_W =\operatorname{Res}^V_W \circ \operatorname{Res}^U_V
     \end{align*}
 \end{enumerate}
-For example, if we say that \( \mathcal{F} \) is a \textbf{presheaf of sets} on \( X \), we mean that for each open subset \( U \subseteq X \), \( \mathcal{F}(U) \) is a set, each restriction map \( \operatorname{Res}^U_V : \mathcal{F}(U) \to \mathcal{F}(V) \) is a function between sets, the identity and composition laws hold, and \( \mathcal{F}(\varnothing) = \{\varnothing\} \). Similarly, if \( \mathcal{F} \) is a \textbf{presheaf of rings} on \( X \), then each \( \mathcal{F}(U) \) is a ring, each restriction map \( \operatorname{Res}^U_V \) is a ring homomorphism, and \( \mathcal{F}(\varnothing)=\Z_1 \). Likewise, a \textbf{presheaf of groups} consists of group-valued assignments: each \( \mathcal{F}(U) \) is a group, the restriction maps are group homomorphisms, and $\mathcal{F}(\varnothing )=\Z_1$. \\
+For example, if we say that \( \mathcal{F} \) is a \textbf{presheaf of sets} on \( X \), we mean that for each open subset \( U \subseteq X \), \( \mathcal{F}(U) \) is a set, each restriction map \( \operatorname{Res}^U_V : \mathcal{F}(U) \to \mathcal{F}(V) \) is a function between sets, the identity and composition laws hold, and \( \mathcal{F}(\varnothing) = \{\varnothing\} \). Similarly, if \( \mathcal{F} \) is a \textbf{presheaf of rings} on \( X \), then each \( \mathcal{F}(U) \) is a ring, each restriction map \( \operatorname{Res}^U_V \) is a ring homomorphism, and \( \mathcal{F}(\varnothing)=\Z_1 \). Likewise, a \textbf{presheaf of groups} consists of group-valued assignments: each \( \mathcal{F}(U) \) is a group, the restriction maps are group homomorphisms, and $\mathcal{F}(\varnothing )=\Z_1$. Note that given a sheaf $\mathcal{F}$ on $X$, we often denote the global section object by $\Gamma  (X,\mathcal{F})$.\\
 
 Fix $\mathfrak{C}$ and $X$. One may check that a $\mathfrak{C}$-valued presheaf on $X$ forms a category   if we define a \textbf{morphism} $\phi$ from $\mathcal{F}$ to $\mathcal{G}$ to be an assignment of each open $U \subseteq X$ a $\mathfrak{C}$-morphism  $\phi (U):\mathcal{F}(U)\rightarrow \mathcal{G}(U)$ such that for every inclusion $V \subseteq U$, the diagram:
 \begin{equation}
@@ -2808,14 +2913,29 @@ Fix $\mathfrak{C}$ and $X$. One may check that a $\mathfrak{C}$-valued presheaf 
 \mathcal{F}(V) \arrow[r, "\phi_V"] & \mathcal{G}(V)
 \end{tikzcd}
 \end{equation}
-commutes. We denote the category of $\mathfrak{C}$-valued presheaves on $X$ by $\text{\textbf{PSh}}_{\mathfrak{C}}(X)$. Let $\mathcal{F} \in\text{\textbf{PSh}}_{\mathfrak{C}}(X)$. A \textbf{subpresheaf} $\mathcal{G}$ of $\mathcal{F}$ consists of the assignment to each open set $U \subseteq X$ a subobject $\mathcal{G}(U) \subseteq \mathcal{F}(U)$ in $\mathfrak{C}$, such that for every inclusion of open sets $V \subseteq U$, the restriction map $\operatorname{Res}^\mathcal{F}_{UV} : \mathcal{F}(U) \to \mathcal{F}(V)$ satisfies: 
-\begin{align}
-\label{RsF}
-\operatorname{Res}^\mathcal{F}_{U,V}(\mathcal{G}(U)) \subseteq \mathcal{G}(V)
-\end{align}
-\myref{Condition}{RsF} ensures that we can define the restriction maps of $\mathcal{G}$ by restricting those of $\mathcal{F}$, thereby making $\mathcal{G}$ a well-defined presheaf. Let $\mathfrak{C}$ be a good category and $\phi \in \operatorname{Hom}_{\text{\textbf{PSh}}_{\mathfrak{C}}(X)} (\mathcal{F},\mathcal{G}) $. The \textbf{presheaf image} of $\phi$ assigns $U \mapsto \operatorname{Im}(\phi(U)) \subseteq \mathcal{G}(U)$ and has the restriction map of $\mathcal{G}$.  The \textbf{presheaf kernel} of $\phi$ assigns $U \mapsto \operatorname{Ker}(\phi (U))\subseteq \mathcal{F}(U)$ and has the restriction map of $\mathcal{F}$. The \textbf{presheaf cokernel} of $\phi$ assigns $U \mapsto  \operatorname{Coker}(\phi (U))$ and has the restriction map $\operatorname{Coker}(\phi (U))\rightarrow \operatorname{Coker}(\phi (V));[t]\mapsto [\operatorname{Res}^\mathcal{G}_{UV}(t]$. Note that the image, kernel, and cokernel of $\phi$ are well-defined because we require \myref{diagram}{FPU} to commute, and the image presheaf of $\phi$ is indeed a subpresheaf of $\mathcal{G}$, while the kernel presheaf of $\phi$ is a subpresheaf of $\mathcal{F}$. \\
+commutes. We denote the category of $\mathfrak{C}$-valued presheaves on $X$ by $\text{\textbf{PSh}}_{\mathfrak{C}}(X)$. Note that if $\mathfrak{C}$ has a final object, then the final object of $\text{\textbf{PSh}}_{\mathfrak{C}}(X)$ exist and is just the presheaf that send each open subset of $X$ to the final object of  $\mathfrak{C}$. Let $\mathcal{F} \in\text{\textbf{PSh}}_{\mathfrak{C}}(X)$. A \textbf{subpresheaf} $\mathcal{G}$ of $\mathcal{F}$ consists of the assignment to each open set $U \subseteq X$ a subobject $\mathcal{G}(U) \subseteq  \mathcal{F}(U)$ such that for every inclusion of open sets  $V \subseteq U$, the restriction map $\mathcal{F}(U)\rightarrow \mathcal{F}(V)$ sends $\mathcal{G}(U)$ into $\mathcal{G}(V)$. Because of our extra requirement, we may well define the restriction maps of $\mathcal{G}$ to be that of $\mathcal{F}$.\\ 
 
 
+Let $\mathcal{F}$ be a abelian-group-valued presheaf on $X$ and  $\mathcal{G}$ a subpresheaf of $\mathcal{F}$. The \textbf{quotient presheaf} $\mathcal{F}\quotient \mathcal{G}$ assign $U\mapsto  \mathcal{F}(U)\quotient \mathcal{G}(U)$. Let $V \subseteq U$. Because the restriction morphism $\mathcal{F}(U)\rightarrow \mathcal{F}(V)$ send $\mathcal{G}(U)$ into $\mathcal{G}(V)$, we may define the restriction map $\mathcal{F}(U)\quotient \mathcal{G}(U)\rightarrow \mathcal{F}(V)\quotient \mathcal{G}(V)    $ via the universal property for quotient groups:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGJ1bGxldCJdLFszLDAsIlxcYnVsbGV0Il0sWzMsMywiXFxidWxsZXQiXSxbMCwzLCJcXGJ1bGxldCJdLFswLDEsImpfVSJdLFsxLDIsIlxcdGlsZGV7al9WXFxjaXJjIFxcb3BlcmF0b3JuYW1le1Jlc319IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzAsM10sWzMsMl1d
+\[\begin{tikzcd}
+	\mathcal{F}(U)  &&& \mathcal{F}(U)\quotient \mathcal{G}(U)   \\
+	\\
+	\\
+	\mathcal{F}(V)  &&& \mathcal{F}(V)\quotient \mathcal{G}(V)  
+	\arrow[ two heads,from=1-1, to=1-4]
+	\arrow["{\operatorname{Res}}",from=1-1, to=4-1]
+	\arrow[ dotted, from=1-4, to=4-4]
+	\arrow[ two heads,from=4-1, to=4-4]
+\end{tikzcd}\]
+
+
+
+Let $\mathfrak{C}$ be a good category and $\phi: \mathcal{F}\rightarrow \mathcal{G}$ be a presheaf morphism for two $\mathfrak{C}$-valued presheaf on  $X$. In the category of $\mathfrak{C}$-valued presheaves, \textbf{image} of $\phi$ assigns $U \rightarrow \operatorname{Im} (\phi (U))$, 
+
+
+
+good category and $\phi \in \operatorname{Hom}_{\text{\textbf{PSh}}_{\mathfrak{C}}(X)} (\mathcal{F},\mathcal{G}) $. The \textbf{presheaf image} of $\phi$ assigns $U \mapsto \operatorname{Im}(\phi(U)) \subseteq \mathcal{G}(U)$ and has the restriction map of $\mathcal{G}$.  The \textbf{presheaf kernel} of $\phi$ assigns $U \mapsto \operatorname{Ker}(\phi (U))\subseteq \mathcal{F}(U)$ and has the restriction map of $\mathcal{F}$. The \textbf{presheaf cokernel} of $\phi$ assigns $U \mapsto  \operatorname{Coker}(\phi (U))$ and has the restriction map $\operatorname{Coker}(\phi (U))\rightarrow \operatorname{Coker}(\phi (V));[t]\mapsto [\operatorname{Res}^\mathcal{G}_{UV}(t)]$. Note that the image, kernel, and cokernel of $\phi$ are well-defined because we require \myref{diagram}{FPU} to commute, and the image presheaf of $\phi$ is indeed a subpresheaf of $\mathcal{G}$, while the kernel presheaf of $\phi$ is a subpresheaf of $\mathcal{F}$. \\
 
 
 
@@ -2837,7 +2957,7 @@ Just like other categories, a presheaf isomorphism is again a morphism that admi
 
 
 
-Let $P \in X$, $\mathfrak{C}$ a good category, and $\mathcal{F}$ a $\mathfrak{C}$-valued presheaf on  $X$. Its \textbf{stalk} $\mathcal{F}_P$ at $P$ is the direct limit of the directed system $(\mathcal{F}(U), \operatorname{Res})$ over all open neighborhoods $U \ni P$. Therefore, an element of $\mathcal{F}_P$ is an equivalence class represented by a pair $(U, s)$ with $s \in \mathcal{F}(U)$, and two such pairs $(U, s),(V, t)$ represent the same element if there exists a  neighborhood $W \subseteq U \cap V$ of $P$ such that $s|_W = t|_W$. Let $\phi \in \operatorname{Hom}_{\text{\textbf{PSh}}_{\mathfrak{C}}(X)}(\mathcal{F},\mathcal{G})$. It induces a $\mathfrak{C}$-homomorphism $\phi_u \in \operatorname{Hom}(\mathcal{F}_P,\mathcal{G}_P)$ via universal property of direct limit: 
+Let $P \in X$, $\mathfrak{C}$ a good category, and $\mathcal{F}$ a $\mathfrak{C}$-valued presheaf on  $X$. Its \textbf{stalk} $\mathcal{F}_P$ at $P$ is the direct limit of the directed system $(\mathcal{F}(U), \operatorname{Res})$ over all open neighborhoods $U \ni P$. Therefore, an element of $\mathcal{F}_P$ is an equivalence class represented by a pair $(U, s)$ with $s \in \mathcal{F}(U)$, and two such pairs $(U, s),(V, t)$ represent the same element if there exists a  neighborhood $W \subseteq U \cap V$ of $P$ such that $s|_W = t|_W$. Let $\phi \in \operatorname{Hom}_{\text{\textbf{PSh}}_{\mathfrak{C}}(X)}(\mathcal{F},\mathcal{G})$. It induces a $\mathfrak{C}$-homomorphism $\phi_P \in \operatorname{Hom}(\mathcal{F}_P,\mathcal{G}_P)$ via universal property of direct limit: 
 % https://q.uiver.app/#q=WzAsNyxbMiwxLCJGX1AiXSxbMiwzLCJHX1AiXSxbMSwwLCJGKFUpIl0sWzMsMCwiRihWKSJdLFswLDEsIkcoVSkiXSxbNCwxLCJHKFYpIl0sWzEsMV0sWzIsNCwiXFxwaGkgKFUpIiwyXSxbMyw1LCJcXHBoaSAoVikiXSxbMiwwXSxbMywwXSxbMCwxLCIiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XSxbNSwxXSxbNCwxXV0=
 \[\begin{tikzcd}
 	& {\mathcal{F} (U)} && {\mathcal{F} (V)} \\
@@ -2858,12 +2978,43 @@ Let $P \in X$, $\mathfrak{C}$ a good category, and $\mathcal{F}$ a $\mathfrak{C}
 
 In particular, recall that when $X$ is a quasi-variety, we denote by $\mathcal{O} (U)$ the ring of regular functions on an open set $U \subseteq X$, and by $\mathcal{O} _p$ the local ring of $X$ at a point $p \in X$. One can verify that $\mathcal{O} $ defines a presheaf on $X$, and that its stalk at $p$ coincides with the local ring $\mathcal{O}_p$—which is precisely why we adopt this notation in the first place. \\
 
+Given a sheaf $\mathcal{F}$ on $X$, a subspace $Z \subseteq X$, and a continuous map  $f:X\rightarrow Y$, and a presheaf $\mathcal{G}$ on $Y$, the \textbf{direct image presheaf} $f_*\mathcal{F}$ is a presheaf on $Y$ defined by $U\mapsto \mathcal{F}(f^{-1}(U))$ with the restriction map being that of $\mathcal{F}$, the \textbf{inverse image presheaf} $f^{-1}\mathcal{G}$ is the presheaf $U \mapsto \lim_{ V \supseteq f(U) }\mathcal{G}(V)$, and the \textbf{restriction sheaf} of $\mathcal{F}$ onto $Z$ denoted by $\mathcal{F}|_Z$ is simply the inverse image presheaf of  $\mathcal{F}$ under the inclusion map $Z \hookrightarrow X$.     
 
+\section{Sheaves}
 We call a presheaf $\mathcal{F}$ on $X$ a \textbf{sheaf} if for every union of open sets $U= \bigcup_{i \in I}V_i$, we have 
 \begin{enumerate}[label=(\roman*)]
-  \item \textbf{(Identity Law)} If $s,t \in \mathcal{F}(U)$ satisfies $s|_{V_i}=t |_{V_i}$ for all $i$, then  $s=t$.  
-  \item \textbf{(Gluing Law)} If $\set{s_i \in V_i: i \in I}$ satisfies $s_i|_{V_i \cap V_j}=s_j|_{V_i\cap V_j}$, then there exists \textbf{gluing section} $s \in \mathcal{F}(U)$ such that $s|_{V_i}=s_i$ for all $i$. 
+  \item \textbf{(Separated Axiom)} If $s,t \in \mathcal{F}(U)$ satisfies $s|_{V_i}=t |_{V_i}$ for all $i$, then  $s=t$.  
+  \item \textbf{(Gluing Axiom)} If $\set{s_i \in V_i: i \in I}$ satisfies $s_i|_{V_i \cap V_j}=s_j|_{V_i\cap V_j}$, then there exists unique \textbf{gluing section} $s \in \mathcal{F}(U)$ such that $s|_{V_i}=s_i$ for all $i$. 
 \end{enumerate}
+\begin{theorem}
+\label{THgpos}
+\textbf{(Properties of presheaves that satisfies separated axiom)}  Let  $X$ be a topological space, $\mathfrak{C}$ a good category,  $\mathcal{F}$ a $\mathfrak{C}$-valued presheaf  on $X$ that satisfies separated axiom, and $s \in \mathcal{F}(U)$. Then:  
+\begin{enumerate}[label=(\roman*)]
+  \item If $s_P =0 \in \mathcal{F}_P$ for all $P \in U$, then $s=0 \in \mathcal{F}(U)$.  
+  \item If $s_P=1 \in \mathcal{F}_P$ for all $P \in U$, then $s=1 \in \mathcal{F}(U)$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Use separated axiom to conclude that if such $s \in \mathcal{F}(U)$ really exists, then it equal $0$ or $1 \in \mathcal{F}(U) $. 
+\end{proof}
+\begin{theorem}
+\textbf{(What need to be sheafified)} Let $X,Y$ be two topological spaces, $Z \subseteq X$ a topological subspace, $f:X\rightarrow Y$ a continuous map, $\mathfrak{C}$ a good category, $\mathcal{F},\mathcal{G}$ two sheaves on $X$, $\mathcal{E}$ a subsheaf of $\mathcal{F}$, $\phi: \mathcal{F}\rightarrow \mathcal{G}$ a sheaf morphism, and $\mathcal{H}$ a sheaf on $Y$. The following presheaves are always sheaves: 
+\begin{enumerate}[label=(\roman*)] 
+  \item Direct image sheaf $f_*\mathcal{F}$. 
+  \item Kernel sheaf $\operatorname{Ker}(\phi)$. 
+\end{enumerate}
+The following presheaves may not always be a sheaf: 
+\begin{enumerate}[label=(\roman*)]
+  \item  Quotient presheaf $\mathcal{F}\quotient \mathcal{E}$. 
+  \item Restriction presheaf $\mathcal{F}|_Z$.   
+  \item Inverse image presheaf $f^{-1}\mathcal{H}$. 
+  \item Image presheaf $\operatorname{Im}(\phi)$. 
+  \item Cokernel presheaf $\operatorname{Coker}(\phi)$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
 \begin{definition}
 \textbf{(Constant sheaves of abelian groups)} Let $X$ be a topological space and $A$ an abelian group. Give  $A$ the discrete topology. One may check that assigning $\mathcal{A}(U)$ to be the abelian group of all continuous functions form a sheaf with the obvious restriction map forms a sheaf on $X$.\footnote{Use paste lemma to prove the gluing law.}$\mathcal{A}$ is called the \textbf{constant sheaf of $A$ on  $X$}. The naming comes from the fact that for every connected $U\subseteq X$, the abelian group $\mathcal{A}(U)$ is isomorphic to $A$. 
 \end{definition}
@@ -2877,31 +3028,40 @@ For each $\mathfrak{C}$-valued presheaf $\mathcal{F}$ on $X$, its \textbf{sheafi
 	&& {\mathcal{G}}
 	\arrow["{\theta }", from=1-1, to=1-3]
 	\arrow["\phi"', from=1-1, to=3-3]
-	\arrow["{\tilde{\phi}}", from=1-3, to=3-3]
+	\arrow["{\tilde{\phi}}", dotted,from=1-3, to=3-3]
 \end{tikzcd}\]
 commute.  
 \begin{theorem}
-\textbf{(Existence of sheafification of sheaves of good category)} Let $X$ be a topological space, and  $\mathcal{F}$ a presheaf of abelian groups on $X$. The sheafification can be defined by setting  $\mathcal{F}^{+}(U)$ to be the set of functions $s$ from  $U$ to  $\bigcup_{P \in U} \mathcal{F}_P$ such that: 
+\label{THsff}
+\textbf{(Existence of sheafification of sheaves of good category)} Let $X$ be a topological space, and  $\mathcal{F}$ a presheaf of abelian groups on $X$. The sheafification can be defined by setting  $\mathcal{F}^{+}(U)$ to be the set of functions $s:U\rightarrow \bigsqcup _{P \in U} \mathcal{F}_P$ such that: 
 \begin{enumerate}[label=(\roman*)]
   \item $s(P)\in \mathcal{F}_P$. 
-  \item For each $P \in U$, there exists neighborhood  $V$ of  $P$ contained by  $U$, and an element $t \in \mathcal{F}(V)$ such that we have $(V,t )=s(Q)\in \mathcal{F}_Q$ for all $Q \in V$.  
+  \item For each $P \in U$, there exists neighborhood  $V$ of  $P$ contained by  $U$, and an element $t \in \mathcal{F}(V)$ such that we have $[(V,t )]=s(Q)\in \mathcal{F}_Q$ for all $Q \in V$.  
 \end{enumerate}
 with the usual restriction map forms a sheaf that satisfies the universal property.   
 \end{theorem}
 \begin{proof}
 It is not difficult to check that $\mathcal{F}^+$ forms a sheaf. The morphism $\theta: \mathcal{F}\rightarrow \mathcal{F}^+  $ is given by: 
 \begin{align*}
-g \in \mathcal{F}(U)\mapsto s \in \mathcal{F}^+(U),\quad\text{ where }s (P)= (U,g)\in \mathcal{F}_P 
+  g \in \mathcal{F}(U)\mapsto s \in \mathcal{F}^+(U),\quad\text{ where }s (P)= [(U,g)]\in \mathcal{F}_P 
 \end{align*}
-We now show $(\mathcal{F}^+,\theta )$ satisfies the universal property. Fix $\phi : \mathcal{F}\rightarrow \mathcal{G}$, we may define $\tilde{\phi}:\mathcal{F}^+ \rightarrow \mathcal{G}$ by mapping $s \in \mathcal{F}^+(U)\mapsto  f\in \mathcal{G}(U)$  where $f\in \mathcal{G}(U) $ is the gluing section of $\set{ \phi(t) \in \mathcal{G}(V): P \in V \subseteq U, t \in \mathcal{F}(V): (V,t)=s(Q)\in \mathcal{F}_Q\text{ for all }Q \in V}_{P \in U}$. 
+We now show $(\mathcal{F}^+,\theta )$ satisfies the universal property. Fix $\phi : \mathcal{F}\rightarrow \mathcal{G}$, we may define $\tilde{\phi}:\mathcal{F}^+ \rightarrow \mathcal{G}$ by mapping $s \in \mathcal{F}^+(U)\mapsto  f\in \mathcal{G}(U)$  where $f\in \mathcal{G}(U) $ is the gluing section of $\set{ \phi(t) \in \mathcal{G}(V): P \in V \subseteq U, t \in \mathcal{F}(V): [(V,t)]=s(Q)\in \mathcal{F}_Q\text{ for all }Q \in V}_{P \in U}$. 
 \end{proof}
 \begin{theorem}
-\textbf{(Sheafification of a sheaf is itself)} Let $X$ be a topological space, and  $\mathcal{F}$ a sheaf of abelian groups on $X$. Then, the sheafification $\theta :\mathcal{F} \rightarrow \mathcal{F}^+$ is a abelian group-valued sheaf isomorphism.
+\label{THshe}
+\textbf{(Properties of sheafs)} Let $X$ be a topological space, $\mathfrak{C}$ a good category, $Y \subseteq X$, $\mathcal{G}$ a $\mathfrak{C}$-valued presheaf on $X$,   $\mathcal{F},\mathcal{H}$ two $\mathfrak{C}$-valued sheaves on $X$, and $\phi: \mathcal{F}\rightarrow \mathcal{H}$ a $\mathfrak{C}$-valued sheaf morphism. Then:
+\begin{enumerate}[label=(\roman*)]
+  \item The sheafification  $\theta :\mathcal{F} \rightarrow \mathcal{F}^+$ is a sheaf isomorphism. 
+  \item $\phi (U):\mathcal{F}(U)\rightarrow \mathcal{H}(U)$ are injective for all $U$ if and only if  $\phi_P:\mathcal{F}_P \rightarrow \mathcal{H}_P$ are injective for all $P \in X$. 
+  \item For all $x \in Y$, we have $(\mathcal{F}|_Y)_x \cong  \mathcal{F}_x$. 
+  \item Sheafification $\theta_x:\mathcal{G}_x \rightarrow \mathcal{G}^+_x$ on stalk are isomorphism.
+  \item If $\mathcal{G}$ satisfies separateness law, then sheafification $\mathcal{G}\rightarrow \mathcal{G}^{+}  $ is injective. 
+\end{enumerate}
 \end{theorem}
 \begin{proof}
 
 \end{proof}
-Let $\mathfrak{C}$ be the category of abelian group. Even though the kernel of a sheaf homomorphism must be also be a sheaf, the image we define earlier may only be a presheaf. Because of such, in the category $\textbf{\text{Sh}}_{\mathfrak{C}}(X)$ of sheaf of abelian groups on $X$, we define \textbf{image of a sheaf homomorphism}  $\phi : \mathcal{F}\rightarrow \mathcal{G}  $ to be the sheafification of the induced sheaf $U \mapsto  \phi (\mathcal{F}(U))$. 
+For simplicity, we shall from now on use (ii) of \myref{Theorem}{THshe} without explicit quotation. Let $\mathfrak{C}$ be the category of abelian group. Even though the kernel of a sheaf homomorphism must be also be a sheaf, the image we define earlier may only be a presheaf. Because of such, in the category $\textbf{\text{Sh}}_{\mathfrak{C}}(X)$ of sheaf of abelian groups on $X$, we define \textbf{image of a sheaf homomorphism}  $\phi : \mathcal{F}\rightarrow \mathcal{G}  $ to be the sheafification of the induced sheaf $U \mapsto  \phi (\mathcal{F}(U))$. 
 \begin{equiv_def}
 \textbf{(Short exact sequences of sheaves of abelian groups)} Let $X$ be a topological space and let 
 \begin{align*}
@@ -2918,6 +3078,19 @@ be a short sequence of sheaves of abelian groups on $X$. The followings are equi
 
 \end{proof}
 
+\begin{theorem}
+\textbf{(Gluing lemma for sheaves)} Let $X$ be a topological space, $\mathfrak{C}$ a good category, and $\mathfrak{U}= \set{U_i} $ an open cover of $X$. Suppose:
+\begin{enumerate}[label=(\roman*)]
+  \item For each $i$, $\mathcal{F}_i$ is a $\mathfrak{C}$-valued sheaf on $U_i$. 
+  \item For each $i$ and $j$, a $\mathfrak{C}$-valued sheaf isomorphism $\phi_{ij}:\mathcal{F}_i |_{U_i \cap U_j} \rightarrow  \mathcal{F}_j |_{U_i \cap U_j}$. 
+  \item For each $i$, $\phi_{ii}$ is the identity $\mathfrak{C}$-valued sheaf morphism on $U_i$. 
+  \item For each $i,j,k$ and $V \subseteq U_i \cap U_j \cap U_k$, we have  $\phi_{ik}(V)=\phi_{jk}(V)\circ \phi_{ij}(V)$.    
+\end{enumerate}
+\end{theorem}
+Then, there exists a unique $\mathfrak{C}$-valued sheaf $\mathcal{F}$ on $X$, together with $\mathfrak{C}$-valued sheaf isomorphism $\psi_i:\mathcal{F}|_{U_i} \rightarrow \mathcal{F}_i$ such that for each $i,j$ and $V \subseteq U_i \cap U_j$, we have $\psi_j (V)=\phi_{ij}(V)\circ \psi_i (V)$. 
+\begin{proof}
+See https://math.stackexchange.com/questions/2367893/details-of-gluing-sheaves-on-a-cover  
+\end{proof}
 
 
 
@@ -2925,10 +3098,7 @@ be a short sequence of sheaves of abelian groups on $X$. The followings are equi
 
 
 
-
-
-Given a sheaf $\mathcal{F}$ on $X$, a subspace $Z \subseteq X$, and a continuous map  $f:X\rightarrow Y$, and a sheaf $\mathcal{G}$ on $Y$, the \textbf{direct image sheaf} $f_*\mathcal{F}$ is a sheaf on $Y$ defined by $U\mapsto \mathcal{F}(f^{-1}(U))$ with the restriction map being that of $\mathcal{F}$, the \textbf{inverse image sheaf} $f^{-1}\mathcal{G}$ is the sheafification of the presheaf $U \mapsto \lim_{ V \supseteq f(U) }\mathcal{G}(V)$, and the \textbf{restriction sheaf} of $\mathcal{F}$ onto $Z$ denoted by $\mathcal{F}|_Z$ is simply the inverse image sheaf of  $\mathcal{F}$ under the inclusion map $Z \hookrightarrow X$.     
-\section{Scheme}
+\section{Schemes}
 Let $A$ be a ring and  $\mathfrak{a}$ an ideal in $A$. We denote $V(\mathfrak{a})\subseteq \operatorname{Spec}A$ the set of prime ideals that contains $\mathfrak{a}$. 
 \begin{theorem}
 \label{Zto}
@@ -2947,13 +3117,42 @@ Because of \myref{theorem}{Zto}, we may define \textbf{Zariski topology}  on $\o
 \begin{align*}
 D(f)\triangleq \operatorname{Spec}A-V(\langle f\rangle )
 \end{align*}
+A \textbf{ringed space} is a pair $(X,\mathcal{O}_X)$ consisting of a topological space $X$ and a sheaf of rings  $\mathcal{O}$ on $X$ called the \textbf{structure sheaf}. A \textbf{ringed space morphism} from $(X,\mathcal{O}_X)$ to $(Y,\mathcal{O}_Y)$ is a pair $(f,f^\sharp)$ of a continuous map $f:X\rightarrow Y$ and a ring-valued sheaf morphism $f^{\sharp}: \mathcal{O}_Y \rightarrow f_*\mathcal{O}_X$ from the structure sheaf $\mathcal{O}_Y$ of $Y$ to the direct image sheaf $f_* \mathcal{O}_X$ of $\mathcal{O}_X$ under $f:X\rightarrow Y$.    \\
+
+
+A ringed space is called a \textbf{locally ringed space} if the stalk of its structure sheaf at each point is a local ring. Let $(X,\mathcal{O}_X)$ be a locally ringed space. A \textbf{locally ringed space morphism} is a ringed space morphism $(f,f^{\sharp})$ from one locally ringed space $(X,\mathcal{O}_X)$ to another $(Y,\mathcal{O}_Y)$ such that for each $P \in X$, when we induce ring homomorphism $f^{\sharp}_P: \mathcal{O}_{Y,f(P)} \rightarrow \mathcal{O}_{X,P}  $ via the universal property for direct limit: 
+% https://q.uiver.app/#q=WzAsNixbMSwxLCJPIl0sWzEsMywiXFxidWxsZXQiXSxbMCwyLCJcXGJ1bGxldCJdLFswLDAsIlxcYnVsbGV0Il0sWzIsMCwiXFxidWxsZXQiXSxbMiwyLCJcXGJ1bGxldCJdLFszLDBdLFszLDIsImZee1xcc2hhcnB9KFUpIiwyXSxbMiwxXSxbNCwwXSxbNCw1LCJmXntcXHNoYXJwfShWKSJdLFs1LDFdLFswLDEsImZee1xcc2hhcnB9X1AiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XV0=
+\[\begin{tikzcd}
+	\mathcal{O}_Y(U) && \mathcal{O}_Y(V)  \\
+	& \mathcal{O}_{Y,f(P)}  \\
+	\mathcal{O}_X(f^{-1}(U))  && \mathcal{O}_X(f^{-1}(V))  \\
+	& \mathcal{O}_{X,P}  
+	\arrow[from=1-1, to=2-2]
+	\arrow["{f^{\sharp}(U)}"', from=1-1, to=3-1]
+	\arrow[from=1-3, to=2-2]
+	\arrow["{f^{\sharp}(V)}", from=1-3, to=3-3]
+	\arrow["{f^{\sharp}_P}"{description}, dotted, from=2-2, to=4-2]
+	\arrow[from=3-1, to=4-2]
+	\arrow[from=3-3, to=4-2]
+\end{tikzcd}\]
+The ring homomorphism $f^{\sharp}_P:\mathcal{O}_{Y,f(P)} \rightarrow \mathcal{O}_{X,P}$ is moreover a local ring homomorphism. Let $(f,f^{\sharp})$  be a locally ringed space morphism from $X$ to  $Y$, and let  $(g,g^{\sharp})$ be a locally ringed space morphism from $Y$ to $Z$. Fix $U \subseteq Z$. Because direct image sheaf is defined by 
+\begin{enumerate}[label=(\roman*)]
+  \item $(g_*\mathcal{O}_Y)|_U \triangleq \mathcal{O}_Y|_{g^{-1}(U)} $. 
+  \item $((f\circ g)_* \mathcal{O}_X) |_U = \mathcal{O}_X |_{ f^{-1}(g^{-1}(U))} $. 
+\end{enumerate}
+We may define the \textbf{composition of locally ringed space morphism} $(f\circ g)^\sharp: \mathcal{O}_Z \rightarrow (f\circ g)_* \mathcal{O}_X$ by:  
+\begin{align*}
+  (f\circ g)^\sharp |_U \triangleq  f^{\sharp} |_{g^{-1}(U)} \circ g^{\sharp} |_U   
+\end{align*}
+This makes locally ringed spaces a category. An \textbf{affine scheme} is a locally ringed space isomorphic as a locally ringed space to the spectrum of some ring. A \textbf{scheme} is a locally ringed space that has an open cover consisting of open sets when equipped with the restricted sheaf is an affine scheme. A \textbf{scheme morphism} is then just a locally ringed space morphism.
 \begin{theorem}
 \label{Poo}
-\textbf{(Property of open sets associated with element of the underlying ring)} Let $A$ be a ring and $f,g \in A$. Then:\footnote{If you wish, you make think of our notation $D$ stands for "the set of local rings whose denominator Doesn't contain".}
+\textbf{(Property of open sets associated with element of the underlying ring)} Let $A$ be a ring, $u\in A$ be a unit in $A$, and $f,g \in A$. Then:\footnote{If you wish, you make think of our notation $D$ stands for "the set of local rings whose denominator Doesn't contain".}
 \begin{enumerate}[label=(\roman*)]
   \item $D(f)= \set{\mathfrak{p}\in \operatorname{Spec}A: f \not \in \mathfrak{p}}$. 
   \item $D(f)\subseteq D(g)\iff  V(\langle f\rangle ) \supseteq V(\langle g\rangle )$. 
-  \item $D(f)\cap D(g)=D(fg)$. 
+  \item $D(f)\cap D(g)=D(fg)$.  
+  \item $D(u)= \operatorname{Spec}A$. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -2965,11 +3164,12 @@ The \textbf{structure sheaf} $\mathcal{O}$ on $\operatorname{Spec}A$ is a sheaf 
   \item  For each $\mathfrak{p}\in U$, there exists neighborhood $V$ of $\mathfrak{p}$ contained by $U$ and exist $a,f\in A$ such that  $f \not \in \mathfrak{q}\text{ and }s(\mathfrak{q})= a\quotient f$ for all  $\mathfrak{q} \in V$. 
 \end{enumerate}
 \begin{theorem}
-\textbf{(Basic property of affine scheme $\operatorname{Spec}A$)} Let $A$ be a ring, and $\mathcal{O}$ the structure sheaf on $\operatorname{Spec}A$. Then:
+\label{THas}
+\textbf{(Properties of affine scheme $\operatorname{Spec}A$)} Let $A$ be a ring, and $\mathcal{O}$ the structure sheaf on $\operatorname{Spec}A$. Then:
 \begin{enumerate}[label=(\roman*)]
-  \item For all $\mathfrak{p}\in \operatorname{Spec}A$, the stalk $\mathcal{O} _\mathfrak{p}$ is isomorphic to the local ring $A_\mathfrak{p}$. 
-  \item For all $f \in A$, the ring $\mathcal{O} (D(f))$ is isomorphic to $A_f$. 
-  \item $\mathcal{O}(\operatorname{Spec}A) \cong  A$ as rings. 
+  \item For all $\mathfrak{p}\in \operatorname{Spec}A$, the stalk $\mathcal{O} _\mathfrak{p}\cong  A_{\mathfrak{p}}$ as rings. 
+  \item For all $f \in A$, the ring $\mathcal{O} (D(f))\cong  A_f$ as rings. 
+  \item $\Gamma (\operatorname{Spec}A) \cong  A$ as rings. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -2994,8 +3194,9 @@ where $I$ may be infinite. We claim that there exists finite subset $J \subseteq
 \begin{align*}
 V\left(\langle f\rangle \right) \supseteq\bigcap_{i \in I} V\left(\langle h_i\rangle \right) = V\left(\sum_{i\in I} \langle h_i\rangle \right) 
 \end{align*}
-Again, this by \customref{Zto}{the property of topology of $\operatorname{Spec}A$} implies $f \in \sqrt{\sum_{i \in I} \langle h_i\rangle } $, which implies that for some $n\geq 1$, we may write $f^n$ as a finite sum: 
+Again, this by \customref{Zto}{the property of topology of $\operatorname{Spec}A$} implies $f \in \sqrt{\sum_{i \in I} \langle h_i\rangle } $, which implies that for $n \gg 0$, we may write $f^n$ as a finite sum: 
 \begin{align*}
+\label{eqPoa1}
 f^n = \sum_{i=1}^r b_ih_i,\quad \text{ where }b_i \in A
 \end{align*}
 In other words, $f \in \sqrt{\sum_{i=1}^r \langle h_i\rangle } $, which by  \customref{EDRi}{equivalent definitions of radical ideals} implies $\sqrt{\langle f\rangle } \subseteq \sqrt{\sum_{i=1}^r \langle h_i\rangle}  $. The claim now follows from \customref{Zto}{the property of topology of $\operatorname{Spec}A$} and  \customref{Poo}{the relationship between $D(f)$ and $V(\langle f\rangle )$}.\footnote{Note that our argument for finding this finite subcover is morally the same as  \customref{Soi}{equivalent definition of ideals sum}} \\
@@ -3006,31 +3207,384 @@ We from now on write $D(f) \subseteq D(h_1) \cup  \cdots \cup  D(h_r)$. Fix $i$ 
 \end{align*}
 we see from injectivity of $\psi_{h_ih_j}:A_{h_ih_j}\rightarrow \mathcal{O}(D(h_ih_j))$ that: 
 \begin{align*}
-\frac{a_ih_i}{h_ih_j}= \frac{a_jh_i}{h_ih_j} \in A_{h_ih_j}. 
+\frac{a_ih_j}{h_ih_j}= \frac{a_jh_i}{h_ih_j} \in A_{h_ih_j}. 
 \end{align*}
+Because the index set $\set{1,\dots ,r}$ is finite, we have just shown:  
+\begin{align}
+\label{eqPoa2}
+  (h_ih_j)^n a_ih_j = (h_ih_j)^n a_jh_i \in A,\quad \text{ for all }i,j\text{ and }n\gg 0 
+\end{align}
+Because for all $n\geq 1$,  \customref{Poo}{$D(h_i)=D(h_i^n)$}  and $a_i\quotient h_i = a_ih_i^{n}\quotient h_i^{n+1}\in A_{\mathfrak{p}}$ for all $i$ and $\mathfrak{p}\in D(h_i^n)\cap D(f)$, we now see that for all $n\geq 0$, we have: 
+\begin{enumerate}[label=(\Alph*)]
+  \item $D(f)\subseteq \bigcup_{i=1}^r D(h_i^n)$. 
+  \item $s(\mathfrak{p})=a_ih_i^n \quotient h_i^{n+1}\in A_{\mathfrak{p}}$ for all $1\leq i\leq r$ and  $\mathfrak{p}\in D(h_i^n)\cap D(f)$. 
+\end{enumerate}
+Again by (A), \customref{Poo}{the relationship between $D(f)$ and $V(\langle f\rangle )$}, and \customref{Zto}{the property of topology of $\operatorname{Spec}A$}, we now have: 
+\begin{align*}
+f\in \sqrt{\sum_{i=1}^r \langle h_i^n\rangle },\quad \text{ for all }n\geq 1
+\end{align*}
+Finally, we may fix large enough $n$ so that  \myref{equation}{eqPoa2} holds true and that we may write $f^m = \sum_{i=1}^r b_ih_i^{n+1}$, for some $m \inn$ and $b_i \in A$. Let $a\triangleq \sum b_ih_i^na_i$. We shall finish the proof by showing $\psi_f(a\quotient f^m)=s$. Fix $j$. We are required to prove $a_j \quotient h_j= a\quotient f^m\in A_{\mathfrak{p}}$  for any $\mathfrak{p}\in D(f)\cap D(h_j)$, which follows from noting: 
+\begin{align*}
+  h_j^n(a_jf^m -h_ja)= h_j^n\sum_i (a_jb_ih_i^{n+1} - h_jb_ih_i^n a_i)= \sum_{i}b_ih_j^nh_i^n(h_ia_j-h_ja_i)=0 
+\end{align*}
+where the last equality hold true because of \myref{equation}{eqPoa2}. \\
 
-
-
-
-
+(iii): This is a special case $f\triangleq 1$ of  (ii). Just recall \customref{Poo}{$D(1)=\operatorname{Spec}A$}. 
+\end{proof}
+\begin{theorem}
+\label{THffsZ}
+\textbf{(A functor I don't understand)} Let $(X,\mathcal{O}_X)$ be a scheme, $A$ a ring. Because \customref{THas}{the ring of global sections of an affine scheme is its underlying ring}, we may define a functor $\operatorname{Hom}_{\mathfrak{Sch}}(X,\operatorname{Spec} A) \rightarrow \operatorname{Hom}_{\mathfrak{Ring}}(A, \Gamma (X))$ by: 
+\begin{align*}
+ \left((f,f^{\sharp}):X\rightarrow \operatorname{Spec}A   \right) \mapsto  f^\sharp (\operatorname{Spec} A): A=\mathcal{O}_{\operatorname{Spec}A}(\operatorname{Spec}A)\rightarrow \Gamma (X,\mathcal{O}_X) 
+\end{align*}
+Such functor is bijective.
+\end{theorem}
+\begin{proof}
 
 \end{proof}
-A \textbf{ringed space} is a pair $(X,\mathcal{O} )$ consisting of a topological space $X$ and a sheaf of rings  $\mathcal{O}$ on $X$ called the \textbf{structure sheaf}. A \textbf{ringed space morphism} from $X$ to $Y$ is a pair $(f,f^\sharp)$ of a continuous map $f:X\rightarrow Y$ and a sheaf morphism $f^{\sharp}$ from the structure sheaf of $Y$ to the direct image of structure sheaf of  $X$ under  $f$. \\
+\begin{theorem}
+\label{THsin}
+\textbf{(Properties of scheme)} Let $(X,\mathcal{O})$ be a scheme. Then, 
+\begin{enumerate}[label=(\roman*)]
+  \item Every nonempty irreducible closed subset $Z \subseteq X$ has a unique generic point.  
+  \item Given nonempty irreducible closed $Y \subseteq X$ with generic point $\eta$, we have $\operatorname{Cotopdim}(Y,X)=\operatorname{Krudim}(\mathcal{O}_{X,\eta})$.  
+  \item For each $P \in X$, the stalk $\mathcal{O}_P$ as a ring is nonzero. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(ii): https://stacks.math.columbia.edu/tag/02IZ?utm_source=chatgpt.com
+\end{proof}
+\section{Projective space}
+Let $S$ be a  $\N$-graded ring. Clearly,  $S_+ \triangleq \bigoplus_{d>0} S_d$ forms an ideal. We define:
+\begin{align*}
+\operatorname{Proj}S\triangleq \set{\mathfrak{p} \in \operatorname{Spec}S: \mathfrak{p}\text{ is homogeneous and doesn't contain $S_+$ }}
+\end{align*}
+If $\mathfrak{a}\subseteq S$ is homogeneous, then we define $V(\mathfrak{a})\triangleq \set{\mathfrak{p} \in \operatorname{Proj}S: \mathfrak{p}\supseteq \mathfrak{a}}$. 
+\begin{theorem}
+\label{THtp}
+\textbf{(Topology of $\operatorname{Proj}$)} Let $S$ be a graded ring, and $\set{\mathfrak{a}_i}$ an infinite collection of homogeneous ideals in $S$. We have: 
+ \begin{enumerate}[label=(\roman*)]
+  \item $V(\mathfrak{a}_1)\cup  V(\mathfrak{a}_2)=V(\mathfrak{a}_1 \mathfrak{a}_2)$. 
+  \item $\bigcap V(\mathfrak{a}_i)=V (\sum \mathfrak{a}_i)$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+This is basic algebra. See Hartshorne II.2.4.
+\end{proof}
+Because of \myref{theorem}{THtp}, we can consider $\operatorname{Proj}S$ as a topological space where closed set take the form $V(\mathfrak{a})$, for some homogeneous ideal  $\mathfrak{a}\subseteq S$. Fix $\mathfrak{p}\in \operatorname{Proj}S$. Let $T\subseteq S$ be the multiplicative closed subset of $S$ consisting of all homogeneous elements of  $S$ not in  $\mathfrak{p}$. Let $S_{(\mathfrak{p})} \triangleq T^{-1}S$. We know \customref{Ogoh}{there exists an obvious $\Z$-grading on $S_{(\mathfrak{p})}$ defined by: 
+\begin{align*}
+  (S_{(\mathfrak{p})})_n \triangleq \set{f\quotient g \in S_{(\mathfrak{p})}: f \text{ homogeneous and }n=\operatorname{deg}f-\operatorname{deg}g}
+\end{align*}
+We define the structure sheaf on $\operatorname{Proj}S$ by making $\mathcal{O}(U)$ the ring of functions $s: U \rightarrow $
+
+
+
+
+\section{Properties of schemes}
+
+A scheme $(X,\mathcal{O})$ is \textbf{locally Noetherian} if it can be covered by open affine subsets  $\operatorname{Spec}A_i$, where each $A_i$ is a Noetherian ring. A scheme is \textbf{Noetherian} if it is locally Noetherian and compact. A scheme $(X,\mathcal{O})$ is \textbf{reduced} if for each $U \subseteq X$, the ring $\mathcal{O}(U)$ has no nilpotent element. A scheme is \textbf{integral} if for all $U \subseteq X$, the ring $\mathcal{O}(U)$ is an integral domain.
+\begin{equiv_def}
+\textbf{(Locally Noetherian scheme)} Let $(X,\mathcal{O})$ be a scheme. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)] 
+  \item $X$ is locally Noetherian. 
+  \item For each affine open $\operatorname{Spec}A=U \subseteq X$,    \customref{THas}{$A=\Gamma (U)$} is Noetherian.  
+\end{enumerate}
+\end{equiv_def}
+\begin{theorem}
+\textbf{(Properties of locally Noetherian scheme)} Let $(X,\mathcal{O})$ be a locally Noetherian scheme. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathcal{O}_x$ is Noetherian for all $x\in X$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  (i): Recall that 
+\end{proof}
+\begin{equiv_def}
+\textbf{(Reduced schemes)} Let $(X,\mathcal{O})$ be a scheme. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $X$ is reduced. 
+  \item For all $P \in X$, $\mathcal{O}_P$ has no nilpotent elements. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+
+\end{proof}
+\begin{equiv_def}
+\label{EDIs}
+\textbf{(Integral schemes)} Let $(X,\mathcal{O})$ be a scheme. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $X$ is integral.  
+  \item For each $P \in X$, the stalk $X_P$ is an integral domain.  
+  \item $X$ is both reduced and irreducible.
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\label{THff}
+\textbf{(Function field is the quotient filed of local ring at generic point of open affine subset)} Let $X$ be an integral scheme, \customref{THsin}{$\eta$ be the unique generic point of $X$}, and $U\triangleq  \operatorname{Spec}A\subseteq X$ an affine open subset of $X$. Then:
+\begin{enumerate}[label=(\roman*)]
+    \item $\mathcal{O}_{X,\eta }$ forms a field, called \textbf{the function field $K(X)$ of the integral scheme $X$}. 
+    \item $K(X)\cong \operatorname{Frac}(A)\cong  \operatorname{Frac}(\Gamma (\mathcal{O}_U))$ as rings. 
+  \end{enumerate}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+A \textbf{closed immersion} $(f,f^{\sharp}):Y\rightarrow X$ is a scheme morphism such that: 
+\begin{enumerate}[label=(\roman*)]
+  \item $f$ is a homeomorphism from $Y$ to some closed subset of $X$.  
+  \item $f^{\sharp}:\mathcal{O}_X \rightarrow  f_* \mathcal{O}_Y$ is surjective.  
+\end{enumerate}
+A \textbf{closed subscheme} of $X$ is an equivalence class of closed immersions, where we say  $f:Y\rightarrow X$ and $f':Y'\rightarrow X$ are equivalent if there is a scheme isomorphism $i:Y \rightarrow Y'$ that makes the diagram:
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJZIl0sWzIsMCwiWCJdLFswLDIsIlknIl0sWzAsMSwiZiJdLFsyLDEsImYnIiwyXSxbMCwyLCJpIiwyXV0=
+\[\begin{tikzcd}
+	Y && X \\
+	\\
+	{Y'}
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["i"', from=1-1, to=3-1]
+	\arrow["{f'}"', from=3-1, to=1-3]
+\end{tikzcd}\]
+commutes. Note that from our definition, we can always treat the underlying topological space of closed subscheme $Y$ of  $X$ as a subset of  $X$, even though the structure sheaf may not be the restriction of that of  $X$.  
+\section{Schemes over $S$}
+Let $S$ be a fixed scheme. A  \textbf{scheme over} $S$ is a scheme $X$ together with a scheme morphism  $X \rightarrow S$. Let $j_X\rightarrow S,j_Y:Y \rightarrow S$ be two scheme over $S$. A $S$\textbf{-scheme morphism} from $X$ to $Y$ is a scheme morphism  $f:X\rightarrow Y$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzIsMCwiWSJdLFsxLDIsIlMiXSxbMCwyLCJqX1giLDJdLFsxLDIsImpfWSJdLFswLDEsImYiXV0=
+\[\begin{tikzcd}
+	X && Y \\
+	\\
+	& S
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["{j_X}"', from=1-1, to=3-2]
+	\arrow["{j_Y}", from=1-3, to=3-2]
+\end{tikzcd}\]
+commute. Let $A$ be a fixed ring. A \textbf{scheme over} $A$ is a scheme over  $\operatorname{Spec}A$. Let $X,Y$ be two schemes over  $S$. Their \textbf{fiber product} $X \times_S Y$ is a scheme together with two scheme morphism $p_1:X \times_S Y \rightarrow X$ and $p_2: X \times_S Y \rightarrow Y$, called \textbf{projection morphisms}, that 
+\begin{enumerate}[label=(\roman*)]
+  \item makes the diagram: 
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJYIl0sWzQsMSwiWSJdLFsyLDIsIlMiXSxbMiwwLCJYXFx0aW1lcyBfUyBZIl0sWzAsMiwial9YIiwxXSxbMSwyLCJqX1kiLDFdLFszLDAsInBfMSIsMV0sWzMsMSwicF8yIiwxXV0=
+\[\begin{tikzcd}
+	&& {X\times _S Y} \\
+	X &&&& Y \\
+	&& S
+	\arrow["{p_1}"{description}, from=1-3, to=2-1]
+	\arrow["{p_2}"{description}, from=1-3, to=2-5]
+	\arrow["{j_X}"{description}, from=2-1, to=3-3]
+	\arrow["{j_Y}"{description}, from=2-5, to=3-3]
+\end{tikzcd}\]
+  commute. 
+\item satisfies \textbf{the universal property for fiber product of scheme}: For each tuple $(Z,f,g)$, where $Z$ is a scheme over $S$ and  $f:Z\rightarrow X,g:Z\rightarrow Y$ are two $S$-scheme morphism, there exists a unique scheme morphism $\theta : Z\rightarrow X \times_S Y$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsNSxbMCw0LCJYIl0sWzQsNCwiWSJdLFsyLDUsIlMiXSxbMiwwLCJaIl0sWzIsMywiWFxcdGltZXMgX1MgWSJdLFswLDJdLFsxLDJdLFszLDEsImciXSxbMywwLCJmIiwyXSxbMyw0LCJcXHRoZXRhIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZG90dGVkIn19fV0sWzQsMCwicF8xIiwxXSxbNCwxLCJwXzIiLDFdXQ==
+\[\begin{tikzcd}
+	&& Z \\
+	\\
+	\\
+	&& {X\times _S Y} \\
+	X &&&& Y \\
+	&& S
+	\arrow["\theta"{description}, dotted, from=1-3, to=4-3]
+	\arrow["f"', from=1-3, to=5-1]
+	\arrow["g", from=1-3, to=5-5]
+	\arrow["{p_1}"{description}, from=4-3, to=5-1]
+	\arrow["{p_2}"{description}, from=4-3, to=5-5]
+	\arrow["j_X"{description},from=5-1, to=6-3]
+	\arrow["j_Y"{description},from=5-5, to=6-3]
+\end{tikzcd}\]
+commute.  
+\end{enumerate}
+Because of (i), treating $X \times _S Y$ as a $S$-scheme via either $j_Y \circ p_2$ or $j_X \circ p_1$ are the same. 
+\begin{theorem}
+\textbf{(Existence of fiber product of scheme)} Let $S$ be a scheme, and let $X,Y$ be two scheme over $S$.  The fiber product $X \times_S Y$ exists.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+Let $f:X\rightarrow Y$ be a scheme morphism. The \textbf{diagonal morphism}  is the unique morphism $\Delta: X \rightarrow X \times _Y X$  whose composition with both projection morphisms is the identity map $X \rightarrow X$. 
+\begin{theorem}
+\textbf{(Properties of diagonal scheme morphism)} Let $f:X\rightarrow Y$ be a scheme morphism. Let $\Delta : X\rightarrow X\times_Y X$ be the diagonal morphism. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\Delta (X)$ is the image of a closed subscheme $g: Z\rightarrow X\times_Y X$.  
+  \item $g^{-1}\circ \Delta : X \rightarrow Z$ is a scheme isomorphism?    
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+We say $f$ is \textbf{separated} if $\Delta : X\rightarrow  X \times_Y X$ is a closed immersion.\footnote{Recall that given a topological space  $H$, it is Hausdorff if and only if its diagonal $\set{(x,x) \in H\times H: x \in H}$ is closed in $H\times H$.} Because we have a \customref{THffsZ}{bijective functor $\operatorname{Hom}_{\mathfrak{Sch}}(X, \operatorname{Spec}\Z)\longleftrightarrow  \operatorname{Hom}_{\mathfrak{Ring}}(\Z, \Gamma (X)  )$} and there exists only one ring morphism $\Z \rightarrow \Gamma (X)$, every scheme can be uniquely identified as a scheme over $\Z$. We say a scheme $X$ is  \textbf{separated} if it is separated as a scheme over $\Z$. \\
+
+A scheme morphism $f:X\rightarrow Y$ is \textbf{locally of finite type} if there exists:
+\begin{enumerate}[label=(\roman*)]
+  \item An open affine cover $V_i = \operatorname{Spec}B_i$ of $Y$. 
+  \item For each $i$ a collection  $\set{\operatorname{Spec}A_{ij}}$ of open affine subset of $X$. 
+\end{enumerate}
+such that  $A_{ij}$ are all finitely generated $B_i$-algebras, and for each $i$, $f^{-1}(V_i)$ is covered by $\operatorname{Spec}A_{ij}$. The scheme morphism $f:X\rightarrow Y$ is of \textbf{finite type} if in addition for each $i$, the cover  $\set{\operatorname{Spec}A_{ij}}$ of $f^{-1}(V_i)$ can be finite.  \\
 
 
 
 
 
 
-A ringed space is called a \textbf{locally ringed space} if the stalk of its structure sheaf at each point is a local ring. A \textbf{locally ringed space morphism} from $X$ to  $Y$ is a ringed space morphism $(f,f^{\sharp})$ such that the ring homomorphism from the stalk of the structure sheaf of  $Y$ to the stalk of the direct image sheaf induced by $f^{\sharp}$ are moreover local ring homomorphisms.  \\
+ 
 
-An \textbf{affine scheme} is a locally ringed space isomorphic as a locally ringed space to the spectrum of some ring. A \textbf{scheme} is a locally ringed space that has an open cover consisting of open sets when equipped with the restricted sheaf is an affine scheme. A \textbf{scheme morphism} is then just a locally ringed space morphism.
+
+An \textbf{abstract variety} is an integral separated scheme  of finite type over some algebraically closed field  $k$. Note that because the only open affine subset of $\operatorname{Spec}k$ is itself, an abstract variety can be covered by $\operatorname{Spec}A_{i}$ where each $A_i$ are all finitely generated  $k$-algebra. In other words, an abstract variety \customref{cpoN}{must be Noetherian}. Because of such, given an abstract variety $(X,\mathcal{O}_X)$, we may talk about whether $x \in X$ is a \textbf{singularity} of $X$, i.e., whether  $\mathcal{O}_{X,x}$ is regular. We say abstract variety $X$ is  \textbf{nonsingular} if it contains no singularity. \label{PAavns}
+
+
 \section{$\mathcal{O}$-modules}
-Given a ringed space $(X,\mathcal{O})$, if we say a sheaf $\mathcal{F}$ of abelian groups on $X$ is a $\mathcal{O}$\textbf{-module}, we are assigning each abelian group $\mathcal{F}(U)$ a $\mathcal{O}(U)$-module structure compatible not only with the addition of $\mathcal{F}(U)$ but also the restriction maps in the sense that: 
+Given a ringed space $(X,\mathcal{O}_X)$, if we say a sheaf $\mathcal{F}$ of abelian groups on $X$ is a $\mathcal{O}$\textbf{-module}, we are assigning each abelian group $\mathcal{F}(U)$ a $\mathcal{O}(U)$-module structure compatible not only with the addition of $\mathcal{F}(U)$ but also the restriction maps in the sense that: 
 \begin{align*}
   (fs)|_V= (f|_V)(s|_V),\quad \text{ for each }f\in \mathcal{O}(U),s \in \mathcal{F}(U)\text{ and }V \subseteq U
 \end{align*}
-A \textbf{$\mathcal{O}$-module morphism} $\phi:\mathcal{F}\rightarrow \mathcal{G}$ is then just a sheaf morphism such that all $\phi (U)$ are also $\mathcal{O}(U)$-module homomorphisms.\\
+An \textbf{$\mathcal{O}_X$-module morphism} is then just a sheaf morphism such that all $\mathcal{F}(U) \rightarrow \mathcal{G}(U)$ are also $\mathcal{O}(U)$-module homomorphisms. An  $\mathcal{O}_X$-module $\mathcal{F}$ is \textbf{free of rank $\operatorname{card}(I)$} if it is a direct sum $\bigoplus_{I}\mathcal{O}_X$.  An $\mathcal{O}_X$-module $\mathcal{F} $ is \textbf{locally free} if there exists open cover $U_\alpha $ of $X$ on which all the restriction are free $\mathcal{O}_{U_\alpha}$-module. An $\mathcal{O}_X$-module $\mathcal{F} $ is \textbf{locally free of rank} $\operatorname{card}(I)$, if there exists open cover $U_\alpha$ of $X$ on which all the restriction are free $\mathcal{O}_{U_\alpha }$-module of rank $\operatorname{card}(I)$. Let $(X,\mathcal{O}_X)$ be a locally ringed space, an $\mathcal{O}_X$-module $\mathcal{F}$ is said to be \textbf{invertible} if it is locally free of rank $1$.\\
+
+An $\mathcal{O}_X$\textbf{-module of ideal} $\mathcal{I}$ is an $\mathcal{O}_X$-module such that $\mathcal{I}(U)$ are all ideals of $\mathcal{O}_X(U)$. \\
+
+
+
+\section{Weil divisors}
+We say a scheme $X$ is \textbf{nonsingular in codimension one} if every local ring $\mathcal{O}_x$ of Krull dimension one is regular. A \textbf{Hartshorne scheme} is a Noetherian integral separated scheme nonsingular in codimension one. Note that \customref{PAavns}{an nonsingular abstract variety must be Hartshorne}. Let $X$ be Hartshorne. A \textbf{prime divisor} on $X$ is a integral closed subscheme  $Y$ of codimension one. Because \customref{EDIs}{integral scheme by definition is irreducible}, we know for each prime divisor $Y$, \customref{THsin}{there exists a unique generic point $\eta \in Y$}. Because such generic point is unique and homeomorphism clearly preserve generic point, we may identify $\eta  \in X$ without ambiguity.
+\begin{theorem}
+\textbf{(Local rings of Noetherian integral separated scheme nonsingular in codimension one at generic points of integral closed subschemes are DVRs)}  Let $X$ be a Hartshorne scheme, $Y$ a prime divisor $X$, and  $\eta \in Y$ the generic point. Then, $\mathcal{O}_{X,\eta }$ is a DVR. 
+\end{theorem}
+\begin{proof}
+Recall that \customref{ECoDp1}{by definition a DVR is just a Noetherian regular local domain of Krull dimension $1$}. We only have to prove: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathcal{O}_{X,\eta}$ is Noetherian. 
+  \item $\mathcal{O}_{X,\eta }$ is an integral domain.
+  \item $\operatorname{Krudim}(\mathcal{O}_{X,\eta })=1$. 
+  \item $\mathcal{O}_{X,\eta}$ is regular. 
+\end{enumerate}
+Before such, we first make the following settings: Because $X$ is Noetherian, there exists some affine open $x \in U \cong  \operatorname{Spec}A$, where $A$ is Noetherian and $\mathfrak{p} \in \operatorname{Spec}A$ correspond to $x \in U$.\\
+
+
+(i): Because \customref{THshe}{stalks are intact under restriction}, by \customref{THas}{property of affine scheme}, we know:
+\begin{align*}
+\mathcal{O}_{X,\eta}= \mathcal{O}_{U,\eta}= A_\mathfrak{p},\quad \text{ for some }\mathfrak{p} \in \operatorname{Spec}A
+\end{align*}
+The rest of the proof then follows from the fact that \customref{cpoN}{localization preserves Noetherian}. \\
+
+(ii): This is by \customref{EDIs}{equivalent definitions of integral scheme}. \\
+
+(iii): By \customref{EDIs}{equivalent definition of integral scheme} and equivalent definition of closed immersion, we know $Y\cap U$ is an irreducible closed subset of  $U$. Let $V(\mathfrak{q})\triangleq Y \cap U \subseteq \operatorname{Spec}A$.  Because \customref{THcdim}{codimension is local}, by \customref{THsin}{property of scheme}, we know:
+\begin{align*}
+1=\operatorname{Cotopdim}(Y,X)= \operatorname{Cotopdim}(Y\cap U,U)= \operatorname{Krudim}(\mathcal{O}_{\operatorname{Spec}A,\mathfrak{p}})= \operatorname{Krudim}(\mathcal{O}_{X,\eta } )
+\end{align*}
+(iv): This follows (iii) and the premise that $X$ is nonsingular in codimension $1$. 
+\end{proof}
+Let $X$ be Hartshorne with \customref{THsin}{unique generic point} $\xi$, $Y$ an arbitrary prime divisor of $X$, and $\eta $ the unique generic point of $Y$. Let $\operatorname{Spec}A$ be an open affine neighborhood of $\eta$. Because $\xi$ is generic, we know $\xi \in \operatorname{Spec}A$. Let $\mathfrak{p},\mathfrak{q}\in \operatorname{Spec}A$ correspond to $\xi,\eta$. Because \customref{THff}{$\mathcal{O}_{\xi}$ is a field (the function field $K(X)$ of $X$)}, by \customref{THas}{property of affine scheme}, we know: 
+\begin{align*}
+\operatorname{Frac}(\mathcal{O}_{\eta } )=\customref{THlid}{\operatorname{Frac}(A_{\mathfrak{q}})=\operatorname{Frac}(A_{\mathfrak{p}})}=\operatorname{Frac}(\mathcal{O}_{\xi})=\mathcal{O}_{\xi}
+\end{align*}
+In other word, for any integral closed subscheme $Y$ and their generic point  $\eta$, the DVRs $\mathcal{O}_{\eta }$ all value the same field $\mathcal{O}_{\xi}$. For each $Y$ and $\eta$, let $\nu _Y: \mathcal{O}_\eta ^\times \rightarrow \Z $ be the smallest valuation. We now have:
+\begin{theorem}
+\label{THPW}
+\textbf{(Principal Weil divisors are well-defined)} Let $X$ be a Hartshorne scheme. For each $f \in K(X)^{\times}$, there only exists finite number of integral closed subscheme $Y$ such that $\nu _Y(f)\neq 0$.  
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+Let $X$ be a Hartshorne scheme. A \textbf{Weil divisor} of $X$ is a finite formal sum of prime divisors of $X$. The group of Weil divisor is denoted by $\operatorname{Div}X$. Because of \myref{Theorem}{THPW}, when we define \textbf{principal divisor $\langle f\rangle $ generated by} $f\in K(X)^{\times}$ by 
+\begin{align*}
+\langle f\rangle \triangleq \sum_{\text{ prime divisor }Y} \nu _Y(f) \cdot Y
+\end{align*}
+we know $\langle f\rangle $ is a Weil divisor. We say a Weil divisor is \textbf{effective} if its every coefficient is nonnegative. We say two Weil divisors $D,D'$ are \textbf{linearly equivalent} if $D-D'$ is principal. The \textbf{Weil divisor class group} $\operatorname{Cl}X$ is then just the group of linear equivalence class of Weil divisors, a quotient group of $\operatorname{Div}X$. 
+\section{Cartier divisors}
+Let $(X,\mathcal{O})$ be  a scheme. For each open $U \subseteq X$, denote: 
+\begin{align}
+\label{EQSU}
+S(U)\triangleq \set{s \in \mathcal{O}(U):\text{For all }P \in U, s_P \in \mathcal{O}_P\text{ is a non-zero-divisor.}  }
+\end{align}
+Because $S(U)$ is clearly a  multiplicatively closed subset of $\mathcal{O}(U)$, we have a localization  $\mathcal{K}^-(U)\triangleq S^{-1}(U)\mathcal{O}(U)$. 
+\begin{theorem}
+\textbf{(The image of every unit of $\mathcal{O}(U)$ in every stalk is a non-zero-divisor)} Let $(X,\mathcal{O})$ be a scheme, $U \subseteq X$, $j:\mathcal{O}(U) \rightarrow \mathcal{K}^{-}(U)  $ be the canonical ring homomorphism, and $\mathcal{O}^\times(U)\subseteq \mathcal{O}(U)$ the set of units. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\mathcal{O}^\times(U) \subseteq S(U) $. 
+  \item  $j |_{\mathcal{O}^\times(U)}:\mathcal{O}^\times(U)\rightarrow \mathcal{K}^-(U)$ is injective. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  (i) follows from the fact \customref{THrh}{ring homomorphism respects units}, the fact \customref{THunz}{units are non-zero-divisors in nonzero rings}, and the fact that \customref{THsin}{every stalk of a scheme as a ring is nonzero}. \\
+
+  (ii): Let $a,b \in \mathcal{O}^*(U)$ satisfy $a\quotient 1=b\quotient 1 \in \mathcal{K}^- (U)$. Let $s \in S(U)$ satisfies $s(a-b)=0$. We then have $s_P(a-b)_P=0$ for all $P \in U$, which by definition of $S(U)$ implies $(a-b)_P=0$ for all $P \in U$. This by the \customref{THgpos}{the relationship between sheaf and its stalk} implies  $a-b =0 \in \mathcal{O}(U) $, as desired. 
+\end{proof}
+
+Let $V \subseteq U$, $j_V:\mathcal{O}(V)\hookrightarrow  \mathcal{K}^-(V)$ be the canonical ring homomorphism, and $\operatorname{Res}_{\mathcal{O}}$  the restriction map from $\mathcal{O}(U)$ to $\mathcal{O}(V)$, because $j_V\circ \operatorname{Res}_{\mathcal{O}}:\mathcal{O}(U)\rightarrow \mathcal{K}^-(V)$ clearly send each element of  $S(U)$ to a unit in $\mathcal{K}^-(V)$, we may induce unique ring homomorphism  $\operatorname{Res}_{\mathcal{K}^-}: \mathcal{K}^-(U)\rightarrow \mathcal{K}^-(V)$ via universal property of localization:  
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXGJ1bGxldCJdLFszLDAsIlxcYnVsbGV0Il0sWzAsMywiXFxidWxsZXQiXSxbMywzLCJcXGJ1bGxldCJdLFswLDJdLFswLDFdLFsxLDNdLFsyLDNdXQ==
+\[\begin{tikzcd}
+	\mathcal{O}(U)  &&& \mathcal{K}^-(U)  \\
+	\\
+	\\
+	\mathcal{O}(V)  &&& \mathcal{K}^-(V) 
+	\arrow["j_U",hook,from=1-1, to=1-4]
+	\arrow["\operatorname{Res}_{\mathcal{O}}",from=1-1, to=4-1]
+	\arrow["\operatorname{Res}_{\mathcal{K} }\triangleq \tilde{j_V \circ \operatorname{Res}_{\mathcal{O}}} ",dotted,from=1-4, to=4-4]
+	\arrow["j_V", hook,from=4-1, to=4-4]
+\end{tikzcd}\]
+Chasing the diagrams, clearly our assignment $U \mapsto \mathcal{K}^-(U)$ forms a ring-valued presheaf on $X$. The \textbf{sheaf $\mathcal{K}$ of total ring of fraction} on $X$ is the sheafification of  $\mathcal{K}^-$. Now, because \customref{THshe}{injectivity of sheaf morphism can be translated to stalk and sheafification on stalk is isomorphism}, we have:  
+\begin{align*}
+\mathcal{O}_P^{\times} \hookrightarrow \mathcal{K}^{-}_P \hookrightarrow \mathcal{K}_P  
+\end{align*}
+Then because  \customref{THshe}{injectivity of induced morphism on stalks can be translated back to the whole sheaf morphism}, we have 
+\begin{align*}
+\mathcal{O}^{\times}(U) \hookrightarrow \mathcal{K}^{\times}(U)
+\end{align*}
+We may now define a \textbf{Cartier divisor} on $X$ to be a global section of the sheaf $\mathcal{K}^\times\quotient \mathcal{O}^\times$. Note that given an open cover $V_i$ of  $X$ with $f_i \in \mathcal{K}^{\times}(V_i)$ that satisfies $f_i \quotient f_j \in \mathcal{O}(V_i \cap V_j)$, we can uniquely identify it as a Cartier divisor. Note that the sheaf $\mathcal{K}$ of total ring of fraction is clearly an $\mathcal{O}_X$-module under extension of scalar. Let $(V_i,f_i \in \mathcal{K}^{\times}(V_i) )$ represent a Cartier divisor $D$. Its \textbf{associated} $\mathcal{O}_X$-module $\mathcal{L}(D)$ is a sub-$\mathcal{O}_X$-module of $\mathcal{K}$ defined by
+\begin{align*}
+\Gamma (U,\mathcal{L}(D))\triangleq \set{ s \in \mathcal{K}(U):\text{For all }i,s |_{V_i \cap U} = g(f_i^{-1}|_{V_i \cap U})\text{ for some }g \in \mathcal{K}(V_i \cap U)} 
+\end{align*}
+\begin{theorem}
+\label{THoCiK}
+\textbf{(One-to-one correspondence between Cartier divisors and invertible sub $\mathcal{O}_X$-module of $\mathcal{K}$)} Let $X$ be a  scheme. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item The map $D\mapsto  \mathcal{L}(D)$ forms a one-to-one correspondence between the set of Cartier divisor and the set of invertible sub-$\mathcal{O}_X$-modules of $\mathcal{K}$.   
+  \item If $X$ is integral, then every invertible  $\mathcal{O}_X$-module is $\mathcal{O}_X$-module isomorphic to some sub-$\mathcal{O}_X$-module of $\mathcal{K}$.   
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Hartshorne II.6.13 and Hartshorne II.6.15. 
+\end{proof}
+A \textbf{locally factorial} scheme is a scheme whose locals rings are all UFDs. Clearly, \customref{THrlrU}{a nonsingular abstract variety is locally factorial}.
+\begin{theorem}
+  \textbf{(Group isomorphism between group of Weil divisors and group of Cartier divisor for locally factorial integral separated Noetherian scheme)} Let $X$ be an integral separated Noetherian locally factorial scheme. Because \customref{THrlrU}{one-Krull-dimensional local UFD are regular}, we know $X$ is Hartshorne, and thus we can talk about the Weil divisor group $\operatorname{Div}X$. Then, there exist a group isomorphism between $\operatorname{Div}X$ and $\Gamma  (X,\mathcal{K})$. 
+\end{theorem}
+\begin{proof}
+Hartshorne II.6.11. 
+\end{proof}
+
+\section{Differential}
+Let $A$ be a ring,  $B$ be an $A$-algebra, and  $M$ a $B$-module. An  \textbf{$A$-derivation of $B$ into  $M$} is a map $d:B\rightarrow M$ such that 
+\begin{enumerate}[label=(\roman*)]
+  \item $d$ respect addition. 
+  \item $d(bb')=bdb'+b'db$. 
+  \item $da=0$ for all  $a \in A$. 
+\end{enumerate}
+The \textbf{module of relative differential forms} of $B$ over $A$ to is a  $B$-module $\Omega_{B\quotient A}$ together with an $A$-derivation  $d:B\rightarrow \Omega_{B \quotient A}$ that satisfies \textbf{the universal property}: For any $B$-module  $M$, and for any  $A$-derivation  $d':B\rightarrow M$, there exists a unique $B$-module homomorphism $f: \Omega_{B \quotient A}\rightarrow M$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsMyxbMiwwLCJcXE9tZWdhX3tCL0F9Il0sWzAsMCwiQiJdLFsyLDIsIk0iXSxbMSwwLCJkIl0sWzEsMiwiZCciLDJdLFswLDIsImYiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XV0=
+\[\begin{tikzcd}
+	B && {\Omega_{B/A}} \\
+	\\
+	&& M
+	\arrow["d", from=1-1, to=1-3]
+	\arrow["{d'}"', from=1-1, to=3-3]
+	\arrow["f", dotted, from=1-3, to=3-3]
+\end{tikzcd}\]
+commutes.  
+
+
+\chapter{I don't fucking know}
+\section{Part 1}
+Let $X$ be a $n$-topological-dimensional nonsingular variety over $k$. I don't understand how to construct the \textbf{tangent $\mathcal{O}_X$-module} $\Omega_{X \quotient k}$. Its \textbf{canonical $\mathcal{O}_X$-module} is $\omega_X \triangleq \extp^n \Omega_{X\quotient k}$.
+\begin{theorem}
+\textbf{(Canonical $\mathcal{O}_X$-module is invertible)} Let $X$ be a nonsingular abstract variety over $k$. Then, its canonical $\mathcal{O}_X$-module $\omega_{X}$ is invertible. 
+\end{theorem}
+\begin{proof}
+?
+\end{proof}
+Because $\omega_X$ is invertible and abstract varieties are integral, we know \customref{THoCiK}{$\omega_X$ is $\mathcal{O}_X$-module isomorphic to some sub-$\mathcal{O}_X$-module of the $\mathcal{O}_X$-module $\mathcal{K}$ of total ring of fraction on $X$}, which implies \customref{THoCiK}{$\omega_X= \mathcal{L}(D)$ for some unique Cartier divisor  $D$}. 
+\chapter{Not used yet}
+ \section{Dimension Theory}
+\label{DT}
 
 Let $X\subseteq \C^n$ be an affine variety, and let $M$ be an  $A(X)$-module. We may define a presheaf $\tilde{M}$ of abelian groups on $X$ by setting $\tilde{M}(U)$ to be the set of functions $s$ from $U$ to  $\bigcup_{P \in U}M_P$ such that: 
 \begin{enumerate}[label=(\roman*)]
@@ -3042,49 +3596,6 @@ We say a sheaf $\mathcal{F}$ of abelian groups on $X$ is  \textbf{quasi-coherent
 \mathcal{F} |_{U_\alpha } = \tilde{M_\alpha} 
 \end{align*}
 We say $X$ is \textbf{coherent} if  $M_\alpha $ are moreover all finitely generated. 
-
-
-
-\chapter{Not used yet}
-\section{Maybe later}
-\begin{theorem}
-\textbf{(Algebraic structure of global ring, local ring, and function field of projective quasi variety)} Let $X\subseteq \P^n$ be a projective  quasi variety. We have 
-\begin{enumerate}[label=(\roman*)]
-  \item $\mathscr{O}(X)=k$. 
-  \item $\mathscr{O}_{p,X}\cong  \Gamma (X)_{(\mathfrak{m}_p)}$ for all $p \in X$.  
-  \item $K(X)\cong  \Gamma (X)_{(\langle x\rangle )}$. 
-\end{enumerate}
-\end{theorem}
-\section{Some Fulton}
-
-
-Given two affine varieties $V \subseteq \A^n,W\subseteq \A^m$, we say mapping $\phi:V\rightarrow W$ is a \textbf{polynomial map}\footnote{One may check that polynomial maps and affine varieties together form a category} if there are polynomials $T_1,\dots ,T_m \in k[x_1,\dots ,x_n]$ such that $\phi(a)=(T_1(a),\dots ,T_m (a))$ for all $a \in V$. Every mapping $\phi:V\rightarrow W$, polynomial or not, induce a ring homomorphism 
-\begin{align*}
-  \tilde{\phi}:\mathscr{F}(W,k)\rightarrow  \mathscr{F}(V,k)\quad  f \mapsto  f \circ \phi   
-\end{align*}
-Clearly, if $\phi$ is a polynomial map, then $\tilde{\phi}$ maps $\Gamma (W)$ into $\Gamma  (V)$ and is in fact an $\A$-algebra homomorphism.  By \myref{proposition}{un2}, there exists an obvious one-to-one correspondence between $(k[x_1,\dots ,x_n])^m$ and some subcollection of the space of polynomials map from $\A^n$ to  $\A^m$, so if polynomial map  $T:\A^n \rightarrow \A^m$ satisfies
-\begin{align*}
-  \forall  a \in \A^n,T(a)=(T_1(a),\dots ,T_m(a))\quad,\text{ for some }T_1,\dots ,T_m \in k[x_1,\dots ,x_n]
-\end{align*}
-it make sense for us to denote $T=(T_1,\dots ,T_m)$. 
-\begin{theorem}
-\label{un3}
-  \textbf{(Natural one-to-one correspondence between $\operatorname{Hom}(\Gamma (W),\Gamma (V))$ and $\operatorname{Hom}(V,W)$)} Given two affine variety $V \subseteq \A^n,W \subseteq \A^m$, if we denote  
-\begin{align*}
-  \operatorname{Hom}(V,W)&\triangleq \set{\text{polynomial }\phi : V \rightarrow W} \\
-  \operatorname{Hom}(\Gamma W, \Gamma  V)&\triangleq \set{\text{$\A$-algebra homomorphism  $\pfi : \Gamma  (W)\rightarrow \Gamma (V)$}}
-\end{align*}
-then the mapping $\phi \mapsto  \tilde{\phi}$ forms a bijection between them.  
-\end{theorem}
-\begin{proof}
-It is easy to check the mapping $\phi \mapsto \tilde{\phi}$ is injective. We now prove that it is surjective. Fix $\alpha  \in \operatorname{Hom}(\Gamma W,\Gamma V)$. Let $T_i \in k[x_1,\dots ,x_n]$ satisfies $\alpha ([x_i])=[T_i]$ for each $i$, and define polynomial map $T\triangleq (T_1,\dots ,T_m): \A^n \rightarrow \A^m$. Note that $\Gamma  (A^n)\cong  k[x_1,\dots ,x_n]$. It is then easy to check $\tilde{T}: \Gamma (A^m)\longrightarrow \Gamma  (A^n)$ maps $I (W)$ into $I(V)$, which allow us to check $T(V) \subseteq W$. To finish the proof, just check $\tilde{T|_V}:\Gamma W \rightarrow \Gamma V$ is identical with $\alpha $. 
-\end{proof}
-A polynomial map $\phi : V\rightarrow W$ is an \textbf{$k$-affine variety isomorphism} if it's bijective with inverse being also a polynomial map. \myref{Theorem}{un3} shows that two affine varieties are isomorphic if and only if their coordinate rings are.\\
-
-By an \textbf{affine change of coordinate} on $\A^n$, we mean a bijective polynomial map $T: \A^n \rightarrow  \A^n$ such that each of its component $T_i \in k[x_1,\dots ,x_n]$ is of degree $1$.  \\
-
- \section{Dimension Theory}
-\label{DT}
 \begin{theorem}
 \textbf{(Equivalent definition of variety dimension: Krull dimension of coordinate ring)} Given variety $V\subseteq \A^n$, its dimension equals to the Krull dimension of its coordinate ring $\Gamma  (V) \cong k[x_1,\dots ,x_n]\quotient I(V)$.  
 \end{theorem}
