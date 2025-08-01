@@ -654,6 +654,7 @@ Let $x \in C$. Because $C$ is integrally over $B$, we know
  \begin{align*}
 x^n+b_{n}x^{n-1}+ \cdots + b_1=0,\quad \text{for some }b_1,\dots ,b_{n} \in B
 \end{align*}
+\end{proof}
 \begin{theorem}
 \label{THrll}
 \textbf{(Regular local rings are integrally closed domain)} Let $(A,\mathfrak{m},k)$ be a regular local ring. Then:
@@ -1641,7 +1642,7 @@ Just observe that given any two closed sets $F_1,F_2 \subseteq X$, the statement
 \textbf{(Continuity preserves irreducibility)} Let $X$ be an irreducible topological space and $f:X\rightarrow Y$ a continuous map. Then, the image $f(X)$ is irreducible. 
 \end{theorem}
 \begin{proof}
-
+Use the \customref{irrtop}{first definition of irreducibility}. 
 \end{proof}
 By Zorn's Lemma\footnote{Clearly $\set{x}$ is irreducible. Let $E_n$ be an ascending chain of irreducible set containing  $x$. To see its upper bound is also irreducible, assume it isn't and cause a contradiction by showing  $E_n$ are reducible for large  $n$.}, every $x \in X$ has some not necessarily unique maximal irreducible set $Y$ containing $x$. We call these maximal irreducible sets  \textbf{irreducible components of $X$}. Because \customref{IaC}{closure of an irreducible set is also irreducible}, irreducible components are closed. For ease in \customref{Morphism}{future section on quasi variety morphism}, we note that: 
 \begin{equiv_def}
@@ -1940,6 +1941,7 @@ A \textbf{normal variety} is a variety whose local ring at each point is regular
 \end{proof}
 \begin{equiv_def}
 \textbf{(Serre's criteria for normality)} Let $A$ be an Noetherian ring. $A$ is integrally closed domain if and only if for each $\mathfrak{p}\in \operatorname{Spec}(A)$, we have $\operatorname{ht}(\mathfrak{p})\leq 1$, $A_{\mathfrak{p}}$ is regular, and $\operatorname{depth}(A_{\mathfrak{p}})\geq \operatorname{inf} \set{2,\operatorname{ht}(\mathfrak{p})}$. 
+\end{equiv_def}
 \begin{proof}
 
 \end{proof}
@@ -2615,7 +2617,36 @@ Finally, we claim $l\triangleq 0$ suffice, which follows from noting:
 
 
 \end{proof}
+\section{Blowing up}
+Recall that $\A^n \times \P^{n-1}$ is a quasi-projective variety such that whose coordinate ring are:
+\begin{align*}
+\set{f \in k[x_1,\dots ,x_n,y_1,\dots ,y_n]: f\text{ is homogeneous in }\textbf{y}.}
+\end{align*}
+The \textbf{blowing up of $\A^n$ at the origin  $O \in \A^n$} is defined to be the closed subset 
+\begin{align*}
+X \triangleq Z(x_iy_j-x_jy_i)
+\end{align*}
+\begin{theorem}
+\textbf{(Properties of blowing up)} Let $X\subseteq \A^n \times \P^{n-1}$ be the blowing up of $\A^n$ at the origin  $O \in \A^n$, and let $\phi: X\rightarrow \A^n$ be the projection map. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item If $\textbf{x}\neq \textbf{0}\in \A^n$, then $\phi^{-1}(\textbf{x})= \set{(\textbf{x}, [\textbf{x}])}$ consists of a single point. 
+  \item  $\phi^{-1}(\textbf{0})=\textbf{0} \times \P^{n-1}$ 
+  \item For any direction $[\textbf{y}]\in \P^{n-1}$, the point $(\textbf{0},[\textbf{y}]) \in X$ lies in the closure of:\footnote{Note that the closures of the \myref{set}{tty} are the same in either $X$ or  $\A^n \times \P^{n-1}$. }
+\begin{align}
+\label{tty}
+    \set{(t\textbf{y},[\textbf{y}])\in X: t \in k^{\times}}\text{ in }X. 
+\end{align}
+\item $X$ is irreducible.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i): $\set{\textbf{x} \times [\textbf{x}]} \subseteq \phi^{-1}(\textbf{x})$ is clear. Let $\textbf{x} \times [\textbf{y}] \in \phi^{-1}(\textbf{x})$. To see $[\textbf{y}]=[\textbf{x}]$, WLOG suppose $x_1\neq 0$, and observe from definition of $X$ that  $y_i= \frac{x_i}{x_1}y_1$ for all $i$. (ii) is clear. To see (iii), just observe $\set{(t\textbf{y},[\textbf{y}]): t\in k}$ is closed in $\A^n \times \P^{n-1}$. \\
 
+(iv): Note that $\phi^{-1}(\A^n - O)$ is irreducible since it is quasi variety isomorphic to $\A^n - O$. To see $\phi^{-1}(\A^n - O)$ is irreducible, just use (iii) to deduce that  $\phi^{-1}(\A^n-O)$ is dense in $X$.  
+\end{proof}
+\begin{definition}
+\textbf{(Blowing up of an affine variety)} Let $Y\subseteq \A^n$ be a variety passing through $O$. Its \textbf{blowing up} at $O$ is the set $\tilde{Y}\triangleq  \overline{ \phi^{-1}(Y-O)}$ together with the restriction map $\phi: \tilde{Y} \rightarrow Y $. 
+\end{definition}
 \section{Intersection}
 \begin{theorem}
 \textbf{(Affine Dimension Theorem)} Let $k$ be closed, $Y,Z$ be two varieties of dimensions  $r,s$ in  $\A^n$. Every irreducible component  of  $Y \cap Z$ has dimension $\geq r+s-n$. 
@@ -2864,7 +2895,6 @@ Therefore, by \customref{sdt}{fake dimension theorem}, $\mathfrak{p}_i \in \set{
 \begin{proof}
 This follows from \customref{GBT}{Bezout theorem for a variety and a hypersurface in $\P^n$} and the fact  \customref{Dos}{$\operatorname{deg}(P_i)=1$ and  $\operatorname{deg}(H_j)=\operatorname{deg}(F_j)$}. 
 \end{proof}
-\section{Weil conjectures}
 \chapter{Schemes}
 \section{Direct limit}
 We say that a pair $(X,\leq )$ forms a \textbf{preordered set} f the relation $\leq $ is reflexive and transitive. Given a preordered set $(X,\leq )$, an element $x \in X$ is called an \textbf{upper bound} of a subset $Y \subseteq X$ if  $y\leq x$ for all $y \in Y$. If every finite subset of $X$ has an upper bound, then  $(X,\leq )$ is called a \textbf{directed set}.  \\
@@ -3287,9 +3317,12 @@ Such functor is bijective.
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-(ii): https://stacks.math.columbia.edu/tag/02IZ?utm_source=chatgpt.com \\
+(ii): https://stacks.math.columbia.edu/tag/02IZ?utm_source=chatgpt.com 
+
 
 \end{proof}
+
+
 
 Let $S$ be a  $\N$-graded ring. Clearly,  $S_+ \triangleq \bigoplus_{d>0} S_d$ forms an ideal. We define:
 \begin{align*}
@@ -3417,6 +3450,13 @@ A \textbf{closed subscheme} of $X$ is an equivalence class of closed immersions,
 	\arrow["{f'}"', from=3-1, to=1-3]
 \end{tikzcd}\]
 commutes. Note that from our definition, we can always treat the underlying topological space of closed subscheme $Y$ of  $X$ as a subset of  $X$, even though the structure sheaf may not be the restriction of that of  $X$.
+\section{$\mathcal{O}_X$-modules}
+
+Given a ringed space $(X,\mathcal{O}_X)$, if we say a sheaf $\mathcal{F}$ of abelian groups on $X$ is a $\mathcal{O}_X$\textbf{-module}, we are assigning each abelian group $\mathcal{F}(U)$ a $\mathcal{O}_X(U)$-module structure compatible not only with the addition of $\mathcal{F}(U)$ but also the restriction maps in the sense that: 
+\begin{align*}
+  (fs)|_V= (f|_V)(s|_V),\quad \text{ for each }f\in \mathcal{O}_X(U),s \in \mathcal{F}(U)\text{ and }V \subseteq U
+\end{align*}
+An \textbf{$\mathcal{O}_X$-module morphism} is then just a sheaf morphism such that all $\mathcal{F}(U) \rightarrow \mathcal{G}(U)$ are also $\mathcal{O}_X(U)$-module homomorphisms. An  $\mathcal{O}_X$-module $\mathcal{F}$ is \textbf{free of rank $\operatorname{card}(I)$} if it is a direct sum $\bigoplus_{I}\mathcal{O}_X$.  An $\mathcal{O}_X$-module $\mathcal{F} $ is \textbf{locally free} if there exists open cover $U_\alpha $ of $X$ on which all the restriction are free $\mathcal{O}_{U_\alpha}$-module. An $\mathcal{O}_X$-module $\mathcal{F} $ is \textbf{locally free of rank} $\operatorname{card}(I)$, if there exists open cover $U_\alpha$ of $X$ on which all the restriction are free $\mathcal{O}_{U_\alpha }$-module of rank $\operatorname{card}(I)$. Let $(X,\mathcal{O}_X)$ be a locally ringed space, an $\mathcal{O}_X$-module $\mathcal{F}$ is said to be \textbf{invertible} if it is locally free of rank $1$. 
 \section{Schemes over $S$}
 Let $S$ be a fixed scheme. A  \textbf{scheme over} $S$ is a scheme $X$ together with a scheme morphism  $X \rightarrow S$. Let $j_X\rightarrow S,j_Y:Y \rightarrow S$ be two scheme over $S$. A $S$\textbf{-scheme morphism} from $X$ to $Y$ is a scheme morphism  $f:X\rightarrow Y$ that makes the diagram: 
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJYIl0sWzIsMCwiWSJdLFsxLDIsIlMiXSxbMCwyLCJqX1giLDJdLFsxLDIsImpfWSJdLFswLDEsImYiXV0=
@@ -3563,7 +3603,7 @@ Let schemes $X,Y$ have finitely many irreducible components. We say a scheme mor
 
 
 
-\section{$\mathcal{O}$-modules}
+\section{$\mathcal{O}$-modules for schemes}
 Given a ringed space $(X,\mathcal{O}_X)$, if we say a sheaf $\mathcal{F}$ of abelian groups on $X$ is a $\mathcal{O}$\textbf{-module}, we are assigning each abelian group $\mathcal{F}(U)$ a $\mathcal{O}(U)$-module structure compatible not only with the addition of $\mathcal{F}(U)$ but also the restriction maps in the sense that: 
 \begin{align*}
   (fs)|_V= (f|_V)(s|_V),\quad \text{ for each }f\in \mathcal{O}(U),s \in \mathcal{F}(U)\text{ and }V \subseteq U
@@ -3813,26 +3853,159 @@ Let $X$ be a normal abstract variety. By a \textbf{pair} $(X,\Delta)$,  we mean 
 
 
 
-Let $Y$ be an abstract variety. We say a scheme morphism $f:X\rightarrow Y$ is a \textbf{resolution of singularities} if $X$ is a nonsingular abstract variety with  $f$ being proper birational. \\
+Let $Y$ be a normal abstract variety. We say a scheme morphism $f:X\rightarrow Y$ is a \textbf{resolution of singularities} if $X$ is a nonsingular abstract variety with  $f$ being proper birational. Let $D$ be a Cartier divisor of $Y$ defined in term of local section  $\set{(U_i,g_i \in \mathcal{K}^{\times}(U_i) )}$. Its \textbf{pullback} $f^*(D)$ is defined by $\set{(f^{-1}(U_i),f^{\sharp}(g_i))}$  . \\
 
-Let $Y$ be a normal abstract variety and  $f:X\rightarrow Y$ a resolution of singularity. A prime divisor $D$ of $X$ is \textbf{exceptional}  
 
+
+Let $X,Y$ be two normal abstract variety, and $f:X\rightarrow Y$ a proper birational scheme morphism. The \textbf{exceptional locus} $\operatorname{Exc}(f)$ is defined to be the collection of $x \in X$ such that there exists no neighborhood $U$ of $x$ and neighborhood  $V$ of  $f(x)$ such that $f|_U:U \rightarrow V$ forms a scheme isomorphism. 
+\begin{equiv_def}
+\textbf{(Exceptional divisor)} Let $D$ be a prime divisor of $X$, and $f:X\rightarrow Y$ a proper birational scheme morphism. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $D \subseteq \operatorname{Exc}(f)$. 
+  \item $\operatorname{codim}_Y(f(D))\geq 2$. 
+\end{enumerate}
+\end{equiv_def}
+\begin{theorem}
+\textbf{(Smooth implies log canonical)} Let $f\inc[x,y,z]$ be homogeneous. If $(f=0)\subseteq \P^2$ is smooth, then $(f=0) \subseteq \P^2$ is log canonical. 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
 \section{Log canonical threshold}
-Fix $n\geq 1$. We call $w \in (\Z_0^+)^n$ \textbf{weight vectors}. Given a monomial $c x_1^{\alpha _1}\cdots x_n ^{\alpha _n}\in \C[x_1,\dots ,x_n]$, we define its \textbf{degree respect to $w$} by: 
+Fix $n\geq 1$. We call $w \in (\Z_0^+)^n$ \textbf{weight vectors}. Given a monomial $c z_1^{\alpha _1}\cdots z_n ^{\alpha _n}\in \C[z_1,\dots ,z_n]$, we define its \textbf{degree respect to $w$} by: 
 \begin{align*}
-\operatorname{deg}_w (x_1^{\alpha_1 }\cdots x_n ^{\alpha _n})\triangleq \sum_{i=1}^n  w_i \alpha_i
+\operatorname{deg}_w (z_1^{\alpha_1 }\cdots z_n ^{\alpha _n})\triangleq \sum_{i=1}^n  w_i \alpha_i
 \end{align*}
-Let $f$ be a holomorphic $\C$-valued function from some neighborhood of  $\textbf{0}\inc^n$. On some neighborhood of $\textbf{0}$, we may write: 
+Let $f$ be a holomorphic $\C$-valued function defined on some neighborhood of  $\textbf{0}\inc^n$.  Its \textbf{log canonical threshold} is defined by: 
 \begin{align*}
-f(\textbf{x})= \sum_{\alpha } c_\alpha \textbf{x}^{\alpha },\quad \text{ where $\alpha $ are multi-indices.}
+c_0 (\C^n,f)\triangleq \operatorname{sup} \set{c\inr_0^+: \abso{f}^{-c}\text{ is locally $L^2$ near $0$.}}
 \end{align*}
-Its \textbf{degree respect to $w$} is then defined by 
+\begin{equiv_def}
+\textbf{(Log canonical threshold)} Let $f$ be a holomorphic $\C$-valued function defined on some neighborhood of  $\textbf{0}\inc^n$. The following real numbers exists and are equivalent:
+\begin{enumerate}[label=(\roman*)]
+  \item $\operatorname{sup} \set{c \inr: (\C^n, cZ(f))\text{ is log canonical near }0}$. 
+  \item The log canonical threshold of  $f$.  
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+  Highly nontrivial. This statement in proved in Proposition 8.2 (which is proved in Proposition 3.20) of the note \emph{Singularities of Pairs} by J.Kollar.
+\end{proof}
+Let $f$ be a holomorphic $\C$-valued function defined on some neighborhood of  $\textbf{0}\inc^n$. On some  neighborhood of $\textbf{0}$, we may write: 
 \begin{align*}
-\operatorname{deg}_w(f)\triangleq \min \set{\operatorname{deg}_w(x^{\alpha }):c_\alpha \neq 0}
+f(\textbf{z})= \sum_{\alpha } b_\alpha \textbf{z}^{\alpha },\quad \text{ where $\alpha $ are multi-indices.}
 \end{align*}
+We define: 
+\begin{enumerate}[label=(\roman*)]
+  \item its \textbf{order of zero} at origin to be $\operatorname{mult}_0(f)\triangleq \min  \set{\abso{\alpha }\inz_0^+ :b_\alpha  \neq 0 }$. 
+  \item its \textbf{weighted multiplicity} to be $w(f)\triangleq \min \set{\operatorname{deg}_w(\textbf{z}^{\alpha }): b_\alpha \neq 0 }$, when a weight vector $w\in (\Z_0^+)$  is given. 
+  \item its \textbf{weighted homogeneous leading term} to be $f_w \triangleq \sum_{\abso{\alpha }= w(f)}b_\alpha \textbf{z}^{\alpha }$. 
+  \item $f$ to be \textbf{critical} at $\textbf{z}'$ if  $\frac{\partial f}{\partial z_i}\big|_{\textbf{z}'}=0$ for all $i$.  
+\end{enumerate}
+Let $f:U\rightarrow \C,g:V\rightarrow \C$ be two holomorphic functions. We say they are \textbf{holomorphically equivalent} if there exists open subsets $U'\subseteq U,V' \subseteq V$, an $u\inc^\times$, and a biholomorphic function $\pfi : U' \rightarrow V'$ such that 
+\begin{align*}
+f(\textbf{z})= u g(\pfi (\textbf{z})),\quad \text{ for all }\textbf{z} \in U'
+\end{align*}
+If $f:U\rightarrow \C$ and $g:V\rightarrow \C$ are holomorphically equivalent, we write $f\sim  g$. 
+\begin{theorem}
+\textbf{(Complex Morse lemma)}  Let $U \subseteq \C^n$ be a neighborhood of origin, and let $f:U \rightarrow \C$ be holomorphic. 
+\end{theorem}
 
 
 
+
+
+Recall that the absolute convergent domain of a power series is always a union of polydiscs centered at origin. Therefore, we may talk about the \textbf{convergent power series ring} $\C\set{z_1,\dots ,z_n}$. 
+\begin{theorem}
+\textbf{(Process to find coordinate change that have higher remainder weight)} Let $U\subseteq \C^n$ be a neighborhood of $\textbf{0}$, and let $f:U \rightarrow \C$ be a nonzero holomorphic function critical at $\textbf{0}$. Let:
+\begin{enumerate}[label=(\roman*)]
+  \item $w$ be a weight vector. 
+  \item $J \subseteq \C \set{z_1,\dots ,z_n}$ be the ideal generated by $\partial f_w\quotient \partial z_1,\dots , \partial f_w \quotient \partial z_n$. 
+  \item $\set{u_i}$ be a basis for the $\C$-vector space $\C \set{z_1,\dots ,z_n} \quotient J$. 
+\end{enumerate}
+ For any $N> w(f)$, there exists some $\phi$ defined on some neighborhood of $\textbf{0}$  such that: 
+\begin{enumerate}[label=(\roman*)]
+  \item  $w(\phi)>N$. 
+  \item We may write   $ f \sim  f_w+ \sum_{w(u_i)\leq N}a_i u_i + \phi$, for some  $a_i \inc,u_i \inc \set{z_1,\dots ,z_n}$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Let $f=f_w+g$, and define $d_0 \triangleq w(f),d_1\triangleq w(g)$. Because $g_w$ is a weighted homogeneous polynomial, we may write $g_w= \sum_{i=1}^r a_ih_i$ where $h_i$ are monomials of weighted degree $d_1$, and $a_i\inc$. WLOG, let $h_1,\dots ,h_m$ be the collection of $h_i \not\in J$. We may then write: 
+\begin{align*}
+h_{m+1} + \cdots + h_r = \sum_{j=1}^n v_j \frac{\partial f_w}{\partial z_j},\quad \text{ for some }z_j \in \C \set{\textbf{z}}
+\end{align*}
+This give us: 
+\begin{align*}
+g_w= \sum_{i=1}^m a_ih_i + \sum_{j=1}^n v_j \frac{\partial f_w}{\partial z_j}
+\end{align*}
+Which implies: 
+\begin{align*}
+w\left( \sum_{j=1}^n v_j \frac{\partial f_w}{\partial z_j} \right) = w(g)
+\end{align*}
+How can we then deduce: 
+\begin{align*}
+w(v_j)= w(g)- w\left(\frac{\partial f_w}{\partial z_j}\right),\quad \text{ for all $j$ }? 
+\end{align*}
+\end{proof}
+
+\begin{align*}
+r\triangleq \sum_{\alpha } b_\alpha (\textbf{z}+\textbf{v})^{\alpha }- \sum_\alpha  b_\alpha \textbf{z}^{\alpha }  - \sum b_\alpha v_j \frac{\partial \textbf{z}^{\alpha }}{\partial z_j}
+\end{align*}
+
+
+\begin{theorem}
+\textbf{(Powerful tool)} Let $U \subseteq \C^n$ be a neighborhood of $\textbf{0}$, and let $f:U\rightarrow \C$ be a nonzero holomorphic function. Let $d\triangleq \operatorname{mult}_0(f)$, and let $f_d$ be the degree  $d$ homogeneous part of the Taylor series of $f$. Then: 
+\begin{enumerate}[label=(\roman*)]
+  \item $1\quotient d \leq c_0(f) \leq n \quotient d$. 
+  \item $c_0(f)= n \quotient d \iff  (\P^n , \frac{n}{d}(f_d=0))$  is log canonical. 
+  \item If $(f_d=0) \subseteq \P^{n-1}$ is log canonical, then $c_0(f)=\min \set{1, n\quotient  d}$   
+\end{enumerate}
+Let $w$ be a weight vector. We have:
+\begin{align*}
+c_0(f) \leq \frac{\sum w(x_i)}{w(f)}
+\end{align*}
+If $(f_d=0)\subseteq \P^{n-1}$ is log canonical outside the origin $0$, then equality holds. 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\textbf{(All log canonical threshold for $\C^2$)} Let $U \subseteq \C^2$ be an open set, and let $f:U \rightarrow \C$ be a nonzero holomorphic function. Then the number $c_0(f)$ is one of the following forms: 
+\begin{enumerate}[label=(\roman*)]
+  \item $2\quotient n,\quad n\in \set{2,3,4,\dots }$. 
+  \item 
+    \begin{align*}
+    \frac{m_1+m_2}{km_1m_2+n_1m_2+n_2m_1},\quad \text{ where } -km_1 < n_1-n_2 < km_2,\operatorname{gcd}(m_1,m_2)=1
+    \end{align*}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+Let $U\subseteq \C^n$ be a neighborhood of origin, and let $f:U\rightarrow \C$ be nonzero holomorphic. On a small enough polydisc centered at origin, we may write 
+\begin{align*}
+f(\textbf{z})= \sum_{\alpha } b_\alpha \textbf{z}^{\alpha },\quad \text{ where $\alpha $ are multi-indices.}
+\end{align*}
+We define the  \textbf{zero multiplicity} of $f$ by 
+\begin{align*}
+\operatorname{mult}_0(f)\triangleq  \min \set{\abso{\alpha }: b_\alpha \neq 0} 
+\end{align*}
+\begin{theorem}
+\textbf{(Compute)} Let $f=x^3 +yz^2+ dxy^{2k+2}+ey^{3k+3}$, where $d,e \inc^{\times}$ and $k\inn$. Then 
+\begin{align*}
+f(x,y,z)=0,\frac{\partial f}{\partial x}(x,y,z)=0,\frac{\partial f}{\partial y}(x,y,z)=0,\frac{\partial f}{\partial z}(x,y,z)=0 \implies 
+\end{align*}
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+&\frac{\partial f}{\partial x}= 3x^2 +dy^{2k+2} \\
+&\frac{\partial f}{\partial y}=z^2+d(2k+2)xy^{2k+1}+e(3k+3)y^{3k+2}  \\
+& \frac{\partial f}{\partial z}= 2yz
+\end{align*}
+Because $2yz=0$, we know either $y=0$ or $z=0$. If $y=0$, then  we know $z=0$ from  $\frac{\partial f}{\partial y}=0$ and $x=0$ from  $ \frac{\partial f}{\partial x}=0$. \\
+
+We from now no  
+\end{proof}
 \chapter{Not used yet} 
  \section{Dimension Theory}
 \label{DT}

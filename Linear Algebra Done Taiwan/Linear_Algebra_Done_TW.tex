@@ -374,6 +374,23 @@ for some real $b_i,c_i,\ld_i$ such that $b_i^2<4c_i$ for all  $i$. Because $T$ i
 \end{align*}
 This implies $T^2+b_iT+c_iI$ are invertible, which implies for some $j$, the map $T-\ld_j I$ is not invertible, i.e., for some $j$, the real number $\ld_j$ is an eigenvalue. 
 \end{proof}
+\begin{theorem}
+\textbf{(Classification of quadratic form via spectral theorem)} Let $\F \in \set{\R, \C}$. If $F \in \F[x_1,\dots ,x_n]$ is a homogeneous polynomial of degree $2$, then there exists some linear transformation $\phi : \F^n \rightarrow \F^n$ such that 
+\begin{align*}
+F = \left(\sum_{i=1}^n c_ix_i^2\right) \circ \phi,\quad \text{ for some }c_i \in \F
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $A \in M_n(\F)$ be a square matrix such that: 
+\begin{align*}
+F= \sum_{i,j} a_{i,j}x_ix_j
+\end{align*}
+Clearly, we have: 
+\begin{align*}
+F(x_1,\dots ,x_n)= \textbf{x}^t A  \textbf{x}
+\end{align*}
+By \customref{Spectral Theorem}{spectral theorem}, there exists some $P \in M_n(\F)$ and diagonal $D \in M_n(\F)$ such that  $A=P^t D P$. The proof then follows from letting $\operatorname{diag}D= \set{c_1,\dots ,c_n}$ and $\phi (\textbf{x})\triangleq P \textbf{x}$. 
+\end{proof}
 \section{SVD}
 \label{SVD}
 Let $V,W$ be two finite-dimensional inner product space over $\F$, where $\F=\C$ or  $\R$. Given linear $F:V\rightarrow W$, clearly $F^{\dagger }F\in \operatorname{End}(V)$ is self-adjoint. Therefore, by \customref{Spectral Theorem}{Spectral Theorem}, there exists some orthonormal eigenbasis $\alpha  $ of $V$ with respect to $F^{\dagger }F$.  Clearly, for every pair $v_1,v_2 \in \alpha  $, we have $\langle F(v_1),F(v_2)\rangle =0$ whether $F(v_1),F(v_2)$ are both nonzero or not. This implies that by deleting the zeros and negation of some elements, we may extend $\set{F(v)\in W: v \in \alpha  }$ to an orthonormal basis $\beta$ for $W$ such that every non-zero entry of the $\operatorname{dim}(V)$-by-$\operatorname{dim}(W)$ $\C$-matrix $[F]_{\alpha }^\beta $  is a positive real number and lie in the diagonal. This process is called the \textbf{singular value decomposition of $F$}.  
