@@ -14,6 +14,12 @@
 
 \tableofcontents
 \pagebreak
+\chapter{Elementary Number Theory}
+Let $a,b \in R$ with prime characteristic $p$, we have $(a+b)^p= a^p +b^p $. Moreover, by induction, $(a_1+\cdots + a_n)^{p^e}= a_1^{p^e}+ \cdots + a_n^{p^e}$. 
+\begin{theorem}
+\label{THFLT}
+\textbf{(Fermat's Little Theorem)} $a^p \equiv a \inz$ mod $p$.     
+\end{theorem}
 \chapter{Commutative Algebra} 
 \section{Rings}
 The precise meaning of the term \textbf{ring} varies across different books, depending on the context and purpose. In this note, the multiplication of a ring is always associative, commutative, and has an identity. The additive identity is denoted by $0$. From the axioms, we can straightforwardly show that $x\cdot 0 = 0$ for all $x$. Consequently, the multiplicative and additive identities are always distinct unless the ring contained only one element, and in such case, we say the ring is the \textbf{zero ring}. By \textbf{ring homomorphisms}, we mean mappings between two rings respecting addition\footnote{Respecting addition immediately implies respecting $0$ and negation. Respecting multiplication and multiplicative identity immediately implies respecting units.}, multiplication, and multiplicative identity. 
@@ -33,7 +39,6 @@ The precise meaning of the term \textbf{ring} varies across different books, dep
 
 (iii): $f(u)f(u^{-1})=f(uu^{-1})=f(1)=1$. 
 \end{proof}
-
 
 Clearly, inverse of a bijective ring homomorphism is also a ring homomorphism.\\  
 
@@ -339,7 +344,7 @@ forms a submodule of the direct product. We denote this submodule by $\bigoplus 
 \begin{proof}
 Unroll the definitions. 
 \end{proof}
-We say an $A$-module  is \textbf{finitely generated} if it can be spanned by some of its finite subset. Note that one should be careful with the term "generated", since when one identify a ring as a module over itself, the spanned module and the generated ideal of a fixed set can be distinct. 
+We say an $A$-module  is \textbf{finitely generated} if it can be spanned by some of its finite subset.  
 \begin{theorem}
 \textbf{(Property of finitely generated modules)} Let $M$ be an $A$-module spanned by $\set{x_1,\dots ,x_n}$. $M$ is isomorphic to some quotient modules of $A^n$.\footnote{Albeit seems quite arbitrary and unimportant for now, this property will later prove useful for it guarantees that finitely generated module over rings of some certain properties carry the same property. For example, this shows that \customref{cpoN}{finitely generated module over Noetherian ring is Noetherian}.} 
 \end{theorem}
@@ -774,6 +779,9 @@ If the two rows are exact, $m,p$ are surjective,  $q$ is injective, then  $n$ is
 \end{tikzcd}\]
 If the two rows are exact and $m,p$ are isomorphisms, then $n$ is an isomorphism.  
 \end{lemma}
+
+
+
 \section{Valuation Rings}
 Let $K$ be a field and  $D$ a subring of  $K$. If for each  $x\neq 0 \in K$ either $x \in D$ or $x^{-1} \in D$, then the mapping $K\longrightarrow \operatorname{Frac}(D)$ defined by  
 \begin{align*}
@@ -1059,6 +1067,152 @@ We have shown $\mathfrak{a}_{n-1}$ is Artinian as an $A$-module, and if we apply
 \end{align*}
 We see $\mathfrak{a}_{n-2}$ is also Artinian as an $A$-module. Continuing the same process, we see that indeed  $A=\mathfrak{a}_0$ is Artinian. (as an $A$-module)
 \end{proof}
+\section{Regularity and flat Frobenius}
+
+\begin{theorem} 
+  \textbf{(Well-definedness of Frobenius endomorphism and $R^p$)} Let $R$ be a ring. Define $F: R \rightarrow R$ by $r \mapsto  r^{\operatorname{char}(R)}$. If $R$ has prime characteristic, then $F$ forms a ring homomorphism, and if $R$ is moreover reduced, then $F$ is injective. 
+\end{theorem}
+\begin{proof}
+Clearly $F$ respect multiplication and multiplicative identity. Let $\operatorname{char}(R)$ be prime $p$. To see $F$ also respect addition, just compute:     
+\begin{align*}
+\label{EQxyp}
+  (x+y)^p = \sum_{i=0}^p \binom{p}{i} x^i y^{p-i}= x^p +y^p
+\end{align*}
+where the last equality hold true because $p$ divides $\binom{p}{i}$ for all $0<i<p$. We have shown $F$ forms a ring homomorphism when $R$ has prime characteristic. Now, if $R$ is moreover reduced, then it easy to see $F$ is injective.
+\end{proof}
+Let $R$ be a reduced ring with prime characteristic. We call such $F$ the \textbf{Frobenius endomorphism}. Let $R^p\triangleq F(P)$. Because $R^p$ also is reduced with prime characteristic, we know that the restriction $F|_{R^p}:R^p \rightarrow R^p$ is also a ring endomorphism. Denoting $R^{p^2}\triangleq F(R^p)$, we now get an infinite chain of subrings of $R$: 
+\begin{align*}
+R \supseteq R^p \supseteq R^{p^2} \supseteq R^{p^3} \supseteq \cdots ,
+\end{align*}
+each isomorphic to $R$.
+\begin{theorem}
+\label{THWp}
+\textbf{(Fractional powers are well defined)} Let $R$ be a reduced ring of prime characteristic $p$, and let $K$ be an algebraic closure of  $\operatorname{Frac}(R)$. For each $r \in R$ and $e>1$, there exists a unique $x \in K$, which we from now on denote by $r^{\frac{1}{p^e}}$, such that $x^{p^e}=r$. The set $\set{x \in K : x^{p^e} \in R}$ forms a reduced ring of characteristic $p$, which we denote by $R^{\frac{1}{p^e}}$. Similarly defined, we have an infinite chain of ring: 
+ \begin{align*}
+\cdots \supseteq R^{\frac{1}{p^2}}\supseteq R^{\frac{1}{p}} \supseteq R \supseteq R^p \supseteq R^{p^2} \supseteq \cdots , 
+\end{align*}
+More generally, for all $n\inz,f\in R^{p^n}$, and $a\inn$, when we define the \textbf{fractional power} $f^{ap^n}$, not only it is well-defined in term of the order of taking roots and power:  
+\begin{align*}
+(f^{a})^{p^n}=(f^{p^n})^a
+\end{align*}
+but also satisfies the expected law of arithmetic: 
+\begin{align*}
+  f^{(ap^m)p^n}=f^{ap^{m+n}},\quad \text{ for all }m \inz
+\end{align*}
+\end{theorem}
+\begin{proof}
+Fix $r \in R$. The existence of $x \in K$ satisfying $x^{p^e}=r$ is guaranteed by the algebraic closedness of  $K$. Let $x,y \in K$ satisfy $x^{p^e}=y^{p^e}=r$. To see $x=y$, just recall that  $R$ is reduced and that $(x-y)^{p^e} =x^{p^e}-y^{p^e}=0$. The rest are also straightforward to to check.
+\end{proof}
+\begin{theorem}
+\label{THKrrr}
+\textbf{(Kunz's criteria for regularity of reduced ring with prime characteristic, 1976)} Let $R$ be a reduced ring of prime characteristic $p$. The followings are equivalent:
+\begin{enumerate}[label=(\roman*)]
+  \item $R$ is regular. 
+  \item $R$ is locally free as an $R^p$-module. 
+\end{enumerate}
+\end{theorem}
+\begin{theorem}
+\label{THFfp}
+\textbf{(Frobenius for polynomial rings over finite fields)} Let $p$ be prime, and $R\triangleq \F_p [x_1,\dots ,x_n]$. For all $e\inz$, we have: 
+\begin{align*}
+R^{p^e} = \F_p [x_1^{p^e}, \dots ,x_n ^{p^e}]
+\end{align*}
+Because of such, for all $e\inn$, $R^{\frac{1}{p^e}}$ is a free $R$-module with free basis: 
+\begin{align*}
+\set{x_1^{\frac{a_1}{p^e}}\cdots  x_n^{\frac{a_n}{p^e}} \in R^{\frac{1}{p^e}}:\text{For all }i,0\leq a_i \leq p^e -1 }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Note that the case $e>0$ follows from:  
+\begin{align*}
+  \left(\sum_\alpha  r_\alpha \textbf{x}^{\alpha }\right)^{p^e}= \sum_\alpha r_\alpha \textbf{x}^{p^e \alpha}
+\end{align*}
+which hold true because of \customref{THFLT}{Fermat's little theorem}. The case $e<0$ follows from: 
+\begin{align*}
+\left( \sum_\alpha r_\alpha \textbf{x}^{ \frac{\alpha }{p^e} } \right)^{p^e}= \sum_\alpha r_\alpha \textbf{x}^{\alpha }
+\end{align*}
+which hold true also because of \customref{THFLT}{Fermat's little theorem}. 
+\end{proof}
+
+Let $R\triangleq \F_p[x_1,\dots ,x_n]$. One can also check that $R$ as a $R^p$-module is also free with basis $\set{\textbf{x}^{\alpha }}_{0 \leq \alpha _i \leq p-1 }$. Explicitly, one have: 
+\begin{align*}
+\textbf{x}^{\alpha }= \textbf{x}^{\beta } \textbf{x}^{\gamma },\quad \text{ where } \alpha_i =q\beta_i + \gamma _i \text{ and } 0 \leq \gamma _i \leq p-1  
+\end{align*}
+We have just proved that $R$ is a free  $R^p$-module, therefore locally free. This by \customref{THKrrr}{Kunz criteria} implies $R$ is regular, and most importantly, the affine space $(\F_p)^n$ is smooth.\\
+
+Let $f\in R\triangleq  \F_p[x_1,\dots ,x_n]$ vanishes at $\textbf{0}$, and let $a,e \in \N \cup  \set{0}$. Because \customref{THFfp}{$R^{\frac{1}{p^e}}$ is a free $R$-module with free basis:}
+\begin{align}
+\label{EQfb}
+\set{x_1^{\frac{a_1}{p^e}}\cdots  x_n^{\frac{a_n}{p^e}} \in R^{\frac{1}{p^e}}:\text{For all }i,0\leq a_i \leq p^e -1 }
+\end{align}
+we may write $f^{a \quotient p^e}$ uniquely as a linear combination with respect to this free basis: 
+\begin{align}
+\label{EQfape}
+  f^{\frac{a}{p^e}}= \sum_{0\leq b_i \leq p^e-1} r_\beta  x_1^{\frac{b_1}{p^e}} \cdots x_n ^{\frac{b_n}{p^e}}
+\end{align}
+Moreover, if we let a coprime pair $(c,p^{d})$ satisfies $a\quotient p^e= c \quotient  p^{d}$, when we write $f^{c \quotient p^{d}}$ uniquely as a linear combination with respect to the corresponding free basis: 
+\begin{align*}
+f^{\frac{a}{p^e}}=f ^{ \frac{c}{p^{d}}}= \sum_{0 \leq b_i \leq p^{d}-1} r_{\gamma  } x_1^{\frac{b_1}{p^{d}}} \cdots x_n ^{\frac{b_n}{p^{d}}}
+\end{align*}
+we see that $r_\beta  =0 $ for all $\beta  \not\leq  (p^{e-1},\dots ,p^{e-1})$, and $r_\gamma =r_{\beta }$ for  all $\beta  \leq (p^{e}-1,\dots ,p^{e}-1)$. Because of such, for each $p$-power denominator rational number $a\quotient p^e$, it is well-defined, independent of the representation, whether there exist coefficient $r_\beta \in R$ in \myref{equation}{EQfape} that lies the maximal ideal $\mathfrak{m}\triangleq (x_1,\dots ,x_n)\subseteq R$. We define the $F$\textbf{-threshold} $FT(f)$ of $f$ to be the supremum of all nonnegative $p$-power denominator rational number $a\quotient p^{e}$ such that in \myref{equation}{EQfape}, we have $r_\beta \not \in \mathfrak{m}$ for all $\beta  $. 
+\begin{equiv_def}
+\label{EDFth}
+\textbf{($F$-threshold)} Let $p$ be prime, $R\triangleq \F_p[x_1,\dots ,x_n]$,  $\mathfrak{m}\triangleq (x_1,\dots ,x_n)\subseteq R$, and $f \in R$. The following numbers are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $FT(f)$.  
+  \item $\sup \set{\frac{a}{p^e}:a,e \geq 0 \text{ and }f^{\frac{a}{p^e}}\in \mathfrak{m}R^{\frac{1}{p^e}}}$, where $\mathfrak{m}R^{\frac{1}{p^e}}\subseteq R^{\frac{1}{p^e}}$ is the extension ideal. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+The proof is a consequence of the observation: 
+\begin{align*}
+f^{a\quotient p^e} \text{ isn't in the extension ideal }  \mathfrak{m}R^{\frac{1}{p^e}}\iff  r_\beta  \not \in \mathfrak{m}\text{ for some }\beta  
+\end{align*}
+
+
+
+\end{proof}
+\begin{theorem}
+\label{THWHTY}
+\textbf{(Watanabe, Hara, Takagi, Yoshida, etc. 2004 $F$-threshold converges to log canonical threshold)} Let $f \in\Z [x_1,\dots ,x_n]$. We have 
+\begin{enumerate}[label=(\roman*)]
+  \item $FT(f\text{ mod }p)\leq \operatorname{lct}(f)$ for all $p \gg 0$. 
+  \item $\lim_{p\to \infty} FT(f\text{ mod }p)=\operatorname{lct}(f)$
+\end{enumerate}
+\end{theorem}
+\begin{theorem}
+\label{THLmbf}
+\textbf{(Lucas' modulo binomial formula)} Let $m\geq n \inn$ and $p$ be prime. Writing $m$ and $n$ in their base $p$ extension: $m=\sum_{j=0}^r m_jp^j$ and $n=\sum_{j=0}^r n_jp^j$, we have: 
+\begin{align*}
+\binom{m}{n}\equiv \binom{m_0}{n_0} \binom{m_1}{n_1} \cdots \binom{m_r}{n_r}\quad (\text{mod } p)
+\end{align*}
+\end{theorem}
+\begin{example}
+Consider $x^2+y^3 \in \F_p [x,y]$. Because by \customref{THFLT}{Fermat's little theorem} and \myref{theorem}{THWp} we have 
+\begin{align*}
+  (x^2+y^3)^{\frac{a}{p^e}}= \left(\sum_{i=0}^a \binom{a}{i} x^{2i}y ^{3(a-i)} \right)^{\frac{1}{p^e}}= \sum_{i=0}^a \binom{a}{i} x^{\frac{2i}{p^e}} y ^{ \frac{3(a-i)}{p^e}}
+\end{align*}
+From this, we see that \customref{EDFth}{$(x^2+y^3)^{\frac{a}{p^e}} \not \in \mathfrak{m} R^{\frac{1}{p^e}} $ if and only if} there exists an index $i$ such that: 
+\begin{align}
+\label{EQ2ipe}
+2i < p^e,\quad 3(a-i)< p^e\quad \text{ and }\quad \binom{a}{i}\not \equiv 0\quad (\text{mod }p)
+\end{align}
+Let a pair  $(a\quotient p^e,i)$ satisfies \myref{condition}{EQ2ipe}. We have:
+\begin{align*}
+i \leq \frac{p^e-1}{2}\quad \text{ and }\quad a-i \leq \frac{p^e-1}{3}
+\end{align*}
+which implies 
+\begin{align*}
+a\leq \frac{5p^e -5}{6}\quad \text{ and moreover }\quad \frac{a}{p^e}< \frac{5}{6}
+\end{align*}
+We have shown that $FT(f) \leq \frac{5}{6}$. Now, let $p$ be a prime congruent to $1$ modulo  $6$. Clearly,  $a\triangleq \frac{5p^e-5}{6}$ is an integer. Let $i \triangleq  \frac{p^e-1}{2}$. Because in base $p$, we may write:
+\begin{align*}
+a= \sum \left(\frac{5p-5}{6}  \right)p^j\quad \text{ and } \quad  i= \sum  \left( \frac{p-1}{2} \right)p^j 
+\end{align*}
+by \customref{THLmbf}{Lucas' modulo binomial formula}, we know that that $i=\frac{p^e-1}{2}$ satisfies \myref{condition}{EQ2ipe}. We have shown that for all prime $p$ congruent to $1$ modulo $6$, we have  $FT(f)=\frac{5}{6}$. It now follows from \myref{theorem}{THWHTY} and Dirichlet's theorem that $\operatorname{lct}(f)=\frac{5}{6}$. 
+\end{example} 
+
+
 \section{Localization of ideals}
 Let $I\subseteq A$ be some ideal, clearly its extension is the \textbf{localization of $I$ by $S$} defined by $S^{-1}I= \set{\frac{i}{s}\in S^{-1}A:i \in I}$. We use the notation $S(I)$ to denote the contraction of $S^{-1}I$. For \customref{UoP}{the section on uniqueness of primary decomposition}, we first prove some basic properties of localization of ideals. 
 \begin{theorem}
