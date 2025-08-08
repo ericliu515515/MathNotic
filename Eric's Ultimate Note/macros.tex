@@ -1,0 +1,105 @@
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\bset}[1]{\Big\{ #1 \Big\}}
+\newcommand{\inR}{\in\R}
+\newcommand{\inn}{\in\N}
+\newcommand{\inz}{\in\Z}
+\newcommand{\inr}{\in\R}
+\newcommand{\inc}{\in\C}
+\newcommand{\inq}{\in\Q}
+\newcommand{\norm}[1]{\| #1 \|}
+\newcommand{\bnorm}[1]{\Big\| #1 \Big\|}
+\newcommand{\gen}[1]{\langle #1 \rangle}
+\newcommand{\abso}[1]{\left|#1\right|}
+\newcommand{\myref}[2]{\hyperref[#2]{#1\ \ref*{#2}}}
+\newcommand{\customref}[2]{\hyperref[#1]{#2}}
+\newcommand{\power}[1]{\mathcal{P}(#1)}
+\newcommand{\dcup}{\mathbin{\dot{\cup}}}
+\newcommand{\diam}[1]{\text{diam}\, #1}
+\newcommand{\at}{\Big|}
+\newcommand{\quotient}{\diagup}
+
+\let\originalphi\phi % Store the original \phi in \originalphi
+
+\renewcommand{\phi}{\varphi} % Redefine \phi to \varphi
+
+\newcommand{\pfi}{\originalphi} % Define \pfi to display the original \phi
+
+\newcommand{\diota}{\dot{\iota}}
+\newcommand{\Log}{\operatorname{Log}}
+\newcommand{\id}{\text{\textbf{id}}}
+\usepackage{amsmath}
+
+
+\usepackage{amssymb,mathtools}
+
+\newcommand{\longtwoheadrightarrow}{\relbar\joinrel\twoheadrightarrow}
+
+\makeatletter
+\NewDocumentCommand{\extp}{e{^}}{%
+  \mathop{\mathpalette\extp@{#1}}\nolimits
+}
+\NewDocumentCommand{\extp@}{mm}{%
+  \bigwedge\nolimits\IfValueT{#2}{^{\extp@@{#1}#2}}%
+  \IfValueT{#1}{\kern-2\scriptspace\nonscript\kern2\scriptspace}%
+}
+\newcommand{\extp@@}[1]{%
+  \mkern
+    \ifx#1\displaystyle-1.8\else
+    \ifx#1\textstyle-1\else
+    \ifx#1\scriptstyle-1\else
+    -0.5\fi\fi\fi
+  \thinmuskip
+}
+\makeatletter
+
+
+% The followings are probably about lambda
+\usepackage{pifont}
+\makeatletter
+\newcommand\Pimathsymbol[3][\mathord]{%
+  #1{\@Pimathsymbol{#2}{#3}}}
+\def\@Pimathsymbol#1#2{\mathchoice
+  {\@Pim@thsymbol{#1}{#2}\tf@size}
+  {\@Pim@thsymbol{#1}{#2}\tf@size}
+  {\@Pim@thsymbol{#1}{#2}\sf@size}
+  {\@Pim@thsymbol{#1}{#2}\ssf@size}}
+\def\@Pim@thsymbol#1#2#3{%
+  \mbox{\fontsize{#3}{#3}\Pisymbol{#1}{#2}}}
+\makeatother
+% the next two lines are needed to avoid LaTeX substituting upright from another font
+\input{utxmia.fd}
+\DeclareFontShape{U}{txmia}{m}{n}{<->ssub * txmia/m/it}{}
+% you may also want
+\DeclareFontShape{U}{txmia}{bx}{n}{<->ssub * txmia/bx/it}{}
+% just in case
+%\DeclareFontShape{U}{txmia}{l}{n}{<->ssub * txmia/l/it}{}
+%\DeclareFontShape{U}{txmia}{b}{n}{<->ssub * txmia/b/it}{}
+% plus info from Alan Munn at https://tex.stackexchange.com/questions/290165/how-do-i-get-a-nicer-lambda?noredirect=1#comment702120_290165
+\newcommand{\pilambdaup}{\Pimathsymbol[\mathord]{txmia}{21}}
+\newcommand{\ld}{\lambda}
+% \renewcommand{\lambda}{\pilambdaup}
+
+
+
+\renewcommand{\tilde}{\widetilde}
+\DeclareMathOperator*{\esssup}{ess\,sup}
+\newcommand{\bluecheck}{}%
+\DeclareRobustCommand{\bluecheck}{%
+  \tikz\fill[scale=0.4, color=blue]
+  (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;%
+}
+
+\def\mylongmapsto#1{%
+\begin{tikzpicture}
+\draw (0,0.5mm) -- (0,-0.5mm);
+\newlength\mylength
+\setlength{\mylength}{\widthof{#1}}
+\draw[->] (0,0) -- (1.2\mylength,0) node[above,midway] {#1};
+\end{tikzpicture}
+}
+
+
+%%%Commutative Diagram%%%
+\usepackage{tikz}
+\newcommand*{\DashedArrow}[1][]{\mathbin{\tikz [baseline=-0.25ex,-latex, dashed,#1] \draw [#1] (0pt,0.5ex) -- (1.3em,0.5ex);}}
+

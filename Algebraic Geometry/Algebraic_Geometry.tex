@@ -14,12 +14,6 @@
 
 \tableofcontents
 \pagebreak
-\chapter{Elementary Number Theory}
-Let $a,b \in R$ with prime characteristic $p$, we have $(a+b)^p= a^p +b^p $. Moreover, by induction, $(a_1+\cdots + a_n)^{p^e}= a_1^{p^e}+ \cdots + a_n^{p^e}$. 
-\begin{theorem}
-\label{THFLT}
-\textbf{(Fermat's Little Theorem)} $a^p \equiv a \inz$ mod $p$.     
-\end{theorem}
 \chapter{Commutative Algebra} 
 \section{Rings}
 The precise meaning of the term \textbf{ring} varies across different books, depending on the context and purpose. In this note, the multiplication of a ring is always associative, commutative, and has an identity. The additive identity is denoted by $0$. From the axioms, we can straightforwardly show that $x\cdot 0 = 0$ for all $x$. Consequently, the multiplicative and additive identities are always distinct unless the ring contained only one element, and in such case, we say the ring is the \textbf{zero ring}. By \textbf{ring homomorphisms}, we mean mappings between two rings respecting addition\footnote{Respecting addition immediately implies respecting $0$ and negation. Respecting multiplication and multiplicative identity immediately implies respecting units.}, multiplication, and multiplicative identity. 
@@ -1087,7 +1081,7 @@ R \supseteq R^p \supseteq R^{p^2} \supseteq R^{p^3} \supseteq \cdots ,
 each isomorphic to $R$.
 \begin{theorem}
 \label{THWp}
-\textbf{(Fractional powers are well defined)} Let $R$ be a reduced ring of prime characteristic $p$, and let $K$ be an algebraic closure of  $\operatorname{Frac}(R)$. For each $r \in R$ and $e>1$, there exists a unique $x \in K$, which we from now on denote by $r^{\frac{1}{p^e}}$, such that $x^{p^e}=r$. The set $\set{x \in K : x^{p^e} \in R}$ forms a reduced ring of characteristic $p$, which we denote by $R^{\frac{1}{p^e}}$. Similarly defined, we have an infinite chain of ring: 
+\textbf{(Fractional powers are well defined)} Let $R$ be a reduced domain of prime characteristic $p$, and let $K$ be an algebraic closure   $\operatorname{Frac}(R)$. For each $r \in R$ and $e>1$, there exists a unique $x \in K$, which we from now on denote by $r^{\frac{1}{p^e}}$, such that $x^{p^e}=r$. The set $\set{x \in K : x^{p^e} \in R}$ forms a reduced ring of characteristic $p$, which we denote by $R^{\frac{1}{p^e}}$. Similarly defined, we have an infinite chain of ring: 
  \begin{align*}
 \cdots \supseteq R^{\frac{1}{p^2}}\supseteq R^{\frac{1}{p}} \supseteq R \supseteq R^p \supseteq R^{p^2} \supseteq \cdots , 
 \end{align*}
@@ -1105,7 +1099,7 @@ Fix $r \in R$. The existence of $x \in K$ satisfying $x^{p^e}=r$ is guaranteed b
 \end{proof}
 \begin{theorem}
 \label{THKrrr}
-\textbf{(Kunz's criteria for regularity of reduced ring with prime characteristic, 1976)} Let $R$ be a reduced ring of prime characteristic $p$. The followings are equivalent:
+\textbf{(Kunz's criteria for regularity of reduced ring with prime characteristic, 1976)} Let $R$ be a reduced domain of prime characteristic $p$. The followings are equivalent:
 \begin{enumerate}[label=(\roman*)]
   \item $R$ is regular. 
   \item $R$ is locally free as an $R^p$-module. 
@@ -1154,13 +1148,13 @@ Moreover, if we let a coprime pair $(c,p^{d})$ satisfies $a\quotient p^e= c \quo
 \begin{align*}
 f^{\frac{a}{p^e}}=f ^{ \frac{c}{p^{d}}}= \sum_{0 \leq b_i \leq p^{d}-1} r_{\gamma  } x_1^{\frac{b_1}{p^{d}}} \cdots x_n ^{\frac{b_n}{p^{d}}}
 \end{align*}
-we see that $r_\beta  =0 $ for all $\beta  \not\leq  (p^{e-1},\dots ,p^{e-1})$, and $r_\gamma =r_{\beta }$ for  all $\beta  \leq (p^{e}-1,\dots ,p^{e}-1)$. Because of such, for each $p$-power denominator rational number $a\quotient p^e$, it is well-defined, independent of the representation, whether there exist coefficient $r_\beta \in R$ in \myref{equation}{EQfape} that lies the maximal ideal $\mathfrak{m}\triangleq (x_1,\dots ,x_n)\subseteq R$. We define the $F$\textbf{-threshold} $FT(f)$ of $f$ to be the supremum of all nonnegative $p$-power denominator rational number $a\quotient p^{e}$ such that in \myref{equation}{EQfape}, we have $r_\beta \not \in \mathfrak{m}$ for all $\beta  $. 
+we see that $r_\beta  =0 $ for all $\beta  \not\leq  (p^{e}-1,\dots ,p^{e}-1)$, and $r_\gamma =r_{\beta }$ for  all $\beta  \leq (p^{e}-1,\dots ,p^{e}-1)$. Because of such, for each $p$-power denominator rational number $a\quotient p^e$, it is well-defined, independent of the representation, whether there exist coefficient $r_\beta \in R$ in \myref{equation}{EQfape} that lies the maximal ideal $\mathfrak{m}\triangleq (x_1,\dots ,x_n)\subseteq R$. We define the $F$\textbf{-purity threshold} $FT(f)$ of $f$ to be the supremum of all nonnegative $p$-power denominator rational number $a\quotient p^{e}$ such that in \myref{equation}{EQfape}, we have $r_\beta \not \in \mathfrak{m}$ for all $\beta  $. 
 \begin{equiv_def}
 \label{EDFth}
-\textbf{($F$-threshold)} Let $p$ be prime, $R\triangleq \F_p[x_1,\dots ,x_n]$,  $\mathfrak{m}\triangleq (x_1,\dots ,x_n)\subseteq R$, and $f \in R$. The following numbers are equivalent: 
+\textbf{($F$-purity threshold)} Let $p$ be prime, $R\triangleq \F_p[x_1,\dots ,x_n]$,  $\mathfrak{m}\triangleq (x_1,\dots ,x_n)\subseteq R$, and $f \in R$ vanishes at $\textbf{0}$. The following numbers are equivalent: 
 \begin{enumerate}[label=(\roman*)]
   \item $FT(f)$.  
-  \item $\sup \set{\frac{a}{p^e}:a,e \geq 0 \text{ and }f^{\frac{a}{p^e}}\in \mathfrak{m}R^{\frac{1}{p^e}}}$, where $\mathfrak{m}R^{\frac{1}{p^e}}\subseteq R^{\frac{1}{p^e}}$ is the extension ideal. 
+  \item $\sup \set{\frac{a}{p^e}:a,e \geq 0 \text{ and }f^{\frac{a}{p^e}}\not \in \mathfrak{m}R^{\frac{1}{p^e}}}$, where $\mathfrak{m}R^{\frac{1}{p^e}}\subseteq R^{\frac{1}{p^e}}$ is the extension ideal. 
 \end{enumerate}
 \end{equiv_def}
 \begin{proof}
@@ -1168,10 +1162,8 @@ The proof is a consequence of the observation:
 \begin{align*}
 f^{a\quotient p^e} \text{ isn't in the extension ideal }  \mathfrak{m}R^{\frac{1}{p^e}}\iff  r_\beta  \not \in \mathfrak{m}\text{ for some }\beta  
 \end{align*}
-
-
-
 \end{proof}
+ Because we require $f$ to vanishes at  $\textbf{0}$, we know $f \in \mathfrak{m} R^{\frac{1}{p^e}}$. This implies that for all $ a\geq p^e$, we have $f^{\frac{a}{p^e}}=f \cdot f^{\frac{a-p^e}{p^e}} \in \mathfrak{m} R^{\frac{1}{p^e}}$. In other words, we always have $FT(f) \leq 1$.  
 \begin{theorem}
 \label{THWHTY}
 \textbf{(Watanabe, Hara, Takagi, Yoshida, etc. 2004 $F$-threshold converges to log canonical threshold)} Let $f \in\Z [x_1,\dots ,x_n]$. We have 
@@ -1182,13 +1174,13 @@ f^{a\quotient p^e} \text{ isn't in the extension ideal }  \mathfrak{m}R^{\frac{1
 \end{theorem}
 \begin{theorem}
 \label{THLmbf}
-\textbf{(Lucas' modulo binomial formula)} Let $m\geq n \inn$ and $p$ be prime. Writing $m$ and $n$ in their base $p$ extension: $m=\sum_{j=0}^r m_jp^j$ and $n=\sum_{j=0}^r n_jp^j$, we have: 
+\textbf{(Lucas' modulo binomial formula)} Let $m\geq n \inn$ and $p$ be prime. Writing $m$ and $n$ in $p$-base: $m=\sum_{j=0}^r m_jp^j$ and $n=\sum_{j=0}^r n_jp^j$, we have: 
 \begin{align*}
 \binom{m}{n}\equiv \binom{m_0}{n_0} \binom{m_1}{n_1} \cdots \binom{m_r}{n_r}\quad (\text{mod } p)
 \end{align*}
 \end{theorem}
 \begin{example}
-Consider $x^2+y^3 \in \F_p [x,y]$. Because by \customref{THFLT}{Fermat's little theorem} and \myref{theorem}{THWp} we have 
+Consider $x^2+y^3 \in \F_p [x,y]$. By \customref{THFLT}{Fermat's little theorem} and \myref{theorem}{THWp} we have 
 \begin{align*}
   (x^2+y^3)^{\frac{a}{p^e}}= \left(\sum_{i=0}^a \binom{a}{i} x^{2i}y ^{3(a-i)} \right)^{\frac{1}{p^e}}= \sum_{i=0}^a \binom{a}{i} x^{\frac{2i}{p^e}} y ^{ \frac{3(a-i)}{p^e}}
 \end{align*}
@@ -1209,8 +1201,35 @@ We have shown that $FT(f) \leq \frac{5}{6}$. Now, let $p$ be a prime congruent t
 \begin{align*}
 a= \sum \left(\frac{5p-5}{6}  \right)p^j\quad \text{ and } \quad  i= \sum  \left( \frac{p-1}{2} \right)p^j 
 \end{align*}
-by \customref{THLmbf}{Lucas' modulo binomial formula}, we know that that $i=\frac{p^e-1}{2}$ satisfies \myref{condition}{EQ2ipe}. We have shown that for all prime $p$ congruent to $1$ modulo $6$, we have  $FT(f)=\frac{5}{6}$. It now follows from \myref{theorem}{THWHTY} and Dirichlet's theorem that $\operatorname{lct}(f)=\frac{5}{6}$. 
+by \customref{THLmbf}{Lucas' modulo binomial formula}, we know that $i=\frac{p^e-1}{2}$ satisfies \myref{condition}{EQ2ipe}. We have shown that for all prime $p$ congruent to $1$ modulo $6$, we have  $FT(f)=\frac{5}{6}$. It now follows from \myref{theorem}{THWHTY} and Dirichlet's theorem that $\operatorname{lct}(f)=\frac{5}{6}$. 
 \end{example} 
+\begin{example}
+Consider $x^2+y^d \in \F_p[x,y]$, where $d$ is an odd positive integer.  By Fermat's little theorem and  \myref{theorem}{THWp} we have 
+\begin{align*}
+  (x^2+y^d)^{\frac{a}{p^e}} = \left( \sum_{i=0}^a \binom{a}{i}  x^{2i}  y ^{d(a-i)} \right) ^{\frac{1}{p^e}}= \sum_{i=0}^a \binom{a}{i}    x^{\frac{2i}{p^e}}  y^{ \frac{d(a-i)}{p^e}}   
+\end{align*}
+From this, we see that \customref{EDFth}{$(x^2+y^d)^{\frac{a}{p^e}} \not \in \mathfrak{m} R^{\frac{1}{p^e}} $ if and only if} there exists an index $i$ such that: 
+\begin{align}
+\label{EQ3ipe}
+2i < p^e,\quad d(a-i)< p^e\quad \text{ and }\quad \binom{a}{i}\not \equiv 0\quad (\text{mod }p)
+\end{align}
+Let a pair  $(a\quotient p^e,i)$ satisfies \myref{condition}{EQ3ipe}. We have:
+\begin{align*}
+i \leq \frac{p^e-1}{2}\quad \text{ and }\quad a-i \leq \frac{p^e-1}{d}
+\end{align*}
+which implies 
+\begin{align*}
+a\leq \frac{(d+2)p^e - (d+2)}{2d}\quad \text{ and moreover }\quad \frac{a}{p^e}<  \frac{d+2}{2d}
+\end{align*}
+We have shown that $FT(f)\leq  \frac{d+2}{2d}$. Now, let $p$ be a prime congruent to $1$ modulo  $2d$. Clearly, $a \triangleq \frac{(2+d)p^e- (2+d)}{2d}$ is an integer. Let $i\triangleq \frac{p^e-1}{2}$. Because in base  $p$, we may write:
+\begin{align*}
+a=\sum \left( \frac{(d+2)p-(d+2)}{2d} \right) p^j \text{ and }i= \sum  \left( \frac{p-1}{2} \right) p^j
+\end{align*}
+by \customref{THLmbf}{Lucas' modulo binomial formula}, we know that $i=\frac{p^e-1}{2}$ satisfies \myref{condition}{EQ3ipe}. We have shown that for all prime $p$ congruent to $1$ modulo $2d$, we have  $FT(f)=\frac{d+2}{2d}$. It now follows from \myref{theorem}{THWHTY} and Dirichlet's theorem that $\operatorname{lct}(f)=\frac{d+2}{2d}$. 
+
+
+
+\end{example}
 
 
 \section{Localization of ideals}
