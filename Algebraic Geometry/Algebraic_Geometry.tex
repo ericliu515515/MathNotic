@@ -1230,6 +1230,53 @@ by \customref{THLmbf}{Lucas' modulo binomial formula}, we know that $i=\frac{p^e
 
 
 \end{example}
+\section{$F$-pure}
+Let $R$ be a reduced ring of prime characteristic  $p>0$, $F:R \rightarrow R$ be the Frobenius, and $e\geq 1$. By \textbf{a $p^e$-th root of ring $R$}, we mean a ring extension $R \hookrightarrow  T$ together with a ring isomorphism $T\rightarrow R$ defined by $t \mapsto t^{p^e}$. 
+
+
+\begin{theorem}
+\textbf{(Existence of )}
+\end{theorem}
+
+
+$T$ together with a ring isomorphism $g:R\rightarrow T$     
+
+
+
+
+and for $e\geq 1$, let $R^{1 \quotient p^e}$ denote the set of formal symbols $\set{f^{1 \quotient p^e}: f \in R}$. Clearly, we may make $R^{1\quotient p^e}$ a ring isomorphic to $R$ by defining: 
+\begin{align*}
+f^{\frac{1}{p^e}} + g^{\frac{1}{p^e}}\triangleq  (f+g)^{\frac{1}{p^e}}\quad \text{ and }\quad  f^{\frac{1}{p^e}}\cdot g^{\frac{1}{p^e}}\triangleq (fg)^{\frac{1}{p^e}}
+\end{align*}
+Because $R$ is reduced, we have a ring inclusion $R \subseteq R^{\frac{1}{p^e}}$ defined by $f\mapsto (f^{p^e})^{1 \quotient p^e}$. Moreover, we have an infinite chain of ring inclusion: 
+\begin{align*}
+\cdots \supseteq R^{\frac{1}{p^2}}\supseteq R^{\frac{1}{p}}\supseteq R \supseteq R^p \supseteq R^{p^2} \supseteq \cdots 
+\end{align*}
+where for all $d\geq 1$, the ring inclusion $R^{1 \quotient p^{e+d}} \supseteq R^{1\quotient p^e}$ is well-defined by: 
+\begin{align*}
+f^{\frac{1}{p^e}}\mapsto (f^{p^e})^{\frac{1}{p^{e+d}}}
+\end{align*}
+and the subring $R^{p^d}\subseteq R$ is defined by: 
+\begin{align*}
+\set{f^{p^d}  \in R: f\in R}
+\end{align*}
+Because $R$ is reduced, we have a ring isomorphism $R \rightarrow R^{p^d}$ defined by $f\mapsto  f^{p^d}$. \\
+
+Let $R$ be a reduced ring of prime characteristic. 
+\begin{theorem}
+\textbf{()} Identifying $R$ as an $R$-algebra via the Frobenius $F^e$, which we denote $F^e_* R$, we have an  $R$-algebra isomorphism: 
+\begin{align*}
+F^e_*R \cong R^{\frac{1}{p^e}}
+\end{align*}
+defined by: 
+ \begin{align*}
+ r\mapsto  r^{\frac{1}{p^e}}
+\end{align*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+Given an inclusion of ring $S \subseteq T$ and an element $t \in T$, we say $t$ \textbf{splits over $S$} if there exists $\theta \in \operatorname{Hom}_S (T,S)$ such that $\theta (t)=1$. Let $R$ be a reduced ring of prime characteristic, we say  $R$ is  \textbf{$F$-pure} if with respect to the inclusion $R \subseteq R^{\frac{1}{p}}$, $1 \in R^{\frac{1}{p^e}}$ splits over $R$. 
 
 
 \section{Localization of ideals}

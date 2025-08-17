@@ -768,6 +768,17 @@ Let $M$ be a metric space.  We say $M$ is \textbf{totally bounded} if for all $\
 
  (iv)$\implies $(i): Again the argument by nature relies on contradiction. Assume for one that $(U_\alpha )$ is an open cover of $M$ that has no finite subcover. Due to totally boundedness of $M$, we know $M$ can be covered by some finite set of radius $1$ open balls. Since $(U_\alpha )$ has no finite subcover, one of these radius $1$ open balls can't be covered by finite numbers of $(U_\alpha) $. Denote the center of that radius  $1$ open ball by  $x_1$. Clearly,  $B_1(x_1)$ is again totally bounded, so it can be covered by some finite set of radius $\frac{1}{2}$ open balls centered inside. Again, because $B_1(x_1)$ can not be covered by finite numbers of $(U_\alpha) $, one of these radius $\frac{1}{2}$ open balls can't be covered by finite number of $(U_\alpha) $. Denote the center of that radius $\frac{1}{2}$ open ball by $x_2$. Repeating the same procedure, we have a Cauchy sequence  $\set{x_n}\subseteq M$. Let $x$ be the limit of this Cauchy sequence. Fix some $\alpha $ such that $x \in B_\epsilon (x)\subseteq U_\alpha $. Clearly, we may find $N$ large enough, for example $N>2\quotient \epsilon $, so that $B_{\frac{1}{N}}(x_N)\subseteq B_\epsilon (x)\subseteq U_\alpha $, a contradiction to the construction of $B_{\frac{1}{N}}(x_N)$.  
 \end{proof}
+\section{Weierstrass approximation theorem} 
+
+\begin{theorem}
+\label{THWat}
+\textbf{(Weierstrass approximation theorem)} Let $[a,b]\subseteq \R$ be compact, and $\mathcal{C}([a,b])$ the $\R$-vector space of continuous function $f:[a,b]\rightarrow \R$. Define the \textbf{uniform norm} on $\mathcal{C}([a,b])$ by $\norm{f}_{\infty} \triangleq \max \set{\abso{f(x)} \inr: x \in [a,b]}$. Then the space of polynomial $\R[x]|_{[a,b]}$ is dense in $\left(\mathcal{C}([a,b]), \norm{\cdot}_{\infty} \right)$. 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+
 \section{Holder Inequality}
 \section{Gamma function for $\operatorname{Re}(z)>0$}
 \section{Stirling approximation}
@@ -801,12 +812,77 @@ Now use the fact that determinant is continuous to conclude that collection of i
 Try to sue the fact that all norms are equivalent and the fact that $\R^{n^2}$ is a topological group to do such. (Not faster). So stick to the one in General Analysis. 
 \end{proof}
 \section{Inverse function theorem}
+Let $X$ be a metric space. A \textbf{contraction} $f:X\rightarrow X$ is a $K$-Lipschitz function such that $K<1$.  
+\begin{example}
+Let $X\triangleq \R$. $f(x)\triangleq \frac{x}{2}$ is a $\frac{1}{2}$-contraction, and $g(x)\triangleq x$ for no $r\in [0,1)$ is a $r$-contraction.  
+\end{example}
 \begin{theorem}
-\textbf{(Inverse function theorem)} Let $M$ be some neighborhood of  $\textbf{a}\in \R^n$. If differentiable $\textbf{f}:M\rightarrow \R^n$ is $C^1$ at $\textbf{a}$ and has full rank Jacobian at $\textbf{a}$, then  $\textbf{f}$ maps some $B_\delta (\textbf{a})\subseteq U$ injectively to some open subset of $\R^n$, with inverse  differentiable at $\textbf{f}(\textbf{a})$. 
+\textbf{(Banach's fixed point theorem)}  Let $X$ be a metric space. Let $f:X\rightarrow X$ be a contraction. Then $f$ admits at most one fixed point. Let $f^n:X\rightarrow X$ denote: 
+\begin{align*}
+\overbrace{f\circ \cdots \circ f}^{n\text{ copies }}:X\rightarrow X
+\end{align*}
+If $X$ is moreover complete, then for all $x \in X$, the sequence $\set{f^n(x)}\subseteq X$ converges, with limit being a (the unique) fixed point of $f$. 
+\end{theorem}
+\begin{proof}
+It is easy to see from the definition that a contraction can only have at most one fixed point from the definition. Let $X$ be complete and $x \in X$. Because $f$ as a Lipschitz function is continuous, we know that if $\set{f^n(x)}\subseteq X$  converges, then its limit is a (the unique) fixed point of $f$: 
+\begin{align*}
+f \left(\lim_{n\to \infty}f^n(x)\right)=\lim_{n\to \infty}f^{n+1}(x)=\lim_{n\to \infty}f^n(x)
+\end{align*}
+It remains to prove  $\set{f^n(x)}\subseteq X$ converges. Because $X$ is complete, we only have to prove  $\set{f^n(x)}\subseteq X$ is Cauchy. Fix $\epsilon $. Because $0\leq K<1$, we may find $N$ large enough so that $\frac{K^N}{1-K}d(x,f(x))\leq \epsilon $. We claim that for all $n\geq N$ and $k\inn$, we have: 
+\begin{align}
+\label{EQdfnk}
+d(f^n(x),f^{n+k}(x))\leq \epsilon,\quad \text{ as desired. }
+\end{align}
+We now prove \myref{inequality}{EQdfnk}. We first note that, using induction on $k$ and triangle inequality, we have: 
+\begin{align*}
+d(x,f^k(x))= \sum_{j=0}^{k-1}K^j d(x,f^k(x)) \leq \frac{1}{1-K} d(x,f^k(x))
+\end{align*}
+This then implies 
+\begin{align*}
+d(f^n(x),f^{n+k}(x))\leq K^n d(x,f^k(x))  \leq \frac{K^n}{1-K} d(x,f(x))\leq \epsilon 
+\end{align*}
+as desired.
+\end{proof}
+\begin{theorem}
+\label{THifta}
+\textbf{(Inverse function theorem at a single point)} Let $U$ be some neighborhood of  $\textbf{a}\in \R^n$. If differentiable $\textbf{f}:U\rightarrow \R^n$ is $C^1$ at $\textbf{a}$ and has full rank Jacobian at $\textbf{a}$, then: 
+\begin{enumerate}[label=(\roman*)]
+  \item  $\textbf{f}$ maps some $B_\delta (\textbf{a})\subseteq U$ injectively to some open subset of $\R^n$. 
+  \item Moreover, the local inverse of $\textbf{f}$ is differentiable at $\textbf{f}(\textbf{a})$. 
+\end{enumerate}
 \end{theorem} 
+\begin{proof}
+
+\end{proof}
+\begin{corollary}
+\textbf{(Inverse function theorem)} Let $U$ be some neighborhood of $\textbf{a}$. If $C^1$ function $\textbf{f}:U\rightarrow \R^n$ has full rank Jacobian everywhere in $U$, then $\textbf{f}$ maps $U$ to some open subset $V \subseteq \R^n$ injectively, with $C^1$ inverse $\textbf{f}^{-1}:V\rightarrow U$.  
+\end{corollary}
+\begin{proof}
+Every statement of this corollary follows from \customref{THifta}{inverse function theorem at a single point}, except that $\textbf{f}^{-1}$ is $C^1$, which would follows from proving $GL_n(\R)\rightarrow GL_n(\R),A \mapsto A^{-1}$ is continuous, since 
+\begin{align*}
+\textbf{y}\mapsto d\textbf{f}^{-1}|_\textbf{y} 
+\end{align*}
+is the same as: 
+\begin{align*}
+\left(\textbf{y}\mapsto \textbf{f}^{-1}(\textbf{y}) \right)\circ \left(\textbf{x} \mapsto (d\textbf{f}|_\textbf{x})^{-1} \right)
+\end{align*}
+
+\end{proof}
 \section{Lagrange multiplier theorem}
 \section{Integration on manifolds}
 \chapter{NTU Math M.A. Program Entrance Exam}
+\section{Year 114}
+\begin{question}{}{}
+Let $\textbf{x}=(x_1,x_2,x_3)$ be coordinate of $\R^3$. Let 
+\begin{align*}
+  f(\textbf{x})&\triangleq  \frac{x_1^3+x_2^2+i \ln (1+x_2^2+ x_3^2)}{x_1^2+x_2^2+i x_3^2 \sin \left( \frac{x_1}{x_3} \right)} &\text{ if $x_1x_2x_3\neq 0$ }\\
+  f(x)&\triangleq  0  &\text{ if }x_1x_2x_3=0
+\end{align*}
+Prove that $f$ is continuous at everywhere except at $\set{\textbf{x}\inr^3: x_1x_2x_3=0 }$
+\end{question}
+\begin{proof}
+Clearly  
+\end{proof}
 \section{Year 113}
 \begin{question}{}{}
 If every closed and bounded set of a metric space $M$ is compact, does it follows that $(M,d)$ is complete?  
@@ -1047,7 +1123,7 @@ Let $C\inr^+$, function $f:[a,b]\rightarrow \R$ be proper Riemann integrable, an
 There are essentially two way to "answer" this question. One is to construct an honest bound. Another is to cheat by quoting \textbf{Lebesgue's criteria for proper Riemann integrability}. The honest bound proof for this question and the proof for Lebesgue's criteria for proper Riemann integrability are morally the same. To quote Lebesgue's criteria for proper Riemann integrability, one only have to prove that $g\circ f$ is continuous at $x\in [a,b]$ if $f$ is continuous at  $x$.  
 \end{proof}
 \section{Year 110}
-\begin{question}{}{}
+\begin{question}{Morally topology}{}
   Show that $C^1$ \textbf{proper} map  $f:\R^n\rightarrow \R^n$ (proper as preimage of compact subspace is compact) whose Jacobian is globally full rank is surjective. 
 \end{question}
 \begin{proof}
@@ -1055,7 +1131,7 @@ There are essentially two way to "answer" this question. One is to construct an 
 \end{proof}
 \begin{theorem}
 \label{Pcmf}
-\textbf{(Proper continuous map from locally compact Hausdorff space to Hausdorff space is closed.)} Given two locally compact Hausdorff topological spaces $X$ and $Y$, if preimage of compact set under continuous $f:X\rightarrow Y$ is always compact, then  $f$ as a map from  $X$ to  $Y$ is a closed map.  
+\textbf{(Proper continuous maps between compact Hausdorff spaces are closed)} Given two locally compact Hausdorff topological spaces $X$ and $Y$, if preimage of compact set under continuous $f:X\rightarrow Y$ is always compact, then  $f$ as a map from  $X$ to  $Y$ is a closed map.  
 \end{theorem}
 \begin{proof}
 Fix closed $A\subseteq X$ and $y \in \overline{f(A)}$. We are required to find $x \in A$ mapped to $y$. Because $y \in \overline{f(A)}$ and $Y$ is locally compact, WLOG, there exists some sequence $\set{x_n}\subseteq A$ and compact set $K\subseteq Y$  such that 
@@ -1080,40 +1156,114 @@ Let $M$ be a metric space with countable elements. Prove or disprove that $M$ is
 If $M$ has only one element, then  $M$ is trivially connected. We now prove that if  countable $M$ has more than one element then  $M$ is disconnected. Let $x\in M$. Because $\set{d(y,x)\inr^+: y \in M}$ is countable and $(0,r)\subseteq \R^+$ isn't for any $r\inr^+$,  there exists some  $r$ such that $d(y,x)\neq r$ for all $r$. The proof then follows from showing $B_r(x)$ is closed.  
 \end{proof}
 \begin{question}{}{}
-Define $f:\R\rightarrow \R$ by $f(x)\triangleq \frac{1}{4}+x-x^2$. 
+Define $f:\R\rightarrow \R$ by $f(x)\triangleq \frac{1}{4}+x-x^2$. Let $f^2$ denote  $f \circ f$, and $f^n$ similarly.  
 \begin{enumerate}[label=(\roman*)]
   \item Show that $\set{f^n(0)}$ converges, and find its limit. 
   \item Find all $x\inr$ that make $\set{f^n(x)}$ converge to $\lim f^n(0)$. 
 \end{enumerate}
 \end{question}
 \begin{proof}
-We will show $f^n(0)\rightarrow 1\quotient 2$ by proving 
+Completing the square: 
 \begin{align*}
-f^n(0)= \frac{2^{2^n-1}-1}{2^{2^n}},\quad \text{ for all }n\inn
+f(x) = \frac{1}{4}+ x-x^2= - (x-\frac{1}{2})^2+ \frac{1}{2} 
 \end{align*}
-via induction. The base case is clear. The proof for inductive case is also clear from computing:  
+One can see: 
 \begin{align*}
-  \frac{1}{4}+  \frac{2^{2^n-1}-1}{2^{2^n}}- \left( \frac{2^{2^n-1}-1}{2^{2^n}} \right)^2 &= \frac{1}{4}+ \frac{2^{2^n-1}-1}{2^{2^n}}- \frac{(2^{2^n-1}-1)^2}{2^{2^{n+1}}}  \\
-&= \frac{2^{2^{n+1}-2}+ 2^{2^n}(2^{2^n-1}-1)-(2^{2^n-1}-1)^2}{2^{2^{n+1}}} \\
-&=\frac{2^{2^{n+1}-2}+ 2^{2^{n+1}-1}-2^{2^n}-2^{2^{n+1}-2}+ 2^{2^n}-1}{2^{2^{n+1}}}= \frac{2^{2^{n+1}-1}-1}{2^{2^{n+1}}}
+  f^n(x)= - (x- \frac{1}{2})^{2^n}+ \frac{1}{2}
 \end{align*}
-
+which implies: 
+\begin{align*}
+f^n(0) \rightarrow \frac{1}{2} 
+\end{align*}
+and moreover implies: 
+\begin{align*}
+  f^n(x)\rightarrow \frac{1}{2}\iff  x \in \left(\frac{-1}{2},\frac{3}{2}\right)
+\end{align*}
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Holder space is Banach}{}
 Let $X$ consist of all real-valued function $f$ on  $[0,1]$ such that $f(0)=0$ and 
  \begin{align*}
 \norm{f}\triangleq \sup_{x\neq y} \frac{\abso{f(x)-f(y)}}{\abso{x-y}^{\frac{1}{3}}} \quad \text{ is finite. }
 \end{align*}
-Show that $X$ forms a vector space,  $\norm{\cdot}$ forms a norm on $X$, and  $X$ is complete with respect to this norm. 
+Show that $X$ forms a vector space,  $\norm{\cdot}$ forms a norm on $X$, and  $X$ is complete with respect to this norm. \\
+
+Remark: More precisely, we are required to show $X$ forms a $\R$-vector space.
 \end{question}
 \begin{proof}
+To prove $X$ forms a normed $\R$-vector space, we are required to prove:  
+\begin{enumerate}[label=(\roman*)]
+  \item $ 0 \in X$ 
+  \item $\norm{f}=0 \implies f=0$ 
+  \item For all $r \in \R$ and $f \in X$, we have $ \norm{rf}= \abso{r} \cdot \norm{f}$ 
+  \item For all $f,g \in X$, we have $\norm{f+g}\leq \norm{f}+\norm{g}$   
+\end{enumerate}
+Clearly (i) holds, with the observation $\norm{0}=0$. For (ii), simply use the fact that for $f\neq 0 \in X$, there exists some $x\in [0,1]$ such that $\norm{f}\geq \abso{f(x)-f(0)}\quotient \abso{x}^{\frac{1}{3}}>0$. (iii) and (iv) are easy.\footnote{Remember that the definition of $\sup$ is the smallest upper bound.}  \\
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+It remains to prove $(X,\norm{\cdot})$ is Banach. Let $\set{f_n} \subseteq (X, \norm{\cdot })$ be a Cauchy sequence. Proving $\set{f_n}$ converges in $(X,\norm{\cdot})$ consist of three steps: 
+\begin{enumerate}[label=(\roman*)]
+  \item Showing that for all $x\in [0,1]$, $\set{f_n(x)}\subseteq \R$ is Cauchy. In particular, $f_n \rightarrow f$ pointwise for some $f:[0,1]\rightarrow \R$. 
+  \item Showing that $f\in X$. 
+  \item Showing that $\norm{f_n-f}\rightarrow 0$. 
+\end{enumerate}
+
+
+Fix $x \in [0,1]$. Our first goal is to prove that  $\set{f_n(x)}\subseteq \R$ is a Cauchy sequence. Fix $ \epsilon  $. Because $\set{f_n}\subseteq X$ is Cauchy, we know there exists some $N$ such that: 
+\begin{align*}
+\norm{f_n- f_k} \leq \epsilon x^{\frac{-1}{3}},\quad \text{ for all }n,k\geq N
+\end{align*}
+It then follows from $f_n(0)=f_k(0)=0$ that: 
+\begin{align*}
+  \abso{f_n(x)-f_k(x)} \leq \abso{(f_n-f_k)(x)-(f_n-f_k)(0)}  \leq \norm{f_n-f_k} x^{\frac{1}{3}} \leq \epsilon ,\quad \text{ for all }n,k\geq N
+\end{align*}
+We have shown $\set{f_n(x)}$ is Cauchy. It then follows from completeness of $\R$ that  $f_n \rightarrow f$ for some $f:[0,1]\rightarrow \R$ pointwise. We shall now show $f \in X$. Fix $x\neq y$. Because for all $n$, the inequality: 
+\begin{align*}
+  \frac{\abso{f(x)-f(y)}}{\abso{x-y}^{\frac{1}{3}}} &\leq  \frac{\abso{(f-f_n)(x)-(f-f_n)(y)} }{\abso{x-y}^{\frac{1}{3}}}+ \frac{\abso{f_n(x)-f_n(y)}}{\abso{x-y}^{\frac{1}{3}}}  \\
+  & \leq  \frac{\abso{f(x)-f_n(x)}}{\abso{x-y}^{\frac{1}{3}}} + \frac{\abso{f(y)-f_n(y)}}{ \abso{x-y}^{\frac{1}{3}}}+ \frac{\abso{f_n(x)-f_n(y)}}{\abso{x-y}^{\frac{1}{3}}}
+\end{align*}
+holds true, we know: 
+\begin{align*}
+ \frac{\abso{f(x)-f(y)}}{\abso{x-y}^{\frac{1}{3}}} \leq \sup \norm{f_n}  < \infty
+\end{align*}
+In other words, $\norm{f} \leq \operatorname{sup} \norm{f_n}< \infty$, as desired. Lastly, it remains to prove $\norm{f_n-f} \rightarrow 0$. Fix $n$ and $x \neq y$. Clearly, we have: 
+\begin{align*}
+ \frac{\abso{(f_n-f)(x) -(f_n-f)(y)}}{\abso{x-y}^{\frac{1}{3}}}&= \lim_{k\to \infty} \frac{\abso{(f_n-f_{n+k})(x)-(f_n-f_{n+k})(y)}}{\abso{x-y}^{\frac{1}{3}}}  \\
+ &\leq \sup_k  \norm{f_n-f_{n+k}}
+\end{align*}
+This implies (very importantly, helping us getting rid of the dependence on $x,y$) that: 
+\begin{align*}
+\norm{f_n-f} \leq \sup_k \norm{f_n-f_{n+k}},\quad \text{ for all }n
+\end{align*}
+which implies 
+\begin{align*}
+\lim_{n\to \infty} \norm{f_n-f} \leq \lim_{n\to \infty} \sup_k \norm{f_n-f_{n+k}}=0 
+\end{align*}
+as desired.
 \end{proof}
 \begin{question}{}{}
 Let $f:(a,b)\rightarrow \R$ be differentiable. Show that $f':(a,b)\rightarrow \R$ has no jump discontinuity. 
 \end{question}
 \begin{proof}
-
+Assume for a contradiction that there exists some $x \in (a,b)$ that makes $f'(x-)< f'(x) \leq f'(x+) $, without loss of generality. By \textbf{MVT}, for each $n\gg  0$ there exists some $t_n \in (x- \frac{1}{n} ,x)$ such that: 
+\begin{align*}
+\frac{f(x)-f(x- \frac{1}{n} )}{\frac{1}{n} } = f'(t_n)
+\end{align*}
+The contradiction follows from noting  
+\begin{align*}
+\lim_{n\to \infty} f'(t_n) =f'(x-)<f'(x)=\lim_{n\to \infty} \frac{f(x)-f(x- \frac{1}{n})}{\frac{1}{n}} 
+\end{align*}
 \end{proof}
 \section{Year 109}
 \begin{question}{}{}
@@ -1176,25 +1326,51 @@ Let $C\subseteq \R^2$ be a positively oriented simple closed curve. Find the cur
 \begin{proof}
 
 \end{proof}
-\begin{question}{}{}
-Let $f:[0,1]\rightarrow \R$ be continuous. Find the limit 
+\begin{question}{Estimate with Weierstrass approximation theorem}{}
+Let $f:[0,1]\rightarrow \R$ be continuous. Find the limit: 
 \begin{align*}
 \lim_{n\to \infty}(n+1)\int_0^1 x^nf(x)dx
 \end{align*}
+Remark: Every kind of this question wish you to find a "key" estimate. 
 \end{question}
 \begin{proof}
-
+We claim 
+\begin{align}
+\lim_{n\to \infty} (n+1) \int_0^1 x^nf(x)dx=f(1)
+\end{align}
+Let $P\in \R[x]$ be any polynomial. The key estimate of this question came from splitting: 
+\begin{align*}
+  (n+1)\int_0^1 x^nf(x)dx - f(1)&= (n+1) \int_0^1 x^n \left(f(x)-P(x)\right)dx \\
+  &+ (n+1)\int_0^1 x^nP(x)dx -P(1) \\
+  &+ P(1)-f(1)
+\end{align*}
+which implies: 
+\begin{align}
+ \label{EQpn1} \abso{(n+1)\int_0^1 x^nf(x)dx-f(1)} &\leq  (n+1) \abso{\int_0^1 x^n\left(f(x)-P(x)\right)dx}  \\
+\label{EQpn2}  &+ \abso{(n+1)\int_0^1 x^nP(x)dx-P(1)}\\
+ \label{EQpn3} &+ \abso{P(1)-f(1)}
+\end{align}
+Computing: 
+\begin{align*}
+  (n+1)\abso{\int_0^1 x^n \left(f(x)-P(x) \right)dx} &\leq (n+1) \int_0^1 x^n \abso{f(x)-P(x)}dx  \\
+  &\leq \norm{f-P}_{\infty} (n+1)\int_0^1 x^n dx= \norm{f-P}_{\infty}
+\end{align*}
+We see that both \myref{term}{EQpn1} and \myref{term}{EQpn3} can be bounded by $\norm{f-P}_{\infty}$ which according to \customref{THWat}{Weierstrass approximation theorem} can be made arbitrarily small. For the remaining \myref{term}{EQpn2},write $P=c_kx^k+ \cdots +c_0$ to see: 
+\begin{align*}
+  (n+1) \int_0^1 x^n P(x)dx= (n+1)\left( \frac{c_k}{k+n+1}+ \cdots + \frac{c_0}{n+1} \right) 
+\end{align*}
+which clearly converges to $c_k+\cdots + c_0=P(1)$ as $n\rightarrow  \infty $.
 \end{proof}
 \section{Year 108}
-\begin{question}{}{}
+\begin{question}{Alternating series test and Comparison test}{}
 Does the series
 \begin{align*}
 \sum_{n=1}^{\infty} \frac{(-1)^n \ln (n+1)}{n}
 \end{align*}
-converge? Does it absolutely converge?  
+converge? Does it absolutely converge? 
 \end{question}
 \begin{proof}
-
+The fact that it converges follows from alternating series test\footnote{Alternating series test follows from noting the partial sum sequence of the suspected series is Cauchy}. The that that it doesn't absolutely converge follows from comparing it with $\sum \frac{1}{n}$.   
 \end{proof}
 \begin{question}{}{}
 Define $\Omega \triangleq  \set{(x,y)\inr^2 :0\leq x,y\leq 1}- \set{(1,1)}$, and define $f:\Omega \rightarrow \R$ by 
@@ -1210,14 +1386,18 @@ f(x,y)\triangleq \frac{1}{(1-xy)^2}
 
 \end{proof}
 \begin{question}{}{}
-Let $I\triangleq [0,1]$, and define $f_n:I\rightarrow \R$ for all $n\inn$ by $f_n(x)\triangleq nx^n(1-x)$. 
+Define $f_n:[0,1]\rightarrow \R$ for all $n\inn$ by $f_n(x)\triangleq nx^n(1-x)$. 
 \begin{enumerate}[label=(\roman*)]
-  \item Determine $\lim f_n(x)$ for all $x\in I$. 
-  \item Is the convergence uniform on $I$? 
+  \item Determine $\lim_{n\rightarrow  \infty} f_n(x)$ for all $x\in [0,1]$. 
+  \item Is the convergence uniform on $[0,1]$? 
 \end{enumerate}
 \end{question}
 \begin{proof}
-
+Clearly $f_n(x) \rightarrow 0$ for all $x\in [0,1]$. Compute: 
+\begin{align*}
+f_n \left( \frac{n}{n+1} \right) = \left(\frac{n}{n+1}   \right)^{n+1} \rightarrow  e^{-1}
+\end{align*}
+Remark: The idea came from noting that $f_n$ are polynomials of only two terms and that $f_n(0)=f_n(1)=0$. This let us see that for all $n$,  we have $\norm{f_n}_{\infty}=f_n(x)$ for some $x$  dependent on $n$ that makes  $f_n'(x)=0$. Such $x$, if nonzero, can be easily computed to be  $\frac{n}{n+1}$.  
 \end{proof}
 \begin{question}{}{}
 Define 

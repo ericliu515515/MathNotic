@@ -15,7 +15,7 @@
 \tableofcontents
 \pagebreak
 \chapter{What you need to know}
-\section{Quick Recap}
+\section{Quick recap}
 Let $V$ be a vector space over some field $\F$, and let  $S$ be a subset of $V$. We say  
 \begin{enumerate}[label=(\alph*)]
   \item $S$ is \textbf{linearly independent} if to write $0$ as finite linear combination of  $S$, the coefficients must all be zero.
@@ -85,32 +85,32 @@ Let $V$ be finite dimensional. We define the \textbf{characteristic polynomial} 
 \operatorname{det}(tI-F)\text{ and }\operatorname{det}(tI-A)
 \end{align*}
 Obviously, $\ld $ is an eigenvalue of $F$ if and only if $\ld $ is a root of the characteristic polynomial of $F$.
-\section{Jordan-Chevalley Decomposition}
+\section{Jordan-Chevalley decomposition}
 \label{JCD}
-Let $V$ be some finite dimensional $\F$-vector space. Given $T\in \operatorname{End}(V)$, we know the kernels of its powers is increasing 
+Let $V$ be some finite dimensional $\F$-vector space. Given $T\in \operatorname{End}(V)$, we know the kernels of its powers is increasing:  
 \begin{align*}
 0\subseteq \operatorname{Ker}T^1 \subseteq \operatorname{Ker}T^2 \subseteq \operatorname{Ker}T^3\subseteq \cdots 
 \end{align*}
-This sequence grows in good manner. If it stops growing at some points, say, $\operatorname{Ker}T^n=\operatorname{Ker}T^{n+1}$ for some $n\inz_0^+$, then it stops forever 
+This sequence grows in good manner. If it stops growing at some points, say, $\operatorname{Ker}T^n=\operatorname{Ker}T^{n+1}$ for some $n\inz_0^+$, then it stops forever:  
 \begin{align*}
 \operatorname{Ker}T^n = \operatorname{Ker}T^{n+1}= \operatorname{Ker}T^{n+2}= \operatorname{Ker}T^{n+3}= \cdots 
 \end{align*}
-In particular, by counting dimensions, we know that this  sequence must stops before reaching to the dimension of $V$ in the sense that  
+In particular, by counting dimensions, we know that this  sequence must stops before reaching to the dimension of $V$ in the sense that: 
  \begin{align}
 \label{stop}
 \operatorname{Ker}(T^{\operatorname{dim}V})=\operatorname{Ker}(T^{\operatorname{dim}V+1})
 \end{align}
-\myref{Equation}{stop} allows us to elegantly unify distinct notions within a single framework. For instance, for each eigenvalue \( \lambda \), we define the \textbf{generalized eigenspace} \( G(\lambda, T) \) as  
+\myref{Equation}{stop} allows us to elegantly unify distinct notions within a single framework. For instance, for each eigenvalue \( \lambda \), we define the \textbf{generalized eigenspace} \( G(\lambda, T) \) as:  
 \begin{align*}
 G(\lambda, T) \triangleq  \operatorname{Ker} (T - \lambda I)^{\operatorname{dim}V}
 \end{align*}
-Similarly, we say that \( T \) is \textbf{nilpotent} if  
+Similarly, we say that \( T \) is \textbf{nilpotent} if: 
 \begin{align*}
 \operatorname{Ker}T^{\operatorname{dim}V}=V
 \end{align*}
 \begin{theorem}
 \label{LIGE}
-\textbf{(Linear Independence of Generalized Eigenspaces)} If $v_1,\dots ,v_n$ are generalized eigenvectors of $T$ with respect to distinct eigenvalues $\ld_1,\dots ,\ld _n$, then they are linearly independent. 
+\textbf{(Linear independence of generalized eigenspaces)} Let $\F$ be a field.  $V$ be a finite-dimensional  $\F$-vector space, and  $T \in \operatorname{End}(V)$. If $v_1,\dots ,v_n$ are generalized eigenvectors of $T$ with respect to distinct eigenvalues $\ld_1,\dots ,\ld _n$, then they are linearly independent. 
 \end{theorem}
 \begin{proof}
 Suppose 
@@ -118,40 +118,44 @@ Suppose
 \label{a1v1}
 a_1v_1 + \cdots + a_nv_n=0
 \end{align}
-Because $v_1$ is a generalized eigenvector, we may let $k$ be the largest non-negative integer such that  $(T-\ld_1 I)^kv_1\neq 0$, so that  
+Let $k$ be the largest nonnegative integer such that  $(T-\ld_1 I)^kv_1\neq 0$. We see: 
 \begin{align*}
 w\triangleq (T-\ld_1 I)^k v_1\text{ is an eigenvector with eigenvalue  $\ld_1$. }
 \end{align*}
-Noting that the collection  $\set{(T-\ld_1I)^k,(T-\ld_2I)^{\operatorname{dim}V},\dots ,(T-\ld_nI)^{\operatorname{dim}V}}$ of endomorphisms indeed commutes, we may apply the endomorphism $(T-\ld_1I)^k(T-\ld_2I)^{\operatorname{dim}V}\cdots (T-\ld_n I)^{\operatorname{dim}V}$ onto both sides of \myref{Equation}{a1v1} and get 
+Noting that the collection  of the endomorphisms: 
+\begin{align*}
+\set{(T-\ld_1I)^k,(T-\ld_2I)^{\operatorname{dim}V},\dots ,(T-\ld_nI)^{\operatorname{dim}V}}
+\end{align*}
+commutes, we may apply the endomorphism $(T-\ld_1I)^k(T-\ld_2I)^{\operatorname{dim}V}\cdots (T-\ld_n I)^{\operatorname{dim}V}$ onto both sides of \myref{Equation}{a1v1} and get 
 \begin{align*}
   0&=a_1(T-\ld_2I)^{\operatorname{dim}V}\cdots (T-\ld_nI)^{\operatorname{dim}V}w \\
   &=a_1(\ld_1-\ld_2)^{\operatorname{dim}V}\cdots (\ld_1-\ld_n)^{\operatorname{dim}V}w
 \end{align*}
 which implies $a_1=0$. WLOG, we have shown $a_1=\cdots = a_n=0$.  
 \end{proof}
-\myref{Equation}{stop} together with Rank-Nullity Theorem give us a theoretically crucial decomposition of $V$ 
+\myref{Equation}{stop} together with Rank-Nullity Theorem give us a theoretically crucial decomposition of $V$: 
 \begin{align}
 \label{VFn}
 V= \operatorname{Ker}T^{\operatorname{dim}V} \oplus  \operatorname{Im}T^{\operatorname{dim}V}
 \end{align}
-As we will later see, \myref{Decomposition}{VFn} plays a central role in decomposition of $V$ into generalized eigenspace of $T$ if  $\F$ is algebraically closed. See \myref{Theorem}{DiGE}. 
+As we will later see, \myref{decomposition}{VFn} plays a central role in decomposition of $V$ into generalized eigenspace of $T$ if  $\F$ is algebraically closed. See \myref{theorem}{DiGE}. 
 \begin{theorem}
 \label{DiGE}
-\textbf{(Decomposition into Generalized Eigenspaces)} If $\F$ is algebraically closed, then clearly $T$ has some eigenvalues. If we let $\set{\ld _1,\dots ,\ld _m}$ be the set of eigenvalues of $T$, we have 
+\textbf{(Decomposition into generalized eigenspaces)} Let $\F$ be an algebraically closed field, $V$ a finite dimensional $\F$-vector space of dimensional  $\geq 1$, and $T \in \operatorname{End}(V)$. If we let $\set{\ld _1,\dots ,\ld _m}$ be the set of eigenvalues of $T$, then: 
  \begin{align*}
 V= G(\ld_1,T)\oplus \cdots \oplus G(\ld_m,T)
 \end{align*}
 \end{theorem}
 \begin{proof}
-This is proved by induction on the dimension of $V$. The two base cases correspond to the 0-dimensional and 1-dimensional cases, both of which are trivial. Now, suppose that such a decomposition always exists for complex vector spaces of strictly smaller dimension than $V$ and their endomorphisms. By \myref{Equation}{VFn}, we may decompose $V$ into 
+This is proved by induction on the dimension of $V$. The 1-dimensional base case is trivial. We now prove the inductive case. By \myref{Equation}{VFn}, we may decompose $V$ into: 
 \begin{align*}
   V= G(\ld_1,T) \oplus U,\quad\text{ where }U=\operatorname{Im}(T-\ld_1)^{\operatorname{dim}V}. 
 \end{align*}
-Noting that $T$ and  $T-\ld_1I$ commutes, we conclude that $U$ is stable under $T$. Therefore, the restriction $T |_U$ defines an endomorphism  $T|_U \in \operatorname{End}(U)$. By inductive hypothesis, we may decompose $U$ into 
+Noting that $T$ and  $T-\ld_1I$ commutes, we conclude that $U$ is stable under $T$. Therefore, the restriction $T |_U$ defines an endomorphism  $T|_U \in \operatorname{End}(U)$. By inductive hypothesis, we may decompose $U$ into: 
  \begin{align*}
 U= G(\ld _2,T|_U)\oplus   \cdots \oplus  G(\ld _m,T|_U)
 \end{align*}
-WLOG, it remains to show 
+WLOG, it remains to show: 
 \begin{align*}
 G(\ld _2,T|_U)=G(\ld _2,T)
 \end{align*}
@@ -210,20 +214,26 @@ S \triangleq \sum_{i=1}^{k} \xi_i \pi_i.
 \end{align*}
 Since \( S \) is a polynomial in \( T \), we conclude that \( S \) and \( N \) commute. The fact that \( N \) is nilpotent follows from the definitions of \( f_i \). We now prove the uniqueness. Let $T=S'+N'$ be another Jordan-Chevalley decomposition. We are required to prove $S-S'=0$. Clearly $\set{S,N,S',N'}$ all commute with each other. This implies $S-S'=N-N'$ is nilpotent. Note that  $S-S'$ is diagonalizable\footnote{Two commuting linear operator $S,S'$ over finite dimensional vector space are always simultaneously diagonalizable. Prove this by first proving that $E(\ld ,S)$ is stable under $S'$ and then consider  $V=E(\ld_1,S)\oplus  \cdots \oplus   E(\ld_k,S)$} . This now implies $S-S'=0$, since no units are zero-divisor. 
 
-\section{Jordan Form}
+\section{Jordan forms}
 \label{JF}
 \begin{theorem}
 \label{JfNO}
-\textbf{(Jordan forms of Nilpotent Operators)} Let $V$ be a finite-dimensional vector space, and let  $N \in \operatorname{End}(V)$ be nilpotent. There exists some $v_1,\dots ,v_m \in V$ and nonnegative integer $n_1,\dots ,n_m$ such that 
+\textbf{(Jordan forms of nilpotent operators)} Let $V$ be a finite-dimensional vector space of dimension $\geq 1$, and let $N \in \operatorname{End}(V)$ be nilpotent. There exists an unique element $(n_1,\dots ,n_m)$ in the set: 
+\begin{align*}
+\set{(n_1,\dots ,n_k) \big |\quad  k \inn,\quad \text{ and }n_1\geq \cdots \geq  n_k \geq 0 ,\quad \text{ and } n_i \inn \cup  \set{0} }
+\end{align*}
+such that there exists a tuple $v_1,\dots ,v_m \in V$ that makes: 
 \begin{enumerate}[label=(\alph*)]
-  \item $N^{n_1}v_1,\dots ,Nv_1,v_1,\dots ,N^{n_m}v_m,\dots ,Nv_m,v_m$ form a basis for $V$. 
+  \item the tuple $N^{n_1}v_1,\dots ,Nv_1,v_1,\dots ,N^{n_m}v_m,\dots ,Nv_m,v_m$ forms a basis for $V$. 
   \item $N^{n_1+1}v_1=\cdots = N^{n_m+1}v_m=0$. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-This is also proved by induction on the dimension of $V$. The two base cases correspond to the $0$-dimensional and $1$-dimensional cases, both of which are trivial. We now prove the inductive case. \\
-
-Because $N$ is nilpotent, we know  $\operatorname{dim}(\operatorname{Im}N)< \operatorname{dim}V$. Noting that $\operatorname{Im}N$ is stable under $N$, we see $N|_{\operatorname{Im}N}\in \operatorname{End}(\operatorname{Im}N)$. From inductive hypothesis, we have $v_1,\dots ,v_n\in \operatorname{Im}N$ and nonnegative integer $k_1,\dots ,k_n$ such that 
+The uniqueness follows from the observation that if $(n_1,\dots ,n_m)$ is such an element, then for all $i\inn$, we have: 
+ \begin{align*}
+\operatorname{dim}\left(\operatorname{Ker} N^i \right) = \sum_{j=1}^i j d_j,\quad \text{ where }d_j\text{ is the amount of $l$ that makes } n_l+1\geq j
+\end{align*}
+We now prove the existence via induction.\footnote{Note that the proof for the \customref{DiGE}{existence of decomposition of finite-dimensional vector space over algebraically closed field into generalized eigenspaces} also relies on induction.} The $1$-dimensional base case is trivial. We now prove the inductive case.  Because $N$ is nilpotent, we know  $\operatorname{dim}(\operatorname{Im}N)< \operatorname{dim}V$. Noting that $\operatorname{Im}N$ is stable under $N$, we see $N|_{\operatorname{Im}N}\in \operatorname{End}(\operatorname{Im}N)$. From inductive hypothesis, we have $v_1,\dots ,v_n\in \operatorname{Im}N$ and nonnegative integer $k_1,\dots ,k_n$ such that 
 \begin{align*}
   \set{N^{k_1}v_1,\dots ,Nv_1,v_1, \dots ,N^{k_n}v_n,\dots ,Nv_n,v_n}\text{ form a basis for $\operatorname{Im}N$. }
 \end{align*}
@@ -271,7 +281,7 @@ In this section, we denote Jordan block by $J(\ld ,n)$. For example, by $J(\sqrt
 This section only prove one result: 
 \begin{theorem}
 \label{PoJb}
-\textbf{(Powers of Jordan blocks)} Given field $\F$ with $0$ characteristic value, $\ld \in \F$, and $n,t\inn$,  
+\textbf{(Powers of Jordan blocks)} Let $\F$ has zero characteristic, $\ld \in \F$, and $n,t\inn$. Then: 
 \begin{align*}
   (J(\ld ,n))^t \text{ has the Jordan form: }  \begin{cases}
     J(\ld ^t ,n)& \text{ if }\ld \neq 0 \\
@@ -284,7 +294,7 @@ This section only prove one result:
 \end{align*}
 \end{theorem}
 \begin{proof}
-(iii) is clear from computation. (ii) is also clear from computation. If $t<n$, then we have:  
+(iii) is clear from computation. (ii) is also clear from computation. Indeed, if $t<n$, then:  
 \begin{align*}
 J(0,n)^t= P \begin{pmatrix} 
       J(0,n-t+1) & 0 \\
@@ -933,7 +943,7 @@ Because $A$ and  $D$ has the same characteristic polynomial, we know the eigenva
 and \textbf{Spectral Theorem for complex finite-dimensional vector space}.
 \end{proof}
 \begin{mdframed}
-Remark: In my opinion, the next and final question of this exam is remarkably difficult compared to the rest in this note. Someone (not me) have posted this question on MSE and received multiple great answers. As it turned out, there are multiple (distinct) approaches. The following proof I provided is merely an expansion of one of them. The link to the post is here:\\
+Remark: In my opinion, the next and final question of this exam is remarkably difficult compared to the rest in this note. Someone (not me) have posted this question on MSE and received multiple great answers. As it turned out, there are multiple (distinct?) approaches. The following proof I provided is merely an expansion of one of them. The link to the post is here:\\
 
 https://math.stackexchange.com/q/4774695/1225113
 \end{mdframed}
@@ -943,6 +953,14 @@ Let $A,B \in M_n(\C)$. Suppose that all of the eigenvalues of $A$ and  $B$ are p
 A^4=B^4 \implies  A=B
 \end{align*}
 \end{question}
+\begin{proof}
+By computing \customref{PoJb}{the Jordan form of power of Jordan block}, we see that $A$ and $B$ must share the same Jordan form. This implies $A$ and  $B$ are similar, the existence of some $P\in GL_n(\C)$ such that $A=PBP^{-1}$. Clearly, to prove $A=B$, we only have to show that  $P$ and  $B$ commute. 
+
+
+\end{proof}
+
+
+
 \section{Year 110}
 \begin{question}{}{}
 Let $V$ be a finite-dimensional complex inner product space. Let $d\in \operatorname{End}(V)$ satisfy 
