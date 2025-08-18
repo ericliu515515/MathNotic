@@ -321,7 +321,7 @@ which implies:
 \end{align*}
 \end{proof}
 Clearly, \myref{Theorem}{PoJb} give us the \textbf{Spectral Theorem for Polynomials}, whatever version it is for you. 
-\section{Spectral Theorem}
+\section{Spectral theorem}
 \label{Spectral Theorem}
 Let  $V$ be a $\F$-vector space where $\F$ is a subfield of $\C$. By a \textbf{norm} on $V$, we mean some \textbf{positive-definite} functional $\norm{\cdot}:V\to \R$ that satisfies \textbf{absolute homogeneity} and \textbf{triangle inequality}. In this context, for $\norm{\cdot}$ to be positive-definite, it must satisfy 
 \begin{align*}
@@ -405,7 +405,113 @@ By \customref{Spectral Theorem}{spectral theorem}, there exists some $P \in M_n(
 \label{SVD}
 Let $V,W$ be two finite-dimensional inner product space over $\F$, where $\F=\C$ or  $\R$. Given linear $F:V\rightarrow W$, clearly $F^{\dagger }F\in \operatorname{End}(V)$ is self-adjoint. Therefore, by \customref{Spectral Theorem}{Spectral Theorem}, there exists some orthonormal eigenbasis $\alpha  $ of $V$ with respect to $F^{\dagger }F$.  Clearly, for every pair $v_1,v_2 \in \alpha  $, we have $\langle F(v_1),F(v_2)\rangle =0$ whether $F(v_1),F(v_2)$ are both nonzero or not. This implies that by deleting the zeros and negation of some elements, we may extend $\set{F(v)\in W: v \in \alpha  }$ to an orthonormal basis $\beta$ for $W$ such that every non-zero entry of the $\operatorname{dim}(V)$-by-$\operatorname{dim}(W)$ $\C$-matrix $[F]_{\alpha }^\beta $  is a positive real number and lie in the diagonal. This process is called the \textbf{singular value decomposition of $F$}.  
 
-\section{Appendix: Chinese Remainder Theorem and Bezout's Identity}
+\section{Related ring theories}
+\begin{theorem}
+\label{THstffgmoP}
+ \textbf{(Structure theorem for finitely generated modules over PID)} Let $R$ be a principal ideal domain and  $M$ a finitely generated  $R$-module. There exists some $x_1,\dots ,x_n \in R$ such that: 
+\begin{align*}
+M \cong  R \quotient (x_1) \oplus \cdots \oplus R \quotient (x_n) 
+\end{align*}
+as $R$-modules.
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\label{THCRTform}
+\textbf{(Chinese Remainder theorem for modules)} Let $R$ be a commutative unital ring. If $f_1,\dots ,f_r \in R$ are pairwise coprime, then 
+\begin{align*}
+R \quotient \langle f_1\cdots f_r\rangle \cong  R \quotient \langle f_1\rangle \oplus  \cdots \oplus  R\quotient \langle f_r\rangle 
+\end{align*}
+as rings via obvious isomorphism. 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\section{Centralizer}
+Let $\F$ be a field and $A \in M_n(\F)$. Clearly, its \textbf{centralizer}  
+\begin{align*}
+C(A)\triangleq \set{B \in M_n(\F):AB=BA}
+\end{align*}
+forms a $\F$-vector subspace of $M_n(\F)$. If $\F$ is algebraically closed, we may give a formula for the dimension of this subspace depending on its Jordan form. 
+\begin{theorem}
+\label{THdffcoc}
+\textbf{(Dimension of centralizer for algebraically closed ground field case)} Let $\F$ be an algebraically closed field and $A \in M_n(\F)$ have the Jordan form:  
+\begin{align*}
+A= J(\ld_1 , d_{1,1} \oplus  \cdots \oplus  d_{1,k_1}) \oplus \cdots \oplus  J(\ld_t, d_{t,1}\oplus  \cdots \oplus d_{t,k_t})
+\end{align*}
+where $d_{i,1}\geq  \cdots \geq  d_{i,k_i}$ for all $i$. Then: 
+\begin{align*}
+\operatorname{dim}(C(A))= \sum_{i=1}^t \sum_{j=1}^{k_i} (2j-1)(d_{i,j}-1)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Denote $V\triangleq \F^n$. Give $V$ a $\F[T]$-module structure, where $\F[T]$ is a formal polynomial ring, by letting $T\cdot v \triangleq Av$. Clearly, $C(A)$ is isomorphic to $\operatorname{End}_{\F[T]}(V)$ as a $\C$-vector space. Because 
+\begin{align*}
+\operatorname{End}_{\F[T]}(V) \cong \bigoplus_{(\ld ,d),(\mu,e)} \operatorname{Hom}_{\F[T]} \left(J(\ld,d), J(\mu,e)\right)
+\end{align*}
+as $\F[T]$-module, we only have to show: 
+\begin{enumerate}[label=(\Roman*)]
+  \item $\operatorname{Hom}_{\F[T]}\left( J(\ld ,d),J(\mu,e) \right) =0,\quad $ if $\ld \neq \mu$. 
+  \item $\operatorname{dim}_\F \left(\operatorname{Hom}_{\F[T]}\left(J(\ld ,d), J(\ld ,e)\right) \right)=\min \set{d,e}$.  
+  \item $\sum_{i=1}^{k_l} \sum_{j=1}^{k_l} \min \set{ d_{l,i},d_{l,j}}= \sum_{j=1}^{k_l}(2j-1)(d_{i,j}-1),\quad $ for all $l \in \set{1,\dots ,t}$. 
+\end{enumerate}
+The purely combinatorial fact (III) is easy to check. We now prove (I). Let $v \in J(\ld ,d)$ and $f  \in \operatorname{Hom}_{\F[T]}\left(J(\ld ,d), J(\mu,e) \right)$. We are required to prove $f(v)=0$. Let $\set{w_1,\dots ,w_e}\subseteq V$ be the Jordan basis for $J(\mu,e)$, i.e., 
+\begin{align*}
+\left[ A |_{J(\mu,e)}\right]_{\set{w_1,\dots ,w_e}}= \begin{pmatrix} 
+  \mu & 1 & & \\
+      & \mu & 1 & \\
+      & & \ddots & \ddots \\
+      & & & \mu 
+\end{pmatrix}
+\end{align*}
+We may uniquely write $f(v)=\sum c_iw_i$. Because $f$ is a $\F[T]$-module homomorphism, we know: 
+\begin{align}
+\label{EQsci}
+\sum c_i (A-\ld I)^d w_i = f((A-\ld I)^d v)=f(0)=0 
+\end{align}
+Let $\mathcal{M}$ denote the $e\times e$-matrix: 
+\begin{align*}
+\left[ (A-\ld I)^d |_{J(\mu,e)}\right]_{\set{w_1,\dots ,w_e}}
+\end{align*}
+Because $\mathcal{M}$ is upper triangular whose diagonals are all nonzero\footnote{They are all $(\mu-\ld )^d$.},   \myref{equation}{EQsci} implies $c_e=0$. Repeating the same process, one see $c_i=0$ for all  $i$, proving  (I). It remains to prove (II). Denote $t\triangleq \min \set{d,e}$, and let $\set{v_1,\dots ,v_d}$ and $\set{w_1,\dots ,w_e}$ respectively be the Jordan bases of $J(\ld ,d)$ and $J(\ld ,e)$. Let $\mathcal{N}\subseteq M_{d\times e}(\F)$ be the $\F$-vector subspace of matrices of the form: 
+\begin{align*}
+\begin{pmatrix} 
+  \mathcal{O}_1 & \mathcal{K} \\
+  \mathcal{O}_2 & \mathcal{O}_3    
+\end{pmatrix}
+\end{align*}
+where $t$-by-$(d-t) $ matrix $\mathcal{O}_1$, $(e-t)$-by-$(d-t)$ matrix $\mathcal{O}_2$, and $(e-t)$-by-$t$ matrix $\mathcal{O}$ are all zero, while $t \times t$-matrix $\mathcal{K}$ is upper triangular with $\mathcal{K}_{i,j}= \mathcal{K}_{i+k,j+k}$ for all $i,j,k$.\\
+
+To show $\operatorname{dim}_\F \left(\operatorname{Hom}_{\F[T]}(J(\ld ,d)),J(\ld ,e) \right)=t$, we only have to show that the $\F$-vector space homomorphism  $\pfi :\operatorname{Hom}_{\F[T]}\left(J(\ld ,d),J(\ld ,e) \right) \rightarrow M_{d\times e}(\F)$ defined by 
+\begin{align*}
+  \pfi(f) \triangleq \left[ f \right]_{\set{v_1,\dots ,v_d}}^{\set{w_1,\dots ,w_e}}
+\end{align*}
+forms a $\F$-vector space isomorphism between $\operatorname{Hom}_{\F[T]}\left(J(\ld ,d) , J(\ld ,e) \right)$ and $\mathcal{N}$. This requires proving three statements:
+\begin{enumerate}[label=(\subscript{S}{{\arabic*}})]
+  \item $\pfi $ is injective. 
+  \item $\operatorname{Im}(\pfi ) \subseteq \mathcal{N}$. 
+  \item $\operatorname{Im}(\pfi )\supseteq \mathcal{N} $. 
+\end{enumerate}
+The injectivity of $\pfi $ is clear from the definition. We now show $\operatorname{Im}(\pfi )\subseteq \mathcal{N}$. Let $f\in \operatorname{Hom}_{\F[T]}\left(J(\ld ,d),J(\ld ,e) \right)$. Write $f(v_d)\triangleq \sum b_iw_i$. Because $f$ is a $\F[T]$-module homomorphism, we know for all $i \leq d-1$ that:  
+\begin{align}
+\label{EQfvdi}
+f(v_{d-i})= f\left((A-\ld I)^i v_d \right)= (A-\ld I)^i f(v_d)= \sum_{j=1}^e b_j(A-\ld I)^i w_j =\sum_{j=i+1}^{e} b_{j}w_{j-i}    
+\end{align}
+Moreover, since $(A-\ld I)^dv_d=0$, we also know  
+\begin{align*}
+\sum_{i=1}^{e-d} b_{i+d}w_i= (A-\ld I)^d f(v_d)= f\left((A-\ld I)^d v_d \right)= 0
+\end{align*}
+which implies $b_{t+i}=0$ for all $i$. This together with the fact that \myref{equation}{EQfvdi} holds for all $i\leq d-1$ shows that $\operatorname{Im}(\pfi ) \subseteq \mathcal{N}$. Let $f\in \operatorname{Hom}_{\F}\left(J(\ld ,d),J(\ld ,e) \right)$ satisfies: 
+\begin{align*}
+[f]_{\set{v_1,\dots ,v_d}}^{\set{w_1,\dots ,w_e}} \in \mathcal{N} 
+\end{align*}
+To show $\operatorname{Im}(\pfi ) \supseteq \mathcal{N}$, we only have to show that  $f$ lies in $\operatorname{Hom}_{\F[T]} \left( J(\ld ,d),J(\ld ,e)  \right)$, i.e., $f$ is moreover a $\F[T]$-module homomorphism. To prove that $f$ forms a $\F[T]$-module homomorphism, clearly we only have to prove  $f \circ A|_{J(\ld ,d)} = A|_{J(\ld ,e)}\circ f$, which can be easily checked by direct matrix computation. 
+\end{proof}
+
+
+
+
 \chapter{What you probably need to know}
 \section{Matrix Exponential}
 Given two $n\times n$ square $\F$-matrices $A,B$, where $\F=\C$ or  $\R$, by Cauchy-Schwarz inequality, we see that the Frobenius norm
@@ -954,9 +1060,15 @@ A^4=B^4 \implies  A=B
 \end{align*}
 \end{question}
 \begin{proof}
-By computing \customref{PoJb}{the Jordan form of power of Jordan block}, we see that $A$ and $B$ must share the same Jordan form. This implies $A$ and  $B$ are similar, the existence of some $P\in GL_n(\C)$ such that $A=PBP^{-1}$. Clearly, to prove $A=B$, we only have to show that  $P$ and  $B$ commute. 
-
-
+Because eigenvalues of $A$ and  $B$ are all positive real, we may compute \customref{PoJb}{the Jordan forms of powers of Jordan blocks} to see that $A$ and $B$ must share the same Jordan form. This implies $A$ and  $B$ are similar, which implies the existence of some $P\in GL_n(\C)$ such that $A=PBP^{-1}$. Clearly, to prove $A=B$, we only have to show that  $P$ and  $B$ commute. Using $A=PBP^{-1}$, we see: 
+\begin{align*}
+B^4=A^4= PB^4 P^{-1}
+\end{align*}
+which implies $P$ commute with  $B^4$. To prove that $P$ and  $B$ commute, we only have to show: 
+\begin{align*}
+C(B^4) = C(B)
+\end{align*}
+Clearly, the "$\supseteq$" part holds. To prove the "$\subseteq$" part also holds true, we only have to prove  $\operatorname{dim}C(B^4)= \operatorname{dim}C(B)$, which  follows from  \customref{THdffcoc}{dimension formula for centralizer over algebraically closed field} and \customref{PoJb}{computation of powers of Jordan blocks}. 
 \end{proof}
 
 
