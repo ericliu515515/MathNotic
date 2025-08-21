@@ -868,6 +868,33 @@ is the same as:
 \end{align*}
 
 \end{proof}
+\section{Implicit function theorem}
+\begin{theorem}
+\textbf{(Pointwise implicit function theorem)} Let $U \subseteq \R^n \times \R^m$ be open and $(\textbf{a},\textbf{b}) \in U$. Let $\textbf{f}:U\rightarrow \R^n$ be a $C^1$  function such that the matrix: 
+\begin{align*}
+\begin{pmatrix} 
+  \frac{\partial f_1}{\partial x_1} \Big  |_{(\textbf{a},\textbf{b})} & \cdots & \frac{\partial f_1}{\partial x_n} \Big |_{(\textbf{a},\textbf{b})}  \\
+  \vdots & \ddots & \vdots \\
+  \frac{\partial f_n}{\partial x_1} \Big|_{(\textbf{a},\textbf{b})} & \cdots & \frac{\partial f_n}{\partial x_n} \Big  |_{(\textbf{a},\textbf{b})} 
+\end{pmatrix}
+\end{align*}
+is invertible. Then, there exists some neighborhood $V$ of $\textbf{b}$ such that there exists a unique function $\textbf{g}:V\rightarrow \R^n$ that satisfies: 
+\begin{enumerate}[label=(\alph*)]
+  \item $\textbf{g}(\textbf{b})=\textbf{a}$.  
+  \item $\set{ \left(\textbf{g}(\textbf{y}),\textbf{y} \right)\inr^n \times \R^m: \textbf{y} \in V}\subseteq U$.  
+  \item  $\textbf{f}\left( \textbf{g}(\textbf{y}), \textbf{y} \right)= \textbf{f}(\textbf{a},\textbf{b})$ for all $\textbf{y}\in V$  
+\end{enumerate}
+Clearly, such $\textbf{g}$ had derivative  
+
+$C^1$
+\end{theorem}
+\begin{proof}
+Define $\textbf{F}: U \rightarrow \R^n \times \R^m$ by 
+\begin{align*}
+\textbf{F}(\textbf{x},\textbf{y})\triangleq \left(\textbf{f}(\textbf{x},\textbf{y}),\textbf{y} \right)
+\end{align*}
+
+\end{proof}
 \section{Lagrange multiplier theorem}
 \section{Integration on manifolds}
 \chapter{NTU Math M.A. Program Entrance Exam}
@@ -876,12 +903,87 @@ is the same as:
 Let $\textbf{x}=(x_1,x_2,x_3)$ be coordinate of $\R^3$. Let 
 \begin{align*}
   f(\textbf{x})&\triangleq  \frac{x_1^3+x_2^2+i \ln (1+x_2^2+ x_3^2)}{x_1^2+x_2^2+i x_3^2 \sin \left( \frac{x_1}{x_3} \right)} &\text{ if $x_1x_2x_3\neq 0$ }\\
-  f(x)&\triangleq  0  &\text{ if }x_1x_2x_3=0
+  f(\textbf{x})&\triangleq  0  &\text{ if }x_1x_2x_3=0
 \end{align*}
-Prove that $f$ is continuous at everywhere except at $\set{\textbf{x}\inr^3: x_1x_2x_3=0 }$
+Prove that 
+\begin{align*}
+\set{\textbf{x}\inr^3:f\text{ is continuous at }\textbf{x}}=\set{\textbf{x}\inr^3:x_1x_2x_3\neq 0}
+\end{align*}
 \end{question}
 \begin{proof}
-Clearly  
+Because $f$ is the quotient of two nonzero continuous function on $\R^3 - \set{\textbf{x}\inr^3: x_1x_2x_3=0}$, we know $f$ is continuous on it. Let 
+\begin{enumerate}[label=(\roman*)]
+  \item $E_0 \triangleq \set{\textbf{0}}$. 
+  \item $E_1\triangleq \set{\textbf{x}\inr^3:x_1=x_2=0}-E_0$. 
+  \item $E_2 \triangleq \set{\textbf{x}\inr^3 : x_1=x_3=0}-E_0$.
+  \item $E_3\triangleq \set{\textbf{x}\inr^3:x_2=x_3=0}-E_0$. 
+  \item $E_4\triangleq \set{\textbf{x}\inr^3:x_1=0}- (E_0 \cup E_1 \cup  E_2) $. 
+  \item $E_5 \triangleq \set{\textbf{x}\inr^3:x_2=0}- (E_0 \cup E_1\cup  E_3)$. 
+  \item $E_6 \triangleq \set{\textbf{x}\inr^3: x_3=0}- (E_0 \cup  E_2 \cup E_3)$. 
+\end{enumerate}
+We shall prove in order that all of them is contained by $\set{\textbf{x}\inr^3: f\text{ is discontinuous at }\textbf{x}}$. To see $f$ is discontinuous at $\textbf{0}$, just observe
+\begin{align*}
+\lim_{t\to 0} \operatorname{Re}f(\pi t,t,t)= \frac{1}{\pi ^2 + 1}
+\end{align*}
+Fix $(0,0,a) \in E_1$. To see $f$ is discontinuous at $(0,0,a)$, just observe 
+\begin{align*}
+  \abso{ f(t,t,a+t)} =  \frac{ \abso{t^3+t^2+ i \ln (1+t^2+(a+t)^2)}}{\abso{2t^2 + i(a+t)^2 \sin \left(\frac{t}{a+t}\right)}} \rightarrow \infty ,\quad \text{ as }t\rightarrow 0
+\end{align*}
+Fix $(0,a,0)\in E_2$. To see $f$ is discontinuous at $(0,a,0)$, just observe 
+\begin{align*}
+ \lim_{t\to 0}f(t,a+t,t)= \frac{a^2+ i \ln (1+a^2)}{a^2} 
+\end{align*}
+Fix $(a,0,0)\in E_3$. To see $f$ is discontinuous at $(a,0,0)$, just observe 
+\begin{align*}
+\lim_{t\to 0} f(a+t,t,t)= a 
+\end{align*}
+Fix $(0,a,b)\in E_4$. To see $f$ is discontinuous at $(0,a,b)$, just observe 
+\begin{align*}
+\lim_{t\to 0} f(t,a+t,b+t)= \frac{a^2+ i \ln (1+a^2+b^2)}{a^2}
+\end{align*}
+Fix $(a,0,b)\in E_5$. To see $f$ is discontinuous at $(a,0,b)$, just observe 
+\begin{align*}
+\lim_{t\to 0} f(a+t,b+t,0)= \frac{a^3+ i \ln (1+b^2)}{a^2 + ib^2 \sin \left(\frac{a}{b} \right)}
+\end{align*}
+Fix $(a,b,0)\in E_6$. To see $f$ is discontinuous at $(a,b,0)$, just observe 
+\begin{align*}
+\lim_{t\to 0}  f(a+t,t,b+t)= \frac{a^3+b^2 + i \ln (1+b^2)}{a^2+b^2}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $\textbf{x}=(x_1,x_2,x_3)$ be coordinate of $\R^3$. Let 
+\begin{align*}
+  f(\textbf{x})&\triangleq  \frac{x_1^3+e^{-\frac{1}{x^2}}+i \sin^2 \left( x_3^2 \right)}{x_1^2+x_2^2+i x_3^3 } &\text{ if $x_1x_2x_3\neq 0$ }\\
+  f(\textbf{x})&\triangleq  0  &\text{ if }x_1x_2x_3=0
+\end{align*}
+Is $f$ differentiable at $\textbf{0}$? (It isn't, as you may have guessed from the fact this is an exam question) 
+\end{question}
+\begin{proof}
+Because $\frac{\partial f}{\partial x_i}\big|_{\textbf{0}}=0$ for all $i$, if $f$ is differentiable at origin, then we must have $df|_\textbf{0}= (0,0,0)$. In other words, we only have to check whether
+\begin{align*}
+   \frac{\abso{f(\textbf{x})- f(\textbf{0})}}{\abso{\textbf{x}}}=\frac{\abso{x_1^3 + e^{-\frac{1}{x^2}}+ i \sin^2 \left(x_3^2 \right)}}{\abso{x_1^2+x_2^2+i x_3^3 } \sqrt{x_1^2+x_2^2+x_3^2} }
+\end{align*}
+converge to $0$ as  $\textbf{x}\rightarrow \textbf{0}$. We claim it doesn't. Let $\textbf{x}=(t,t,t)$. We have 
+\begin{align*}
+  \frac{\abso{f(\textbf{x})- f(\textbf{0})}}{\abso{\textbf{x}}}\geq  \frac{\abso{t^3}}{ \abso{2\sqrt{3}t^3+\sqrt{3} it^4} } = \frac{1}{\abso{2\sqrt{3} + \sqrt{3}it}} \rightarrow \frac{1}{2\sqrt{3}},\quad \text{ as }t \searrow 0
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $f(\textbf{x},\textbf{y})\in \mathcal{C}^{\infty} (\R^n \times \R^m)$, where $\textbf{x}=(x_1,\dots ,x_n)$ denote coordinates in $\R^n$ and  $\textbf{y}= (y_1,\dots ,y_m)$ denote coordinates in $\R^m$. Suppose $f(\textbf{0},\textbf{0})=0$, $\frac{\partial f}{\partial x_j}\big|_{(\textbf{0},\textbf{0})}=0$ for all $1\leq j\leq n$, and that the $n$-by-$n$ matrix  $\left(\frac{\partial f}{\partial x_i\partial x_j} \right)\big|_{(\textbf{0},\textbf{0})}$ is invertible. 
+\begin{enumerate}[label=(\Roman*)]
+  \item Show that there exists open neighborhood $V$ of  $\textbf{0}\inr^m$ and smooth $g:V\rightarrow \R^n$ such that  
+    \begin{align*}
+    \frac{\partial f}{\partial x_j}\bigg    |_{\left(g(\textbf{y}),\textbf{y} \right)}=0,\quad \text{ for all }\textbf{y}\in V\text{ and }j
+    \end{align*} 
+    \item Show that there exists open neighborhoods $\Omega_1$ and $\Omega$ of $\textbf{0}\inr^m$ together with a smooth function $H:\Omega_1 \rightarrow \R$ that makes: 
+ \begin{align*}
+ &\set{\left(\textbf{x}, \frac{\partial f}{\partial x_1} \bigg|_{(\textbf{x},\textbf{0})}, \dots ,\frac{\partial f}{\partial x_n} \bigg  |_{(\textbf{x},\textbf{0})}\right)\inr^{2n}:\textbf{x} \in \Omega} \\
+   =& \set{ \left( \frac{\partial H}{\partial \xi_1} \bigg |_{\boldsymbol{\xi}} , \dots ,\frac{\partial H}{\partial \xi_n} \bigg |_{\boldsymbol{\xi}},  \boldsymbol{\xi} \right) \inr^{2n}:\xi \in \Omega_1}
+ \end{align*}
+\end{enumerate}
+\end{question}
+\begin{proof}
+
 \end{proof}
 \section{Year 113}
 \begin{question}{}{}
