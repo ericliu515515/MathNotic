@@ -16,7 +16,7 @@
 \pagebreak
 \chapter{What you need to know}
 \section{Quick recap}
-Let $V$ be a vector space over some field $\F$, and let  $S$ be a subset of $V$. We say  
+Let $V$ be a vector space over $\F$, and let $S$ be a subset of $V$. We say  
 \begin{enumerate}[label=(\alph*)]
   \item $S$ is \textbf{linearly independent} if to write $0$ as finite linear combination of  $S$, the coefficients must all be zero.
   \item  $S$  \textbf{spans $V$} if all $v\in V$ can be written as finite linear combination of $S$. 
@@ -40,23 +40,23 @@ By extending a basis of the kernel of $F$ to a basis of the whole  $V$, one can 
 \begin{align*}
 \operatorname{dim}(\operatorname{Ker}F)+ \operatorname{rank}(F)= \operatorname{dim}(V). 
 \end{align*}
-We use $V^*$ to denote the vector space of linear map from  $V$ to  $\F$, the  \textbf{dual space} of $V$. Let $F:V\rightarrow W$ be a linear map. Its \textbf{dual map} $F^\dagger :W^*\rightarrow V^*$ is defined by 
+We use $V^\vee$ to denote the \textbf{dual space} of $V$. Let $F\in \operatorname{Hom}(V,W)$. Its \textbf{dual map} $F^\vee\in  \operatorname{Hom}(W^{\vee},V^{\vee})$ is defined by 
 \begin{align*}
-F^\dagger (\phi)\triangleq \phi \circ F
+F^\vee (\phi)\triangleq \phi \circ F
 \end{align*}
 If $V$ is finite-dimensional with basis  $\set{v_1,\dots ,v_n}$, then its \textbf{dual basis} $\set{\phi_1,\dots ,\phi_n}$ is defined by 
 \begin{align*}
 \phi_i (v_j)\triangleq \delta^i_j
 \end{align*}
-and there exists a natural isomorphism between $V$ and its double dual  $(V^*)^*$ by identifying $v\in (V^*)^*$ as 
+and there exists a natural isomorphism between $V$ and its double dual  $(V^\vee)^\vee$ by identifying $v\in (V^\vee)^\vee$ as 
 \begin{align*}
 v(\phi) \triangleq \phi (v). 
 \end{align*}
-Let $\set{w_1,\dots ,w_m}$ be a basis of $W$ with dual basis  $\set{\xi_i , \dots ,\xi_m}$. It is clear that under these two basis, the matrices representation of $F$ and  $F^\dagger $ are transpose of each other. This together with the observation that $\operatorname{rank}(F)+ \operatorname{dim}(\operatorname{ker}F^*)= \operatorname{dim}(W)$ for finite dimensional $V$ and  $W$, give us a quick proof that the dimensions of column space and row space of a fixed matrix are always equal. Now, given some $n$-by-$n$ square matrix $A$, its \textbf{determinant} is by definition 
+Let $\set{w_1,\dots ,w_m}$ be a basis of $W$ with dual basis  $\set{\xi_i , \dots ,\xi_m}$. It is clear that under these two basis, the matrices representation of $F$ and  $F^\vee$ are \emph{transpose} of each other. This together with the observation that $\operatorname{rank}(F)+ \operatorname{dim}(\operatorname{ker}F^\vee)= \operatorname{dim}(W)$ for finite dimensional $V$ and  $W$, give us a quick proof that the dimensions of column space and row space of a fixed matrix are always equal. Now, given some $n$-by-$n$ square matrix $A$, its \textbf{determinant} is by definition 
 \begin{align*}
 \operatorname{det}A\triangleq  \sum_{\sigma \in S_n} \Big(\operatorname{sgn}\sigma \prod_{k=1}^n  A_{\sigma (k),k} \Big)
 \end{align*}
-If one identify the space of $n$-by-$n$ square matrix over  $\F$ with  $(\F^n)^n$, determinant can be equivalently defined to be the unique alternating multilinear map from $(\F^n)^n$ to $\F$ such that 
+If one identify  $M_n(\F)$ with  $(\F^n)^n$, determinant can be equivalently defined to be the unique alternating multilinear map from $(\F^n)^n$ to $\F$ such that 
  \begin{align*}
 \operatorname{det}(I)=1
 \end{align*}
@@ -64,7 +64,7 @@ By an algorithm, one see that, for each alternating multilinear map $F:(\F^n)^n\
 \begin{align*}
 F(B)= (\operatorname{det}B)\cdot F(I) \text{ for all }B.
 \end{align*}
-Therefore, if we observe for each $n$-by-$n$ square matrix $A$ over  $\F$ that the map $B\mapsto \operatorname{det}AB$ is indeed alternating multilinear, then we immediately have the celebrated result $\operatorname{det}AB=\operatorname{det}A\operatorname{det}B$ as a corollary. This multiplicative property of determinant allow us to well define determinant for each linear endomorphism $F$ over some finite-dimensional vector space by 
+Therefore, if we observe for each  $A\in M_n(\F)$ that the map $B\mapsto \operatorname{det}AB$ is indeed alternating multilinear, then we immediately have the celebrated result $\operatorname{det}AB=\operatorname{det}A\operatorname{det}B$ as a corollary. This multiplicative property of determinant allow us to well define determinant for each linear endomorphism $F$ over some finite-dimensional vector space by 
  \begin{align*}
 \operatorname{det}F\triangleq  \operatorname{det}([F])
 \end{align*}
@@ -110,7 +110,7 @@ Similarly, we say that \( T \) is \textbf{nilpotent} if:
 \end{align*}
 \begin{theorem}
 \label{LIGE}
-\textbf{(Linear independence of generalized eigenspaces)} Let $\F$ be a field.  $V$ be a finite-dimensional  $\F$-vector space, and  $T \in \operatorname{End}(V)$. If $v_1,\dots ,v_n$ are generalized eigenvectors of $T$ with respect to distinct eigenvalues $\ld_1,\dots ,\ld _n$, then they are linearly independent. 
+\textbf{(Linear independence of generalized eigenspaces)} Let $V$ be a finite-dimensional $\F$-vector space and  $T \in \operatorname{End}(V)$. If $v_1,\dots ,v_n$ are generalized eigenvectors of $T$ with respect to distinct eigenvalues $\ld_1,\dots ,\ld _n$, then they are linearly independent. 
 \end{theorem}
 \begin{proof}
 Suppose 
@@ -138,20 +138,45 @@ which implies $a_1=0$. WLOG, we have shown $a_1=\cdots = a_n=0$.
 \label{VFn}
 V= \operatorname{Ker}T^{\operatorname{dim}V} \oplus  \operatorname{Im}T^{\operatorname{dim}V}
 \end{align}
-As we will later see, \myref{decomposition}{VFn} plays a central role in decomposition of $V$ into generalized eigenspace of $T$ if  $\F$ is algebraically closed. See \myref{theorem}{DiGE}. 
+As we will later see, \myref{decomposition}{VFn} plays a central role in decomposition of $V$ into generalized eigenspace of $T$. See \myref{theorem}{DiGE}. \\
+
+We say a polynomial $m \in \F[x]$ is a \textbf{minimal polynomial}\footnote{It is worth mentioning that we didn't prove that the minimal polynomial of $T$ is invariant under field extension. To prove such, one need to show that the minimal polynomial $m$ of $[T]$ over $\overline{\F}$ has only $\F$ coefficients. This follows from noting that if we write $m=m_1+c_2m_2+\cdots + c_km_k$ where $m_1,\dots ,m_k \in \F[x]$, then $m_2=\cdots=m_k=0$, since they have degree strictly smaller than $m$, as minimal polynomial is defined to be monic.} of $T$, if $m \in \F[x]$ a nonzero polynomial of smallest degree such that $m(T)=0 \in \operatorname{End}(V)$. Note that because $\operatorname{End}(V)$ is finite dimensional, such $m$ must exists. We say a polynomial $p \in \F[x]$ \textbf{splits over $\F$} if we may write:
+\begin{align*}
+p(x)=(x-\ld _1)^{n_1} \cdots (x- \ld _m)^{n_m},\quad \text{ where }\ld _i \in \F
+\end{align*}
 \begin{theorem}
 \label{DiGE}
-\textbf{(Decomposition into generalized eigenspaces)} Let $\F$ be an algebraically closed field, $V$ a finite dimensional $\F$-vector space of dimensional  $\geq 1$, and $T \in \operatorname{End}(V)$. If we let $\set{\ld _1,\dots ,\ld _m}$ be the set of eigenvalues of $T$, then: 
+\textbf{(Decomposition into generalized eigenspaces)} Let $V$ be a finite dimensional $\F$-vector space of dimension  $\geq 1$, $T \in \operatorname{End}(V)$, and a (hence any) minimal polynomial of $T$ splits over $\F$. If we let $\set{\ld _1,\dots ,\ld _m}$ be the set of eigenvalues of $T$, then: 
  \begin{align*}
 V= G(\ld_1,T)\oplus \cdots \oplus G(\ld_m,T)
 \end{align*}
 \end{theorem}
 \begin{proof}
-This is proved by induction on the dimension of $V$. The 1-dimensional base case is trivial. We now prove the inductive case. By \myref{Equation}{VFn}, we may decompose $V$ into: 
-\begin{align*}
+This is proved by induction on the dimension of $V$. The 1-dimensional base case is trivial. We now prove the inductive case. By \myref{equation}{VFn}, we may decompose $V$ into: 
+\begin{align}
+\label{EQvglt}
   V= G(\ld_1,T) \oplus U,\quad\text{ where }U=\operatorname{Im}(T-\ld_1)^{\operatorname{dim}V}. 
+\end{align}
+Noting that $T$ and  $T-\ld_1I$ commutes, we conclude that $U$ is stable under $T$. Therefore, the restriction $T |_U$ defines an endomorphism  $T|_U \in \operatorname{End}(U)$. Let $m \in \F[x]$ be a minimal polynomial of $T$, and let  $m_U\in \F[x]$ be a minimal polynomial of $T |_U$. Because $m (T|_U)=0$, we know $m_U$ divides  $m$. This then implies $m_U$ also splits over  $\F$.    \\
+
+Clearly, every eigenvalues of $T |_U$ lies in $\set{\ld _2,\dots ,\ld _m}$. To see that $T|_U$ actually has spectrum $\set{\ld _2,\dots,\ld _m}$, let $v_2 \in V$ be an eigenvector of $T$ with eigenvalue  $\ld _2$. \myref{Decomposition}{EQvglt} allows us to write: 
+\begin{align*}
+v_2= v_1 + (T-\ld _I)^{\operatorname{dim}V}w ,\quad \text{ where }v_1 \in G(\ld_1,T)\text{ and } w\in V
 \end{align*}
-Noting that $T$ and  $T-\ld_1I$ commutes, we conclude that $U$ is stable under $T$. Therefore, the restriction $T |_U$ defines an endomorphism  $T|_U \in \operatorname{End}(U)$. By inductive hypothesis, we may decompose $U$ into: 
+Because $(T-\ld _2)v_2=0$, we know 
+\begin{align*}
+0= (T-\ld _2)v_1 + (T-\ld _1 I )^{\operatorname{dim}V}(T-\ld_2 I )w 
+\end{align*}
+Clearly, $(T-\ld _2)v_1 \in G(\ld _1,T)$. This together with \myref{direct sum}{EQvglt} implies $(T-\ld _2)v_1=0$, which by \customref{LIGE}{linear independence of generalized eigenvectors} implies $v_1=0$, as desired.\\
+
+
+
+
+
+
+
+
+Finally, we may now use inductive hypothesis to decompose $U$ into: 
  \begin{align*}
 U= G(\ld _2,T|_U)\oplus   \cdots \oplus  G(\ld _m,T|_U)
 \end{align*}
@@ -163,18 +188,18 @@ Arbitrary select $v\in G(\ld _2,T)$. We may decompose $v=a_1v_1+\cdots + a_mv_m$
 \begin{align*}
   (T-\ld_2I)^{\operatorname{dim}V}(a_1v_1+ a_3v_3+\cdots + a_mv_m)=0
 \end{align*}
-This implies $a_1v_1+a_3v_3+\cdots + a_mv_m \in G(\ld_2,T)$. It now follows from \myref{Theorem}{LIGE} that $a_1=a_3=\cdots = a_m=0$. We have shown $v\in G(\ld_2,T|_U)$.
+This implies $a_1v_1+a_3v_3+\cdots + a_mv_m \in G(\ld_2,T)$. It now follows from \customref{LIGE}{linear independence of generalized eigenvectors} that $a_1=a_3=\cdots = a_m=0$. We have shown $v\in G(\ld_2,T|_U)$.
 \end{proof} 
-Given some finite dimensional vector space $V$ and some $T \in \operatorname{End}(V)$, we are particularly concerned with the existence and uniqueness of the \textbf{Jordan-Chevalley decomposition} of $T$, i.e, some diagonalizable $S \in \operatorname{End}(V)$ such that 
+Given some finite dimensional $\F$-vector space $V$, and some $T \in \operatorname{End}(V)$, we are particularly concerned with the existence and uniqueness of the \textbf{Jordan-Chevalley decomposition} of $T$, i.e, some diagonalizable $S \in \operatorname{End}(V)$ such that 
 \begin{enumerate}[label=(\alph*)]
   \item $N\triangleq T-S$ is nilpotent. 
   \item $S$ and  $N$ commute. 
 \end{enumerate}
-If $V$ is over an algebraically closed field $\overline{\F}$, then \myref{Theorem}{DiGE} assert the existence of such decomposition by requiring $S$ to map $v\in G(\ld_i,T)$ to $\ld_iv$. To see such decomposition is unique, let $S\in \operatorname{End}(V)$ be some Jordan-Chevalley decomposition of $T$ and decompose $V$ into 
+If minimal polynomial of $T$ splits over $\F$, then \myref{Theorem}{DiGE} assert the existence of such decomposition by requiring $S$ to map $v\in G(\ld_i,T)$ to $\ld_iv$. To see such decomposition is unique, let $S\in \operatorname{End}(V)$ be some Jordan-Chevalley decomposition of $T$ and decompose $V$ into 
 \begin{align*}
 V=E(\ld_1,S)\oplus  \cdots \oplus  E(\ld_k , S)
 \end{align*}
-where $E(\ld _i,S)$ are the eigenspaces of $S$ corresponding to distinct eigenvalues $\ld_i$. Because $T,S$ commute and $T-S$ is nilpotent, we may conclude that $\ld_i$ are indeed the eigenvalues of $F$ and  
+where $E(\ld _i,S)$ are the eigenspaces of $S$ corresponding to distinct eigenvalues $\ld_i$. Because $T,S$ commute and $T-S$ is nilpotent, we may conclude that $\ld_i$ are indeed the eigenvalues of $T$ and  
 \begin{align*}
 E(\ld _i ,S) \subseteq G(\ld_i,T)\text{ for all }i
 \end{align*}
@@ -182,21 +207,21 @@ This together with the decomposition we obtained from \myref{Theorem}{DiGE}:
 \begin{align*}
 V= G(\ld_1,T)\oplus \cdots \oplus G(\ld_m,T)
 \end{align*}
-shows the uniqueness of Jordan-Chevalley decomposition. Interestingly, we may also take a completely algebraic approach to prove
+shows the uniqueness of Jordan-Chevalley decomposition. Interestingly, we may also take a completely algebraic approach to prove: 
 \begin{enumerate}[label=(\alph*)]
   \item the existence of Jordan-Chevalley decomposition. 
   \item the uniqueness of Jordan-Chevalley decomposition. 
   \item that $S=p(T)$ for some polynomial $p \in \overline{\F}[x]$. 
 \end{enumerate}
-without ever invoking \myref{Theorem}{LIGE}, \myref{Theorem}{DiGE}, nor any result that depends on them. The argument proceeds as follows: Because \( \operatorname{End}(V) \) is finite-dimensional, the minimal polynomial \( m \) exists. By the Fundamental Theorem of Algebra, we can factor \( m \) into linear terms:
+without ever invoking \customref{LIGE}{linear independence of generalized eigenvectors}, \myref{Theorem}{DiGE}, nor any result that depends on them. The argument proceeds as follows: Be premise, the minimal polynomial $m \in \F[x]$ of $T$ splits over  $\F$:  
 \begin{align*}
-m(x) = (x - \xi_1)^{r_1} \cdots (x - \xi_k)^{r_k}.
+m(x) = (x - \xi_1)^{r_1} \cdots (x - \xi_k)^{r_k},\quad \text{ where }\xi_i \in \F
 \end{align*}
-Consider the polynomials \( f_i \) defined by
+Consider the polynomials \( f_i \in \F[x] \) defined by
 \begin{align*}
 f_i(x) \triangleq \prod_{j=1;j\neq i}^{k} (x - \xi_j)^{r_j}.
 \end{align*}
-Since \( \set{f_1, \dots, f_k} \) are coprime, Bézout's identity says that there exist polynomials \( q_i \in \C[x] \) such that
+Since  $\operatorname{gcd}(f_1,\dots ,f_k)=\operatorname{const.}$, Bézout's identity says that there exist polynomials \( q_i \in \C[x] \) such that
 \begin{align*}
 1 = \sum_{i=1}^{k} q_i f_i.
 \end{align*}
@@ -212,13 +237,13 @@ It is clear that \( V \) is a direct sum of the images of these projections. Def
 \begin{align*}
 S \triangleq \sum_{i=1}^{k} \xi_i \pi_i.
 \end{align*}
-Since \( S \) is a polynomial in \( T \), we conclude that \( S \) and \( N \) commute. The fact that \( N \) is nilpotent follows from the definitions of \( f_i \). We now prove the uniqueness. Let $T=S'+N'$ be another Jordan-Chevalley decomposition. We are required to prove $S-S'=0$. Clearly $\set{S,N,S',N'}$ all commute with each other. This implies $S-S'=N-N'$ is nilpotent. Note that  $S-S'$ is diagonalizable\footnote{Two commuting linear operator $S,S'$ over finite dimensional vector space are always simultaneously diagonalizable. Prove this by first proving that $E(\ld ,S)$ is stable under $S'$ and then consider  $V=E(\ld_1,S)\oplus  \cdots \oplus   E(\ld_k,S)$} . This now implies $S-S'=0$, since no units are zero-divisor. 
+Since \( S \) is a polynomial in \( T \), we conclude that \( S \) and \( N \) commute. The fact that \( N \) is nilpotent follows from the definitions of \( f_i \). We now prove the uniqueness. Let $T=S'+N'$ be another Jordan-Chevalley decomposition. We are required to prove $S-S'=0$. Clearly $\set{S,N,S',N'}$ all commute with each other. This implies $S-S'=N-N'$ is nilpotent. Note that  $S-S'$ is diagonalizable\footnote{Two commuting diagonalizable linear operator $S,S'$ over finite dimensional vector space are always simultaneously diagonalizable. Prove this by first proving that $E(\ld ,S)$ is stable under $S'$ and then consider  $V=E(\ld_1,S)\oplus  \cdots \oplus   E(\ld_k,S)$} . This now implies $S-S'=0$, since no units are zero-divisor. 
 
 \section{Jordan forms}
 \label{JF}
 \begin{theorem}
 \label{JfNO}
-\textbf{(Jordan forms of nilpotent operators)} Let $V$ be a finite-dimensional vector space of dimension $\geq 1$, and let $N \in \operatorname{End}(V)$ be nilpotent. There exists an unique element $(n_1,\dots ,n_m)$ in the set: 
+\textbf{(Jordan forms of nilpotent operators)} Let $V$ be a finite-dimensional $\F$-vector space of dimension $\geq 1$, and let $N \in \operatorname{End}(V)$ be nilpotent. There exists an unique element $(n_1,\dots ,n_m)$ in the set: 
 \begin{align*}
 \set{(n_1,\dots ,n_k) \big |\quad  k \inn,\quad \text{ and }n_1\geq \cdots \geq  n_k \geq 0 ,\quad \text{ and } n_i \inn \cup  \set{0} }
 \end{align*}
@@ -261,11 +286,7 @@ for $V$. Because $\set{N^{k_1+1}u_1,\dots ,N^2u_1,Nu_1,\dots ,N^{k_n+1}u_n,\dots
 \end{align*}
 so that  \myref{Set}{set1} form a desired basis for $V$.    
 \end{proof}
-Let $V$ be some $n$-dimensional $\F$-vector space and $F\in \operatorname{End}(V)$, and let $[F]\in M_n(\F)$ be some matrix representation of $F$ with respect to some basis. Let  $\overline{\F}$ be the algebraically closure of $\F$, and consider the Jordan-Chevalley decomposition        $[F]=S+N$, where $S,N \in M_n(\overline{\F})$. By \myref{Theorem}{DiGE}, we have 
-\begin{align*}
-  (\overline{\F})^n= G(\ld _1,F)\oplus \cdots \oplus G(\ld _m ,F)
-\end{align*}
-Because both $[F]$ and  $S$ map  $G(\ld _j,F)$ into themselves, we know $N$ also maps  $G(\ld _j,F)$ into themselves. Therefore, we may apply \myref{Theorem}{JfNO} to $N |_{G(\ld_j,F)}$ and get a \textbf{Jordan basis}, here an invertible matrix $P\in M_n(\overline{\F})$ such that $P^{-1}[F]P$ is in the \textbf{Jordan form}. Let $\ld_1,\dots ,\ld_m$ be the distinct eigenvalues of $[F]$, and let $r_i$ be the dimension of the largest Jordan block with eigenvalue  $\ld_i$. It is clear that the \textbf{minimal polynomial}\footnote{It is worth mentioning that we didn't prove that the minimal polynomial of $F$ is invariant under field extension. To prove such, one need to show that the minimal polynomial $m$ of $[F]$ over $\overline{\F}$ has only $\F$ coefficients. This follows from noting that if we write $m=m_1+c_2m_2+\cdots + c_km_k$ where $m_1,\dots ,m_k \in \F[x]$, then $m_2=\cdots=m_k=0$, since they have degree strictly smaller than $m$, as minimal polynomial is defined to be monic.} of $F$, some polynomial $m$ of smallest degree such that $m(F)=0$, take the form 
+Let $V$ be some $n$-dimensional $\F$-vector space and $T\in \operatorname{End}(V)$ has minimal polynomial that splits over $\F$.  Finally it follows at once from \myref{theorem}{DiGE} and \myref{theorem}{JfNO} that $T$ admits a \textbf{Jordan basis}. Let $\ld_1,\dots ,\ld_m$ be the distinct eigenvalues of $T$, and let $r_i$ be the dimension of the largest Jordan block with eigenvalue  $\ld_i$. It is clear that the minimal polynomial $m \in \F[x]$ of $T$ when required to be monic, take the form: 
 \begin{align*}
 m(x)=(x-\ld_1)^{r_1}\cdots (x-\ld_m)^{r_m} 
 \end{align*}
@@ -323,7 +344,7 @@ which implies:
 Clearly, \myref{Theorem}{PoJb} give us the \textbf{Spectral Theorem for Polynomials}, whatever version it is for you. 
 \section{Spectral theorem}
 \label{Spectral Theorem}
-Let  $V$ be a $\F$-vector space where $\F$ is a subfield of $\C$. By a \textbf{norm} on $V$, we mean some \textbf{positive-definite} functional $\norm{\cdot}:V\to \R$ that satisfies \textbf{absolute homogeneity} and \textbf{triangle inequality}. In this context, for $\norm{\cdot}$ to be positive-definite, it must satisfy 
+In this section, $\F$ is always a subfield of  $\C$. Let  $V$ be a $\F$-vector space. By a \textbf{norm} on $V$, we mean some \textbf{positive-definite} functional $\norm{\cdot}:V\to \R$ that satisfies \textbf{absolute homogeneity} and \textbf{triangle inequality}. In this context, for $\norm{\cdot}$ to be positive-definite, it must satisfy 
 \begin{align*}
   \norm{v}=0 \implies  v=0
 \end{align*}
@@ -357,7 +378,11 @@ Let $V,W$ be two inner product space over  $\F$, and let  $F:V\rightarrow W$ be 
 \begin{align*}
 \langle Fv,w\rangle = \langle v,F^\dagger w\rangle \quad\text{for all }v\in V,w\in W, 
 \end{align*}
-we say $F^\dagger $ is an  \textbf{adjoint} of $F$. If both $V$ and $W$ are finite-dimensional, then $F^\dagger $ exists uniquely, and its matrix representation is always the complex conjugation of that of $F$, regardless of the choices of bases. It is obvious that the double adjoint of a linear map between two finite-dimensional inner product spaces over $\F$ is itself. \\
+we say $F^\dagger $ is an  \textbf{adjoint} of $F$. If both $V$ and $W$ are finite-dimensional, then $F^\dagger $ exists uniquely: Given orthogonal bases $\set{e_1,\dots ,e_n} \subseteq V,\set{f_1,\dots ,f_m}\subseteq W$, the adjoint  $F^{\dagger }$ is uniquely defined by:  
+\begin{align*}
+\overline{B_{j,i}}= \frac{\langle e_i,e_i\rangle }{\langle f_j,f_j\rangle } A_{i,j},\quad \text{ where }B= [F^{\dagger }]_{f_1,\dots ,f_m}^{e_1,\dots ,e_n} \text{ and }A= [F]_{e_1,\dots ,e_n}^{f_1,\dots ,f_m}
+\end{align*}
+Therefore, with respect to orthonormal basis, the matrix representation of $F^{\dagger }$ is simply the complex conjugation of that of $F$. It is then obvious that the double adjoint of a linear map between two finite-dimensional inner product spaces over $\F$ is itself. \\
 
 Given finite dimensional $\C$-vector space  $V$ and  $T \in \operatorname{End}(V)$, if $T$ is \textbf{normal}, i.e. $T$ commutes with its adjoint, then by direct computation, we see that its Schur's form must be diagonal. This result is called \textbf{Spectral Theorem for complex finite-dimensional vector space}. If $V$ is over $\R$ instead of  $\C$, then $T$ being normal is not enough for $T$ to be orthogonally diagonalized, since we do not have Schur's decomposition in the first place.\footnote{Actually, we do have Schur's decomposition in the sense that we may first decompose a real matrix into a complex Jordan matrix, and then applying the Gram-Schmidt process. Yet, because the matrix representation of adjoint of $T$ when the underlying field is  $\R$ is just the transpose of that of $T$ instead of  the conjugate transpose, direct computation yield nothing.} 
 
@@ -385,7 +410,7 @@ for some real $b_i,c_i,\ld_i$ such that $b_i^2<4c_i$ for all  $i$. Because $T$ i
 This implies $T^2+b_iT+c_iI$ are invertible, which implies for some $j$, the map $T-\ld_j I$ is not invertible, i.e., for some $j$, the real number $\ld_j$ is an eigenvalue. 
 \end{proof}
 \begin{theorem}
-\textbf{(Classification of quadratic form via spectral theorem)} Let $\F \in \set{\R, \C}$. If $F \in \F[x_1,\dots ,x_n]$ is a homogeneous polynomial of degree $2$, then there exists some linear transformation $\phi : \F^n \rightarrow \F^n$ such that 
+\textbf{(Classification of quadratic form via spectral theorem)} Let $\F \in \set{\R, \C}$. If $F \in \F[x_1,\dots ,x_n]$ is a homogeneous polynomial of degree $2$, then there exists some  $\phi \in \operatorname{End}(\F^n)$ such that 
 \begin{align*}
 F = \left(\sum_{i=1}^n c_ix_i^2\right) \circ \phi,\quad \text{ for some }c_i \in \F
 \end{align*}
@@ -403,42 +428,23 @@ By \customref{Spectral Theorem}{spectral theorem}, there exists some $P \in M_n(
 \end{proof}
 \section{SVD}
 \label{SVD}
-Let $V,W$ be two finite-dimensional inner product space over $\F$, where $\F=\C$ or  $\R$. Given linear $F:V\rightarrow W$, clearly $F^{\dagger }F\in \operatorname{End}(V)$ is self-adjoint. Therefore, by \customref{Spectral Theorem}{Spectral Theorem}, there exists some orthonormal eigenbasis $\alpha  $ of $V$ with respect to $F^{\dagger }F$.  Clearly, for every pair $v_1,v_2 \in \alpha  $, we have $\langle F(v_1),F(v_2)\rangle =0$ whether $F(v_1),F(v_2)$ are both nonzero or not. This implies that by deleting the zeros and negation of some elements, we may extend $\set{F(v)\in W: v \in \alpha  }$ to an orthonormal basis $\beta$ for $W$ such that every non-zero entry of the $\operatorname{dim}(V)$-by-$\operatorname{dim}(W)$ $\C$-matrix $[F]_{\alpha }^\beta $  is a positive real number and lie in the diagonal. This process is called the \textbf{singular value decomposition of $F$}.  
-
-\section{Related ring theories}
-\begin{theorem}
-\label{THstffgmoP}
- \textbf{(Structure theorem for finitely generated modules over PID)} Let $R$ be a principal ideal domain and  $M$ a finitely generated  $R$-module. There exists some $x_1,\dots ,x_n \in R$ such that: 
+Let $V,W$ be two finite-dimensional inner product space over $\F$, where $\F\in \set{\R,\C}$. Given $F\in \operatorname{Hom}(V,W)$, clearly $F^{\dagger }F\in \operatorname{End}(V)$ is self-adjoint. Therefore, by \customref{Spectral Theorem}{Spectral Theorem}, there exists some orthonormal eigenbasis $\alpha  $ of $V$ with respect to $F^{\dagger }F$. Because for every pair $e_1,e_2 \in \alpha  $, whether $F(v_1),F(v_2)$ are both nonzero or not, we have: 
 \begin{align*}
-M \cong  R \quotient (x_1) \oplus \cdots \oplus R \quotient (x_n) 
+\langle F(e_1),F(e_2)\rangle  = \langle e_1, F^{\dagger } F(e_2)\rangle = 0
 \end{align*}
-as $R$-modules.
-\end{theorem}
-\begin{proof}
+By deleting the zeros and negation of some elements, we may extend $\set{F(e)\in W: e \in \alpha  }$ to an orthonormal basis $\beta$ for $W$ such that every non-zero entry of the $\operatorname{dim}(V)$-by-$\operatorname{dim}(W)$ $\C$-matrix $[F]_{\alpha }^\beta $  is a positive real number and lies in the diagonal. This process is called the \textbf{singular value decomposition of $F$}.  
 
-\end{proof}
-\begin{theorem}
-\label{THCRTform}
-\textbf{(Chinese Remainder theorem for modules)} Let $R$ be a commutative unital ring. If $f_1,\dots ,f_r \in R$ are pairwise coprime, then 
-\begin{align*}
-R \quotient \langle f_1\cdots f_r\rangle \cong  R \quotient \langle f_1\rangle \oplus  \cdots \oplus  R\quotient \langle f_r\rangle 
-\end{align*}
-as rings via obvious isomorphism. 
-\end{theorem}
-\begin{proof}
-
-\end{proof}
 \section{Centralizer}
 Let $\F$ be a field and $A \in M_n(\F)$. Clearly, its \textbf{centralizer}  
 \begin{align*}
 C(A)\triangleq \set{B \in M_n(\F):AB=BA}
 \end{align*}
-forms a $\F$-vector subspace of $M_n(\F)$. If $\F$ is algebraically closed, we may give a formula for the dimension of this subspace depending on its Jordan form. 
+forms a $\F$-vector subspace of $M_n(\F)$. If $A$ admits an \customref{JCD}{Jordan form} in $\F$, we may give a formula for the dimension of $C(A)$ depending on it:  
 \begin{theorem}
 \label{THdffcoc}
-\textbf{(Dimension of centralizer for algebraically closed ground field case)} Let $\F$ be an algebraically closed field and $A \in M_n(\F)$ have the Jordan form:  
+\textbf{(Dimension of centralizer for algebraically closed ground field case)} If $A \in M_n(\F)$ has the Jordan form:  
 \begin{align*}
-A= J(\ld_1 , d_{1,1} \oplus  \cdots \oplus  d_{1,k_1}) \oplus \cdots \oplus  J(\ld_t, d_{t,1}\oplus  \cdots \oplus d_{t,k_t})
+A= J(\ld_1 , d_{1,1} \oplus  \cdots \oplus  d_{1,k_1}) \oplus \cdots \oplus  J(\ld_t, d_{t,1}\oplus  \cdots \oplus d_{t,k_t}),\quad \ld_i \in \F
 \end{align*}
 where $d_{i,1}\geq  \cdots \geq  d_{i,k_i}$ for all $i$. Then: 
 \begin{align*}
@@ -572,7 +578,7 @@ In the most general sense, the \textbf{tensor product} of two $\F$-vector space 
 It is routine to check that the universal property of tensor product defines vector space up to an isomorphism compatible with itself. More precisely, if $Y,h:V_1 \times V_2 \rightarrow Y$ also satisfies the universal property, then there exists an isomorphism $f:X\rightarrow Y$ such that $f\circ g=h$. \\
 
 
-Because of such, we often write $X$ simply as  $V_1 \otimes V_2$ and denote $g(v_1,v_2)$ by $v_1 \otimes  v_2$. One common construction of the tensor product is to define  $V_1 \otimes  V_2$ as the space of $\F$-bilinear maps from  $V_1^*\times V_2^*$ to $\F$ and to define the $\F$-bilinear map by $(v_1\otimes  v_2)(\phi_1, \phi_2)\triangleq \phi_1(v_1) \phi_2(v_1)$. \\
+Because of such, we often write $X$ simply as  $V_1 \otimes V_2$ and denote $g(v_1,v_2)$ by $v_1 \otimes  v_2$. One common construction of the tensor product is to define  $V_1 \otimes  V_2$ as the space of $\F$-bilinear maps from  $V_1^\vee\times V_2^\vee$ to $\F$ and to define the $\F$-bilinear map by $(v_1\otimes  v_2)(\phi_1, \phi_2)\triangleq \phi_1(v_1) \phi_2(v_1)$. \\
 
 At this point, one may already observe that we may restate the universal property of tensor product as follows. Given a finite collection $\set{V_1,\dots ,V_n}$ of $\F$-vector spaces, we say the $\F$-vector space $V_1\otimes  \cdots \otimes  V_n$ and the $\F$-multilinear map $\otimes  :V_1\times \cdots \times V_n \rightarrow V_1 \otimes  \cdots \otimes  V_n$ satisfies the universal property if for every $\F$-multilinear map  $f:V_1\times \cdots \times V_n \rightarrow W$, there exists a unique $\F$-linear map  $\tilde{f}:V_1 \otimes  \cdots \otimes  V_n$ such that $\tilde{f}(v_1\otimes  \cdots \otimes  v_n)=f(v_1,\dots ,v_n)$ for every  $(v_1,\dots ,v_n)\in V_1 \times \cdots \times V_n$.  \\
 
@@ -1338,21 +1344,21 @@ For part (c), let $A^m=0$, so
 We have shown $e^A-I$ is a polynomial in  $A$ with constant coefficient zero. This implies $(e^A-I)^m=0$. 
 \end{proof}
 \begin{question}{}{}
-  Let $U,V$ be two finite dimensional space over the same field. Let  $T:U\rightarrow V$ be a linear map, and let $T^*:U^*\rightarrow V^*$ be its dual map. Prove 
+  Let $U,V$ be two finite dimensional space over the same field. Let  $T:U\rightarrow V$ be a linear map, and let $T^\vee:U^\vee\rightarrow V^\vee$ be its dual map. Prove 
 \begin{align*}
-T\text{ is injective }\iff T^*\text{ is surjective }   
+T\text{ is injective }\iff T^\vee\text{ is surjective }   
 \end{align*}
 And 
 \begin{align*}
-T\text{ is surjective }\iff T^*\text{ is injective }
+T\text{ is surjective }\iff T^\vee\text{ is injective }
 \end{align*}
 \end{question}
 \begin{proof}
-Let $\set{T(u_1),\dots ,T(u_n)}$ be a basis for the image of $T$. Extend this to a basis $\set{T(u_1),\dots ,T(u_n),v_1,\dots ,v_m}$ for $V$. Let $\set{\xi_1,\dots ,\xi_{n+m}}$ be its dual basis. It is clear that $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ belongs to the kernel of $T^*$. Observe  
+Let $\set{T(u_1),\dots ,T(u_n)}$ be a basis for the image of $T$. Extend this to a basis $\set{T(u_1),\dots ,T(u_n),v_1,\dots ,v_m}$ for $V$. Let $\set{\xi_1,\dots ,\xi_{n+m}}$ be its dual basis. It is clear that $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ belongs to the kernel of $T^\vee$. Observe  
 \begin{align*}
 T^*\xi_1v_1 = 1
 \end{align*}
-to conclude that $\xi_i \not\in \operatorname{Ker}T^*$ for all $1\leq i\leq n$. We have shown $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ is a basis for the kernel of $T^*$. In other words,  
+to conclude that $\xi_i \not\in \operatorname{Ker}T^\vee$ for all $1\leq i\leq n$. We have shown $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ is a basis for the kernel of $T^\vee$. In other words,  
 \begin{align*}
    \operatorname{rank}T+\operatorname{Dim}(\operatorname{Ker}T^*)= \operatorname{dim}V.
 \end{align*}

@@ -14,8 +14,100 @@
 
 \tableofcontents
 \pagebreak
+\chapter{Selected topics}
+\section{Compact}
+Let $X$ be a topological space. We say $X$ is \textbf{compact} if every of its open cover has a finite subcover. We say $X$ is \textbf{sequentially compact} if every sequence in $X$ has a \textbf{convergent} subsequence. We say $X$ is \textbf{limit point compact} if every infinite subset has a limit point.\\
 
-\chapter{Easy Calculus}
+
+Let $M$ be a metric space.  We say $M$ is \textbf{totally bounded} if for all $\epsilon $, space $M$ can be covered by finite number of open balls of radius $\epsilon $. We say $M$ is  \textbf{complete}, if every Cauchy sequence in $M$ converge.  
+\begin{equiv_def}
+\label{Com}
+\textbf{(Compactness of metric space)} Let $M$ be a metric space. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $M$ is compact. 
+  \item $M$ is limit point compact. 
+  \item $M$ is sequentially compact. 
+  \item $M$ is totally bounded and complete. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+(i)$\implies $(ii): The argument by nature relies on contradiction. Assume for a contradiction that some sequence  $(x_n)$ of distinct elements in $M$ whose image has no limit point\footnote{Note that if finite metric spaces are trivially limit point compact.}. For each $x \in M$, since $x$ is not a limit point of  $\set{x_n}$, there exists some open ball centered at $x$ that contains at most one point of $\set{x_n}$, namely $x$ itself if and only if it appears in the sequence. The collection of these open balls is then a open cover of $M$ that has no finite subcover of  $M$ because  $\set{x_n}$ is infinite, a contradiction. \\
+
+ (ii)$\implies $(iii) is clear. \\
+
+ (iii)$\implies $(iv): It is easy to show Cauchy sequences converge in sequentially compact metric space. We now show $M$ is totally bounded. Assume $M$ is not for a contradiction. This implies the existence of some $\epsilon $ and some sequence of distinct elements in $M$ whose every points are  $\epsilon $-away. Such sequence has no convergent subsequence, a contradiction. \\
+
+ (iv)$\implies $(i): Again the argument by nature relies on contradiction. Assume for one that $(U_\alpha )$ is an open cover of $M$ that has no finite subcover. Due to totally boundedness of $M$, we know $M$ can be covered by some finite set of radius $1$ open balls. Since $(U_\alpha )$ has no finite subcover, one of these radius $1$ open balls can't be covered by finite numbers of $(U_\alpha) $. Denote the center of that radius  $1$ open ball by  $x_1$. Clearly,  $B_1(x_1)$ is again totally bounded, so it can be covered by some finite set of radius $\frac{1}{2}$ open balls centered inside. Again, because $B_1(x_1)$ can not be covered by finite numbers of $(U_\alpha) $, one of these radius $\frac{1}{2}$ open balls can't be covered by finite number of $(U_\alpha) $. Denote the center of that radius $\frac{1}{2}$ open ball by $x_2$. Repeating the same procedure, we have a Cauchy sequence  $\set{x_n}\subseteq M$. Let $x$ be the limit of this Cauchy sequence. Fix some $\alpha $ such that $x \in B_\epsilon (x)\subseteq U_\alpha $. Clearly, we may find $N$ large enough, for example $N>2\quotient \epsilon $, so that $B_{\frac{1}{N}}(x_N)\subseteq B_\epsilon (x)\subseteq U_\alpha $, a contradiction to the construction of $B_{\frac{1}{N}}(x_N)$.  
+\end{proof}
+\section{Arzelà–Ascoli theorem}
+Let $X$ be a topological space,  $Y$ a metric space, and $\mathcal{F}$ a family of function from $X$ to $Y$. We say  $\mathcal{F}$ is \textbf{pointwise equicontinuous} if for all $\epsilon $ and $x \in X$, there exists a neighborhood $U\ni x$ such that $d\left(f(x),f(y) \right)\leq \epsilon $ for all $y \in U$ for all $f \in \mathcal{F}$. Give $X$ a compatible metric. We say $\mathcal{F}$ is \textbf{uniform equicontinuous} if for all $\epsilon $ there exists $\delta$ such that $d \left(f(x),f(y) \right) \leq  \epsilon $ for all $\delta$-close $x,y \in X$ and $f \in \mathcal{F}$. Clearly uniform equicontinuity implies pointwise equicontinuity and that every $f \in \mathcal{F}$ is uniformly continuous. The converse isn't true. 
+\begin{example}
+Let $\phi (t)\triangleq \max \set{0, 1- \abso{t}}$. Define 
+\begin{align*}
+f_n(x)\triangleq n \cdot \phi\left( n(x-n) \right) ,\quad n\inn
+\end{align*}
+Every $f_n$ is uniformly continuous on $\R$ and the collection $\mathcal{F}=\set{f_n: \R \rightarrow \R| n\inn }$ is pointwise equicontinuous, but $\mathcal{F}$ is not uniform equicontinuous. 
+\end{example}
+\begin{theorem}
+\textbf{(Pointwise equicontinuity implies uniform equicontinuity on compact domain)} Let $X,Y$ be two metric spaces and $\mathcal{F}$ a pointwise equicontinuous collection of functions from $X$ to $Y$. If $X$ is compact, then $\mathcal{F}$ is moreover uniform equicontinuous. 
+\end{theorem}
+\begin{proof}
+  Fix $\epsilon $. Because  $\mathcal{F}$ is pointwise equicontinuous and $X$ is compact, we know there exists a finite open cover  $\mathcal{U}\triangleq  \set{B_{\delta_1 \quotient 2}(x_1),\dots ,B_{ \delta_n \quotient 2}(x_n)}$ of $X$ such that for all fixed $i$, we have: 
+\begin{align*}
+d\left(f(x_i),f(y) \right)  \leq \frac{\epsilon}{2},\quad \text{ for all }y \in B_{\delta_i}(x_i) \text{ and }f \in \mathcal{F} 
+\end{align*}
+Let $x,y \in X$ satisfies $d(x,y)< \min \delta_i \quotient 2$. Because $\mathcal{U}$ forms an open cover, we know $x \in B_{\delta_i \quotient 2}(x_i)$ for some $i$. Then clearly, $y \in B_{\delta_i}(x_i)$. This now give us: 
+\begin{align*}
+d\left(f(x),f(y) \right)\leq d\left(f(x_i),f(x) \right) + d\left(f(x_i),f(y) \right) \leq \epsilon ,\quad \text{ for all }f \in \mathcal{F} 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{THaat}
+\textbf{(Arzelà–Ascoli theorem)} Let $X$ be a compact metric space, and let $\mathcal{F}$ be a collection of continuous function from $X$ to $\R^n$. If $\mathcal{F}$ is pointwise equicontinuous and pointwise bounded, then:  
+\begin{enumerate}[label=(\Roman*)]
+  \item $\mathcal{F}$ is uniformly bounded. 
+  \item  Every sequence  $\set{f_n} \subseteq \mathcal{F}$ has a uniformly convergent subsequence.  
+\end{enumerate}
+\end{theorem}
+\begin{theorem}
+\label{THscfue}
+\textbf{(Sufficient conditions for uniform equicontinuity)} Let $M$ be a metric space and  $\mathcal{F}$ a collection of function from $M$ to $\R$. If  for some $K>0$, every $f \in \mathcal{F}$ is $K$-Lipschitz, then $\mathcal{F}$ is uniform equicontinuous. In particular, if $M$ is an open subset of $\R$ and  $\mathcal{F}$ is a collection of differentiable functions whose derivatives are uniformly bounded by some $K$:  
+\begin{align}
+\label{EQf'xk}
+\abso{f'(x)} \leq K,\quad \text{ for all }x\in U\text{ and }f \in \mathcal{F} 
+\end{align}
+then $f\in \mathcal{F}$ are all $K$-Lipschitz, thus making $\mathcal{F}$ uniform equicontinuous. 
+\end{theorem}
+\begin{proof}
+If the functions are all $K$-Lipschitz, then  $\delta =\frac{\epsilon}{K}$ suffices to show uniform equicontinuity. If the functions are all differentiable and subject to \myref{condition}{EQf'xk}, then \textbf{MVT} shows that they are all $K$-Lipschitz.  
+\end{proof}
+\begin{theorem}
+\label{THasoaat}
+\textbf{(Application scene of Arzelà–Ascoli theorem)} Let $X,Y$ be two metric spaces, and $\set{f_n}$ a sequence of functions from $X$ to $Y$. If every subsequence contains a uniformly convergent subsequence, then every pointwise convergent subsequence uniformly converge.  
+\end{theorem}
+\begin{proof}
+Assume for a contradiction that $\set{f_{n_k}}$ is a pointwise convergent subsequence that doesn't converge uniformly. Let $f$ be the limit of $f_{n_k}$.  There exists some $\epsilon $ and some subsequence $\set{f_{n_{k_l}}}$ such that for all $l$ there exists some  $x_l \in X$ such that 
+\begin{align*}
+d\left(f_{n_{k_l}}(x_l),f(x_l) \right) \geq \epsilon 
+\end{align*}
+Clearly, $\set{f_{n_k}}$ contain no uniformly convergent subsequence, a contradiction. 
+\end{proof}
+
+\section{Weierstrass approximation theorem} 
+
+\begin{theorem}
+\label{THWat}
+\textbf{(Weierstrass approximation theorem)} Let $[a,b]\subseteq \R$ be compact, and $\mathcal{C}([a,b])$ the $\C$-vector space of continuous function $f:[a,b]\rightarrow \R$. Define the \textbf{uniform norm} on $\mathcal{C}([a,b])$ by $\norm{f}_{\infty} \triangleq \max \set{\abso{f(x)} \inr: x \in [a,b]}$. Then the space of polynomial $\C[x]|_{[a,b]}$ is dense in $\left(\mathcal{C}([a,b]), \norm{\cdot}_{\infty} \right)$. 
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+
+Let $K$ be a compact metric space. Let $A$ be a sub-$\C$-algebra of the $\C$-algebra of continuous functions $f:K\rightarrow \C$. 
+\begin{theorem}
+\textbf{(Stone-Weierstrass theorem)} 
+\end{theorem}
 \section{Tests}
 \label{Basic Technique on Sequence and Series}
 \begin{abstract}
@@ -743,52 +835,233 @@ Note that $g(x)\neq g(y)$ by \customref{MVT}{MVT}, since $g'\neq 0$ on $I \setmi
 \end{align*}
 The proof of \myref{Equation}{result L} then follows form \myref{Equation}{sq1}. $\bdone$
 \end{proof}
-\chapter{Difficult Calculus}
-\section{Compact}
-Let $X$ be a topological space. We say $X$ is \textbf{compact} if every of its open cover has a finite subcover. We say $X$ is \textbf{sequentially compact} if every sequence in $X$ has a \textbf{convergent} subsequence. We say $X$ is \textbf{limit point compact} if every infinite subset has a limit point.\\
 
 
-Let $M$ be a metric space.  We say $M$ is \textbf{totally bounded} if for all $\epsilon $, space $M$ can be covered by finite number of open balls of radius $\epsilon $. We say $M$ is  \textbf{complete}, if every Cauchy sequence in $M$ converge.  
-\begin{equiv_def}
-\label{Com}
-\textbf{(Compactness of metric space)} Let $M$ be a metric space. The followings are equivalent: 
-\begin{enumerate}[label=(\roman*)]
-  \item $M$ is compact. 
-  \item $M$ is limit point compact. 
-  \item $M$ is sequentially compact. 
-  \item $M$ is totally bounded and complete. 
-\end{enumerate}
-\end{equiv_def}
-\begin{proof}
-(i)$\implies $(ii): The argument by nature relies on contradiction. Assume for a contradiction that some sequence  $(x_n)$ of distinct elements in $M$ whose image has no limit point\footnote{Note that if finite metric spaces are trivially limit point compact.}. For each $x \in M$, since $x$ is not a limit point of  $\set{x_n}$, there exists some open ball centered at $x$ that contains at most one point of $\set{x_n}$, namely $x$ itself if and only if it appears in the sequence. The collection of these open balls is then a open cover of $M$ that has no finite subcover of  $M$ because  $\set{x_n}$ is infinite, a contradiction. \\
-
- (ii)$\implies $(iii) is clear. \\
-
- (iii)$\implies $(iv): It is easy to show Cauchy sequences converge in sequentially compact metric space. We now show $M$ is totally bounded. Assume $M$ is not for a contradiction. This implies the existence of some $\epsilon $ and some sequence of distinct elements in $M$ whose every points are  $\epsilon $-away. Such sequence has no convergent subsequence, a contradiction. \\
-
- (iv)$\implies $(i): Again the argument by nature relies on contradiction. Assume for one that $(U_\alpha )$ is an open cover of $M$ that has no finite subcover. Due to totally boundedness of $M$, we know $M$ can be covered by some finite set of radius $1$ open balls. Since $(U_\alpha )$ has no finite subcover, one of these radius $1$ open balls can't be covered by finite numbers of $(U_\alpha) $. Denote the center of that radius  $1$ open ball by  $x_1$. Clearly,  $B_1(x_1)$ is again totally bounded, so it can be covered by some finite set of radius $\frac{1}{2}$ open balls centered inside. Again, because $B_1(x_1)$ can not be covered by finite numbers of $(U_\alpha) $, one of these radius $\frac{1}{2}$ open balls can't be covered by finite number of $(U_\alpha) $. Denote the center of that radius $\frac{1}{2}$ open ball by $x_2$. Repeating the same procedure, we have a Cauchy sequence  $\set{x_n}\subseteq M$. Let $x$ be the limit of this Cauchy sequence. Fix some $\alpha $ such that $x \in B_\epsilon (x)\subseteq U_\alpha $. Clearly, we may find $N$ large enough, for example $N>2\quotient \epsilon $, so that $B_{\frac{1}{N}}(x_N)\subseteq B_\epsilon (x)\subseteq U_\alpha $, a contradiction to the construction of $B_{\frac{1}{N}}(x_N)$.  
-\end{proof}
-\section{Weierstrass approximation theorem} 
-
-\begin{theorem}
-\label{THWat}
-\textbf{(Weierstrass approximation theorem)} Let $[a,b]\subseteq \R$ be compact, and $\mathcal{C}([a,b])$ the $\R$-vector space of continuous function $f:[a,b]\rightarrow \R$. Define the \textbf{uniform norm} on $\mathcal{C}([a,b])$ by $\norm{f}_{\infty} \triangleq \max \set{\abso{f(x)} \inr: x \in [a,b]}$. Then the space of polynomial $\R[x]|_{[a,b]}$ is dense in $\left(\mathcal{C}([a,b]), \norm{\cdot}_{\infty} \right)$. 
-\end{theorem}
-\begin{proof}
-
-\end{proof}
-
-
-\section{Holder Inequality}
-\section{Gamma function for $\operatorname{Re}(z)>0$}
-\section{Stirling approximation}
-\begin{theorem}
-\textbf{(Stirling approximation)} 
+\section{Lebesgue's criteria for proper Riemann integrability} 
+Let $f:[a,b]\rightarrow \R$ be bounded. We say $f$ is \textbf{proper Riemann integrable} on $[a,b]$ if for all $\epsilon $, there exists a \textbf{partition} $P=\set{a=x_0 < \cdots < x_n = b}$ such that 
 \begin{align*}
-n!\sim \sqrt{2\pi n} \left(\frac{n}{e} \right)^n  ,\quad \text{ as }n\rightarrow \infty
+U(P)- L(P) \leq \epsilon   
+\end{align*}
+where 
+\begin{align*}
+  U(P)&\triangleq \sum_{k=1}^n \left(\sup_{x \in I_k} f(x) \right) \left(x_k- x_{k-1} \right),\quad \text{ where }I_k=[x_{k-1},x_k]\\
+  \text{ and }L(P)&\triangleq \sum_{k=1}^n \left(\inf_{x \in I_k}f(x) \right) \left(x_k- x_{k-1} \right),\quad \text{ where }I_k= [x_{k-1},x_k]
+\end{align*}
+Given some subset $I \subseteq [a,b]$, the \textbf{oscillation} of $f$ on $I$ is:  
+\begin{align*}
+\operatorname{osc}(f,I)\triangleq \sup_{x,y\in I} \abso{f(x)-f(y)}
+\end{align*}
+Because we clearly have: 
+\begin{align*}
+\sup_{x \in I}f(x)  - \inf_{x\in I}f(x)= \operatorname{osc}(f,I)
+\end{align*}
+we actually have:  
+\begin{align}
+\label{EQuplp}
+U(P)-L(P)=  \sum_{k=1}^n \operatorname{osc}(f,I_k) (x_k-x_{k-1}),\quad \text{ where }I_k= [x_{k-1},x_k] 
+\end{align}
+For all $x\in [a,b]$, we define the \textbf{oscillation} of $f$ at $x$ to be    
+\begin{align*}
+\operatorname{osc} (f,x) \triangleq \inf_{\delta> 0} \operatorname{osc}\left(f, [x-\delta,x+\delta] \cap [a,b]  \right)
+\end{align*}
+Clearly, $f:[a,b]\rightarrow \R$ is continuous at $x$ if and only if $\operatorname{osc}(f,x)=0$. This observation together with \myref{characterization}{EQuplp} is the moral reason Lebesgue may link continuity together with proper Riemann integrability. We write:  
+\begin{align*}
+D(\epsilon )\triangleq \set{x \in [a,b]:\operatorname{osc}(f,x)\geq \epsilon }
+\end{align*}
+\begin{theorem}
+\label{THLcfpRi}
+\textbf{(Lebesgue's criteria for proper Riemann integrability)} Let $f:[a,b]\rightarrow \R$ be bounded, and define
+\begin{align*}
+D_f \triangleq \set{x \in [a,b]|f:[a,b]\rightarrow \R\text{ is discontinuous at }x}
+\end{align*}
+We have 
+\begin{align*}
+f\text{ is proper Riemann integrable }\iff D_f\text{ have zero measure }
 \end{align*}
 \end{theorem}
-\chapter{Vector Calculus}
+\begin{proof}
+We first prove: 
+\begin{align*}
+  \vi{f\text{ is proper Riemann integrable }\implies \abso{D_f}=0}
+\end{align*}
+Because $D(\epsilon )\nearrow D_f$ as $\epsilon \rightarrow 0$, we must prove $\abso{D(\epsilon)}=0$ for all $\epsilon $. Fix $\epsilon $. Because $f$ is proper Riemann integrable, we know for all $n$ there exists a partition $P_n$ of $[a,b]$ such that  
+\begin{align*}
+ U(P_n)-L(P_n)\leq \frac{1}{n}   
+\end{align*}
+Define $\mathcal{G}_{n,\epsilon }\triangleq $ to be the union of closed intervals of $P_n$ that have oscillation  $\geq \epsilon $. By definition of pointwise oscillation, clearly we have
+\begin{align*}
+D(\epsilon )-P_n \subseteq \mathcal{G}_{n,\epsilon } 
+\end{align*}
+The proof now follows from  the inequality:
+\begin{align*}
+\epsilon \abso{D(\epsilon )} = \epsilon \abso{\mathcal{G}_{n,\epsilon } }\leq \sum_{\operatorname{osc}(f,I)\geq \epsilon }\operatorname{osc}(f,I)\abso{I} \leq U(P_n)-L(P_n)
+\end{align*}
+which holds for all $n$. $\vdone$ \\
+
+We now prove: 
+\begin{align*}
+\blue{\abso{D_f}=0 \implies f\text{ is proper Riemann integrable }}
+\end{align*}
+Fix $\epsilon $. Let $M\triangleq \sup \abso{f}$. Because $D_f$ is measurable and null, there exists some $G\supseteq D_f$ open in $\R$ with $\abso{G}\leq \epsilon \quotient 4M$. \\
+
+Set $K\triangleq [a,b]-G$. Because for all $x \in K$, $f:[a,b]\rightarrow \R$ is continuous at $x$, we may select some closed interval $I_x\subseteq [a,b]$ such that $\operatorname{osc}(f,I_x)\leq \epsilon \quotient 2(b-a)$. Moreover, because $K$ is compact, we may write 
+\begin{align*}
+K \subseteq I_{x_1} \cup \cdots \cup  I_{x_n}
+\end{align*}
+Consider the partition $P\triangleq  \set{a,b}\cup \partial I_{x_1}\cup  \cdots \cup  \partial I_{x_n}$. Let $J$ be a closed interval of $P$. Taking the fact that $I_{x_1}\cup  \cdots \cup  I_{x_n}$ by nature only have finite number of connected components into account, we know $J^\circ $ either completely lies in the union $I_{x_1}\cup \cdots \cup  I_{x_n}$ or completely lies outside of it, i.e., exactly one of the two statement:  
+\begin{align*}
+J \subseteq I_{x_1} \cup  \cdots \cup  I_{x_n}\text{ or }J^{\circ } \subseteq [a,b]- I_{x_1} \cup  \cdots \cup  I_{x_n} 
+\end{align*}
+occurs. Moreover, if the former holds, we know $J \subseteq I_{x_i}$ for some $i$, since if $x \in J$ lies in $I_{x_j}$ for some $j$, then $J \subseteq I_{x_j}$ by construction of $P$. Because of such, we may finally give the desired estimate: 
+\begin{align*}
+U(P)- L(P) &= \sum_{J \subseteq \tilde{I}} \operatorname{osc}(f,J) \abso{J} + \sum_{J^{\circ }\subseteq [a,b]- \tilde{I}  } \operatorname{osc}(f,J)\abso{J}\\
+&\leq \sum_{J \subseteq \tilde{I} } \frac{\epsilon }{2(b-a)}\abso{J} +  2M \cdot \frac{\epsilon }{4M} \leq \epsilon    
+\end{align*}
+where $\tilde{I}\triangleq I_{x_1}\cup  \cdots \cup  I_{x_n}$. $\bdone$ 
+\end{proof}
+\section{Lebesgue calculus}
+\begin{theorem}
+\label{THdct}
+\textbf{(Dominated convergence theorem)} Let $E\subseteq X$ be measurable and $f_n$ be a sequence of complex-valued function measurable on $E$ that converges almost everywhere to some $f$ on $E$. If there exists some $\phi \in L(E)$ such that $\abso{f_n}\leq  \phi$ almost everywhere for all $n \inn$, then 
+\begin{align*}
+\lim_{n\to \infty} \int_E \abso{f-f_n} d \textbf{x}=0 
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\label{THcovf}
+\textbf{(Change of variables formula)} Let $X \subseteq \R^n$ be open, $T: X \rightarrow \R^n$ be differentiable and injective. For all measurable function $f: \R^n \rightarrow [0,\infty]$, we have:  
+\begin{align*}
+\int_{T(X)} f d\textbf{m}= \int_X (f \circ T) \abso{J_T} d \textbf{m}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Rudin RAC Theorem 7.26
+\end{proof}
+\begin{theorem}
+\label{THFaT}
+\textbf{(Fubini's and Tonelli's theorem for double integral)} Let $f:\R^{n+m} \rightarrow \R$ be measurable. If $f$ satisfies one of the followings conditions: 
+\begin{enumerate}[label=(\Roman*)]
+  \item $f$ is integrable.  
+  \item $f$ is nonnegative. 
+\end{enumerate}
+then we have the formula: 
+\begin{align*}
+\int_{\R^{n+m}} f(\textbf{x})d \textbf{x} = \int_{\R^n} g(\textbf{y}) d\textbf{y},\quad \text{ where } g(\textbf{y})\triangleq \int_{\R^m} f(\textbf{y},\textbf{z}) d\textbf{z}
+\end{align*}
+even if the integral may be $+\infty$. 
+\end{theorem}
+\begin{theorem}
+\label{THmtFt}
+\textbf{(Measure-theoretic Feymann's trick)} Let $X$ be an open subset of $\R$ and  $\Omega$ a measure space. If $f:X\times \Omega \rightarrow \R$ satisfies:
+\begin{enumerate}[label=(\Roman*)]
+  \item $f(x,\omega)$ is an integrable function of $\omega$ for each $x \in X$. 
+  \item For almost all $\omega \in \Omega$, the partial derivative $\partial f \quotient \partial x$ exists for all $x \in X$. 
+  \item There is an integrable function  $\theta: \Omega \rightarrow \R$ such that for almost every  $\omega \in \Omega$ we have:  
+ \begin{align*}
+   \abso{\frac{\partial f}{\partial x} (x,\omega)}\leq \theta (\omega) ,\quad \text{ for all }x \in X
+ \end{align*}
+\end{enumerate}
+Then, 
+\begin{align*}
+\frac{d}{dx} \int_{\Omega} f(x,\omega) d \omega = \int_{\Omega} \frac{\partial f}{\partial x}d\omega,\quad \text{ for all }x\in X
+\end{align*}
+\end{theorem}
+\section{Young, Hölder, and Minkowski inequalities}
+\begin{theorem}
+\label{THage}
+  \textbf{(A geometric estimation)} If $\phi: [0,\infty) \rightarrow \R$ is continuous and strictly increasing, then for all $a,b \in [0,\infty]$, we have: 
+\begin{align*}
+  ab \leq \int_0^a \phi (x)dx + \int_0^b \phi^{-1}(y)dy
+\end{align*}
+where $\phi^{-1}:[0,\infty)\rightarrow \R$ is the inverse function of $\phi$. Moreover, equality holds if and only if $b= \phi (a)$.    
+\end{theorem}
+\begin{proof}
+The proof is straightforward to come up after an observation of the graph: 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       \includegraphics[height=5cm,width=10cm]{young.png}
+   \end{minipage}
+\end{center}
+\end{proof}
+We say a pair of numbers $p,q\in [1,\infty]$ are \textbf{exponential conjugated} if 
+\begin{align*}
+\frac{1}{p}+ \frac{1}{q}=1
+\end{align*}
+\begin{theorem}
+\label{THYi}
+\textbf{(Young's inequality for product)} If $a,b \in [0,\infty)$ and $p,q \in (1,\infty)$ is an  exponential conjugated pair, then: 
+\begin{align*}
+  ab \leq  \frac{a^p}{p} + \frac{b^q}{q}
+\end{align*}
+Moreover, equality holds if and only if $a^p=b^q$. 
+\end{theorem}
+\begin{proof}
+The proof follows from setting $\phi(x)\triangleq x^{p-1}$ in the \customref{THage}{above geometric estimation}. 
+\end{proof}
+Fix $1\leq p <\infty$. Let $E\subseteq \R$ be measurable, and define for all $\R$-valued function $f$ measurable on $E$ that 
+ \begin{align*}
+\norm{f}_p \triangleq \left(\int_E \abso{f}^p  \right)^{\frac{1}{p}}
+\end{align*}
+and that
+\begin{align*}
+\norm{f}_\infty \triangleq \inf \set{M\inr_0^+ : f\leq M\text{ a.e. on $E$}}
+\end{align*}
+Clearly, for all $1\leq p\leq \infty$, the space $L^p(E)$ of $\R$-valued functions  $f$ measurable on $E$ that satisfies  $\norm{f}_p < \infty$ forms a $\R$-vector space. Clearly, the  \textbf{$p$-norms} $\norm{\cdot}_p$ form semi-norms on $L^p(E)$.
+\begin{theorem}
+\textbf{($L^p$ implies  $L^{p+\epsilon }$ on finite domain)} Let $1\leq p< \infty$ and $E\subseteq \R$. Then: 
+\begin{align*}
+  \abso{E}<\infty \text{ and } 0\leq N \leq \infty \implies L^{p+N}(E)\subseteq L^p(E)
+\end{align*}
+\end{theorem}
+\begin{proof}
+  The $N= \infty$ case is clear. Let $f \in L^{p+N}(E)$. The proof then follows from direct estimation based on splitting: 
+\begin{align*}
+  E= \set{x \in E: \abso{f(x)}\leq 1}\cup  \set{x \in E: \abso{f(x)}\geq 1}
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{THHi}
+\textbf{(Hölder's inequality)} Let  $p,q\in [1,\infty]$ be an exponential conjugated pair, $E\subseteq \R$ be measurable, and $f,g$ be two $\R$-valued functions  measurable on $E$. Then: 
+ \begin{align*}
+\norm{fg}_1 \leq  \norm{f}_p \norm{g}_q
+\end{align*}
+If moreover $p>1$, then the equality hold if and only if there exists  $c\inr$ such that $\abso{f}^p=c\abso{g}^q$ a.e. on  $E$. 
+\end{theorem}
+\begin{proof}
+  The proof relies on \emph{normalization}. Before such, we first have to handle the boundary case $p=1$ and $\norm{f}_p=0$.  They are all easy, with the latter an observation that $\norm{f}_p=0 \implies fg=0$ a.e., which follows from definition of Lebesgue integral. \\
+
+We may from now on suppose $1<p<\infty$ and $\norm{f}_p\neq 0 \neq \norm{g}_q$. Define $\widehat{f},\widehat{g}$ by 
+\begin{align*}
+\widehat{f}\triangleq \frac{f}{\norm{f}_p}\quad \text{ and }\quad \widehat{g}\triangleq \frac{g}{\norm{g}_q} 
+\end{align*}
+The proof then follows from \customref{THYi}{Young's inequality}:
+\begin{align*}
+\norm{\widehat{f} \cdot \widehat{g}}_1 \leq \int_E \frac{\abso{\widehat{f}}^p}{p}  + \frac{\abso{\widehat{g}}^q}{q}  = \frac{1}{p}+ \frac{1}{q}=1
+\end{align*}
+\end{proof}
+Let $E \subseteq \R$ be measurable, one may check that $\norm{\cdot}_2$ satisfies  \textbf{parallelogram law} and is thus induced by the obvious inner product: 
+\begin{align*}
+\langle f,g\rangle \triangleq \int_E f\overline{g}
+\end{align*}
+Therefore, \customref{THHi}{Hölder’s inequality} become \textbf{Cauchy-Schwarz inequality} of $L^2$-space.  
+\section{Fourier series}
+Let $L^2(0,P)$ be the space of complex-valued functions $L^2$ on  $(0,P)$. By \customref{THHi}{Hölder’s inequality}, we may well define a semi-$\C$-inner product on $L^2(0,P)$ by: 
+\begin{align*}
+\langle f,g\rangle \triangleq  \int_0^P f(x)\overline{g(x)}dx \inc
+\end{align*}
+which induces the $L^2$-norm  $\norm{\cdot}_2$. We then see that $\set{e^{-i 2\pi  n \frac{x}{P}}\quotient \sqrt{P}  : n\inz }$ forms an \textbf{orthonormal system}.
+
+
+
+define \textbf{Fourier coefficients} by: 
+\begin{align*}
+  c_n &\triangleq \langle f, \frac{e^{-i 2\pi  n \frac{x}{P}}}{P}\rangle \\
+  \frac{1}{P}\int_0^P f(x) e^{-i  2\pi  n \frac{x}{P}}  dx,\quad \text{ for all } n\inz \\
+  a_n&\triangleq  \frac{1}{P}\int_0^P f(x) \cos \left( 2\pi  n \frac{x}{P} \right) dx,\quad \text{ for all }n \inn \cup \set{0}  \\
+  b_n&\triangleq  \frac{1}{P}\int_0^P f(x) \sin \left( 2\pi  n \frac{x}{P} \right) dx,\quad \text{ for all }n \inn \cup \set{0}  
+\end{align*}
+
 \section{Operator norm}
 We define the \textbf{operator norm} of linear $T: \R^n\rightarrow \R^m$ by 
 \begin{align*}
@@ -1074,11 +1347,24 @@ Note that $\textbf{g}$ clearly satisfies:
 \end{align*}
 for all $\textbf{y} \in V$, which in particular \customref{DT}{manifest the fact that $\textbf{g}$ is $C^1$}. 
 \section{Legendre type formula}
-\section{Lagrange multiplier theorem}
 \section{Integration on manifolds}
+\section{Miscellaneous}
+\begin{theorem}
+\label{THSa}
+\textbf{(Stirling's approximation)} 
+\begin{align*}
+n!\sim \sqrt{2\pi n} \left(\frac{n}{e} \right)^n  ,\quad \text{ as }n\rightarrow \infty
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\textbf{(Lagrange multiplier theorem)} Let $V \subseteq \R^n$ be open , $f,g_1,\dots ,g_m \in C^1(V)$ with $m\leq n$. 
+\end{theorem}
+\begin{proof}
+See Wade Theorem 11.63
+\end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam}
 \section{Year 114}
-\begin{question}{}{}
+\begin{question}{easy estimate}{}
 Let $\textbf{x}=(x_1,x_2,x_3)$ be coordinate of $\R^3$. Let 
 \begin{align*}
   f(\textbf{x})&\triangleq  \frac{x_1^3+x_2^2+i \ln (1+x_2^2+ x_3^2)}{x_1^2+x_2^2+i x_3^2 \sin \left( \frac{x_1}{x_3} \right)} &\text{ if $x_1x_2x_3\neq 0$ }\\
@@ -1129,7 +1415,7 @@ Fix $(a,b,0)\in E_6$. To see $f$ is discontinuous at $(a,b,0)$, just observe
 \lim_{t\to 0}  f(a+t,t,b+t)= \frac{a^3+b^2 + i \ln (1+b^2)}{a^2+b^2}
 \end{align*}
 \end{proof}
-\begin{question}{}{}
+\begin{question}{easy estimate}{}
 Let $\textbf{x}=(x_1,x_2,x_3)$ be coordinate of $\R^3$. Let 
 \begin{align*}
   f(\textbf{x})&\triangleq  \frac{x_1^3+e^{-\frac{1}{x^2}}+i \sin^2 \left( x_3^2 \right)}{x_1^2+x_2^2+i x_3^3 } &\text{ if $x_1x_2x_3\neq 0$ }\\
@@ -1170,36 +1456,136 @@ Define smooth $\textbf{h}:\R^n \times \R^m \rightarrow \R^n$ by
 \begin{align*}
 \textbf{G}(\textbf{x})\triangleq \left( \frac{\partial f}{\partial x_1} \bigg|_{(\textbf{x},\textbf{0})}, \dots ,\frac{\partial f}{\partial x_n} \bigg|_{(\textbf{x},\textbf{0})} \right)
 \end{align*}
-is smooth with full rank Jacobian at $\textbf{0}\inr^n$. This by \customref{THift}{inverse function theorem} implies the existence of some neighborhood $\Omega \ni \textbf{0}\in \R^n$ such that $\textbf{G}$ forms a smooth diffeomorphism between $\Omega$ and the open set $\Omega_1 \triangleq \textbf{G}(\Omega)$. Because \myref{set}{EQGs1} is the graph of $\textbf{G}$ on $\Omega$, clearly we only have to show the existence of an $H:\Omega_1\rightarrow \R $ whose gradient is exactly $\textbf{G}^{-1}:\Omega_1 \rightarrow \Omega$.\\
+is smooth with full rank Jacobian at $\textbf{0}\inr^n$. This by \customref{THift}{inverse function theorem} implies the existence of some neighborhood $\Omega \ni \textbf{0}\in \R^n$ such that $\textbf{G}$ forms a smooth diffeomorphism between $\Omega$ and the open set $\Omega_1 \triangleq \textbf{G}(\Omega)$. Because \myref{set}{EQGs1} is the graph of $\textbf{G}$ on $\Omega$, clearly we only have to show the existence of an $H:\Omega_1\rightarrow \R $ whose gradient is exactly $\textbf{G}^{-1}:\Omega_1 \rightarrow \Omega$.\footnote{Such is possible exactly because $\textbf{G}$ itself is a gradient.}\\
 
 Denote $\textbf{G}^{-1}$ by $\textbf{T}: \Omega_1\rightarrow \Omega$. We finish the proof by showing it suffices to define $H:\Omega_1 \rightarrow \R$ by 
 \begin{align*}
-H(\boldsymbol{\xi})\triangleq \left(\sum_{i=1}^n \xi_i \cdot \textbf{T}_i (\boldsymbol{\xi}) \right)  - f\left(\textbf{T}(\boldsymbol{\xi}) , \textbf{0}\right) 
+H(\boldsymbol{\xi})\triangleq \left(\sum_{i=1}^n \xi_i \cdot T_i (\boldsymbol{\xi}) \right)  - f\left(\textbf{T}(\boldsymbol{\xi}) , \textbf{0}\right) 
 \end{align*}
 
 Fix $i$. Compute 
  \begin{align*}
-\frac{\partial H}{\partial \xi_i} \bigg|_{\boldsymbol{\xi}}&= \frac{\partial \textbf{T}}{ \partial \xi_i} \bigg|_{\boldsymbol{\xi}} + \sum_{j\neq i} \xi_j \cdot \left(\frac{\partial \textbf{T}}{\partial \xi_i \partial \xi_j} \bigg |_{\boldsymbol{\xi}}  \right) - \sum_{j=1}^n \frac{\partial f}{\partial x_j} \bigg|_{\left(\textbf{T}(\boldsymbol{\xi}), \textbf{0} \right)}  \cdot \frac{\partial T_j}{\partial \xi_i} \bigg|_{\boldsymbol{\xi}}\\
-&= \frac{\partial \textbf{T}}{ \partial \xi_i} \bigg|_{\boldsymbol{\xi}} + \sum_{j\neq i} \xi_j \cdot \left(\frac{\partial \textbf{T}}{\partial \xi_i \partial \xi_j} \bigg |_{\boldsymbol{\xi}}  \right) - \sum_{j=1}^n \textbf{G}_j\left(\textbf{T}(\boldsymbol{\xi}) \right)  \cdot \frac{\partial T_j}{\partial \xi_i} \bigg|_{\boldsymbol{\xi}} \\
-&=  \frac{\partial \textbf{T}}{ \partial \xi_i} \bigg|_{\boldsymbol{\xi}} + \sum_{j\neq i} \xi_j \cdot \left(\frac{\partial \textbf{T}}{\partial \xi_i \partial \xi_j} \bigg |_{\boldsymbol{\xi}}  \right) - \sum_{j=1}^n \xi_j \cdot \frac{\partial T_j}{\partial \xi_i} \bigg|_{\boldsymbol{\xi}} 
+\frac{\partial H}{\partial \xi_i} \bigg|_{\boldsymbol{\xi}}&= T_i(\boldsymbol{\xi})+ \left(\sum_{j=1}^n \xi_j \cdot \frac{\partial T_j}{\partial \xi_i } \bigg |_{\boldsymbol{\xi}}  \right) - \sum_{j=1}^n \frac{\partial f}{\partial x_j} \bigg|_{\left(\textbf{T}(\boldsymbol{\xi}), \textbf{0} \right)}  \cdot \frac{\partial T_j}{\partial \xi_i} \bigg|_{\boldsymbol{\xi}}\\
+&=T_i(\boldsymbol{\xi})+ \left(\sum_{j=1}^n \xi_j \cdot \frac{\partial T_j}{\partial \xi_i } \bigg |_{\boldsymbol{\xi}}  \right)  - \sum_{j=1}^n \textbf{G}_j\left(\textbf{T}(\boldsymbol{\xi}) \right)  \cdot \frac{\partial T_j}{\partial \xi_i} \bigg|_{\boldsymbol{\xi}} \\
+&=T_i(\boldsymbol{\xi})+ \left(\sum_{j=1}^n \xi_j \cdot \frac{\partial T_j}{\partial \xi_i } \bigg |_{\boldsymbol{\xi}}  \right)     - \sum_{j=1}^n \xi_j \cdot \frac{\partial T_j}{\partial \xi_i} \bigg|_{\boldsymbol{\xi}} = T_i(\boldsymbol{\xi})
 \end{align*}
 
 \end{proof}
-\begin{question}{}{}
-Define for all $k\inn$ that 
+\begin{question}{Convolution}{}
+Define for all $k\inn$ the function $f_k:\R^n \rightarrow \C$ by: 
 \begin{align*}
-f_k (\textbf{x})\triangleq k^{\frac{n}{2}}\int_{\R^n} e^{-k (\abso{\textbf{x}-\textbf{y}}^2 + \abso{\textbf{x}-\textbf{y}}^4)+ i \sum_{j=1}^n x_j^2y_j } dy
+f_k (\textbf{x})\triangleq k^{\frac{n}{2}}\int_{\R^n} e^{-k (\abso{\textbf{x}-\textbf{y}}^2 + \abso{\textbf{x}-\textbf{y}}^4)+ i \sum_{j=1}^n x_j^2y_j } d\textbf{y}
 \end{align*}
-Find its limit 
+Find its limit, and show that the convergence is always uniform on compact set.   
 \end{question}
+\begin{proof}
+Define $\textbf{z} \triangleq \sqrt{k} (\textbf{y}-\textbf{x})$. \customref{THcovf}{Change of variables formula} give us: 
+\begin{align*}
+f_k(\textbf{x})= \int_{\R^n} e^{- \abso{\textbf{z}}^2  - \frac{\abso{\textbf{z}}^4}{k}+ i \sum_{j=1}^n x_j^2 \left(\frac{z_j}{\sqrt{k} }+ x_j \right)}  d\textbf{z}
+\end{align*}
+Because the integrands are dominated by $e^{- \abso{\textbf{z}}^2} \in L(\R^n)$, we know by \customref{THdct}{DCT} that: 
+\begin{align*}
+\lim_{k\to \infty}   \int_{\R^n} e^{- \abso{\textbf{z}}^2  - \frac{\abso{\textbf{z}}^4}{k}+ i \sum_{j=1}^n x_j^2 \left(\frac{z_j}{\sqrt{k} }+ x_j \right)}  d\textbf{z} = \int_{\R^n} e^{- \abso{\textbf{z}}^2 + i \sum_{j=1}^n x_j^3} d\textbf{z}
+\end{align*}
+Fix $\epsilon $ and $M$, and let $K'\triangleq \set{\textbf{x}\inr^n: \abso{x_j}\leq M\text{ for all }j}$. We are required to find $N$ such that:  
+\begin{align*}
+\label{EQbrn}
+  \int_{\R^n} e^{- \abso{\textbf{z}}^2} \abso{1- e^{- \frac{\abso{\textbf{z}}^4}{k}+ i\sum_{j=1}^n \frac{x_j^2z_j}{\sqrt{k} }}}  d\textbf{z} \leq \epsilon ,\quad \text{ for all }k\geq N\text{ and }\textbf{x}\in K'
+\end{align*}
+Let  $P>0$ satisfies: 
+\begin{align}
+\int_{\R^n-K} e^{- \abso{\textbf{z}}^2} d\textbf{z}\leq  \frac{\epsilon }{4},\quad \text{ where }K \triangleq  \set{\textbf{z}\inr^n: \abso{z_j}\leq  P\text{ for all }j}
+\end{align}
+Because we have: 
+\begin{align*}
+\abso{1- e^{- \frac{\abso{\textbf{z}}^4}{k} + i \sum_{j=1}^n \frac{x_j^2z_j}{\sqrt{k}} } }  \leq 2,\quad \text{ for all }\textbf{x},\textbf{z}\inr^n
+\end{align*}
+By \myref{bound}{EQbrn}, we have: 
+\begin{align*}
+  \int_{\R^n- K}  e^{- \abso{\textbf{z}}^2} \abso{1- e^{- \frac{\abso{\textbf{z}}^4}{k}+ i\sum_{j=1}^n \frac{x_j^2z_j}{\sqrt{k} }}} d\textbf{z} \leq \frac{\epsilon}{2},\quad \text{ for all }\textbf{x}\inr^n
+\end{align*}
+Therefore, it only remains to find $N$ so that 
+\begin{align}
+\label{EQpkn}
+  \int_{K}   e^{- \abso{\textbf{z}}^2} \abso{1- e^{- \frac{\abso{\textbf{z}}^4}{k}+ i\sum_{j=1}^n \frac{x_j^2z_j}{\sqrt{k} }}} d\textbf{z} \leq \frac{\epsilon}{2},\quad \text{ for all }k\geq N
+\end{align}
+Clearly, the function $g_k: K' \times K \rightarrow \C$ defined by:
+\begin{align*}
+g_k(\textbf{x},\textbf{z})\triangleq -\frac{\abso{\textbf{z}}^4}{k} + i \sum_{j=1}^n \frac{x_j^2z_j}{\sqrt{k}}
+\end{align*}
+converges uniformly to  $0$, which implies the function $h_k:K'\times K\rightarrow \R$ defined by 
+ \begin{align*}
+   h_k(\textbf{x},\textbf{z})\triangleq \abso{1- e^{- \frac{\abso{\textbf{z}}^4}{k}+ i\sum_{j=1}^n \frac{x_j^2z_j}{\sqrt{k} }}} \leq   \abso{- \frac{\abso{\textbf{z}}^4}{k}+ i\sum_{j=1}^n \frac{x_j^2z_j}{\sqrt{k} } } e^{\abso{- \frac{\abso{\textbf{z}}^4}{k}+ i\sum_{j=1}^n \frac{x_j^2z_j}{\sqrt{k} }}}
+\end{align*}
+converge to $0$ uniformly. This implies the existence of some $N$ such that  
+\begin{align*}
+h_k(\textbf{x},\textbf{z})\leq \frac{\epsilon }{2}\cdot \pi ^{-\frac{n}{2}},\quad \text{ for all }k\geq N\text{ and }(\textbf{x},\textbf{z})\in K' \times K
+\end{align*}
+We have found the desired $N$ for  \myref{inequality}{EQpkn}
+\end{proof}
+
+\begin{question}{Convolution}{}
+Define for all $k\inn$ the function $f_k:\R^n \rightarrow \C$ by: 
+\begin{align*}
+f_k (\textbf{x})\triangleq k^{\frac{n}{2}}\int_{ \abso{\textbf{y}}<M} e^{-k (\abso{\textbf{x}-\textbf{y}}^2 + \abso{\textbf{x}-\textbf{y}}^4)+ i \sum_{j=1}^n x_j^2y_j } d\textbf{y}
+\end{align*}
+Find its limit, and show that the convergence is always uniform on compact set.   
+\end{question}
+\begin{proof}
+Define $\textbf{z} \triangleq \sqrt{k} (\textbf{y}-\textbf{x})$. \customref{THcovf}{Change of variables formula} give us: 
+\begin{align*}
+f_k(\textbf{x})= \int_{\abso{\frac{\textbf{z}}{\sqrt{k} }+ \textbf{x}} < M} e^{- \abso{\textbf{z}}^2  - \frac{\abso{\textbf{z}}^4}{k}+ i \sum_{j=1}^n x_j^2 \left(\frac{z_j}{\sqrt{k} }+ x_j \right)}  d\textbf{z}
+\end{align*}
+Let $A_k(\textbf{x})\triangleq \set{\textbf{z}\inr^n : \abso{\frac{\textbf{z}}{\sqrt{k} }+\textbf{x}}<M}$. It is clear that: 
+\begin{align*}
+A_k(\textbf{x})
+\end{align*}
+Because the integrands are dominated by $e^{- \abso{\textbf{z}}^2} \in L(\R^n)$, we know by \customref{THdct}{DCT} that: 
+\begin{align*}
+\lim_{k\to \infty}   \int_{\R^n} e^{- \abso{\textbf{z}}^2  - \frac{\abso{\textbf{z}}^4}{k}+ i \sum_{j=1}^n x_j^2 \left(\frac{z_j}{\sqrt{k} }+ x_j \right)}  d\textbf{z} = \int_{\R^n} e^{- \abso{\textbf{z}}^2 + i \sum_{j=1}^n x_j^3} d\textbf{z}
+\end{align*}
+
+\end{proof}
+\begin{question}{Arzelà–Ascoli theorem}{}
+Let $U\subseteq \R$ be open and $f_n:U \rightarrow \R$ be smooth. Suppose that for all compact $K \subseteq U$ and $m \inn\cup  \set{0}$, there exists a constant $C_{K,m}>0$ such that 
+\begin{align*}
+\operatorname{sup} \set{\abso{ f_n^{(m)}(x) } \inr: x\in K, n \inn}  \leq C_{K,m}
+\end{align*}
+Suppose $f_k$ has a pointwise limit $f:U\rightarrow \R$. Show that 
+\begin{enumerate}[label=(\roman*)]
+  \item $f$ is smooth. 
+  \item For all $m \inn \cup  \set{0}$ and compact $K \subseteq U$, sequence $f^{(m)}_n$ converges to $f^{(m)}$  uniformly on $K$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+The proof is done via induction. The base case is to show that for all compact $K \subseteq U$, $f_n|_K \rightarrow f|_K$ uniformly. Because for all $x \in U$, we may find $[x-\epsilon ,x+\epsilon ]\subseteq U$, such suffices to show $f$ is continuous at  $x$, thus proving  $f$ is continuous on whole $U$. \\ 
+
+Fix compact $K \subseteq U$, we now show $f_n \rightarrow f$ uniformly on $K$. Clearly $\set{f_n |_K}$ is uniformly bounded by $C_{K,0}$. Fix $x \in K$. Let $\delta \leq \epsilon \quotient C_{K,1}$, and let $[x-\delta,x+\delta] \subseteq K$. By \textbf{MVT}, we have:  
+\begin{align*}
+ \abso{f_n(y)-f_n(x)} \leq C_{K,1} \abso{y-x} \leq \epsilon ,\quad \text{ for all $n$ and $y\in [x-\delta, x+\delta]$ } 
+\end{align*}
+We have shown that $\set{f_n|_K}$ is  pointwise equicontinuous. We may now apply  \customref{THaat}{Arzelà–Ascoli theorem} to see that every subsequence of $\set{f_n|_K}$ has a uniformly convergent subsequence. Assume for a contradiction that $f_n |_K$ doesn't uniformly converge to $f|_K$. Then, there exists $\epsilon $, some subsequence $f_{n_k}$, and some sequence $\set{x_k \in K}$ such that $\abso{f_{n_k}(x_k)- f(x_k)}\geq \epsilon $ for all $k\inn$. Such subsequence $\set{f_{n_k}}$ clearly have no uniform convergent subsequence, a contradiction. We have proved the base case.\\
+
+Suppose $f \in C^{(m-1)}(U)$ and for all $i$ and compact  $K \subseteq U$, $f^{(m-i)}_n|_K \rightarrow f^{(m-i)}|_K$ uniformly. The inductive case it to show that for all compact $K \subseteq U$, $f^{(m)}_n |_K$ uniformly converge. Because for all $x \in U$, we may find $[x-\epsilon ,x+\epsilon ]\subseteq U$, such suffices to show $f \in C^m(U)$. \\
+
+
+Fix $K$. Clearly $\set{f_n^{(m)}|_K}$ is uniformly bounded by $C_{K,m}$. Fix $x \in K$. Let $\delta \leq \epsilon \quotient C_{K,m+1}$, and let $[x-\delta , x+\delta]\subseteq K$. By \textbf{MVT}, we have: 
+\begin{align*}
+\abso{f_n^{(m)}(y)-f_n^{(m)}(x)}\leq C_{k,m+1} \abso{y-x}\leq \epsilon ,\quad \text{ for all $n$ and $y\in [x-\delta, x+\delta]$}
+\end{align*}
+We have shown that $\set{f_n^{(m)}|_K}$ is pointwise equicontinuous. We may now apply \customref{THaat}{Arzelà–Ascoli theorem} to see that every subsequence of $\set{f^{(m)}_n|_K}$ has a uniformly convergent subsequence. This implies $f \in C^m (K^\circ )$, which moreover implies $C^m(K)$ if do the same thing on a slightly larger $K$. Assume for a contradiction that for some $x \in K$, $f^{(m)}_n (x)\not \rightarrow f^{(m)}(x)$. Then there exists some subsequence  $n_k$ such that $f_{n_k}^{(m)}|_K$ uniformly converge and  $f_{n_k}^{(m)}(x)$ that converges to some number $[-\infty,\infty]$ that isn't $f^{(m)}(x)$. This cause a contradiction to the premise that $f_n^{(m-i)}|_K\rightarrow f_n^{(m)}|_K$ pointwise. We have shown that $f_n^{(m)}|_K \rightarrow f^{(m)}|_K$ pointwise. Assume for a contradiction that $f_n^{(m)}|_K$  doesn't uniformly converge to $f^{(m)}|_K$.   Then  there exists $\epsilon $, some subsequence $f_{n_k}$, and some sequence $\set{x_k \in K}$ such that $\abso{f_{n_k}^{(m)}(x_k)- f^{(m)}(x_k)}\geq \epsilon $ for all $k\inn$. Such subsequence $\set{f_{n_k}^{(m)}|_K}$ clearly have no uniform convergent subsequence, a contradiction. We have proved the inductive case.\\
+
+
+
+\end{proof} 
 \section{Year 113}
-\begin{question}{}{}
+\begin{question}{metric topology}{}
 If every closed and bounded set of a metric space $M$ is compact, does it follows that $(M,d)$ is complete?  
 \end{question}
 \begin{proof}
   Yes. Let $\set{x_n}$ be a Cauchy sequence in $M$. To prove $\set{x_n}$ converge in $M$, one let  $E$ be the closure of  $\set{x_n}$, and prove that $E$ is indeed bounded. This by premise implies $E$ is compact, which implies there exists some convergent subsequence  $x_{n_k}\rightarrow x \in E$, since \customref{Com}{compactness is equivalent to sequential compactness for metric space}. The proof then follows from proving $x_n \rightarrow x$. 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{convergent divergent, Stirling's formula}{}
 Determine the values of $h$ for which the following series converges uniformly on  $I_h=\set{x\inr:\abso{x}\leq h}$.
 \begin{align}
 \label{tgq}
@@ -1207,14 +1593,29 @@ Determine the values of $h$ for which the following series converges uniformly o
 \end{align}
 \end{question}
 \begin{proof}
-Defining $c_n\triangleq (n!)^2 \quotient (2n)!$, we may write  \myref{Series}{tgq} as $\sum c_n x^n$. Because 
+Defining $c_n\triangleq (n!)^2 \quotient (2n)!$, we may write  \myref{series}{tgq} as $\sum c_n x^n$. Because 
 \begin{align*}
 \frac{c_{n+1}}{c_n}= \frac{(n+1)^2}{(2n+2)(2n+1)}\text{ converges to }\frac{1}{4}
 \end{align*}
-We may apply \myref{Theorem}{Root Test is Stronger Than Ratio Test} to deduce $\sqrt[n]{c_n}\rightarrow \frac{1}{4}$. This together with \customref{WM-t}{Weierstrass $M$-test} and \customref{Cauchy-Hadamard}{Cauchy-Hadamard Theorem} implies \myref{Series}{tgq} converges uniformly on $I_h$ at least for any $h<4$. 
-
+and because \customref{Root Test is Stronger Than Ratio Test}{root test is stronger than ratio test}, i.e., we have 
+\begin{align*}
+  \liminf_{n\to\infty} \abso{\frac{c_{n+1}}{c_n}} \leq \liminf_{n\to\infty} \sqrt[n]{\abso{c_n}}\leq \limsup_{n\to\infty} \sqrt[n]{\abso{c_n}} \leq \limsup_{n\to\infty} \abso{\frac{c_{n+1}}{c_n}}
+\end{align*}
+we know $\sqrt[n]{c_n} \rightarrow \frac{1}{4} $. This together with \customref{WM-t}{Weierstrass $M$-test} and \customref{Cauchy-Hadamard}{Cauchy-Hadamard theorem} implies \myref{series}{tgq} converges uniformly on $I_h$ at least for any $h<4$. We now show that \myref{series}{tgq} diverge for $x=4$ by showing $(n!)^24^n \quotient (2n)! \rightarrow \sqrt{\pi }$. Fix $\epsilon $. By \customref{THSa}{Stirling's formula}, we know there exists $N$ such that for all  $n\geq N$, we have  
+\begin{align*}
+1-\epsilon  \leq \frac{(n!)^2}{2\pi  n\left( \frac{n}{e} \right)^{2n} }  \leq 1+\epsilon \quad \text{ and }\quad  1- \epsilon \leq \frac{(2n)!}{\sqrt{2\pi  n} \left(\frac{2n}{e} \right)^{2n} }  \leq 1+\epsilon 
+\end{align*}
+Because for all $n\inn$, we have: 
+\begin{align*}
+\frac{2\pi  n \left( \frac{n}{e} \right)^{2n} 4^n}{\sqrt{ 4\pi n  }  \left(\frac{2n}{e} \right)^{2n}}=  \sqrt{\pi } 
+\end{align*}
+We now see that for all $n\geq N$, we have: 
+\begin{align*}
+  (1-\epsilon )(1+\epsilon )^{-1} \leq \frac{(n!)^24^n}{(2n)!} \cdot \pi  ^{\frac{-1}{2}} \leq (1+\epsilon )(1-\epsilon )^{-1}
+\end{align*}
+as desired.
 \end{proof}
-\begin{question}{}{}
+\begin{question}{measure-theoretic Feymann's trick}{}
 Consider 
 \begin{align*}
 F(x)\triangleq \int_0^{\infty} \frac{e^{-xt}-e^{-t}}{t}dt
@@ -1240,19 +1641,16 @@ The former is easy, as applying   \customref{L'Hospital Rule}{L'Hospital rule}, 
 \label{b1}
 \abso{e^{-xt}-e^{-t}}\leq \abso{e^{-xt}}+ \abso{e^{-t}}\leq e^{\frac{-t}{2}}+ e^{-t}\leq 2e^{\frac{-t}{2}}
 \end{align}
-for any large $t$. The latter now follows from \textbf{Comparison test} and the fact $e^{-ct}$ integrable as $t \rightarrow \infty$ for positive $c$. We now prove (ii) using \textbf{measure-theoretical Feymann's trick}, and the continuity of $F$ will follow. To perform Feymann's trick, we have to establish the existence of some $L^1$ function $g:(0,\infty)\rightarrow \R$ that dominate $f:(0,\infty)\rightarrow \R$ for all $x\in [\frac{1}{2},2]$. As \myref{bound}{b1} have shown, 
+for any large $t$. The latter now follows from \textbf{Comparison test} and the fact $e^{-ct}$ integrable as $t \rightarrow \infty$ for positive $c$. We now prove (ii) using \customref{THmtFt}{measure-theoretic Feymann's trick}, and the continuity of $F$ will follow. To perform Feymann's trick, we have to establish the existence of some $L^1$ function $\theta:(0,\infty)\rightarrow \R$ such that for almost every $t \in (0,\infty)$, we have: 
 \begin{align*}
-g(t)\triangleq \begin{cases}
-  M& \text{ if $t$ is small }\\
-  \frac{2e^{\frac{-t}{2}}}{t}& \text{ if $t$ is large } 
-\end{cases}
+\abso{\frac{\partial f}{\partial x}(x,t)}\leq \theta (t),\quad \text{ for all }x \in \left[\frac{1}{2},2\right]
 \end{align*}
-suffices. Lastly, we compute $F(x)$ on $[1\quotient 2,2]$ using  \textbf{FTC}: 
+Clearly, $\theta (t)\triangleq \exp \left(- \frac{t}{2}\right)$ suffices. Lastly, we compute $F(x)$ on $[1\quotient 2,2]$ using  \textbf{FTC}: 
 \begin{align*}
  F(1)=0\quad \text{ and }\quad F'(x)= \int_0^{\infty} -e^{-xt}dt= \frac{1}{-x} \implies F(x)= \ln \left(\frac{1}{x} \right)
 \end{align*}
 \end{proof} 
-\begin{question}{}{}
+\begin{question}{inverse function theorem, Legendre transform}{}
   Consider smooth $f:\R^n\rightarrow \R$ whose \textbf{Hessian Determinant} is $2$  everywhere. We denote its \textbf{gradient} $\nabla f:\R^n\rightarrow \R^n$ by $F$.  
 \begin{enumerate}[label=(\roman*)]
   \item Show that there exists neighborhood $U \subseteq \R^n$ of origin such that the restriction of $F$ forms a smooth diffeomorphism from $U$ to the image of  $U$. Note that the image is guaranteed to be open by \textbf{invariance of domain} if we really prove that the action is injective on $U$.  
@@ -1276,7 +1674,7 @@ Note that the second equality hold true by definition of $\boldsymbol{\xi}$. We 
 \end{align*}
 always have determinant $\frac{1}{2}$. 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{estimate with proof of contradiction}{}
 Let $C^1$ function $f:[0,\infty)\rightarrow \R$ satisfies: 
 \begin{enumerate}[label=(\roman*)]
   \item $f(x)\geq 0$ and $f'(x)\leq 1$ for all $x \geq 0$. 
@@ -1299,7 +1697,7 @@ This cause a contradiction:
 \end{align*}
 \end{proof}
 \section{Year 112}
-\begin{question}{}{}
+\begin{question}{\customref{THHi}{Cauchy-Schwarz for integral}}{}
 Let 
 \begin{align*}
 M\triangleq \Bigg\{f:[0,\infty]\rightarrow [0,\infty)\Bigg| \int_0^{\infty}f^2(x)dx \leq 1\Bigg\}
@@ -1311,15 +1709,13 @@ Evaluate
 \end{align}
 \end{question}
 \begin{proof}
-Note that $M$ is the space of nonnegative functions whose  $L^2$ norm is smaller than  $1$, and note that \myref{value}{fM} equals to $\sup \norm{e^{-x}f}_1$. By \textbf{Holder inequality}, definition of $M$, and direct computation, we see that for all $f \in M$,    
+This question asks for \customref{THHi}{Cauchy-Schwarz for integral}. Use it to show 
 \begin{align*}
-\norm{e^{-x}f}_1 \leq \norm{f}_2 \cdot \norm{e^{-x}}_2 \leq \norm{e^{-x}}_2= \frac{1}{\sqrt{2}}
+\sup_{f \in M}\int_0^{\infty}f(x) e^{-x}dx \leq \norm{f}_2 \cdot  \norm{e^{-x}}_2 \leq  \frac{1}{\sqrt{2}} 
 \end{align*}
-Because $\norm{e^{-x}}_2= 1 \quotient \sqrt{2}$, we know $\sqrt{2}e^{-x} \in M$. It is easy to compute that when $f=\sqrt{2}e^{-x}$, we have $\norm{e^{-x}f}_1=1 \quotient \sqrt{2}$.   Therefore \myref{value}{fM} equals to $1\quotient \sqrt{2}$. \\
-
-Remark: The solution is (only) obvious if one have learned some real analysis.  
+And (again use it to) show the equality holds when $f= \sqrt{2}e^{-x}$.  
 \end{proof}
-\begin{question}{}{}
+\begin{question}{metric topology}{}
 Let $a \in A \subseteq \R^n$, set $A$ be compact, and all convergent subsequences of the sequence $(a_n)\subseteq A$ converge to $a$. 
  \begin{enumerate}[label=(\roman*)]
    \item Does $(a_n)$ converge to  $a$? 
@@ -1329,7 +1725,7 @@ Let $a \in A \subseteq \R^n$, set $A$ be compact, and all convergent subsequence
 \begin{proof}
 For (i), yes. Assume not for a contradiction. There exists some $\epsilon $ and subsequence $(a_{n_k})$ such that every $a_{n_k}$ is $\epsilon $-away from $a$. By \customref{Com}{definition of compact metric space}, there exists some convergent subsequence of $(a_{n_k})$, while being a subsequence of $(a_n)$, converges to a point other than $a$, a contradiction. For (ii), no. Let $A\triangleq [0,1)$ and $a_n$ be  $\frac{1}{n}$ if $n$ is even and  $1-\frac{1}{n}$ if $n$ is odd. 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{metric topology, proof by contradiction}{}
 Let  $A$ be some compact metric space, and let continuous $f:A\rightarrow A$ never maps two points strictly closer to each other. Show that $f$ is onto.    
 \end{question}
 \begin{proof}
@@ -1344,7 +1740,7 @@ d(a_n,a_m)=d(f(a_{n-1}),f(a_{m-1}))\geq d(a_{n-1},a_{m-1})\geq r,\quad \text{ fo
 \end{align}
 The fact that $\set{a_n}$ is a sequence in $f(A)$ that satisfies \myref{inequality}{dan} contradicts to the \customref{Com}{sequential compactness} of $f(A)$.  
 \end{proof}
-\begin{question}{}{}
+\begin{question}{estimates of integrals}{}
 Define a sequence of function $\set{f_n(x)}$ on $[0,1]$ as: 
 \begin{align*}
 f_n(x)\triangleq \begin{cases}
@@ -1375,7 +1771,7 @@ We may now estimate:
 \end{align*}
 for all $n\geq N$. 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Lagrange multiplier theorem}{}
 Let $P_2$ be the set of real polynomial with degree no greater than  $2$, and let $S\triangleq \set{p \in P_2: p(1)=1}$. Define $G:P_2\rightarrow \R$ by 
 \begin{align*}
 G(p)\triangleq \int_0^1 p^2(x)dx
@@ -1423,32 +1819,32 @@ One may verify that there is only one solution, i.e.,
 \end{align*}
 It is easy to see that this is a local minimum. Because the Jacobian of our constraint function $g$ is full rank globally, we know this local minimum is the only local extremum and also a global minimum. 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Lebesgue's criteria for proper Riemann integrability}{}
 Let $C\inr^+$, function $f:[a,b]\rightarrow \R$ be proper Riemann integrable, and $g:\R\rightarrow \R$ be $C$-Lipschitz continuous. Prove that $g\circ f:[a,b]\rightarrow \R$ is proper Riemann integrable.\\ 
 
 \textbf{Remark}: The original question write "Riemann integrable" instead of "proper Riemann integrable." The statement doesn't  hold true if we include improper Riemann integrable $f$. For example, let  $[a,b]\triangleq [0,1],f(x)\triangleq (\sin (1\quotient x))\quotient x$, and $g(x)\triangleq \abso{x}$. 
 \end{question}
 \begin{proof}
-There are essentially two way to "answer" this question. One is to construct an honest bound. Another is to cheat by quoting \textbf{Lebesgue's criteria for proper Riemann integrability}. The honest bound proof for this question and the proof for Lebesgue's criteria for proper Riemann integrability are morally the same. To quote Lebesgue's criteria for proper Riemann integrability, one only have to prove that $g\circ f$ is continuous at $x\in [a,b]$ if $f$ is continuous at  $x$.  
+There are essentially two way to "answer" this question. One is to construct an honest bound. Another is to cheat by quoting \customref{THLcfpRi}{Lebesgue's criteria for proper Riemann integrability}. The honest bound proof for this question and the proof for Lebesgue's criteria for proper Riemann integrability are morally the same. To quote Lebesgue's criteria for proper Riemann integrability, one only have to prove that $g\circ f$ is continuous at $x\in [a,b]$ if $f$ is continuous at  $x$.  
 \end{proof}
 \section{Year 110}
-\begin{question}{Morally topology}{}
-  Show that $C^1$ \textbf{proper} map  $f:\R^n\rightarrow \R^n$ (proper as preimage of compact subspace is compact) whose Jacobian is globally full rank is surjective. 
+We say a topological space $X$ is \textbf{locally compact} if for all $x \in X$, there exists some compact $K \subseteq X$ such that $x \in K^{\circ }$. We say a map $f:X\rightarrow Y$ is \textbf{proper} if $f$ is continuous and for all compact $K\subseteq Y$, $f^{-1}(K)$ is compact.
+\begin{question}{Inverse function theorem, Proper map}{}
+  Show that $C^1$ proper map  $f:\R^n\rightarrow \R^n$ (proper as preimage of compact subspace is compact) whose Jacobian is globally full rank is surjective. 
 \end{question}
 \begin{proof}
-  Because $\R^n$ is connected,  to prove $f$ is surjective we only have to prove image of $f$ is clopen in  $\R^n$.  The image of $f$ is open in $\R^n$ by  \textbf{Inverse function theorem}. The image of $f$ is closed in  $\R^n$ is morally a topological result. In particular, we prove \myref{Theorem}{Pcmf}, which finish the proof.
+  Because $\R^n$ is connected,  to prove $f$ is surjective we only have to prove image of $f$ is clopen in $\R^n$. The image of $f$ is open in $\R^n$ by \customref{THift}{inverse funcion theorem}. The image of $f$ is closed in $\R^n$ is morally a topological result. In particular, we prove  \myref{theorem}{THpmic}, which finish the proof.
 \end{proof}
 \begin{theorem}
-\label{Pcmf}
-\textbf{(Proper continuous maps between compact Hausdorff spaces are closed)} Given two locally compact Hausdorff topological spaces $X$ and $Y$, if preimage of compact set under continuous $f:X\rightarrow Y$ is always compact, then  $f$ as a map from  $X$ to  $Y$ is a closed map.  
+\label{THpmic}
+\textbf{(Proper map is closed, if the target is locally compact Hausdorff)} Let $f:X\rightarrow Y$ be proper with $Y$ locally compact, then for all closed $A \subseteq X$, $f(A)\subseteq Y$ is closed.
 \end{theorem}
 \begin{proof}
-Fix closed $A\subseteq X$ and $y \in \overline{f(A)}$. We are required to find $x \in A$ mapped to $y$. Because $y \in \overline{f(A)}$ and $Y$ is locally compact, WLOG, there exists some sequence $\set{x_n}\subseteq A$ and compact set $K\subseteq Y$  such that 
-\begin{enumerate}[label=(\roman*)]
-  \item $y$ and $\set{f(x_n)}$ are all contained by $K$. 
-  \item $f(x_n)$ converges to $y$. 
-\end{enumerate}
-By premise, $f^{-1}(K)$ is compact. Because $A\cap f^{-1}(K)$ is closed in the  compact space $f^{-1}(K)$, we know $A\cap f^{-1}(K)$ is compact\footnote{Closed subset of compact space is compact. This is a standard topological proposition}. It now follows from $X$ being Hausdorff that  $A \cap f^{-1}(K)$ is closed\footnote{Compact subspace of Hausdorff space is closed. This is a standard topological proposition.}. Because $\set{x_n}\subseteq A \cap f^{-1}(K)$ and $A\cap f^{-1}(K)$ is compact Hausdorff, we know there exists some  subsequence $\set{x_{n_k}}$ that converges to some $x'\in A \cap f^{-1}(K)$.\footnote{This is a standard topological proposition, generalized of \textbf{Bolzano-Weierstrass Theorem}.} Because $f$ is continuous, we know  $f(x_{n_k})$ converges to $f(x')$. It now follows from $Y$ being Hausdorff that  $y=\lim f(x_{n_k})=f(x')$. We have shown this $x'$ suffices. 
+Fix closed $A\subseteq X$. Let $y \in Y- f(A)$. We are required to find neighborhood of $y$ disjoint from $f(A)$. Because $Y$ is locally compact, there exists compact $K \subseteq Y$ such that $y \in K^{\circ }$. Therefore, $f^{-1}(K)$ is compact by properness of $f$. Now, because $E \triangleq A \cap f^{-1}(K)$ is closed in $f^{-1}(K)$, we know $E$ is compact.  (why?)  \\
+
+It now follows from continuity of  $E$ that $f(E)$ is compact. Because $Y$ is Hausdorff, this implies $f(E)\subseteq Y$ is closed. (why?) \\
+
+The rest of the proof then follows from checking that $K^{\circ }-f(E)$ is a neighborhood of $y$ disjoint from $f(A)$. 
 \end{proof}
 \begin{question}{}{}
 Let $\textbf{F}:\R^3 \rightarrow \R^3$ be the identity map, and let $M\triangleq \set{(x,y,z)\inr^3: x^2+y^2 \leq z \leq \sqrt{2-x^2+y^2}}$ be positively oriented, so the normal vector field point "outward."\\
@@ -1458,13 +1854,13 @@ Compute:
 \int_{\partial M} \textbf{F} \cdot \textbf{n} dA
 \end{align*}
 \end{question}
-\begin{question}{}{}
+\begin{question}{metric topology}{}
 Let $M$ be a metric space with countable elements. Prove or disprove that $M$ is connected. 
 \end{question}
 \begin{proof}
 If $M$ has only one element, then  $M$ is trivially connected. We now prove that if  countable $M$ has more than one element then  $M$ is disconnected. Let $x\in M$. Because $\set{d(y,x)\inr^+: y \in M}$ is countable and $(0,r)\subseteq \R^+$ isn't for any $r\inr^+$,  there exists some  $r$ such that $d(y,x)\neq r$ for all $r$. The proof then follows from showing $B_r(x)$ is closed.  
 \end{proof}
-\begin{question}{}{}
+\begin{question}{high school math}{}
 Define $f:\R\rightarrow \R$ by $f(x)\triangleq \frac{1}{4}+x-x^2$. Let $f^2$ denote  $f \circ f$, and $f^n$ similarly.  
 \begin{enumerate}[label=(\roman*)]
   \item Show that $\set{f^n(0)}$ converges, and find its limit. 
@@ -1561,7 +1957,7 @@ which implies
 \end{align*}
 as desired.
 \end{proof}
-\begin{question}{}{}
+\begin{question}{standard, MVT, proof by contradiction}{}
 Let $f:(a,b)\rightarrow \R$ be differentiable. Show that $f':(a,b)\rightarrow \R$ has no jump discontinuity. 
 \end{question}
 \begin{proof}
@@ -1575,11 +1971,15 @@ The contradiction follows from noting
 \end{align*}
 \end{proof}
 \section{Year 109}
-\begin{question}{}{}
-Does there exists real sequence $\set{a_k}$ that makes $\sum_{k=2}^{\infty}a_k \sin (kx)$ converges uniformly to $\sin (x)$ on $[0,\pi ]$? 
+\begin{question}{Uniform implies $L^2$, Orthogonality}{}
+Does there exist real sequence $\set{a_n}$ that makes $\sum_{n=2}^{\infty}a_n \sin (nx)$ converges uniformly to $\sin (x)$ on $[0,\pi ]$? 
 \end{question}
 \begin{proof}
-
+No. Using formula:
+\begin{align*}
+ \sin (nx) \sin (mx) = \frac{\cos ((n-m)x) - \cos ((n+m)x)}{2}
+\end{align*}
+It is easily computed that $\sin (x)$ has standard $L^2$-distance $\geq \sqrt{\pi \quotient 2}  $ with any partial sum $a_2 \sin (2x)+\cdots + a_N \sin (nx)$. However, uniform convergence on domain of finite measure implies $L^2$-convergence, a contradiction.  
 \end{proof}
 \begin{question}{}{}
 Let $f:\R\rightarrow \R$ be uniformly continuous. Show that $f$ must be bounded by a linear function, i.e., there exists constant $A,B \inr$ such that 
@@ -1813,19 +2213,51 @@ Show that $p$ is a local minimum for  $g|_S$.
 
 \end{proof}
 \section{Year 106}
-\begin{question}{}{}
+\begin{question}{tricky multiple integral}{}
 Let $M$ be the unit ball  $B_1(0)$ in $\R^3$. Compute 
  \begin{align*}
 \int_M \cos (x+y+z)dxdydz
 \end{align*}
 \end{question}
 \begin{proof}
-
+Defining vectors $\textbf{v},\textbf{w},\textbf{s}\inr^3$ by 
+\begin{align*}
+\textbf{v}\triangleq (1,1,1)\quad \text{ and }\quad  \textbf{w}\triangleq \left( \frac{1}{\sqrt{2} }, \frac{-1}{\sqrt{2} },0 \right)\quad  \text{ and } \quad \textbf{s}\triangleq \left(\frac{1}{\sqrt{6}},\frac{1}{\sqrt{6}},\frac{-2}{\sqrt{6} } \right) 
+\end{align*}
+We have an injective differentiable map: 
+\begin{align*}
+(t,\theta ,r)&\mapsto  t\textbf{v}+ r (\cos \theta) \textbf{w}+ r \left(\sin \theta \right) \textbf{s} \\
+&= \left( t+ \frac{r\cos \theta}{\sqrt{2} } + \frac{r\sin \theta}{\sqrt{6} }, t+ \frac{- r \cos \theta}{\sqrt{2} }+ \frac{r \sin \theta}{\sqrt{6} }, t + \frac{-2 r \sin \theta}{\sqrt{6} } \right)
+\end{align*} 
+Such that when we perform the \customref{THcovf}{change of variable} with \customref{THFaT}{Fubini}, we have: 
+\begin{align*}
+\int_M \cos (x+y+z) dV= \int_0^{2\pi } \int^{\frac{1}{\sqrt{3} }}_{\frac{-1}{\sqrt{3} }} \int_0^{\sqrt{1-3t^2} } \cos (3t) \sqrt{3}r dr dt d\theta  
+\end{align*}
+with the Jacobian being: 
+\begin{align*}
+\abso{\operatorname{det} \begin{pmatrix} 
+      \frac{\partial x}{\partial t} & \frac{\partial y}{\partial t} & \frac{\partial z}{\partial t} \\
+      \frac{\partial x}{\partial r} & \frac{\partial y}{\partial r} & \frac{\partial z}{\partial r} \\
+      \frac{\partial x}{\partial \theta} & \frac{\partial y}{\partial \theta} & \frac{\partial z}{\partial \theta}
+\end{pmatrix}} = \sqrt{3} r 
+\end{align*}
+Compute
+\begin{align*}
+ \int_0^{2\pi } \int^{\frac{1}{\sqrt{3} }}_{\frac{-1}{\sqrt{3} }} \int_0^{\sqrt{1-3t^2} } \cos (3t) \sqrt{3}r dr dt d\theta   = \sqrt{3} \pi  \int^{\frac{1}{\sqrt{3} }}_{\frac{-1}{\sqrt{3} }} \cos (3t) (1-3t^2) dt
+\end{align*}
+Because 
+\begin{align*}
+\cos (t)t^2 = \frac{d}{dt}\left( (\sin t) t^2 + 2 (\cos t)t - 2 \sin t \right)
+\end{align*}
+We may compute 
+\begin{align*}
+ \sqrt{3} \pi  \int^{\frac{1}{\sqrt{3} }}_{\frac{-1}{\sqrt{3} }} \cos (3t) (1-3t^2) dt = \pi  \left[\sin (\sqrt{3} ) \left(\frac{4\sqrt{3} }{9} \right)+\cos (\sqrt{3} )\left(\frac{-4}{3} \right) \right]
+\end{align*}
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Lebesgue's criteria, Bessel's inequality}{}
 Let $f:[-\pi ,\pi ]\rightarrow \R$ be proper Riemann integrable, and define its Fourier coefficients by 
 \begin{align*}
-  a_n&\triangleq \frac{1}{\pi }\int_{-\pi }^{\pi } f(x)\cos (nx)dx,\quad \text{ for all }n \in \Z_0^+ \\
+  a_n&\triangleq \frac{1}{\pi }\int_{-\pi }^{\pi } f(x)\cos (nx)dx,\quad \text{ for all }n \in \N \cup  \set{0} \\
   b_n &\triangleq \frac{1}{\pi }\int_{-\pi }^{\pi }f(x)\sin (nx)dx,\quad \text{ for all }n\inn
 \end{align*}
 \begin{enumerate}[label=(\roman*)]
@@ -1834,7 +2266,25 @@ Let $f:[-\pi ,\pi ]\rightarrow \R$ be proper Riemann integrable, and define its 
 \end{enumerate}
 \end{question}
 \begin{proof}
+  (i) is a direct consequence of the fact that if $f:[-\pi ,\pi ]\rightarrow \R$ is continuous at $x\in [-\pi ,\pi ]$, then $f^2:[-\pi ,\pi ]\rightarrow \R$ is continuous at $x$, and \customref{THLcfpRi}{Lebesgue's criteria for proper Riemann integrability}.  \\
 
+(ii) is just Bessel's inequality. Let $N\geq 0$. We have: 
+\begin{align*}
+&\frac{1}{\pi }\int_{-\pi }^{\pi } \left(\sum_{n=0}^N a_n \cos (nx)+ b_n \sin (nx)  \right) \left(f(x) - \sum_{n=0}^N a_n\cos (nx)+b_n \sin (nx)  \right) dx \\
+  =& \left(\sum_{n=0}^N a_n^2 + b_n^2\right) - \frac{1}{\pi } \int_{-\pi}^{\pi } \left(\sum_{n=0}^N a_n \cos (nx)+ b_n \sin (nx)     \right)^2 dx \\
+  =&   \left(\sum_{n=0}^N a_n^2 + b_n^2\right)  -  \left(\sum_{n=0}^N a_n^2 + b_n^2\right) =0 
+\end{align*}
+This give us: 
+\begin{align*}
+  \int_{-\pi }^{\pi } f^2(x)dx&= \int_{-\pi }^{\pi }  \left(\sum_{n=0}^N a_n\cos (nx) + b_n \sin (nx)\right)^2 dx \\
+  & + \int_{-\pi }^\pi    \left(f(x) - \sum_{n=0}^N a_n\cos (nx)+b_n \sin (nx)  \right)^2 dx \\
+  &= \pi  \left(\sum_{n=0}^N a_n^2 +b_n^2 \right) +   \int_{-\pi }^\pi    \left(f(x) - \sum_{n=0}^N a_n\cos (nx)+b_n \sin (nx)  \right)^2 dx 
+\end{align*}
+Which moreover give us: 
+\begin{align*}
+\sum_{n=0}^N a_n^2 + b_n^2 \leq \frac{1}{\pi } \int_{-\pi }^{\pi }f^2(x)
+\end{align*}
+It then follows from monotone convergence theorem that $\sum a_n^2+b_n^2$ converges. 
 \end{proof}
 \begin{question}{}{}
 \begin{enumerate}[label=(\roman*)]
