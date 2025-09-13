@@ -36,9 +36,21 @@ Let $W$ be another vector space over  $\F$, and let $F \in \operatorname{Hom}(V,
  \begin{align*}
 \operatorname{rank}(F)\triangleq \operatorname{dim} (\operatorname{Im}F). 
 \end{align*}
-By extending a basis of the kernel of $F$ to a basis of the whole  $V$, one can prove the  \textbf{Rank-Nullity Theorem} 
+Clearly, for all basis $B \subseteq V$, we have
 \begin{align*}
-\operatorname{dim}(\operatorname{Ker}F)+ \operatorname{rank}(F)= \operatorname{dim}(V). 
+\abso{X}\leq \operatorname{dim}\left(\operatorname{Ker}F \right)
+\end{align*}
+where $X\triangleq \set{v \in B: F(v)=0}$ and $Y\triangleq \set{v \in B:F(v)\neq 0}$. Moreover, because $X \cup  Y$ forms a basis, we also have     
+\begin{align*}
+\operatorname{span}\set{F(v) \in W: v \in Y}=\operatorname{Im}(F)
+\end{align*}
+which implies 
+\begin{align*}
+  \operatorname{rank}(F)\leq \abso{Y}
+\end{align*}
+Selecting some $S\subseteq Y$ such that $\set{F(v)\in W: v \in S}$ forms a basis of $\operatorname{Im}(F)$, and replacing $v \in Y-S$ with $v- \sum c_i s_i$ so that $F(v)=0$, we now see the new $X$ forms a basis for  $\operatorname{Ker}F$, and the new $Y$ make  $\set{F(v)\in W: v \in Y}$ a basis for $W$. This implies the  \textbf{Rank-Nullity Theorem}: 
+\begin{align*}
+\operatorname{dim}(V)=\abso{X}+ \abso{Y}= \operatorname{dim}(\operatorname{Ker}F)+ \operatorname{rank}(F)
 \end{align*}
 We use $V^\vee$ to denote the \textbf{dual space} of $V$. Let $F\in \operatorname{Hom}(V,W)$. Its \textbf{dual map} $F^\vee\in  \operatorname{Hom}(W^{\vee},V^{\vee})$ is defined by 
 \begin{align*}
@@ -520,7 +532,11 @@ To show $\operatorname{Im}(\pfi ) \supseteq \mathcal{N}$, we only have to show t
 
 \chapter{What you probably need to know}
 \section{Matrix Exponential}
-Given two $n\times n$ square $\F$-matrices $A,B$, where $\F=\C$ or  $\R$, by Cauchy-Schwarz inequality, we see that the Frobenius norm
+Let $A,B \in M_n(\F)$ with $\F \in \set{\C,\R}$. The \textbf{Frobenius norm} $\norm{\cdot}_F$ is defined by: 
+\begin{align*}
+\norm{A}_F \triangleq \sum_{i,j} \abso{a_{i,j}}^2 = \operatorname{tr}(A^*A) 
+\end{align*}
+By Cauchy-Schwarz inequality, we see that the Frobenius norm:  
 \begin{align*}
   \norm{AB}^2 &= \sum_{i,j} \Big(\sum_k \abso{A_{i,k}B_{k,j}} \Big)^2 \\
 &\leq \sum_{i,j}  \Big(\sum_k \abso{A_{i,k}}^2\Big) \Big( \sum_k \abso{B_{k,j}}^2\Big) \\
@@ -545,13 +561,9 @@ by ODE uniqueness theorem, the solution must have the closed form:
 \begin{align*}
 y(t)\triangleq e^{At}y_0
 \end{align*}
-Moreover, because every general solution to $y'=Ay$ has an initial value at $0$, we now see that the general solution space is just the column space of $e^{At}$. We close this section by showing how to compute the matrix exponential using Jordan decomposition. From now on, suppose $A \in M_n(\C)$. \\
+Moreover, because every general solution to $y'=Ay$ has an initial value at $0$, we now see that the general solution space is just the column space of $e^{At}$. We close this section by showing how to compute the matrix exponential using Jordan decomposition.\\ 
 
-
-Let $A \in M_n(\F)$. The first step is to compute and factorize the characteristic polynomial of $A$, and   
-
-
-Given square matrix $A\in M_{n\times n}(\F)$ with Jordan decomposition: 
+Given square matrix $A\in M_{n\times n}(\F)$ with \customref{JCD}{Jordan decomposition}: 
 \begin{align*}
 A=QJQ^{-1}=Q(S+N)Q^{-1}\text{ where diagonal $S$ and nilpotent  $N$ commutes. }
 \end{align*}
@@ -664,7 +676,7 @@ Above equation need to be explained in the section before.
 \end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam} 
 \section{Year 113}
-\begin{question}{}{}
+\begin{question}{Computation of Jordan form and matrix exponential}{}
 Let 
 \begin{align*}
 A\triangleq  \begin{bmatrix}
@@ -709,7 +721,7 @@ e^A= P\begin{bmatrix}
 \end{bmatrix} P^{-1}
 \end{align*}
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Computation of adjoints}{}
 Let $V$ be the space of polynomial in $x$ over  $\R$ of degree not higher than  $2$. Define an inner product for $V$ by 
 \begin{align*}
 \langle f,g\rangle \triangleq \int_{-1}^{1} fg
@@ -726,7 +738,11 @@ T(a_2x^2+a_1x+a_0) \triangleq 2a_2x+a_1
 That is, $Tf\triangleq f'$. Find the adjoint of $T$. 
 \end{question}
 \begin{proof}
-Because of the linearity, for $k$ to satisfy \myref{Equation}{fx=} for all $f\in V$, it only has to satisfies 
+Because of the linearity of the function:
+\begin{align*}
+f(x) \mapsto g(x)\triangleq \int_{-1}^1 k(x,t)f(t)dt
+\end{align*}
+an endomorphism of $V$, for $k$ to satisfy \myref{equation}{fx=} for all $f\in V$, it only has to satisfies 
 \begin{align}
 \label{solve}
 1=\int_{-1}^{1}kdt\text{ and }x=\int_{-1}^{1}ktdt \text{ and }x^2 =\int_{-1}^{1}kt^2dt
@@ -735,7 +751,7 @@ If we write $k$ in the form
 \begin{align*}
 k= f_0(x)+ f_1(x)t+ f_2(x)t^2 + \cdots 
 \end{align*}
-Then \myref{Equation}{solve} becomes 
+then \myref{equation}{solve} becomes 
 \begin{align*}
 1&= \frac{2f_0(x)}{1}+ \frac{2f_2(x)}{3}+ \frac{2f_4(x)}{5}+ \cdots  \\
 x&=  \frac{2f_1(x)}{3}+ \frac{2f_3(x)}{5}+ \frac{2f_5(x)}{7}+ \cdots \\
@@ -763,88 +779,134 @@ T^\dagger (a_2x^2+a_1x+a_0)= \frac{15a_1}{2}(x^2- \frac{1}{3})+ (3a_0+a_2)x
 \end{align*}
 \end{proof}
 
-\begin{question}{}{}
-Let $V$ be the vector space of all $n$-by-$n$ square matrices over $\R$, and let $f:V\rightarrow \R$ be linear. Suppose  
-\begin{align*}
-f(AB)=f(BA)\text{ and }f(I)=n
-\end{align*}
-for all $A,B \in V$. Show that $f$ is the trace function. 
+\begin{question}{equivalent definition of trace function}{}
+Let $f:M_n(\R)\rightarrow \R$ be linear. Show that if 
+\begin{enumerate}[label=(\roman*)]
+  \item $f(AB)=f(BA)$ for all $A,B \in M_n(\R)$.$\quad $\textbf{(symmetry constraint)} 
+  \item $f(I)=n$.$\quad $\textbf{(initial value condition)} 
+\end{enumerate}
+then $f$ is the trace function. \\
+
+\textbf{Remark}: The hard part is to come up with \myref{method}{EQAEij}. 
 \end{question}
 \begin{proof}
-Let $E_{i,j}\in V$ be the matrix whose only nonzero entry is $1$, located in the $i$-th row and $j$-th column. If $i \neq j$, then  
+Let $E_{i,j}\in V$ be the matrix whose only nonzero entry is $1$, located in the $i$-th row and $j$-th column. Because $f$ is linear, we only have to prove 
+\begin{enumerate}[label=(\roman*)]
+  \item If $i\neq j$, then $f(E_{i,j})=0$.$\quad $\textbf{($f$ depends only on diagonal)}
+  \item $f(E_{1,1})=\cdots = f(E_{n,n})=1$. 
+\end{enumerate}
+The fact that $f$ depends only on diagonal is only a consequence of the symmetry constraint. Let $i\neq j$. Clearly, we wish to find $A\in M_n(\R)$ such that 
+\begin{align}
+\label{EQAEij}
+A(E_{i,j})=0\quad  \text{ and }\quad (E_{i,j})A= E_{i,j}
+\end{align}
+The proof then follows from computing: 
 \begin{align*}
-E_{i,i}E_{i,j}=E_{i,j}\text{ and }E_{i,j}E_{i,i}=0.
+A(E_{i,j})&= \begin{bmatrix}
+  \textbf{0} & \cdots & \textbf{0}& A_{;,i}& \textbf{0} & \cdots & \textbf{0}
+\end{bmatrix} \\
+  (E_{i,j})A &= \begin{bmatrix}
+  \textbf{0} \\
+  \vdots \\
+  \textbf{0} \\
+  A_{j,;}\\
+  \textbf{0}\\
+  \vdots \\
+  \textbf{0}
+  \end{bmatrix}
 \end{align*}
-This, together with the linearity of $f$, shows that $f$ depends only on the diagonal entries. For each permutation $\sigma \in S_n$, there exists a \textbf{permutation matrix} $C$ such that  
+where $A_{;,i}$ locates at the $j$-th column, and $A_{j,;}$ locates at the $i$-th row.  Because we have the initial value condition $f(I)=n$, to show $f(E_{1,1})=\cdots = f(E_{n,n})=1$, we only have to show: 
 \begin{align*}
-\text{The $\sigma(i)$-th row of }CA\text{ is identical to the $i$-th row of }A.
+f(E_{i,i})=f(E_{j,j})\text{ for all }i\neq j
 \end{align*}
-And  
+which relies on the existences of \textbf{permutation matrices}, \emph{square matrices that has exactly one entry of 1 in each row and each column with all other entries 0}. Let $\sigma \in S_n$. Clearly, the permutation matrix:  
 \begin{align*}
-\text{The $\sigma(i)$-th column of }AC^{-1}\text{ is identical to the $i$-th column of }A.
+C=\begin{bmatrix}
+\textbf{e}_{\sigma (1)} \\
+\vdots \\
+\textbf{e}_{\sigma (n)}
+\end{bmatrix},\quad \text{ where  $\textbf{e}_i$ is the $i$-th row of the identity matrix $I$}
 \end{align*}
-Therefore,  
+when put on left side \emph{permutes rows}: 
 \begin{align*}
-  A_{i,i}=(CAC^{-1})_{\sigma (i),\sigma (i)}.
+CA= \begin{bmatrix}
+A_{\sigma (1),;} \\
+\vdots \\
+A_{\sigma (n),;}
+\end{bmatrix} 
 \end{align*}
-Observing that  
+Because of such, its inverse $C^{-1}$ must be 
 \begin{align*}
-f(CAC^{-1})=f(A(CC^{-1}))=f(A),
+C^{-1}= \begin{bmatrix}
+\textbf{e}_{\sigma^{-1}(1)}\\
+\vdots \\
+\textbf{e}_{\sigma^{-1}(n)}
+\end{bmatrix}  = \begin{bmatrix}
+(\textbf{e}_{\sigma (1)})^t & \cdots & (\textbf{e}_{\sigma (n)})^t
+\end{bmatrix}
 \end{align*}
-we have shown that $f$ is stable under the permutation of diagonal entries. Define $\sigma \in S_n$ by  
+which when put on right side \emph{permutes columns}: 
 \begin{align*}
-\sigma(i)\triangleq \begin{cases}
-  i+1& \text{ if } 1\leq i<n, \\
-  1& \text{ if } i=n.
-\end{cases}
+AC^{-1}= \begin{bmatrix}
+  A_{;,\sigma (1)} & \cdots & A_{;,\sigma (n)}
+\end{bmatrix}
 \end{align*}
-Let $C_k$ be the permutation matrix corresponding to $\sigma^k$ for all $1\leq k\leq n$. The proof now follows from computing  
+Let $\sigma = (i,j)\in S_n$. We now see from the symmetry constraint that:  
 \begin{align*}
-nf(A)= \sum_{k=1}^{n}f(C_kAC_k^{-1})=f\Big(\sum_{k=1}^n C_kAC_k^{-1}\Big)= f((\operatorname{tr}A)I)=n\operatorname{tr}A.
+f(E_{i,i})=f(CE_{i,i}C^{-1})= f(E_{j,i}C^{-1})= f(E_{j,j}) 
 \end{align*}
+
 \end{proof}
-\begin{question}{}{}
-  Let $U,V$ be two finite dimensional space over the same field. Let  $T:U\rightarrow V$ be a linear map, and let $T^*:U^*\rightarrow V^*$ be its dual map. Prove 
+
+
+
+\begin{question}{dual map rank formula: \myref{equation}{EQrTd}}{}
+  Let $U,V$ be two finite dimensional $\F$-vector spaces. Let  $T:U\rightarrow V$ be a linear map, and let $T^\vee:U^\vee\rightarrow V^\vee$ be its dual map. Prove 
 \begin{align*}
-T\text{ is injective }\iff T^*\text{ is surjective }   
+T\text{ is injective }\iff T^\vee\text{ is surjective }   
 \end{align*}
 And 
 \begin{align*}
-T\text{ is surjective }\iff T^*\text{ is injective }
+T\text{ is surjective }\iff T^\vee\text{ is injective }
 \end{align*}
 \end{question}
 \begin{proof}
-Let $\set{T(u_1),\dots ,T(u_n)}$ be a basis for the image of $T$. Extend this to a basis $\set{T(u_1),\dots ,T(u_n),v_1,\dots ,v_m}$ for $V$. Let $\set{\xi_1,\dots ,\xi_{n+m}}$ be its dual basis. It is clear that $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ belongs to the kernel of $T^*$. Observe  
+Let $\set{T(u_1),\dots ,T(u_n)}$ be a basis for the image of $T$. Extend this to a basis $\set{T(u_1),\dots ,T(u_n),v_1,\dots ,v_m}$ for $V$. Let $\set{\xi_1,\dots ,\xi_{n+m}}$ be its dual basis. It is clear that $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ belongs to the kernel of $T^\vee$. Observe  
 \begin{align*}
-T^*\xi_1v_1 = 1
+T^\vee\xi_1v_1 = 1
 \end{align*}
-to conclude that $\xi_i \not\in \operatorname{Ker}T^*$ for all $1\leq i\leq n$. We have shown $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ is a basis for the kernel of $T^*$. In other words,  
-\begin{align*}
-   \operatorname{rank}T+\operatorname{Dim}(\operatorname{Ker}T^*)= \operatorname{dim}V.
-\end{align*}
+to conclude that $\xi_i \not\in \operatorname{Ker}T^\vee$ for all $1\leq i\leq n$. We have shown $\set{\xi_{n+1},\dots ,\xi_{n+m}}$ is a basis for the kernel of $T^\vee$. In other words,  
+\begin{align}
+\label{EQrTd}
+   \operatorname{rank}T+\operatorname{dim}(\operatorname{Ker}T^\vee)= \operatorname{dim}V.
+\end{align}
 This, together with Rank-Nullity Theorem, proves both propositions.
 \end{proof}
-\begin{question}{}{}
-Let $V$ be some finite-dimensional vector space over some field $\F$ and let $T \in \operatorname{End}(V)$. Let $f,g$ be two relatively prime polynomials. Prove 
+\begin{theorem}
+\label{THBi}
+  \textbf{(Bezout's identity)} If $f,g \in \F[x]$ makes $\operatorname{gcd}(f,g)=h$, then there exists $a,b \in \F[x]$ such that: 
+\begin{align*}
+af+bg= h
+\end{align*}
+\end{theorem}
+\begin{question}{Bezout's identity}{}
+Let $V$ be some finite-dimensional $\F$-vector space,  $T \in \operatorname{End}(V)$, and $f,g\in \F[x]$ two relatively prime polynomials. Prove 
 \begin{align*}
 \operatorname{Ker}(f(T)g(T))= \operatorname{Ker}f(T)\oplus \operatorname{Ker}g(T).
 \end{align*}
 \end{question}
-
 \begin{proof}
-To show that the two kernels form a direct sum, assume for contradiction that there exists a nonzero vector $v \in V$ such that $v$ belongs to both kernels. Since $f$ is a polynomial satisfying $f(T)v=0$, there must exist a polynomial $p$ of minimal degree such that $p(T)v=0$. By polynomial division, we can write 
+To see that two kernels form a direct sum, let $v \in V$ satisfies $f(T)v=g(T)v=0$. Because $f,g$ are relatively prime, by \customref{THBi}{Bezout's identity}, there exists some $a,b \in \F[x]$ such that $af+bg=1$. This implies 
 \begin{align*}
-f = pq + r, \quad \text{where } q, r \text{ are polynomials and } \deg r < \deg p.
+v=(af+bg)(T)v= a(T)f(T)v + b(T)g(T)= 0
 \end{align*}
-Since $r$ has a strictly smaller degree than $p$, the minimality of $p$ implies that $r = 0$. Thus, $f$ is divisible by $p$. WLOG, we may assume that $g$ is also divisible by $p$. This contradicts the assumption that $f$ and $g$ are relatively prime polynomials. We have shown the two kernels indeed form a direct sum. It is clear that 
+as desired.\footnote{The moral of the story here is that $(fg)(T)=f(T)g(T)=f(T)\circ g(T)$. In more precision and deeper length, it is that endomorphism $\operatorname{End}(V)$ forms an algebra with the vector multiplication being the composition.} \\
+
+It is clear that 
 \begin{align*}
 \operatorname{Ker}f(T)\oplus  \operatorname{Ker}g(T)\subseteq \operatorname{Ker}(f(T)g(T)) 
 \end{align*}
-We now prove the opposite. Let $v \in \operatorname{Ker}(f(T)g(T))$. Because $f,g$ are relatively prime, by \textbf{Bezout's identity}, there exists some polynomials  $a,b$ such that 
-\begin{align*}
-af+bg=1
-\end{align*}
-The proof then follows from noting 
+The opposite follows from noting 
 \begin{align*}
   (af)(T)v \in \operatorname{Ker}g(T) \text{ and }(bg)(T)v \in \operatorname{Ker}f(T)
 \end{align*}
@@ -1098,11 +1160,9 @@ Prove
 \end{enumerate}
 \end{question}
 \begin{proof}
-  Because the underlying field is $\C$, we may express $d$ in its \textbf{Jordan form}. Because $d^2=0$, we know its Jordan blocks all have eigenvalue  $0$ and have size no greater than  $2$. Knowing that the matrix representation of $\delta$ with respect to the same Jordan basis is just the conjugate transpose of $d$, we may easily prove all four propositions with computation, except 
-\begin{align*}
-  \operatorname{Ker}\Delta \perp \operatorname{Im}d\quad\text{ and }\quad \operatorname{Im}d \perp \operatorname{Im}\delta \quad\text{ and }\quad \operatorname{Im}\delta \perp \operatorname{Ker}\Delta 
-\end{align*}
-Direct computation with the hint $\delta= d^{\dagger }$ and $d^2=0$ shows  $\operatorname{Im}d\perp \operatorname{Im}\delta$. Direct computation with hint $\operatorname{Ker}\Delta =\operatorname{Ker}d\cap \operatorname{Ker}\delta$ shows the other two orthogonal relationships. 
+
+
+
 \end{proof}
 \begin{question}{}{}
 Let $V=\R^n$ be the space of column vectors, and  $M$ a positive definite symmetric  $n\times n$ real matrix. Suppose $A\in M_{n}(\R)$ satisfies 

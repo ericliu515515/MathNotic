@@ -15,5 +15,96 @@
 \tableofcontents
 \pagebreak
 \chapter{Groups}
-dsjfl
+\section{Subgroups}
+Let $G$ be a group, a \textbf{subgroup} of $G$ is a group $H$ together with an injective group homomorphism $H \longhookrightarrow G$. Clearly, if $H \subseteq G$ satisfies:
+\begin{enumerate}[label=(\roman*)]
+  \item $e \in H$ 
+  \item $xy \in H$ for all $x,y \in H$ 
+  \item $x^{-1} \in H$ for all $x \in H$ 
+\end{enumerate}
+then the set inclusion makes $H$ a subgroup of $G$. The easiest spotted subgroups of a group $G$ are perhaps the  \textbf{cyclic subgroups}:  
+\begin{align*}
+\langle x\rangle \triangleq \set{x^{n}\in G: n\inz}
+\end{align*}
+namely, the smallest subgroup of $G$ containing $x$. Note that $G$ is said to be \textbf{cyclic} if $G= \langle x\rangle $ for some $x \in G$.  Let $G$ be a group, and $H$ a subgroup of  $G$. The \textbf{right cosets} $Hx$ are defined by $Hx\triangleq \set{hx \in G: h \in H}$. Clearly, when we define an equivalence relation in $G$ by setting: 
+\begin{align*}
+x\sim  y \overset{\triangle}{\iff } xy^{-1} \in H
+\end{align*}
+the equivalence class $[x]$ coincides with the right coset $Hx$. Note that if we partition $G$ using \textbf{left cosets}, the equivalence relation being $x\sim  y \iff  x^{-1}y\in H$, then the two partitions need not to be identical. 
+\begin{example}
+Let $H\triangleq \set{e,(1,2)}\subseteq S_3$. The right cosets are 
+\begin{align*}
+H(2,3)=\set{(2,3),(1,2,3)}\quad \text{ and }\quad  H(1,3)=\set{(1,3),(1,3,2)}
+\end{align*}
+while the left cosets being
+\begin{align*}
+(2,3)H= \set{(2,3),(1,3,2)} \quad \text{ and }\quad (1,3)H= \set{(1,3),(1,2,3)}
+\end{align*}
+\qed
+\end{example}
+However, as one may verify, we have a well-defined bijection $xH\mapsto Hx^{-1}$ between the sets of left cosets and right cosets of $H$. Therefore, we may define the \textbf{index} $\abso{G:H}$ of $H$ in  $G$ to be the cardinality of the collection of left cosets of $H$, without falling into the discussion of left and right. Moreover, by axiom of choice, there exists a set $T\subseteq G$ such that $\abso{T\cap xH}=1$ for all $x \in G$. Such $T$ clearly makes the set map  $T \times H \rightarrow G$ defined by: 
+\begin{align*}
+  (t,h)\mapsto th
+\end{align*}
+a bijection. This proves the \textbf{Lagrange's theorem}: 
+\begin{align*}
+\abso{G}= \abso{G:H} \cdot \abso{H}
+\end{align*}
+\begin{theorem}
+\textbf{(Structure theorems of finite groups)} Let $G$ be a group and $x \in G$. The \textbf{order} of $G$ and  $x$ are respectively the cardinality $G$ and  $\langle x\rangle $. We denote them by $\abso{G},\operatorname{ord}(G)$, and $\operatorname{ord}(x)$. We have the followings: 
+\begin{enumerate}[label=(\roman*)]
+  \item If the order of $x$ is finite, then it is the smallest natural number $n$ that makes $x^n=e$. 
+  \item  If $G$ is finite, then $\operatorname{ord}(x)$ divides $\abso{G}$. 
+  \item If $G$ is finite cyclic $\langle x\rangle $, then for all  
+  \item If $\abso{G}=p$, then it is cyclic. 
+\end{enumerate}
+
+
+
+
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+
+
+
+
+Consider a group $G$ of prime order. If $x \neq e\in G$, then clearly the cyclic subgroup $\langle x\rangle $ must be $G$ by Lagrange's theorem.  
+
+
+
+\begin{equiv_def}
+\textbf{(Normal subgroups)} Let $G$ be a group and $N$ a subgroup. We say $N$ is a \textbf{normal subgroup} of $G$ if any of the followings hold true: 
+\begin{enumerate}[label=(\roman*)]
+  \item $xNx^{-1}\subseteq N$ for all $x\in G$.   
+  \item $xN x^{-1}=N$ for all $x \in G$ 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+
+\end{proof}
+
+
+
+\section{Group homomorphisms}
+Let $G$ be a group. There are essentially two ways to embed $G$ into $\operatorname{Aut}(G)$: 
+\begin{align*}
+x \mapsto  \left( y \mapsto  xyx^{-1} \right)\quad \text{ and }\quad x\mapsto \left( y \mapsto x^{-1}yx  \right)
+\end{align*}
+
+
+
+For all $x \in G$, we say the image of $x$ under the homomorphism 
+\begin{align*}
+z \mapsto y^{-1}zy
+\end{align*}
+is the \textbf{conjugate} of $x$ by $y$. 
+\section{Normal subgroups}
+
+
+
+
+
 \end{document}
