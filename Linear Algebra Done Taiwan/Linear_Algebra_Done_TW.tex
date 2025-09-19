@@ -156,6 +156,16 @@ We say a polynomial $m \in \F[x]$ is a \textbf{minimal polynomial}\footnote{It i
 \begin{align*}
 p(x)=(x-\ld _1)^{n_1} \cdots (x- \ld _m)^{n_m},\quad \text{ where }\ld _i \in \F
 \end{align*}
+\begin{example}
+The linear transformation  
+\begin{align*}
+\begin{pmatrix} 
+  0 & -1 \\
+  1 & 0
+\end{pmatrix} 
+\end{align*}
+from $\R^2$ to  $\R^2$ has no eigenvalue in $\R$. Its minimal polynomial is $x^2+1$.   
+\end{example}
 \begin{theorem}
 \label{DiGE}
 \textbf{(Decomposition into generalized eigenspaces)} Let $V$ be a finite dimensional $\F$-vector space of dimension  $\geq 1$, $T \in \operatorname{End}(V)$, and a (hence any) minimal polynomial of $T$ splits over $\F$. If we let $\set{\ld _1,\dots ,\ld _m}$ be the set of eigenvalues of $T$, then: 
@@ -303,6 +313,124 @@ Let $V$ be some $n$-dimensional $\F$-vector space and $T\in \operatorname{End}(V
 m(x)=(x-\ld_1)^{r_1}\cdots (x-\ld_m)^{r_m} 
 \end{align*}
 This give a proof of the  \textbf{Cayley-Hamilton Theorem}, that is, $p(F)=0$, where $p$ is the characteristic polynomial of  $F$.
+\section{Analytic functions on matrices}
+Let $N \in \operatorname{M}_n(\C)$ be nilpotent and $\ld  \in \C$. Because $\ld  I$ and $N$ commute, we may apply binomial theorem to have: 
+\begin{align*}
+\left(\ld I+N \right)^m = \sum_{k=0}^m \binom{m}{k} \ld^{m-k} N^k
+\end{align*}
+In fact, given $p_d(z)\triangleq a_d(z-z_0 )^d + \cdots + a_0 \in \C[z]$, we have  
+\begin{align*}
+p_d (\ld I+N)&=  \sum_{m=0}^d a_m ((\ld - z_0)I+N)^m  \\
+&=\sum_{m=0}^d a_m \sum_{k=0}^m \binom{m}{k} (\ld -z_0)^{m-k}N^k \\
+&=\sum_{k=0}^{n-1} \left(\sum_{m=k}^d a_m \binom{m}{k} (\ld -z_0)^{m-k} \right)N^k =  \sum_{k=0}^{n-1} \frac{p_d^{(k)}(\ld )}{k!}N^k
+\end{align*}
+
+Consider the power series $\sum a_k(z-z_0)^k$ whose convergence disk $B_R(z_0)\subseteq \C$ contains $\ld $. By basic complex analysis, we know the function $g:B_R(z_0)\rightarrow \C$ defined by: 
+\begin{align*}
+g(z)\triangleq \sum_{k=0}^n a_k(z-z_0)^k
+\end{align*}
+is holomorphic and allow term-by-term differentiation.  Therefore, we may write:
+\begin{align}
+\label{EQsnk}
+\sum_{k=0}^{\infty} a_k ( (\ld -z_0)I+N) = \lim_{d\to \infty} p_d (\ld I+N) = \lim_{d\to \infty}\sum_{k=0}^{n-1} \frac{p_d^{(k)} (\ld )}{k!}N^k = \sum_{k=0}^{n-1} \frac{g^{(k)}(\ld )}{k!}N^k 
+\end{align}
+Now, let  $U\subseteq \C$ be open and $f:U\rightarrow \C$ holomorphic with  $\ld \in U$. Because of \myref{equation}{EQsnk}, we see that, independent of choice of $z_0 \in U$ that has $\ld $ lying in the convergence disk of $f$ at $z_0$, the series:
+\begin{align*}
+\sum_{k=0}^{\infty} \frac{f^{(k)}(z_0)}{k!} \left((\ld -z_0)I+N \right) ^k = \sum_{k=0}^{n-1} \frac{f^{(k)}(\ld )}{k!}N^k
+\end{align*}
+always converges to the same matrix. Because of such, we may define $f(\ld I+N)\in M_n(\C)$ with the assurance that every possible computation agree.  Moreover, not only does this definition make philosophical sense, letting $h:U \rightarrow \C$ be another holomorphic function, because     
+\begin{align*}
+ \frac{(fh)^{(k)}}{k!}= \sum_{r=0}^k \binom{k}{r} f^{(r)} h^{(k-r)},\quad \text{ for all }k\in \N \cup  \set{0}
+\end{align*}
+we also see the good behavior: 
+\begin{align*}
+f(\ld I +N)h(\ld I+N)= (fh)(\ld I+N)
+\end{align*}
+Setting $f,h$ to both be some branches of the multi-valued function $ z \mapsto z^{(\frac{1}{r})}$, immediately we see that for all $r \inn$, there always exists some $A \in M_n(\C)$ such that $A^r=\ld I+N$. (Note that by chain rule, $\sqrt{z}$ always have derivative $\frac{1}{\sqrt{z} }$ where the two $\sqrt{z}$ agree.)\\
+
+Note that one should be careful in attempt to define value for holomorphic function $f$ on matrix $A\in M_n(\C)$ not of the form $\ld I+N$, since even if the definition can be made precises by considering Jordan form, there may not be a single power series $\sum a_n(z-z_0)^n$ that makes 
+\begin{align*}
+f(A)= \sum a_n (A-z_0 I)^n 
+\end{align*}
+However, we shall make the remark that \textbf{entire functions} are free of this ill situation. Therefore, for every $A \in M_n(\C) $, considering its \customref{JCH}{Jordan's form} $A=PJP^{-1}$, we see block by block that 
+\begin{align*}
+\sum_{k=0}^{\infty} \frac{f^{(k)}(z_0)}{k!} (A- z_0  I)= P \cdot \big(f(J(\ld_1)) \oplus \cdots \oplus f(J(\ld _n))  \big) \cdot P^{-1}
+\end{align*}
+where 
+\begin{align*}
+f(J(\ld ))=  \sum_{k=0}^{n-1} \frac{f^{(k)}(\ld )}{k!}N^k,\quad \text{ with }J(\ld )=\ld  I +N
+\end{align*}
+The fact that we may generalize entire function $\C\rightarrow \C$ to  $M_n(\C)\rightarrow M_n(\C)$ is very important with the following application.  \\
+
+Let $A,B \in M_n(\F)$ with $\F \in \set{\C,\R}$. The \textbf{Frobenius norm} $\norm{\cdot}_F$ is defined by: 
+\begin{align*}
+\norm{A}_F \triangleq \sum_{i,j} \abso{a_{i,j}}^2 = \operatorname{tr}(A^*A) 
+\end{align*}
+By Cauchy-Schwarz inequality, we see that the Frobenius norm:  
+\begin{align*}
+  \norm{AB}^2 &= \sum_{i,j} \Big(\sum_k \abso{A_{i,k}B_{k,j}} \Big)^2 \\
+&\leq \sum_{i,j}  \Big(\sum_k \abso{A_{i,k}}^2\Big) \Big( \sum_k \abso{B_{k,j}}^2\Big) \\
+&=\sum_{i,j,k,l} \abso{A_{i,k}}^2 \abso{B_{j,l}}^2 = \sum_{i,k} \abso{A_{i,k}}^2 \sum_{j,l} \abso{B_{j,l}}^2 = \norm{A}^2 \norm{B}^2
+\end{align*}
+is submultiplicative. Therefore, the  \textbf{matrix exponential}, which we know take the form   
+\begin{align*}
+e^A = \sum_{k=0}^{\infty} \frac{A^k}{k!}
+\end{align*}
+make $e^{At}$ converges uniformly in $t\inr$ on any bounded interval. Because of such, we may perform term-by-term differentiation and get 
+\begin{align*}
+\frac{de^{At}}{dt}=Ae^{At}
+\end{align*}
+This implies that for any first order linear system of ODE: 
+\begin{align*}
+\begin{cases}
+  y'(t)=Ay(t)\text{ \textbf{(DE)} } \\
+  y(0)=y_0\text{ \textbf{(IV)} }
+\end{cases}
+\end{align*}
+by ODE uniqueness theorem, the solution must have the closed form: 
+\begin{align*}
+y(t)\triangleq e^{At}y_0
+\end{align*}
+Moreover, because every general solution to $y'=Ay$ has an initial value at $0$, we now see that the general solution space is just the column space of $e^{At}$. We close this section by showing how to compute the matrix exponential using Jordan decomposition.\\ 
+
+Given square matrix $A\in M_{n\times n}(\F)$ with \customref{JCD}{Jordan decomposition}: 
+\begin{align*}
+A=QJQ^{-1}=Q(S+N)Q^{-1}\text{ where diagonal $S$ and nilpotent  $N$ commutes. }
+\end{align*}
+Because the series $\sum  \frac{X^n}{n!}$ always absolutely converge, and because $S$ and $N$ commute, we may copy the argument of Merten's Theorem for Cauchy product to see that  
+\begin{align*}
+e^{A}=Qe^{S+N}Q^{-1}=Q(e^{S}e^{N})Q^{-1}
+\end{align*}
+
+\section{Later}
+
+
+
+
+\begin{example}
+\begin{align*}
+\exp  \begin{bmatrix} 
+  t\ld  & t & 0 \\
+  0 & t\ld & t \\
+  0 & 0 & t\ld 
+\end{bmatrix}  =  \begin{pmatrix} 
+  e^{t\ld } & te^{t\ld  }   & \frac{t^2 e^{t \ld }}{2} \\
+  0 & e^{t \ld } & t e^{t\ld } \\
+  0 & 0 & e^{t \ld }
+\end{pmatrix}
+\end{align*} 
+\end{example}
+
+
+Because of such
+\begin{align*}
+e^{\ld I+N} &= \sum_{k=0}^{n-1} \frac{e^{\ld }}{k!} N^k \\
+\sin (\ld I +N) &= \sum_{k=0}^{n-1} \frac{}{k!}
+\end{align*}
+
+
+
+
 \section{Powers of Jordan blocks}
 In this section, we denote Jordan block by $J(\ld ,n)$. For example, by $J(\sqrt{5},2)$ we mean: 
 \begin{align*}
@@ -531,58 +659,6 @@ To show $\operatorname{Im}(\pfi ) \supseteq \mathcal{N}$, we only have to show t
 
 
 \chapter{What you probably need to know}
-\section{Matrix Exponential}
-Let $A,B \in M_n(\F)$ with $\F \in \set{\C,\R}$. The \textbf{Frobenius norm} $\norm{\cdot}_F$ is defined by: 
-\begin{align*}
-\norm{A}_F \triangleq \sum_{i,j} \abso{a_{i,j}}^2 = \operatorname{tr}(A^*A) 
-\end{align*}
-By Cauchy-Schwarz inequality, we see that the Frobenius norm:  
-\begin{align*}
-  \norm{AB}^2 &= \sum_{i,j} \Big(\sum_k \abso{A_{i,k}B_{k,j}} \Big)^2 \\
-&\leq \sum_{i,j}  \Big(\sum_k \abso{A_{i,k}}^2\Big) \Big( \sum_k \abso{B_{k,j}}^2\Big) \\
-&=\sum_{i,j,k,l} \abso{A_{i,k}}^2 \abso{B_{j,l}}^2 = \sum_{i,k} \abso{A_{i,k}}^2 \sum_{j,l} \abso{B_{j,l}}^2 = \norm{A}^2 \norm{B}^2
-\end{align*}
-is submultiplicative. Therefore, when we define   \textbf{matrix exponential} by 
-\begin{align*}
-e^A \triangleq \sum_{k=0}^{\infty} \frac{A^k}{k!}
-\end{align*}
-we see that $e^{At}$ converges uniformly in $t\inr$ on any bounded interval. Because of such, we may perform term-by-term differentiation and get 
-\begin{align*}
-\frac{de^{At}}{dt}=Ae^{At}
-\end{align*}
-This implies that for any first order linear system of ODE: 
-\begin{align*}
-\begin{cases}
-  y'(t)=Ay(t)\text{ \textbf{(DE)} } \\
-  y(0)=y_0\text{ \textbf{(IV)} }
-\end{cases}
-\end{align*}
-by ODE uniqueness theorem, the solution must have the closed form: 
-\begin{align*}
-y(t)\triangleq e^{At}y_0
-\end{align*}
-Moreover, because every general solution to $y'=Ay$ has an initial value at $0$, we now see that the general solution space is just the column space of $e^{At}$. We close this section by showing how to compute the matrix exponential using Jordan decomposition.\\ 
-
-Given square matrix $A\in M_{n\times n}(\F)$ with \customref{JCD}{Jordan decomposition}: 
-\begin{align*}
-A=QJQ^{-1}=Q(S+N)Q^{-1}\text{ where diagonal $S$ and nilpotent  $N$ commutes. }
-\end{align*}
-Because the series $\sum  \frac{X^n}{n!}$ always absolutely converge, and because $S$ and $N$ commute, we may copy the argument of Merten's Theorem for Cauchy product to see that  
-\begin{align*}
-e^{A}=Qe^{S+N}Q^{-1}=Q(e^{S}e^{N})Q^{-1}
-\end{align*}
-Here the term $e^S$ and  $e^N$ all can be easily computed. We have 
- \begin{align*}
-S=\begin{bmatrix}
-  \ld_1 & & \\
-        & \ddots & \\
-        & & \ld_n
-\end{bmatrix} \implies e^S = \begin{bmatrix}
-  e^{\ld _1} & & \\
-             & \ddots & \\
-             & & e^{\ld _n}
-\end{bmatrix}\text{ and }e^N= \sum_{k=0}^n \frac{N^k}{k!}
-\end{align*}
 \section{Tensor Product}
 \label{Universal Property of Tensor Product}
 In the most general sense, the \textbf{tensor product} of two $\F$-vector space $V_1,V_2$ is merely a  $\F$-vector space  $X$ associated with a $\F$-bilinear map  $g:V_1\times V_2\rightarrow X$ that satisfies the \textbf{universal property} of tensor product: For every $\F$-bilinear map  $f:V_1\times V_2 \rightarrow W$, there exists a unique $\F$-linear map  $\tilde{f}:X\rightarrow W$ such that $f= \tilde{f}\circ g$.  \\
@@ -676,7 +752,7 @@ Above equation need to be explained in the section before.
 \end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam} 
 \section{Year 113}
-\begin{question}{Computation of Jordan form and matrix exponential}{}
+\begin{question}{standard computation}{}
 Let 
 \begin{align*}
 A\triangleq  \begin{bmatrix}
@@ -721,7 +797,7 @@ e^A= P\begin{bmatrix}
 \end{bmatrix} P^{-1}
 \end{align*}
 \end{proof}
-\begin{question}{Computation of adjoints}{}
+\begin{question}{standard computation}{}
 Let $V$ be the space of polynomial in $x$ over  $\R$ of degree not higher than  $2$. Define an inner product for $V$ by 
 \begin{align*}
 \langle f,g\rangle \triangleq \int_{-1}^{1} fg
@@ -912,7 +988,7 @@ The opposite follows from noting
 \end{align*}
 \end{proof}
 \section{Year 112}
-\begin{question}{}{}
+\begin{question}{standard computation}{}
 Let 
 \begin{align*}
 \textbf{v}_1= (1,2,0,4),\textbf{v}_2=(-1,1,3,-3),\textbf{v}_3= (0,1,-5,-2),\textbf{v}_4=(-1,-9,-1,-4)
@@ -920,23 +996,23 @@ Let
 be vectors in $\R^4$. Let $W_1$ be the subspace spanned by  $\textbf{v}_1$ and $\textbf{v}_2$, and let $W_2$ be the subspace spanned by $\textbf{v}_3$ and $\textbf{v}_4$. Find a basis for $W_1 \cap W_2$. 
 \end{question}
 \begin{proof}
-Use Gauss elimination to show 
+Use Gauss elimination to show that the solution space of  
 \begin{align*}
-\begin{cases}
-  \set{\textbf{v}_1,\textbf{v}_2,\textbf{v}_3}\text{ is linearly independent. }\\
-  \set{\textbf{v}_1,\textbf{v}_2,\textbf{v}_4}\text{ is linearly independent. }
-\end{cases}
+a\textbf{v}_1 + b \textbf{v}_2 + c \textbf{v}_3 + d \textbf{v}_4 = 0
 \end{align*}
-Use Gauss elimination to show 
+is  
 \begin{align*}
-3\textbf{v}_1+ 2\textbf{v}_2 +\textbf{v}_3+ \textbf{v}_4=0
+  (a,b,c,d) \in \operatorname{span}\set{(3,2,1,1)}
 \end{align*}
-And conclude 
+It then follows from 
 \begin{align*}
-W_1 \cap W_2= \operatorname{span} \set{\textbf{v}_3+\textbf{v}_4}
+W_1 \cap  W_2 \subseteq W_2 =\operatorname{span}\set{\textbf{v}_3, \textbf{v}_4}
+\end{align*}
+that 
+\begin{align*} \set{\textbf{v}_3+\textbf{v}_4}\text{ is a basis for }W_1 \cap W_2
 \end{align*}
 \end{proof}
-\begin{question}{}{}
+\begin{question}{standard computation}{}
 Let 
 \begin{align*}
 A= \begin{bmatrix}
@@ -945,7 +1021,7 @@ A= \begin{bmatrix}
   3 & -8 & 5 
 \end{bmatrix}
 \end{align*}
-Find an invertible matrix $Q\in M_3(\C)$ such that 
+Find an $Q\in \operatorname{GL}_3(\C)$ such that 
 \begin{align*}
 QAQ^{-1}= \begin{bmatrix}
   0 & 0 & 0 \\
@@ -953,73 +1029,51 @@ QAQ^{-1}= \begin{bmatrix}
   0 & 1 & 1
 \end{bmatrix}
 \end{align*}
-Find an invertible matrix $P \in M_3  (\C)$ such that $PAP^{-1}$ is diagonal. \emph{Note that my wording differs slightly with the original}.  
+Find an invertible matrix $P \in \operatorname{GL}_3(\C)$ such that $PAP^{-1}$ is diagonal. \emph{Note that my wording differs slightly with the original}.  
 \end{question}
 \begin{proof}
-Noting that characteristic polynomial is defined uniquely up to change of basis, 
+Because characteristic polynomials are defined uniquely up to change of basis:
 \begin{align*}
 \operatorname{det}(tI- QAQ^{-1})=\operatorname{det}(Q(tI-A)Q^{-1})= \operatorname{det}(tI-A)
 \end{align*}
-We may quickly compute that the characteristic polynomial of $A$ is $t(t-4)(t+3)$. Routine computation now give us 
+We may quickly compute that the characteristic polynomial of $A$ is $t(t-4)(t+3)$. Routine computation now give us:  
 \begin{align*}
-P=\begin{bmatrix}
-  1 & 7 & 0 \\
-  1 & -1 & 1 \\
-  1 & -29 & 1
-\end{bmatrix} \text{ and }PAP^{-1}=\begin{bmatrix}
+P = \begin{bmatrix}
+  1 &  \frac{-7}{28} & \frac{7}{28} \\
+  0 & \frac{1}{28} & \frac{-1}{28} \\
+  -1 & \frac{36}{28} & \frac{-8}{28}
+\end{bmatrix}\quad  \text{ and }PAP^{-1}=\begin{bmatrix} 
   0 & 0 & 0 \\
   0 & 4 & 0 \\
   0 & 0 & -3 
 \end{bmatrix}
 \end{align*}
-Note that one may find $Q$ by solving a  9-by-9 linear equation. Here we give a smarter approach.  By looking at $QAQ^{-1}$, we may reduce the problem into finding $v\inc^3$ such that 
+Let 
 \begin{align*}
-A^3v= 12Av+A^2v \text{ and }\set{v,Av,A^2v}\text{ is linear independent }
-\end{align*}
-So that 
-\begin{align*}
-Q\triangleq \begin{bmatrix}
-  v & Av & A^2v
-\end{bmatrix}\text{ suffices. }
-\end{align*}
-Because the characteristic polynomial of $A$ is  $t(t-4)(t+3)$, by Cayley-Hamilton Theorem, we know all $v\inc^3$ satisfy the first condition.  To satisfy the linear independence, we  write 
-\begin{align*}
-v= c_1e_1+c_2e_2+c_3e_3
-\end{align*}
-where $e_1,e_2,e_3$ are the eigenvectors
- \begin{align*}
-e_1\triangleq \begin{bmatrix}
-  1 \\
-  1 \\
-  1 
-\end{bmatrix} \text{ and } e_2 \triangleq  \begin{bmatrix}
-7 \\
--1 \\
--29
-\end{bmatrix} \text{ and }e_3\triangleq \begin{bmatrix}
-0 \\
-1 \\
-1
+B\triangleq \begin{bmatrix}
+  0 & 0 & 0 \\
+  1 & 0 & 12 \\
+  0 & 1 & 1
 \end{bmatrix}
 \end{align*}
-So that we may just looks for $c_1,c_2,c_3\inc$ that makes 
+To find $Q\in \operatorname{GL}_3(\C)$ that makes $QAQ^{-1}=B$, we first look for $M \in \operatorname{GL}_3(\C)$ such that 
 \begin{align*}
-\begin{bmatrix}
-  c_1 & c_2 & c_3 \\
-  0 & 4c_2 & -3c_3 \\
-  0 & 16c_3 & 9c_3
-\end{bmatrix}\text{ invertible. }
+MBM^{-1}= \begin{bmatrix}
+  0 & 0 & 0 \\
+  0 & 4 & 0 \\
+  0 & 0 & -3 
+\end{bmatrix}= PAP^{-1}
 \end{align*}
-By computing the determinant, we see that an obvious choice is $c_1=c_2=c_3=1$. That is, 
+We then see $Q\triangleq M^{-1}P $ suffices. It is then routine to compute 
 \begin{align*}
-v=\begin{bmatrix}
-8 \\
-1 \\
--27
-\end{bmatrix}\text{ and }Q=\begin{bmatrix}
-8 & 28 & 112 \\
-1 & -7 & -7 \\
--27 & -119 & -455
+M^{-1}= \begin{bmatrix}
+  -12 & 0 & 0 \\
+  -1 & 3 & 4 \\
+  1 & 1 & -1
+\end{bmatrix} \quad \text{ and }\quad Q= M^{-1}P = \begin{bmatrix}
+  -12 & \frac{84}{28} & \frac{-84}{28} \\
+  -5 &  \frac{154}{28} & \frac{-42}{28} \\
+  2 & \frac{-42}{28} & \frac{14}{28} 
 \end{bmatrix}
 \end{align*}
 \end{proof}
@@ -1046,7 +1100,7 @@ Show that there exist no matrix $A \in M_{2}(\R)$ such that
 \begin{proof}
 Using the identity 
 \begin{align*}
-\sin A= \frac{e^{iA}-e^{-iA}}{2i}
+\sin A= \frac{e^{iA}-e^{-iA}}{2i} 
 \end{align*}
 we may compute 
 \begin{align*}
@@ -1160,6 +1214,24 @@ Prove
 \end{enumerate}
 \end{question}
 \begin{proof}
+\begin{align*}
+ \langle \delta v, \delta v\rangle = \langle v, d \delta v\rangle 
+\end{align*}
+\begin{align*}
+\langle dv,dv\rangle = \langle v, \delta d v\rangle 
+\end{align*}
+\begin{align*}
+\operatorname{Ker}d \cap  \operatorname{Ker}\delta \subseteq \operatorname{Ker}\Delta \text{ is clear. } 
+\end{align*}
+To see the other side
+\begin{align*}
+  d\delta v+ \delta dv =0 &\implies d\delta dv  =0 \\
+  &\implies dv \in \operatorname{Ker}d \delta \\
+  &\implies dv \in \operatorname{Ker}\delta \\
+  &\implies v \in \operatorname{Ker}\delta d \\
+  &\implies  v \in \operatorname{Ker}d  
+\end{align*}
+
 
 
 
