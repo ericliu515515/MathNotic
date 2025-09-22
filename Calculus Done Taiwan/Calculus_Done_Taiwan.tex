@@ -2179,7 +2179,7 @@ F(x)\triangleq \int_0^{\infty} \frac{1-\cos (xt)}{t^2e^t}dt
 \begin{proof}
 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Implicit function theorem}{}
 Consider the function $F:\R^4\rightarrow \R^2$ defined by 
 \begin{align*}
 F(x,y,u,v)\triangleq \left(\int_{x-y^2}^{x^2+y}(e^{t^2}+u)dt,x^3+v \right)
@@ -2190,6 +2190,49 @@ F(x,y,u,v)\triangleq \left(\int_{x-y^2}^{x^2+y}(e^{t^2}+u)dt,x^3+v \right)
 \end{enumerate}
 \end{question}
 \begin{proof}
+Direct computation give us: 
+\begin{align*}
+\frac{\partial F_1}{\partial x}&= 2x\left(e^{(x^2+y)^2} +u \right) - \left(e^{(x-y^2)^2} +u \right) \\
+\frac{\partial F_1}{\partial y}&= \left(e^{(x^2+y)^2} +u \right) + 2y \left(e^{(x-y^2)^2}+ u \right) \\
+\frac{\partial F_1}{\partial u}&=  \int_{x-y^2}^{x^2+y} dt= (x-y^2)-(x^2+y) \quad (\because \text{\customref{THmtFt}{Feymann's trick}})\\
+\frac{\partial F_1}{\partial v}&=0 
+\end{align*}
+And give use:
+\begin{align*}
+\frac{\partial F_2}{\partial x}&= 3x^2 \quad \text{ and }\quad \frac{\partial F_2}{\partial y}=0 \\
+\frac{\partial F_2}{\partial u}&= 0 \quad \text{ and }\quad \frac{\partial F_2}{\partial v}= 1
+\end{align*}
+Because $F$ is  $C^1$, and the matrix 
+\begin{align*}
+\begin{pmatrix} 
+  \frac{\partial F_1}{\partial u} \big|_{(1,1,0,0)} & \frac{\partial F_1}{\partial v} \big|_{(1,1,0,0)}  \\
+  \frac{\partial F_2}{\partial u} \big|_{(1,1,0,0)} & \frac{\partial F_2}{\partial v} \big|_{(1,1,0,0)}  
+\end{pmatrix} = \begin{pmatrix} 
+  -2 & 0\\
+  0 & 1 
+\end{pmatrix}
+\end{align*}
+is invertible, by \customref{THift}{implicit function theorem}, indeed we can solve for $u,v$ as $C^1$ functions of  $x,y$ near $(1,1,0,0)$. Because 
+\begin{align*}
+F\circ \textbf{g}(x,y)=\text{ const., }\quad \text{ where } \textbf{g}(x,y)\triangleq (x,y, u(x,y),v(x,y))
+\end{align*}
+We know 
+\begin{align*}
+\begin{pmatrix} 
+  \frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} \\
+  \frac{\partial v}{\partial x} & \frac{\partial v}{\partial y}
+\end{pmatrix} &= \begin{pmatrix} 
+  \frac{\partial F_1}{\partial u} & \frac{\partial F_1}{\partial v} \\
+  \frac{\partial F_2}{\partial u} & \frac{\partial F_2}{\partial v} 
+\end{pmatrix}^{-1} \left( - \begin{pmatrix} 
+  \frac{\partial F_1}{\partial x}& \frac{\partial F_1}{\partial y} \\
+  \frac{\partial F_2}{\partial x}& \frac{\partial F_2}{\partial y}
+\end{pmatrix} \right) \\
+&= \begin{pmatrix} 
+  \frac{-\left( 2x \left(e^{(x^2+y)^2} +u(x,y) \right) - \left(e^{(x-y^2)^2}+ u \right) \right)}{(x-y^2)-(x^2+y)} & \frac{- \left(\left(e^{(x^2+y)^2}+u \right) + 2y \left(e^{(x-y^2)^2}+u \right) \right)}{(x-y^2)-(x^2+y)} \\
+  -3x^2 & 0
+\end{pmatrix}
+\end{align*}
 
 \end{proof}
 \section{Year 107}
@@ -2201,7 +2244,13 @@ Evaluate the integral
 Hint: Let $u=\tan x$. 
 \end{question}
 \begin{proof}
+Let $u=\tan x$. 
 
+\begin{align*}
+\int^{\frac{2\pi }{4} }_{\frac{\pi }{4}} \frac{1}{1+3 \sin^2(x)}dx&=\int^{\frac{2\pi }{4} }_{\frac{\pi }{4}} \frac{\sec^2 (x)}{\sec^2(x)+3 \tan^2(x)}dx \\
+&=\int^{\frac{2\pi }{4} }_{\frac{\pi }{4}} \frac{\sec^2 (x)}{1+ 4\tan^2(x)}dx  \\
+&=\int_{1}^{\infty} \frac{1}{1+4u^2}du = \frac{ \arctan (2u)}{2} \Big|_{u=1}^{\infty} 
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 State and prove Leibniz criterion for convergence of alternating series. 

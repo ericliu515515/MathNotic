@@ -150,7 +150,7 @@ which implies $a_1=0$. WLOG, we have shown $a_1=\cdots = a_n=0$.
 \label{VFn}
 V= \operatorname{Ker}T^{\operatorname{dim}V} \oplus  \operatorname{Im}T^{\operatorname{dim}V}
 \end{align}
-As we will later see, \myref{decomposition}{VFn} plays a central role in decomposition of $V$ into generalized eigenspace of $T$. See \myref{theorem}{DiGE}. \\
+Note that the number $\operatorname{dim}V$ is irrelevant to the true value of \myref{decomposition}{VFn}, in the sense that the same hold true if we replace $\operatorname{dim}V$ with any $k\geq n$, where $n$ is the smallest natural number that makes $\operatorname{Ker}(T^n)=\operatorname{Ker}(T^{n+1})$. However, we in particular consider $\operatorname{dim}V$ for a good reason. As we will later see, \myref{decomposition}{VFn} plays a central role in decomposition of $V$ into generalized eigenspace of $T$. See \myref{theorem}{DiGE}. \\
 
 We say a polynomial $m \in \F[x]$ is a \textbf{minimal polynomial}\footnote{It is worth mentioning that we didn't prove that the minimal polynomial of $T$ is invariant under field extension. To prove such, one need to show that the minimal polynomial $m$ of $[T]$ over $\overline{\F}$ has only $\F$ coefficients. This follows from noting that if we write $m=m_1+c_2m_2+\cdots + c_km_k$ where $m_1,\dots ,m_k \in \F[x]$, then $m_2=\cdots=m_k=0$, since they have degree strictly smaller than $m$, as minimal polynomial is defined to be monic.} of $T$, if $m \in \F[x]$ a nonzero polynomial of smallest degree such that $m(T)=0 \in \operatorname{End}(V)$. Note that because $\operatorname{End}(V)$ is finite dimensional, such $m$ must exists. We say a polynomial $p \in \F[x]$ \textbf{splits over $\F$} if we may write:
 \begin{align*}
@@ -500,6 +500,28 @@ In this context, for $\langle \cdot,\cdot\rangle :V^2\rightarrow \F$ to be posit
 \begin{align*}
 \langle v,v\rangle >0\quad\text{for all }v\neq 0
 \end{align*}
+Let $M\in \operatorname{M}_n(\F)$. We say $M$ is \textbf{Hermitian} if $M=M^*$. If $M$ is Hermitian, clearly  $\textbf{x}^* M \textbf{x}\inc$ must be real for all $\textbf{x}\in \F^n$.  We say $M$ is  \textbf{positive-definite} if $M$ is Hermitian and $\textbf{x}^*M\textbf{x}>0$ for all nonzero $\textbf{x}\in \F^n$.  \\
+
+\label{PAPD}
+Let $W$ be an inner product  $\F$-vector space. Let $\set{w_1,\dots ,w_n}$ be a basis. The matrix $M \in \operatorname{M}_n(\F)$ defined by $G_{i,j}\triangleq \langle w_i,w_j\rangle $ is called the \textbf{Gram matrix}. $G$ is clearly Hermitian. To see it is moreover positive-definite, simply compute 
+\begin{align*}
+\textbf{x}^* G \textbf{x}= \left\langle \sum_i \overline{x_i}  w_i , \sum_i \overline{x_i} w_i\right \rangle >0,\quad \text{ for all }\textbf{x}\in \F^n
+\end{align*}
+Note that clearly we have 
+ \begin{align*}
+   \left\langle \sum \overline{c_i} w_i , \sum \overline{d_i} w_i \right\rangle = \textbf{c}^*G \textbf{d}
+\end{align*}
+Note that if $M \in \operatorname{M}_n(\F)$ is positive definite, then $M$ define an inner product on  $\F^n$ by 
+ \begin{align*}
+\langle \textbf{x},\textbf{y}\rangle _M = \textbf{y}^* M \textbf{x}
+\end{align*}
+
+
+
+
+
+
+
 With an inner product equipped on $V$, we may discuss the  \textbf{orthogonality} of vectors. Given a countable set  $\set{v_1,v_2,v_3,\dots }$ of non-zero vectors, we use the term \textbf{Gram-Schmidt process} to refer to the process of defining 
 \begin{align*}
 e_n \triangleq v_n - \frac{\langle v_{n},e_{n-1}\rangle }{\norm{e_{n-1}}^2}e_{n-1} - \cdots - \frac{\langle v_n,e_1\rangle }{\norm{e_1}^2}e_1
@@ -513,6 +535,13 @@ Although implicit, Gram-Schmidt process may be considered one of the most import
 f(v)\triangleq \sqrt{\langle v,v\rangle }  
 \end{align*}
 indeed satisfies triangle inequality, thus forming a norm. In addition, given an endomorphism $T$ of some finite-dimensional complex vector space $V$, by applying Gram-Schmidt process to a Jordan basis, we get an orthogonal basis under which $T$ becomes an upper triangular matrix, called its \textbf{Schur's form}.\\
+
+It should be noted that putting an inner product on a vector space only allow better knowledge. For example, a set of nonzero orthogonal vectors must be linearly independent. This is critical when required to prove an inner product space $V$ has some orthogonal decomposition
+\begin{align*}
+V= W_1 \oplus \cdots \oplus W_n
+\end{align*}
+since the direct sum part would be implied by that they are orthogonal.\\
+
 
 Let $V,W$ be two inner product space over  $\F$, and let  $F:V\rightarrow W$ be some linear map. If some linear map $F^\dagger:W\rightarrow V$ satisfies 
 \begin{align*}
@@ -549,6 +578,11 @@ for some real $b_i,c_i,\ld_i$ such that $b_i^2<4c_i$ for all  $i$. Because $T$ i
 \end{align*}
 This implies $T^2+b_iT+c_iI$ are invertible, which implies for some $j$, the map $T-\ld_j I$ is not invertible, i.e., for some $j$, the real number $\ld_j$ is an eigenvalue. 
 \end{proof}
+Recall that earlier we proved that \customref{VFn}{for all finite dimensional $\F$-vector space $V$ and $T \in \operatorname{End}(V)$ we have}: 
+\begin{align*}
+\customref{VFn}{V=\operatorname{Ker}(T^{k})\oplus \operatorname{Im}(T^{k}),\quad \text{ for all  }k\geq n}
+\end{align*}
+\customref{VFn}{ where $n$ is the smallest natural number that makes $\operatorname{Ker}(T^n)=\operatorname{Ker}(T^{n+1})$}. The spectral property in fact greatly improve this result. If $T$ satisfies the spectral property, then we know  $n=1$, as spectral property guarantee  diagonalizablity. Moreover, the decomposition would clearly always be orthogonal for any $k$.    
 \begin{theorem}
 \textbf{(Classification of quadratic form via spectral theorem)} Let $\F \in \set{\R, \C}$. If $F \in \F[x_1,\dots ,x_n]$ is a homogeneous polynomial of degree $2$, then there exists some  $\phi \in \operatorname{End}(\F^n)$ such that 
 \begin{align*}
@@ -572,7 +606,9 @@ Let $V,W$ be two finite-dimensional inner product space over $\F$, where $\F\in 
 \begin{align*}
 \langle F(e_1),F(e_2)\rangle  = \langle e_1, F^{\dagger } F(e_2)\rangle = 0
 \end{align*}
-By deleting the zeros and negation of some elements, we may extend $\set{F(e)\in W: e \in \alpha  }$ to an orthonormal basis $\beta$ for $W$ such that every non-zero entry of the $\operatorname{dim}(V)$-by-$\operatorname{dim}(W)$ $\C$-matrix $[F]_{\alpha }^\beta $  is a positive real number and lies in the diagonal. This process is called the \textbf{singular value decomposition of $F$}.  
+By deleting the zeros and negation of some elements, we may extend $\set{F(e)\in W: e \in \alpha  }$ to an orthonormal basis $\beta$ for $W$ such that every non-zero entry of the $\operatorname{dim}(V)$-by-$\operatorname{dim}(W)$ $\C$-matrix $[F]_{\alpha }^\beta $  is a positive real number and lies in the diagonal. This process is called the \textbf{singular value decomposition of $F$}. \\
+
+Polar decomposition. Let $A \in \operatorname{M}_n(\F)$ with $\F  \in \set{\R,\C}$. We are concerned whether there exists semi positive definite $S \in \operatorname{M}_n(\F)$ and orthogonal (unitary) $P \in \operatorname{M}_n(\F)$ such that $A=PS$ or  $A=SP$, for the sake of giving the decomposition $z=xe^{i \theta}$ a matrix analog with $S=x$ and $P=e^{i \theta}$. SVD shows that such decomposition always exists.  
 
 \section{Centralizer}
 Let $\F$ be a field and $A \in M_n(\F)$. Clearly, its \textbf{centralizer}  
@@ -1214,46 +1250,53 @@ Prove
 \end{enumerate}
 \end{question}
 \begin{proof}
+Part (a) follows from noting   
 \begin{align*}
  \langle \delta v, \delta v\rangle = \langle v, d \delta v\rangle 
 \end{align*}
-\begin{align*}
-\langle dv,dv\rangle = \langle v, \delta d v\rangle 
-\end{align*}
-\begin{align*}
-\operatorname{Ker}d \cap  \operatorname{Ker}\delta \subseteq \operatorname{Ker}\Delta \text{ is clear. } 
-\end{align*}
-To see the other side
-\begin{align*}
-  d\delta v+ \delta dv =0 &\implies d\delta dv  =0 \\
-  &\implies dv \in \operatorname{Ker}d \delta \\
-  &\implies dv \in \operatorname{Ker}\delta \\
-  &\implies v \in \operatorname{Ker}\delta d \\
-  &\implies  v \in \operatorname{Ker}d  
-\end{align*}
+and the positive definiteness of inner product. The hypothesis $d^2=0$ is unnecessary here. We now prove (b). The "$\subseteq$" is clear. We now prove the converse containment, which is done by unfolding the definition and premise. Let $v \in \operatorname{Ker}\Delta$. Because $d \Delta = d\delta d$, we know $v \in \operatorname{Ker}d\delta d$. This implies $dv \in \operatorname{Ker}d \delta$, which by part (a) implies $dv\in \operatorname{Ker}\delta$, and therefore by part (a) implies $v\in \operatorname{Ker}d$.  \\
 
+We now prove (c). To prove that we have the desired orthogonal decomposition, we only have to prove 
+\begin{enumerate}[label=(\Roman*)]
+  \item $\set{\operatorname{Ker}\Delta , \operatorname{Im}d,\operatorname{Im}\delta}$ is orthogonal. 
+  \item $V=\operatorname{Ker}\Delta + \operatorname{Im}d + \operatorname{Im}\delta$
+\end{enumerate}
+Part (I) follows from part (b) and unfolding the definitions.  Noting that $\Delta$ is the sum of operators composing their adjoints, we see that $\Delta$ is self adjoint. Therefore, by \customref{Spectral Theorem}{spectral theorem for finite dimensional complex vector space}, we have orthogonal decomposition $V= \operatorname{Ker}\Delta \oplus \operatorname{Im}\Delta $. Because we clearly have $\operatorname{Im}\Delta \subseteq \operatorname{Im}d + \operatorname{Im}\delta$, part (II) follows. \\
 
-
-
+We now prove (d). Note that by (c), we already know that $\operatorname{Ker}\Delta  + \operatorname{Im}d$ forms an orthogonal (therefore direct) sum with dimension same as $\operatorname{Ker}d$. Therefore, we only have to show that $\operatorname{Ker}\Delta \subseteq \operatorname{Ker}d$ and $\operatorname{Im}d \subseteq \operatorname{Ker}d$. The former is clear and mentioned in (b). The latter follows from observing the  \customref{JF}{Jordan form} of $d$. 
 \end{proof}
-\begin{question}{}{}
-Let $V=\R^n$ be the space of column vectors, and  $M$ a positive definite symmetric  $n\times n$ real matrix. Suppose $A\in M_{n}(\R)$ satisfies 
+\begin{question}{Correspondence between PD and inner product}{}
+Let $M \in \operatorname{M}_n(\R)$ be positive definite. Let $A\in \operatorname{M}_{n}(\R)$ satisfies 
 \begin{align*}
 MAM^{-1}=A^t
 \end{align*}
-Show that there exists some $P \in M_n(\R)$ such that 
+Show that there exists some $P \in \operatorname{M}_n(\R)$ such that 
 \begin{align*}
 P^t M P = I \text{ and }P^{-1}AP\text{ is diagonal }
 \end{align*}
 \end{question}
 \begin{proof}
-  Because $M$ is symmetric and positive definite, by \textbf{real spectral theorem}, there exists some symmetric positive definite \textbf{square root} $M^{\frac{1}{2}}$ of $M$.  Define 
+Recall that \customref{PAPD}{positive define matrix corresponds to inner product}, i.e., we have the inner product $\langle \cdot , \cdot \rangle _M$ on $\R^n$ defined by 
 \begin{align*}
-B \triangleq M^{\frac{1}{2}}AM^{\frac{-1}{2}}
+\langle \textbf{x},\textbf{y}\rangle _M \triangleq \textbf{y}^t M \textbf{x}
 \end{align*}
-The fact that $M^{\frac{1}{2}}$ is symmetric and $MAM^{-1}=A^t$ allow us to do computation to directly show that  $B$ is symmetric. Therefore, by real spectral theorem, there exists some orthonormal $Q$ such that  $QBQ^{-1}$ is diagonal. It is clear that $P\triangleq M^{\frac{-1}{2}}Q^{-1}$ makes $P^{-1}AP$ diagonal, and 
+Denoting $P\triangleq \begin{bmatrix}
+  \textbf{e}_1 & \cdots & \textbf{e}_n
+\end{bmatrix}$, because 
 \begin{align*}
-P^tMP= (M^{\frac{-1}{2}}Q^{-1})^t M M^{\frac{-1}{2}}Q^{-1}= Q M^{\frac{-1}{2}}MM^{\frac{-1}{2}}Q^{-1}=I
+  (P^tMP)_{i,j}\triangleq (\textbf{e}_i)^t M \textbf{e}_j
+\end{align*}
+We see that 
+\begin{align*}
+P^tM P =I \iff \set{\textbf{e}_1, \cdots ,\textbf{e}_n}\text{ are orthonormal with respect to }\langle \cdot, \cdot\rangle _M
+\end{align*}
+We also have 
+\begin{align*}
+P^{-1}AP \text{ is diagonal }\iff \set{\textbf{e}_1 ,\cdots ,\textbf{e}_n}\text{ are eigenvectors of $A$ }
+\end{align*}
+The rest then follows from  \customref{Spectral Theorem}{spectral theorem for finite dimensional real vector space} and checking:
+\begin{align*}
+  \langle A\textbf{x},\textbf{y}\rangle_M = \textbf{y}^t M A \textbf{x} = \textbf{y}^tA^t M \textbf{x} = \langle \textbf{x},A\textbf{y}\rangle _M 
 \end{align*}
 \end{proof}
 \begin{question}{}{}
@@ -1992,7 +2035,7 @@ With respect to this basis, we have
 \end{pmatrix}
 \end{align*}
 \end{proof}
-\begin{question}{}{}
+\begin{question}{polar decomposition and spectral theorem}{}
 \begin{enumerate}[label=(\alph*)]
   \item Let $A\in M_n(\R)$. Show that there exists orthonormal $Q\in M_n(\R)$ and positive semi-definite symmetric matrix $P \in M_n(\R)$ such that $A=QP$ .\footnote{I was first confused by the original phrasing of the question, so I did some googling. According to Wikipedia, the term "orthogonal matrix" and the term "orthonormal matrix" are interchangeable. They mean a real square matrix  $P$ such that  $PP^t=I$. The term "positive semi-definite matrix" means a real square matrix $Q$ such that $v^tQv\geq 0$ for all $v \inr^n$} 
   \item Let $V$ be a finite dimensional  $\C$-vector space, and let $T \in \operatorname{End}(V)$. Show 
