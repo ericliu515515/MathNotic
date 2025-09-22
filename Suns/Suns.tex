@@ -3,7 +3,7 @@
 \input{macros}
 \input{letterfonts}
 
-\title{Theory of Numbers}
+\title{Suns}
 \author{Eric Liu}
 \date{}
 \begin{document}
@@ -15,6 +15,7 @@
 \tableofcontents
 \pagebreak
 \chapter{Groups}
+
 \section{Isomorphism theorems}
 Let $M$ be a set equipped with a binary operation $M\times M \rightarrow M$. We say $M$ is a \textbf{monoid} if the binary operation is associative and there exists a two-sided identity $e \in M$. 
 \begin{example}
@@ -30,12 +31,12 @@ xx^{-1}=(x^{-1})^{-1}x^{-1}= e
 \end{align*}
 In other words, if we require every element of a monoid $M$ to has a left inverse, then immediately every left inverse upgrades to a right inverse. In such case, we call $M$ a  \textbf{group}. Notice that inverses of elements of a group are clearly unique. \\
 
+
 Unlike the category of monoids, the category of groups behaves much better. Given two groups $G,H$ and a function  $\phi : G\rightarrow H$, if $\phi$ respects the binary operation, then $\phi$ also respects the identity:
 \begin{align*}
 e_H = (\phi (x)^{-1})\phi (x) = (\phi(x)^{-1}) \phi(x e_G) =  (\phi (x)^{-1} \phi (x)) \phi (e_G)=\phi (e_G)
 \end{align*}
 which implies that $\phi$ must also respect inverse. In such case, we call $\phi$ a \textbf{group homomorphism}. Given a subset $H \subseteq G$ closed under the binary operation, if $H$ forms a group itself, then since the set inclusion $H \hookrightarrow G$ forms a group homomorphism, we have $e_H=e_G$, and thus $x^{-1}$ in $H,G$ are the same element. \\
-
  
 In this note, by a \textbf{subgroup} $H$ of $G$, we mean an injective group homomorphism $H \hookrightarrow G $. Clearly, a subset of $G$ forms a subgroup if and only it is closed under both the binary operation and inverse. Note that one of the key basic property of subgroup $H \subseteq G$ is that if $g \not \in H$, then $hg \not \in H$, since otherwise $g=h^{-1}hg \in H$. \\
 
@@ -204,6 +205,6 @@ Because groups admit inverses, a $G$-action is in fact a group homomorphism $G \
 Show that $Z(G)\subseteq \operatorname{Ker} \theta$ if and only if $\theta$ is faithful.  \\
 
 
-An action is \textbf{free} if $g\cdot x=x$ for a $x\in X$ implies $g=e$. Note that the isomorphism $\operatorname{Sym}(X)\rightarrow \operatorname{Sym}(X)$ is always injective but never free unless $\abso{X}\leq 2$. The action is \textbf{transitive} if for any $x,y \in X$, there always exists some $g \in G$ such that $y= g \cdot x$. An action is \textbf{regular} if it is both free and transitive.    \\
+An action is \textbf{free} if $g\cdot x=x$ for a $x\in X$ implies $g=e$. Note that the isomorphism $\operatorname{Sym}(X)\rightarrow \operatorname{Sym}(X)$ is always injective but never free unless $\abso{X}\leq 2$. The action is \textbf{transitive} if for any $x,y \in X$, there always exists some $g \in G$ such that $y= g \cdot x$. An action is \textbf{regular} if it is both free and tran
 
 \end{document}
