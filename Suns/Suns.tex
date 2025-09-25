@@ -16,7 +16,7 @@
 \pagebreak
 \chapter{Groups}
 
-\section{Isomorphism theorems}
+\section{Group action}
 Let $M$ be a set equipped with a binary operation $M\times M \rightarrow M$. We say $M$ is a \textbf{monoid} if the binary operation is associative and there exists a two-sided identity $e \in M$. 
 \begin{example}
 Defining $(x,y)\mapsto y$, we see that the operation is associative and every element is a left identity, but no element is a right identity unless $\abso{M}=1$. This is an example why identity must be two-sided. 
@@ -76,11 +76,66 @@ a bijection. This proves the \textbf{Lagrange's theorem}:
 Consider a group $G$ of prime order. If $x \neq e\in G$, then clearly the cyclic subgroup $\langle x\rangle $ must be $G$ by Lagrange's theorem.  \\
 
 
+Let $G$ be a group and $X$ a set. If we say  $G$ \textbf{acts on $X$ from left} we are defining a function $G \times X\rightarrow X$ such that 
+\begin{enumerate}[label=(\roman*)]
+  \item $e\cdot x=x$ for all $x\in X$. 
+  \item $(gh)\cdot x= g \cdot (h \cdot x)$ for all $g,h \in G$. 
+\end{enumerate}
+Note that there is a difference between left action and right action, as $gh$ means $g \circ h$ in left action and means $h \circ g$ in right action. \\
 
+Because groups admit inverses, a $G$-action is in fact a group homomorphism $G \rightarrow \operatorname{Sym}(X)$. The trivial action then correspond to the trivial group homomorphism.  An action is \textbf{faithful} if it is injective. \\
+
+
+Show that $Z(G)\subseteq \operatorname{Ker} \theta$ if and only if $\theta$ is faithful.  \\
+
+
+An action is \textbf{free} if $g\cdot x=x$ for a $x\in X$ implies $g=e$. Note that the isomorphism $\operatorname{Sym}(X)\rightarrow \operatorname{Sym}(X)$ is always injective but never free unless $\abso{X}\leq 2$. The action is \textbf{transitive} if for any $x,y \in X$, there always exists some $g \in G$ such that $y= g \cdot x$. An action is \textbf{regular} if it is both free and transitive.\\
+
+Let $x \in X$. We call the set $G\cdot x\triangleq \set{g\cdot x \in X: g\in G }$ the \textbf{orbit} of $x$. Clearly the set $G_x$ of all elements of $G$ that fixes $x$ forms a group, called the \textbf{stabilizer subgroup} of $G$ with respect to $x$. Consider the action left. The fact that the obvious mapping between the set of left cosets of stabilizer subgroups of $G$ with respect to $x$ to the orbit of  $x$: 
+\begin{align*}
+\set{g (G_x) \subseteq G : g \in G} \longleftrightarrow G \cdot x
+\end{align*}
+forms a bijection is called the \textbf{orbit-stabilizer theorem}. \\
+
+\begin{theorem}
+\textbf{(Cauchy's theorem for finite group)}  Let $G$ be a finite group whose order is divided by some prime $p$. Then the number of solutions to the equation $x^p =e$ is a positive multiple of  $p$.  
+\end{theorem}
+\begin{proof}
+The set $X$ of $p$-tuples  $(x_1,\dots ,x_p)$ that satisfies $x_1\cdots x_p=e$ clearly has cardinality $\abso{G}^{p-1}$. \\
+
+Consider the group action $\Z_p \rightarrow \operatorname{Sym}(X)$ defined by 
+\begin{align*}
+g \cdot (x_1,\dots ,x_p) \triangleq (x_p,x_1,\dots ,x_{p-1}) 
+\end{align*}
+Then by orbit-stabilizer theorem and Lagrange theorem, an orbit in $X$ either has cardinality $p$ or  $1$. \\
+
+\begin{align*}
+p| \abso{G}^{p-1}=m+kp
+\end{align*}
+with  $m$ the number of cardinality $1$ orbits and $k$ the number of cardinality  $p$ orbits.\\
+
+This implies $p|m$, as desired.
+
+
+
+Notice that $x^p=e$ if and only if  $(x,\dots ,x) \in X$. Therefore the number of cardinality $1$ orbit equals to number of solution to $x^p=e$.\\
+
+\end{proof}
+
+
+\section{Normalizer and centralizer}
 Because the inverse of an injective group homomorphism forms a group homomorphism, we know the set $\operatorname{Aut}(G)$ of automorphisms of $G$ forms a group. We say $\pfi \in \operatorname{Aut}(G)$ is an \textbf{inner automorphism} if  $\pfi $ takes the form $x\mapsto  gxg^{-1}$ for some fixed $g \in G$. We say two elements  $x,y \in G$ are \textbf{conjugated} if there exists some inner automorphism that maps $x$ to $y$. Clearly conjugacy forms a equivalence relation. We call its classes \textbf{conjugacy classes}. 
 
 
+\begin{equiv_def}
+\textbf{(Normalize)}  
+\end{equiv_def}
 
+From the point of view of inner automorphism, we see that it is well-defined whether an element $g\in G$ \textbf{normalize} a subset $S\subseteq G$:
+\begin{align*}
+\set{gsg^{-1} \in G: s \in S} = S
+\end{align*}
+independent of left and right.  Because of the independence, For each subset $S\subseteq G$, we see that the set of elements $g\in G$ that normalize $S$ forms a group, called the \textbf{normalizer} of $S$. Note that if $g$ normalize  $S$, then $gS = Sg$.   \\
 
 
 
@@ -144,12 +199,43 @@ xnx^{-1}= \tilde{n}xx^{-1}=\tilde{n}\in N
 \end{align*}
 (viii)$\implies $(i): Let $n \in N$ and $x\in G$. Because $(nx)x^{-1}=n \in N$, by premise we have $x^{-1}nx \in N$, as desired.
 \end{proof}
+\begin{equiv_def}
+\textbf{(Normal closure)} Let $G$ be a group and $S\subseteq G$. The \textbf{normal closure} $\operatorname{ncl}_G(S)$ of $S$ in  $G$  refer to any one of the followings: 
+\begin{enumerate}[label=(\roman*)]
+  \item The smallest normal subgroup of $G$ containing $S$, which we know exists as the intersection of all normal subgroups of $G$ containing $S$.  
+  \item The subgroup of $G$ generated by 
+\begin{align*}
+ \bigcup_{\pfi \in \operatorname{Inn}(G)} \set{\pfi (x) \in G:x \in S} 
+\end{align*}   
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+We are required to prove the subgroup of $G$ from (ii) is normal. Clearly, it is the set:
+\begin{align*}
+\set{g_1^{-1}x_1^{\epsilon _1}g_1 \cdots g_n^{-1}x_n^{\epsilon_n}g_n \in G: n\geq 0,x_i \in S,\epsilon_i =\pm 1, g_i \in G }
+\end{align*}
+Fix $g \in G$. The proof then follows from noting
+\begin{align*}
+g^{-1}\left(g_1^{-1}x_1^{\epsilon _1}g_1 \cdots g_n^{-1}x_n^{\epsilon_n}g_n\right)g= \left( \left(g_1g\right)^{-1}x_1 ^{\epsilon _1} \left(g _1g  \right) \right) \cdots   \left( \left(g _ng\right)^{-1}x_n ^{\epsilon _n} \left(g_ng  \right) \right) 
+\end{align*}
+\end{proof}
+
+We denote the \textbf{centralizer} $C_G(S)\triangleq \set{g \in G: gsg^{-1}=s\text{ for all }s \in S}$. We call the centralizer of the whole group $Z(G)\triangleq C_G(G)$ \textbf{center}. Clearly $Z(G)$ forms an abelian subgroup of $G$, and every element of the center form a single conjugacy classes.     \\
+
+For finite group $G$, we have the \textbf{class equation}
+\begin{align*}
+ \abso{G} = \abso{Z(G)}+ \sum \abso{G: C_G(x)}
+\end{align*}
+where $x$ runs through conjugacy classes outside of  $Z(G)$. \\
 
 
 
-From the point of view of inner automorphism, we see that it is well-defined whether an element $g\in G$ \textbf{normalize} a subset $S\subseteq G$, independent of left and right.  Because of the independence, For each subset $S\subseteq G$, we see that the set of elements $g\in G$ that normalize $S$ forms a group, called the \textbf{normalizer} of $S$. Note that if $g$ normalize  $S$, then $gS = Sg$.\\
 
-As we shall show, normal subgroup are what we may perform quotient on in the category of groups. Let $G$ be a group and $N\subseteq  G$ a subgroup. We say a group homomorphism $G \rightarrow   G\quotient N$ that vanishes on $N$ satisfies the \textbf{universal property of quotient group $G\quotient N$} if 
+
+Clearly $C_G(S)\subseteq N_G(S)$. 
+
+\section{Isomorphism theorems}
+ Let $G$ be a group and $N\subseteq  G$ a normal subgroup. We say a group homomorphism $ \pi :G \rightarrow   G\quotient N$ satisfies the \textbf{universal property of quotient group $G\quotient N$} if 
 \begin{enumerate}[label=(\roman*)]
   \item it vanishes on $N$. \textbf{(Group condition)}
   \item for all group homomorphism $f:G\rightarrow H$ that vanishes on $N$ there exist a unique group homomorphism $\tilde{f} :G\quotient N\rightarrow H$ that makes the diagram: 
@@ -158,53 +244,164 @@ As we shall show, normal subgroup are what we may perform quotient on in the cat
 	G && {G\quotient N } \\
 	\\
 	&& H 
-	\arrow[two heads, from=1-1, to=1-3]
+	\arrow["\pi",two heads, from=1-1, to=1-3]
 	\arrow["f"', from=1-1, to=3-3]
 	\arrow["\tilde{f} ", from=1-3, to=3-3]
 \end{tikzcd}\]
 commute. \textbf{(Universality)}
 \end{enumerate}
+\begin{theorem}
+\textbf{(The first isomorphism theorem for groups)} The group homomorphism $\pi : G \rightarrow G \quotient N$ is always surjective with kernel $N$. Let $f :G \rightarrow H$ be a group homomorphism. Then $\operatorname{ker}f$ is normal in $G$, and the induced homomorphism $\tilde{f}: G \quotient \operatorname{ker}f \rightarrow H$ is injective.   
+\end{theorem}
+\begin{proof}
+The first part is an immediate consequence of construction of $G \quotient N$. However, it should be noted that such construction can be avoided. The fact that $\operatorname{ker}(\pi )=N$ can be proved by considering the permutation representation $G \rightarrow \operatorname{Sym}(\Omega)$, where $\Omega$ is the set of the cosets of $N$, and the fact that  $\pi $ is surjective is a consequence of $\tilde{\pi }=\id_{G\quotient N}$. \\
+
+We clearly have $\operatorname{ker}f \trianglelefteq G$. The fact that $\tilde{f}:G \quotient \operatorname{ker}f \rightarrow H$ is injective follows from $\pi : G \rightarrow G \quotient \operatorname{ker}f$ being surjective with kernel $\operatorname{ker}f$. 
+\end{proof}
 
 
 
+Because the kernel of a group homomorphism is clearly normal, if $N$ is not normal, then there can not be a pair $G\rightarrow G\quotient N$ that satisfies the universal property.  If any things, this is the "reason" why normal subgroups are what meant to be quotiented in the category of group.  \\
+
+Given $x,y \in G$, we often write  
+\begin{align*}
+[x,y]\triangleq xyx^{-1}y^{-1}\quad \text{ or }\quad [x,y]\triangleq x^{-1}y^{-1}xy
+\end{align*}
+and call $[x,y]$ the \textbf{commutator} of $x$ and  $y$. Independent of differences of the definition, we have $[x,y]\in N$ if and only if $xyN=yxN$. Again, independent of the definition, the \textbf{commutator subgroup} $[G,G]$ of $G$ is the subgroup generated by the commutators. 
 
 \begin{theorem}
-\textbf{(The first isomorphism theorem for groups)} Let $N$ be a subgroup of  $G$ and $j:G \rightarrow G\quotient N$ satisfies the universal property. Then $j$ is surjective with kernel  $N$.\end{theorem}
-\begin{proof}
-
-\end{proof}
-Because the kernel of a group homomorphism is clearly normal, if $N$ is not normal, then there can not be a pair $G\rightarrow G\quotient N$ that satisfies the universal property.  If any things, this is the "reason" why normal subgroups are what meant to be quotiented in the category of group. 
-\begin{corollary}
-\textbf{(The first isomorphism theorem)} 
-\end{corollary}
-\begin{proof}
-
+\textbf{()} 
+\begin{align*}
+G\quotient N\text{ is abelian }\iff [G,G] \subseteq N
+\end{align*}
+\end{theorem}
+\begin{proof} 
+  ($\implies$): 
+\begin{align*}
+  (xyx^{-1}y^{-1})N= xN \cdot yN \cdot (x^{-1})N \cdot (y^{-1} )N = N 
+\end{align*}
+$(\impliedby)$: 
 \end{proof}
 
 
 \begin{example}
 $G\triangleq S_3$. $S\triangleq  \langle (1,2)\rangle $ and $H\triangleq \langle (2,3)\rangle $. $SH$ doesn't form a group. $(2,3)(1,2)\not \in SH$. 
 \end{example}
-Second isomorphism theorem. 
+\begin{theorem}
+\textbf{(Second isomorphism theorem)} Let $H\leq G$. If $K$ is a subgroup of normalizer of $H$, then their product: 
+\begin{align*}
+HK\triangleq  \set{hk \in G: h \in H\text{ and } k \in K}
+\end{align*}
+forms a group and is defined independent of left and right. Moreover, $H\trianglelefteq HK$ with $hkH=kH$, and $H\cap K \trianglelefteq K$ with 
+\begin{align*}
+HK \quotient H \cong  K \quotient H \cap K \quad \text{ via } \quad  kH  \longleftrightarrow k (H \cap K) 
+\end{align*}
+\end{theorem}
+\begin{proof}
 
+\end{proof}
 Third isomorphism theorem. 
 
 Correspondence theorem.
 
 
 Because $ \phi\circ \pfi _g \circ \phi^{-1} = \pfi _{\phi(g)}$, we know $\operatorname{Inn}(G)$ forms a normal subgroup of $\operatorname{Aut}(G)$. \\
-\section{Group action}
-Let $G$ be a group and $X$ a set. If we say  $G$ \textbf{acts} on $X$ we are defining a function $G \times X\rightarrow X$ such that 
+
+\section{Sylow theorems}
+Let $o(G)\triangleq p^mq$ with $\operatorname{gcd}(p,q)=1$, and let $n\leq m$. Because 
+\begin{align*}
+\binom{p^mq}{p^m}= \frac{p^mq(p^mq-1)\cdots (p^mq-p^m+1)}{p^m(p^m-1)\cdots 1}
+\end{align*}
+and clearly 
+\begin{align*}
+p^k | p^mq- i \iff p^k |i\iff p^k | p^m-i,\quad \text{ for all $i$ and  $k$ }  \divides
+\end{align*}
+
+Let $\mathcal{S}$ be the  set of subsets of $G$ with cardinality  $p^n$. Clearly $\abso{\mathcal{S}}=\binom{o(G)}{p^n}$ and we may define a left $G$-action on $\mathcal{S}$ by
+\begin{align*}
+g\cdot \set{h_1,\dots ,h_{p^n}} \triangleq \set{gh_1,\dots ,gh_{p^n}}
+\end{align*}
+we 
+\section{Exercises}
+\begin{question}{}{}
+Show that 
 \begin{enumerate}[label=(\roman*)]
-  \item $e\cdot x=x$ for all $x\in X$. 
-  \item $(gh)\cdot x= g \cdot (h \cdot x)$ for all $g,h \in G$. 
+  \item If $H \quotient Z(H)$ is cyclic, then $H$ is abelian.  
+  \item If $H$ is of order  $p^2$, then  $H$ is abelian.   
 \end{enumerate}
-Because groups admit inverses, a $G$-action is in fact a group homomorphism $G \rightarrow \operatorname{Sym}(X)$. The trivial action then correspond to the trivial group homomorphism.  An action is \textbf{faithful} if it is injective. \\
+From now on, suppose $G$ is non-abelian with order  $p^3$. 
+\begin{enumerate}[label=(\roman*), start=3]
+  \item $\abso{Z(G)}=p$. 
+  \item $Z(G)=[G,G]$.  
+\end{enumerate}
+\end{question}
+\begin{proof}
+Let $a,b\in H$ and $H \quotient Z(H)= \langle hZ\rangle $. Write $a=h^nz_1$ and $b=h^mz_2$. Because  $z_1,z_2 \in Z(H)$, we may compute: 
+\begin{align*}
+ab=h^nz_1h^mz_2=h^{n+m}z_1z_2=ba
+\end{align*}
+as desired. \\
+
+Let $\abso{H}=p^2$. Because $H$ is a  $p$-group, we know $Z(H)$ is nontrivial, therefore either $\abso{Z(H)}=p$ or $\abso{Z(H)}=p^2$. To see the former is impossible, just observe that if so, then $\abso{H\quotient Z(H)}=p$, which implies $H\quotient Z(H)$ is cyclic, which by part (i) implies $Z(H)=H$. \\
+
+Because $G$ is non-abelian, we know  $\abso{Z(G)}\neq p^3$. Because $G$ is a  $p$-group, we know  $\abso{Z(G)}\neq 1$. Therefore, either $\abso{Z(G)}=p$ or $\abso{Z(G)}=p^2$. Part (i) tell us that $\abso{Z(G)}\neq p^2$, otherwise $G$ is abelian, a contradiction. We have shown  $\abso{Z(G)}=p$, as desired. \\
+
+We now prove $Z(G)=[G,G]$. Because $\abso{Z(G)}=p$, by part (ii) we know $G\quotient Z(G)$ is abelian. This implies $[G,G] \leq  Z(G)$, which implies $[G,G]$ is either trivial or equal to $Z(G)$. Because $G$ is non-abelian, we know  $[G,G]$ can not be trivial. This implies $Z(G)=[G,G]$, as desired.
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}[label=(\roman*)]
+  \item Let $M,N$ be two normal subgroups of  $G$ with  $MN=G$. Prove that 
+\begin{align*}
+    G\quotient (M\cap N) \cong  (G\quotient M) \times (G\quotient N)
+\end{align*} 
+\item Let $H,K$ be two distinct subgroups of  $G$ of index  $2$. Prove that  $H\cap K$ is a normal subgroup with index $4$ and  $G \quotient (H\cap K)$ is not cyclic.  
+\end{enumerate}
+\end{question}
+\begin{proof}
+The map $G\quotient (M\cap N) \rightarrow (G \quotient M)\times (G\quotient N)$ defined by 
+\begin{align}
+\label{EQmg}
+g(M\cap N) \mapsto (gM,gN)
+\end{align}
+is clearly a well-defined group homomorphism, since if $gM=hM$ and  $gN=hN$, then  $gh^{-1}\in M$ and $gh^{-1} \in N$, which implies $gh^{-1}\in M \cap N$, which implies $g(M\cap N)=h(M \cap N)$. Let $gM=M$ and  $gN=N$. Then  $g \in M \cap N$ and $g(M \cap N)=M \cap N$. Therefore \myref{map}{EQmg} is also injective. It remains to show \myref{map}{EQmg} is surjective. Fix $g,h \in G$. Write $g=mn$ and  $h=\tilde{m}\tilde{n}$. Clearly $gM=nM=\tilde{m}nM$ and  $hN=\tilde{m}N=\tilde{m}nN $. This implies that  \myref{mapping}{EQmg} maps $\tilde{m}n$ to $(gM,hN)$, as desired.\\
+
+Because $H,K$ are both of index  $2$ in $G$, we know they are both normal in $G$. This by second isomorphism theorem implies  $HK$ forms a subgroup of  $G$. Because $H\neq K$, we know $HK$ properly contains $H$, which by finiteness of $G$ implies  the index of $HK$ is strictly less than  $H$, i.e., $HK=G$. Note that $H \cap K$ is normal since it is the intersection of normal subgroups. By part (i), we now have $G \quotient (H\cap K)\cong  (G \quotient H)\times (G\quotient K)\cong  \Z_2\times\Z_2$, which shows that $H \cap K$ has index $4$ and  $G \quotient (H\cap K)$ is cyclic.     
+\end{proof}
+\begin{question}{}{}
+Let $G$ be a group of order  $pq$, where  $p>q$ are prime. 
+\begin{enumerate}[label=(\roman*)]
+  \item Show that there exists a unique subgroup of order $p$.  
+  \item Suppose $a \in G$ with $o(a)=p$. Show that $\langle a\rangle \subseteq G$ is normal and for all $x \in G$, we have $x^{-1}ax =a^i$ for some $0<i<p$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+The third Sylow theorem stated that the number $n_p$ of Sylow $p$-subgroups satisfies 
+\begin{align*}
+n_p\equiv 1\pmod{p} \quad \text{ and }\quad n_p \mid q
+\end{align*}
+Because $p>q$, together they implies $n_p=1$. Since Sylow $p$-subgroups of  $G$ are exactly subgroups of order  $p$, we have proved (i).  \\
+
+The third Sylow theorem also stated that $n_p= \abso{G:N_G(P)}$ for any Sylow $p$-subgroup  $P\leq G$. Therefore, $N_G(\langle a\rangle )=G$, i.e., $\langle a\rangle $ is normal in $G$. Fix  $x\in G$. It remains to prove $xax^{-1}\neq e$, which is a consequence of the fact that conjugacy (automorphism) preserves order.
+\end{proof}
+\begin{question}{}{}
+Let $H,K$ be two subgroups of $G$ of coprime finite indices  $m,n$. Show that 
+\begin{align*}
+\operatorname{lcm}(m,n) \leq \abso{G:H \cap K} \leq mn
+\end{align*}
+\end{question}
+\begin{proof}
+Let $\Omega_{H\cap K},\Omega_$, and $\Omega_K$ respectively denote the set of left cosets of $H\cap K,H$, and $K$.  The map $\Omega_{H\cap K} \rightarrow \Omega_H \times \Omega_K$ defined by 
+\begin{align}
+\label{EQmgh}
+g(H\cap K) \mapsto (gH,gK) 
+\end{align}
+is well defined since 
+\begin{align*}
+g(H\cap K)=l(H\cap K) \implies g^{-1}l \in H \cap K \implies gH=lH\text{ and }gK=lK
+\end{align*}
+such set map is injective since if $gH=lH$ and  $gK=lK$, then  $g^{-1}l \in H$ and $g^{-1}l\in K$, which implies $g(H \cap K)=l(H \cap K)$, as desired. From the injectivity of \myref{map}{EQmgh}, we have shown  index of  $H\cap K$ indeed have upper bound $mn$. \\
 
 
-Show that $Z(G)\subseteq \operatorname{Ker} \theta$ if and only if $\theta$ is faithful.  \\
-
-
-An action is \textbf{free} if $g\cdot x=x$ for a $x\in X$ implies $g=e$. Note that the isomorphism $\operatorname{Sym}(X)\rightarrow \operatorname{Sym}(X)$ is always injective but never free unless $\abso{X}\leq 2$. The action is \textbf{transitive} if for any $x,y \in X$, there always exists some $g \in G$ such that $y= g \cdot x$. An action is \textbf{regular} if it is both free and tran
+\end{proof}
 
 \end{document}

@@ -954,16 +954,16 @@ even if the integral may be $+\infty$.
 \label{THmtFt}
 \textbf{(Measure-theoretic Feymann's trick)} Let $X$ be an open subset of $\R$ and  $\Omega$ a measure space. If $f:X\times \Omega \rightarrow \R$ satisfies:
 \begin{enumerate}[label=(\Roman*)]
-  \item $f(x,\omega)$ is an integrable function of $\omega$ for each $x \in X$. 
-  \item For almost all $\omega \in \Omega$, the partial derivative $\partial f \quotient \partial x$ exists for all $x \in X$. 
-  \item There is an integrable function  $\theta: \Omega \rightarrow \R$ such that for almost every  $\omega \in \Omega$ we have:  
+  \item $\Omega \rightarrow \R: t \mapsto  f(x,t)$ is an integrable function for all $x \in X$. 
+  \item For almost all $t\in \Omega$, the partial derivative $\partial f \quotient \partial x$ exists for all $x \in X$. 
+  \item There is an integrable function  $\theta: \Omega \rightarrow \R$ such that for almost every  $t \in \Omega$ we have:  
  \begin{align*}
-   \abso{\frac{\partial f}{\partial x} (x,\omega)}\leq \theta (\omega) ,\quad \text{ for all }x \in X
+   \abso{\frac{\partial f}{\partial x} (x,t)}\leq \theta (t) ,\quad \text{ for all }x \in X
  \end{align*}
 \end{enumerate}
 Then, 
 \begin{align*}
-\frac{d}{dx} \int_{\Omega} f(x,\omega) d \omega = \int_{\Omega} \frac{\partial f}{\partial x}d\omega,\quad \text{ for all }x\in X
+\frac{d}{dx} \int_{\Omega} f(x,t) d \omega = \int_{\Omega} \frac{\partial f}{\partial x}dt,\quad \text{ for all }x\in X
 \end{align*}
 \end{theorem}
 \section{Young, Hölder, and Minkowski inequalities}
@@ -1372,7 +1372,10 @@ See Wade Theorem 11.63
 \label{THGt}
 \textbf{(Green's theorem)} Let $C\subseteq \R^2$ be a positively oriented, piecewise smooth, and smooth curve. Let $D\subseteq \R^2$ be the region bounded by $C$. If  $L,M \in C^1(D)$, then 
 \begin{align*}
-\int_C Ldx+M dy= \int_D  \left( \frac{\partial M}{\partial x} - \frac{\partial L}{\partial y} \right) dA 
+\int_C Ldx+M dy= \int_D \begin{vmatrix} 
+  \frac{\partial }{\partial x} & \frac{\partial }{\partial y} \\
+  L & M 
+\end{vmatrix} dA 
 \end{align*}
 \end{theorem}
 \chapter{NTU Math M.A. Program Entrance Exam}
