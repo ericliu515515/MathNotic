@@ -168,6 +168,18 @@ Define $Z_n\triangleq \sum_{n=1}^N z_n$ and let $M$ bound  $\abso{Z_n}$. Using \
 \end{align*}
 \end{proof}
 \begin{theorem}
+\label{THDtfuc}
+\textbf{(Dirichlet's test for uniform convergence)} Let $X$ be a metric space and $\set{f_n},\set{g_n}$ be two sequence of function that maps $X$ into $\C$. If
+\begin{enumerate}[label=(\roman*)]
+  \item $f_n\searrow 0$ uniformly. 
+  \item $\sum g_n$ is uniformly bounded. 
+\end{enumerate}
+then 
+\begin{align*}
+\sum f_ng_n\text{ uniformly converges }
+\end{align*}
+\end{theorem}
+\begin{theorem}
 \label{Abel's Test for Uniform Convergence}
 \textbf{(Abel's Test for Uniform Convergence)} Suppose $g_n:X\rightarrow \R$ is a uniformly bounded pointwise monotone sequence. Then given a sequence $f_n:X\rightarrow \R$, 
 \begin{align*}
@@ -1356,11 +1368,24 @@ n!\sim \sqrt{2\pi n} \left(\frac{n}{e} \right)^n  ,\quad \text{ as }n\rightarrow
 \end{align*}
 \end{theorem}
 \begin{theorem}
-\textbf{(Lagrange multiplier theorem)} Let $V \subseteq \R^n$ be open , $f,g_1,\dots ,g_m \in C^1(V)$ with $m\leq n$. 
+\label{THLmt}
+\textbf{(Lagrange multiplier theorem)} Let $V \subseteq \R^n$ be open , $f,g_1,\dots ,g_m \in C^1(V)$ with $m\leq n$, and $\textbf{y}\in V$. If: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\textbf{y}$ is a local extremum of $f$ subject to the constraints $g_1(\textbf{x})=\cdots = g_m(\textbf{x})=0$. 
+  \item 
+    \begin{align*}
+    \operatorname{rank} \begin{pmatrix} 
+      \frac{\partial g_1}{\partial x_1} (\textbf{x}) & \cdots & \frac{\partial g_1}{\partial x_n}(\textbf{x}) \\
+      \vdots & \ddots & \vdots \\
+      \frac{\partial g_m}{\partial x_1}(\textbf{x}) & \cdots & \frac{\partial g_m}{\partial x_n} (\textbf{x})
+    \end{pmatrix} = m
+    \end{align*}
+\end{enumerate}
+then there exists a unique $(\ld_1,\dots ,\ld _m)\inr^m$  such that 
+\begin{align*}
+\nabla f (\textbf{y})= \sum_{i=1}^m \ld_i \nabla g_i (\textbf{y})
+\end{align*}
 \end{theorem}
-\begin{proof}
-See Wade Theorem 11.63
-\end{proof}
 \begin{theorem}
 \label{THdivt}
 \textbf{(Divergence theorem)}  Let $M \subseteq \R^3$ be compact with piecewise smooth boundary and $\textbf{F}:M\rightarrow \R^3$ be $C^1$. Then:  
@@ -1376,6 +1401,17 @@ See Wade Theorem 11.63
   \frac{\partial }{\partial x} & \frac{\partial }{\partial y} \\
   L & M 
 \end{vmatrix} dA 
+\end{align*}
+\end{theorem}
+\begin{theorem}
+\label{THmTt}
+\textbf{(Multivariable Taylor's theorem)} Let  $U$ be a neighborhood of $\textbf{a}\inr^n$, and let $f\in C^k(U)$. Consider the   multi-index notation  
+\begin{align*}
+  \abso{\alpha }\triangleq  \alpha_1 + \cdots + \alpha _n,\quad  \alpha ! \triangleq \alpha_1! \cdots \alpha_n!,\quad  \textbf{x}^{\alpha }\triangleq  x_1^{\alpha _1}\cdots x_n^{\alpha _n}   
+\end{align*}
+We have: 
+\begin{align*}
+f(\textbf{x})= f(\textbf{a})+\sum_{1\leq \abso{\alpha }\leq k} \frac{1}{\alpha !}\cdot  \frac{\partial^k f}{\partial x_1^{\alpha _1} \cdots \partial x_n^{\alpha _n}} \bigg|_{\textbf{a}} (\textbf{x}-\textbf{a})^{\alpha } + o( \abso{\textbf{x}-\textbf{a}}^k)
 \end{align*}
 \end{theorem}
 \chapter{NTU Math M.A. Program Entrance Exam}
@@ -1787,53 +1823,33 @@ We may now estimate:
 \end{align*}
 for all $n\geq N$. 
 \end{proof}
-\begin{question}{Lagrange multiplier theorem}{}
+\begin{question}{$L^2$-norm}{}
 Let $P_2$ be the set of real polynomial with degree no greater than  $2$, and let $S\triangleq \set{p \in P_2: p(1)=1}$. Define $G:P_2\rightarrow \R$ by 
 \begin{align*}
-G(p)\triangleq \int_0^1 p^2(x)dx
+G(p)\triangleq \int_0^1 p^2(t)dt
 \end{align*}
 Does $G|_S$ have any extreme value? If it does, find them.\\ 
 
 \textbf{Remark}: The original phrasing of the question is misleading. 
 \end{question}
 \begin{proof}
-Because $F:\R^3 \rightarrow P_2,(a,b,c)\mapsto  ax^2+bx+c$ is surjective, the set on which $G|_S$ attains extreme values is exactly the image of the set on which $G\circ F|_{F^{-1}(S)}$ attains extreme values under $F$. We have transformed our \textbf{optimization problem} to the form in which the  \textbf{objective function} is:
+Clearly, the function $G:P_2 \rightarrow \R$ is the same as the square of the norm function induced by the inner product: 
 \begin{align*}
-G\circ F(a,b,c)= \frac{a^2}{5}+ \frac{ab}{2}+ \frac{2ac+b^2}{3}+ bc + c^2
+\langle f,g\rangle \triangleq \int_0^1 f(t)g(t)dt\quad \text{ for all }f,g \in P_2
 \end{align*}
-and there is only one \textbf{constraint function}, being:  
-\begin{align*}
-g(a,b,c)\triangleq a+b+c-1
-\end{align*}
-This is best solved using \textbf{Lagrange multiplier theorem for single constraint}. Note that there are lots of versions of Lagrange multiplier theorem for single constraint, and one of them requires: 
-\begin{enumerate}[label=(\roman*)]
-  \item Both objective and constraint functions are $C^1$.
-  \item The dimension of codomain of the single constraint function is no greater than the dimension of its domain. 
-\end{enumerate}
-Moreover, Lagrange multiplier theorem can only detect local extremum on which the Jacobian of the constraint function is full rank. As harsh as these conditions seems, note that our case clearly satisfies both hypotheses and note that the Jacobian of our constraint function $g$ is full rank globally, so we don't need to worry about any of these conditions. \\
+and the $\R$-vector space  $P_2$ is  finite dimensional with basis  $\set{1,t,t^2}$ such that $S$, when written in coordinate with respect to it, forms the plane  $x+y+z=1$. \\
 
-Compute: 
+By Gram-Schmidt, we have orthonormal basis: 
 \begin{align*}
-\nabla (G\circ F)(a,b,c)= \left(\frac{2a}{5}+\frac{b}{2}+\frac{2c}{3}, \frac{a}{2}+ \frac{2b}{3}+ c, \frac{2a}{3}+ b+2c  \right)
+\set{ 1, 2\sqrt{3}\left(t- \frac{1}{2} \right), 6 \sqrt{5} \left(t^2-t+ \frac{1}{6} \right)  }
 \end{align*}
-Compute: 
+Because change of coordinate is linear, we know when written in coordinate with  respect to this new basis, $S$ still is a plane. Explicitly, $S$ is the plane  $x + \sqrt{3}y+\sqrt{5}z=1$. Therefore, we know $G$, the square of the norm function, when restricted to $S$ indeed has a local extremum value. It has only one, and it is a global minimum $\frac{1}{9}$ at 
 \begin{align*}
-\nabla g(a,b,c)= (1,1,1)
+p(t)\triangleq \frac{1}{9}\cdot 1 + \frac{\sqrt{3}}{9} \cdot 2\sqrt{3}\left(t- \frac{1}{2} \right) + \frac{\sqrt{5} }{9} \cdot 6 \sqrt{5} \left(t^2-t+\frac{1}{6} \right) 
 \end{align*}
-We are now required to solve a system of linear equations with four unknown:  
-\begin{align*}
-\begin{cases}
-  \frac{2}{5}a+ \frac{1}{2}b+ \frac{2}{3}c&= \ld \\
-  \frac{1}{2}a + \frac{2}{3}b+c&=\ld    \\
-  \frac{2}{3}a+ b+ 2c &= \ld \\
-  a+b+c &= 1 
-\end{cases}
-\end{align*}
-One may verify that there is only one solution, i.e., 
-\begin{align*}
-  (a,b,c)= \left(\frac{10}{3}, -\frac{8}{3}, \frac{1}{3} \right)\text{ and }\ld =\frac{2}{9}
-\end{align*}
-It is easy to see that this is a local minimum. Because the Jacobian of our constraint function $g$ is full rank globally, we know this local minimum is the only local extremum and also a global minimum. 
+
+
+
 \end{proof}
 \begin{question}{Lebesgue's criteria for proper Riemann integrability}{}
 Let $C\inr^+$, function $f:[a,b]\rightarrow \R$ be proper Riemann integrable, and $g:\R\rightarrow \R$ be $C$-Lipschitz continuous. Prove that $g\circ f:[a,b]\rightarrow \R$ is proper Riemann integrable.\\ 
@@ -2021,13 +2037,30 @@ No. Using formula:
 \end{align*}
 It is easily computed that $\sin (x)$ has standard $L^2$-distance $\geq \sqrt{\pi \quotient 2}  $ with any partial sum $a_2 \sin (2x)+\cdots + a_N \sin (nx)$. However, uniform convergence on domain of finite measure implies $L^2$-convergence, a contradiction.  
 \end{proof}
-\begin{question}{}{}
+\begin{question}{standard}{}
 Let $f:\R\rightarrow \R$ be uniformly continuous. Show that $f$ must be bounded by a linear function, i.e., there exists constant $A,B \inr$ such that 
 \begin{align*}
 \abso{f(x)}\leq A+ B\abso{x},\quad \text{ for all }x\inr
 \end{align*}
 \end{question}
 \begin{proof}
+Because $f:\R \rightarrow \R$ is uniformly continuous. We know there exists some $\delta >0$ such that for all $x,y\inr$, we have: 
+\begin{align}
+\label{EQabxy}
+\abso{x-y}\leq \delta \implies  \abso{f(x)-f(y)}\leq 1 
+\end{align}
+We claim 
+ \begin{align*}
+A\triangleq \abso{f(0)}+1 \text{ and }B\triangleq \frac{1}{\delta}\text{ suffices. }
+\end{align*}
+By \myref{inequality}{EQabxy}, we know 
+\begin{align*}
+\max \set{\abso{f(n\delta)},\abso{f(-n\delta)}} \leq \abso{f(0)}+ n ,\quad \text{ for all }n\inn \cup  \set{0}
+\end{align*}
+Fix $x$. Let  $n$ satisfies $n\delta < \abso{x} \leq (n+1)\delta$. By \myref{inequality}{EQabxy}, we then have 
+\begin{align*}
+\abso{f(x)}\leq \max \set{\abso{f(n\delta)},\abso{f(-n\delta)}} + 1 \leq \abso{f(0)}+ n+1 \leq A + B\abso{x}
+\end{align*}
 
 \end{proof}
 \begin{question}{}{}
@@ -2052,15 +2085,23 @@ We may now prove the continuity of $g$ using the result from question (i). Suppo
 
 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Holder condition with exponent $>1$ implies zero derivative at origin}{}
 Let $L:\R^3 \rightarrow \R^3$ be an invertible linear map, and let function $g:\R^3 \rightarrow \R^3$ be $C^1$ while satisfying: 
  \begin{align*}
-\text{ For some }\epsilon ,\abso{g(x)}\leq C \abso{x}^{1+\epsilon }\text{ for all }x\inr^3
+\text{ For some }\epsilon ,\abso{g(\textbf{x})}\leq C \abso{\textbf{x}}^{1+\epsilon }\text{ for all }\textbf{x}\inr^3
 \end{align*}
 Show that $L+g:\R^3 \rightarrow \R^3$ is invertible near the origin.  
 \end{question}
 \begin{proof}
-
+ Because of \customref{THpift}{pointwise inverse function theorem}, we only have to show 
+\begin{align*}
+dg |_\textbf{0}= 0
+\end{align*}
+Assume for a contradiction that $dg|_\textbf{0}\neq 0$. Therefore, there exists some unit $\textbf{x}\inr^3$ such that $\textbf{v}\triangleq dg|_\textbf{0}(\textbf{x})$ is nonzero. Clearly $g(\textbf{0})=\textbf{0}$. Therefore, 
+\begin{align*}
+ \frac{\abso{g(t\textbf{x})- g(\textbf{0})- dg|_\textbf{0}(t \textbf{x})}}{\abso{t}} \geq \frac{\abso{t \textbf{v}}- C\abso{t}^{1+\epsilon }}{\abso{t}} = \abso{\textbf{v}} - C \abso{t}^{\epsilon } \rightarrow \abso{\textbf{v}},\quad \text{ as }t \rightarrow 0
+\end{align*}
+a contradiction. 
 \end{proof}
 \begin{question}{change of variable, multiple integral}{}
 Find the volume of the ellipsoid: 
@@ -2148,12 +2189,16 @@ Define $\Omega \triangleq  \set{(x,y)\inr^2 :0\leq x,y\leq 1}- \set{(1,1)}$, and
 f(x,y)\triangleq \frac{1}{(1-xy)^2}
 \end{align*}
 \begin{enumerate}[label=(\roman*)]
-  \item For any $\kappa \in (0,1)$, let $U_\kappa\triangleq \set{(x,y)\in^2: 0\leq x,y\leq \kappa}$. Is $f$ uniformly continuous on  $U_\kappa$ ?   
+  \item For any $\kappa \in (0,1)$, let $U_\kappa\triangleq \set{(x,y)\inr^2: 0\leq x,y\leq \kappa}$. Is $f$ uniformly continuous on  $U_\kappa$ ?   
   \item Is $f$ uniformly continuous on $\Omega$? 
 \end{enumerate}
 \end{question}
 \begin{proof}
-
+Because $U_\kappa$ are compact and $f:\Omega \rightarrow \R$ is continuous, we know $f$ is uniformly continuous on any  $U_\kappa$.  To see $f$ is not uniformly continuous on $\Omega$, just note that 
+\begin{align*}
+f(t,1) \nearrow \infty,\quad \text{ as }t \nearrow 1
+\end{align*}
+Therefore, for all $\delta$, we can select $\epsilon >0$ small enough such that even though $(1,1-\delta)$ and $(1,1-\epsilon)$ are only $\delta$-away, but their images are of distance $\geq 1$. 
 \end{proof}
 \begin{question}{}{}
 Define $f_n:[0,1]\rightarrow \R$ for all $n\inn$ by $f_n(x)\triangleq nx^n(1-x)$. 
@@ -2175,12 +2220,61 @@ Define
 F(x)\triangleq \int_0^{\infty} \frac{1-\cos (xt)}{t^2e^t}dt
 \end{align*}
 \begin{enumerate}[label=(\roman*)]
-  \item Can we switch the order of differentiation and integration to obtain formulas for $F'(x)$ and $F''(X)$? 
+  \item Can we switch the order of differentiation and integration to obtain formulas for $F'(x)$ and $F''(x)$? 
   \item Find explicit formulas (Not an improper integral) for $F'(x)$ and $F''(x)$.  
 \end{enumerate}
 \end{question}
 \begin{proof}
-
+Define 
+\begin{align*}
+f(x,t)\triangleq \frac{1- \cos (xt)}{t^2e^t}
+\end{align*}
+Note that by  \customref{L'Hospital Rule}{L'Hospital rule}, we have: 
+\begin{align*}
+\lim_{t\to 0} \frac{1- \cos (xt)}{t^2e^t} =  \frac{x^2}{2}
+\end{align*}
+Therefore, the integral of $f$ with respect to  $t$ has no singularities at $0$. To see $f$ also has no singularities at $\infty$, just compare its integral with that of $2e^{-t}$. We have shown that $F$ is well-defined on  $\R$. Compute 
+\begin{align*}
+\frac{\partial f}{\partial x} = \frac{\sin (xt)}{te^t}
+\end{align*}
+Recall that  to perform    \customref{THmtFt}{measure-theoretic Feymann's trick}, we are only required find some $L^1$ function  $g$ such that for almost all $x\inr$, we have: 
+\begin{align}
+\label{EQpafx}
+  \abso{\frac{\partial f}{\partial x}(x,t) } \leq g(t),\quad \text{ for all }t \in (0,\infty)
+\end{align}
+Because differentiation is a local notion, here, our $g$ only has to satisfies \myref{condition}{EQpafx} for all $\abso{x}\leq M$. Under the hypothesis that $\abso{x}\leq M$, clearly we have: 
+\begin{align*}
+  \abso{\frac{\sin (xt)}{te^t}}= \abso{\frac{\sin (xt)}{xt}} \cdot \abso{\frac{x}{e^t} } \leq \frac{M}{e^t},\quad \text{ for all }t \leq M
+\end{align*}
+Therefore, we can construct $g$ as: 
+\begin{align*}
+g(t)\triangleq \begin{cases}
+  \frac{1}{te^t}& \text{ if  }t>M\\
+  \frac{M}{e^t}& \text{ if $t \leq M$ } 
+\end{cases}
+\end{align*}
+Because  
+\begin{align*}
+\frac{\partial^2 f}{\partial x^2} = \frac{\cos (xt)}{e^t}
+\end{align*}
+is bounded by  $L^1$ function $e^{-t}$, \customref{THmtFt}{measure-theoretic Feymann's trick} is clearly justified. Computing that 
+\begin{align*}
+\frac{d}{dt} \left( \sin (xt)e^{-t} \right)&= x \cos (xt)e^{-t}- \sin (xt)e^{-t}  \\
+\frac{d}{dt}\left(\cos (xt)e^{-t} \right)&=  -x \sin (xt)e^{-t}-\cos (xt)e^{-t}
+\end{align*}
+We see 
+\begin{align*}
+F''(x)=\int_0^{\infty} \frac{\cos (xt)}{e^t}dt= \frac{x \sin (xt)e^{-t}- \cos (xt)e^{-t}}{x^2+1} \Bigg  |_{t=0}^{\infty} = \frac{1}{x^2+1} 
+\end{align*}
+This implies 
+\begin{align*}
+F'(x)= \arctan (x) + C,\quad \text{ for some }C\inr
+\end{align*}
+ Because 
+ \begin{align*}
+ F'(0)=\int_0^{\infty} \frac{0}{te^{^t}}dt=0 
+ \end{align*}
+ We know $C=0$. 
 \end{proof}
 \begin{question}{Implicit function theorem}{}
 Consider the function $F:\R^4\rightarrow \R^2$ defined by 
@@ -2247,47 +2341,123 @@ Evaluate the integral
 Hint: Let $u=\tan x$. 
 \end{question}
 \begin{proof}
-Let $u=\tan x$. 
-
+Clearly, we have the symmetry: 
 \begin{align*}
-\int^{\frac{2\pi }{4} }_{\frac{\pi }{4}} \frac{1}{1+3 \sin^2(x)}dx&=\int^{\frac{2\pi }{4} }_{\frac{\pi }{4}} \frac{\sec^2 (x)}{\sec^2(x)+3 \tan^2(x)}dx \\
-&=\int^{\frac{2\pi }{4} }_{\frac{\pi }{4}} \frac{\sec^2 (x)}{1+ 4\tan^2(x)}dx  \\
-&=\int_{1}^{\infty} \frac{1}{1+4u^2}du = \frac{ \arctan (2u)}{2} \Big|_{u=1}^{\infty} 
+\int^{\frac{5\pi }{4} }_{\frac{\pi }{4}} \frac{1}{1+3 \sin^2(x)}dx= 2\int_0^{\frac{\pi}{2}} \frac{1}{1+3 \sin ^2(x)} dx
+\end{align*}
+Using \customref{THcovf}{change of variable formula} with $u=\tan x$, we have
+\begin{align*}
+\int^{\frac{\pi }{2}}_0 \frac{1}{1+3 \sin^2(x)}dx&= \int_0^{\frac{\pi }{2}} \frac{\sec^2 (x)}{\sec^2(x)+3 \tan^2(x)}dx \\
+&=\int_0^{\frac{\pi}{2}} \frac{\sec^2 (x)}{1+ 4\tan^2(x)}dx  \\
+&=\int_{0}^{\infty} \frac{1}{1+4u^2}du = \frac{ \arctan (2u)}{2} \Big|_{u=0}^{\infty} = \frac{\pi }{4} 
 \end{align*}
 \end{proof}
 \begin{question}{}{}
 State and prove Leibniz criterion for convergence of alternating series. 
 \end{question}
 \begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Let $p \inr^2$ and let smooth $F:\R^2\rightarrow \R$ satisfies: 
+\textbf{Alternating series test} stated that: 
 \begin{align*}
-  &\frac{\partial F}{\partial x}\Bigg|_p=\frac{\partial F}{\partial y}\Bigg|_p=0\\
-  &\frac{\partial^2 F}{\partial x^2}\Bigg|_p>0   \\
-  &\left( \frac{\partial^2 F}{\partial x^2} \cdot \frac{\partial ^2 F}{\partial y^2} - \frac{\partial^2 F}{\partial x\partial y}\right) \Bigg|_p >0
+a_n \searrow 0 \implies \sum (-1)^n a_n \text{ converges. }
 \end{align*}
-Show that $p$ is a local minimum of  $F$. 
+Fix $\epsilon $. We are required to find some $N$ such that 
+\begin{align*}
+\abso{\sum_{k=N}^{N+n} (-1)^k a_k} \leq \epsilon ,\quad \text{ for all }n \geq 0
+\end{align*}
+Because $a_n\searrow 0$, we know there exist some even $N$ such that 
+\begin{align*}
+ \epsilon \geq a_N \geq a_{N+1} \geq \cdots \geq  0
+\end{align*}
+We shall prove such $N$ suffices. The base case $n=0$ is clear. Before we prove the inductive case, we shall make the remark that grouping the sum in the form: 
+\begin{align*}
+\sum_{k=N}^{N+n} (-1)^k a_k = (a_N-a_{N+1}) + (a_{N+2}-a_{N+3}) + \cdots 
+\end{align*}
+where the last term is either $(a_{N+n})$ or $(a_{N+n-1}-a_{N+n})$ depending on parity of $n$, we see the sum $\sum_{k=N}^{N+n}(-1)^ka_k$ is always nonnegative, since all terms are nonnegative.\\
+
+We now prove the inductive case.  Suppose the inequality hold true for all $n\leq m$. To prove the inductive case, we are required to prove the assertion also holds true for $n=m+1$. Either $n$ is even or odd. If $n$ is odd, then the proof finish, since 
+\begin{align*}
+0 \leq \sum_{k=N}^{N+n} (-1)^k a_k \leq \sum_{k=N}^{N+m}(-1)^ka_k \leq \epsilon 
+\end{align*}
+as desired. If $n$ is even, then the proof also finish, since
+\begin{align*}
+  0 &\leq \sum_{k=N}^{N+n}(-1)^k a_k= \left(\sum_{k=N}^{N+n-2}(-1)^k a_k \right) + (-a_{N+n-1}  +a_{N+n})\\
+  &\leq \sum_{k=N}^{N+n-2} (-1)^k a_k \leq \epsilon 
+\end{align*}
+\end{proof}
+\begin{question}{Proof of second partial derivative test}{}
+Let $\textbf{p} \inr^2$ and let smooth $F:\R^2\rightarrow \R$ satisfies: 
+\begin{align*}
+  &\frac{\partial F}{\partial x}\Bigg|_\textbf{p}=\frac{\partial F}{\partial y}\Bigg|_\textbf{p}=0\\
+  &\frac{\partial^2 F}{\partial x^2}\Bigg|_\textbf{p}>0   \\
+  &\left( \frac{\partial^2 F}{\partial x^2} \cdot \frac{\partial ^2 F}{\partial y^2} - \left(\frac{\partial^2 F}{\partial x\partial y} \right)^2\right) \Bigg|_\textbf{p} >0
+\end{align*}
+Show that $\textbf{p}$ is a local minimum of  $F$. 
 \end{question}
 \begin{proof}
-
+Recall that the Hessian matrices $\operatorname{Hess}F$ are symmetric, so by spectral theory for finite dimensional real vector space, there exists some $P\in \operatorname{O}_2(\R)$ such that 
+\begin{align*}
+P (\operatorname{Hess}F )|_\textbf{p} P^t = \begin{pmatrix} 
+  \ld_1 & 0 \\
+  0 & \ld_2
+\end{pmatrix},\quad \text{ for some }\ld _1,\ld _2\inr
+\end{align*}
+The premise said that the determinant of the Hessian $(\operatorname{Hess}F)|_\textbf{p}$ is positive, so we know $\ld_1,\ld _2$ are both nonzero and share the same sign. Because 
+\begin{align*}
+\textbf{h}^t(\operatorname{Hess}F )|_\textbf{p} \textbf{h} =(P\textbf{h})^t\left(P (\operatorname{Hess}F )|_\textbf{p} P^t \right) (P\textbf{h})  = \ld_1 (P\textbf{h})_1^2 +\ld _2 (P\textbf{h})_2^2
+\end{align*}
+and because  
+\begin{align*}
+  \begin{pmatrix} 
+    1 & 0
+  \end{pmatrix} \cdot (\operatorname{Hess}F )|_\textbf{p} \cdot \begin{pmatrix} 
+  1 \\
+  0
+  \end{pmatrix} = \frac{\partial^2 F}{\partial x^2} \Big |_\textbf{p}> 0
+\end{align*}
+we know that $\ld_1,\ld_2$ are both positive. Because $F$ is smooth, and $\nabla F|_\textbf{p}=0$ by premise, we may use \customref{THmTt}{multivariables Taylor's theorem} to deduce: 
+\begin{align*}
+F(\textbf{p}+\textbf{h})&= F(\textbf{p})+ \nabla F |_\textbf{p} \cdot \textbf{h} + \frac{1}{2}\cdot \textbf{h}^t (\operatorname{Hess} F|_\textbf{p}) \textbf{h} + o(\abso{\textbf{h}}^2) \\
+&=F(\textbf{p}) +  \frac{1}{2}\cdot \textbf{h}^t (\operatorname{Hess} F|_\textbf{p}) \textbf{h} + o(\abso{\textbf{h}}^2) \\
+&=F(\textbf{p})+ \frac{1}{2} \left(\ld_1 c_1^2 + \ld_2 c_2^2 \right)+ o(c_1^2+c_2^2),\text{ where }\textbf{h}=c_1\textbf{v}_1+c_2\textbf{v}_2
+\end{align*}
+where $\textbf{v}_1,\textbf{v}_2$ are the eigenvector of $\operatorname{Hess}F |_\textbf{p}$. This shows that $\textbf{p}$ is indeed a local minimum. 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Arzelà–Ascoli theorem}{}
 Let $X$ be a metric space. We say a  sequence  $(f_n:X\rightarrow \R)$ of real-valued functions \textbf{converges compactly} if for every compact $K \subseteq X$, the sequence $(f_n|_K:K\rightarrow \R)$ converges uniformly. \\
 
 Show that if a pointwise equicontinuous sequence $(f_n:X\rightarrow \R)$ of real-valued functions pointwise converge to some continuous function $f:X\rightarrow \R$, then the convergence is compact.  
 \end{question}
 \begin{proof}
-
+Fix compact $K \subseteq X$. Assume for a contradiction that the convergence to $f$ is not uniform on  $K$. Therefore, there exists some $\epsilon $ and some subsequence $\set{f_{n_k}(x_{n_k})\inr: x_{n_k} \in K}$ such that 
+\begin{align}
+\label{THfnk}
+  \abso{f_{n_k}(x_{n_k})- f(x_{n_k})} \geq \epsilon ,\quad \text{ for all }k \inn 
+\end{align}
+Because $(f_n)$ pointwise converges, we know  $(f_n)$ is pointwise bounded. Therefore, by \customref{THaat}{Arzelà–Ascoli theorem}, the subsequence $(f_{n_k}|_K)$ has a uniformly convergent subsequence, which is impossible by \myref{condition}{THfnk}, a contradiction. 
 \end{proof}
-\begin{question}{}{}
-Compute the outward flux of the vector field $(x+ye^z,e^x \sin (yz),ye^{zx})$ through the boundary of the region $\set{(x,y,z)\inr^3: (\sqrt{x^2+y^2}-3 )^2+z^2<1}$. 
+\begin{question}{Divergence theorem and integration on tours}{}
+Compute the outward flux of the vector field $\textbf{F}\triangleq (x+ye^z,e^x \sin (yz),ye^{zx})$ through the boundary of the region $M\triangleq \set{(x,y,z)\inr^3: (\sqrt{x^2+y^2}-3 )^2+z^2<1}$. 
 \end{question}
 \begin{proof}
-
+Compute 
+\begin{align*}
+  (\nabla \cdot \textbf{F}) (x,y,z) = 1+ z e^x \cos (yz)+ xye^{zx}
+\end{align*}
+By \customref{THdivt}{divergence theorem}, we have 
+\begin{align*}
+\int_{\partial M} \textbf{F} \cdot \textbf{n} dA &= \int_M \nabla \cdot \textbf{F} dV \\
+&= \int_M (1+ze^x \cos (yz)+xye^{zx})dV \\
+&= \int_M dV
+\end{align*}
+where the last equality hold true because $ze^x \cos (yz)$ and $xye^{zx}$ are skew-symmetric with respect to $z$ and $y$, respectively.  We may now use \customref{THcovf}{change of variable formula} and  \customref{THFaT}{Fubini's theorem} to compute: 
+\begin{align*}
+\int_M dV&= \int_{\tilde{M}} rdr d\theta dz \\
+&= 2\pi \int_{u^2+z^2\leq 1} (u+3) dA  \\
+&= 2\pi \int_0^{2\pi }\int_0^1  (s \cos \pfi +3)s dsd\pfi   =6 \pi ^2
+\end{align*}
+where $\tilde{M}=\set{(r,\theta ,z)\inr^3: (r-3)^2 + z^2<1 \text{ and }0\leq \theta \leq 2\pi }$
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Sequence and Series, series $\sum \cos (ne)$ is bounded }{}
 Show that the function 
 \begin{align*}
 f(x)\triangleq \sum_{n=1}^{\infty}  \frac{\cos (ne)}{n^x}
@@ -2295,32 +2465,67 @@ f(x)\triangleq \sum_{n=1}^{\infty}  \frac{\cos (ne)}{n^x}
 is well-defined and continuous on $(0,\infty)$. 
 \end{question}
 \begin{proof}
-
-\end{proof}
-\begin{question}{}{}
-Let $f,g:\R^2 \rightarrow \R$ be smooth, and define $S\triangleq \set{(x,y)\inr^2: f(x,y)=0}$. Suppose $p \in S$ satisfies 
+  We are required to show that for all $x$, there exist some  $B_\epsilon (x)$ on which the series uniformly converge. Because by \customref{WM-t}{$M$-test}, the series converge uniformly on $[2,\infty)$, we only have to show such for $x \in (0,2]$. This is done via \customref{THDtfuc}{Dirichlet's test for uniform convergence}. Fix $x_0 \in (0,2]$. We are required to show that:
+\begin{enumerate}[label=(\roman*)]
+  \item The sequence $\frac{1}{n^x}$ uniformly converges to $0$ on  $B_\epsilon (x_0)$. 
+  \item The series $\sum \cos (ne)$ is (uniformly) bounded.  
+\end{enumerate}
+Fact (i) is clear. For (ii), simply observe 
 \begin{align*}
-\nabla f|_p= (-1,2)\\
-\nabla g |_p = (3,-6) \\
-\begin{pmatrix} 
-  \frac{\partial ^2 f}{\partial x^2} & \frac{\partial ^2 f}{\partial x \partial y} \\
-  \frac{\partial ^2 f}{\partial y \partial x} & \frac{\partial ^2 f}{\partial y^2}
-\end{pmatrix} \Bigg|_p = \begin{pmatrix} 
+\sum_{n=1}^N \cos (ne)&= \sum_{n=1}^N \frac{e^{ine}+ e^{-ine}}{2} = \frac{1}{2} \left(  \frac{e^{ie}-e^{i(N+1)e}}{1-e^{ie}}+ \frac{e^{-ie}-e^{-i(N+1)e}}{1-e^{-ie}} \right) 
+\end{align*}
+\end{proof}
+\begin{question}{Implicit function theorem}{}
+Let $f,g:\R^2 \rightarrow \R$ be smooth, and define $S\triangleq \set{(x,y)\inr^2: f(x,y)=0}$. Suppose $\textbf{p}\in S$ satisfies 
+\begin{align*}
+  \nabla f|_\textbf{p}= (-1,2)\quad &\text{ and }\quad \nabla g |_\textbf{p} = (3,-6) \\
+\left(\operatorname{Hess}f \right)|_{\textbf{p}}  = \begin{pmatrix} 
  1 & 3 \\
  3 & 0
-\end{pmatrix}  \\
-\begin{pmatrix} 
-  \frac{\partial ^2 g}{\partial x^2} & \frac{\partial ^2 g}{\partial x \partial y} \\
-  \frac{\partial ^2 g}{\partial y \partial x} & \frac{\partial ^2 g}{\partial y^2}
-\end{pmatrix} \Bigg|_p = \begin{pmatrix} 
+ \end{pmatrix}  \quad &\text{ and }\quad \left(\operatorname{Hess}g \right)|_\textbf{p} = \begin{pmatrix} 
  3 & -1 \\
  -1 & 2
-\end{pmatrix}  \\
+\end{pmatrix}  
 \end{align*}
-Show that $p$ is a local minimum for  $g|_S$. 
+Show that $\textbf{p}$ is a local minimum for  $g|_S$. 
 \end{question}
 \begin{proof}
-
+By \customref{THipft}{implicit function theorem}, there exists some $B_\epsilon  (p)\subseteq \R^2$ and smooth $h:I \rightarrow \R$ such that 
+\begin{align*}
+S \cap  B_\epsilon (p)= \set{(x,h(x))\inr^2: x\in I}\text{ and }\textbf{p}=(t_0,h(t_0))
+\end{align*}
+Define $G:I \rightarrow \R$  by 
+\begin{align*}
+  G(t)\triangleq g(t,h(t))
+\end{align*}
+By second derivative test, we only have to prove that: 
+\begin{align*}
+G'(t_0)=0 \text{ and }G''(t_0)>0 
+\end{align*}
+Because $f(t,h(t))$ by definition vanishes identically on $I$, we know  
+\begin{align*}
+\frac{\partial f}{\partial x} + \frac{\partial f}{\partial y} \cdot h'(t) = 0
+\end{align*}
+which implies 
+\begin{align*}
+h'(t)= - \frac{\partial f}{\partial x} \cdot \left(\frac{\partial f}{\partial y} \right)^{-1} 
+\end{align*}
+and implies 
+\begin{align*}
+h''(t) = - \frac{ \left( \frac{\partial^2 f}{\partial x^2 } + \frac{\partial ^2f }{\partial x\partial y} \cdot h'(t) \right) \frac{\partial f}{\partial y}- \frac{\partial f}{\partial x}\left( \frac{\partial ^2f}{\partial x\partial y} + \frac{\partial ^2 f}{\partial y^2} \cdot h'(t)  \right)}{\left( \frac{\partial f}{\partial y} \right)^2}
+\end{align*}
+Compute 
+\begin{align*}
+G'(t) = \frac{\partial g}{\partial x}+ \frac{\partial g}{\partial  y} \cdot h'(t)
+\end{align*}
+Compute 
+\begin{align*}
+G''(t)=\frac{\partial^2 g}{\partial x^2}+ \frac{\partial^2 g}{\partial x \partial y} \cdot h'(t) +  \left( \frac{\partial ^2 g}{\partial x\partial y}+ \frac{\partial^2 g}{\partial y^2} \cdot h'(t) \right) \cdot h'(t) + \frac{\partial g}{\partial y} \cdot h''(t) 
+\end{align*}
+We then see 
+\begin{align*}
+G'(t_0)=0 \text{ and }G''(t_0)= \frac{29}{2}>0 
+\end{align*}
 \end{proof}
 \section{Year 106}
 \begin{question}{tricky multiple integral}{}
@@ -2396,7 +2601,7 @@ Which moreover give us:
 \end{align*}
 It then follows from monotone convergence theorem that $\sum a_n^2+b_n^2$ converges. 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Dirichlet's test}{}
 \begin{enumerate}[label=(\roman*)]
   \item Let $\set{a_n}$ and $\set{b_n}$ be two sequences of real numbers, and define $B_n\triangleq b_1 + \cdots +b_n$. Show that if $a_n\searrow 0$ and  $\set{B_n}$ is bounded, then the series $\sum a_nb_n$ converges. 
   \item Show that the function series: 
@@ -2407,18 +2612,48 @@ It then follows from monotone convergence theorem that $\sum a_n^2+b_n^2$ conver
 \end{enumerate}
 \end{question}
 \begin{proof}
-
+(i) is just \customref{Dirichlet's Test}{Dirichlet's test}. Recall \customref{THDtfuc}{Dirichlet's test for uniform convergence}. To prove (ii), we only have to prove that $\sum (-1)^{n-1}\sin (nx)$ is uniformly bounded on $[-\pi +\epsilon ,\pi -\epsilon ]$. Because  $(-1)^{n-1}=-e^{in\pi}$, we may compute 
+\begin{align*}
+\sum_{n=1}^N (-1)^{n-1} \sin (nx)&= \sum_{n=1}^N  (-1)^{n-1}\frac{e^{inx}-e^{-inx}}{2i} = \sum_{n=1}^N \frac{e^{in(\pi -x)}- e^{in(\pi +x)}}{2i} \\
+&=\frac{1}{2i}\cdot \left( \frac{e^{i(\pi -x)}-e^{i(N+1)(\pi -x)}}{1- e^{i(\pi -x)}} - \frac{e^{i(\pi +x)}- e^{i(N+1)(\pi +x)}}{1- e^{i(\pi +x)}}\right)
+\end{align*}
+The rest then follows from noting both $\pi +x$ and $\pi -x$  must lie in $[\epsilon  ,2\pi -\epsilon ]$, which implies the series  $\sum  (-1)^{n-1}\sin (nx)$ has upper bound $\frac{2}{\abso{1-e^{i \epsilon }}}$. 
 \end{proof}
-\begin{question}{}{}
+\begin{question}{Convex functions, Arzelà–Ascoli theorem}{}
 Let $(F_n:[-2,2]\rightarrow \R)$ be a uniformly bounded sequence of convex functions. Show that it has a subsequence that converges uniformly on $[-1,1]$. 
 \end{question}
 \begin{proof}
-
+Because of \customref{THaat}{Arzelà–Ascoli theorem}, we only have to prove  $\set{F_n|_{[-1,1]}}$ is pointwise equicontinuous. Let $M$ be a uniform bound of  $F_n$. Fix $x \in [-1,1]$. The proof follows from noting  that if $x<s$, then 
+\begin{align*}
+F(s)\leq \left( \frac{F(2)-F(x)}{2-x} \right) (s-x) + F(x)
+\end{align*}
+which implies  
+\begin{align*}
+\abso{F(s)-F(x)} \leq  2M\abso{s-x}
+\end{align*}
+and if $s<x$, then 
+ \begin{align*}
+F(s)\leq \left(\frac{F(x)-F(-2)}{x-(-2)} \right) (x-s)+ F(x)  
+\end{align*}
+which implies 
+\begin{align*}
+\abso{F(s)-F(x)}\leq 2M \abso{x-s}
+\end{align*}
 \end{proof}
-\begin{question}{}{}
+\begin{question}{inverse function theorem}{}
 Let $U\subseteq \R^n$ be open, let $C^1$ function $f:U\rightarrow \R^n$ has globally full rank Jacobian, let $V \subseteq \R^n$ be open, and let continuous $g:V\rightarrow U$ satisfies $f\circ g(x)=x$ for all $x\in V$. Show that $g$ is also $C^1$. 
 \end{question}
 \begin{proof}
+Fix $x \in V$. By \customref{THift}{inverse function theorem}, there exists some neighborhood $B_\epsilon (g(x))$ of $g(x)$ contained by $U$ such that $f$ maps $B_\epsilon (g(x))$ injectively to an open set $f(B_\epsilon (g(x)))$ with $C^1$ inverse  $f^{-1}:f(B_\epsilon (g(x))) \rightarrow B_\epsilon (g(x))$.\\ 
 
+
+Because $g$ is continuous, we know there exists some neighborhood $B_\delta(x)$ of $x$ contained by $V$ such $g$ maps $B_\delta (x)$ into $B_\epsilon (g(x))$. This give us  
+\begin{align*}
+y=f\circ g(y) \in f(B_\epsilon (g(x))),\quad \text{ for all }y \in B_{\delta}(x)
+\end{align*}
+which implies $B_\delta(x)\subseteq f(B_{\epsilon}(g(x)))$. It remains to show $g |_{B_\delta(x)}=f^{-1}|_{B_\delta(x)}$, which follows from: 
+\begin{align*}
+g(y)= f^{-1}\circ f \circ g (y)=f^{-1}(y),\quad \text{ for all }y \in B_\delta (x)
+\end{align*}
 \end{proof}
 \end{document}
