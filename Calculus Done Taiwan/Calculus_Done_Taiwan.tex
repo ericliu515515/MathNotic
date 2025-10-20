@@ -39,6 +39,12 @@ Let $M$ be a metric space.  We say $M$ is \textbf{totally bounded} if for all $\
 
  (iv)$\implies $(i): Again the argument by nature relies on contradiction. Assume for one that $(U_\alpha )$ is an open cover of $M$ that has no finite subcover. Due to totally boundedness of $M$, we know $M$ can be covered by some finite set of radius $1$ open balls. Since $(U_\alpha )$ has no finite subcover, one of these radius $1$ open balls can't be covered by finite numbers of $(U_\alpha) $. Denote the center of that radius  $1$ open ball by  $x_1$. Clearly,  $B_1(x_1)$ is again totally bounded, so it can be covered by some finite set of radius $\frac{1}{2}$ open balls centered inside. Again, because $B_1(x_1)$ can not be covered by finite numbers of $(U_\alpha) $, one of these radius $\frac{1}{2}$ open balls can't be covered by finite number of $(U_\alpha) $. Denote the center of that radius $\frac{1}{2}$ open ball by $x_2$. Repeating the same procedure, we have a Cauchy sequence  $\set{x_n}\subseteq M$. Let $x$ be the limit of this Cauchy sequence. Fix some $\alpha $ such that $x \in B_\epsilon (x)\subseteq U_\alpha $. Clearly, we may find $N$ large enough, for example $N>2\quotient \epsilon $, so that $B_{\frac{1}{N}}(x_N)\subseteq B_\epsilon (x)\subseteq U_\alpha $, a contradiction to the construction of $B_{\frac{1}{N}}(x_N)$.  
 \end{proof}
+
+\begin{theorem}
+\label{THDt}
+\textbf{(Dini's theorem)} Let $X$ be a compact topological space. If continuous $f_n: X \rightarrow \R$ monotonically pointwise converge to a continuous $f:X\rightarrow \R$. Then the convergence is uniform.  
+\end{theorem}
+
 \section{Arzelà–Ascoli theorem}
 Let $X$ be a topological space,  $Y$ a metric space, and $\mathcal{F}$ a family of function from $X$ to $Y$. We say  $\mathcal{F}$ is \textbf{pointwise equicontinuous} if for all $\epsilon $ and $x \in X$, there exists a neighborhood $U\ni x$ such that $d\left(f(x),f(y) \right)\leq \epsilon $ for all $y \in U$ for all $f \in \mathcal{F}$. Give $X$ a compatible metric. We say $\mathcal{F}$ is \textbf{uniform equicontinuous} if for all $\epsilon $ there exists $\delta$ such that $d \left(f(x),f(y) \right) \leq  \epsilon $ for all $\delta$-close $x,y \in X$ and $f \in \mathcal{F}$. Clearly uniform equicontinuity implies pointwise equicontinuity and that every $f \in \mathcal{F}$ is uniformly continuous. The converse isn't true. 
 \begin{example}
@@ -68,6 +74,7 @@ d\left(f(x),f(y) \right)\leq d\left(f(x_i),f(x) \right) + d\left(f(x_i),f(y) \ri
   \item $\mathcal{F}$ is uniformly bounded. 
   \item  Every sequence  $\set{f_n} \subseteq \mathcal{F}$ has a uniformly convergent subsequence.  
 \end{enumerate}
+or equivalently, $\mathcal{F}$ is compact given the uniform norm topology. 
 \end{theorem}
 \begin{theorem}
 \label{THscfue}
@@ -92,6 +99,131 @@ d\left(f_{n_{k_l}}(x_l),f(x_l) \right) \geq \epsilon
 \end{align*}
 Clearly, $\set{f_{n_k}}$ contain no uniformly convergent subsequence, a contradiction. 
 \end{proof}
+\section{Topology Exercises}
+\begin{question}{}{}
+Suppose $f:\R^m \rightarrow \R^m$ satisfies the followings two conditions: 
+\begin{enumerate}[label=(\roman*)]
+  \item $f$ maps compact sets to compact sets. 
+  \item $f\left(\bigcap K_n\right)=\bigcap f(K_n)$ for all decreasing sequence  $\set{K_n}$ of compact sets. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+  Let $x_n \rightarrow x \in \R^m$. Note that $\set{x_n\inr^m: n\inn}\cup  \set{x}$ is compact. Therefore by (i), $\set{f(x_n)\inr^m:n \inn}\cup  \set{f(x)\inr^m}$ is compact. To show $f(x_n)$ converge to $f(x)$, we only have to show that every convergent subsequence $f(x_{n_k})$ converges to $f(x)$. \\
+
+Let $K_n \triangleq \overline{B_{\frac{1}{n}}(x)}$. Because by (ii), we have: 
+\begin{align*}
+\set{f(x)}= \bigcap f(K_n)
+\end{align*}
+Let $L=\lim_{k\to \infty}f(x_{n_k})$. Fix $n$. By  (i), $f(K_n)$ is compact. This implies $L \in f(K_n)$.  
+\end{proof}
+\begin{question}{}{}
+Let $K$ be a compact metric space, and  $L$ a metric space. Let  $f:K \rightarrow L$ be continuous. Show that for all $\epsilon $, there exists some $M$ such that 
+ \begin{align*}
+d\left(f(x),f(y) \right)\leq M d(x,y) + \epsilon ,\quad \text{ for all }x,y \in K
+\end{align*}
+\end{question}
+\begin{proof}
+Fix $\epsilon $. Because $f$ is uniformly continuous, we know there exists some $\delta$ such that $d(f(x),f(y))\leq \epsilon $ for all $d(x,y)\leq \delta$. We claim 
+\begin{align*}
+M\triangleq \frac{1}{\delta} \max _{x,y \in K} d\left(f(x),f(y) \right)\text{ suffices }
+\end{align*}
+Fix $x,y \in K$. If  $d(x,y)\leq \delta $, then $d\left(f(x),f(y) \right) \leq \epsilon $. If $d(x,y)\geq \delta$, then $d\left(f(x),f(y) \right) \leq M d(x,y)$. 
+\end{proof}
+\begin{question}{}{}
+Let $f:\R^2 \rightarrow \R$ satisfies that: 
+\begin{enumerate}[label=(\roman*)]
+  \item For all $x_0\inr$ the function $y \mapsto  f(x_0,y)$ is continuous.
+  \item For all $y_0\inr$ the function $x \mapsto  f(x,y_0)$ is continuous. 
+  \item $f$ maps compact set to compact set. 
+\end{enumerate}
+Show that $f$ is continuous. 
+\end{question}
+\begin{proof}
+WLOG, we prove that $f$ is continuous at $(0,0)$. Let $(x_n,y_n)\rightarrow 0$. Assume for a contradiction that $f(x_n,y_n)$ doesn't converge to $f(0,0)$. Then by (iii), we know that there exists a subsequence $(x_{n_k},y_{n_k})$ such that  $f(x_{n_k},y_{n_k})\rightarrow f(x_N,y_N)\neq f(0,0)$ for some $N$.  \\
+
+If there is a subsequence $f(x_{n_{k_l}},y_{n_{k_l}})$ such that $f(x_{n_{k_l}},y_{n_{k_k}})\neq f(x_N,y_N)$ for all $l$, then we see that  $f$ maps compact $\set{(x_{n_{k_l}},y_{n_{k_k}})\inr^2:l\inn}\cup  \set{0}$ to a non compact set, which is impossible.\\
+
+If there isn't, then there exists some $M$ such that  $f(x_{n_k},y_{n_k})=f(x_N,y_N)$ for all $k\geq M$. For simplicity, write $(x'_n,y'_n)\rightarrow (0,0)$ with $f(x'_n,y'_n)=f(0,0)+c$. By (ii), we have 
+\begin{align*}
+f(x'_n,0) \leq f(0,0)+c(1-\frac{1}{n}),\quad \text{ for  }n\gg 0 
+\end{align*}
+This by (i) and IVT implies that 
+\begin{align*}
+\text{ there exists } \tilde{y}_n \in [0,y'_n]\text{ such that }f(x'_n,\tilde{y}_n)= f(0,0) + c(1-\frac{1}{n}),\quad \text{ for }n\gg 0 
+\end{align*}
+Considering  (iii) and the fact $(x'_n,\tilde{y}_n)\rightarrow (0,0)$, we see a contradiction. 
+\end{proof}
+\begin{question}{}{}
+Let $f:[0,1]^2 \rightarrow \R$ be continuous. Define $g:[0,1]\rightarrow \R$ by 
+\begin{align*}
+g(x)\triangleq \max \set{f(x,y)\inr : y \in [0,1]}
+\end{align*}
+Show that $g$ is continuous. 
+\end{question}
+\begin{proof}
+Fix $\epsilon $ and $x$. Because  $f$ is uniformly continuous, we may find $\delta$ such that 
+\begin{align*}
+\abso{f(x+h,y)-f(x,y)}\leq \epsilon,\quad \text{ for all }y \text{ and } h \leq \delta
+\end{align*}
+Such $\delta$ makes $\abso{g(x+h)-g(x)}\leq \epsilon $ for all $h\leq \delta$. 
+\end{proof}
+\begin{question}{}{}
+Let $\set{U_n}$ be an open cover of $\R^m$. Show that there exists an open cover $\set{V_n}$ of $\R^m$ such that  $V_n \subseteq U_n$ for all $n$ and every compact set intersect with only finitely many  $V_n$. 
+\end{question}
+\begin{proof}
+Consider the annulus 
+\begin{align*}
+A_1 \triangleq  B_2(0)\quad \text{ and }\quad A_k \triangleq B_{k+1}(0) - \overline{B_{k-1}(0)}
+\end{align*}
+For all $j\inn$, let $F_j \subseteq \N$ be a finite set such that 
+\begin{align*}
+\overline{A_j} \subseteq \bigcup_{n \in F_j}U_n
+\end{align*}
+Define 
+\begin{align*}
+V_n \triangleq U_n \cap  \bigcup_{j: n \in F_j} A_j
+\end{align*}
+To see that $V_n$ forms an open cover, let  $x \in A_l$ for some $l \inn$. Then we know 
+\begin{align*}
+x\in \overline{A_l} \subseteq \bigcup_{n \in F_l}U_n
+\end{align*}
+This implies $x \in U_n$ for some $n$ that makes  $n \in F_l$. We claim $x \in V_n$. Indeed, $x \in A_l$ where $l$ makes  $n\in F_l$.\\
+
+Now, note that if $x \in V_n$, then there exists $j$ such that  $x \in A_j$ and $n \in F_j$. Therefore, $x\in K \cap V_n\subseteq B_N(0)$ forces $j\leq N+2$, which forces $n \in \bigcup_{j\leq N+2} F_j$. 
+\end{proof}
+\begin{question}{}{}
+Let $f:[0,1]\rightarrow \R$ be upper semicontinuous. Show that $f$ has a maximum at some $p \in [0,1]$. 
+\end{question}
+\begin{proof}
+Let $\set{x_n}\subseteq [0,1]$ satisfies  $f(x_n)\nearrow \sup f$. By Bolzano-Weierstrass, we know $x_{n_k}$ converge to some $p \in [0,1]$. We claim such $p$ suffices.  To prove such, we only have toj prove 
+\begin{align*}
+\lim_{k\to \infty} f(x_{n_k})\leq f(p) 
+\end{align*}
+Fix $\epsilon $. The proof then follows from noting 
+\begin{align*}
+\lim_{k\to \infty} f(x_{n_k})\leq f(p)+ \epsilon   
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Prove that a continuous function $f:\R \rightarrow \R$ that maps open set to open set must be (strict) monotone.
+\end{question}
+\begin{proof}
+We first show $f$ is injective. Assume for a contradiction that  $f(x)=f(y)$ with $x\leq y$. By EVT, $f|_{[x,y]}$ has a maximum and a minimum. If the interior contains an extremum, then that point must be local extremum, which is impossible. Therefore, we know $f$ is constant on $[x,y]$, which is also impossible. \\
+
+Let $M\triangleq \set{(x,y)\inr^2: x \leq y}$. Define $g:M\rightarrow \R$ by 
+\begin{align*}
+g(x,y)\triangleq f(y)-f(x)
+\end{align*}
+Because $g$ is continuous, $g$ never vanishes and $M$ is connected, we know $g$ is either globally positive or globally negative, which implies that $f$ is either strictly increasing or strictly decreasing. 
+\end{proof}
+
+\begin{question}{}{}
+Prove that a compact metric space is separable. 
+\end{question}
+\begin{proof}
+This follows from noting that totally bounded metric space is separable. For all $n$, consider the finite cover  $B_{\frac{1}{n}}(x)$. The centers is countable and dense. 
+\end{proof}
+
 
 \section{Weierstrass approximation theorem} 
 
@@ -1414,6 +1546,339 @@ We have:
 f(\textbf{x})= f(\textbf{a})+\sum_{1\leq \abso{\alpha }\leq k} \frac{1}{\alpha !}\cdot  \frac{\partial^k f}{\partial x_1^{\alpha _1} \cdots \partial x_n^{\alpha _n}} \bigg|_{\textbf{a}} (\textbf{x}-\textbf{a})^{\alpha } + o( \abso{\textbf{x}-\textbf{a}}^k)
 \end{align*}
 \end{theorem}
+\section{Legendre formula}
+Let $f$ be a $\R$-valued  $C^1$ function near  $\textbf{0}\inr^n$. Suppose $\operatorname{Hess}f$ is invertible at $\textbf{0}$. Therefore, there exists some neighborhood $U$ of $\textbf{0}\inr^n$ on which $\nabla f$ forms a $C^1$-diffeomorphism onto $V \subseteq \R^n$. Let $\textbf{G}:V \rightarrow U$ be the inverse function of $\nabla f$. We hope that there exists some $h:V \rightarrow \R$ such that $\nabla h=\textbf{G}$. Such is feasible. Let 
+\begin{align*}
+h (\textbf{y})\triangleq \textbf{G}(\textbf{y}) \cdot \textbf{y} - f\circ \textbf{G}(\textbf{y})
+\end{align*}
+Compute 
+\begin{align*}
+\frac{\partial h}{\partial y_1}= G_1 + \frac{\partial G_1}{\partial y_1} \cdot y_1 + \sum_{i=2}^n \frac{\partial G_i}{\partial y_i} y_i - \sum_{i=1}^n \frac{\partial f}{\partial x_i} \cdot \frac{\partial G_i}{\partial y_i} = G_1
+\end{align*}
+\section{weighted $p$-norm}
+\begin{theorem}
+\textbf{(weighted $\infty$-norm)} Let $v_1,\dots ,v_n \geq 0$ and $w_1,\dots ,w_n >0$ satisfies $\sum w_i=1$. We have: 
+\begin{align*}
+\lim_{p\to \infty} \left(\sum w_i v_i^p   \right)^{\frac{1}{p}}= \max v_i
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $v_1\leq \cdots \leq v_n$. Clearly, 
+\begin{align*}
+  \left(\sum w_i v_i^p \right)^{\frac{1}{p}} \leq \left( v_n^p \right)^{\frac{1}{p}}= v_n 
+\end{align*}
+and clearly, 
+\begin{align*}
+ \left( \sum w_i v_i^{p} \right)^{\frac{1}{p}} \geq (w_nv_n^p)^{\frac{1}{p}} \rightarrow v_n,\quad \text{ as }p\rightarrow  \infty
+\end{align*}
+\end{proof}
+Note that this also implies that 
+\begin{align*}
+  (v_1^p+\cdots + v_n^p)^{\frac{1}{p}}\rightarrow \max v_i
+\end{align*}
+\begin{theorem}
+\textbf{(weighted $0$-norm)}  Let $v_1,\dots ,v_n \geq 0$ and $w_1,\dots ,w_n >0$ satisfies $\sum w_i=1$. We have: 
+\begin{align*}
+\lim_{p\to 0} \left(\sum w_i v_i^p   \right)^{\frac{1}{p}}= \prod v_i^{w_i}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Compute 
+\begin{align*}
+  \left( \sum w_iv_i^p \right)^{\frac{1}{p}}= \exp \left(\frac{\ln \left(\sum w_iv_i^p\right)}{p}  \right)
+\end{align*}
+By  \customref{L'Hospital Rule}{L'Hospital Rule}, we have
+\begin{align*}
+\lim_{p\to 0} \frac{\ln \left(\sum w_iv_i^p \right)}{p} = \lim_{p\to 0}\frac{ \ln (v_i)w_iv_i^p}{\sum w_iv_i^p}= \sum  \ln (v_i)w_i
+\end{align*}
+
+\end{proof}
+\section{Function spaces exercises}
+\begin{question}{}{}
+Let $f:[0,1]\rightarrow [0,1]$ satisfies 
+\begin{enumerate}[label=(\roman*)]
+  \item $f$ is  $C^1$.  
+  \item $f(0)=0=f(1)$. 
+  \item $f'$ is decreasing. 
+\end{enumerate}
+Show that the arc-length of the graph of $f$ does not exceed $3$. 
+\end{question}
+\begin{proof}
+Because for all $t \in(0,1)$, we have 
+\begin{align*}
+ \left( 1+ \abso{f'(t)} \right)^2 \geq 1 + (f'(t))^2
+\end{align*}
+we know 
+\begin{align*}
+\int_0^1 \sqrt{1+ (f'(t))^2 } dt \leq \int_0^1  \left( 1 + \abso{f'(t)} \right) dt  =  1+ \int_0^1 \abso{f'(t)}dt
+\end{align*}
+If $f'(0)\leq 0$, then $f$ is constant zero so there is nothing to prove. We from now on suppose  $f'(0)>0$.\\ 
+
+By EVT, we know $f$ attains maximum at some point. Because $f$ is $C^1$ we know at that point the derivative is  $0$. This implies that the maximum is unique. Let that point be $x$. We now see 
+\begin{align*}
+\int_0^1 \abso{f'(t)}dt = \int_0^x f'(t)dt + \int_x^1 -f'(t)dt \leq 2
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $f$ be a  $C^2$ function on the real line with 
+ \begin{align*}
+A\triangleq \sup \abso{f} \inr\text{ and }B\triangleq \sup \abso{f''} \inr 
+\end{align*}
+Show that 
+\begin{align*}
+\sup\abso{f'} \leq 2\sqrt{AB} 
+\end{align*}
+\end{question}
+\begin{proof}
+Assume for a contradiction that $f'(x)> 2\sqrt{AB}$. It then follows from $\sup \abso{f''}=B$ that 
+\begin{align*}
+\int_{x- 2\sqrt{\frac{A}{B}}}^{x+ 2 \sqrt{\frac{A}{B}} } f'(t) dt \geq 4A 
+\end{align*}
+which implies that either $f(x+ 2 \sqrt{\frac{A}{B}} )$ or $f(x- 2 \sqrt{\frac{A}{B}} )$ lies outside of $[-A,A]$. 
+\end{proof}
+\begin{question}{}{}
+Let $f$ be continuous on $\R$ and let 
+ \begin{align*}
+f_n(x)\triangleq \frac{1}{n}\sum_{k=0}^{n-1} f\left(x+\frac{k}{n} \right)
+\end{align*}
+Prove that $f_n$ converges compactly. 
+\end{question}
+\begin{proof}
+Observe 
+\begin{align*}
+\int_{x}^{x+1} f(t)dt - f_n(x)= \sum_{k=0}^{n-1} \int_{x+\frac{k}{n}}^{x+ \frac{k+1}{n}} \left(f(t)- f(x+\frac{k}{n}) \right) dt 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $f:[0,1]\rightarrow \R$ be $C^1$ with  $\sup \abso{f'} = M \inr$. Prove that for all $n$, we have 
+\begin{align*}
+\abso{\frac{1}{n}\sum_{k=0}^{n-1}f\left(\frac{k}{n} \right) - \int_0^1 f(x)dx} \leq \frac{M}{2n}
+\end{align*}
+\end{question}
+\begin{proof}
+Observe 
+\begin{align*}
+\frac{1}{n} \sum_{k=0}^{n-1}f\left(\frac{k}{n} \right)- \int_0^1 f(x)dx = \sum_{k=0}^{n-1}\int_{\frac{k}{n}}^{\frac{k+1}{n}} \left(f\left(\frac{k}{n} \right) - f(x) \right)dx
+\end{align*}
+The integrands clearly are all smaller than $\frac{M}{2n^2}$. 
+\end{proof}
+\begin{question}{}{}
+Suppose that $f_n \in C^0$ and for each $x \in [a,b]$, we have 
+\begin{align*}
+f_n(x)\searrow 0
+\end{align*}
+Show that $f_n$ are equicontinuous. 
+\end{question}
+\begin{proof}
+  By \customref{THDt}{Dini's theorem}. Fix $\epsilon $. Because the convergence is uniform, there exists some $N$ such that  $f_n(x)\leq \epsilon $ for all $n\geq N$. Because $\set{f_1,\dots ,f_{N-1}}$ are all uniform continuous, we now see that the minimum of $\set{\delta_1,\dots ,\delta_{N-1}}$ suffices. 
+\end{proof}
+\begin{question}{}{}
+Let $E$ be the space of all $1$-Lipschitz function $u:[0,1]\rightarrow \R$  such that $u(0)=0$. Define $\pfi  : E \rightarrow \R$ by 
+\begin{align*}
+  \pfi(u)\triangleq \int_0^1 \left(u(x)^2 - u(x) \right)dx
+\end{align*}
+Show that $\pfi $ attains maximum at some $u$, 
+\end{question}
+\begin{proof}
+The fact that $E$ is compact in the uniform norm topology  follows at once from \customref{THaat}{Arezela-Ascoli theorem}. It then remains to show $\pfi $ is continuous. Observe 
+\begin{align*}
+  \abso{\pfi  (u)-\pfi  (v)}&\leq   \abso{\int_0^1 u^2-v^2 -u +v}  \\
+  & \leq  \int_0^1 \abso{u-v} + \abso{u-v} \cdot \abso{u+v}     \\
+  & \leq  \int_0^1 \abso{u-v} \left(1 + \abso{u}+ \abso{v} \right) \leq 3 \norm{u-v}_{\infty} 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $\set{a_n}$ be a sequence of nonzero real numbers. Prove that 
+\begin{align*}
+f_n(x)= \frac{\sin (a_nx)}{a_n} + \cos (x+ a_n)
+\end{align*}
+has a subsequence converging to a continuous function. 
+\end{question}
+\begin{proof}
+We are looking for a subsequence that converge compactly. Fix $R\inn$. Because $\sin (a_nx) \leq a_nx$, we know $f_n$ is uniformly bounded on  $[-R,R]$ by $R+1$. Clearly $f_n$ are uniformly equicontinuous on $\R$. Applying \customref{THaat}{Arezela-Ascoli theorem} onto $\set{f_n}$ on $[-1,1]$, we get a subsequence $\set{f_n^{(1)}}$ that uniformly converge on $[-1,1]$. Applying   \customref{THaat}{Arezela-Ascoli theorem} onto $\set{f_n^{(1)}}$ on $[-2,2]$, we get a subsequence $\set{f_n^{(2)}} \subseteq \set{f_n^{(1)}}$ that uniformly converge on $[-2,2]$. Then taking the diagonal $\set{f^{(n)}_n}$, we see it uniformly converges on $[-R,R]$ for all $R$, as its tails lies in  $\set{f^{(R)}_n}$ for all $R$.  
+\end{proof}
+\begin{question}{}{}
+Suppose the limits of $f:[a,b]\rightarrow \R$ from left to right exists at all $x\in [a,b]$. Show that $f$ is Riemann integrable. 
+\end{question}
+\begin{proof}
+Fix $\epsilon $. By premise, for each $x \in (a,b)$, we may find $\delta_{x,-},\delta_{x,+}$ such that 
+\begin{align*}
+\operatorname{osc}(f, (x-\delta_{x,-},x)) \leq \frac{\epsilon }{b-a}\quad  \text{ and }\quad \operatorname{osc}(f,(x,x+\delta_{x,+})) \leq \frac{\epsilon}{b-a}
+\end{align*}
+We may also find $\delta_{a,+},\delta_{b,-}$ that makes 
+\begin{align*}
+  \operatorname{osc}(f,[a,a+\delta_{a,+}))\leq \frac{\epsilon}{b-a} \quad \text{ and }\quad \operatorname{osc}(f,(b-\delta_{b,-},b]) \leq \frac{\epsilon}{b-a}
+\end{align*}
+Consider a finite subcover of  $[a+\delta_{a,+},b-\delta_{b,-}]$ of the intervals. The endpoints of these interval clearly forms a sufficing partition.  
+\end{proof}
+\begin{question}{}{}
+Suppose that $f \in C^3[-1,1]$. Prove that the series 
+\begin{align*}
+\sum_{n=0}^{\infty} \left( n\left(f\left(\frac{1}{n} \right)- f\left(\frac{-1}{n} \right) \right) - 2f'(0)\right)
+\end{align*}
+converges.  
+\end{question}
+\begin{question}{}{}
+Let $f:[0,1]\rightarrow \R$ be $C^1$ with  $f(0)=0$. Prove that 
+\begin{align*}
+\norm{f}^2_{\infty}\leq \int_0^1 \left(f'(x) \right)^2dx
+\end{align*}
+\end{question}
+\begin{proof}
+We are required to prove that for all $x \in [0,1]$, we have 
+\begin{align*}
+  \abso{f(x)} \leq \left(\int_0^1 (f'(t))^2 dt \right)^{\frac{1}{2}}
+\end{align*}
+which follows from applying Cauchy-Schwarz on $(0,x)$ 
+\begin{align*}
+\abso{f(x)}= \abso{\int_0^xf'(t)dt}\leq \left(\int_0^x 1^2dt \right)^{\frac{1}{2}} \cdot \left(\int_0^x \left(f'(t) \right)^2dt \right)^{\frac{1}{2}}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $f_n:[0,1]\rightarrow \R$ be a sequence of continuous function such that 
+\begin{align*}
+\int_0^1 \left(f_n(y) \right)^2 dy \leq 5
+\end{align*}
+for all $n$. Define  $g_n:[0,1]\rightarrow \R$ by 
+\begin{align*}
+g_n(x)= \int_0^1 \sqrt{x+y} f_n(y)dy 
+\end{align*}
+\begin{enumerate}[label=(\roman*)]
+  \item Find a constant $K\geq 0$ such that $\abso{g_n(x)}\leq K$ for all $n$ and $x$. 
+  \item Prove that a subsequence of $g_n$ uniformly converge.  
+\end{enumerate}
+\end{question}
+\begin{proof}
+By Cauchy-Schwarz, we have 
+\begin{align*}
+\abso{g_n(x)}\leq \left(\int_0^1 (x+y)dy \right)^{\frac{1}{2}} \cdot \left(\int_0^1 \left(f_n(y) \right)^2dy \right)^{\frac{1}{2}}
+\end{align*}
+This proves (i). To prove (ii), using \customref{THaat}{Arezela-Ascoli theorem} we only have to prove that $g_n$ is pointwise equicontinuous on $[0,1]$. \\
+
+Use Cauchy-Schwarz to compute 
+\begin{align*}
+  \abso{g_n(x+h)- g_n(x)} &= \abso{\int_0^1 \left(\sqrt{x+y+h} -\sqrt{x+y}  \right) f_n(y)dy}  \\
+  &\leq \left(\int_0^1 \left(\sqrt{x+y+h} - \sqrt{x+y}  \right)^2 dy \right) ^{\frac{1}{2}} \cdot \sqrt{5}  \\
+  &\leq \left(\int_0^1 hdy \right)^{\frac{1}{2}}\cdot \sqrt{5} 
+\end{align*}
+where the last inequality follows from 
+\begin{align*}
+\left(\sqrt{x+y+h}- \sqrt{x+y}   \right)^{2} \leq \left(\sqrt{x+y+h}  - \sqrt{x+y}  \right) \cdot \left(\sqrt{x+y+h}  + \sqrt{x+y}  \right) = h
+\end{align*}
+
+\end{proof}
+\begin{question}{}{}
+Let $f_n:[0,1]\rightarrow \R$ be a sequence of continuous function such that $f_n(x)\rightarrow 0$ for all $x\in [0,1]$. Suppose that 
+\begin{align*}
+\abso{\int_0^1 f_n(x)dx}\leq K
+\end{align*}
+for all $n$ where $K$ is constant. Does $\int_0^1 f_n(x)dx$ converges to $0$? 
+\end{question}
+\begin{proof}
+No. Consider 
+\begin{align*}
+f_n(x)\triangleq 3x^n(1-x)(n^2+3n+2)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $\sum a_n$ be a convergent series of nonnegative real numbers. Show that there exists real $c_n\nearrow \infty$ such that $\sum c_na_n$ remains convergent. 
+\end{question}
+\begin{proof}
+Clearly, there exists a subsequence  $n_k$ such that 
+\begin{align*}
+\sum_{l=n_k}^{\infty} a_l \leq \frac{1}{2^k}
+\end{align*}
+Define 
+\begin{align*}
+c_{n_k}=\cdots = c_{n_{k+1}-1}= k
+\end{align*}
+We now see 
+\begin{align*}
+\sum c_na_n \leq \sum_k \frac{k}{2^k}\text{ which converges. }
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $f:\R\rightarrow \R$ be continuous and $L^1$ on  $\R$. Find  $x_n \rightarrow \infty$ such that $x_nf(x_n),x_nf(-x_n)$ both converges to $0$. 
+\end{question}
+\begin{proof}
+Note that $g(x)\triangleq \abso{f(x)}+ \abso{f(-x)}$ is also $L^1$. We then just have to prove 
+\begin{align*}
+  \liminf_{x\to\infty} xg(x)=0
+\end{align*}
+If $\liminf_{x\to\infty} xg(x)=\epsilon $, then there exists $N$ such that $xg(x)\geq \frac{\epsilon}{2}$ for all $x\geq N$, which implies that $g(x)\geq \frac{\epsilon }{2x}$ for all $x\geq N$, a contradiction.  
+\end{proof}
+\begin{align*}
+\int_0^{2 \pi  } \cos (x) \sin (nx) dx  
+\end{align*}
+\begin{question}{}{}
+Let $f:[0,\infty)\rightarrow [0,\infty)$ be decreasing and $L^1$. Show that  $\lim_{x\to \infty}xf(x)=0$. 
+\end{question}
+\begin{proof}
+Just consider 
+\begin{align*}
+\frac{xf(x)}{2}\leq \int_{\frac{x}{2}}^x f(t)dt
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $f:[0,\infty) \rightarrow \R$ be uniformly continuous and satisfies 
+\begin{align*}
+\lim_{b\to \infty} \int_0^b f(x)dx \inr
+\end{align*}
+Prove that  $f\rightarrow 0$ as $x \rightarrow  \infty$.  
+\end{question}
+\begin{proof}
+Assume for a contradiction that $f(x_n) \in \set{\pm \epsilon }$ for some sequence $x_n $. Let $\delta$ satisfies $\abso{f(y)-f(x)}\leq \frac{\epsilon}{2}$ for all $\abso{y-x}\leq \delta$.  We see 
+\begin{align*}
+  \abso{\int_{x_n-\delta}^{x_n+\delta} f(t)dt }\geq \delta \cdot \epsilon 
+\end{align*}
+which contradicts to $\lim_{b\to \infty}\int_0^b f(t)dt\inr $
+\end{proof}
+\begin{question}{}{}
+Let $f:[0,\infty)\rightarrow \R$ be continuous such that 
+\begin{align*}
+\lim_{x\to \infty} \left(f(x)+ \int_0^x f(t)dt \right) \inr
+\end{align*}
+Prove that $f\rightarrow 0$ as $x\rightarrow  \infty$. 
+\end{question}
+\begin{proof}
+Define $F:[0,\infty)\rightarrow \R$ by 
+\begin{align*}
+F(x)\triangleq \int_0^x f(t)dt 
+\end{align*}
+Clearly we only have to prove that $F(x)$ converges as $x \rightarrow  \infty$, which follows from using \customref{L'Hospital Rule}{L'Hospital Rule}: 
+\begin{align*}
+\lim_{x\to \infty} F(x)&= \lim_{x\to \infty} \frac{e^xF(x)}{e^x}  \\
+&=\lim_{x\to \infty} \frac{e^x \left(F(x)+f(x) \right)}{e^x} \inr
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $E$ be a nonempty compact subset of  $\R^m$ and let  $f:E\rightarrow E$ satisfies 
+\begin{align*}
+\abso{f(x)-f(y)}< \abso{x-y},\quad \text{ for all }x\neq y  \in E
+\end{align*}
+Prove the existence and uniqueness of fixed point. 
+\end{question}
+\begin{proof}
+The uniqueness of the fixed point is clear. We now prove the existence. Define $g:E\rightarrow [0,\infty)$ by 
+\begin{align*}
+g(x)\triangleq \abso{f(x)-x}
+\end{align*}
+Clearly $g$ is continuous and $x$ is a fixed point of  $f$ if and only if $g(x)=0$. By EVT, $g$ attains a minimum at some $x$. Assume for a contradiction that $g(x)\neq 0$, then because $f(x)\neq x$, we have 
+\begin{align*}
+g\left(f(x) \right)= \abso{f\left(f(x) \right) - f(x)}<\abso{f(x)-x} = g(x)
+\end{align*}
+a contradiction. 
+\end{proof}
+\begin{question}{}{}
+Suppose $F:\R^m\rightarrow \R^m$ is continuous and satisfies 
+\begin{align*}
+\abso{F(x)-F(y)}\geq \ld  \abso{x-y},\quad \text{ for all }x,y\inr^m
+\end{align*}
+for some constant $\ld >0$. Prove that $F$ is bijective with continuous inverse. 
+\end{question}
+\begin{proof}
+Clearly $F$ is injective. To prove $F$ is onto, we can only invoke invariance of domain to first see that image of $F$ is open. Note that because of invariance of domain, it only remains to show image of $F$ is closed. Let $q_n\rightarrow q$ with $q_n$ lying in image of  $F$. Let  $F(p_n)=q_n$. Because $q_n$ is   Cauchy, we know $p_n$ is also Cauchy. This implies  $p_n\rightarrow p$ for some $p$. It now follows from continuity of  $F$ that  $F(p)=q$. 
+\end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam}
 \section{Year 114}
 \begin{question}{easy estimate}{}
@@ -1486,11 +1951,11 @@ converge to $0$ as  $\textbf{x}\rightarrow \textbf{0}$. We claim it doesn't. Let
 \end{align*}
 \end{proof}
 \begin{question}{Inverse and implicit function theorem. Legendre transformation.}{}
-Let $f(\textbf{x},\textbf{y})\in \mathcal{C}^{\infty} (\R^n \times \R^m)$, where $\textbf{x}=(x_1,\dots ,x_n)$ denote coordinates in $\R^n$ and  $\textbf{y}= (y_1,\dots ,y_m)$ denote coordinates in $\R^m$. Suppose $f(\textbf{0},\textbf{0})=0$, $\frac{\partial f}{\partial x_j}\big|_{(\textbf{0},\textbf{0})}=0$ for all $1\leq j\leq n$, and that the $n$-by-$n$ matrix  $\left(\frac{\partial f}{\partial x_i\partial x_j} \right)\big|_{(\textbf{0},\textbf{0})}$ is invertible. 
+Let $f(\textbf{x},\textbf{y})\in \mathcal{C}^{\infty} (\R^n \times \R^m)$, where $\textbf{x}=(x_1,\dots ,x_n)$ denote coordinates in $\R^n$ and  $\textbf{y}= (y_1,\dots ,y_m)$ denote coordinates in $\R^m$. Suppose $f(\textbf{0},\textbf{0})=0$, $\frac{\partial f}{\partial x_j}\big|_{(\textbf{0},\textbf{0})}=0$ for all $x_j$, and that the $n$-by-$n$ matrix  $\left(\frac{\partial f}{\partial x_i\partial x_j} \right)\big|_{(\textbf{0},\textbf{0})}$ is invertible. 
 \begin{enumerate}[label=(\Roman*)]
   \item Show that there exists open neighborhood $V$ of  $\textbf{0}\inr^m$ and smooth $g:V\rightarrow \R^n$ such that  
     \begin{align*}
-    \frac{\partial f}{\partial x_j}\bigg    |_{\left(g(\textbf{y}),\textbf{y} \right)}=0,\quad \text{ for all }\textbf{y}\in V\text{ and }j
+    \frac{\partial f}{\partial x_j}\bigg    |_{\left(g(\textbf{y}),\textbf{y} \right)}=0,\quad \text{ for all }\textbf{y}\in V\text{ and }1\leq j\leq n
     \end{align*} 
     \item Show that there exists open neighborhoods $\Omega_1,\Omega\ni\textbf{0}\inr^n$ together with a smooth function $H:\Omega_1 \rightarrow \R$ that makes: 
  \begin{align}
@@ -1869,7 +2334,7 @@ We say a topological space $X$ is \textbf{locally compact} if for all $x \in X$,
 \end{proof}
 \begin{theorem}
 \label{THpmic}
-\textbf{(Proper map is closed, if the target is locally compact Hausdorff)} Let $f:X\rightarrow Y$ be proper with $Y$ locally compact, then for all closed $A \subseteq X$, $f(A)\subseteq Y$ is closed.
+\textbf{(Proper map is closed, if the target is locally compact Hausdorff)} Let $f:X\rightarrow Y$ be proper with $Y$ locally compact Hausdorff, then for all closed $A \subseteq X$, $f(A)\subseteq Y$ is closed.
 \end{theorem}
 \begin{proof}
 Fix closed $A\subseteq X$. Let $y \in Y- f(A)$. We are required to find neighborhood of $y$ disjoint from $f(A)$. Because $Y$ is locally compact, there exists compact $K \subseteq Y$ such that $y \in K^{\circ }$. Therefore, $f^{-1}(K)$ is compact by properness of $f$. Now, because $E \triangleq A \cap f^{-1}(K)$ is closed in $f^{-1}(K)$, we know $E$ is compact.  (why?)  \\
@@ -2076,14 +2541,9 @@ The answers for both questions are positive. Assume for a contradiction that $f$
 Before we prove the continuity of $g$, we need to first make three necessary topological remarks: 
  \begin{enumerate}[label=(\alph*)]
   \item $g(M)$ is compact because $E$ is compact and the projection $M\times \R\rightarrow \R$ is continuous by definition of product topology.   
-  \item $M\times \R$ is Hausdorff because it is the product of two Hausdorff spaces. Therefore $E$ as a compact subspace of $M\times \R $ is closed in $M\times \R$.  
   \item Product topology have the property that if $y_n \rightarrow y$ in topological space $Y$ and  $z_n \rightarrow z$ in topological space $Z$, then $(y_n,z_n)\rightarrow (y,z)$ in $Y\times Z$. 
 \end{enumerate}
-We may now prove the continuity of $g$ using the result from question (i). Suppose $x_n\rightarrow x$ in $M$. We are required to prove $g(x_n)\rightarrow g(x)$. Assume not for a contradiction: There exists some $\epsilon $ and subsequence such that $g(x_{n_k})$ are all $\epsilon$-away from $g(x)$.  Because $g(M)$ is \customref{Com}{sequentially compact}, there exists some $y \in M$ and some convergent subsequence $g(x_{n_{k_l}})\rightarrow g(y)$. Because $x_n\rightarrow x$, we now have $(x_{n_{k_l}},g(x_{n_{k_l}}))\rightarrow (x,g(y))$. Moreover, this by closedness of $E$ implies  $(x,g(y))\in E$, which implies $g(y)=g(x)$, a contradiction to the assumption that $g(x_{n_k})$ are all $\epsilon $-away from $g(x)$.  
-
-
-
-
+We may now prove the continuity of $g$ using the result from question (i). Suppose $x_n\rightarrow x$ in $M$. We are required to prove $g(x_n)\rightarrow g(x)$. Because $g(M)$ is compact, we only have to prove that every sequential limit of $g(x_n)$ is $g(x)$. Let $g(x_{n_k})$ converges to $g(y)$. We now see by property of product topology that $(x_{n_k},g(x_{n_k}))\rightarrow (x,g(y)) \in E$. This implies $y=x$, as desired.   
 \end{proof}
 \begin{question}{Holder condition with exponent $>1$ implies zero derivative at origin}{}
 Let $L:\R^3 \rightarrow \R^3$ be an invertible linear map, and let function $g:\R^3 \rightarrow \R^3$ be $C^1$ while satisfying: 
@@ -2144,6 +2604,13 @@ Let $f:[0,1]\rightarrow \R$ be continuous. Find the limit:
 \end{align*}
 Remark: Every kind of this question wish you to find a "key" estimate. 
 \end{question}
+\begin{proof}
+Using \customref{THcovf}{change of variable formula} with $x= 1-\frac{y}{n}$, we see 
+\begin{align*}
+\int_0^1 (n+1)x^nf(x)dx = \int_0^n \frac{n+1}{n} \left(1-\frac{y}{n}\right)^n f\left(1-\frac{y}{n}\right) dy  
+\end{align*}
+Noting that $(1-\frac{y}{n})^n$ is dominated by $e^{-y}$, we see that by dominated convergence theorem the integral converge to $f(1)$. 
+\end{proof}
 \begin{proof}
 We claim 
 \begin{align}
@@ -2654,6 +3121,171 @@ y=f\circ g(y) \in f(B_\epsilon (g(x))),\quad \text{ for all }y \in B_{\delta}(x)
 which implies $B_\delta(x)\subseteq f(B_{\epsilon}(g(x)))$. It remains to show $g |_{B_\delta(x)}=f^{-1}|_{B_\delta(x)}$, which follows from: 
 \begin{align*}
 g(y)= f^{-1}\circ f \circ g (y)=f^{-1}(y),\quad \text{ for all }y \in B_\delta (x)
+\end{align*}
+\end{proof}
+\section{Year 105}
+\begin{question}{}{}
+\begin{enumerate}[label=(\roman*)]
+  \item Calculate 
+    \begin{align*}
+    \sup_{x\neq 0\inr} \frac{x^2- \ln (1+x^2)}{x^4} 
+    \end{align*} 
+  \item Calculate 
+\begin{align*}
+\iint_A xy \sin (x^2-y^2)dxdy
+\end{align*}
+where $A= \set{(x,y)\inr^2: 0 <y<1,y<x\text{ and }x^2-y^2<1}$.  
+\item Prove that 
+  \begin{align*}
+  \sum_{n=0}^{\infty} \frac{1}{(2n+1)^2}= \frac{\pi ^2}{8}
+  \end{align*}
+\end{enumerate}
+\end{question}
+\begin{proof}
+(i): Noting the symmetry, we only have to analyze the continuous function $f:\R^+ \rightarrow \R$ defined by 
+\begin{align*}
+f(t) \triangleq  \frac{t- \ln (1+t)}{t^2}
+\end{align*}
+Using \customref{L'Hospital Rule}{L'Hospital Rule}, we see 
+\begin{align*}
+\lim_{t\searrow 0} f(t)=\frac{1}{4}
+\end{align*}
+Compute 
+\begin{align*}
+f'(t)= \frac{t^2-2(1+t)\left(t- \ln (1+t) \right)}{t^3(1+t)}  
+\end{align*}
+Consider the nominator $h:\R^+ \rightarrow \R$ of derivative of $f$: 
+\begin{align*}
+h(t)\triangleq t^2-  2(1+t)\left(t- \ln (1+t) \right)= t^2 +2(1+t) \ln (1+t)- 2t(1+t)  
+\end{align*}
+Clearly  
+\begin{align*}
+h(0)=0\text{ and }h'(t)= 2\ln (1+t)- 2 (1+t) + 2 \leq 0,\quad \text{ for all }t>0 
+\end{align*}
+We have shown $f'(t)\leq 0$ for all $t>0$. This implies $\frac{1}{4}$ is indeed the supremum.  \\
+
+
+(ii): Note that 
+\begin{align*}
+A= \set{(x,y)\inr^2: 0<y<1, y<x< \sqrt{1+y^2}}
+\end{align*}
+Therefore, 
+\begin{align*}
+\iint_A xy \sin (x^2-y^2)dxdy&= \int_0^1 \int_y^{\sqrt{1+y^2}}  xy \sin (x^2-y^2) dx dy \\
+&=\int_0^1 \frac{1}{2}\int_0^{1} y \sin (u)du dy,\quad (u=x^2-y^2) \\
+&= \frac{1}{2}(1- \cos (1))\int_0^1 ydy= \frac{1- \cos (1)}{4}
+\end{align*}
+For (iii), recall that the solution of the \textbf{Basel's problem} is 
+\begin{align*}
+\sum_{n=1} \frac{1}{n^2} = \frac{\pi^2 }{6}
+\end{align*}
+Therefore, 
+\begin{align*}
+\sum_{n=0} \frac{1}{(2n+1)^2} = \sum_{n=1} \frac{1}{n^2} - \sum_{n=1} \frac{1}{(2n)^2}= \frac{3}{4} \sum_{n=1} \frac{1}{n^2}= \frac{\pi^2}{8} 
+\end{align*}
+\end{proof}
+\begin{question}{Cantor set, standard}{}
+Let 
+\begin{align*}
+C\triangleq \set{\sum_{n=1} \frac{a_n}{3^n}\inr: a_n \in \set{0,2}}
+\end{align*}
+Show that 
+\begin{enumerate}[label=(\roman*)]
+  \item $C \subseteq [0,1]$. 
+  \item $C$ has no interior point.  
+  \item $C$ is compact. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+  (i) is clear. We now prove (ii). Fix $\set{a_n}$. If $\set{a_n}$ have trailing $0$, then we see for large $N$, 
+  \begin{align*}
+  \sum \frac{a_n}{3^n} + \frac{1}{3^N} + \frac{1}{3^{N+1}} \not \in C
+  \end{align*}
+If $\set{a_n}$ have trailing $2$, then we see for large $N$,  
+ \begin{align*}
+\sum \frac{a_n}{3^n} - \frac{1}{3^N} - \frac{1}{3^{N+1}} \not \in C
+\end{align*}
+Suppose $\set{a_n}$ have no trailing number. We then see that $\left(\sum \frac{a_n}{3^n}\right)+ \frac{1}{3^N} \not \in C$.  \\
+
+We now prove (iii). Clearly $C$ is bounded. Therefore by Hiene-Borel, we only have to prove $C$ is closed. Let  $x\in (0,1) - C$, and write 
+\begin{align*}
+x= \sum_{n=1} \frac{b_n}{3^n}, \quad \text{ where }b_n \in \set{0,1,2}
+\end{align*}
+Let $N$ be the smallest natural number that makes $b_N=1$. Fix  $y= \sum \frac{a_n}{3^n} \in C$. Suppose there is some $n<N$ that makes  $a_n \neq b_n$. Let $n$ be the smallest natural number that makes $a_n\neq b_n$. If $a_n=0$, then  $x-y \geq \frac{1}{3^N}$. If $a_n=2$, then  $y-x \geq \frac{1}{3^N}$. \\
+
+Suppose $a_1=b_1,a_2=b_2,\dots ,a_{n-1}=b_{n-1}$. Clearly we can not have $2=b_{N+1}=b_{N+2}=  \cdots $ nor $0=b_{N+1}=b_{N+2}= \cdots$, otherwise $x \in C$.  Let $M_0>N$ and  $M_2>N$ be smallest that makes  $b_{M_0}=0,b_{M_2}=2$. If $a_N=2$, we see  $y-x \geq \frac{1}{3^{M_0}}$. If $a_N=0$, we see  $x-y \geq \frac{1}{3^{M_2}}$. We have shown $B_{\frac{1}{3^{\max \set{M_0,M_2}}}}(x)\not \in C$. 
+
+
+
+\end{proof}
+\begin{question}{}{}
+Let 
+\begin{align*}
+A\triangleq \set{f \in C^0[0,1]: \norm{f}_{C_0}\leq 1}
+\end{align*}
+and 
+\begin{align*}
+B \triangleq \set{f \in C^1[0,1]: \norm{f}_{C_1}\leq 1}
+\end{align*}
+where 
+\begin{align*}
+\norm{f}_{C^0}\triangleq \sup_{x \in [0,1]} \abso{f}\quad \text{ and }\quad \norm{f}_{C^1} \triangleq \sup_{x \in [0,1]} \abso{f} + \sup_{x \in [0,1]} \abso{f'(x)}
+\end{align*}
+Show that
+\begin{enumerate}[label=(\roman*)]
+  \item $A$ is not compact. 
+  \item Every sequence in $B$ has a convergent subsequence in  $A$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+For (i), clearly the sequence $\set{x^n}$ forms a counter example. (ii) is a consequence of \customref{THaat}{Arzelà–Ascoli theorem}. 
+\end{proof}
+\begin{question}{}{}
+Let $f:[0,1]\rightarrow \R$ be continuous and define $F:[0,1]\rightarrow \R$ by 
+\begin{align*}
+F(x)\triangleq \int_0^x f(t)dt
+\end{align*}
+Suppose $F(1)=0$. Show that the value
+\begin{align*}
+\sup_{g \in C^0[0,1]}  \frac{\int_0^1 F(x)g(x)dx}{\left(\int_0^1 G^2(x)dx \right)^{\frac{1}{2}}}
+\end{align*}
+exists, where $G(x)\triangleq \int_0^x g(t)dt$. 
+\end{question}
+\begin{proof}
+Because $F(0)=F(1)=0$, integration by part give us 
+\begin{align*}
+\int_0^1 Fg = -\int_0^1 fG = - \langle f,G\rangle 
+\end{align*}
+Therefore, by Cauchy-Schwarz, we have 
+\begin{align*}
+  \abso{\frac{-\langle f,G\rangle }{\norm{G}}}\leq \norm{f}
+\end{align*}
+\end{proof}
+\section{Year 103}
+\begin{question}{}{}
+For $t>0$, define 
+ \begin{align*}
+J(t)\triangleq \int_{0}^{\infty} \frac{1}{(1+x)x^{2t}} dx \text{ and } \Gamma (t)\triangleq \int_{0}^{\infty} x^{t-1}e^{-x}dx
+\end{align*}
+Show that 
+\begin{align*}
+J(t)= \Gamma (1-2t) \Gamma (2t),\quad \text{ for all } t \in \left(-\frac{1}{2}, \frac{1}{2} \right)
+\end{align*}
+\textbf{Hint}: Express $\frac{1}{1+x}$ as an integral. 
+\end{question}
+\begin{proof}
+Recall that for all $c>0$, we have 
+\begin{align*}
+\frac{1}{c}=\int_0^{\infty} e^{-cy} dy
+\end{align*}
+Therefore, by \customref{THFaT}{Tonelli's theorem} and \customref{THcovf}{change of variable formula}, we have:  
+\begin{align*}
+J(t)&= \int_0^{\infty} \frac{1}{(1+x)x^{2t}}dx \\
+&= \int_0^{\infty}  \left(\int_0^{\infty} e^{-(1+x)y}dy \right)  x^{-2t} dx  \\
+&=\int_0^{\infty} \int_0^{\infty} e^{-y -xy} x^{-2t}dydx \\
+&= \int_0^{\infty} \left(\int_0^{\infty} e^{-xy}x^{-2t} dx \right) e^{-y}dy  \\
+&=\int_0^{\infty} \left(\int_0^{\infty} e^{-u}u^{-2t} du\right)   y^{2t-1} e^{-y}dy,\quad (u=xy)  \\
+&=\Gamma (1-2t) \Gamma (2t) 
 \end{align*}
 \end{proof}
 \end{document}
