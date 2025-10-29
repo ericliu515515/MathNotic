@@ -223,7 +223,103 @@ Prove that a compact metric space is separable.
 \begin{proof}
 This follows from noting that totally bounded metric space is separable. For all $n$, consider the finite cover  $B_{\frac{1}{n}}(x)$. The centers is countable and dense. 
 \end{proof}
+\begin{question}{}{}
+Let $E$ be a nonempty compact subset of  $\R^m$ and let  $f:E\rightarrow E$ satisfies 
+\begin{align*}
+\abso{f(x)-f(y)}< \abso{x-y},\quad \text{ for all }x\neq y  \in E
+\end{align*}
+Prove the existence and uniqueness of fixed point. 
+\end{question}
+\begin{proof}
+The uniqueness of the fixed point is clear. We now prove the existence. Define $g:E\rightarrow [0,\infty)$ by 
+\begin{align*}
+g(x)\triangleq \abso{f(x)-x}
+\end{align*}
+Clearly $g$ is continuous and $x$ is a fixed point of  $f$ if and only if $g(x)=0$. By EVT, $g$ attains a minimum at some $x$. Assume for a contradiction that $g(x)\neq 0$, then because $f(x)\neq x$, we have 
+\begin{align*}
+g\left(f(x) \right)= \abso{f\left(f(x) \right) - f(x)}<\abso{f(x)-x} = g(x)
+\end{align*}
+a contradiction. 
+\end{proof}
+\begin{question}{}{}
+Suppose $F:\R^m\rightarrow \R^m$ is continuous and satisfies 
+\begin{align*}
+\abso{F(x)-F(y)}\geq \ld  \abso{x-y},\quad \text{ for all }x,y\inr^m
+\end{align*}
+for some constant $\ld >0$. Prove that $F$ is bijective with continuous inverse. 
+\end{question}
+\begin{proof}
+Clearly $F$ is injective. To prove $F$ is onto, we can only invoke invariance of domain to first see that image of $F$ is open. Note that because of invariance of domain, it only remains to show image of $F$ is closed. Let $q_n\rightarrow q$ with $q_n$ lying in image of  $F$. Let  $F(p_n)=q_n$. Because $q_n$ is   Cauchy, we know $p_n$ is also Cauchy. This implies  $p_n\rightarrow p$ for some $p$. It now follows from continuity of  $F$ that  $F(p)=q$. 
+\end{proof}
+\begin{question}{}{}
+Let $S\subseteq \R^n$ be uncountable, and let $T\subseteq \R^n$ be the set of condensations points of $S$. Show that  $S \cap T$ is uncountable.  
+\end{question}
+\begin{proof}
+We show $S  - T$ is countable. Let $x \in S- T$. Because $x \not \in T$, $x$ has a neighborhood $U_x$ that contains only countably many elements of $S$. Note that $U_x$ forms an open cover of  $S-T$:  
+\begin{align*}
+S- T = \bigcup_{x \in S-T} U_x \cap (S-T)
+\end{align*}
+Because $\R^n$ is second countable, we may suppose 
+\begin{align*}
+S-T = \bigcup_{n\inn} U_{x_n} \cap (S-T)
+\end{align*}
+The right hand side is countable because a countable union of countable set. 
+\end{proof}
+\begin{question}{}{}
+Let $S\subseteq \R^n$ be uncountable, and let $T\subseteq \R^n$ be the set of condensation points of $S$. Show that  $T$ is closed and contains no isolated points. (Therefore  $T$ is perfect)
+\end{question}
+\begin{proof}
+We first show $T$ is closed. Let $x \in \R^n -T$. Because $x$ is not a condensation point of  $S$, we know  $x$ has a neighborhood that contains at most countable element of $S$. Such neighborhood is clearly disjoint from $T$. \\
 
+We now show every point of $T$ is a limit point of $T$.  Let $x \in T$ has neighborhood $U$. By definition, $S \cap U$ is uncountable. Because $S-T$ is countable, we know the existence of some $y \in S \cap U - (S-T)$ . Such $y$ is in $T$.  
+\end{proof}
+\begin{question}{}{}
+  Prove \textbf{Birkhoff recurrence theorem}. Let $X$ be a compact topological space with $f: X\rightarrow X$ continuous. There exists some $x \in X$ such that for all neighborhood $U$ of  $x$, we have  $f^{\circ  n}(x) \in U$ for some $n\geq 1$.  Or in other words, $x \in \overline{\set{f^{\circ n}(x):n\geq 1}}$
+\end{question}
+\begin{proof}
+Consider the collection $\mathcal{F}$ of nonempty closed subset $Y\subseteq X$ that makes $f(Y)\subseteq Y$. Let $\set{F_n}\subseteq \mathcal{F}$ be a descending chain. Clearly $\bigcap F_n$ is closed, and because $X$ is compact, $\bigcap F_n $ is nonempty. We also have: 
+\begin{align*}
+f\left(\bigcap F_n\right) \subseteq \bigcap f(F_n) \subseteq \bigcap F_n
+\end{align*}
+We have shown  $\bigcap F_n \in \mathcal{F}$. Then by Zorn's Lemma, there exists some minimal element $Y \in \mathcal{F}$.  \\
+
+We claim every $x \in Y$ suffices. Because $f(\overline{A})\subseteq \overline{f(A)}$, we know
+\begin{align*}
+f\left(\overline{\set{f^{\circ n}(x):n\inn}}\right) \subseteq \overline{\set{f^{\circ n}(x):n\geq 2}} \subseteq \overline{\set{f^{\circ n}(x):n \inn}} 
+\end{align*}
+This implies 
+ \begin{align*}
+x \in Y \subseteq \overline{\set{f^{\circ n}(x):n\inn}} 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\textbf{(Criteria for proper map)} Let $f:X\rightarrow Y$. Then $f$ is proper if 
+\begin{enumerate}[label=(\roman*)]
+  \item $f^{-1}(\set{y})\subseteq X$ is compact for all $y\in Y$. 
+  \item $f(E)\subseteq Y$ is closed for all closed $E\subseteq X$.  
+\end{enumerate}
+\end{question}
+\begin{proof}
+Fix compact $K \subseteq Y$. Let $\set{U_\alpha }$ be an open cover of $f^{-1}(K)$. For all $y \in K$, write 
+\begin{align*}
+f^{-1}(\set{y}) \subseteq U_{y,1} \cup  \cdots \cup  U_{y,n_y} 
+\end{align*}
+Define 
+\begin{align*}
+U_y \triangleq U_{y,1} \cup  \cdots \cup  U_{u,n_y} \quad \text{ and }\quad V_y \triangleq  Y - \left(f(X - U_y) \right) 
+\end{align*}
+Clearly we have $y \in V_y$ for all $y \in K$. Therefore $\set{V_y:y \in K}$ forms an open cover for $K$. Let 
+\begin{align*}
+K \subseteq V_{y_1} \cup  \cdots \cup  V_{y_m}
+\end{align*}
+It is then clear that we have a finite subcover 
+\begin{align*}
+f^{-1}(K)\subseteq U_{y_1} \cup  \cdots \cup  U_{y_m}
+\end{align*}
+ 
+
+
+\end{proof}
 
 \section{Weierstrass approximation theorem} 
 
@@ -236,10 +332,23 @@ This follows from noting that totally bounded metric space is separable. For all
 \end{proof}
 
 
-Let $K$ be a compact metric space. Let $A$ be a sub-$\C$-algebra of the $\C$-algebra of continuous functions $f:K\rightarrow \C$. 
+Let $K$ be a compact metric space. Let $A$ be a sub $\R$-algebra of the $\R$-algebra of continuous functions $f:K\rightarrow \R$. We say $A$  \textbf{separates points} if for each $p\neq  q \in K$, there exists $f\in A$ such that $f(p)\neq f(q)$. We say $A$  \textbf{vanishes at no points} if for all $x \in K$, there exists $f \in A$ such that $f(x)\neq 0$
 \begin{theorem}
-\textbf{(Stone-Weierstrass theorem)} 
+\textbf{(Stone-Weierstrass theorem)} Let $A$ be a sub $\R$-algebra of the algebra $B$ of continuous functions $f:K\rightarrow \R$ equipped with uniform norm. If $A$ separates points and vanishes at no points, then $A$ is dense in $B$. 
 \end{theorem}
+\begin{question}{}{}
+Let continuous $f:[0,1]\rightarrow \R$  satisfies 
+\begin{align*}
+\int_0^1 f(x)e^{-nx}dx=0,\quad \text{ for all }n \geq 0
+\end{align*}
+Show that $f=0$. 
+\end{question}
+\begin{proof}
+Fix $\epsilon $. Clearly the $\R$-algebra generated by  $\set{e^{-nx}:n\geq 0}$ separates points and vanishes at not points. Let $g \in A$ satisfies $\norm{f-g}_{\infty}\leq \epsilon $. We see 
+\begin{align*}
+\int_0^1 f^2 = \int_0^1 (f-g)f + \int_0^1 fg = \int_0^1 (f-g)f \leq \epsilon \int_0^1 \abso{f} 
+\end{align*}
+\end{proof}
 \section{Tests}
 \label{Basic Technique on Sequence and Series}
 \begin{abstract}
@@ -1593,6 +1702,35 @@ By  \customref{L'Hospital Rule}{L'Hospital Rule}, we have
 \end{align*}
 
 \end{proof}
+\section{Continuous Convergent}
+Let $M,N$ be a metric space and  $f_n:M \rightarrow N$ be a pointwise convergent sequence that makes all convergent sequence $\set{x_n}\subseteq M$ satisfies:
+\begin{align*}
+\lim_{n\to \infty} f_n(x_n)= f(\lim_{n\to \infty}x_n)
+\end{align*}
+Let $x_k\rightarrow x$. To see $f(x_k)\rightarrow f(x)$, consider the subsequence $n_k$ that makes 
+\begin{align*}
+d\left(f_{n_k}(x_k),f(x_k)\right)\leq \frac{\epsilon}{2}
+\end{align*}
+Noting that 
+\begin{align*}
+  \overbrace{x_1,\dots ,x_1}^{n_1\text{ copies }},\overbrace{x_2,\dots , x_2}^{n_2-n_1\text{ copies }},\dots ,
+\end{align*}
+converges to $x$, we see 
+ \begin{align*}
+d\left(f(x_k),f(x)\right) \leq d\left( f(x_k), f_{n_k}(x_k)\right) + d\left( f_{n_k}(x_k),f(x) \right) 
+\end{align*}
+has limit superior $\frac{\epsilon}{2}$. Note that $f_n$ need not be continuous, and the convergence need not be uniform. 
+\begin{example}
+Let $M\triangleq [0,2)$
+\begin{align*}
+f_n\triangleq  \frac{1}{1+n(2-x_n)}
+\end{align*} 
+\end{example}
+However, clearly the convergence is uniform if we require $M$ to be compact. 
+
+
+
+
 \section{Function spaces exercises}
 \begin{question}{}{}
 Let $f:[0,1]\rightarrow [0,1]$ satisfies 
@@ -1807,9 +1945,6 @@ Note that $g(x)\triangleq \abso{f(x)}+ \abso{f(-x)}$ is also $L^1$. We then just
 \end{align*}
 If $\liminf_{x\to\infty} xg(x)=\epsilon $, then there exists $N$ such that $xg(x)\geq \frac{\epsilon}{2}$ for all $x\geq N$, which implies that $g(x)\geq \frac{\epsilon }{2x}$ for all $x\geq N$, a contradiction.  
 \end{proof}
-\begin{align*}
-\int_0^{2 \pi  } \cos (x) \sin (nx) dx  
-\end{align*}
 \begin{question}{}{}
 Let $f:[0,\infty)\rightarrow [0,\infty)$ be decreasing and $L^1$. Show that  $\lim_{x\to \infty}xf(x)=0$. 
 \end{question}
@@ -1852,33 +1987,90 @@ Clearly we only have to prove that $F(x)$ converges as $x \rightarrow  \infty$, 
 \end{align*}
 \end{proof}
 \begin{question}{}{}
-Let $E$ be a nonempty compact subset of  $\R^m$ and let  $f:E\rightarrow E$ satisfies 
+Show that the integral 
 \begin{align*}
-\abso{f(x)-f(y)}< \abso{x-y},\quad \text{ for all }x\neq y  \in E
+\int_0^\infty \frac{\sin t}{t}e^{-xt}dt
 \end{align*}
-Prove the existence and uniqueness of fixed point. 
+converge uniformly on $x \in [0,\infty)$
 \end{question}
 \begin{proof}
-The uniqueness of the fixed point is clear. We now prove the existence. Define $g:E\rightarrow [0,\infty)$ by 
+Fix $\epsilon $. We are required to show that there exists $N$ such that 
 \begin{align*}
-g(x)\triangleq \abso{f(x)-x}
+  \abso{\int_N^{M} \frac{\sin t}{t}e^{-xt} dt} \leq \epsilon ,\quad \text{ for all }M\geq N \text{ and }x \in [0,\infty)
 \end{align*}
-Clearly $g$ is continuous and $x$ is a fixed point of  $f$ if and only if $g(x)=0$. By EVT, $g$ attains a minimum at some $x$. Assume for a contradiction that $g(x)\neq 0$, then because $f(x)\neq x$, we have 
+Because $\int_0^{\infty} \frac{\sin t}{t}dt$ converges, we may find $N$ such that  
+ \begin{align*}
+\abso{\int_N^M \frac{\sin t}{t}dt}\leq \epsilon ,\quad \text{ for all }M\geq N
+\end{align*}
+Integration by part now gives us 
 \begin{align*}
-g\left(f(x) \right)= \abso{f\left(f(x) \right) - f(x)}<\abso{f(x)-x} = g(x)
+\int_N^M \frac{\sin t}{t}e^{-xt}dt = \int_N^M \frac{\sin t}{t}dt e^{-xM}+  \int_N^M \left(\int_N^t \frac{\sin s}{s}ds\right)xe^{-xt}dt
 \end{align*}
-a contradiction. 
+whose absolute values is smaller than 
+\begin{align*}
+\epsilon  e^{-xM} +  \epsilon  \int_N^M xe^{-xt}dt
+\end{align*}
 \end{proof}
 \begin{question}{}{}
-Suppose $F:\R^m\rightarrow \R^m$ is continuous and satisfies 
-\begin{align*}
-\abso{F(x)-F(y)}\geq \ld  \abso{x-y},\quad \text{ for all }x,y\inr^m
-\end{align*}
-for some constant $\ld >0$. Prove that $F$ is bijective with continuous inverse. 
+  Define $\psi: [0,1]\rightarrow \R$ by \begin{align*} \psi (x)\triangleq \begin{cases} x \sin \left(\frac{1}{x} \right)& \text{ if $0<x\leq 1$ }\\ 0& \text{ if $x=0$ } \end{cases} \end{align*} Let $f:[-1,1]\rightarrow [0,1]$ be integrable. Show that $f \circ \psi : [0,1]\rightarrow [0,1]$ is integrable. 
 \end{question}
 \begin{proof}
-Clearly $F$ is injective. To prove $F$ is onto, we can only invoke invariance of domain to first see that image of $F$ is open. Note that because of invariance of domain, it only remains to show image of $F$ is closed. Let $q_n\rightarrow q$ with $q_n$ lying in image of  $F$. Let  $F(p_n)=q_n$. Because $q_n$ is   Cauchy, we know $p_n$ is also Cauchy. This implies  $p_n\rightarrow p$ for some $p$. It now follows from continuity of  $F$ that  $F(p)=q$. 
+Fix $\epsilon $. We are required to prove $f \circ \psi |_{[\epsilon ,1-\epsilon ]}$ is Riemann integrable. Note that $\psi$ only have finite number of critical points in $[\epsilon ,1-\epsilon ]$. Let them be $\epsilon  < x_1< \cdots < x_n < 1 - \epsilon $. The proof then follows from noting that $f$ is Riemann integrable on $[\epsilon + \epsilon_1 , x_1 - \epsilon_1] \cup  [x_1+ \epsilon_2, x_2- \epsilon_2] \cup  \cdots \cup  [x_n+ \epsilon_{n+1}, 1- \epsilon -\epsilon _{n+1}]$. 
 \end{proof}
+\begin{question}{}{}
+Let $X$ be a Banach space and $x_0 \in X$. Let $\Psi : \overline{B_r(x_0)}\rightarrow \overline{B_r(x_0)}$ be a $\gamma $-contraction. Let $\Phi : \overline{B_r(x_0)}\rightarrow X$ be defined by 
+\begin{align*}
+\Phi (x)\triangleq x + \Psi (x)
+\end{align*}
+Then for any $ y \in \overline{B_R(\Phi (x_0))}$, where $R\triangleq (1-\gamma )r$, there exists a unique $x\in \overline{B_r(x_0)}$  such that $\Phi (x)=y$. 
+\end{question}
+\begin{proof}
+Define $\tilde{\Phi}:\overline{B_r(0)}\rightarrow \overline{B_R(0)}$ by 
+\begin{align*}
+\tilde{\Phi} (x)\triangleq \Phi(x+x_0) - \Phi (x_0)
+\end{align*}
+It then remains to show that for all $y \in \overline{B_R(0)}$, we have the uniqueness and existence of $x \in \overline{B_r(0)}$ that makes 
+\begin{align*}
+\tilde{\Phi}(x)=y 
+\end{align*}
+Fix $y\in \overline{B_R(0)}$. Consider $T:\overline{B_r(0)}\rightarrow X$ defined by:
+\begin{align*}
+T(x)\triangleq x- \left(\tilde{\Phi}(x)-y  \right) 
+\end{align*}
+Noting that 
+\begin{align*}
+T(x)=x \iff  \tilde{\Phi}(x)=y  
+\end{align*}
+We see by Banach fixed point theorem, it only remains to show that $T$ is a contraction, which follows from direct computation: 
+\begin{align*}
+\norm{T(x)}= \norm{\Psi (x_0)- \Psi (x+x_0)+y} \leq r
+\end{align*}
+and 
+\begin{align*}
+\norm{T(x)-T(z)}= \norm{- \Psi (x+x_0) + \Psi (z+x_0)}  \leq \gamma  \norm{x-z}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $K \in \mathcal{C}([0,1]^2)$ be nonconstant with $M= \norm{K}_{\infty}$, and let $g \in \mathcal{C}([0,1])$ with $\norm{g}_{\infty}\leq \frac{1}{8M}$. Show that the equation 
+\begin{align*}
+u(x)=g(x)+ \int_0^1 K(x,y)\left(u(y) \right)^2 dy 
+\end{align*}
+has a unique solution $u \in \mathcal{C}([0,1])$ satisfying $\norm{u}_{\infty} \leq \frac{1}{4M}$. 
+\end{question}
+\begin{proof}
+Defining $\Phi: \mathcal{C}([0,1]) \rightarrow \mathcal{C}([0,1]) $ by 
+\begin{align*}
+\Phi (u)(x)\triangleq u(x)- \int_0^1 K(x,y)\left(u(y) \right)^2 dy
+\end{align*}
+We see that we are looking for the existence and uniqueness of $u \in \overline{B_{\frac{1}{4M}}(0)}$ that makes $\Phi (u)=g$. Note that $\Psi : \overline{B_{\frac{1}{4M}}(0)}\rightarrow \overline{B_{\frac{1}{4M}}(0)}$  defined by 
+\begin{align*}
+\Psi (u)(x)\triangleq - \int_0^1 K(x,y)\left(u(y)^2 \right)dy 
+\end{align*}
+is a $\frac{1}{2}$-contradiction, we see that the earlier question suffices.
+
+
+\end{proof}
+
 \chapter{NTU Math M.A. Program Entrance Exam}
 \section{Year 114}
 \begin{question}{easy estimate}{}

@@ -910,6 +910,147 @@ Let $V$ be a finite dimensional vector space and  $T \in \operatorname{End}(V)$.
 V \cong \F[x]\quotient (h_{1})\oplus  \cdots \oplus \F[x]\quotient (h_k) \oplus  \F[x] \quotient (m_T) \quad \text{ with }h_k \mid  m_T
 \end{align*}
 Consider the module endomorphism $G$ that maps $(0,\dots ,0,1,0)$ to $(0,\dots ,0,2,0)$ and maps $(0,\dots ,0,1)$ to $(0,\dots ,0,1)$. Because $G$ maps  $(0,\dots ,1)$ to $(0,\dots ,1)$, we know that if $G=m_Tq+1$ for some $q \in \F[x]$. However, this then implies $G$ doesn't map  $(0,\dots ,0 ,1,0)$ to $(0,\dots ,0 ,2,0)$ 
+\section{Bilinear forms}
+Let $V$ be a finite dimensional $\F$-vector space, and $f:V^2 \rightarrow \F$ be a bilinear form. Clearly, fixing a basis $\set{v_1,\dots ,v_n} \subseteq V$, we may express $f$ as a matrix  
+\begin{align*}
+ \begin{pmatrix} 
+  f(v_1,v_1) & \cdots & f(v_1,v_n) \\
+  \vdots & \ddots & \vdots \\
+  f(v_n,v_1) & \cdots & f(v_n,v_n)
+\end{pmatrix}
+\end{align*}
+Changing to a new basis, says $A\triangleq [f]_\alpha $ and $B\triangleq [f]_{\beta }$, we have 
+\begin{align*}
+A= P^tBP,\quad\text{ where } \alpha_i = \sum_{j=1}^n P_{i,j} \beta_j
+\end{align*}
+This allows us to define \textbf{rank} and \textbf{degeneracy} for bilinear  forms. Moreover, it allow us to define whether $f$ is \textbf{symmetric} or \textbf{skew-symmetric}. We immediately see $f$ is symmetric if and only if $f(v,w)=f(w,v)$ for all $w,v\in V$. We also see $f$ is skew-symmetric if and only if $f(v,w)=-f(w,v)$ for all $w,v \in V$. \\
+
+For each symmetric bilinear form  $f:V^2\rightarrow \F$, we associate it with a \textbf{quadratic form} $q:V\rightarrow \R$ by 
+\begin{align*}
+q(v)\triangleq f(v,v)
+\end{align*}
+Such association is injective since 
+\begin{align*}
+f(v,w)= \frac{q(v+w)-q(v-w)}{4}
+\end{align*}
+Let $A \in M_n(\R)$ be skew-symmetric. Because $A^tA \in M_n(\R)$ is symmetric, we may write 
+ \begin{align*}
+   \R^n \cong  E(A^tA,\ld_1) \oplus  \cdots \oplus  E(A^tA,\ld _n) \oplus  E(A^tA,0)
+\end{align*}
+as an orthogonal direct sum. Let $v \in E(A^tA,\ld _1)$. Because 
+\begin{align*}
+  \abso{Av}^2= (Av)^t Av= v^tA^tAv = \ld_1  \abso{v}^2
+\end{align*}
+We know $\ld_i\geq 0$. Now, let $w_1 \in E(A^tA,\ld_1)$ be nonzero. We see that if we pair $w_2 \triangleq \frac{1}{-\sqrt{\ld_1} }Aw_1$, then 
+\begin{enumerate}[label=(\roman*)] 
+\item $A^tAw_2= \frac{1}{-\sqrt{\ld _1} }A^tAAw_1= \frac{1}{-\sqrt{\ld _1} }= AA^tAw_1= \frac{1}{-\sqrt{\ld _1} }\cdot \ld_1 Aw_1=\ld_1 w_2$. Therefore $w_2 \in E(A^tA,\ld_1)$
+  \item $\langle w_1,Aw_1\rangle = \langle A^tw_1,w_1\rangle =\langle w_1,-Aw_1\rangle $, which implies $\langle w_1,Aw_1\rangle =0 $ and that $\langle w_1,w_2\rangle =0$ 
+  \item $Aw_2= \sqrt{\ld_1} w_1$, which implies the matrix representation of restriction $A$ onto $\operatorname{span}\set{w_1,w_2}$ is 
+    \begin{align*}
+  \begin{pmatrix} 
+    0 & \sqrt{\ld_1} \\
+    - \sqrt{\ld_1} & 0  
+  \end{pmatrix} 
+    \end{align*} 
+    \item If $\langle w_1,w_3\rangle = \langle w_2,w_3\rangle =0$, then $\langle w_1,Aw_3\rangle = \langle A^tw_1,w_3\rangle = \langle -Aw_1,w_3\rangle = \langle  \sqrt{\ld _1}w_2, w_3 \rangle  =0 $. 
+    \item $A^tAw=0 \implies \abso{Aw}^2= w^tA^t Aw =0 $
+\end{enumerate}
+\section{Cauchy interlacing theorem}
+\begin{theorem}
+\textbf{(Cauchy interlacing theorem)} Let $A \in M_n(\R)$ be symmetric with eigenvalues $\ld_1\leq \cdots \leq \ld _n$ and $B \in M_{m}(\R)$ a principal submatrix of $A$ with eigenvalues $\beta _1\leq \cdots \leq \beta _m$. For all $\beta_k$, we have: 
+\begin{align*}
+\ld_k \leq \beta_k \leq \ld_{n+k-m}
+\end{align*}
+In particular, when $m=n-1$, we have 
+\begin{align*}
+\ld_1 \leq \beta_1 \leq \ld_2 \leq  \cdots \leq \ld_{n-1} \leq \beta _{n-1} \leq \ld_n
+\end{align*}
+\end{theorem}
+\begin{proof}
+WLOG, write 
+\begin{align*}
+A = \begin{pmatrix} 
+  B & X \\
+  X^t & Z
+\end{pmatrix}
+\end{align*}
+Let $A$ has eigenbasis  $\set{x_1,\dots ,x_n}$ that corresponds to eigenvalues $\ld_1\leq  \cdots \leq \ld _n$, and let $B$ has  eigenbasis $\set{y_1,\dots ,y_m}$ that corresponds to eigenvalues $\beta _1\leq  \cdots \leq \beta _m$. Consider 
+\begin{align*}
+V\triangleq \operatorname{span}(x_k,\dots ,x_n)\quad \text{ and }\quad W \triangleq \operatorname{span}(y_1,\dots ,y_k)
+\end{align*}
+By counting dimension, we see that there exists $w \in W $ such that 
+\begin{align*}
+\tilde{w} \triangleq \begin{pmatrix} 
+w \\
+0
+\end{pmatrix} \in V  \quad \text{ and }\quad \abso{w}=1
+\end{align*}
+Compute that  
+\begin{align*}
+\tilde{w}^t A \tilde{w}=  \begin{pmatrix} 
+w \\
+0
+\end{pmatrix}^t \begin{pmatrix} 
+B & X \\
+X^t & Z
+\end{pmatrix} \begin{pmatrix} 
+w\\
+0
+\end{pmatrix} = w^t B w 
+\end{align*}
+We now see 
+\begin{align*}
+\ld_k \leq \tilde{w}^t A w = w^t B w \leq  \beta_k 
+\end{align*}
+Same method can be applied to show $\beta _k \leq \ld_{n+k-m}$ by setting 
+\begin{align*}
+V \triangleq \operatorname{span}(x_1,\dots ,x_{n+k-m})\quad \text{ and }\quad W \triangleq \operatorname{span}(y_k,\dots ,y_m)
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Cauchy interlacing theorem)} Let $A \in M_n(\C)$ be Hermitian, and $B \in M_m(\C)$ a principal submatrix of $A$. Because they are Hermitian, we know their eigenvalues are real. Let  $A$ has eigenvalues  $\ld_1 \leq \cdots \leq \ld_n$ and  $B$ has eigenvalues  $\beta _1 \leq \cdots \leq  \beta _m$. For all $\beta_k$, we have: 
+\begin{align*}
+\ld_k \leq \beta_k \leq \ld_{n+k-m}
+\end{align*}
+In particular, when $m=n-1$, we have 
+\begin{align*}
+\ld_1 \leq \beta_1 \leq \ld_2 \leq  \cdots \leq \ld_{n-1} \leq \beta _{n-1} \leq \ld_n
+\end{align*}
+\end{theorem}
+\begin{proof}
+This is proved exactly the same way. 
+\end{proof}
+\begin{theorem}
+\textbf{(Sylvester's Criterion)} Let $A \in M_n(\C)$  be Hermitian or $A \in M_n(\R)$ be symmetric. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $A$ is positive definite.  
+  \item Every leading principal minor is positive.  
+\end{enumerate}
+\end{theorem}
+\section{Discrete mathematics}
+\begin{question}{}{}
+Let $A \in M_n(\R)$ be a  \textbf{tournament matrix}. That is, 
+\begin{enumerate}[label=(\roman*)]
+  \item $A_{i,i}=0$ for all $i$.  
+  \item $A_{i,j}\in \set{0,1}$ for all $i,j$.  
+  \item $A_{i,j}+A_{j,i}=1$ for all $i\neq j$. 
+\end{enumerate}
+Show that 
+\begin{align*}
+\operatorname{rank} A \geq n-1
+\end{align*}
+\end{question}
+\begin{proof}
+Assume $\operatorname{rank}A\leq n-2$ for a contradiction. Then there exists nonzero $v \in \operatorname{ker}A$ such that $\textbf{1} \cdot v=0$. Let $J\in M_n(\R)$  has entry $1$ everywhere. We now see 
+ \begin{align*}
+   - \abso{v}^2=v^t (J-I)v = v^t(A^t+A)v=0 
+\end{align*}
+a contradiction. 
+\end{proof}
+Let $f,g \in \F[x]$ satisfy $\operatorname{gcd}(f,g)=1$. Show that 
+\begin{align*}
+\F[x] \quotient (fg)\cong  \F[x] \quotient (f) \oplus  \F[x]\quotient (g)
+\end{align*}
 \chapter{What you probably need to know}
 \section{Tensor Product}
 \label{Universal Property of Tensor Product}
