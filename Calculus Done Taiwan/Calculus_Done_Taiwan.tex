@@ -2131,24 +2131,25 @@ we see
   &\implies  \operatorname{frac}(rd\alpha )= 1-r\epsilon  \in (a,b)
 \end{align*}
 \end{proof}
-Let $X:\R \rightarrow \R$ be a continuous random variable with distribution $f_X:\R \rightarrow [0,\infty)$. We define 
+\begin{theorem}
+\textbf{(Markov's inequality)} Let $g:\Omega \rightarrow [0,\infty]$ be $L^1$ and  $a>0$. Then 
 \begin{align*}
-\mu \triangleq E(X)\triangleq \int_{\R} X(t)f_X(t)dt
+\mu (g \geq a)\leq \frac{1}{a}\int_\Omega g d\mu  
 \end{align*}
-and 
-\begin{align*}
-\sigma^2 \triangleq \operatorname{Var}(X)\triangleq \int_{\R} (t- \mu)^2 f_X(t)dt
+\end{theorem}
+\begin{proof}
+Clear. 
+\end{proof}
+\begin{theorem}
+\label{THCi}
+\textbf{(Chebyshev's inequality)} Let $f:\Omega \rightarrow \R$ be measurable with $\int_{\Omega}(f-c)^2 d\mu < \infty$ for some constant $c \inr $. Then for all $t>0$, we have 
+ \begin{align*}
+\mu (\abso{f-c}\geq t)\leq \frac{1}{t^2} \int_{\Omega} (f-c)^2 d\mu  
 \end{align*}
-Consider 
-\begin{align*}
-\int_{\R} (t-\mu)^2 f_X(t) dt&=\int_{-\infty}^{\mu} (t-\mu)^2 f_X(t)dt +    \int_{\mu}^{\infty} (t-\mu)^2 f_X(t)dt
-\end{align*}
-
-
-\textbf{Chebyshev's inequality} 
-
-
-
+\end{theorem}
+\begin{proof}
+This is a consequence of Markov's inequality. Apply $g \triangleq (f-c)^2$. 
+\end{proof}
 \begin{question}{}{}
 Define $m_n:\R^n \rightarrow \R$ by 
 \begin{align*}
@@ -2163,6 +2164,38 @@ and for all continuous $f$, we have
 \lim_{n\to \infty} \int_{[0,1]^n} f(m_n(\textbf{x}))d\textbf{x} = f\left(\frac{1}{2}\right)
 \end{align*}
 \end{question}
+\begin{proof}
+We wish to apply \customref{THCi}{Chebyshev's inequality} by setting $f\triangleq m_n,c\triangleq \frac{1}{2}$, and $t \triangleq \delta$. Compute:  
+\begin{align*}
+\int_{[0,1]^n }m_n(\textbf{x})d\textbf{x} &= \frac{1}{n} \sum_{i=1}^n \int_{[0,1]^n} x_i d\textbf{x} \\
+&=\frac{1}{n} \sum_{i=1}^n \frac{1}{2} = \frac{1}{2}
+\end{align*}
+Compute: 
+\begin{align*}
+\int_{[0,1]^n} m_n^2(\textbf{x})d\textbf{x} &= \frac{1}{n^2} \int_{[0,1]^n}\left(\sum_{i=1}^n x_i \right) \left(\sum_{j=1}^n x_j \right) d\textbf{x} \\
+&=\frac{1}{n^2} \sum_{i=1}^n \sum_{j=1}^n \int_{[0,1]^n}x_ix_j d\textbf{x} \\
+&=\frac{1}{n^2} \left(\sum_{i=1}^n \int_{[0,1]^n} x_i^2 d \textbf{x} + 2\sum_{i \neq j}\int_{[0,1]^n}x_ix_j d\textbf{x}   \right) \\
+&=\frac{1}{n^2} \left( \frac{n}{3}+2 \binom{n}{2} \cdot \frac{1}{4}  \right) = \frac{1}{3n}+ \frac{n-1}{4n}
+\end{align*}
+Therefore, we can compute:
+\begin{align*}
+\int_{[0,1]^n} \left(m_n(\textbf{x}) - \frac{1}{2} \right)^2 d \textbf{x}  = \frac{1}{3n} + \frac{n-1}{4n} - \frac{1}{2} + \frac{1}{4} = \frac{1}{12n}
+\end{align*}
+Now by \customref{THCi}{Chebyshev's inequality} with $f\triangleq m_n,c\triangleq \frac{1}{2}$, and $t \triangleq \delta$, we have 
+\begin{align*}
+\int_{\abso{m_n(\textbf{x})-\frac{1}{2}}> \delta \cap  [0,1]^n}  d \textbf{x} \leq \frac{1}{\delta^2} \int_{[0,1]^n} \left( m_n(\textbf{x})- \frac{1}{2} \right)^2  d \textbf{x}= \frac{1}{\delta^212n} 
+\end{align*}
+Therefore 
+\begin{align*}
+\delta^2 \int_{\abso{m_n(\textbf{x})- \frac{1}{2}} > \delta} d\textbf{x}\leq \frac{1}{12n}
+\end{align*}
+For all $\delta \in (0,\frac{1}{2})$, we have 
+\begin{align*}
+  \int_{[0,1]^n} \abso{f(m_n(\textbf{x})) - f\left(\frac{1}{2} \right) } d \textbf{x} &= \int_{\abso{m_n(\textbf{x}) - \frac{1}{2}}> \delta}  \abso{f(m_n(\textbf{x})) - f\left(\frac{1}{2} \right) } d \textbf{x} \\
+  &+ \int_{\abso{m_n(\textbf{x})-\frac{1}{2}} < \delta} \abso{f(m_n(\textbf{x}))- f \left(\frac{1}{2} \right)} d\textbf{x} \\
+  &\leq \frac{2M}{12n \delta^2}  + \omega_f (\delta)
+\end{align*}
+\end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam}
 \section{Year 114}
 \begin{question}{easy estimate}{}
