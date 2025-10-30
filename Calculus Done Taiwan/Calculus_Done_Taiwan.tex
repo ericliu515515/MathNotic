@@ -2071,7 +2071,19 @@ is a $\frac{1}{2}$-contradiction, we see that the earlier question suffices.
 
 \end{proof}
 \section{Final}
-\begin{question}{}{}
+\begin{question}{Cesaro sum}{}
+Find a real sequence $\set{x_n}$ such that 
+\begin{align*}
+\liminf_{n\to\infty} x_n < \liminf_{n\to\infty} \frac{x_1 + \cdots + x_n}{n} < \limsup_{n\to\infty} \frac{x_1 + \cdots +x_n}{n} < \limsup_{n\to\infty} x_n 
+\end{align*}
+\end{question}
+\begin{proof}
+Consider 
+\begin{align*}
+110\overbrace{000}^{3}\overbrace{111111}^{6} \overbrace{0\cdots 0}^{12} \overbrace{1 \cdots 1}^{24} \cdots  
+\end{align*}
+\end{proof}
+\begin{question}{Kronecker approximation theorem}{}
   Let $\alpha $ be an irrational number. Prove that $\set{\operatorname{frac}(n\alpha ): n\inn }$ is dense in $[0,1]$. 
 \end{question}
 \begin{lemma}
@@ -2195,6 +2207,11 @@ For all $\delta \in (0,\frac{1}{2})$, we have
   &+ \int_{\abso{m_n(\textbf{x})-\frac{1}{2}} < \delta} \abso{f(m_n(\textbf{x}))- f \left(\frac{1}{2} \right)} d\textbf{x} \\
   &\leq \frac{2M}{12n \delta^2}  + \omega_f (\delta)
 \end{align*}
+where 
+\begin{align*}
+\omega_f (\delta)= \sup_{\abso{x-y}\leq \delta} \abso{f(x)-f(y)} \rightarrow 0 
+\end{align*}
+by uniform continuity of $f$. 
 \end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam}
 \section{Year 114}
