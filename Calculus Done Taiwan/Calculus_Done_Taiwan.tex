@@ -2070,7 +2070,99 @@ is a $\frac{1}{2}$-contradiction, we see that the earlier question suffices.
 
 
 \end{proof}
+\section{Final}
+\begin{question}{}{}
+  Let $\alpha $ be an irrational number. Prove that $\set{\operatorname{frac}(n\alpha ): n\inn }$ is dense in $[0,1]$. 
+\end{question}
+\begin{lemma}
+For all $\epsilon $, there exists some  $d \inn$ such that 
+\begin{align*}
+  \min  \set{\operatorname{frac}(d\alpha ), 1- \operatorname{frac}(d\alpha )}\leq \epsilon  
+\end{align*}
+\end{lemma}
+\begin{proof}
+Let $\frac{1}{N}\leq \epsilon $. Because $\alpha $ is irrational, we know $\set{\operatorname{frac}(n\alpha )\in [0,1): n\inz}$ are distinct.\footnote{Otherwise we have $(n-m) \alpha  =  n \alpha  - m\alpha = \left(n\alpha - \operatorname{frac}(n\alpha ) \right) - \left(m \alpha  - \operatorname{frac}(m\alpha ) \right)\inz$
+which implies the rationality of $\alpha$} Therefore, when we partition: 
+\begin{align*}
+\left[0,\frac{1}{N}\right) \cup  \cdots \cup  \left[1- \frac{1}{N}, 1\right)= [0,1)
+\end{align*}
+by pigeonhole principle, we must have some $n<m$ such that   
+\begin{align*}
+\frac{k}{N}\leq \operatorname{frac}(m\alpha )  < \operatorname{frac}(n\alpha ) < \frac{k+1}{N}
+\end{align*}
+for some $0\leq k \leq N-1$. This implies 
+\begin{align*}
+\operatorname{frac}(n \alpha )-\operatorname{frac}(m\alpha ) \leq \frac{1}{N} \leq \epsilon 
+\end{align*}
+If $n> m$, we may compute 
+\begin{align*}
+0 \leq \operatorname{frac}((n-m)\alpha )= \operatorname{frac}(\operatorname{frac}(n\alpha )-\operatorname{frac}(m\alpha )) \leq \frac{1}{N} \leq  \epsilon 
+\end{align*}
+If $n<m$, we may compute 
+ \begin{align*}
+\operatorname{frac}((m-n)\alpha )= 1-\operatorname{frac}((n-m)\alpha ) \geq 1-\epsilon  
+\end{align*}
+\end{proof}
+\begin{proof}
+Fix $[a,b]\subseteq [0,1]$ with $0<a<b<1$. Write $\delta\triangleq b-a$. Let 
+\begin{align*}
+\epsilon  \triangleq \min \set{\operatorname{frac}(d\alpha ),1- \operatorname{frac}(d\alpha )}< \delta  
+\end{align*}
+If $\operatorname{frac}(d\alpha )=\epsilon $, them selecting 
+\begin{align*}
+r \triangleq \lfloor \frac{a}{\epsilon } \rfloor + 1
+\end{align*}
+we see 
+\begin{align*}
+  r = \lfloor \frac{a}{\epsilon } \rfloor +1&\implies  0 < r- \frac{a}{\epsilon }\leq 1 \\
+ &\implies  0 < r\epsilon  - a \leq  \epsilon  \\
+ &\implies  a < r\epsilon \leq  a+\epsilon  < b \\
+  &\implies  \operatorname{frac}(rd \alpha  )=r\epsilon  \in (a,b)
+\end{align*}
+If $\operatorname{frac}(d\alpha )= 1-\epsilon $, then selecting 
+\begin{align*}
+r \triangleq \lfloor \frac{1-b}{\epsilon } \rfloor +1 
+\end{align*}
+we see 
+\begin{align*}
+  r = \lfloor \frac{1-b}{\epsilon } \rfloor  +1   &\implies 0 < r - \frac{1-b}{\epsilon }\leq 1 \\
+  &\implies 0< r\epsilon  - (1-b) \leq \epsilon  \\
+  &\implies 1-b < r \epsilon  \leq  1- b + \epsilon = 1- (b-\epsilon ) < 1-a \\
+  &\implies  \operatorname{frac}(rd\alpha )= 1-r\epsilon  \in (a,b)
+\end{align*}
+\end{proof}
+Let $X:\R \rightarrow \R$ be a continuous random variable with distribution $f_X:\R \rightarrow [0,\infty)$. We define 
+\begin{align*}
+\mu \triangleq E(X)\triangleq \int_{\R} X(t)f_X(t)dt
+\end{align*}
+and 
+\begin{align*}
+\sigma^2 \triangleq \operatorname{Var}(X)\triangleq \int_{\R} (t- \mu)^2 f_X(t)dt
+\end{align*}
+Consider 
+\begin{align*}
+\int_{\R} (t-\mu)^2 f_X(t) dt&=\int_{-\infty}^{\mu} (t-\mu)^2 f_X(t)dt +    \int_{\mu}^{\infty} (t-\mu)^2 f_X(t)dt
+\end{align*}
 
+
+\textbf{Chebyshev's inequality} 
+
+
+
+\begin{question}{}{}
+Define $m_n:\R^n \rightarrow \R$ by 
+\begin{align*}
+m_n(\textbf{x})\triangleq \frac{x_1+ \cdots + x_n}{n}
+\end{align*}
+Show that for all $\delta \in (0,\frac{1}{2})$ and $n\geq 1$, we have: 
+\begin{align*}
+\delta^2 \int_{\abso{m_n(\textbf{x})-\frac{1}{2}} > \delta} d \textbf{x}  \leq \frac{1}{12n}
+\end{align*}
+and for all continuous $f$, we have 
+\begin{align*}
+\lim_{n\to \infty} \int_{[0,1]^n} f(m_n(\textbf{x}))d\textbf{x} = f\left(\frac{1}{2}\right)
+\end{align*}
+\end{question}
 \chapter{NTU Math M.A. Program Entrance Exam}
 \section{Year 114}
 \begin{question}{easy estimate}{}
