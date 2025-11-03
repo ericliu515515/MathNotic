@@ -404,19 +404,47 @@ More than often, we care about the existence of \textbf{central series}
 \begin{align*}
 1 \trianglelefteq  \cdots \trianglelefteq  A_{n-1}\trianglelefteq   A_n \trianglelefteq  A_{n+1} \trianglelefteq    \cdots \trianglelefteq  G
 \end{align*}
-where we requires the successive quotient to be \textbf{central}, i.e., $[G,A_{n+1}]\leq A_n$ or equivalently $A_{n+1} \quotient A_n \leq Z(G \quotient A_n)$. \\
+where we requires the successive quotient to be \textbf{central}, i.e., $[G,A_{n+1}]\leq A_n$, or equivalently, $A_{n+1} \quotient A_n \leq Z(G \quotient A_n)$, or equivalently, $xyA_n=yx A_n \in G \quotient A_n$ if one of $x,y$ is in  $A_{n+1}$. \\
+
+
 
 To construct one, one can consider the \textbf{upper central series}, defining $G_{(n)}\triangleq [G,G_{(n-1)}]$ with $G_{(0)}\triangleq G$. This gives us 
 \begin{align*}
 \cdots  \trianglelefteq  G_{(2)}\trianglelefteq  G_{(1)} \trianglelefteq G
 \end{align*}
+Note that 
+
+\begin{theorem}
+\textbf{(Every subgroup of a nilpotent group is subnormal)} Let $G$ be a nilpotent group with $H \leq G$. Then $H$ is a subnormal subgroup of  $G$.   
+\end{theorem}
+\begin{proof}
+Let 
+\begin{align*}
+1 \triangleleft  A_1 \triangleleft \cdots \triangleleft A_n = G
+\end{align*}
+\end{proof}
+\begin{corollary}
+\textbf{(Nilpotent group satisfies normalizer condition)} Let $G$ be a nilpotent group. If $H<G$, then $H <N_G(H)$. 
+\end{corollary}
+
+
+
+A group is said to be nilpotent if it admits a central series. 
 \begin{equiv_def}
 \textbf{(Nilpotency for finite group)} Let $G$ be a finite group. The followings are equivalent: 
 \begin{enumerate}[label=(\roman*)]
   \item $G$ is nilpotent. 
-  \item $G$ is the inner direct product of its Sylow subgroups (picking one from each $\operatorname{Syl}_p(G)$). 
+  \item Sylow subgroups of $G$ are all normal. 
+  \item Sylow subgroups of $G$ are all normal and they form an inner direct product equal to $G$. 
+  \item    
 \end{enumerate}
 \end{equiv_def}
+\begin{proof}
+
+\end{proof}
+
+
+
 \section{Exercises}
 For question 1, recall that by class equation, $p$-group can not have trivial center, and recall that  $G\quotient N$ is abelian if and only if $[G,G]\leq N$. 
 \begin{question}{}{}
@@ -565,7 +593,7 @@ implies $o(HN\quotient N)$  and $\abso{(G\quotient N): (HN\quotient N)}$ are cop
 
 \end{proof}
 \section{Exercises II}
-\begin{question}{}{}
+\begin{question}{subgroup of $p$-group of index  $p$ is normal}{}
 Prove that if $p$ is a prime and $o(G)=p^{\alpha }$ with $\alpha \inn$, then every subgroup $H$ of index $p$ is normal.\\
 
 Deduce that every group of order $p^2$ has a normal subgroup of order  $p$. 
@@ -628,6 +656,12 @@ Define an equivalence class in $K$ by setting  $k \sim \tilde{k}\overset{\triang
 and we have a natural bijection $H \times T \rightarrow HK$. This finishes the proof. 
 \end{proof}
 \begin{question}{}{}
+Let $G$ be a non-abelian group of order $21$. Prove that  $Z(G)=1$. 
+\end{question}
+\begin{proof}
+If $o(Z(G))=3$ or $7$, then because  $G \quotient Z(G)$ is cylic  
+\end{proof}
+\begin{question}{}{}
 Find all finite groups which have exactly two conjugacy classes. 
 \end{question}
 \begin{proof}
@@ -660,14 +694,10 @@ o(G)=60  \mid  n_3 !
 \end{align*}
 \end{proof}
 \begin{question}{}{}
-Let $o(G)=pqr$ with $p<q<r$ prime. Prove that $G$ has a normal subgroup  $H$, where  $o(H)\in \set{p,q,r}$. 
+Let $o(G)=pqr$ with $p<q<r$ prime. Prove that $G$ has a normal Sylow $r$-subgroup  $H$. 
 \end{question}
 \begin{proof}
-We show either $n_q=1$ or $n_r=1$. By \customref{SECSt}{sylow}, if $n_r \neq  1$, then $n_r=pq$ and there remains 
-\begin{align*}
-pqr - (r-1)pq= pq
-\end{align*}
-number of elements of order that isn't $r$. Because $q>p$, by  \customref{SECSt}{sylow}, $n_q \in \set{1,r,pr}$. Noting that $(q-1)r > pq$, we see we must have $n_q=1$.   
+By \customref{SECst}{sylow} and counting arguments we know $1 \in \set{n_p,n_q,n_r}$. Therefore, if neither of $n_p$ and  $n_q$ is $1$, we are done. Suppose   $1 \in \set{n_p,n_q}$. Either way, we get a normal subgroup $N$ such that  $o(G \quotient N) \in \set{qr,pr}$. We also get a normal  $H \quotient N \in \operatorname{Syl}_r(G \quotient N)$. This give us a characteristic $K \in \operatorname{Syl}_r(H)$, which is normal in $G$. 
 \end{proof}
 \begin{question}{}{}
 Let $o(G)=p^3q$ with $p,q$ prime. Show that one of the followings statement is true: 
@@ -815,27 +845,39 @@ Clearly we have the central series
 Let $o(G)=pqr$ with $p<q<r$ prime. Show that  $G$ is solvable. 
 \end{question}
 \begin{proof}
-
+Recall that we have a normal subgroup $M \in \operatorname{Syl}_r(G)$. Then we have a normal subgroup $\frac{H}{M}\in \operatorname{Syl}_q(G)$. Then $1\trianglelefteq M\trianglelefteq  H \trianglelefteq  G$ forms the desired series.  
 \end{proof}
 \begin{question}{}{}
 Show that a finite group $G$ is nilpotent if and only if every $a,b \in G$ that makes $\operatorname{gcd}(o(a),o(b))=1$ also makes $ab=ba$.   
 \end{question}
 \begin{proof}
-($\implies $): Write $G=P_1 \times \cdots \times P_n$ with $P_i$ sylow. Clearly if the orders of $(x_1,\dots ,x_n)$ and $(y_1,\dots ,y_n)$  are coprime to each other, then for all $i$, we must have either  $x_i=e$ or  $y_i=e$. This implies that they commute. \\
+($\implies $): Write $G=P_1 \times \cdots \times P_n$ with $P_i$ sylow. Clearly if the orders of $(x_1,\dots ,x_n)$ and $(y_1,\dots ,y_n)$  are coprime to each other, then for all $i$, we must have either  $x_i=e$ or  $y_i=e$. This implies the commutativity. \\
 
-$(\impliedby)$:   
+$(\impliedby)$: We need to show that Sylow subgroups of $G$ are normal. Let $P_1,\dots ,P_n$ each be a Sylow subgroup of $G$ with distinct  $p$. By premise, we see that $P_k \subseteq N_G(P_1)$ for all $k\geq 2$. This then implies $G=N_G(P_1)$, as desired. 
 \end{proof}
 \begin{question}{}{}
-Let $G=HK$ be finite and  $S \leq G$ be a $p$-subgroup that contains some $p$-Sylow subgroup of $H$ and some $p$-Sylow subgroup of  $K$. Show that  $S$ is $p$-Sylow  in $G$ and  $S= (S \cap H)(S \cap K)$.  
+Let $G=HK$ be finite and  $S \leq G$ be a $p$-subgroup that contains some $p$-Sylow subgroup $P$ of $H$ and some $p$-Sylow subgroup $Q$ of  $K$. Show that  
+\begin{enumerate}[label=(\roman*)]
+  \item $S$ is $p$-Sylow in  $G$.  
+  \item $S= (S \cap H)(S \cap K)$
+\end{enumerate}
 \end{question}
 \begin{proof}
-
+Because $P \cap Q \leq H \cap K$, we know $p$-part of 
+ \begin{align*}
+o(G)= \frac{o(H)o(K)}{o(H\cap K)}
+\end{align*}
+is smaller than  
+\begin{align*}
+ \frac{o(P)o(Q)}{o(P \cap Q)}= \abso{PQ} \leq o(S)
+\end{align*}
+ which can only happen if $S$ is Sylow with $\abso{PQ}=o(S)$. By definition, $ P \leq  S \cap H \leq H$. Because $S$ is a  $p$-group, we know  $S \cap H$ is also a $p$-group. Sylowness of $P \leq H$ then forces $S \cap H = P$. Similarly, we have $S \cap K= Q$. Now, to see $S = PQ$, just recall that $\abso{PQ}=o(S)$  
 \end{proof}
 \begin{question}{}{}
 Let $M \trianglelefteq G$ and $N \trianglelefteq G$ with $M,N$ finite and nilpotent. Prove that  $MN$ is nilpotent. 
 \end{question}
 \begin{proof}
-
+The proof follows form noting that if $S \in \operatorname{Syl}_p(MN)$, then by earlier questions, $S$ is uniquely determined by $S= (M\cap S)(N\cap S)$ with $M \cap S \in \operatorname{Syl}_p(M)$ and $N\cap S \in \operatorname{Syl}_p(N)$ uniquely determined.  
 \end{proof}
 \begin{question}{}{}
 Let $G$ be finite with  $A,B \trianglelefteq G$ and $G \quotient A,G \quotient B$ solvable. Prove that $G \quotient (A \cap B)$ is solvable.   
