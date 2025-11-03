@@ -290,6 +290,7 @@ and call $[x,y]$ the \textbf{commutator} of $x$ and  $y$. Independent of differe
 $G\triangleq S_3$. $S\triangleq  \langle (1,2)\rangle $ and $H\triangleq \langle (2,3)\rangle $. $SH$ doesn't form a group. $(2,3)(1,2)\not \in SH$. 
 \end{example}
 \begin{theorem}
+\label{THsitg}
 \textbf{(Second isomorphism theorem)} Let $H\leq G$. If $K$ is a subgroup of normalizer of $H$, then their product: 
 \begin{align*}
 HK\triangleq  \set{hk \in G: h \in H\text{ and } k \in K}
@@ -310,7 +311,7 @@ Correspondence theorem.
 Because $ \phi\circ \pfi _g \circ \phi^{-1} = \pfi _{\phi(g)}$, we know $\operatorname{Inn}(G)$ forms a normal subgroup of $\operatorname{Aut}(G)$. \\
 
 \section{Sylow theorems}
-
+\label{SECSt}
 \begin{theorem}
 \label{THfSt}
 \textbf{(First and Third Sylow theorem, Wielandt's proofs)} Let $G$ be a finite group of order $p^mt$ with $\operatorname{gcd}(p,t)=1$. Let $r\leq m$. Then the number $n_p$ of $p$-subgroup with order $p^r$ satisfies 
@@ -373,29 +374,49 @@ If
 
   If $G$ is non-abelian, then we must have $q \mid  p-1$, since otherwise  
 \end{example}
-\section{Archive}
+\section{Finitely generated abelian group}
+\begin{equiv_def}
+\label{EDidpfg}
+  \textbf{(Internal direct products for groups)} Let $G$ be a group with normal subgroups  $N_1,\dots ,N_k$. We say $G$ is an \textbf{internal direct  products of $N_i$} if any of the followings hold true: 
+\begin{enumerate}[label=(\roman*)]
+  \item The natural map $N_1 \times \cdots \times N_k \rightarrow G$ forms a group isomorphism. 
+  \item $N_1\cdots N_k=G$ and $N_i \cap \prod_{j\neq i}N_j=\set{e}$ for all $i$. 
+  \item  Every $g \in G$ can be written uniquely as $\prod n_i$. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+  (i)$\implies $(ii): Clearly we have $N_1 \cdots N_k = G$. Let $n_2 \cdots n_k \in N_1$. Because $n_2 \cdots n_k$ is both the image of $(n_2\cdots n_k,e,\dots ,e)$ and $(e,n_2,\dots ,n_k)$, by injectivity of the natural map, we know $n_2=\cdots =n_k =e$.  \\
+
+ (ii)$\implies $(iii): The existence is clear. To see the uniqueness, observe that $\prod n_i = \prod \tilde{n}_i$ implies $(\tilde{n}_1)^{-1}n_1n_2 \cdots n_k=\tilde{n}_2 \cdots \tilde{n}_k  $
+
+\end{proof}
+\begin{example}
+Let $G\triangleq \Z_4 \times \Z_2$. Clearly the direct product of $\langle (1,0)\rangle $ and $\langle (2,0)\rangle $ is isomorphic to $G$, but they do not form an internal direct product of  $G$. It is because of such, we must require  $N_1 \times \cdots \times N_k$ not only isomorphic to $G$, but moreover the natural way in \customref{EDidpfg}{definition of internal direct products for groups}.
+\end{example}
 \begin{theorem}
 \textbf{(Fundamental theorem for finite abelian group)}
 \end{theorem}
 \begin{theorem}
 \textbf{(Fundamental theorem for finitely generated abelian group)}
 \end{theorem}
+\section{Nilpotency and Solvability}
+More than often, we care about the existence of \textbf{central series}
+\begin{align*}
+1 \trianglelefteq  \cdots \trianglelefteq  A_{n-1}\trianglelefteq   A_n \trianglelefteq  A_{n+1} \trianglelefteq    \cdots \trianglelefteq  G
+\end{align*}
+where we requires the successive quotient to be \textbf{central}, i.e., $[G,A_{n+1}]\leq A_n$ or equivalently $A_{n+1} \quotient A_n \leq Z(G \quotient A_n)$. \\
+
+To construct one, one can consider the \textbf{upper central series}, defining $G_{(n)}\triangleq [G,G_{(n-1)}]$ with $G_{(0)}\triangleq G$. This gives us 
+\begin{align*}
+\cdots  \trianglelefteq  G_{(2)}\trianglelefteq  G_{(1)} \trianglelefteq G
+\end{align*}
 \begin{equiv_def}
-\label{EDidpfg}
-  \textbf{(Internal direct products for groups)} Let $G$ be a group with normal subgroups  $N_1,\dots ,N_k$. We say $G$ is an \textbf{internal direct  products of $N_i$} if any of the followings hold true: 
+\textbf{(Nilpotency for finite group)} Let $G$ be a finite group. The followings are equivalent: 
 \begin{enumerate}[label=(\roman*)]
-  \item The natural map $N_1 \times \cdots \times N_k \rightarrow G$ forms a group isomorphism. 
-  \item $N_1\cdots N_k=G$ and $N_i \cap \prod_{j\neq i}N_j= \set{e}$ for all $i$.   
+  \item $G$ is nilpotent. 
+  \item $G$ is the inner direct product of its Sylow subgroups (picking one from each $\operatorname{Syl}_p(G)$). 
 \end{enumerate}
 \end{equiv_def}
-\begin{proof}
-
-\end{proof}
-\begin{example}
-Let $G\triangleq \Z_4 \times \Z_2$. Clearly the direct product of $\langle (1,0)\rangle $ and $\langle (2,0)\rangle $ is isomorphic to $G$, but they do not form an internal direct product of  $G$. It is because of such, we must require  $N_1 \times \cdots \times N_k$ not only isomorphic to $G$, but moreover the natural way in \customref{EDidpfg}{definition of internal direct products for groups}.
-\end{example}
-
-
 \section{Exercises}
 For question 1, recall that by class equation, $p$-group can not have trivial center, and recall that  $G\quotient N$ is abelian if and only if $[G,G]\leq N$. 
 \begin{question}{}{}
@@ -623,4 +644,201 @@ Let $H$ be a subgroup of  $G$ and let
 \end{align*}
 Show that $H=G$. 
 \end{question}
+
+\section{Exercises III} 
+\begin{question}{}{}
+Let $o(G)=60$. Show that if $G$ is simple, then $G$ must have exactly $24$ elements of order $5$ and  $20$ elements of order $3$. 
+\end{question}
+\begin{proof}
+By \customref{SECSt}{sylow}, we have 
+\begin{align*}
+n_5 \equiv 1 \pmod{5}\quad \text{ and }\quad n_5 \mid 12
+\end{align*}
+which by simplicity of $G$ implies $n_5=6$. The same argument gives us $n_3 \in \set{4,10}$. To see $n_3 \neq 4$, just recall that \customref{THsSt}{second sylow} stated that conjugacy action  $G\longrightarrow  \operatorname{Sym}(\operatorname{Syl}_3(G))\cong  S_{n_3}$ is nontrivial, and is therefore injective by simplicity of $G$. We now see that $n_3=4$ is too small to satisfies   
+\begin{align*}
+o(G)=60  \mid  n_3 !
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $o(G)=pqr$ with $p<q<r$ prime. Prove that $G$ has a normal subgroup  $H$, where  $o(H)\in \set{p,q,r}$. 
+\end{question}
+\begin{proof}
+We show either $n_q=1$ or $n_r=1$. By \customref{SECSt}{sylow}, if $n_r \neq  1$, then $n_r=pq$ and there remains 
+\begin{align*}
+pqr - (r-1)pq= pq
+\end{align*}
+number of elements of order that isn't $r$. Because $q>p$, by  \customref{SECSt}{sylow}, $n_q \in \set{1,r,pr}$. Noting that $(q-1)r > pq$, we see we must have $n_q=1$.   
+\end{proof}
+\begin{question}{}{}
+Let $o(G)=p^3q$ with $p,q$ prime. Show that one of the followings statement is true: 
+ \begin{enumerate}[label=(\roman*)]
+  \item $G$ has a normal Sylow  $p$-subgroup.  
+  \item $G$ has a normal Sylow $q$-subgroup.  
+  \item $p=2$,  $q=3$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Suppose (i) and (ii) are both false. Then by \customref{SECSt}{sylow} we have $n_p=q$ and $p<q$. Because $p<q$, applying \customref{SECSt}{sylow} again we have  $n_q \in \set{p^2,p^3}$. Because $n_p>1$, by counting we see that $n_q \neq p^3$. Therefore $n_q=p^2$. Then by \customref{SECSt}{sylow}, $p^2=n_q \equiv 1 \pmod{q} $, which implies $q \mid  (p-1)(p+1)$. Because $p<q$ and $q$ is prime, we now see  $q=p+1$, which can only happens if  $p=2$ and  $q=3$.   
+\end{proof}
+\begin{question}{}{}
+Show that no group of order $30$ is simple. 
+\end{question}
+\begin{proof}
+Consider  $n_3$ and  $n_5$. We have  $n_5 \in \set{1,6}$ and $n_3 \in \set{1,10}$. If $n_5 \neq  1 \neq n_3$, then there are $24$ elements of order  $5$ and  $20$ elements of order $3$, impossible for a group of order $30$.   
+\end{proof}
+\begin{question}{}{}
+Let $G$ be a finite group with sylow $p$-subgroup $P$ and normal subgroup  $N$. Show that $P \cap  N$ is $p$-sylow in $N$ and that $PN \quotient N$ is $p$-sylow in  $G \quotient N$. 
+\end{question}
+\begin{proof}
+  \customref{THsitg}{Second isomorphism theorem} implies that 
+\begin{align*}
+o(PN)\cdot o(P \cap N) = o(P) \cdot o(N)  
+\end{align*}
+Because $P$ is  $p$-sylow, we know  $o(P)$ and $o(PN)$ has the same $p$-power, which implies that $o(P\cap N)$ and $o(N)$ has the same $p$-power, as desired. Again counting the $p$-power of  $PN \quotient  N \subseteq G \quotient N$, we see $PN\quotient N$ is  $p$-sylow.  
+\end{proof}
+\begin{question}{}{}
+Let $G$ be a finite group, $H\leq G$ a subgroup with $[G:H]=n$. Show that: 
+\begin{enumerate}[label=(\roman*)]
+  \item For all subgroup $K\leq G$, we have $[H:H \cap K]\leq [G:K]$. 
+  \item $[H: H \cap  H^g]\leq n$ for all $g \in G$. 
+  \item If $H$ is a maximal proper subgroup of  $G$ and  $H$ is abelian, show that  $H \cap H^g \trianglelefteq G $  for all $g \not \in H$. 
+  \item Suppose that $G$ is simple. If  $H$ is abelian and $n$ is prime, then $H=1$.  
+\end{enumerate}
+\end{question}
+\begin{proof}
+Let $H \quotient H \cap K$  and $G \quotient K$ denote left coset spaces. (i) is a consequence of verifying that the function 
+\begin{align*}
+H \quotient  H \cap  K \longrightarrow G \quotient K ;\quad h(H \cap K) \mapsto  hK
+\end{align*}
+is well-defined and injective. (ii) is then a corollary of (i). \\
+
+We now prove (iii). Fix $g \not \in  H$. There are two cases: Either $H=H^g$ or $H \neq H^g$. For the first case, just observe that by maximality of $H$, we will have  $N_G(H)=G$. We now claim that $H \neq H^g \implies  H \cap H^g \subseteq Z(G)$. Because $H$ is abelian, we know  $H \cap H^g \leq Z(H)$. Clearly we also have $H \cap H^g \leq Z(H^g)$. We now have $H \cap H^g \leq Z(\langle H,H^g\rangle )$, where $\langle H,H^g\rangle =G$ by maximality of $H$, as desired.   \\
+
+We now prove (iv). Clearly the primality of $n$ forces  $H$ to be a maximal proper subgroup of  $G$. Therefore by (iii), $H \cap H^g= 1$ for all $g \not \in H$.  This by (ii) implies $n \leq o(G)\leq n^2$. Write $o(G)\triangleq nk$ so $k \in \set{1,\dots ,n}$. We wish to show $k=1$. To see  $k\neq n$, just recall that if so, then $G$ would be abelian, contradicting to its simplicity. To see $k \not\in \set{2,\dots ,n-1}$, just observe that if so, then the unique $n$-Sylow subgroup would be proper, contradicting to simplicity of $G$.   
+\end{proof}
+\begin{question}{}{}
+Let $G$ be a finite group with $P \in \operatorname{Syl}_p(G)$. Suppose that $N$ is a normal subgroup of $G$ with  $[G:N]= o(P)>1$. Show that 
+\begin{enumerate}[label=(\roman*)]
+  \item $N$ is the subset of  $G$ consisting of all elements of order not divisible by $p$. 
+  \item If the elements of $G - N$ all has $p$-power order, then  $P= N_G(P)$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Because $P$ is  $p$-sylow and $[G:N]=o(P)$, we know $p \nmid o(N)$.  This implies that no element of $N$ has order divisible by $p$. Let $g \in G$ with $p \nmid o(g)$. To see that $g \in N$, just observe that because $o(gN) \mid  o(g)$ and $o(gN)$ is a power of $p$, we have $o(gN)=1$. \\
+
+Assume for a contradiction that $P< N_G(P)$. Then there exists some nontrivial sylow  $q$-subgroup  $Q$ of  $N_G(P)$ with $q \neq p$. By definition we have $[Q,P] \leq P$. By (i), $Q\leq N$. Therefore we also have $[Q,P] \leq N$. Coprimality of orders of $N$ and  $P$ now tell us that  $[Q,P]=1$. We now see that the product of two nontrivial elements $x \in Q,y \in P$ has order divisible by $pq$, a contradiction to the premise.   
+\end{proof}
+\section{Exercises IV}
+\begin{question}{}{}
+Show that the center of products is a product of centers: 
+\begin{align*}
+Z(G_1) \times \cdots \times Z(G_n) = Z (G_1 \times \cdots \times G_n)
+\end{align*}
+Deduce that a direct product of groups is abelian if and only if each of its factor is abelian.  
+\end{question}
+\begin{proof}
+The "$\subseteq$" is clear. To see that 
+\begin{align*}
+g_1 \times \cdots \times g_n \in Z(G_1 \times \cdots \times G_n) \implies  g_i \in Z(G_i)
+\end{align*}
+just observe that if not, then 
+\begin{align*}
+  [g_1 \times \cdots \times g_n , e_1 \times \cdots  \times x_i \times \cdots \times e_n]\neq e \in \prod G_j 
+\end{align*}
+The second part then follows from noting 
+\begin{align*}
+Z(G_1 \times \cdots \times G_n)= G_1 \times \cdots \times G_n \iff  Z(G_i)=G_i,\quad \text{ for all }i
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $G\triangleq A_1 \times \cdots \times A_n$ and $B_i \trianglelefteq A_i$ for all $i$. Prove that  $B_1 \times \cdots \times B_n \trianglelefteq G$ and that 
+\begin{align*}
+\frac{A_1 \times \cdots \times A_n}{B_1 \times \cdots \times B_n} = \frac{A_1}{B_1} \times \cdots \times \frac{A_n}{B_n}
+\end{align*}
+\end{question}
+\begin{proof}
+\begin{align*}
+  (g_1,\dots ,g_n) (b_1 ,\dots ,b_n )(g_1 , \dots ,g_n)^{-1} = (g_1b_1g_1^{-1},\dots ,g_nb_ng_n^{-1}) \in \prod B_i
+\end{align*}
+The second part require us to show that 
+\begin{align*}
+\prod \left( \frac{A_i}{B_i}\right) \longrightarrow \frac{\prod A_i}{\prod B_i};\quad \prod \left(\frac{a_i}{B_i} \right) \mapsto \frac{\prod a_i}{\prod B_i}
+\end{align*}
+is a well-defined group isomorphism, which boils down to showing that it is (i) well-defined, (ii) actually a homomorphism, (iii) injective, and (iv) surjective. To see it is injective, just observe that if $\prod a_i \in \prod B_i$, then $a_i \in B_i$ for all $i$, and therefore  $\prod \frac{a_i}{B_i}=e$. The rest are clear. 
+\end{proof}
+\begin{question}{}{}
+Let $G$ be a finite abelian group with $m \mid  o(G)$. Show that $G$ has a subgroup of order $m$. 
+\end{question}
+\begin{proof}
+This follows from noting that if $o(a)=p^n$, then $o(a^{p^{n-d}})=p^d$. (Ans also structure theorem for finite abelian group) 
+\end{proof}
+\begin{question}{}{}
+Show that the subgroups and quotients of a nilpotent group $G$ are also nilpotent. 
+\end{question}
+\begin{proof}
+Let $H$ be a subgroup of  $G$, and write 
+\begin{align*}
+0 = G_{(n)} \trianglelefteq  \cdots \trianglelefteq G_{(1)} \trianglelefteq G_{(0)}= G,\quad \text{ with }G_{(k)} \triangleq [G,G_{(k-1)}]
+\end{align*}
+To see that  
+\begin{align*}
+0 \leq H_n \leq  \cdots \leq H_1 \leq H
+\end{align*}
+form a central series, where $H_k\triangleq H \cap G_{(k)}$, just observe that  
+\begin{align*}
+[H,H \cap  G_{(k)}] \leq H \text{ and }[H,H \cap G_{(k)}] \leq [G,G_{(k)}] \leq G_{(k-1)}
+\end{align*}
+together implies 
+\begin{align*}
+[H,H_k] \leq H \cap G_{(k-1)} = H_{k-1}
+\end{align*}
+Let $N$ be a normal subgroup of  $G$, and let $m \leq n$ be the largest number such that $N\leq G_{(m)}$. It is clear that 
+\begin{align*}
+\frac{N}{N} \leq \frac{G_{(m)}}{N} \leq  \cdots \leq  \frac{G_{(1)}}{N} \leq \frac{G}{N}
+\end{align*}
+form a central series. 
+\end{proof}
+\begin{question}{}{}
+Show that if $G \quotient Z(G)$ is nilpotent, then $G$ is nilpotent. 
+\end{question}
+\begin{proof}
+Consider the central series 
+\begin{align*}
+ \frac{Z(G)}{Z(G)} \trianglelefteq \frac{G_1}{Z(G)} \trianglelefteq  \cdots \trianglelefteq  \frac{G_n}{Z(G)} = \frac{G}{Z(G)}
+\end{align*}
+Clearly we have the central series 
+\begin{align*}
+0 \trianglelefteq Z(G) \trianglelefteq G_1 \trianglelefteq  \cdots \trianglelefteq  G_n = G
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $o(G)=pqr$ with $p<q<r$ prime. Show that  $G$ is solvable. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Show that a finite group $G$ is nilpotent if and only if every $a,b \in G$ that makes $\operatorname{gcd}(o(a),o(b))=1$ also makes $ab=ba$.   
+\end{question}
+\begin{proof}
+($\implies $): Write $G=P_1 \times \cdots \times P_n$ with $P_i$ sylow. Clearly if the orders of $(x_1,\dots ,x_n)$ and $(y_1,\dots ,y_n)$  are coprime to each other, then for all $i$, we must have either  $x_i=e$ or  $y_i=e$. This implies that they commute. \\
+
+$(\impliedby)$:   
+\end{proof}
+\begin{question}{}{}
+Let $G=HK$ be finite and  $S \leq G$ be a $p$-subgroup that contains some $p$-Sylow subgroup of $H$ and some $p$-Sylow subgroup of  $K$. Show that  $S$ is $p$-Sylow  in $G$ and  $S= (S \cap H)(S \cap K)$.  
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $M \trianglelefteq G$ and $N \trianglelefteq G$ with $M,N$ finite and nilpotent. Prove that  $MN$ is nilpotent. 
+\end{question}
+\begin{proof}
+
+\end{proof}
+\begin{question}{}{}
+Let $G$ be finite with  $A,B \trianglelefteq G$ and $G \quotient A,G \quotient B$ solvable. Prove that $G \quotient (A \cap B)$ is solvable.   
+\end{question}
 \end{document}
+
