@@ -93,60 +93,6 @@
 \newtheorem{equiv_def}[theorem]{Equivalent Definition}
 \newtheorem{example}[theorem]{Example}
 
-% tcolorbox Setup
-\usepackage[most,many,breakable]{tcolorbox}
-
-% Define custom tcolorbox environments here...
-
-%================================
-% EXAMPLE BOX
-%================================
-% After you have defined the style and other theorem environments
-% \definecolor{myexamplebg}{RGB}{245, 245, 245} % Very light grey for background
-% \definecolor{myexamplefr}{RGB}{120, 120, 120} % Medium grey for frame
-% \definecolor{myexampleti}{RGB}{60, 60, 60}    % Darker grey for title
-%
-% \newtcbtheorem[]{Example}{Example}{
-%     colback=myexamplebg,
-%     breakable,
-%     colframe=myexamplefr,
-%     coltitle=myexampleti,
-%     boxrule=1pt,
-%     sharp corners,
-%     detach title,
-%     before upper=\tcbtitle\par\vspace{-20pt}, % Reduced the space after the title
-%     fonttitle=\bfseries,
-%     description font=\mdseries,
-%     separator sign none,
-%     description delimiters={}{}, % No delimiters around the title
-% }{ex}
-%================================
-% Solution BOX
-%================================
-\makeatletter
-\newtcolorbox{solution}{enhanced,
-	breakable,
-	colback=white,
-	colframe=myg!80!black,
-	attach boxed title to top left={yshift*=-\tcboxedtitleheight},
-	title=Solution,
-	boxed title size=title,
-	boxed title style={%
-			sharp corners,
-			rounded corners=northwest,
-			colback=tcbcolframe,
-			boxrule=0pt,
-		},
-	underlay boxed title={%
-			\path[fill=tcbcolframe] (title.south west)--(title.south east)
-			to[out=0, in=180] ([xshift=5mm]title.east)--
-			(title.center-|frame.east)
-			[rounded corners=\kvtcb@arc] |-
-			(frame.north) -| cycle;
-		},
-}
-\makeatother
-
 
 % COMMUTATIVE DIAGRAM
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
