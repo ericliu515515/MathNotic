@@ -94,31 +94,6 @@
 \newtheorem{example}[theorem]{Example}
 
 
-% COMMUTATIVE DIAGRAM
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\usepackage{tikz}
-
-\usetikzlibrary{arrows} % Needed for custom arrow tips
-\usetikzlibrary{arrows.meta} % Needed for custom arrow tips
-
-\tikzcdset{
-  doubletail/.style={
-    arrows={tail reversed-tail}
-  }
-}
-\tikzstyle{double_arrow} = [thick,<->,>=stealth]
-
-\tikzset{
-  broken double arrow/.style={
-    thick,                    % line width
-    dashed,                   % make it broken
-    <->,                      % arrowheads at both ends
-    >=Stealth[length=2pt,width=1pt] % thinner arrowheads           
-  }
-}
-
 % TABLE OF CONTENTS
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \definecolor{doc}{RGB}{0,60,110}

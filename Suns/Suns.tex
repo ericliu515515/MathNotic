@@ -3,6 +3,7 @@
 \input{macros}
 \input{letterfonts}
 \input{special_environment}
+\input{commutative_diagram_config}
 \title{Suns}
 \author{Eric Liu}
 \date{}
@@ -546,7 +547,7 @@ Let $H,K$ be two subgroups of $G$ of coprime finite indices  $m,n$. Show that
 \end{align*}
 \end{question}
 \begin{proof}
-Let $\Omega_{H\cap K},\Omega_$, and $\Omega_K$ respectively denote the set of left cosets of $H\cap K,H$, and $K$.  The map $\Omega_{H\cap K} \rightarrow \Omega_H \times \Omega_K$ defined by 
+Let $\Omega_{H\cap K},\Omega_H$, and $\Omega_K$ respectively denote the set of left cosets of $H\cap K,H$, and $K$.  The map $\Omega_{H\cap K} \rightarrow \Omega_H \times \Omega_K$ defined by 
 \begin{align}
 \label{EQmgh}
 g(H\cap K) \mapsto (gH,gK) 
@@ -555,6 +556,7 @@ is well defined since
 \begin{align*}
 g(H\cap K)=l(H\cap K) \implies g^{-1}l \in H \cap K \implies gH=lH\text{ and }gK=lK
 \end{align*}
+
 such set map is injective since if $gH=lH$ and  $gK=lK$, then  $g^{-1}l \in H$ and $g^{-1}l\in K$, which implies $g(H \cap K)=l(H \cap K)$, as desired. From the injectivity of \myref{map}{EQmgh}, we have shown  index of  $H\cap K$ indeed have upper bound $mn$. \\
 
 
