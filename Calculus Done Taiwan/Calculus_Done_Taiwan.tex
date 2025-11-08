@@ -2213,7 +2213,444 @@ where
 \end{align*}
 by uniform continuity of $f$. 
 \end{proof}
+\section{Uanalysis exercises}
+\begin{question}{}{}
+Show that $\textbf{F}:\R^3 - \set{\textbf{0}}\rightarrow \R^3$ defined by 
+\begin{align*}
+\textbf{F}(\textbf{x})= \frac{-c\textbf{x}}{ \abso{\textbf{x}}^3} 
+\end{align*}
+is conservative. 
+\end{question}
+\begin{proof}
+Observe that 
+\begin{align*}
+  \textbf{F}= \nabla c \abso{\textbf{x}}^{-1}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Find a potential function for the fields: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\textbf{F}(x,y,z)= \left(\ln (x) + \sec^2 (x+y), \sec^2 (x+y) + \frac{y}{y^2+z^2} , \frac{z}{y^2+z^2} \right)$. 
+  \item $\textbf{F}(x,y,z)= \left(\frac{y}{1+x^2y^2}, \frac{x}{1+x^2y^2} + \frac{z}{\sqrt{1-y^2z^2}} , \frac{y}{\sqrt{1-y^2z^2} } + \frac{1}{z} \right)$
+\end{enumerate}
+\end{question}
+\begin{proof}
+For (i), 
+\begin{align*}
+\textbf{F} = \nabla \left(x\ln x - x + \tan (x+y) + \frac{1}{2} \cdot \ln (y^2+z^2) \right)
+\end{align*}
+For (ii), 
+\begin{align*}
+\textbf{F}= \nabla \left(\arctan (xy) - \sqrt{1-y^2z^2} + \ln (x) \right)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Find the potential functions of the followings vector field and compute the line integrals: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\int_{(0,0,0)}^{(1,2,3)} 2xydx+ (x^2-z^2)dy -2yzdz$. 
+  \item $\int_{(1,0,0)}^{(0,1,1)} \sin y \cos x dx + \cos y \sin x dy + dz$. 
+  \item $\int_{(1,2,1)}^{(2,1,1)} \left(2x \ln y - yz \right)dx + \left(\frac{x^2}{y}-xz \right)dy-xydz$. 
+  \item $\int_{(-1,-1,-1)}^{(2,2,2)} \frac{2xdx+2ydy+2zdz}{x^2+y^2+z^2}$
+\end{enumerate}
+\end{question}
+\begin{proof}
+For (i), 
+\begin{align*}
+\textbf{F} = \nabla \left( x^2y -yz^2  \right)\quad \text{ and }\quad \left(x^2y-yz^2 \right) \Bigg|_{(0,0,0)}^{(1,2,3)}=  -16 
+\end{align*}
+For (ii), 
+\begin{align*}
+\textbf{F} = \nabla ( \sin x \sin y) \quad \text{ and }\quad  \left(\sin x \sin y \right) \Bigg |_{(1,0,0)}^{(2,1,1)} = \sin (2)\sin (1) 
+\end{align*}
+For (iii), 
+\begin{align*}
+\textbf{F}= \nabla (x^2 \ln y- xyz) \quad \text{ and }\quad \left( x^2 \ln y -xyz \right) \Bigg |_{(1,2,1)}^{(2,1,1)} = - \ln 2  
+\end{align*}
+For (iv), 
+\begin{align*}
+  \textbf{F} = \nabla \left( \ln (x^2+y^2+z^2) \right) \quad \text{ and }\quad  \left(\ln (x^2+y^2+z^2) \right) \Bigg |_{(-1,-1,-1)}^{(2,2,2)} = \ln (8)- \ln (3) 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $\textbf{F}(x,y) \triangleq (3+2xy,x^2-3y^2)$. 
+\begin{enumerate}[label=(\roman*)]
+  \item Find a potential function.  
+  \item Evaluate the line integral $\int_C \textbf{F} \cdot d \textbf{r}$ where 
+    \begin{align*}
+    \textbf{r}(t)= (e^t \sin t, e^t \cos t ),\quad 0\leq t \leq \pi 
+    \end{align*}
+\end{enumerate}
+\end{question}
+\begin{proof}
+\begin{align*}
+\textbf{F}= \nabla (3x+x^2y-y^3)
+\end{align*}
+So 
+\begin{align*}
+\int_{C} \textbf{F} \cdot d \textbf{r} = (3x+x^2y-y^3) \Bigg |_{(0,1)}^{(0,-e^{\pi })}= e^{3\pi } - 1 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Define $\textbf{F}:\R^2 - \set{\textbf{0}} \rightarrow \R^2 $ by 
+\begin{align*}
+\textbf{F}(x,y)\triangleq  \left( \frac{-y}{x^2+y^2} , \frac{x}{x^2+y^2} \right)
+\end{align*}
+Show that the two-form is closed but not exact.
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\frac{\partial }{\partial y} \frac{-y}{x^2+y^2}= \frac{\partial }{\partial x} \frac{x}{x^2+y^2} = \frac{y^2-x^2}{(x^2+y^2)^2}  
+\end{align*}
+To see it isn't exact, compute 
+\begin{align*}
+\int_C \textbf{F} \cdot d \textbf{r}= 2\pi  ,\quad \text{ where }C=(\cos t, \sin t), 0 \leq t \leq  2\pi 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Evaluate 
+\begin{align*}
+\int_C x^4 dx + xy dy 
+\end{align*}
+where $C$ is the triangular curve consisting of the line segments from $(0,0)$ to $(1,0)$, from $(1,0)$ to $(0,1)$, and from $(0,1)$ to $(0,0)$. 
+\end{question}
+\begin{proof}
+By Green's theorem 
+\begin{align*}
+\int_C x^4dx+xydy= \int_T y dA,\quad \text{ where }T\text{ is the triangular region enclosed by }C
+\end{align*}
+Compute 
+\begin{align*}
+\int_R ydA= \int_0^1 \int_0^x y dy dx = \int_0^1 \frac{x^2}{2} dx= \frac{1}{6}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Define $\textbf{F}:\R^2 - \set{\textbf{0}} \rightarrow \R^2 $ by 
+\begin{align*}
+\textbf{F}(x,y)\triangleq  \left( \frac{-y}{x^2+y^2} , \frac{x}{x^2+y^2} \right)
+\end{align*}
+Let $C$ be simple closed curve. Show that 
+\begin{align*}
+\int_C \textbf{F} \cdot d \textbf{r} = \begin{cases}
+  2\pi& \text{ if $C$ enclose the origin } \\
+  0& \text{ if $C$ doesn't }
+\end{cases}
+\end{align*}
+\end{question}
+\begin{proof}
+This follows from Green's theorem, and computing that for $C=(r\cos t, r \sin t)$ with $0\leq \trianglelefteq 2\pi $, we have $\int_C \textbf{F} \cdot d \textbf{r}=2\pi $. 
+\end{proof}
+\begin{question}{}{}
+Use Green's theorem to evaluate 
+\begin{align*}
+\int_C (x^2+10xy+y^2)dx + (5x^2+5xy)dy 
+\end{align*}
+where $C$ is the positively oriented square with vertices $(0,0),(2,0),(2,2),(0,2)$. 
+\end{question}
+\begin{proof}
+Let $D$ be the square region enclosed by $C$. Compute 
+\begin{align*}
+\int_C (x^2+10xy+y^2)dx + (5x^2+5xy)dy  &= \int_D (10x+5y- 10x -2y) dA \\
+&=\int_D 3ydA\\
+&= \int_0^2 \int_0^2 3y dydx = 12
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Use Green's theorem to find the area of the region enclosed by the curve $x^{\frac{2}{3}}+y^{\frac{2}{3}}=1$
+\end{question}
+\begin{proof}
+We use 
+\begin{align*}
+x&=\cos^3 t \quad \text{ and }\quad dx=-3\cos^2 t \sin t \\
+y&= \sin^3 t \quad \text{ and }\quad dy= 3 \sin^2 t \cos t
+\end{align*}
+as parametrization to compute 
+\begin{align*}
+\int_D dA &= \int_C \frac{-y}{2}dx + \frac{x}{2}dy \\
+&= \frac{3}{2}\int_0^{2\pi } \left(\sin^2 (t) \cos^4 (t) + \cos^2 (t) \sin^4 (t) \right) dt \\
+&=\frac{3}{2} \int_0^{2\pi } \cos^2 (t) \sin^2 (t) dt \\
+&= \frac{3}{8} \int_0^{2\pi } \sin^2 (2t)dt  = \frac{3}{8}\int_0^{2\pi }  \frac{1- \sin (4t)}{2} dt=  \frac{3\pi }{8}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+\begin{enumerate}[label=(\roman*)]
+  \item If $C$ is the line segment connecting the point $(x_1,y_1)$ to the point $(x_2,y_2)$, show that 
+    \begin{align*}
+    \int_C xdy- ydx =x_1y_2- x_2y_1
+    \end{align*}
+  \item  If the vertices of a polygon, in counterclockwise order, is $(x_1,y_1)$,$(x_2,y_2)$,$\dots ,(x_n,y_n)$, show that the area of the polygon is 
+\begin{align*}
+A= \frac{1}{2} \left[ (x_1y_2-x_2y_1) +(x_2y_3-x_3y_2) + \cdots + (x_ny_1-x_1y_n)\right]
+\end{align*} 
+\item Find the area of the pentagon with vertices $(0,0),(2,1),(1,3),(0,2),(-1,1)$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+For (i), just compute with $x(t)=(x_2-x_1)t+x_1$ and $(y_2-y_1)t+y_1$, and the terms cancel out. For (ii), use (i) and Green's theorem. For (iii) the computational result is $\frac{9}{2}$. 
+\end{proof}
+\textbf{Stoke's theorem} stated that for bounded open $D\subseteq \R^n$, we have 
+\begin{align*}
+\int_{\partial D} \textbf{F} \cdot \textbf{n} ds = \int_D \frac{\partial F_1}{\partial x_1} + \cdots + \frac{\partial F_n}{\partial x_n}  dV
+\end{align*}
+Let $f,g:D\rightarrow \R$. Computing 
+\begin{align*}
+\sum_{i=1}^n  \frac{\partial }{\partial x_i} f (\nabla g)=  \nabla f \cdot \nabla g + \nabla^2 g
+\end{align*}
+We then have \textbf{Green's first identity}: 
+\begin{align*}
+\int_{\partial D} (f \nabla g) \cdot \textbf{n}ds= \int_D (\nabla f \cdot \nabla g + \nabla^2 g) dV
+\end{align*}
+Let $f\equiv 1$ and $g$ harmonic, we then see 
+\begin{align*}
+\int_{\partial D} \nabla g \cdot \textbf{n}ds=0
+\end{align*}
+\begin{question}{}{}
+Let $D \subseteq \R^2$ be open with $g \in C^2(D)$ harmonic. Show that for all $B_r(x) \subseteq D$, 
+\begin{align*}
+g(x)= \frac{1}{\pi r^2} \int_{B_r(x)}g (\textbf{x})dV = \frac{1}{2\pi  r} \int_{\partial  B_r(x)} g(\textbf{x})dA
+\end{align*}
+\end{question}
+\begin{proof}
+Define 
+\begin{align*}
+\pfi (r)\triangleq  \frac{1}{2\pi r}\int_{\partial B_r(x)}g (\textbf{x}) dA
+\end{align*}
+Clearly by continuity of $g$, this converge to $g(x)$. We now show that $\pfi $ has zero derivative. Compute 
+\begin{align*}
+  \pfi (r)&= \frac{1}{2\pi r}\int_{\partial  B_r(x)} g(\textbf{z}+x) d\textbf{z} \\
+  &=\frac{1}{2\pi r}  \int_0^{2\pi } g(x_1+r\cos t,x_2+r\sin t)rdt  \\
+  &= \frac{1}{2\pi } \int_0^{2\pi } g(x_1+r \cos t, x_2+r \sin t) dt
+\end{align*}
+Compute 
+\begin{align*}
+\pfi'(r)&=\frac{1}{2\pi }\int_0^{2\pi } \nabla g (x_1+r \cos t,x_2+r \sin t) \cdot \textbf{n} dt =0 
+\end{align*}
+Compute 
+\begin{align*}
+  \psi (r)&= \frac{1}{\pi r^2} \int_{B_r(x)}  g(\textbf{z}+x)d\textbf{z}  \\
+  &=\frac{1}{\pi r^2} \int_0^{r} \int_0^{2\pi } g(x_1+t \cos \theta , x_2 +t\sin \theta) t d\theta dt \\
+  &=\frac{1}{\pi r^2} \int_0^r \int_{\partial B_t(x)} g(\textbf{z})d\textbf{z}dt  \\
+  &=\frac{1}{\pi r^2} \int_0^r 2\pi t g(x)dt= g(x)  
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Show that 
+\begin{enumerate}[label=(\roman*)]
+  \item $\nabla r = \frac{\textbf{x}}{r}$. 
+  \item $\nabla u(r)= u'(r) \frac{\textbf{x}}{r} $. 
+  \item $\nabla ^2 u(r)= u''(r) +  \left(\frac{n-1}{r} \right)u'(r)$
+\end{enumerate}
+\end{question}
+\begin{proof}
+\begin{align*}
+ \frac{\partial }{\partial x_1} \sqrt{x_1^2 + \cdots + x_n^2}=   \frac{x_1}{\sqrt{x_1^2 + \cdots +x_n^2} }
+\end{align*}
+\begin{align*}
+\frac{\partial }{\partial x_1} u\left( \sqrt{x_1^2 + \cdots + x_n^2}  \right) =  u'(r) \frac{x_1}{r }
+\end{align*}
+\begin{align*}
+\frac{\partial }{\partial x_1} \left(u'(r) \frac{x_1}{r}  \right) = u''(r) (\frac{x_1}{r})^2 + u'(r) \left( \frac{r- \frac{x_1^2}{r}}{r^2} \right)  
+\end{align*}
+Therefore 
+\begin{align*}
+\sum_{i=1}^n \frac{\partial }{\partial x_i}\left(u'(r) \frac{x_i}{r} \right)= u''(r) + \left(\frac{n-1}{r}\right)u'(r)
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Compute the Laplacian of the following functions. 
+\begin{enumerate}[label=(\roman*)]
+  \item $f(\textbf{x})\triangleq  \abso{\textbf{x}}^a$ with $a \inr$. 
+  \item $f(x,y)\triangleq \ln (x^2+y^2)$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Compute  
+\begin{align*}
+\frac{\partial f}{\partial x_1} = a \left(x_1^2 + \cdots + x_n^2\right)^{\frac{a}{2}-1} x_1
+\end{align*}
+\begin{align*}
+\frac{\partial^2 f}{(\partial x_1)^2} =   a \left(x_1^2 + \cdots + x_n^2\right)^{\frac{a}{2}-1}  + a \left(a-2 \right) (x_1^2 + \cdots + x_n^2)^{\frac{a}{2}-2}x_1^2
+\end{align*}
+Therefore, 
+\begin{align*}
+\nabla^2 f(\textbf{x})= na\abso{\textbf{x}}^{a-2} + a (a-2) \abso{\textbf{x}}^{a-4} \cdot \abso{\textbf{x}}^2 - (a^2+ (n-2)a)\abso{\textbf{x}}^{a-2}
+\end{align*}
+\begin{align*}
+\nabla^2 (\ln (x^2+y^2))= 0
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $D\subseteq \R^2$ be  bounded open connected with $g\in C^2(D)\cap C(\overline{D})$ harmonic. Prove that $g$ can not attain maximum in $D$ unless $g$ is constant.   
+\end{question}
+\begin{proof}
+Suppose $g |_D$ attains maximum. Let that maximum be $c$. We are required to show  $g^{-1}(c)$ is clopen in $D$. Clearly it is closed in  $D$. To see it is open in  $D$, observe that for all  $B_r(x)\subseteq D$ with $g(x)=c$, if any point $z\in B_r(x)$ makes $g(z)<g(x)$, then by continuity, we have 
+\begin{align*}
+\frac{1}{\pi r^2} \int_{B_r(x)}g(z)dz < g(x)
+\end{align*}
+which is impossible. 
+\end{proof}
+\begin{question}{}{}
+Consider the autonomous system 
+\begin{align*}
+x'(t)=P(x,y)\quad \text{ and }\quad y'(t)=Q(x,y)
+\end{align*}
+in an simple connected open $R \subseteq \R^2$, with $P,Q\in C^1(R)$ satisfying 
+ \begin{align*}
+\frac{\partial P}{\partial x}+ \frac{\partial Q}{\partial y}\neq 0\text{ globally }
+\end{align*}
+Show that the system has no orbit. 
+\end{question}
+\begin{proof}
+If there really is an orbit $C$, then denoting the enclosed area by $D$, we have 
+ \begin{align*}
+0 &= \int_C y'(t)dx-x'(t)dy  \\
+&=\int_C Qdx-Pdy \\
+&=\int_D - \frac{\partial P}{\partial x} - \frac{\partial Q}{\partial y}
+\end{align*}
+a contradiction. 
+\end{proof}
+\begin{question}{}{}
+Evaluate the scalar integral $\iint_S zdS$ where $S$ is the surface whose sides $S_1$ are given by the cylinder $x^2+y^2=1$, whose bottom  $S_2$ is the disk $x^2+y^2 \leq 1$ in the plane $z=0$, and whose top  $S_3$ is the part of the plane $z=1+x$ that lies above  $S_2$. 
+\end{question}
+\begin{proof}
+Parametrize  $S_1$ by 
+\begin{align*}
+  (x,y,z)= (\cos \theta ,\sin \theta , z )
+\end{align*}
+We see 
+\begin{align*}
+f_\theta = (- \sin \theta , \cos \theta , 0),f_z= (0,0,1), f_\theta \times f_z= (\cos \theta , \sin \theta ,0) 
+\end{align*}
+And therefore, 
+\begin{align*}
+  \iint_{S_1} zdS = \int_0^{2\pi } \int_{0}^{1+ \cos \theta} zdzd \theta =    \int_0^{2\pi }  \frac{1+ 2 \cos \theta + \cos^2 \theta }{2} d \theta = \frac{3\pi }{2} 
+\end{align*}
+Parametrize $S_3$ by 
+\begin{align*}
+  (x,y,z)= (r \cos \theta , r \sin \theta , 1+ r \cos \theta )
+\end{align*}
+We see 
+\begin{align*}
+f_\theta = (-r \sin \theta , r \cos \theta , -r \sin \theta ),f_r= ( \cos \theta , \sin \theta , \cos \theta ), f_{r} \times f_\theta = (-r,0,r)
+\end{align*}
+Therefore 
+\begin{align*}
+\iint_{S_3} z dS = \int_0^{2\pi } \int_0^1 (1+ r \cos \theta )\sqrt{2} r dr d\theta = \sqrt{2} \pi 
+\end{align*}
+
+\end{proof}
+\begin{question}{}{}
+Define 
+\begin{align*}
+\textbf{F}(x,y,z) \triangleq (xy,yz,xz)
+\end{align*}
+Evaluate 
+\begin{align*}
+\int_C \textbf{F}\cdot d \textbf{r}
+\end{align*}
+where $C$ is the positively oriented boundary of the paraboloid $z=1-x^2-y^2$ in the first quadrant. 
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\nabla \times \textbf{F} = (-y,-z,-x)
+\end{align*}
+Parametrize via 
+\begin{align*}
+  (x,y,z) = (r \cos \theta , r \sin \theta , 1-r^2)
+\end{align*}
+We have 
+\begin{align*}
+f_r=(\cos \theta , \sin \theta , -2r),f_\theta =(-r \sin \theta ,r \cos \theta,0), f_r \times f_\theta = (2r^2 \cos \theta , 2r^2 \sin \theta ,r)
+\end{align*}
+Because $r>0$, we know our direction is correct. Therefore 
+\begin{align*}
+\int_C \textbf{F} \cdot d \textbf{r}&= \iint_D \nabla \times \textbf{F} \cdot \textbf{n} dS \\
+&= \int_0^1 \int_{0}^{\frac{\pi}{2}} (-r \sin \theta , r^2 -1 , -r \cos \theta ) \cdot (2r^2 \cos \theta, 2r^2 \sin \theta ,r)   d\theta dr  \\
+&=\int_0^1 \int_0^{\frac{\pi}{2}} -2r^3 \sin \theta \cos \theta + 2r^4 \sin \theta - 2r^2 \sin \theta - r^2 \cos \theta d \theta dr = \frac{-17}{20}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Evaluate 
+\begin{align*}
+\iint_S \operatorname{curl} \textbf{F} \cdot \textbf{n} dS
+\end{align*}
+where 
+\begin{align*}
+\textbf{F}(x,y,z)\triangleq \left(\arctan(x^2yz^2), x^2y, x^2z^2 \right)
+\end{align*}
+and $S$ is the cone 
+\begin{align*}
+x= \sqrt{y^2+z^2} \quad \text{ and }\quad 0\leq x\leq 2
+\end{align*}
+oriented in the direction of the positive $x$-axis. 
+\end{question}
+\begin{proof}
+The trick is to see that we have 
+\begin{align*}
+\iint_S \operatorname{curl} \textbf{F} \cdot \textbf{n} dS = \iint_D \operatorname{curl} \textbf{F} \cdot \textbf{n} dS
+\end{align*}
+by Stoke's theorem if they have the same boundary. Letting $D\triangleq \set{x=2, y^2+x^2 \leq 2}$, we see that $\textbf{n}=(1,0,0)$, and therefore 
+\begin{align*}
+\iint_D \operatorname{curl} \textbf{F} \cdot \textbf{n} dS= \iint_D  \frac{\partial F_3}{\partial y} - \frac{\partial F_2}{\partial z}  dS = 0  
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Evaluate 
+\begin{align*}
+\iint_S \textbf{F} \cdot \textbf{n} dS
+\end{align*}
+where 
+\begin{align*}
+\textbf{F}(x,y,z)=\left(xy,y^2 +e^{xz^2},\sin (xy) \right)
+\end{align*}
+$S$ is the surface of the region bounded by the parabolic cylinder $z=1-x^2$ and the planes  $z=0$,  $y=0$, and  $y+z=2$, and  $\textbf{n}$ is outward.
+\end{question}
+\begin{proof}
+Compute 
+\begin{align*}
+\nabla \cdot \textbf{F}= 3y
+\end{align*}
+And therefore 
+\begin{align*}
+\int_{-1}^{1} \int_{0}^{1-x^2}\int_0^{2-z} 3y dydzdx &=   \int_{-1}^{1} \int_0^{1-x^2} \left(\frac{3}{2}z^2 - 6z+6 \right) dzdx \\
+&= \int_{-1}^{1} \frac{(1-x^2)^3}{2} - 3 (1-x^2)^2  + 6 (1-x^2) dx \\
+&=\int_{-1}^{1} \left(\frac{-1}{2}x^6 + \frac{-3}{2} x^4 + \frac{-3}{2} x^2 + \frac{7}{2}  \right) dx  \\
+&= \frac{-1}{7}+\frac{-3}{5}+ (-1) + 7 =   \frac{184}{35}
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Find the box $0 \leq x \leq  a,0\leq y\leq b,0\leq z\leq 1$ that maximize the flux of the field 
+\begin{align*}
+\textbf{F}(x,y,z) = (-x^2-4xy,-6yz,12z)
+\end{align*}
+\end{question}
+\begin{proof}
+Compute
+\begin{align*}
+\nabla \cdot \textbf{F} = (-2x-4y-6z+12)
+\end{align*}
+Compute 
+\begin{align*}
+\int_0^a \int_0^b \int_{0}^1  (-2x-4y-6z+12) dzdydx  &= \int_0^a \int_0^b (-2x-4y+12 -3)dydx  \\
+&= 9ab - a^2b - 2ab^2  
+\end{align*}
+Compute 
+\begin{align*}
+\frac{\partial }{\partial a} (9ab-a^2b-2ab^2)= b(9-2a-2b)\quad \text{ and }\quad \frac{\partial }{\partial b}(9ab-a^2b-ab^2)= a(9-a-4b)
+\end{align*}
+Therefore the critical point can only be 
+\begin{align*}
+a+b=\frac{9}{2}\quad \text{ and }\quad a+4b=9
+\end{align*}
+which is 
+\begin{align*}
+  (a,b)=(3,\frac{3}{2})
+\end{align*}
+
+\end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam}
+
 \section{Year 114}
 \begin{question}{easy estimate}{}
 Let $\textbf{x}=(x_1,x_2,x_3)$ be coordinate of $\R^3$. Let 
