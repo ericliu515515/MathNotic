@@ -55,55 +55,28 @@
 	#1
 }{def}
 \makeatother
-\makeatletter
-\newtcbtheorem{qstion}{Question}{enhanced,
-    breakable,
-    colback=white,
-    colframe=mygr,
-    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
-    fonttitle=\bfseries,
-    title={#2},
-    boxed title size=title,
-    boxed title style={%
-        sharp corners,
-        rounded corners=northwest,
-        colback=tcbcolframe,
-        boxrule=0pt,
-    },
-    underlay boxed title={%
-        \path[fill=tcbcolframe] (title.south west)--(title.south east)
-        to[out=0, in=180] ([xshift=5mm]title.east)--
-        (title.center-|frame.east)
-        [rounded corners=\kvtcb@arc] |-
-        (frame.north) -| cycle;
-    },
-    #1
-}{def}
-\makeatother
-
 
 %================================
 % EXAMPLE BOX
 %================================
+
 % After you have defined the style and other theorem environments
-% \definecolor{myexamplebg}{RGB}{245, 245, 245} % Very light grey for background
-% \definecolor{myexamplefr}{RGB}{120, 120, 120} % Medium grey for frame
-% \definecolor{myexampleti}{RGB}{60, 60, 60}    % Darker grey for title
-%
-% \newtcbtheorem[]{Example}{Example}{
-%     colback=myexamplebg,
-%     breakable,
-%     colframe=myexamplefr,
-%     coltitle=myexampleti,
-%     boxrule=1pt,
-%     sharp corners,
-%     detach title,
-%     before upper=\tcbtitle\par\vspace{-20pt}, % Reduced the space after the title
-%     fonttitle=\bfseries,
-%     description font=\mdseries,
-%     separator sign none,
-%     description delimiters={}{}, % No delimiters around the title
-% }{ex}
+\definecolor{myexamplebg}{RGB}{245, 245, 245} % Very light grey for background
+\definecolor{myexamplefr}{RGB}{120, 120, 120} % Medium grey for frame
+\definecolor{myexampleti}{RGB}{60, 60, 60}    % Darker grey for title
+
+\newtcbtheorem[use counter*=theorem]{Example}{Example}{%
+  enhanced, breakable,
+  colback=myexamplebg, colframe=myexamplefr, coltitle=myexampleti,
+  fonttitle=\bfseries, boxrule=1pt, sharp corners,
+  % draw a proper boxed title and reserve space automatically
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={sharp corners, colback=myexamplefr, boxrule=0pt},
+  separator sign none,
+  description font=\mdseries,
+  description delimiters={}{},
+}{ex}
+
 %================================
 % Solution BOX
 %================================
