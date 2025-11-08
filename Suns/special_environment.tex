@@ -65,18 +65,14 @@
 \definecolor{myexamplefr}{RGB}{120, 120, 120} % Medium grey for frame
 \definecolor{myexampleti}{RGB}{60, 60, 60}    % Darker grey for title
 
+
 \newtcbtheorem[use counter*=theorem]{Example}{Example}{%
   enhanced, breakable,
   colback=myexamplebg, colframe=myexamplefr, coltitle=myexampleti,
   fonttitle=\bfseries, boxrule=1pt, sharp corners,
-  % draw a proper boxed title and reserve space automatically
-  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
-  boxed title style={sharp corners, colback=myexamplefr, boxrule=0pt},
-  separator sign none,
-  description font=\mdseries,
-  description delimiters={}{},
+  after title={\par\nointerlineskip},
+  after title*={\par\nointerlineskip},
 }{ex}
-
 
 %================================
 % Solution BOX
