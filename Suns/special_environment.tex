@@ -1,0 +1,79 @@
+%================================
+% Abstract 
+%================================
+
+\usepackage{lipsum}
+
+\renewenvironment{abstract}
+ {% Start of environment
+  \quotation
+  \small
+  \noindent
+  \rule{\linewidth}{.5pt} % Draw the rule to match the linewidth
+  \par\smallskip
+  {\centering\bfseries\abstractname\par}\medskip
+ }
+ {% End of environment
+  \par\noindent
+  \rule{\linewidth}{.5pt} % Ensure the closing rule also matches
+  \endquotation
+ }
+
+
+%================================
+% Question BOX
+%================================
+
+\newcounter{qnum} % The counter name for Question box is qnum
+
+\makeatletter
+\newtcbtheorem[use counter=qnum]{question}{Question}{enhanced,
+	breakable,
+	colback=white,
+	colframe=myb!80!black,
+	attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+	fonttitle=\bfseries,
+	title={#2},
+	boxed title size=title,
+	boxed title style={%
+			sharp corners,
+			rounded corners=northwest,
+			colback=tcbcolframe,
+			boxrule=0pt,
+		},
+	underlay boxed title={%
+			\path[fill=tcbcolframe] (title.south west)--(title.south east)
+			to[out=0, in=180] ([xshift=5mm]title.east)--
+			(title.center-|frame.east)
+			[rounded corners=\kvtcb@arc] |-
+			(frame.north) -| cycle;
+		},
+	#1
+}{def}
+\makeatother
+\makeatletter
+\newtcbtheorem{qstion}{Question}{enhanced,
+    breakable,
+    colback=white,
+    colframe=mygr,
+    attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+    fonttitle=\bfseries,
+    title={#2},
+    boxed title size=title,
+    boxed title style={%
+        sharp corners,
+        rounded corners=northwest,
+        colback=tcbcolframe,
+        boxrule=0pt,
+    },
+    underlay boxed title={%
+        \path[fill=tcbcolframe] (title.south west)--(title.south east)
+        to[out=0, in=180] ([xshift=5mm]title.east)--
+        (title.center-|frame.east)
+        [rounded corners=\kvtcb@arc] |-
+        (frame.north) -| cycle;
+    },
+    #1
+}{def}
+\makeatother
+
