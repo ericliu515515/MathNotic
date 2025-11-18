@@ -2,6 +2,9 @@
 \input{preamble}
 \input{macros}
 \input{letterfonts}
+\input{special_environment}
+\input{commutative_diagram_config}
+\input{content_page_config}
 
 \title{Linear Algebra Done Taiwan}
 \author{Eric Liu}
@@ -1145,6 +1148,8 @@ Above equation need to be explained in the section before.
 \end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam} 
 \section{Year 114}
+
+\setcounter{qnum}{0}
 \begin{question}{Smith normal form and Jordan form}{}
 Let 
 \begin{align*}
@@ -1301,6 +1306,7 @@ Because $a_1\mid a_2$, we now see  $a_1 \mid \ld -\mu$, which implies $\ld-\mu=0
 \end{proof}
 
 \section{Year 113}
+\setcounter{qnum}{0}
 \begin{question}{standard computation}{}
 Let 
 \begin{align*}
@@ -1537,6 +1543,7 @@ The opposite follows from noting
 \end{align*}
 \end{proof}
 \section{Year 112}
+\setcounter{qnum}{0}
 \begin{question}{standard computation}{}
 Let 
 \begin{align*}
@@ -1745,6 +1752,7 @@ Clearly, the "$\supseteq$" part holds. To prove the "$\subseteq$" part also hold
 
 
 \section{Year 110}
+\setcounter{qnum}{0}
 \begin{question}{}{}
 Let $V$ be a finite-dimensional complex inner product space. Let $d\in \operatorname{End}(V)$ satisfy 
 \begin{align*}
@@ -1881,6 +1889,7 @@ Therefore,
 \end{align*}
 \end{proof}
 \section{Year 109}
+\setcounter{qnum}{0}
 \begin{question}{}{}
 Let $A$ be a  $4\times 4 $ real symmetric matrix. Suppose that $1$ and $2$ are eigenvalues of $A$ and the eigenspace of  $2$ is  $3$-dimensional. Suppose  $(1,-1,-1,1)^t$ is an eigenvector with eigenvalue $1$. 
  \begin{enumerate}[label=(\alph*)]
@@ -2053,6 +2062,7 @@ to conclude that $\xi_i \not\in \operatorname{Ker}T^\vee$ for all $1\leq i\leq n
 This, together with Rank-Nullity Theorem, proves both propositions.
 \end{proof}
 \section{Year 108}
+\setcounter{qnum}{0}
 \begin{question}{}{}
 Find all possible Jordan forms for $8\times 8$ real matrices $x^2(x-2)^3$ as minimal polynomial.
 \end{question}
@@ -2161,6 +2171,7 @@ Part (c) is independent of part (a) and (b). Because $B$ is nondegenerate, we ma
 It is clear that $\set{\tilde{v_1},\dots ,\tilde{v_n}}$ is orthogonal. It is easy to normalize them, and the result is the desired $\set{e_1,\dots ,e_n}$. 
 \end{proof}
 \section{Year 107}
+\setcounter{qnum}{0}
 \begin{question}{}{}
 Let 
  \begin{align*}
@@ -2468,6 +2479,7 @@ we conclude that to close out the proof with the general formula $\operatorname{
 is nonzero. 
 \end{proof}
 \section{Year 106}
+\setcounter{qnum}{0}
 \begin{question}{}{}
 Let $\F$ be some field, and let $A\in M_n(\F)$.
 \begin{enumerate}[label=(\alph*)]
@@ -2577,6 +2589,7 @@ Here, we offer a proof that use only Bezout's identity, i.e., the one we present
 The only part the question require us to prove that the argument presented at the end of \myref{Section}{JCD} didn't show is that we may select some $\tilde{p}  \in \C [x]$ so that not only $S=\tilde{p} (T)$ but also  $\tilde{p} $ has zero constant term. Let $p=\sum \xi_i q_i f_i$ where $\xi_i,q_i,f_i$ are defined at the end of \myref{Section}{JCD}. To prove this, we first note that because $T-p(T)$ is nilpotent, we may find $n$ such that the polynomial  $(x-p)^n$ sends $T$ to $0$. If $p$ has zero constant term, then  $\tilde{p}\triangleq p$ suffice. If $p$ has nonzero constant term, then  $(x-p)^n$ also has nonzero constant term and $\tilde{p}\triangleq p- \frac{\text{ constant term of $p$}}{\text{ constant term of }(x-p)^n}(x-p)^n \in \C [x]$ is a polynomial that sends $T$ to $0$ and has zero constant term.  
 \end{proof}
 \section{Year 105}
+\setcounter{qnum}{0}
 \begin{question}{}{}
 Prove the \textbf{Cayley-Hamilton Theorem}: If $V$ is a finite dimensional vector space and  $T \in \operatorname{End}(V)$ has characteristic polynomial $p(x)$, then $p(T)=0$. 
 \end{question}
@@ -2673,6 +2686,7 @@ suffice. Clearly they are stable under $T$. It remains to show  $T |_{W_1}$ and 
 \end{enumerate}
 \end{proof}
 \section{Year 104}
+\setcounter{qnum}{0}
 \begin{question}{}{}
 \begin{enumerate}[label=(\roman*)]
   \item For each $x\inr$, let $V_x$ be the subspace of  $\R^4$ spanned by 
@@ -2791,6 +2805,7 @@ BA^i\textbf{e}= A^iB\textbf{e}=A^i F(A)\textbf{e}= F(A)A^i \textbf{e}
 \end{align*}
 \end{proof}
 \section{Year 103}
+\setcounter{qnum}{0}
 \begin{question}{}{}
 Let $A\in \operatorname{M}_{m\times n}(\F), B \in \operatorname{M}_{n\times p} (\F)$. Show that 
 \begin{enumerate}[label=(\roman*)]

@@ -1,23 +1,3 @@
-\newcommand{\liff}{\llap{$\iff$}}
-\newcommand{\rap}[1]{\rrap{\text{ (#1)}}}
-\newcommand{\red}[1]{\textcolor{red}{#1}}
-\newcommand{\blue}[1]{\textcolor{blue}{#1}}
-\newcommand{\vi}[1]{\textcolor{violet}{#1}}
-\newcommand{\olive}[1]{\textcolor{olive}{#1}}
-\newcommand{\teal}[1]{\textcolor{teal}{#1}}
-\newcommand{\brown}[1]{\textcolor{brown}{#1}}
-\newcommand{\orange}[1]{\textcolor{orange}{#1}}
-\newcommand{\tCaC}{\text{ \CaC }}
-\newcommand{\CaC}{\red{CaC} }
-\newcommand{\As}[1]{Assume \red{#1}}
-\newcommand{\vdone}{\vi{\text{ (done) }}}
-\newcommand{\bdone}{\blue{\text{ (done) }}}
-\newcommand{\tdone}{\teal{\text{ (done) }}}
-\newcommand{\odone}{\olive{\text{ (done) }}}
-\newcommand{\bodone}{\brown{\text{ (done) }}}
-\newcommand{\ordone}{\orange{\text{ (done) }}}
-\newcommand{\ld}{\lambda}
-\newcommand{\vecta}[1]{\textbf{#1}}
 \newcommand{\set}[1]{\left\{ #1 \right\}}
 \newcommand{\bset}[1]{\Big\{ #1 \Big\}}
 \newcommand{\inR}{\in\R}
@@ -36,22 +16,23 @@
 \newcommand{\dcup}{\mathbin{\dot{\cup}}}
 \newcommand{\diam}[1]{\text{diam}\, #1}
 \newcommand{\at}{\Big|}
+\newcommand{\quotient}{\diagup}
+
 \let\originalphi\phi % Store the original \phi in \originalphi
+
 \renewcommand{\phi}{\varphi} % Redefine \phi to \varphi
+
 \newcommand{\pfi}{\originalphi} % Define \pfi to display the original \phi
+
 \newcommand{\diota}{\dot{\iota}}
 \newcommand{\Log}{\operatorname{Log}}
-\newcommand{\quotient}{/}
-
-
-
-
-\usepackage{enumitem}
-\newcommand{\subscript}[2]{$#1 _ #2$} % label usage 
-
-
-
+\newcommand{\id}{\text{\textbf{id}}}
 \usepackage{amsmath}
+
+
+\usepackage{amssymb,mathtools}
+
+\newcommand{\longtwoheadrightarrow}{\relbar\joinrel\twoheadrightarrow}
 
 \makeatletter
 \NewDocumentCommand{\extp}{e{^}}{%
@@ -70,6 +51,9 @@
   \thinmuskip
 }
 \makeatletter
+
+
+% The followings are probably about lambda
 \usepackage{pifont}
 \makeatletter
 \newcommand\Pimathsymbol[3][\mathord]{%
@@ -92,7 +76,11 @@
 %\DeclareFontShape{U}{txmia}{b}{n}{<->ssub * txmia/b/it}{}
 % plus info from Alan Munn at https://tex.stackexchange.com/questions/290165/how-do-i-get-a-nicer-lambda?noredirect=1#comment702120_290165
 \newcommand{\pilambdaup}{\Pimathsymbol[\mathord]{txmia}{21}}
-\renewcommand{\lambda}{\pilambdaup}
+\newcommand{\ld}{\lambda}
+% \renewcommand{\lambda}{\pilambdaup}
+
+
+
 \renewcommand{\tilde}{\widetilde}
 \DeclareMathOperator*{\esssup}{ess\,sup}
 \newcommand{\bluecheck}{}%
@@ -100,3 +88,18 @@
   \tikz\fill[scale=0.4, color=blue]
   (0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;%
 }
+
+\def\mylongmapsto#1{%
+\begin{tikzpicture}
+\draw (0,0.5mm) -- (0,-0.5mm);
+\newlength\mylength
+\setlength{\mylength}{\widthof{#1}}
+\draw[->] (0,0) -- (1.2\mylength,0) node[above,midway] {#1};
+\end{tikzpicture}
+}
+
+
+%%%Commutative Diagram%%%
+\usepackage{tikz}
+\newcommand*{\DashedArrow}[1][]{\mathbin{\tikz [baseline=-0.25ex,-latex, dashed,#1] \draw [#1] (0pt,0.5ex) -- (1.3em,0.5ex);}}
+
