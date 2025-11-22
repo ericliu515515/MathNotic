@@ -1,0 +1,96 @@
+%%%%%%%%%%%%%% preamble.tex %%%%%%%%%%%%%%
+\usepackage[T1]{fontenc}
+\usepackage{etoolbox}
+% Page Setup
+\usepackage[letterpaper, tmargin=2cm, rmargin=0.5in, lmargin=0.5in, bmargin=80pt, footskip=.2in]{geometry}
+\usepackage{adjustbox}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{mathrsfs}
+\usepackage{mdframed}
+\usepackage[new]{old-arrows}
+
+% Create a new toggle
+\newtoggle{firstsection}
+
+% Redefine the \chapter command to reset the toggle for each new chapter
+\let\oldchapter\chapter
+\renewcommand{\chapter}{\toggletrue{firstsection}\oldchapter}
+
+% Redefine the \section command to check the toggle
+\let\oldsection\section
+\renewcommand{\section}{
+    \iftoggle{firstsection}
+    {\togglefalse{firstsection}} % If it's the first section, just switch off the toggle for next sections
+    {\clearpage} % If it's not the first section, start a new page
+    \oldsection
+}
+
+
+% Mathematics
+\usepackage{amsmath,amsfonts,amsthm,amssymb,mathtools}
+\usepackage{xfrac}
+\usepackage[makeroom]{cancel}
+\usepackage{enumitem}
+\usepackage{nameref}
+\usepackage{multicol,array}
+\usepackage{tikz-cd}
+\usepackage{array}
+\usepackage{multirow}% http://ctan.org/pkg/multirow
+\usepackage{graphicx}
+
+% Colors
+\usepackage[dvipsnames]{xcolor}
+\definecolor{myg}{RGB}{56, 140, 70}
+\definecolor{myb}{RGB}{45, 111, 177}
+\definecolor{myr}{RGB}{199, 68, 64}
+% Define more colors here...
+\definecolor{olive}{HTML}{6B8E23}
+\definecolor{orange}{HTML}{CC5500}
+\definecolor{brown}{HTML}{8B4513}
+% Hyperlinks
+\usepackage{bookmark}
+\usepackage[colorlinks=true,linkcolor=blue,urlcolor=blue,citecolor=blue,anchorcolor=blue]{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+% Text-related
+\usepackage{blindtext}
+\usepackage{fontsize}
+\changefontsize[14]{14}
+\setlength{\parindent}{0pt}
+\linespread{1.2}
+
+% Theorems and Definitions
+\usepackage{amsthm}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+% Define a new theorem style
+\newtheoremstyle{mytheoremstyle}% name
+  {}% Space above
+  {}% Space below
+  {}% Body font
+  {}% Indent amount
+  {\bfseries}% Theorem head font
+  {.}% Punctuation after theorem head
+  {.5em}% Space after theorem head
+  {}% Theorem head spec (can be left empty, meaning ‘normal’)
+
+% Apply the new theorem style to theorem-like environments
+\theoremstyle{mytheoremstyle}
+
+\newtheorem{theorem}{Theorem}[section]  
+\newtheorem{definition}[theorem]{Definition} 
+\newtheorem{lemma}[theorem]{Lemma}  
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{equiv_def}[theorem]{Equivalent Definition}
+\newtheorem{example}[theorem]{Example}
+
+
