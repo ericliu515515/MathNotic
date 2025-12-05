@@ -33,34 +33,50 @@ to deduce
 xx^{-1}=(x^{-1})^{-1}x^{-1}= e
 \end{align*}
 In other words, if we require every element of a monoid $M$ to has a left inverse, then immediately every left inverse upgrades to a right inverse. In such case, we call $M$ a  \textbf{group}. Notice that inverses of elements of a group are clearly unique. 
-\begin{Example}{Another group axioms}{}
-  Another set of axioms for group is to require the operation to be associative, identity to be left, and the existence of left inverses. Under such condition, we see that if an element $y$  is \textbf{idempotent}, then it must be identity, since $y=(y^{-1}y)y=y^{-1}y=e$. Because of such, we see a left inverse is also a right inverse, since $(xx^{-1})(xx^{-1})=xe x^{-1}=xx^{-1}$. This then shows that the left identity is also a right identity, since $xe=x(x^{-1}x)=x$. 
-\end{Example}
-\begin{Example}{Group criteria for finite set}{THwc} 
-If the underlying set is finite, then weaker assumption can be made. For example, suppose only that the binary operation to be associative and that both cancellation holds: 
+\begin{theorem}
+\textbf{(Group criteria)} If a binary operation $G \times G \rightarrow G$ is associative, has a left identity, and always has a left inverse, then $G$ forms a group. 
+\end{theorem}
+\begin{proof}
+If  $y \in G$ is  \textbf{idempotent}, then it must be identity, since $y=(y^{-1}y)y=y^{-1}y=e$. Because of such, we see a left inverse is also a right inverse, since $(xx^{-1})(xx^{-1})=xe x^{-1}=xx^{-1}$. This then shows that the left identity is also a right identity, since $xe=x(x^{-1}x)=x$. 
+\end{proof}
+\begin{theorem}
+\label{THwc}
+\textbf{(Group criteria for finite set)} Let $\abso{G}\inn$. IF the binary operation $G \times G \rightarrow G$ is associative and both cancellation laws holds: 
 \begin{align*}
 au=aw \implies u=w \quad \text{ and }\quad ua=wa \implies  u=w
 \end{align*}
+then $G$ forms a group. 
+\end{theorem}
+\begin{proof}
 Because the set is finite, for all $a$, we may attach it with an natural number $n(a)$ such that  $a^{n(a)+1}=a$. Clearly, 
 \begin{align*}
 aa^{n(a)}b= a^{n(a)+1}b=ab=ab^{n(b)+1}=ab^{n(b)}b
 \end{align*}
 This then by cancellation laws implies $a^{n(a)}=b^{n(b)}$, which can be easily checked to be the identity.  
-\end{Example}
-\begin{Example}{Finite subset closed under binary operation forms a subgroup}{}
-Let $S\subseteq G$ be a finite subset closed under the binary operation. Because $S$ is finite, for all $a \in S$, there exists $n(a)\inn$ such that 
+\end{proof}
+\begin{theorem}
+\textbf{(Subgroup criteria for finite subset)} Let $G$ be a group and $S \subseteq G$ be finite. If $S$ is closed under the binary operation, then $S$ forms a group. 
+\end{theorem}
+\begin{proof}
+ Because $S$ is finite, for all $a \in S$, there exists $n(a)\inn$ such that 
 \begin{align*}
 a^{n(a)}a=a
 \end{align*}
 Multiplying both side with $a^{-1}$, we see that $a^{n(a)}=e$ and $a^{-1}=a^{n(a)} \in S$. 
-\end{Example}
+\end{proof}
 \begin{Example}{Euler's totient function}{}
-By \myref{example}{ex:THwc}, we see that the set of nonzero integer relatively prime to $n$ and modulo $n$ forms a group under multiplication modulo $n$, called the \textbf{multiplicative group of integer modulo $n$}, or equivalently the unit group of the ring $\Z_n$. This immediately shows that 
+By \myref{theorem}{THwc}, we see that the set of nonzero integer relatively prime to $n$ and modulo $n$ forms a group under multiplication modulo $n$, called the \textbf{multiplicative group of integer modulo $n$}, or equivalently the unit group of the ring $\Z_n$. This immediately shows that 
 \begin{align*}
-a^{\phi (a)} \equiv 1 \pmod{n}
+a^{\pfi  (a)} \equiv 1 \pmod{n}
 \end{align*}
-for all $a\inn$ coprime with  $n$, where the \textbf{totient function} $\phi(a)$ is the number of natural numbers smaller than $a$ and coprime with $a$. We now have \textbf{Fermat's little theorem} as a special case.  
+for all $a\inn$ coprime with  $n$, where the \textbf{totient function} $\pfi (a)$ is the number of natural numbers $\leq a$ and coprime with $a$. We now have \textbf{Fermat's little theorem} as a special case.  
 \end{Example}
+\begin{theorem}
+\textbf{(Group property of totient function)} Let $\pfi $ be the Euler totient function. For all $a,n \inn$, we have $n \mid \pfi (a^n-1)$.
+\end{theorem}
+\begin{proof}
+This is a consequence of the fact that $a \in \Z_{a^n-1}^{\times}$ and  that $a$ has order $n$ in the group.  
+\end{proof}
 Unlike the category of monoids, the category of groups behaves much better. Given two groups $G,H$ and a function  $\phi : G\rightarrow H$, if $\phi$ respects the binary operation, then $\phi$ also respects the identity:
 \begin{align*}
 e_H = (\phi (x)^{-1})\phi (x) = (\phi(x)^{-1}) \phi(x e_G) =  (\phi (x)^{-1} \phi (x)) \phi (e_G)=\phi (e_G)
@@ -103,6 +119,7 @@ as a corollary.  \label{THLt}
 Note that every nontrivial subgroups of $\Z$ are isomorphic, yet they are of distinct index. However, subgroups $H\leq G$ isomorphic through an automorphism $\phi \in \operatorname{Aut}(G)$ must have the same index, since $xH\mapsto \phi (x)\phi (H)$ forms a well-defined bijection. 
 \end{Example}
 \begin{theorem}
+\label{THof}
 \textbf{(Order formula)} Let $H, K \leq G$. Then  
 \begin{align*}
 \abso{HK}\cdot o (H \cap K)=o(H) \cdot o(K)
@@ -122,7 +139,7 @@ The first formula follows from checking that the natural map from the left coset
 [G:H\cap K]= [G:H] \cdot [H : H \cap K]= [G:K]\cdot [K:H \cap K]
 \end{align*}
 \end{proof}
-\section{Group action}
+\section{Group Action}
 Let $G$ be a group and $X$ a set. If we say  $G$ \textbf{acts on $X$ from left}, we are defining a function $G \times X\rightarrow X$ such that 
 \begin{enumerate}[label=(\roman*)]
   \item $e\cdot x=x$ for all $x\in X$. 
@@ -153,7 +170,7 @@ p\mid  o(G)^{p-1}=m+kp
 \end{align*}
 with $m$ the number of cardinality $1$ orbits and $k$ the number of cardinality  $p$ orbits. Clearly we have $p\mid m$, as desired.
 \end{proof}
-\section{Normal and Characteristic Subgroup}
+\section{Normal Subgroups}
 Because the inverse of an injective group homomorphism forms a group homomorphism, we know  $\operatorname{Aut}(G)$  forms a group. We say $\pfi \in \operatorname{Aut}(G)$ is an \textbf{inner automorphism} if  $\pfi $ takes the form $x\mapsto  gxg^{-1}$ for some fixed $g \in G$. We say two elements  $x,y \in G$ are \textbf{conjugated} if there exists some inner automorphism that maps $x$ to $y$. Clearly conjugacy forms an equivalence relation. We call its classes \textbf{conjugacy classes}. \\
 
 
@@ -161,7 +178,7 @@ From the point of view of inner automorphism, we see that it is well-defined whe
 \begin{align*}
 g Sg^{-1} = S
 \end{align*}
-independent of left and right.  Because of the independence, For each subset $S\subseteq G$, we see that the set of elements $g\in G$ that normalize $S$ forms a group, called the \textbf{normalizer} of $S$, in fact the stabilizer subgroup $\operatorname{Stab}(S)$ under the conjugacy action. 
+independent of left and right.  Because of the independence, for each subset $S\subseteq G$, we see that the set of elements $g\in G$ that normalize $S$ forms a group, called the \textbf{normalizer} of $S$, in fact the stabilizer subgroup $\operatorname{Stab}(S)$ under the conjugacy action. 
 \begin{Example}{Conjugation can send subgroups to proper subgroup}{} 
   Consider $G\triangleq \operatorname{GL}_2(\R)$  and consider: 
 \begin{align*}
@@ -222,38 +239,20 @@ xnx^{-1}= \tilde{n}xx^{-1}=\tilde{n}\in N
 \end{align*}
 (viii)$\implies $(i): Let $n \in N$ and $x\in G$. Because $(nx)x^{-1}=n \in N$, by premise we have $x^{-1}nx \in N$, as desired.
 \end{proof}
-\begin{equiv_def}
-\textbf{(Characteristic subgroup)} Given arbitrary groups $G$, we say $K \operatorname{char} G$ is a \textbf{characteristic subgroup} if any of the followings holds true: 
-\begin{enumerate}[label=(\roman*)]
-  \item $\phi (K)\leq K$ for all $\phi \in \operatorname{Aut}(G)$
-  \item $\phi (K)=K$ for all $\phi \in \operatorname{Aut}(G)$.  
-\end{enumerate}
-\end{equiv_def}
-\begin{proof}
-(i)$\implies $(ii) follows from noting $\phi^{-1}(K)\leq K \leq \phi^{-1}(K)$. (ii)$\implies $(i) is clear. 
-\end{proof}
-\begin{theorem}
-\label{THus}
-\textbf{(Basic properties of characteristic subgroups)} 
-\begin{enumerate}[label=(\roman*)]
-\item If there exists a unique subgroup $H \leq G$ of a fixed index, then $H\operatorname{char}G$. 
-\item If $K\operatorname{char}H \trianglelefteq G$, then $K \trianglelefteq G$. 
-\item If $K\operatorname{char}H \operatorname{char}G$, then $K\operatorname{char}G$. 
-\end{enumerate}   
-\end{theorem}
-\begin{proof}
-(i): To show that $H$ is characteristic, we are required to prove $[G:H]=[G:\phi (H)]$ for all $\phi \in \operatorname{Aut}(H)$, which follows from checking that  $xH \mapsto \phi (x)\phi (H)$ forms a well-defined bijection between the left cosets spaces of $H$ and $\phi (H)$. \\
-
-(ii) and (iii): Because $H \trianglelefteq G$, every inner automorphism can be restricted $\operatorname{Aut}(H)$. (ii) then follows. The proof for (iii) is the same, in which every automorphism of $G$ can be restricted automorphism of $H$. 
-\end{proof}
-\begin{Example}{Hamiltonian group}{}
+Notably, since given the "conjugate by left" $\phi_g \in \operatorname{Inn}(G)$ and $\pfi  \in \operatorname{Aut}(G)$, we have $\pfi  \circ \phi_g \circ \pfi ^{-1}=\phi_{\pfi (g)}$, we see that $\operatorname{Inn}(G)\trianglelefteq \operatorname{Aut}(G)$. We call  $\operatorname{Aut}(G)\quotient \operatorname{Inn}(G)$ the \textbf{outer automorphism group} of $G$. 
+\begin{Example}{Dedekind and Hamiltonian group}{}
 A group is said to be \textbf{Dedekind} if all of its subgroups are normal. Clearly every abelian group is Dedekind. Non-abelian Dedekind groups are called \textbf{Hamiltonian}. The simplest Hamiltonian group is the \textbf{quaternion group} $Q_8$, which is the group of the quaternions under multiplication: 
 \begin{align*}
 Q_8 \triangleq \set{1,i,j,k,-1,-i,-j,-k}
 \end{align*}
-Note that $Q_8$ is Hamiltonian because every nontrivial element is of order $4$.  
+Note that $Q_8$ is Dedekind because every nontrivial element is of order $4$. Clearly, $Q_8$ has center $\set{\pm 1}$. Because $Z(Q_8)$ has index $4$, we know  $Q_8 \quotient Z(Q_8)$ is abelian. This then by  \customref{THtit}{correspondence theorem} implies  $Q_8 ' \leq Z(Q_8)$. Because $Q_8$ is non-abelian, we now see  $Q_8'=Z(Q_8)= \set{\pm 1}$. Note that $Q_8$ clearly has the conjugacy classes 
+\begin{align*}
+\set{1}\cup  \set{-1} \cup  \set{\pm i} \cup  \set{\pm j}\cup  \set{\pm k}
+\end{align*}
+Interestingly, $Q_8$ is a group that contains a smallest non-trivial subgroup. Every non-trivial subgroup of  $Q_8$ must contains the group  $\set{\pm 1}$. 
 \end{Example}
-Given $H \leq G$, clearly, $N_G(H)$ is the largest subgroups of $G$ in which $H$ is normal. Let $N\trianglelefteq   G$. We say a group homomorphism $ \pi :G \rightarrow   G\quotient N$ satisfies the \textbf{universal property of quotient group $G\quotient N$} if 
+\section{Isomorphism theorems}
+ Let $N\trianglelefteq   G$. We say a group homomorphism $ \pi :G \rightarrow   G\quotient N$ satisfies the \textbf{universal property of quotient group $G\quotient N$} if 
 \begin{enumerate}[label=(\roman*)]
   \item $\pi $ vanishes on $N$. \textbf{(Group condition)}
   \item For all group homomorphism $f:G\rightarrow H$ that vanishes on $N$ there exist a unique group homomorphism $\tilde{f} :G\quotient N\rightarrow H$ that makes the diagram: 
@@ -268,6 +267,39 @@ Given $H \leq G$, clearly, $N_G(H)$ is the largest subgroups of $G$ in which $H$
 \end{tikzcd}\]
 commute. \textbf{(Universality)}
 \end{enumerate}
+\begin{equiv_def}
+\textbf{(Characteristic subgroup)} Given arbitrary groups $G$, we say $K \operatorname{char} G$ is a \textbf{characteristic subgroup} if any of the followings holds true: 
+\begin{enumerate}[label=(\roman*)]
+  \item $\phi (K)\leq K$ for all $\phi \in \operatorname{Aut}(G)$
+  \item $\phi (K)=K$ for all $\phi \in \operatorname{Aut}(G)$.  
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+(i)$\implies $(ii) follows from noting $\phi^{-1}(K)\leq K \leq \phi^{-1}(K)$. (ii)$\implies $(i) is clear. 
+\end{proof}
+\begin{theorem}
+\label{THus}
+\textbf{(Basic properties of characteristic subgroups)} 
+\begin{enumerate}[label=(\roman*)]
+\item If there exists a unique subgroup $H \leq G$ of a fixed index, then $H$ is is characteristic. 
+\item If $K\operatorname{char}H \trianglelefteq G$, then $K \trianglelefteq G$. 
+\item If $K\operatorname{char}H \operatorname{char}G$, then $K\operatorname{char}G$. 
+\end{enumerate}   
+\end{theorem}
+\begin{proof}
+(i): To show that $H$ is characteristic, we are required to prove $[G:H]=[G:\phi (H)]$ for all $\phi \in \operatorname{Aut}(H)$, which follows from checking that  $xH \mapsto \phi (x)\phi (H)$ forms a well-defined bijection between the left cosets spaces of $H$ and $\phi (H)$. \\
+
+(ii) and (iii): Because $H \trianglelefteq G$, every inner automorphism can be restricted $\operatorname{Aut}(H)$. (ii) then follows. The proof for (iii) is the same, in which every automorphism of $G$ can be restricted automorphism of $H$. 
+\end{proof}
+A subgroup $H\leq G$ is said to be \textbf{strictly characteristic} if it is preserved by all surjective endomorphism. Clearly, centers are all strictly characteristic. A group is said to be \textbf{fully characteristic} if it is preserved by all endomorphism. Clearly, commutator subgroups are all fully characteristic. 
+\begin{Example}{A center that isn't fully characteristic}{}
+Consider $S_3\times \Z_2$. Recall that \customref{THzSn}{this group has center $1 \times \Z_2$}. The function that maps $(\pi  ,y)\mapsto \left((1,2)^y ,0 \right)$  for all $\pi  \in S_3$ is clearly an endomorphism that doesn't preserve the center. 
+\end{Example}
+Notably, given a normal subgroup $N \trianglelefteq G$ and an endomorphism $f\in \operatorname{End}(G)$, in general we can't naturally induce an endomorphism on $G \quotient N$. If we were to require a subgroup to always allow us to induce endomorphism on its factor group, then we would need it to be fully characteristic. However, when we only want to induce automorphism from an automorphism $f \in \operatorname{Aut}(G)$, a characteristic subgroup clearly suffices. In fact, given a characteristic subgroup $K\operatorname{char}G$, this gives us a group homomorphism $\operatorname{Aut}(G) \quotient \operatorname{Aut}(G \quotient K)$. 
+\begin{Example}{A normal subgroup that isn't characteristic}{}
+Consider the additive group of $\Q$.  $\Z \leq \Q$ is then normal but not characteristic, since $x \mapsto \frac{1}{2}$ is an automorphism that doesn't preserve $\Z$.   
+\end{Example}
+Note that even though normal subgroups need not be preserved by automorphisms, normality is: Given $N \trianglelefteq G$ and $f\in \operatorname{Aut}(G)$, we also have $f(N)\trianglelefteq G$. 
 \begin{theorem}
 \label{THfit}
 \textbf{(The first isomorphism theorem for groups)} The group homomorphism $\pi : G \rightarrow G \quotient N$ is always surjective with kernel $N$. Let $f :G \rightarrow H$ be a group homomorphism. Then $\operatorname{ker}f$ is normal in $G$, and the induced homomorphism $\tilde{f}: G \quotient \operatorname{ker}f \rightarrow H$ is injective.   
@@ -285,11 +317,12 @@ and they are the largest subgroup of $H$ normal in  $G$, called the  \textbf{cor
 \begin{proof}
 Routine. 
 \end{proof}
+As we will see, consideration of core is in fact useful in theory of finite group. 
 \begin{theorem}
 \textbf{(Properties of core)} Let $G$ be finite. Then 
 \begin{enumerate}[label=(\roman*)]
   \item $[G:\operatorname{Core}(H)]$ divides $ [G:H]!$, for all $H\leq G$ 
-  \item Any subgroup of $G$ of index $p$, where  $p$ is the smallest prime dividing  $o(G)$, is normal in $G$. 
+  \item Any proper subgroup of $G$ of smallest possible index is normal. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -309,48 +342,12 @@ h(g_1s_1g_1^{-1})^{\epsilon_1} \cdots (g_ns_ng_n^{-1})^{\epsilon_n} h^{-1}= (x_1
 \end{align*}
 where $x_i\triangleq hg_1$ if $\epsilon _i=1$ and $hg_i^{-1}$ if $\epsilon _i=-1$. 
 \end{proof}
-\section{Free group and presentation}
-Let $S$ be a set. By the \textbf{free group generated by $S$}, we mean a group $F_S$ together with an injective function  $\diota:S \hookrightarrow F_S $ such that for all group $G$ and function  $f:S\rightarrow G$, there exists a unique group homomorphism $\tilde{f}: F_S \rightarrow G$ that makes the diagram:   
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTIl0sWzIsMCwiRl9TIl0sWzIsMiwiRyJdLFswLDEsIlxcaW90YSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMiwiZiIsMl0sWzEsMiwiXFx0aWxkZXtmfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
-\[\begin{tikzcd}
-	S && {F_S} \\
-	\\
-	&& G
-	\arrow["\iota", hook, from=1-1, to=1-3]
-	\arrow["f"', from=1-1, to=3-3]
-	\arrow["{\tilde{f}}", dashed, from=1-3, to=3-3]
-\end{tikzcd}\]
-commutes. Given a set of \textbf{relators} $R \subseteq F_S$, by \textbf{presentation} $\langle S\mid R\rangle $, we mean the group $F_S \quotient \operatorname{ncl}_{F_S}(R)$. Since kernel is normal, such group clearly satisfies the universal property that for all group $G$ and function  $f:S \rightarrow G$ such that the kernel of induced group homomorphism $\tilde{f}:F_S \rightarrow G$ contains $R$, there exists a unique group homomorphism $\widehat{f}: \langle S \mid  R\rangle \rightarrow G$ that makes the diagram
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTIl0sWzIsMCwiXFxsYW5nbGUgUyBcXG1pZCBSXFxyYW5nbGUiXSxbMiwyLCJHIl0sWzAsMSwiXFxwaSBcXGNpcmMgXFxpb3RhIl0sWzAsMiwiZiIsMl0sWzEsMiwiXFxoYXR7Zn0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
-\[\begin{tikzcd}
-	S && {\langle S \mid R\rangle} \\
-	\\
-	&& G
-	\arrow["{\pi \circ \iota}", from=1-1, to=1-3]
-	\arrow["f"', from=1-1, to=3-3]
-	\arrow["{\widehat{f}}", dashed, from=1-3, to=3-3]
-\end{tikzcd}\]
-
-
-\begin{Example}{Dihedral group}{}
-The \textbf{Dihedral group} $D_n$ is defined by 
-\begin{align*}
-D_n \triangleq \langle x,y \mid x^n =y^2=e, yxy^{-1}=x^{-1}\rangle 
-\end{align*} 
-\begin{align*}
-x \mapsto \begin{pmatrix} 
-  \xi & 0 \\
-  0 & \xi^{-1}
-\end{pmatrix}\quad \text{ and }\quad y \mapsto \begin{pmatrix} 
-  0 & 1 \\
-  1 & 0
-\end{pmatrix}
-\end{align*}
-\end{Example}
-\section{Second and third isomorphism theorem}
 \begin{theorem}
 \label{THtit}
-\textbf{(Third isomorphism theorem and correspondence theorem)} Let $N \trianglelefteq G$. The canonical projection $\pi : G \rightarrow G\quotient N$ gives rise to a bijection between the set of subgroups of $G$ that contains $N$ and the set of subgroups of $G \quotient N$. The bijection is moreover a bijection between the set of normal subgroups of $G$ that contains $N$ and the set of normal subgroups of $G \quotient N$. In fact, given $K \trianglelefteq G$ that contains $N$, if we identify $K \quotient N$ as a subgroup of $G \quotient N$ the natural way: 
+\textbf{(Third isomorphism theorem and correspondence theorem)} Let $N \trianglelefteq G$. The canonical projection $\pi : G \rightarrow G\quotient N$ gives rise to a bijection between the set of subgroups of $G$ that contains $N$ and the set of subgroups of $G \quotient N$. The bijection is moreover a bijection between the set of normal subgroups of $G$ that contains $N$ and the set of normal subgroups of $G \quotient N$. The bijection also maps normalizer of subgroups $\leq G$ that contains $N$ to the normalizer of the image of the subgroup.\\
+
+
+In fact, given $K \trianglelefteq G$ that contains $N$, if we identify $K \quotient N$ as a subgroup of $G \quotient N$ the natural way: 
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJLIl0sWzIsMCwiXFxmcmFje0t9e059Il0sWzIsMiwiXFxmcmFje0d9e059Il0sWzAsMl0sWzEsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMCwxLCJcXHBpIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV1d
 \[\begin{tikzcd}
 	K && {\frac{K}{N}} \\
@@ -384,6 +381,307 @@ In general, product of two subgroups needs not to form a group. For example, con
 
 On the other hand, given two normal subgroups $N,M \trianglelefteq G$. By the \customref{EDns}{preserved-by-conjugations definition of normal subgroups}, clearly both $NM$ and  $N \cap M$ are normal in $G$.  
 \end{Example}
+\section{Free group and presentation}
+Let $S$ be a set. By the \textbf{free group generated by $S$}, we mean a group $F_S$ together with an injective function  $\diota:S \hookrightarrow F_S $ such that for all group $G$ and function  $f:S\rightarrow G$, there exists a unique group homomorphism $\tilde{f}: F_S \rightarrow G$ that makes the diagram:   
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTIl0sWzIsMCwiRl9TIl0sWzIsMiwiRyJdLFswLDEsIlxcaW90YSIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMiwiZiIsMl0sWzEsMiwiXFx0aWxkZXtmfSIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+\[\begin{tikzcd}
+	S && {F_S} \\
+	\\
+	&& G
+	\arrow["\iota", hook, from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-3]
+	\arrow["{\tilde{f}}", dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+\label{THp}
+commutes. Given a set of \textbf{relators} $R \subseteq F_S$, by \textbf{presentation} $\langle S\mid R\rangle $, we mean the group $F_S \quotient \operatorname{ncl}_{F_S}(R)$. Since kernel is normal, such group clearly satisfies the universal property that for all group $G$ and function  $f:S \rightarrow G$ such that the kernel of induced group homomorphism $\tilde{f}:F_S \rightarrow G$ contains $R$, there exists a unique group homomorphism $\widehat{f}: \langle S \mid  R\rangle \rightarrow G$ that makes the diagram
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJTIl0sWzIsMCwiXFxsYW5nbGUgUyBcXG1pZCBSXFxyYW5nbGUiXSxbMiwyLCJHIl0sWzAsMSwiXFxwaSBcXGNpcmMgXFxpb3RhIl0sWzAsMiwiZiIsMl0sWzEsMiwiXFxoYXR7Zn0iLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	S && {\langle S \mid R\rangle} \\
+	\\
+	&& G
+	\arrow["{\pi \circ \iota}", from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-3]
+	\arrow["{\widehat{f}}", dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+
+
+\begin{Example}{Dihedral group}{}
+The \textbf{Dihedral group} $D_n$ is defined by 
+\begin{align*}
+D_n \triangleq \langle r,s \mid r^n =s^2=e, srs^{-1}=r^{-1}\rangle 
+\end{align*} 
+Clearly, every element can be written as $r^as^b$ with  $0\leq a \leq n-1$ and $b \in \set{0,1}$. This implies that $D_n$ has at most $2n$ number of elements. To see that $o(D_n)=2n$, one first consider the group homomorphism $D_n \rightarrow \operatorname{GL}_2(\C)$ induced by 
+\begin{align*}
+r \mapsto \begin{pmatrix} 
+  \xi & 0 \\
+  0 & \xi^{-1}
+\end{pmatrix}\quad \text{ and }\quad s \mapsto \begin{pmatrix} 
+  0 & 1 \\
+  1 & 0
+\end{pmatrix}
+\end{align*}
+where $\xi\triangleq \exp ( 2\pi i \quotient n)$. Because 
+\begin{align*}
+r^a= \begin{pmatrix} 
+  \xi^a & 0 \\
+  0 & \xi^{-a}
+\end{pmatrix} \quad \text{ and }\quad  r^as = \begin{pmatrix} 
+  0 & \xi^a \\
+  \xi^{-a} & 0
+\end{pmatrix}
+\end{align*}
+We now see that indeed $o(D_n)=2n$. Moreover, because from the relators, we have the formula 
+\begin{align*}
+  (r^as^b)(r^cs^d)= r^{a+(-1)^bc}s^{b+d}
+\end{align*}
+which by direct computation implies $D_n' = \langle r^{2}\rangle $. Suppose $r^as^b \in Z(D_{n})$ with $0 \leq a \leq n-1$ and $b \in \set{0,1}$. Then form the formula, we must have  
+\begin{align}
+\label{EQa-1b}
+a+(-1)^b c\equiv c+(-1)^d a \pmod{n},\quad \text{ for all }c,d\inz 
+\end{align}
+Because $d$ can be arbitrary, this implies 
+\begin{align*}
+2a \equiv 0 \pmod{n}
+\end{align*}
+Clearly we have $D_1 \cong  \Z_2$ and $D_2 \cong  \Z_2 \times \Z_2$. Therefore, we from now on suppose $n\geq 3$. \\
+
+Let $n$ be odd.  Then clearly  $a=0$. Since  $rs\neq sr$ in general, we see that we also must have $b=0$. We have shown that $D_n$ has trivial center for odd $n\geq 3$. \\
+
+Let $n$ be even. Then we must have $a \in \set{0,\frac{n}{2}}$. If $a=0$, then again because $rs \neq sr$ in general, we must have $b=0$. If  $a= \frac{n}{2}$, then from the \myref{equation}{EQa-1b}, regardless of $d$, we see 
+\begin{align*}
+  (-1)^b c \equiv c \pmod{n},\quad \text{ for all }c \inz
+\end{align*}
+which can only be true if $b=0$. We have shown that $D_n$ has center  $\set{e,r^{\frac{n}{2}}}$ for even $n\geq 3$. Note that again by direct computation, one can check that the pattern of conjugacy classes differ according to parity of $n$. Regardless of parity, for fixed $k\inz$, the set $\set{r^\pm k}$ form a conjugacy class. If $n$ is odd, then the rest  $\set{r^ts:1\leq t \leq n-1}$ forms a class. If $n$ is even, then the rest forms two classes: 
+ \begin{align*}
+\set{r^rs \in D_{n}: 1\leq t \leq n-1\text{ is even }}\cup  \set{r^ts \in D_{n}: 1 \leq t \leq n-1\text{ is odd }}
+\end{align*}
+\end{Example}
+\section{Center and Commutator}
+Let $S\subseteq G$. Clearly $N_G(S)$ is the largest subgroup in which $S$ is preserved by inner automorphism. Consider its \textbf{centralizer} $C_G(S)\triangleq \set{g \in G: gs=sg\text{ for all }s \in S}$. To see that $C_G(S)\trianglelefteq N_G(S)$, one simply observe that $C_G(S)$ is the kernel of the conjugacy action $N_G(S) \longrightarrow  \operatorname{Bij}(S)$, where $\operatorname{Bij}(S)$ can be replaced by $\operatorname{Aut}(S)$ if $S$ forms a subgroup  $G$. In such case, \customref{THfit}{first isomorphism theorem} gives us an injection 
+\begin{align*}
+N_G(S) \quotient C_G(S) \longhookrightarrow  \operatorname{Aut}(S)
+\end{align*}
+We call the centralizer of the whole group $Z(G)\triangleq C_G(G)$ \textbf{center}.  
+\begin{equiv_def}
+\label{EDpoc}
+\textbf{(Property of center)} Let $S\subseteq G$. We have 
+\begin{align*}
+S \subseteq Z(G) \iff  C_G(S)=G
+\end{align*}
+\end{equiv_def}
+\begin{proof}
+Routine.
+\end{proof}
+Clearly, regardless of $G$, we always have a natural surjective group homomorphism  $G \longtwoheadrightarrow \operatorname{Inn}(G)$, such group homomorphism is injective (and thus an isomorphism) if and only if $G$ is centerless. \\
+
+
+Because every element of the center form a single conjugacy classes, by \customref{THost}{orbit-stabilizer theorem}, we have the \textbf{class equation}:
+\begin{align*}
+\label{THce}
+o(G) = o(Z(G))+ \sum [G:C_G (x)]
+\end{align*}
+where $x$ runs through conjugacy classes outside of  $Z(G)$. From class equation, we immediately see that \textbf{finite $p$-groups} must have nontrivial centers. \label{THfp}
+\begin{Example}{Infinite $p$-group}{}
+The \textbf{Prüfer group} $\Z(p^{\infty})$ is defined by 
+\begin{align*}
+\Z(p^{\infty})\triangleq \set{\exp (2\pi i m \quotient p^n)\inc: m \inz\text{ and }n\inn }
+\end{align*}
+It is an infinite group whose every nontrivial element has order $p^n$ for some  $n\inn$.    
+\end{Example}
+Let $N \trianglelefteq G$. Because $xy \in N$ if and only if $yx \in N$, regardless of the definition, we see that 
+\begin{align*}
+[g,h] \in N \iff gN,hN \in G \quotient N\text{ commutes }
+\end{align*}
+Therefore, the factor group  $G \quotient N$ is abelian if and only if $[G,G]\subseteq N$. In this note, we use $G'$ to denote the  \textbf{commutator subgroup} of $G$, the subgroup  generated by  $[G,G]$. From our observation, clearly $G'$ is the smallest normal subgroup that makes the quotient abelian. In fact, any subgroup $H$ containing $G'$  is normal, since if $ghg^{-1}h^{-1} \in H$, then we clearly have $ghg^{-1} \in H$. We call $G \quotient G'$ the \textbf{abelianization} of $G$. 
+\begin{theorem}
+\label{THpcs}
+\textbf{(Property of commutator subgroup)} Given normal subgroup $N \trianglelefteq G$, if $G' \cap N=1$, then $N \leq Z(G)$. 
+\end{theorem}
+\begin{proof}
+Fix $n \in N$ and $g\in G$. Because $N$ is normal, we know  $gng^{-1}n^{-1} \in N$. It then follows from $N \cap G'=1$ that $gng^{-1}n^{-1}=e$, which implies $gn=ng$. 
+\end{proof}
+\begin{Example}{Commutator subgroup of $\operatorname{GL}_2(\R)$ is $\operatorname{SL}_2(\R)$}{}
+Clearly we have $ (\operatorname{GL}_2(\R))' \leq \operatorname{SL}_2(\R)$. The opposite relation requires computation. We offer a fast way. Write $[g,h]\triangleq ghg^{-1}h^{-1}$. Compute that 
+\begin{align*}
+\begin{pmatrix} 
+  1 & x \\
+  0 & 1 
+\end{pmatrix} = \left[\begin{pmatrix} 
+  2 & 0 \\
+  0 & 1 
+\end{pmatrix}, \begin{pmatrix} 
+  1 & x \\
+  0 & 1 
+\end{pmatrix}\right],\quad \text{ for all }x\inr
+\end{align*}
+Compute that 
+\begin{align*}
+\begin{pmatrix} 
+  x & 0 \\
+  0 & x^{-1}
+\end{pmatrix} = \left[ \begin{pmatrix} 
+  x & 0 \\
+  0 & 1 
+\end{pmatrix}, \begin{pmatrix} 
+  0 & 1 \\
+  1 & 0 
+\end{pmatrix} \right],\quad \text{ for all }x\inr^{\times}
+\end{align*}
+We now see that for $a\neq 0$, we have 
+\begin{align*}
+\begin{pmatrix} 
+  a & b \\
+  c & d 
+\end{pmatrix}= \begin{pmatrix} 
+  1 & 0 \\
+  \frac{c}{a} & 1 
+\end{pmatrix} \begin{pmatrix} 
+  1 & ab \\
+  0 & 1 
+\end{pmatrix} \begin{pmatrix} 
+  a & 0\\
+  0 & \frac{1}{a}
+\end{pmatrix} \in \left(\operatorname{GL}_2(\R) \right)' 
+\end{align*}
+Compute that 
+\begin{align*}
+\begin{pmatrix} 
+  0 & 1\\
+  -1 & 0 
+\end{pmatrix} = \left[\begin{pmatrix} 
+  1 & 2 \\
+  0 & 1 
+\end{pmatrix}, \begin{pmatrix} 
+  -1 & 0 \\
+  1 & 2
+\end{pmatrix} \right] 
+\end{align*}
+We now see that for $a=0$, we have 
+\begin{align*}
+\begin{pmatrix} 
+  0 & b \\
+  c & d
+\end{pmatrix} = \begin{pmatrix} 
+  0 & 1 \\
+  -1 & 0
+\end{pmatrix} \begin{pmatrix} 
+  1 & - \frac{d}{b}\\
+  0 & 1
+\end{pmatrix} \begin{pmatrix} 
+  \frac{1}{b} & 0 \\
+  0 & b
+\end{pmatrix} \in   \left(\operatorname{GL}_2(\R) \right)' 
+\end{align*}
+\end{Example}
+\begin{theorem}
+\textbf{(Schur's upper bound for order of commutator subgroup)} Let $C\subseteq G$ be the set of commutators.  If $[G:Z(G)]\triangleq n$, then
+\begin{align*}
+ \abso{C}\leq n^2 \quad \text{ and }\quad o\left(G^{(1)} \right) \leq n^{2n^3}
+\end{align*}
+\end{theorem}
+\begin{proof}
+To prove $\abso{C}\leq n^2$, we show that 
+\begin{align*}
+\vi{\begin{cases}
+  aZ(G)=cZ(G) \\
+  bZ(G)=dZ(G)
+\end{cases}\implies [a,b]=[c,d]}
+\end{align*}
+The premise gives us $ac^{-1}\in Z(G)$ and $bd^{-1}\in Z(G)$. We then can compute 
+\begin{align*}
+aba^{-1}b^{-1}= aba^{-1}(cc^{-1})b^{-1}=cbc^{-1}b^{-1}= cbc^{-1}b^{-1}(dd^{-1})= cdc^{-1}d^{-1} \vdone
+\end{align*}
+Before proving the second part, we first prove a necessary lemma: 
+\begin{align*}
+\olive{[a,b]^{n+1}=[a,b^2]\cdot [bab^{-1},b]^{n-1},\quad \text{ for all }a,b \in G }  
+\end{align*}
+The premise $[G:Z(G)]=n$ implies $g^n \in Z(G)$ for all $g \in G$. Therefore, we may compute 
+\begin{align*}
+  [a,b]^{n+1}&= aba^{-1}[a,b]^n b^{-1}= ab^2a^{-1} b^{-1}[a,b]^{n-1}b^{-1}= [a,b^2]b[a,b]^{n-1}b^{-1} \\
+  &= [a,b^2] \left(b [a,b]b^{-1} \right)^{n-1}= [a,b^2] \cdot [bab^{-1},b]^{n-1} \odone
+\end{align*}
+
+
+
+Recall that $C= \set{c^{-1} \in G: c\in C}$. Since $\abso{C}\leq n^2$, to prove $o \left(G^{(1)} \right)\leq n^{2n^3}$, we only have to show that 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+     \blue{For all $g \in G^{(1)}$, when written in the form $g\triangleq c_1\cdots  c_m$, where $c_i \in C$, we may require $m \leq n^3$}.  
+   \end{minipage}
+\end{center}
+Fix $g$. Let  $g\triangleq c_1 \cdots c_m$ with smallest $m$. We prove such by showing that each  $c_i$ can occurs at most $n$ times in the expression  $c_1 \cdots c_m$. Assume some $c_j$ occurs  $> n$ times in the expression. Because in general, we have 
+\begin{align*}
+z[x,y]= [zxz^{-1},zyz^{-1}]z^{-1}
+\end{align*}
+in groups, we may pull the $c_j$  to the most left in the expression. Then our lemma \olive{$[a,b]^{n+1}=[a,b^2]\cdot [bab^{-1},b]^{n-1}$} gives a contradiction, to the minimality of $m$. \bdone   
+\end{proof}
+\begin{theorem}
+\textbf{(Schur's upper bound for index of center)} Let $G\triangleq \langle g_1, \dots , g_m\rangle $ be finitely generated. If $o(G^{(1)})\triangleq n$, then 
+\begin{align*}
+[G:Z(G)] \leq n^m
+\end{align*}
+\end{theorem}
+\begin{proof}
+Clearly we have 
+\begin{align*}
+Z(G)= \bigcap_{i=1}^m C_G(g_i) 
+\end{align*}
+\customref{THost}{Orbit-stabilizer theorem} says that 
+\begin{align*}
+[G:C_G(g_i)]= \abso{\Gamma }
+\end{align*}
+where $\Gamma $ is the orbit of $g_i$ under the conjugacy action $G \longrightarrow \operatorname{Inn}(G)$. Since $xg_ix^{-1}=[x,g_i]g_i$, for all $x \in G$, we see $\abso{\Gamma }\leq n$. The proof then follows from \customref{THof}{order formula}: 
+\begin{align*}
+[G:Z(G)]=[G: \bigcap_{i=1}^m C_G(g_i)] \leq \prod_{i=1}^m [G: C_G(g_i)] \leq  n^m
+\end{align*}
+\end{proof}
+
+\begin{equiv_def}
+\textbf{(Abelian)} We call a group $G$ \textbf{abelian} if any of the followings hold true 
+\begin{enumerate}[label=(\roman*)]
+  \item  $Z(G)=G$
+  \item $G'=1$ 
+  \item $g\mapsto g^{-1}$ forms an automorphism.  
+  \item $\operatorname{Inn}(G)$ is trivial.  
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
+Interestingly, our equivalence definition for Abelian immediately gives a corollary on automorphism groups: 
+\begin{corollary}
+\textbf{(Finite group with order $\geq 3$ has a nontrivial automorphism)} If $o(G)\geq 3$, then $\operatorname{Aut}(G)$ is nontrivial. 
+\end{corollary}
+\begin{proof}
+If $G$ is non-abelian, then  $\operatorname{Inn}(G)$ is non-trivial. If $G$ is abelian, then we have the inversion automorphism. Such inversion automorphism is non-trivial unless all nontrivial elements of $G$ has order $2$. In such case, $G$ forms a finite-dimensional $\F_2$-vector space, which allow us to easily find an inversion automorphism. 
+\end{proof}
+\begin{theorem}
+\label{THcafg}
+\textbf{(Abelian criteria for finite group)} Let $G$ be a finite group and $\phi \in \operatorname{Aut}(G)$ be an automorphism that satisfies 
+\begin{align*}
+\abso{\set{g \in G: \phi (g)=g^{-1}}} > \frac{3}{4}\cdot  o(G)
+\end{align*}
+Then $G$ is abelian.  
+\end{theorem}
+\begin{proof}
+Denote $S \triangleq \set{x\in G: \phi (x)=x^{-1}}$. Because of consideration of order, we only have to prove $S \subseteq Z(G)$.  Fix $x \in S$. We prove that $C_G(x)=G$. Now, since 
+\begin{align*}
+y^{-1}x^{-1}= \phi (xy)=\phi(x)\phi (y)=x^{-1}y^{-1},\quad \text{ for all }y \in S \cap x^{-1}S
+\end{align*}
+we see that $S \cap x^{-1}S \subseteq C_G(x)$. The proof then follows from computing  
+\begin{align*}
+\abso{S \cap x^{-1}S}&= \abso{S} + \abso{x^{-1}S}- \abso{S \cup  x^{-1}S} \\
+&\geq \frac{3}{2} \cdot o (G)+ 2 \epsilon  - o(G) > \frac{1}{2} \cdot o (G)
+\end{align*}
+and consideration of the order.
+\end{proof}
+\begin{Example}{Lower bound in \customref{THcafg}{our abelian criteria for finite group} is necessary}{}
+Consider 
+\begin{align*}
+D_4  \triangleq \langle r,s \mid  r^4=s^2=e,srs^{-1}=r^{-1}\rangle 
+\end{align*}
+There are exactly three quarters of elements of order dividing $2$, i.e.,  $\set{e,r^2,rs,r^2s,r^3s}$. The identity automorphism send them to their inverse, but the group is not abelian. 
+\end{Example}
 \section{Semidirect Product}
 Let $N,H$ be two groups and  $\phi: H \rightarrow \operatorname{Aut}(N)$ be a group homomorphism. Clearly, when we define a binary operation on  $N\times H$ by 
 \begin{align*}
@@ -416,43 +714,33 @@ commutes.
 \begin{proof}
 It is routine to check that $k(n,h)\triangleq f(n)g(h)$ suffices. The uniqueness follows from noting $(n,e)\cdot (e,h)=(n,h)$ for all $n \in N$ and $h \in H$.  
 \end{proof}
+It is worth mentioning here that direct product is a special case of semidirect product. If $\phi : H \rightarrow \operatorname{Aut}(N)$ is trivial, then $N \rtimes_{\phi}H\cong  N \times H$. Also, it is not true that every two distinct group homomorphism $\psi,\phi : H \rightarrow \operatorname{Aut}(N)$ must induce distinct semidirect product. For example, given $f \in  \operatorname{Aut}(H)$, we have 
+\begin{align}
+\label{EQfAutH}
+N \rtimes_{\phi \circ f}  H \cong  N \rtimes_{\phi } H \quad \text{ via }\quad (n,f^{-1}(h)) \mapsto (n,h)
+\end{align}
 \begin{theorem}
+\label{THposd}
 \textbf{(Presentation of semidirect product)} Let $N\triangleq \langle X\mid R\rangle ,H \triangleq \langle Y\mid S\rangle $ and $\phi : H \rightarrow \operatorname{Aut}(N)$ be a group homomorphism. We have 
 \begin{align*}
-N \rtimes_{\phi} H = \langle X\cup  Y \mid R,S,yxy^{-1}=\phi_y(x)\text{ for all }x \in X,y \in Y\rangle 
+N \rtimes_{\phi} H = \langle X\cup  Y \mid R,S,yxy^{-1}=w_y(x)\text{ for all }x \in X,y \in Y\rangle 
 \end{align*}
+where $w_y(x)$ is a fixed word in $X$ that stands for $\phi_y(x) \in N$.  
 \end{theorem}
 \begin{proof}
-
+See Chapter 10, Section 1, Corollary 1 of the book Presentations of Groups (2nd ed.) by D.L. Johnson. The proof is not difficult, but without his approach, can be rather lengthy and tedious.    
 \end{proof}
 
-\begin{Example}{Classification of semidirect product of $\Z_8 \rtimes \Z_2$}{}
-Write $\operatorname{Aut}(\Z_{8})\triangleq \set{1,3,5,7}$, so there are four distinct action $\Z_2 \longrightarrow \operatorname{Aut}(\Z_8)$. In particular, $3$ of them are non-trivial, giving three possibly distinct semidirect product of $\Z_8 \rtimes \Z_2:$
+\begin{Example}{Classification of semidirect product of $C_8 \rtimes C_2$}{}
+Write $\operatorname{Aut}(C_{8})\triangleq \set{1,3,5,7}$, so there are four distinct action $C_2 \longrightarrow \operatorname{Aut}(C_8)$ giving us possibly four distinct semidirect product of $C_8 \rtimes C_2:$
 \begin{align*}
-\langle x,y \mid  x^8=y^2=e,yxy^{-1}=x^n\rangle ,\quad n \in \set{-1,3,5}
+\langle x,y \mid  x^8=y^2=e,yxy^{-1}=x^n\rangle ,\quad n \in \set{1,3,5,-1}
 \end{align*}
-Clearly, every element can be written as $x^ay^b$ with  $a \in \set{0,\dots ,7}$ and $b \in \set{0,1}$. 
-
-$n=3$, Quasidihedral 
+Because every word clearly can be written as $x^ay^b$ with  $0 \leq a \leq 7$ and $b \in \set{0,1}$, regardless of $n$, and because as a priori, we are already aware that  $C_8 \rtimes C_2$ has order $16$, we know that indeed the elements $x^ay^b$ are nontrivial unless  $a=b=0$. To see that the four groups are non-isomorphic, one can first use the formula:
 \begin{align*}
-x \mapsto \begin{pmatrix} 
-  \xi & 0 \\
-  0 & - \overline{\xi}
-\end{pmatrix} \quad \text{ and }\quad y \mapsto \begin{pmatrix} 
- 0 & 1 \\
- 1 & 0 
-\end{pmatrix}
+  (x^ay)^2=x^{a(n+1)}
 \end{align*}
-$n=5$,  $M$-group or  \textbf{Iwasawa} group  
-\begin{align*}
-x \mapsto \begin{pmatrix} 
-  \xi & 0 \\
-  0 & - \xi
-\end{pmatrix} \quad \text{ and }\quad y \mapsto \begin{pmatrix} 
-  0 & 1 \\
-  1 & 0
-\end{pmatrix} 
-\end{align*}
+to count the number of elements of order $2$, and therefore confirm that the only possible isomorphism is between $n=1$ and  $n=5$, which is also impossible, since  $n=5$ is clearly non-abelian.  
 \end{Example}
 
 \begin{equiv_def}
@@ -462,7 +750,7 @@ x \mapsto \begin{pmatrix}
   \item $G=NH$ and  $N\cap H=1$. 
   \item Every $g$ can be uniquely written as $g=nh$.  
   \item The composition of $\pi  : G \twoheadrightarrow G\quotient N$ and $\diota : H \hookrightarrow G $ forms an isomorphism $H \rightarrow  G \quotient N$. 
-  \item There exists a homomorphism $r:G \rightarrow  H$, called the \textbf{retraction}, that is identity on $H$ and has kernel $N$. Such retraction then give us a right split short exact sequence 
+  \item There exists a homomorphism $r:G \rightarrow  H$, called the \textbf{retraction}, that is identity on $H$ and has kernel $N$. Such retraction then give us a right split sequence 
 \begin{align*}
 1 \longrightarrow N \longrightarrow G \overset{r}{\longrightarrow }H \longrightarrow 1
 \end{align*}
@@ -476,159 +764,87 @@ since $r \circ \diota = \id _H  $.
 
 (iv)$\implies $(i): $N \cap H=1$ is clear. To see that $G=NH$, just observe that  $g=gr(g^{-1})r(g)$, where $gr(g^{-1})\in N$, since $r(gr(g^{-1}))=r(g)r(r(g^{-1}))=r(g)r(g^{-1})=e$. 
 \end{proof}
-Suppose $N\trianglelefteq  G$ and $H \leq G$ satisfies the conditions in the \customref{EDrip}{recognition theorem for inner semidirect product}. Defining $\phi : H \rightarrow \operatorname{Aut}(N)$ by $\phi_h(n)\triangleq hnh^{-1}$, we see that the natural map $N \rtimes_{\phi} H \rightarrow G$ indeed forms a well-defined group isomorphism. 
+Suppose $N\trianglelefteq  G$ and $H \leq G$ satisfies the conditions in the \customref{EDrip}{recognition theorem for inner semidirect product}. Defining $\phi : H \rightarrow \operatorname{Aut}(N)$ by $\phi_h(n)\triangleq hnh^{-1}$, we see that the natural map $N \rtimes_{\phi} H \rightarrow G$ indeed forms a well-defined group isomorphism. Note that if $H$ is also normal in $G$, then the action  $\phi_h(n)=hnh^{-1}$ become trivial, since we would have $[H,N]\subseteq H \cap N= 1$. This agrees with the \customref{EDidpfg}{recognition theorem for direct product}. 
 \begin{Example}{Inner semidirect product}{}
+View $\Z_2$ as a subgroup of  $S_n$ by sending  $1\mapsto  (1,2)$. We see that we have a right split sequence:  
 \begin{align*}
-1 \longrightarrow A_n \longrightarrow S_n \overset{\operatorname{sgn}}{\longrightarrow } \Z_2 \longrightarrow 1
+1 \longrightarrow A_n \longrightarrow S_n \overset{\operatorname{sgn}}{\longrightarrow } C_2 \longrightarrow 1
 \end{align*} 
+Therefore, we may write 
+\begin{align*}
+S_n \cong  A_n \rtimes_{\phi} C_2,\quad \text{ with }\phi_1 (g) = (1,2)g (1,2)^{-1}
+\end{align*}
+Let $\F$ be a field, and view $\F^{\times}$ as a subgroup of $\operatorname{GL}_n(\F)$ by sending $c$ to $\operatorname{diag}(c,1,\dots ,1)$. We see that we have a right split sequence: 
+\begin{align*}
+  1 \longrightarrow \operatorname{SL}_n(\F) \longrightarrow \operatorname{GL}_n(\F) \overset{\operatorname{det}}{\longrightarrow} \F^{\times} \longrightarrow 1
+\end{align*}
+
 \end{Example}
 \begin{equiv_def}
 \label{EDidpfg}
-  \textbf{(Recognition theorem)} Let $N_1,\dots ,N_k \trianglelefteq G$. We say $G$ is an \textbf{internal direct  products of $N_i$} if any of the followings hold true: 
+  \textbf{(Recognition theorem for direct product)} Let $N_1,\dots ,N_k$ be normal subgroups of $G$. We say $G$ is an \textbf{internal direct  products of $N_i$} if any of the followings hold true: 
 \begin{enumerate}[label=(\roman*)]
   \item The natural map $N_1 \times \cdots \times N_k \rightarrow G$ forms a group isomorphism. 
-  \item $N_1\cdots N_k=G$ and $N_i \cap \prod_{j\neq i}N_j=\set{e}$ for all $i$. 
+  \item $N_1\cdots N_k=G$ and $N_i \cap \prod_{j\neq i}N_j=1$ for all $i$.  
+  \item $N_1\cdots N_k=G$ and $N_i \cap  \prod_{j<i}N_j=1$ for all $i$. 
 \end{enumerate}
 \end{equiv_def}
 \begin{proof}
   (i)$\implies $(ii): Clearly we have $N_1 \cdots N_k = G$. Let $n_2 \cdots n_k \in N_1$. Because $n_2 \cdots n_k$ is both the image of $(n_2\cdots n_k,e,\dots ,e)$ and $(e,n_2,\dots ,n_k)$, by injectivity of the natural map, we know $n_2=\cdots =n_k =e$.  \\
 
-  (ii)$\implies $(i): We first need to show that the map forms a homomorphism, which boils down to showing that for $i \neq j$, we have $[N_i,N_j]=1$, which follows from the premise and the fact that \customref{EDns}{$[N_i,N_j]\leq N_i \cap N_j$}. Surjectivity is clear. For injectivity, if $n_1\cdots n_k=e$, then because $n_2 \cdots n_k= n_1^{-1} \in N_1$, we know $n_2\cdots n_k=e$ and $n_1=e$. Continuing the process, we see  $n_1=\cdots =n_k=e$.   
+  (ii)$\implies $(iii) is clear. It remains to show (iii)$\implies $(i). The proof relies on induction on $k$. We first prove the base case $k=2$. Because $\customref{EDns}{[N_1,N_2]\leq N_1 \cap N_2}=1$, we know the natural map forms homomorphism. Surjectivity is clear. For injectivity, if $n_1n_2=e$, then since  $n_1= n_2^{-1}\in N_2$, we know $n_1=n_2=e$. \\
+
+We now prove the inductive case. By the base case, the natural map: 
+\begin{align*}
+  (N_1 \cdots N_k) \times N_{k+1}\longrightarrow N_1\cdots N_k N_{k+1}=G
+\end{align*}
+forms a group isomorphism. By inductive hypothesis, the natural map: 
+\begin{align*}
+N_1 \times \cdots \times N_k \longrightarrow N_1\cdots N_k
+\end{align*}
+also forms a group isomorphism. Composing the two together, we get the desired isomorphism. 
+\end{proof}
+It should be noted that we didn't define internal direct products for infinite index, since the original statement can not be naively generalized to the infinite case. The ill behavior can be seen from multiple aspect. For example,  we have 
+\begin{align*}
+\prod_{i \in I} N_i \trianglelefteq \prod_{i \in I} G_i\quad \text{ and }\quad  \frac{\prod G_i}{\prod N_i} \cong  \prod_{i \in I} \frac{G_i}{N_i}\quad \text{ and }\quad  Z\left(\prod_{i\in I} G_i\right)= \prod_{i\in I} Z(G_i)
+\end{align*}
+even if the index set $I$ is infinite, but we only have  
+\begin{align*}
+\left(\prod_{i \in I} G_i \right)' \leq \prod_{i\in I} (G_i')
+\end{align*}
+where the equality holds if $I$ is finite. \label{THcgi} 
+\begin{equiv_def}
+\label{EDdpfg}
+\textbf{(Recognition theorem for direct product for finite group)} Let $G$ be  a finite group, and let  $N_1 ,\dots ,N_k \trianglelefteq G$ satisfy $G=N_1 \cdots N_k$ and $o(G)=o(N_1)\cdots o(N_k)$. Then $G$ is the internal direct product of $N_i$. 
+\end{equiv_def}
+\begin{proof}
+The proof is done by induction on $k$. The base case $k=1$ is trivial. For the inductive case, one first use \customref{THof}{the order formula} to compute 
+\begin{align*}
+o(N_1)\cdots o (N_k)o(N_1 \cap (N_2 \cdots N_k))=o(G)o(N_1 \cap (N_2 \cdots N_k)) = o(N_1)o(N_2 \cdots N_k)
+\end{align*}
+which gives   
+\begin{align*}
+o(N_1 \cap  (N_2 \cdots N_k)) =  \frac{o(N_2 \cdots N_k)}{o(N_2)\cdots o(N_k)} \leq 1
+\end{align*}
+which by \customref{EDidpfg}{recognition theorem} implies $G$ is the internal direct product  $N_1 \times (N_2 \cdots N_k)$. The rest then follows from the inductive hypothesis. 
 \end{proof}
 \begin{Example}{The requirement in definitions of internal direct products for groups}{}
-Let $G\triangleq \Z_4 \times \Z_2$. Clearly the direct product of $\langle (1,0)\rangle $ and $\langle (2,0)\rangle $ is isomorphic to $G$, but they do not form an internal direct product of  $G$. It is because of such, we must require  $N_1 \times \cdots \times N_k$ not only isomorphic to $G$, but moreover the natural way in \customref{EDidpfg}{definition of internal direct products for groups}.
+Let $G\triangleq C_4 \times C_2$. Clearly the direct product of $\langle (1,0)\rangle $ and $\langle (2,0)\rangle $ is isomorphic to $G$, but they do not form an internal direct product of  $G$. It is because of such, we must require  $N_1 \times \cdots \times N_k$ not only isomorphic to $G$, but moreover the natural way in \customref{EDidpfg}{definition of internal direct products for groups}.
 \end{Example}
-\section{Centralizer}
-
-Let $S\subseteq G$, and consider its \textbf{centralizer} $C_G(S)\triangleq \set{g \in G: gs=sg\text{ for all }s \in S}$. To see that $C_G(S)\trianglelefteq N_G(S)$, one simply observe that $C_G(S)$ is the kernel of the conjugacy action $N_G(S) \longrightarrow  \operatorname{Bij}(S)$. Clearly centralizers are always abelian. We call the centralizer of the whole group $Z(G)\triangleq C_G(G)$ \textbf{center}. Because every element of the center form a single conjugacy classes, by \customref{THost}{orbit-stabilizer theorem}, we have the \textbf{class equation}:
+\begin{Example}{The requirement in definitions of internal direct products for groups}{}
+Let $G=\Z \times \Z$. Clearly $N_1 \triangleq \Z \times 1,N_2 \triangleq 1 \times \Z,N_3 \triangleq \set{(x,x)\in G: x \inz}$ satisfies 
 \begin{align*}
-\label{THce}
-o(G) = o(Z(G))+ \sum [G:C_G (x)]
+G=N_1N_2 N_3 \quad \text{ and }\quad N_1 \cap N_2 = N_1 \cap  N_3 = N_2 \cap  N_3 =1 
 \end{align*}
-where $x$ runs through conjugacy classes outside of  $Z(G)$. From class equation, we immediately see that \textbf{finite $p$-groups} must have nontrivial centers. \label{THfp}
-\begin{Example}{Infinite $p$-group}{}
-The \textbf{Prüfer group} $\Z(p^{\infty})$ is defined by 
-\begin{align*}
-\Z(p^{\infty})\triangleq \set{\exp (2\pi i m \quotient p^n)\inc: m \inz\text{ and }n\inn }
-\end{align*}
-It is an infinite group whose every nontrivial element has order $p^n$ for some  $n\inn$.    
+Yet, later we will see that \customref{THfgag}{we can never have the isomorphism $\Z\times \Z\cong  \Z \times \Z \times \Z$}. This is why we must require $N_i \cap \prod_{j\neq i}N_j=1$ in the definition internal direct product.  
 \end{Example}
-Let $N \trianglelefteq G$. Because $xy \in N$ if and only if $yx \in N$, regardless of the definition, we see that 
+\begin{Example}{Subgroups are not products of intersections}{}
+In general, we don't have 
 \begin{align*}
-[g,h] \in N \iff gN,hN \in G \quotient N\text{ commutes }
+H \leq G_1 \times \cdots \times G_k \implies H = (G_1 \cap  H) \times \cdots \times (G_k \cap H)
 \end{align*}
-Therefore, the factor group  $G \quotient N$ is abelian if and only if $[G,G]\subseteq N$. In this note, we use $G'$ to denote the  \textbf{commutator subgroup} of $G$, the subgroup  generated by  $[G,G]$. From our observation, clearly $G'$ is the smallest normal subgroup that makes the quotient abelian. In fact, any subgroup $H$ containing $G'$  is normal, since if $ghg^{-1}h^{-1} \in H$, then we clearly have $ghg^{-1} \in H$. We call $G \quotient G'$ the \textbf{abelianization} of $G$. 
-\begin{theorem}
-\label{THpcs}
-\textbf{(Normal subgroup that intersects with commutator subgroup must be contained by the center)} Given normal subgroup $N \trianglelefteq G$, if $G' \cap N=1$, then $N \leq Z(G)$. 
-\end{theorem}
-\begin{proof}
-Fix $n \in N$ and $g\in G$. Because $N$ is normal, we know  $gng^{-1}n^{-1} \in N$. It then follows from $N \cap G'=1$ that $gng^{-1}n^{-1}=e$, which implies $gn=ng$. 
-\end{proof}
-\begin{Example}{Dihedral group}{}
-  Fix $n\geq 3$. We write the \textbf{Dihedral group} $D_{n}$ as 
-\begin{align*}
-\set{r_0,\dots , r_{n-1},s_0,\dots ,s_{n-1}}
-\end{align*}
-where
-\begin{align*}
-r_k\triangleq \begin{pmatrix} 
-  \cos \frac{2\pi  k}{n} & - \sin \frac{2\pi k}{n} \\
-  \sin \frac{2\pi k}{n} & \cos \frac{2\pi k}{n}
-\end{pmatrix}\quad \text{ and }\quad s_k \triangleq \begin{pmatrix} 
-  \cos \frac{2\pi k}{n} & \sin \frac{2\pi k}{n} \\
-  \sin \frac{2\pi k}{n} & - \cos \frac{2\pi k}{n}
-\end{pmatrix} 
-\end{align*}
-stand for rotation and symmetries. Easily, one then can check that if $n$ is even, then  $Z(D_n)=\set{r_0, r_{\frac{n}{2}} }$, and if $n$ is odd, then $Z(D_n)=\set{r_0}$
+even in the category of abelian group. For example, consider $H \triangleq \set{(x,x)\in \Z^2 : x \inz}$. 
 \end{Example}
-\begin{Example}{Criterion for abelianess}{Cfa}
-If $G \quotient Z(G)$ is cyclic, then for all $a,b \in G$, we may write $a=g^nz_1$ and  $b=g^mz_2$ to see that 
-\begin{align*}
-ab=g^nz_1g^mz_2=g^{n+m}z_1z_2=ba
-\end{align*}
-and concludes that $G$ is abelian. Such criteria can not be weaken to the case $G\quotient Z(G)$ cyclic. For example, consider $D_4$. Because  $o(Z(D_4))=2$, we know $D_4 \quotient Z(D_4)$ is abelian, but $D_4$ isn't. 
-\end{Example}
-\section{Symmetric groups}
-Given the \textbf{symmetric group} $S_n$, to define parity, the fastest way is to realize it as the  \textbf{group of permutation matrix}, and then call those that have determinant $1$  \textbf{even}, while those that have determinant  $-1$  \textbf{odd}. Clearly we have the \textbf{alternating group}
-\begin{align*}
-A_n \triangleq \set{g \in S_n: \operatorname{det}(g)=1}
-\end{align*}
-To see that  $[S_n:A_n]=2$ for all $n\geq 2$, just consider that for any $g\in S_n - A_n$, we have a bijection between $A_n$ and  $S_n- A_n$ defined by  
-\begin{align*}
-a \mapsto  ag
-\end{align*}
-By direct observation, we see that every permutation has a fixed \textbf{cycle type}.     Because  
-\begin{align*}
-\sigma \circ (a_1,\dots ,a_k) \circ \sigma^{-1} = \left(\sigma (a_1),\dots ,\sigma (a_k)\right)
-\end{align*}
-we see that the conjugacy classes of $S_n$ coincides with cycle type classes. 
-\begin{theorem}
-\label{THzSn}
-\textbf{($S_n$ has trivial center for $n\geq 3$)}  $Z(S_n)=1$ for all $n\geq 3$.
-\end{theorem}
-\begin{proof}
-Let $\tau \neq e\in S_n$. Because $\tau$ is nontrivial, we know $\tau (i)=j$ for some $i \neq j$. Let $\sigma (i)=i$ and $\sigma (j) \neq j$. We now see $\sigma \circ \tau \circ \sigma^{-1}\neq \tau$, as desired.  \\
-\end{proof}
-\begin{theorem}
-\label{TH3c}
-\textbf{($A_n$ are generated by  $3$-cycles for  $n\geq 3$)} Given  $n\geq 3$, $A_n$ is generated by $3$-cycles. 
-\end{theorem}
-\begin{proof}
-Such is proved via induction on $n$. The base case is clear. We now prove the inductive case. Let $\sigma \in A_{n}$. By inductive hypothesis, if $\sigma $ doesn't move $n$, then  $\sigma$ can be generated by $3$-cycles. If  $\sigma$ move $n$, then because inverse of a $3$-cycle is a $3$-cycle, and because there exists a  $3$-cycle  $\tau$ such that $\tau \circ \sigma$ fix $n$, we see  $\sigma$ can also be generated by $3$-cycles.  
-\end{proof}
-\begin{theorem}
-\label{THcsS}
-\textbf{(Commutator subgroup of $S_n$ is $A_n$ for $n\geq 3$)} $S'_n=A_n$ for all $n\geq 3$. 
-\end{theorem}
-\begin{proof}
-$S'_n \leq A_n$ follows from computation. Because \customref{TH3c}{$A_n$ is generated by $3$-cycles}, to show $S_n'=A_n$, we only have to show $S_n'$ contains all  $3$-cycles, which follows from computing 
-\begin{align*}
-  (a,b,c)=[(a,b),(a,c)]
-\end{align*}
-\end{proof}
-\begin{theorem}
-\label{THsa}
-\textbf{(Simplicity of $A_n$)} 
-\begin{enumerate}[label=(\roman*)]
-  \item $A_3$ is simple. 
-  \item $A_4$ is not simple. 
-  \item  $A_n$ is simple for $n\geq 5$. 
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-(i): Simplicity of $A_3$ follows from  $o(A_3)=3$. \\
-
-(ii): There are three ways to partition $\set{1,2,3,4}$ into $2$ disjoint subsets, each of cardinality $2$, i.e., 
-\begin{align*}
-\Pi_1 \triangleq \set{\set{1,2},\set{3,4}}\quad \text{ and } \quad \Pi_2 \triangleq \set{\set{1,3},\set{2,4}}\quad \text{ and }\quad \Pi_3 \triangleq \set{\set{1,4},\set{2,3}}
-\end{align*}
-Clearly, $S_4$ acts on $\set{\Pi_1,\Pi_2,\Pi_3}$, that is, $S_4 \longrightarrow \operatorname{Sym}(\set{\Pi_1,\Pi_2,\Pi_3})\cong S_3$. Direct computation now shows that we have a surjective group homomorphism $A_4 \longtwoheadrightarrow A_3 $ with kernel $\set{e, (1,2)(3,4),(1,3)(2,4),(1,4)(2,3)}$. \\
-
-
-
-
-
-
-(iii): We first prove  \vi{$A_5$ is simple}. Because $A_5\trianglelefteq S_5$ is normal, we know $A_5$ is the union of the classes of cycle types 
-\begin{align*}
-  (1,2,3)\quad \text{ and }\quad (1,2)(3,4) \quad \text{ and }\quad (1,2,3,4,5)
-\end{align*}
-Direct computation shows that the first cycle type class has $20$ elements, that the second cycle type class has  $15$ elements, and that the third cycle type class has  $24$ elements. It now follows from \customref{THLt}{Lagrange's theorem} and from \customref{EDns}{normal subgroups are unions of conjugacy classes} that $A_5$ has no proper nontrivial subgroups. $\vdone$\\
-
-Let $N \trianglelefteq A_n$, with $\tau \neq e \in N$ and $n>5$. We are required to show $N=A_n$.  Because $n\geq 5$, clearly for any pair of $3$-cycles $\set{(a_1,a_2,a_3),(b_1,b_2,b_3)}$, there exists some $\sigma \in A_n$ such that $(b_1,b_2,b_3)= \sigma \circ  (a_1,a_2,a_3)\circ  \sigma ^{-1}$. In other words, the class of $3$-cycles forms a conjugacy class of  $A_n$. This together with normality $N\trianglelefteq A_n$ and the fact that \customref{TH3c}{$A_n$ is generated by set of $3$-cycles} reduce the problem into proving $N$ contains a $3$-cycle.  \\
-
-Consider $A_5$ as a subgroup of $A_n$ that fixes a particular set of $n-5$ numbers. Then clearly we have $N \cap A_5 \trianglelefteq A_5$. Because  $A_5$ is simple and contains a  $3$-cycle, we now only have to show  $ N \cap A_5>1$, that is, to show $N$ contains an element that fixes at least $n-5$ elements. \\
-
-Let   $(a_1,a_2,a_3)$ be a $3$-cycle such that $\set{\tau (a_1),\tau (a_2),\tau (a_3)}, \set{a_1,a_2,a_3}$ overlap. We now see $\tau \circ (a_1,a_2,a_3)\circ \tau^{-1} \circ  (a_1,a_2,a_3)^{-1} \in N $ is an element that fixes at least $n-5$ elements.  
-\end{proof}
-\begin{theorem}
-\label{THnSn}
-\textbf{(The only proper nontrivial normal subgroup of $S_n$)} For $n\geq 5$, $A_n$ is the only proper nontrivial subgroup of $S_n$.  
-\end{theorem}
-\begin{proof}
-Let $N$ be a proper nontrivial subgroup of $S_n$. We are required to show $N=A_n$. Because $[S_n:A_n]=2$, we only have to show $A_n \leq N$. This boils down to showing $N\cap A_n>1$, since \customref{THsa}{$A_n$ is simple}. Assume for a contradiction that $N\cap A_n=1$. The contradiction $N=1$ then follows from \customref{THcsS}{$A_n = S_n'$}  and \customref{THzSn}{$Z(S_n)=1$}, since \customref{THpcs}{normal subgroup that intersects with commutator subgroup must be contained by the center}.  
-\end{proof}
 
 
 \section{Finitely generated abelian group}
@@ -646,9 +862,10 @@ y_1&= (c_1 -c_2)x_1 + c_2(x_2+x_1) + \cdots + c_k x_k \\
 as desired. 
 \end{proof}
 \begin{theorem}
-\textbf{(Fundamental theorem for finitely generated abelian group, invariant factor form)} Let $G$ be a finitely generated abelian group. Then we may write: 
+\label{THfgag}
+\textbf{(Structure theorem for finitely generated abelian group)} Let $G$ be a finitely generated abelian group. Then we may write: 
 \begin{align*}
-G  \cong  \Z_{n_1} \times \cdots \times \Z_{n_s} \times \Z^{r}
+G  \cong  C_{n_1} \times \cdots \times C_{n_s} \times \Z^{r}
 \end{align*}
 for $n_i \geq 2$. Moreover, we know that 
 \begin{enumerate}[label=(\roman*)]
@@ -668,32 +885,72 @@ Let $c_i \triangleq \frac{m_i}{\operatorname{gcd}(m_1,\dots ,m_t)}$ for all $i \
 \end{align*}
 We now see $o(y_1) \leq m_1 < o(x_1)$, a contradiction to the choice that $x_1$ has the smallest order. $\vdone$ \\
 
-(i): Fix an expression of $G$, and let $p$ be a prime that satisfies  $p \nmid n_i$ for all $i$. The rest then follows from checking that $G \quotient pG \cong  \Z_p^s$. \\ 
+(i): Fix an expression of $G$, and let $p$ be a prime that satisfies  $p \nmid n_i$ for all $i$. The rest then follows from checking that $G \quotient pG \cong  C_p^r$. \\ 
 
 
 (ii): The existence follows from noting that 
 \begin{align*}
-\operatorname{gcd}(m,n)=1 \implies    \Z_{mn}\cong  \Z_m \times \Z_n
+\operatorname{gcd}(m,n)=1 \implies    C_{mn}\cong  C_m \times C_n
 \end{align*}
-The uniqueness follows from noting that given a primary decomposition form whose $p$-part has the form  $\Z_{p^{n_1}} \times \cdots \times \Z_{p^{n_k}}$, then the \textbf{torsion $p$-subgroup} $G_{T_p}$ of $G$ 
+The uniqueness follows from noting that given a primary decomposition form whose $p$-part has the form  $C_{p^{n_1}} \times \cdots \times C_{p^{n_k}}$, then the \textbf{torsion $p$-subgroup} $G_{T_p}$ of $G$ 
 \begin{align*}
 G_{T_p} \triangleq \set{x \in G: o(x)=p^n\text{ for some }n\geq 0}
 \end{align*}
 is 
 \begin{align*}
-G_{T_p} \cong  \Z_{p^{n_1}}\times \cdots \times \Z_{p^{n_k}}
+G_{T_p} \cong  C_{p^{n_1}}\times \cdots \times C_{p^{n_k}}
 \end{align*}
 and that 
 \begin{align*}
-  \frac{p^{d-1}\Z_{p^{n_i}}}{p^{d}\Z_{p^{n_i}}}\cong \begin{cases}
-    \Z_p & \text{ if }d-1 <n_i \\
-    0& \text{ if }d-1 \geq n_i
+  \frac{p^{d-1}C_{p^{n_i}}}{p^{d}C_{p^{n_i}}}\cong \begin{cases}
+    C_p & \text{ if }d-1 <n_i \\
+    1& \text{ if }d-1 \geq n_i
   \end{cases}
 \end{align*}
-(iii): Both the existence and uniqueness of invariant factor form follows form that of primary decomposition form: Just consider that $\Z_{n_s}$ can only be $\Z_{p_1}^{d_1}\times \cdots \times \Z_{p_m}^{d_m}$, where $p_i$ non-repeatedly running through all the occurring prime with $d_i$ being the highest exponential.  
+(iii): Both the existence and uniqueness of invariant factor form follows form that of primary decomposition form: Just consider that $C_{n_s}$ can only be $C_{p_1}^{d_1}\times \cdots \times C_{p_m}^{d_m}$, where $p_i$ non-repeatedly running through all the occurring prime with $d_i$ being the highest exponential.  
 \end{proof}
+\customref{THfgag}{Structure theorem for finitely generated abelian group} in fact also gives a structure theorem for automorphism group of finite abelian group. See \href{https://arxiv.org/pdf/math/0605185}{this paper}. A particular case is that $\operatorname{Aut}(C_p^n)\cong \operatorname{GL}_n(\F_p)$. 
+\begin{corollary}
+\label{COfao}
+\textbf{(Finite abelian group has subgroups of all possible order)} Let $G$ be a finite abelian group with $m \mid  o(G)$. Then there exists subgroup of $G$ of order  $m$.  
+\end{corollary}
+\begin{proof}
+The proof follows from the \customref{THfgag}{primary decomposition form} and the fact that for all $e<d\inn \cup  \set{0}$,  
+\begin{align*}
+\set{0,p^{d-e},\dots ,(p^e -1)p^{d-e}}\subseteq C_{p^{d}}
+\end{align*}
+is a subgroup of $C_{p^d}$ of order $p^e$. 
 \end{proof}
-
+\begin{theorem}
+\textbf{(Subgroup of finitely generated abelian group)} Let $G$ be a finitely generated abelian group that has rank $r$ whose $p$-part is  
+\begin{align*}
+G_{T_p} \cong  C_{p^{n_1}}\times \cdots \times C_{p^{n_k}},\quad \text{ with }n_1 \geq \cdots \geq  n_k
+\end{align*}
+Then for any subgroup $H \leq G$, if we write 
+\begin{align*}
+H_{T_p}\cong  C_{p^{d_1}}\times \cdots \times C_{p^{d_s}},\quad \text{ with }d_1 \geq \cdots \geq  d_s
+\end{align*}
+then the rank of $H$ is  $\leq r$, and we have $s \leq k$ and $n_i \geq d_i$ for all $i$. 
+\end{theorem}
+\begin{proof}
+Clearly we have $H_{T_p}\leq G_{T_p}$. Consider $\Omega_1 (H_{T_p})\triangleq  \set{h \in H_{T_p}: h^p=e}$. Clearly, we have 
+\begin{align*}
+C_p^s \cong  \Omega_1(H_{T_p}) \leq \Omega_1 (G_{T_p}) \cong  C_p^k
+\end{align*}
+Therefore, by counting order, we see that indeed $s\leq k$. The rest is 
+\begin{align*}
+C_{p}^{\operatorname{card}\set{\geq d_i}}\cong  \Omega_1 (p^{d_i-1}H_{T_p}) \leq  \Omega_1 (p^{d_i-1}G_{T_p}) \cong  C_p^{\operatorname{card}\set{\geq d_i}}
+\end{align*}
+We now prove that $H$ has rank  $\leq r$. Let $q$ be a prime not in the decomposition. Since 
+\begin{align*}
+\Z^s \cong  qH \leq qG \cong  \Z^r
+\end{align*}
+We have an injective group homomorphism $f:\Z^s\rightarrow \Z^r$. Denote the group homomorphism by a $r$-by-$s$ matrix $A\in M_{r \times s}(\Z)$. The injectivity of $f$ then means $Av=0 \implies  v=0$ for all $v\in \Z^s$. Let $w \in \Q^s$ and $m \gg 0$ be a natural number large enough so that $mw \in \Z^s$. We then see 
+\begin{align*}
+Aw=0 \implies Amw=mAw=0 \implies  mw=0 \implies  w=0 
+\end{align*}
+In other words, the matrix $A \in M_{r \times s}(\Q)$ has rank $s$, which is only possible given that  $s \leq r$. 
+\end{proof}
 \section{Sylow theorems}
 \label{SECSt}
 \begin{theorem}
@@ -721,7 +978,7 @@ M \triangleq \bigcup_{i=0}^k \bigcup_{j=1}^{m_i} \Gamma _{i,j},\quad \text{ wher
 \end{align*}
 Because of such, we see that $M$ can be acted on by the group 
 \begin{align*}
-G\triangleq \prod_{i=0}^k \overbrace{\Z_{p^i} \times \cdots \times \Z_{p^i}}^{m_i}
+G\triangleq \prod_{i=0}^k \overbrace{C_{p^i} \times \cdots \times C_{p^i}}^{m_i}
 \end{align*}
 Clearly, $G$ also acts on the set $X$ of the set of subsets of  $M$ that has  $n$ elements.  Because $G$ is a $p$-group, \customref{THost}{orbit-stabilizer theorem} tell us that 
 \begin{align*}
@@ -761,6 +1018,14 @@ p^mt-1 = t_kp^{m+k} + \cdots + (t_0-1)p^m + (p-1) p^{m-1} + \cdots + (p-1)p^0
 \end{align*}
 where $t=t_kp^k + \cdots + t_0 p^0$ with $t_0>0$.  
 \end{proof}
+\begin{corollary}
+\textbf{(Every $p$-subgroup is contained by some Sylow $p$-subgroup)} Let $G$ be a finite group and $H\leq G$ a $p$-group. Then $H$ must be contained by some Sylow $p$-subgroup of $G$. 
+\end{corollary}
+\begin{proof}
+Consider the conjugacy action $H \longrightarrow \operatorname{Bij}\left(\operatorname{Syl}_p(G) \right)$. \customref{THfSt}{First Sylow theorem} and \customref{THost}{orbit-stabilizer theorem} shows that there must be a singleton orbit. Let that singleton be $P$.\\
+
+We claim $H\leq P$. Because $\set{P}$ is a singleton orbit of the conjugacy action, we know $H \leq N_G(P)$. Then by \customref{THsitg}{second isomorphism theorem}, we see that $HP$ is a group such that  $HP \quotient P\cong  H \quotient  H \cap P$. This implies that $HP$ is a  $p$-group. The fact $HP$ contains $P$ forces $P=HP$, which implies $H \leq P$. 
+\end{proof}
 \begin{theorem}
 \label{THcl}
 \textbf{(Counting lemma for $p$-group)} Let $G$ be a  $p$-group acting on a finite set $X$. Then 
@@ -772,16 +1037,6 @@ where $\operatorname{Fix}(G) \triangleq \set{x \in X: gx=x\text{ for all }g\in G
 \begin{proof}
 This is a consequence of \customref{THost}{orbit-stabilizer theorem}. 
 \end{proof}
-\begin{corollary}
-\textbf{(Normal subgroups of finite $p$-groups intersect with centers)} Let $1< N \trianglelefteq P$ where $P$ is a finite $p$-group. Then $N \cap Z(P)>1$.  
-\end{corollary}
-\begin{proof}
- Let $P$ acts on $N$ by conjugation. By \customref{THcl}{our counting lemma for $p$-group}, we have 
-\begin{align*}
-0 \equiv o(N) \equiv \abso{\set{n \in N: gng^{-1}=n\text{ for all } g \in P}} \pmod{p} 
-\end{align*}
-Noting that the latter set $=N \cap Z(P)$, we now see $N \cap Z(P)>1$. 
-\end{proof}
 \begin{theorem}
 \label{THsSt}
 \textbf{(Second Sylow theorem)} Sylow $p$-subgroups are conjugated to each other.    
@@ -789,7 +1044,36 @@ Noting that the latter set $=N \cap Z(P)$, we now see $N \cap Z(P)>1$.
 \begin{proof}
 Let $H$ and $P$ be two Sylow $p$-subgroups of $G$, and let $H$ acts on left coset space of  $P$ by left multiplication. Because $P$ is Sylow, by \customref{THcl}{counting lemma for $p$-group}, we know the number of fixed points $gP$ is nonzero. Let $gP$ be a fixed point. We then see that, as desired, $g^{-1}hg  \in P$ for all $h \in H$, since  $hgP=gP$. 
 \end{proof}
+\begin{corollary}
+\label{COnoS}
+\textbf{(Normalizers of Sylow subgroups Don't satisfy normalizer condition)} Let $G$ be a finite group and  $P \in \operatorname{Syl}_p(G)$. Then 
+\begin{align*}
+N_G(P)=N_G(N_G(P))
+\end{align*}
+\end{corollary}
+\begin{proof}
+Let $x \in N_G(N_G(P))$. We are required to show $x \in N_G(P)$. By definition, we have 
+\begin{align*}
+xPx^{-1}\leq xN_G(P)x^{-1} =N_G(P)
+\end{align*}
+In other words, both $P$ and  $xPx^{-1}$ are Sylow $p$-subgroup of  $N_G(P)$. Therefore, by \customref{THsSt}{second Sylow theorem}, there exists some $y \in N_G(P)$ such that 
+ \begin{align*}
+xPx^{-1}=yPy^{-1}=P
+\end{align*}
+This then implies $x \in N_G(P)$. 
+\end{proof}
+\begin{corollary}
+\textbf{(Restriction of conjugacy classes onto normalizer of Sylow subgroups, on element of center of Sylow subgroups)} Let $G$ be a finite group, $P \in \operatorname{Syl}_p(G)$, and $a,b \in Z(P)$. If  $a,b$ are conjugate in  $G$, then they are conjugate in  $N_G(P)$. 
+\end{corollary}
+\begin{proof}
+Write $b=xax^{-1}$ with $x \in G$. By definition, we have 
+\begin{align*}
+  (x^{-1}gx)a (x^{-1}gx)^{-1}= x^{-1}gbg^{-1}x= x^{-1}bx = a,\quad \text{ for all }g \in P
+\end{align*}
+In other words, $x^{-1}Px \leq C_G(a)$. Then since both  $P$ and  $x^{-1}Px$ are Sylow $p$-subgroup of $C_G(a)$, by \customref{THsSt}{second Sylow theorem}, we know there exists $y \in C_G(a)$ such that $P=y^{-1}x^{-1}Pxy$. We now see that $xy \in N_G(P)$ and $(xy)a(xy)^{-1}=b$, as desired.      
+\end{proof}
 \customref{THsSt}{Second Sylow theorem} moreover stated that given $n_p>1$, the conjugacy action $G \longrightarrow  \operatorname{Sym}(\operatorname{Syl}_p(G))\cong  S_{n_p}$ is nontrivial, and thus injective when $G$ is simple. This is a trick particularly useful to classify finite simple group. 
+
 \begin{theorem}
 \label{THtSt}
 \textbf{(Remaining part of third  Sylow theorem)} Let $G$ be a finite group, and let $n_p$ be the number of Sylow  $p$-subgroup of  $G$. For all Sylow  $p$-subgroup $P$ of  $G$, we have 
@@ -800,13 +1084,307 @@ n_p =  [G:N_G(P)]
 \begin{proof}
 This is a consequence of \customref{THsSt}{second Sylow theorem} and \customref{THost}{orbit stabilizer theorem}, where we note that when $G$ acts on  $\operatorname{Syl}_p(G)$ by conjugation we have $\operatorname{Stab}(P)=N_G(P)$. 
 \end{proof}
-\section{Application of Sylow theorems}
-Before we go into detail, we first mention that \customref{THus}{normal Sylow subgroups are clearly characteristic}, so we will use the word "characteristic Sylow subgroup" instead.  
+\section{Old Numbers}
+Before the first application, we first show that:  
+\begin{theorem}
+\label{THzpc}
+\textbf{($\Z_p^{\times}$ is cyclic)} Let $p$ be prime. Then the unit group $\Z_p^{\times}$ is cyclic. 
+\end{theorem}
+\begin{proof}
+We are required to show the existence of elements of order $p-1$. Let $l$ be the least common multiple of orders of all elements, so $x^l-1\in \Z_p[x]$ has $p-1$ distinct roots in  $\Z_p$. This implies  $l\geq p-1$. Because the group is abelian, we now see from \customref{THfgag}{its primary decomposition form} that indeed it is cyclic.  
+\end{proof}
+The slickest application of Sylow theorem is without a doubt \customref{THWt}{Wilson's theorem}. 
+\begin{theorem}
+\textbf{($a^n \equiv 1 \pmod{p}$ has at most $n$ solution for all  $n$)}
+\end{theorem}
+\begin{proof}
+Because $\Z_p^{\times}\cong  C_{p-1}$ is cyclic, we may write $a= x^c$ with $C_{p-1}=\langle x\rangle $, and the proof reduce to finding number of solution to 
+\begin{align*}
+  p \mid  nc
+\end{align*}
+We then see that the solution set is 
+\begin{align*}
+c \in \set{\frac{p}{\operatorname{gcd}(p,n)}, \dots ,\frac{p \left(\operatorname{gcd}(p,n)-1 \right)}{\operatorname{gcd}(p,n)} }
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{THWt}
+\textbf{(Group theoretic side of Wilson's theorem)} Let $p$ be prime. Then 
+\begin{align*}
+(p-1)! \equiv -1\pmod{p}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Consider the symmetric group $S_p$. The proof follows from $n_p \equiv 1\pmod{p}$ and directly counting that $n_p=(p-2)!$. This is easy to count, since the Sylow $p$-group of  $S_p$ are those generated by a single  $p$-cycle.   
+\end{proof}
+\begin{theorem}
+\textbf{(Wolstenholme's theorem)} Let $p$ be an odd prime, and write 
+\begin{align*}
+H(p-1)\triangleq 1+ \frac{1}{2} + \cdots + \frac{1}{p-1}    \inq
+\end{align*}
+Then
+\begin{align*}
+H(p-1) \equiv 0\pmod{p^2}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Because $p$ is odd, we can group the terms of $H(p-1)$ by pairs: 
+\begin{align*}
+H(p-1)= \left( 1+ \frac{1}{p-1} \right) + \left( \frac{1}{2} + \frac{1}{p-2} \right) + \cdots + \left( \frac{1}{\frac{p-1}{2}} + \frac{1}{p - \frac{p-1}{2}}\right)   
+\end{align*}
+Reduce each pair to a common denominator: 
+\begin{align*}
+H(p-1)= \frac{p}{p-1}+ \frac{p}{2(p-2)}+ \cdots + \frac{p}{\frac{p-1}{2}\cdot \left(p- \frac{p-1}{2} \right)}
+\end{align*}
+We then can write 
+\begin{align}
+\label{EQHp1}
+H(p-1)\triangleq  p \cdot \frac{A}{(p-1)!}
+\end{align}
+where 
+\begin{align*}
+A\triangleq  \frac{(p-1)!}{p-1} + \frac{(p-1)!}{2(p-2)} + \cdots + \frac{(p-1)!}{\frac{p-1}{2}\cdot (p- \frac{p-1}{2})}
+\end{align*}
+Since $p\nmid  (p-1)!$, \myref{equation}{EQHp1} reduce the proof into proving $p \mid  A$. We first show that 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+\vi{$\frac{(p-1)!}{a (p-a)} \equiv a^{-2}\pmod{p}$, for $a \in \set{1,\dots ,p-1}$, where the power $a^{-2}$ occurs in the cyclic group $\Z_p^\times\cong  C_{p-1}$.   }
+   \end{minipage}
+\end{center}
+Denote $x \triangleq \frac{(p-1)!}{a(p-a)}\inz$, so by \customref{THWt}{Wilson's theorem}, we have 
+\begin{align*}
+a(p-a)x=(p-1)! \equiv -1\pmod{p}
+\end{align*}
+which gives us 
+\begin{align*}
+a^2x \equiv 1 \pmod{p} \vdone
+\end{align*}
+We may now write 
+\begin{align*}
+A \equiv 1^{-2} + \cdots + \left(\frac{p-1}{2}  \right)^{-2} \pmod{p}
+\end{align*}
+Because $p$ is odd, we only have to prove $2A \equiv 0\pmod{p}$: 
+\begin{align*}
+  2A&\equiv 1^{-2} + \cdots + \left(\frac{p-1}{2}  \right)^{-2} + 1^{-2} + \cdots + \left(\frac{p-1}{2}  \right)^{-2}  \\
+  &\equiv   1^{-2} + \cdots + \left(\frac{p-1}{2}  \right)^{-2}  + (-1)^{-2} + \cdots + \left(-\frac{p-1}{2} \right)^{-2} \\
+  &\equiv 1^{-2} + \cdots + \left(\frac{p-1}{2} \right)^{-2} + \left(\frac{p+1}{2} \right)^{-2} + \cdots + \left(p-1 \right)^{-2} 
+\end{align*}
+Because \customref{THzpc}{$\Z_p^{\times} \cong  C_{p-1}$ is cyclic}, we know the inversion $x\mapsto x^{-1}$ forms a bijection on its non-trivial elements. Therefore, we have 
+\begin{align*}
+  2A &\equiv 1^2 + \cdots + (p-1)^2  \\
+  &= \frac{p(p-1)(2p-1)}{6} \equiv 0 \pmod{p}
+\end{align*}
+\end{proof}
+\section{Symmetric Groups}
+Given the \textbf{symmetric group} $S_n$, to define parity, the fastest way is to realize it as the  \textbf{group of permutation matrix}, and then call those that have determinant $1$  \textbf{even}, while those that have determinant  $-1$  \textbf{odd}. Clearly we have the \textbf{alternating group}
+\begin{align*}
+A_n \triangleq \set{g \in S_n: \operatorname{det}(g)=1}
+\end{align*}
+To see that  $[S_n:A_n]=2$ for all $n\geq 2$, just consider that for any $g\in S_n - A_n$, we have a bijection between $A_n$ and  $S_n- A_n$ defined by  
+\begin{align*}
+a \mapsto  ag
+\end{align*}
+By direct observation, we see that every permutation has a fixed \textbf{cycle type}.     Because  
+\begin{align*}
+\sigma \circ (a_1,\dots ,a_k) \circ \sigma^{-1} = \left(\sigma (a_1),\dots ,\sigma (a_k)\right)
+\end{align*}
+we see that the conjugacy classes of $S_n$ coincides with cycle type classes. \\
+
+At this point, it is worth mentioning that, given $g \in S_n$, even though we are definitely aware of what its centralizer is, in the sense that given any $h \in S_n$, we can immediately tell whether $h \in C_{S_n}(g)$, but to actually describe $C_{S_n}(g)$ may be annoying. See this \href{https://math.stackexchange.com/questions/208790/centralizer-of-a-given-element-in-s-n}{MSE post}. 
+\begin{Example}{Conjugacy classes of $A_n$ are either half a cycle type or all.}{}
+Recall that conjugacy classes is just the orbit of conjugacy action, and \customref{THost}{orbit-stabilizer theorem} links the orbit $\Gamma $ of an element $x$ with its stabilizer group by
+\begin{align*}
+\abso{\Gamma } = [G:\operatorname{Stab}(x)]
+\end{align*}
+Now, since we clearly have 
+\begin{align*}
+\operatorname{Stab}_{A_n}(x)= A_n \cap \operatorname{Stab}_{S_n}(x)
+\end{align*}
+if $\operatorname{Stab}_{A_n}(x)\leq A_n$, then the conjugacy class of $x$ in $A_n$ is the half of its conjugacy class in $S_n$. On the other hand, if $\operatorname{Stab}_{A_n}(x)\not \leq A_n$, then since $A_n\operatorname{Stab}_{A_n}(x)=S_n$, by \customref{THof}{order formula}, we know $[A_n:\operatorname{Stab}_{A_n}(x)]=[S_n:\operatorname{Stab}_{S_n}(x)]$, which implies that the conjugacy class of $x$ in $A_n$ is the same as  in  $S_n$. 
+\end{Example}
+\begin{theorem}
+\label{THgos}
+\textbf{(generator of $S_n$)} Let $n\geq 2$. Then $S_n$ is generated by  transpositions or $\set{(1,2),(1,\dots ,n)}$ or $\set{(1,k) \in S_n : 2 \leq k \leq n}$
+\end{theorem}
+\begin{proof}
+Since in general, we have 
+\begin{align*}
+  (1,\dots ,k)= (2,3) (3,4) \cdots (k-2,k-1)(k-1,k)(1,k)
+\end{align*}
+and that in general, we have 
+\begin{align*}
+  (i,j)= (1,i)(1,j)(1,i)^{-1}
+\end{align*}
+We only have to show $(1,i)$ can be generated by $\set{(1,2),(1,\dots ,n)}$, which is proved via two inductions, with one of them being 
+\begin{align*}
+  (k,k+1)(1,k)(k,k+1)^{-1}= (1,k+1)
+\end{align*}
+while the other being 
+\begin{align*}
+g(i,i+1)g^{-1} =(i+1,i+2),\quad \text{ for all }i\leq n-2
+\end{align*}
+where we denote $g\triangleq (1,\dots ,n)$.
+\end{proof}
+\begin{theorem}
+\label{THzSn}
+\textbf{($S_n$ has trivial center for $n\geq 3$)}  $Z(S_n)=1$ for all $n\geq 3$.
+\end{theorem}
+\begin{proof}
+Let $\tau \neq e\in S_n$. Because $\tau$ is nontrivial, we know $\tau (i)=j$ for some $i \neq j$. Let $\sigma (i)=i$ and $\sigma (j) \neq j$. We now see $\sigma \circ \tau \circ \sigma^{-1}\neq \tau$, as desired.  \\
+\end{proof}
+\begin{theorem}
+\label{TH3c}
+\textbf{($A_n$ are generated by  $3$-cycles for  $n\geq 3$)} Given  $n\geq 3$, $A_n$ is generated by $3$-cycles. 
+\end{theorem}
+\begin{proof}
+Such is proved via induction on $n$. The base case is clear. We now prove the inductive case. Let $\sigma \in A_{n}$. By inductive hypothesis, if $\sigma $ doesn't move $n$, then  $\sigma$ can be generated by $3$-cycles. If  $\sigma$ move $n$, then because inverse of a $3$-cycle is a $3$-cycle, and because there exists a  $3$-cycle  $\tau$ such that $\tau \circ \sigma$ fix $n$, we see  $\sigma$ can also be generated by $3$-cycles.  
+\end{proof}
+\begin{theorem}
+\label{THcsS}
+\textbf{(Commutator subgroup of $S_n$ is $A_n$ for $n\geq 3$)} $S'_n=A_n$ for all $n\geq 3$. 
+\end{theorem}
+\begin{proof}
+$S'_n \leq A_n$ follows from computation. Because \customref{TH3c}{$A_n$ is generated by $3$-cycles}, to show $S_n'=A_n$, we only have to show $S_n'$ contains all  $3$-cycles, which follows from computing 
+\begin{align*}
+  (a,b,c)=[(a,b),(a,c)]
+\end{align*}
+\end{proof}
+\begin{theorem}
+\label{THsa}
+\textbf{(Simplicity of $A_n$)} 
+\begin{enumerate}[label=(\roman*)]
+  \item $A_3$ is simple. 
+  \item $A_4$ is not simple. It contains a characteristic $2$-Sylow subgroup, i.e., the set of product of two disjoint transposition.  
+  \item  $A_n$ is simple for $n\geq 5$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i): Simplicity of $A_3$ follows from  $o(A_3)=3$. \\
+
+(ii): There are three ways to partition $\set{1,2,3,4}$ into $2$ disjoint subsets, each of cardinality $2$, i.e., 
+\begin{align*}
+\Pi_1 \triangleq \set{\set{1,2},\set{3,4}}\quad \text{ and } \quad \Pi_2 \triangleq \set{\set{1,3},\set{2,4}}\quad \text{ and }\quad \Pi_3 \triangleq \set{\set{1,4},\set{2,3}}
+\end{align*}
+Clearly, $S_4$ acts on $\set{\Pi_1,\Pi_2,\Pi_3}$, that is, $S_4 \longrightarrow \operatorname{Sym}(\set{\Pi_1,\Pi_2,\Pi_3})\cong S_3$. Direct computation now shows that we have a surjective group homomorphism $A_4 \longtwoheadrightarrow A_3 $ with kernel $\set{e, (1,2)(3,4),(1,3)(2,4),(1,4)(2,3)}$. \\
+
+
+
+
+
+
+(iii): We first prove  \vi{$A_5$ is simple}. Because $A_5\trianglelefteq S_5$ is normal, we know $A_5$ is the union of the classes of cycle types 
+\begin{align*}
+  (1,2,3)\quad \text{ and }\quad (1,2)(3,4) \quad \text{ and }\quad (1,2,3,4,5)
+\end{align*}
+Direct computation shows that the first cycle type class has $20$ elements, that the second cycle type class has  $15$ elements, and that the third cycle type class has  $24$ elements. It now follows from \customref{THLt}{Lagrange's theorem} and from \customref{EDns}{normal subgroups are unions of conjugacy classes} that $A_5$ has no proper nontrivial subgroups. $\vdone$\\
+
+Let $N \trianglelefteq A_n$, with $\tau \neq e \in N$ and $n>5$. We are required to show $N=A_n$.  Because $n\geq 5$, clearly for any pair of $3$-cycles $\set{(a_1,a_2,a_3),(b_1,b_2,b_3)}$, there exists some $\sigma \in A_n$ such that $(b_1,b_2,b_3)= \sigma \circ  (a_1,a_2,a_3)\circ  \sigma ^{-1}$. In other words, the class of $3$-cycles forms a conjugacy class of  $A_n$. This together with normality $N\trianglelefteq A_n$ and the fact that \customref{TH3c}{$A_n$ is generated by set of $3$-cycles} reduce the problem into proving $N$ contains a $3$-cycle.  \\
+
+Consider $A_5$ as a subgroup of $A_n$ that fixes a particular set of $n-5$ numbers. Then clearly we have $N \cap A_5 \trianglelefteq A_5$. Because  $A_5$ is simple and contains a  $3$-cycle, we now only have to show  $ N \cap A_5>1$, that is, to show $N$ contains an element that fixes at least $n-5$ elements. \\
+
+Let   $(a_1,a_2,a_3)$ be a $3$-cycle such that $\set{\tau (a_1),\tau (a_2),\tau (a_3)}, \set{a_1,a_2,a_3}$ overlap. We now see $\tau \circ (a_1,a_2,a_3)\circ \tau^{-1} \circ  (a_1,a_2,a_3)^{-1} \in N $ is an element that fixes at least $n-5$ elements.  
+\end{proof}
+\begin{theorem}
+\label{THnSn}
+\textbf{(The only proper nontrivial normal subgroup of $S_n$)} For $n\geq 5$, $A_n$ is the only proper nontrivial subgroup of $S_n$.  
+\end{theorem}
+\begin{proof}
+Let $N$ be a proper nontrivial subgroup of $S_n$. We are required to show $N=A_n$. Because $[S_n:A_n]=2$, we only have to show $A_n \leq N$. This boils down to showing $N\cap A_n>1$, since \customref{THsa}{$A_n$ is simple}. Assume for a contradiction that $N\cap A_n=1$. The contradiction $N=1$ then follows from \customref{THcsS}{$A_n = S_n'$}  and \customref{THzSn}{$Z(S_n)=1$}, since \customref{THpcs}{normal subgroup that disjoint with the commutator subgroup must be contained by the center}.  
+\end{proof}
+A group is said to be \textbf{complete} if the group has no outer automorphism and centerless. In other words, the natural map $G \longrightarrow \operatorname{Inn}(G)$ forms an isomorphism between $G$ and  $\operatorname{Aut}(G)$.
+\begin{theorem}
+\textbf{(Symmetric group is complete for $n\neq 2$ or $6$)} Let $n\geq 3$. Then $S_n$ is complete for  $n\neq 6$.  
+\end{theorem}
+\begin{proof}
+Clearly, automorphism group $\operatorname{Aut}(G)$ in general acts on conjugacy classes of $G$. That is, we have a group homomorphism  $\operatorname{Aut}(G)\longrightarrow \operatorname{Bij}(\operatorname{cl}(G))$.\\
+
+Let $\alpha  \in \operatorname{Aut}(S_n)$. We first show that \vi{$\alpha  \in \operatorname{Stab}(\operatorname{cl}((1,2)))\implies  \alpha \in \operatorname{Inn}(S_n)$}. Because \customref{THgos}{$S_n$ is generated by $\set{(1,k) \in S_n: 2 \leq k \leq n}$}, we only have to show the existence of some $\sigma \in S_n$ such that 
+\begin{align*}
+\alpha ((1,k))= \sigma (1,k) \sigma^{-1}= (\sigma (1),\sigma (k)),\quad \text{ for all }k\geq 2
+\end{align*}
+Because of the premise, we already know that $\alpha  ((1,k))$ is a $2$-cycle. Our first task is to show that the intersection of the $2$-cycles  $\set{\alpha ((1,k)): k\geq 2}$ is nonempty. Write 
+\begin{align*}
+\alpha ((1,2))\triangleq (a,b_2) 
+\end{align*}
+Because $(1,2)(1,3)$ is a $3$-cycle, we know  $\alpha ((1,2))\alpha  ((1,3))=\alpha ((1,2)(1,3))$ is of order $3$, which is only possible if the $2$-cycle $\alpha ((1,3))$ share exactly one element with the $2$-cycle  $(a,b_2)$. WLOG, let that element be $a$, and write 
+\begin{align*}
+\alpha  ((1,3))=(a,b_3),\quad \text{ where }b_3 \not \in \set{a,b_2}
+\end{align*}
+Applying the same logic to $\alpha ((1,4))$, we see that the $2$-cycle $\alpha ((1,4))$ must share exactly one element with $(a,b_2)$ and must share exactly one element with $(a,b_3)$. Therefore, we know $\alpha ((1,4))$ either is of the form 
+\begin{align*}
+  (a,b_4),\quad \text{ with }b_4 \not \in \set{a,b_2,b_3}
+\end{align*}
+or is of the form $(b_2,b_3)$. To see that the latter is impossible, simply compute the order of $(1,2)(1,3)(1,4)$ and $(a,b_2)(a,b_3)(b_2,b_3)$. Now, we apply the same logic to $\alpha ((1,5))$, and this time we can conclude that  $\alpha ((1,5))$ must be of the form $(a,b_5)$ with $b_5 \not\in \set{a,b_2,b_3,b_4}$. Repeating the process, we then see 
+\begin{align*}
+\sigma (1)\triangleq a \quad \text{ and }\quad \sigma (k)\triangleq b_k
+\end{align*}
+suffices. $\vdone$ \\
+
+Ir remains to show every $\alpha  \in \operatorname{Aut}(S_n)$ fix the class of transposition. Since $\alpha $ must maps a transposition to an element of order $2$. We only have to prove 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+     \blue{For $n \neq 6$, the class of transposition has unique cardinality, which is $\binom{n}{2}$,  among the conjugacy classes whose elements are of order $2$}.
+   \end{minipage}
+\end{center}
+Clearly, the conjugacy classes whose elements has order $2$ are the classes of product of disjoint $2$-cycles. Assume for a contradiction that there really is such a class that has the same cardinality of the class of transposition, says, this class is the class of $k$ product of disjoint  $2$-cycle. We then would have 
+\begin{align*}
+\binom{n}{2}= \frac{1}{k!} \binom{n}{2} \binom{n-2}{2} \cdots \binom{n-2(k-1)}{2}
+\end{align*}
+Noticing the RHS is telescoping, we compute  
+\begin{align}
+\label{EQsn2}
+\binom{n-2}{2k-2}=  \frac{k!(2^{k-1})}{(2k-2)!}
+\end{align}
+Because the RHS now is not an integer for $k\geq 4$, we now have $k \in \set{1,2,3}$. Direct computation now shows that for \myref{equation}{EQsn2} to holds, we must have $k=3$ and  $n=6$.  $\bdone$
+\end{proof}
+We say a group action $G \longrightarrow  \operatorname{Bij}(X)$ is \textbf{transitive} if for each $x,y \in X$, there exists some $g \in G$ such that $g\cdot x=y$. We say a subset $S\subseteq S_n$ is \textbf{transitive} if for each $i,j \in \set{1,\dots ,n}$ there exists some $s \in S$ such that $s (i)=j$  
+\begin{theorem}
+\textbf{($S_6$ is incomplete)}  $S_6$ is not complete. 
+\end{theorem}
+\begin{proof}
+  \customref{SECSt}{Sylow theorems} shows that $S_5$ has $6$ Sylow  $5$-subgroups, and the conjugacy action $\pfi : S_5 \rightarrow \operatorname{Bij}(\operatorname{Syl}_5(S_5))\cong S_6$ is transitive. In particular, the $6$ Sylow  $5$-subgroups are the cyclic subgroups generated by the $6$ distinct  $5$-cycles. Because \customref{THnSn}{$A_5$ is the only proper nontrivial normal subgroup of $S_5$}, we know $\operatorname{ker}(\pfi )\in \set{1,A_5,S_5}$. Clearly it isn't  $S_5$. To see it isn't  $A_5$, just note that if it is, then its images would have all have order $2$, which just isn't the case, as one can observe that 
+\begin{align*}
+  (1,2,3)^2 \langle (2,3,4,5,6)\rangle   (1,2,3)^{-2} \neq \langle (2,3,4,5,6)\rangle 
+\end{align*}
+Therefore, the only possibility is that $\pfi $ is injective. Denote $H \triangleq \pfi  (S_5)\leq S_6$. The fact that $\pfi $ is transitive now means that $H\leq S_6$ is transitive. \\
+
+Now, consider the left multiplication action $\sigma : S_6 \rightarrow \operatorname{Bij}(S_6 \quotient H)$ on the left coset spaces of $H$. Because \customref{THnSn}{$A_6$ is the only proper nontrivial normal subgroup of $S_6$} and $\operatorname{Core}(H)\leq H$, we know $\sigma $ must be injective. In other words, $\sigma$ is an automorphism. \\
+
+Note that all elements of $\sigma (H)\leq S_6$ fix a point, i.e., $H \in S_6 \quotient H$ itself, while $H\leq S_6$, since being transitive, fix no points. If $\sigma$ is inner, this is clearly impossible, thus the proof.  
+\end{proof}
+\section{Analysis of some finite group}
+
+
+\begin{corollary}
+\label{COzqp}
+\textbf{(Classification of semidirect product of $C_q \rtimes C_p$ with $p\mid  q-1$)} Let $p,q$ be two primes. If $p \nmid q-1$, then the semidirect product $C_q \rtimes C_p$ must be a direct product. If $p \mid  q-1$, then the semidirect product $C_q \rtimes C_p$ has exactly two non-isomorphic meanings. 
+\end{corollary}
+\begin{proof}
+Clearly, we have 
+\begin{align*}
+\operatorname{Aut}(C_q) \cong    \customref{THzpc}{\Z_q ^{\times}\cong C_{q-1}} 
+\end{align*}
+Let $x$ and $y$ each be the generators of  $C_p$ and $C_{q-1}$. Let $x\mapsto y^c$ defines a group homomorphism. Because $x^p=e$, we must have $q-1 \mid  pc$. Therefore, if $p\nmid q-1$, the only action  $\phi\in \operatorname{Hom}(C_p,\operatorname{Aut}(C_{q}))$ is trivial.  \\
+
+
+Suppose $p \mid  q-1$. By the \customref{THp}{universal property of presentation}, we now see that the possible group homomorphism $\operatorname{Hom}(C_p,C_{q-1})$ are exactly  $x \mapsto  y^{\frac{q-1}{p}d}$ for $d\inz$. Let $\phi_d$ and $\phi:\Z_p\rightarrow \Z_{q-1}$ denote $x\mapsto y^{\frac{q-1}{p}d}$ and $x \mapsto y^{\frac{q-1}{p}}$ with $d\neq 0$. Clearly we have 
+\begin{align*}
+\phi_d = \phi \circ \psi 
+\end{align*}
+where $\psi\in \operatorname{Aut}(C_p)$ is defined by $\psi (x)\triangleq x^d$. Because \customref{EQfAutH}{two actions differs by a automorphism in front induces the same semidirect product}, we have shown that there can be at most two distinct semidirect product $C_q \rtimes C_p$.  \\
+
+To see that they are distinct, we claim that the nontrivial one is not abelian, which follows from noting that  
+\begin{align*}
+  (n,e)\cdot (e,h) = (n,h)\quad  \text{ and }\quad (e,h)\cdot (n,e)= (\phi_h (n),h) 
+\end{align*}
+in general. 
+\end{proof}
+We now have enough tools to state and prove our result. Note that \customref{THus}{normal Sylow subgroups are clearly characteristic}, so we will use the word "characteristic Sylow subgroup" instead.  
 \begin{corollary}
 \label{COaSo}
-\textbf{(Classification of finite group of fixed prime structure)} Let $p,q,r$ be three distinct prime. 
+\textbf{(Analysis of finite group of fixed prime structure)} Let $p,q,r$ be three distinct prime. 
 \begin{enumerate}[label=(\roman*)]
-  \item Groups of order $pq$ has a characteristic $q$-Sylow subgroup, where $p<q$. If $p\nmid q-1$, then there is only one group of order $pq$, i.e., $\Z_p \times \Z_q$. If $p \mid q-1$, then there are only two groups of order $pq$, i.e.,  $\Z_p\times \Z_q$ and $\Z_q\rtimes \Z_p$.  
+  \item Groups of order $pq$, where $p<q$, is always a semidirect product $C_q \rtimes C_p$, \customref{COzqp}{and we know there are at most $2$ of them}, depending on whether $p \mid  q-1$. 
   \item Groups of order $p^2q$ has a characteristic Sylow subgroup.   
   \item Groups of order $p^3q$ has a characteristic Sylow subgroup, given that $(p,q)\neq (2,3)$. 
   \item Groups of order $pqr$ has a characteristic $r$-Sylow subgroup and a normal subgroup of order $qr$, where $p<q<r$. If $q \nmid r-1$, then groups of order $pqr$ moreover has a characteristic $q$-Sylow subgroup. 
@@ -814,38 +1392,63 @@ Before we go into detail, we first mention that \customref{THus}{normal Sylow su
 \end{enumerate}
 \end{corollary}
 \begin{proof}
-(i): Clear. The isomorphism part follows from \customref{EDidpfg}{recognition theorem}. \\
+(i): Clearly $n_q=1$. Let $P\in \operatorname{Syl}_p(G)$. Clearly $P\cap Q=1$. This by \customref{THof}{order formula} implies $PQ=G$. The rest then follows from  \customref{EDrip}{recognition theorem for inner semidirect product}. \\ 
+
 
 (ii): If $p>q$, then clearly  $n_p$ can only be  $1$. If  $p<q$, then we must have $n_q \in \set{1,p^2}$. If $n_q=1$, then we are done. If not, then from \customref{THfSt}{$n_q \equiv 1 \pmod{q}$}, we see $q=p+1$, which can only happens if $q=3$ and  $p=2$. We claim that in such case, i.e., $o(G)=12$, then either $n_3=1$ or  $G \cong  A_4$, which contains a characteristic $2$-Sylow subgroup. \\
 
-If $n_3=4$, then for any $P \in \operatorname{Syl}_3(G)$, we have $N_G(P)=P$, since \customref{THtSt}{$3=n_3=[G:N_G(P)]$}.  Clearly, the conjugacy action $G \longrightarrow  \operatorname{Sym}(\operatorname{Syl}_3(G))$ has kernel contained by $N_G(P)=P$. This by non-normality of $P$ implies the conjugacy action  $G \longhookrightarrow \operatorname{Sym}(\operatorname{Syl}_3(G))\cong  S_4$ is injective. Because both $A_4$ and $G$ contains $8$ elements of order $3$, it now follows that  $G\cong A_4$.\footnote{One may argue that the original assertion that groups of order $p^2q$ all have a normal Sylow subgroup holds true, but we don't know whether it is possible $n_3=4$. Such is possible, since  $A_4$ really makes $n_3=4$.}  \\
-
-Direct computation shows that $A_4$ indeed has a normal  $2$-Sylow subgroup, i.e., the kernel  $\set{e, (1,2)(3,4),(1,3)(2,4),(1,4)(2,3)}$ of the surjective group homomorphism $A_4 \longtwoheadrightarrow A_3 $. \\
-
-(iii): Let $P \in \operatorname{Syl}_p(G)$. Because $G$ is simple, by \customref{THsSt}{second Sylow theorem}, conjugacy action $G \longrightarrow \operatorname{Sym}(\operatorname{Syl}_p(G))\cong  S_{n_p}$ is nontrivial. Simplicity of $G$ then forces the action to be injective, as desired. \\
+If $n_3=4$, then for any $P \in \operatorname{Syl}_3(G)$, we have $N_G(P)=P$, since \customref{THtSt}{$4=n_3=[G:N_G(P)]$}.  Clearly, the conjugacy action $G \longrightarrow   \operatorname{Bij}(\operatorname{Syl}_3(G))$ has kernel contained by $N_G(P)=P$. This by non-normality of $P$ and $o(P)=3$ implies the conjugacy action  $G \longhookrightarrow \operatorname{Bij}(\operatorname{Syl}_3(G))\cong  S_4$ is injective. Note that $G$ has  $8$ elements of order  $3$. Since  $A_4$ is the only subgroup of  $S_4$ with order $12$ and  $8$ elements of order  $3$, we now see  $G\cong  A_4$.  \footnote{One may argue that the original assertion that groups of order $p^2q$ all have a normal Sylow subgroup holds true, but we don't know whether it is possible $n_3=4$. Such is possible, since  $A_4$ really makes $n_3=4$.} The proof then follows from recalling that \customref{THsa}{$A_4$ has a characteristic  $2$-Sylow subgroup}. 
 
 
-(v):  By counting, we know $1 \in \set{n_p,n_q,n_r}$. If $n_p \neq 1 \neq n_q$, then we are done. If $n_p=1$, then denoting $P$ the normal Sylow $p$-subgroup, by  (i), there is a group $H$ of order $pr$ containing  $P$ such that $\frac{H}{P}$ is the normal Sylow $r$-subgroup of $\frac{G}{P}$. Again by (i), there exists a characteristic $K \in \operatorname{Syl}_r(H)$. By   \customref{THtit}{correspondence theorem}, we now have $K\operatorname{char}H \trianglelefteq G$, which implies that $K$ is characteristic in $G$. 
+(iii): Suppose $G$ has no characteristic Sylow subgroup. We are required to show  $(p,q)=(2,3)$, which will follows from showing $q=p+1$. \\
+
+ Now, since $G$ has no characteristic Sylow subgroup, we know  $n_p=q$, which by $n_p \equiv 1 \pmod{p}$ implies $p<q$, which further implies $n_q\in \set{p^2,p^3}$. Counting now give us $n_q=p^2$, which by $n_q \equiv 1 \pmod{p}$ and $p<q$ implies  $q=p+1$.\\
 
 
 
+(iv): We first show $n_r=1$. By counting, we know $1 \in \set{n_p,n_q,n_r}$. If $n_p$ and  $n_q$ are both  $>1$, then we are done. We now show that $n_p=1 \implies n_r=1$, and the proof for $n_q=1 \implies n_r=1$ is similar.  \\
 
+Denote $P$ the characteristic Sylow $p$-subgroup of $G$. Applying (i) on $\frac{G}{P}$, we see the existence of $H\trianglelefteq  G$ with order $pr$ containing $P$. Applying (i) on $H$, we see the existence of $K\operatorname{char}H$ with $o(K)=r$. It then follows from  \customref{THus}{transitive property of characteristic  subgroup} that $K$ is the characteristic  $r$-Sylow subgroup of  $G$ we are looking for.  \\
+
+To see $G$ has a normal subgroup of order  $qr$, just apply  (i) on $G \quotient K$. Denote that normal subgroup by $T \trianglelefteq G$. If $q \nmid  r-1$, then again by (i), there exists $L\operatorname{char}T$ with $o(L)=r$. Because of the \customref{THus}{transitive property of characteristic  subgroup}, we now see that $L$ is the characteristic  $r$-Sylow subgroup of  $G$ we are looking for.\\
+
+(v): Let $P \in \operatorname{Syl}_p(G)$. Non-normality of $P$ together with \customref{THsSt}{second Sylow theorem} implies that the  conjugacy action $G \longrightarrow \operatorname{Bij}(\operatorname{Syl}_p(G))\cong  S_{n_p}$ is nontrivial. Simplicity of $G$ then forces the action to be injective, as desired.
 \end{proof}
 \begin{corollary}
-\textbf{(Application of Sylow theorems, given the order)}
 \begin{enumerate}[label=(\roman*)]
-  \item No group of order $132$ is simple. 
+  \item There are exactly four groups of order $30$. Precisely, they are the four possible semidirect product of $C_{15}\rtimes C_2$ : 
+\begin{align*}
+\langle x,y\mid  x^{15}=y^2=e,yxy^{-1}=x^n\rangle  \quad \text{ where }n \in \set{1,4,11,-1}
+\end{align*} 
+\item The $11$-sylow subgroup of groups of order $231=3 \cdot 7 \cdot 11$ lies in the centers.   
+\item The $7$-sylow subgroup of groups of order  $385=5\cdot 7 \cdot 11$ lies in the centers.
+  \item No group of order $132=2^2\cdot 3 \cdot 11$ is simple. 
+  \item Groups of order $108=2^2\cdot 3^3$ either has a normal subgroup of order $9$, or has a  normal subgroup of order $27$.  
   \item Simple groups of order $60$ must be $A_5$.  
 \end{enumerate}
 \end{corollary}
 \begin{proof}
-(i): If $G$ is simple, then $n_2\geq 3,n_3\geq 4$, and $n_{11}\geq 12$, which is impossible by counting.  \\
+  (i): Since $30=2\cdot 3\cdot 5$, \customref{COaSo}{we know $G$ has a normal subgroup $N$ of order $15$}. This allows us to write $G \cong  N \rtimes C_2$. Since \customref{COaSo}{the only group of order $15$ is $C_{15}$}, we now see $G$ must be of the form: 
+\begin{align*}
+G\cong C_{15} \rtimes C_2
+\end{align*}
+To classify the possible semidirect product, one first compute $\operatorname{Aut}(C_{15})\cong C_4\times C_2$, \footnote{This can proved by noting $\operatorname{Aut}(C_{15})\cong  \Z_{15}^{\times}\cong  (\Z_5 \times \Z_3)^{\times} \cong  \Z_5^{\times}\times \Z_3 ^{\times}\cong C_4 \times C_2$. Of course, one can also just brute force the computation.} which show us that $\operatorname{Hom}(C_2,\operatorname{Aut}(C_{15}))$ has only $4$ elements, which can be easily checked to be $y \mapsto (x \mapsto x^n)$, where $C_2= \langle y\rangle ,C_{15}=\langle x\rangle $ and $n \in \set{1,4,11,14}$. To see that these four possibly distinct groups are really pairwise distinct, one can use \customref{THposd}{their presentation} to easily compute that the number of elements of order $2$ they contain are indeed pairwise different.  \\
 
-(ii): Because  \customref{THnSn}{the only proper nontrivial normal subgroup of $S_5$ is $A_5$} and because $o(G)=60$, to show $G \cong  A_5$, we only have to establish an injective group homomorphism $G\longhookrightarrow S_5$. \\
+
+(ii): Let $R$ be the characteristic  $11$-sylow subgroup of $G$.  \customref{THpoc}{We are required to prove $C_G(R)=G$}. Because $C_G(R)$ is exactly the kernel of the conjugacy action $G = N_G(R)\longrightarrow \operatorname{Aut}(R)$, by \customref{THfit}{first isomorphism theorem}, we have an injection $G \quotient C_G(R) \longhookrightarrow \customref{THzpc}{\operatorname{Aut}(R) \cong C_{10}}$. The proof then follows from counting order. \\
+
+
+(iii): The proof is similar to that of (ii). \\   
+
+(iv):  If $G$ is simple, then $n_2\geq 3,n_3\geq 4$, and $n_{11}\geq 12$, which is impossible by counting.  \\
+
+(v): Let $n_3=4$. We are required to prove the existence of a normal subgroup of order  $9$. Let $P\in \operatorname{Syl}_3(G)$. Consider the left multiplicative action $G \longrightarrow \operatorname{Bij}(G\quotient P)\cong S_4$ on the left cosets space $G \quotient P$. The proof then follows from comparing orders and the observation that the kernel must lies in $P$.   \\
+
+(vi): Because  \customref{THnSn}{the only proper nontrivial normal subgroup of $S_5$ is $A_5$} and because $o(G)=60$, to show $G \cong  A_5$, we only have to establish an injective group homomorphism $G\longhookrightarrow S_5$. \\
 
 Let $P\in \operatorname{Syl}_2(G)$. By simplicity of $G$, we always have an injective group homomorphism $G \longhookrightarrow  \operatorname{Sym}(G \quotient N_G(P))\cong S_{[G:N_G(P)]}$, the left multiplicative action on the left coset space of $N_G(P)$. Since  \customref{THtSt}{$[G:N_G(P)]=n_2$}, it remains to show $n_2=5$. \\
 
-Because $G$ is simple and $60\nmid 4!$, from $G \quotient \operatorname{Core}(H)\cong \operatorname{Sym}(G \quotient H)$, where $G \quotient H$ is the left coset space of $H$, we know that $G$ can not have proper subgroup with index $<5$. This with  \customref{THtSt}{$[G:N_G(P)]=n_2$} in particular implies $n_2\geq 5$. Because $G$ is simple, we now have $n_2 \in \set{5,15}$. \\
+Because $G$ is simple and $60\nmid 4!$, from $G \quotient \operatorname{Core}(H)\longhookrightarrow  \operatorname{Bij}(G \quotient H)$, where $G \quotient H$ is the left coset space of $H$, we know that $G$ can not have proper subgroup with index $<5$. This with  \customref{THtSt}{$[G:N_G(P)]=n_2$} in particular implies $n_2\geq 5$. Because $G$ is simple, we now have $n_2 \in \set{5,15}$. \\
 
 
 Assume $n_2=15$ for a contradiction. Because $n_5=6$, by counting, we see that there must be a pair of distinct  $2$-Sylow subgroup  $Q,R\in \operatorname{Syl}_2(G)$ such that $o(Q\cap R)=2$. Let $M \triangleq N_G(Q\cap R)$. Since  $Q$ and $R$, of order $4$, is abelian, we know  $Q,R \leq  M$, which implies $4 \mid  o(M)$, that is, $o(M)\in \set{4,12,20,60}$. Simplicity of  $G$ forces $o(M)\neq 60$, $Q\neq R$ forces $o(M)\neq 4$, and the fact that $G$ has no proper subgroup of index $<5$ forces  $o(M)\neq 20$. Therefore, we must have $o(M)=12$. \\
@@ -854,50 +1457,138 @@ By simplicity of $G$, we have an injective group homomorphism  $G \longhookright
 \end{proof}
 
 \section{Nilpotency and Solvability}
-More than often, we care about the existence of \textbf{central series}
+A \textbf{normal series} of a group $G$ is a finite chain of subgroups 
 \begin{align*}
-1 \trianglelefteq  \cdots \trianglelefteq  A_{n-1}\trianglelefteq   A_n \trianglelefteq  A_{n+1} \trianglelefteq    \cdots \trianglelefteq  G
+1 \trianglelefteq \cdots \trianglelefteq  A_{n-1}    \trianglelefteq A_n \trianglelefteq A_{n+1} \trianglelefteq \cdots \trianglelefteq  G
 \end{align*}
-where we requires the successive quotient to be \textbf{central}, i.e., $[G,A_{n+1}]\leq A_n$, or equivalently, $A_{n+1} \quotient A_n \leq Z(G \quotient A_n)$, or equivalently, $xyA_n=yx A_n \in G \quotient A_n$ if one of $x,y$ is in  $A_{n+1}$. \\
-
-
-
-To construct one, one can consider the \textbf{upper central series}, defining $G_{(n)}\triangleq [G,G_{(n-1)}]$ with $G_{(0)}\triangleq G$. This gives us 
+A \textbf{composition series} is a maximal normal series. 
+\begin{Example}{Subgroups in normal series need not all be normal}{}
+Consider 
 \begin{align*}
-\cdots  \trianglelefteq  G_{(2)}\trianglelefteq  G_{(1)} \trianglelefteq G
+\langle s\rangle  \trianglelefteq \langle s,r^2\rangle  \trianglelefteq D_4 \triangleq \langle r,s \mid r^4=s^2=e,srs^{-1}=r^{-1} \rangle 
 \end{align*}
-Note that 
-
-\begin{theorem}
-\textbf{(Every subgroup of a nilpotent group is subnormal)} Let $G$ be a nilpotent group with $H \leq G$. Then $H$ is a subnormal subgroup of  $G$.   
-\end{theorem}
-\begin{proof}
-Let 
-\begin{align*}
-1 \triangleleft  A_1 \triangleleft \cdots \triangleleft A_n = G
-\end{align*}
-\end{proof}
-\begin{corollary}
-\textbf{(Nilpotent group satisfies normalizer condition)} Let $G$ be a nilpotent group. If $H<G$, then $H <N_G(H)$. 
-\end{corollary}
-
-
-
-A group is said to be nilpotent if it admits a central series. 
+Clearly $\langle s\rangle $ is not normal in $D_4$.   
+\end{Example}
 \begin{equiv_def}
-\textbf{(Nilpotency for finite group)} Let $G$ be a finite group. The followings are equivalent: 
+\textbf{(Solvable groups)} We say a group $G$ is \textbf{solvable} if any of the followings holds true: 
 \begin{enumerate}[label=(\roman*)]
-  \item $G$ is nilpotent. 
-  \item Sylow subgroups of $G$ are all normal. 
-  \item Sylow subgroups of $G$ are all normal and they form an inner direct product equal to $G$. 
-  \item    
+  \item $G$ admits a finite normal series whose factor  groups are all abelian. 
+  \item The \textbf{derived series}
+\begin{align*}
+\cdots \trianglelefteq  G^{(2)} \trianglelefteq G^{(1)}\trianglelefteq G^{(0)} \triangleq  G,\quad \text{ where }G^{(k+1)}\triangleq \left(G^{(k)} \right)'
+\end{align*}
+reach to $1$. 
 \end{enumerate}
 \end{equiv_def}
 \begin{proof}
-
+Routine. Note that if $1=G_n \trianglelefteq \cdots \trianglelefteq G_0 =G$ is a normal series whose factor groups are all abelian, then clearly we have $G^{(k)}\leq G_k$ 
 \end{proof}
+Clearly, solvable groups are closed under \textbf{group extension}. Given a short exact sequence of groups 
+\begin{align*}
+1 \longrightarrow A \longrightarrow G \longrightarrow B \longrightarrow 1
+\end{align*}
+If $A$ and $B$ are  both solvable, then $G$ is solvable. Conversely, let $G$ be solvable and $H\leq G$. Then clearly   
+\begin{align*}
+1= G^{(n)}\cap  H \trianglelefteq   \cdots \trianglelefteq  G^{(1)} \cap H \trianglelefteq  H 
+\end{align*}
+is normal series whose factor groups are all abelian. Because of such, we say solvable groups are \textbf{subgroup-closed}. Let $N\trianglelefteq G$ and $\pi : G \rightarrow G \quotient N$ be the natural projection. Since $\pi  \left(G^{(k)}\right)$ is the derived series of $G \quotient N$, we see that solvable groups are also \textbf{quotient-closed}. Since \customref{THcgi}{taking direct product and taking commutator subgroup commutes}, we moreover have 
+\begin{align*}
+\left(\prod_{i=1}^nG_i \right)^{(k)}  =\prod_{i=1}^n G_i^{(k)}
+\end{align*}
+Therefore, solvable groups are also \textbf{finite direct product-closed}. 
+\begin{equiv_def}
+\textbf{(Finite solvable groups)} A finite group $G$ is solvable if and only if it admits a composition series whose factor group are all cyclic of prime order. 
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
+
+
+\begin{equiv_def}
+\textbf{(Nilpotent groups)} We call a group $G$ \textbf{nilpotent} if $G$ admits a  \textbf{central series}, a normal series: 
+\begin{align*}
+1=G_0 \trianglelefteq \cdots \trianglelefteq G_n =G 
+\end{align*}
+such that 
+\begin{align*}
+[G,G_{k}]\leq G_{k-1},\quad \text{ for all }k \in \set{1,\dots ,n}
+\end{align*}
+Clearly, all $G_k$ are normal in  $G$. Given a series of normal subgroups, we then clearly see that it is central if and only if 
+\begin{align*}
+ \frac{G_{k}}{G_{k-1}} \leq Z\left(\frac{G}{G_{k-1}} \right),\quad \text{ for all }k\in \set{1,\dots ,n}
+\end{align*}
+A group is nilpotent if and only if its \textbf{lower central series}: 
+\begin{align*}
+\cdots \trianglelefteq G_{(2)} \trianglelefteq  G_{(1)}\trianglelefteq G_{(0)}\triangleq  G,\quad \text{ where }G_{(k)}\triangleq  [G,G_{(k-1)}]\text{ for all }k\inn
+\end{align*}
+reach to $1$. A group is  nilpotent if and only if its \textbf{upper central series}: 
+\begin{align*}
+  1\triangleq Z_{(0)}\trianglelefteq  Z_{(1)} \trianglelefteq  Z_{(2)} \trianglelefteq  \cdots, \quad \text{ where } \frac{Z_{(k+1)}}{Z_{(k)}} \triangleq Z\left(\frac{G}{Z_{(k)}} \right)\text{ for all }k\inn
+\end{align*}
+reach to $G$. The central series $1=G_0 \triangleleft \cdots \triangleleft G_n =G$ is said to have \textbf{length} $n$. The \textbf{nilpotency class} of a nilpotent group is the smallest length of its central series. If a group is nilpotent, then both its lower and upper central series has length of its nilpotent class.  
+\end{equiv_def}
+\begin{proof}
+Clearly both lower and upper central series are central by definition. Suppose a central series 
+\begin{align*}
+1=G_0 \trianglelefteq \cdots \trianglelefteq G_n =G 
+\end{align*}
+exists. To see the lower central series reach to $1$ with smallest length, use induction to show  $G_{(k)}\leq G_{n-k}$ for all $k$. (thus the name \textbf{fastest descending series}). To see the upper central series reach to $G$ with smallest length, use induction to show $G_k \leq Z_{(k)}$ for all $k$. (thus the name \textbf{fastest ascending series}) 
+\end{proof}
+
+
+Again, one can check that central series are closed under taking intersection with a subgroup, under taking finite direct product and under surjective group homomorphism, so nilpotency is also subgroup-closed, quotient-closed and finite-direct-product-closed. 
+\begin{theorem}
+\textbf{(Proper subgroups of nilpotent groups satisfy normalizer condition)} If $G$ is nilpotent, then any $H<G$ satisfies normalizer condition.  
+\end{theorem}
+\begin{proof}
+Note that if $H$ doesn't contain $Z(G)$, then the elements of $Z(G)$ that lies outside $H$ complete the proof, so we only have to consider the case $Z(G)\leq H$.\\
+
+This is proved by induction on nilpotency class $n$ of $G$. The base case $n=1$ is clear. The inductive case follows from \customref{THtit}{third isomorphism theorem for groups} and the observation $G \quotient Z(G)$ has the nilpotent class one smaller than that of $G$.
+\end{proof}
+\begin{theorem}
+\label{THpp}
+\textbf{(Properties of $p$-groups)}
+\begin{enumerate}[label=(\roman*)]
+  \item $p$-groups are nilpotent, and thus solvable. 
+\end{enumerate}
+\end{theorem}
+Let $G$ be a finite $p$-group. Since \customref{THfp}{$p$-groups has nontrivial centers}, we see that the upper central series of $G$ must reach to $G$. Therefore $p$-groups are nilpotent.   
+\begin{equiv_def}
+\label{EDfng}
+\textbf{(Finite nilpotent group)} Let $G$ be a finite group. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $G$ is nilpotent.  
+  \item Proper subgroups of $G$ satisfies normalizer condition.
+  \item Sylow subgroups of $G$ are all normal. 
+  \item  $G$ is the internal direct product of its Sylow subgroups. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+(i)$\implies $(ii): This is done via induction on $o(G)$. Let $H<G$. If $Z(G)$ isn't contained by $H$, then since $H \cdot Z(G)$ normalize $H$, we see $H$ satisfies normalizer condition. Let $Z(G)\leq H$. If $G$ is abelian, then the proof is trivial, so suppose $G$ isn't abelian, and therefore  $o\left(G \quotient Z(G) \right)< o(G)$. Then by inductive hypothesis, $\frac{H}{Z(G)}\leq  \frac{G}{Z(G)}$  satisfies normalizer condition. The proof then follows from pullback. \\
+
+
+(ii)$\implies $(iii): If $G$ is a  $p$-group, then the proof is trivial. Let $G$ not be a $p$-group and let  $P \in \operatorname{Syl}_p(G)$. To see $P$ is normal, just observe that since \customref{COnoS}{normalizers of Sylow subgroups don't satisfy normalizer condition}, the normalizer of $P$ must be  $G$. \\
+
+(iii)$\implies $(iv): This follows from \customref{EDdpfg}{the definition of finite internal direct product}. \\
+
+(iv)$\implies $(i): This follows from the fact that \customref{THpp}{$p$-groups and nilpotent} and that nilpotency is closed under taking finite direct product. 
+\end{proof}
+\begin{Example}{A solvable group that isn't nilpotent}{}
+Consider $S_3$. Because $S_3$ is the extension of  $C_3$ and  $C_2$: 
+ \begin{align*}
+1 \longrightarrow A_3 \longrightarrow S_3 \longrightarrow C_2 \longrightarrow 1
+\end{align*}
+We know $S_3$ is solvable. However, it clearly has $3$ Sylow $2$-subgroups, so we know $S_3$ isn't nilpotent.  
+\end{Example}
 \section{$p$-group}
 
+\begin{Example}{Criterion for abelianess}{Cfa}
+If $G \quotient Z(G)$ is cyclic, then for all $a,b \in G$, we may write $a=g^nz_1$ and  $b=g^mz_2$ to see that 
+\begin{align*}
+ab=g^nz_1g^mz_2=g^{n+m}z_1z_2=ba
+\end{align*}
+and concludes that $G$ is abelian. Such criteria can not be weaken to the case $G\quotient Z(G)$ cyclic. For example, consider $D_4$. Because  $o(Z(D_4))=2$, we know $D_4 \quotient Z(D_4)$ is abelian, but $D_4$ isn't. 
+\end{Example}
 
 \begin{theorem}
 \textbf{(Property of $p$-groups)} 
@@ -911,8 +1602,283 @@ A group is said to be nilpotent if it admits a central series.
 
   (ii): $o(Z(G))=p$ also follows from    \customref{ex:Cfa}{our criteria for abelianess} and the fact that \customref{THfp}{finite $p$-groups have nontrivial centers}. Now, because $G$ is non-abelian and because $G \quotient Z(G)$ is abelian, we see that we must have $G'=Z(G)$. 
 \end{proof}
+\begin{corollary}
+\textbf{(Normal subgroups of finite $p$-groups intersect with centers)} Let $1< N \trianglelefteq P$ where $P$ is a finite $p$-group. Then $N \cap Z(P)>1$.  
+\end{corollary}
+\begin{proof}
+ Let $P$ acts on $N$ by conjugation. By \customref{THcl}{our counting lemma for $p$-group}, we have 
+\begin{align*}
+0 \equiv o(N) \equiv \abso{\set{n \in N: gng^{-1}=n\text{ for all } g \in P}} \pmod{p} 
+\end{align*}
+Noting that the latter set $=N \cap Z(P)$, we now see $N \cap Z(P)>1$. 
+\end{proof}
+\section{Simplicity of $\operatorname{PSL}_n(\F)$} 
+\begin{abstract}
+This section shows that for $n\geq 3$, $\operatorname{PSL}_n(\F)$ is simple, and for $n=2$, $\operatorname{PSL}_n(\F)$ is simple if $\F$ has $\geq 4$ elements.  
+\end{abstract}
+An action $\phi : G \longrightarrow \operatorname{Bij}(X)$ is called \textbf{transitive} if for all $x,y \in X$, there exist some $g$ that takes $x$ to  $y$. We say $\phi$ is \textbf{doubly transitive} if the naturally induced action on $G \longrightarrow \operatorname{Bij}(X^2 - D)$, where $D \triangleq \set{(x,x)\in X^2 : x \in X}$ is the diagonal,  is transitive. 
+\begin{theorem}
+\label{THpdta}
+\textbf{(Property of doubly transitive action)} Let $\phi : G \rightarrow  \operatorname{Bij}(X)$ be a doubly transitive action and $\abso{X}\geq 2$. Then 
+\begin{enumerate}[label=(\roman*)]
+  \item $\operatorname{Stab}(x) < G$ is maximal for all $x \in X$. 
+  \item For all $N \trianglelefteq G$, the action  $\phi |_N:N \rightarrow  \operatorname{Bij}(X)$ is either trivial or transitive.  
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i): Denote $H \triangleq \operatorname{Stab}(x)$. We first show that: 
+\begin{align*}
+\vi{G= H \cup  HgH,\quad \text{ for all }g \in G-H,\text{ where }HgH\triangleq \set{hg\tilde{h}\in G: h,\tilde{h}\in H  }}
+\end{align*}
+Fix $g \in G-H$. Let $\tilde{g}\in G-H$. We are required to show $\tilde{g} \in HgH$. Because $g, \tilde{g}\not \in H$, doubly transitivity of $\phi$ implies the existence of some element in $G$ that takes  $(x,gx)$ to $(x,\tilde{g}x)$. Such element is clearly in $H$. One then can check $\tilde{g} \in hgH$, where $h$ is the element that takes  $gx$ to  $\tilde{g}x$. \vdone\\
 
-\section{Remarkable Exercises}
+$H<G$ is clear. To see that $H$ is maximal, just observe that if a subgroup $K$ of $G$ properly contains  $H$, then the subgroup contains  $H \cup HgH=G$, where $g \in K-H$. \\
+
+(ii): Suppose the action $N \longrightarrow \operatorname{Bij}(X)$ is nontrivial. We are required to show it is transitive. Fix $x \neq  y \in X$. Because $N$ is nontrivial, we know there exists some  $z \in X$ and $n \in N$ such that $nz \neq z$. Doubly transitivity of $\phi$ then implies the existence of some $g \in G$ such that $g(z,nz)=(x,y)$. The proof then follows from checking that $gng^{-1}$ takes $x$ to  $y$. 
+\end{proof}
+
+\begin{theorem}
+\label{THIc}
+\textbf{(Iwasawa criterion)} Let $\phi : G \rightarrow \operatorname{Bij}(X)$ be a doubly transitive action. If 
+\begin{enumerate}[label=(\roman*)]
+  \item $G$ is \textbf{perfect}, i.e., $G^{(1)}=G$. 
+  \item There exists some $x \in X$ whose stabilizer subgroup has an abelian normal subgroup $U$ such that $\bigcup_{g \in G}gUg^{-1}$  generates $G$. 
+\end{enumerate}
+then $G \quotient \operatorname{ker}\phi$ is simple. 
+\end{theorem}
+\begin{proof}
+Denote $K\triangleq \operatorname{ker}\phi$ and $H \triangleq \operatorname{Stab}(x)$. Let $N$ be a normal subgroup of $G$ that contains  $K$. We are required to prove $N=K\text{ or }G$. \customref{THpdta}{Maximality of $H$} splits the proof into two cases $NH=H$ or $NH=G$. We will prove that the case $NH=H$ leads to $N=K$, and the case  $NH=G$ leas to  $N=G$. 
+
+Case ($NH=H$): In such case, clearly $N \leq H$, and therefore \customref{THpdta}{$N$ acts trivially on $X$}, which implies $N \leq K$, as desired. \\
+
+Case ($NH=G$): In such case, normality $U \trianglelefteq H$ implies $NU \trianglelefteq G$. This then implies that $gUg^{-1} \leq g(NU)g^{-1} = NU$ for all $g \in G$. Therefore by premise, $NU=G$. \customref{THsit}{Second isomorphism theorem} then shows that $G \quotient N \cong  NU \quotient N \cong  U \quotient  N \cap U$ is abelian, which by perfectness of $G$ implies that  $N=G$.    
+\end{proof}
+Let $\F$ be a field. The \textbf{general linear group} $\operatorname{GL}_n(\F)$ is the group of $n$-by-$n$  $\F$-valued matrices that has nonzero determinant. Clearly, $\operatorname{GL}_n(\F)$ acts naturally on the affine space $\A^n(\F)$, and moreover on the projective space $\P^{n-1}(\F)$. 
+\begin{theorem}
+\label{THkgl}
+\textbf{(Kernel of general linear group acting on projective space)} The kernel of the group action $\operatorname{GL}_n(\F) \longrightarrow \operatorname{Bij}(\P^{n-1})$ is exactly the group of scalar diagonal:
+\begin{align*}
+\set{cI \in \operatorname{GL}_n(\F): c \in\F^{\times}}
+\end{align*}
+coinciding with its center $Z(\operatorname{GL}_n(\F))$. 
+\end{theorem}
+\begin{proof}
+We first show that the group of the scalar diagonal $=$ the kernel. Clearly the group of scalar transformations lies in the kernel. To see the converse inclusion holds, let $A$ maps 
+ \begin{align*}
+v \mapsto  \ld  v\quad \text{ and }\quad w \mapsto \mu w
+\end{align*}
+and observes that if $\ld  \neq \mu$, then $A$ doesn't fix $[v+w]$. \\
+
+It remains to show the center $=$ the group of scalar diagonal. Again, clearly the group of scalar diagonal lies in the center. Let $A \in Z\left(\operatorname{GL}_n(\F) \right)$. To prove that $A$ is scalar diagonal, one simply consider $E_{i,j}\triangleq I_n + e_{i,j}$, where $e_{i,j}\in M_n(\F)$ is the \textbf{matrix unit}. 
+\end{proof}
+Because \customref{THkgl}{the group action $\operatorname{GL}_n(\F)\rightarrow \operatorname{Bij}(\P^{n-1})$ has such kernel}, we define the \textbf{projective general linear group} $\operatorname{PGL}_n(\F)$ to be the quotient group
+\begin{align*}
+\operatorname{PGL}_n(\F)\triangleq \operatorname{GL}_n(\F) \quotient \set{cI_n \in \operatorname{GL}_n(\F): c \in \F^{\times}}  
+\end{align*}
+The \textbf{special linear group} $\operatorname{SL}_n(\F) \leq  \operatorname{GL}_n(\F)$ is the subgroup whose elements has determinant $1$, and \customref{THkgl}{the kernel of its action on $\P^{n-1}$ is clearly $\set{cI_n \in \operatorname{SL}_n(\F): c^n =1}$}, so we define the \textbf{projective special linear group} $\operatorname{PSL}_n(\F)$ to be 
+\begin{align*}
+\operatorname{PSL}_n(\F) \triangleq \operatorname{SL}_n(\F) \quotient \set{c I_n \in \operatorname{SL}_n(\F): c^n =1}
+\end{align*}
+\begin{theorem}
+\label{THpslg}
+\textbf{(Basic properties of special linear group)} Let $\F$ be an arbitrary field and  $n\geq 2$. Then,   
+\begin{enumerate}[label=(\roman*)]
+  \item $\operatorname{SL}_n(\F)$ acts doubly transitive on $\P^{n-1}$.  
+  \item $\operatorname{SL}_n(\F)$ has center $\set{cI_n \in \operatorname{SL}_n(\F):c^n=1}$, thus equal to the kernel of its action on $\P^{n-1}$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  (i): Let $\left([v_1],[v_2] \right),\left([w_1],[w_2] \right) \in (\P^{n-1})^2$ be two pairs off the diagonal. We are required to show the existence of some $\widehat{L} \in \operatorname{SL}_n(\F)$ that send $[v_1]$ to  $[w_1]$ and  $[w_1]$ to  $[w_2]$. The proof then follows from extending them to two bases  $\set{v_1,\dots ,v_n}, \set{w_1,\dots ,w_n}$ for $\F^{n}$ and setting $\widehat{L}(v_i)\triangleq c_iw_i$ with 
+\begin{align*}
+\operatorname{det}(PQ^{-1})\cdot \left(\prod_{i=1}^n c_i    \right)= 1
+\end{align*}
+where $Q,P\in \operatorname{GL}_n(\F)$ are respectively the matrix whose $i$-th column is $v_i,w_i$.  (ii): \customref{THkgl}{The proof that computes $Z(\operatorname{GL}_n(\F))$} applies here, since $E_{i,j} \in \operatorname{SL}_n(\F)$. 
+\end{proof}
+To apply \customref{THIc}{Iwasawa criterion} on the projective special linear groups $\operatorname{PSL}_n(\F)$, it remains to show 
+\begin{enumerate}[label=(\Roman*)]
+  \item $\operatorname{SL}_n(\F)$ is perfect. 
+  \item There exists some $x \in \P^{n-1}$ whose stabilizer subgroup $H \leq \operatorname{SL}_n(\F)$ has an abelian normal subgroup $U$ such that $\bigcup_{g \in G}gUg^{-1}$ generates $G$.  
+\end{enumerate}
+The reasons why simplicity of  $\operatorname{SL}_2(\F)$ requires $\F$ to have $\geq 4$ elements lies in the fact (I) may fails to be true if $\F$ has $\leq 3$ elements.  
+\begin{Example}{$\operatorname{SL}_2(\F_2)$ and $\operatorname{SL}_2(\F_3)$ are not perfect}{}
+By counting, we know 
+\begin{align*}
+o\left(\operatorname{GL}_n(\F_p) \right)=  (p^n-1)(p^n - p)\cdots  (p^n-p^{n-1})
+\end{align*}
+Since determinant function is a  surjective group homomorphism from $\operatorname{GL}_n(\F_p)$ to $\F_p^{\times}$  with kernel $\operatorname{SL}_n(\F_p)$, we know 
+\begin{align*}
+o \left(\operatorname{SL}_n(\F_p) \right) = \frac{1}{p-1} \cdot  (p^n-1)(p^n - p)\cdots  (p^n-p^{n-1})
+\end{align*}
+In particular, $\operatorname{SL}_2(\F_2)$ and $ \operatorname{SL}_2(\F_3)$ has order $6$ and $24$. Now, clearly $\operatorname{SL}_2(\F_2)$ has a faithful action on:   
+  \begin{align*}
+  \set{\begin{pmatrix} 
+  1 \\
+  0
+\end{pmatrix} , \begin{pmatrix} 
+0 \\
+1
+\end{pmatrix}, \begin{pmatrix} 
+1 \\
+1
+\end{pmatrix}}
+  \end{align*}
+So by comparing order, we know $\operatorname{SL}_2(\F_2)\cong  S_3$. Therefore non-perfectness of $\operatorname{SL}_2(\F_2)$ then follows from \customref{THcsS}{$S_3^{(1)}=A_3$}. In fact, since $\operatorname{PSL}_2(\F_2) \cong  \operatorname{SL}_2(\F_2)$, we have shown that $\operatorname{PSL}_2(\F_2)$ is non-simple. \\ 
+
+Now, recall that \customref{THpslg}{$\operatorname{PSL}_2(\F_3)$ acts faithfully on $\P^{1}(\F_3)$}, which has $\frac{3^2-1}{3-1}=4$ points, so we have an injective group homomorphism $\operatorname{PSL}_2(\F_3)\longhookrightarrow S_4$. Computing that $o \left(\operatorname{PSL}_2(\F_3) \right)=12$, we see that \href{https://groupprops.subwiki.org/wiki/Subgroup_structure_of_symmetric_group:S4}{since the only index $2$ subgroup of $S_4$ is  $A_4$}, we have the isomorphism $\operatorname{PSL}_2(\F_3) \cong  A_4$, \customref{THsa}{which is non-simple}. 
+\end{Example}
+Regardless of whether $n>2$,  the second condition is proved using the same $H$ and  $U$. We pick $x \triangleq [1:0 : \cdots :0 ]$, and therefore 
+\begin{align*}
+H= \set{\begin{pmatrix} 
+    a & * \\
+    \textbf{0} & M 
+\end{pmatrix} : a \in \F^{\times}\text{ and }M\in \operatorname{GL}_{n-1}(\F)}
+\end{align*}
+and since: 
+\begin{align*}
+\begin{pmatrix} 
+  a & * \\
+  \textbf{0} & M
+\end{pmatrix} \begin{pmatrix} 
+  b & * \\
+  \textbf{0} & J
+\end{pmatrix} = \begin{pmatrix} 
+  ab & * \\
+  \textbf{0} & MJ
+\end{pmatrix}
+\end{align*}
+We know 
+\begin{align*}
+U \triangleq \set{\begin{pmatrix} 
+    1 & * \\
+    \textbf{0} & I_{n-1}
+\end{pmatrix}}\text{ is normal in }H.
+\end{align*}
+$U$ is abelian since 
+\begin{align*}
+\begin{pmatrix} 
+    1 & \textbf{v} \\
+    \textbf{0} & I_{n-1}
+\end{pmatrix} \begin{pmatrix} 
+    1 & \textbf{w} \\
+    \textbf{0} & I_{n-1}
+\end{pmatrix} = \begin{pmatrix} 
+    1 & \textbf{v}+ \textbf{w} \\
+    \textbf{0} & I_{n-1}
+\end{pmatrix}
+\end{align*}
+Interestingly, both  (I) and (II) requires boring computations within $\operatorname{SL}_n(\F)$. 
+\begin{theorem}
+\textbf{(One dimensional projective special linear group is simple over field that has $\geq 4$ elements)} If $\F$ has  $\geq 4$ elements, then $\operatorname{PSL}_2(\F)$ is simple.  
+\end{theorem}
+\begin{proof}
+(II): Since 
+\begin{align*}
+ \begin{pmatrix} 
+  0 & -1 \\
+  1 & 0
+ \end{pmatrix} \begin{pmatrix} 
+  1 & \ld  \\
+  0 & 1
+ \end{pmatrix} \begin{pmatrix} 
+  0 & -1 \\
+  1 & 0
+ \end{pmatrix}^{-1}= \begin{pmatrix} 
+  1 & 0 \\
+  -\ld  & 1 
+ \end{pmatrix}
+\end{align*}
+We know the group of the lower triangular matrices:
+\begin{align*}
+\set{\begin{pmatrix} 
+    1 & 0 \\
+    * & 1 
+\end{pmatrix}}
+\end{align*}
+is a conjugate of $U$. We prove that $\operatorname{SL}_2(\F)$ is generated by $U$ and the lower triangular matrices. To see such, just observe that if any of $b,c$ is nonzero, then by transposing the matrix if necessary, we have  
+\begin{align*}
+\begin{pmatrix} 
+  a & b \\
+  c & d
+\end{pmatrix}= \begin{pmatrix} 
+  1 & 0 \\
+  (d-1)b^{-1} & 1
+\end{pmatrix} \begin{pmatrix} 
+  1 & b \\
+  0 & 1 
+\end{pmatrix} \begin{pmatrix} 
+  1 & 0 \\
+  (a-1)b^{-1} & 1 
+\end{pmatrix},\quad \text{ where }b \neq 0
+\end{align*}
+and if both of them are zero, then $d=a^{-1}$ and we have 
+\begin{align*}
+\begin{pmatrix} 
+  a & 0 \\
+  0 & a^{-1}
+\end{pmatrix}= \begin{pmatrix} 
+  1 & 0 \\
+  (1-a)a^{-1} & 1 
+\end{pmatrix} \begin{pmatrix} 
+  1 & 1 \\
+  0 & 1
+\end{pmatrix} \begin{pmatrix} 
+  1 & 0 \\
+  a-1 & 1 
+\end{pmatrix} \begin{pmatrix} 
+  1 & -a^{-1} \\
+  0 & 1 
+\end{pmatrix}
+\end{align*}
+
+(I): Compute 
+\begin{align*}
+\left[\begin{pmatrix} 
+    a & 0\\
+    0 & a^{-1}
+\end{pmatrix}, \begin{pmatrix} 
+    1 & b \\
+    0 & 1 
+\end{pmatrix} \right]= \begin{pmatrix} 
+    1 & b(a^2-1) \\
+    0 & 1 
+\end{pmatrix} 
+\end{align*}
+Because $\F$ has  $\geq 4$ elements, we know that there exists some $a \in \F^{\times}$ such that $a^2 \neq 1$ (Consider $x^2-1 \in \F[x]$). Fix such $a$. We then see that  $U \leq \operatorname{SL}_2(\F)^{(1)}$ by letting $b$ run through  $\F$. Normality of $\operatorname{SL}_2(\F)^{(1)}$ and (II) then implies $\operatorname{SL}_2(\F)^{(1)}=\operatorname{SL}_2(\F)$
+\end{proof}
+
+\begin{theorem}
+\textbf{($\geq 2$ dimensional projective special linear groups are all simple)} Let $n\geq  3$. Then we have: 
+\begin{enumerate}[label=(\roman*)] 
+  \item $I_n + \ld  E_{ij}$ is conjugate to $I_n+ E_{12}$ in $\operatorname{SL}_n(\F)$, for all $\ld \in \F^{\times}$. 
+  \item $\set{I_n + \ld E_{ij}}$ generates $\operatorname{SL}_n(\F)$. 
+\end{enumerate}
+Since $I_n+ E_{12}\in U$, together they implies (II), and using them we may prove (I).   
+\end{theorem}
+\begin{proof}
+(i): 
+\end{proof}
+\section{Future Direction}
+A subgroup $H\leq G$ of a finite group $G$ is called a \textbf{Hall subgroup} if its order is coprime to its index. 
+\begin{theorem}
+\textbf{(Burnside's $p^aq^b$ theorem)} If $o(G)=p^aq^b$ for some primes  $p,q$, then  $G$ is solvable. 
+\end{theorem}
+\begin{theorem}
+\textbf{(Schur-Zassenhaus theorem)} Let $G$ be a finite group and $N\trianglelefteq G$ be Hall. Then the short exact sequence 
+\begin{align*}
+1 \longrightarrow N \longrightarrow G \longrightarrow G \quotient N \longrightarrow 1
+\end{align*}
+right splits, and thus $G$ must be a semidirect product of $N\rtimes (G\quotient N)$.  
+\end{theorem}
+\begin{theorem}
+\textbf{(Thompson's fixed-point-free theorem)} Let $G$ be a finite group that admits a fixed-point-free automorphism of prime order. Then $G$ is nilpotent. 
+\end{theorem}
+\begin{theorem}
+\textbf{(Schreier theorem)} Outer automorphism group of finite simple groups are solvable. 
+\end{theorem}
+\begin{theorem}
+\textbf{(Feit-Thompson theorem)} Finite groups of odd order are solvable. 
+\end{theorem}
+\section{Recreational Exercises}
 \begin{question}{Wording problem}{}
 Let $n\inz$ satisfies 
 \begin{align*}
@@ -961,6 +1927,53 @@ Find $o(b)$.
 \end{align*}
 Therefore $o(b)=7$. 
 \end{proof}
+\begin{question}{\customref{THfgag}{Structure theorem for finitely generated abelian group}}{}
+Let $G$ be an abelian group, and $x,y \in G$ has order $m,n$. Show that  $G$ has an element of order $\operatorname{lcm}(m,n)$. 
+\end{question}
+\begin{proof}
+The proof follows from noting that the fact that in general, given $(a_1,\dots ,a_n) \in G_1 \times \cdots \times G_n$, we have 
+\begin{align*}
+o((a_1,\dots ,a_n))= \operatorname{lcm}(o(a_1),\dots , o(a_n))
+\end{align*}
+and the fact that since $x,y \in \langle x\rangle + \langle y\rangle$, in the \customref{THfgag}{primary decomposition form} of $\langle x\rangle +\langle y\rangle $, there must be a component of high enough power. 
+\end{proof}
+\begin{question}{\customref{THfgag}{Structure theorem for finitely generated abelian group}}{}
+Let $G$ be an abelian groups that has subgroups of order $m$ and $n$. Show that is has a subgroup of order $\operatorname{lcm}(m,n)$. 
+\end{question}
+\begin{proof}
+Let the subgroups be $M,N$. The proof then follows from noting that  $\operatorname{lcm}(m,n)\mid  o (MN)$ and the fact that  \customref{COfao}{for every divisor $d$ of the order of a finite abelian group  $H$, there always exists a subgroup  $\leq H$ of order $d$}. 
+\end{proof}
+\begin{question}{\customref{THfgag}{Structure theorem for finitely generated abelian group}}{}
+Let  $G$ be a finite abelian group in which the number of solution of the equation  $x^n=e$ is $\leq n$ for all  $n\inn$. Show that $G$ is cyclic. 
+\end{question}
+\begin{proof}
+Write $G$ in its  \customref{THfgag}{primary decomposition form}. We are required to show that its $p$-torsion subgroup has at most one component. This follows from noting that for $d,e\geq 1$, the group $\Z_{p^d}\times \Z_{p^e}$ has $p^2$ number of solution to the equation $x^n=e$.  
+\end{proof}
+\begin{question}{}{}
+Let $a \in G$. Show that the equation 
+\begin{align*}
+x^2ax=a^{-1}
+\end{align*}
+is solvable for $x \in G$ if and only if $a$ is the cube of some element.  
+\end{question}
+\begin{proof}
+Suppose $x^2ax=a^{-1}$ for some $x \in G$. One can show that $a= (xa)^3$. If $a=y^3$, then  $x\triangleq y^{-2}$ is a solution. 
+\end{proof}
+\begin{question}{}{}
+Let $a \in G$ lies in a conjugacy class of finite cardinality and has finite order. Show that the normal closure of $a$ is of finite order. 
+\end{question}
+\begin{proof}
+Recall that 
+\begin{align*}
+\operatorname{ncl}_G(\set{a})= \set{g_1a^{\epsilon_1}g^{-1}_1\cdots g_na^{\epsilon _n}g^{-1}_n: n\inn \cup  \set{0}\text{ and }\epsilon _i \in \set{\pm 1}}
+\end{align*}
 
+\end{proof}
+\begin{question}{}{}
+Show that a group can not be written as the union of two proper subgroup. 
+\end{question}
+\begin{proof}
+  Let $G=H \cup K$. We are required to prove $G \in \set{H,K}$. We prove such by showing that one is contained by the other.  Assume not for a contradiction. Letting $h \in H-K$ and $k \in K-H$, we see that $hk \in G - H \cup K$, a contradiction. For more on this kind theorems, see the survey article \href{http://www.jstor.org/stable/40391117}{\emph{Groups as unions of proper subgroups}, by Bhargava, M. (2009)}
+\end{proof}
 \end{document}
 
