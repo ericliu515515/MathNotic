@@ -54,12 +54,16 @@ We now prove $Z(G)=G^{(1)}$. Because $o(Z(G))=p$, by part (ii) we know $G\quotie
 \end{enumerate}
 \end{question}
 \begin{proof}
-The map $G\quotient (M\cap N) \rightarrow (G \quotient M)\times (G\quotient N)$ defined by 
+The first question 
 \begin{align}
 \label{EQmg}
 g(M\cap N) \mapsto (gM,gN)
 \end{align}
-is clearly a well-defined group homomorphism, since if $gM=hM$ and  $gN=hN$, then  $gh^{-1}\in M$ and $gh^{-1} \in N$, which implies $gh^{-1}\in M \cap N$, which implies $g(M\cap N)=h(M \cap N)$. Let $gM=M$ and  $gN=N$. Then  $g \in M \cap N$ and $g(M \cap N)=M \cap N$. Therefore \myref{map}{EQmg} is also injective. It remains to show \myref{map}{EQmg} is surjective. Fix $g,h \in G$. Write $g=mn$ and  $h=\tilde{m}\tilde{n}$. Clearly $gM=nM=\tilde{m}nM$ and  $hN=\tilde{m}N=\tilde{m}nN $. This implies that  \myref{mapping}{EQmg} maps $\tilde{m}n$ to $(gM,hN)$, as desired.\\
+
+The map $G\quotient (M\cap N) \rightarrow (G \quotient M)\times (G\quotient N)$ defined by 
+is clearly a well-defined group homomorphism,
+
+since if $gM=hM$ and  $gN=hN$, then  $gh^{-1}\in M$ and $gh^{-1} \in N$, which implies $gh^{-1}\in M \cap N$, which implies $g(M\cap N)=h(M \cap N)$. Let $gM=M$ and  $gN=N$. Then  $g \in M \cap N$ and $g(M \cap N)=M \cap N$. Therefore \myref{map}{EQmg} is also injective. It remains to show \myref{map}{EQmg} is surjective. Fix $g,h \in G$. Write $g=mn$ and  $h=\tilde{m}\tilde{n}$. Clearly $gM=nM=\tilde{m}nM$ and  $hN=\tilde{m}N=\tilde{m}nN $. This implies that  \myref{mapping}{EQmg} maps $\tilde{m}n$ to $(gM,hN)$, as desired.\\
 
 Because $H,K$ are both of index  $2$ in $G$, we know they are both normal in $G$. This by second isomorphism theorem implies  $HK$ forms a subgroup of  $G$. Because $H\neq K$, we know $HK$ properly contains $H$, which by finiteness of $G$ implies  the index of $HK$ is strictly less than  $H$, i.e., $HK=G$. Note that $H \cap K$ is normal since it is the intersection of normal subgroups. By part (i), we now have $G \quotient (H\cap K)\cong  (G \quotient H)\times (G\quotient K)\cong  \Z_2\times\Z_2$, which shows that $H \cap K$ has index $4$ and  $G \quotient (H\cap K)$ is cyclic.     
 \end{proof}
