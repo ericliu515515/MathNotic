@@ -30,6 +30,21 @@
 {\ --- \small\thecontentspage}
 [ \textbullet\ ][]
 
+
+% Force each ToC chapter entry to start on a new ToC page
+\usepackage{etoolbox} % only if not already loaded
+
+\newcounter{tocchapter}
+
+\makeatletter
+\pretocmd{\l@chapter}{%
+  \stepcounter{tocchapter}%
+  \ifnum\value{tocchapter}>1\relax
+    \clearpage % or \newpage
+  \fi
+}{}{}
+\makeatother
+
 \makeatletter
 \renewcommand{\tableofcontents}{
 	\chapter*{%
@@ -41,4 +56,21 @@
 		  \pgftext[right,x=15cm,y=0.2cm]{\color{white}\Huge\sc\bfseries \contentsname};%
 	  \end{tikzpicture}}%
 	\@starttoc{toc}}
+\makeatother
+
+
+\makeatletter
+\renewcommand{\tableofcontents}{%
+  \chapter*{%
+    \vspace*{-20\p@}%
+    \begin{tikzpicture}[remember picture, overlay]%
+      \pgftext[right,x=15cm,y=0.2cm]{\color{doc!60}\Huge\sc\bfseries \contentsname};%
+      \draw[fill=doc!60,draw=doc!60] (13,-.75) rectangle (20,1);%
+      \clip (13,-.75) rectangle (20,1);
+      \pgftext[right,x=15cm,y=0.2cm]{\color{white}\Huge\sc\bfseries \contentsname};%
+    \end{tikzpicture}%
+  }%
+  \setcounter{tocchapter}{0}% <-- important
+  \@starttoc{toc}%
+}
 \makeatother

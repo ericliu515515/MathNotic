@@ -54,18 +54,29 @@ We now prove $Z(G)=G^{(1)}$. Because $o(Z(G))=p$, by part (ii) we know $G\quotie
 \end{enumerate}
 \end{question}
 \begin{proof}
-The first question 
+(i) requires us to prove the map $G\quotient (M\cap N) \rightarrow (G \quotient M)\times (G\quotient N)$ defined by 
 \begin{align}
 \label{EQmg}
 g(M\cap N) \mapsto (gM,gN)
 \end{align}
+forms a well-defined group isomorphism. The map is indeed well-defined. Let $gM\triangleq M$ and  $gN\triangleq N$, to prove the map is injective, we are required to prove $g(M\cap N)=M \cap N$, which is clearly true. \\
 
-The map $G\quotient (M\cap N) \rightarrow (G \quotient M)\times (G\quotient N)$ defined by 
-is clearly a well-defined group homomorphism,
+It remains to show the map is surjective. Fix $g,h \in G$. We are required to show the existence of some element $k \in G$ such that $kM=gM$ and  $kN=hN$. Because  $G=MN$, we may write  $g\triangleq mn$ and $h \triangleq \tilde{m} \tilde{n}$. We then clearly have 
+\begin{align*}
+gM=nM=\tilde{m}n M \quad \text{ and }\quad hN=\tilde{m}N= \tilde{m}n N   
+\end{align*}
+In other words, $k \triangleq \tilde{m}n$ suffices. \\
 
-since if $gM=hM$ and  $gN=hN$, then  $gh^{-1}\in M$ and $gh^{-1} \in N$, which implies $gh^{-1}\in M \cap N$, which implies $g(M\cap N)=h(M \cap N)$. Let $gM=M$ and  $gN=N$. Then  $g \in M \cap N$ and $g(M \cap N)=M \cap N$. Therefore \myref{map}{EQmg} is also injective. It remains to show \myref{map}{EQmg} is surjective. Fix $g,h \in G$. Write $g=mn$ and  $h=\tilde{m}\tilde{n}$. Clearly $gM=nM=\tilde{m}nM$ and  $hN=\tilde{m}N=\tilde{m}nN $. This implies that  \myref{mapping}{EQmg} maps $\tilde{m}n$ to $(gM,hN)$, as desired.\\
+(ii): Because $H,K$ are both of index  $2$ in $G$, we know they are both normal in $G$, so by second isomorphism theorem, $HK$ forms a subgroup of  $G$.\\
 
-Because $H,K$ are both of index  $2$ in $G$, we know they are both normal in $G$. This by second isomorphism theorem implies  $HK$ forms a subgroup of  $G$. Because $H\neq K$, we know $HK$ properly contains $H$, which by finiteness of $G$ implies  the index of $HK$ is strictly less than  $H$, i.e., $HK=G$. Note that $H \cap K$ is normal since it is the intersection of normal subgroups. By part (i), we now have $G \quotient (H\cap K)\cong  (G \quotient H)\times (G\quotient K)\cong  \Z_2\times\Z_2$, which shows that $H \cap K$ has index $4$ and  $G \quotient (H\cap K)$ is cyclic.     
+Because $H\neq K$, we know $HK$ properly contains $H$. This implies $[HK:H]>1$. Now, since 
+\begin{align*}
+2=[G:H]= [G:HK] \cdot [HK:H]
+\end{align*}
+we see that we must have $G=HK$. Note that $H \cap K$ is normal since it is the intersection of normal subgroups. The rest then follows from part (i): 
+\begin{align*}
+G \quotient (H\cap K)\cong  (G \quotient H)\times (G\quotient K)\cong C_2 \times C_2
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Let $G$ be a group of order  $pq$, where  $p>q$ are prime. 
@@ -79,14 +90,12 @@ The third Sylow theorem stated that the number $n_p$ of Sylow $p$-subgroups sati
 \begin{align*}
 n_p\equiv 1\pmod{p} \quad \text{ and }\quad n_p \mid q
 \end{align*}
-Because $p>q$, together they implies $n_p=1$. Since Sylow $p$-subgroups of  $G$ are exactly subgroups of order  $p$, we have proved (i).  \\
-
-The third Sylow theorem also stated that $n_p= \abso{G:N_G(P)}$ for any Sylow $p$-subgroup  $P\leq G$. Therefore, $N_G(\langle a\rangle )=G$, i.e., $\langle a\rangle $ is normal in $G$. Fix  $x\in G$. It remains to prove $xax^{-1}\neq e$, which is a consequence of the fact that conjugacy (automorphism) preserves order.
+Because $p>q$, together they implies $n_p=1$. We have shown that $G$ has a unique Sylow $p$-subgroup, as desired. Clearly, $\langle a\rangle $ is that Sylow $p$-subgroup, so second Sylow theorem shows that $\langle a\rangle $ is normal. Because $\langle a\rangle $ is normal, we clearly have $x^{-1}ax=a^i$ for some $0\leq i<p$. The fact that $i\neq 0$ is clear, since otherwise we would have $ax=x$.   
 \end{proof}
 \begin{question}{}{}
 Let $H,K$ be two subgroups of $G$ of finite indices  $m,n$. Show that 
 \begin{align*}
-\operatorname{lcm}(m,n) \leq \abso{G:H \cap K} \leq mn
+\operatorname{lcm}(m,n) \leq [G:H\cap K] \leq mn
 \end{align*}
 \end{question}
 \begin{proof}
@@ -99,15 +108,14 @@ is well defined since
 \begin{align*}
 g(H\cap K)=l(H\cap K) \implies g^{-1}l \in H \cap K \implies gH=lH\text{ and }gK=lK
 \end{align*}
-
-such set map is injective since if $gH=lH$ and  $gK=lK$, then  $g^{-1}l \in H$ and $g^{-1}l\in K$, which implies $g(H \cap K)=l(H \cap K)$, as desired. From the injectivity of \myref{map}{EQmgh}, we have shown  index of  $H\cap K$ indeed have upper bound $mn$. \\
+Such set map is injective since if $gH=lH$ and  $gK=lK$, then  $g^{-1}l \in H$ and $g^{-1}l\in K$, which implies $g(H \cap K)=l(H \cap K)$. From the injectivity of \myref{map}{EQmgh}, we have shown   $[G:H\cap K]$ indeed have upper bound $mn$. \\
 
 
 Because 
 \begin{align*}
-\abso{G:H\cap K}=\abso{G:H}\cdot \abso{H:H\cap K}=\abso{G:K} \cdot \abso{K: H \cap K} 
+[G:H \cap K]=[G:H]\cdot [H:H \cap K]=[G:K] \cdot [K: H \cap K]
 \end{align*}
-we know both  $n$ and  $m$ divides  $\abso{G:H \cap K}$, which gives the desired lower bound $\operatorname{lcm}(m,n)$. 
+we know both  $n$ and  $m$ divides  $[G: H \cap K]$, which gives the desired lower bound $\operatorname{lcm}(m,n)$. 
 \end{proof}
 \begin{question}{}{}
 \begin{enumerate}[label=(\roman*)]
@@ -116,129 +124,151 @@ we know both  $n$ and  $m$ divides  $\abso{G:H \cap K}$, which gives the desired
 \begin{align*}
 o(gN)= \inf \set{k\inn: g^k \in N},\quad \text{ where }\inf \varnothing = \infty
 \end{align*}
-\item Let $G$ be a finite group, $H,N$ two subgroups of $G$ with $N$ normal. Show that if  $o(H)$ and $\abso{G:N}$ are coprime, then $H \leq N$. 
+\item Let $G$ be a finite group, $H,N$ two subgroups of $G$ with $N$ normal. Show that if  $o(H)$ and $[G:N]$ are coprime, then $H \leq N$. 
 \end{enumerate}
 \end{question}
 \begin{proof}
-  (i):  Let $a=qk+r\inn$ with $0\leq r<k$. If $x^a \in H$, then  $x^r=x^a\cdot (x^{k})^{-q}\in H$, which implies $r=0$. We have shown that $k$ divides all natural numbers  $a$ that makes  $x^a \in H$, which includes $o(x)$. \\
+  (i):  Let $a\triangleq qk+r\inn$ with $0\leq r<k$. If $x^a \in H$, then  $x^r=x^a\cdot (x^{k})^{-q}\in H$, which implies $r=0$. We have shown that $k$ divides all natural numbers  $a$ that makes  $x^a \in H$, which includes $o(x)$. \\
 
 (ii): This is a simple observation that $(gN)^k=g^kN\in N\iff g^k \in N$. \\
 
-(iii): By second isomorphism theorem, we know $\abso{HN: N}=\abso{H: H \cap N}$ which divides both $o(H)$ and $\abso{G:N}$. This by coprimality implies $\abso{H:H \cap N}=1$, which shows that $H\leq N$.  
+(iii): By second isomorphism theorem, we know $[HN:N]=[H:H \cap N]$ which divides both $o(H)$ and $[G:N]$. This by their coprimality implies $[H:H \cap N]=1$, which shows that $H\leq N$.  
 \end{proof}
 \begin{question}{}{}
-Let $G$ be a finite group with Sylow $p$-subgroup $P$ and normal subgroup  $N$. Show that $P \cap N$ forms a Sylow $p$-subgroup of  $N$, and use such to deduce $N$ have index $p^{\nu _p(o(PN))-\nu _p(o(N))}$ in $PN$.
+Let $G$ be a finite group with Sylow $p$-subgroup $P$ and normal subgroup  $N$. Let 
+\begin{align*}
+o(PN)\triangleq  p^a m \quad \text{ and }\quad o(N) \triangleq p^bn,\quad \text{ where }p \nmid m,n
+\end{align*}
+Show that $P \cap N$ forms a Sylow $p$-subgroup of  $N$, and use such to deduce $N$ have index $p^{a-b}$ in $PN$.
 \end{question}
 \begin{proof}
 By second isomorphism theorem, we have 
 \begin{align*}
 o(PN)\cdot o(P\cap N)= o(P) \cdot o(N)
 \end{align*}
-Because $P$ is Sylow with $P \subseteq PN$, we know 
+Clearly $P$ must also be a  $p$-Sylow subgroup of  $PN$, so $o(P)=p^a$. This gives us 
 \begin{align*}
-\nu_p(o(PN))=\nu _p (o(P))
+o(P \cap N)= p^b
 \end{align*}
-This shows that, indeed, $P\cap N$ forms a Sylow $p$-subgroup of $N$: 
+which implies that $P \cap N$ is a Sylow  $p$-subgroup of  $N$. We now have 
 \begin{align*}
-\nu_p(o(P\cap N))= \nu _p (o(N))
-\end{align*}
-as desired. Because $P \cap N\leq P$ and because $P$ is Sylow, we know $o(P\cap N)$ is a power of $p$. It then follows that: 
-\begin{align*}
-\abso{PN: N}=  \frac{o(PN)}{o(N)}= \frac{o(P)}{o(P\cap N)}= p^{\nu_p(o(P))- \nu_p(o(P\cap N))}= p^{\nu_p(o(PN))-\nu_p(o(P))} 
+[PN:N]=  \frac{o(PN)}{o(N)}= \frac{o(P)}{o(P\cap N)}= p^{a-b} 
 \end{align*}
 \end{proof}
 \begin{question}{}{}
-Prove that if $H$ is a Hall subgroup of  $G$ and  $N\trianglelefteq G$, then $H \cap N$ is a Hall subgroup of $N$ and  $HN\quotient N$ is a Hall subgroup of $G \quotient N$. 
+Let $G$ be a finite group. Prove that if $H\leq G$ is Hall and  $N\trianglelefteq G$, then both $H \cap N\leq N$  and  $HN\quotient N \leq G \quotient N$ are Hall. 
 \end{question}
 \begin{proof}
-The facts that: 
-\begin{enumerate}[label=(\roman*)]
-  \item By second isomorphism theorem, we have $\abso{N:H\cap N}=\abso{HN:H}$, which divides $\abso{G:H}$.   
-  \item $o(H\cap N)\mid  o(H)$. 
-  \item $o(H)$ and $\abso{G:H}$ are coprime. 
-\end{enumerate}
-implies $o(H\cap N)$ and $\abso{N:H\cap N}$ is coprime, i.e., $H\cap N$ is Hall in $N$.  \\
+To prove that $H\cap N\leq N$ is Hall, we are required to prove $o(H \cap N)$ and $[N:H \cap N]$ are coprime. Recall that by second isomorphism theorem, we have 
+\begin{align*}
+[N:H \cap N]=[HN:H] 
+\end{align*}
+which implies that $[N:H \cap N]$ is a factor of $[G:H]$. Clearly $o(H \cap N) $ is a factor of $o(H)$. It now follows from the coprimality of the pair $[G:H],o(H)$ that $[N:H \cap N ],o(H \cap N)$ are coprime. \\
 
-The facts that: 
-\begin{enumerate}[label=(\roman*)]
-  \item $o(HN\quotient N)= \frac{o(HN)}{o(N)}= \frac{o(H)}{o(H\cap N)}$ divides $o(H)$. (second isomorphism theorem) 
-  \item $ \abso{(G\quotient N):(HN \quotient N)}= \abso{G:HN}$ divides $\abso{G:H}$. 
-  \item  $o(H)$ and $\abso{G:H}$ are coprime.  
-\end{enumerate}
-implies $o(HN\quotient N)$  and $\abso{(G\quotient N): (HN\quotient N)}$ are coprime, i.e., $HN\quotient N$ is Hall in $G \quotient N$.
-
-
-
+The method to show that $HN \quotient N \leq G \quotient N$ is Hall is similar. Again, by second isomorphism theorem, 
+\begin{align*}
+o(HN \quotient N)= \frac{o(HN)}{o(N)}= \frac{o(H)}{o(H \cap N)}
+\end{align*}
+we see $o(HN \quotient N)$ is a factor of $o(H)$. Now, since 
+\begin{align*}
+\left[ \frac{G}{N}: \frac{HN}{N} \right]= [G: HN]
+\end{align*}
+we see that $[G \quotient N: HN \quotient N]$ is a factor of $[G:HN]$, which is a factor of $[G:H]$. It then follows from coprimality of the pair $[G:H],o(H)$ that $o(HN \quotient N),[G \quotient N: HN \quotient N]$ are coprime.  
 \end{proof}
 \section{HW2}
 \setcounter{qnum}{0}
-\begin{question}{subgroup of $p$-group of index  $p$ is normal}{}
-Prove that if $p$ is a prime and $o(G)=p^{\alpha }$ with $\alpha \inn$, then every subgroup $H$ of index $p$ is normal.\\
-
-Deduce that every group of order $p^2$ has a normal subgroup of order  $p$. 
+\begin{question}{}{}
+Prove that if $p$ is a prime and $o(G)=p^{\alpha }$ with $\alpha \inn$, then every subgroup $H$ of index $p$ is normal. Deduce that every group of order $p^2$ has a normal subgroup of order  $p$. 
 \end{question}
 \begin{proof}
-Let $G$ acts on the left cosets spaces $\Omega$ of $H$. We have a group homomorphism  $\phi: G \rightarrow \operatorname{Sym}(\Omega)$. Clearly we have $\operatorname{ker}\phi \subseteq H$. By first isomorphism theorem, we know 
-\begin{align*}
-\abso{G: \operatorname{ker}\phi} = o(\operatorname{Im} \phi) \mid  \operatorname{Sym}(\Omega)
-\end{align*}
-Noting that $\abso{\operatorname{Sym}\Omega}=p!$, we see $\operatorname{ker}\phi $ has index $\leq p$, which when combined with the fact $\operatorname{ker}\phi \subseteq H$ shows that $H=\operatorname{ker}\phi$, as desired. \\
+The first part is a special case of the general result that proper subgroups of finite subgroups of smallest possible index is normal, which is a result of consideration \textbf{cores of subgroups}. \\
 
-Suppose $\alpha =2$. By \customref{THfS}{first Sylow theorem}, there is a subgroup of $G$ of order $p$. This subgroup is normal from what we have just proved.
+Let $\phi: G \rightarrow \operatorname{Bij}(G \quotient H)$ be the left multiplicative action of $G$ on the left coset space $G \quotient H$. First isomorphism theorem give us
+\begin{align*}
+[G: \operatorname{ker}(\phi)]=o(\operatorname{Im}(\phi))\mid  o\left(\operatorname{Bij}(G \quotient H) \right)= p!
+\end{align*}
+Because $G$ is a $p$-group, this then implies $[G: \operatorname{ker}(\phi)] \in \set{1,p} $. The fact that $H$ is proper forces $[G:\operatorname{ker}(\phi)]=p$. Clearly we have $\operatorname{ker}(\phi) \leq  H$. Combining them, we see $H= \operatorname{ker}(\phi)$, as desired. \\
+
+Let $o(G)\triangleq p^2$. We have already shown that every subgroup of $G$ of order $p$ is normal. To see that  $G$ has a subgroup of order $p$, just consider its center. If  $G$ is non-abelian, then its center is a subgroup of order $p$. If  $G$ is abelian, then  $G \cong  C_{p^2}$ or $C_p \times C_p$, and they clearly both have subgroup of order $p$.   \\
+
+\textbf{Remark}: In fact, Wielandt's proof for Sylow's theorem shows that in general, given $o(G)=p_1^{d_1}\cdots p_n^{d_n}$, for all $e_i \leq d_i$, $G$ has a subgroup of order $p_i ^{e_i}$. 
 \end{proof}
 \begin{question}{}{}
-Let $G$ be a group of odd order. Prove that for any $x\neq e \in G$, we have $\operatorname{Cl}(x)\neq \operatorname{Cl}(x^{-1})$. 
+Let $G$ be a group of odd order. Prove that for any nontrivial $x\in G$, we have $\operatorname{Cl}(x)\neq \operatorname{Cl}(x^{-1})$. 
 \end{question}
 \begin{proof}
-Assume for a contradiction that $\operatorname{Cl}(x)=\operatorname{Cl}(x^{-1})$. Because $(gxg^{-1})^{-1} = gx^{-1}g^{-1}\in \operatorname{Cl}(x^{-1})=\operatorname{Cl}(x)$, the inversion is well defined on $\operatorname{Cl}(x)$, and moreover clearly bijective. Because $o(G)$ is odd, we may pair up the elements of  $\operatorname{Cl}(x)$ via inversion to see $\abso{\operatorname{Cl}(x)}$ is even. This is impossible since by \customref{THost}{orbit-stabilizer theorem},  $\abso{\operatorname{Cl}(x)}$ is the index of some subgroup of $G$ .     
+Assume for a contradiction that $\operatorname{Cl}(x)=\operatorname{Cl}(x^{-1})$. Because 
+\begin{align*}
+(gxg^{-1})^{-1} = gx^{-1}g^{-1}\in \operatorname{Cl}(x^{-1})=\operatorname{Cl}(x)
+\end{align*}
+we know the function 
+\begin{align*}
+\phi : \operatorname{Cl}(x)\rightarrow \operatorname{Cl}(x)\quad \text{ and }\quad \phi (g) \triangleq g^{-1}
+\end{align*}
+is well-defined on $\operatorname{Cl}(x)$. Since  $\operatorname{Cl}(x)=\operatorname{Cl}(x^{-1})$, we know $\phi$ is surjective. Clearly $\phi$ is injective, so it is bijective.   Because $o(G)$ is odd, we know  $\phi (g)\neq g$ for all $g\in \operatorname{Cl}(x)$, since otherwise, we would have an element of order $2$. We have shown that 
+\begin{align*}
+g \sim  h \overset{\triangle}{\iff } \phi (g)=h
+\end{align*}
+is an equivalence relation defined on $\operatorname{Cl}(x)$ whose equivalence classes all have cardinality $2$. This implies that  $\operatorname{Cl}(x)$ has even cardinality, which is impossible, since by orbit-stabilizer theorem, the cardinality of $\operatorname{Cl}(x)$ equals to the order of $C_G(x)\leq G$. 
 \end{proof}
 \begin{question}{}{}
 Let $o(G)=p^n$ with $n\geq 3$ and $o(Z(G))=p$. Prove that $G$ has a conjugacy class of size  $p$. 
 \end{question}
 \begin{proof}
   \customref{THce}{Class equation} stated that 
-\begin{align}
+\begin{align*}
 \label{EQoG}
   o(G)= o(Z(G))+ \sum \abso{\operatorname{Cl}(x)}
-\end{align}
-and the \customref{THost}{orbit stabilizer theorem} shows that $\abso{\operatorname{Cl}(x)}$ is of order powers of $p$. If they are of $p$-powers  $\geq 2$, then  we see 
-\begin{align*}
-0\equiv o(G) \equiv p \equiv o(Z(G))+ \sum \abso{\operatorname{Cl}(x)}\pmod{p}
 \end{align*}
-a contradiction. 
+and the orbit-stabilizer theorem shows that $\abso{\operatorname{Cl}(x)}$ is of order powers of $p$. If they are of $p$-powers  $\geq 2$, then  we see 
+\begin{align*}
+0\equiv o(G)  \equiv o(Z(G))+ \sum \abso{\operatorname{Cl}(x)}\equiv p\pmod{p}
+\end{align*}
+, a contradiction. 
 \end{proof}
 \begin{question}{}{}
 Prove that if the center of $G$ is of index $n$, then every conjugacy class has at most  $n$ elements. 
 \end{question}
 \begin{proof}
-Let $x \in G$. Because $Z(G) \subseteq C_G(x)$, by \customref{THost}{orbit-stabilizer theorem}, we have: 
+Let $x \in G$. Because $Z(G) \leq  C_G(x)$, by orbit-stabilizer theorem, we have: 
 \begin{align*}
-\abso{\operatorname{Cl}(a)} = \abso{G : C_G(a)} \leq \abso{G:Z(G)}=n 
+\abso{\operatorname{Cl}(x)} = [G: C_G(x)] \leq [G:Z(G)]= n 
 \end{align*}
 \end{proof}
 \begin{question}{}{}
-Let $H,K\subseteq G$ be two finite subgroups. Show that 
-\begin{align*}
-\abso{HK}= \frac{o(H)o(K)}{ o(H \cap K)}
-\end{align*}
+Let $H,K\leq  G$ be two finite subgroups. Show that 
+\begin{align}
+\label{EQkh}
+\abso{KH}= \frac{o(H)o(K)}{ o(H \cap K)}
+\end{align}
 \textbf{Remark}: The hint give a rigorous proof, but I prefer a heuristic one. 
 \end{question}
 \begin{proof}
-Consider the right coset spaces $\Omega \triangleq \set{Hx: x \in G}$, and let $K$ acts on  $\Omega$ by right multiplication. Because $Hk =H$ if and only if $k \in H$, we know the stabilizer subgroup $K_H$ is identical to  $K \cap  H$. Therefore, by \customref{THost}{orbit-stabilizer theorem}, we have 
+Let $K$ acts on the left coset spaces $G \quotient H$ by left multiplication. Because $kH=H$ if and only if  $k \in H$, we know 
 \begin{align*}
-\frac{o(K)}{o(H \cap K)}= \abso{\set{Hk: k \in K}}
+\operatorname{Stab}_K(H)= K \cap H
 \end{align*}
-Define an equivalence class in $K$ by setting  $k \sim \tilde{k}\overset{\triangle}{\iff } Hk = H \tilde{k}$. Pick a representative element our of each class and collect them into a set $T$. Clearly 
+Therefore, by orbit-stabilizer theorem, we have 
 \begin{align*}
-\abso{T}= \abso{\set{Hk:k \in K}}
+\frac{o(K)}{o(H \cap K)}=  \abso{\set{kH \in G \quotient H: k \in K}}
 \end{align*}
-and we have a natural bijection $H \times T \rightarrow HK$. This finishes the proof. 
+Define an equivalence class in $K$ by setting  $k \sim \tilde{k}\overset{\triangle}{\iff } kH = \tilde{k} H $. Pick a representative element our of each class and collect them into a set $T$. Clearly 
+\begin{align*}
+\abso{T}= \abso{\set{kH \in G \quotient H:k \in K}}
+\end{align*}
+Therefore, to prove \myref{equation}{EQkh}, we only have to show the natural map 
+\begin{align*}
+T \times H \rightarrow KH\quad \text{ and }\quad (k,h)\mapsto kh 
+\end{align*}
+is bijective. Let $kh=\tilde{k}\tilde{h}$. To show the natural map is injective, we are required to show $k= \tilde{k}$ and $h= \tilde{h} $. Because $k^{-1} \tilde{k}= \tilde{h}^{-1}h \in H$, we know $kH=\tilde{k}H$, which implies $k = \tilde{k}$, which then implies $h= \tilde{h}$, as desired.\\
+
+Fix $kh \in KH$. By definition, there exists some $\tilde{k}\in T$ such that $kh \in kH =\tilde{k}H$. Therefore, there exists some $\tilde{h}\in H $ such that $kh= \tilde{k}\tilde{h}$. We have shown that the natural map is surjective, as desired. 
 \end{proof}
 \begin{question}{}{}
 Let $G$ be a non-abelian group of order $21$. Prove that  $Z(G)=1$. 
 \end{question}
 \begin{proof}
-If $o(Z(G))=3$ or $7$, then because  $G \quotient Z(G)$ is cylic  
+Because $G$ is non-abelian, we know $o(Z(G))\in \set{1,3,7}$. To see that $o(Z(G))\not \in \set{3,7}$, just observe that if so, then part (i) of the first question of HW1 implies that $G$ is abelian, a contradiction. 
 \end{proof}
 \begin{question}{}{}
 Find all finite groups which have exactly two conjugacy classes. 
@@ -246,24 +276,34 @@ Find all finite groups which have exactly two conjugacy classes.
 \begin{proof}
 Let $G$ be a finite group that has exactly two conjugacy classes. One of the conjugacy class is $\set{e}$. Let $a$ be an element of the other class. By class equation and \customref{THost}{orbit-stabilizer theorem}, we have
 \begin{align*}
- \abso{G}-1 =  \abso{\operatorname{Cl}(a)}  \mid  o(G)
+ o(G)-1 =  \abso{\operatorname{Cl}(a)}\text{ divides }  o(G)
 \end{align*}
-This implies $\abso{G}=2$, which implies $G=\Z_2$. 
+which forces $o(G)=2$ and $G \cong  C_2$. 
 \end{proof}
 \begin{question}{}{}
-Let $H$ be a subgroup of  $G$ and let 
+Let $H< G$. Show that 
  \begin{align*}
-\bigcup_{ g \in G} gHg^{=1}=G
+\bigcup_{ g \in G} gHg^{-1}\neq G
 \end{align*}
-Show that $H=G$. 
 \end{question}
+\begin{proof}
+The question as stated is still wrong. (Flipping the statement to its contraposition won't make what's wrong right, they are equivalent). Consider 
+\begin{align*}
+G\triangleq \operatorname{GL}_n(\C)\quad \text{ and }\quad  H \triangleq  \set{A \in \operatorname{GL}_n(\C):A \text{ upper triangular. }}
+\end{align*}
+Jordan form shows that $G$ is indeed the union of conjugation of  $H$.\\
 
-\section{Exercises III} 
+\textbf{Remark}: The question may be fixed by adding the hypothesis $o(G)< \infty$. See this MSE post:\\
+
+https://math.stackexchange.com/questions/374078/reference-for-a-finite-group-cannot-be-union-of-conjugates-of-a-proper-subgroup
+\end{proof}
+\section{HW3} 
+\setcounter{qnum}{0}
 \begin{question}{}{}
 Let $o(G)=60$. Show that if $G$ is simple, then $G$ must have exactly $24$ elements of order $5$ and  $20$ elements of order $3$. 
 \end{question}
 \begin{proof}
-By \customref{SECSt}{sylow}, we have 
+By Sylow, we have 
 \begin{align*}
 n_5 \equiv 1 \pmod{5}\quad \text{ and }\quad n_5 \mid 12
 \end{align*}
@@ -271,12 +311,16 @@ which by simplicity of $G$ implies $n_5=6$. The same argument gives us $n_3 \in 
 \begin{align*}
 o(G)=60  \mid  n_3 !
 \end{align*}
+\textbf{Remark}: In fact $G \cong  A_5$. 
 \end{proof}
 \begin{question}{}{}
 Let $o(G)=pqr$ with $p<q<r$ prime. Prove that $G$ has a normal Sylow $r$-subgroup  $H$. 
 \end{question}
 \begin{proof}
-By \customref{SECst}{sylow} and counting arguments we know $1 \in \set{n_p,n_q,n_r}$. Therefore, if neither of $n_p$ and  $n_q$ is $1$, we are done. Suppose   $1 \in \set{n_p,n_q}$. Either way, we get a normal subgroup $N$ such that  $o(G \quotient N) \in \set{qr,pr}$. We also get a normal  $H \quotient N \in \operatorname{Syl}_r(G \quotient N)$. This give us a characteristic $K \in \operatorname{Syl}_r(H)$, which is normal in $G$. 
+By Sylow and counting arguments we know $1 \in \set{n_p,n_q,n_r}$. Therefore, if neither of $n_p$ and  $n_q$ is $1$, we are done. Suppose   $1 \in \set{n_p,n_q}$. Either way, we get a normal subgroup $N$ such that  $o(G \quotient N) \in \set{qr,pr}$, and by Question 3 of HW 1, we also get a normal  $H \quotient N \in \operatorname{Syl}_r(G \quotient N)$. This give us a characteristic $K \in \operatorname{Syl}_r(H)$, which is normal in $G$, since 
+\begin{align*}
+K \operatorname{char} H \trianglelefteq G \implies K \trianglelefteq G
+\end{align*}
 \end{proof}
 \begin{question}{}{}
 Let $o(G)=p^3q$ with $p,q$ prime. Show that one of the followings statement is true: 
@@ -296,14 +340,21 @@ Show that no group of order $30$ is simple.
 Consider  $n_3$ and  $n_5$. We have  $n_5 \in \set{1,6}$ and $n_3 \in \set{1,10}$. If $n_5 \neq  1 \neq n_3$, then there are $24$ elements of order  $5$ and  $20$ elements of order $3$, impossible for a group of order $30$.   
 \end{proof}
 \begin{question}{}{}
-Let $G$ be a finite group with sylow $p$-subgroup $P$ and normal subgroup  $N$. Show that $P \cap  N$ is $p$-sylow in $N$ and that $PN \quotient N$ is $p$-sylow in  $G \quotient N$. 
+Let $G$ be a finite group with sylow $p$-subgroup $P$ and normal subgroup  $N$. Show that $P \cap N \in \operatorname{Syl}_p(N)$ and that $PN \quotient N \in \operatorname{Syl}_p(G \quotient N)$. 
 \end{question}
 \begin{proof}
   \customref{THsitg}{Second isomorphism theorem} implies that 
 \begin{align*}
 o(PN)\cdot o(P \cap N) = o(P) \cdot o(N)  
 \end{align*}
-Because $P$ is  $p$-sylow, we know  $o(P)$ and $o(PN)$ has the same $p$-power, which implies that $o(P\cap N)$ and $o(N)$ has the same $p$-power, as desired. Again counting the $p$-power of  $PN \quotient  N \subseteq G \quotient N$, we see $PN\quotient N$ is  $p$-sylow.  
+$P \in \operatorname{Syl}_p(PN)$ implies that $o(P)$ and $o(PN)$ have the same $p$-power. Together, they imply that $o(P\cap N)$ and $o(N)$ have the same $p$-power, which is only possible if $P \cap N \in \operatorname{Syl}_p(N)$. \\
+
+
+ $P \in \operatorname{Syl}_p(G)$ implies that $o(P)$ and $o(G)$ have the same $p$-power. Because $o(P \cap  N)$ and $o(N)$ have the same $p$-power, we now see 
+\begin{align*}
+\frac{o(PN)}{o(N)}= \frac{o(P)}{o(P\cap N)}
+\end{align*}
+has the same $p$-power as $o(G) \quotient o(N)$, which is only possible if $PN \quotient N \in \operatorname{Syl}_p(G \quotient N)$. 
 \end{proof}
 \begin{question}{}{}
 Let $G$ be a finite group, $H\leq G$ a subgroup with $[G:H]=n$. Show that: 
@@ -321,23 +372,33 @@ H \quotient  H \cap  K \longrightarrow G \quotient K ;\quad h(H \cap K) \mapsto 
 \end{align*}
 is well-defined and injective. (ii) is then a corollary of (i). \\
 
-We now prove (iii). Fix $g \not \in  H$. There are two cases: Either $H=H^g$ or $H \neq H^g$. For the first case, just observe that by maximality of $H$, we will have  $N_G(H)=G$. We now claim that $H \neq H^g \implies  H \cap H^g \subseteq Z(G)$. Because $H$ is abelian, we know  $H \cap H^g \leq Z(H)$. Clearly we also have $H \cap H^g \leq Z(H^g)$. We now have $H \cap H^g \leq Z(\langle H,H^g\rangle )$, where $\langle H,H^g\rangle =G$ by maximality of $H$, as desired.   \\
+We now prove (iii). Fix $g \not \in  H$. There are two cases: Either $H=H^g$ or $H \neq H^g$. For the first case, just observe that by maximality of $H$, we will have $N_G(H)=G$. We now claim that $H \neq H^g \implies  H \cap H^g \leq  Z(G)$. Because $H$ is abelian, we know  $H \cap H^g \leq Z(H)$. Clearly we also have $H \cap H^g \leq H^g = Z(H^g)$. We now have $H \cap H^g \leq Z(\langle H,H^g\rangle )$, where $\langle H,H^g\rangle =G$ by maximality of $H$, as desired.   \\
 
-We now prove (iv). Clearly the primality of $n$ forces  $H$ to be a maximal proper subgroup of  $G$. Therefore by (iii), $H \cap H^g= 1$ for all $g \not \in H$.  This by (ii) implies $n \leq o(G)\leq n^2$. Write $o(G)\triangleq nk$ so $k \in \set{1,\dots ,n}$. We wish to show $k=1$. To see  $k\neq n$, just recall that if so, then $G$ would be abelian, contradicting to its simplicity. To see $k \not\in \set{2,\dots ,n-1}$, just observe that if so, then the unique $n$-Sylow subgroup would be proper, contradicting to simplicity of $G$.   
+We now prove (iv). Clearly the primality of $n$ forces  $H$ to be a maximal proper subgroup of  $G$. Therefore by (iii), simplicity of $G$ forces $H \cap H^g= 1$ for all $g \not \in H$.  This by (ii) implies $o(H)\leq n$ and therefore $n \leq o(G)\leq n^2$. Write $o(G)\triangleq nk$ so $k \in \set{1,\dots ,n}$. We wish to show $k=1$. To see  $k\neq n$, just recall that if so, then by first Question of HW1, $G$ would be abelian, contradicting to its simplicity. To see $k \not\in \set{2,\dots ,n-1}$, just observe that if so, then $G$ has a normal (proper) Sylow  $n$-subgroup, contradicting to simplicity of $G$.  
 \end{proof}
 \begin{question}{}{}
-Let $G$ be a finite group with $P \in \operatorname{Syl}_p(G)$. Suppose that $N$ is a normal subgroup of $G$ with  $[G:N]= o(P)>1$. Show that 
+Let $G$ be a finite group with $P \in \operatorname{Syl}_p(G)$. Suppose $N\trianglelefteq  G$ and  $[G:N]= o(P)>1$. Show that 
 \begin{enumerate}[label=(\roman*)]
   \item $N$ is the subset of  $G$ consisting of all elements of order not divisible by $p$. 
   \item If the elements of $G - N$ all has $p$-power order, then  $P= N_G(P)$. 
 \end{enumerate}
 \end{question}
 \begin{proof}
-Because $P$ is  $p$-sylow and $[G:N]=o(P)$, we know $p \nmid o(N)$.  This implies that no element of $N$ has order divisible by $p$. Let $g \in G$ with $p \nmid o(g)$. To see that $g \in N$, just observe that because $o(gN) \mid  o(g)$ and $o(gN)$ is a power of $p$, we have $o(gN)=1$. \\
+  (i): Because $P$ is  $p$-sylow and $[G:N]=o(P)$, we know $p \nmid o(N)$.  This implies that no element of $N$ has order divisible by $p$. Let $g \in G$ with $p \nmid o(g)$. To see that $g \in N$, just observe that because $o(gN) \mid  o(g)$ and $o(gN)$ is a power of $p$, we have $o(gN)=1$. \\
 
-Assume for a contradiction that $P< N_G(P)$. Then there exists some nontrivial sylow  $q$-subgroup  $Q$ of  $N_G(P)$ with $q \neq p$. By definition we have $[Q,P] \leq P$. By (i), $Q\leq N$. Therefore we also have $[Q,P] \leq N$. Coprimality of orders of $N$ and  $P$ now tell us that  $[Q,P]=1$. We now see that the product of two nontrivial elements $x \in Q,y \in P$ has order divisible by $pq$, a contradiction to the premise.   
+  (ii): Assume for a contradiction that $P< N_G(P)$. Then there exists some nontrivial $Q \in \operatorname{Syl}_q(N_G(P))$ with $q \neq p$. Because $Q \leq N_G(P)$, we know $\langle [Q,P]\rangle \leq P$. Because of (i), $Q \leq N$, which by normality of $N$ implies  $\langle [Q,P]\rangle \leq N$. We now see 
+  \begin{align}
+\label{EQqp}
+  \langle [Q,P]\rangle  \leq P \cap N =1
+  \end{align}
+Let $y \in P-N$ and $x \in Q\leq N$ be nontrivial. \myref{Inequality}{EQqp} implies 
+\begin{align*}
+  (xy)^n=x^ny^n,\quad \text{ for all }n\inn
+\end{align*}
+We now see that $xy \in G- N$ has order divisible by $pq$, a contradiction to the premise.   
 \end{proof}
-\section{Exercises IV}
+\section{HW4}
+\setcounter{qnum}{0}
 \begin{question}{}{}
 Show that the center of products is a product of centers: 
 \begin{align*}
@@ -366,10 +427,11 @@ Let $G\triangleq A_1 \times \cdots \times A_n$ and $B_i \trianglelefteq A_i$ for
 \end{align*}
 \end{question}
 \begin{proof}
+Normality of  $\prod B_i$ follows from computing: 
 \begin{align*}
   (g_1,\dots ,g_n) (b_1 ,\dots ,b_n )(g_1 , \dots ,g_n)^{-1} = (g_1b_1g_1^{-1},\dots ,g_nb_ng_n^{-1}) \in \prod B_i
 \end{align*}
-The second part require us to show that 
+The second part require us to show that the map defined by:   
 \begin{align*}
 \prod \left( \frac{A_i}{B_i}\right) \longrightarrow \frac{\prod A_i}{\prod B_i};\quad \prod \left(\frac{a_i}{B_i} \right) \mapsto \frac{\prod a_i}{\prod B_i}
 \end{align*}
@@ -379,63 +441,120 @@ is a well-defined group isomorphism, which boils down to showing that it is (i) 
 Let $G$ be a finite abelian group with $m \mid  o(G)$. Show that $G$ has a subgroup of order $m$. 
 \end{question}
 \begin{proof}
-This follows from noting that if $o(a)=p^n$, then $o(a^{p^{n-d}})=p^d$. (Ans also structure theorem for finite abelian group) 
+Recall that primary decomposition form of structure theorem for finitely generated abelian groups stated that 
+\begin{align*}
+G \cong G_{T_{p_1}} \times \cdots \times G_{T_{p_n}}
+\end{align*}
+where the \textbf{torsion $p$-subgroup}  $G_{T_p}$ of $G$ 
+ \begin{align*}
+G_{T_p} \triangleq \set{x \in G: o(x)=p^k\text{ for some }k\geq 0}
+\end{align*}
+is:  
+\begin{align*}
+G_{T_p} \cong  C_{p^{d_1}} \times \cdots \times C_{p^{d_m}}
+\end{align*}
+Because of such, we only have to prove that for all $0\leq d \leq \sum_{i=1}^md_i$, the group  $C_{p^{d_1}}\times \cdots \times C_{p^{d_m}}$ has a subgroup of order $p^d$. This is clear, since we may find 
+\begin{align*}
+d_1 + \cdots + d_k \leq  d \leq  d_1 + \cdots + d_{k+1}
+\end{align*}
+and the subgroup 
+\begin{align*}
+C_{p^{d_1}} \times \cdots \times C_{p^{d_k}} \times \langle x^{p^{d_{k+1}-r}}\rangle \times 1 \times \cdots \times 1
+\end{align*}
+where $C_{p^{d_{k+1}}}\triangleq \langle x\rangle $ and $r \triangleq d- (d_1 + \cdots + d_k)$ suffices. 
 \end{proof}
 \begin{question}{}{}
 Show that the subgroups and quotients of a nilpotent group $G$ are also nilpotent. 
 \end{question}
 \begin{proof}
-Let $H$ be a subgroup of  $G$, and write 
+Let $H$ be a subgroup of  $G$, and let   
 \begin{align*}
-0 = G_{(n)} \trianglelefteq  \cdots \trianglelefteq G_{(1)} \trianglelefteq G_{(0)}= G,\quad \text{ with }G_{(k)} \triangleq [G,G_{(k-1)}]
+1 \triangleq  G_{(n)} \trianglelefteq  \cdots \trianglelefteq G_{(1)} \trianglelefteq G_{(0)} \triangleq  G
 \end{align*}
-To see that  
+be a central series. To see that  
 \begin{align*}
-0 \leq H_n \leq  \cdots \leq H_1 \leq H
+1= G_{(n)} \cap H \trianglelefteq  \cdots \trianglelefteq  G_{(1)} \cap H \trianglelefteq  H 
 \end{align*}
-form a central series, where $H_k\triangleq H \cap G_{(k)}$, just observe that  
+forms a central series, just observe that since  
 \begin{align*}
-[H,H \cap  G_{(k)}] \leq H \text{ and }[H,H \cap G_{(k)}] \leq [G,G_{(k)}] \leq G_{(k-1)}
+  [G_{(k)},H] \subseteq [G_{(k)},G] \subseteq G_{(k+1)}
 \end{align*}
-together implies 
+We have 
 \begin{align*}
-[H,H_k] \leq H \cap G_{(k-1)} = H_{k-1}
+[H\cap G_{(k)}, H] \leq  G_{(k+1)} \cap H
 \end{align*}
-Let $N$ be a normal subgroup of  $G$, and let $m \leq n$ be the largest number such that $N\leq G_{(m)}$. It is clear that 
+Let $N\trianglelefteq G$ and $\pi : G \rightarrow G \quotient N$ be the canonical projection. It is clear that 
 \begin{align*}
-\frac{N}{N} \leq \frac{G_{(m)}}{N} \leq  \cdots \leq  \frac{G_{(1)}}{N} \leq \frac{G}{N}
+1=\pi (G_{(n)}) \trianglelefteq  \cdots \trianglelefteq  \pi (G_{(1)}) \trianglelefteq  \pi (G_{(0)})= G \quotient N
 \end{align*}
-form a central series. 
+forms a central series. 
 \end{proof}
 \begin{question}{}{}
 Show that if $G \quotient Z(G)$ is nilpotent, then $G$ is nilpotent. 
 \end{question}
 \begin{proof}
-Consider the central series 
+Let 
 \begin{align*}
- \frac{Z(G)}{Z(G)} \trianglelefteq \frac{G_1}{Z(G)} \trianglelefteq  \cdots \trianglelefteq  \frac{G_n}{Z(G)} = \frac{G}{Z(G)}
+1 \triangleq  H_0 \trianglelefteq  \cdots \trianglelefteq H_n \triangleq G \quotient Z(G)
 \end{align*}
-Clearly we have the central series 
+be a central series, and let $\pi  : G \rightarrow G \quotient Z(G)$ be the canonical projection. The proof then follows from noting that we have the central series: 
 \begin{align*}
-0 \trianglelefteq Z(G) \trianglelefteq G_1 \trianglelefteq  \cdots \trianglelefteq  G_n = G
+1 \trianglelefteq  Z(G) \trianglelefteq  \pi ^{-1}(H_1) \trianglelefteq  \cdots \trianglelefteq  \pi ^{-1} (H_n) = G 
 \end{align*}
 \end{proof}
 \begin{question}{}{}
 Let $o(G)=pqr$ with $p<q<r$ prime. Show that  $G$ is solvable. 
 \end{question}
 \begin{proof}
-Recall that we have a normal subgroup $M \in \operatorname{Syl}_r(G)$. Then we have a normal subgroup $\frac{H}{M}\in \operatorname{Syl}_q(G)$. Then $1\trianglelefteq M\trianglelefteq  H \trianglelefteq  G$ forms the desired series.  
+Recall that by Question 2 of HW 3, we have a characteristic $R \in \operatorname{Syl}_r(G)$, and that by Question 3 of HW 1, we have a normal $P \in \operatorname{Syl}_p (G \quotient R)$. Let $\pi  : G \rightarrow G \quotient R$ be the canonical projection. We then see 
+\begin{align*}
+1 \trianglelefteq  R \trianglelefteq \pi ^{-1}(P) \trianglelefteq  G
+\end{align*}
+is a desired normal series, since the factor groups can only be cyclic. 
+\end{proof}
+\begin{theorem}
+\label{THsnnc}
+\textbf{(Proper subgroups of nilpotent groups satisfy normalizer condition)} If $G$ is nilpotent, then any $H<G$ satisfies normalizer condition.  
+\end{theorem}
+\begin{proof}
+Note that if $H$ doesn't contain $Z(G)$, then the elements of $Z(G)$ that lies outside $H$ complete the proof, so we only have to consider the case $Z(G)\leq H$.\\
+
+This is proved by induction on nilpotency class $n$ of $G$. The base case $n=1$ is clear. The inductive case follows from \customref{THtit}{third isomorphism theorem for groups} and the observation $G \quotient Z(G)$ has the nilpotent class one smaller than that of $G$.
+\end{proof}
+\begin{equiv_def}
+\label{EDfng}
+\textbf{(Finite nilpotent group)} Let $G$ be a finite group. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item $G$ is nilpotent.  
+  \item Proper subgroups of $G$ satisfies normalizer condition.
+  \item Sylow subgroups of $G$ are all normal. 
+  \item  $G$ is the internal direct product of its Sylow subgroups. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+(i)$\implies $(ii): \customref{THsnnc}{This is true even if $G$ is infinite}.\\
+
+
+(ii)$\implies $(iii): If $G$ is a  $p$-group, then the proof is trivial. Let $G$ not be a $p$-group and let  $P \in \operatorname{Syl}_p(G)$. To see $P$ is normal, just observe that since \customref{COnoS}{normalizers of Sylow subgroups don't satisfy normalizer condition}, the normalizer of $P$ must be  $G$. \\
+
+(iii)$\implies $(iv): This follows from \customref{EDdpfg}{the definition of finite internal direct product}. \\
+
+(iv)$\implies $(i): This follows from the fact that \customref{THpp}{$p$-groups is nilpotent} and that nilpotency is closed under taking finite direct product. 
 \end{proof}
 \begin{question}{}{}
 Show that a finite group $G$ is nilpotent if and only if every $a,b \in G$ that makes $\operatorname{gcd}(o(a),o(b))=1$ also makes $ab=ba$.   
 \end{question}
 \begin{proof}
-($\implies $): Write $G=P_1 \times \cdots \times P_n$ with $P_i$ sylow. Clearly if the orders of $(x_1,\dots ,x_n)$ and $(y_1,\dots ,y_n)$  are coprime to each other, then for all $i$, we must have either  $x_i=e$ or  $y_i=e$. This implies the commutativity. \\
+($\implies $): Write $G\triangleq P_1 \times \cdots \times P_n$ with $P_i$ sylow. Since 
+\begin{align*}
+o\left((x_1,\dots ,x_n) \right) = \prod o(x_i)
+\end{align*}
+we know that if the orders of $(x_1,\dots ,x_n)$ and $(y_1,\dots ,y_n)$  are coprime to each other, then for all $i$, we must have either $x_i=e$ or  $y_i=e$. This implies $(x_1,\dots ,x_n)$ and $(y_1,\dots ,y_n)$ commute. \\
 
-$(\impliedby)$: We need to show that Sylow subgroups of $G$ are normal. Let $P_1,\dots ,P_n$ each be a Sylow subgroup of $G$ with distinct  $p$. By premise, we see that $P_k \subseteq N_G(P_1)$ for all $k\geq 2$. This then implies $G=N_G(P_1)$, as desired. 
+$(\impliedby)$: We need to show that Sylow subgroups of $G$ are normal. Let $P_1,\dots ,P_n$ each be a Sylow subgroup of $G$ with distinct  $p$. By premise, we have $P_k \leq  N_G(P_1)$ for all $k\geq 2$. This then implies $G=N_G(P_1)$, as desired. 
 \end{proof}
 \begin{question}{}{}
-Let $G=HK$ be finite and  $S \leq G$ be a $p$-subgroup that contains some $p$-Sylow subgroup $P$ of $H$ and some $p$-Sylow subgroup $Q$ of  $K$. Show that  
+Let $G\triangleq HK$ be finite and  $S \leq G$ be a $p$-subgroup that contains some  $P \in \operatorname{Syl}_p(H)$ and  $Q \in \operatorname{Syl}_p(K)$. Show that  
 \begin{enumerate}[label=(\roman*)]
   \item $S$ is $p$-Sylow in  $G$.  
   \item $S= (S \cap H)(S \cap K)$
@@ -446,22 +565,67 @@ Because $P \cap Q \leq H \cap K$, we know $p$-part of
  \begin{align*}
 o(G)= \frac{o(H)o(K)}{o(H\cap K)}
 \end{align*}
-is smaller than  
+is $\leq $ than  $p$-part of 
 \begin{align*}
  \frac{o(P)o(Q)}{o(P \cap Q)}= \abso{PQ} \leq o(S)
 \end{align*}
- which can only happen if $S$ is Sylow with $\abso{PQ}=o(S)$. By definition, $ P \leq  S \cap H \leq H$. Because $S$ is a  $p$-group, we know  $S \cap H$ is also a $p$-group. Sylowness of $P \leq H$ then forces $S \cap H = P$. Similarly, we have $S \cap K= Q$. Now, to see $S = PQ$, just recall that $\abso{PQ}=o(S)$  
+ which can only happen if $S\leq G$ is $p$-Sylow with $\abso{PQ}=o(S)$. By definition (premise), $P \leq  S \cap H \leq H$. Because $S$ is a  $p$-group, we know  $S \cap H$ is also a $p$-group. $P\in \operatorname{Syl}_p(H)$ then forces $S \cap H = P$. Similarly, we have $S \cap K= Q$. Now, to see $S = PQ$, just recall that $\abso{PQ}=o(S)$  
+\end{proof}
+\begin{theorem}
+\label{COepc}
+\textbf{(Every $p$-subgroup is contained by some Sylow $p$-subgroup)} Let $G$ be a finite group and $H\leq G$ a $p$-group. Then $H$ must be contained by some Sylow $p$-subgroup of $G$. 
+\end{theorem}
+\begin{proof}
+Consider the conjugacy action $H \longrightarrow \operatorname{Bij}\left(\operatorname{Syl}_p(G) \right)$. \customref{THfSt}{First Sylow theorem} and \customref{THost}{orbit-stabilizer theorem} shows that there must be a singleton orbit. Let that singleton be $P$.\\
+
+We claim $H\leq P$. Because $\set{P}$ is a singleton orbit of the conjugacy action, we know $H \leq N_G(P)$. Then by \customref{THsitg}{second isomorphism theorem}, we see that $HP$ is a group such that  $HP \quotient P\cong  H \quotient  H \cap P$. This implies that $HP$ is a  $p$-group. The fact $HP$ contains $P$ forces $P=HP$, which implies $H \leq P$. 
 \end{proof}
 \begin{question}{}{}
 Let $M \trianglelefteq G$ and $N \trianglelefteq G$ with $M,N$ finite and nilpotent. Prove that  $MN$ is nilpotent. 
 \end{question}
 \begin{proof}
-The proof follows form noting that if $S \in \operatorname{Syl}_p(MN)$, then by earlier questions, $S$ is uniquely determined by $S= (M\cap S)(N\cap S)$ with $M \cap S \in \operatorname{Syl}_p(M)$ and $N\cap S \in \operatorname{Syl}_p(N)$ uniquely determined.  
+Let $p$ be a prime. Let $M_p \in\operatorname{Syl}_p(M)$ and $N_p \in \operatorname{Syl}_p(N)$ be the unique $p$-sylow subgroups. Our goal is to show that 
+\begin{align*}
+P \triangleq M_pN_p\text{ is the unique Sylow $p$-subgroup of  $MN$. }
+\end{align*}
+Because 
+\begin{align*}
+M_p\operatorname{char}M \trianglelefteq  G  \quad \text{ and }\quad N_p \operatorname{char}N  \trianglelefteq G
+\end{align*}
+We know $M_p,N_p \trianglelefteq  G$. This implies that $P=M_pN_p\trianglelefteq G$, which implies $P \trianglelefteq MN$. Therefore, we reduce the problem into showing that 
+\begin{align}
+\label{EQp}
+P\in \operatorname{Syl}_p(MN)
+\end{align}
+Before proving such, we first need to show that 
+\begin{align*}
+M_p\cap N_p\text{ is a unique Sylow $p$-subgroup of }M \cap N
+\end{align*}
+Let $S \in \operatorname{Syl}_p(M \cap N)$. \customref{COepc}{Since every $p$-subgroup is contained by some Sylow  $p$-subgroup}, from  $S\leq M \cap N \leq M$, we know $S \leq M_p$. Similarly, we have $S \leq N_p$. Therefore, we have $S \leq M_p \cap N_p$. This then implies $M_p \cap N_p$ is the unique Sylow $p$-subgroup of  $M \cap N$, as desired.  \\
+
+We may now compute $p$-part: 
+\begin{align*}
+\abso{o(P)}_p = \abso{\frac{o(M_p)o(N_p)}{o(M_p \cap N_p)}}_p = \abso{\frac{o(M)o(N)}{o(M\cap N)}}_p = \abso{o(MN)}_p 
+\end{align*}
+to see that indeed, $P\in \operatorname{Syl}_p(MN)$. 
+
+
+
+
+
 \end{proof}
 \begin{question}{}{}
 Let $G$ be finite with  $A,B \trianglelefteq G$ and $G \quotient A,G \quotient B$ solvable. Prove that $G \quotient (A \cap B)$ is solvable.   
 \end{question}
 \begin{proof}
+Consider the group homomorphism $\phi: G \rightarrow G \quotient A \times G \quotient B$  defined by 
+\begin{align*}
+\phi (g) \triangleq (gA,gB)
+\end{align*}
+Clearly, $\operatorname{ker}(\phi)= A \cap B$, so by first isomorphism theorem, we have $G \quotient (A \cap B)\leq G \quotient A \times G \quotient B$. Solvability of $G \quotient (A \cap B)$ then follows from the fact that solvable groups are closed under finite direct product and taking subgroups. \\
+
+
+\textbf{Remark}: As it turns out, finiteness of $G$ is unnecessary. 
 \end{proof}
 
 \end{document}
