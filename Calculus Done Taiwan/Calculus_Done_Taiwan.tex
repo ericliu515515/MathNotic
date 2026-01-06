@@ -2649,6 +2649,207 @@ which is
 \end{align*}
 
 \end{proof}
+\section{Uanalysis Final}
+\setcounter{qnum}{0}
+\begin{question}{}{}
+Define $f:[0,1]\rightarrow \R$  by 
+\begin{align*}
+f(x) \triangleq \sqrt[3]{x} 
+\end{align*}
+Show that $f$ is uniformly continuous by directly finding $\delta$. 
+\end{question}
+\begin{proof}
+Just observe that for $y \geq x \geq 0$, we have 
+ \begin{align*}
+   y^{\frac{1}{3}}- x^{\frac{1}{3}} = \frac{y-x}{x^{\frac{2}{3}}+ x^{\frac{1}{3}}y^{\frac{1}{3}}+ y^{\frac{2}{3}}}\leq \frac{y-x}{(y^{\frac{1}{3}}-x ^{\frac{1}{3}})^2} \implies (y^{\frac{1}{3}}-x^{\frac{1}{3}})^3 \leq y-x 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Let $0< \alpha  < 1$ and $p\geq 1$. Show that 
+\begin{align*}
+  (1+t)^{\alpha }\leq  1+ t^{\alpha }\quad \text{ and } \quad (1+t)^p \leq 2^{p-1}(1+t^p),\quad \text{ for all }t\geq 0 
+\end{align*}
+It follows that for all $a,b\geq 0$, we have 
+\begin{align*}
+  (a+b)^{\alpha } \leq a^{\alpha }+ b ^{\alpha } \quad \text{ and }\quad (a+b)^p \leq 2^{p-1}(a^p + b^p)
+\end{align*}
+It then follows that for all $x,y \geq 0$, we have 
+\begin{align*}
+ \abso{y^{\alpha }-x^{\alpha }} \leq \abso{y-x}^{\alpha }
+\end{align*}
+\end{question}
+\begin{proof}
+The two main inequalities are all proved by differentiating the function obtained by subtracting the right hand side off left hand side. In particular, the $\alpha $ inequality has minimum at $t=0$ while the  $p$ inequality has minimum at  $t=1$.   \\
+
+ The corollaries follows from setting  $a+b=a(1+ \frac{b}{a})$ and $y=x+h>x$.  
+\end{proof}
+\begin{question}{}{}
+Let $f:\R \rightarrow \R$ be $C^2$ and  satisfies $f''(x)\geq 0$ for all   $x \inr$. Let $x,y \in \R$. Show that 
+\begin{align*}
+f\left((1-t)x+ty \right) \leq  (1-t)f(x) + tf(y),\quad \text{ for all }t \in [0,1]
+\end{align*}
+\end{question}
+\begin{proof}
+WLOG, let $y \geq x$. The proof follows from using MVT to conclude:  
+\begin{align*}
+  &(1-t)f(x)+tf(y)- f\left((1-t)x+ty \right) \\
+  &= t [f(y)-f\left((1-t)x+ty \right)] - (1-t) [f\left((1-t)x + ty \right)-f(x)]  \\
+ &=t (1-t)(y-x) [f'(\beta )- f'(\alpha )]  \geq 0
+\end{align*}
+where $\beta \in [(1-t)x+ty,y]$ and $\alpha \in [x,(1-t)x+ty]$. 
+\end{proof}
+\begin{question}{}{}
+Show that 
+\begin{align*}
+f(x)\triangleq \begin{cases}
+  e^{\frac{-1}{x}}& \text{ if  }x>0\\
+  0& \text{ if  } x\leq 0
+\end{cases}\quad \text{ and }\quad h(x)\triangleq \begin{cases}
+  \exp \left(- \frac{1}{1-x^2} \right)& \text{ if  }x\in (-1,1)\\
+  0& \text{ if  }\abso{x}\geq 1
+\end{cases}
+\end{align*}
+are $C^{\infty}$. 
+\end{question}
+\begin{proof}
+Because $h(x)=f(1-x^2)$, we only have to prove $f \in C^{\infty}(\R)$. The proof then follows from noting that every derivatives of $e^{\frac{-1}{x}}$ are product of polynomials $P(\frac{1}{x})$ in $\frac{1}{x}$ and $e^{\frac{-1}{x}}$, and the fact:
+\begin{align*}
+\frac{1}{x^n} \cdot e^{\frac{-1}{x}}= \frac{\frac{1}{x^n}}{e^{\frac{1}{x}}} = \frac{\frac{1}{x^n}}{1+ \frac{1}{x}+ \frac{2}{x^2}+ \frac{6}{x^3}+\cdots} \leq \frac{\frac{1}{x^n}}{\frac{(n+1)!}{x^{n+1}}}  \leq \frac{x}{(n+1)!} \rightarrow 0,\quad \text{ as }x \searrow  0
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Determine whether the following series converges 
+\begin{enumerate}[label=(\roman*)]
+  \item $\sum 1- \cos (\frac{1}{n})$ 
+  \item $\sum  \frac{n^2(\pi + (-1)^n)^n}{5^n}$ 
+  \item $\sum  (-1)^{n-1} \left(e - (\frac{n+1}{n})^n \right)$ 
+  \item $\sum (-1)^{n-1}\ln (n\sin (\frac{1}{n}))$
+\end{enumerate}
+\end{question}
+\begin{proof}
+(i) is done by comparison test: 
+  \begin{align*}
+  0 \leq  1- \cos \left(\frac{1}{n} \right) = 2 \sin ^2 \left(\frac{1}{2n} \right) \leq \frac{1}{2n^2}
+  \end{align*}
+  (ii) is done by root test. (iii) and (iv) are done by alternating series test. Because $(\frac{n+1}{n})^n \rightarrow e$, to apply alternating test on (iii), we only have to prove that $(\frac{n+1}{n})^n$ is increasing for $n \gg  0 $, which is clear since the coefficient of   $\frac{1}{n^k}$ is $\binom{n}{k}$. 
+If we let $x \triangleq \frac{1}{n}$, then 
+\begin{align*}
+\lim_{n\rightarrow  \infty} n \sin \left(\frac{1}{n} \right) = \lim_{x \rightarrow  0}\frac{\sin x}{x} \overset{H}{=} \lim_{x \rightarrow   0 } \frac{ \cos x}{1}= 1 
+\end{align*}
+Clearly $n \sin (1 \quotient n)< n \cdot \frac{1}{n}=1$, so we are required to prove that $ \frac{\sin x}{x}$ decrease as $x \searrow 0$, which means that we are required to prove it has positive derivative on its near right hand side. Indeed, we can compute:   
+\begin{align*}
+\frac{d}{dx} \frac{\sin x}{x}= \frac{(\cos x)x-\sin x}{x^2}
+\end{align*}
+And see the nominator $h(x)\triangleq (\cos x)x- \sin x$ satisfies $h(0)=0$ and $h'(x)>0$ for $x> 0$. 
+\end{proof}
+\begin{question}{}{}
+First use Cauchy condensation test, and then use integral test, to show that 
+\begin{align*}
+\sum_{n=3} \frac{1}{n \ln (n \ln \ln n)}\text{ diverges }\quad \text{ and }\quad \sum_{n=3} \frac{1}{n \ln (n)(\ln \ln (n))^2}\text{ converges }
+\end{align*}
+\end{question}
+\begin{proof}
+  For the first series, because natural log is multiplicative and  grows slower that linear, we have: 
+\begin{align*}
+  \sum  \frac{1}{n \ln (n \ln \ln n) } &\sim  
+\sum  \frac{1}{\ln (2^n \ln \ln 2^n)} \\
+&= \sum \frac{1}{\ln 2^n + \ln \ln 2^n} \geq \sum \frac{1}{2 \ln 2^n} = \sum \frac{1}{(2 \ln 2)n}=\infty 
+\end{align*}
+Apply Cauchy condensation on the second series: 
+\begin{align*}
+  \sum \frac{1}{n \ln (n)(\ln \ln (n))^2} &\sim    \sum \frac{1}{\ln 2^n (\ln \ln 2^n)^2} \\
+  &\sim  \sum \frac{1}{n (\ln (n \ln 2))^2}
+\end{align*}
+Cancel the constant term $\ln 2$: 
+\begin{align*}
+   \sum \frac{1}{\ln 2^n (\ln \ln 2^n)^2} \sim \sum  \frac{1}{n (\ln n + \ln \ln 2)^2}
+\end{align*}
+By limit comparison: 
+\begin{align*}
+ \sum  \frac{1}{n (\ln n + \ln \ln 2)^2} \sim  \sum \frac{1}{n (\ln n)^2}
+\end{align*}
+Apply Cauchy condensation again: 
+\begin{align*}
+ \sum \frac{1}{n (\ln n)^2} \sim  \sum  \frac{1}{(n \ln 2)} < \infty  
+\end{align*}
+We now use integral test on the first series 
+\begin{align*}
+\int_3^\infty \frac{1}{x \ln (x \ln \ln x)}dx&= \int_3^{\infty} \frac{1}{x (\ln x+ \ln \ln \ln x)} dx  \\
+&=\int_{\ln 3}^{\infty} \frac{1}{u + \ln \ln u} du \geq  \int_{\ln 3}^{\infty} \frac{1}{2u}du \geq  \infty, \quad \text{ where }u \triangleq \ln x
+\end{align*}
+We now use integral test on the second series: 
+\begin{align*}
+\int \frac{1}{x \ln x(\ln \ln x)^2}= \int \frac{1}{t^2}dt < \infty,\quad \text{ where }t \triangleq \ln \ln x
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Determine the radius of convergence of the power series: 
+\begin{align*}
+\sum  \frac{(n!)^2}{(2n)!} x^n \quad \text{ and }\quad \sum \frac{(-1)^n(x-4)^n}{(2^n-3)\ln (n+3)}
+\end{align*}
+\end{question}
+\begin{proof}
+  (i) can be done by ratio test. (ii) can be done by root test where one observe 
+  \begin{align*}
+    \ln (n+3)^{\frac{1}{n}}= e^{\frac{\ln \ln (n+3)}{n}}\rightarrow 1
+  \end{align*}
+\end{proof}
+\begin{question}{}{}
+Show that the following three sequence of functions defined on $[0,1]$ pointwise converge but doesn't uniformly converge. 
+\begin{align*}
+f_n(x)\triangleq x^n\quad \text{ and }\quad f_n(x)\triangleq nx (1-x^2)^n \quad \text{ and }\quad f_n(x)\triangleq \frac{1}{nx^2+1}
+\end{align*}
+\end{question}
+\begin{proof}
+The first and third are straightforward with singularity at $1$ and  $0$. For the second sequence, just observe  
+\begin{align*}
+f_n \left(\frac{1}{ \sqrt{n} } \right) = \sqrt{n} (1- \frac{1}{n})^n \rightarrow \infty 
+\end{align*}
+\end{proof}
+\begin{question}{}{}
+Show that $f_n:[0,1]\rightarrow \R$ defined by  
+\begin{align*}
+f_n(x)\triangleq \begin{cases}
+  \frac{n}{2}x^2& \text{ if $x<\frac{1}{n}$ }\\
+  x- \frac{1}{2n}& \text{ if $x\geq \frac{1}{n}$ }
+\end{cases} 
+\end{align*}
+uniformly converges to $x$. Also shows that 
+\begin{enumerate}[label=(\roman*)]
+  \item $(1-x)x^n$ uniformly converges to $0$ on $[0,1]$. 
+  \item $\frac{x^2}{1+n^2x^3}$ uniformly converges to $0$ on $\R$. 
+\end{enumerate}
+\end{question}
+\begin{proof}
+Uniform convergence of $f_n \rightarrow x$ follows from noting that 
+\begin{align*}
+  \abso{f_n(x)-x} = \abso{x}\cdot \abso{\frac{nx}{2}-1} < \frac{1}{2n},\quad \text{ for }x < \frac{1}{n}
+\end{align*}
+For (i), just use differentiation to observe that the maximum of $(1-x)x^n$ on $[0,1]$ occurs at $x= \frac{n}{n+1}$, and so 
+\begin{align*}
+\max_{[0,1]} (1-x)x^n = \left(\frac{n}{n+1} \right)^n - \left(\frac{n}{n+1} \right)^{n+1} \rightarrow e^{-1}- e^{-1} = 0
+\end{align*}
+For (ii), first observe that since the functions are odd, we may suppose $x>0$, and then observe:  
+\begin{align*}
+\frac{x^2}{1+n^2x^3}\leq \epsilon  \iff  \frac{1}{x \epsilon }- \frac{1}{x^3}  \leq n^2
+\end{align*}
+The proof then follows from noting that  $\frac{1}{x\epsilon }- \frac{1}{x^3}\rightarrow -\infty$ as $x \searrow 0$. 
+\end{proof}
+\begin{question}{}{}
+Let $f:\N^2 \rightarrow \R$. Show that 
+\begin{align*}
+\lim_{n,m \rightarrow \infty} f(n,m)\inr \text{ doesn't implies }
+\lim_{n \rightarrow  \infty} \lim_{m \rightarrow \infty}f(n,m) \inr 
+\end{align*}
+unless $\lim_{m \rightarrow \infty}f(n,m)\inr$ for all $n$. Does 
+ \begin{align*}
+\sum_{m,n=1}^{\infty} \frac{(-1)^{n+m}\arctan(n)}{e^m (1+n^2)}
+\end{align*}
+converges? 
+\end{question}
+\begin{proof}
+For the first question, just consider $f(n,m)\triangleq \frac{(-1)^m}{n}$.  For the second question, just note that the double sum $\sum_m \sum_n$ absolutely converges.  
+\end{proof}
 \chapter{NTU Math M.A. Program Entrance Exam}
 
 \section{Year 114}

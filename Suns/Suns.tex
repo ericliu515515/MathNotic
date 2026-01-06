@@ -940,15 +940,15 @@ Therefore, by counting order, we see that indeed $s\leq k$. The rest is
 \begin{align*}
 C_{p}^{\operatorname{card}\set{\geq d_i}}\cong  \Omega_1 (p^{d_i-1}H_{T_p}) \leq  \Omega_1 (p^{d_i-1}G_{T_p}) \cong  C_p^{\operatorname{card}\set{\geq d_i}}
 \end{align*}
-We now prove that $H$ has rank  $\leq r$. Let $q$ be a prime not in the decomposition. Since 
+We now prove that $H$ has rank  $\leq r$. Let $t$ be the rank of $H$ and $q$ be a prime not in the decomposition. Since 
 \begin{align*}
-\Z^s \cong  qH \leq qG \cong  \Z^r
+\Z^t \cong  qH \leq qG \cong  \Z^r
 \end{align*}
-We have an injective group homomorphism $f:\Z^s\rightarrow \Z^r$. Denote the group homomorphism by a $r$-by-$s$ matrix $A\in M_{r \times s}(\Z)$. The injectivity of $f$ then means $Av=0 \implies  v=0$ for all $v\in \Z^s$. Let $w \in \Q^s$ and $m \gg 0$ be a natural number large enough so that $mw \in \Z^s$. We then see 
+We have an injective group homomorphism $f:\Z^t\rightarrow \Z^r$. Denote the group homomorphism by a $r$-by-$t$ matrix $A\in M_{r \times t}(\Z)$. The injectivity of $f$ then means $Av=0 \implies  v=0$ for all $v\in \Z^s$. Let $w \in \Q^t$ and $m \gg 0$ be a natural number large enough so that $mw \in \Z^t$. We then see 
 \begin{align*}
 Aw=0 \implies Amw=mAw=0 \implies  mw=0 \implies  w=0 
 \end{align*}
-In other words, the matrix $A \in M_{r \times s}(\Q)$ has rank $s$, which is only possible given that  $s \leq r$. 
+In other words, the matrix $A \in M_{r \times t}(\Q)$ has rank $r$, which is only possible given that  $t \leq r$. 
 \end{proof}
 \section{Sylow theorems}
 \label{SECSt}
@@ -2083,28 +2083,28 @@ At this point, we should point out that \textbf{finitely generated module} and \
 \begin{Example}{Finitely generated algebras need not be finitely generated modules.}{}
 Clearly, $A[x]$ is finitely generated as an $A$-algebra, but not finitely generated as an  $A$-module.   
 \end{Example}
-
-
+\section{Operations on Ideals and Modules}
 \begin{equiv_def}
-  \textbf{(Sum, product, and quotient for ideals and modules)} Let $A$ be a ring, and $M$ an  $A$-module. The \textbf{sum $\sum M_i$ of} \emph{possibly infinite} \textbf{submodules} $M_i \leq M $ is the set of finite combinations of elements of $M_i$. The \textbf{sum of} \emph{possibly infinite} \textbf{ideals $\mathfrak{a}_i\trianglelefteq  A$} is defined as their sum as submodules. Notably, finite sum of principal ideals satisfies: 
-\begin{align*}
-  (x) + (y) = (x+y),\quad \text{ for all }x,y \in A  
-\end{align*}
-  A collection of module homomorphisms  $j_i:M_i\rightarrow \bigoplus M_i$ satisfies the \textbf{universal property for external direct sum} if for every collection $f_i:M_i \rightarrow  M$ of module homomorphism, there exists a unique module homomorphism $f:\bigoplus M_i \rightarrow M$ that makes the diagram: 
-% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNX2kiXSxbMiwwLCJhIl0sWzIsMiwiTSJdLFswLDEsImpfaSJdLFswLDIsImZfaSIsMl0sWzEsMiwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
-\[\begin{tikzcd}
-	{M_i} && \bigoplus M_i \\
-	\\
-	&& M
-	\arrow["{j_i}", from=1-1, to=1-3]
-	\arrow["{f_i}"', from=1-1, to=3-3]
-	\arrow["f", dashed, from=1-3, to=3-3]
-\end{tikzcd}\]
-commute for all $i$. If $M_i \cap \sum_{j\neq i}M_j=0$ for all $i$, clearly we have a natural module isomorphism: 
+  \textbf{(Sum for modules and ideals)} Let $A$ be a ring, and $M$ an  $A$-module. The \textbf{sum $\sum M_i$ of} \emph{possibly infinite} \textbf{submodules} $M_i \leq M $ is the set of finite combinations of elements of $M_i$.
+One can check that, in the form of \textbf{external direct sum},  coproduct always exists in the category of modules. Moreover, given a collection $M_i$ of submodules of  $M$, if $M_i \cap \sum_{j\neq i}M_j=0$ for all $i$, clearly we have a natural module isomorphism: 
  \begin{align*}
 \bigoplus M_i \cong  \sum M_i 
 \end{align*}
-In such case, we say  $\sum M_i$ form an  \textbf{internal direct sum}. Let $N,P \leq M$ be two submodules. Their \textbf{quotient} is the ideal of $A$ defined by: 
+In such case, we say  $\sum M_i$ form an  \textbf{internal direct sum}. \\
+
+
+  The \textbf{sum of} \emph{possibly infinite} \textbf{ideals $\mathfrak{a}_i\trianglelefteq  A$} is defined as their sum as submodules. Notably, finite sum of principal ideals satisfies: 
+\begin{align*}
+  (x) + (y) = (x+y),\quad \text{ for all }x,y \in A  
+\end{align*}
+
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
+Note that in general, condition $M_i \cap M_j =0$ for all $i \neq j$ isn't strong enough to make $\sum M_i$ an internal direct sum, and that submodules $N$ of $M_1 \times M_2$ need not take the form $N \cap M_1 \times N \cap  M_2$. See \myref{example}{ex:tr} and \myref{example}{ex:sa}.
+\begin{equiv_def}
+\textbf{(Quotient of module and ideals)} Let $A$ be a ring and $M$ an  $A$-module. Let $N,P \leq M$ be two submodules. Their \textbf{quotient} is the ideal of $A$ defined by: 
 \begin{align*}
   (N:P)\triangleq  \set{a \in A: aP \leq  N} 
 \end{align*}
@@ -2116,49 +2116,14 @@ The \textbf{ideal quotient and annihilator} is defined as their quotient and ann
 \begin{align*}
 \set{d \in A:d \text{ is a zero-divisor}}= \bigcup_{x \neq 0 \in A} \operatorname{Ann}(x)
 \end{align*}
-We say $M$ is a  \textbf{faithful module} if $\operatorname{Ann}(M)=0$. Interestingly, if $\operatorname{Ann}(M)\leq \mathfrak{a}$, then $M$ have a natural  $A \quotient \mathfrak{a}$-module structure: 
-\[\begin{tikzcd}
-	A && {A\quotient \mathfrak{a} } \\
-	\\
-	&& \operatorname{End}(M) 
-	\arrow["\pi",two heads, from=1-1, to=1-3]
-	\arrow[""', from=1-1, to=3-3]
-	\arrow["", dashed,from=1-3, to=3-3]
-\end{tikzcd}\]
-
-
-  The \textbf{product} of a \emph{finite} set of ideals $\mathfrak{a}_i$ is defined to be the set of all finite sums of products of elements: 
+We say $M$ is a  \textbf{faithful module} if $\operatorname{Ann}(M)=0$. Interestingly, if $\operatorname{Ann}(M)\leq \mathfrak{a}$, then $M$ has a well-defined natural  $A \quotient \mathfrak{a}$-module structure: 
 \begin{align*}
-\prod_{i=1}^n \mathfrak{a}_i \triangleq \set{\sum_{\text{finite}} a_1 \cdots a_n\in A: a_{i}\in \mathfrak{a}_i}
-\end{align*}
-Even though product of two submodules can not be defined, we may define the \textbf{product} $\mathfrak{a}M\leq M$ as: 
-\begin{align*}
-\mathfrak{a}M \triangleq \set{\sum_{\text{finite}}a_im_i \in M: a_i \in \mathfrak{a}\text{ and }m_i \in M}
+\overline{a}\cdot m \triangleq am 
 \end{align*}
 \end{equiv_def}
 \begin{proof}
 Routine. 
 \end{proof}
-Note that in general, condition $M_i \cap M_j =0$ for all $i \neq j$ isn't strong enough to make $\sum M_i$ an internal direct sum, and that submodules $N$ of $M_1 \times M_2$ need not take the form $N \cap M_1 \times N \cap  M_2$. See \myref{example}{ex:tr} and \myref{example}{ex:sa}.
-\begin{theorem}
-\textbf{(Ideals of direct product of rings)} Let $\mathfrak{a}\trianglelefteq A_1 \times \cdots \times A_n$. Then 
-\begin{align*}
-\mathfrak{a}= \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n
-\end{align*}
-where $\mathfrak{a}_i\trianglelefteq  A_i$ is the set of $a_i \in A_i$ such that for some  $\prod_{j\neq i}a_j \in \prod_{j \neq i}A_j$, we have $(a_1,\dots ,a_n)\in \mathfrak{a}$. 
-\end{theorem}
-\begin{proof}
-Clearly we have $\mathfrak{a}\leq \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n$. So we only have to prove the other way around. Let $(a_1,\dots ,a_n) \in \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n$. By definition, for all $i$, there exists some  $r^{(i)}\in \mathfrak{a}$ such that $r^{(i)}_i=a_i$. Consider 
-\begin{align*}
-e_i \triangleq (0,\dots ,\overset{i}{1},\dots ,0) \in A 
-\end{align*}
-We then see 
-\begin{align*}
-  (a_1,\dots , a_n)= \sum_{i=1}^n e_ir^{(i)} \in \mathfrak{a}
-\end{align*}
-\end{proof}
-
-
 \begin{theorem}
 \textbf{(Basic properties of module quotient)} Let $\mathfrak{a},\mathfrak{b},\mathfrak{c}\trianglelefteq  A$. We have 
 \begin{align*}
@@ -2176,9 +2141,62 @@ Given three submodules $M,N,P$ of some  $A$-module, we have
 \begin{proof}
 Routine. 
 \end{proof}
+\begin{equiv_def}
+\textbf{(Product of ideals and modules)} The \textbf{product} of a \emph{finite} set of ideals $\mathfrak{a}_i$ is defined to be the set of all finite sums of products of elements: 
+\begin{align*}
+\prod_{i=1}^n \mathfrak{a}_i \triangleq \set{\sum_{\text{finite}} a_1 \cdots a_n\in A: a_{i}\in \mathfrak{a}_i}
+\end{align*}
+Even though product of two submodules can not be defined, we may define the \textbf{product} $\mathfrak{a}M\leq M$ as: 
+\begin{align*}
+\mathfrak{a}M \triangleq \set{\sum_{\text{finite}}a_im_i \in M: a_i \in \mathfrak{a}\text{ and }m_i \in M}
+\end{align*}
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
+\begin{theorem}
+\textbf{(Ideals in finite direct product of rings)} Let $\mathfrak{a}\trianglelefteq A_1 \times \cdots \times A_n$. Then 
+\begin{align*}
+\mathfrak{a}= \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n
+\end{align*}
+where $\mathfrak{a}_i\trianglelefteq  A_i$ is the set of $a_i \in A_i$ such that for some  $\prod_{j\neq i}a_j \in \prod_{j \neq i}A_j$, we have $(a_1,\dots ,a_n)\in \mathfrak{a}$. 
+\end{theorem}
+\begin{proof}
+Clearly we have $\mathfrak{a}\leq \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n$. So we only have to prove the other way around. Let $(a_1,\dots ,a_n) \in \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n$. By definition, for all $i$, there exists some  $r^{(i)}\in \mathfrak{a}$ such that $r^{(i)}_i=a_i$. Consider 
+\begin{align*}
+e_i \triangleq (0,\dots ,\overset{i}{1},\dots ,0) \in A 
+\end{align*}
+We then see 
+\begin{align*}
+  (a_1,\dots , a_n)= \sum_{i=1}^n e_ir^{(i)} \in \mathfrak{a}
+\end{align*}
+\end{proof}
+\section{Direct Limits}
+\begin{theorem}
+\label{THdls}
+\textbf{(Direct limit of submodules)} Let $M_i$ be a collection of submodules indexed by $I$. If for all  $i,j\in I$ there exists some $k \in I$ that makes  
+\begin{align*}
+M_i + M_j \leq M_k
+\end{align*}
+then by setting $i \leq  j \overset{\trinagle}{\iff } M_i \leq M_j$ and the canonical morphisms inclusion maps, $M_i$ forms a directed system whose  direct limit can be realized as  
+\begin{align*}
+\directlimit M_i = \sum M_i = \bigcup M_i
+\end{align*}
+Therefore, in particular, every module is the direct limit of its finitely generated submodules. 
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
 
+\textbf{(Homomorphism of direct systems over a fixed directed set)}
 
+\textbf{(Exact sequence of direct systems over a fixed directed set induce exact sequence of the direct limits)} 
 
+\textbf{(Direct limit of ring is $0$ only if some  $A_i$ is  $0$)}
+
+\textbf{(Nilradical of direct limit is a direct limit of nilradicals)} 
+
+\textbf{(Direct limit of integral domains is integral domain)} 
 \section{Prime and Maximal Ideals} 
 We say a ring homomorphism $ \pi :A \twoheadrightarrow   A\quotient \mathfrak{a}$ satisfies the \textbf{universal property of quotient ring $A\quotient \mathfrak{a}$} if 
 \begin{enumerate}[label=(\roman*)]
@@ -2614,7 +2632,7 @@ By \customref{THsNl}{second version of Nakayama lemma}, it suffices to show $\ma
 (ii): The proof follows from \customref{THtNl}{third version of Nakayama lemma} and the observation that $M=u(N)+ \mathfrak{a}M$.  
 \end{proof}
 \section{Exact Sequence of Modules}
-Let $M,N$ be two  $A$-modules. The hom-space $\operatorname{Hom}(M,N)$ has a natural $A$-module structure, and  $\operatorname{End}(M)$ has a natural $A$-algebra structure with $1\triangleq \id_M$. Let $P$ be an $A$-module. Clearly, we have a \emph{covariant} functor $\Hom (P,-):\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A$ defined by: 
+Let $M,N$ be two  $A$-modules. The hom-space $\operatorname{Hom}(M,N)$ has a natural $A$-module structure. Let $P$ be an $A$-module. Clearly, we have a \emph{covariant} functor $\Hom (P,-):\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A$ defined by: 
 \begin{align*}
 M \rightarrow \Hom (P,M)\quad \text{ and }\quad F(f)(g)\triangleq f \circ g
 \end{align*}
@@ -2723,7 +2741,7 @@ Let $N_i \leq M_i$ be the kernels. Then the proof follows from noting that for a
 
 
 \section{Tensor Products}
-Given a \emph{finite} collection $M_1,\dots ,M_n$ of $A$-modules, their \textbf{tensor product} is an $A$-module $M_1 \otimes  \cdots \otimes  M_n$ together with an multilinear map $\otimes :M_1 \times \cdots \times M_n \rightarrow M_1 \otimes  \cdots \otimes  M_n$ that satisfies the \textbf{universal property for tensor product}: For each multilinear map $f:M _1 \times \cdots \times M_n \rightarrow P$, there exists an unique module homomorphism $\tilde{f}: M_1 \otimes  \cdots \otimes  M_n \rightarrow P$ such that the diagram 
+Given a \emph{finite} collection $M_1,\dots ,M_n$ of $A$-modules, their \textbf{tensor product} is an $A$-module $M_1 \otimes  \cdots \otimes  M_n$ together with a multilinear map $\otimes :M_1 \times \cdots \times M_n \rightarrow M_1 \otimes  \cdots \otimes  M_n$ that satisfies the \textbf{universal property for tensor product}: For each multilinear map $f:M _1 \times \cdots \times M_n \rightarrow P$, there exists an unique module homomorphism $\tilde{f}: M_1 \otimes  \cdots \otimes  M_n \rightarrow P$ such that the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMiwyLCJOIl0sWzAsMCwiXFxwcm9kIE1faSJdLFsyLDAsIlxcb3RpbWVzIE1faSJdLFsxLDIsIlxcb3RpbWVzIl0sWzEsMCwiZiIsMl0sWzIsMCwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
 	{\prod M_i} && {\bigotimes   M_i} \\
@@ -2744,15 +2762,33 @@ since
 x \otimes  y = (am+bn)(x\otimes  y)=a (mx \otimes  y) + b (x\otimes  ny)= 0
 \end{align*}
 \end{Example}
-From the universal property, we see that for all $A$-module  $P$, we have a \emph{covariant} functor $T_P:\mathbf{Mod}_A \longrightarrow \mathbf{Mod}_A$ defined by 
+Given two module homomorphisms $f:M \rightarrow M'$ and $g:N \rightarrow N'$, clearly we can induce another module homomorphism $f\otimes g :  M\otimes  N \rightarrow M'\otimes  N'$ by 
 \begin{align*}
-T_P(M)\triangleq M \otimes  P\quad \text{ and }\quad  T_P(f) \triangleq f \otimes  \id_P
+  (f\otimes  g )(m \otimes  n) \triangleq f(m) \otimes  g(n)
 \end{align*}
-where $f \otimes  \id _P : M \otimes  P \rightarrow N \otimes  P$ is induced by the bilinear map 
+In particular, for all $M_0 \leq M$ and $N_0 \leq N$, given $x\in M_0$ and $y \in M_0$ such that $x \otimes  y =0 \in M_0 \otimes  N$, the module homomorphism from $M_0 \otimes  N_0$ to $M \otimes  N$ tell us that $x \otimes  y$ must also be $0$ in  $M \otimes  N$. The converse however is not true: That is, given $x \in M_0$ and $y \in M_0$, 
 \begin{align*}
-M \times P \rightarrow N\otimes  P ; (m,p)\mapsto f(m)\otimes  p
+x\otimes  y =0 \in M \otimes  N  \rlap{\(\quad\not\)}\implies  x \otimes  y =0 \in M_0 \otimes  N_0 
 \end{align*}
-
+\begin{Example}{Zero expression in $M \otimes  N$ can be nonzero in $M_0 \otimes  N_0$ for $M_0 \leq M$ and $N_0 \leq N$.}{}
+Consider $A \triangleq \Z,M \triangleq \Z$, and $N\triangleq \Z_2$. Let $M_0 \triangleq 2\Z \leq M$ and $x \in N$ be the nonzero element. Then in $M \otimes  N$, we have 
+\begin{align*}
+2 \otimes  x = 2 (1 \otimes  x) = 1 \otimes  2x = 0 
+\end{align*}
+Yet in $M_0\otimes  N$, we can't have $2 \otimes  x=0$, since if so, then $M_0 \otimes  N=0$, but 
+\begin{align*}
+  M_0 \otimes  N \cong  \Z \otimes_\Z \Z_2 \customref{THidt}{\cong}  \Z_2 \neq 0
+\end{align*}
+\end{Example}
+Note that because for generic $f':M' \rightarrow M''$ and $g':N' \rightarrow N''$, we clearly have:  
+\begin{align*}
+  (f' \circ f) \otimes  (g' \circ g) =(f' \otimes  g') \circ (f \circ g)
+\end{align*}
+For all $A$-module  $N$, we have a \emph{covariant} functor $T_N:\mathbf{Mod}_A \longrightarrow \mathbf{Mod}_A$ defined by 
+\begin{align}
+\label{EQtpm}
+T_N(M)\triangleq M \otimes  N\quad \text{ and }\quad  T_N(f) \triangleq f \otimes  \id _N
+\end{align}
 \begin{theorem}
 \label{THbpt}
 \textbf{(Basic property of tensor products)} Let $M_1, \dots ,M_n$  be $A$-modules. Then  
@@ -2760,20 +2796,16 @@ M \times P \rightarrow N\otimes  P ; (m,p)\mapsto f(m)\otimes  p
   \item $M_1 \otimes \cdots \otimes  M_n$ is generated by \textbf{basic elements} $x_1 \otimes  \cdots \otimes  x_n$. 
   \item There is a natural isomorphism 
 \begin{align*}
-  \Hom (M \otimes  N ,P) \cong  \Hom  (M, \Hom  (N,P))
+  \Hom (M \otimes  N ,P) \cong  \Hom  (M, \Hom  (N,P)) ,\quad f\mapsto  f',\quad \text{ where }f'(m)(n) \triangleq f(m \otimes  n)
 \end{align*}
-called the \textbf{tensor-hom adjunction}. Concretely, the isomorphism maps $f:M \otimes  N\rightarrow P$ to $f': M \rightarrow \Hom (N,P)$ 
-\begin{align*}
-f'(m)(n) \triangleq f(m\otimes  n)
-\end{align*}
-In particular, they are both naturally bijective to the set of bilinear maps from  $M\times N$ to $P$.  
+called the \textbf{tensor-hom adjunction}. In particular, they are both naturally bijective to the set of bilinear maps from  $M\times N$ to $P$.  
 \item For all $A$-module  $N$, the covariant functor  $T_N$ is right-exact, that is, given any exact sequence: 
 \begin{align*}
 M' \overset{u}{\longrightarrow } M \overset{v}{\longtwoheadrightarrow  } M'' \longrightarrow 0 
 \end{align*}
 of $A$-modules, the sequence 
 \begin{align*}
-M'' \otimes  N \overset{T_N(u)}{\longrightarrow } M \otimes  N \overset{T_N(v)}{\longtwoheadrightarrow  }  M'' \otimes  N \longrightarrow 0
+M'' \otimes  N \overset{u\otimes  1}{\longrightarrow } M \otimes  N \overset{v\otimes  1}{\longtwoheadrightarrow  }  M'' \otimes  N \longrightarrow 0
 \end{align*}
 is exact. 
 \end{enumerate}
@@ -2818,69 +2850,143 @@ We only have to prove \myref{sequence}{EQonp} is exact, where $\tilde{v},\tilde{
 
 \end{proof}
 \begin{Example}{Tensor product need not be left-exact}{}
-Consider the exact sequence 
+Consider the exact sequence of $\Z$-modules: 
 \begin{align*}
 0 \longrightarrow 0 \longrightarrow \Z \overset{f}{\longrightarrow} \Z
 \end{align*}
-of $\Z$-modules, where $f(x)\triangleq 2x$. Because 
+where $f(x)\triangleq 2x$. To see that the $\Z$-modules sequence 
 \begin{align*}
-  (f \otimes  \id_{\Z_2}) (x \otimes  y) = 2x \otimes  y = x \otimes  2y = 0  
+0\longrightarrow 0\longrightarrow  \Z \otimes  \Z_2 \overset{f \otimes 1}{\longrightarrow } \Z \otimes  \Z_2
 \end{align*}
-We know the $\Z$-modules sequence: 
+isn't exact. Just observe that $1\otimes  1 \in \Z \otimes  \Z_2$ is nonzero, since if so, then $\Z \otimes  \Z_2 \customref{THidt}{\cong} \Z_2 \neq 0$ is zero, and observe that:  
 \begin{align*}
-0\longrightarrow 0\longrightarrow  \Z \otimes  \Z_2 \overset{f \otimes  \id _{\Z_2}}{\longrightarrow } \Z \otimes  \Z_2
+  (f \otimes  \id_{\Z_2}) (1 \otimes  1) = 2 \otimes  1 = 2(1 \otimes  1) =1 \otimes 2  = 0  
 \end{align*}
-isn't exact. 
 \end{Example}
 \begin{theorem}
-\textbf{(Identities for tensor products)} 
+\label{THidt}
+\textbf{(Identities for tensor products)} Let $A$ be a ring and  $M$ an  $A$-module. Then  
 \begin{enumerate}[label=(\roman*)]
  \item  We have a natural isomorphism
 \begin{align*}
 A \otimes  M \cong  M,\quad a \otimes  m \mapsto am
 \end{align*}
- \item Let $\mathfrak{a}\trianglelefteq A$. Then we have an isomorphism 
+ \item Let $\mathfrak{a}\trianglelefteq A$. We have a natural isomorphism 
 \begin{align*}
-  (A \quotient \mathfrak{a})\otimes  M \cong  M \quotient \mathfrak{a}M 
+  (A \quotient \mathfrak{a})\otimes  M \cong  M \quotient \mathfrak{a}M, \quad a \otimes  m \mapsto am
 \end{align*}
-  \item For \emph{possibly infinite} collection $M_i (i \in I)$ of $A$-module, we have a natural isomorphism 
+\item  Let $M_i$ be a directed system of $A$-modules. We have a natural isomorphism 
+  \begin{align*}
+ \left(\directlimit M_i \right) \otimes  M  \cong  \directlimit \left( M_i \otimes  M \right),\quad \phi_i(x_i)\otimes  m \mapsto \psi_i (x_i \otimes  m)
+  \end{align*}
+where $\phi$ denote the canonical morphism of $M_i$, while the canonical morphism $\psi$ of $M_i \otimes  M$ are defined by 
+\begin{align*}
+\psi_{ij}\triangleq \phi_{ij}\otimes  1
+\end{align*}
+  \item For \emph{possibly infinite} collection $M_i$ of $A$-module, we have a natural isomorphism 
     \begin{align*}
    N \otimes  \bigoplus M_i \cong  \bigoplus (N \otimes  M_i)
     \end{align*}
+  \item  Let $M_i$ be a directed system of  $A$-modules over  directed set $\mathcal{P}$ and $N_i$ be a directed system of  $A$-modules over directed set  $\mathcal{Q}$. Clearly, we may make $\mathcal{P}\times \mathcal{Q}$ a directed set by 
+    \begin{align*}
+      (p,q) \leq  (p',q')\overset{\triangle}{\iff } p \leq  p' \quad \text{ and }\quad q\leq q'
+    \end{align*}
+Then the natural directed system of $M_i \otimes  N_j$ over $\mathcal{P}\times \mathcal{Q}$ has a natural isomorphism 
+\begin{align*}
+ \directlimit_{\mathcal{P}\times \mathcal{Q}}\left( M_i \otimes  N_j \right)  \cong  \directlimit_{\mathcal{P} } \left( M_i \right) \otimes  \directlimit_{\mathcal{Q} } \left(N_j   \right)
+\end{align*}
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-(i): Define  $g:M\rightarrow A\otimes  M$ by $g(m)\triangleq 1 \otimes  m$. We are required to show $f$ and $g$ are inverse to each other. The direction $f \circ g=\id _M$ is clear. Because $A \otimes  M$ is generated by $a \otimes  m$, to show the other direction $g \circ f = \id_{A \otimes  M}$, we only have to show it fixes  $a \otimes  m$: 
+(i) follows from checking that the map $a \otimes  m \mapsto am$ and $m \mapsto 1 \otimes  m$ are inverse to each other. (ii) is essentially a corollary of (i). In short, because \customref{THbpt}{tensor product is right exact}, tensoring the exact sequence  
 \begin{align*}
-g \circ  f (a \otimes  m)= g(am)= 1 \otimes  am= a \otimes  m
+ \mathfrak{a} \overset{\diota }{\longhookrightarrow } A \overset{\pi }{\longtwoheadrightarrow } A \quotient \mathfrak{a} \longrightarrow 0
 \end{align*}
-(ii): Because \customref{THbpt}{tensor product is right exact}, tensoring the short exact sequence  
+with $M$, we get an exact sequence 
 \begin{align*}
-0 \longrightarrow \mathfrak{a} \overset{\diota }{\longhookrightarrow } A \overset{\pi }{\longtwoheadrightarrow } A \quotient \mathfrak{a} \longrightarrow 0
+\mathfrak{a}\otimes  M \overset{\diota \otimes  1  }{\longrightarrow } A \otimes  M \overset{\pi  \otimes  1}{\longtwoheadrightarrow } (A\quotient \mathfrak{a}) \otimes  M \longrightarrow 0
 \end{align*}
-with $M$, we get the exact sequence: 
-\begin{align*}
-\mathfrak{a}\otimes  M \overset{T_M(\diota ) }{\longrightarrow } A \otimes  M \overset{T_M(\pi )}{\longtwoheadrightarrow } (A\quotient \mathfrak{a}) \otimes  M \longrightarrow 0
-\end{align*}
-This implies that 
+which implies that 
  \begin{align*}
-   (A \quotient \mathfrak{a}) \otimes  M \cong (A \otimes  M) \quotient \operatorname{Im}(T_M(\diota )) 
+   (A \quotient \mathfrak{a}) \otimes  M \cong (A \otimes  M) \quotient \operatorname{Im}(\diota \otimes  1 ) 
 \end{align*}
-The proof then follows from checking that the isomorphism $A \otimes  M \cong M$ maps $\operatorname{Im}(T_M(\diota ))$ to $\mathfrak{a}M$.  
+The proof for (ii) then follows from checking that the isomorphism $A \otimes  M \cong M$ maps $\operatorname{Im}(\diota \otimes  1 )$ to $\mathfrak{a}M$. The proof for (iii) is simply checking that we have a well-defined homomorphism 
+\begin{align*}
+  \directlimit\left(M_i \otimes  M \right) \rightarrow \left( \directlimit M_i \right) \otimes  M,\quad \psi_i (x)\mapsto  \phi_i \otimes  1 (x)
+\end{align*}
+and it together with the proposed homomorphism are inverse to each other.  \\
+
+(v) in nature is a statement for all colimits, rather than just directed system of modules. See \href{https://stacks.math.columbia.edu/tag/002M}{Stack Project Lemma 4.14.10}
 \end{proof}
-\section{Extension of Scalars}
-Let $f:A \rightarrow B$ be a ring homomorphism and $M$ an $A$-module. Clearly, for all $b \in B$, we have a $A$-bilinear map 
- \begin{align*}
-B \times M \longrightarrow B \otimes_A M \quad \text{ and }\quad (b',m) \mapsto  bb' \otimes  m
-\end{align*}
-which by universal property induces an $A$-module endomorphism of  $B \otimes  _A M$ 
+\begin{theorem}
+\textbf{(Existence of finitely generated submodules that makes an expression of zero remain zero)} Let  $A$ be a ring and  $M$ and  $N$ two  $A$-modules. Let $\sum x_i \otimes y_i =0 \in M \otimes  N$. Then there exist two finitely generated submodules $M' \leq M,N' \leq N$ that respectively contains $x_i,y_i$ and makes
 \begin{align*}
-b' \otimes  m \mapsto bb' \otimes  m
+\sum  x_i \otimes  y_i= 0 \in M' \otimes  N'
 \end{align*}
-Therefore, we may give $M_B \triangleq B \otimes_A M$ an $B$-module structure called   \textbf{extension of scalar}:  
+\end{theorem}
+\begin{proof}
+Let $M_i$ and $N_i$ be the directed system of finitely generated submodules of $M$ and $N$. Then   
+\begin{align*}
+  M \otimes  N \customref{THdls}{\cong} \left(\directlimit M_i   \right) \otimes   \left(\directlimit N_j \right) \customref{THidt}{\cong}  \directlimit (M_i \otimes  N_j)  
+\end{align*}
+Let $M_0 \leq M$ and $N_0\leq N$ be the submodules generated by $x_i$ and  $y_i$. By definition ?, the canonical morphism $M_0 \otimes  N_0 \rightarrow M \otimes  N$ maps $\sum  x_i \otimes  y_i$ to $0$. The proof then follows from \customref{THpdl}{this property of direct limit}. 
+\end{proof}
+\textbf{(Tensor product of infinite algebras)}
+\section{Extension of Scalars}
+Let $N$ be an $A$-module. If we say $N$ is an  $(A,B)$\textbf{-bimodule} we mean that the abelian group $N$ has a $B$-module structure compatible with its $A$-module structure in the sense that 
  \begin{align*}
-B \longrightarrow \operatorname{End}_{A}(M_B)
+b\cdot (a \cdot n)= a \cdot (b \cdot n),\quad \text{ for all }a \in A,b \in B ,n \in N
 \end{align*}
+An $(A,B)$\textbf{-bimodule homomorphism} $g:N \rightarrow P$ is then a map that is simultaneously an $A$-module homomorphism and a  $B$-module homomorphism. Let $M$ be an $A$-module and $N$  an  $(A,B)$-bimodule. Clearly, by universal property, we can give $M \otimes  _A N$ a $B$-module structure by 
+ \begin{align}
+\label{EQbmn}
+b(m \otimes  n)\triangleq m \otimes bn
+\end{align}
+which naturally makes $M \otimes_A  N$ an $(A,B)$-bimodule.
+\begin{Example}{Lifting of module structures requires bimodules.}{}
+Let $k$ be a field,  $A \triangleq k[x]$, $M\triangleq N \triangleq A$, and $B \triangleq k[y]$. Clearly, we may give $N$ a  $B$-module structure by 
+ \begin{align*}
+cy^n \cdot f \triangleq cf^{(n)},\quad \text{ for all }c \in k, f \in N
+\end{align*}
+It is clear that the $A$-module structure and the  $B$-module structure on  $N$ are not compatible. Therefore, we can't use universal property to give $M \otimes_A N$ a $B$-module structure as in \myref{equation}{EQbmn}. To see this \emph{as a hindsight}, first observe 
+\begin{align*}
+1 \otimes  x = x (1 \otimes  1) = 1 \otimes  x 
+\end{align*}
+So if there exists a $B$-module structure on  $M \otimes  _A N$ that agrees with \myref{equation}{EQbmn}, then we have
+\begin{align*}
+1\otimes  1 = y(1 \otimes  x)=y (x \otimes  1)= 0 
+\end{align*}
+This is clearly impossible, since it suggests $M \otimes  N=0$, but 
+\begin{align*}
+  M \otimes  N \cong  A \otimes  A \customref{THidt}{\cong}  A \neq 0 
+\end{align*}
+\end{Example} 
+\begin{theorem}
+\label{THatpb}
+\textbf{(Associativity of tensor product up to bimodules)} Let $M$ be an  $A$-module,  $N$ an  $(A,B)$-bimodule, and $P$ a  $B$-module. Then we have a natural $(A,B)$-bimodule isomorphism 
+\begin{align*}
+  (M \otimes_A N) \otimes_B P \cong  M \otimes _A (N\otimes_B P),\quad (m\otimes n)\otimes  p \mapsto m \otimes (n \otimes  p)
+\end{align*}
+\end{theorem}
+\begin{proof}
+The proof is a routine construction and verification. Here, we give an outline of it.   First, for all $p \in P$, induce the natural $B$-module homomorphism  $g_p:M \otimes _A N \rightarrow M \otimes _A(N \otimes _B P)$. Second, check that $g_p$ is an  $(A,B)$-bimodule homomorphism. Third, induce $f:(M \otimes_A N)\otimes _B P \rightarrow M \otimes_A (N \otimes_B P)$ by 
+\begin{align*}
+f(x\otimes p)\triangleq g_p(x)
+\end{align*}
+Forth, check that $f$ is an $(A,B)$-bimodule homomorphism. Fifth, similarly induce $h:M \otimes_A (N \otimes_B P)\rightarrow (M \otimes _A N )\otimes  _B P $. The proof then follows from using universal property to check that the $(A,B)$-bimodule homomorphism $h$ and  $f$ are inverse to each other, and therefore concluding that $f$ is an $(A,B)$-module isomorphism. 
+\end{proof}
+
+In particular, given a ring homomorphism $f:A \rightarrow B$, restriction of scalars makes $B$ an  $(A,B)$-bimodules, and so for all $A$-module  $M$, we have an $(A,B)$-bimodule: 
+\begin{align*}
+M_B \triangleq M \otimes_A B
+\end{align*}
+called \textbf{extension of scalar}. 
+
+
+
+
+
+
 \begin{theorem}
   \textbf{(Basic properties of scalar restriction)} Let $f:A \rightarrow B$ be a ring homomorphism, $N$ be a  $B$-module, and $N_B \triangleq B \otimes _A N$. Then we have an $A$-module homomorphisms $g:N \rightarrow N_B$ defined by 
  \begin{align*}
@@ -2909,6 +3015,7 @@ g(i1)= 1 \otimes_A i \neq i \otimes_A  1 = ig(1)
 \end{align*}
 \end{Example}
 \begin{theorem}
+\label{THtfg}
 \textbf{(Criteria for finite generation under extension and restriction of scalars)} Let $f:A \rightarrow B$ be a ring homomorphism and $M \in \mathbf{Mod}_A,N \in \mathbf{Mod}_B$. Then 
 \begin{enumerate}[label=(\roman*)]
   \item If $N$ is finitely generated as a $B$-module and  $B$ is finitely generated as an  $A$-module, then  $N$ is finitely generated as an  $A$-module.  
@@ -2925,8 +3032,76 @@ b \otimes  \sum a_ix_i= \sum b \otimes a_ix_i = \sum a_i(b \otimes  x_i)= \sum (
 
 
 \end{proof}
+\begin{theorem}
+\textbf{(Property of tensors over local rings)} Let $(A,\mathfrak{m},k)$ be a local ring, $M$ and $N$ be two finitely generated  $A$-modules. If $M \otimes N =0$, then $M=0$ or  $N=0$.  
+
+
+\end{theorem}
+\begin{proof}
+  The first step of the proof is a \emph{routine verification using identities for tensor products} to show that:  
+\begin{align}
+\label{EQmak}
+  \olive{(M\otimes_A k ) \otimes_k (k \otimes _A N) =0}
+  \end{align}
+Clearly, there are two ways to give $(M \otimes _A k) \otimes_k (k \otimes_A N)$ an $A$-module structure, which are identical since:  
+ \begin{align*}
+x\otimes_k (ay)=  \overline{a} (x\otimes_k y) = ax \otimes_k y
+\end{align*}
+This settles an $(A,k)$-bimodule structure on $(M\otimes_A k)\otimes_k (k \otimes _A N)$. Consider the $A$-module structure from left. Then by \customref{THatpb}{associativity}, we have an $(A,k)$-bimodule isomorphism: 
+\begin{align}
+\label{EQkkk}
+  (M \otimes_A k) \otimes _k (k \otimes _A N) \cong M \otimes_A X_1 
+\end{align}
+where $X_1 \triangleq  k \otimes_k (k \otimes_A N)$ is an $(A,k)$-bimodule whose $A$-modules structure comes from the  $k$ on left. Again, by checking 
+\begin{align*}
+  \overline{b} \otimes_k (ax) = \overline{a} \cdot (\overline{b}\otimes_k x)= (a \cdot \overline{b}) \otimes _k x  
+\end{align*}
+We see that giving $X_1$ from left or right an $A$-module structure are identical.  Therefore by  \customref{THatpb}{associativity}, we have an $(A,k)$-bimodule isomorphism: 
+\begin{align*}
+X_1 \cong  X_2
+\end{align*}
+where $X_2 \triangleq (k \otimes _k k)\otimes _A N $ is an $(A,k)$-bimodule in which the  $A$-module structure of  $k \otimes_k k$ comes from right.\footnote{Again, one can check that giving  $k \otimes_k k$ an $A$-module structure from left or right are identical, but that's not necessary here.} Now, since  \customref{THidt}{we have a $k$-module isomorphism $k \otimes _k k \cong  k$}, which is clearly also an $A$-module isomorphism,  we have an $(A,k)$-bimodule isomorphism 
+\begin{align*}
+  X_2  \cong  k \otimes _A N 
+\end{align*}
+Therefore, by \myref{equation}{EQkkk}, we have an $(A,k)$-bimodule isomorphism 
+\begin{align*}
+  (M \otimes _A k) \otimes_k (k \otimes _A N) \cong  M \otimes_A (k \otimes _A N ) 
+\end{align*}
+This gives us  \customref{THidt}{an $A$-module isomorphism}: 
+\begin{align*}
+  (M \otimes _A k) \otimes_k (k \otimes _A N) \cong  (M\otimes _A N) \otimes_A k \cong  0   \odone
+\end{align*}
+Now, since \myref{tensor product}{EQmak} is \emph{over a field} with \customref{THtfg}{both sides finite dimensional}, we know either $M \otimes_A k$ or $N \otimes _A k$ equals to $0$. WLOG, let $M \otimes _A k =0$. Then we have: 
+\begin{align*}
+  M \quotient   \mathfrak{m}M \customref{THidt}{\cong}  M \otimes _A k =0 
+\end{align*}
+This implies $M=\mathfrak{m}M$, which by \customref{THsNl}{Nakayama lemma} implies $M=0$, as desired. 
+
+
+
+
+
+
+
+\end{proof}
 
 \section{Flat modules}
+\begin{equiv_def}
+\textbf{(Flat modules)} Let $N$ be an  $A$-module, and consider the covariant functor $T_N:\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A $ defined by \myref{equation}{EQtpm}. We say $N$ is \textbf{flat} if any of the followings hold true 
+\begin{enumerate}[label=(\roman*)]
+  \item $T_N$ is an exact functor. 
+  \item For all injective homomorphism $f:M' \rightarrow M$ between finitely generated modules, the homomorphism $f \otimes  1:M' \otimes N \rightarrow M \otimes  N $ is injective. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+(i)$\implies $(ii) is clear, so we only have to prove (ii)$\implies $(i). Let $f:M'\rightarrow M$ be an injective homomorphism.  
+\end{proof}
+Let $f:M' \rightarrow M$ be injective and let $u=\sum x_i' \otimes y_i \in \operatorname{ker}(f \otimes 1 )$, so that $\sum f(x_i')\otimes  y_i=0$ in $M \otimes  N$. Let $M_0'$ be the submodule of  $M'$ generated by the  $x_i'$ and let  $u_0$ denote  $\sum x_i'\otimes  y_i$ as an element of $M'_0 \otimes  N$. By (2.13) there exists a finitely generated submodule $M_0$ of  $M$ containing  $f(M_0')$ and such that $\sum  f(x_i')\otimes  y_i=0$ as an element of $M_0 \otimes  N$. If $f_0:M'_0 \rightarrow M_0$ is the restriction of $f$, this means that  $(f_0 \otimes  1)(u_0)=0$. Since $M_0$ and  $M_0'$ are finitely generated,  $f_0 \otimes  1$ is injective and therefore $u_0=0$, hence  $u=0$.   \\
+
+\begin{align*}
+M \otimes  N \cong  (\directlimit M') \otimes  (\directlimit N') \cong \directlimit [M' \otimes  \directlimit N'] \cong  \directlimit [\directlimit (M'\otimes  N')] 
+\end{align*}
 \section{Extended and Contracted Ideals}
 Unlike prime ideals, contraction of maximal ideals need not be maximal: 
 \begin{Example}{Contraction of maximal ideals need not be maximal.}{}
@@ -2972,6 +3147,7 @@ It is worth mentioning that ideal extension have quite ill behavior. Even though
 \begin{Example}{Extension of prime ideals need not be prime.}{}
 Consider $\Z \longhookrightarrow \Q$. Clearly, $(p)^e= \Q$ for all prime $p$. 
 \end{Example}
+
 
 \section{Local Rings}
 \begin{equiv_def}
@@ -3739,7 +3915,7 @@ The proof of their equivalence is called the \textbf{Urysohn's lemma}.
 \href{https://math.stackexchange.com/questions/1329866/compact-hausdorff-spaces-are-normal}{See this proof on MSE}. 
 \end{proof}
 \chapter{Homological Algebra}
-\section{Category Theory}
+\section{Category}
 In this note, a \textbf{category} $\mathcal{C} $ is 
 \begin{enumerate}[label=(\roman*)]
   \item A \emph{class} $\operatorname{ob}(\mathcal{C} )$ of \textbf{objects}. 
@@ -3750,48 +3926,42 @@ In this note, a \textbf{category} $\mathcal{C} $ is
     \end{align*}
     called the \textbf{composition}, 
 \end{enumerate}
-such that 
+that satisfies two conditions:  
 \begin{enumerate}[label=(\roman*)]
   \item For all $A \in \mathcal{C}$, there exists an \textbf{identity morphism} $\id_A \in \operatorname{End}(A)$ that makes $f=f \circ \id_A$ and $g=\id_A \circ g$ for all $f: A \rightarrow B$ and $g:B \rightarrow C$. \textbf{(Identity)}
   \item $(f \circ g)\circ h=f\circ (g \circ h)$ \textbf{(Associativity)}
 \end{enumerate}
-In a category $\mathcal{C}$, two morphisms $f: A \rightarrow B,g:B\rightarrow A$ are said to be \textbf{inverse to each other} if 
+Let $\mathcal{C}$ be a category and $f: A \rightarrow B$ and $g: B \rightarrow A$ be two morphisms in $\mathcal{C}$. We say $g$ is a  \textbf{left inverse of} $f$ if 
 \begin{align*}
-g \circ f = \id_A\quad \text{ and }\quad f\circ g = \id _B
+g \circ f = \id _A
 \end{align*}
-A morphism $f:A \rightarrow B$ is then said to be an \textbf{isomorphism} if it admits an inverse, and in such case, we say $A$ and  $B$ are  \textbf{isomorphic}. A morphism $f: A \rightarrow B$ is said to be a \textbf{monomorphism} if for all $g,h: C \rightarrow A$, we have 
+and say $g$ is a \textbf{right inverse of} $f$ if 
+ \begin{align*}
+f \circ g= \id_B
+\end{align*}
+If simultaneously $g$ is both a left and right inverse of  $f$, then we say $f$ and $g$ are  \textbf{inverse to each other}, that they are both \textbf{isomorphisms}, and $A,B$ are  \textbf{isomorphic}.\\
+
+
+Let $\mathcal{C}$ be a category. A morphism $f: A \hookrightarrow  B$ is said to be a \textbf{monomorphism} if for all $g,h: C \rightarrow A$, we have 
 \begin{align*}
 f \circ g = f \circ h \implies g=h
 \end{align*}
-A morphism $f: A \rightarrow B$ is said to be an \textbf{epimorphism} if for all $g,h:B \rightarrow C$, we have 
+A morphism $f: A \twoheadrightarrow   B$ is said to be an \textbf{epimorphism} if for all $g,h:B \rightarrow C$, we have 
 \begin{align*}
 g \circ f = h \circ  f \implies  g=h
 \end{align*}
-\begin{theorem}
-\textbf{(Right inverses are monomorphisms and left inverses are epimorphism)} Let $f:A \rightarrow B$ and $g: B \rightarrow A$ satisfies $g \circ f= \id _A$. Then $f$ is a monomorphism, and $g$ is an epimorphism. 
-\end{theorem}
-\begin{proof}
-Routine. 
-\end{proof}
-Let $C \in \mathcal{C}$. A \textbf{subobject of $C$} is then an object $A$ together with a monomorphism  $\diota: A \hookrightarrow  C $, and a \textbf{quotient of $C$} is an object $B$ with an epimorphism $\pi  : C \twoheadrightarrow B $.\\
+Clearly, if morphism $f: A \rightarrow B$ is a right inverse of some $g:B \rightarrow A$, then $f$ must be a monomorphism, and if $f$ is a left inverse of some $h:B \rightarrow A$, then $f$ must be an epimorphism. Let $B \in \mathcal{C}$. A \textbf{subobject of $B$} is an object $A$ together with a monomorphism  $\diota: A \hookrightarrow  B $, and a \textbf{quotient of $B$} is an object $C$ with an epimorphism $\pi  : B \twoheadrightarrow C $.
 
-Let $\mathcal{C},\mathcal{D}$ be two categories. A \textbf{covariant functor} $F: \mathcal{C}\rightarrow \mathcal{D}$ is a map of objects $F: \operatorname{ob}(\mathcal{C})\rightarrow \operatorname{ob}(\mathcal{D})$ together with a map of morphisms: 
+\section{Functors and Limits}
+Let $\mathcal{C}$ and $\mathcal{D}$ be two categories. A \textbf{covariant functor} (or simply, a \textbf{functor}) $F: \mathcal{C}\rightarrow \mathcal{D}$ is a map of objects $F: \operatorname{ob}(\mathcal{C})\rightarrow \operatorname{ob}(\mathcal{D})$ together with a map of morphisms: 
 \begin{align*}
 F: \operatorname{Hom}_{\mathcal{C} }(A,B) \longrightarrow \operatorname{Hom}_{\mathcal{D}} (F(A),F(B))
 \end{align*}
-such that 
+that satisfies  
 \begin{align*}
 F(\id _A)=\id_{F(A)}\quad \text{ and }\quad F(g\circ h)= F(g)\circ F(h)
 \end{align*}
-A \textbf{contravariant functor} $F: \mathcal{C}\rightarrow \mathcal{D}  $ is a map of objects $F: \operatorname{ob}(\mathcal{C} )\rightarrow \operatorname{ob}(\mathcal{D} )$ together with a map of morphisms: 
-\begin{align*}
-F: \operatorname{Hom}_\mathcal{C}(A,B) \rightarrow \operatorname{Hom}_\mathcal{D}(F(B),F(A))  
-\end{align*}
-such that 
-\begin{align*}
-F(\id _A)=\id _{F(A)}\quad \text{ and }\quad F(g \circ h) = F(h)\circ F(g)
-\end{align*}
-Let $F:\mathcal{I}\rightarrow \mathcal{C}$ be a covariant functor. A \textbf{cone to $F$}  is an object $N\in \mathcal{C}$ together with a family of morphisms $\psi_X:N \rightarrow F(X)$ indexed by $\mathcal{I}$ such that for all $f: X \rightarrow Y$, the diagram 
+Let $\mathcal{X}$ be an arbitrary category and $F:\mathcal{X} \rightarrow \mathcal{C}$ a covariant functor. A \textbf{cone to $F$}  is an object $N\in \mathcal{C}$ together with a family of morphisms $\psi_X:N \rightarrow F(X)$ indexed by $\mathcal{X}$ such that for all $f: X \rightarrow Y$, the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMSwwLCJOIl0sWzAsMiwiRihYKSJdLFsyLDIsIkYoWSkiXSxbMCwxLCJcXHBzaV9YIiwyXSxbMCwyLCJcXHBzaV9ZIl0sWzEsMiwiRihmKSJdXQ==
 \[\begin{tikzcd}
 	& N \\
@@ -3801,7 +3971,7 @@ Let $F:\mathcal{I}\rightarrow \mathcal{C}$ be a covariant functor. A \textbf{con
 	\arrow["{\psi_Y}", from=1-2, to=3-3]
 	\arrow["{F(f)}", from=3-1, to=3-3]
 \end{tikzcd}\]
-commutes. A cone $(\lim F,\pfi )$ to $F$ is said to satisfy the \textbf{universal property of limit} if for all cones $(N,\psi )$ to $F$ there exists a unique morphism $u: N \rightarrow \lim F$ such that $\psi_X= \pfi _X \circ u$ for all $X \in \mathcal{I} $. Therefore, given a limit $(\lim F, \psi)$, we have a commutative diagram: 
+commutes. A cone $(\lim F,\pfi )$ to $F$ is said to satisfy the \textbf{universal property of limit} if for all cones $(N,\psi )$ to $F$ there exists a unique morphism $u: N \rightarrow \lim F$ such that $\psi_X= \pfi _X \circ u$ for all $X \in \mathcal{X} $. Therefore, given a limit $(\lim F, \psi)$, we have a commutative diagram: 
 % https://q.uiver.app/#q=WzAsNCxbMSwyLCJcXGxpbSBGIl0sWzAsNCwiRihYKSJdLFsyLDQsIkYoWSkiXSxbMSwwLCJOIl0sWzAsMSwiXFxwaGlfWCIsMl0sWzAsMiwiXFxwaGlfWSJdLFsxLDIsIkYoZikiXSxbMywxLCJcXHBzaV9YIiwyLHsiY3VydmUiOjN9XSxbMywyLCJcXHBzaV9ZIiwwLHsiY3VydmUiOi0zfV0sWzMsMCwidSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
 	& N \\
@@ -3816,19 +3986,24 @@ commutes. A cone $(\lim F,\pfi )$ to $F$ is said to satisfy the \textbf{universa
 	\arrow["{\pfi _Y}", from=3-2, to=5-3]
 	\arrow["{F(f)}", from=5-1, to=5-3]
 \end{tikzcd}\]
-Let $\mathcal{I}$ be a category that has only identity morphism, and let $F: \mathcal{I}\rightarrow \mathcal{C}$ a covariant functor. Denoting images $F$ by  $A_i$, the  limit $(\lim F,\pfi )$, denoted $\prod A_i \triangleq \lim F$, is then called the \textbf{product} of $A_i$, with $\pfi_i : \prod A_i \rightarrow A_i$ the \textbf{projection map}. Clearly, in the case of modules and sets, the products are indeed direct products and Cartesian products. \\
+A \textbf{directed set} is a partially ordered set in which every two elements have an upper bound. Let $I$ be an directed set and $\mathcal{C}$ a category. By an \textbf{inverse system in} $\mathcal{C}$, we mean a collection of object $\set{A_i}$ in $\mathcal{C}$ indexed by $I$ together with each relation $i \leq j$ (\emph{note the order}) a morphism $f_{ij}:A_j \rightarrow A_i$ in $\mathcal{C}$ such that: 
+\begin{enumerate}[label=(\roman*)]
+  \item $f_{ii}$ are the identities on $A_i$.  
+  \item $f_{ik}=f_{ij}\circ f_{jk}$  for all $i\leq j \leq k$
+\end{enumerate}
+Clearly, an inverse system in $\mathcal{C}$ itself forms a category $\mathcal{I}$ the obvious way, and we have an obvious covariant functor $F:\mathcal{I}\rightarrow \mathcal{C}$. The limit of $F$ is then called the  \textbf{inverse limit of $\set{A_i}$} denoted by $\inverselimit A_i$ and $f_i:\inverselimit A_i \rightarrow A_i$.\\ 
 
-Let $F:\mathcal{I}\rightarrow \mathcal{C}$ be a contravariant functor. A \textbf{co-cone to} $F$  is an object $N \in \mathcal{C}$ together with a family of morphisms $\psi_X:F(X)\rightarrow N$ indexed by $\mathcal{I}$ such that for all $f: X \rightarrow Y$, the diagram 
+ Let $\mathcal{X}$ be an arbitrary category and $F:\mathcal{X} \rightarrow \mathcal{C}$ a covariant functor. A \textbf{co-cone to} $F$ is an object $N \in \mathcal{C}$ together with a family of morphisms $\psi_X:F(X)\rightarrow N$ indexed by $\mathcal{X}$ such that for all $f: X \rightarrow Y$, the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMSwyLCJOIl0sWzAsMCwiRihYKSJdLFsyLDAsIkYoWSkiXSxbMSwwLCJcXHBzaV9YIiwyXSxbMiwwLCJcXHBzaV9ZIl0sWzIsMSwiRihmKSIsMl1d
 \[\begin{tikzcd}
 	{F(X)} && {F(Y)} \\
 	\\
 	& N
 	\arrow["{\psi_X}"', from=1-1, to=3-2]
-	\arrow["{F(f)}"', from=1-3, to=1-1]
+	\arrow["{F(f)}"', from=1-1, to=1-3]
 	\arrow["{\psi_Y}", from=1-3, to=3-2]
 \end{tikzcd}\]
-commute. A co-cone $(\colim F,\pfi )$ to $F$ is said to satisfy the \textbf{universal property of colimit} if for all co-cones $(N,\psi )$ to $F$ there exists a unique morphism $u: \colim F \rightarrow N$ such that $\psi_X= u \circ \pfi _S$ for all $X \in \mathcal{I} $. Therefore, given a colimit $(\colim F, \psi)$, we have a commutative diagram: 
+commute. A co-cone $(\colim F,\pfi )$ to $F$ is said to satisfy the \textbf{universal property of colimit} if for all co-cones $(N,\psi )$ to $F$ there exists a unique morphism $u: \colim F \rightarrow N$ such that $\psi_X= u \circ \pfi _X$ for all $X \in \mathcal{X} $. Therefore, given a colimit $(\colim F, \psi)$, we have a commutative diagram: 
 % https://q.uiver.app/#q=WzAsNCxbMSwyLCJcXGNvbGltIEYiXSxbMCwwLCJGKFgpIl0sWzIsMCwiRihZKSJdLFsxLDQsIk4iXSxbMSwwLCJcXHBoaV9YIl0sWzIsMCwiXFxwaGlfWSIsMl0sWzIsMSwiRihmKSIsMl0sWzEsMywiXFxwc2lfWCIsMix7ImN1cnZlIjozfV0sWzIsMywiXFxwc2lfWSIsMCx7ImN1cnZlIjotM31dLFswLDMsInUiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 \[\begin{tikzcd}
 	{F(X)} && {F(Y)} \\
@@ -3838,23 +4013,67 @@ commute. A co-cone $(\colim F,\pfi )$ to $F$ is said to satisfy the \textbf{univ
 	& N
 	\arrow["{\pfi _X}", from=1-1, to=3-2]
 	\arrow["{\psi_X}"', curve={height=18pt}, from=1-1, to=5-2]
-	\arrow["{F(f)}"', from=1-3, to=1-1]
+	\arrow["{F(f)}"', from=1-1, to=1-3]
 	\arrow["{\pfi_Y}"', from=1-3, to=3-2]
 	\arrow["{\psi_Y}", curve={height=-18pt}, from=1-3, to=5-2]
 	\arrow["u"{description}, dashed, from=3-2, to=5-2]
 \end{tikzcd}\]
-Denoting images $F$ by  $A_i$, the colimit $(\colim F,\pfi )$, denoted $\coprod A_i \triangleq \lim F$, is then called the \textbf{coproduct} of $A_i$, with $\pfi_i : A_i \rightarrow \coprod A_i$ the \textbf{inclusion map}. Clearly, in the case of modules and sets, the coproducts are indeed direct sums and disjoint union. \\
+Let $I$ be a directed set. By a \textbf{directed system in} $\mathcal{C}$, we mean a collection of object $\set{A_i}$ in $\mathcal{C}$ indexed by $I$ together with each relation $i \leq j$ (again, \emph{note the order}) a morphism $f_{ij}:A_i \rightarrow A_j$ in $\mathcal{C}$ such that: 
+\begin{enumerate}[label=(\roman*)]
+  \item $f_{ii}$ are the identities on $A_i$.  
+  \item $f_{ik}=f_{jk}\circ f_{ij}$  for all $i\leq j \leq k$
+\end{enumerate}
+Clearly, a directed system in $\mathcal{C}$ forms a category $\mathcal{D}$ the obvious way, and we have an obvious covariant functor $F:\mathcal{D}\rightarrow \mathcal{C}$. The colimit of $F$ is then called the  \textbf{direct limit of $\set{A_i}$} denoted by $\directlimit A_i$ and $f_i: A_i \rightarrow \directlimit A_i$. 
+\begin{theorem}
+\textbf{(Construction of direct limit in familiar categories)} Let $A$ be a ring, $I$ a directed set, and $\set{M_i, \phi_{ij}}$ a directed system of $A$-modules. One way to construct its direct limit is to first define the underlying set as: 
+\begin{align*}
+\directlimit M_i \triangleq \bigsqcup_i M_i \quotient \sim  
+\end{align*}
+where $x_i \in M_i$ and $x_j \in M_j$ are equivalence when: 
+\begin{align*}
+x_i \sim  x_j \overset{\triangle}{\iff } \phi_{ik}(x_i)=\phi_{jk}(x_j),\quad \text{ for some }k \geq i,j
+\end{align*}
+Addition is well-defined by 
+\begin{align*}
+[x_i]+ [x_j] \triangleq [\phi_{ik}(x_i)+\phi_{jk}(x_j)],\quad \text{ for any }k \geq i,j
+\end{align*}
+while scalar multiplication is well-defined by 
+ \begin{align*}
+c[x_i]\triangleq [cx_i]
+\end{align*}
+Lastly, the canonical morphism $\phi_i : M_i \rightarrow M$ maps elements to their equivalence class. One can now check that our construction in fact also shows that direct limit exists in $\mathbf{Set},\mathbf{Gp}$, and $\mathbf{Ab}$. Moreover, in $\mathbf{Ring}$ and $\mathbf{Alg}_A$, direct limit also exists if we define vector multiplication the same way we define addition.  
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+From construction, immediately we see that direct limits have the properties:  
+\begin{theorem}
+\label{THpdl}
+\textbf{(Basic properties of direct limit)}  Let $A$ be a ring, $I$ a directed set, and $\set{M_i, \phi_{ij}}$ a directed system of $A$-modules. Then 
+\begin{enumerate}[label=(\roman*)]
+  \item Every element of $\directlimit M_i$ can be written in the form $\phi_i(x_i)$ for some $i \in I$ and $x_i \in M_i$. 
+  \item If $\phi_i(x_i)=0$, then there exists some $j\geq i$ such that $\phi_{ij}(x_i)=0$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
 
 
-coproducts of modules?  
 
 
-
-directed category, codirected category, inverse limit direct limit \\ 
-
-initial, terminal, zero object.\\ 
 
 \section{Additive Categories}
+Let $\set{A_i}$ be a collection of objects in $\mathcal{C}$. Clearly, we can make $\set{A_i}$ a category $\mathcal{J}$ by requiring it to have only the  identity morphisms, and doing such, we have an obvious covariant functor $F:\mathcal{J}\rightarrow \mathcal{C}$, whose limit is called the  \textbf{product of $\set{A_i}$} denoted by $\prod A_i$, with canonical morphism $p_i : \prod A_i \rightarrow A_i$ called the \textbf{projection map}.\\
+
+The colimit of $F: \mathcal{J}\rightarrow \mathcal{C}$ is called the \textbf{coproduct of $\set{A_i}$} denoted by $\coprod A_i$, whose canonical morphism $A_i \rightarrow \coprod A_i$ are often called the \textbf{coprojection map}. 
+\begin{theorem}
+\textbf{(Existence of products in familiar categories)} Product and coproduct always exists in $\mathbf{Set}$. They are respectively Cartesian product and disjoint union. Let $A$ be a ring. Product and coproduct always exists $\mathbf{Mod}_A$. They are direct product and direct sum.  
+\end{theorem}
+\begin{proof}
+Routine. Let $u(n)_i \triangleq \psi_i (n)$.  
+\end{proof}
+
 An additive category $\mathcal{C} $ is a category whose hom-sets are abelian group with hom-functor bilinear, and 
 \begin{enumerate}[label=(\roman*)]
 \item $\mathcal{C}$ admits zero object.  
@@ -3872,6 +4091,8 @@ image, coimage. There case in modules and set. \\
 
 
 The induced coimage -> image is isomorphism means it is strict. 
+
+initial, terminal, zero object.\\ 
 
 \section{Abelian Category and Its Lemmas}
 An \textbf{abelian category} is an additive category in which 
@@ -3942,6 +4163,14 @@ Routine.
 \end{proof}
 \section{Exact functor}
 \begin{equiv_def}
+\textbf{(Exactness of covariant functor)} Let $\mathbf{P}$ and $\mathbf{Q}$ be two abelian category. A covariant functor $F:\mathbf{P}\rightarrow \mathbf{Q}$ is said to be an \textbf{exact functor} if it maps exact sequence to exact sequence or equivalently it maps short exact sequence to short exact sequence.  
+\end{equiv_def}
+\begin{proof}
+We are required to show that if  $F: \mathbf{P}\rightarrow \mathbf{Q}$ preserve short exact sequence, then it maps exact sequence to exact sequence. 
+
+
+\end{proof}
+\begin{equiv_def}
   \textbf{(Exactness of covariant functor)} Let $\mathbf{P},\mathbf{Q}$ be two abelian category. A covariant functor $F: \mathbf{P}\rightarrow \mathbf{Q}$ is said to be \textbf{right exact} if 
 \begin{align*}
 A \longrightarrow  B \longtwoheadrightarrow  C \longrightarrow  0 \text{ is exact }  \implies  F(A)\longrightarrow F(B)\longtwoheadrightarrow  F(C) \longrightarrow 0\text{ is exact }
@@ -3963,7 +4192,14 @@ $F:\mathbf{P}\rightarrow \mathbf{Q}$ is then said to be \textbf{exact} if it is 
 \begin{proof}
 \href{https://math.stackexchange.com/questions/292037/definition-of-left-right-exact-functors}{See this MSE post}
 \end{proof}
-
+A \textbf{contravariant functor} $G: \mathcal{C}\rightarrow \mathcal{D}  $ is a map of objects $G: \operatorname{ob}(\mathcal{C} )\rightarrow \operatorname{ob}(\mathcal{D} )$ together with a map of morphisms: 
+\begin{align*}
+G: \operatorname{Hom}_\mathcal{C}(A,B) \rightarrow \operatorname{Hom}_\mathcal{D}(G(B),G(A))  
+\end{align*}
+such that 
+\begin{align*}
+G(\id _A)=\id _{G(A)}\quad \text{ and }\quad G(g \circ h) = G(h)\circ G(g)
+\end{align*}
 
 \end{document}
 
