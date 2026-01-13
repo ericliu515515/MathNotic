@@ -2172,6 +2172,18 @@ We then see
 \end{align*}
 \end{proof}
 \section{Direct Limits}
+From construction, immediately we see that direct limits have the properties:  
+\begin{theorem}
+\label{THpdl}
+\textbf{(Basic properties of direct limit of $A$-modules)}  Let $A$ be a ring, $I$ a directed set, and $\set{M_i, \phi_{ij}}$ a directed system of $A$-modules. Then 
+\begin{enumerate}[label=(\roman*)]
+  \item Every element of $\directlimit M_i$ can be written in the form $\phi_i(x_i)$ for some $i \in I$ and $x_i \in M_i$. 
+  \item If $\phi_i(x_i)=0$, then there exists some $j\geq i$ such that $\phi_{ij}(x_i)=0$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
 \begin{theorem}
 \label{THdls}
 \textbf{(Direct limit of submodules)} Let $M_i$ be a collection of submodules indexed by $I$. If for all  $i,j\in I$ there exists some $k \in I$ that makes  
@@ -2188,15 +2200,46 @@ Therefore, in particular, every module is the direct limit of its finitely gener
 Routine. 
 \end{proof}
 
-\textbf{(Homomorphism of direct systems over a fixed directed set)}
 
-\textbf{(Exact sequence of direct systems over a fixed directed set induce exact sequence of the direct limits)} 
+Let $I$ be a directed set. Consider the category $\operatorname{Func}(I,\mathbf{Mod}_A)$ of directed system of $A$-modules over  $I$, whose homomorphisms are the natural transformations, thus a family of module homomorphism $M_i \rightarrow N_i$. One can check that this category $\operatorname{Func}(I,\mathbf{Mod}_A)$ is abelian, and more importantly 
+\begin{equiv_def}
+\label{EDsm}
+\textbf{(Sheaf morphism is exact if and only if exact componentwise if and only if exact at stalks)}   Let $I$ be a directed set and  $(M_i,\mu),(N_i,\nu ),(P_i,\ld )\in \operatorname{Func}(I,\mathbf{Mod}_A)$ two directed system. Consider two morphism 
+\begin{align}
+\label{EQMi}
+  (M_i,\nu ) \overset{\Phi}{\longrightarrow } (N_i,\nu ) \overset{\Psi}{\longrightarrow }(P_1,\ld )
+\end{align}
+where the natural transformations are 
+\begin{align}
+\label{EQmi}
+M_i \overset{\phi_i}{\longrightarrow }N_i \overset{\psi_i}{\longrightarrow }P_i
+\end{align}
+and the induced $A$-module morphisms are 
+\begin{align}
+\label{EQmI}
+\directlimit M_i \overset{\phi}{\longrightarrow } \directlimit N_i \overset{\psi}{\longrightarrow } \directlimit P_i
+\end{align}
+then the followings statements are equivalent 
+\begin{enumerate}[label=(\roman*)]
+  \item \myref{Sequence}{EQMi} is exact. 
+  \item \myref{Sequence}{EQmi} is exact for all $i$.  
+  \item \myref{Sequence}{EQmI} is exact.   
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
+Let $(A_i,\phi )$ be a directed system of rings. Then it is a directed system of  $\Z$-modules. We can then make the $\Z$-module $\directlimit A_i$ a ring by giving it multiplication 
+\begin{align*}
+\phi_i (a_i) \cdot \phi_j(a_j) \triangleq \phi_k(\phi_{ik}(a_i)\phi_{jk}(a_j)),\quad \text{ for some }k \geq i,j
+\end{align*}
+Then we see $\directlimit A_i=0 \implies A_i=0$ for some $i$? The same direct system clearly restrict to direct system $(\operatorname{Nil}(A_i), \phi)$ of $\Z$-modules. Clearly, we then have $\directlimit \operatorname{Nil}(A_i)\leq \operatorname{Nil}\left(\directlimit A_i \right)$. The converse also holds, since if $\phi_i (a_i)^n=0$, then $\phi_i (a_i^n)=0$, and therefore for some $j\geq i$, we have $\phi_{ij}(a_i^n)=0$, which implies $\phi_{ij}(a_i) \in \operatorname{Nil}(A_i)$, where $\phi_{i}(a_i)=\phi_j \circ \phi_{ij}(a_i)$.  \\
 
-\textbf{(Direct limit of ring is $0$ only if some  $A_i$ is  $0$)}
+This also implies that direct limit of integral domains are integral domains.  
 
-\textbf{(Nilradical of direct limit is a direct limit of nilradicals)} 
 
-\textbf{(Direct limit of integral domains is integral domain)} 
+
+
 \section{Prime and Maximal Ideals} 
 We say a ring homomorphism $ \pi :A \twoheadrightarrow   A\quotient \mathfrak{a}$ satisfies the \textbf{universal property of quotient ring $A\quotient \mathfrak{a}$} if 
 \begin{enumerate}[label=(\roman*)]
@@ -2766,7 +2809,7 @@ Given two module homomorphisms $f:M \rightarrow M'$ and $g:N \rightarrow N'$, cl
 \begin{align*}
   (f\otimes  g )(m \otimes  n) \triangleq f(m) \otimes  g(n)
 \end{align*}
-In particular, for all $M_0 \leq M$ and $N_0 \leq N$, given $x\in M_0$ and $y \in M_0$ such that $x \otimes  y =0 \in M_0 \otimes  N$, the module homomorphism from $M_0 \otimes  N_0$ to $M \otimes  N$ tell us that $x \otimes  y$ must also be $0$ in  $M \otimes  N$. The converse however is not true: That is, given $x \in M_0$ and $y \in M_0$, 
+In particular, for all $M_0 \leq M$ and $N_0 \leq N$, given $x\in M_0$ and $y \in N_0$ such that $x \otimes  y =0 \in M_0 \otimes  N_0$, the module homomorphism from $M_0 \otimes  N_0$ to $M \otimes  N$ tell us that $x \otimes  y$ must also be $0$ in  $M \otimes  N$. The converse however is not true: That is, given $x \in M_0$ and $y \in M_0$, 
 \begin{align*}
 x\otimes  y =0 \in M \otimes  N  \rlap{\(\quad\not\)}\implies  x \otimes  y =0 \in M_0 \otimes  N_0 
 \end{align*}
@@ -2799,7 +2842,7 @@ T_N(M)\triangleq M \otimes  N\quad \text{ and }\quad  T_N(f) \triangleq f \otime
   \Hom (M \otimes  N ,P) \cong  \Hom  (M, \Hom  (N,P)) ,\quad f\mapsto  f',\quad \text{ where }f'(m)(n) \triangleq f(m \otimes  n)
 \end{align*}
 called the \textbf{tensor-hom adjunction}. In particular, they are both naturally bijective to the set of bilinear maps from  $M\times N$ to $P$.  
-\item For all $A$-module  $N$, the covariant functor  $T_N$ is right-exact, that is, given any exact sequence: 
+\item For all $A$-module  $N$, the covariant functor  $T_N$ is \emph{right-exact}, that is, given any exact sequence: 
 \begin{align*}
 M' \overset{u}{\longrightarrow } M \overset{v}{\longtwoheadrightarrow  } M'' \longrightarrow 0 
 \end{align*}
@@ -2863,6 +2906,27 @@ isn't exact. Just observe that $1\otimes  1 \in \Z \otimes  \Z_2$ is nonzero, si
   (f \otimes  \id_{\Z_2}) (1 \otimes  1) = 2 \otimes  1 = 2(1 \otimes  1) =1 \otimes 2  = 0  
 \end{align*}
 \end{Example}
+Let $B$ and  $C$ be two  $A$-algebras with canonical homomorphisms $f: A \rightarrow B$ and $g:A \rightarrow C$. Consider the $A$-module  $B\otimes_A C$. From this $A$-module structure, we see that the $A$-modules diagram:  
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJBIl0sWzIsMCwiQiJdLFsyLDIsIkMiXSxbNCwxLCJCXFxvdGltZXNfQSBDIl0sWzAsMSwiZiJdLFswLDIsImciLDJdLFsxLDMsImIgXFxtYXBzdG8gYlxcb3RpbWVzIDEiXSxbMiwzLCJjXFxtYXBzdG8gMSBcXG90aW1lcyBjIiwyXV0=
+\[\begin{tikzcd}
+	&& B \\
+	A &&&& {B\otimes_A C} \\
+	&& C
+	\arrow["{b \mapsto b\otimes 1}", from=1-3, to=2-5]
+	\arrow["f", from=2-1, to=1-3]
+	\arrow["g"', from=2-1, to=3-3]
+	\arrow["{c\mapsto 1 \otimes c}"', from=3-3, to=2-5]
+\end{tikzcd}\]
+commutes. Notably, we can define a multiplication on $B \otimes_A C$  to make it a ring: 
+\begin{align*}
+  (b \otimes  c) \cdot (b' \otimes  c') \triangleq bb' \otimes  cc'
+\end{align*}
+\footnote{It requires some argument to show that this multiplication is well-defined. The fastest way is to first well-define an $A$-module homomorphism  $B \otimes C \otimes  B \otimes  C \rightarrow B \otimes  C,\quad b \otimes  c \otimes  b' \otimes  c' \mapsto bb' \otimes  cc'$, and then use  \customref{THidt}{associativity of tensor product} and definition to construct the $A$-bilinear mapping that is our multiplication.}and in fact, an $A$-algebra, whose $A$-module structure clearly can be regained via the morphisms in above diagram, which are now ring homomorphisms. The $A$-algebra  $B \otimes_A C$ is called the \textbf{tensor product of $A$-algebra  $B$ and  $C$}. The \textbf{tensor product of two rings} is then their tensor product as $\Z$-algebras. 
+
+
+\section{Identities for Tensor Products}
+
+
 \begin{theorem}
 \label{THidt}
 \textbf{(Identities for tensor products)} Let $A$ be a ring and  $M$ an  $A$-module. Then  
@@ -2875,30 +2939,35 @@ A \otimes  M \cong  M,\quad a \otimes  m \mapsto am
 \begin{align*}
   (A \quotient \mathfrak{a})\otimes  M \cong  M \quotient \mathfrak{a}M, \quad a \otimes  m \mapsto am
 \end{align*}
-\item  Let $M_i$ be a directed system of $A$-modules. We have a natural isomorphism 
-  \begin{align*}
- \left(\directlimit M_i \right) \otimes  M  \cong  \directlimit \left( M_i \otimes  M \right),\quad \phi_i(x_i)\otimes  m \mapsto \psi_i (x_i \otimes  m)
+\item  Let $N$ and  $P$ be two  $A$-modules. We have a natural isomorphism 
+   \begin{align*}
+     (M \otimes  N) \otimes  P \cong  M \otimes  N \otimes  P,\quad (m \otimes  n) \otimes  p \mapsto m \otimes  n \otimes  p
   \end{align*}
-where $\phi$ denote the canonical morphism of $M_i$, while the canonical morphism $\psi$ of $M_i \otimes  M$ are defined by 
-\begin{align*}
-\psi_{ij}\triangleq \phi_{ij}\otimes  1
-\end{align*}
+\item  Let $M_i$ be a directed system of $A$-modules with canonical morphism $\phi$. Then $M_i \otimes  M$ is a directed system with canonical morphism $\psi$ defined by $\psi_{ij}\triangleq \phi_{ij}\otimes \id_M$, and we have a natural isomorphism:  
+  \begin{align*}
+ \left(\directlimit M_i \right) \otimes  M  \cong  \directlimit \left( M_i \otimes  M \right),\quad \phi_i(m_i)\otimes  m \mapsto \psi_i (m_i \otimes  m)
+  \end{align*}
   \item For \emph{possibly infinite} collection $M_i$ of $A$-module, we have a natural isomorphism 
     \begin{align*}
-   N \otimes  \bigoplus M_i \cong  \bigoplus (N \otimes  M_i)
+   N \otimes  \bigoplus M_i \cong  \bigoplus (N \otimes  M_i),\quad n \otimes  (m_1 \oplus \cdots \oplus  m_k) \mapsto (n \otimes  m_1) \oplus  \cdots \oplus  (n \otimes  m_k)
     \end{align*}
-  \item  Let $M_i$ be a directed system of  $A$-modules over  directed set $\mathcal{P}$ and $N_i$ be a directed system of  $A$-modules over directed set  $\mathcal{Q}$. Clearly, we may make $\mathcal{P}\times \mathcal{Q}$ a directed set by 
+  \item  Let $(M_i,\phi)$ be a directed system of  $A$-modules over  directed set $\mathcal{P}$ and $(N_j,\psi)$ be a directed system of  $A$-modules over directed set  $\mathcal{Q}$. Then, we can make $M_i \otimes  N_j$ a directed system with index set $\mathcal{P}\times \mathcal{Q}$ directed by 
     \begin{align*}
-      (p,q) \leq  (p',q')\overset{\triangle}{\iff } p \leq  p' \quad \text{ and }\quad q\leq q'
+      (i,j) \leq  (k,l)\overset{\triangle}{\iff } i \leq  k \quad \text{ and }\quad j\leq l 
     \end{align*}
+and canonical homomorphisms $\ld $ defined by  
+\begin{align*}
+\ld_{(i,j)(k,l)}\triangleq \phi_{ik}\otimes  \psi_{jl} 
+\end{align*}
 Then the natural directed system of $M_i \otimes  N_j$ over $\mathcal{P}\times \mathcal{Q}$ has a natural isomorphism 
 \begin{align*}
- \directlimit_{\mathcal{P}\times \mathcal{Q}}\left( M_i \otimes  N_j \right)  \cong  \directlimit_{\mathcal{P} } \left( M_i \right) \otimes  \directlimit_{\mathcal{Q} } \left(N_j   \right)
+ \directlimit_{\mathcal{P}\times \mathcal{Q}}\left( M_i \otimes  N_j \right)  \cong  \directlimit_{\mathcal{P} } \left( M_i \right) \otimes  \directlimit_{\mathcal{Q} } \left(N_j   \right),\quad \ld_{(i,j)}(m_i \otimes  n_j )\mapsto \phi_i(m_i) \otimes  \psi_j (n_j)
 \end{align*}
+
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-(i) follows from checking that the map $a \otimes  m \mapsto am$ and $m \mapsto 1 \otimes  m$ are inverse to each other. (ii) is essentially a corollary of (i). In short, because \customref{THbpt}{tensor product is right exact}, tensoring the exact sequence  
+(i), (iii),(iv), and (vi) are routine. (ii) is essentially a corollary of (i). In short, because \customref{THbpt}{tensor product is right exact}, tensoring the exact sequence  
 \begin{align*}
  \mathfrak{a} \overset{\diota }{\longhookrightarrow } A \overset{\pi }{\longtwoheadrightarrow } A \quotient \mathfrak{a} \longrightarrow 0
 \end{align*}
@@ -2910,28 +2979,28 @@ which implies that
  \begin{align*}
    (A \quotient \mathfrak{a}) \otimes  M \cong (A \otimes  M) \quotient \operatorname{Im}(\diota \otimes  1 ) 
 \end{align*}
-The proof for (ii) then follows from checking that the isomorphism $A \otimes  M \cong M$ maps $\operatorname{Im}(\diota \otimes  1 )$ to $\mathfrak{a}M$. The proof for (iii) is simply checking that we have a well-defined homomorphism 
+The proof for (ii) then follows from checking that the isomorphism $A \otimes  M \cong M$ maps $\operatorname{Im}(\diota \otimes  1 )$ to $\mathfrak{a}M$. (v) should be first proved in finite case, which is also routine. The infinite case then follows from finite case, (iii), and the fact that  \customref{THdls}{direct sum is the direct limit of finite direct sums}: 
 \begin{align*}
-  \directlimit\left(M_i \otimes  M \right) \rightarrow \left( \directlimit M_i \right) \otimes  M,\quad \psi_i (x)\mapsto  \phi_i \otimes  1 (x)
+  N \otimes \left( \bigoplus M_i \right) &\cong  N \otimes  \directlimit \left(\bigoplus _{\text{finite}} M_i\right)  \cong  \directlimit  \left(N \otimes  \left(\bigoplus_{\text{finite}} M_i \right)    \right) \\
+  & \cong  \directlimit \left(  \bigoplus_{\text{finite}} N \otimes  M_i  \right) \cong  \bigoplus (N\otimes  M_i)
 \end{align*}
-and it together with the proposed homomorphism are inverse to each other.  \\
-
-(v) in nature is a statement for all colimits, rather than just directed system of modules. See \href{https://stacks.math.columbia.edu/tag/002M}{Stack Project Lemma 4.14.10}
+in which one checks that the isomorphism one gets in the end has the desired form. 
 \end{proof}
 \begin{theorem}
-\textbf{(Existence of finitely generated submodules that makes an expression of zero remain zero)} Let  $A$ be a ring and  $M$ and  $N$ two  $A$-modules. Let $\sum x_i \otimes y_i =0 \in M \otimes  N$. Then there exist two finitely generated submodules $M' \leq M,N' \leq N$ that respectively contains $x_i,y_i$ and makes
+\label{THfgz}
+\textbf{(Existence of finitely generated submodules that makes an expression of zero remain zero)} Let  $A$ be a ring and  $M$ and  $N$ two  $A$-modules. Let $\sum x_i \otimes y_i =0$ in $M \otimes  N$. Then there exist two finitely generated submodules $M' \leq M$ and $N' \leq N$ that respectively contains $x_i$ and $y_i$ and makes
 \begin{align*}
-\sum  x_i \otimes  y_i= 0 \in M' \otimes  N'
+\sum  x_i \otimes  y_i= 0,\quad \text{ in }M' \otimes  N'
 \end{align*}
 \end{theorem}
 \begin{proof}
-Let $M_i$ and $N_i$ be the directed system of finitely generated submodules of $M$ and $N$. Then   
+Let $M_i$ and $N_j$ be the directed system of finitely generated submodules of $M$ and $N$. Then we have a natural isomorphism 
 \begin{align*}
   M \otimes  N \customref{THdls}{\cong} \left(\directlimit M_i   \right) \otimes   \left(\directlimit N_j \right) \customref{THidt}{\cong}  \directlimit (M_i \otimes  N_j)  
 \end{align*}
-Let $M_0 \leq M$ and $N_0\leq N$ be the submodules generated by $x_i$ and  $y_i$. By definition ?, the canonical morphism $M_0 \otimes  N_0 \rightarrow M \otimes  N$ maps $\sum  x_i \otimes  y_i$ to $0$. The proof then follows from \customref{THpdl}{this property of direct limit}. 
+Let $M' \leq M$ and $N'\leq N$ be the submodules generated by $x_i$ and  $y_i$. Clearly, the isomorphism maps $\sum x_i \otimes  y_i \in M' \otimes N'$ to $0 \in M \otimes  N$ (from the right hand side to left). The proof then follows from the fact that  \customref{THpdl}{if something in a direct limit is zero then at a fixed stage it is already zero}. 
 \end{proof}
-\textbf{(Tensor product of infinite algebras)}
+
 \section{Extension of Scalars}
 Let $N$ be an $A$-module. If we say $N$ is an  $(A,B)$\textbf{-bimodule} we mean that the abelian group $N$ has a $B$-module structure compatible with its $A$-module structure in the sense that 
  \begin{align*}
@@ -3091,17 +3160,42 @@ This implies $M=\mathfrak{m}M$, which by \customref{THsNl}{Nakayama lemma} impli
 \textbf{(Flat modules)} Let $N$ be an  $A$-module, and consider the covariant functor $T_N:\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A $ defined by \myref{equation}{EQtpm}. We say $N$ is \textbf{flat} if any of the followings hold true 
 \begin{enumerate}[label=(\roman*)]
   \item $T_N$ is an exact functor. 
-  \item For all injective homomorphism $f:M' \rightarrow M$ between finitely generated modules, the homomorphism $f \otimes  1:M' \otimes N \rightarrow M \otimes  N $ is injective. 
+  \item For all injective homomorphism $f:M' \hookrightarrow  M$ between finitely generated modules, the homomorphism $f \otimes  1:M' \otimes N \hookrightarrow  M \otimes  N $ is injective. 
 \end{enumerate}
 \end{equiv_def}
 \begin{proof}
-(i)$\implies $(ii) is clear, so we only have to prove (ii)$\implies $(i). Let $f:M'\rightarrow M$ be an injective homomorphism.  
-\end{proof}
-Let $f:M' \rightarrow M$ be injective and let $u=\sum x_i' \otimes y_i \in \operatorname{ker}(f \otimes 1 )$, so that $\sum f(x_i')\otimes  y_i=0$ in $M \otimes  N$. Let $M_0'$ be the submodule of  $M'$ generated by the  $x_i'$ and let  $u_0$ denote  $\sum x_i'\otimes  y_i$ as an element of $M'_0 \otimes  N$. By (2.13) there exists a finitely generated submodule $M_0$ of  $M$ containing  $f(M_0')$ and such that $\sum  f(x_i')\otimes  y_i=0$ as an element of $M_0 \otimes  N$. If $f_0:M'_0 \rightarrow M_0$ is the restriction of $f$, this means that  $(f_0 \otimes  1)(u_0)=0$. Since $M_0$ and  $M_0'$ are finitely generated,  $f_0 \otimes  1$ is injective and therefore $u_0=0$, hence  $u=0$.   \\
+  (i)$\implies $(ii) is clear, so we only have to prove (ii)$\implies $(i). In particular, since \customref{THbpt}{tensor product is right exact}, we only have to prove that given injective homomorphism $f: M' \hookrightarrow  M$, where $M'$ and  $M$ need not be finitely generated, the homomorphism $f \otimes  1: M' \otimes  N \rightarrow M \otimes  N$ remains injective.\\     
 
+Let $u\in \operatorname{ker}(f \otimes  1)$. We are required to show $u=0$. Write $u \triangleq \sum x_i' \otimes  y_i$. Consider the submodule $M'_0 \triangleq (x_1',\dots ,x_n')\leq M'$ and $u_0 \triangleq \sum x_i'\otimes  y_i \in M'_0 \otimes  N$. Because the natural homomorphism from $M_0' \otimes  N$ to $M' \otimes  N$ maps $u_0$ to  $u$, we only have to prove $u_0 =0$.\\
+
+Now, because $u\in \operatorname{ker}(f \otimes 1)$, we know $\sum f(x_i') \otimes  y_i=0$ in $M \otimes  N$. This implies  \customref{THfgz}{the existence of some finitely generated submodule $M_0 \leq M$ that makes $f(x_i')\in M_0$ for all $i$ and  $\sum f(x_i')\otimes  y_i=0 \in M_0 \otimes  N$}.\\
+
+Clearly, $f$ maps $M_0'$ into  $M_0$, so we have the restriction maps $f|_{M'_0}: M'_0 \hookrightarrow  M_0 $ (Note that the codomain was shrunk). Because $f|_{M'_0}\otimes  1:M'_0 \otimes  N\rightarrow M_0 \otimes  N$ maps $u_0$ to $0$ by the last paragraph, and because both $M'_0$  and $M_0$ are finitely generated by construction, by premise $u_0=0$, as desired.   
+\end{proof}
+\begin{theorem}
+\textbf{(Identities for flat modules)} Let $A$ be a ring. Then  
+\begin{enumerate}[label=(\roman*)]
+   \item Let $M_i$ be a  \emph{possibly infinite} collection of $A$-modules. Then  
 \begin{align*}
-M \otimes  N \cong  (\directlimit M') \otimes  (\directlimit N') \cong \directlimit [M' \otimes  \directlimit N'] \cong  \directlimit [\directlimit (M'\otimes  N')] 
+\bigoplus M_i\text{ is flat }\iff  \text{ All }M_i\text{ are flat }
 \end{align*}
+   \item $A[x]$ is a flat $A$-algebra.  
+   \item If  $M$ and $N$ are both flat  $A$-modules, then  $M\otimes  N$ is also flat. 
+   \item If $B$  is a flat $A$-algebra and  $N$ is a flat  $B$-module, then  $N$ is flat as an  $A$-module. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  (i): The proof from right to left is relatively simple. Just note that if one of $M_i$ is flat. Then clearly  $f \otimes  \id_{\bigoplus M_i}$ is not injective. The proof from left to right is much more lengthy. Recall that we have the identity 
+  \begin{align*}
+  N \otimes  \bigoplus_I M_i  \cong  \directlimit_{J \subseteq I} \bigoplus_{J} N \otimes  M_i
+  \end{align*}
+If all $f \otimes \id_{M_i}$ are injective, then clearly all $\bigoplus f\otimes  \id $ is injective. \customref{EDsm}{Passing to direct limit}, we see $f \otimes  \id_{\bigoplus M_i}=\bigoplus f \otimes  \id $ is injective.  \\
+
+(ii): This follows from the observation the natural isomorphism $A \otimes  M \cong  M$ so that $A$ is a flat  $A$-module and a therefore by  (i), $A[x]\cong \bigoplus_{n\inn \cup  \set{0}} (x^n)$ is a flat $A$-module.
+
+
+\end{proof}
+
 \section{Extended and Contracted Ideals}
 Unlike prime ideals, contraction of maximal ideals need not be maximal: 
 \begin{Example}{Contraction of maximal ideals need not be maximal.}{}
@@ -3919,7 +4013,7 @@ The proof of their equivalence is called the \textbf{Urysohn's lemma}.
 In this note, a \textbf{category} $\mathcal{C} $ is 
 \begin{enumerate}[label=(\roman*)]
   \item A \emph{class} $\operatorname{ob}(\mathcal{C} )$ of \textbf{objects}. 
-  \item For each two objects  $A,B \in \mathcal{C}  $, a \emph{class} $\operatorname{Hom}(A,B)$ of \textbf{morphism}. 
+  \item For each two objects  $A,B \in \mathcal{C}  $, a \emph{set} $\operatorname{Hom}(A,B)$ of \textbf{morphism}. 
   \item For every three objects $A,B,C \in \mathcal{C}$, a map 
     \begin{align*}
     \operatorname{Hom}_{\mathcal{C}}(B,C) \times \operatorname{Hom}_{\mathcal{C}}(B,A) \longrightarrow \operatorname{Hom}_{\mathcal{C} }(A,C)
@@ -3939,7 +4033,7 @@ and say $g$ is a \textbf{right inverse of} $f$ if
  \begin{align*}
 f \circ g= \id_B
 \end{align*}
-If simultaneously $g$ is both a left and right inverse of  $f$, then we say $f$ and $g$ are  \textbf{inverse to each other}, that they are both \textbf{isomorphisms}, and $A,B$ are  \textbf{isomorphic}.\\
+If simultaneously $g$ is both a left and right inverse of  $f$, then we say $f$ and $g$ are  \textbf{inverse to each other}, that they are both \textbf{isomorphisms}, and $A,B$ are  \textbf{isomorphic}. \\
 
 
 Let $\mathcal{C}$ be a category. A morphism $f: A \hookrightarrow  B$ is said to be a \textbf{monomorphism} if for all $g,h: C \rightarrow A$, we have 
@@ -3950,7 +4044,19 @@ A morphism $f: A \twoheadrightarrow   B$ is said to be an \textbf{epimorphism} i
 \begin{align*}
 g \circ f = h \circ  f \implies  g=h
 \end{align*}
-Clearly, if morphism $f: A \rightarrow B$ is a right inverse of some $g:B \rightarrow A$, then $f$ must be a monomorphism, and if $f$ is a left inverse of some $h:B \rightarrow A$, then $f$ must be an epimorphism. Let $B \in \mathcal{C}$. A \textbf{subobject of $B$} is an object $A$ together with a monomorphism  $\diota: A \hookrightarrow  B $, and a \textbf{quotient of $B$} is an object $C$ with an epimorphism $\pi  : B \twoheadrightarrow C $.
+\begin{theorem}
+\textbf{(Basic properties of morphisms)} Let $\mathcal{C}$ be a category and $f: A \rightarrow B$ be a morphism in $\mathcal{C}$. 
+\begin{enumerate}[label=(\roman*)]
+  \item If $f$ is a right inverse of some  $g:B \rightarrow A$, then $f$ is a monomorphism. 
+  \item If $f$ is a left inverse of some  $g:B \rightarrow A$, then $f$ is an epimorphism. 
+  \item Compositions of monomorphisms are monomorphisms. 
+  \item Compositions of epimorphisms are epimorphisms. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+Let $B \in \mathcal{C}$. A \textbf{subobject of $B$} is an object $A$ together with a monomorphism  $\diota: A \hookrightarrow  B $, and a \textbf{quotient of $B$} is an object $C$ with an epimorphism $\pi  : B \twoheadrightarrow C $.
 
 \section{Functors and Limits}
 Let $\mathcal{C}$ and $\mathcal{D}$ be two categories. A \textbf{covariant functor} (or simply, a \textbf{functor}) $F: \mathcal{C}\rightarrow \mathcal{D}$ is a map of objects $F: \operatorname{ob}(\mathcal{C})\rightarrow \operatorname{ob}(\mathcal{D})$ together with a map of morphisms: 
@@ -4046,60 +4152,359 @@ Lastly, the canonical morphism $\phi_i : M_i \rightarrow M$ maps elements to the
 \begin{proof}
 Routine. 
 \end{proof}
-From construction, immediately we see that direct limits have the properties:  
-\begin{theorem}
-\label{THpdl}
-\textbf{(Basic properties of direct limit)}  Let $A$ be a ring, $I$ a directed set, and $\set{M_i, \phi_{ij}}$ a directed system of $A$-modules. Then 
-\begin{enumerate}[label=(\roman*)]
-  \item Every element of $\directlimit M_i$ can be written in the form $\phi_i(x_i)$ for some $i \in I$ and $x_i \in M_i$. 
-  \item If $\phi_i(x_i)=0$, then there exists some $j\geq i$ such that $\phi_{ij}(x_i)=0$. 
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-Routine. 
-\end{proof}
 
 
 
 
 
 \section{Additive Categories}
-Let $\set{A_i}$ be a collection of objects in $\mathcal{C}$. Clearly, we can make $\set{A_i}$ a category $\mathcal{J}$ by requiring it to have only the  identity morphisms, and doing such, we have an obvious covariant functor $F:\mathcal{J}\rightarrow \mathcal{C}$, whose limit is called the  \textbf{product of $\set{A_i}$} denoted by $\prod A_i$, with canonical morphism $p_i : \prod A_i \rightarrow A_i$ called the \textbf{projection map}.\\
-
-The colimit of $F: \mathcal{J}\rightarrow \mathcal{C}$ is called the \textbf{coproduct of $\set{A_i}$} denoted by $\coprod A_i$, whose canonical morphism $A_i \rightarrow \coprod A_i$ are often called the \textbf{coprojection map}. 
+Let $A_i$ be a collection of objects in $\mathcal{C}$. Clearly, we can make it a category $\mathcal{J}$ by requiring it to have only the identity morphisms, and doing such, we have an obvious covariant functor $F:\mathcal{J}\rightarrow \mathcal{C}$. Its \emph{limit} is called the  \textbf{product of $A_i$} denoted by $\prod A_i$, with canonical morphism $p_i : \prod A_i \rightarrow A_i$ called the \textbf{projection map}, and its \emph{colimit} is called the \textbf{coproduct of $A_i$} denoted by $\coprod A_i$, whose canonical morphism $A_i \rightarrow \coprod A_i$ are often called the \textbf{coprojection map}. 
 \begin{theorem}
-\textbf{(Existence of products in familiar categories)} Product and coproduct always exists in $\mathbf{Set}$. They are respectively Cartesian product and disjoint union. Let $A$ be a ring. Product and coproduct always exists $\mathbf{Mod}_A$. They are direct product and direct sum.  
+\textbf{(Existence of products and coproduct in familiar categories)} Let $A$ be a ring. Product and coproduct always exists in $\mathbf{Set}$, in the form of Cartesian product and disjoint union. They also exists in $\mathbf{Mod}_A$, in the form of direct product and direct sum. Note that the underlying set of module direct sum in general have nothing to do with their disjoint union.  
 \end{theorem}
 \begin{proof}
 Routine. Let $u(n)_i \triangleq \psi_i (n)$.  
 \end{proof}
+An \textbf{initial object} $I \in \mathcal{C}$ is an object such that for all $A \in \mathcal{C}$, there exists exactly one morphism from $I$ to  $A$. A \textbf{terminal object} $T\in \mathcal{C}$ is an object such that for all $A\in \mathcal{C}$, there exists exactly one morphism from $A$ to  $T$. Clearly, initial objects and terminal objects, even though may not always exists, are unique up to isomorphisms. A \textbf{zero object} is an object that is both an initial and terminal object. \\ 
 
-An additive category $\mathcal{C} $ is a category whose hom-sets are abelian group with hom-functor bilinear, and 
+An \textbf{additive category} $\mathcal{C} $ is a category such that $\Hom  (A,B)$ is an abelian group (thus a set) for all $A, B \in \mathcal{C}$ that satisfies 
+\begin{align*}
+  (f_1+ f_2 )\circ g= f_1 \circ g+ f_2 \circ g \quad \text{ and }\quad f \circ (g_1 +g_2)= f \circ g_1 + f \circ g_2
+\end{align*}
+
+and 
 \begin{enumerate}[label=(\roman*)]
 \item $\mathcal{C}$ admits zero object.  
 \item $\mathcal{C}$ admits finite coproducts.  
 \end{enumerate}
-Show that additive category admits finite product, which is isomorphic to coproducts. \\
-
-equalizer, coequalizer. \\ 
-
-equalizer and coequalizer in modules and set. \\
-
-In additive category, kernel is the equalizer $\operatorname{ker}f = \operatorname{eq}(f,0)$ while the cokernel is the coequalizer $\operatorname{coker}(f)=\operatorname{coeq}(f,0)$.\\
-
-image, coimage. There case in modules and set. \\
-
-
-The induced coimage -> image is isomorphism means it is strict. 
-
-initial, terminal, zero object.\\ 
-
-\section{Abelian Category and Its Lemmas}
-An \textbf{abelian category} is an additive category in which 
+\begin{theorem}
+\textbf{(Basic properties of additive categories)} Let $\mathcal{C}$ be an additive category. Then 
 \begin{enumerate}[label=(\roman*)]
-  \item every morphism admits a kernel and a cokernel. 
+  \item Let $A$ and $B$ be a pair of objects in  $\mathcal{C}$, and $Z$ be a zero object in  $\mathcal{C}$ with  
+\begin{align*}
+A \overset{f}{\longrightarrow }   Z \overset{g}{\longrightarrow } B
+\end{align*}
+Then $g\circ f$ is the zero in the abelian group $\Hom (A,B)$.  
+  \item Let $A_1, \dots ,A_n \in \mathcal{C}$. If for each $i$ we use the universal property of coproduct to define $p_i:\coprod A_i\rightarrow A_i$ by 
+\begin{align*}
+p_i \circ \diota_j \triangleq \begin{cases}
+  \id_{A_i}& \text{ if $j=i$ }\\
+  0& \text{ if $j\neq i$ }
+\end{cases}  
+\end{align*}
+then $p_i$ satisfies the universal properties of product. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  (i): To prove that $g \circ f$ is the zero in the abelian group $\Hom (A,B)$, we only have to prove that it is idempotent, which follows from 
+\begin{align*}
+  (g \circ f)+ (g \circ f)= g \circ (f+f)= g \circ f
+\end{align*}
+(ii): The first step is to use universal property to check that $\sum \diota_i \circ p_i= \id _{\coprod A_i} $. The proof then follows from using the first step to check that given $f_i: X \rightarrow A_i$, indeed, $\sum \diota_i \circ f_i : X \rightarrow \coprod A_i $ is the unique map that makes the diagram 
+\[\begin{tikzcd}
+	& X \\
+	\\
+	& \coprod A_i \\
+	\\
+	{A_i} && 
+	\arrow[ dashed, from=1-2, to=3-2]
+	\arrow["{f_i}"', curve={height=18pt}, from=1-2, to=5-1]
+	\arrow["{p_i}"', from=3-2, to=5-1]
+\end{tikzcd}\]
+commutes. 
+\end{proof}
+I would say that (i) above is very crucial. We get $g \circ f+ h=h$ only from the requirement that $\Hom  (A,B)$ is a group and bilinearity of $\Hom $ functor.
+\section{Equalizer and Coequalizer}
+Let $A,B \in \mathcal{C}$ and $f$ and  $g$ be morphism from  $A$ to  $B$. Again, they form a category  $\mathcal{I}$: 
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJBIl0sWzIsMCwiQiJdLFswLDEsImYiLDAseyJvZmZzZXQiOi0xfV0sWzAsMSwiZyIsMix7Im9mZnNldCI6MX1dXQ==
+\[\begin{tikzcd}
+	A && B
+	\arrow["f", shift left, from=1-1, to=1-3]
+	\arrow["g"', shift right, from=1-1, to=1-3]
+\end{tikzcd}\]
+whose limit is called the \textbf{equalizer} $\operatorname{eq}(f,g)$ and whose colimit is called the \textbf{coequalizer} $\operatorname{coeq}(f,g)$. Clearly, if the equalizer exists and the canonical morphism from $\operatorname{eq}(f,g)$ to $A$ is  $h$, then we must have $f \circ h=g \circ h$, since they are both the morphism of the right hand side arrow of the commutative diagram: 
+% https://q.uiver.app/#q=WzAsMyxbMCwyLCJBIl0sWzIsMiwiQiJdLFsxLDAsIlxcYnVsbGV0Il0sWzAsMSwiZiIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCJnIiwyLHsib2Zmc2V0IjoxfV0sWzIsMCwiaCIsMl0sWzIsMV1d
+\[\begin{tikzcd}
+	& \operatorname{eq}(f,g) \\
+	\\
+	A && B
+	\arrow["h"', from=1-2, to=3-1]
+	\arrow[from=1-2, to=3-3]
+	\arrow["f", shift left, from=3-1, to=3-3]
+	\arrow["g"', shift right, from=3-1, to=3-3]
+\end{tikzcd}\]
+Similar statement holds true for coequalizer. If the canonical morphism from $B$ to $\operatorname{coeq}(f,g)$ is $k$, then the canonical morphism from $A$ to  $\operatorname{coeq}(f,g)$ is $k\circ g=k \circ f$ 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBIl0sWzIsMCwiQiJdLFsxLDIsIlxcYnVsbGV0Il0sWzAsMSwiZiIsMCx7Im9mZnNldCI6LTF9XSxbMCwxLCJnIiwyLHsib2Zmc2V0IjoxfV0sWzEsMiwiaCJdLFswLDJdXQ==
+\[\begin{tikzcd}
+	A && B \\
+	\\
+	& \operatorname{coeq}(f,g)
+	\arrow["f", shift left, from=1-1, to=1-3]
+	\arrow["g"', shift right, from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-2]
+	\arrow["k", from=1-3, to=3-2]
+\end{tikzcd}\]
+\begin{theorem}
+\label{THeac}
+\textbf{(Equalizer and coequalizer in familiar categories)} Let $R$ be a ring. In $\mathbf{Set},\mathbf{Gp},\mathbf{Ab},\mathbf{Ring}$, and $\mathbf{Mod}_R$, the equalizer of two morphisms $f,g:A \rightarrow B$ is simply 
+\begin{align*}
+\operatorname{eq}(f,g)= \set{a \in A: f(a)=g(a)}
+\end{align*}
+In $\mathbf{Gp}$, their coequalizer is the quotient 
+\begin{align*}
+\operatorname{coeq}(f,g)= B \quotient \operatorname{ncl}_B\left(\set{f(a)g(a)^{-1}\in B: a\in A}\right)
+\end{align*}
+In $\mathbf{Ring}$, their coequalizer is 
+\begin{align*}
+\operatorname{coeq}(f,g)= B \quotient \mathfrak{b}
+\end{align*}
+where $\mathfrak{b}\trianglelefteq B$ is the ideal generated by $\set{f(a)-g(a)\in B : a \in A}$. In $\mathbf{Ab}$ and $\mathbf{Mod}_R$, we don't have to take normal closure. Their coequalizer is then  
+\begin{align*}
+\operatorname{coeq}(f,g) = \operatorname{Coker}(f-g)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+\begin{theorem}
+\textbf{(Canonical morphism of equalizer is a monomorphism, and the canonical morphism of coequalizer is an epimorphism)} Let $\mathcal{C}$ be a category in which we have a diagram 
+% https://q.uiver.app/#q=WzAsMixbMCwwLCJBIl0sWzIsMCwiQiJdLFswLDEsImYiLDAseyJvZmZzZXQiOi0xfV0sWzAsMSwiZyIsMix7Im9mZnNldCI6MX1dXQ==
+\[\begin{tikzcd}
+	A && B
+	\arrow["f", shift left, from=1-1, to=1-3]
+	\arrow["g"', shift right, from=1-1, to=1-3]
+\end{tikzcd}\]
+If the equalizer $\operatorname{eq}(f,g)$ exists, then the canonical morphism $h:\operatorname{eq}(f,g) \rightarrow A$ is a monomorphism. If the coequalizer $\operatorname{coeq}(f,g)$ exists, then the canonical morphism $k :B \rightarrow \operatorname{coeq}(k)$ is an epimorphism.  
+% https://q.uiver.app/#q=WzAsNCxbMiwwLCJBIl0sWzQsMCwiQiJdLFswLDAsIlxcYnVsbGV0Il0sWzYsMCwiXFxidWxsZXQiXSxbMCwxLCJmIiwwLHsib2Zmc2V0IjotMX1dLFswLDEsImciLDIseyJvZmZzZXQiOjF9XSxbMiwwXSxbMSwzXV0=
+\[\begin{tikzcd}
+	\operatorname{eq}(f,g) && A && B && \operatorname{coeq}(f,g)
+	\arrow[hook, from=1-1, to=1-3]
+	\arrow["f", shift left, from=1-3, to=1-5]
+	\arrow["g"', shift right, from=1-3, to=1-5]
+	\arrow[two heads ,from=1-5, to=1-7]
+\end{tikzcd}\]
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+\section{Kernel and Image}
+In an additive category $\mathcal{C}$, the \textbf{kernel} and \textbf{cokernel} of a morphism $f: A \rightarrow B$ is then defined by 
+\begin{align*}
+\operatorname{ker}(f)\triangleq \operatorname{eq}(f,0)\quad \text{ and }\quad \operatorname{coker}(f)\triangleq \operatorname{coeq}(f,0)
+\end{align*}
+\begin{theorem}
+\textbf{(Kernel and cokernel in familiar categories)}  Let $R$ be a ring. Example of additive categories includes $\mathbf{Ab}$ and $\mathbf{Mod}_R$, excluding $\mathbf{Set},\mathbf{Gp}$, and $\mathbf{Ring}$. Therefore, kernel and cokernel exist in $\mathbf{Ab}$ and $\mathbf{Mod}_R$ in the usual form. 
+\end{theorem}
+\begin{proof}
+Routine. See \customref{THeac}{how we construct equalizer and coequalizer in familiar categories}. 
+\end{proof}
+Note that the notion of kernel and cokernel can be generalized to categories that are not additive, as long as the category admits \href{https://en.wikipedia.org/wiki/Zero_morphism}{zero morphism}. Therefore, even though $\mathbf{Gp}$ isn't additive due to the lack of abelian group structure on Hom-set, $\mathbf{Gp}$ still have categorical kernel. On the other hand, $\mathbf{Ring}$ isn't additive and there isn't a good way to define zero morphism in it, so $\mathbf{Ring}$ has no categorical kernel. Indeed, the "kernel" of a group homomorphism forms a group, and the "kernel" of a ring homomorphism don't always form a ring.   \\
+
+
+
+
+
+
+
+
+
+
+Let $\mathcal{C}$ be a category in which we have a diagram: 
+% https://q.uiver.app/#q=WzAsMyxbMCwyLCJBXzEiXSxbMiwyLCJBXzIiXSxbMSwwLCJCIl0sWzIsMSwiZl8yIl0sWzIsMCwiZl8xIiwyXV0=
+\[\begin{tikzcd}
+	& B \\
+	\\
+	{A_1} && {A_2}
+	\arrow["{f_1}"', from=1-2, to=3-1]
+	\arrow["{f_2}", from=1-2, to=3-3]
+\end{tikzcd}\]
+The diagram clearly forms a category $\mathcal{I}$ with an obvious covariant functor $F: \mathcal{I}\rightarrow \mathcal{C}$. The colimit of this covariant functor is then called the \textbf{fiber coproduct} $A_1 +_B A_2$  \textbf{over} $B$, or by some author, the \textbf{pushout of $A_1$ and  $A_2$ over  $B$}
+% https://q.uiver.app/#q=WzAsNCxbMCwyLCJBXzEiXSxbMiwyLCJBXzIiXSxbMSwwLCJCIl0sWzEsNCwiQV8xICtfQiBBXzIiXSxbMiwxLCJmXzIiXSxbMiwwLCJmXzEiLDJdLFswLDMsIlxcZGlvdGFfMSIsMl0sWzEsMywiXFxkaW90YV8yIl0sWzIsM11d
+\[\begin{tikzcd}
+	& B \\
+	\\
+	{A_1} && {A_2} \\
+	\\
+	& {A_1 +_B A_2}
+	\arrow["{f_1}"', from=1-2, to=3-1]
+	\arrow["{f_2}", from=1-2, to=3-3]
+	\arrow[from=1-2, to=5-2]
+	\arrow["{\diota_1}"', from=3-1, to=5-2]
+	\arrow["{\diota_2}", from=3-3, to=5-2]
+\end{tikzcd}\]
+\begin{theorem}
+\label{THeof}
+\textbf{(Existence of fiber coproduct in familiar categories)} Let $R$ be a ring. In $\mathbf{Gp}$, the fiber coproduct of $f_1: B \rightarrow A_1$ and $f_2:B \rightarrow A_2$ is 
+\begin{align*}
+A_1 +_B A_2 = A_1 * A_2 \quotient \operatorname{ncl}_{A_1 * A_2} \left( \set{f_1(b)f_2(b)^{-1}\in A_1 * A_2:b \in B} \right)
+\end{align*}
+where $A_1*A_2$ is the  \textbf{free product} defined by presentation 
+\begin{align*}
+A_1 * A_2 \triangleq  \langle S_{A_1} \cup    S_{A_2}\mid R_{A_1}\cup  R_{A_2}\rangle 
+\end{align*}
+given that 
+\begin{align*}
+A_1= \langle S_{A_1}\mid  R_{A_1}\rangle  \quad \text{ and }\quad A_2 = \langle S_{A_2}\mid  R_{A_2}\rangle 
+\end{align*}
+In $\mathbf{Ab}$ and $\mathbf{Mod}_R$, their fiber coproduct can be constructed as a quotient of their direct product    
+\begin{align*}
+A_1 +_B A_2= A_1 \times A_2 \quotient \set{(f_1(b),-f_2(b)) \in A_1 \times A_2: b \in B}
+\end{align*}
+In $\mathbf{Ring}$, their fiber coproduct is their tensor product as $B$-algebras: 
+\begin{align*}
+A_1 +_B A_2 = A_1 \otimes_B A_2
+\end{align*}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+Let $f: A \rightarrow B$ be a morphism. Suppose the fiber coproduct $B+_A B $ exists: 
+% https://q.uiver.app/#q=WzAsNCxbMCwyLCJCIl0sWzIsMiwiQiJdLFsxLDAsIkEiXSxbMSw0LCJCICtfQSBCIl0sWzIsMSwiZiJdLFsyLDAsImYiLDJdLFswLDMsIngiLDJdLFsxLDMsIngiXSxbMiwzXV0=
+\[\begin{tikzcd}
+	& A \\
+	\\
+	B && B \\
+	\\
+	& {B +_A B}
+	\arrow["f"', from=1-2, to=3-1]
+	\arrow["f", from=1-2, to=3-3]
+	\arrow[from=1-2, to=5-2]
+	\arrow["\diota_1 "', from=3-1, to=5-2]
+	\arrow["\diota_2 ", from=3-3, to=5-2]
+\end{tikzcd}\]
+Then the \textbf{image} of $f:A \rightarrow B$ is then defined to be, if exists, the equalizer  $\operatorname{eq}(\diota_1,\diota_2)$ of the two canonical morphism of the fiber coproduct 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG9wZXJhdG9ybmFtZXtlcX0oeCx4KSJdLFsyLDAsIkIiXSxbNCwwLCJCK19BIEIiXSxbMCwxLCJqIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCJ4IiwyLHsib2Zmc2V0IjoxfV0sWzEsMiwieCIsMCx7Im9mZnNldCI6LTF9XV0=
+\[\begin{tikzcd}
+	{\operatorname{eq}(\diota_1,\diota_2 )} && B && {B+_A B}
+	\arrow["j", hook, from=1-1, to=1-3]
+	\arrow["\diota_1 "', shift right, from=1-3, to=1-5]
+	\arrow["\diota_2 ", shift left, from=1-3, to=1-5]
+\end{tikzcd}\]
+which comes with a canonical monomorphism $j:\operatorname{eq}(\diota_1 , \diota_2  )\hookrightarrow  B$ and induce by universal property of equalizer a unique morphism $\ld : A \rightarrow \operatorname{eq}(\diota_1,\diota_2 )$ that makes the diagram 
+% https://q.uiver.app/#q=WzAsNSxbMiwyLCJCIl0sWzQsMiwiQiJdLFszLDAsIkEiXSxbMyw0LCJCICtfQSBCIl0sWzAsMiwieCJdLFsyLDEsImYiXSxbMiwwLCJmIiwyXSxbMCwzLCJ4IiwyXSxbMSwzLCJ4Il0sWzQsMCwiaiIsMl0sWzIsNCwiXFxsZCIsMl1d
+\[\begin{tikzcd}
+	&&& A \\
+	\\
+	\operatorname{Im}(f)\triangleq \operatorname{eq}(\diota_1,\diota_2  ) && B && B \\
+	\\
+	&&& {B +_A B}
+	\arrow[dashed,"\ld"', from=1-4, to=3-1]
+	\arrow["f"', from=1-4, to=3-3]
+	\arrow["f", from=1-4, to=3-5]
+	\arrow[hook,"j"', from=3-1, to=3-3]
+	\arrow["\diota_1 "', from=3-3, to=5-4]
+	\arrow["\diota_2 ", from=3-5, to=5-4]
+\end{tikzcd}\]
+
+\begin{theorem}
+  \textbf{(Images in familiar categories)} Let $R$ be a ring. Image exists in $\mathbf{Gp},\mathbf{Ab},\mathbf{Ring}$, and $\mathbf{Mod}_R$ in the usual form. In other word, given a homomorphism $f: A \rightarrow B$ in any of these categories, the usual image $f(A)$ together with the obvious map $f(A)\rightarrow B$ indeed satisfies the universal property of equalizer $\operatorname{eq}(\diota_1,\diota_2)\hookrightarrow B$ in which $\diota_1,\diota_2$ are the canonical morphisms of the fiber coproduct $B+_A B$, which \customref{THeof}{we have proved indeed exists}.
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+\begin{theorem}
+\label{THmeia}
+\textbf{(Monomorphisms and epimorphisms in abelian categories)} Let $f$ be a morphism in an additive category.  
+\begin{enumerate}[label=(\roman*)]
+  \item If $f$ admits kernel, then $f$ is a monomorphism if and only if $\operatorname{ker}(f)=0$. 
+  \item If $f$ admits cokernel, then $f$ is an epimorphism if and only if $\operatorname{Coker}(f)=0$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{theorem}
+\textbf{(Existence of images and coimage in abelian categories)} Let $\mathcal{C}$ be an additive category that admits both kernel and cokernel. Then for all morphism $f: A \rightarrow B$ in  $\mathcal{C}$, its image and coimage exists:
+\begin{align*}
+\operatorname{Im}(f)\cong  \operatorname{ker}(B \rightarrow \operatorname{Coker}(f))\quad \text{ and }\quad \operatorname{Coim}(f)\cong \operatorname{Coker}(\operatorname{ker}(f)\rightarrow A)
+\end{align*}
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+\section{Abelian Category and Exact Sequences}
+Let $\mathcal{C}$ be a category in which we have a diagram: 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJBXzEiXSxbMiwwLCJBXzIiXSxbMSwyLCJCIl0sWzEsMiwiZl8yIl0sWzAsMiwiZl8xIiwyXV0=
+\[\begin{tikzcd}
+	{A_1} && {A_2} \\
+	\\
+	& B
+	\arrow["{f_1}"', from=1-1, to=3-2]
+	\arrow["{f_2}", from=1-3, to=3-2]
+\end{tikzcd}\]
+Clearly, this form a category  $\mathcal{I}$ with an obvious covariant functor $F:\mathcal{I}\rightarrow \mathcal{C}$. The limit of this covariant functor is then called the \textbf{fiber product} $A_1 \times_B A_2$ \textbf{over} $B$, or by some author, the \textbf{pullback of $A_1$ and $A_2$ over  $B$}.
+% https://q.uiver.app/#q=WzAsNCxbMCwyLCJBXzEiXSxbMiwyLCJBXzIiXSxbMSw0LCJCIl0sWzEsMCwiQV8xXFx0aW1lc19CIEFfMiJdLFsxLDIsImZfMiJdLFswLDIsImZfMSIsMl0sWzMsMCwicF8xIiwyXSxbMywxLCJwXzIiXSxbMywyXV0=
+\[\begin{tikzcd}
+	& {A_1\times_B A_2} \\
+	\\
+	{A_1} && {A_2} \\
+	\\
+	& B
+	\arrow["{p_1}"', from=1-2, to=3-1]
+	\arrow["{p_2}", from=1-2, to=3-3]
+	\arrow[from=1-2, to=5-2]
+	\arrow["{f_1}"', from=3-1, to=5-2]
+	\arrow["{f_2}", from=3-3, to=5-2]
+\end{tikzcd}\]
+\begin{theorem}
+\textbf{(Existence of fiber product in familiar categories)} Let $R$ be a ring. In $\mathbf{Set},\mathbf{Gp},\mathbf{Ab},\mathbf{Ring}$, and $\mathbf{Mod}_R$, the fiber product of $f_1:A_1\rightarrow B$ and $f_2: A_2 \rightarrow B$ can be constructed as a subobject of the product $A_1 \times A_2$ by 
+\begin{align*}
+A_1 \times_B A_2 =\set{(a_1,a_2)\in A_1 \times A_2: f_1(a_1)=f_2(a_2)}
+\end{align*}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+The \textbf{coimage} of a morphism $f:A \rightarrow B$ is then defined to be the coequalizer of the two canonical morphism in the fiber product $A \times_B A$. 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJCIl0sWzIsMCwiQitfQSBCIl0sWzQsMCwiXFxidWxsZXQiXSxbMCwxLCJ4IiwyLHsib2Zmc2V0IjoxfV0sWzAsMSwieCIsMCx7Im9mZnNldCI6LTF9XSxbMSwyLCJzIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV1d
+\[\begin{tikzcd}
+	A && {A+_B A} && \operatorname{coeq}(p_1,p_2)
+	\arrow["p_1"', shift right, from=1-1, to=1-3]
+	\arrow["p_2", shift left, from=1-1, to=1-3]
+	\arrow["s", two heads, from=1-3, to=1-5]
+\end{tikzcd}\]
+which comes with a canonical epimorphism $s:A \rightarrow \operatorname{coeq}(p_1,p_2)$ for coequalizer:  
+% https://q.uiver.app/#q=WzAsNSxbMSwwLCJBXFx0aW1lc19CIEEiXSxbMCwyLCJBIl0sWzIsMiwiQSJdLFsxLDQsIkIiXSxbNCwyLCJzIl0sWzAsMSwicF8xIiwyXSxbMCwyLCJwXzIiXSxbMSwzLCJmIiwyXSxbMiwzLCJmIl0sWzIsNCwicyIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+\[\begin{tikzcd}
+	& {A\times_B A} \\
+	\\
+	A && A && \operatorname{coeq}(p_1,p_2)\triangleq \operatorname{coim}(f) \\
+	\\
+	& B
+	\arrow["{p_1}"', from=1-2, to=3-1]
+	\arrow["{p_2}", from=1-2, to=3-3]
+	\arrow["f"', from=3-1, to=5-2]
+	\arrow["s", two heads, from=3-3, to=3-5]
+	\arrow["f", from=3-3, to=5-2]
+\end{tikzcd}\]
+Let morphism $f: A \rightarrow B$ admits both image and coimage, therefore both $A \times_B A$ and $B +_A B$ exists. Because $\diota_1 \circ f = \diota_2\circ f $ by definition of fiber coproduct, there exists a unique morphism $\ld : A \rightarrow \operatorname{Im}(f)$ such that $f=\ld  \circ j$ by universal property of image 
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJBXFx0aW1lc19CIEEiXSxbMSwwLCJBIl0sWzIsMCwiQiJdLFszLDAsIkIrX0EgQiJdLFsxLDIsIlxcb3BlcmF0b3JuYW1le2NvZXF9KHBfMSxwXzIpPVxcb3BlcmF0b3JuYW1le2NvaW19KGYpIl0sWzIsMiwiXFxvcGVyYXRvcm5hbWV7ZXF9KFxcZGlvdGFfMSxcXGRpb3RhXzIpPVxcb3BlcmF0b3JuYW1le0ltfShmKSJdLFswLDEsInBfMiIsMix7Im9mZnNldCI6MX1dLFswLDEsInBfMSIsMCx7Im9mZnNldCI6LTF9XSxbMiwzLCJcXGRpb3RhXzIiLDIseyJvZmZzZXQiOjF9XSxbMiwzLCJcXGRpb3RhXzEiLDAseyJvZmZzZXQiOi0xfV0sWzEsMiwiZiJdLFsxLDQsInMiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNSwyLCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxLDUsIlxcbGQiLDIseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	{A\times_B A} & A & B & {B+_A B} \\
+	\\
+	& {\operatorname{coeq}(p_1,p_2)=\operatorname{coim}(f)} & {\operatorname{eq}(\diota_1,\diota_2)=\operatorname{Im}(f)}
+	\arrow["{p_2}"', shift right, from=1-1, to=1-2]
+	\arrow["{p_1}", shift left, from=1-1, to=1-2]
+	\arrow["f", from=1-2, to=1-3]
+	\arrow["s"', two heads, from=1-2, to=3-2]
+	\arrow["\ld"', dashed, from=1-2, to=3-3]
+	\arrow["{\diota_2}"', shift right, from=1-3, to=1-4]
+	\arrow["{\diota_1}", shift left, from=1-3, to=1-4]
+	\arrow["j"',hook, from=3-3, to=1-3]
+\end{tikzcd}\]
+Now, because by definition of fiber product we have  $f\circ p_1=f \circ p_2$, we know $j \circ \ld  \circ p_1= j \circ \ld \circ p_2$ which by monicity of $j$ implies  $\ld  \circ p_1=\ld \circ p_2$, which by universal property of fiber product implies the existence and uniqueness of some morphism $u:\operatorname{coim}(f)\rightarrow \operatorname{Im}(f)$ that makes the diagram above commutes. \\
+
+We say $f$ is \textbf{strict} if such $u$ is an isomorphism. We say an \emph{additive} category $\mathcal{C}$ is an \textbf{abelian category} if 
+\begin{enumerate}[label=(\roman*)]
+  \item every morphism admits kernel and a cokernel. 
   \item every morphism is strict.  
 \end{enumerate}
+Let $f:A \rightarrow B$ and $g: B \rightarrow C$ be morphisms in an abelian category such that $g \circ f=0$. Because $\ld =u \circ s$ and because  $u$ is an epimorphism by requirement of strictness of $f$ and, \customref{THmeia}{we know $\ld $ is also an epimorphism}. Then since 
+\begin{align*}
+ 0 \circ \ld=0=g \circ f= g \circ j \circ \ld  
+\end{align*}
+We know $g \circ j=0$. Therefore, by universal property of kernel, there exists a unique morphism $\alpha : \operatorname{Im}(f)\rightarrow \operatorname{ker}(g)$ that makes $\beta = j \circ \alpha $, where $\beta :\operatorname{ker}(g) \hookrightarrow B$ is the canonical morphism of $\operatorname{ker}(g)$. The chain \textbf{homology} is then defined by $\operatorname{Coker}(\alpha )$, and we say the sequence is exact at this point if $\operatorname{Coker}(\alpha )=0$.   
+\section{Lemmas for Abelian Categories}
 \begin{theorem}
 \label{THsl}
 \textbf{(Splitting lemma)} Let  
