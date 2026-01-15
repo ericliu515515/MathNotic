@@ -2172,21 +2172,65 @@ We then see
 \end{align*}
 \end{proof}
 \section{Direct Limits}
-From construction, immediately we see that direct limits have the properties:  
+\begin{abstract}
+This section deals with the very basic properties of direct limit, especially in $\mathbf{Ring}$ and $\mathbf{Mod}_A$. 
+\end{abstract}
 \begin{theorem}
-\label{THpdl}
-\textbf{(Basic properties of direct limit of $A$-modules)}  Let $A$ be a ring, $I$ a directed set, and $\set{M_i, \phi_{ij}}$ a directed system of $A$-modules. Then 
-\begin{enumerate}[label=(\roman*)]
-  \item Every element of $\directlimit M_i$ can be written in the form $\phi_i(x_i)$ for some $i \in I$ and $x_i \in M_i$. 
-  \item If $\phi_i(x_i)=0$, then there exists some $j\geq i$ such that $\phi_{ij}(x_i)=0$. 
-\end{enumerate}
+\textbf{(Construction of direct limit in familiar categories)} Let $A$ be a ring, $I$ a directed set, and $\set{M_i, \phi_{ij}}$ a directed system of $A$-modules. One way to construct its direct limit is to first define the underlying set as: 
+\begin{align*}
+\directlimit M_i \triangleq \bigsqcup_i M_i \quotient \sim  
+\end{align*}
+where $x_i \in M_i$ and $x_j \in M_j$ are equivalence when: 
+\begin{align*}
+x_i \sim  x_j \overset{\triangle}{\iff } \phi_{ik}(x_i)=\phi_{jk}(x_j),\quad \text{ for some }k \geq i,j
+\end{align*}
+Addition is well-defined by 
+\begin{align*}
+[x_i]+ [x_j] \triangleq [\phi_{ik}(x_i)+\phi_{jk}(x_j)],\quad \text{ for any }k \geq i,j
+\end{align*}
+while scalar multiplication is well-defined by 
+ \begin{align*}
+c[x_i]\triangleq [cx_i]
+\end{align*}
+Lastly, the canonical morphism $\phi_i : M_i \rightarrow M$ maps elements to their equivalence class. One can now check that our construction in fact also shows that direct limit exists in $\mathbf{Set},\mathbf{Gp}$, and $\mathbf{Ab}$. Moreover, in $\mathbf{Ring}$ and $\mathbf{Alg}_A$, direct limit also exists if we define vector multiplication the same way we define addition.  
 \end{theorem}
 \begin{proof}
 Routine. 
 \end{proof}
+
+
+
+\begin{theorem}
+\label{THpdl}
+\textbf{(Basic properties of direct limit)}  Let $A$ be a ring, $I$ a directed set, and $(M_i,\phi)$ a directed system of $A$-modules. Then 
+\begin{enumerate}[label=(\roman*)]
+  \item Every element of $\directlimit M_i$ can be written in the form $\phi_i(x_i)$ for some $i \in I$ and $x_i \in M_i$. 
+  \item If $\phi_i(x_i)=0$, then there exists some $j\geq i$ such that $\phi_{ij}(x_i)=0$. 
+\end{enumerate}
+Let $(A_i, \psi)$ be a directed system of ring. Then 
+\begin{enumerate}[label=(\roman*)]
+  \item $\directlimit A_i =0 \implies A_i=0$ for some $i$.  
+  \item If $A_i$ are integral domain, then  $\directlimit A_i$ is an integral domain. 
+  \item We have a natural $\Z$-module isomorphism: 
+    \begin{align*}
+    \directlimit \operatorname{Nil}(A_i)\cong   \operatorname{Nil} \left(\directlimit A_i \right), \quad \pfi _i(a_i) \mapsto \psi_i (a_i) 
+    \end{align*}
+   where the canonical morphism $\pfi$ of directed system of $\operatorname{Nil}(A_i)$ is obtained by restricting $\psi$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+The statements for $M_i$ all follow from the construction, so we only prove the statement for $A_i$.\\
+
+(i): Fix $i$. Because  $\psi_i$ maps $1_{A_i}$ to $0$, we know there exists some $j \geq i$ such that $\psi_{ij}$ maps $1_{A_i}$ to $0$. Then because ring homomorphism preserve multiplicative identity, we see $A_j=0$.\\
+
+
+(ii): Let  $\psi_i(a_i)\psi_j(a_j)=0$. Then for all $k\geq i,j$, we have $\psi_k(\psi_{ik}(a_i)\psi_{jk}(a_j))=0$. It then follows from the premise that $A_k$ is an integral domain that either $\psi_{ik}(a_i)$ or  $\psi_{jk}(a_j)$ is $0$, which implies that either  $\psi_i(a_i)=\psi_k \circ \psi_{ik}(a_i)$ or $\psi_j\circ \psi_{jk}(a_j)$ is $0$. \\
+
+(iii): The reason we may restrict $\psi$ follows from the obvious fact that ring homomorphisms preserve nilpotents. The proposed homomorphism is clearly well-defined and have image lying inside $\operatorname{Nil}\left(\directlimit A_i \right)$. To see $\operatorname{Nil}\left(\directlimit A_i \right)\leq \directlimit \operatorname{Nil}(A_i)$, just observe that if $\psi_i(a_i)^n=0$, then $\psi_i(a_i^n)=0$, and therefore for some $j\geq i$, we have $\psi_{ij}(a_i)^n=0$, which implies $\psi_{ij}(a_i)\in \operatorname{Nil}(A_j)$, and therefore $\psi_i(a_i)$ is the image of $\pfi _{ij}(a_i)\in \operatorname{Nil}(A_j)$. 
+\end{proof}
 \begin{theorem}
 \label{THdls}
-\textbf{(Direct limit of submodules)} Let $M_i$ be a collection of submodules indexed by $I$. If for all  $i,j\in I$ there exists some $k \in I$ that makes  
+\textbf{(Sum of modules is a direct limits)} Let $M_i$ be a collection of submodules indexed by $I$. If for all  $i,j\in I$ there exists some $k \in I$ that makes  
 \begin{align*}
 M_i + M_j \leq M_k
 \end{align*}
@@ -2201,42 +2245,24 @@ Routine.
 \end{proof}
 
 
-Let $I$ be a directed set. Consider the category $\operatorname{Func}(I,\mathbf{Mod}_A)$ of directed system of $A$-modules over  $I$, whose homomorphisms are the natural transformations, thus a family of module homomorphism $M_i \rightarrow N_i$. One can check that this category $\operatorname{Func}(I,\mathbf{Mod}_A)$ is abelian, and more importantly 
+\begin{equiv_def}
+\textbf{(Properties of functor categories whose source is small and target is abelian)} Let $\mathcal{C}$ be a small category and $\mathcal{D}$ be an abelian category. Then the category $\operatorname{Func}(\mathcal{C},\mathcal{D})$ is abelian, whose image, kernels, and cokernels can be constructed component wise. Therefore, a sequence in $\operatorname{Func}(\mathcal{C},\mathcal{D})$ is exact if and only if it is exact component wise.
+\end{equiv_def}
+\begin{proof}
+Routine. (Categorical)  
+\end{proof}
+Let $A$ be a ring and $I$ be a directed set. Then we can define a covariant functor $D: \operatorname{Func}(I,\mathbf{Mod}_A)\rightarrow \mathbf{Mod}_A$ by 
+\begin{align*}
+D\left(M_i, \mu \right) \triangleq \directlimit M_i \quad \text{ and }\quad D(\Phi)\triangleq \phi
+\end{align*}
+where $\phi:\directlimit M_i \rightarrow \left(\directlimit N_i,\nu   \right)$ is the unique $A$-module homomorphism such that $\phi \circ \mu _i = \nu _i \circ \phi_i$.  
 \begin{equiv_def}
 \label{EDsm}
-\textbf{(Sheaf morphism is exact if and only if exact componentwise if and only if exact at stalks)}   Let $I$ be a directed set and  $(M_i,\mu),(N_i,\nu ),(P_i,\ld )\in \operatorname{Func}(I,\mathbf{Mod}_A)$ two directed system. Consider two morphism 
-\begin{align}
-\label{EQMi}
-  (M_i,\nu ) \overset{\Phi}{\longrightarrow } (N_i,\nu ) \overset{\Psi}{\longrightarrow }(P_1,\ld )
-\end{align}
-where the natural transformations are 
-\begin{align}
-\label{EQmi}
-M_i \overset{\phi_i}{\longrightarrow }N_i \overset{\psi_i}{\longrightarrow }P_i
-\end{align}
-and the induced $A$-module morphisms are 
-\begin{align}
-\label{EQmI}
-\directlimit M_i \overset{\phi}{\longrightarrow } \directlimit N_i \overset{\psi}{\longrightarrow } \directlimit P_i
-\end{align}
-then the followings statements are equivalent 
-\begin{enumerate}[label=(\roman*)]
-  \item \myref{Sequence}{EQMi} is exact. 
-  \item \myref{Sequence}{EQmi} is exact for all $i$.  
-  \item \myref{Sequence}{EQmI} is exact.   
-\end{enumerate}
+\textbf{(Direct limit is an exact functor)} Let $A$ be a ring and $I$ be a directed set. The covariant functor $\directlimit : \operatorname{Func}(I, \mathbf{Mod}_A)\rightarrow \mathbf{Mod}_A$ is exact. 
 \end{equiv_def}
 \begin{proof}
 Routine. 
 \end{proof}
-Let $(A_i,\phi )$ be a directed system of rings. Then it is a directed system of  $\Z$-modules. We can then make the $\Z$-module $\directlimit A_i$ a ring by giving it multiplication 
-\begin{align*}
-\phi_i (a_i) \cdot \phi_j(a_j) \triangleq \phi_k(\phi_{ik}(a_i)\phi_{jk}(a_j)),\quad \text{ for some }k \geq i,j
-\end{align*}
-Then we see $\directlimit A_i=0 \implies A_i=0$ for some $i$? The same direct system clearly restrict to direct system $(\operatorname{Nil}(A_i), \phi)$ of $\Z$-modules. Clearly, we then have $\directlimit \operatorname{Nil}(A_i)\leq \operatorname{Nil}\left(\directlimit A_i \right)$. The converse also holds, since if $\phi_i (a_i)^n=0$, then $\phi_i (a_i^n)=0$, and therefore for some $j\geq i$, we have $\phi_{ij}(a_i^n)=0$, which implies $\phi_{ij}(a_i) \in \operatorname{Nil}(A_i)$, where $\phi_{i}(a_i)=\phi_j \circ \phi_{ij}(a_i)$.  \\
-
-This also implies that direct limit of integral domains are integral domains.  
-
 
 
 
@@ -2674,114 +2700,6 @@ By \customref{THsNl}{second version of Nakayama lemma}, it suffices to show $\ma
 
 (ii): The proof follows from \customref{THtNl}{third version of Nakayama lemma} and the observation that $M=u(N)+ \mathfrak{a}M$.  
 \end{proof}
-\section{Exact Sequence of Modules}
-Let $M,N$ be two  $A$-modules. The hom-space $\operatorname{Hom}(M,N)$ has a natural $A$-module structure. Let $P$ be an $A$-module. Clearly, we have a \emph{covariant} functor $\Hom (P,-):\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A$ defined by: 
-\begin{align*}
-M \rightarrow \Hom (P,M)\quad \text{ and }\quad F(f)(g)\triangleq f \circ g
-\end{align*}
-and a \emph{contravariant} functor   $\Hom (-,P):\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A$ defined by:  
-\begin{align*}
-M \rightarrow \Hom (M,P)\quad \text{ and }\quad G(f)(g)\triangleq  g\circ f 
-\end{align*}
-We always have the natural isomorphism
-\begin{align*}
-\operatorname{Hom}(A,M)\cong  M\quad \text{ and }\quad f \mapsto f(1)  
-\end{align*}
-\begin{theorem}
-\label{THhomp}
-\textbf{(Both $\Hom (-,P)$ and $\Hom  (P,-)$ are left-exact)} Let $A$ be a ring, and denote the contravariant functor $\Hom (-,P)$ by $G$ and the covariant functor  $\Hom  (P,-)$ by $F$. Then 
-\begin{enumerate}[label=(\roman*)]
-   \item The sequence: 
-\begin{align*}
-M' \overset{u}{\longrightarrow } M \overset{v}{\longtwoheadrightarrow  } M'' \longrightarrow 0
-\end{align*}
-is exact $\iff $ For all $A$-module  $P$, the sequence: 
-\begin{align*}
-0 \longrightarrow \Hom (M'',P) \overset{G(v)}{\longhookrightarrow  } \Hom  (M,P) \overset{G(u)}{\longrightarrow } \Hom (M',P) 
-\end{align*}
-is exact.  
-\item The sequence: 
-\begin{align*}
-0\longhookrightarrow  N' \overset{u}{\longrightarrow } N \overset{v}{\longrightarrow } N'' 
-\end{align*}
-is exact $\iff $ For all $A$-module $P$, the sequence: 
-\begin{align*}
-0 \longrightarrow \Hom (P,N') \overset{F(u)}{\longrightarrow } \Hom  (P,N) \overset{F(v)}{\longtwoheadrightarrow  } \Hom (P,N'') 
-\end{align*}
-is exact. 
-\end{enumerate}
-In particular, for all $A$-module  $P$, both the covariant functor $\Hom  (P,-)$ and the contravariant functor  $\Hom  (-,P)$ are \textbf{left-exact}.   
-\end{theorem}
-\begin{proof}
-Since the proof for (i) and (ii) are similar, we only prove (i). We first prove ($\implies $), which requires to prove three statements: 
-\begin{align*}
-F(u)\circ F(v)=0\quad \text{ and }\quad F(v)\text{ is injective }\quad \text{ and }\quad \operatorname{ker}(F(u))\leq \operatorname{Im}(F(v))
-\end{align*}
-The first statement is clear
-\begin{align*}
-F(u) \circ F(v)= F(v \circ u)=F(0)=0
-\end{align*}
-To prove the second statement, let $g \in \Hom (M'',P)$ satisfies $F(v)(g)=0$, and we are required to prove that $g=0$, which follows from surjectivity of $v$ and the premise: 
-\begin{align*}
-g\circ v = F(v)(g)=0 
-\end{align*}
-To prove the third statement, let $f\in \operatorname{ker}(F(u))$, and we are required to show that  $f=F(v)(g)$ for some $g \in \Hom (M'',P)$. Now, since the premise stated that 
-\begin{align*}
-f\circ u= F(u)(f)=0
-\end{align*}
-we know 
-\begin{align*}
-\operatorname{ker}(f) \leq \operatorname{Im}(u)\leq \operatorname{ker}(v)
-\end{align*}
-Therefore, we have an induced map $g\triangleq \tilde{f} \in \Hom (M'',P)$: 
-\[\begin{tikzcd}
-	M && {M'' } \\
-	\\
-	&& P 
-	\arrow["v",two heads, from=1-1, to=1-3]
-	\arrow["f"', from=1-1, to=3-3]
-	\arrow["\tilde{f} ", dashed,from=1-3, to=3-3]
-\end{tikzcd}\]
-which clearly suffices. We now prove ($\impliedby$), which requires us to prove three statements: 
-\begin{align*}
-v \circ u=0 \quad \text{ and }\quad v\text{ is surjective }\quad \text{ and }\quad \operatorname{ker}(v)\leq \operatorname{Im}(u)
-\end{align*}
-The first statement follows from setting $P \triangleq M''$ and consideration of  $\id_{M''}\in \Hom (M'',P)$. The second statement requires us to show $\pi  : M'' \twoheadrightarrow  M'' \quotient \operatorname{Im}(v)$ is $0$, which follows from setting $P\triangleq M'' \quotient \operatorname{Im}(v)$  
-\begin{align*}
-\Hom (M'', M '' \quotient \operatorname{Im}(v)) \overset{F(v)}{\longhookrightarrow } \Hom  (M, M'' \quotient \operatorname{Im}(v))
-\end{align*}
-and the consideration  
- \begin{align*}
- F(v) (\pi )=  \pi  \circ v = 0 \implies  \pi  =0 
-\end{align*}
-Let $p : M \twoheadrightarrow M \quotient \operatorname{Im}(u)$ be the canonical projection. Because $\operatorname{ker}(p )=\operatorname{Im}(u)$, the third statement requires us to show $\operatorname{ker}(v)\leq \operatorname{ker}(p )$. Put $P \triangleq M \quotient \operatorname{Im}(u)$. Because we clearly have $p \in \operatorname{ker}(F(u))=\operatorname{Im}(F(v))$, we know $p= \psi \circ v$ for some $\psi \in \Hom (M'',M \quotient \operatorname{Im}(u))$, which implies $\operatorname{ker}(v)\leq \operatorname{ker}(p)$, as desired. 
-\end{proof}
-Let $\mathcal{C}$ be a class of $A$-modules. A function $\ld :\mathcal{C}\rightarrow \Z$ is said to be \textbf{additive} if for all short exact sequence 
-\begin{align*}
-0 \longrightarrow M' \longhookrightarrow M \longtwoheadrightarrow M'' \longrightarrow 0
-\end{align*}
-in $\mathcal{C}$, the function $\ld$ satisfies 
-\begin{align*}
-\ld (M')- \ld  (M) + \ld (M'')=0 \quad \text{ and }\quad \ld (0)=0 
-\end{align*}
-\begin{theorem}
-\textbf{(Additive functions on long exact sequences)} Let $\mathcal{C}$ be a class of $A$-modules and 
- \begin{align*}
-0\longrightarrow M_0 \longrightarrow M_1 \longrightarrow \cdots \longrightarrow M_n  \longrightarrow 0
-\end{align*}
-be a exact sequence such that all terms, including the kernels, are in $\mathcal{C}$. Then for any additive function $\ld: \mathcal{C}\rightarrow \Z$, we have 
-\begin{align*}
-\sum_{i=0}^n (-1)^i \ld (M_i)=0 
-\end{align*}
-\end{theorem}
-\begin{proof}
-Let $N_i \leq M_i$ be the kernels. Then the proof follows from noting that for all $0\leq i\leq n$, we have a short exact sequence 
-\begin{align*}
-0 \longrightarrow N_i \longhookrightarrow M_i \longtwoheadrightarrow N_{i+1} \longrightarrow 0
-\end{align*}
-\end{proof}
-
-
 
 \section{Tensor Products}
 Given a \emph{finite} collection $M_1,\dots ,M_n$ of $A$-modules, their \textbf{tensor product} is an $A$-module $M_1 \otimes  \cdots \otimes  M_n$ together with a multilinear map $\otimes :M_1 \times \cdots \times M_n \rightarrow M_1 \otimes  \cdots \otimes  M_n$ that satisfies the \textbf{universal property for tensor product}: For each multilinear map $f:M _1 \times \cdots \times M_n \rightarrow P$, there exists an unique module homomorphism $\tilde{f}: M_1 \otimes  \cdots \otimes  M_n \rightarrow P$ such that the diagram 
@@ -2963,11 +2881,18 @@ Then the natural directed system of $M_i \otimes  N_j$ over $\mathcal{P}\times \
 \begin{align*}
  \directlimit_{\mathcal{P}\times \mathcal{Q}}\left( M_i \otimes  N_j \right)  \cong  \directlimit_{\mathcal{P} } \left( M_i \right) \otimes  \directlimit_{\mathcal{Q} } \left(N_j   \right),\quad \ld_{(i,j)}(m_i \otimes  n_j )\mapsto \phi_i(m_i) \otimes  \psi_j (n_j)
 \end{align*}
-
+\item Let $M[x]$ denote the formal abelian group of expression of the form 
+  \begin{align*}
+  m_0 + m_1 x + \cdots + m_rx^r,\quad \text{ where }m_i \in M
+  \end{align*}
+Then we can give $M[x]$ a natural $A[x]$-module structure, and it has a natural $A[x]$-module isomorphism 
+\begin{align*}
+M[x]\cong  A[x]\otimes _A M ,\quad \sum m_i x^i \mapsto \sum x^i \otimes_A m_i
+\end{align*}
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-(i), (iii),(iv), and (vi) are routine. (ii) is essentially a corollary of (i). In short, because \customref{THbpt}{tensor product is right exact}, tensoring the exact sequence  
+(i), (iii), (iv), (vi), and (vii) are routine. (ii) is essentially a corollary of (i). In short, because \customref{THbpt}{tensor product is right exact}, tensoring the exact sequence  
 \begin{align*}
  \mathfrak{a} \overset{\diota }{\longhookrightarrow } A \overset{\pi }{\longtwoheadrightarrow } A \quotient \mathfrak{a} \longrightarrow 0
 \end{align*}
@@ -3000,7 +2925,6 @@ Let $M_i$ and $N_j$ be the directed system of finitely generated submodules of $
 \end{align*}
 Let $M' \leq M$ and $N'\leq N$ be the submodules generated by $x_i$ and  $y_i$. Clearly, the isomorphism maps $\sum x_i \otimes  y_i \in M' \otimes N'$ to $0 \in M \otimes  N$ (from the right hand side to left). The proof then follows from the fact that  \customref{THpdl}{if something in a direct limit is zero then at a fixed stage it is already zero}. 
 \end{proof}
-
 \section{Extension of Scalars}
 Let $N$ be an $A$-module. If we say $N$ is an  $(A,B)$\textbf{-bimodule} we mean that the abelian group $N$ has a $B$-module structure compatible with its $A$-module structure in the sense that 
  \begin{align*}
@@ -3178,20 +3102,72 @@ Clearly, $f$ maps $M_0'$ into  $M_0$, so we have the restriction maps $f|_{M'_0}
    \item Let $M_i$ be a  \emph{possibly infinite} collection of $A$-modules. Then  
 \begin{align*}
 \bigoplus M_i\text{ is flat }\iff  \text{ All }M_i\text{ are flat }
-\end{align*}
-   \item $A[x]$ is a flat $A$-algebra.  
+\end{align*} 
+\item $A$ is a flat  $A$-module. 
+   \item $A[x]$ is a flat $A$-module.  
    \item If  $M$ and $N$ are both flat  $A$-modules, then  $M\otimes  N$ is also flat. 
-   \item If $B$  is a flat $A$-algebra and  $N$ is a flat  $B$-module, then  $N$ is flat as an  $A$-module. 
+   \item If $B$  is a flat $A$-algebra and  $N$ is a flat  $B$-module, then  $N$ is flat as an  $A$-module.  
+   \item 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-  (i): The proof from right to left is relatively simple. Just note that if one of $M_i$ is flat. Then clearly  $f \otimes  \id_{\bigoplus M_i}$ is not injective. The proof from left to right is much more lengthy. Recall that we have the identity 
-  \begin{align*}
-  N \otimes  \bigoplus_I M_i  \cong  \directlimit_{J \subseteq I} \bigoplus_{J} N \otimes  M_i
-  \end{align*}
-If all $f \otimes \id_{M_i}$ are injective, then clearly all $\bigoplus f\otimes  \id $ is injective. \customref{EDsm}{Passing to direct limit}, we see $f \otimes  \id_{\bigoplus M_i}=\bigoplus f \otimes  \id $ is injective.  \\
+  (i): Let $f:N' \hookrightarrow  N$ be an injective $A$-module homomorphism. The proof from left to right is relatively simple. Just note that if one of $M_i$ isn't flat, then clearly  $f \otimes  \id_{\bigoplus M_i}$ isn't injective. We now prove from right to left. By universal property, there exists some $A$-module homomorphisms $\bigoplus  f \otimes \id_{M_i}: \bigoplus (N' \otimes  M_i)\rightarrow \bigoplus (N \otimes  M_i) $  that maps $n' \otimes  m_i$ to $f(n')\otimes  m_i$. Clearly, injectivity of $f \otimes  \id_{M_i}$ implies injectivity of $\bigoplus f \otimes  \id _{M_i}$. This then implies the injectivity of $f \otimes  \id_{\bigoplus  M_i}$ using the fact that it factors thorough  $\bigoplus  f \otimes  \id_{M_i}$ :
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJOJyBcXG90aW1lcyBcXGJpZ29wbHVzIE1faSJdLFswLDIsIlxcYmlnb3BsdXMgTidcXG90aW1lcyBNX2kiXSxbMiwwLCJOXFxvdGltZXMgXFxiaWdvcGx1cyBNX2kiXSxbMiwyLCJcXGJpZ29wbHVzIE5cXG90aW1lcyBNX2kiXSxbMCwyLCJmXFxvdGltZXMgXFxpZF97XFxiaWdvcGx1cyBNX2l9Il0sWzAsMV0sWzMsMl0sWzEsMywiXFxiaWdvcGx1cyAoZlxcb3RpbWVzIFxcaWRfe01faX0pICIsMl1d
+\[\begin{tikzcd}
+	{N' \otimes \bigoplus M_i} && {N\otimes \bigoplus M_i} \\
+	\\
+	{\bigoplus N'\otimes M_i} && {\bigoplus N\otimes M_i}
+	\arrow["{f\otimes \id_{\bigoplus M_i}}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-1]
+	\arrow["{\bigoplus (f\otimes \id_{M_i}) }"', from=3-1, to=3-3]
+	\arrow[from=3-3, to=1-3]
+\end{tikzcd}\]
+where the columns are the \customref{THidt}{natural isomorphisms}.\\
+ 
+(ii): Let  $f:N' \hookrightarrow N$ be an injective $A$-module homomorphism. The injectivity of  $f \otimes 1 : N' \otimes  A \rightarrow N \otimes  A$ then follows from the fact that it factors through $f$ 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJOJyBcXHRpbWVzIEEiXSxbMCwyLCJOJyJdLFsyLDAsIk5cXG90aW1lcyBBIl0sWzIsMiwiTiJdLFswLDIsImYgXFxvdGltZXMgMSJdLFswLDFdLFszLDJdLFsxLDMsImYiLDJdXQ==
+\[\begin{tikzcd}
+	{N' \otimes A} && {N\otimes A} \\
+	\\
+	{N'} && N
+	\arrow["{f \otimes 1}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-1]
+	\arrow["f"', from=3-1, to=3-3]
+	\arrow[from=3-3, to=1-3]
+\end{tikzcd}\]
+where the columns are the \customref{THidt}{natural isomorphisms}.\\
 
-(ii): This follows from the observation the natural isomorphism $A \otimes  M \cong  M$ so that $A$ is a flat  $A$-module and a therefore by  (i), $A[x]\cong \bigoplus_{n\inn \cup  \set{0}} (x^n)$ is a flat $A$-module.
+(iii): This is a corollary of (i) and (ii), since  $A[x]\cong \bigoplus _{i \geq 0} M_i$, where $M_i$ is the sub  $A$-module generated by  $x^i$, which is isomorphic to  $A$ as $A$-modules. \\
+
+(iv): Let $f: N'\rightarrow N''$ be an injective $A$-module homomorphism. The injectivity of  $f \otimes  \id_{M \otimes  N}$ follows from the fact that if factor through the injective homomorphism $(f\otimes  \id_M)\otimes  \id _N$ : 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJOJ1xcb3RpbWVzIChNXFxvdGltZXMgTikiXSxbMCwyLCIoTidcXG90aW1lcyBNKVxcb3RpbWVzIE4iXSxbMiwwLCJOJydcXG90aW1lcyAoTVxcb3RpbWVzIE4pIl0sWzIsMiwiKE4nJ1xcb3RpbWVzIE0pXFxvdGltZXMgTiJdLFswLDIsImZcXG90aW1lcyBcXGlkX3tNXFxvdGltZXMgTn0iXSxbMCwxXSxbMywyXSxbMSwzLCIoZlxcb3RpbWVzIFxcaWRfTSlcXG90aW1lcyBcXGlkX04iLDJdXQ==
+\[\begin{tikzcd}
+	{N'\otimes (M\otimes N)} && {N''\otimes (M\otimes N)} \\
+	\\
+	{(N'\otimes M)\otimes N} && {(N''\otimes M)\otimes N}
+	\arrow["{f\otimes \id_{M\otimes N}}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-1]
+	\arrow["{(f\otimes \id_M)\otimes \id_N}"', from=3-1, to=3-3]
+	\arrow[from=3-3, to=1-3]
+\end{tikzcd}\]
+where the columns are the \customref{THidt}{natural isomorphisms}.\\
+
+(v): Let $f: M' \hookrightarrow  M$ be an injective $A$-module homomorphism. Clearly, $f \otimes  \id _B : M' \otimes_A B \rightarrow M \otimes _A B$ is an $B$-module homomorphism. Therefore, we have a $B$-module homomorphism $(f \otimes  \id _B) \otimes  \id _N :(M' \otimes_A B)\otimes _B N \rightarrow (M\otimes _A B)\otimes  _B N$, which is injective by premise. The injectivity of $f\otimes  \id _N: M' \otimes_A N \rightarrow M\otimes _A N$ then follows from the fact that it, as a set map, factors through: 
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJNJ1xcb3RpbWVzX0EgTiJdLFswLDIsIk0nXFxvdGltZXNfQSAoQlxcb3RpbWVzIF9CIE4pIl0sWzIsMCwiTVxcb3RpbWVzX0EgTiJdLFsyLDIsIk1cXG90aW1lc19BKEJcXG90aW1lcyBfQiBOKSJdLFswLDQsIihNJ1xcb3RpbWVzIF9BIEIpXFxvdGltZXNfQiBOIl0sWzIsNCwiKE1cXG90aW1lc19BIEIpXFxvdGltZXMgX0IgTiJdLFswLDIsImZcXG90aW1lcyBcXGlkX3tOfSJdLFswLDFdLFszLDJdLFsxLDMsImZcXG90aW1lcyBcXGlkX3tCXFxvdGltZXNfQiBOfSJdLFsxLDRdLFs1LDNdLFs0LDUsIihmXFxvdGltZXMgXFxpZF9CKVxcb3RpbWVzIFxcaWRfTiIsMl1d
+\[\begin{tikzcd}
+	{M'\otimes_A N} && {M\otimes_A N} \\
+	\\
+	{M'\otimes_A (B\otimes _B N)} && {M\otimes_A(B\otimes _B N)} \\
+	\\
+	{(M'\otimes _A B)\otimes_B N} && {(M\otimes_A B)\otimes _B N}
+	\arrow["{f\otimes \id_{N}}", from=1-1, to=1-3]
+	\arrow[from=1-1, to=3-1]
+	\arrow["{f\otimes \id_{B\otimes_B N}}", from=3-1, to=3-3]
+	\arrow[from=3-1, to=5-1]
+	\arrow[from=3-3, to=1-3]
+	\arrow["{(f\otimes \id_B)\otimes \id_N}"', from=5-1, to=5-3]
+	\arrow[from=5-3, to=3-3]
+\end{tikzcd}\]
 
 
 \end{proof}
@@ -4009,8 +3985,21 @@ The proof of their equivalence is called the \textbf{Urysohn's lemma}.
 \href{https://math.stackexchange.com/questions/1329866/compact-hausdorff-spaces-are-normal}{See this proof on MSE}. 
 \end{proof}
 \chapter{Homological Algebra}
-\section{Category}
-In this note, a \textbf{category} $\mathcal{C} $ is 
+\section{General Categories}
+% \begin{abstract}
+%   For obvious reason, an \emph{intrinsic} treatment of homological algebra must be fully categorical in the sense that one has no need to ever mention any specific category in their path to a definition of \textbf{abelian categories} or even to a definition of \textbf{derived functors}. \\ 
+%
+% Such treatment is more or less undesirable. In practice, most of us care about only a very few categories, which makes the effort needed to verify that their statements for a specific category or functor really can be translated back into the purely categorical statement very painful. \\
+%
+% For example, to avoid such pain, Hartshorne defines a sequence of sheaves to be exact if and only if the sequence is exact on every open set. Obviously, this is not the "word-to-word" definition of exact sequence in general abelian categories, and there is a moderately long path to translate his definition to the definition in general abelian categories, which, when accumulated with other similar situations, is an effort not all of us need to go through.  \\
+%
+%   Therefore, here we take the approach of starting things rigorously and intrinsic until ?, in which we break the rigor and allow the reader to \emph{interpret the statement however they need}. The justification is, not every one need every construction, and even if they do, not every of them wishes to see a proof, and, more importantly, even if they do, \emph{our stated theorem offers a path for them to come up with a proof} with enough patient spent.  \\
+%
+%
+%   Note that in general we don't care about set-theoretic concerns. Jan 13 2026, Eric Liu. 
+% \end{abstract}
+
+In this note, a \textbf{category} $\mathcal{C}$ is 
 \begin{enumerate}[label=(\roman*)]
   \item A \emph{class} $\operatorname{ob}(\mathcal{C} )$ of \textbf{objects}. 
   \item For each two objects  $A,B \in \mathcal{C}  $, a \emph{set} $\operatorname{Hom}(A,B)$ of \textbf{morphism}. 
@@ -4018,25 +4007,22 @@ In this note, a \textbf{category} $\mathcal{C} $ is
     \begin{align*}
     \operatorname{Hom}_{\mathcal{C}}(B,C) \times \operatorname{Hom}_{\mathcal{C}}(B,A) \longrightarrow \operatorname{Hom}_{\mathcal{C} }(A,C)
     \end{align*}
-    called the \textbf{composition}, 
+    called the \textbf{composition}. 
 \end{enumerate}
 that satisfies two conditions:  
 \begin{enumerate}[label=(\roman*)]
-  \item For all $A \in \mathcal{C}$, there exists an \textbf{identity morphism} $\id_A \in \operatorname{End}(A)$ that makes $f=f \circ \id_A$ and $g=\id_A \circ g$ for all $f: A \rightarrow B$ and $g:B \rightarrow C$. \textbf{(Identity)}
+  \item For all $A \in \mathcal{C}$, there exists an \textbf{identity morphism} $1_A \in \operatorname{End}(A)$ that makes $f=f \circ 1_A$ and $g=1_B \circ g$ for all $f: A \rightarrow B$ and $g:B \rightarrow C$. \textbf{(Identity)}
   \item $(f \circ g)\circ h=f\circ (g \circ h)$ \textbf{(Associativity)}
 \end{enumerate}
 Let $\mathcal{C}$ be a category and $f: A \rightarrow B$ and $g: B \rightarrow A$ be two morphisms in $\mathcal{C}$. We say $g$ is a  \textbf{left inverse of} $f$ if 
 \begin{align*}
-g \circ f = \id _A
+g \circ f = 1 _A
 \end{align*}
 and say $g$ is a \textbf{right inverse of} $f$ if 
  \begin{align*}
-f \circ g= \id_B
+f \circ g= 1_B
 \end{align*}
-If simultaneously $g$ is both a left and right inverse of  $f$, then we say $f$ and $g$ are  \textbf{inverse to each other}, that they are both \textbf{isomorphisms}, and $A,B$ are  \textbf{isomorphic}. \\
-
-
-Let $\mathcal{C}$ be a category. A morphism $f: A \hookrightarrow  B$ is said to be a \textbf{monomorphism} if for all $g,h: C \rightarrow A$, we have 
+If simultaneously $g$ is both a left and right inverse of  $f$, then we say $f$ and $g$ are  \textbf{inverse to each other}, that they are both \textbf{isomorphisms}, and $A,B$ are  \textbf{isomorphic}. Let $\mathcal{C}$ be a category. A morphism $f: A \hookrightarrow  B$ is said to be a \textbf{monomorphism} if for all $g,h: C \rightarrow A$, we have 
 \begin{align*}
 f \circ g = f \circ h \implies g=h
 \end{align*}
@@ -4045,7 +4031,8 @@ A morphism $f: A \twoheadrightarrow   B$ is said to be an \textbf{epimorphism} i
 g \circ f = h \circ  f \implies  g=h
 \end{align*}
 \begin{theorem}
-\textbf{(Basic properties of morphisms)} Let $\mathcal{C}$ be a category and $f: A \rightarrow B$ be a morphism in $\mathcal{C}$. 
+\label{THbpom}
+\textbf{(Basic properties of morphisms)} Let $\mathcal{C}$ be a category and $f: A \rightarrow B$ be a morphism in $\mathcal{C}$. Then 
 \begin{enumerate}[label=(\roman*)]
   \item If $f$ is a right inverse of some  $g:B \rightarrow A$, then $f$ is a monomorphism. 
   \item If $f$ is a left inverse of some  $g:B \rightarrow A$, then $f$ is an epimorphism. 
@@ -4056,16 +4043,15 @@ g \circ f = h \circ  f \implies  g=h
 \begin{proof}
 Routine. 
 \end{proof}
-Let $B \in \mathcal{C}$. A \textbf{subobject of $B$} is an object $A$ together with a monomorphism  $\diota: A \hookrightarrow  B $, and a \textbf{quotient of $B$} is an object $C$ with an epimorphism $\pi  : B \twoheadrightarrow C $.
+Let $B \in \mathcal{C}$. A \textbf{subobject of $B$} is an object $A$ together with a monomorphism  $\diota: A \hookrightarrow  B $, and a \textbf{quotient of $B$} is an object $C$ with an epimorphism $\pi  : B \twoheadrightarrow C $. An \textbf{initial object} $I \in \mathcal{C}$ is an object such that for all $A \in \mathcal{C}$, there exists exactly one morphism from $I$ to  $A$. A \textbf{terminal object} $T\in \mathcal{C}$ is an object such that for all $A\in \mathcal{C}$, there exists exactly one morphism from $A$ to  $T$. Clearly, initial objects and terminal objects, even though may not always exists, are unique up to isomorphisms. A \textbf{zero object} is an object that is both an initial and terminal object. \\ 
 
-\section{Functors and Limits}
 Let $\mathcal{C}$ and $\mathcal{D}$ be two categories. A \textbf{covariant functor} (or simply, a \textbf{functor}) $F: \mathcal{C}\rightarrow \mathcal{D}$ is a map of objects $F: \operatorname{ob}(\mathcal{C})\rightarrow \operatorname{ob}(\mathcal{D})$ together with a map of morphisms: 
 \begin{align*}
 F: \operatorname{Hom}_{\mathcal{C} }(A,B) \longrightarrow \operatorname{Hom}_{\mathcal{D}} (F(A),F(B))
 \end{align*}
 that satisfies  
 \begin{align*}
-F(\id _A)=\id_{F(A)}\quad \text{ and }\quad F(g\circ h)= F(g)\circ F(h)
+F(1 _A)=1_{F(A)}\quad \text{ and }\quad F(g\circ h)= F(g)\circ F(h)
 \end{align*}
 Let $\mathcal{X}$ be an arbitrary category and $F:\mathcal{X} \rightarrow \mathcal{C}$ a covariant functor. A \textbf{cone to $F$}  is an object $N\in \mathcal{C}$ together with a family of morphisms $\psi_X:N \rightarrow F(X)$ indexed by $\mathcal{X}$ such that for all $f: X \rightarrow Y$, the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMSwwLCJOIl0sWzAsMiwiRihYKSJdLFsyLDIsIkYoWSkiXSxbMCwxLCJcXHBzaV9YIiwyXSxbMCwyLCJcXHBzaV9ZIl0sWzEsMiwiRihmKSJdXQ==
@@ -4077,7 +4063,7 @@ Let $\mathcal{X}$ be an arbitrary category and $F:\mathcal{X} \rightarrow \mathc
 	\arrow["{\psi_Y}", from=1-2, to=3-3]
 	\arrow["{F(f)}", from=3-1, to=3-3]
 \end{tikzcd}\]
-commutes. A cone $(\lim F,\pfi )$ to $F$ is said to satisfy the \textbf{universal property of limit} if for all cones $(N,\psi )$ to $F$ there exists a unique morphism $u: N \rightarrow \lim F$ such that $\psi_X= \pfi _X \circ u$ for all $X \in \mathcal{X} $. Therefore, given a limit $(\lim F, \psi)$, we have a commutative diagram: 
+commutes. A cone $(\lim F,\pfi )$ to $F$ is said to satisfy the \textbf{universal property of limit} if for all cones $(N,\psi )$ to $F$ there exists a unique morphism $u: N \rightarrow \lim F$ that makes the diagram 
 % https://q.uiver.app/#q=WzAsNCxbMSwyLCJcXGxpbSBGIl0sWzAsNCwiRihYKSJdLFsyLDQsIkYoWSkiXSxbMSwwLCJOIl0sWzAsMSwiXFxwaGlfWCIsMl0sWzAsMiwiXFxwaGlfWSJdLFsxLDIsIkYoZikiXSxbMywxLCJcXHBzaV9YIiwyLHsiY3VydmUiOjN9XSxbMywyLCJcXHBzaV9ZIiwwLHsiY3VydmUiOi0zfV0sWzMsMCwidSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
 	& N \\
@@ -4092,12 +4078,12 @@ commutes. A cone $(\lim F,\pfi )$ to $F$ is said to satisfy the \textbf{universa
 	\arrow["{\pfi _Y}", from=3-2, to=5-3]
 	\arrow["{F(f)}", from=5-1, to=5-3]
 \end{tikzcd}\]
-A \textbf{directed set} is a partially ordered set in which every two elements have an upper bound. Let $I$ be an directed set and $\mathcal{C}$ a category. By an \textbf{inverse system in} $\mathcal{C}$, we mean a collection of object $\set{A_i}$ in $\mathcal{C}$ indexed by $I$ together with each relation $i \leq j$ (\emph{note the order}) a morphism $f_{ij}:A_j \rightarrow A_i$ in $\mathcal{C}$ such that: 
+commutes for all $f:X \rightarrow Y$. A \textbf{directed set} is a partially ordered set in which every two elements have an upper bound. Let $I$ be a directed set and $\mathcal{C}$ a category. By an \textbf{inverse system in} $\mathcal{C}$, we mean a collection of object $A_i$ in $\mathcal{C}$ indexed by $I$ together with each relation $i \leq j$ (\emph{note the order}) a morphism $f_{ij}:A_j \rightarrow A_i$ in $\mathcal{C}$ such that: 
 \begin{enumerate}[label=(\roman*)]
   \item $f_{ii}$ are the identities on $A_i$.  
   \item $f_{ik}=f_{ij}\circ f_{jk}$  for all $i\leq j \leq k$
 \end{enumerate}
-Clearly, an inverse system in $\mathcal{C}$ itself forms a category $\mathcal{I}$ the obvious way, and we have an obvious covariant functor $F:\mathcal{I}\rightarrow \mathcal{C}$. The limit of $F$ is then called the  \textbf{inverse limit of $\set{A_i}$} denoted by $\inverselimit A_i$ and $f_i:\inverselimit A_i \rightarrow A_i$.\\ 
+Clearly, an inverse system in $\mathcal{C}$ itself forms a category $\mathcal{I}$ the obvious way, and we have an obvious covariant functor $F:\mathcal{I}\rightarrow \mathcal{C}$. The limit of $F$ is then called the  \textbf{inverse limit of $A_i$} denoted by $\inverselimit A_i$ and $f_i:\inverselimit A_i \rightarrow A_i$.\\ 
 
  Let $\mathcal{X}$ be an arbitrary category and $F:\mathcal{X} \rightarrow \mathcal{C}$ a covariant functor. A \textbf{co-cone to} $F$ is an object $N \in \mathcal{C}$ together with a family of morphisms $\psi_X:F(X)\rightarrow N$ indexed by $\mathcal{X}$ such that for all $f: X \rightarrow Y$, the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMSwyLCJOIl0sWzAsMCwiRihYKSJdLFsyLDAsIkYoWSkiXSxbMSwwLCJcXHBzaV9YIiwyXSxbMiwwLCJcXHBzaV9ZIl0sWzIsMSwiRihmKSIsMl1d
@@ -4109,7 +4095,7 @@ Clearly, an inverse system in $\mathcal{C}$ itself forms a category $\mathcal{I}
 	\arrow["{F(f)}"', from=1-1, to=1-3]
 	\arrow["{\psi_Y}", from=1-3, to=3-2]
 \end{tikzcd}\]
-commute. A co-cone $(\colim F,\pfi )$ to $F$ is said to satisfy the \textbf{universal property of colimit} if for all co-cones $(N,\psi )$ to $F$ there exists a unique morphism $u: \colim F \rightarrow N$ such that $\psi_X= u \circ \pfi _X$ for all $X \in \mathcal{X} $. Therefore, given a colimit $(\colim F, \psi)$, we have a commutative diagram: 
+commute. A co-cone $(\colim F,\pfi )$ to $F$ is said to satisfy the \textbf{universal property of colimit} if for all co-cones $(N,\psi )$ to $F$ there exists a unique morphism $u: \colim F \rightarrow N$ that makes the diagram 
 % https://q.uiver.app/#q=WzAsNCxbMSwyLCJcXGNvbGltIEYiXSxbMCwwLCJGKFgpIl0sWzIsMCwiRihZKSJdLFsxLDQsIk4iXSxbMSwwLCJcXHBoaV9YIl0sWzIsMCwiXFxwaGlfWSIsMl0sWzIsMSwiRihmKSIsMl0sWzEsMywiXFxwc2lfWCIsMix7ImN1cnZlIjozfV0sWzIsMywiXFxwc2lfWSIsMCx7ImN1cnZlIjotM31dLFswLDMsInUiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 \[\begin{tikzcd}
 	{F(X)} && {F(Y)} \\
@@ -4124,68 +4110,67 @@ commute. A co-cone $(\colim F,\pfi )$ to $F$ is said to satisfy the \textbf{univ
 	\arrow["{\psi_Y}", curve={height=-18pt}, from=1-3, to=5-2]
 	\arrow["u"{description}, dashed, from=3-2, to=5-2]
 \end{tikzcd}\]
-Let $I$ be a directed set. By a \textbf{directed system in} $\mathcal{C}$, we mean a collection of object $\set{A_i}$ in $\mathcal{C}$ indexed by $I$ together with each relation $i \leq j$ (again, \emph{note the order}) a morphism $f_{ij}:A_i \rightarrow A_j$ in $\mathcal{C}$ such that: 
+commute for all $f:X \rightarrow Y$. Let $I$ be a directed set. By a \textbf{directed system in} $\mathcal{C}$, we mean a collection of object $A_i$ in $\mathcal{C}$ indexed by $I$ together with each relation $i \leq j$ (again, \emph{note the order}) a morphism $f_{ij}:A_i \rightarrow A_j$ in $\mathcal{C}$ such that: 
 \begin{enumerate}[label=(\roman*)]
   \item $f_{ii}$ are the identities on $A_i$.  
   \item $f_{ik}=f_{jk}\circ f_{ij}$  for all $i\leq j \leq k$
 \end{enumerate}
-Clearly, a directed system in $\mathcal{C}$ forms a category $\mathcal{D}$ the obvious way, and we have an obvious covariant functor $F:\mathcal{D}\rightarrow \mathcal{C}$. The colimit of $F$ is then called the  \textbf{direct limit of $\set{A_i}$} denoted by $\directlimit A_i$ and $f_i: A_i \rightarrow \directlimit A_i$. 
+Clearly, a directed system in $\mathcal{C}$ forms a category $\mathcal{I}$ the obvious way, and we have an obvious covariant functor $F:\mathcal{I}\rightarrow \mathcal{C}$. The colimit of $F$ is then called the  \textbf{direct limit of $A_i$} denoted by $\directlimit A_i$ and $f_i: A_i \rightarrow \directlimit A_i$. \\
+
+Let $A_i$ be a collection of objects in $\mathcal{C}$. Clearly, we can make it a category $\mathcal{J}$ by requiring it to have only the identity morphisms, and doing such, we have an obvious covariant functor $F:\mathcal{J}\rightarrow \mathcal{C}$. Its \emph{limit} is called the  \textbf{product of $A_i$} denoted by $\prod A_i$, with canonical morphism $p_i : \prod A_i \rightarrow A_i$ called the \textbf{projection map}, and its \emph{colimit} is called the \textbf{coproduct of $A_i$} denoted by $\coprod A_i$, whose canonical morphism $A_i \rightarrow \coprod A_i$ are often called the \textbf{coprojection map}. 
 \begin{theorem}
-\textbf{(Construction of direct limit in familiar categories)} Let $A$ be a ring, $I$ a directed set, and $\set{M_i, \phi_{ij}}$ a directed system of $A$-modules. One way to construct its direct limit is to first define the underlying set as: 
-\begin{align*}
-\directlimit M_i \triangleq \bigsqcup_i M_i \quotient \sim  
-\end{align*}
-where $x_i \in M_i$ and $x_j \in M_j$ are equivalence when: 
-\begin{align*}
-x_i \sim  x_j \overset{\triangle}{\iff } \phi_{ik}(x_i)=\phi_{jk}(x_j),\quad \text{ for some }k \geq i,j
-\end{align*}
-Addition is well-defined by 
-\begin{align*}
-[x_i]+ [x_j] \triangleq [\phi_{ik}(x_i)+\phi_{jk}(x_j)],\quad \text{ for any }k \geq i,j
-\end{align*}
-while scalar multiplication is well-defined by 
- \begin{align*}
-c[x_i]\triangleq [cx_i]
-\end{align*}
-Lastly, the canonical morphism $\phi_i : M_i \rightarrow M$ maps elements to their equivalence class. One can now check that our construction in fact also shows that direct limit exists in $\mathbf{Set},\mathbf{Gp}$, and $\mathbf{Ab}$. Moreover, in $\mathbf{Ring}$ and $\mathbf{Alg}_A$, direct limit also exists if we define vector multiplication the same way we define addition.  
+\textbf{(Existence of products and coproduct in familiar categories)} Let $A$ be a ring. Product and coproduct always exists 
+\begin{enumerate}[label=(\roman*)]
+  \item in $\mathbf{Set}$ and $\mathbf{Top}$, in the form of Cartesian product and disjoint union.  
+  \item in $\mathbf{Gp}$, in the form of direct product and free product. 
+  \item in $\mathbf{Ring}$, in the form of direct product and tensor product as  $\Z$-algebras.  
+  \item in $\mathbf{Mod}_A$ and $\mathbf{Ab}$, in the form of direct product and direct sum. 
+\end{enumerate}
 \end{theorem}
 \begin{proof}
 Routine. 
 \end{proof}
-
-
-
-
-
+Note that by the \textbf{free product $A_1 * A_2$ of two groups}, we mean the group defined by presentation 
+\begin{align*}
+A_1 * A_2 \triangleq  \langle S_{A_1} \cup    S_{A_2}\mid R_{A_1}\cup  R_{A_2}\rangle 
+\end{align*}
+given that 
+\begin{align*}
+A_1= \langle S_{A_1}\mid  R_{A_1}\rangle  \quad \text{ and }\quad A_2 = \langle S_{A_2}\mid  R_{A_2}\rangle 
+\end{align*}
+Given two covariant functors $F,F':\mathcal{C} \rightarrow \mathcal{D}$, by a \textbf{natural transformation} $\eta  :F\rightsquigarrow F'$, we mean a class of morphisms $\eta_A:F(A)\rightarrow F'(A)$ in $\mathcal{D}$ indexed by $\mathcal{C}$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGKEEpIl0sWzIsMCwiRicoQSkiXSxbMCwyLCJGKEIpIl0sWzIsMiwiRicoQikiXSxbMCwxLCJcXGV0YV9BIl0sWzIsMywiXFxldGFfQiJdLFswLDIsIkYoZikiLDJdLFsxLDMsIkYnKGYpIl1d
+\[\begin{tikzcd}
+	{F(A)} && {F'(A)} \\
+	\\
+	{F(B)} && {F'(B)}
+	\arrow["{\eta_A}", from=1-1, to=1-3]
+	\arrow["{F(f)}"', from=1-1, to=3-1]
+	\arrow["{F'(f)}", from=1-3, to=3-3]
+	\arrow["{\eta_B}", from=3-1, to=3-3]
+\end{tikzcd}\]
+commutes for all $f:A \rightarrow B$ in $\mathcal{C}$. The \textbf{functor category} $\operatorname{Func}(\mathcal{C},\mathcal{D})$ is then the category whose objects is the class of covariant functors from $\mathcal{C}$ to $\mathcal{D}$ and whose morphisms are natural transformations. We say a category $\mathcal{C}$ is \textbf{small} if the class $\operatorname{ob}(\mathcal{C} )$ is a set.   
 \section{Additive Categories}
-Let $A_i$ be a collection of objects in $\mathcal{C}$. Clearly, we can make it a category $\mathcal{J}$ by requiring it to have only the identity morphisms, and doing such, we have an obvious covariant functor $F:\mathcal{J}\rightarrow \mathcal{C}$. Its \emph{limit} is called the  \textbf{product of $A_i$} denoted by $\prod A_i$, with canonical morphism $p_i : \prod A_i \rightarrow A_i$ called the \textbf{projection map}, and its \emph{colimit} is called the \textbf{coproduct of $A_i$} denoted by $\coprod A_i$, whose canonical morphism $A_i \rightarrow \coprod A_i$ are often called the \textbf{coprojection map}. 
-\begin{theorem}
-\textbf{(Existence of products and coproduct in familiar categories)} Let $A$ be a ring. Product and coproduct always exists in $\mathbf{Set}$, in the form of Cartesian product and disjoint union. They also exists in $\mathbf{Mod}_A$, in the form of direct product and direct sum. Note that the underlying set of module direct sum in general have nothing to do with their disjoint union.  
-\end{theorem}
-\begin{proof}
-Routine. Let $u(n)_i \triangleq \psi_i (n)$.  
-\end{proof}
-An \textbf{initial object} $I \in \mathcal{C}$ is an object such that for all $A \in \mathcal{C}$, there exists exactly one morphism from $I$ to  $A$. A \textbf{terminal object} $T\in \mathcal{C}$ is an object such that for all $A\in \mathcal{C}$, there exists exactly one morphism from $A$ to  $T$. Clearly, initial objects and terminal objects, even though may not always exists, are unique up to isomorphisms. A \textbf{zero object} is an object that is both an initial and terminal object. \\ 
-
-An \textbf{additive category} $\mathcal{C} $ is a category such that $\Hom  (A,B)$ is an abelian group (thus a set) for all $A, B \in \mathcal{C}$ that satisfies 
+An \textbf{additive category} $\mathcal{A} $ is a category such that $\Hom  (A,B)$ is an abelian group (thus a set) for all $A, B \in \mathcal{A}$ that satisfies 
 \begin{align*}
   (f_1+ f_2 )\circ g= f_1 \circ g+ f_2 \circ g \quad \text{ and }\quad f \circ (g_1 +g_2)= f \circ g_1 + f \circ g_2
 \end{align*}
-
 and 
 \begin{enumerate}[label=(\roman*)]
-\item $\mathcal{C}$ admits zero object.  
-\item $\mathcal{C}$ admits finite coproducts.  
+\item $\mathcal{A}$ admits zero object.  
+\item $\mathcal{A}$ admits finite coproducts.  
 \end{enumerate}
+Clearly, given an additive category $\mathcal{A}$ and a small category $\mathcal{C}$, the functor category $\operatorname{Func}(\mathcal{C},\mathcal{A})$ form an additive category the obvious way.  
 \begin{theorem}
-\textbf{(Basic properties of additive categories)} Let $\mathcal{C}$ be an additive category. Then 
+\label{THbpac}
+\textbf{(Basic properties of additive categories)} Let $\mathcal{A}$ be an additive category. Then 
 \begin{enumerate}[label=(\roman*)]
-  \item Let $A$ and $B$ be a pair of objects in  $\mathcal{C}$, and $Z$ be a zero object in  $\mathcal{C}$ with  
+  \item Let $A$ and $B$ be a pair of objects in  $\mathcal{A}$, and $Z$ be a zero object in  $\mathcal{A}$ with  
 \begin{align*}
 A \overset{f}{\longrightarrow }   Z \overset{g}{\longrightarrow } B
 \end{align*}
 Then $g\circ f$ is the zero in the abelian group $\Hom (A,B)$.  
-  \item Let $A_1, \dots ,A_n \in \mathcal{C}$. If for each $i$ we use the universal property of coproduct to define $p_i:\coprod A_i\rightarrow A_i$ by 
+  \item Let $A_1, \dots ,A_n \in \mathcal{A}$. If for each $i$ we use the universal property of coproduct to define $p_i:\coprod A_i\rightarrow A_i$ by 
 \begin{align*}
 p_i \circ \diota_j \triangleq \begin{cases}
   \id_{A_i}& \text{ if $j=i$ }\\
@@ -4193,6 +4178,7 @@ p_i \circ \diota_j \triangleq \begin{cases}
 \end{cases}  
 \end{align*}
 then $p_i$ satisfies the universal properties of product. 
+\item $Z\in \mathcal{A}$ is a zero object $\iff \id_{Z}$ is the zero in $\Hom  (Z,Z)$.  
 \end{enumerate}
 \end{theorem}
 \begin{proof}
@@ -4211,10 +4197,471 @@ then $p_i$ satisfies the universal properties of product.
 	\arrow["{f_i}"', curve={height=18pt}, from=1-2, to=5-1]
 	\arrow["{p_i}"', from=3-2, to=5-1]
 \end{tikzcd}\]
-commutes. 
+commutes. (iii): Left to right is clear. We now prove from right to left. Because the proofs for initial and terminal of $Z$ are similar, we only prove it is terminal, which  follows from noting that for all $f:A \rightarrow Z$, we have 
+\begin{align*}
+f= \id _Z \circ f = 0   \in \Hom  (A,Z)
+\end{align*}
 \end{proof}
-I would say that (i) above is very crucial. We get $g \circ f+ h=h$ only from the requirement that $\Hom  (A,B)$ is a group and bilinearity of $\Hom $ functor.
-\section{Equalizer and Coequalizer}
+Let $f:A\rightarrow B$ be a morphism in an additive category $\mathcal{A}$. We say a morphism $\diota:  \operatorname{ker}(f)\hookrightarrow  A$ satisfies the \textbf{universal property of kernel} if 
+\begin{enumerate}[label=(\roman*)]
+  \item $f \circ \diota=0$. 
+  \item For all  $h:C \rightarrow A$ that makes $f\circ h=0$, there exists a unique morphism $u:C\rightarrow \operatorname{ker}(f)$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG9wZXJhdG9ybmFtZXtrZXJ9KGYpIl0sWzIsMCwiQSJdLFs0LDAsIkIiXSxbMCwyLCJBJyJdLFsxLDIsImYiXSxbMCwxLCJcXGRpb3RhIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMywxLCJoIiwyXSxbMywwLCJ1IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	{\operatorname{ker}(f)} && A && B \\
+	\\
+	{C}
+	\arrow["\diota", hook, from=1-1, to=1-3]
+	\arrow["f", from=1-3, to=1-5]
+	\arrow["u"{description}, dashed, from=3-1, to=1-1]
+	\arrow["h"', from=3-1, to=1-3]
+\end{tikzcd}\]
+commutes. 
+\end{enumerate}
+We say a morphism $\pi :B \twoheadrightarrow  \operatorname{Coker}(f)$ satisfies the \textbf{universal property of cokernel} if 
+\begin{enumerate}[label=(\roman*)]
+  \item $\pi  \circ f=0$. 
+  \item For all $h : B \rightarrow C$ that makes $h \circ f=0$, there exists a unique morphism $u:\operatorname{Coker}(f)$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzIsMCwiQiJdLFs0LDAsIlxcb3BlcmF0b3JuYW1le0Nva2VyfShmKSJdLFs0LDIsIkMiXSxbMCwxLCJmIl0sWzEsMiwiXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDMsImgiLDJdLFsyLDMsInUiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+\[\begin{tikzcd}
+	A && B && {\operatorname{Coker}(f)} \\
+	\\
+	&&&& C
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["\pi", two heads, from=1-3, to=1-5]
+	\arrow["h"', from=1-3, to=3-5]
+	\arrow["u"{description}, dashed, from=1-5, to=3-5]
+\end{tikzcd}\]
+commutes. 
+\end{enumerate}
+\begin{theorem}
+\label{THkar}
+  \textbf{(Kernels are monomorphisms and cokernels are epimorphisms)} Let $f:A \rightarrow B$ be a morphism in an additive category $\mathcal{A}$ that has both $\diota: \operatorname{ker}(f)\hookrightarrow A $ and $\pi  : B \twoheadrightarrow \operatorname{Coker}(f)$. Then $\diota$ is indeed a monomorphism, and $\pi $ is indeed an epimorphism.  
+\end{theorem}
+\begin{proof}
+Since the proof for two statements are similar, we only prove that $\diota : \operatorname{ker}(f)\rightarrow A$ is a monomorphism. Let $g,h: C \rightarrow \operatorname{ker}(f)$ satisfies $\diota \circ g= \diota \circ h$. This implies 
+\begin{align*}
+\diota \circ (g-h)= \diota \circ g - \diota \circ h =0   
+\end{align*}
+which implies 
+\begin{align*}
+f \circ \diota \circ (g-h)=0  
+\end{align*}
+Therefore, by universal property of kernel, there exists a unique morphism $u:C \rightarrow \operatorname{ker}(f)$ that makes $\diota \circ u = \diota \circ (g-h)=0 $. Clearly both $u\triangleq 0$ and $u \triangleq g-h$ suffices, so $g-h=0$, as desired. 
+\end{proof}
+
+Note that the notion of kernel and cokernel can be generalized to categories that are not additive, as long as the category admits \href{https://en.wikipedia.org/wiki/Zero_morphism}{zero morphism}. Therefore, even though $\mathbf{Gp}$ isn't additive due to the lack of abelian group structure on Hom-set, $\mathbf{Gp}$ still have categorical kernel. On the other hand, $\mathbf{Ring}$ isn't additive and there isn't a good way to define zero morphism in it, so $\mathbf{Ring}$ has no categorical kernel. Indeed, the "kernel" of a group homomorphism forms a group, and the "kernel" of a ring homomorphism don't always form a ring.   \\
+
+Also, note that clearly we may construct kernels and cokernels in $\operatorname{Func}(\mathcal{C},\mathcal{A})$ component wise. \\  
+
+
+
+
+
+
+
+\section{Abelian Categories}
+Suppose the \emph{additive} category $\mathcal{A}$ admits all kernels and cokernels. We then define the \textbf{image} and \textbf{coimage} of a morphism $f: A \rightarrow B$ to be 
+\begin{align*}
+\operatorname{Im}(f)\triangleq  \operatorname{ker}(B \twoheadrightarrow  \operatorname{Coker}(f))\quad \text{ and }\quad \operatorname{Coim}(f)\triangleq  \operatorname{Coker}(\operatorname{ker}(f)\hookrightarrow   A)
+\end{align*}
+In other word, given the canonical morphisms: 
+\begin{align*}
+\operatorname{ker}(f) \overset{\diota }{\longhookrightarrow } A \overset{f}{\longrightarrow }B \overset{\pi }{\longtwoheadrightarrow } \operatorname{Coker}(f)
+\end{align*}
+The morphism $\pi': A \twoheadrightarrow  \operatorname{Im}(f)$ satisfies the \textbf{universal property of coimages} if 
+\begin{enumerate}[label=(\roman*)]
+  \item $\pi '\circ \diota=0 $. 
+  \item For all $h: A \rightarrow C$ that makes $h \circ \diota =0 $, there exists a unique morphism $u:\operatorname{Coim}(f)\rightarrow C$ that makes the diagram:   
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG9wZXJhdG9ybmFtZXtrZXJ9KGYpIl0sWzIsMCwiQSJdLFs0LDAsIlxcb3BlcmF0b3JuYW1le0NvaW19KGYpIl0sWzQsMiwiQyJdLFsxLDMsImgiLDJdLFswLDEsIlxcZGlvdGEiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsInUiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XSxbMSwyLCJcXHBpJyIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+\[\begin{tikzcd}
+	{\operatorname{ker}(f)} && A && {\operatorname{Coim}(f)} \\
+	\\
+	&&&& C
+	\arrow["\diota", hook, from=1-1, to=1-3]
+	\arrow["{\pi'}", two heads, from=1-3, to=1-5]
+	\arrow["h"', from=1-3, to=3-5]
+	\arrow["u"{description}, dashed, from=1-5, to=3-5]
+\end{tikzcd}\]
+commutes. 
+\end{enumerate}
+and the morphism $\diota' : \operatorname{Im}(f)\hookrightarrow B$ satisfies the \textbf{universal property of image} if 
+\begin{enumerate}[label=(\roman*)]
+  \item $\pi  \circ \diota' =0$. 
+  \item For all $h:C \rightarrow B$ that makes $\pi  \circ h =0 $, there exists a unique morphism $u: C \rightarrow \operatorname{Im}(f)$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJcXG9wZXJhdG9ybmFtZXtJbX0oZikiXSxbMCwyLCJDIl0sWzIsMCwiQiJdLFs0LDAsIlxcb3BlcmF0b3JuYW1le0Nva2VyfShmKSJdLFswLDIsIlxcZGlvdGEnIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwwLCJ1IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzIsMywiXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxLDIsImgiLDJdXQ==
+\[\begin{tikzcd}
+	{\operatorname{Im}(f)} && B && {\operatorname{Coker}(f)} \\
+	\\
+	C
+	\arrow["{\diota'}", hook, from=1-1, to=1-3]
+	\arrow["\pi", two heads, from=1-3, to=1-5]
+	\arrow["u"{description}, dashed, from=3-1, to=1-1]
+	\arrow["h"', from=3-1, to=1-3]
+\end{tikzcd}\]
+commutes. 
+\end{enumerate}
+\begin{theorem}
+\label{THeauc}
+\textbf{(Existence and uniqueness of the canonical morphism from coimage to image)} Let $\mathcal{A}$ be an additive category that admits all kernels and cokernels and $f: A \rightarrow  B$ be a morphism in $\mathcal{A}$. Then there exists a unique morphism $u: \operatorname{Coim}(f)\rightarrow \operatorname{Im}(f)$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJBIl0sWzIsMCwiQiJdLFswLDIsIlxcb3BlcmF0b3JuYW1le0NvaW19KGYpIl0sWzIsMiwiXFxvcGVyYXRvcm5hbWV7SW19KGYpIl0sWzAsMSwiZiJdLFsyLDMsInUiLDJdLFswLDIsIlxccGkgJyIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFszLDEsIlxcZGlvdGEnIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
+\[\begin{tikzcd}
+	A && B \\
+	\\
+	{\operatorname{Coim}(f)} && {\operatorname{Im}(f)}
+	\arrow["f", from=1-1, to=1-3]
+	\arrow["{\pi '}"', two heads, from=1-1, to=3-1]
+	\arrow["u"', from=3-1, to=3-3]
+	\arrow["{\diota'}"', hook, from=3-3, to=1-3]
+\end{tikzcd}\]
+commute. 
+\end{theorem}
+\begin{proof}
+Note that the uniqueness of $u$ follows from \customref{THkar}{the fact that $\diota'$ is a monomorphism and $\pi '$ is an epimorphism}. We now prove its existence. Because $f \circ  \diota =0$, by universal property of coimage, there exists a unique morphism $u':\operatorname{Coim}(f)\rightarrow B$ such that $f=u' \circ \pi '$. Therefore, we can deduce 
+\begin{align*}
+\pi  \circ  f =0  \implies  \pi  \circ u' \circ \pi'  =0 
+\end{align*}
+Then, because $0\circ \pi'=0$ and because \customref{THkar}{$\pi '$ is an epimorphism}, we see $\pi  \circ u'=0$. This then by universal property of images implies the existence of some $u: \operatorname{Coim}(f)\rightarrow \operatorname{Im}(f)$ that makes $u'=\diota' \circ  u$. Therefore, 
+\begin{align*}
+f= u' \circ \pi ' = \diota ' \circ  u \circ  \pi '  
+\end{align*}
+as desired. 
+\end{proof}
+We say $f$ is \textbf{strict} if such canonical morphism $u: \operatorname{Coim}(f)\rightarrow \operatorname{Im}(f)$ is an isomorphism, and we say this  \emph{additive} category $\mathcal{A}$ is \textbf{abelian} if all of its morphisms are strict. Note that clearly, given an abelian category $\mathcal{A}$ and an small category $\mathcal{C}$, the functor category $\operatorname{Func}(\mathcal{C},\mathcal{A})$ is also abelian, and the image and coimages can be constructed componentwise. 
+ \begin{theorem}
+\label{THeauh}
+ \textbf{(Existence and uniqueness of the canonical morphism for homologies)} Let $\mathcal{A}$ be an abelian category in which we have morphisms $f:A \rightarrow B$ and $g: B \rightarrow C$ that satisfies $g \circ f=0$. Denote the canonical morphisms of coimage and image of $f$ by $\pi ' : A \twoheadrightarrow \operatorname{Coim}(f)$ and $\diota ' : \operatorname{Im}(f)\hookrightarrow  B $, and let $u: \operatorname{Coim}(f)\rightarrow \operatorname{Im}(f)$ be the unique isomorphism that satisfies $f=\diota' \circ  u \circ \pi' $, which \customref{THeauc}{we have proved to exist uniquely}. Denote $\tilde{f}\triangleq u \circ \pi ': A \rightarrow \operatorname{Im}(f)$. Then there exists a unique morphism  $\tilde{u}:\operatorname{Im}(f)\rightarrow \operatorname{ker}(g)$ such that     
+\begin{align*}
+f= \diota \circ  \tilde{u} \circ \tilde{f}   
+\end{align*}
+where $\diota : \operatorname{ker}(g)\rightarrow B $ is the canonical morphism of kernel of $g$. 
+\end{theorem}
+\begin{proof}
+  \customref{THbpom}{Because $u$ is an isomorphism and  $\pi '$ is an epimorphism, we know $\tilde{f}$ is an epimorphism}. The uniqueness of $\tilde{u}$ then follows from the fact that $\diota$ is a monomorphism. We now prove its existence.\\
+
+Denote the canonical morphism of cokernel of $f$ by  $\pi  :B \twoheadrightarrow \operatorname{Coker}(f)$. Because  $g \circ f=0$, by the universal property of cokernel of $f$, there exists a unique morphism $\tilde{g}: \operatorname{Coker}(f)\rightarrow C$ that makes $g= \tilde{g}\circ \pi$. Therefore, because $\pi  \circ \diota ' =0$ by definition of image of $f$, we have:
+\begin{align*}
+g \circ \diota ' = \tilde{g} \circ \pi  \circ \diota' =    g \circ  0 =0 
+\end{align*}
+This then by universal property of kernel of $g$ induce a unique morphism $\tilde{u} :\operatorname{Im}(f)\rightarrow \operatorname{ker}(g)$ that makes $ \diota' = \diota \circ \tilde{u}$. By premise, we now see 
+\begin{align*}
+\diota \circ  \tilde{u} \circ  \tilde{f} = \diota' \circ u \circ \pi '  = f
+\end{align*}
+as desired. 
+\end{proof}
+ Let $\mathcal{A}$ be an abelian category in which we have morphisms $f:A \rightarrow B$ and $g: B \rightarrow C$ that satisfies $g \circ f=0$. The \textbf{(co) homology} at this point is then defined to be $\operatorname{Coker}(\tilde{u})$ where $\tilde{u}:\operatorname{Im}(f)\rightarrow \operatorname{ker}(g)$ is from \myref{theorem}{THeauh}.   \\
+
+We shall make an important remark here. Let $A$ be a ring. For completeness, the theorems in the rest of this chapter will still be stated in the language of abelian categories, but the proof will only be done for  $\mathbf{Mod}_A$, since a proof for the latter can always be easily modified to be a proof for the former. Moreover, for the sake of style, we will use $\oplus $ in place of $\coprod $. 
+\begin{theorem}
+\label{THsl}
+\textbf{(Split lemma)} Let  
+\begin{align*}
+0 \longrightarrow A  \overset{q}{\longhookrightarrow } B \overset{r}{\longtwoheadrightarrow   } C \longrightarrow 0
+\end{align*}
+be a short exact sequence in an abelian category $\mathcal{A}$. The followings are equivalent: 
+\begin{enumerate}[label=(\roman*)]
+  \item There exists a morphism $t: B \rightarrow A$ such that $t \circ  q= \id _A$. \textbf{(Left Splits)}    
+  \item There exists a morphism $u:C \rightarrow B$ such that $r \circ u = \id_C$. \textbf{(Right Splits)} 
+  \item There exists an isomorphism $h:B \rightarrow A \oplus   C$ such that $h \circ  q:A \rightarrow A \oplus   C$ and $r \circ h^{-1}: A \oplus   C \rightarrow C$ are the canonical morphism.  \textbf{(Direct sum)}
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+\begin{theorem}
+\textbf{(Snake lemma)} Let 
+% https://q.uiver.app/#q=WzAsOCxbMiwwLCJNJyJdLFs0LDAsIk0iXSxbNiwwLCJNJyciXSxbOCwwLCIwIl0sWzAsMiwiMCJdLFsyLDIsIk4nIl0sWzQsMiwiTiJdLFs2LDIsIk4nJyJdLFswLDEsInUiXSxbMSwyLCJ2IiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsM10sWzQsNV0sWzAsNSwiZiciLDJdLFsxLDYsImYiLDJdLFs1LDYsInUnIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw3LCJmJyciXSxbNiw3LCJ2JyIsMl1d
+\[\begin{tikzcd}
+	&& {M'} && M && {M''} && 0 \\
+	\\
+	0 && {N'} && N && {N''}
+	\arrow["u", from=1-3, to=1-5]
+	\arrow["{f'}"', from=1-3, to=3-3]
+	\arrow["v", two heads, from=1-5, to=1-7]
+	\arrow["f"', from=1-5, to=3-5]
+	\arrow[from=1-7, to=1-9]
+	\arrow["{f''}", from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow["{u'}"', hook, from=3-3, to=3-5]
+	\arrow["{v'}"', from=3-5, to=3-7]
+\end{tikzcd}\]
+be a commutative diagram in an abelian category $\mathcal{A}$ with rows exact. Then we have a \emph{canonical} exact sequence:  
+\begin{align*}
+   \operatorname{ker}(f') \overset{u}{\longrightarrow  } \operatorname{ker}(f) \overset{v}{\longrightarrow } \operatorname{ker}(f'')\overset{d}{\longrightarrow }\operatorname{Coker}(f') \overset{\tilde{u}'}{\longrightarrow }\operatorname{Coker}(f) \overset{\tilde{v}' }{\longrightarrow  }\operatorname{Coker}(f'')
+\end{align*}
+where 
+\begin{enumerate}[label=(\roman*)]
+  \item The morphism $u: \operatorname{ker}(f')\rightarrow \operatorname{ker}(f)$ is injective if $u:M '\rightarrow M$. 
+  \item The morphism $\tilde{v}': \operatorname{Coker}(f)\rightarrow \operatorname{Coker}(\tilde{f}'' ) $ is surjective if $v': N ' \rightarrow N''$ is. 
+\end{enumerate}
+
+
+
+% % https://q.uiver.app/#q=WzAsNixbMiwwLCJHXFxxdW90aWVudCBOICJdLFswLDAsIkciXSxbMiwyLCJMIl0sWzQsMCwiXFxidWxsZXQiXSxbNiwyLCJcXGJ1bGxldCJdLFs2LDAsIlxcYnVsbGV0Il0sWzAsMiwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDIsImYiLDJdLFsxLDAsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0LCJcXHBpIFxcY2lyYyB1JyIsMl0sWzMsNSwiXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs1LDQsInUiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+% \[\begin{tikzcd}
+% 	N' && \operatorname{Coker}(f') && N && \operatorname{Coker}(f) \\
+% 	\\
+% 	&& \operatorname{Coker}(f) &&&& \operatorname{Coker}(f'')
+% 	\arrow["\pi", two heads, from=1-1, to=1-3]
+% 	\arrow["u'"', from=1-1, to=3-3]
+% 	\arrow["\tilde{u}'", dashed, from=1-3, to=3-3]
+% 	\arrow["\pi", two heads, from=1-5, to=1-7]
+% 	\arrow["{\pi \circ v'}"', from=1-5, to=3-7]
+% 	\arrow["\tilde{v}'", dashed, from=1-7, to=3-7]
+% \end{tikzcd}\]
+\end{theorem}
+\begin{proof}
+Routine. Here, we give an outline for inducing of the \textbf{boundary homomorphism} $d: \operatorname{ker}(f'')\rightarrow \operatorname{Coker}(f')$. Let $x'' \in \operatorname{ker}(f'')$. Because $v$ is surjective, we know  $x''=v(x)$ for some $x \in M$. Therefore, $v' \circ  f(x)=f''\circ  v(x)=0$, which implies $f(x)\in \operatorname{ker}(v')=\operatorname{Im}(u')$, that is, $f(x)=u'(y')$ for some $y' \in N'$. The boundary homomorphism can be induced by 
+\begin{align*}
+d(x'')\triangleq y' + \operatorname{Im}(f')
+\end{align*}
+\end{proof}
+Let $\mathcal{A}$ be an abelian category and $\mathcal{C}$ be a subclass of $\mathcal{A}$ that contains a zero object. A function $\ld :\mathcal{C}\rightarrow \Z$ is said to be \textbf{additive} if for all short exact sequence 
+\begin{align*}
+0 \longrightarrow A' \longhookrightarrow A \longtwoheadrightarrow A'' \longrightarrow 0
+\end{align*}
+in $\mathcal{C}$, the function $\ld$ satisfies 
+\begin{align*}
+\ld (A')- \ld  (A) + \ld (A'')=0 \quad \text{ and }\quad \ld (0)=0 
+\end{align*}
+\begin{theorem}
+\textbf{(Additive functions on long exact sequences)} Let $\mathcal{A}$ be an abelian category, $\mathcal{C}$ a subclass of $\mathcal{A}$ that contains a zero object, and an additive function $\ld : \mathcal{C}\rightarrow \Z $. Given an exact sequence  
+ \begin{align*}
+0\longrightarrow M_0 \longrightarrow M_1 \longrightarrow \cdots \longrightarrow M_n  \longrightarrow 0
+\end{align*}
+whose all terms, including the kernels, are in $\mathcal{C}$, we have  
+\begin{align*}
+\sum_{i=0}^n (-1)^i \ld (M_i)=0 
+\end{align*}
+\end{theorem}
+\begin{proof}
+Let $N_i \leq M_i$ be the kernels. Then the proof follows from noting that for all $0\leq i\leq n$, we have a short exact sequence 
+\begin{align*}
+0 \longrightarrow N_i \longhookrightarrow M_i \longtwoheadrightarrow N_{i+1} \longrightarrow 0
+\end{align*}
+\end{proof}
+
+A \textbf{contravariant functor} $G: \mathcal{C}\rightarrow \mathcal{D}  $ is a map of objects $G: \operatorname{ob}(\mathcal{C} )\rightarrow \operatorname{ob}(\mathcal{D} )$ together with a map of morphisms: 
+\begin{align*}
+G: \operatorname{Hom}_\mathcal{C}(A,B) \rightarrow \operatorname{Hom}_\mathcal{D}(G(B),G(A))  
+\end{align*}
+such that 
+\begin{align*}
+G(\id _A)=\id _{G(A)}\quad \text{ and }\quad G(g \circ h) = G(h)\circ G(g)
+\end{align*}
+Let $F: \mathcal{A}\rightarrow \mathcal{B}$ and $G:\mathcal{A}\rightarrow \mathcal{B}$ be respectively covariant and contravariant functors between abelian categories. We say $F$ and $G$ are \textbf{additive} if for all $A,B \in \mathcal{A}$, respectively, the map $\Hom _{\mathcal{A} }(A,B) \rightarrow \Hom _\mathcal{B}(F(A),F(B))$ and the map $\Hom_{\mathcal{A} }(A,B)\rightarrow \Hom _{\mathcal{B} }(G(B),G(A)) $ are group homomorphisms. Because by definition, functor send identity morphism to identity morphism, from the fact that \customref{THbpac}{$Z \in \mathcal{B} $ is a zero object $\iff \id_Z$ is zero in $\operatorname{End}(Z)$}, we see additive functor send zero  object to zero object, covariant or contravariant. 
+\section{Exact Functors}
+\begin{equiv_def}
+\textbf{(Exactness of functors)} Let $\mathcal{A} $ and $\mathcal{B}$ be two abelian categories. An \emph{additive} (both covariant and contravariant) functor $F:\mathcal{A} \rightarrow \mathcal{B}$ is said to be an \textbf{exact functor} if any of the followings hold true
+\begin{enumerate}[label=(\roman*)]
+  \item $F$ maps exact sequence to exact sequence.  
+  \item $F$ maps short exact sequence to short exact sequence. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Because the proof for contravariant functors is similar to the proof for covariant functors, we only prove for covariant functors.  (i)$\implies $(ii) is clear, so we only have to prove  (ii)$\implies $(i). This is done by \textbf{breaking up a long exact sequence into multiple short exact sequences}. That is, given an exact sequence: 
+\begin{align*}
+A \overset{f}{\longrightarrow }  B \overset{g}{\longrightarrow } C
+\end{align*}
+in $\mathcal{A}$, we construct a commutative diagram: 
+% https://q.uiver.app/#q=WzAsMTMsWzAsNCwiMCJdLFsxLDMsIkEiXSxbMiwyLCJBIl0sWzMsMSwiXFxvcGVyYXRvcm5hbWV7SW19KGYpIl0sWzQsMCwiMCJdLFsyLDAsIjAiXSxbNCwyLCJCIl0sWzUsMywiXFxvcGVyYXRvcm5hbWV7a2VyfShnKSJdLFs2LDQsIjAiXSxbNCw0LCIwIl0sWzYsMiwiQyJdLFs3LDEsIlxcb3BlcmF0b3JuYW1le0ltfShnKSJdLFs4LDAsIjAiXSxbMCwxXSxbMSwyLCIiLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsIngiLDEseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0XSxbNSwzXSxbMyw2LCJ5IiwxLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNiw3LCJ6IiwxLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzcsOCwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzksN10sWzcsMTAsInciLDEseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxMCwxMSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzExLDEyXSxbMiw2LCJmIiwxXSxbNiwxMCwiZyIsMV1d
+\[\begin{tikzcd}
+	&& 0 && 0 &&&& 0 \\
+	&&& {\operatorname{Im}(f)} &&&& {\operatorname{Im}(g)} \\
+	&& A && B && C \\
+	& A &&&& {\operatorname{ker}(g)} \\
+	0 &&&& 0 && 0
+	\arrow[from=1-3, to=2-4]
+	\arrow[from=2-4, to=1-5]
+	\arrow["y"{description}, hook, from=2-4, to=3-5]
+	\arrow[from=2-8, to=1-9]
+	\arrow["x"{description}, two heads, from=3-3, to=2-4]
+	\arrow["f"{description}, from=3-3, to=3-5]
+	\arrow["g"{description}, from=3-5, to=3-7]
+	\arrow["z"{description}, two heads, from=3-5, to=4-6]
+	\arrow[two heads, from=3-7, to=2-8]
+	\arrow[hook, from=4-2, to=3-3]
+	\arrow["w"{description}, hook, from=4-6, to=3-7]
+	\arrow[two heads, from=4-6, to=5-7]
+	\arrow[from=5-1, to=4-2]
+	\arrow[from=5-5, to=4-6]
+\end{tikzcd}\]
+Now, because $F$ preserves short exact sequence, we know $F(x)$ is surjective, so from $F(f)=F(y \circ x)=F(y)\circ F(x)$, we know $\operatorname{Im}(F(f))=\operatorname{Im}(F(y))$. Similarly, we can show $\operatorname{ker}(F(g))=\operatorname{ker}(F(z))$. Then because $F$ preserves the middle short exact sequence, we have 
+\begin{align*}
+\operatorname{Im}(F(f))=\operatorname{Im}(F(y))= \operatorname{ker}(F(z))=\operatorname{ker}(F(g))
+\end{align*}
+as desired. 
+\end{proof}
+\begin{equiv_def}
+  \textbf{(Left and right exactness of functors)} Let $\mathcal{A},\mathcal{B}$ be two abelian categories. An additive covariant functor $F: \mathcal{A}\rightarrow \mathcal{B}$ is said to be \textbf{right exact} if any of the followings hold true 
+\begin{enumerate}[label=(\roman*)]
+  \item  $A \longrightarrow  B \longtwoheadrightarrow  C \longrightarrow  0 $ is exact $ \implies  F(A)\longrightarrow F(B)\longtwoheadrightarrow  F(C) \longrightarrow 0$  is exact.  
+  \item $0 \longrightarrow A \longhookrightarrow B \longtwoheadrightarrow C \longrightarrow 0$ is exact $\implies F(A)\longrightarrow F(B)\longtwoheadrightarrow F(C)\longrightarrow 0$ is exact.  
+\end{enumerate}
+Also, $F: \mathcal{A}\rightarrow \mathcal{B}$ is said to be \textbf{left exact} if any of the followings hold true
+\begin{enumerate}[label=(\roman*)]
+  \item $0 \longrightarrow A \longhookrightarrow B \longrightarrow C$ is exact $\implies 0 \longrightarrow F(A)\longhookrightarrow F(B)\longrightarrow F(C)$ is exact. 
+  \item $0\longrightarrow A \longhookrightarrow B \longtwoheadrightarrow C \longrightarrow 0$ is exact $\implies 0 \longrightarrow F(A)\longhookrightarrow F(B)\longrightarrow F(C)$ is exact. 
+\end{enumerate} 
+An additive contravariant functor $G: \mathcal{A}\rightarrow \mathcal{B}$ is said to be \textbf{right exact} if any of the followings hold true
+\begin{enumerate}[label=(\roman*)]
+  \item $0 \longrightarrow A \longhookrightarrow B \longrightarrow C$ is exact $\implies  G(C) \longrightarrow  G(B) \longtwoheadrightarrow  G(A)\longrightarrow 0$ is exact.  
+  \item $0\longrightarrow A \longhookrightarrow B \longtwoheadrightarrow C \longrightarrow 0$ is exact $\implies  G(C)\longrightarrow  G(B)\longtwoheadrightarrow  G(A) \longrightarrow 0$ is exact. 
+\end{enumerate}
+Also, $G: \mathcal{A}\rightarrow \mathcal{B}$ is said to be \textbf{left exact} if any of the followings hold true
+\begin{enumerate}[label=(\roman*)]
+  \item $A\longrightarrow B \longtwoheadrightarrow C \longrightarrow 0$ is exact $\implies 0\longrightarrow G(C)\longhookrightarrow G(B)\longrightarrow  G(A)$ is exact. 
+  \item $0\longrightarrow A\longhookrightarrow B \longtwoheadrightarrow C \longrightarrow 0$ is exact $\implies  0\longrightarrow G(C)\longhookrightarrow G(B)\longrightarrow G(A)$ is exact. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\href{https://math.stackexchange.com/questions/292037/definition-of-left-right-exact-functors}{See this MSE post}. 
+\end{proof}
+Let $\mathcal{A}$ be an abelian category. Clearly, for all $N\in \mathcal{A}$  we have an additive \emph{covariant} functor $\Hom (N,-):\mathcal{A}\rightarrow \mathbf{Ab}$ defined by 
+\begin{align*}
+M \mapsto  \Hom (N,M)\quad \text{ and }\quad F(f)(g)\triangleq f \circ g
+\end{align*}
+and an additive \emph{contravariant} functor $\Hom  (-,N):\mathcal{A}\rightarrow \mathbf{Ab}$ defined by 
+\begin{align*}
+M \mapsto \Hom  (M,N)\quad \text{ and }\quad G(f)(g)\triangleq g \circ f
+\end{align*}
+The memorization here is that the $\Hom $ is covariant in the second variable and contravariant in the first variable.
+\begin{theorem}
+\label{THhomp}
+\textbf{(Both $\Hom $ functors are left exact)} Let $\mathcal{A}$ be an abelian category. Then  
+\begin{enumerate}[label=(\roman*)]
+   \item The sequence: 
+\begin{align*}
+M' \overset{u}{\longrightarrow } M \overset{v}{\longtwoheadrightarrow  } M'' \longrightarrow 0
+\end{align*}
+in $\mathcal{A}$ is exact $\iff $ For all $N \in \mathcal{A}$, the sequence: 
+\begin{align*}
+0 \longrightarrow \Hom (M'',N) \overset{G(v)}{\longhookrightarrow  } \Hom  (M,N) \overset{G(u)}{\longrightarrow } \Hom (M',N) 
+\end{align*}
+in $\mathbf{Ab}$ is exact, where $G$ is the contravariant functor $\Hom  (-,N): \mathcal{A}\rightarrow \mathbf{Ab} $. 
+\item The sequence: 
+\begin{align*}
+0\longrightarrow   M' \overset{u}{\longhookrightarrow  } M \overset{v}{\longrightarrow } M'' 
+\end{align*}
+in $\mathcal{A}$ is exact $\iff $ For all $N \in \mathcal{A}$, the sequence: 
+\begin{align*}
+0 \longrightarrow  \Hom (N,M') \overset{F(u)}{\longhookrightarrow  } \Hom  (N,M) \overset{F(v)}{\longrightarrow  } \Hom (N,M'') 
+\end{align*}
+in $\mathbf{Ab}$ is exact, where $F$ is the covariant functor $\Hom  (N,-):\mathcal{A}\rightarrow \mathbf{Ab}$. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Since the two proofs are similar, we only prove for the contravariant functor $G$. The direction $(\implies )$ is to say that $G$ is left exact. We first prove this direction. The fact that functors preserve chain complex is clear, so we only have to prove 
+\begin{align*}
+  \vi{\operatorname{ker}(G(v))\leq 0\quad \text{ and }\quad \operatorname{ker}(G(u))\leq \operatorname{Im}(G(v))}
+\end{align*}
+Let $g \in \operatorname{ker}(G(v))$. It then follows from surjectivity of $v$ and  $g \circ v= G(v)(g)=0$ that $g=0$. Let $f \in \operatorname{ker}(G(u))$. Because $f \circ u=0$, we know $\operatorname{ker}(f)\leq \operatorname{Im}(u)=\operatorname{ker}(v)$. This then by universal property induces a unique morphism $\tilde{f}:M ''\rightarrow N $ that makes $f= G(v)(\tilde{f})$. $\vdone$ \\
+
+$(\impliedby)$: To prove $v \circ  u =0$, one set $N \triangleq M'' $ and consider $\id_{M''}$.  It remains to prove 
+\begin{align*}
+  \blue{\pi  : M '' \twoheadrightarrow \operatorname{Coker}(v)\text{ is zero in }\Hom (M'',\operatorname{Coker}(v))\quad \text{ and }\quad \operatorname{ker}(v)\leq \operatorname{Im}(u)}
+\end{align*}
+For the first statement, set $N \triangleq \operatorname{Coker}(v)$. Because $G(v)(\pi)=\pi  \circ v =0 $ by definition, we see $\pi  \in \operatorname{ker}(G(v))$, which implies $\pi=0$. For the second statement, set $N \triangleq \operatorname{Coker}(u)$ and  let $p:M \twoheadrightarrow \operatorname{Coker}(u)$ be the canonical morphism. Because $\operatorname{ker}(p)=\operatorname{Im}(u)$, we only have to prove $\operatorname{ker}(v)\leq \operatorname{ker}(p)$. Now, since $p \in \operatorname{ker}(G(u))=\operatorname{Im}(G(v))$, we know $p=\psi \circ v$, which implies $\operatorname{ker}(v)\leq \operatorname{ker}(p)$.  $\bdone$ 
+\end{proof}
+
+\section{Derived Functors}
+
+
+
+Let $A$ be a ring and $M$ an  $A$-module. We say a set $E \subseteq M$ is \textbf{linearly independent} if for all finite subset $\set{e_1,\dots ,e_n}\subseteq E$, we have  
+\begin{align*}
+a_1e_1 + \cdots + a_ne_n=0  \implies a_1= \cdots = a_n=0
+\end{align*}
+A \textbf{basis} for $M$ is then a linearly independent generating set. 
+\begin{equiv_def}
+\textbf{(Free modules)} Let $A$ be a ring. We say an $A$-module $M$ is \textbf{free} if any of the followings hold true: 
+\begin{enumerate}[label=(\roman*)]
+  \item $M$ admits a basis. 
+  \item For some set $S$, we have an  $A$-module isomorphism  $M\cong \bigoplus  _{i \in S}A$.  
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
+Let $\mathcal{C}$ be a category. We say $I \in \mathcal{C}$ is an \textbf{injective object} if for all monomorphism $m:M\hookrightarrow X$ and morphism $f: M \rightarrow I$, there exists a unique morphism $\tilde{f}:X \rightarrow I $ that makes the diagram:   
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzIsMCwiWCJdLFsyLDIsIkkiXSxbMCwyLCJmIiwyXSxbMCwxLCJtIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMSwyLCJcXHRpbGRle2Z9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	M && X \\
+	\\
+	&& I
+	\arrow["m", hook, from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-3]
+	\arrow["{\tilde{f}}", dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+commutes. We say $P\in \mathcal{C} $ is a \textbf{projective object} if for all epimorphism $e:E \twoheadrightarrow X$ and morphism $f:P \rightarrow X$ there exists a unique morphism $\tilde{f}: P \rightarrow E$ that makes the diagram:  
+% https://q.uiver.app/#q=WzAsMyxbMiwwLCJQIl0sWzIsMiwiRSJdLFswLDAsIlgiXSxbMCwxLCJcXHRpbGRle2Z9IiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMiwiZSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDIsImYiLDJdXQ==
+\[\begin{tikzcd}
+	X && P \\
+	\\
+	&& E
+	\arrow["f"', from=1-3, to=1-1]
+	\arrow["{\tilde{f}}", dashed, from=1-3, to=3-3]
+	\arrow["e", two heads, from=3-3, to=1-1]
+\end{tikzcd}\]
+commutes.  In other words, every morphism to an injective object factors through every monomorphism from its source, and every morphism from a projective object factors through every epimorphism to its target.  
+\begin{equiv_def}
+\textbf{(Injective and projective objects)}
+\end{equiv_def}
+
+
+
+
+
+ We say $\mathcal{C}$ \textbf{has enough injective} if for all $X \in \mathcal{C}$ there exists a monomorphism $X \hookrightarrow I$ from $X$ to an injective object  $I \in \mathcal{C}$, and we say $\mathcal{C}$ \textbf{has enough projective} if for all $X \in \mathcal{C}$ there exists an epimorphism $P \twoheadrightarrow X$ from a projective object $P\in \mathcal{C}$ to $X$. \\
+ We say an $A$-module  $M$ is a  \textbf{direct summand} of $M''$ if there exists some module  $M'$ that makes  $M'' \cong  M \oplus  M'$. 
+\begin{theorem}
+\label{THmiqf}
+\textbf{(Every module is a quotient of some free module)} Let $A$ be a ring and $M$ be an $A$-module. Then we have a surjective module homomorphism from the free module 
+\begin{align*}
+A^{(M)}\triangleq \bigoplus_{m\neq 0 \in M}A^m,\quad \text{ where }A^m \cong  A
+\end{align*}
+to $M$ by sending 
+\begin{align*}
+a \in A^m \mapsto am
+\end{align*}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+\begin{equiv_def}
+\textbf{(Projective Modules)} Let $A$ be a ring. We say an $A$-module $P$ is \textbf{projective} if any of the followings hold true 
+\begin{enumerate}[label=(\roman*)]
+  \item $P$ satisfies the  \textbf{universal property of projective modules}: For all module homomorphism $f:P \rightarrow M'$ and surjective module homomorphism  $g:M \twoheadrightarrow M''$, there exists a unique module homomorphism $h:P \rightarrow M$ that makes the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMiwwLCJQIl0sWzAsMiwiTSJdLFsyLDIsIk0nIl0sWzEsMiwiZyIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDIsImYiXSxbMCwxLCJoIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	&& P \\
+	\\
+	M && {M'}
+	\arrow["h"', dashed, from=1-3, to=3-1]
+	\arrow["f", from=1-3, to=3-3]
+	\arrow["g"', two heads, from=3-1, to=3-3]
+\end{tikzcd}\]
+commute 
+\item Every exact sequence 
+  \begin{align*}
+  0\longrightarrow N \longhookrightarrow M \longtwoheadrightarrow P \longrightarrow 0
+  \end{align*}
+  splits. 
+  \item $P$ is a direct summand of some free module. 
+  \item The covariant functor $\Hom (P,-):\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A$ is exact. 
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+  (i)$\implies $(ii): Because $\id_P: P \rightarrow P$ is surjective, by universal property, the sequence right split. \\
+
+  (ii)$\implies $(iii): This follows from the fact that \customref{THmiqf}{$P$ is a quotient of the free module  $A^{(P)}$} and \customref{THsl}{split lemma}.\\
+
+  (iii)$\implies $(i): Let $F\triangleq P \oplus N$ be free with basis $\set{x_i}$ and surjective homomorphism $\pi  : F \rightarrow P$. Because $g: M \rightarrow M'$ is surjective, for all $x_i$ there exists some  $z_i\in M$ such that $g(z_i)=f \circ  \pi  (z_i)$. Therefore, 
+\end{proof}
+
+\section{more constructions in general categories}
+
 Let $A,B \in \mathcal{C}$ and $f$ and  $g$ be morphism from  $A$ to  $B$. Again, they form a category  $\mathcal{I}$: 
 % https://q.uiver.app/#q=WzAsMixbMCwwLCJBIl0sWzIsMCwiQiJdLFswLDEsImYiLDAseyJvZmZzZXQiOi0xfV0sWzAsMSwiZyIsMix7Im9mZnNldCI6MX1dXQ==
 \[\begin{tikzcd}
@@ -4287,28 +4734,10 @@ If the equalizer $\operatorname{eq}(f,g)$ exists, then the canonical morphism $h
 \begin{proof}
 Routine. 
 \end{proof}
-\section{Kernel and Image}
-In an additive category $\mathcal{C}$, the \textbf{kernel} and \textbf{cokernel} of a morphism $f: A \rightarrow B$ is then defined by 
+the \textbf{kernel} and \textbf{cokernel} of a morphism $f: A \rightarrow B$ is then defined by 
 \begin{align*}
 \operatorname{ker}(f)\triangleq \operatorname{eq}(f,0)\quad \text{ and }\quad \operatorname{coker}(f)\triangleq \operatorname{coeq}(f,0)
 \end{align*}
-\begin{theorem}
-\textbf{(Kernel and cokernel in familiar categories)}  Let $R$ be a ring. Example of additive categories includes $\mathbf{Ab}$ and $\mathbf{Mod}_R$, excluding $\mathbf{Set},\mathbf{Gp}$, and $\mathbf{Ring}$. Therefore, kernel and cokernel exist in $\mathbf{Ab}$ and $\mathbf{Mod}_R$ in the usual form. 
-\end{theorem}
-\begin{proof}
-Routine. See \customref{THeac}{how we construct equalizer and coequalizer in familiar categories}. 
-\end{proof}
-Note that the notion of kernel and cokernel can be generalized to categories that are not additive, as long as the category admits \href{https://en.wikipedia.org/wiki/Zero_morphism}{zero morphism}. Therefore, even though $\mathbf{Gp}$ isn't additive due to the lack of abelian group structure on Hom-set, $\mathbf{Gp}$ still have categorical kernel. On the other hand, $\mathbf{Ring}$ isn't additive and there isn't a good way to define zero morphism in it, so $\mathbf{Ring}$ has no categorical kernel. Indeed, the "kernel" of a group homomorphism forms a group, and the "kernel" of a ring homomorphism don't always form a ring.   \\
-
-
-
-
-
-
-
-
-
-
 Let $\mathcal{C}$ be a category in which we have a diagram: 
 % https://q.uiver.app/#q=WzAsMyxbMCwyLCJBXzEiXSxbMiwyLCJBXzIiXSxbMSwwLCJCIl0sWzIsMSwiZl8yIl0sWzIsMCwiZl8xIiwyXV0=
 \[\begin{tikzcd}
@@ -4402,27 +4831,6 @@ which comes with a canonical monomorphism $j:\operatorname{eq}(\diota_1 , \diota
 \begin{proof}
 Routine. 
 \end{proof}
-\begin{theorem}
-\label{THmeia}
-\textbf{(Monomorphisms and epimorphisms in abelian categories)} Let $f$ be a morphism in an additive category.  
-\begin{enumerate}[label=(\roman*)]
-  \item If $f$ admits kernel, then $f$ is a monomorphism if and only if $\operatorname{ker}(f)=0$. 
-  \item If $f$ admits cokernel, then $f$ is an epimorphism if and only if $\operatorname{Coker}(f)=0$. 
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-
-\end{proof}
-\begin{theorem}
-\textbf{(Existence of images and coimage in abelian categories)} Let $\mathcal{C}$ be an additive category that admits both kernel and cokernel. Then for all morphism $f: A \rightarrow B$ in  $\mathcal{C}$, its image and coimage exists:
-\begin{align*}
-\operatorname{Im}(f)\cong  \operatorname{ker}(B \rightarrow \operatorname{Coker}(f))\quad \text{ and }\quad \operatorname{Coim}(f)\cong \operatorname{Coker}(\operatorname{ker}(f)\rightarrow A)
-\end{align*}
-\end{theorem}
-\begin{proof}
-
-\end{proof}
-\section{Abelian Category and Exact Sequences}
 Let $\mathcal{C}$ be a category in which we have a diagram: 
 % https://q.uiver.app/#q=WzAsMyxbMCwwLCJBXzEiXSxbMiwwLCJBXzIiXSxbMSwyLCJCIl0sWzEsMiwiZl8yIl0sWzAsMiwiZl8xIiwyXV0=
 \[\begin{tikzcd}
@@ -4494,117 +4902,6 @@ Let morphism $f: A \rightarrow B$ admits both image and coimage, therefore both 
 \end{tikzcd}\]
 Now, because by definition of fiber product we have  $f\circ p_1=f \circ p_2$, we know $j \circ \ld  \circ p_1= j \circ \ld \circ p_2$ which by monicity of $j$ implies  $\ld  \circ p_1=\ld \circ p_2$, which by universal property of fiber product implies the existence and uniqueness of some morphism $u:\operatorname{coim}(f)\rightarrow \operatorname{Im}(f)$ that makes the diagram above commutes. \\
 
-We say $f$ is \textbf{strict} if such $u$ is an isomorphism. We say an \emph{additive} category $\mathcal{C}$ is an \textbf{abelian category} if 
-\begin{enumerate}[label=(\roman*)]
-  \item every morphism admits kernel and a cokernel. 
-  \item every morphism is strict.  
-\end{enumerate}
-Let $f:A \rightarrow B$ and $g: B \rightarrow C$ be morphisms in an abelian category such that $g \circ f=0$. Because $\ld =u \circ s$ and because  $u$ is an epimorphism by requirement of strictness of $f$ and, \customref{THmeia}{we know $\ld $ is also an epimorphism}. Then since 
-\begin{align*}
- 0 \circ \ld=0=g \circ f= g \circ j \circ \ld  
-\end{align*}
-We know $g \circ j=0$. Therefore, by universal property of kernel, there exists a unique morphism $\alpha : \operatorname{Im}(f)\rightarrow \operatorname{ker}(g)$ that makes $\beta = j \circ \alpha $, where $\beta :\operatorname{ker}(g) \hookrightarrow B$ is the canonical morphism of $\operatorname{ker}(g)$. The chain \textbf{homology} is then defined by $\operatorname{Coker}(\alpha )$, and we say the sequence is exact at this point if $\operatorname{Coker}(\alpha )=0$.   
-\section{Lemmas for Abelian Categories}
-\begin{theorem}
-\label{THsl}
-\textbf{(Splitting lemma)} Let  
-\begin{align*}
-0 \longrightarrow A  \overset{q}{\longhookrightarrow } B \overset{r}{\longtwoheadrightarrow   } C \longrightarrow 0
-\end{align*}
-be a short exact sequence in an abelian category $\mathcal{C}$. Then the followings are equivalent: 
-\begin{enumerate}[label=(\roman*)]
-  \item There exists a morphism $t: B \rightarrow A$ such that $t \circ  q= \id _A$. \textbf{(Left Splits)}    
-  \item There exists a morphism $u:C \rightarrow B$ such that $r \circ u = \id_C$. \textbf{(Right Splits)} 
-  \item There exists an isomorphism $h:B \rightarrow A \oplus  C$ such that $h \circ  q:A \rightarrow A \oplus C$ is the natural injection  and $r \circ h^{-1}: A \oplus C \rightarrow C$ is the natural projection.  \textbf{(Direct sum)}
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-
-\end{proof}
-\begin{theorem}
-\textbf{(Snake lemma for modules)} Given a commutative diagram of $A$-modules: 
-% https://q.uiver.app/#q=WzAsMTAsWzIsMCwiTSciXSxbMCwwLCIwIl0sWzQsMCwiTSJdLFs2LDAsIk0nJyJdLFs4LDAsIjAiXSxbMCwyLCIwIl0sWzIsMiwiTiciXSxbNCwyLCJOIl0sWzYsMiwiTicnIl0sWzgsMiwiMCJdLFsxLDBdLFswLDIsInUiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsInYiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0XSxbNSw2XSxbMCw2LCJmJyIsMl0sWzIsNywiZiIsMl0sWzYsNywidSciLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDgsImYnJyJdLFs3LDgsInYnIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzgsOV1d
-\[\begin{tikzcd}
-	0 && {M'} && M && {M''} && 0 \\
-	\\
-	0 && {N'} && N && {N''} && 0
-	\arrow[from=1-1, to=1-3]
-	\arrow["u", hook, from=1-3, to=1-5]
-	\arrow["{f'}"', from=1-3, to=3-3]
-	\arrow["v", two heads, from=1-5, to=1-7]
-	\arrow["f"', from=1-5, to=3-5]
-	\arrow[from=1-7, to=1-9]
-	\arrow["{f''}", from=1-7, to=3-7]
-	\arrow[from=3-1, to=3-3]
-	\arrow["{u'}"', hook, from=3-3, to=3-5]
-	\arrow["{v'}"', two heads, from=3-5, to=3-7]
-	\arrow[from=3-7, to=3-9]
-\end{tikzcd}\]
-with the rows exact, because the diagram commutes, we may induce: 
-% https://q.uiver.app/#q=WzAsNixbMiwwLCJHXFxxdW90aWVudCBOICJdLFswLDAsIkciXSxbMiwyLCJMIl0sWzQsMCwiXFxidWxsZXQiXSxbNiwyLCJcXGJ1bGxldCJdLFs2LDAsIlxcYnVsbGV0Il0sWzAsMiwiZyIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dLFsxLDIsImYiLDJdLFsxLDAsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0LCJcXHBpIFxcY2lyYyB1JyIsMl0sWzMsNSwiXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs1LDQsInUiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
-\[\begin{tikzcd}
-	N' && \operatorname{Coker}(f') && N && \operatorname{Coker}(f) \\
-	\\
-	&& \operatorname{Coker}(f) &&&& \operatorname{Coker}(f'')
-	\arrow["\pi", two heads, from=1-1, to=1-3]
-	\arrow["u'"', from=1-1, to=3-3]
-	\arrow["\tilde{u}'", dashed, from=1-3, to=3-3]
-	\arrow["\pi", two heads, from=1-5, to=1-7]
-	\arrow["{\pi \circ v'}"', from=1-5, to=3-7]
-	\arrow["\tilde{v}'", dashed, from=1-7, to=3-7]
-\end{tikzcd}\]
-Let $x'' \in \operatorname{ker}(f'')$. Because $v$ is surjective, we know  $x''=v(x)$ for some $x \in M$. Therefore, $v' \circ  f(x)=f''\circ  v(x)=0$, which implies $f(x)\in \operatorname{ker}(v')=\operatorname{Im}(u')$, that is, $f(x)=u'(y')$ for some $y' \in N'$. The snake lemma says that if we define the \textbf{boundary homomorphism} 
-$d:\operatorname{ker}(f'')\rightarrow  \operatorname{Coker}(f')$ by 
-\begin{align*}
-d(x'')\triangleq y' + \operatorname{Im}(f')
-\end{align*}
-then we have an exact sequence: 
-\begin{align*}
-  0 \longrightarrow \operatorname{ker}(f') \overset{u}{\longhookrightarrow  } \operatorname{ker}(f) \overset{v}{\longrightarrow } \operatorname{ker}(f'')\overset{d}{\longrightarrow }\operatorname{Coker}(f') \overset{\tilde{u}'}{\longrightarrow }\operatorname{Coker}(f) \overset{\tilde{v}' }{\longtwoheadrightarrow  }\operatorname{Coker}(f'')\longrightarrow 0
-\end{align*}
-\end{theorem}
-\begin{proof}
-Routine. 
-\end{proof}
-\section{Exact functor}
-\begin{equiv_def}
-\textbf{(Exactness of covariant functor)} Let $\mathbf{P}$ and $\mathbf{Q}$ be two abelian category. A covariant functor $F:\mathbf{P}\rightarrow \mathbf{Q}$ is said to be an \textbf{exact functor} if it maps exact sequence to exact sequence or equivalently it maps short exact sequence to short exact sequence.  
-\end{equiv_def}
-\begin{proof}
-We are required to show that if  $F: \mathbf{P}\rightarrow \mathbf{Q}$ preserve short exact sequence, then it maps exact sequence to exact sequence. 
-
-
-\end{proof}
-\begin{equiv_def}
-  \textbf{(Exactness of covariant functor)} Let $\mathbf{P},\mathbf{Q}$ be two abelian category. A covariant functor $F: \mathbf{P}\rightarrow \mathbf{Q}$ is said to be \textbf{right exact} if 
-\begin{align*}
-A \longrightarrow  B \longtwoheadrightarrow  C \longrightarrow  0 \text{ is exact }  \implies  F(A)\longrightarrow F(B)\longtwoheadrightarrow  F(C) \longrightarrow 0\text{ is exact }
-\end{align*}
-or equivalently, if 
-\begin{align*}
-0\longrightarrow A\longhookrightarrow B \longtwoheadrightarrow C \longrightarrow 0\text{ is exact }\implies  F(A) \longrightarrow  F(B) \longtwoheadrightarrow F(C)\longrightarrow 0\text{ is exact }  
-\end{align*}
-$F:\mathbf{P}\rightarrow \mathbf{Q}$ is said to be \textbf{left exact} if
-\begin{align*}
-0\longrightarrow A \longhookrightarrow B \longrightarrow C\text{ is exact }\implies 0 \longrightarrow F(A)\longhookrightarrow F(B) \longrightarrow F(C)\text{ is exact }
-\end{align*}
-or equivalently, if 
-\begin{align*}
-0\longrightarrow A \longhookrightarrow B \longtwoheadrightarrow C \longrightarrow 0\text{ is exact } \implies  0 \longrightarrow F(A)\longhookrightarrow F(B) \longrightarrow F(C)\text{ is exact }
-\end{align*}
-$F:\mathbf{P}\rightarrow \mathbf{Q}$ is then said to be \textbf{exact} if it is both left and right exact.  
-\end{equiv_def}
-\begin{proof}
-\href{https://math.stackexchange.com/questions/292037/definition-of-left-right-exact-functors}{See this MSE post}
-\end{proof}
-A \textbf{contravariant functor} $G: \mathcal{C}\rightarrow \mathcal{D}  $ is a map of objects $G: \operatorname{ob}(\mathcal{C} )\rightarrow \operatorname{ob}(\mathcal{D} )$ together with a map of morphisms: 
-\begin{align*}
-G: \operatorname{Hom}_\mathcal{C}(A,B) \rightarrow \operatorname{Hom}_\mathcal{D}(G(B),G(A))  
-\end{align*}
-such that 
-\begin{align*}
-G(\id _A)=\id _{G(A)}\quad \text{ and }\quad G(g \circ h) = G(h)\circ G(g)
-\end{align*}
-
 \end{document}
+
 
