@@ -1188,7 +1188,7 @@ Note that if $H$ doesn't contain $Z(G)$, then the elements of $Z(G)$ that lies o
 This is proved by induction on nilpotency class $n$ of $G$. The base case $n=1$ is clear. The inductive case follows from \customref{THtit}{third isomorphism theorem for groups} and the observation $G \quotient Z(G)$ has the nilpotent class one smaller than that of $G$.
 \end{proof}
 \begin{theorem}
-\label{THpp}
+\label{THpp1}
 \textbf{(Properties of finite $p$-groups)} Let $P$ be a finite $p$-group. Then:  
 \begin{enumerate}[label=(\roman*)]
   \item $P$ has nontrivial center. 
@@ -1233,7 +1233,7 @@ It is an infinite group whose every nontrivial element has order $p^n$ for some 
 
 (iii)$\implies $(iv): This follows from \customref{EDdpfg}{the definition of finite internal direct product}. \\
 
-(iv)$\implies $(i): This follows from the fact that \customref{THpp}{$p$-groups is nilpotent} and that nilpotency is closed under taking finite direct product. 
+(iv)$\implies $(i): This follows from the fact that \customref{THpp1}{$p$-groups are nilpotent} and that nilpotency is closed under taking finite direct product. 
 \end{proof}
 \section{Old Numbers}
 \begin{abstract}
@@ -1588,8 +1588,7 @@ G\cong C_{15} \rtimes C_2
 To classify the possible semidirect product, one first compute $\operatorname{Aut}(C_{15})\cong C_4\times C_2$, \footnote{This can proved by noting $\operatorname{Aut}(C_{15})\cong  \Z_{15}^{\times}\cong  (\Z_5 \times \Z_3)^{\times} \cong  \Z_5^{\times}\times \Z_3 ^{\times}\cong C_4 \times C_2$. Of course, one can also just brute force the computation.} which show us that $\operatorname{Hom}(C_2,\operatorname{Aut}(C_{15}))$ has only $4$ elements, which can be easily checked to be $y \mapsto (x \mapsto x^n)$, where $C_2= \langle y\rangle ,C_{15}=\langle x\rangle $ and $n \in \set{1,4,11,14}$. To see that these four possibly distinct groups are really pairwise distinct, one can use \customref{THposd}{their presentation} to easily compute that the number of elements of order $2$ they contain are indeed pairwise different.  \\
 
 
-(ii): Let $R$ be the characteristic  $11$-sylow subgroup of $G$.  \customref{THpoc}{We are required to prove $C_G(R)=G$}. Because $C_G(R)$ is exactly the kernel of the conjugacy action $G = N_G(R)\longrightarrow \operatorname{Aut}(R)$, by \customref{THfit}{first isomorphism theorem}, we have an injection $G \quotient C_G(R) \longhookrightarrow \customref{THzpc}{\operatorname{Aut}(R) \cong C_{10}}$. The proof then follows from counting order. \\
-
+(ii): Let $R$ be the characteristic  $11$-sylow subgroup of $G$.  \customref{EDpoc}{We are required to prove $C_G(R)=G$}. Because $C_G(R)$ is exactly the kernel of the conjugacy action $G = N_G(R)\longrightarrow \operatorname{Aut}(R)$, by \customref{THfit}{first isomorphism theorem}, we have an injection $G \quotient C_G(R) \longhookrightarrow \customref{THzpc}{\operatorname{Aut}(R) \cong C_{10}}$. The proof then follows from counting order. \\
 
 (iii): The proof is similar to that of (ii). \\   
 
@@ -1646,7 +1645,7 @@ Denote $K\triangleq \operatorname{ker}\phi$ and $H \triangleq \operatorname{Stab
 
 Case ($NH=H$): In such case, clearly $N \leq H$, and therefore \customref{THpdta}{$N$ acts trivially on $X$}, which implies $N \leq K$, as desired. \\
 
-Case ($NH=G$): In such case, normality $U \trianglelefteq H$ implies $NU \trianglelefteq G$. This then implies that $gUg^{-1} \leq g(NU)g^{-1} = NU$ for all $g \in G$. Therefore by premise, $NU=G$. \customref{THsit}{Second isomorphism theorem} then shows that $G \quotient N \cong  NU \quotient N \cong  U \quotient  N \cap U$ is abelian, which by perfectness of $G$ implies that  $N=G$.    
+Case ($NH=G$): In such case, normality $U \trianglelefteq H$ implies $NU \trianglelefteq G$. This then implies that $gUg^{-1} \leq g(NU)g^{-1} = NU$ for all $g \in G$. Therefore by premise, $NU=G$. \customref{THsitg}{Second isomorphism theorem} then shows that $G \quotient N \cong  NU \quotient N \cong  U \quotient  N \cap U$ is abelian, which by perfectness of $G$ implies that  $N=G$.    
 \end{proof}
 Let $\F$ be a field. The \textbf{general linear group} $\operatorname{GL}_n(\F)$ is the group of $n$-by-$n$  $\F$-valued matrices that has nonzero determinant. Clearly, $\operatorname{GL}_n(\F)$ acts naturally on the affine space $\A^n(\F)$, and moreover on the projective space $\P^{n-1}(\F)$. 
 \begin{theorem}
@@ -2230,26 +2229,21 @@ The statements for $M_i$ all follow from the construction, so we only prove the 
 \end{proof}
 \begin{theorem}
 \label{THdls}
-\textbf{(Sum of modules is a direct limits)} Let $M_i$ be a collection of submodules indexed by $I$. If for all  $i,j\in I$ there exists some $k \in I$ that makes  
+\textbf{(Module sums are direct limits)} Let $M_i$ be a collection of submodules of $M$ indexed by $I$ that satisfies 
+\begin{center}
+   \begin{minipage}{0.9\linewidth}  
+       \centering
+       For all $i,j \in I$, there exists some $k \in I$ that makes $M_i + M_j \leq M_k$. 
+   \end{minipage}
+\end{center}
+then $M_i$ and  $M \quotient M_i$ naturally forms a directed system whose direct limit can be realized as  
 \begin{align*}
-M_i + M_j \leq M_k
-\end{align*}
-then by setting $i \leq  j \overset{\trinagle}{\iff } M_i \leq M_j$ and the canonical morphisms inclusion maps, $M_i$ forms a directed system whose  direct limit can be realized as  
-\begin{align*}
-\directlimit M_i = \sum M_i = \bigcup M_i
+\directlimit M_i = \sum M_i  = \bigcup  M_i\quad \text{ and }\quad \directlimit (M \quotient M_i)= M \quotient \sum M_i
 \end{align*}
 Therefore, in particular, every module is the direct limit of its finitely generated submodules. 
 \end{theorem}
 \begin{proof}
 Routine. 
-\end{proof}
-
-
-\begin{equiv_def}
-\textbf{(Properties of functor categories whose source is small and target is abelian)} Let $\mathcal{C}$ be a small category and $\mathcal{D}$ be an abelian category. Then the category $\operatorname{Func}(\mathcal{C},\mathcal{D})$ is abelian, whose image, kernels, and cokernels can be constructed component wise. Therefore, a sequence in $\operatorname{Func}(\mathcal{C},\mathcal{D})$ is exact if and only if it is exact component wise.
-\end{equiv_def}
-\begin{proof}
-Routine. (Categorical)  
 \end{proof}
 Let $A$ be a ring and $I$ be a directed set. Then we can define a covariant functor $D: \operatorname{Func}(I,\mathbf{Mod}_A)\rightarrow \mathbf{Mod}_A$ by 
 \begin{align*}
@@ -2556,7 +2550,7 @@ Note that $V(\mathfrak{a})\supseteq V(\sqrt{\mathfrak{a}} )$ follows trivially f
 
 (v): Let $x \neq 0$ and $y^n \in \operatorname{Ann}(x)$ with $y^{n-1}\not \in \operatorname{Ann}(x)$. Then $y(y^{n-1}x)=y^nx=0$ shows that $y$ is a zero-divisor. If $y\neq 0$ is a zero-divisor with $xy=0$ and $x \neq 0$. Then $y \in \sqrt{ \operatorname{Ann}(x)}$. 
 \end{proof}
-\section{Nakayama Lemmas}
+\section{Finitely Generated Modules}
 We say an $A$-module homomorphism $ \pi :M \twoheadrightarrow   M\quotient N$ satisfies the \textbf{universal property of quotient module $M\quotient N$} if 
 \begin{enumerate}[label=(\roman*)]
   \item $\pi $ vanishes on $N$. \textbf{(Module condition)}
@@ -2645,6 +2639,7 @@ x_i = t_i + \sum_{j=1}^n a_j u_j\text{ for all }1\leq i \leq m
 \end{align*}
 We now see $\operatorname{ker}(\pfi )=(t_1, \dots ,t_m)$. 
 \end{proof}
+\section{Nakayama Lemmas}
 \begin{theorem}
 \label{THgCH}
 \textbf{(Generalized Cayley-Hamilton theorem)} Let $M$ be a finitely generated $A$-module, $\mathfrak{a}\trianglelefteq M$, and $\pfi$ an $A$-module endomorphism of  $M$ such that $\pfi (M)\leq \mathfrak{a}M$. Then $\pfi $ satisfies an equation of the form 
@@ -2690,17 +2685,21 @@ By \customref{THsNl}{second version of Nakayama lemma}, it suffices to show $\ma
 \begin{corollary}
   \textbf{(Algebraic consequences of Nakayama lemmas)} Let $A$ be a ring. Then  
 \begin{enumerate}[label=(\roman*)]
-  \item Let $(A,\mathfrak{m})$  be a local ring and $M$ be an  $A$-module.  If $\set{x_i+\mathfrak{m}M: 1 \leq i \leq n}$ forms a basis for the $A \quotient \mathfrak{m}$-vector space $M \quotient \mathfrak{m}M$, then $M= (x_1,\dots ,x_n)$.  
-  \item Let $N,M$ be two $A$-modules with  $M$ finitely generated and $\mathfrak{a}\leq  \operatorname{Jac}(A)$. Let  $u: N\rightarrow M$ be a homomorphism. If the induced homomorphism $\tilde{u}:N \quotient \mathfrak{a}N \twoheadrightarrow  M \quotient \mathfrak{a}M $ is surjective, then $u$ is surjective. 
+  \item Let $(A,\mathfrak{m},k)$  be a local ring and $M$ be an  $A$-module.  If $\set{x_i+\mathfrak{m}M: 1 \leq i \leq n}$ forms a basis for the $k$-vector space $M \quotient \mathfrak{m}M$, then $M= (x_1,\dots ,x_n)$.  
+  \item Let $N,M$ be two $A$-modules with  $M$ finitely generated and $\mathfrak{a}\leq  \operatorname{Jac}(A)$. Let  $u: N\rightarrow M$ be a homomorphism. If the induced homomorphism $\tilde{u}:N \quotient \mathfrak{a}N \twoheadrightarrow  M \quotient \mathfrak{a}M $ is surjective, then $u$ is surjective.  
 \end{enumerate}
-
 \end{corollary}
 \begin{proof}
   (i): Let $N \triangleq (x_1,\dots ,x_n)\leq M$. We are required to prove $N=M$, which follows \customref{THtNl}{third version of Nakayama lemma} and the fact that $N+ \mathfrak{m}M=M$. \\
 
 (ii): The proof follows from \customref{THtNl}{third version of Nakayama lemma} and the observation that $M=u(N)+ \mathfrak{a}M$.  
 \end{proof}
+\begin{corollary}
+\textbf{(Geometric consequences of Nakayama lemmas)} Let $A$ be a ring and  $\pfi : A^n \rightarrow A^m$ be a module homomorphism. If $\pfi $ is injective, then  $n \leq m$. Conversely, if $\pfi$ is surjective, then $n\geq m$.  
+\end{corollary}
+\begin{proof}
 
+\end{proof}
 \section{Tensor Products}
 Given a \emph{finite} collection $M_1,\dots ,M_n$ of $A$-modules, their \textbf{tensor product} is an $A$-module $M_1 \otimes  \cdots \otimes  M_n$ together with a multilinear map $\otimes :M_1 \times \cdots \times M_n \rightarrow M_1 \otimes  \cdots \otimes  M_n$ that satisfies the \textbf{universal property for tensor product}: For each multilinear map $f:M _1 \times \cdots \times M_n \rightarrow P$, there exists an unique module homomorphism $\tilde{f}: M_1 \otimes  \cdots \otimes  M_n \rightarrow P$ such that the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMiwyLCJOIl0sWzAsMCwiXFxwcm9kIE1faSJdLFsyLDAsIlxcb3RpbWVzIE1faSJdLFsxLDIsIlxcb3RpbWVzIl0sWzEsMCwiZiIsMl0sWzIsMCwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
@@ -3514,7 +3513,7 @@ In particular, because of (i), we know PID are UFD, and because prime elements a
 
 We say a divisor $x \in A$ of $a,b \in A$ is a \textbf{greatest common divisor} if $x$ is divided by all common divisors of $a,b$. 
 \begin{Example}{}{}
-Consider $6, 2 (1+ \sqrt{5}i) \in \Z [i]$. $6$ has divisors $1,2,3,1\pm \sqrt{5}i$, so they have common divisors  $2,1+ \sqrt{5}i$, but no greatest common divisor. 
+Consider $6, 2 (1+ \sqrt{5}i) \in \Z [\sqrt{-5}]$. $6$ has divisors $1,2,3,1\pm \sqrt{5}i$, so they have common divisors  $2,1+ \sqrt{5}i$, but no greatest common divisor. 
 \end{Example}
 
 \begin{theorem}
@@ -3677,7 +3676,7 @@ V(\mathfrak{a}) \cong  \operatorname{Spec}(A \quotient \mathfrak{a})
 \begin{theorem}
 \textbf{(Connectedness of spectrums)} Let $A\triangleq A_1 \times \cdots \times A_n$. Then we have a homeomorphism:  
 \begin{align}
-\label{EQsa}
+\label{EQsa1}
 \operatorname{Spec}(A) \cong    \coprod_{i=1}^n \operatorname{Spec}(A_i)  
 \end{align}
 Moreover, for any ring $B$, the followings are equivalent: 
@@ -3689,7 +3688,7 @@ Moreover, for any ring $B$, the followings are equivalent:
 In particular, by (iii), \customref{THlc}{the spectrum of a local ring is always connected}. 
 \end{theorem}
 \begin{proof}
-Denote $\mathfrak{a}_i \triangleq \operatorname{ker}(\pi _i)$, where $\pi_i : A \twoheadrightarrow A_i$ are the canonical projection. Because we have \customref{THpb}{homeomorphisms $\pi _i^*:\operatorname{Spec}(A_i)\longrightarrow V(\mathfrak{a}_i)$}, proof of \myref{statement}{EQsa} boils  down to showing that  $\operatorname{Spec}(A)$ is the disjoint union of $V(\mathfrak{a}_i)$. This is then clear from the forms of $\mathfrak{a}_i$, as we can compute
+Denote $\mathfrak{a}_i \triangleq \operatorname{ker}(\pi _i)$, where $\pi_i : A \twoheadrightarrow A_i$ are the canonical projection. Because we have \customref{THpb}{homeomorphisms $\pi _i^*:\operatorname{Spec}(A_i)\longrightarrow V(\mathfrak{a}_i)$}, proof of \myref{statement}{EQsa1} boils down to showing that  $\operatorname{Spec}(A)$ is the disjoint union of $V(\mathfrak{a}_i)$. This is then clear from the forms of $\mathfrak{a}_i$, as we can compute
 \begin{align*}
 \customref{EDZs}{V(\mathfrak{a}_i)\cap V(\mathfrak{a}_j)= V(\mathfrak{a}_i+ \mathfrak{a}_j)}=V(A)= \varnothing,\quad \text{ for all }i\neq j
 \end{align*}
@@ -4237,7 +4236,7 @@ An \textbf{additive category} $\mathcal{A} $ is a category such that $\Hom  (A,B
 and 
 \begin{enumerate}[label=(\roman*)]
 \item $\mathcal{A}$ admits zero object.  
-\item $\mathcal{A}$ admits finite coproducts.  
+\item $\mathcal{A}$ admits \emph{finite} coproducts.  
 \end{enumerate}
 Let $f:A\rightarrow B$ be a morphism in an additive category $\mathcal{A}$. We say a morphism $\diota:  \operatorname{ker}(f)\hookrightarrow  A$ satisfies the \textbf{universal property of kernel} if 
 \begin{enumerate}[label=(\roman*)]
@@ -4270,9 +4269,10 @@ We say a morphism $\pi :B \twoheadrightarrow  \operatorname{Coker}(f)$ satisfies
 	\arrow["u"{description}, dashed, from=1-5, to=3-5]
 \end{tikzcd}\]
 commutes. 
+
 \end{enumerate}
+Note that the notion of kernel and cokernel can be generalized to categories that are not additive, as long as the category admits \href{https://en.wikipedia.org/wiki/Zero_morphism}{zero morphism}. Therefore, even though $\mathbf{Gp}$ isn't additive due to the lack of abelian group structure on Hom-set, $\mathbf{Gp}$ still have categorical kernel. On the other hand, $\mathbf{Ring}$ isn't additive and there isn't a good way to define zero morphism in it, so $\mathbf{Ring}$ has no categorical kernel. Indeed, the "kernel" of a group homomorphism forms a group, and the "kernel" of a ring homomorphism don't always form a ring.  
 \begin{theorem}
-\label{THbpac}
 \label{THkar}
 \textbf{(Basic properties of additive categories)} Let $\mathcal{A}$ be an additive category. Then 
 \begin{enumerate}[label=(\roman*)]
@@ -4281,47 +4281,48 @@ commutes.
 A \overset{f}{\longrightarrow }   Z \overset{g}{\longrightarrow } B
 \end{align*}
 Then $g\circ f$ is the zero in the abelian group $\Hom (A,B)$.  
-  \item Let $A_1, \dots ,A_n \in \mathcal{A}$. If for each $i$ we use the universal property of coproduct to define $p_i:\coprod A_i\rightarrow A_i$ by 
+  \item Given a \emph{finite} collection of objects $A_1,\dots ,A_n \in \mathcal{A}$ and a object $A$ together with a collection of morphism $A_i \overset{\diota_i}{\longrightarrow }A \overset{p_i}{\longrightarrow }A_i$ that satisfies 
 \begin{align*}
 p_i \circ \diota_j \triangleq \begin{cases}
   \id_{A_i}& \text{ if $j=i$ }\\
   0& \text{ if $j\neq i$ }
-\end{cases}  
+\end{cases}  \quad \text{ and }\quad \sum \diota_i \circ p_i = \id_A
 \end{align*}
-then $p_i$ satisfies the universal properties of product. 
+then the morphisms $\diota_i$ and $p_i$ respectively satisfies the universal property of coproduct and product. In particular, any finite product and finite coproduct can be made a coproduct and product this way.    
 \item $Z\in \mathcal{A}$ is a zero object $\iff \id_{Z}$ is the zero in $\Hom  (Z,Z)$.   
 \item Canonical morphisms of \emph{finite} products and coproducts in $\mathcal{A}$ are respectively epimorphisms and monomorphisms. 
 \item  Let $f:A \rightarrow B$ be a morphism in $\mathcal{A}$ that has both $\diota: \operatorname{ker}(f)\hookrightarrow A $ and $\pi  : B \twoheadrightarrow \operatorname{Coker}(f)$. Then $\diota$ is indeed a monomorphism, and $\pi $ is indeed an epimorphism.  
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-  (i): To prove that $g \circ f$ is the zero in the abelian group $\Hom (A,B)$, we only have to prove that it is idempotent, which follows from 
-\begin{align*}
-  (g \circ f)+ (g \circ f)= g \circ (f+f)= g \circ f
-\end{align*}
-(ii): The first step is to use universal property to check that $\sum \diota_i \circ p_i= \id _{\coprod A_i} $. The proof then follows from using the first step to check that given $f_i: X \rightarrow A_i$, indeed, $\sum \diota_i \circ f_i : X \rightarrow \coprod A_i $ is the unique map that makes the diagram 
-\[\begin{tikzcd}
-	& X \\
-	\\
-	& \coprod A_i \\
-	\\
-	{A_i} && 
-	\arrow[ dashed, from=1-2, to=3-2]
-	\arrow["{f_i}"', curve={height=18pt}, from=1-2, to=5-1]
-	\arrow["{p_i}"', from=3-2, to=5-1]
-\end{tikzcd}\]
-commutes. (iii): Left to right is clear. We now prove from right to left. Because the proofs for initial and terminal of $Z$ are similar, we only prove it is terminal, which  follows from noting that for all $f:A \rightarrow Z$, we have 
-\begin{align*}
-f= \id _Z \circ f = 0   \in \Hom  (A,Z)
-\end{align*}
-(iv) follows from (iii) and the fact that \customref{THbpom}{left inverses are epimorphisms and right inverses are monomorphisms}. (v) is routine. 
+They are all routine. Note that (iv) follows from (ii) and the fact that \customref{THbpom}{left inverses are epimorphisms and right inverses are monomorphisms}.
 \end{proof}
-Note that the notion of kernel and cokernel can be generalized to categories that are not additive, as long as the category admits \href{https://en.wikipedia.org/wiki/Zero_morphism}{zero morphism}. Therefore, even though $\mathbf{Gp}$ isn't additive due to the lack of abelian group structure on Hom-set, $\mathbf{Gp}$ still have categorical kernel. On the other hand, $\mathbf{Ring}$ isn't additive and there isn't a good way to define zero morphism in it, so $\mathbf{Ring}$ has no categorical kernel. Indeed, the "kernel" of a group homomorphism forms a group, and the "kernel" of a ring homomorphism don't always form a ring.   \\
 
 
 
-Clearly, given an additive category $\mathcal{A}$ and a small category $\mathcal{C}$, the functor category $\operatorname{Func}(\mathcal{C},\mathcal{A})$ form an additive category the obvious way. Also, if all kernels and cokernels exists in $\mathcal{A}$, we may construct kernels and cokernels in $\operatorname{Func}(\mathcal{C},\mathcal{A})$ component wise.  
+Clearly, given an additive category $\mathcal{A}$ and a small category $\mathcal{C}$, the functor category $\operatorname{Func}(\mathcal{C},\mathcal{A})$ form an additive category the obvious way. Also, if all kernels and cokernels exists in $\mathcal{A}$, we may construct kernels and cokernels in $\operatorname{Func}(\mathcal{C},\mathcal{A})$ component wise.  \\
 
+
+
+Let $\mathcal{C}$ and $\mathcal{D}$ be categories. A \textbf{contravariant functor} $G: \mathcal{C}\rightarrow \mathcal{D}  $ is a map of objects $G: \operatorname{ob}(\mathcal{C} )\rightarrow \operatorname{ob}(\mathcal{D} )$ together with a map of morphisms: 
+\begin{align*}
+G: \operatorname{Hom}_\mathcal{C}(A,B) \rightarrow \operatorname{Hom}_\mathcal{D}(G(B),G(A))  
+\end{align*}
+such that 
+\begin{align*}
+G(\id _A)=\id _{G(A)}\quad \text{ and }\quad G(g \circ h) = G(h)\circ G(g)
+\end{align*}
+Let $F: \mathcal{A}\rightarrow \mathcal{B}$ and $G:\mathcal{A}\rightarrow \mathcal{B}$ be respectively covariant and contravariant functors between additive categories. We say $F$ and $G$ are \textbf{additive} if for all $A,B \in \mathcal{A}$, respectively, the map $\Hom _{\mathcal{A} }(A,B) \rightarrow \Hom _\mathcal{B}(F(A),F(B))$ and the map $\Hom_{\mathcal{A} }(A,B)\rightarrow \Hom _{\mathcal{B} }(G(B),G(A)) $ are group homomorphisms.
+\begin{theorem}
+\textbf{(Basic property of additive functor)} \label{THbpadf} Let $F: \mathcal{A}\rightarrow \mathcal{B}$ and $G: \mathcal{A}\rightarrow \mathcal{B}$ be additive covariant and additive contravariant additive functor between additive categories. Then  
+\begin{enumerate}[label=(\roman*)]
+  \item $F$ and  $G$ both map zero object to zero objects.  
+  \item If \emph{finite} $A_i \longrightarrow A$ satisfies universal property of coproduct, then $F(A_i)\longrightarrow F(A)$ satisfies universal property  of coproduct. Dually, if \emph{finite} $A \longrightarrow A_i$  satisfies universal property of product, then $F(A)\longrightarrow F(A_i)$ satisfies universal property  of product.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+  (i) follows from the \customref{THkar}{characterization of zero objects in additive categories}. (ii) and (iii) follows from the \customref{THkar}{characterization of biproduct}. 
+\end{proof}
 
 
 
@@ -4459,7 +4460,7 @@ be a short exact sequence in an abelian category $\mathcal{A}$. The followings a
 Routine. 
 \end{proof}
 \begin{theorem}
-\label{THsl}
+\label{THsnake}
 \textbf{(Snake lemma)} Let 
 % https://q.uiver.app/#q=WzAsOCxbMiwwLCJNJyJdLFs0LDAsIk0iXSxbNiwwLCJNJyciXSxbOCwwLCIwIl0sWzAsMiwiMCJdLFsyLDIsIk4nIl0sWzQsMiwiTiJdLFs2LDIsIk4nJyJdLFswLDEsInUiXSxbMSwyLCJ2IiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsM10sWzQsNV0sWzAsNSwiZiciLDJdLFsxLDYsImYiLDJdLFs1LDYsInUnIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw3LCJmJyciXSxbNiw3LCJ2JyIsMl1d
 \[\begin{tikzcd}
@@ -4531,16 +4532,6 @@ Let $N_i \leq M_i$ be the kernels. Then the proof follows from noting that for a
 0 \longrightarrow N_i \longhookrightarrow M_i \longtwoheadrightarrow N_{i+1} \longrightarrow 0
 \end{align*}
 \end{proof}
-
-A \textbf{contravariant functor} $G: \mathcal{C}\rightarrow \mathcal{D}  $ is a map of objects $G: \operatorname{ob}(\mathcal{C} )\rightarrow \operatorname{ob}(\mathcal{D} )$ together with a map of morphisms: 
-\begin{align*}
-G: \operatorname{Hom}_\mathcal{C}(A,B) \rightarrow \operatorname{Hom}_\mathcal{D}(G(B),G(A))  
-\end{align*}
-such that 
-\begin{align*}
-G(\id _A)=\id _{G(A)}\quad \text{ and }\quad G(g \circ h) = G(h)\circ G(g)
-\end{align*}
-Let $F: \mathcal{A}\rightarrow \mathcal{B}$ and $G:\mathcal{A}\rightarrow \mathcal{B}$ be respectively covariant and contravariant functors between abelian categories. We say $F$ and $G$ are \textbf{additive} if for all $A,B \in \mathcal{A}$, respectively, the map $\Hom _{\mathcal{A} }(A,B) \rightarrow \Hom _\mathcal{B}(F(A),F(B))$ and the map $\Hom_{\mathcal{A} }(A,B)\rightarrow \Hom _{\mathcal{B} }(G(B),G(A)) $ are group homomorphisms. Because by definition, functor send identity morphism to identity morphism, from the fact that \customref{THbpac}{$Z \in \mathcal{B} $ is a zero object $\iff \id_Z$ is zero in $\operatorname{End}(Z)$}, we see additive functor send zero  object to zero object, covariant or contravariant. 
 \section{Homologies and Cohomologies}
 Let $\mathcal{A}$ be an abelian category. A \textbf{chain} $A_{\bullet}$ in $\mathcal{A}$ is a sequence of the form: 
 % https://q.uiver.app/#q=WzAsNSxbNCwwLCJBX2kiXSxbMiwwLCJBX3tpLTF9Il0sWzYsMCwiQV97aSsxfSJdLFswLDAsIlxcY2RvdHMiXSxbOCwwLCJcXGNkb3RzIl0sWzAsMSwiZF9pIiwyXSxbMiwwLCJkX3tpKzF9IiwyXSxbMSwzXSxbNCwyXV0=
@@ -4604,6 +4595,7 @@ H_i:\mathbf{Ch}(\mathcal{A})\rightarrow \mathcal{A}\quad \text{ and }\quad H^i: 
 \end{align*}
 Note that sequences in $\mathbf{Ch}(\mathcal{A})$ and $\mathbf{cCh}(\mathcal{A})$ are exact if and only if it is exact componentwise.
 \begin{theorem}
+\label{THses}
 \textbf{(Short exact sequence of complexes induce a long exact sequence of (co) homologies)} Let $\mathcal{A}$ be an abelian category. Given a short exact sequence of chains  
 % https://q.uiver.app/#q=WzAsNixbMCwwLCIwIl0sWzIsMCwiQV97XFxidWxsZXR9Il0sWzQsMCwiQl9cXGJ1bGxldCJdLFs2LDAsIkNfe1xcYnVsbGV0fSJdLFs3LDBdLFs4LDAsIjAiXSxbMCwxXSxbMSwyLCJmX3tcXGJ1bGxldH0iXSxbMiwzLCJnX3tcXGJ1bGxldH0iXSxbMyw1XV0=
 \[\begin{tikzcd}
@@ -4614,9 +4606,9 @@ Note that sequences in $\mathbf{Ch}(\mathcal{A})$ and $\mathbf{cCh}(\mathcal{A})
 	\arrow[from=1-7, to=1-9]
 \end{tikzcd}\]
 in $\mathcal{A}$, we have a \emph{canonical} long exact sequence of homologies: 
-% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXGNkb3RzICJdLFsyLDAsIkhfaShCX1xcYnVsbGV0KSJdLFszLDAsIkheaShDXlxcYnVsbGV0KSJdLFs0LDAsIkhfe2ktMX0oQV9cXGJ1bGxldCkiXSxbNSwwLCJcXGNkb3RzIl0sWzEsMCwiSF9pKEFfXFxidWxsZXQpIl0sWzEsMiwiZ19pXioiXSxbMiwzLCJcXHBhcnRpYWxfaSJdLFszLDRdLFswLDVdLFs1LDEsImZfaV4qIl1d
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJcXGNkb3RzICJdLFsyLDAsIkhfaShCX1xcYnVsbGV0KSJdLFszLDAsIkhfaShDX1xcYnVsbGV0KSJdLFs0LDAsIkhfe2ktMX0oQV9cXGJ1bGxldCkiXSxbNSwwLCJcXGNkb3RzIl0sWzEsMCwiSF9pKEFfXFxidWxsZXQpIl0sWzEsMiwiZ19pXioiXSxbMiwzLCJcXHBhcnRpYWxfaSJdLFszLDRdLFswLDVdLFs1LDEsImZfaV4qIl1d
 \[\begin{tikzcd}
-	{\cdots } & {H_i(A_\bullet)} & {H_i(B_\bullet)} & {H^i(C^\bullet)} & {H_{i-1}(A_\bullet)} & \cdots
+	{\cdots } & {H_i(A_\bullet)} & {H_i(B_\bullet)} & {H_i(C_\bullet)} & {H_{i-1}(A_\bullet)} & \cdots
 	\arrow[from=1-1, to=1-2]
 	\arrow["{f_i^*}", from=1-2, to=1-3]
 	\arrow["{g_i^*}", from=1-3, to=1-4]
@@ -4644,7 +4636,7 @@ in $\mathcal{A}$, we have a \emph{canonical} long exact sequence of cohomologies
 \end{tikzcd}\]
 \end{theorem}
 \begin{proof}
-This is a corollary of  \customref{THsl}{snake lemma}. 
+Routine. The inducing of the boundary homomorphisms is done the same way as in \customref{THsnake}{snake lemma}. 
 \end{proof}
 Let $f_\bullet,g_\bullet:A_\bullet \rightarrow B_\bullet$ be two morphisms from one chain to another. A \textbf{chain homotopy} $s_{\bullet}:f_\bullet \rightarrow g_\bullet$ is a set of morphisms $s_i: A_i \rightarrow B_{i+1}$: 
 % https://q.uiver.app/#q=WzAsMTAsWzQsMCwiQV9pIl0sWzQsMiwiQl9pIl0sWzIsMCwiQV97aS0xfSJdLFsyLDIsIkJfe2ktMX0iXSxbNiwwLCJBX3tpKzF9Il0sWzYsMiwiQl97aSsxfSJdLFswLDAsIlxcY2RvdHMiXSxbMCwyLCJcXGNkb3RzIl0sWzgsMCwiXFxjZG90cyJdLFs4LDIsIlxcY2RvdHMiXSxbMCwyLCJkIiwyXSxbMSwzLCJkIl0sWzQsMCwiZCIsMl0sWzUsMSwiZCJdLFsyLDEsInNfe2ktMX0iLDFdLFswLDUsInNfaSIsMV0sWzIsM10sWzQsNV0sWzIsNiwiZCIsMl0sWzMsNywiZCJdLFs4LDQsImQiLDJdLFs5LDUsImQiXSxbMCwxLCJmX2ktZ19pIiwxXV0=
@@ -4913,202 +4905,199 @@ h \circ j \circ m = h \circ g \circ f = \id_I \circ f = f
 \begin{proof}
 Routine. 
 \end{proof}
-Let $\mathcal{C}$ be a category. We say $\mathcal{C}$ \textbf{has enough injective} if for all $X \in \mathcal{C}$ there exists a monomorphism $X \hookrightarrow I$ from $X$ to an injective object  $I \in \mathcal{C}$, and we say $\mathcal{C}$ \textbf{has enough projective} if for all $X \in \mathcal{C}$ there exists an epimorphism $P \twoheadrightarrow X$ from a projective object $P\in \mathcal{C}$ to $X$. \\
-
-Given an abelian category $\mathcal{A}$ with enough injective, for each $X \in \mathcal{A} $, we may form an exact cochain:  
-% https://q.uiver.app/#q=WzAsNyxbMCwxLCIwIl0sWzIsMSwiWCJdLFs0LDEsIkleMSJdLFs1LDAsIlxcb3BlcmF0b3JuYW1le0Nva2VyfShmXzApIl0sWzYsMSwiSV4yIl0sWzgsMSwiXFxjZG90cyAiXSxbNywwLCJcXG9wZXJhdG9ybmFtZXtDb2tlcn0oZl8xKSJdLFsxLDIsImReMFxcdHJpYW5nbGVxIGZfMCIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMV0sWzIsMywiXFxwaV8wIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsNCwiZl8xIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw0LCJkXjEiLDJdLFs0LDUsImReMiIsMl0sWzYsNSwiZl8yIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCw2LCJcXHBpXzEiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
+Let $\mathcal{C}$ be a category. We say $\mathcal{C}$ \textbf{has enough injective} if for all $X \in \mathcal{C}$ there exists a monomorphism $X \hookrightarrow I$ from $X$ to an injective object  $I \in \mathcal{C}$, and we say $\mathcal{C}$ \textbf{has enough projective} if for all $X \in \mathcal{C}$ there exists an epimorphism $P \twoheadrightarrow X$ from a projective object $P\in \mathcal{C}$ to $X$. Given an abelian category $\mathcal{A}$ with enough injective, for each $X \in \mathcal{A} $, we may form an exact cochain:  
+% https://q.uiver.app/#q=WzAsNyxbMCwxLCIwIl0sWzIsMSwiWCJdLFs0LDEsIkleMCJdLFs1LDAsIlxcb3BlcmF0b3JuYW1le0Nva2VyfShmX3stMX0pIl0sWzYsMSwiSV4xIl0sWzgsMSwiXFxjZG90cyAiXSxbNywwLCJcXG9wZXJhdG9ybmFtZXtDb2tlcn0oZl8wKSJdLFsxLDIsImReey0xfVxcdHJpYW5nbGVxIGZfey0xfSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzAsMV0sWzIsMywiXFxwaV8wIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsNCwiZl8wIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiw0LCJkXnswfSIsMl0sWzQsNSwiZF4xIiwyXSxbNiw1LCJmXzEiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDYsIlxccGlfMSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
 \[\begin{tikzcd}
-	&&&&& {\operatorname{Coker}(f_0)} && {\operatorname{Coker}(f_1)} \\
-	0 && X && {I^1} && {I^2} && {\cdots }
-	\arrow["{f_1}", hook, from=1-6, to=2-7]
-	\arrow["{f_2}", hook, from=1-8, to=2-9]
+	&&&&& {\operatorname{Coker}(f_{-1})} && {\operatorname{Coker}(f_0)} \\
+	0 && X && {I^0} && {I^1} && {\cdots }
+	\arrow["{f_0}", hook, from=1-6, to=2-7]
+	\arrow["{f_1}", hook, from=1-8, to=2-9]
 	\arrow[from=2-1, to=2-3]
-	\arrow["{d^0\triangleq f_0}"', hook, from=2-3, to=2-5]
+	\arrow["{d^{-1}\triangleq f_{-1}}"', hook, from=2-3, to=2-5]
 	\arrow["{\pi_0}", two heads, from=2-5, to=1-6]
-	\arrow["{d^1}"', from=2-5, to=2-7]
+	\arrow["{d^{0}}"', from=2-5, to=2-7]
 	\arrow["{\pi_1}", two heads, from=2-7, to=1-8]
-	\arrow["{d^2}"', from=2-7, to=2-9]
+	\arrow["{d^1}"', from=2-7, to=2-9]
 \end{tikzcd}\]
 called \textbf{an injective resolution of} $X$. Dually, given an abelian category $\mathcal{A}$ with enough projective, for each $X \in \mathcal{A}$, we may form an exact chain:  
-% https://q.uiver.app/#q=WzAsNyxbMCwxLCIwIl0sWzIsMSwiWCJdLFs0LDEsIlBfMSJdLFs1LDAsIlxcb3BlcmF0b3JuYW1le2tlcn0oZ18wKSJdLFs2LDEsIlBfMiJdLFs4LDEsIlxcY2RvdHMgIl0sWzcsMCwiXFxvcGVyYXRvcm5hbWV7a2VyfShnXzEpIl0sWzEsMF0sWzMsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbNCwzLCJnXzEiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCwyLCJkXzEiXSxbNSw0LCJkXzIiXSxbNSw2LCJnXzIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNiw0LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFsyLDEsImRfMFxcdHJpYW5nbGVxIGdfMCIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+% https://q.uiver.app/#q=WzAsNyxbMCwxLCIwIl0sWzIsMSwiWCJdLFs0LDEsIlBfMCJdLFs1LDAsIlxcb3BlcmF0b3JuYW1le2tlcn0oZ197LTF9KSJdLFs2LDEsIlBfMSJdLFs4LDEsIlxcY2RvdHMgIl0sWzcsMCwiXFxvcGVyYXRvcm5hbWV7a2VyfShnXzApIl0sWzEsMF0sWzMsMiwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbNCwzLCJnXzAiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCwyLCJkXzAiXSxbNSw0LCJkXzEiXSxbNSw2LCJnXzEiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNiw0LCIiLDIseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6ImJvdHRvbSJ9fX1dLFsyLDEsImRfey0xfVxcdHJpYW5nbGVxIGdfey0xfSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
 \[\begin{tikzcd}
-	&&&&& {\operatorname{ker}(g_0)} && {\operatorname{ker}(g_1)} \\
-	0 && X && {P_1} && {P_2} && {\cdots }
+	&&&&& {\operatorname{ker}(g_{-1})} && {\operatorname{ker}(g_0)} \\
+	0 && X && {P_0} && {P_1} && {\cdots }
 	\arrow[hook', from=1-6, to=2-5]
 	\arrow[hook', from=1-8, to=2-7]
 	\arrow[from=2-3, to=2-1]
-	\arrow["{d_0\triangleq g_0}", two heads, from=2-5, to=2-3]
-	\arrow["{g_1}"', two heads, from=2-7, to=1-6]
-	\arrow["{d_1}", from=2-7, to=2-5]
-	\arrow["{g_2}"', two heads, from=2-9, to=1-8]
-	\arrow["{d_2}", from=2-9, to=2-7]
+	\arrow["{d_{-1}\triangleq g_{-1}}", two heads, from=2-5, to=2-3]
+	\arrow["{g_0}"', two heads, from=2-7, to=1-6]
+	\arrow["{d_0}", from=2-7, to=2-5]
+	\arrow["{g_1}"', two heads, from=2-9, to=1-8]
+	\arrow["{d_1}", from=2-9, to=2-7]
 \end{tikzcd}\]
 called \textbf{a projective resolution of $X$}. 
 \begin{theorem}
 \label{THeaulr}
-\textbf{(Existence and uniqueness of liftings to resolutions)} Let $\mathcal{A}$ be an abelian category. Given two injective resolutions $X \rightarrow I^\bullet$ and $Y \rightarrow Q^\bullet$ in $\mathcal{A}$ and a morphism $f:X \rightarrow Y$, there exists a cochain morphism $f^\bullet:I^\bullet \rightarrow Q^\bullet $ that makes $f^0=f$, unique up to homotopic.\\
-
-Dually, given two projective resolution $X \leftarrow P_\bullet $ and $Y \leftarrow Q_\bullet$ in $\mathcal{A}$ and a morphism $f: X \rightarrow Y$, there exists a chain morphism  $f_\bullet: P_\bullet \rightarrow Q_\bullet $ that makes $f_0=f$, unique up to homotopic. 
+\textbf{(Morphisms induce (co) chain morphism unique up to homotopy)} Let $\mathcal{A}$ be an abelian category. Given two injective resolutions $X \rightarrow I^\bullet$ and $Y \rightarrow Q^\bullet$ in $\mathcal{A}$ and a morphism $f:X \rightarrow Y$, there exists a cochain morphism $f^\bullet:I^\bullet \rightarrow Q^\bullet $ that makes $f^{-1}=f$, unique up to homotopy. Dually, given two projective resolution $X \leftarrow P_\bullet $ and $Y \leftarrow Q_\bullet$ in $\mathcal{A}$ and a morphism $f: X \rightarrow Y$, there exists a chain morphism  $f_\bullet: P_\bullet \rightarrow Q_\bullet $ that makes $f_{-1}=f$, unique up to homotopy. 
 \end{theorem}
 \begin{proof}
 Because the two proofs are dual to each other, we only prove for injective resolutions. We first prove the existence, so we start with the diagram 
-% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsyLDAsIlgiXSxbMCwyLCIwIl0sWzIsMiwiWSJdLFs0LDAsIkleMSJdLFs0LDIsIlFeMSJdLFs2LDAsIkleMiJdLFs2LDIsIlFeMiJdLFs4LDAsIlxcY2RvdHMiXSxbOCwyLCJcXGNkb3RzIl0sWzAsMV0sWzIsM10sWzEsMywiZiIsMV0sWzEsNCwiZF4wIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw1LCJcXGVwc2lsb25eMCIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV0sWzQsNiwiZF4xIl0sWzUsNywiXFxlcHNpbG9uXjEiLDJdLFs2LDhdLFs3LDldXQ==
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsyLDAsIlgiXSxbMCwyLCIwIl0sWzIsMiwiWSJdLFs0LDAsIkleMCJdLFs0LDIsIlFeMCJdLFs2LDAsIkleMSJdLFs2LDIsIlFeMSJdLFs4LDAsIlxcY2RvdHMiXSxbOCwyLCJcXGNkb3RzIl0sWzAsMV0sWzIsM10sWzEsMywiZiIsMV0sWzEsNCwiZF57LTF9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw1LCJcXGVwc2lsb25eey0xfSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV0sWzQsNiwiZF4wIl0sWzUsNywiXFxlcHNpbG9uXjAiLDJdLFs2LDhdLFs3LDldXQ==
 \[\begin{tikzcd}
-	0 && X && {I^1} && {I^2} && \cdots \\
+	0 && X && {I^0} && {I^1} && \cdots \\
 	\\
-	0 && Y && {Q^1} && {Q^2} && \cdots
+	0 && Y && {Q^0} && {Q^1} && \cdots
 	\arrow[from=1-1, to=1-3]
-	\arrow["{d^0}", hook, from=1-3, to=1-5]
+	\arrow["{d^{-1}}", hook, from=1-3, to=1-5]
 	\arrow["f"{description}, from=1-3, to=3-3]
-	\arrow["{d^1}", from=1-5, to=1-7]
+	\arrow["{d^0}", from=1-5, to=1-7]
 	\arrow[from=1-7, to=1-9]
 	\arrow[from=3-1, to=3-3]
-	\arrow["{\epsilon^0}"', hook', from=3-3, to=3-5]
-	\arrow["{\epsilon^1}"', from=3-5, to=3-7]
+	\arrow["{\epsilon^{-1}}"', hook', from=3-3, to=3-5]
+	\arrow["{\epsilon^0}"', from=3-5, to=3-7]
 	\arrow[from=3-7, to=3-9]
 \end{tikzcd}\]
-Because $d^0: X \hookrightarrow I^1$ is by definition injective, we may construct $f^1$ using the universal property of $I^1$, giving us a commutative diagram: 
-% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsyLDAsIlgiXSxbMCwyLCIwIl0sWzIsMiwiWSJdLFs0LDAsIkleMSJdLFs0LDIsIlFeMSJdLFs2LDAsIkleMiJdLFs2LDIsIlFeMiJdLFs4LDAsIlxcY2RvdHMiXSxbOCwyLCJcXGNkb3RzIl0sWzAsMV0sWzIsM10sWzEsMywiZiIsMV0sWzEsNCwiZF4wIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw1LCJcXGVwc2lsb25eMCIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV0sWzQsNiwiZF4xIl0sWzUsNywiXFxlcHNpbG9uXjEiLDJdLFs2LDhdLFs3LDldLFs0LDUsImZeMSIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+Because $d^{-1}: X \hookrightarrow I^0$ is by definition injective, we may construct $f$ using the universal property of $I^0$, giving us a commutative diagram: 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsyLDAsIlgiXSxbMCwyLCIwIl0sWzIsMiwiWSJdLFs0LDAsIkleMCJdLFs0LDIsIlFeMCJdLFs2LDAsIkleMSJdLFs2LDIsIlFeMSJdLFs4LDAsIlxcY2RvdHMiXSxbOCwyLCJcXGNkb3RzIl0sWzAsMV0sWzIsM10sWzEsMywiZiIsMV0sWzEsNCwiZF57LTF9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMyw1LCJcXGVwc2lsb25eey0xfSIsMix7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoiYm90dG9tIn19fV0sWzQsNiwiZF4wIl0sWzUsNywiXFxlcHNpbG9uXjAiLDJdLFs2LDhdLFs3LDldLFs0LDUsImZeMCIsMSx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
-	0 && X && {I^1} && {I^2} && \cdots \\
+	0 && X && {I^0} && {I^1} && \cdots \\
 	\\
-	0 && Y && {Q^1} && {Q^2} && \cdots
+	0 && Y && {Q^0} && {Q^1} && \cdots
 	\arrow[from=1-1, to=1-3]
-	\arrow["{d^0}", hook, from=1-3, to=1-5]
+	\arrow["{d^{-1}}", hook, from=1-3, to=1-5]
 	\arrow["f"{description}, from=1-3, to=3-3]
-	\arrow["{d^1}", from=1-5, to=1-7]
-	\arrow["{f^1}"{description}, dashed, from=1-5, to=3-5]
+	\arrow["{d^0}", from=1-5, to=1-7]
+	\arrow["{f^0}"{description}, dashed, from=1-5, to=3-5]
 	\arrow[from=1-7, to=1-9]
 	\arrow[from=3-1, to=3-3]
-	\arrow["{\epsilon^0}"', hook', from=3-3, to=3-5]
-	\arrow["{\epsilon^1}"', from=3-5, to=3-7]
+	\arrow["{\epsilon^{-1}}"', hook', from=3-3, to=3-5]
+	\arrow["{\epsilon^0}"', from=3-5, to=3-7]
 	\arrow[from=3-7, to=3-9]
 \end{tikzcd}\]
 Then because 
 \begin{align*}
-\epsilon^1 \circ f^1 \circ d^0 = \epsilon ^1 \circ \epsilon ^0 \circ f = 0
+\epsilon^0 \circ f^0 \circ d^{-1} = \epsilon ^0 \circ \epsilon ^{-1} \circ f = 0
 \end{align*}
-By universal property of $\operatorname{Coker}(d^0)$, there exist a morphism $u: \operatorname{Coker}(d^0)\rightarrow Q^1$ that makes the diagram 
-% https://q.uiver.app/#q=WzAsMTEsWzAsMSwiMCJdLFsyLDEsIlgiXSxbMCwzLCIwIl0sWzIsMywiWSJdLFs0LDEsIkleMSJdLFs0LDMsIlFeMSJdLFs2LDEsIkleMiJdLFs2LDMsIlFeMiJdLFs4LDEsIlxcY2RvdHMiXSxbOCwzLCJcXGNkb3RzIl0sWzUsMCwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9KGReMCkiXSxbMCwxXSxbMiwzXSxbMSwzLCJmIiwxXSxbMSw0LCJkXjAiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIlxcZXBzaWxvbl4wIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbNCw2LCJkXjEiXSxbNSw3LCJcXGVwc2lsb25eMSIsMl0sWzYsOF0sWzcsOV0sWzQsNSwiZl4xIiwxXSxbNCwxMCwiXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxMCw2LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxMCw3LCJ1IiwwLHsiY3VydmUiOjUsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+By universal property of $\operatorname{Coker}(d^{-1})$, there exist a morphism $u: \operatorname{Coker}(d^-1)\rightarrow Q^0$ that makes the diagram: 
+% https://q.uiver.app/#q=WzAsMTEsWzAsMSwiMCJdLFsyLDEsIlgiXSxbMCwzLCIwIl0sWzIsMywiWSJdLFs0LDEsIkleMCJdLFs0LDMsIlFeMCJdLFs2LDEsIkleMSJdLFs2LDMsIlFeMSJdLFs4LDEsIlxcY2RvdHMiXSxbOCwzLCJcXGNkb3RzIl0sWzUsMCwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9KGReey0xfSkiXSxbMCwxXSxbMiwzXSxbMSwzLCJmIiwxXSxbMSw0LCJkXnstMX0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIlxcZXBzaWxvbl57LTF9IiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbNCw2LCJkXjAiXSxbNSw3LCJcXGVwc2lsb25eMCIsMl0sWzYsOF0sWzcsOV0sWzQsNSwiZl4wIiwxXSxbNCwxMCwiXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxMCw2LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxMCw3LCJ1IiwwLHsiY3VydmUiOjUsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
-	&&&&& {\operatorname{Coker}(d^0)} \\
-	0 && X && {I^1} && {I^2} && \cdots \\
+	&&&&& {\operatorname{Coker}(d^{-1})} \\
+	0 && X && {I^0} && {I^1} && \cdots \\
 	\\
-	0 && Y && {Q^1} && {Q^2} && \cdots
+	0 && Y && {Q^0} && {Q^1} && \cdots
 	\arrow[hook, from=1-6, to=2-7]
 	\arrow["u", curve={height=30pt}, dashed, from=1-6, to=4-7]
 	\arrow[from=2-1, to=2-3]
-	\arrow["{d^0}", hook, from=2-3, to=2-5]
+	\arrow["{d^{-1}}", hook, from=2-3, to=2-5]
 	\arrow["f"{description}, from=2-3, to=4-3]
 	\arrow["\pi", two heads, from=2-5, to=1-6]
-	\arrow["{d^1}", from=2-5, to=2-7]
-	\arrow["{f^1}"{description}, from=2-5, to=4-5]
+	\arrow["{d^0}", from=2-5, to=2-7]
+	\arrow["{f^0}"{description}, from=2-5, to=4-5]
 	\arrow[from=2-7, to=2-9]
 	\arrow[from=4-1, to=4-3]
-	\arrow["{\epsilon^0}"', hook', from=4-3, to=4-5]
-	\arrow["{\epsilon^1}"', from=4-5, to=4-7]
+	\arrow["{\epsilon^{-1}}"', hook', from=4-3, to=4-5]
+	\arrow["{\epsilon^0}"', from=4-5, to=4-7]
 	\arrow[from=4-7, to=4-9]
 \end{tikzcd}\]
-commutes. The construction of $f^2$ then follows from universal property of  $I^2:$
-% https://q.uiver.app/#q=WzAsMTEsWzAsMSwiMCJdLFsyLDEsIlgiXSxbMCwzLCIwIl0sWzIsMywiWSJdLFs0LDEsIkleMSJdLFs0LDMsIlFeMSJdLFs2LDEsIkleMiJdLFs2LDMsIlFeMiJdLFs4LDEsIlxcY2RvdHMiXSxbOCwzLCJcXGNkb3RzIl0sWzUsMCwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9KGReMCkiXSxbMCwxXSxbMiwzXSxbMSwzLCJmIiwxXSxbMSw0LCJkXjAiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIlxcZXBzaWxvbl4wIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbNCw2LCJkXjEiXSxbNSw3LCJcXGVwc2lsb25eMSIsMl0sWzYsOF0sWzcsOV0sWzQsNSwiZl4xIiwxXSxbNCwxMCwiXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxMCw2LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxMCw3LCJ1IiwwLHsiY3VydmUiOjV9XSxbNiw3LCJmXjIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+commutes. The construction of $f^1$ then follows from universal property of  $I^1:$
+% https://q.uiver.app/#q=WzAsMTEsWzAsMSwiMCJdLFsyLDEsIlgiXSxbMCwzLCIwIl0sWzIsMywiWSJdLFs0LDEsIkleMCJdLFs0LDMsIlFeMCJdLFs2LDEsIkleMSJdLFs2LDMsIlFeMSJdLFs4LDEsIlxcY2RvdHMiXSxbOCwzLCJcXGNkb3RzIl0sWzUsMCwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9KGReey0xfSkiXSxbMCwxXSxbMiwzXSxbMSwzLCJmIiwxXSxbMSw0LCJkXnstMX0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDUsIlxcZXBzaWxvbl57LTF9IiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJib3R0b20ifX19XSxbNCw2LCJkXjAiXSxbNSw3LCJcXGVwc2lsb25eMCIsMl0sWzYsOF0sWzcsOV0sWzQsNSwiZl4wIiwxXSxbNCwxMCwiXFxwaSIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxMCw2LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsxMCw3LCJ1IiwwLHsiY3VydmUiOjV9XSxbNiw3LCJmXjEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 \[\begin{tikzcd}
-	&&&&& {\operatorname{Coker}(d^0)} \\
-	0 && X && {I^1} && {I^2} && \cdots \\
+	&&&&& {\operatorname{Coker}(d^{-1})} \\
+	0 && X && {I^0} && {I^1} && \cdots \\
 	\\
-	0 && Y && {Q^1} && {Q^2} && \cdots
+	0 && Y && {Q^0} && {Q^1} && \cdots
 	\arrow[hook, from=1-6, to=2-7]
 	\arrow["u", curve={height=30pt}, from=1-6, to=4-7]
 	\arrow[from=2-1, to=2-3]
-	\arrow["{d^0}", hook, from=2-3, to=2-5]
+	\arrow["{d^{-1}}", hook, from=2-3, to=2-5]
 	\arrow["f"{description}, from=2-3, to=4-3]
 	\arrow["\pi", two heads, from=2-5, to=1-6]
-	\arrow["{d^1}", from=2-5, to=2-7]
-	\arrow["{f^1}"{description}, from=2-5, to=4-5]
+	\arrow["{d^0}", from=2-5, to=2-7]
+	\arrow["{f^0}"{description}, from=2-5, to=4-5]
 	\arrow[from=2-7, to=2-9]
-	\arrow["{f^2}"{description}, dashed, from=2-7, to=4-7]
+	\arrow["{f^1}"{description}, dashed, from=2-7, to=4-7]
 	\arrow[from=4-1, to=4-3]
-	\arrow["{\epsilon^0}"', hook', from=4-3, to=4-5]
-	\arrow["{\epsilon^1}"', from=4-5, to=4-7]
+	\arrow["{\epsilon^{-1}}"', hook', from=4-3, to=4-5]
+	\arrow["{\epsilon^0}"', from=4-5, to=4-7]
 	\arrow[from=4-7, to=4-9]
 \end{tikzcd}\]
-The construction of $f^n$ for  $n\geq 3$ are similar to that of $f^2$. We now prove its uniqueness up to homotopic. Clearly, it suffices to show that given $f\triangleq 0$, the induced chain morphism  $f^\bullet$ is homotopic to $0^\bullet$. In other words, we only have to construct $s^i: I^i \rightarrow Q^{i-1}$ to satisfies 
+The construction of $f^n$ for  $n\geq 2$ are similar to that of $f^1$. We now prove its uniqueness up to homotopic. Clearly, it suffices to show that given $f\triangleq 0$, the induced chain morphism  $f^\bullet$ is homotopic to $0^\bullet$. In other words, we only have to construct $s^i: I^i \rightarrow Q^{i-1}$ to satisfies 
 \begin{align*}
 0= s \circ d + d \circ s
 \end{align*}
-Clearly, $s^i\triangleq 0$ for $i\leq 1$ satisfies 
+Clearly, $s^i\triangleq 0$ for $i\leq 0$ satisfies 
 \begin{align*}
-0^i=s \circ  d + d \circ  s,\quad \text{ for all }i\leq 0
+0^i=s \circ  d + d \circ  s,\quad \text{ for all }i\leq -1
 \end{align*}
-We now construct $s^2$. Because 
+We now construct $s^1$. Because 
 \begin{align*}
-  f^1 \circ d^0 = \epsilon ^0 \circ f=0 
+  f^0 \circ d^{-1} = \epsilon ^{-1} \circ f=0 
 \end{align*}
-By universal property of $\operatorname{Coker}(d^0)$ induces a commutative diagram:  
-% https://q.uiver.app/#q=WzAsNCxbMSwxLCJJXjEiXSxbMSwwLCJYIl0sWzEsMywiUV4xIl0sWzAsMiwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9KGReMCkiXSxbMSwwLCJkXjAiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDIsImZeMSIsMCx7ImN1cnZlIjotM31dLFswLDMsIlxccGkiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMywyLCJcXHRpbGRle2Z9XjEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+By universal property of $\operatorname{Coker}(d^{-1})$ induces a commutative diagram:  
+% https://q.uiver.app/#q=WzAsNCxbMSwxLCJJXjAiXSxbMSwwLCJYIl0sWzEsMywiUV4wIl0sWzAsMiwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9KGReey0xfSkiXSxbMCwyLCJmXjAiLDAseyJjdXJ2ZSI6LTN9XSxbMCwzLCJcXHBpIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzMsMiwiXFx0aWxkZXtmfV4wIiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV0sWzEsMCwiZF57LTF9IiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XV0=
 \[\begin{tikzcd}
 	& X \\
-	& {I^1} \\
-	{\operatorname{Coker}(d^0)} \\
-	& {Q^1}
-	\arrow["{d^0}", hook, from=1-2, to=2-2]
+	& {I^0} \\
+	{\operatorname{Coker}(d^{-1})} \\
+	& {Q^0}
+	\arrow["{d^{-1}}", hook, from=1-2, to=2-2]
 	\arrow["\pi"', two heads, from=2-2, to=3-1]
-	\arrow["{f^1}", curve={height=-18pt}, from=2-2, to=4-2]
-	\arrow["{\tilde{f}^1}"{description}, dashed, from=3-1, to=4-2]
+	\arrow["{f^0}", curve={height=-18pt}, from=2-2, to=4-2]
+	\arrow["{\tilde{f}^0}"{description}, dashed, from=3-1, to=4-2]
 \end{tikzcd}\]
-which by injectivity of $I^2$ induces a commutative diagram: 
-% https://q.uiver.app/#q=WzAsNSxbMSwxLCJJXjEiXSxbMSwwLCJYIl0sWzEsMywiUV4xIl0sWzAsMiwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9KGReMCkiXSxbMSwyLCJJXjIiXSxbMSwwLCJkXjAiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDIsImZeMSIsMCx7ImN1cnZlIjotM31dLFswLDMsIlxccGkiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMywyLCJcXHRpbGRle2Z9XjEiLDJdLFswLDQsImReMSIsMl0sWzMsNCwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCwyLCJzXjIiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
+which by injectivity of $I^1$ induces a commutative diagram: 
+% https://q.uiver.app/#q=WzAsNSxbMSwxLCJJXjAiXSxbMSwwLCJYIl0sWzEsMywiUV4wIl0sWzAsMiwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9KGReey0xfSkiXSxbMSwyLCJJXjEiXSxbMSwwLCJkXnstMX0iLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFswLDIsImZeMCIsMCx7ImN1cnZlIjotM31dLFswLDMsIlxccGkiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMywyLCJcXHRpbGRle2Z9XjAiLDJdLFswLDQsImReMCIsMl0sWzMsNCwiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbNCwyLCJzXjEiLDEseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 \[\begin{tikzcd}
 	& X \\
-	& {I^1} \\
-	{\operatorname{Coker}(d^0)} & {I^2} \\
-	& {Q^1}
-	\arrow["{d^0}", hook, from=1-2, to=2-2]
+	& {I^0} \\
+	{\operatorname{Coker}(d^{-1})} & {I^1} \\
+	& {Q^0}
+	\arrow["{d^{-1}}", hook, from=1-2, to=2-2]
 	\arrow["\pi"', two heads, from=2-2, to=3-1]
-	\arrow["{d^1}"', from=2-2, to=3-2]
-	\arrow["{f^1}", curve={height=-18pt}, from=2-2, to=4-2]
+	\arrow["{d^0}"', from=2-2, to=3-2]
+	\arrow["{f^0}", curve={height=-18pt}, from=2-2, to=4-2]
 	\arrow[hook, from=3-1, to=3-2]
-	\arrow["{\tilde{f}^1}"', from=3-1, to=4-2]
-	\arrow["{s^2}"{description}, dashed, from=3-2, to=4-2]
+	\arrow["{\tilde{f}^0}"', from=3-1, to=4-2]
+	\arrow["{s^1}"{description}, dashed, from=3-2, to=4-2]
 \end{tikzcd}\]
-Because $s^1=0$, such  $s^2$ clearly is what we are looking for. Let  
+Because $s^0=0$, such  $s^1$ clearly is what we are looking for. Let  
  \begin{align*}
-h^2\triangleq f^2 - \epsilon ^1 \circ s^2 \in \Hom (I^2 ,Q^2)
+h^1\triangleq f^1 - \epsilon ^0 \circ s^1 \in \Hom (I^1 ,Q^1)
 \end{align*}
-We are then require to construct $s^3:I^3 \rightarrow Q^2$ that makes $h^2= s^3 \circ d^2$. First, because $f^1= s^2 \circ d^1$, we have  
+We are then require to construct $s^2:I^2 \rightarrow Q^1$ that makes $h^1= s^2 \circ d^1$. First, because $f^0= s^1 \circ d^0$, we have  
 \begin{align*}
-h^2  \circ d^1 &= f^2 \circ d^1 - \epsilon ^1 \circ s^2 \circ d^1 \\
-&= \epsilon ^1 \circ f^1 - \epsilon ^1 \circ  s^2 \circ d^1 = \epsilon ^1 \circ (f^1 - s^2 \circ d^1) =0 
+h^1  \circ d^0 &= f^1 \circ d^0 - \epsilon ^0 \circ s^1 \circ d^0 \\
+&= \epsilon ^0 \circ f^0 - \epsilon ^0 \circ  s^1 \circ d^0 = \epsilon ^0 \circ (f^0 - s^1 \circ d^0) =0 
 \end{align*}
-This then by universal property of $\operatorname{Coker}(d^1)$ induces a commutative diagram: 
-% https://q.uiver.app/#q=WzAsNCxbMCwxLCJJXjEiXSxbMiwxLCJJXjIiXSxbMywwLCJcXG9wZXJhdG9ybmFtZXtDb2tlcn0oZF4xKSJdLFsyLDMsIlFeMiJdLFswLDEsImReMSJdLFsxLDIsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwzLCJoXjIiXSxbMiwzLCJcXHRpbGRle2h9XjIiLDEseyJjdXJ2ZSI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
+This then by universal property of $\operatorname{Coker}(d^0)$ induces a commutative diagram: 
+% https://q.uiver.app/#q=WzAsNSxbMCwxLCJJXjAiXSxbMiwxLCJJXjEiXSxbMywwLCJcXG9wZXJhdG9ybmFtZXtDb2tlcn0oZF4wKSJdLFsyLDMsIlFeMSJdLFsyLDJdLFswLDEsImReMCJdLFsxLDIsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwzLCJoXjEiXSxbMiwzLCJcXHRpbGRle2h9XjEiLDEseyJjdXJ2ZSI6LTIsInN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
-	&&& {\operatorname{Coker}(d^1)} \\
-	{I^1} && {I^2} \\
-	\\
-	&& {Q^2}
-	\arrow["{\tilde{h}^2}"{description}, curve={height=-12pt}, dashed, from=1-4, to=4-3]
-	\arrow["{d^1}", from=2-1, to=2-3]
+	&&& {\operatorname{Coker}(d^0)} \\
+	{I^0} && {I^1} \\
+	&& {} \\
+	&& {Q^1}
+	\arrow["{\tilde{h}^1}"{description}, curve={height=-12pt}, dashed, from=1-4, to=4-3]
+	\arrow["{d^0}", from=2-1, to=2-3]
 	\arrow["\pi", two heads, from=2-3, to=1-4]
-	\arrow["{h^2}", from=2-3, to=4-3]
+	\arrow["{h^1}", from=2-3, to=4-3]
 \end{tikzcd}\]
-which by injectivity of $I^3$ induces a commutative diagram: 
-% https://q.uiver.app/#q=WzAsNSxbMCwxLCJJXjEiXSxbMiwxLCJJXjIiXSxbMywwLCJcXG9wZXJhdG9ybmFtZXtDb2tlcn0oZF4xKSJdLFsyLDMsIlFeMiJdLFs0LDEsIkleMyJdLFswLDEsImReMSJdLFsxLDIsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwzLCJoXjIiXSxbMiwzLCJcXHRpbGRle2h9XjIiLDEseyJjdXJ2ZSI6LTR9XSxbMSw0LCJkXjIiXSxbMiw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDMsInNeMyIsMSx7ImN1cnZlIjotMywic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+which by injectivity of $I^1$ induces a commutative diagram: 
+% https://q.uiver.app/#q=WzAsNSxbMCwxLCJJXjAiXSxbMiwxLCJJXjEiXSxbMywwLCJcXG9wZXJhdG9ybmFtZXtDb2tlcn0oZF4wKSJdLFsyLDMsIlFeMSJdLFs0LDEsIkleMiJdLFswLDEsImReMCJdLFsxLDIsIlxccGkiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMSwzLCJoXjEiXSxbMiwzLCJcXHRpbGRle2h9XjEiLDEseyJjdXJ2ZSI6LTR9XSxbMSw0LCJkXjEiXSxbMiw0LCIiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFs0LDMsInNeMiIsMSx7ImN1cnZlIjotMywic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
 \[\begin{tikzcd}
-	&&& {\operatorname{Coker}(d^1)} \\
-	{I^1} && {I^2} && {I^3} \\
+	&&& {\operatorname{Coker}(d^0)} \\
+	{I^0} && {I^1} && {I^2} \\
 	\\
-	&& {Q^2}
+	&& {Q^1}
 	\arrow[hook, from=1-4, to=2-5]
-	\arrow["{\tilde{h}^2}"{description}, curve={height=-24pt}, from=1-4, to=4-3]
-	\arrow["{d^1}", from=2-1, to=2-3]
+	\arrow["{\tilde{h}^1}"{description}, curve={height=-24pt}, from=1-4, to=4-3]
+	\arrow["{d^0}", from=2-1, to=2-3]
 	\arrow["\pi", two heads, from=2-3, to=1-4]
-	\arrow["{d^2}", from=2-3, to=2-5]
-	\arrow["{h^2}", from=2-3, to=4-3]
-	\arrow["{s^3}"{description}, curve={height=-18pt}, dashed, from=2-5, to=4-3]
+	\arrow["{d^1}", from=2-3, to=2-5]
+	\arrow["{h^1}", from=2-3, to=4-3]
+	\arrow["{s^2}"{description}, curve={height=-18pt}, dashed, from=2-5, to=4-3]
 \end{tikzcd}\]
-as desired. The construction of $s^n$ for  $n\geq 4$ is similar to that of $s^3$, so we win. 
+as desired. The construction of $s^n$ for  $n\geq 3$ is similar to that of $s^2$, so we win. 
 \end{proof}
 \begin{theorem}
+\label{THhorseshoe}
 \textbf{(Horseshoe Lemma)} Let $\mathcal{A}$ be an abelian category with enough projective and 
 % https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzIsMCwiQSciXSxbNCwwLCJBIl0sWzYsMCwiQScnIl0sWzgsMCwiMCJdLFswLDFdLFsxLDIsImYiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFsyLDMsImciLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMyw0XV0=
 \[\begin{tikzcd}
@@ -5168,113 +5157,293 @@ with the natural morphisms $P'_i \longhookrightarrow P_i \longtwoheadrightarrow 
 	\arrow[from=7-7, to=7-9]
 	\arrow[from=7-7, to=9-7]
 \end{tikzcd}\]
-The same statement holds for abelian categories with enough injective. 
+Dually, the same statement holds for abelian categories with enough injective. 
 \end{theorem}
 \begin{proof}
 Let $P_i \triangleq P'_i \oplus  P''_i$. We start with the diagram: 
-% https://q.uiver.app/#q=WzAsMTMsWzIsMCwiMCJdLFsyLDIsIkEnIl0sWzQsMiwiMCJdLFsyLDQsIkEiXSxbMiw2LCJBJyciXSxbMiw4LCIwIl0sWzQsNCwiMCJdLFs0LDYsIjAiXSxbMCwyLCJQJ18wIl0sWzAsMCwiMCJdLFswLDYsIlBfMCcnIl0sWzAsOCwiMCJdLFswLDQsIlBfMCJdLFswLDFdLFsxLDJdLFsxLDMsImYiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDQsImciLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw1XSxbMyw2XSxbNCw3XSxbOSw4XSxbOCwxLCJcXGVwc2lsb24nIl0sWzEwLDQsIlxcZXBzaWxvbicnIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEwLDExXSxbOCwxMiwiXFxkaW90YV8wIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMTIsMTAsIlxccGlfMCIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+% https://q.uiver.app/#q=WzAsOSxbMiwwLCJBJyJdLFs0LDAsIjAiXSxbMiwyLCJBIl0sWzIsNCwiQScnIl0sWzQsMiwiMCJdLFs0LDQsIjAiXSxbMCwwLCJQJ18wIl0sWzAsNCwiUF8wJyciXSxbMCwyLCJQXzAiXSxbMCwxXSxbMCwyLCJmIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCJnIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsNF0sWzMsNV0sWzYsMCwiXFxlcHNpbG9uJyIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs3LDMsIlxcZXBzaWxvbicnIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzYsOCwiXFxkaW90YV8wIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbOCw3LCJcXHBpXzAiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XV0=
 \[\begin{tikzcd}
-	0 && 0 \\
-	\\
 	{P'_0} && {A'} && 0 \\
 	\\
 	{P_0} && A && 0 \\
 	\\
-	{P_0''} && {A''} && 0 \\
-	\\
-	0 && 0
-	\arrow[from=1-1, to=3-1]
-	\arrow[from=1-3, to=3-3]
-	\arrow["{\epsilon'}", from=3-1, to=3-3]
-	\arrow["{\diota_0}", hook, from=3-1, to=5-1]
+	{P_0''} && {A''} && 0
+	\arrow["{\epsilon'}", two heads, from=1-1, to=1-3]
+	\arrow["{\diota_0}", hook, from=1-1, to=3-1]
+	\arrow[from=1-3, to=1-5]
+	\arrow["f", hook, from=1-3, to=3-3]
+	\arrow["{\pi_0}", two heads, from=3-1, to=5-1]
 	\arrow[from=3-3, to=3-5]
-	\arrow["f", hook, from=3-3, to=5-3]
-	\arrow["{\pi_0}", two heads, from=5-1, to=7-1]
+	\arrow["g", two heads, from=3-3, to=5-3]
+	\arrow["{\epsilon''}"', two heads, from=5-1, to=5-3]
 	\arrow[from=5-3, to=5-5]
-	\arrow["g", two heads, from=5-3, to=7-3]
-	\arrow["{\epsilon''}"', two heads, from=7-1, to=7-3]
-	\arrow[from=7-1, to=9-1]
-	\arrow[from=7-3, to=7-5]
-	\arrow[from=7-3, to=9-3]
 \end{tikzcd}\]
 Because $g$ is surjective, projectivity of $P_0''$ gives us a commutative diagram:  
-% https://q.uiver.app/#q=WzAsMTMsWzIsMCwiMCJdLFsyLDIsIkEnIl0sWzQsMiwiMCJdLFsyLDQsIkEiXSxbMiw2LCJBJyciXSxbMiw4LCIwIl0sWzQsNCwiMCJdLFs0LDYsIjAiXSxbMCwyLCJQJ18wIl0sWzAsMCwiMCJdLFswLDYsIlBfMCcnIl0sWzAsOCwiMCJdLFswLDQsIlBfMCJdLFswLDFdLFsxLDJdLFsxLDMsImYiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDQsImciLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw1XSxbMyw2XSxbNCw3XSxbOSw4XSxbOCwxLCJcXGVwc2lsb24nIl0sWzEwLDQsIlxcZXBzaWxvbicnIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEwLDExXSxbOCwxMiwiXFxkaW90YV8wIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMTIsMTAsIlxccGlfMCIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxMCwzLCJ0IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+% https://q.uiver.app/#q=WzAsOSxbMiwwLCJBJyJdLFs0LDAsIjAiXSxbMiwyLCJBIl0sWzIsNCwiQScnIl0sWzQsMiwiMCJdLFs0LDQsIjAiXSxbMCwwLCJQJ18wIl0sWzAsNCwiUF8wJyciXSxbMCwyLCJQXzAiXSxbMCwxXSxbMCwyLCJmIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCJnIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsNF0sWzMsNV0sWzYsMCwiXFxlcHNpbG9uJyIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs3LDMsIlxcZXBzaWxvbicnIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzYsOCwiXFxkaW90YV8wIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbOCw3LCJcXHBpXzAiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNywyLCJ0IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
 \[\begin{tikzcd}
-	0 && 0 \\
-	\\
 	{P'_0} && {A'} && 0 \\
 	\\
 	{P_0} && A && 0 \\
 	\\
-	{P_0''} && {A''} && 0 \\
-	\\
-	0 && 0
-	\arrow[from=1-1, to=3-1]
-	\arrow[from=1-3, to=3-3]
-	\arrow["{\epsilon'}", from=3-1, to=3-3]
-	\arrow["{\diota_0}", hook, from=3-1, to=5-1]
+	{P_0''} && {A''} && 0
+	\arrow["{\epsilon'}", two heads, from=1-1, to=1-3]
+	\arrow["{\diota_0}", hook, from=1-1, to=3-1]
+	\arrow[from=1-3, to=1-5]
+	\arrow["f", hook, from=1-3, to=3-3]
+	\arrow["{\pi_0}", two heads, from=3-1, to=5-1]
 	\arrow[from=3-3, to=3-5]
-	\arrow["f", hook, from=3-3, to=5-3]
-	\arrow["{\pi_0}", two heads, from=5-1, to=7-1]
+	\arrow["g", two heads, from=3-3, to=5-3]
+	\arrow["t"{description}, dashed, from=5-1, to=3-3]
+	\arrow["{\epsilon''}"', two heads, from=5-1, to=5-3]
 	\arrow[from=5-3, to=5-5]
-	\arrow["g", two heads, from=5-3, to=7-3]
-	\arrow["t"{description}, dashed, from=7-1, to=5-3]
-	\arrow["{\epsilon''}"', two heads, from=7-1, to=7-3]
-	\arrow[from=7-1, to=9-1]
-	\arrow[from=7-3, to=7-5]
-	\arrow[from=7-3, to=9-3]
 \end{tikzcd}\]
-Because $P_0=P'_0 \oplus  P_0$, universal property of coproduct gives us a morphism  which by definitions forms a commutative diagram
-% https://q.uiver.app/#q=WzAsMTMsWzIsMCwiMCJdLFsyLDIsIkEnIl0sWzQsMiwiMCJdLFsyLDQsIkEiXSxbMiw2LCJBJyciXSxbMiw4LCIwIl0sWzQsNCwiMCJdLFs0LDYsIjAiXSxbMCwyLCJQJ18wIl0sWzAsMCwiMCJdLFswLDYsIlBfMCcnIl0sWzAsOCwiMCJdLFswLDQsIlBfMCJdLFswLDFdLFsxLDJdLFsxLDMsImYiLDAseyJzdHlsZSI6eyJ0YWlsIjp7Im5hbWUiOiJob29rIiwic2lkZSI6InRvcCJ9fX1dLFszLDQsImciLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNCw1XSxbMyw2XSxbNCw3XSxbOSw4XSxbOCwxLCJcXGVwc2lsb24nIl0sWzEwLDQsIlxcZXBzaWxvbicnIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzEwLDExXSxbOCwxMiwiXFxkaW90YV8wIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMTIsMTAsIlxccGlfMCIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsxMCwzLCJ0IiwxXSxbMTIsMywiXFxlcHNpbG9uXFx0cmlhbmdsZXEgdCsgZiBcXGNpcmNcXGVwc2lsb24nIiwwLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+Because $P_0=P'_0 \oplus  P_0$, universal property of coproduct gives us a  commutative diagram: 
+% https://q.uiver.app/#q=WzAsOSxbMiwwLCJBJyJdLFs0LDAsIjAiXSxbMiwyLCJBIl0sWzIsNCwiQScnIl0sWzQsMiwiMCJdLFs0LDQsIjAiXSxbMCwwLCJQJ18wIl0sWzAsNCwiUF8wJyciXSxbMCwyLCJQXzAiXSxbMCwxXSxbMCwyLCJmIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMiwzLCJnIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzIsNF0sWzMsNV0sWzYsMCwiXFxlcHNpbG9uJyIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs3LDMsIlxcZXBzaWxvbicnIiwyLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzYsOCwiXFxkaW90YV8wIiwwLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbOCw3LCJcXHBpXzAiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNywyLCJ0IiwxXSxbOCwyLCJcXGVwc2lsb25cXHRyaWFuZ2xlcSB0KyBmIFxcY2lyY1xcZXBzaWxvbiciLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkYXNoZWQifX19XV0=
 \[\begin{tikzcd}
-	0 && 0 \\
-	\\
 	{P'_0} && {A'} && 0 \\
 	\\
 	{P_0} && A && 0 \\
 	\\
-	{P_0''} && {A''} && 0 \\
-	\\
-	0 && 0
-	\arrow[from=1-1, to=3-1]
-	\arrow[from=1-3, to=3-3]
-	\arrow["{\epsilon'}", from=3-1, to=3-3]
-	\arrow["{\diota_0}", hook, from=3-1, to=5-1]
+	{P_0''} && {A''} && 0
+	\arrow["{\epsilon'}", two heads, from=1-1, to=1-3]
+	\arrow["{\diota_0}", hook, from=1-1, to=3-1]
+	\arrow[from=1-3, to=1-5]
+	\arrow["f", hook, from=1-3, to=3-3]
+	\arrow["{\epsilon\triangleq t+ f \circ\epsilon'}", dashed, from=3-1, to=3-3]
+	\arrow["{\pi_0}", two heads, from=3-1, to=5-1]
 	\arrow[from=3-3, to=3-5]
-	\arrow["f", hook, from=3-3, to=5-3]
-	\arrow["{\epsilon\triangleq t+ f \circ\epsilon'}", dashed, from=5-1, to=5-3]
-	\arrow["{\pi_0}", two heads, from=5-1, to=7-1]
+	\arrow["g", two heads, from=3-3, to=5-3]
+	\arrow["t"{description}, from=5-1, to=3-3]
+	\arrow["{\epsilon''}"', two heads, from=5-1, to=5-3]
 	\arrow[from=5-3, to=5-5]
-	\arrow["g", two heads, from=5-3, to=7-3]
-	\arrow["t"{description}, from=7-1, to=5-3]
-	\arrow["{\epsilon''}"', two heads, from=7-1, to=7-3]
-	\arrow[from=7-1, to=9-1]
-	\arrow[from=7-3, to=7-5]
-	\arrow[from=7-3, to=9-3]
 \end{tikzcd}\]
-Note that $\epsilon = t \circ \pi _0$ since by definition we have $t \circ \pi_0 \circ \diota = t = \epsilon  j\circ \diota    $, where $\diota: P_0'' \hookrightarrow  P_0 $ is the canonical morphism for coproduct, \customref{THbpac}{which is a monomorphism}. 
+Note that the reason we have $\epsilon = t \circ \pi _0$ is that by definition we have 
+\begin{align*}
+t \circ \pi_0 \circ \diota = t = \epsilon  \circ \diota    
+\end{align*}
+where $\diota: P_0'' \hookrightarrow  P_0 $ is the canonical morphism for coproduct, \customref{THkar}{which is a monomorphism}. Applying \customref{THsnake}{snake lemma} on the two columns, we have a commutative diagram: 
+% https://q.uiver.app/#q=WzAsMTUsWzYsMCwiQSciXSxbOCwwLCIwIl0sWzYsMiwiQSJdLFs2LDQsIkEnJyJdLFs4LDIsIjAiXSxbOCw0LCIwIl0sWzQsMCwiUCdfMCJdLFs0LDQsIlBfMCcnIl0sWzQsMiwiUF8wIl0sWzIsMCwiXFxvcGVyYXRvcm5hbWV7a2VyfShcXGVwc2lsb24nKSJdLFsyLDIsIlxcb3BlcmF0b3JuYW1le2tlcn0oXFxlcHNpbG9uKSJdLFsyLDQsIlxcb3BlcmF0b3JuYW1le2tlcn0oXFxlcHNpbG9uJycpIl0sWzAsMCwiUF8xJyJdLFswLDIsIlBfMSJdLFswLDQsIlBfMScnIl0sWzAsMV0sWzAsMiwiZiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzIsMywiZyIsMCx7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFsyLDRdLFszLDVdLFs2LDAsIlxcZXBzaWxvbiciLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbNywzLCJcXGVwc2lsb24nJyIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFs2LDgsIlxcZGlvdGFfMCIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzgsNywiXFxwaV8wIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzcsMiwidCIsMV0sWzgsMiwiXFxlcHNpbG9uIiwxLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzksMTAsIiIsMCx7InN0eWxlIjp7InRhaWwiOnsibmFtZSI6Imhvb2siLCJzaWRlIjoidG9wIn19fV0sWzEwLDExLCIiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbOSw2XSxbMTIsOSwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV0sWzE0LDExLCIiLDIseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMTAsOF0sWzExLDddLFsxMiwxMywiIiwyLHsic3R5bGUiOnsidGFpbCI6eyJuYW1lIjoiaG9vayIsInNpZGUiOiJ0b3AifX19XSxbMTMsMTQsIiIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dXQ==
+\[\begin{tikzcd}
+	{P_1'} && {\operatorname{ker}(\epsilon')} && {P'_0} && {A'} && 0 \\
+	\\
+	{P_1} && {\operatorname{ker}(\epsilon)} && {P_0} && A && 0 \\
+	\\
+	{P_1''} && {\operatorname{ker}(\epsilon'')} && {P_0''} && {A''} && 0
+	\arrow[two heads, from=1-1, to=1-3]
+	\arrow[hook, from=1-1, to=3-1]
+	\arrow[from=1-3, to=1-5]
+	\arrow[hook, from=1-3, to=3-3]
+	\arrow["{\epsilon'}", two heads, from=1-5, to=1-7]
+	\arrow["{\diota_0}", hook, from=1-5, to=3-5]
+	\arrow[from=1-7, to=1-9]
+	\arrow["f", hook, from=1-7, to=3-7]
+	\arrow[two heads, from=3-1, to=5-1]
+	\arrow[from=3-3, to=3-5]
+	\arrow[two heads, from=3-3, to=5-3]
+	\arrow["\epsilon"{description}, two heads, from=3-5, to=3-7]
+	\arrow["{\pi_0}", two heads, from=3-5, to=5-5]
+	\arrow[from=3-7, to=3-9]
+	\arrow["g", two heads, from=3-7, to=5-7]
+	\arrow[two heads, from=5-1, to=5-3]
+	\arrow[from=5-3, to=5-5]
+	\arrow["t"{description}, from=5-5, to=3-7]
+	\arrow["{\epsilon''}"', two heads, from=5-5, to=5-7]
+	\arrow[from=5-7, to=5-9]
+\end{tikzcd}\]
+in which $\epsilon $ is surjective because in the application of snake lemma we have a exact sequence 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJcXG9wZXJhdG9ybmFtZXtDb2tlcn0oXFxlcHNpbG9uJyk9MCJdLFsyLDAsIlxcb3BlcmF0b3JuYW1le0Nva2VyfShcXGVwc2lsb24pIl0sWzQsMCwiXFxvcGVyYXRvcm5hbWV7Q29rZXJ9KFxcZXBzaWxvbicnKT0wIl0sWzAsMV0sWzEsMiwiIiwwLHsic3R5bGUiOnsiaGVhZCI6eyJuYW1lIjoiZXBpIn19fV1d
+\[\begin{tikzcd}
+	{\operatorname{Coker}(\epsilon')=0} && {\operatorname{Coker}(\epsilon)} && {\operatorname{Coker}(\epsilon'')=0}
+	\arrow[from=1-1, to=1-3]
+	\arrow[two heads, from=1-3, to=1-5]
+\end{tikzcd}\]
+which implies $\operatorname{Coker}(\epsilon )=0$. Lastly, the proof follows from noting that the rest of construction can be done the same way we construct $\epsilon $. 
 \end{proof}
-\section{Derived Functors}
-Let $F: \mathcal{A}\rightarrow \mathcal{B}$ be a  \emph{covariant additive} functor from an abelian category $\mathcal{A}$ with \emph{enough injective} to an arbitrary abelian category $\mathcal{B}$. Let $X \in \mathcal{A}$ and  $X\rightarrow I^\bullet$ be an injective resolution. Even though its image: 
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGKFgpIl0sWzIsMCwiRihJXjEpIl0sWzQsMCwiRihJXjIpIl0sWzYsMCwiXFxjZG90cyAiXSxbMCwxXSxbMSwyXSxbMiwzXV0=
+\section{$\delta$-Functors}
+Let $\mathcal{A}$ and $\mathcal{B}$ be two abelian categories. A \textbf{homological covariant $\delta$-functor from $\mathcal{A}$ to $\mathcal{B} $} consists of the followings datum
+\begin{enumerate}[label=(\roman*)]
+  \item a sequence of additive functors $F_i : \mathcal{A}\rightarrow \mathcal{B}$. 
+  \item For every  short exact sequence in $\mathcal{A}$ : 
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzIsMCwiQSJdLFs0LDAsIkIiXSxbNiwwLCJDIl0sWzgsMCwiMCJdLFswLDFdLFsxLDIsImYiXSxbMiwzLCJnIl0sWzMsNF1d
 \[\begin{tikzcd}
-	{F(X)} && {F(I^1)} && {F(I^2)} && {\cdots }
+	0 && A && B && C && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow["f", from=1-3, to=1-5]
+	\arrow["g", from=1-5, to=1-7]
+	\arrow[from=1-7, to=1-9]
+\end{tikzcd}\]
+a sequence of morphisms $\delta_i: F_i(C)\rightarrow F_{i-1}(A)$ that gives rise to a long exact sequence in $\mathcal{A}$ : 
+% https://q.uiver.app/#q=WzAsNixbMSwwLCJGX2koQSkiXSxbMiwwLCJGX2koQikiXSxbMywwLCJGX2koQykiXSxbNCwwLCJGX3tpLTF9KEEpIl0sWzUsMCwiXFxjZG90cyJdLFswLDAsIlxcY2RvdHMiXSxbMCwxLCJGX2koZikiXSxbMSwyLCJGX2koZykiXSxbMiwzLCJcXGRlbHRhX2kiXSxbMyw0XSxbNSwwXV0=
+\[\begin{tikzcd}
+	\cdots & {F_i(A)} & {F_i(B)} & {F_i(C)} & {F_{i-1}(A)} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["{F_i(f)}", from=1-2, to=1-3]
+	\arrow["{F_i(g)}", from=1-3, to=1-4]
+	\arrow["{\delta_i}", from=1-4, to=1-5]
+	\arrow[from=1-5, to=1-6]
+\end{tikzcd}\]
+\textbf{natural} in the sense that for each morphism of short exact sequences in $\mathcal{A}$: 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsyLDAsIkEiXSxbNCwwLCJCIl0sWzYsMCwiQyJdLFs4LDAsIjAiXSxbMCwyLCIwIl0sWzIsMiwiQSciXSxbNCwyLCJCJyJdLFs2LDIsIkMnIl0sWzgsMiwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdLFs1LDZdLFs2LDddLFs3LDhdLFs4LDldLFsxLDZdLFsyLDddLFszLDhdXQ==
+\[\begin{tikzcd}
+	0 && A && B && C && 0 \\
+	\\
+	0 && {A'} && {B'} && {C'} && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=1-5]
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=1-5, to=1-7]
+	\arrow[from=1-5, to=3-5]
+	\arrow[from=1-7, to=1-9]
+	\arrow[from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=3-3, to=3-5]
+	\arrow[from=3-5, to=3-7]
+	\arrow[from=3-7, to=3-9]
+\end{tikzcd}\]
+we have a morphism of long exact sequences in $\mathcal{A}$ :  
+% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiXFxjZG90cyJdLFsxLDAsIkZfaShBKSJdLFsyLDAsIkZfaShCKSJdLFszLDAsIkZfaShDKSJdLFs0LDAsIkZfe2ktMX0oQSkiXSxbMCwxLCJcXGNkb3RzIl0sWzEsMSwiRl9pKEEnKSJdLFsyLDEsIkZfaShCJykiXSxbMywxLCJGX2koQycpIl0sWzQsMSwiRl97aS0xfShBJykiXSxbNSwwLCJcXGNkb3RzICJdLFs1LDEsIlxcY2RvdHMiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMyw0XSxbNSw2XSxbNiw3XSxbNyw4XSxbOCw5XSxbMSw2XSxbMiw3XSxbMyw4XSxbNCw5XSxbNCwxMF0sWzksMTFdXQ==
+\[\begin{tikzcd}
+	\cdots & {F_i(A)} & {F_i(B)} & {F_i(C)} & {F_{i-1}(A)} & {\cdots } \\
+	\cdots & {F_i(A')} & {F_i(B')} & {F_i(C')} & {F_{i-1}(A')} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=1-5, to=1-6]
+	\arrow[from=1-5, to=2-5]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+	\arrow[from=2-5, to=2-6]
+\end{tikzcd}\]
+\end{enumerate}
+Dually, a \textbf{cohomological covariant $\delta$-functor from $\mathcal{A}$ to $\mathcal{B}$} consists of:
+\begin{enumerate}[label=(\roman*)]
+  \item a sequence of additive functors $F_i : \mathcal{A}\rightarrow \mathcal{B}$. 
+  \item For every  short exact sequence in $\mathcal{A}$ : 
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzIsMCwiQSJdLFs0LDAsIkIiXSxbNiwwLCJDIl0sWzgsMCwiMCJdLFswLDFdLFsxLDIsImYiXSxbMiwzLCJnIl0sWzMsNF1d
+\[\begin{tikzcd}
+	0 && A && B && C && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow["f", from=1-3, to=1-5]
+	\arrow["g", from=1-5, to=1-7]
+	\arrow[from=1-7, to=1-9]
+\end{tikzcd}\]
+a sequence of morphisms $\delta_i: F_i(C) \rightarrow F_{i+1}(A)$ that gives rises to a long exact sequence in $\mathcal{A}$ :  
+% https://q.uiver.app/#q=WzAsNixbMSwwLCJGX2koQSkiXSxbMiwwLCJGX2koQikiXSxbMywwLCJGX2koQykiXSxbNCwwLCJGX3tpKzF9KEEpIl0sWzUsMCwiXFxjZG90cyJdLFswLDAsIlxcY2RvdHMiXSxbMCwxLCJGX2koZikiXSxbMSwyLCJGX2koZykiXSxbMiwzLCJcXGRlbHRhX2kiXSxbMyw0XSxbNSwwXV0=
+\[\begin{tikzcd}
+	\cdots & {F_i(A)} & {F_i(B)} & {F_i(C)} & {F_{i+1}(A)} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow["{F_i(f)}", from=1-2, to=1-3]
+	\arrow["{F_i(g)}", from=1-3, to=1-4]
+	\arrow["{\delta_i}", from=1-4, to=1-5]
+	\arrow[from=1-5, to=1-6]
+\end{tikzcd}\]
+\textbf{natural} in the sense that for each morphism of short exact sequences in $\mathcal{A}$: 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsyLDAsIkEiXSxbNCwwLCJCIl0sWzYsMCwiQyJdLFs4LDAsIjAiXSxbMCwyLCIwIl0sWzIsMiwiQSciXSxbNCwyLCJCJyJdLFs2LDIsIkMnIl0sWzgsMiwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdLFs1LDZdLFs2LDddLFs3LDhdLFs4LDldLFsxLDZdLFsyLDddLFszLDhdXQ==
+\[\begin{tikzcd}
+	0 && A && B && C && 0 \\
+	\\
+	0 && {A'} && {B'} && {C'} && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=1-5]
+	\arrow[from=1-3, to=3-3]
+	\arrow[from=1-5, to=1-7]
+	\arrow[from=1-5, to=3-5]
+	\arrow[from=1-7, to=1-9]
+	\arrow[from=1-7, to=3-7]
+	\arrow[from=3-1, to=3-3]
+	\arrow[from=3-3, to=3-5]
+	\arrow[from=3-5, to=3-7]
+	\arrow[from=3-7, to=3-9]
+\end{tikzcd}\]
+we have a morphism of long exact sequences in $\mathcal{A}$: 
+% https://q.uiver.app/#q=WzAsMTIsWzAsMCwiXFxjZG90cyJdLFsxLDAsIkZfaShBKSJdLFsyLDAsIkZfaShCKSJdLFszLDAsIkZfaShDKSJdLFs0LDAsIkZfe2krMX0oQSkiXSxbMCwxLCJcXGNkb3RzIl0sWzEsMSwiRl9pKEEnKSJdLFsyLDEsIkZfaShCJykiXSxbMywxLCJGX2koQycpIl0sWzQsMSwiRl97aSsxfShBJykiXSxbNSwwLCJcXGNkb3RzICJdLFs1LDEsIlxcY2RvdHMiXSxbMCwxXSxbMSwyXSxbMiwzXSxbMyw0XSxbNSw2XSxbNiw3XSxbNyw4XSxbOCw5XSxbMSw2XSxbMiw3XSxbMyw4XSxbNCw5XSxbNCwxMF0sWzksMTFdXQ==
+\[\begin{tikzcd}
+	\cdots & {F_i(A)} & {F_i(B)} & {F_i(C)} & {F_{i+1}(A)} & {\cdots } \\
+	\cdots & {F_i(A')} & {F_i(B')} & {F_i(C')} & {F_{i+1}(A')} & \cdots
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=1-5, to=1-6]
+	\arrow[from=1-5, to=2-5]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
+	\arrow[from=2-5, to=2-6]
+\end{tikzcd}\]
+\end{enumerate}
+Clearly, we have the \textbf{category of homological covariant $\delta$-functors from $\mathcal{A}$ to $\mathcal{B}$}, in which the morphisms from $(F_i,\delta_i)$ to $(G_i,\delta_i')$ is a family of natural transformation $\eta_i:F_i \rightsquigarrow G_i$ such that for all short exact sequence in $\mathcal{A}$: 
+% https://q.uiver.app/#q=WzAsNSxbMCwwLCIwIl0sWzIsMCwiQSJdLFs0LDAsIkIiXSxbNiwwLCJDIl0sWzgsMCwiMCJdLFswLDFdLFsxLDJdLFsyLDNdLFszLDRdXQ==
+\[\begin{tikzcd}
+	0 && A && B && C && 0
+	\arrow[from=1-1, to=1-3]
+	\arrow[from=1-3, to=1-5]
+	\arrow[from=1-5, to=1-7]
+	\arrow[from=1-7, to=1-9]
+\end{tikzcd}\]
+the diagram:
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJGX2koQykiXSxbMiwwLCJGX3tpLTF9KEEpIl0sWzAsMiwiR19pKEMpIl0sWzIsMiwiR197aS0xfShBKSJdLFswLDIsIihcXGV0YV9pKV9DIl0sWzEsMywiKFxcZXRhX3tpLTF9KV9BIl0sWzAsMSwiXFxkZWx0YV9pIiwxXSxbMiwzLCJcXGRlbHRhJ197aX0iLDFdXQ==
+\[\begin{tikzcd}
+	{F_i(C)} && {F_{i-1}(A)} \\
+	\\
+	{G_i(C)} && {G_{i-1}(A)}
+	\arrow["{\delta_i}"{description}, from=1-1, to=1-3]
+	\arrow["{(\eta_i)_C}", from=1-1, to=3-1]
+	\arrow["{(\eta_{i-1})_A}", from=1-3, to=3-3]
+	\arrow["{\delta'_{i}}"{description}, from=3-1, to=3-3]
+\end{tikzcd}\]
+commutes. A homological covariant $\delta$-functor $(F_i,\delta_i)$ from $\mathcal{A}$ to $\mathcal{B}$ is then said to be \textbf{universal} if given 
+\begin{enumerate}[label=(\roman*)]
+  \item any $\delta$-functor $(G_i,\delta_i')$ 
+  \item any natural transformation $\eta_0: F_0\rightsquigarrow G_0 $ from $F_0$ to  $G_0$ 
+\end{enumerate}
+there exists a unique sequence of natural transformations $\eta_i : F_i  \rightsquigarrow G_i  $ that gives us a morphism $\eta: (G_i,\delta_i') \rightarrow (F_i, \delta_i)$ of homological covariant $\delta$-functors.  \\ 
+
+Clearly, universal homological covariant $\delta$-functors from $\mathcal{A}$ to $\mathcal{B}$ are unique up to the $0$-th functor in the sense that given any two universal homological covariant $\delta$-functor $(F_i,\delta_i)$ and $(G_i, \delta_i')$ from $\mathcal{A}$ to $\mathcal{B}$, if $F_0$ and  $G_0:\mathcal{A}\rightarrow \mathcal{B}$ are isomorphic, then $F_i$ and  $G_i$ are all isomorphic.\footnote{To prove such, just induce the two natural transformation $F_0\rightsquigarrow G_0$ and  $G_0 \rightsquigarrow F_0$ inverse to each other to each $F_i$ and  $G_i$.}
+
+
+
+%
+% So the rest is about proving $R^iF$ are $\delta$- and universal, and that $\operatorname{Tor}_i(N,-)$ are $\delta$ and universal. 
+%
+
+
+
+\section{Derived Functors}
+\label{SEdf}
+\begin{abstract}
+In this section, we show that derived functors are well-defined and they are universal $\delta$-functors.   
+\end{abstract}
+Let $F: \mathcal{A}\rightarrow \mathcal{B}$ be a  \emph{covariant additive} functor from an abelian category $\mathcal{A}$ with enough injective to an arbitrary abelian category $\mathcal{B}$. Let $X \in \mathcal{A}$ and  $X\rightarrow I^\bullet$ be an injective resolution. Truncate the $F(X)$ in its image, we have a cochain: 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCIwIl0sWzIsMCwiRihJXjApIl0sWzQsMCwiRihJXjEpIl0sWzYsMCwiXFxjZG90cyAiXSxbMCwxXSxbMSwyXSxbMiwzXV0=
+\[\begin{tikzcd}
+	0 && {F(I^0)} && {F(I^1)} && {\cdots }
 	\arrow[from=1-1, to=1-3]
 	\arrow[from=1-3, to=1-5]
 	\arrow[from=1-5, to=1-7]
 \end{tikzcd}\]
-may no longer be exact, we can compute its cohomologies  $H^i(F(X)\rightarrow F(I^\bullet))$, which for now we denote 
+For now we denote 
 \begin{align*}
-R^iF(X)\triangleq H^i(F(X)\rightarrow F(I^\bullet))
+R^iF(X)\triangleq H^i(F(I^\bullet))
 \end{align*}
 \begin{theorem}
-\textbf{($R^iF(X)$ is well-defined)} Let $\mathcal{A}$ be an abelian category with enough injective, and let $F:\mathcal{A}\rightarrow \mathcal{B}$ be a covariant additive functor. Given two injective resolutions $X \rightarrow I^\bullet$ and $X\rightarrow Q^\bullet$ of $X \in \mathcal{A}$, for each $i$ there exists a  \emph{canonical} isomorphism  
+\textbf{($R^iF(X)$ is well-defined)} Let $\mathcal{A}$ be an abelian category with enough injective and $\mathcal{B}$ an abelian category. Let $F:\mathcal{A}\rightarrow \mathcal{B}$ be a covariant additive functor. Given two injective resolutions $X \rightarrow I^\bullet$ and $X\rightarrow Q^\bullet$ of $X \in \mathcal{A}$, for each $i$ there exists a  \emph{canonical} isomorphism  
 \begin{align*}
-  H^i(F(X)\rightarrow F(I^\bullet)) \cong  H^i(F(X)\rightarrow F(Q^\bullet)),\quad \text{ in }\mathcal{B} 
+  H^i(F(I^\bullet)) \cong  H^i(F(Q^\bullet)),\quad \text{ in }\mathcal{B} 
 \end{align*}
 \end{theorem}
 \begin{proof}
-Denote \customref{THeaulr}{ the two chain morphisms lifted by  $\id_X$} as: 
+Denote \customref{THeaulr}{ the two chain morphisms induced by  $\id_X$} as: 
 \begin{align*}
 \customref{THeaulr}{f^\bullet \triangleq  \id_X^\bullet: I^\bullet \rightarrow Q^\bullet}\quad \text{ and }\quad \customref{THeaulr}{g^\bullet \triangleq \id_X^\bullet : Q^\bullet \rightarrow I^\bullet}
 \end{align*}
@@ -5286,12 +5455,12 @@ By definition, we have
 \begin{align*}
   F(g^i)_*\circ F(f^i)_* = \left(F(g^i)\circ F(f^i) \right)_* = F(g^i \circ f^i) _*
 \end{align*}
-Now, since, as one should check, both $g^i \circ f^i$ and $\id_{I^i}$ are lifts of  
-% https://q.uiver.app/#q=WzAsNixbMCwwLCJYIl0sWzAsMiwiWCJdLFsyLDAsIkleMSJdLFsyLDIsIkleMSJdLFs0LDAsIkleMiJdLFs0LDIsIkleMiJdLFswLDJdLFsxLDNdLFswLDEsIlxcaWRfWCIsMV0sWzIsNF0sWzMsNV1d
+Now, since, as one should check, both $g^i \circ f^i$ and $\id_{I^i}$ are induced by  
+% https://q.uiver.app/#q=WzAsNixbMCwwLCJYIl0sWzAsMiwiWCJdLFsyLDAsIkleMCJdLFsyLDIsIkleMCJdLFs0LDAsIkleMSJdLFs0LDIsIkleMSJdLFswLDJdLFsxLDNdLFswLDEsIlxcaWRfWCIsMV0sWzMsNV0sWzIsNF1d
 \[\begin{tikzcd}
-	X && {I^1} && {I^2} \\
+	X && {I^0} && {I^1} \\
 	\\
-	X && {I^1} && {I^2}
+	X && {I^0} && {I^1}
 	\arrow[from=1-1, to=1-3]
 	\arrow["{\id_X}"{description}, from=1-1, to=3-1]
 	\arrow[from=1-3, to=1-5]
@@ -5300,119 +5469,120 @@ Now, since, as one should check, both $g^i \circ f^i$ and $\id_{I^i}$ are lifts 
 \end{tikzcd}\]
 \customref{THeaulr}{We know they are homotopic}. Then because $F$ is additive, as one should check,  $F((g^i\circ f^i))$ and $F(\id_{I^i})=\id_{F(I^i)}$ are homotopic. \customref{THbph}{This then implies $F((g \circ f)^i)_*=\id_{H^i(F(I^\bullet))}$}. 
 \end{proof}
-In conclusion, we have a well-defined functor $R^iF: \mathcal{A}\rightarrow \mathcal{B}$ called the \textbf{$i$-th right derived functor} of the \emph{covariant additive} functor $F:\mathcal{A}\rightarrow \mathcal{B}$ from an abelian category \emph{with enough injective}, in which the morphisms $f:X \rightarrow  Y$ in $\mathcal{A}$ are mapped to 
+In conclusion, we have a well-defined functor $R^iF: \mathcal{A}\rightarrow \mathcal{B}$ called the \textbf{$i$-th right derived functor} of the \emph{covariant additive} functor $F:\mathcal{A}\rightarrow \mathcal{B}$ from an abelian category with enough injective, in which the morphisms $f:X \rightarrow  Y$ in $\mathcal{A}$ are mapped to 
 \begin{align*}
-  R^iF(f)\triangleq F(f^i)_* : H^i(F(X)\rightarrow F(I^\bullet) ) \rightarrow H^i (F(Y)\rightarrow F(Q^\bullet) )
+  R^iF(f)\triangleq F(f^i)_* : H^i(F(I^\bullet) ) \rightarrow H^i (F(Q^\bullet) )
 \end{align*}
-where  \customref{THeaulr}{$f_i$ is canonically lifted by $f$}. Moreover, if $F:\mathcal{A}\rightarrow \mathcal{B}$ is left-exact,  then \customref{EDlare}{injectivity of $X\longhookrightarrow  I^0 $ implies the injectivity of $F(X)\longhookrightarrow   F(I^0)$}, which  implies 
+where  \customref{THeaulr}{$f_i$ is canonically induced by $f$}. \\
+
+Usually, we talk about right derived functor $R^iF$ when  $F$ is  left-exact. This is because if $F$ is left-exact, then the sequence 
 \begin{align*}
-R^0F(X)\cong  F(X)\quad \text{ and }\quad R^0F=F
+ 0 \longrightarrow   F(X) \longrightarrow  F(I^0) \longrightarrow  F(I^1),\quad \text{ in }\mathcal{B} 
 \end{align*}
+is exact, which implies 
+\begin{align*}
+R^0F(X)= F(X)\quad \text{ and }\quad R^0F=F
+\end{align*}
+Moreover, given a short exact sequence $A \rightarrow B \rightarrow C$ in $\mathcal{A} $ with injective resolutions $A \rightarrow I^\bullet_A$ and $C \rightarrow I^\bullet _C$, by \customref{THhorseshoe}{horseshoe lemma}, we have a short exact sequence 
+\begin{align*}
+  0 \longrightarrow  I_A^\bullet \longrightarrow  I_A^\bullet \oplus  I_C^\bullet \longrightarrow  I_C^\bullet \longrightarrow  0,\quad \text{ in }\mathbf{cCh}(\mathcal{A}) 
+\end{align*}
+in which $I_B^\bullet \triangleq I_A^\bullet \oplus I_C^\bullet$ form an injective resolution of $B$. Then because \customref{THbpadf}{additive functors preserve biproducts}, we have a short exact sequence 
+\begin{align*}
+0 \longrightarrow  F(I_A^\bullet) \longrightarrow  F(I_B^\bullet)  \longrightarrow  F(I_C^\bullet) \longrightarrow  0, \quad \text{ in }\mathbf{cCh}(\mathcal{B})
+\end{align*}
+Then because \customref{THses}{short exact sequence of cochains induces a \emph{canonical} long exact sequence of cohomologies}, we have a \emph{canonical} long exact sequence: 
+\begin{align*}
+0 \rightarrow  F(A) \rightarrow  F(B) \rightarrow F(C) \rightarrow R^1F(A) \rightarrow R^1F(B)\rightarrow R^1F(C) \rightarrow \cdots 
+\end{align*}
+in $\mathcal{B}$. \\
+
+
 Dually, given an \emph{covariant additive} functor $F:\mathcal{A}\rightarrow \mathcal{B}$ from an abelian category \emph{with enough projective}, we have a well-defined functor $L_iF:\mathcal{A}\rightarrow \mathcal{B}$ called the \textbf{$i$-th left derived functor} of $F: \mathcal{A}\rightarrow \mathcal{B}$ 
 \begin{align*}
-L_iF(X)\triangleq H_i(F(P^\bullet)\rightarrow F(X))\quad \text{ and }\quad L_iF(f)\triangleq  F(f_i)_*
+L_iF(X)\triangleq H_i(F(P_\bullet))\quad \text{ and }\quad L_iF(f)\triangleq  F(f_i)_*
 \end{align*}
 whilst, if $F: \mathcal{A}\rightarrow \mathcal{B}$ is right-exact, then we have 
 \begin{align*}
 L_0F(X) \cong  F(X)\quad \text{ and }\quad L_0F=F
 \end{align*}
-\section{Ext Functor}
-
-\section{Every $\mathbf{Mod}_A$ has enough injective and projective}
-A \textbf{divisible abelian group} $G$ is an abelian group in which for all $g \in G$ and $n\inn$, there exists some $y \in G$ that makes $ny=g$.  
-\begin{theorem}
-\textbf{(Divisible abelian groups are exactly injective objects)} We have 
+and a \emph{canonical} long exact sequence: 
 \begin{align*}
-J\in \mathbf{Ab}\text{ is injective }\iff  J\text{ is divisible }
+\cdots \rightarrow L_1F(A) \rightarrow L_1F(B) \rightarrow L_1F(C) \rightarrow F(A) \rightarrow F(B)\rightarrow F(C) \rightarrow 0
+\end{align*}
+\begin{theorem}
+\label{THdfoiap}
+\textbf{(Derived functors on injective and projective objects)} Let  $F:\mathcal{A}\rightarrow \mathcal{B}$ be a covariant additive functor between two abelian categories. If $\mathcal{A}$ has enough injective and $F$ is left-exact, then for all injective object $I \in \mathcal{A}$, we have 
+\begin{align*}
+  R^nF(I)=0,\quad \text{ for all }n\geq 1
+\end{align*}
+Dually, if $\mathcal{A} $ has enough projective and $F$ is right-exact, then for all projective object $P \in \mathcal{A}$, we have 
+\begin{align*}
+L_nF(P)=0,\quad \text{ for all }n\geq 1
 \end{align*}
 \end{theorem}
 \begin{proof}
-Left to right follows from a routine proof of contradiction. \\
-
-
+The statement for injective object follows from resoluting $I$ by 
+ \begin{align*}
+I \longrightarrow  I \longrightarrow  0 \longrightarrow  0 \longrightarrow \cdots  
+\end{align*}
+where the first arrow is an isomorphism. The statement for projective objects can be proved similarly.  
 \end{proof}
-Therefore, $\Q \quotient \Z\in \mathbf{Ab}$ is injective. 
-
-
-
-
-
- We say an $A$-module  $M$ is a  \textbf{direct summand} of $M''$ if there exists some module  $M'$ that makes  $M'' \cong  M \oplus  M'$. 
 \begin{theorem}
-\label{THmiqf}
-\textbf{(Every module is a quotient of some free module)} Let $A$ be a ring and $M$ be an $A$-module. Then we have a surjective module homomorphism from the free module 
-\begin{align*}
-A^{(M)}\triangleq \bigoplus_{m\neq 0 \in M}A^m,\quad \text{ where }A^m \cong  A
-\end{align*}
-to $M$ by sending 
-\begin{align*}
-a \in A^m \mapsto am
-\end{align*}
+\label{THdad}
+\textbf{(Derived functors are $\delta$-functors)} Let $F:\mathcal{A}\rightarrow \mathcal{B}$ be a covariant additive functor. If $\mathcal{A}$ has enough injective, then $R^iF$ forms a homological covariant $\delta$-functor. Dually, if $\mathcal{A}$ has enough projective, then  $L_iF$ forms a cohomological covariant $\delta$-functor. 
 \end{theorem}
 \begin{proof}
-Routine. 
+The proofs are dual to each other. Note that even though we have already shown that right derived functors induces long exact sequences from short exact sequence, we haven't shown that such inducing is natural to conclude that $R^iF$ forms a  $\delta$-functor. \href{https://github.com/ericliu515515/MathNotic/blob/main/Books/Homological%20Algebra/Romyar%20Sharifi.pdf}{The proof of naturalaity boils down to a long and routine computation, in which one, necessarily, use horseshoe lemma to construct a manageable injective resolution of $B$ for us to conduct the computation. See Theorem 3.3.5 of this copy of the text \emph{Homological algebra} by Romyar Sharifi}. 
+% Note that the link may break 
 \end{proof}
-\begin{equiv_def}
-\textbf{(Projective Modules)} Let $A$ be a ring. We say an $A$-module $P$ is \textbf{projective} if any of the followings hold true 
-\begin{enumerate}[label=(\roman*)]
-  \item $P$ satisfies the  \textbf{universal property of projective modules}: For all module homomorphism $f:P \rightarrow M'$ and surjective module homomorphism  $g:M \twoheadrightarrow M''$, there exists a unique module homomorphism $h:P \rightarrow M$ that makes the diagram 
-% https://q.uiver.app/#q=WzAsMyxbMiwwLCJQIl0sWzAsMiwiTSJdLFsyLDIsIk0nIl0sWzEsMiwiZyIsMix7InN0eWxlIjp7ImhlYWQiOnsibmFtZSI6ImVwaSJ9fX1dLFswLDIsImYiXSxbMCwxLCJoIiwyLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
-\[\begin{tikzcd}
-	&& P \\
-	\\
-	M && {M'}
-	\arrow["h"', dashed, from=1-3, to=3-1]
-	\arrow["f", from=1-3, to=3-3]
-	\arrow["g"', two heads, from=3-1, to=3-3]
-\end{tikzcd}\]
-commute 
-\item Every exact sequence 
-  \begin{align*}
-  0\longrightarrow N \longhookrightarrow M \longtwoheadrightarrow P \longrightarrow 0
-  \end{align*}
-  splits. 
-  \item $P$ is a direct summand of some free module. 
-  \item The covariant functor $\Hom (P,-):\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A$ is exact. 
-\end{enumerate}
-\end{equiv_def}
+\begin{theorem}
+\textbf{(Characterization of universal $\delta$-functor from abelian categories with enough injective or projective)} Let $F^i: \mathcal{A}\rightarrow \mathcal{B}$ be a homological $\delta$-functor from one abelian category to another. If $\mathcal{A}$ has enough injective and $F^n(I)=0$ for all injective object  $I \in \mathcal{A}$ and $n\geq 1$, then $F^i:\mathcal{A}\rightarrow \mathcal{B}$ is universal. The dual statement also holds. 
+\end{theorem}
 \begin{proof}
-  (i)$\implies $(ii): Because $\id_P: P \rightarrow P$ is surjective, by universal property, the sequence right split. \\
-
-  (ii)$\implies $(iii): This follows from the fact that \customref{THmiqf}{$P$ is a quotient of the free module  $A^{(P)}$} and \customref{THsl}{split lemma}.\\
-
-  (iii)$\implies $(i): Let $F\triangleq P \oplus N$ be free with basis $\set{x_i}$ and surjective homomorphism $\pi  : F \rightarrow P$. Because $g: M \rightarrow M'$ is surjective, for all $x_i$ there exists some  $z_i\in M$ such that $g(z_i)=f \circ  \pi  (z_i)$. Therefore, 
+ \href{https://github.com/ericliu515515/MathNotic/blob/main/Books/Homological%20Algebra/Romyar%20Sharifi.pdf}{See Theorem 3.3.9 of this copy of the text \emph{Homological algebra} by Romyar Sharifi}. 
 \end{proof}
-Let $A$ be a ring and $M$ an  $A$-module. We say a set $E \subseteq M$ is \textbf{linearly independent} if for all finite subset $\set{e_1,\dots ,e_n}\subseteq E$, we have  
+Now, since  derived functors satisfy \customref{THdfoiap}{$R^nF(I)=0$ for all $n\geq 1$}, we see that they are indeed universal $\delta$-functors.  
+\section{Tor Functor}
+Let $A$ and $B$ be two rings, and $M$ be an $(A,B)$-bimodule. Then we have a right-exact functor $N \otimes_A -$ from $\mathbf{Mod}_A$ to $\mathbf{Mod}_{(A,B)}$. The  \textbf{$n$-th Tor functor} $\operatorname{Tor}_n^A(N, -)$ is then its $n$-th left derived functor. In other words, we write 
 \begin{align*}
-a_1e_1 + \cdots + a_ne_n=0  \implies a_1= \cdots = a_n=0
+\operatorname{Tor}_n^A(N,M) \triangleq H_n (N \otimes  P_\bullet)
 \end{align*}
-A \textbf{basis} for $M$ is then a linearly independent generating set. 
-\begin{equiv_def}
-\textbf{(Free modules)} Let $A$ be a ring. We say an $A$-module $M$ is \textbf{free} if any of the followings hold true: 
-\begin{enumerate}[label=(\roman*)]
-  \item $M$ admits a basis. 
-  \item For some set $S$, we have an  $A$-module isomorphism  $M\cong \bigoplus  _{i \in S}A$.  
-\end{enumerate}
-\end{equiv_def}
+where $P_\bullet$ is a projective resolution of $M$. 
+\begin{theorem}
+\textbf{(Balancing of Tor functor)} Let $A$ be a ring and  $M$ and  $N$ be two  $A$-modules. Then we have an isomorphism 
+ \begin{align*}
+   \operatorname{Tor}^A_n(M,N)\cong \operatorname{Tor}^A_n(N,M)
+\end{align*}
+for all $n\geq 0$. 
+\end{theorem}
 \begin{proof}
-Routine. 
+There are supposedly two methods to prove this. One, which seems more down to earth, is to consider the double complex of their projective resolutions. See \href{https://github.com/ericliu515515/MathNotic/blob/main/Books/Homological%20Algebra/Romyar%20Sharifi.pdf}{the first proof of Proposition 3.5.9 of this copy of the text \emph{Homological algebra} by Romyar Sharifi} or \href{https://github.com/ericliu515515/MathNotic/blob/main/Books/Homological%20Algebra/Weibel.pdf}{Theorem 2.7.2 of Weibel}.\\
+
+The other supposed "solution" is to show that $\operatorname{Tor}_n(-,N)$ also forms a universal $\delta$-functor, as suggested by \href{https://github.com/ericliu515515/MathNotic/blob/main/Books/Homological%20Algebra/Romyar%20Sharifi.pdf}{the second proof of Proposition 3.5.9 of this copy of the text \emph{Homological algebra} by Romyar Sharifi} and the \href{https://mathoverflow.net/questions/126938/commutativity-of-tor?utm_source=chatgpt.com}{comment in this MO post}. However, I will make the remark that the second proof by Romyar seems skeptical to me, in that he didn't prove the naturalaity of $\operatorname{Tor}_n(-,N)$, whilst the rest seems fine.  
 \end{proof}
-\section{$\operatorname{Tor}$ Functor}
+
 \begin{equiv_def}
-\textbf{(Flat modules)} Let $N$ be an  $A$-module, and consider the covariant functor $T_N:\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A $ defined by \myref{equation}{EQtpm}. We say $N$ is \textbf{flat} if any of the followings hold true 
+\label{EDflat}
+\textbf{(Flat modules)} Let $N$ be an  $A$-module. We say $N$ is \textbf{flat} if any of the followings hold true 
 \begin{enumerate}[label=(\roman*)]
-  \item $T_N$ is an exact functor. 
-  \item For all injective homomorphism $f:M' \hookrightarrow  M$ between finitely generated modules, the homomorphism $f \otimes  1:M' \otimes N \hookrightarrow  M \otimes  N $ is injective. 
+  \item  $- \otimes  N$    is exact. 
+  \item Restriction of $- \otimes N$ onto the category of finitely generated $A$-modules is exact. 
+  \item $\operatorname{Tor}_n^A(N,M)=0$ for all $n\geq 1$ and $M\in \mathbf{Mod}_A$. 
+  \item $\operatorname{Tor}_1^A(N,M)=0$ for all $M\in \mathbf{Mod}_A$.   
+  \item $\operatorname{Tor}_n^A(N,M)=0$ for all $n\geq 1$ and finitely generated $M \in \mathbf{Mod}_A$
+  \item $\operatorname{Tor}_1^A(N,M)=0$ for all finitely generated  $M \in \mathbf{Mod}_A$. 
 \end{enumerate}
+In particular, the definitions that use tor functor \customref{THdfoiap}{implies that projective modules are flat}. 
 \end{equiv_def}
 \begin{proof}
-  (i)$\implies $(ii) is clear, so we only have to prove (ii)$\implies $(i). In particular, since \customref{THbpt}{tensor product is right exact}, we only have to prove that given injective homomorphism $f: M' \hookrightarrow  M$, where $M'$ and  $M$ need not be finitely generated, the homomorphism $f \otimes  1: M' \otimes  N \rightarrow M \otimes  N$ remains injective.\\     
+(i)$\implies $(iii)$\implies $(iv)$\implies $(i) and  (iii)$\implies $(v)$\implies $(vi) $\implies $(ii) are routine, and (i)$\implies $(ii) is clear, so it only remains to prove (ii)$\implies $(i). In particular, since \customref{THbpt}{tensor product is right exact}, we only have to prove that given injective homomorphism $f: M' \hookrightarrow  M$, where $M'$ and  $M$ need not be finitely generated, the homomorphism $f \otimes  1: M' \otimes  N \rightarrow M \otimes  N$ remains injective.\\     
 
 Let $u\in \operatorname{ker}(f \otimes  1)$. We are required to show $u=0$. Write $u \triangleq \sum x_i' \otimes  y_i$. Consider the submodule $M'_0 \triangleq (x_1',\dots ,x_n')\leq M'$ and $u_0 \triangleq \sum x_i'\otimes  y_i \in M'_0 \otimes  N$. Because the natural homomorphism from $M_0' \otimes  N$ to $M' \otimes  N$ maps $u_0$ to  $u$, we only have to prove $u_0 =0$.\\
 
 Now, because $u\in \operatorname{ker}(f \otimes 1)$, we know $\sum f(x_i') \otimes  y_i=0$ in $M \otimes  N$. This implies  \customref{THfgz}{the existence of some finitely generated submodule $M_0 \leq M$ that makes $f(x_i')\in M_0$ for all $i$ and  $\sum f(x_i')\otimes  y_i=0 \in M_0 \otimes  N$}.\\
 
-Clearly, $f$ maps $M_0'$ into  $M_0$, so we have the restriction maps $f|_{M'_0}: M'_0 \hookrightarrow  M_0 $ (Note that the codomain was shrunk). Because $f|_{M'_0}\otimes  1:M'_0 \otimes  N\rightarrow M_0 \otimes  N$ maps $u_0$ to $0$ by the last paragraph, and because both $M'_0$  and $M_0$ are finitely generated by construction, by premise $u_0=0$, as desired.   
+Clearly, $f$ maps $M_0'$ into  $M_0$, so we have the restriction maps $f|_{M'_0}: M'_0 \hookrightarrow  M_0 $ (Note that the codomain was shrunk). Because $f|_{M'_0}\otimes  1:M'_0 \otimes  N\rightarrow M_0 \otimes  N$ maps $u_0$ to $0$ by the last paragraph, and because both $M'_0$  and $M_0$ are finitely generated by construction, by premise $u_0=0$, as desired.  
 \end{proof}
 \begin{theorem}
 \textbf{(Identities for flat modules)} Let $A$ be a ring. Then  
@@ -5425,66 +5595,112 @@ Clearly, $f$ maps $M_0'$ into  $M_0$, so we have the restriction maps $f|_{M'_0}
    \item $A[x]$ is a flat $A$-module.  
    \item If  $M$ and $N$ are both flat  $A$-modules, then  $M\otimes  N$ is also flat. 
    \item If $B$  is a flat $A$-algebra and  $N$ is a flat  $B$-module, then  $N$ is flat as an  $A$-module.  
-\end{enumerate}
+ \end{enumerate}
 \end{theorem}
 \begin{proof}
-  (i): Let $f:N' \hookrightarrow  N$ be an injective $A$-module homomorphism. The proof from left to right is relatively simple. Just note that if one of $M_i$ isn't flat, then clearly  $f \otimes  \id_{\bigoplus M_i}$ isn't injective. We now prove from right to left. By universal property, there exists some $A$-module homomorphisms $\bigoplus  f \otimes \id_{M_i}: \bigoplus (N' \otimes  M_i)\rightarrow \bigoplus (N \otimes  M_i) $  that maps $n' \otimes  m_i$ to $f(n')\otimes  m_i$. Clearly, injectivity of $f \otimes  \id_{M_i}$ implies injectivity of $\bigoplus f \otimes  \id _{M_i}$. This then implies the injectivity of $f \otimes  \id_{\bigoplus  M_i}$ using the fact that it factors thorough  $\bigoplus  f \otimes  \id_{M_i}$ :
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJOJyBcXG90aW1lcyBcXGJpZ29wbHVzIE1faSJdLFswLDIsIlxcYmlnb3BsdXMgTidcXG90aW1lcyBNX2kiXSxbMiwwLCJOXFxvdGltZXMgXFxiaWdvcGx1cyBNX2kiXSxbMiwyLCJcXGJpZ29wbHVzIE5cXG90aW1lcyBNX2kiXSxbMCwyLCJmXFxvdGltZXMgXFxpZF97XFxiaWdvcGx1cyBNX2l9Il0sWzAsMV0sWzMsMl0sWzEsMywiXFxiaWdvcGx1cyAoZlxcb3RpbWVzIFxcaWRfe01faX0pICIsMl1d
+Note that (iii) is a corollary of (i) and (ii), since $A[x]\cong \bigoplus M_i$, where $M_i$ is the sub  $A$-module generated  $x^i$, which is isomorphic to  $A$ as  $A$-modules. The rest are proved the same way: We wish to show flatness by showing that tensor preserve injectivity, so we factors the tensored morphism into a composition a isomorphisms and a tensored morphism that is guaranteed injectivity via flatness of the objects we are given. \\
+
+We prove the  $(\impliedby)$ direction of (i) as an example. Note that the proof of the converse is a simple observation that if one of $M_i$ isn't flat, then  clearly  $f \otimes  \id_{\bigoplus M_i}$ isn't injective. \\
+
+Let $f:P' \hookrightarrow  P$ be an injective $A$-module homomorphism. Universal property of coproduct gives us an $A$-module homomorphisms $\bigoplus  f \otimes \id_{M_i}: \bigoplus (P' \otimes  M_i)\rightarrow \bigoplus (P \otimes  M_i) $  that maps $p' \otimes  m_i$ to $f(p')\otimes  m_i$. Because $M_i$ are flat, we know  $f \otimes  \id_{M_i}$ are injective. This clearly implies $\bigoplus f \otimes  \id_{M_i}$ is flat. The proof then follows from noting that we have a commutative diagram:  
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJQJyBcXG90aW1lcyBcXGJpZ29wbHVzIE1faSJdLFswLDIsIlxcYmlnb3BsdXMgUCdcXG90aW1lcyBNX2kiXSxbMiwwLCJQXFxvdGltZXMgXFxiaWdvcGx1cyBNX2kiXSxbMiwyLCJcXGJpZ29wbHVzIFBcXG90aW1lcyBNX2kiXSxbMCwyLCJmXFxvdGltZXMgXFxpZF97XFxiaWdvcGx1cyBNX2l9Il0sWzAsMV0sWzMsMl0sWzEsMywiXFxiaWdvcGx1cyAoZlxcb3RpbWVzIFxcaWRfe01faX0pICIsMl1d
 \[\begin{tikzcd}
-	{N' \otimes \bigoplus M_i} && {N\otimes \bigoplus M_i} \\
+	{P' \otimes \bigoplus M_i} && {P\otimes \bigoplus M_i} \\
 	\\
-	{\bigoplus N'\otimes M_i} && {\bigoplus N\otimes M_i}
+	{\bigoplus P'\otimes M_i} && {\bigoplus P\otimes M_i}
 	\arrow["{f\otimes \id_{\bigoplus M_i}}", from=1-1, to=1-3]
 	\arrow[from=1-1, to=3-1]
 	\arrow["{\bigoplus (f\otimes \id_{M_i}) }"', from=3-1, to=3-3]
 	\arrow[from=3-3, to=1-3]
 \end{tikzcd}\]
-where the columns are the \customref{THidt}{natural isomorphisms}.\\
- 
-(ii): Let  $f:N' \hookrightarrow N$ be an injective $A$-module homomorphism. The injectivity of  $f \otimes 1 : N' \otimes  A \rightarrow N \otimes  A$ then follows from the fact that it factors through $f$ 
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJOJyBcXHRpbWVzIEEiXSxbMCwyLCJOJyJdLFsyLDAsIk5cXG90aW1lcyBBIl0sWzIsMiwiTiJdLFswLDIsImYgXFxvdGltZXMgMSJdLFswLDFdLFszLDJdLFsxLDMsImYiLDJdXQ==
+where the columns are the  \customref{THidt}{natural isomorphisms}: 
+\begin{align*}
+P' \otimes  \bigoplus M_i \cong  \bigoplus P' \otimes M_i \quad \text{ and }\quad P \otimes  \bigoplus M_i \cong  \bigoplus  P \otimes  M_i
+\end{align*}
+Now, (ii) use the isomorphism  $P \otimes  A \cong  P$, (iv) use the isomorphism $P \otimes  (M \otimes N) \cong  (P \otimes  M) \otimes  N$, and (v) use the isomorphisms: 
+\begin{align*}
+P \otimes_A  N \cong  P \otimes_A (B \otimes _B N) \cong  (P \otimes_A B) \otimes_B N 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Homological identity of flat modules)} Let $A$ be a ring. Given an exact sequence 
+  \begin{align*}
+ 0 \longrightarrow N' \longrightarrow N \longrightarrow N'' \longrightarrow 0 
+  \end{align*}
+  of $A$-modules with  $N''$ flat, we have 
+  \begin{align*}
+ N'\text{ is flat }\iff N\text{ is flat } 
+  \end{align*}
+\end{theorem}
+\begin{proof}
+This follows from noting that since $N''$ is flat, we have a short exact sequence: 
+\begin{align*}
+0=\operatorname{Tor}_2(M,N'') \longrightarrow \operatorname{Tor}_1(M,N') \longrightarrow \operatorname{Tor}_1(M,N) \longrightarrow \operatorname{Tor}_1(M,N'')=0 
+\end{align*}
+\end{proof}
+\begin{theorem}
+\textbf{(Homological identity of flat modules)} Let $A$ be a ring and $N$ an $A$-module. Then 
+ \begin{align*}
+N\text{ is flat }\iff \operatorname{Tor}_1(A \quotient \mathfrak{a},N)=0,\quad \text{ for all finitely generated }\mathfrak{a}\leq A
+\end{align*}
+\end{theorem}
+\begin{proof}
+Left to right follows from \customref{EDflat}{definition of flatness}. We prove from right to left. We first show that: 
+\begin{align*}
+\vi{\operatorname{Tor}_1(A \quotient  \mathfrak{b},N)=0,\quad \text{ for all }\mathfrak{b}\trianglelefteq A}
+\end{align*}
+By premise, for each finitely generated submodule  $\mathfrak{a}_i$, we have a short exact sequence 
+\begin{align*}
+0 \longrightarrow \mathfrak{a}_i \otimes  N \longrightarrow A \otimes  N \longrightarrow A \quotient \mathfrak{a}_i \otimes  N  \longrightarrow 0
+\end{align*}
+Because \customref{THdad}{$\operatorname{Tor}(N,-)$ is a $\delta$-functor}, for each inclusion $\mathfrak{a}_i \hookrightarrow \mathfrak{a}_j$ of finitely generated submodules of  $\mathfrak{b}$, we have a morphism of short exact sequence 
+% https://q.uiver.app/#q=WzAsMTAsWzAsMCwiMCJdLFsxLDAsIlxcbWF0aGZyYWt7YX1faVxcb3RpbWVzIE4iXSxbMiwwLCJBXFxvdGltZXMgTiJdLFszLDAsIkFcXHF1b3RpZW50IFxcbWF0aGZyYWt7YX1faVxcb3RpbWVzIE4iXSxbNCwwLCIwIl0sWzAsMSwiMCJdLFsxLDEsIlxcbWF0aGZyYWt7YX1falxcb3RpbWVzIE4iXSxbMiwxLCJBXFxvdGltZXMgTiJdLFszLDEsIkFcXHF1b3RpZW50IFxcbWF0aGZyYWt7YX1falxcb3RpbWVzIE4iXSxbNCwxLCIwIl0sWzAsMV0sWzEsMl0sWzIsM10sWzMsNF0sWzUsNl0sWzEsNl0sWzIsN10sWzYsN10sWzcsOF0sWzMsOF0sWzgsOV1d
 \[\begin{tikzcd}
-	{N' \otimes A} && {N\otimes A} \\
-	\\
-	{N'} && N
-	\arrow["{f \otimes 1}", from=1-1, to=1-3]
-	\arrow[from=1-1, to=3-1]
-	\arrow["f"', from=3-1, to=3-3]
-	\arrow[from=3-3, to=1-3]
+	0 & {\mathfrak{a}_i\otimes N} & {A\otimes N} & {A\quotient \mathfrak{a}_i\otimes N} & 0 \\
+	0 & {\mathfrak{a}_j\otimes N} & {A\otimes N} & {A\quotient \mathfrak{a}_j\otimes N} & 0
+	\arrow[from=1-1, to=1-2]
+	\arrow[from=1-2, to=1-3]
+	\arrow[from=1-2, to=2-2]
+	\arrow[from=1-3, to=1-4]
+	\arrow[from=1-3, to=2-3]
+	\arrow[from=1-4, to=1-5]
+	\arrow[from=1-4, to=2-4]
+	\arrow[from=2-1, to=2-2]
+	\arrow[from=2-2, to=2-3]
+	\arrow[from=2-3, to=2-4]
+	\arrow[from=2-4, to=2-5]
 \end{tikzcd}\]
-where the columns are the \customref{THidt}{natural isomorphisms}.\\
+This implies that we have a short exact sequence of directed system 
+\begin{align*}
+0 \rightarrow   (\mathfrak{a}_i \otimes  N) \rightarrow (A \otimes  N) \rightarrow (A \quotient \mathfrak{a}_i \times N) \rightarrow 0
+\end{align*}
+consisting of finitely generated submodules of $\mathfrak{b}$. Then because \customref{EDsm}{direct limit is an exact functor}, this induces a short exact sequence consisting of their direct limit 
+\begin{align*}
+0 \longrightarrow \directlimit(\mathfrak{a}_i \otimes  N) \longrightarrow \directlimit (A \otimes  N)\longrightarrow  \directlimit (A \quotient \mathfrak{a}_i \otimes  N) \longrightarrow 0
+\end{align*}
+Then because \customref{THidt}{direct limit commute with tensor product}, we have a short exact sequence 
+\begin{align*}
+0 \rightarrow \mathfrak{b} \otimes  N \longrightarrow A \otimes  N \longrightarrow   A \quotient \mathfrak{b} \otimes  N\longrightarrow  0 
+\end{align*}
+The injectivity of $\mathfrak{b}\otimes  N\rightarrow A \otimes  N$ in this short exact sequence then implies $\operatorname{Tor}_1(A\quotient \mathfrak{b}, N )=0$. $\vdone$ \\
 
-(iii): This is a corollary of (i) and (ii), since  $A[x]\cong \bigoplus _{i \geq 0} M_i$, where $M_i$ is the sub  $A$-module generated by  $x^i$, which is isomorphic to  $A$ as $A$-modules. \\
-
-(iv): Let $f: N'\rightarrow N''$ be an injective $A$-module homomorphism. The injectivity of  $f \otimes  \id_{M \otimes  N}$ follows from the fact that if factor through the injective homomorphism $(f\otimes  \id_M)\otimes  \id _N$ : 
-% https://q.uiver.app/#q=WzAsNCxbMCwwLCJOJ1xcb3RpbWVzIChNXFxvdGltZXMgTikiXSxbMCwyLCIoTidcXG90aW1lcyBNKVxcb3RpbWVzIE4iXSxbMiwwLCJOJydcXG90aW1lcyAoTVxcb3RpbWVzIE4pIl0sWzIsMiwiKE4nJ1xcb3RpbWVzIE0pXFxvdGltZXMgTiJdLFswLDIsImZcXG90aW1lcyBcXGlkX3tNXFxvdGltZXMgTn0iXSxbMCwxXSxbMywyXSxbMSwzLCIoZlxcb3RpbWVzIFxcaWRfTSlcXG90aW1lcyBcXGlkX04iLDJdXQ==
-\[\begin{tikzcd}
-	{N'\otimes (M\otimes N)} && {N''\otimes (M\otimes N)} \\
-	\\
-	{(N'\otimes M)\otimes N} && {(N''\otimes M)\otimes N}
-	\arrow["{f\otimes \id_{M\otimes N}}", from=1-1, to=1-3]
-	\arrow[from=1-1, to=3-1]
-	\arrow["{(f\otimes \id_M)\otimes \id_N}"', from=3-1, to=3-3]
-	\arrow[from=3-3, to=1-3]
-\end{tikzcd}\]
-where the columns are the \customref{THidt}{natural isomorphisms}.\\
-
-(v): Let $f: M' \hookrightarrow  M$ be an injective $A$-module homomorphism. Clearly, $f \otimes  \id _B : M' \otimes_A B \rightarrow M \otimes _A B$ is an $B$-module homomorphism. Therefore, we have a $B$-module homomorphism $(f \otimes  \id _B) \otimes  \id _N :(M' \otimes_A B)\otimes _B N \rightarrow (M\otimes _A B)\otimes  _B N$, which is injective by premise. The injectivity of $f\otimes  \id _N: M' \otimes_A N \rightarrow M\otimes _A N$ then follows from the fact that it, as a set map, factors through: 
-% https://q.uiver.app/#q=WzAsNixbMCwwLCJNJ1xcb3RpbWVzX0EgTiJdLFswLDIsIk0nXFxvdGltZXNfQSAoQlxcb3RpbWVzIF9CIE4pIl0sWzIsMCwiTVxcb3RpbWVzX0EgTiJdLFsyLDIsIk1cXG90aW1lc19BKEJcXG90aW1lcyBfQiBOKSJdLFswLDQsIihNJ1xcb3RpbWVzIF9BIEIpXFxvdGltZXNfQiBOIl0sWzIsNCwiKE1cXG90aW1lc19BIEIpXFxvdGltZXMgX0IgTiJdLFswLDIsImZcXG90aW1lcyBcXGlkX3tOfSJdLFswLDFdLFszLDJdLFsxLDMsImZcXG90aW1lcyBcXGlkX3tCXFxvdGltZXNfQiBOfSJdLFsxLDRdLFs1LDNdLFs0LDUsIihmXFxvdGltZXMgXFxpZF9CKVxcb3RpbWVzIFxcaWRfTiIsMl1d
-\[\begin{tikzcd}
-	{M'\otimes_A N} && {M\otimes_A N} \\
-	\\
-	{M'\otimes_A (B\otimes _B N)} && {M\otimes_A(B\otimes _B N)} \\
-	\\
-	{(M'\otimes _A B)\otimes_B N} && {(M\otimes_A B)\otimes _B N}
-	\arrow["{f\otimes \id_{N}}", from=1-1, to=1-3]
-	\arrow[from=1-1, to=3-1]
-	\arrow["{f\otimes \id_{B\otimes_B N}}", from=3-1, to=3-3]
-	\arrow[from=3-1, to=5-1]
-	\arrow[from=3-3, to=1-3]
-	\arrow["{(f\otimes \id_B)\otimes \id_N}"', from=5-1, to=5-3]
-	\arrow[from=5-3, to=3-3]
-\end{tikzcd}\]
+We now prove that 
+\begin{align*}
+\blue{\operatorname{Tor}_1(M,N)=0,\quad \text{ for all finitely generated module $M$ }}
+\end{align*}
+This is proved by induction on number of generators. Let $M\triangleq (x_1,\dots ,x_n)$ and denote  $M_i \triangleq (x_1, \dots ,x_i)$ for all $0 \leq  i \leq n $. The base case $i=0$ is clear. Consider the function defined by 
+\begin{align*}
+A \rightarrow M_n \quotient M_{n-1},\quad a \mapsto \overline{ax_n}
+\end{align*}
+This gives us a short exact sequence 
+\begin{align*}
+0 \longrightarrow  M_{n-1} \longrightarrow M_n \longrightarrow A \quotient \operatorname{ker}(f)  \longrightarrow 0  
+\end{align*}
+Then by inductive hypothesis and the earlier result, we have an exact sequence  
+\begin{align*}
+0=\operatorname{Tor}_1(M_{n-1},N) \longrightarrow \operatorname{Tor}_1(M_n,N) \longrightarrow \operatorname{Tor}(A \quotient \operatorname{ker}(f),N) = 0
+\end{align*}
+which implies $\operatorname{Tor}_1(M_n,N)=0$. 
 
 
 \end{proof}
@@ -5576,7 +5792,71 @@ Let morphism $f: A \rightarrow B$ admits both image and coimage, therefore both 
 	\arrow["j"',hook, from=3-3, to=1-3]
 \end{tikzcd}\]
 Now, because by definition of fiber product we have  $f\circ p_1=f \circ p_2$, we know $j \circ \ld  \circ p_1= j \circ \ld \circ p_2$ which by monicity of $j$ implies  $\ld  \circ p_1=\ld \circ p_2$, which by universal property of fiber product implies the existence and uniqueness of some morphism $u:\operatorname{coim}(f)\rightarrow \operatorname{Im}(f)$ that makes the diagram above commutes. \\
+\section{Every $\mathbf{Mod}_A$ has enough injective and projective}
+A \textbf{divisible abelian group} $G$ is an abelian group in which for all $g \in G$ and $n\inn$, there exists some $y \in G$ that makes $ny=g$.  
+\begin{theorem}
+\textbf{(Divisible abelian groups are exactly injective objects)} We have 
+\begin{align*}
+J\in \mathbf{Ab}\text{ is injective }\iff  J\text{ is divisible }
+\end{align*}
+\end{theorem}
+\begin{proof}
+Left to right follows from a routine proof of contradiction. \\
 
+
+\end{proof}
+Therefore, $\Q \quotient \Z\in \mathbf{Ab}$ is injective. 
+
+
+
+
+
+ We say an $A$-module  $M$ is a  \textbf{direct summand} of $M''$ if there exists some module  $M'$ that makes  $M'' \cong  M \oplus  M'$. 
+\begin{theorem}
+\label{THmiqf}
+\textbf{(Every module is a quotient of some free module)} Let $A$ be a ring and $M$ be an $A$-module. Then we have a surjective module homomorphism from the free module 
+\begin{align*}
+A^{(M)}\triangleq \bigoplus_{m\neq 0 \in M}A^m,\quad \text{ where }A^m \cong  A
+\end{align*}
+to $M$ by sending 
+\begin{align*}
+a \in A^m \mapsto am
+\end{align*}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+\begin{equiv_def}
+\textbf{(Projective Modules)} Let $A$ be a ring. We say an $A$-module $P$ is \textbf{projective} if any of the followings hold true
+\begin{enumerate}[label=(\roman*)]
+  \item $P\in \mathbf{Mod}_A$ is a projective object. 
+  \item $P$ is a direct summand of some free module.  
+\end{enumerate}
+
+\end{equiv_def}
+\begin{proof}
+  (i)$\implies $(ii): Because $\id_P: P \rightarrow P$ is surjective, by universal property, the sequence right split. \\
+
+  (ii)$\implies $(iii): This follows from the fact that \customref{THmiqf}{$P$ is a quotient of the free module  $A^{(P)}$} and \customref{THsl}{split lemma}.\\
+
+  (iii)$\implies $(i): Let $F\triangleq P \oplus N$ be free with basis $\set{x_i}$ and surjective homomorphism $\pi  : F \rightarrow P$. Because $g: M \rightarrow M'$ is surjective, for all $x_i$ there exists some  $z_i\in M$ such that $g(z_i)=f \circ  \pi  (z_i)$. Therefore, 
+\end{proof}
+
+Let $A$ be a ring and $M$ an  $A$-module. We say a set $E \subseteq M$ is \textbf{linearly independent} if for all finite subset $\set{e_1,\dots ,e_n}\subseteq E$, we have  
+\begin{align*}
+a_1e_1 + \cdots + a_ne_n=0  \implies a_1= \cdots = a_n=0
+\end{align*}
+A \textbf{basis} for $M$ is then a linearly independent generating set. 
+\begin{equiv_def}
+\textbf{(Free modules)} Let $A$ be a ring. We say an $A$-module $M$ is \textbf{free} if any of the followings hold true: 
+\begin{enumerate}[label=(\roman*)]
+  \item $M$ admits a basis. 
+  \item For some set $S$, we have an  $A$-module isomorphism  $M\cong \bigoplus  _{i \in S}A$.  
+\end{enumerate}
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
 \end{document}
 
 
