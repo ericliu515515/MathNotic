@@ -2082,94 +2082,6 @@ At this point, we should point out that \textbf{finitely generated module} and \
 \begin{Example}{Finitely generated algebras need not be finitely generated modules.}{}
 Clearly, $A[x]$ is finitely generated as an $A$-algebra, but not finitely generated as an  $A$-module.   
 \end{Example}
-\section{Operations on Ideals and Modules}
-\begin{equiv_def}
-  \textbf{(Sum for modules and ideals)} Let $A$ be a ring, and $M$ an  $A$-module. The \textbf{sum $\sum M_i$ of} \emph{possibly infinite} \textbf{submodules} $M_i \leq M $ is the set of finite combinations of elements of $M_i$.
-One can check that, in the form of \textbf{external direct sum},  coproduct always exists in the category of modules. Moreover, given a collection $M_i$ of submodules of  $M$, if $M_i \cap \sum_{j\neq i}M_j=0$ for all $i$, clearly we have a natural module isomorphism: 
- \begin{align*}
-\bigoplus M_i \cong  \sum M_i 
-\end{align*}
-In such case, we say  $\sum M_i$ form an  \textbf{internal direct sum}. \\
-
-
-  The \textbf{sum of} \emph{possibly infinite} \textbf{ideals $\mathfrak{a}_i\trianglelefteq  A$} is defined as their sum as submodules. Notably, finite sum of principal ideals satisfies: 
-\begin{align*}
-  (x) + (y) = (x+y),\quad \text{ for all }x,y \in A  
-\end{align*}
-
-\end{equiv_def}
-\begin{proof}
-Routine. 
-\end{proof}
-Note that in general, condition $M_i \cap M_j =0$ for all $i \neq j$ isn't strong enough to make $\sum M_i$ an internal direct sum, and that submodules $N$ of $M_1 \times M_2$ need not take the form $N \cap M_1 \times N \cap  M_2$. See \myref{example}{ex:tr} and \myref{example}{ex:sa}.
-\begin{equiv_def}
-\textbf{(Quotient of module and ideals)} Let $A$ be a ring and $M$ an  $A$-module. Let $N,P \leq M$ be two submodules. Their \textbf{quotient} is the ideal of $A$ defined by: 
-\begin{align*}
-  (N:P)\triangleq  \set{a \in A: aP \leq  N} 
-\end{align*}
-The \textbf{annihilator} of $M$ is then defined by: 
- \begin{align*}
-\operatorname{Ann}(M)\triangleq (0:M)
-\end{align*}
-The \textbf{ideal quotient and annihilator} is defined as their quotient and annihilator as submodules. We then have 
-\begin{align*}
-\set{d \in A:d \text{ is a zero-divisor}}= \bigcup_{x \neq 0 \in A} \operatorname{Ann}(x)
-\end{align*}
-We say $M$ is a  \textbf{faithful module} if $\operatorname{Ann}(M)=0$. Interestingly, if $\operatorname{Ann}(M)\leq \mathfrak{a}$, then $M$ has a well-defined natural  $A \quotient \mathfrak{a}$-module structure: 
-\begin{align*}
-\overline{a}\cdot m \triangleq am 
-\end{align*}
-\end{equiv_def}
-\begin{proof}
-Routine. 
-\end{proof}
-\begin{theorem}
-\textbf{(Basic properties of module quotient)} Let $\mathfrak{a},\mathfrak{b},\mathfrak{c}\trianglelefteq  A$. We have 
-\begin{align*}
-\mathfrak{a}\leq (\mathfrak{a}:\mathfrak{b})\quad \text{ and }\quad (\mathfrak{a}:\mathfrak{b})\mathfrak{b}\leq \mathfrak{a}\quad \text{ and }\quad \left( \left(\mathfrak{a}:\mathfrak{b} \right):\mathfrak{c} \right)=\left(\mathfrak{a}:\mathfrak{b}\mathfrak{c} \right)= \left( \left(\mathfrak{a}:\mathfrak{c} \right): \mathfrak{b} \right)
-\end{align*}
-For \emph{possibly infinite} set of ideals $\mathfrak{a}_i,\mathfrak{b}_i \leq A$, we have 
-\begin{align*}
-\left( \bigcap \mathfrak{a}_i: \mathfrak{b} \right)=\bigcap \left(\mathfrak{a}_i :\mathfrak{b}  \right) \quad \text{ and }\quad \left(\mathfrak{a}: \sum \mathfrak{b}_i \right)=\bigcap \left(\mathfrak{a}:\mathfrak{b}_i \right) 
-\end{align*}
-Given three submodules $M,N,P$ of some  $A$-module, we have 
-\begin{align*}
-\operatorname{Ann}(M+N)=\operatorname{Ann}(M) \cap \operatorname{Ann}(N) \quad \text{ and }\quad (N:P)=\operatorname{Ann} \left(N+P \quotient N \right)
-\end{align*}
-\end{theorem}
-\begin{proof}
-Routine. 
-\end{proof}
-\begin{equiv_def}
-\textbf{(Product of ideals and modules)} The \textbf{product} of a \emph{finite} set of ideals $\mathfrak{a}_i$ is defined to be the set of all finite sums of products of elements: 
-\begin{align*}
-\prod_{i=1}^n \mathfrak{a}_i \triangleq \set{\sum_{\text{finite}} a_1 \cdots a_n\in A: a_{i}\in \mathfrak{a}_i}
-\end{align*}
-Even though product of two submodules can not be defined, we may define the \textbf{product} $\mathfrak{a}M\leq M$ as: 
-\begin{align*}
-\mathfrak{a}M \triangleq \set{\sum_{\text{finite}}a_im_i \in M: a_i \in \mathfrak{a}\text{ and }m_i \in M}
-\end{align*}
-\end{equiv_def}
-\begin{proof}
-Routine. 
-\end{proof}
-\begin{theorem}
-\textbf{(Ideals in finite direct product of rings)} Let $\mathfrak{a}\trianglelefteq A_1 \times \cdots \times A_n$. Then 
-\begin{align*}
-\mathfrak{a}= \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n
-\end{align*}
-where $\mathfrak{a}_i\trianglelefteq  A_i$ is the set of $a_i \in A_i$ such that for some  $\prod_{j\neq i}a_j \in \prod_{j \neq i}A_j$, we have $(a_1,\dots ,a_n)\in \mathfrak{a}$. 
-\end{theorem}
-\begin{proof}
-Clearly we have $\mathfrak{a}\leq \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n$. So we only have to prove the other way around. Let $(a_1,\dots ,a_n) \in \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n$. By definition, for all $i$, there exists some  $r^{(i)}\in \mathfrak{a}$ such that $r^{(i)}_i=a_i$. Consider 
-\begin{align*}
-e_i \triangleq (0,\dots ,\overset{i}{1},\dots ,0) \in A 
-\end{align*}
-We then see 
-\begin{align*}
-  (a_1,\dots , a_n)= \sum_{i=1}^n e_ir^{(i)} \in \mathfrak{a}
-\end{align*}
-\end{proof}
 \section{Direct Limits}
 \begin{abstract}
 This section deals with the very basic properties of direct limit, especially in $\mathbf{Ring}$ and $\mathbf{Mod}_A$. 
@@ -2257,10 +2169,94 @@ where $\phi:\directlimit M_i \rightarrow \left(\directlimit N_i,\nu   \right)$ i
 \begin{proof}
 Routine. 
 \end{proof}
+\section{Ideals}
+\begin{equiv_def}
+  \textbf{(Sum for modules and ideals)} Let $A$ be a ring, and $M$ an  $A$-module. The \textbf{sum $\sum M_i$ of} \emph{possibly infinite} \textbf{submodules} $M_i \leq M $ is the set of finite combinations of elements of $M_i$.
+One can check that, in the form of \textbf{external direct sum},  coproduct always exists in the category of modules. Moreover, given a collection $M_i$ of submodules of  $M$, if $M_i \cap \sum_{j\neq i}M_j=0$ for all $i$, clearly we have a natural module isomorphism: 
+ \begin{align*}
+\bigoplus M_i \cong  \sum M_i 
+\end{align*}
+In such case, we say  $\sum M_i$ form an  \textbf{internal direct sum}. \\
 
 
+  The \textbf{sum of} \emph{possibly infinite} \textbf{ideals $\mathfrak{a}_i\trianglelefteq  A$} is defined as their sum as submodules. Notably, finite sum of principal ideals satisfies: 
+\begin{align*}
+  (x) + (y) = (x+y),\quad \text{ for all }x,y \in A  
+\end{align*}
 
-\section{Prime and Maximal Ideals} 
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
+Note that in general, condition $M_i \cap M_j =0$ for all $i \neq j$ isn't strong enough to make $\sum M_i$ an internal direct sum, and that submodules $N$ of $M_1 \times M_2$ need not take the form $N \cap M_1 \times N \cap  M_2$. See \myref{example}{ex:tr} and \myref{example}{ex:sa}.
+\begin{equiv_def}
+\textbf{(Quotient of module and ideals)} Let $A$ be a ring and $M$ an  $A$-module. Let $N,P \leq M$ be two submodules. Their \textbf{quotient} is the ideal of $A$ defined by: 
+\begin{align*}
+  (N:P)\triangleq  \set{a \in A: aP \leq  N} 
+\end{align*}
+The \textbf{annihilator} of $M$ is then defined by: 
+ \begin{align*}
+\operatorname{Ann}(M)\triangleq (0:M)
+\end{align*}
+The \textbf{ideal quotient and annihilator} is defined as their quotient and annihilator as submodules. We then have 
+\begin{align*}
+\set{d \in A:d \text{ is a zero-divisor}}= \bigcup_{x \neq 0 \in A} \operatorname{Ann}(x)
+\end{align*}
+We say $M$ is a  \textbf{faithful module} if $\operatorname{Ann}(M)=0$. Interestingly, if $\operatorname{Ann}(M)\leq \mathfrak{a}$, then $M$ has a well-defined natural  $A \quotient \mathfrak{a}$-module structure: 
+\begin{align*}
+\overline{a}\cdot m \triangleq am 
+\end{align*}
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
+\begin{theorem}
+\textbf{(Basic properties of module quotient)} Let $\mathfrak{a},\mathfrak{b},\mathfrak{c}\trianglelefteq  A$. We have 
+\begin{align*}
+\mathfrak{a}\leq (\mathfrak{a}:\mathfrak{b})\quad \text{ and }\quad (\mathfrak{a}:\mathfrak{b})\mathfrak{b}\leq \mathfrak{a}\quad \text{ and }\quad \left( \left(\mathfrak{a}:\mathfrak{b} \right):\mathfrak{c} \right)=\left(\mathfrak{a}:\mathfrak{b}\mathfrak{c} \right)= \left( \left(\mathfrak{a}:\mathfrak{c} \right): \mathfrak{b} \right)
+\end{align*}
+For \emph{possibly infinite} set of ideals $\mathfrak{a}_i,\mathfrak{b}_i \leq A$, we have 
+\begin{align*}
+\left( \bigcap \mathfrak{a}_i: \mathfrak{b} \right)=\bigcap \left(\mathfrak{a}_i :\mathfrak{b}  \right) \quad \text{ and }\quad \left(\mathfrak{a}: \sum \mathfrak{b}_i \right)=\bigcap \left(\mathfrak{a}:\mathfrak{b}_i \right) 
+\end{align*}
+Given three submodules $M,N,P$ of some  $A$-module, we have 
+\begin{align*}
+\operatorname{Ann}(M+N)=\operatorname{Ann}(M) \cap \operatorname{Ann}(N) \quad \text{ and }\quad (N:P)=\operatorname{Ann} \left(N+P \quotient N \right)
+\end{align*}
+\end{theorem}
+\begin{proof}
+Routine. 
+\end{proof}
+\begin{equiv_def}
+\textbf{(Product of ideals and modules)} The \textbf{product} of a \emph{finite} set of ideals $\mathfrak{a}_i$ is defined to be the set of all finite sums of products of elements: 
+\begin{align*}
+\prod_{i=1}^n \mathfrak{a}_i \triangleq \set{\sum_{\text{finite}} a_1 \cdots a_n\in A: a_{i}\in \mathfrak{a}_i}
+\end{align*}
+Even though product of two submodules can not be defined, we may define the \textbf{product} $\mathfrak{a}M\leq M$ as: 
+\begin{align*}
+\mathfrak{a}M \triangleq \set{\sum_{\text{finite}}a_im_i \in M: a_i \in \mathfrak{a}\text{ and }m_i \in M}
+\end{align*}
+\end{equiv_def}
+\begin{proof}
+Routine. 
+\end{proof}
+\begin{theorem}
+\textbf{(Ideals in finite direct product of rings)} Let $\mathfrak{a}\trianglelefteq A_1 \times \cdots \times A_n$. Then 
+\begin{align*}
+\mathfrak{a}= \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n
+\end{align*}
+where $\mathfrak{a}_i\trianglelefteq  A_i$ is the set of $a_i \in A_i$ such that for some  $\prod_{j\neq i}a_j \in \prod_{j \neq i}A_j$, we have $(a_1,\dots ,a_n)\in \mathfrak{a}$. 
+\end{theorem}
+\begin{proof}
+Clearly we have $\mathfrak{a}\leq \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n$. So we only have to prove the other way around. Let $(a_1,\dots ,a_n) \in \mathfrak{a}_1 \times \cdots \times \mathfrak{a}_n$. By definition, for all $i$, there exists some  $r^{(i)}\in \mathfrak{a}$ such that $r^{(i)}_i=a_i$. Consider 
+\begin{align*}
+e_i \triangleq (0,\dots ,\overset{i}{1},\dots ,0) \in A 
+\end{align*}
+We then see 
+\begin{align*}
+  (a_1,\dots , a_n)= \sum_{i=1}^n e_ir^{(i)} \in \mathfrak{a}
+\end{align*}
+\end{proof}
 We say a ring homomorphism $ \pi :A \twoheadrightarrow   A\quotient \mathfrak{a}$ satisfies the \textbf{universal property of quotient ring $A\quotient \mathfrak{a}$} if 
 \begin{enumerate}[label=(\roman*)]
   \item $\pi $ vanishes on $\mathfrak{a}$. \textbf{(Ring condition)}
@@ -2639,10 +2635,9 @@ x_i = t_i + \sum_{j=1}^n a_j u_j\text{ for all }1\leq i \leq m
 \end{align*}
 We now see $\operatorname{ker}(\pfi )=(t_1, \dots ,t_m)$. 
 \end{proof}
-\section{Nakayama Lemmas}
 \begin{theorem}
 \label{THgCH}
-\textbf{(Generalized Cayley-Hamilton theorem)} Let $M$ be a finitely generated $A$-module, $\mathfrak{a}\trianglelefteq M$, and $\pfi$ an $A$-module endomorphism of  $M$ such that $\pfi (M)\leq \mathfrak{a}M$. Then $\pfi $ satisfies an equation of the form 
+\textbf{(Generalized Cayley-Hamilton theorem)} Let $M$ be a finitely generated $A$-module, $\mathfrak{a}\trianglelefteq A$, and $\pfi$ an $A$-module endomorphism of  $M$ such that $\pfi (M)\leq \mathfrak{a}M$. Then for some $n\geq 1$, $\pfi $ satisfies an equation of the form 
 \begin{align*}
   \pfi^n + a_1 \pfi ^{n-1}+ \cdots + a_n =0,\quad \text{ where }a_i \in \mathfrak{a}
 \end{align*}
@@ -2694,12 +2689,6 @@ By \customref{THsNl}{second version of Nakayama lemma}, it suffices to show $\ma
 
 (ii): The proof follows from \customref{THtNl}{third version of Nakayama lemma} and the observation that $M=u(N)+ \mathfrak{a}M$.  
 \end{proof}
-\begin{corollary}
-\textbf{(Geometric consequences of Nakayama lemmas)} Let $A$ be a ring and  $\pfi : A^n \rightarrow A^m$ be a module homomorphism. If $\pfi $ is injective, then  $n \leq m$. Conversely, if $\pfi$ is surjective, then $n\geq m$.  
-\end{corollary}
-\begin{proof}
-
-\end{proof}
 \section{Tensor Products}
 Given a \emph{finite} collection $M_1,\dots ,M_n$ of $A$-modules, their \textbf{tensor product} is an $A$-module $M_1 \otimes  \cdots \otimes  M_n$ together with a multilinear map $\otimes :M_1 \times \cdots \times M_n \rightarrow M_1 \otimes  \cdots \otimes  M_n$ that satisfies the \textbf{universal property for tensor product}: For each multilinear map $f:M _1 \times \cdots \times M_n \rightarrow P$, there exists an unique module homomorphism $\tilde{f}: M_1 \otimes  \cdots \otimes  M_n \rightarrow P$ such that the diagram 
 % https://q.uiver.app/#q=WzAsMyxbMiwyLCJOIl0sWzAsMCwiXFxwcm9kIE1faSJdLFsyLDAsIlxcb3RpbWVzIE1faSJdLFsxLDIsIlxcb3RpbWVzIl0sWzEsMCwiZiIsMl0sWzIsMCwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
@@ -2726,10 +2715,9 @@ Given two module homomorphisms $f:M \rightarrow M'$ and $g:N \rightarrow N'$, cl
 \begin{align*}
   (f\otimes  g )(m \otimes  n) \triangleq f(m) \otimes  g(n)
 \end{align*}
-In particular, for all $M_0 \leq M$ and $N_0 \leq N$, given $x\in M_0$ and $y \in N_0$ such that $x \otimes  y =0 \in M_0 \otimes  N_0$, the module homomorphism from $M_0 \otimes  N_0$ to $M \otimes  N$ tell us that $x \otimes  y$ must also be $0$ in  $M \otimes  N$. The converse however is not true: That is, given $x \in M_0$ and $y \in M_0$, 
-\begin{align*}
-x\otimes  y =0 \in M \otimes  N  \rlap{\(\quad\not\)}\implies  x \otimes  y =0 \in M_0 \otimes  N_0 
-\end{align*}
+In particular, for all $M_0 \leq M$ and $N_0 \leq N$, given $x\in M_0$ and $y \in N_0$ that makes $x \otimes  y =0$ in $M_0 \otimes  N_0$, the module homomorphism from $M_0 \otimes  N_0$ to $M \otimes  N$ tell us that $x \otimes  y$ must also be $0$ in  $M \otimes  N$. The converse however is not true. That is, given $x \in M_0$ and $y \in N_0$ with $x \otimes  y=0$ in $M \otimes  N$, we don't always have $x \otimes  y =0 $ in $M_0 \otimes  N_0$. \\
+
+In short, if an expression is zero in a tensor products of submodules, then it must be zero in the parent tensor product, but an expression being zero in the parent tensor product can still be nonzero in the tensor product of submodules. 
 \begin{Example}{Zero expression in $M \otimes  N$ can be nonzero in $M_0 \otimes  N_0$ for $M_0 \leq M$ and $N_0 \leq N$.}{}
 Consider $A \triangleq \Z,M \triangleq \Z$, and $N\triangleq \Z_2$. Let $M_0 \triangleq 2\Z \leq M$ and $x \in N$ be the nonzero element. Then in $M \otimes  N$, we have 
 \begin{align*}
@@ -2740,38 +2728,98 @@ Yet in $M_0\otimes  N$, we can't have $2 \otimes  x=0$, since if so, then $M_0 \
   M_0 \otimes  N \cong  \Z \otimes_\Z \Z_2 \customref{THidt}{\cong}  \Z_2 \neq 0
 \end{align*}
 \end{Example}
-Note that because for generic $f':M' \rightarrow M''$ and $g':N' \rightarrow N''$, we clearly have:  
+However, we do have the following existence result. 
+\begin{theorem}
+\label{THfgz}
+\textbf{(Existence of finitely generated submodules that makes an expression of zero remain zero)} Let  $A$ be a ring and  $M$ and  $N$ two  $A$-modules. Let $\sum x_i \otimes y_i =0$ in $M \otimes  N$. Then there exist two finitely generated submodules $M' \leq M$ and $N' \leq N$ that respectively contains $x_i$ and $y_i$ and makes
 \begin{align*}
-  (f' \circ f) \otimes  (g' \circ g) =(f' \otimes  g') \circ (f \circ g)
+\sum  x_i \otimes  y_i= 0,\quad \text{ in }M' \otimes  N'
 \end{align*}
-For all $A$-module  $N$, we have a \emph{covariant} functor $T_N:\mathbf{Mod}_A \longrightarrow \mathbf{Mod}_A$ defined by 
+\end{theorem}
+\begin{proof}
+Let $M_i$ and $N_j$ be the directed system of finitely generated submodules of $M$ and $N$. Then we have a natural isomorphism 
+\begin{align*}
+  M \otimes  N \customref{THdls}{\cong} \left(\directlimit M_i   \right) \otimes   \left(\directlimit N_j \right) \customref{THidt}{\cong}  \directlimit (M_i \otimes  N_j)  
+\end{align*}
+Let $M' \leq M$ and $N'\leq N$ be the submodules generated by $x_i$ and  $y_i$. Clearly, the isomorphism maps $\sum x_i \otimes  y_i \in M' \otimes N'$ to $0 \in M \otimes  N$ (from the right hand side to left). The proof then follows from the fact that  \customref{THpdl}{if something in a direct limit is zero then at a fixed stage it is already zero}. 
+\end{proof}
+Let $N$ be an $A$-module. If we say $N$ is an  $(A,B)$\textbf{-bimodule} we mean that the abelian group $N$ has a $B$-module structure compatible with its $A$-module structure in the sense that 
+ \begin{align*}
+b\cdot (a \cdot n)= a \cdot (b \cdot n),\quad \text{ for all }a \in A,b \in B ,n \in N
+\end{align*}
+An $(A,B)$\textbf{-bimodule homomorphism} $g:N \rightarrow P$ is then a map that is simultaneously an $A$-module homomorphism and a  $B$-module homomorphism. Let $M$ be an $A$-module and $N$  an  $(A,B)$-bimodule. Clearly, by universal property, we can give $M \otimes  _A N$ a $B$-module structure by 
+ \begin{align}
+\label{EQbmn}
+b(m \otimes  n)\triangleq m \otimes bn
+\end{align}
+which naturally makes $M \otimes_A  N$ an $(A,B)$-bimodule. 
+\begin{Example}{Lifting of module structures requires bimodules.}{}
+Let $k$ be a field,  $A \triangleq k[x]$, $M\triangleq N \triangleq A$, and $B \triangleq k[y]$. Clearly, we may give $N$ a  $B$-module structure by 
+ \begin{align*}
+cy^n \cdot f \triangleq cf^{(n)},\quad \text{ for all }c \in k, f \in N
+\end{align*}
+It is clear that the $A$-module structure and the  $B$-module structure on  $N$ are not compatible. Therefore, we can't use universal property to give $M \otimes_A N$ a $B$-module structure as in \myref{equation}{EQbmn}. To see this \emph{as a hindsight}, first observe 
+\begin{align*}
+1 \otimes  x = x (1 \otimes  1) = 1 \otimes  x 
+\end{align*}
+So if there exists a $B$-module structure on  $M \otimes  _A N$ that agrees with \myref{equation}{EQbmn}, then we have
+\begin{align*}
+1\otimes  1 = y(1 \otimes  x)=y (x \otimes  1)= 0 
+\end{align*}
+This is clearly impossible, since it suggests $M \otimes  N=0$, but 
+\begin{align*}
+  M \otimes  N \cong  A \otimes  A \customref{THidt}{\cong}  A \neq 0 
+\end{align*}
+\end{Example} 
+
+In particular, given a ring homomorphism $f:A \rightarrow B$, restriction of scalars makes $B$ an  $(A,B)$-bimodules, and so for all $A$-module  $M$, we have an $(A,B)$-bimodule: 
+\begin{align*}
+M_B \triangleq M \otimes_A B
+\end{align*}
+called \textbf{extension of scalar}. 
+\begin{theorem}
+\label{THtfg}
+\textbf{(Criteria for finite generation under extension and restriction of scalars)} Let $f:A \rightarrow B$ be a ring homomorphism, $M$ an $A$-module and  $N$ a  $B$-module. Then 
+\begin{enumerate}[label=(\roman*)]
+  \item If $N$ is finitely generated as a $B$-module and  $B$ is finitely generated as an  $A$-module, then  $N$ is finitely generated as an  $A$-module.  
+  \item If $M$ is finitely generated as an  $A$-module,  then $M_B$ is finitely generated as a  $B$-module. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+(i): If  $y_1,\dots ,y_m$  generate $N$ over $B$ and  $b_1,\dots ,b_n$ generate $B$ over  $A$, then clearly $\set{b_iy_j \in N: 1\leq i \leq n,1\leq j\leq m}$ generate $N$ over $A$. \\
+
+(ii): If $x_1 ,\dots ,x_m$ generate $M$ over  $A$, then  $1 \otimes  x_i$ generate  $M_B$ over  $B$. In particular 
+\begin{align*}
+b \otimes  \sum a_ix_i= \sum b \otimes a_ix_i = \sum a_i(b \otimes  x_i)= \sum (b f(a_i)) \otimes  x_i
+\end{align*}
+
+
+\end{proof}
+
+Because for generic $f':M' \rightarrow M''$ and $g':N' \rightarrow N''$, we clearly have:  
+\begin{align*}
+  (f' \circ f) \otimes  (g' \circ g) =(f' \otimes  g') \circ (f \otimes  g)
+\end{align*}
+For all $(A,B)$-bimodule $N$, the tensor product $- \otimes_A N$ forms a clearly additive \emph{covariant} functor from $\mathbf{Mod}_A$ to $\mathbf{Mod}_{(A,B)}$ with the action 
 \begin{align}
 \label{EQtpm}
-T_N(M)\triangleq M \otimes  N\quad \text{ and }\quad  T_N(f) \triangleq f \otimes  \id _N
+f\mapsto f \otimes  \id_N
 \end{align}
 \begin{theorem}
 \label{THbpt}
-\textbf{(Basic property of tensor products)} Let $M_1, \dots ,M_n$  be $A$-modules. Then  
+\textbf{(Basic property of tensor products)} Let $M_1, \dots ,M_n$ and $N$ be $A$-modules. Then  
 \begin{enumerate}[label=(\roman*)]
   \item $M_1 \otimes \cdots \otimes  M_n$ is generated by \textbf{basic elements} $x_1 \otimes  \cdots \otimes  x_n$. 
   \item There is a natural isomorphism 
 \begin{align*}
-  \Hom (M \otimes  N ,P) \cong  \Hom  (M, \Hom  (N,P)) ,\quad f\mapsto  f',\quad \text{ where }f'(m)(n) \triangleq f(m \otimes  n)
+  \Hom (M \otimes  N ,P) \cong  \Hom  (M, \Hom  (N,P)) 
 \end{align*}
-called the \textbf{tensor-hom adjunction}. In particular, they are both naturally bijective to the set of bilinear maps from  $M\times N$ to $P$.  
-\item For all $A$-module  $N$, the covariant functor  $T_N$ is \emph{right-exact}, that is, given any exact sequence: 
-\begin{align*}
-M' \overset{u}{\longrightarrow } M \overset{v}{\longtwoheadrightarrow  } M'' \longrightarrow 0 
-\end{align*}
-of $A$-modules, the sequence 
-\begin{align*}
-M'' \otimes  N \overset{u\otimes  1}{\longrightarrow } M \otimes  N \overset{v\otimes  1}{\longtwoheadrightarrow  }  M'' \otimes  N \longrightarrow 0
-\end{align*}
-is exact. 
+called the \textbf{tensor-hom adjunction} that maps $f$ to $f'$, where  $f'(m)(n)\triangleq f(m \otimes n)$. In particular, they are both naturally bijective to the set of bilinear maps from  $M\times N$ to $P$.  
+\item The covariant functor  $- \otimes_A N$ is \emph{right exact}. 
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-  (i): Let $E\leq M_1 \otimes  \cdots \otimes  M_n$ be the submodule generated by basic elements with quotient map $\pi  : M_1 \otimes  \cdots \otimes  M_n \twoheadrightarrow E$. The proof then follows from noting that since $\pi$ and $0: M_1 \otimes  \cdots \otimes  M_n \rightarrow (M_1 \otimes  \cdots \otimes  M_n)\quotient E$ are both homomorphism that makes the diagram:  
+(ii) is routine. We now prove (i). Let $E\leq M_1 \otimes  \cdots \otimes  M_n$ be the submodule generated by basic elements with quotient map $\pi  : M_1 \otimes  \cdots \otimes  M_n \twoheadrightarrow E$. We are required to prove that $\pi=0$. This follows from noting that both $\pi$ and $0: M_1 \otimes  \cdots \otimes  M_n \rightarrow (M_1 \otimes  \cdots \otimes  M_n)\quotient E$ makes the diagram:  
 % https://q.uiver.app/#q=WzAsMyxbMiwyLCJOIl0sWzAsMCwiXFxwcm9kIE1faSJdLFsyLDAsIlxcb3RpbWVzIE1faSJdLFsxLDIsIlxcb3RpbWVzIl0sWzEsMCwiMCIsMl0sWzIsMCwiZiIsMCx7InN0eWxlIjp7ImJvZHkiOnsibmFtZSI6ImRhc2hlZCJ9fX1dXQ==
 \[\begin{tikzcd}
 	{M_1 \times \cdots \times M_n} && {M_1 \otimes  \cdots \otimes  M_n} \\
@@ -2781,34 +2829,29 @@ is exact.
 	\arrow["0"', from=1-1, to=3-3]
 	\arrow["\tilde{0} ", dashed, from=1-3, to=3-3]
 \end{tikzcd}\]
-commute, by uniqueness of universal property, we have $\pi  =0$, and therefore $E=M_1 \otimes  \cdots \otimes  M_n$. \\
-
-(ii): Routine.\\ 
-
-
-(iii): Let $P$ be an  $A$-module, and denote the contravariant functor $\Hom (-,P):\mathbf{Mod}_A \longrightarrow \mathbf{Mod}_A$ by $G_P$. By \customref{THhomp}{property of $G_P$}, we only have to prove 
+commutes. Lastly, we prove (iii). Consider the exact sequence of $A$-modules: 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCJNJyJdLFsyLDAsIk0iXSxbNCwwLCJNJyciXSxbNiwwLCIwIl0sWzAsMSwidSJdLFsxLDIsInYiLDAseyJzdHlsZSI6eyJoZWFkIjp7Im5hbWUiOiJlcGkifX19XSxbMiwzXV0=
+\[\begin{tikzcd}
+	{M'} && M && {M''} && 0
+	\arrow["u", from=1-1, to=1-3]
+	\arrow["v", two heads, from=1-3, to=1-5]
+	\arrow[from=1-5, to=1-7]
+\end{tikzcd}\]
+Let $P$ be an  $A$-module, and denote the contravariant functor $\Hom (-,P):\mathbf{Mod}_A \longrightarrow \mathbf{Mod}_A$ by $G_P$. By \customref{THhomp}{property of $G_P$}, we only have to prove 
+% https://q.uiver.app/#q=WzAsNCxbMCwwLCIwIl0sWzEsMCwiXFxIb20oTScnIFxcb3RpbWVzIE4sUCkiXSxbMiwwLCJcXEhvbShNXFxvdGltZXMgTixQKSJdLFszLDAsIlxcSG9tKE0nXFxvdGltZXMgTixQKSJdLFswLDFdLFsxLDIsIkdfUCh2XFxvdGltZXMgMSkiXSxbMiwzLCJHX1AodVxcb3RpbWVzIDEpIl1d
+\[\begin{tikzcd}
+	0 & {\Hom(M'' \otimes N,P)} & {\Hom(M\otimes N,P)} & {\Hom(M'\otimes N,P)}
+	\arrow[from=1-1, to=1-2]
+	\arrow["{G_P(v\otimes 1)}", from=1-2, to=1-3]
+	\arrow["{G_P(u\otimes 1)}", from=1-3, to=1-4]
+\end{tikzcd}\]
+is exact. Now, because tensor-hom adjunction gives an equivalent sequence: 
 \begin{align*}
-0\longrightarrow \Hom  (M'' \otimes  N, P)\overset{G_P(T_N(v))}{\longrightarrow } \Hom (M\otimes  N ,P ) \overset{G_P(T_N(u))}{\longrightarrow } \Hom (M' \otimes  N , P)
+0 \longrightarrow \Hom  (M'',\Hom (N,P)) \overset{\tilde{v}}{\longrightarrow } \Hom (M, \Hom  (N,P)) \overset{\tilde{u} }{\longrightarrow } \Hom (M',\Hom  (N,P))
 \end{align*}
-is exact. Now, since tensor-hom adjunction allows us to induce an equivalent sequence:   
-\begin{align}
-\label{EQonp}
-0 \longrightarrow \Hom  (M'',\Hom (N,P)) \overset{\tilde{v}}{\longrightarrow } \Hom (M, \Hom  (N,P)) \overset{\tilde{w} }{\longrightarrow } \Hom (M',\Hom  (N,P))
-\end{align}
-We only have to prove \myref{sequence}{EQonp} is exact, where $\tilde{v},\tilde{u}$ are the compositions of $G_P(T_N(v))$, $G_P(T_N(u))$ and the tensor-hom adjunction isomorphisms. Denote the contravariant functor $\Hom  (-, \Hom (N,P)):\mathbf{Mod}_A \rightarrow \mathbf{Mod}_A$ by $G_{\Hom  (N,P)}$. The proof then follows from \customref{THhomp}{property of $G_{\Hom  (N,P)}$} and routine check of 
-\begin{align*}
-\tilde{v}= G_{\Hom  (N,P)}(v) 
-\end{align*}
-
-
-
-
-
-
-
-
-
+we only have to prove this sequence is exact. Denote  $G_{\Hom (N,P)}\triangleq \Hom  (-, \Hom (N,P))$. The proof then follows from \customref{THhomp}{property of $G_{\Hom  (N,P)}$} and a routine check of $\tilde{v}= G_{\Hom (N,P)}(v)$. 
 \end{proof}
+
 \begin{Example}{Tensor product need not be left-exact}{}
 Consider the exact sequence of $\Z$-modules: 
 \begin{align*}
@@ -2823,29 +2866,10 @@ isn't exact. Just observe that $1\otimes  1 \in \Z \otimes  \Z_2$ is nonzero, si
   (f \otimes  \id_{\Z_2}) (1 \otimes  1) = 2 \otimes  1 = 2(1 \otimes  1) =1 \otimes 2  = 0  
 \end{align*}
 \end{Example}
-Let $B$ and  $C$ be two  $A$-algebras with canonical homomorphisms $f: A \rightarrow B$ and $g:A \rightarrow C$. Consider the $A$-module  $B\otimes_A C$. From this $A$-module structure, we see that the $A$-modules diagram:  
-% https://q.uiver.app/#q=WzAsNCxbMCwxLCJBIl0sWzIsMCwiQiJdLFsyLDIsIkMiXSxbNCwxLCJCXFxvdGltZXNfQSBDIl0sWzAsMSwiZiJdLFswLDIsImciLDJdLFsxLDMsImIgXFxtYXBzdG8gYlxcb3RpbWVzIDEiXSxbMiwzLCJjXFxtYXBzdG8gMSBcXG90aW1lcyBjIiwyXV0=
-\[\begin{tikzcd}
-	&& B \\
-	A &&&& {B\otimes_A C} \\
-	&& C
-	\arrow["{b \mapsto b\otimes 1}", from=1-3, to=2-5]
-	\arrow["f", from=2-1, to=1-3]
-	\arrow["g"', from=2-1, to=3-3]
-	\arrow["{c\mapsto 1 \otimes c}"', from=3-3, to=2-5]
-\end{tikzcd}\]
-commutes. Notably, we can define a multiplication on $B \otimes_A C$  to make it a ring: 
-\begin{align*}
-  (b \otimes  c) \cdot (b' \otimes  c') \triangleq bb' \otimes  cc'
-\end{align*}
-\footnote{It requires some argument to show that this multiplication is well-defined. The fastest way is to first well-define an $A$-module homomorphism  $B \otimes C \otimes  B \otimes  C \rightarrow B \otimes  C,\quad b \otimes  c \otimes  b' \otimes  c' \mapsto bb' \otimes  cc'$, and then use  \customref{THidt}{associativity of tensor product} and definition to construct the $A$-bilinear mapping that is our multiplication.}and in fact, an $A$-algebra, whose $A$-module structure clearly can be regained via the morphisms in above diagram, which are now ring homomorphisms. The $A$-algebra  $B \otimes_A C$ is called the \textbf{tensor product of $A$-algebra  $B$ and  $C$}. The \textbf{tensor product of two rings} is then their tensor product as $\Z$-algebras. 
-
-
-\section{Identities for Tensor Products}
-
-
+Even though tensor product as a functor lack the functorality we desired, it still has lots of algebraic identities.  
 \begin{theorem}
 \label{THidt}
+\label{THatpb}
 \textbf{(Identities for tensor products)} Let $A$ be a ring and  $M$ an  $A$-module. Then  
 \begin{enumerate}[label=(\roman*)]
  \item  We have a natural isomorphism
@@ -2860,6 +2884,10 @@ A \otimes  M \cong  M,\quad a \otimes  m \mapsto am
    \begin{align*}
      (M \otimes  N) \otimes  P \cong  M \otimes  N \otimes  P,\quad (m \otimes  n) \otimes  p \mapsto m \otimes  n \otimes  p
   \end{align*}
+\item Let $N$ an  $(A,B)$-bimodule, and $P$ a  $B$-module. We have a natural $(A,B)$-bimodule isomorphism 
+\begin{align*}
+  (M \otimes_A N) \otimes_B P \cong  M \otimes _A (N\otimes_B P),\quad (m\otimes n)\otimes  p \mapsto m \otimes (n \otimes  p)
+\end{align*}
 \item  Let $M_i$ be a directed system of $A$-modules with canonical morphism $\phi$. Then $M_i \otimes  M$ is a directed system with canonical morphism $\psi$ defined by $\psi_{ij}\triangleq \phi_{ij}\otimes \id_M$, and we have a natural isomorphism:  
   \begin{align*}
  \left(\directlimit M_i \right) \otimes  M  \cong  \directlimit \left( M_i \otimes  M \right),\quad \phi_i(m_i)\otimes  m \mapsto \psi_i (m_i \otimes  m)
@@ -2891,7 +2919,7 @@ M[x]\cong  A[x]\otimes _A M ,\quad \sum m_i x^i \mapsto \sum x^i \otimes_A m_i
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-(i), (iii), (iv), (vi), and (vii) are routine. (ii) is essentially a corollary of (i). In short, because \customref{THbpt}{tensor product is right exact}, tensoring the exact sequence  
+(i), (iii), (iv), (v), and (vii) are routine. (ii) is essentially a corollary of (i). In short, because \customref{THbpt}{tensor product is right exact}, tensoring the exact sequence  
 \begin{align*}
  \mathfrak{a} \overset{\diota }{\longhookrightarrow } A \overset{\pi }{\longtwoheadrightarrow } A \quotient \mathfrak{a} \longrightarrow 0
 \end{align*}
@@ -2903,127 +2931,53 @@ which implies that
  \begin{align*}
    (A \quotient \mathfrak{a}) \otimes  M \cong (A \otimes  M) \quotient \operatorname{Im}(\diota \otimes  1 ) 
 \end{align*}
-The proof for (ii) then follows from checking that the isomorphism $A \otimes  M \cong M$ maps $\operatorname{Im}(\diota \otimes  1 )$ to $\mathfrak{a}M$. (v) should be first proved in finite case, which is also routine. The infinite case then follows from finite case, (iii), and the fact that  \customref{THdls}{direct sum is the direct limit of finite direct sums}: 
+The proof for (ii) then follows from checking that the isomorphism $A \otimes  M \cong M$ maps $\operatorname{Im}(\diota \otimes  1 )$ to $\mathfrak{a}M$. (vi) should be first proved in finite case, which is also routine. The infinite case then follows from finite case, (iii), and the fact that  \customref{THdls}{direct sum is the direct limit of finite direct sums}: 
 \begin{align*}
   N \otimes \left( \bigoplus M_i \right) &\cong  N \otimes  \directlimit \left(\bigoplus _{\text{finite}} M_i\right)  \cong  \directlimit  \left(N \otimes  \left(\bigoplus_{\text{finite}} M_i \right)    \right) \\
   & \cong  \directlimit \left(  \bigoplus_{\text{finite}} N \otimes  M_i  \right) \cong  \bigoplus (N\otimes  M_i)
 \end{align*}
 in which one checks that the isomorphism one gets in the end has the desired form. 
 \end{proof}
+The rest of this section is dedicated to some non-fundamental results. 
 \begin{theorem}
-\label{THfgz}
-\textbf{(Existence of finitely generated submodules that makes an expression of zero remain zero)} Let  $A$ be a ring and  $M$ and  $N$ two  $A$-modules. Let $\sum x_i \otimes y_i =0$ in $M \otimes  N$. Then there exist two finitely generated submodules $M' \leq M$ and $N' \leq N$ that respectively contains $x_i$ and $y_i$ and makes
+  \textbf{(Tensoring with ground ring make it a direct sum of itself)} Let $f:A \rightarrow B$ be a ring homomorphism, $N$ be a  $B$-module, and $N_B \triangleq B \otimes _A N$. Then we have an $A$-module isomorphism 
 \begin{align*}
-\sum  x_i \otimes  y_i= 0,\quad \text{ in }M' \otimes  N'
+N_B \cong  N \oplus  N 
 \end{align*}
 \end{theorem}
 \begin{proof}
-Let $M_i$ and $N_j$ be the directed system of finitely generated submodules of $M$ and $N$. Then we have a natural isomorphism 
-\begin{align*}
-  M \otimes  N \customref{THdls}{\cong} \left(\directlimit M_i   \right) \otimes   \left(\directlimit N_j \right) \customref{THidt}{\cong}  \directlimit (M_i \otimes  N_j)  
-\end{align*}
-Let $M' \leq M$ and $N'\leq N$ be the submodules generated by $x_i$ and  $y_i$. Clearly, the isomorphism maps $\sum x_i \otimes  y_i \in M' \otimes N'$ to $0 \in M \otimes  N$ (from the right hand side to left). The proof then follows from the fact that  \customref{THpdl}{if something in a direct limit is zero then at a fixed stage it is already zero}. 
-\end{proof}
-\section{Extension of Scalars}
-Let $N$ be an $A$-module. If we say $N$ is an  $(A,B)$\textbf{-bimodule} we mean that the abelian group $N$ has a $B$-module structure compatible with its $A$-module structure in the sense that 
- \begin{align*}
-b\cdot (a \cdot n)= a \cdot (b \cdot n),\quad \text{ for all }a \in A,b \in B ,n \in N
-\end{align*}
-An $(A,B)$\textbf{-bimodule homomorphism} $g:N \rightarrow P$ is then a map that is simultaneously an $A$-module homomorphism and a  $B$-module homomorphism. Let $M$ be an $A$-module and $N$  an  $(A,B)$-bimodule. Clearly, by universal property, we can give $M \otimes  _A N$ a $B$-module structure by 
- \begin{align}
-\label{EQbmn}
-b(m \otimes  n)\triangleq m \otimes bn
-\end{align}
-which naturally makes $M \otimes_A  N$ an $(A,B)$-bimodule.
-\begin{Example}{Lifting of module structures requires bimodules.}{}
-Let $k$ be a field,  $A \triangleq k[x]$, $M\triangleq N \triangleq A$, and $B \triangleq k[y]$. Clearly, we may give $N$ a  $B$-module structure by 
- \begin{align*}
-cy^n \cdot f \triangleq cf^{(n)},\quad \text{ for all }c \in k, f \in N
-\end{align*}
-It is clear that the $A$-module structure and the  $B$-module structure on  $N$ are not compatible. Therefore, we can't use universal property to give $M \otimes_A N$ a $B$-module structure as in \myref{equation}{EQbmn}. To see this \emph{as a hindsight}, first observe 
-\begin{align*}
-1 \otimes  x = x (1 \otimes  1) = 1 \otimes  x 
-\end{align*}
-So if there exists a $B$-module structure on  $M \otimes  _A N$ that agrees with \myref{equation}{EQbmn}, then we have
-\begin{align*}
-1\otimes  1 = y(1 \otimes  x)=y (x \otimes  1)= 0 
-\end{align*}
-This is clearly impossible, since it suggests $M \otimes  N=0$, but 
-\begin{align*}
-  M \otimes  N \cong  A \otimes  A \customref{THidt}{\cong}  A \neq 0 
-\end{align*}
-\end{Example} 
-\begin{theorem}
-\label{THatpb}
-\textbf{(Associativity of tensor product up to bimodules)} Let $M$ be an  $A$-module,  $N$ an  $(A,B)$-bimodule, and $P$ a  $B$-module. Then we have a natural $(A,B)$-bimodule isomorphism 
-\begin{align*}
-  (M \otimes_A N) \otimes_B P \cong  M \otimes _A (N\otimes_B P),\quad (m\otimes n)\otimes  p \mapsto m \otimes (n \otimes  p)
-\end{align*}
-\end{theorem}
-\begin{proof}
-The proof is a routine construction and verification. Here, we give an outline of it.   First, for all $p \in P$, induce the natural $B$-module homomorphism  $g_p:M \otimes _A N \rightarrow M \otimes _A(N \otimes _B P)$. Second, check that $g_p$ is an  $(A,B)$-bimodule homomorphism. Third, induce $f:(M \otimes_A N)\otimes _B P \rightarrow M \otimes_A (N \otimes_B P)$ by 
-\begin{align*}
-f(x\otimes p)\triangleq g_p(x)
-\end{align*}
-Forth, check that $f$ is an $(A,B)$-bimodule homomorphism. Fifth, similarly induce $h:M \otimes_A (N \otimes_B P)\rightarrow (M \otimes _A N )\otimes  _B P $. The proof then follows from using universal property to check that the $(A,B)$-bimodule homomorphism $h$ and  $f$ are inverse to each other, and therefore concluding that $f$ is an $(A,B)$-module isomorphism. 
-\end{proof}
-
-In particular, given a ring homomorphism $f:A \rightarrow B$, restriction of scalars makes $B$ an  $(A,B)$-bimodules, and so for all $A$-module  $M$, we have an $(A,B)$-bimodule: 
-\begin{align*}
-M_B \triangleq M \otimes_A B
-\end{align*}
-called \textbf{extension of scalar}. 
-
-
-
-
-
-
-\begin{theorem}
-  \textbf{(Basic properties of scalar restriction)} Let $f:A \rightarrow B$ be a ring homomorphism, $N$ be a  $B$-module, and $N_B \triangleq B \otimes _A N$. Then we have an $A$-module homomorphisms $g:N \rightarrow N_B$ defined by 
- \begin{align*}
-g(x)\triangleq 1 \otimes  x 
-\end{align*}
-and an $A$-module homomorphism  $p:N_B\rightarrow N$ defined by 
-\begin{align*}
-p(b \otimes  y) \triangleq by
-\end{align*}
-They form a short exact sequence: 
+This is proved by \customref{THsl}{split lemma} and constructing a short exact sequence in $\mathbf{Mod}_A$ that splits: 
 \begin{align*}
   0 \longrightarrow N \overset{g}{\longhookrightarrow} N_B \overset{p}{\longtwoheadrightarrow } N \longrightarrow 0
 \end{align*}
-in $\mathbf{Mod}_A$ that splits via
-\begin{align*}
-p \circ g = \id _N
+In particular, one need to check that we have two $A$-module homomorphisms $g:N \rightarrow N_B$ and $p:N_N \rightarrow N$ well-defined by 
+ \begin{align*}
+g(x)\triangleq 1 \otimes  x \quad \text{ and }\quad p(b \otimes  y)\triangleq by
 \end{align*}
-\end{theorem}
-\begin{proof}
-The fact that $g \in \mathbf{Mod}_A$ is clear. To prove $p \in \mathbf{Mod}_A$, one is required to check the map $B\times N \longrightarrow N$ defined by $(b,y)\mapsto by$ is $A$-bilinear, which is also clear. They clearly satisfies $p \circ g= \id _N$, and therefore the short sequence is exact.  
+Then because they clearly satisfy $p \circ g= \id_N$, the short sequence is exact and splits. 
 \end{proof}
 \begin{Example}{$g$ in general isn't an $B$-module homomorphism}{}
-Let $A\triangleq \R$ and $B \triangleq N\triangleq \C$. If we give $N_B\triangleq B \otimes_A N$ a $B$-module structure via scalar extension, then $g \not \in \mathbf{Mod}_B$, since  
+Let $A\triangleq \R$ and $B \triangleq N\triangleq \C$. Then $g \not \in \mathbf{Mod}_B$, since  
 \begin{align*}
 g(i1)= 1 \otimes_A i \neq i \otimes_A  1 = ig(1)
 \end{align*}
 \end{Example}
-\begin{theorem}
-\label{THtfg}
-\textbf{(Criteria for finite generation under extension and restriction of scalars)} Let $f:A \rightarrow B$ be a ring homomorphism and $M \in \mathbf{Mod}_A,N \in \mathbf{Mod}_B$. Then 
-\begin{enumerate}[label=(\roman*)]
-  \item If $N$ is finitely generated as a $B$-module and  $B$ is finitely generated as an  $A$-module, then  $N$ is finitely generated as an  $A$-module.  
-  \item If $M$ is finitely generated as an  $A$-module,  then $M_B$ is finitely generated as a  $B$-module. 
-\end{enumerate}
-\end{theorem}
-\begin{proof}
-(i): If  $y_1,\dots ,y_m$  generate $N$ over $B$ and  $b_1,\dots ,b_n$ generate $B$ over  $A$, then clearly $\set{b_iy_j \in N: 1\leq i \leq n,1\leq j\leq m}$ generate $N$ over $A$. \\
-
-(ii): If $x_1 ,\dots ,x_m$ generate $M$ over  $A$, then  $1 \otimes  x_i$ generate  $M_B$ over  $B$. In particular 
+Let $B$ and  $C$ be two  $A$-algebras with canonical homomorphisms $f: A \rightarrow B$ and $g:A \rightarrow C$. Consider the $A$-module  $B\otimes_A C$. From this $A$-module structure, we see that the $A$-modules diagram:  
+% https://q.uiver.app/#q=WzAsNCxbMCwxLCJBIl0sWzIsMCwiQiJdLFsyLDIsIkMiXSxbNCwxLCJCXFxvdGltZXNfQSBDIl0sWzAsMSwiZiJdLFswLDIsImciLDJdLFsxLDMsImIgXFxtYXBzdG8gYlxcb3RpbWVzIDEiXSxbMiwzLCJjXFxtYXBzdG8gMSBcXG90aW1lcyBjIiwyXV0=
+\[\begin{tikzcd}
+	&& B \\
+	A &&&& {B\otimes_A C} \\
+	&& C
+	\arrow["{b \mapsto b\otimes 1}", from=1-3, to=2-5]
+	\arrow["f", from=2-1, to=1-3]
+	\arrow["g"', from=2-1, to=3-3]
+	\arrow["{c\mapsto 1 \otimes c}"', from=3-3, to=2-5]
+\end{tikzcd}\]
+commutes. Notably, we can define a multiplication on $B \otimes_A C$  to make it a ring: 
 \begin{align*}
-b \otimes  \sum a_ix_i= \sum b \otimes a_ix_i = \sum a_i(b \otimes  x_i)= \sum (b f(a_i)) \otimes  x_i
+  (b \otimes  c) \cdot (b' \otimes  c') \triangleq bb' \otimes  cc'
 \end{align*}
-
-
-\end{proof}
+\footnote{It requires some argument to show that this multiplication is well-defined. The fastest way is to first well-define an $A$-module homomorphism  $B \otimes C \otimes  B \otimes  C \rightarrow B \otimes  C,\quad b \otimes  c \otimes  b' \otimes  c' \mapsto bb' \otimes  cc'$, and then use  \customref{THidt}{associativity of tensor product} and definition to construct the $A$-bilinear mapping that is our multiplication.}and in fact, an $A$-algebra, whose $A$-module structure clearly can be regained via the morphisms in above diagram, which are now ring homomorphisms. The $A$-algebra  $B \otimes_A C$ is called the \textbf{tensor product of $A$-algebra  $B$ and  $C$}. The \textbf{tensor product of two rings} is then their tensor product as $\Z$-algebras. 
 \begin{theorem}
 \textbf{(Property of tensors over local rings)} Let $(A,\mathfrak{m},k)$ be a local ring, $M$ and $N$ be two finitely generated  $A$-modules. If $M \otimes N =0$, then $M=0$ or  $N=0$.  
 
@@ -3077,6 +3031,37 @@ This implies $M=\mathfrak{m}M$, which by \customref{THsNl}{Nakayama lemma} impli
 
 
 \end{proof}
+
+
+\begin{theorem}
+\textbf{(Interesting results that use tensor and generalized Cayley-Hamilton)} Let $A$ be a ring and  $\pfi : A^m \rightarrow A^n$ be a module homomorphism. If $\pfi $ is injective, then  $m \leq n$. Conversely, if $\pfi$ is surjective, then $m\geq n$.  
+\end{theorem}
+\begin{proof}
+The statement about injectivity is proved via \customref{THgCH}{generalized Cayley-Hamilton theorem}, and the statement about surjectivity is proved by a "tensoring residue field" argument.\\
+
+Assume for a contradiction that $\pfi $ is injective and $m>n$. Consider the injective morphism $(a_1,\dots ,a_n)\mapsto (a_1,\dots ,a_n, 0 ,\dots, 0)$ denoted by  $\diota : A^n \hookrightarrow  A^m$. Then \customref{THbpom}{$\psi  \triangleq \diota \circ \pfi \in \operatorname{End}(A^m) $ is injective}.   Note that \customref{THgCH}{generalized Cayley-Hamilton theorem} implies that 
+\begin{align*}
+\psi^d + a_1\psi^{d-1} + \cdots + a_d \id_{A^m} =0
+\end{align*}
+for some minimal $d\inn $ and $a_i \in A$. Because $m>n$, the projection $(a_1,\dots , a_m) \mapsto a_m$ denoted by  $\pi  : A^m\twoheadrightarrow A$ makes $\pi  \circ \psi =0 $. Taking $\pi $ on both side of the above equation then shows that $a_d=0$, which gives us 
+\begin{align*}
+\psi (\psi^{d-1}+a_1 \psi^{d-2}+ \cdots + a_{d-1}\id_{A^m})=0 
+\end{align*}
+The contradiction that $\psi$ is not injective then follows from noting that minimality\footnote{If $d=1$, then at the step of $a_d=0$, we already have a contradiction, i.e.,  $\psi=0$.} of $d$ implies that $\psi ^{d-1} + a_1 \psi^{d-2}+ \cdots + a_{d-1}\id_{A^m}$ has nonzero image. \\
+
+
+
+
+
+
+If $\pfi $ is surjective, then $1 \otimes  \pfi : k \otimes  A^m \twoheadrightarrow  k \otimes  A^n $ is also surjective by \customref{THbpt}{right exactness of tensor product}, where $k\triangleq  A \quotient \mathfrak{m}$ is some residue field. The proof for $m \geq n$ then follows from noting that $k \otimes  A^m$ as a $k$-vector space is  $m$-dimensional\footnote{One way to see such is to use the $A$-module isomorphism $\customref{THidt}{k \otimes  A^m \cong A^m \quotient \mathfrak{m}A^m}$, in which one need to check that the natural  $k$-vector space structure on  $A^m \quotient \mathfrak{m}A^m$ is $m$-dimensional and that the  $A$-module isomorphism is indeed a $k$-vector space morphism.} and that $1 \otimes  \pfi $ is $k$-linear. \\
+
+
+
+
+\end{proof}
+\section{Localization}
+
 
 \section{Extended and Contracted Ideals}
 Unlike prime ideals, contraction of maximal ideals need not be maximal: 
