@@ -2980,8 +2980,6 @@ commutes. Notably, we can define a multiplication on $B \otimes_A C$  to make it
 \footnote{It requires some argument to show that this multiplication is well-defined. The fastest way is to first well-define an $A$-module homomorphism  $B \otimes C \otimes  B \otimes  C \rightarrow B \otimes  C,\quad b \otimes  c \otimes  b' \otimes  c' \mapsto bb' \otimes  cc'$, and then use  \customref{THidt}{associativity of tensor product} and definition to construct the $A$-bilinear mapping that is our multiplication.}and in fact, an $A$-algebra, whose $A$-module structure clearly can be regained via the morphisms in above diagram, which are now ring homomorphisms. The $A$-algebra  $B \otimes_A C$ is called the \textbf{tensor product of $A$-algebra  $B$ and  $C$}. The \textbf{tensor product of two rings} is then their tensor product as $\Z$-algebras. 
 \begin{theorem}
 \textbf{(Property of tensors over local rings)} Let $(A,\mathfrak{m},k)$ be a local ring, $M$ and $N$ be two finitely generated  $A$-modules. If $M \otimes N =0$, then $M=0$ or  $N=0$.  
-
-
 \end{theorem}
 \begin{proof}
   The first step of the proof is a \emph{routine verification using identities for tensor products} to show that:  
@@ -3061,7 +3059,33 @@ If $\pfi $ is surjective, then $1 \otimes  \pfi : k \otimes  A^m \twoheadrightar
 
 \end{proof}
 \section{Localization}
-
+Let $A$ be a ring and $M$ an  $A$-module. Given a multiplicatively closed subset  $S\subseteq A$ containing $1$, we say an $A$-module homomorphism $M \longrightarrow S^{-1}M$ satisfies the \textbf{universal property of localization by $S$} if 
+\begin{enumerate}[label=(\roman*)]
+  \item Every $s \in S$ acts invertibly on $S^{-1}M$. 
+  \item For all $A$-module  $N$ on which all  $s \in S$ acts invertibly and any $A$-module homomorphism  $f:M \rightarrow N$ there exists a unique $A$-module homomorphism  $\tilde{f}$ that makes the diagram 
+% https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzIsMCwiU157LTF9TSJdLFsyLDIsIk4iXSxbMCwyLCJmIiwyXSxbMCwxXSxbMSwyLCJcXHRpbGRle2Z9IiwxLHsic3R5bGUiOnsiYm9keSI6eyJuYW1lIjoiZGFzaGVkIn19fV1d
+\[\begin{tikzcd}
+	M && {S^{-1}M} \\
+	\\
+	&& N
+	\arrow[from=1-1, to=1-3]
+	\arrow["f"', from=1-1, to=3-3]
+	\arrow["{\tilde{f}}"{description}, dashed, from=1-3, to=3-3]
+\end{tikzcd}\]
+\end{enumerate}
+Clearly, we can construct $S^{-1}M$ to be the quotient of $S \times M$ by setting 
+\begin{align*}
+\frac{m}{s}= \frac{\tilde{m}}{\tilde{s}}\overset{\triangle}{\iff }u(m \tilde{s}- \tilde{m}s  )=0,\quad \text{ for some }u \in S
+\end{align*}
+And we can see that localization forms an exact functor 
+\begin{align*}
+S^{-1}f\left( \frac{m}{s} \right) \triangleq \frac{f(m)}{s}
+\end{align*}
+In particular, we can give $S^{-1}A$ a natural ring structure, and all $S^{-1}M$ have a natural $S^{-1}A$-module structure. Interestingly, we have a natural $S^{-1}A$-module isomorphism  
+\begin{align*}
+S^{-1}M \cong  S^{-1}A \otimes _A M,\quad \frac{m}{s}\longmapsto \frac{1}{s} \otimes_A  m  
+\end{align*}
+ 
 
 \section{Extended and Contracted Ideals}
 Unlike prime ideals, contraction of maximal ideals need not be maximal: 
