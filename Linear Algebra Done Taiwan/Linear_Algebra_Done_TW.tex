@@ -17,7 +17,7 @@
 
 \tableofcontents
 \pagebreak
-\chapter{What you need to know}
+\chapter{Fundamentals}
 \section{Quick recap}
 Let $V$ be a vector space over $\F$, and let $S$ be a subset of $V$. We say  
 \begin{enumerate}[label=(\alph*)]
@@ -32,18 +32,18 @@ We say $S$ is a \textbf{basis} if any of the following equivalent conditions hol
 \end{enumerate}
 Suppose $V$ has a basis  of cardinality $n$. Using \textbf{Gauss elimination}, one see that all linear independent subset of $V$ must have cardinality not greater than $n$, and all basis must have cardinality $n$. Therefore, for vector space with some basis of finite cardinality, it make sense to refer to its \textbf{dimension}. Let $\operatorname{dim}(V)=n$. Each linearly independent subset $S$ of  $V$ of cardinality  $n$ must be a basis, otherwise we may construct a linearly independent set of cardinality greater than  $n$. By an algorithm, one see that 
 \begin{enumerate}[label=(\alph*)]
-  \item If $S$ spans  $V$ and has cardinality greater than  $n$, then there exists a subset of $S$ that is a basis of $V$.  
-  \item If $B$ is a basis of  $V$ and  $S$ is linearly independent, then there exists some subset  $U$ of $B$ such that  $S \cup  U$ is a basis of $V$.   
+  \item If $S$ spans  $V$ and has cardinality greater than  $n$, then there exists a subset of $S$ forming a basis of $V$.  
+  \item If $B$ is a basis of  $V$ and  $S$ is linearly independent, then there exists some subset $U$ of $B$ such that  $S \cup  U$ is a basis of $V$.   
 \end{enumerate}
 Let $W$ be another vector space over  $\F$, and let $F \in \operatorname{Hom}(V,W)$. It is clear that  both image and kernel of $F$ forms a vector space. Therefore, it make sense to define the \textbf{rank} of $F$ by 
  \begin{align*}
 \operatorname{rank}(F)\triangleq \operatorname{dim} (\operatorname{Im}F). 
 \end{align*}
-Clearly, for all basis $B \subseteq V$, we have
+Clearly, for all basis $B$ of $V$, we have
 \begin{align*}
-\abso{X}\leq \operatorname{dim}\left(\operatorname{Ker}F \right)
+\abso{X}\leq \operatorname{dim}\left(\operatorname{Ker}F \right),\quad \text{ where }X \triangleq \set{v \in B : F(v)=0} 
 \end{align*}
-where $X\triangleq \set{v \in B: F(v)=0}$ and $Y\triangleq \set{v \in B:F(v)\neq 0}$. Moreover, because $X \cup  Y$ forms a basis, we also have     
+Moreover, letting  $Y\triangleq \set{v \in B:F(v)\neq 0}$, because $X \cup  Y$ forms a basis, we also have     
 \begin{align*}
 \operatorname{span}\set{F(v) \in W: v \in Y}=\operatorname{Im}(F)
 \end{align*}
@@ -51,7 +51,7 @@ which implies
 \begin{align*}
   \operatorname{rank}(F)\leq \abso{Y}
 \end{align*}
-Selecting some $S\subseteq Y$ such that $\set{F(v)\in W: v \in S}$ forms a basis of $\operatorname{Im}(F)$, and replacing $v \in Y-S$ with $v- \sum c_i s_i$ so that $F(v)=0$, we now see the new $X$ forms a basis for  $\operatorname{Ker}F$, and the new $Y$ make  $\set{F(v)\in W: v \in Y}$ a basis for $W$. This implies the  \textbf{Rank-Nullity Theorem}: 
+Selecting some subset $S$ of $Y$ that makes $\set{F(v)\in W: v \in S}$ a basis of $\operatorname{Im}(F)$, and replacing $v \in Y-S$ with $v- \sum c_i s_i$ so that $F(v)=0$, we now see the new $X$ forms a basis for  $\operatorname{Ker}F$, and the new $Y$ make  $\set{F(v)\in W: v \in Y}$ a basis for $W$. This implies the  \textbf{Rank-Nullity Theorem}: 
 \begin{align*}
 \operatorname{dim}(V)=\abso{X}+ \abso{Y}= \operatorname{dim}(\operatorname{Ker}F)+ \operatorname{rank}(F)
 \end{align*}
@@ -79,15 +79,15 @@ By an algorithm, one see that, for each alternating multilinear map $F:(\F^n)^n\
 \begin{align*}
 F(B)= (\operatorname{det}B)\cdot F(I) \text{ for all }B.
 \end{align*}
-Therefore, if we observe for each  $A\in M_n(\F)$ that the map $B\mapsto \operatorname{det}AB$ is indeed alternating multilinear, then we immediately have the celebrated result $\operatorname{det}AB=\operatorname{det}A\operatorname{det}B$ as a corollary. This multiplicative property of determinant allow us to well define determinant for each linear endomorphism $F$ over some finite-dimensional vector space by 
+Therefore, if we observe for each  $A\in M_n(\F)$ that the map $B\mapsto \operatorname{det}AB$ is indeed alternating multilinear, then we immediately have the celebrated result $\operatorname{det}AB=\operatorname{det}A\operatorname{det}B$ as a corollary. This multiplicative property of determinant allow us to well define determinant for each linear endomorphism $F$ of some finite-dimensional vector space by 
  \begin{align*}
 \operatorname{det}F\triangleq  \operatorname{det}([F])
 \end{align*}
-where $[F]$ is the matrix representation of $F$ with respect to some basis. Moreover, because the inverse of a linear map is linear if exists, we see that for linear map $F$,  
+where $[F]$ is the matrix representation of $F$ with respect to some basis. Moreover, because the inverse of a linear map is linear if exists, we see that for linear map $F$, we have 
 \begin{align*}
 F\text{ is invertible }\iff \operatorname{det}F\neq 0 
 \end{align*}
-And 
+and have 
 \begin{align*}
 A\text{ is invertible }\iff  \operatorname{det}A \neq 0
 \end{align*}
@@ -100,6 +100,202 @@ Let $V$ be finite dimensional. We define the \textbf{characteristic polynomial} 
 \operatorname{det}(tI-F)\text{ and }\operatorname{det}(tI-A)
 \end{align*}
 Obviously, $\ld $ is an eigenvalue of $F$ if and only if $\ld $ is a root of the characteristic polynomial of $F$.
+\section{Two forms}
+\begin{abstract}
+In this section, $V$ is a finite dimensional $\F$-vector space, and $T\in \operatorname{End}(V)$.    
+\end{abstract}
+\begin{theorem}
+\label{THfgmoPID}
+\textbf{(Structure theorem for finitely generated modules over PID)} Let $M$ be a finitely generated module over a PID  $R$. Then there exists some nonnegative integer $q$ and some tuple of proper nonzero ideals  $(f_i)$ of $R$ that admits an $R$-module isomorphism:  
+\begin{align*}
+M \cong  R \quotient (f_1) \oplus  \cdots \oplus  R \quotient (f_n) \oplus R^q 
+\end{align*}
+Moreover, we know that 
+ \begin{enumerate}[label=(\roman*)]
+  \item Such $q$ is unique, called the \textbf{rank} of $M$.  
+  \item If we add the hypothesis of $(f_i)$ being primary, then the tuple $(f_i)$ is unique up to switching of order. Such isomorphism is then called the \textbf{primary decomposition of $M$}. 
+  \item If we add the hypothesis  $(f_i) \supseteq (f_{i+1})$, then the tuple $(f_i)$ is unique. Such isomorphism is then called the \textbf{invariant factor decomposition of $M$}. 
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+\href{https://en.wikipedia.org/wiki/Structure_theorem_for_finitely_generated_modules_over_a_principal_ideal_domain}{See Wikipedia}. 
+\end{proof}
+ As we promised in the preface, we will use \customref{THstfgm}{the structure theorem for finitely generated modules over PID} mentioned above to construct variant forms of endomorphisms of finite dimensional vector spaces. However, before such we need to check that the hypothesis are indeed satisfied:  
+\begin{theorem}
+\label{THwwn}
+\textbf{(What we need)} We can make  $V$ a finitely generated $\F[x]$-module by defining the scalar multiplication by 
+\begin{align*}
+  x \cdot v \triangleq T(v)
+\end{align*}
+Moreover, $\F[x]$ is a PID, and we have the followings: 
+\begin{enumerate}[label=(\roman*)]
+  \item If $ (f_i)\supseteq  (f_{i+1})$ are two proper nonzero ideals of $\F[x]$, then $f_{i}$ divides $f_{i+1}$. 
+  \item  If $(f)$ is a proper nonzero primary ideal of $R$, then $f=g^n$ for some irreducible  $g \in \F[x]$ and $n\inn$.  
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Left to reader.  
+\end{proof}
+From now on in this section, we denote $R \triangleq \F[x]$. We first construct the \textbf{Frobenius normal form} of $T$. Because $V$ is a finitely generated $R$-module, we may apply  \customref{THstfgm}{the structure theorem for finitely generated modules over PID} to gain its invariant factor decomposition, a $R$-module isomorphism: 
+\begin{align*}
+V \cong  R \quotient (f_1) \oplus  \cdots \oplus  R \quotient (f_n) \oplus R^q 
+\end{align*}
+in which $f_i$ divides $f_{i+1}$. 
+\begin{theorem}
+\label{THwwn2}
+\textbf{(What we need)} Every $R$-module is naturally a  $\F$-vector space. Let $h:M \rightarrow N$ be a $R$-module homomorphism. If we consider $M$ and  $N$ natural $\F$-vector spaces, then  $h$ is a $\F$-linear transformation.  
+\end{theorem}
+\begin{proof}
+Left to reader. 
+\end{proof}
+Now, since $R$ as a natural  $\F$-vector space is infinite dimensional and $V$ is finite dimensional, we see that we must have $q=0$. Therefore, we actually have 
+\begin{align*}
+V \cong  R \quotient (f_1) \oplus  \cdots \oplus  R \quotient (f_n) 
+\end{align*}
+Using this isomorphism (and the fact that $f_i$ divides  $f_{i+1}$), immediately we see that minimal polynomial of $T$ is $f_n$. (Check!) 
+\begin{theorem}
+\textbf{(Determinant of companion matrix)}  Let $f \in \F[x]$ be a monic polynomial:  
+\begin{align*}
+f \triangleq x^d + c_d x^{d-1}+ \cdots + c_1  
+\end{align*}
+By the \textbf{companion matrix} of $f$, we mean a matrix $A \in M_d(\F)$ of the form 
+ \begin{align*}
+A_{i,j}= \begin{cases}
+  -c_i& \text{ if $j=d$ } \\ 
+  1& \text{ if $j=i-1$ }\\
+  0& \text{ if otherwise }
+\end{cases} 
+\end{align*}
+The characteristic polynomial of $A$ is  $f$. 
+\end{theorem}
+\begin{proof}
+This can be proved via induction, which we leave to reader. 
+\end{proof}
+\begin{theorem}
+\textbf{(The existence of Frobenius normal form of $T$)} The $\F$-vector subspaces  $R \quotient (f_i)$ of $V$ are all invariant under  $T$. Fix $i$, and let $f_i$ be monic with degree  $d$. Then $\set{1,\dots, x^{d-1}}\subseteq R\quotient (f_i)$ form a basis $\beta $. Moreover, the matrix representation of the restriction of $T$ onto the subspace  $R \quotient (f_i)$ with respect to this basis is the companion matrix of  $f_i$. Therefore, the characteristic polynomial of $T$ is $\prod_{i=1}^n f_i$. 
+\end{theorem}
+\begin{proof}
+Left to reader. 
+\end{proof}
+\begin{theorem}
+\label{THpdt}
+\textbf{(Primary decomposition theorem)} Let $p$ be the minimal polynomial of  $T$, and write 
+\begin{align*}
+p=p_1^{r_1} \cdots p_k^{r_k}
+\end{align*}
+with $p_i$ monic irreducible. Then $V$ is the internal direct sum of the kernel of $p_i^{r_i}(T)$:  
+\begin{align}
+\label{EQisok}
+V \cong \operatorname{ker}(p_1^{r_1}(T)) \oplus  \cdots \oplus  \operatorname{ker}(p_k^{r_k}(T))
+\end{align}
+Moreover, for each $i\in \set{1,\dots ,k}$, if we let $E_i: V \rightarrow \operatorname{ker}(p_i^{r_i}(T))$ be the projection along the rest of the direct sum, then there exists a polynomial $q_i$ that makes  $q_i(T)=E_i$. 
+\end{theorem}
+\begin{proof}
+Apply \customref{THstfgm}{structure theorem for finitely generated modules over PID} to get the invariant factor form of the $R$-module $V$. That is, we get a set $\set{p_1,\dots ,p_k}$ of irreducible polynomials, for each $i \in \set{1,\dots ,k}$ a tuple $(m_{i,1},\dots ,m_{i,n_i})$ of natural numbers\footnote{See \myref{Theorem}{THwwn}}, and an $R$-module isomorphism:  
+\begin{align*}
+  V \cong \bigoplus_{i=1}^k \bigoplus_{j=1}^{n_i} R \quotient (p_i^{m_{i,j}}) 
+\end{align*}
+\myref{Isomorphism}{EQisok} then follows from checking that minimal polynomial of $T$ is 
+ \begin{align*}
+   \prod_{i=1}^k p_i^{r_i},\quad \text{ where }r_i = \max \set{m_{i,1},\dots ,m_{i,n_i}}
+\end{align*}
+and checking that 
+\begin{align*}
+\bigoplus_{j=1}^{n_i} R \quotient (p_i^{m_{i,j}})= \operatorname{ker}(p_i^{r_i}(T))
+\end{align*}
+Because $p_i$ are monic irreducible, by Chinese remainder theorem there exists a polynomial $q_i \in \F[x]$ such that 
+\begin{align*}
+q_i\equiv 1\pmod{p_i^{r_i}}\quad \text{ and }\quad q_i\equiv 0 \pmod{p_j^{r_j}},\quad \text{ for all }j\neq i
+\end{align*}
+Such $q_i$ then clearly satisfies $q_i(T)=E_i$. 
+\end{proof}
+From now on in this section, suppose $\F$ is algebraically closed. We close this section by constructing the \textbf{Jordan form} of $T$. As in proof of \customref{THpdt}{primary decomposition theorem}, let $p$ be the minimal polynomial of  $T$, and write 
+\begin{align*}
+p=p_1^{r_1}\cdots p_k ^{r_k}
+\end{align*}
+with $p_i$ monic irreducible. Because $\F$ is algebraically closed, we know $p_i$ are linear. Therefore, we have a tuple  $(\ld_1,\dots ,\ld _k)$ of elements in $\F$ that makes 
+\begin{align*}
+p_i=x- \ld_i,\quad \text{ for all }i 
+\end{align*}
+\begin{theorem}
+\textbf{(The existence of Jordan form of $T$)} The $\F$-vector subspaces  $R \quotient (p_i^{m_{i,j}})$ are all invariant under $T$. Fix  $i$ and  $m_{i,j}$. Then 
+\begin{align*}
+\set{p_i^{m_{i,j}-1},\dots , p_i,1}\subseteq R \quotient (p_i^{m_{i,j}})
+\end{align*}
+forms the desired Jordan basis.\end{theorem}
+\begin{proof}
+
+\end{proof}
+\begin{corollary}
+\textbf{(Existence and Uniqueness of Jordan Chevalley decomposition)}  By \textbf{Jordan Chevalley decomposition} of $T$, we mean a nilpotent  $N\in \operatorname{End}(V)$ and a diagonalizable $D \in \operatorname{End}(V)$ that makes 
+\begin{enumerate}[label=(\roman*)]
+  \item $T=D+N$.  
+  \item $D$ and  $N$ commute. 
+\end{enumerate}
+The existence of Jordan Chevalley decomposition 
+
+\end{corollary}
+\begin{proof}
+
+\end{proof}
+
+By , we may write
+\begin{align*}
+V \cong \bigoplus \F[x]\quotient (f_i) ,\quad \text{ as $\F[x]$-modules }
+\end{align*}
+where $(f_i)\subseteq \F[x]$ are primary. Because $(f_i)$ is primary, we know each $f_i$ is a power of an irreducible. Clearly the least common multiples of all $f_i$ is the minimal polynomial of  $T$. Therefore if the minimal polynomial of $T$ splits  (over $\F$), then $f_i$ are all linear. In such case, we may write 
+\begin{align*}
+V \cong \bigoplus_{\ld } \bigoplus \F[x]\quotient \left((x-\ld )^n\right)
+\end{align*}
+One then see that 
+\begin{align*}
+\set{(x-\ld)^{n-1},\dots ,1}\text{ forms the Jordan basis of each block }
+\end{align*}
+Let each eigenvalue $\ld _i$ has index $d_i$. Moreover, we see that after getting the Jordan Chevalley decomposition $T=D+N$ from Jordan block, because by Chinese remainder theorem, there exists a unique $g \in \F[x]$ with $\operatorname{deg}g< \sum d_i$ such that 
+\begin{align*}
+g \equiv \ld_i  \pmod{(x-\ld_i )^{d_i}},\quad \text{ for all }i
+\end{align*}
+We see $g(T)=D$. Moreover we may show the existence of some $f$ that makes  $f(T)=0$ and have zero constant term. If  $0$ is an eigenvalue, then  $g \equiv 0\pmod{x^d}$ so $g$ already suffices. If  $0$ is not an eigenvalues, adding appropriate amount of the minimal polynomial  to  $g$ suffices. \\
+
+Note that the uniqueness of the Jordan-Chevalley decomposition follows from showing that two commuting diagonalizable matrix are simultaneously diagonalizable. Note that the uniqueness of Jordan form is guaranteed by the uniqueness in the structure theorem since we may reverse engineer a Jordan form $J(\ld ,d)$ back to showing that it is isomorphic as a $\F[x]$-module to $\F[x]\quotient (x-\ld )^d$ by invoking structure theorem for finitely generated modules over PID on the $\F[x]$-module $J(\ld ,d)$ again and consider the minimal polynomial.  \\
+
+By structure theorem for finitely generated modules over PID, we may write 
+\begin{align*}
+V \cong \F[x] \quotient (f_1^{n_1}) \oplus  \cdots \oplus \F[x]\quotient (f_1^{n_{m_1}}) \oplus  \cdots \oplus  \F[x]\quotient (f_k^{n_k}) \oplus  \cdots \oplus \F[x] \quotient (f_k^{n_{m_k}})
+\end{align*}
+where $f_i$ are distinct irreducible polynomials. We call 
+\begin{align*}
+\F[x] \quotient (f_i^{n_1})\oplus  \cdots \oplus  \F[x]\quotient (f_i^{n_{m_i}})
+\end{align*}
+the primary part of $V$. Let $n_{m_i}$ be maximal. By Chinese remainder theorem, there exists some polynomial $f$ such that 
+ \begin{align*}
+f\equiv 1 \pmod{f_1^{n_{m_1}}} \quad \text{ and }\quad f\equiv 0 \pmod{f_i^{n_{m_i}}}\text{ for $i\geq 2$ }
+\end{align*}
+Then $f(T)$ is a projection of $V$ onto its first primary part along the direct sum of the other primary parts.
+Let $V$ be a finite-dimensional  $\F$-vector space and $T\in \operatorname{End}(V)$. Clearly, we may make $V$ a finitely generated module over the PID  $\F[x]$ by defining the scalar multiplication by 
+\begin{align*}
+x \cdot v \triangleq T(v),\quad \text{ for all }v\in V
+\end{align*}
+Therefore, we may apply \customref{THfgmoPID}{structure theorem} to the $\F[x]$-module $V$. Because $\F[x]$-module homomorphisms are clearly $\F$-vector space homomorphism, this gives us a $\F$-vector space isomorphism. As a \emph{hind-sight}, since $V$ as a $\F$-vector space is finite dimensional by \emph{priori} and $\F[x]$ is infinite dimensional as a $\F$-vector space, we see that we must have $f=0$. \\
+
+Now, since---as one can easily check---the ideal $(d_i) \subseteq \F[x]$ is primary if and only if $d_i$ is a power of irreducible polynomials, the primary decomposition gives us a set of irreducible polynomials $\set{\operatorname{irr}_1,\dots , \operatorname{irr}_m}\subseteq \F[x]$ and for each $i \in \set{1,\dots ,m}$ a tuple of natural numbers $\set{k_1,\dots ,k_{s_i}}$ such that 
+\begin{align*}
+V \cong \bigoplus_{i=1}^m \bigoplus_{j=1}^{s_i}    \F[x] \quotient (\operatorname{irr}_i^{k_j})
+\end{align*}
+As one can easily check, the decomposition of $V$ into direct sum  of the sub $\F[x]$-modules $ \bigoplus_{j=1}^{s_i}    \F[x] \quotient (\operatorname{irr}_i^{k_j})$ is then indeed a \textbf{primary decomposition of $T$} as other textbook like Hoffman and Kunze may call it. In other words, we have the following results: 
+\begin{enumerate}[label=(\roman*)]
+  \item For all $i$, the sub  $\F[x]$-module $\bigoplus_{j=1}^{s_i}    \F[x] \quotient (\operatorname{irr}_i^{k_j})$ is $T$-invariant.  
+  \item For all $i$, the restriction of $T$ onto the sub $\F$-vector space  $\bigoplus_{j=1}^{s_i}    \F[x] \quotient (\operatorname{irr}_i^{k_j})$ has minimal polynomial $\operatorname{irr}_i^{\max \set{k_1,\dots ,k_{s_i}}}$. 
+  \item The minimal polynomials of $T$ is
+\begin{align*}
+    \prod_{i=1}^m \operatorname{irr}_i^{\max \set{k_1,\dots ,k_{s_i}}}
+\end{align*}
+\end{enumerate}
+Now, if we add the hypothesis that $\F$ is algebraically closed, then we have proved the existence of \textbf{Jordan form}, since irreducibles are linear, taking the form $x-\ld_i$, and we can take the Jordan basis to be the unions of $\set{(x-\ld_i)^{0}, \dots ,(x-\ld_i) ^{k_j-1}}$. \\
+
+On the other hand, if we apply  \customref{THfgmoPID}{structure theorem} to the $\F[x]$-module $V$ for its invariant factors decomposition, then the same mechanisms gives us the  \textbf{rational canonical form}, in which the basis is just the unions of  $\set{x^0,x^1,\dots ,x^{\operatorname{deg}(d_i)-1}}$. 
+
+\chapter{Selected Topics}
 \section{Jordan-Chevalley decomposition}
 \label{JCD}
 Let $V$ be some finite dimensional $\F$-vector space. Given $T\in \operatorname{End}(V)$, we know the kernels of its powers is increasing:  
